@@ -1,6 +1,19 @@
 
 # directories (by name)
 
+include/b64/
+include/shwild/
+include/xcontract/
+include/xtests/
+
+src/b64/
+src/shwild/
+src/xtests/
+
+vc71/
+vc8/
+vc9/
+
 ideas/
 
 Debug/
