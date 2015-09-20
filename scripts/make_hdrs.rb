@@ -281,7 +281,7 @@ f << ' * File:        pantheios/' << C_LOG_FUNCTIONS_HEADER_NAME << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * Purpose:     Declarations of the pantheios_log_<N>() functions' << ENDL
 f << ' *' << '' << ENDL
-f << ' * Generated:   #{current_date}' << '' << ENDL
+f << " * Generated:   #{current_date}" << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * Status:      This file is auto-generated: DO NOT EDIT!' << '' << ENDL
 f << ' *' << '' << ENDL
@@ -348,7 +348,7 @@ f << ' *' << '' << ENDL
 f << ' * Purpose:     Definitions of the pantheios_log_<N>() and' << ENDL
 f << ' *              pantheios_log_<N>_no_test() functions' << ENDL
 f << ' *' << '' << ENDL
-f << ' * Generated:   #{current_date}' << '' << ENDL
+f << " * Generated:   #{current_date}" << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * Status:      This file is auto-generated: DO NOT EDIT!' << '' << ENDL
 f << ' *' << '' << ENDL
