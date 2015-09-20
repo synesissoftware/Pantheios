@@ -1,0 +1,404 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "pantheios.core"=..\..\projects\core\vc6\pantheios.core.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "pantheios.util"=..\..\projects\util\vc6\pantheios.util.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.be.file.threading"=.\test.component.be.file.threading\vc6\test.component.be.file.threading.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.core.initialisation_sequence"=.\test.component.core.initialisation_sequence\vc6\test.component.core.initialisation_sequence.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.core.pantheios_logprintf"=.\test.component.core.pantheios_logprintf\vc6\test.component.core.pantheios_logprintf.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.core.pantheios_logputs"=.\test.component.core.pantheios_logputs\vc6\test.component.core.pantheios_logputs.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.custom_severity"=.\test.component.custom_severity\vc6\test.component.custom_severity.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.args"=.\test.component.inserters.args\vc6\test.component.inserters.args.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.b64"=.\test.component.inserters.b64\vc6\test.component.inserters.b64.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.boolean"=.\test.component.inserters.boolean\vc6\test.component.inserters.boolean.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.hostId"=.\test.component.inserters.hostId\vc6\test.component.inserters.hostId.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.integer"=.\test.component.inserters.integer\vc6\test.component.inserters.integer.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.m2w"=.\test.component.inserters.m2w\vc6\test.component.inserters.m2w.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.pad"=.\test.component.inserters.pad\vc6\test.component.inserters.pad.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.pointer"=.\test.component.inserters.pointer\vc6\test.component.inserters.pointer.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.processId"=.\test.component.inserters.processId\vc6\test.component.inserters.processId.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.real"=.\test.component.inserters.real\vc6\test.component.inserters.real.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.slice"=.\test.component.inserters.slice\vc6\test.component.inserters.slice.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.threadId"=.\test.component.inserters.threadId\vc6\test.component.inserters.threadId.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.inserters.w2m"=.\test.component.inserters.w2m\vc6\test.component.inserters.w2m.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.log.1"=.\test.component.log.1\vc6\test.component.log.1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.component.trace.1"=.\test.component.trace.1\vc6\test.component.trace.1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

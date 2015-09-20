@@ -1,0 +1,59 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "example.c.util.getcurrenttime"=.\example.c.util.getcurrenttime\vc6\example.c.util.getcurrenttime.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example.c.util.gethostname"=.\example.c.util.gethostname\vc6\example.c.util.gethostname.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "pantheios.util"=..\..\..\projects\util\vc6\pantheios.util.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

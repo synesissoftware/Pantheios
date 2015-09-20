@@ -1,0 +1,554 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "bec.COMErrorObject"=..\..\projects\backends\bec.COMErrorObject\vc6\bec.COMErrorObject.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "fe.WindowsRegistry"=..\..\projects\frontends\fe.WindowsRegistry\vc6\fe.WindowsRegistry.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "pantheios.core"=..\..\projects\core\vc6\pantheios.core.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "pantheios.util"=..\..\projects\util\vc6\pantheios.util.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "shwild"=..\..\..\..\..\shwild\main\0.9\build\vc6\shwild.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.be.N"=.\test.unit.be.N\vc6\test.unit.be.N.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.be.WindowsSyslog"=.\test.unit.be.WindowsSyslog\vc6\test.unit.be.WindowsSyslog.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.be.fail"=.\test.unit.be.fail\vc6\test.unit.be.fail.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.be.lrsplit"=.\test.unit.be.lrsplit\vc6\test.unit.be.lrsplit.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.bec.COMErrorObject"=.\test.unit.bec.COMErrorObject\vc6\test.unit.bec.COMErrorObject.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name bec.COMErrorObject
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.bec.fail"=.\test.unit.bec.fail\vc6\test.unit.bec.fail.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.bec.file"=.\test.unit.bec.file\vc6\test.unit.bec.file.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.bec.fprintf"=.\test.unit.bec.fprintf\vc6\test.unit.bec.fprintf.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.fe.N"=.\test.unit.fe.N\vc6\test.unit.fe.N.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.fe.WindowsRegistry"=.\test.unit.fe.WindowsRegistry\vc6\test.unit.fe.WindowsRegistry.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name fe.WindowsRegistry
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.fe.all"=.\test.unit.fe.all\vc6\test.unit.fe.all.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.fe.fail"=.\test.unit.fe.fail\vc6\test.unit.fe.fail.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.fe.null"=.\test.unit.fe.null\vc6\test.unit.fe.null.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.fe.simple"=.\test.unit.fe.simple\vc6\test.unit.fe.simple.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.getversion"=.\test.unit.getversion\vc6\test.unit.getversion.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.inserter.integer"=.\inserters\test.unit.inserter.integer\vc6\test.unit.inserter.integer.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.inserter.m2w"=.\inserters\test.unit.inserter.m2w\vc6\test.unit.inserter.m2w.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.inserter.w2m"=.\inserters\test.unit.inserter.w2m\vc6\test.unit.inserter.w2m.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.levels.2"=.\test.unit.levels.2\vc6\test.unit.levels.2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.levels.dynamic_initialisation"=.\test.unit.levels.dynamic_initialisation\vc6\test.unit.levels.dynamic_initialisation.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.levels.values"=.\test.unit.levels.values\vc6\test.unit.levels.values.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.util.getcurrenttime"=.\test.unit.util.getcurrenttime\vc6\test.unit.util.getcurrenttime.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.util.gethostname"=.\test.unit.util.gethostname\vc6\test.unit.util.gethostname.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.util.onbailout"=.\test.unit.util.onbailout\vc6\test.unit.util.onbailout.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name shwild
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name xtests.core
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.unit.util.strnlen"=.\test.unit.util.strnlen\vc6\test.unit.util.strnlen.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "xtests.core"=..\..\..\..\..\xtests\cpptests\0.17\projects\core\vc6\xtests.core.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

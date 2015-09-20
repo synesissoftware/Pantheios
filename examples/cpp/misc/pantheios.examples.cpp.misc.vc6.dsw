@@ -1,0 +1,152 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "example.cpp.misc.101"=.\example.cpp.misc.101\vc6\example.cpp.misc.101.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example.cpp.misc.custom_type_1"=.\example.cpp.misc.custom_type_1\vc6\example.cpp.misc.custom_type_1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example.cpp.misc.extended_severity_information"=.\example.cpp.misc.extended_severity_information\vc6\example.cpp.misc.extended_severity_information.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example.cpp.misc.hetero1"=.\example.cpp.misc.hetero1\vc6\example.cpp.misc.hetero1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example.cpp.misc.no_namespace"=.\example.cpp.misc.no_namespace\vc6\example.cpp.misc.no_namespace.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "example.cpp.misc.strings"=.\example.cpp.misc.strings\vc6\example.cpp.misc.strings.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "pantheios.core"=..\..\..\projects\core\vc6\pantheios.core.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "pantheios.util"=..\..\..\projects\util\vc6\pantheios.util.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

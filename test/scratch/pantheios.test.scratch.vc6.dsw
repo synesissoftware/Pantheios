@@ -1,0 +1,476 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "pantheios.core"=..\..\projects\core\vc6\pantheios.core.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "pantheios.util"=..\..\projects\util\vc6\pantheios.util.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.scratch.api"=.\test.scratch.api\vc6\test.scratch.api.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.be.N"=.\test.scratch.be.N\vc6\test.scratch.be.N.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.be.N.fail"=.\test.scratch.be.N.fail\vc6\test.scratch.be.N.fail.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.be.N.with.custom.fe"=.\test.scratch.be.N.with.custom.fe\vc6\test.scratch.be.N.with.custom.fe.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.be.file"=.\test.scratch.be.file\vc6\test.scratch.be.file.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.be.file.rolling"=.\test.scratch.be.file.rolling\vc6\test.scratch.be.file.rolling.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.be.pantheios.COM"=.\test.scratch.be.pantheios.COM\vc6\test.scratch.be.pantheios.COM.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.be.speech"=.\test.scratch.be.speech\vc6\test.scratch.be.speech.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.be.syslog"=.\test.scratch.be.syslog\vc6\test.scratch.be.syslog.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.be.syslog.WithCallback"=.\test.scratch.be.syslog.WithCallback\vc6\test.scratch.be.syslog.WithCallback.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.bec.WindowsConsoleCallback"=.\test.scratch.bec.WindowsConsoleCallback\vc6\test.scratch.bec.WindowsConsoleCallback.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.bec.WindowsMessageBox"=.\test.scratch.bec.WindowsMessageBox\vc6\test.scratch.bec.WindowsMessageBox.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.c_api"=.\test.scratch.c_api\vc6\test.scratch.c_api.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.extras.com_exception_helpers"=.\test.scratch.extras.com_exception_helpers\vc6\test.scratch.extras.com_exception_helpers.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.fe"=.\test.scratch.fe\vc6\test.scratch.fe.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.fe.WindowsRegistry"=.\test.scratch.fe.WindowsRegistry\vc6\test.scratch.fe.WindowsRegistry.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.fe.WindowsRegistry.controller"=.\test.scratch.fe.WindowsRegistry.controller\vc6\test.scratch.fe.WindowsRegistry.controller.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.fe.simple.WithCallback"=.\test.scratch.fe.simple.WithCallback\vc6\test.scratch.fe.simple.WithCallback.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.implicit_link"=.\test.scratch.implicit_link\vc6\test.scratch.implicit_link.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.pan_with_ff"=.\test.scratch.pan_with_ff\vc6\test.scratch.pan_with_ff.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.pseudoUNIX"=.\test.scratch.pseudoUNIX\vc6\test.scratch.pseudoUNIX.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.trace"=.\test.scratch.trace\vc6\test.scratch.trace.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.tstring"=.\test.scratch.tstring\vc6\test.scratch.tstring.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test.scratch.util.onBailOut"=.\test.scratch.util.onbailout\vc6\test.scratch.util.onBailOut.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

@@ -1,6 +1,19 @@
 
 # directories (by name)
 
+include/b64/
+include/shwild/
+include/xcontract/
+include/xtests/
+
+src/b64/
+src/shwild/
+src/xtests/
+
+vc71/
+vc8/
+vc9/
+
 ideas/
 
 Debug/
@@ -48,4 +61,8 @@ list_changes.cmd
 *.swp
 *.vcproj*.user
 *.vcxproj*.user
+
+*.vc71.sln
+*.vc8.sln
+*.vc9.sln
 
