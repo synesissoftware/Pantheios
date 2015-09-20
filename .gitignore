@@ -62,3 +62,7 @@ list_changes.cmd
 *.vcproj*.user
 *.vcxproj*.user
 
+*.vc71.sln
+*.vc8.sln
+*.vc9.sln
+
