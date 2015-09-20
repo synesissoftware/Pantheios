@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.util.onbailout project.
  *
  * Created:     29th April 2008
- * Updated:     6th August 2012
+ * Updated:     9th December 2013
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2013, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -25,6 +25,8 @@
 #define PANTHEIOS_BAILOUT_NO_OPERATING_SYSTEM_SPECIFICS
 #define PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG
 #define PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG
+
+#define PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE     (200)
 
 #ifdef UNIX
 # define _WINSOCKAPI_
@@ -74,11 +76,11 @@
 namespace
 {
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
+static void test_unused_receiver();
+static void test_pantheios_onBailOut3();
+static void test_pantheios_onBailOut4();
+static void test_pantheios_onBailOut6();
+static void test_pantheios_onBailOut6_too_long();
 static void test_1_06();
 static void test_1_07();
 static void test_1_08();
@@ -87,7 +89,7 @@ static void test_1_10();
 static void test_1_11();
 static void test_1_12();
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -163,7 +165,7 @@ namespace
 
     OnBailOutReceiver   receiver;
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -178,13 +180,13 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER(PANTHEIOS_FE_PROCESS_IDENTITY, verbosity))
+    if(XTESTS_START_RUNNER("test.unit.util.onbailout", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
+        XTESTS_RUN_CASE(test_unused_receiver);
+        XTESTS_RUN_CASE(test_pantheios_onBailOut3);
+        XTESTS_RUN_CASE(test_pantheios_onBailOut4);
+        XTESTS_RUN_CASE(test_pantheios_onBailOut6);
+        XTESTS_RUN_CASE(test_pantheios_onBailOut6_too_long);
         XTESTS_RUN_CASE(test_1_06);
         XTESTS_RUN_CASE(test_1_07);
         XTESTS_RUN_CASE(test_1_08);
@@ -206,7 +208,7 @@ int main(int argc, char** argv)
 namespace
 {
 
-static void test_1_01()
+static void test_unused_receiver()
 {
     receiver.Clear();
 
@@ -225,7 +227,7 @@ static void test_1_01()
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_1_02()
+static void test_pantheios_onBailOut3()
 {
     receiver.Clear();
 
@@ -234,33 +236,284 @@ static void test_1_02()
 
     pantheios_onBailOut3(PANTHEIOS_SEV_DEBUG, message, "process-#1");
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size());
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
     XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern, receiver.ConsoleResults[0].message);
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
     !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
-    XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size());
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
 #endif /* PLATFORMSTL_OS_IS_WINDOWS */
-//  XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size());
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-    XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size());
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
     XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern, receiver.ConsoleResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_WINDOWS */
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
     !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
-    XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size());
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_1_03()
+static void test_pantheios_onBailOut4()
 {
+    char const  message[]           =   "hello";
+    char const  pattern_no_qual[]   =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello";
+    char const  qualifier_1[]       =                                                                                               "qualifier";
+    char const  pattern_qual_1[]    =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: qualifier";
+    char const  qualifier_2[]       =                                                                                               "and now for a much longer qualifier, that will exercise some of the limits of messages that may be passed to the bail-out function(s) as there is a concern that the limits of some of the static buffers may be exceeded by very very very very very very long strings";
+#if PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE == 200
+    char const  pattern_qual_2[]    =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: and now for a much longer qualifier, that will exercise some of the limits of messages that may be passed to the bail-out function(s) as there is a concern that the limi";//"ts of some of the static buffers may be exceeded by very very very very very very long strings";
+#else
+# error
+#endif
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut4(PANTHEIOS_SEV_DEBUG, message, "process-#1", NULL);
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_no_qual, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_no_qual, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut4(PANTHEIOS_SEV_DEBUG, message, "process-#1", qualifier_1);
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_1, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_1, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut4(PANTHEIOS_SEV_DEBUG, message, "process-#1", qualifier_2);
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_2, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_2, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_1_04()
+static void test_pantheios_onBailOut6()
 {
+    const char  message[]       =   "hello";
+    const char  pattern_none[]  =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: qual-#1";
+    const char  pattern_fe[]    =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: fe=fe-#1: qual-#1";
+    const char  pattern_be[]    =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: be=be-#1: qual-#1";
+    const char  pattern_febe[]  =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: fe=fe-#1, be=be-#1: qual-#1";
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "qual-#1", NULL, NULL);
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_none, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_none, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "qual-#1", "fe-#1", NULL);
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_fe, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_fe, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "qual-#1", NULL, "be-#1");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_be, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_be, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "qual-#1", "fe-#1", "be-#1");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_febe, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_febe, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_1_05()
+static void test_pantheios_onBailOut6_too_long()
 {
+    const char  message[]           =   "hello";
+    const char  pattern_short[]     =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: fe=fe-#1, be=be-#1: qual-#1";
+    const char  pattern_medium_1[]  =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: fe=a-longish-front-end-#1, be=a-longish-back-end-#1: a-longish-qualifier-#1";
+    const char  pattern_medium_2[]  =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: fe=a-fair-bit-more-than-fairish-amount-longer-front-end-#1, be=a-fair-bit-more-than-fairish-amount-longer-back-end-#1: a-fair-bit-more-than-fairish-amount-longer-qualifi";
+    const char  pattern_long[]      =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: fe=a-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-name-for-a-front-end-#1, be=a-very-very-very-very-very-very-very-very-very-very";
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "qual-#1", "fe-#1", "be-#1");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_short, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_short, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "a-longish-qualifier-#1", "a-longish-front-end-#1", "a-longish-back-end-#1");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_1, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_1, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "a-fair-bit-more-than-fairish-amount-longer-qualifier-#1", "a-fair-bit-more-than-fairish-amount-longer-front-end-#1", "a-fair-bit-more-than-fairish-amount-longer-back-end-#1");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_2, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_2, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
+
+
+    receiver.Clear();
+
+    pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "a-much-much-much-much-much-much-much-much-longer-qualifier-#1", "a-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-name-for-a-front-end-#1", "a-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-name-for-a-back-end-#1");
+
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_long, receiver.ConsoleResults[0].message);
+#if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
+    !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+//  XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
+    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_long, receiver.ConsoleResults[0].message);
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+#if defined(PLATFORMSTL_OS_IS_UNIX) && \
+    !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
+#endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
 static void test_1_06()
@@ -291,7 +544,7 @@ static void test_1_12()
 {
 }
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

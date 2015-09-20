@@ -7,7 +7,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     29th November 2006
- * Updated:     7th December 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -24,13 +24,13 @@
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS // Faster compilation
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>            // Pantheios C++ main header
 #include <pantheios/inserters/args.hpp>       // for pantheios::args
 
 #include <pantheios/backends/bec.file.h>      // be.file header
 
-/* Standard C/C++ Header Files */
+/* Standard C/C++ header files */
 #include <exception>                          // for std::exception
 #include <new>                                // for std::bad_alloc
 #include <string>                             // for std::string

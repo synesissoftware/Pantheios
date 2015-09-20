@@ -4,33 +4,33 @@
  * Purpose:     Implementation file for the example.c.util.gethostname project.
  *
  * Created:     25th August 2008
- * Updated:     27th December 2010
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
  *
  * ////////////////////////////////////////////////////////////////////// */
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/util/system/hostname.h>
 
 #include <pantheios/internal/safestr.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <platformstl/platformstl.h>
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <winstl/error/error_functions.h>
 #endif /* OS */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>

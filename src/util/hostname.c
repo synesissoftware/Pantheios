@@ -4,11 +4,11 @@
  * Purpose:     Time functions for use in Pantheios back-ends.
  *
  * Created:     22nd August 2006
- * Updated:     10th August 2009
+ * Updated:     9th December 2013
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -154,13 +154,13 @@ static size_t pantheios_getHostName_body_(pan_char_t* buffer, size_t cchBuffer)
         {
             if(0 != res)
             {
-                /* Was an error, so return 0 */
+                /* Was a failure, so return 0 */
                 return 0;
             }
             else if('\0' != buffer[cchBuffer - 1])
             {
                 /* Was insufficient buffer, so we return the given size (which is the
-                 * error indicator for that condition
+                 * failure indicator for that condition
                  *
                  * Also, to homogenise platform behaviour, we ensure that no fragment
                  * of the buffer is returned as filled out.

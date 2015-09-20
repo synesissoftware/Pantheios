@@ -5,11 +5,11 @@
  *              specialisations.
  *
  * Created:     9th November 2007
- * Updated:     14th February 2010
+ * Updated:     17th November 2013
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MINOR     2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      10
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_REVISION  3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      11
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,22 +75,28 @@
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER >= 1400
-# define PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED
+# define PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_
 #endif /* compiler */
 
-#ifndef PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED
-# ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
-#  include <stlsoft/memory/allocator_selector.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
-#endif /* !PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED */
+#ifndef PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_
+# ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#  ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
+#   include <stlsoft/memory/util/allocator_selector.hpp>
+#  endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */
+# else /* ? STLSoft 1.12+ */
+#  ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
+#   include <stlsoft/memory/allocator_selector.hpp>
+#  endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
+# endif /* STLSoft 1.12+ */
+#endif /* !PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_ */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
-#ifdef PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED
+#ifdef PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_
 # ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR
 #  include <stlsoft/memory/malloc_allocator.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR */
-#endif /* PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED */
+#endif /* PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -124,11 +130,11 @@ namespace util
  */
 template<   typename    T
         ,   size_t      N
-#ifdef PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED
+#ifdef PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_
         ,   typename    A = stlsoft::malloc_allocator<T>
-#else /* ? PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED */
+#else /* ? PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_ */
         ,   typename    A = ss_typename_type_def_k stlsoft::allocator_selector<T>::allocator_type
-#endif /* PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED */
+#endif /* PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_ */
         >
 struct auto_buffer_selector
 {

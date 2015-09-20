@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the pantheios::hostId inserter class.
  *
  * Created:     14th April 2008
- * Updated:     10th August 2009
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/inserters/hostid.hpp>
 
@@ -50,7 +50,7 @@
 #include <pantheios/util/system/hostname.h>
 #include <pantheios/internal/safestr.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # include <memory.h>
 #endif /* compiler */
@@ -72,6 +72,12 @@
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 namespace pantheios
 {
+
+namespace
+{
+
+} /* anonymous namespace */
+
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,13 +111,10 @@ void host_id_t::construct_()
 {
     static const pan_char_t s_localHost[] = PANTHEIOS_LITERAL_STRING("localhost");
 
-#if defined(PANTHEIOS_NO_NAMESPACE)
-    auto_buffer_selector<                       pan_char_t
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-    ::pantheios::util::auto_buffer_selector<    pan_char_t
-#endif /* PANTHEIOS_NO_NAMESPACE */
-                                            ,   256
-                                            >::type     hostName_(256);
+    PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
+        pan_char_t
+    ,   256
+    >::type             hostName_(256);
 
     size_t              cch         =   getHostName(hostName_);
     pan_char_t const*   hostName    =   hostName_.data();

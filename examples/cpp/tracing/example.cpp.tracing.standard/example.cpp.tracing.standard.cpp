@@ -6,7 +6,7 @@
  *                - use of Pantheios Tracing API
  *
  * Created:     18th August 2007
- * Updated:     6th December 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -21,12 +21,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>                // Pantheios C main header
 #include <pantheios/trace.h>                    // Pantheios Trace API
 #include <pantheios/pantheios.hpp>              // Pantheios C++ main header
 
-/* Standard C/C++ Header Files */
+/* Standard C/C++ header files */
 #include <exception>                            // for std::exception
 #include <new>                                  // for std::bad_alloc
 #include <string>                               // for std::string

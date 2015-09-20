@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.trace.1 project.
  *
  * Created:     25th November 2007
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,19 +20,19 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/trace.h>
 #include <pantheios/backends/bec.test.h>
 #include <pantheios/frontends/stock.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/conversion/integer_to_string.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <string>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
@@ -65,7 +65,7 @@ namespace
         return s;
     }
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Forward Declarations

@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios Windows-SysLog Stock Back-end API.
  *
  * Created:     23rd September 2005
- * Updated:     30th April 2010
+ * Updated:     1st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MAJOR     4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MINOR     1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      22
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MINOR     2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_REVISION  1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -438,19 +438,20 @@ struct pan_be_WindowsSyslog_init_t
 {
 #if !defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) && \
     !defined(PANTHEIOS_NO_NAMESPACE)
+    typedef pantheios::pan_char_t   pan_char_t;
     typedef pantheios::pan_uint8_t  pan_uint8_t;
     typedef pantheios::pan_uint16_t pan_uint16_t;
     typedef pantheios::pan_uint32_t pan_uint32_t;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION && !PANTHEIOS_NO_NAMESPACE */
 
-    pan_uint32_t    version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
-    pan_uint32_t    flags;      /*!< \ref group__backend__stock_backends__WindowsSyslog__flags "Flags" that control the information displayed. */
-    size_t          addrSize;   /*!< Number of elements in array. Must be 0, 4 or 16. 0 means hostName is used; 4 means IPv4; 16 means IPv6. \note IPv6 is not currently supported. */
-    pan_uint8_t     bytes[16];  /*!< IPv4 or IPv6 address elements. */
-    char const*     hostName;   /*!< Host name. Must be non-NULL when 0 == addrSize. */
-    pan_uint16_t    port;       /*!< Port to be used for transmission. */
-    pan_uint8_t     facility;   /*!< The facility used by the process. Must be <= 124. Defaults to PANTHEIOS_SYSLOG_FAC_USER */
-    char            hostNameBuff[101]; /*!< Buffer for use by client to write host name, to which \link pan_be_WindowsSyslog_init_t::hostName hostName\endlink can be pointed. */
+    pan_uint32_t        version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
+    pan_uint32_t        flags;      /*!< \ref group__backend__stock_backends__WindowsSyslog__flags "Flags" that control the information displayed. */
+    size_t              addrSize;   /*!< Number of elements in array. Must be 0, 4 or 16. 0 means hostName is used; 4 means IPv4; 16 means IPv6. \note IPv6 is not currently supported. */
+    pan_uint8_t         bytes[16];  /*!< IPv4 or IPv6 address elements. */
+    pan_char_t const*   hostName;   /*!< Host name. Must be non-NULL when 0 == addrSize. */
+    pan_uint16_t        port;       /*!< Port to be used for transmission. */
+    pan_uint8_t         facility;   /*!< The facility used by the process. Must be <= 124. Defaults to PANTHEIOS_SYSLOG_FAC_USER */
+    pan_char_t          hostNameBuff[101]; /*!< Buffer for use by client to write host name, to which \link pan_be_WindowsSyslog_init_t::hostName hostName\endlink can be pointed. */
 
 #ifdef __cplusplus
 public: /* Construction */
@@ -477,7 +478,8 @@ typedef struct pan_be_WindowsSyslog_init_t    pan_be_WindowsSyslog_init_t;
  *   \ref page__backend__callbacks "callback" version of the library is
  *   used.
  */
-PANTHEIOS_CALL(void) pantheios_be_WindowsSyslog_getAppInit(
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsSyslog_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsSyslog_init_t*    init
 ) /* throw() */;
@@ -498,7 +500,8 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsSyslog_getAppInit(
  *   already have been called by pantheios_be_WindowsSyslog_init() prior
  *   to the callback.
  */
-PANTHEIOS_CALL(void) pantheios_be_WindowsSyslog_getDefaultAppInit(
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsSyslog_getDefaultAppInit(
     pan_be_WindowsSyslog_init_t* init
 ) /* throw() */;
 
@@ -514,7 +517,8 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsSyslog_getDefaultAppInit(
  *   flags, so that initialisation failure will not prevent the
  *   application from initialising.
  */
-PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_init(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsSyslog_init(
     PAN_CHAR_T const*                   processIdentity
 ,   int                                 id
 ,   pan_be_WindowsSyslog_init_t const*  init
@@ -525,14 +529,16 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_init(
 /** Implements the functionality for pantheios_be_uninit() over the Windows-SysLog API.
  * \ingroup group__backend__stock_backends__WindowsSyslog
  */
-PANTHEIOS_CALL(void) pantheios_be_WindowsSyslog_uninit(
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsSyslog_uninit(
     void* token
 );
 
 /** Implements the functionality for pantheios_be_logEntry() over the Windows-SysLog API.
  * \ingroup group__backend__stock_backends__WindowsSyslog
  */
-PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsSyslog_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -570,7 +576,8 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_logEntry(
  * - "showPid"                  (Boolean)
  * - "connectImmediately"       (Boolean)
  */
-PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_parseArgs(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsSyslog_parseArgs(
     size_t                          numArgs
 #ifdef PANTHEIOS_NO_NAMESPACE
 ,   struct pan_slice_t* const       args

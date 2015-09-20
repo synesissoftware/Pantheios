@@ -4,11 +4,11 @@
  * Purpose:     Custom level class.
  *
  * Created:     22nd July 2006
- * Updated:     10th August 2009
+ * Updated:     9th December 2013
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -106,7 +106,7 @@ namespace
     static /* const */ level<SEV_EMERGENCY>       emergency;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-} // anonymous namespace
+} /* anonymous namespace */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.be.COMErrorObject project.
  *
  * Created:     1st January 2008
- * Updated:     22nd March 2010
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -18,26 +18,41 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * Preprocessor feature control
+ */
+
+//#define STLSOFT_TRACE_INCLUDE
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Includes
+ */
+
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/backends/bec.COMErrorObject.h>
 #include <pantheios/init_codes.h>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/shims/access/string.hpp>
-#include <comstl/error/errorinfo_desc.hpp>
-#include <comstl/error/errorinfo_functions.h>
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# include <comstl/diagnostics/errorinfo_desc.hpp>
+# include <comstl/diagnostics/errorinfo_functions.h>
+#else /* ? PANTHEIOS_STLSOFT_1_12_OR_LATER */
+# include <comstl/error/errorinfo_desc.hpp>
+# include <comstl/error/errorinfo_functions.h>
+#endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
 #include <comstl/util/initialisers.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>                    // for std::exception
 #include <new>                          // for std::bad_alloc
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>                      // for fprintf()
 #include <stdlib.h>                     // for exit codes
 

@@ -7,7 +7,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     25th August 2006
- * Updated:     11th December 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -26,7 +26,7 @@
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS // Faster compilation
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>                  // Pantheios C++ main header
 #include <platformstl/platformstl.h>
 #if defined(PLATFORMSTL_OS_IS_UNIX)
@@ -37,14 +37,14 @@
 # error Platform not discriminated
 #endif /* OS */
 
-/* Standard C/C++ Header Files */
+/* Standard C/C++ header files */
 #include <exception>                                // for std::exception
 #include <new>                                      // for std::bad_alloc
 #include <string>                                   // for std::string
 #include <stdlib.h>                                 // for exit codes
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-/* Windows Header Files */
+/* Windows header files */
 # include <windows.h>                               // for console colour constants
 #endif /* PLATFORMSTL_OS_IS_WINDOWS */
 

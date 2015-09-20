@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
  * Created:     17th July 2006
- * Updated:     31st July 2012
+ * Updated:     9th May 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -117,15 +117,13 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+    using ::winstl::ws_uintptr_t;
+
     template <ss_typename_param_k T>
     struct buffer_selector_
     {
         typedef ss_typename_type_k
-#if !defined(PANTHEIOS_NO_NAMESPACE)
-            pantheios::util::auto_buffer_selector<
-#else /* ? !PANTHEIOS_NO_NAMESPACE */
-            auto_buffer_selector<
-#endif /* !PANTHEIOS_NO_NAMESPACE */
+            PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
             T
         ,   2048
         ,   winstl::processheap_allocator<T>
@@ -136,7 +134,75 @@ namespace
     typedef buffer_selector_<wchar_t>::type     buffer_w_t;
     typedef buffer_selector_<pan_char_t>::type  buffer_t;
 
-} // anonymous namespace
+
+
+    template <size_t N>
+    int
+    convert_wnd_N_(
+        pan_char_t* buff
+    ,   size_t      cchBuff
+    ,   HWND        hwnd
+    );
+
+    template <>
+    int
+    convert_wnd_N_<4>(
+        pan_char_t* buff
+    ,   size_t      cchBuff
+    ,   HWND        hwnd
+    )
+    {
+        return pantheios_util_snprintf(buff, cchBuff, PANTHEIOS_LITERAL_STRING("%08X"), hwnd);
+    }
+
+    template <>
+    int
+    convert_wnd_N_<8>(
+        pan_char_t* buff
+    ,   size_t      cchBuff
+    ,   HWND        hwnd
+    )
+    {
+        ws_uintptr_t const u = reinterpret_cast< winstl_ns_qual(ws_uintptr_t)>(hwnd);
+
+        return pantheios_util_snprintf(buff, cchBuff, PANTHEIOS_LITERAL_STRING("%08X%08X"), (u & 0xFFFFFFFF), (u >> (4 * sizeof(hwnd))));
+    }
+
+    int
+    convert_wnd_(
+        pan_char_t* buff
+    ,   size_t      cchBuff
+    ,   HWND        hwnd
+    )
+    {
+        return  convert_wnd_N_<sizeof(hwnd)>(buff, cchBuff, hwnd);
+    }
+
+    static
+    int
+    print_mxName_(
+        pan_char_t*         buff
+    ,   size_t              cchBuff
+    ,   HWND                hwnd
+    ,   pan_char_t const*   consoleTitle
+    ,   int                 handleId
+    )
+    {
+        // TODO: replace this with integer_to_string<16>, when STLSoft 1.12 is released
+
+        pan_char_t  wnd[17];
+        int const   n = convert_wnd_(wnd, STLSOFT_NUM_ELEMENTS(wnd), hwnd);
+
+        return pantheios_util_snprintf(
+                    buff, cchBuff
+                ,   PANTHEIOS_LITERAL_STRING("pantheios.org:WindowsConsole:%.*s:%s:%d:MX")
+                ,   n, wnd
+                ,   consoleTitle
+                ,   handleId
+                );
+    }
+
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Structures
@@ -240,7 +306,7 @@ namespace
     /// @}
     };
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Constants & definitions
@@ -283,7 +349,7 @@ namespace
     };
 
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -366,7 +432,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsConsole_init(
 ,   void**                              ptoken
 )
 {
-    return pantheios_call_be_X_init<pan_be_WindowsConsole_init_t>(pantheios_be_WindowsConsole_init_, processIdentity, backEndId, init, reserved, ptoken);
+    return pantheios_call_be_X_init<pan_be_WindowsConsole_init_t>(pantheios_be_WindowsConsole_init_, processIdentity, backEndId, init, reserved, ptoken, "be.WindowsConsole");
 }
 
 PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_uninit(void* token)
@@ -403,7 +469,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsConsole_logEntry(
 ,   size_t              cchEntry
 )
 {
-    return pantheios_call_be_logEntry(pantheios_be_WindowsConsole_logEntry_, feToken, beToken, severity, entry, cchEntry);
+    return pantheios_call_be_logEntry(pantheios_be_WindowsConsole_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.WindowsConsole");
 }
 
 PANTHEIOS_CALL(int) pantheios_be_WindowsConsole_parseArgs(
@@ -623,12 +689,12 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-catch(std::exception& x)
-{
-  pantheios_onBailOut4(PANTHEIOS_SEV_EMERGENCY, "failed to lookup console", NULL, x.what());
+    catch(std::exception& x)
+    {
+        pantheios_onBailOut4(PANTHEIOS_SEV_EMERGENCY, "failed to lookup console", NULL, x.what());
 
-  throw;
-}
+        throw;
+    }
 
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -657,13 +723,10 @@ catch(std::exception& x)
         handleId = -1;
     }
 
-    // TODO: replace this with integer_to_string<16>, when STLSoft 1.10 is released
-
     pan_char_t  mxName[100 + STLSOFT_NUM_ELEMENTS(consoleTitle)];
-    int const   cch = pantheios_util_snprintf(
+    int const   cch = print_mxName_(
                         &mxName[0], STLSOFT_NUM_ELEMENTS(mxName)
-                    ,   PANTHEIOS_LITERAL_STRING("pantheios.org:WindowsConsole:%08x:%s:%d:MX")
-                    ,   reinterpret_cast< winstl_ns_qual(ws_uintptr_t)>(hwndConsole)
+                    ,   hwndConsole
                     ,   consoleTitle
                     ,   handleId);
 

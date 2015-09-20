@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.be.file.rolling project.
  *
  * Created:     24th October 2007
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -21,22 +21,22 @@
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/args.hpp>
 #include <pantheios/inserters/integer.hpp>
 
 #include <pantheios/backends/bec.file.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <platformstl/filesystem/file_lines.hpp>
 #include <platformstl/filesystem/filesystem_traits.hpp>
 #include <platformstl/filesystem/path.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

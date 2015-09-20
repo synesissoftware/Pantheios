@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.util.getcurrenttime project.
  *
  * Created:     10th November 2007
- * Updated:     4th January 2011
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2011, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -37,20 +37,20 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/util/time/currenttime.h>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* shwild Header Files */
+/* shwild header files */
 #include <shwild/shwild.h>
 
 #if SHWILD_VER < 0x00090900
 # error Requires shwild 0.9.9 or later; earlier versions have a defect that cause these tests to report false errors
 #endif /* SHWILD_VER */
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/conversion/integer_to_string.hpp>
 #include <stlsoft/conversion/char_conversions.hpp>
 #include <pantheios/util/memory/auto_buffer_selector.hpp>
@@ -59,11 +59,11 @@
 #include <platformstl/platformstl.hpp>
 
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <string>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

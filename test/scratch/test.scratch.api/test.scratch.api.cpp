@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.api project.
  *
  * Created:     26th June 2005
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
@@ -44,7 +44,7 @@
 /* This inclusion required for suppressing warnings during NoX (No eXception-support) configurations. */
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/blob.hpp>
 #include <pantheios/inserters/integer.hpp>
@@ -53,17 +53,17 @@
 #include <pantheios/backends/be.lrsplit.h>
 #include <pantheios/frontend.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/memory/malloc_allocator.hpp>
 #include <stlsoft/memory/new_allocator.hpp>
 #include <stlsoft/string/shim_string.hpp>
 #include <stlsoft/string/simple_string.hpp>
 
-/* PlatformSTL Header Files */
+/* PlatformSTL header files */
 #include <platformstl/platformstl.hpp>
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
- /* WinSTL Header Files */
+ /* WinSTL header files */
 # include <winstl/error/error_desc.hpp>
 # include <winstl/filesystem/findfile_sequence.hpp>
 # include <winstl/memory/processheap_allocator.hpp>
@@ -72,7 +72,7 @@
 # include <stlsoft/shims/access/string/std/time.hpp>
 #endif /* platform */
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <iostream>
 #include <string>
@@ -82,7 +82,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <time.h>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
@@ -188,7 +188,7 @@ namespace stlsoft
     }
 
 
-} // namespace stlsoft
+} /* namespace stlsoft */
 
 
 std::string Thingy_to_string(Thingy const *thingy);

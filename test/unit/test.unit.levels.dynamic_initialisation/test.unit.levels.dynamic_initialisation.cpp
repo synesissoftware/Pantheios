@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.levels.dynamic_initialisation project.
  *
  * Created:     20th October 2007
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -45,17 +45,17 @@ private:
 #define PANTHEIOS_NO_INCLUDE_UNIXSTL_STRING_ACCESS
 #define PANTHEIOS_NO_INCLUDE_WINSTL_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>                    // for std::exception
 #include <new>                          // for std::bad_alloc
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>                     // for exit codes
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>

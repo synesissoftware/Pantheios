@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.util.strnlen project.
  *
  * Created:     17th April 2009
- * Updated:     19th March 2012
+ * Updated:     9th December 2013
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2013, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -52,7 +52,7 @@ static void test_1_10();
 static void test_1_11();
 static void test_1_12();
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -324,6 +324,6 @@ static void test_1_12()
 {
 }
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */

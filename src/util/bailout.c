@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for low-level Pantheios bail out.
  *
  * Created:     21st June 2005
- * Updated:     31st July 2012
+ * Updated:     26th August 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2014, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -174,7 +174,9 @@ static int pantheios_util_onBailOut_canUseWarnMessage_(void);
  * Constants
  */
 
-#define STACK_BUFFER_SIZE   (2048)
+#ifndef PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE
+# define PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE    (2048)
+#endif /* !PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE */
 
 #ifndef PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME
 # define PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME    "logging-bailout.txt"
@@ -202,6 +204,132 @@ static int pantheios_util_onBailOut_canUseWarnMessage_(void);
 /* /////////////////////////////////////////////////////////////////////////
  * Utility functions
  */
+
+PANTHEIOS_CALL(void) pantheios_onBailOut6(
+    int         severity
+,   char const* message
+,   char const* processId
+,   char const* qualifier
+,   char const* feName
+,   char const* beName
+)
+{
+    if( NULL == feName &&
+        NULL == beName)
+    {
+        pantheios_onBailOut4(severity, message, processId, qualifier);
+
+        return;
+    }
+    else
+    {
+        char            qualifier_[PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE] = { '\0' };
+        size_t const    cchQualifier    =   (NULL == qualifier) ? 0u : pan_strlen_(qualifier);
+        size_t const    cchFeName       =   (NULL == feName) ? 0u : pan_strlen_(feName);
+        size_t const    cchBeName       =   (NULL == beName) ? 0u : pan_strlen_(beName);
+        char*           p1              =   &qualifier_[0];
+        char* const     end             =   &qualifier_[0] + STLSOFT_NUM_ELEMENTS(qualifier_);
+
+#ifdef _DEBUG
+        memset(&qualifier_[0], '~', sizeof(qualifier_));
+#endif
+
+        if(0 != cchFeName)
+        {
+            int r = 0;
+
+            if(p1 < end)
+            {
+                p1[0] = '\0';
+
+                r = pantheios_util_snprintf_a(p1, (end - p1), "fe=%.*s", (int)cchFeName, feName);
+            }
+
+            if(r < 0)
+            {
+                /* Some runtime libraries' snprintf() return -ve if write to end */
+                if('\0' != p1[0])
+                {
+                    r = 3 + stlsoft_static_cast(int, cchFeName);
+                }
+            }
+
+            if(r > (end - p1))
+            {
+                p1 = end;
+            }
+            else
+            if(r > 0)
+            {
+                p1 += r;
+            }
+        }
+        if(0 != cchBeName)
+        {
+            int r = 0;
+
+            if(p1 < end)
+            {
+                p1[0] = '\0';
+
+                r = pantheios_util_snprintf_a(p1, (end - p1), ", be=%.*s" + ((0 != cchFeName) ? 0 : 2), (int)cchBeName, beName);
+            }
+
+            if(r < 0)
+            {
+                /* Some runtime libraries' snprintf() return -ve if write to end */
+                if('\0' != p1[0])
+                {
+                    r = ((0 != cchFeName) ? 0 : 2) + 3 + stlsoft_static_cast(int, cchFeName);
+                }
+            }
+
+            if(r > (end - p1))
+            {
+                p1 = end;
+            }
+            else
+            if(r > 0)
+            {
+                p1 += r;
+            }
+        }
+        if(0 != cchQualifier)
+        {
+            int r = 0;
+
+            if(p1 < end)
+            {
+                p1[0] = '\0';
+
+                r = pantheios_util_snprintf_a(p1, (end - p1), ": %.*s", (int)cchQualifier, qualifier);
+            }
+
+            if(r < 0)
+            {
+                /* Some runtime libraries' snprintf() return -ve if write to end */
+                if('\0' != p1[0])
+                {
+                    r = 2 + stlsoft_static_cast(int, cchFeName);
+                }
+            }
+
+            if(r > (end - p1))
+            {
+                p1 = end;
+            }
+            else
+            if(r > 0)
+            {
+                p1 += r;
+            }
+        }
+
+        pantheios_onBailOut4(severity, message, processId, qualifier_);
+
+        return;
+    }
+}
 
 PANTHEIOS_CALL(void) pantheios_onBailOut4(
     int         severity
@@ -234,7 +362,7 @@ PANTHEIOS_CALL(void) pantheios_onBailOut4(
         }
         else
         {
-            char            message_[STACK_BUFFER_SIZE];
+            char            message_[PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE];
             const size_t    cchBuf      =   STLSOFT_NUM_ELEMENTS(message_) - 1;
             size_t          cchMessage  =   pan_strlen_(message);
             const char      sep[]       =   { ':', ' ', '\0' }; /* ": " */
@@ -253,13 +381,15 @@ PANTHEIOS_CALL(void) pantheios_onBailOut4(
                 {
                     cchMessage = (cchBuf - 2) - cchQualifier;
                 }
-                else if(cchMessage < (cchBuf - 2) * 2 / 3 &&
-                        cchQualifier > (cchBuf - 2) - cchMessage)
+                else
+                if( cchMessage < (cchBuf - 2) * 2 / 3 &&
+                    cchQualifier > (cchBuf - 2) - cchMessage)
                 {
                     cchQualifier = (cchBuf - 2) - cchMessage;
                 }
-                else if(cchMessage > (cchBuf - 2) &&
-                        cchQualifier > (cchBuf - 2))
+                else
+                if( cchMessage > (cchBuf - 2) &&
+                    cchQualifier > (cchBuf - 2))
                 {
                     cchMessage = (cchBuf - 2) / 2;
                     cchQualifier = (cchBuf - 2) / 2;
@@ -294,15 +424,15 @@ PANTHEIOS_CALL(void) pantheios_onBailOut4(
             PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchQualifier <= cchBuf);
             PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchMessage + 2 + cchQualifier <= cchBuf);
 
-            memcpy(&message_[0], message, cchMessage * sizeof(pan_char_t));
+            memcpy(&message_[0], message, cchMessage * sizeof(char));
             if(0 == cchQualifier)
             {
                 message_[cchMessage] = '\0';
             }
             else
             {
-                memcpy(&message_[cchMessage], sep, 2 * sizeof(pan_char_t));
-                memcpy(&message_[cchMessage + 2], qualifier, cchQualifier * sizeof(pan_char_t));
+                memcpy(&message_[cchMessage], sep, 2 * sizeof(char));
+                memcpy(&message_[cchMessage + 2], qualifier, cchQualifier * sizeof(char));
                 message_[cchMessage + 2 + cchQualifier] = '\0';
             }
             message_[cchBuf] = '\0';
@@ -319,7 +449,7 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
 )
 {
     size_t          cchMessage;
-    char            message_[STACK_BUFFER_SIZE];
+    char            message_[PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE];
     size_t          cchTime;
     size_t          cchTotal;
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -364,7 +494,8 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
                             ,   st.wHour
                             ,   st.wMinute
                             ,   st.wSecond
-                            ,   st.wMilliseconds);
+                            ,   st.wMilliseconds
+                            );
 
 #else /* ? OS */
 
@@ -378,14 +509,15 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
 # endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
     cchTime = (size_t)  pantheios_util_snprintf_a(&message_[0], STLSOFT_NUM_ELEMENTS(message_)
-                    ,   "%04u%02u%02u-%02u%02u%02u.%03u: "
-                    ,   tm->tm_year + 1900
-                    ,   tm->tm_mon + 1
-                    ,   tm->tm_mday
-                    ,   tm->tm_hour
-                    ,   tm->tm_min
-                    ,   tm->tm_sec
-                    ,   stlsoft_static_cast(int, tv.tv_usec / 1000));
+                            ,   "%04u%02u%02u-%02u%02u%02u.%03u: "
+                            ,   tm->tm_year + 1900
+                            ,   tm->tm_mon + 1
+                            ,   tm->tm_mday
+                            ,   tm->tm_hour
+                            ,   tm->tm_min
+                            ,   tm->tm_sec
+                            ,   stlsoft_static_cast(int, tv.tv_usec / 1000)
+                            );
 #endif /* OS */
 
     PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_RETURN_INTERNAL((cchTime < STLSOFT_NUM_ELEMENTS(message_) - 3), "time conversion overwrote the local buffer capacity");
@@ -428,13 +560,15 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
      * 3. File
      */
 
-    hFile = CreateFileA(PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME
-                    ,   GENERIC_WRITE
-                    ,   0
-                    ,   NULL
-                    ,   OPEN_ALWAYS
-                    ,   0
-                    ,   NULL);
+    hFile = CreateFileA(
+                PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME
+            ,   GENERIC_WRITE
+            ,   0
+            ,   NULL
+            ,   OPEN_ALWAYS
+            ,   0
+            ,   NULL
+            );
 
     if(INVALID_HANDLE_VALUE != hFile)
     {
@@ -479,15 +613,17 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
 
         type = pantheios_severity_to_WindowsEventLog_type(severity);
 
-        pan_ReportEvent_(   hEventSrc
-                        ,   type
-                        ,   0
-                        ,   eventId
-                        ,   NULL
-                        ,   STLSOFT_NUM_ELEMENTS(strings)
-                        ,   0
-                        ,   &strings[0]
-                        ,   NULL);
+        pan_ReportEvent_(
+                hEventSrc
+            ,   type
+            ,   0
+            ,   eventId
+            ,   NULL
+            ,   STLSOFT_NUM_ELEMENTS(strings)
+            ,   0
+            ,   &strings[0]
+            ,   NULL
+            );
 
         DeregisterEventSource(hEventSrc);
 

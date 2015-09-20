@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.variant_bool project.
  *
  * Created:     18th June 2012
- * Updated:     18th June 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2012-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,22 +20,22 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>              // Pantheios C++ main header
 #include <pantheios/inserters/variant_bool.hpp> // for pantheios::variant_bool
 #include <pantheios/backends/bec.test.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/util/limit_traits.h>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <string>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

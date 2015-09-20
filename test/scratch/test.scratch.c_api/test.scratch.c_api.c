@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.c_api project.
  *
  * Created:     14th October 2005
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
@@ -39,18 +39,18 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/backends/be.lrsplit.h>
 #include <pantheios/frontend.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* PlatformSTL Header Files */
+/* PlatformSTL header files */
 #include <platformstl/platformstl.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <time.h>
 

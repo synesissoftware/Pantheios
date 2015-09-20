@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the be.test back-end
  *
  * Created:     1st November 2006
- * Updated:     27th December 2010
+ * Updated:     9th May 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,6 +58,7 @@
 #include <pantheios/init_codes.h>
 #include <pantheios/frontends/stock.h>
 #include <pantheios/backend.h>
+#include <pantheios/util/core/apidefs.hpp>
 #include <pantheios/quality/contract.h>
 #include <pantheios/internal/threading.h>
 
@@ -109,7 +110,7 @@ namespace test
         , statement(entry, cchEntry)
     {}
 
-    namespace impl
+    namespace ximpl_be_test
     {
         class Context
         {
@@ -197,7 +198,7 @@ namespace test
             class_type& operator =(class_type const&);
         };
 
-    } // namespace impl
+    } /* namespace ximpl_be_test */
 
     struct Results::ResultsImpl
     {
@@ -314,17 +315,17 @@ namespace test
         }
     };
 
-} // namespace test
-} // namespace be
-} // namespace pantheios
+} /* namespace test */
+} /* namespace be */
+} /* namespace pantheios */
 
 
 namespace
 {
 
-    ::pantheios::be::test::impl::Context* s_ctxt;
+    ::pantheios::be::test::ximpl_be_test::Context* s_ctxt;
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -348,9 +349,9 @@ namespace test
         return CreatableResults(s_ctxt->entries());
     }
 
-} // namespace test
-} // namespace be
-} // namespace pantheios
+} /* namespace test */
+} /* namespace be */
+} /* namespace pantheios */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -362,19 +363,39 @@ namespace
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
     using ::pantheios::pan_char_t;
+    using ::pantheios::util::pantheios_onBailOut6;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Front-end & Back-end Implementations
  */
 
+static int pantheios_be_test_init_(
+    pan_char_t const*   processIdentity
+,   int                 id
+,   void const*         unused
+,   void*               reserved
+,   void**              ptoken
+);
+
 PANTHEIOS_CALL(int) pantheios_be_test_init(
     pan_char_t const*   processIdentity
 ,   int                 id
-,   void*               /* unused */
+,   void*               unused
+,   void*               reserved
+,   void**              ptoken
+)
+{
+    return pantheios_call_be_void_init(pantheios_be_test_init_, processIdentity, id, unused, reserved, ptoken, "be.test");
+}
+
+static int pantheios_be_test_init_(
+    pan_char_t const*   processIdentity
+,   int                 id
+,   void const*         /* unused */
 ,   void*               /* reserved */
 ,   void**              ptoken
 )
@@ -386,39 +407,16 @@ PANTHEIOS_CALL(int) pantheios_be_test_init(
 
     *ptoken = NULL;
 
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    try
-    {
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    s_ctxt = new pantheios::be::test::ximpl_be_test::Context(processIdentity, id);
 
-        s_ctxt = new pantheios::be::test::impl::Context(processIdentity, id);
+    if(NULL == s_ctxt)
+    {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "failed to initiailse", NULL, "out of memory", NULL, "be.test");
 
-        if(NULL == s_ctxt)
-        {
-            goto out_of_memory;
-        }
-
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::bad_alloc& /* x */)
-    {
-        goto out_of_memory;
-    }
-    catch(std::exception& /* x */)
-    {
-        return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
-    }
-    catch(...)
-    {
-        return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
-    }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
     return 0;
-
-out_of_memory:
-
-    return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
 }
 
 PANTHEIOS_CALL(void) pantheios_be_test_uninit(void* /* token */)
@@ -429,7 +427,26 @@ PANTHEIOS_CALL(void) pantheios_be_test_uninit(void* /* token */)
     s_ctxt = NULL;
 }
 
+static int pantheios_be_test_logEntry_(
+    void*               feToken
+,   void*               beToken
+,   int                 severity
+,   pan_char_t const*   entry
+,   size_t              cchEntry
+);
+
 PANTHEIOS_CALL(int) pantheios_be_test_logEntry(
+    void*               feToken
+,   void*               beToken
+,   int                 severity
+,   pan_char_t const*   entry
+,   size_t              cchEntry
+)
+{
+    return pantheios_call_be_logEntry(pantheios_be_test_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.test");
+}
+
+static int pantheios_be_test_logEntry_(
     void*               feToken
 ,   void*               /* beToken */
 ,   int                 severity
@@ -439,30 +456,9 @@ PANTHEIOS_CALL(int) pantheios_be_test_logEntry(
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_API(NULL != s_ctxt, "pantheios_fe_init() must be called first");
 
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    try
-    {
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    s_ctxt->logEntry(feToken, severity, entry, cchEntry);
 
-        s_ctxt->logEntry(feToken, severity, entry, cchEntry);
-
-        return 0;
-
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    }
-    catch(std::bad_alloc& /* x */)
-    {
-        return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
-    }
-    catch(std::exception& /* x */)
-    {
-        return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
-    }
-    catch(...)
-    {
-        return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
-    }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    return 0;
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */

@@ -7,7 +7,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     31st October 2010
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -22,12 +22,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>            // Pantheios C++ main header
 #include <pantheios/inserters/p.hpp>          // for pantheios::p
 #include <pantheios/inserters/hex_ptr.hpp>    // for pantheios::hex_ptr
 
-/* Standard C/C++ Header Files */
+/* Standard C/C++ header files */
 #include <exception>                        // for std::exception
 #include <new>                              // for std::bad_alloc
 #include <string>                           // for std::string

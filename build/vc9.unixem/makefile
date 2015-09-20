@@ -1,11 +1,11 @@
 ############################################################################
 # File: 	makefile
 #
-# Purpose:	Makefile for the Pantheios project, for the Visual C++ 9.0 (x86 UNIXEm)
+# Purpose:	Makefile for the Pantheios project, for the Visual C++ 9.0 (x86 UNIXem)
 #			compiler, on UNIX
 #
 # Created:	15th Feburary 2005
-# Updated:	31st July 2012
+# Updated:	31st July 2015
 #
 ############################################################################
 
@@ -499,6 +499,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\hex_ptr.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\hostid.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\integer.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\interval.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\m2w.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\p.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\pad.hpp\
@@ -506,6 +507,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\processid.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\real.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\slice.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\stream_character.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\threadid.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\w2m.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\xi.hpp\
@@ -515,6 +517,8 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\stock_levels.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\nox.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\safestr.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\shim_declarations.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\slice.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\threading.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\quality\contract.h\
@@ -524,6 +528,9 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\severity\levels.hpp\
+ \
+ $(PROJ_INCLUDE_DIR)\pantheios\shims\access\string\core\pan_severity_t.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\shims\access\string\core\pan_slice_t.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\backends\arguments.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\backends\context.hpp\
@@ -865,6 +872,8 @@ TARG_TEST_COMP_ins_real_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.
 TARG_TEST_COMP_ins_real_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_slice_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_slice_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_stm_ch_MT_UX	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_stm_ch_MT_UX_DEBUG	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_thrid_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_thrid_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_w2m_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.exe
@@ -994,11 +1003,13 @@ OBJ_ins_bool_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.obj
 OBJ_ins_excp_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.obj
 OBJ_ins_host_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.obj
 OBJ_ins_int_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.integer.mt.obj
+OBJ_ins_ivl_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.interval.mt.obj
 OBJ_ins_ptr_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.pointer.mt.obj
 OBJ_ins_prid_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.obj
 OBJ_ins_real_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.real.mt.obj
 OBJ_ins_slice_MT_UX	 	= $(PROJ_OBJ_DIR)\inserters.slice.mt.obj
 OBJ_ins_thrid_MT_UX	 	= $(PROJ_OBJ_DIR)\inserters.threadid.mt.obj
+OBJ_ins_stm_ch_MT_UX	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.obj
 OBJ_ins_w2m_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.w2m.mt.obj
 #PDB_bec_test_MT_UX 		= $(PROJ_OBJ_DIR)\bec.test.mt.pdb
 OBJ_bec_test_MT_UX 		= $(PROJ_OBJ_DIR)\bec.test.mt.obj
@@ -1076,11 +1087,13 @@ OBJ_CORE_MT_UX=\
  $(OBJ_ins_excp_MT_UX)\
  $(OBJ_ins_host_MT_UX)\
  $(OBJ_ins_int_MT_UX)\
+ $(OBJ_ins_ivl_MT_UX)\
  $(OBJ_ins_ptr_MT_UX)\
  $(OBJ_ins_prid_MT_UX)\
  $(OBJ_ins_real_MT_UX)\
  $(OBJ_ins_slice_MT_UX)\
  $(OBJ_ins_thrid_MT_UX)\
+ $(OBJ_ins_stm_ch_MT_UX)\
  $(OBJ_ins_w2m_MT_UX)\
  \
 
@@ -1092,11 +1105,13 @@ OBJ_APPL_MT_UX=\
  $(OBJ_ins_excp_MT_UX)\
  $(OBJ_ins_host_MT_UX)\
  $(OBJ_ins_int_MT_UX)\
+ $(OBJ_ins_ivl_MT_UX)\
  $(OBJ_ins_ptr_MT_UX)\
  $(OBJ_ins_prid_MT_UX)\
  $(OBJ_ins_real_MT_UX)\
  $(OBJ_ins_slice_MT_UX)\
  $(OBJ_ins_thrid_MT_UX)\
+ $(OBJ_ins_stm_ch_MT_UX)\
  $(OBJ_ins_w2m_MT_UX)\
  \
 
@@ -1298,11 +1313,13 @@ OBJ_ins_bool_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.debug.obj
 OBJ_ins_excp_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.debug.obj
 OBJ_ins_host_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.debug.obj
 OBJ_ins_int_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.integer.mt.debug.obj
+OBJ_ins_ivl_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.interval.mt.debug.obj
 OBJ_ins_ptr_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.pointer.mt.debug.obj
 OBJ_ins_prid_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.debug.obj
 OBJ_ins_real_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.real.mt.debug.obj
 OBJ_ins_slice_MT_UX_DEBUG	 	= $(PROJ_OBJ_DIR)\inserters.slice.mt.debug.obj
 OBJ_ins_thrid_MT_UX_DEBUG	 	= $(PROJ_OBJ_DIR)\inserters.threadid.mt.debug.obj
+OBJ_ins_stm_ch_MT_UX_DEBUG	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.debug.obj
 OBJ_ins_w2m_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.w2m.mt.debug.obj
 PDB_utl_bailout_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.bailout.mt.debug.pdb
 PDB_utl_init_code_strs_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\util.init_err_strings.mt.debug.pdb
@@ -1327,11 +1344,13 @@ PDB_ins_bool_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.debug.pdb
 PDB_ins_excp_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.debug.pdb
 PDB_ins_host_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.debug.pdb
 PDB_ins_int_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\inserters.integer.mt.debug.pdb
+PDB_ins_ivl_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\inserters.interval.mt.debug.pdb
 PDB_ins_ptr_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\inserters.pointer.mt.debug.pdb
 PDB_ins_prid_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.debug.pdb
 PDB_ins_real_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.real.mt.debug.pdb
 PDB_ins_slice_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.slice.mt.debug.pdb
 PDB_ins_thrid_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.threadid.mt.debug.pdb
+PDB_ins_stm_ch_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.debug.pdb
 PDB_ins_w2m_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\inserters.w2m.mt.debug.pdb
 #PDB_bec_test_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\bec.test.mt.debug.pdb
 OBJ_bec_test_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\bec.test.mt.debug.obj
@@ -1409,11 +1428,13 @@ OBJ_CORE_MT_UX_DEBUG=\
  $(OBJ_ins_excp_MT_UX_DEBUG)\
  $(OBJ_ins_host_MT_UX_DEBUG)\
  $(OBJ_ins_int_MT_UX_DEBUG)\
+ $(OBJ_ins_ivl_MT_UX_DEBUG)\
  $(OBJ_ins_ptr_MT_UX_DEBUG)\
  $(OBJ_ins_prid_MT_UX_DEBUG)\
  $(OBJ_ins_real_MT_UX_DEBUG)\
  $(OBJ_ins_slice_MT_UX_DEBUG)\
  $(OBJ_ins_thrid_MT_UX_DEBUG)\
+ $(OBJ_ins_stm_ch_MT_UX_DEBUG)\
  $(OBJ_ins_w2m_MT_UX_DEBUG)\
  \
 
@@ -1425,11 +1446,13 @@ OBJ_APPL_MT_UX_DEBUG=\
  $(OBJ_ins_excp_MT_UX_DEBUG)\
  $(OBJ_ins_host_MT_UX_DEBUG)\
  $(OBJ_ins_int_MT_UX_DEBUG)\
+ $(OBJ_ins_ivl_MT_UX_DEBUG)\
  $(OBJ_ins_ptr_MT_UX_DEBUG)\
  $(OBJ_ins_prid_MT_UX_DEBUG)\
  $(OBJ_ins_real_MT_UX_DEBUG)\
  $(OBJ_ins_slice_MT_UX_DEBUG)\
  $(OBJ_ins_thrid_MT_UX_DEBUG)\
+ $(OBJ_ins_stm_ch_MT_UX_DEBUG)\
  $(OBJ_ins_w2m_MT_UX_DEBUG)\
  \
 
@@ -1460,11 +1483,14 @@ PDB_CORE_MT_UX_DEBUG=\
  $(PDB_ins_excp_MT_UX_DEBUG)\
  $(PDB_ins_host_MT_UX_DEBUG)\
  $(PDB_ins_int_MT_UX_DEBUG)\
+ $(PDB_ins_ivl_MT_UX_DEBUG)\
  $(PDB_ins_ptr_MT_UX_DEBUG)\
  $(PDB_ins_prid_MT_UX_DEBUG)\
  $(PDB_ins_real_MT_UX_DEBUG)\
  $(PDB_ins_slice_MT_UX_DEBUG)\
  $(PDB_ins_thrid_MT_UX_DEBUG)\
+	$(PDB_ins_stm_ch_MT_UX_DEBUG)\
+ $(PDB_ins_w2m_MT_UX_DEBUG)\
  \
 
 
@@ -1852,6 +1878,8 @@ OBJ_TEST_COMP_ins_real_MT_UX	=	.\test.component.inserters.real.mt.obj
 OBJ_TEST_COMP_ins_real_MT_UX_DEBUG	=	.\test.component.inserters.real.mt.debug.obj
 OBJ_TEST_COMP_ins_slice_MT_UX	=	.\test.component.inserters.slice.mt.obj
 OBJ_TEST_COMP_ins_slice_MT_UX_DEBUG	=	.\test.component.inserters.slice.mt.debug.obj
+OBJ_TEST_COMP_ins_stm_ch_MT_UX	=	.\test.component.inserters.stream_character.mt.obj
+OBJ_TEST_COMP_ins_stm_ch_MT_UX_DEBUG	=	.\test.component.inserters.stream_character.mt.debug.obj
 OBJ_TEST_COMP_ins_thrid_MT_UX	=	.\test.component.inserters.threadId.mt.obj
 OBJ_TEST_COMP_ins_thrid_MT_UX_DEBUG	=	.\test.component.inserters.threadId.mt.debug.obj
 OBJ_TEST_COMP_ins_w2m_MT_UX	=	.\test.component.inserters.w2m.mt.obj
@@ -2183,6 +2211,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_MT_UX)\
  $(OBJ_TEST_COMP_ins_real_MT_UX)\
  $(OBJ_TEST_COMP_ins_slice_MT_UX)\
+ $(OBJ_TEST_COMP_ins_stm_ch_MT_UX)\
  $(OBJ_TEST_COMP_ins_thrid_MT_UX)\
  $(OBJ_TEST_COMP_ins_w2m_MT_UX)\
  $(OBJ_TEST_COMP_log_1_MT_UX)\
@@ -2200,6 +2229,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_MT_UX_DEBUG)\
  $(OBJ_TEST_COMP_ins_real_MT_UX_DEBUG)\
  $(OBJ_TEST_COMP_ins_slice_MT_UX_DEBUG)\
+ $(OBJ_TEST_COMP_ins_stm_ch_MT_UX_DEBUG)\
  $(OBJ_TEST_COMP_ins_thrid_MT_UX_DEBUG)\
  $(OBJ_TEST_COMP_ins_w2m_MT_UX_DEBUG)\
  $(OBJ_TEST_COMP_log_1_MT_UX_DEBUG)\
@@ -2578,6 +2608,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_MT_UX)\
  $(TARG_TEST_COMP_ins_real_MT_UX)\
  $(TARG_TEST_COMP_ins_slice_MT_UX)\
+ $(TARG_TEST_COMP_ins_stm_ch_MT_UX)\
  $(TARG_TEST_COMP_ins_thrid_MT_UX)\
  $(TARG_TEST_COMP_ins_w2m_MT_UX)\
  $(TARG_TEST_COMP_log_1_MT_UX)\
@@ -2595,6 +2626,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_MT_UX_DEBUG)\
  $(TARG_TEST_COMP_ins_real_MT_UX_DEBUG)\
  $(TARG_TEST_COMP_ins_slice_MT_UX_DEBUG)\
+ $(TARG_TEST_COMP_ins_stm_ch_MT_UX_DEBUG)\
  $(TARG_TEST_COMP_ins_thrid_MT_UX_DEBUG)\
  $(TARG_TEST_COMP_ins_w2m_MT_UX_DEBUG)\
  $(TARG_TEST_COMP_log_1_MT_UX_DEBUG)\
@@ -2933,6 +2965,8 @@ test.component_:
 	$(TARG_TEST_COMP_ins_prid_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_real_MT_UX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_real_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_MT_UX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_thrid_MT_UX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_thrid_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_w2m_MT_UX) --verbosity=$(TEST_VERBOSITY)
@@ -3642,6 +3676,7 @@ clean.test.component:
 	@-$(RM) $(TARG_TEST_COMP_ins_prid_MT_UX)
 	@-$(RM) $(TARG_TEST_COMP_ins_real_MT_UX)
 	@-$(RM) $(TARG_TEST_COMP_ins_slice_MT_UX)
+	@-$(RM) $(TARG_TEST_COMP_ins_stm_ch_MT_UX)
 	@-$(RM) $(TARG_TEST_COMP_ins_thrid_MT_UX)
 	@-$(RM) $(TARG_TEST_COMP_ins_w2m_MT_UX)
 	@-$(RM) $(TARG_TEST_COMP_log_1_MT_UX)
@@ -3659,6 +3694,7 @@ clean.test.component:
 	@-$(RM) $(TARG_TEST_COMP_ins_prid_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_COMP_ins_real_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_COMP_ins_slice_MT_UX_DEBUG)
+	@-$(RM) $(TARG_TEST_COMP_ins_stm_ch_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_COMP_ins_thrid_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_COMP_ins_w2m_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_COMP_log_1_MT_UX_DEBUG)
@@ -3677,6 +3713,7 @@ clean.test.component:
 	@-$(RM) $(OBJ_TEST_COMP_ins_real_MT_UX)
 	@-$(RM) $(OBJ_TEST_COMP_ins_slice_MT_UX)
 	@-$(RM) $(OBJ_TEST_COMP_ins_w2m_MT_UX)
+	@-$(RM) $(OBJ_TEST_COMP_ins_stm_ch_MT_UX)
 	@-$(RM) $(OBJ_TEST_COMP_ins_thrid_MT_UX)
 	@-$(RM) $(OBJ_TEST_COMP_log_1_MT_UX)
 	@-$(RM) $(OBJ_TEST_COMP_pan_puts_MT_UX)
@@ -3694,6 +3731,7 @@ clean.test.component:
 	@-$(RM) $(OBJ_TEST_COMP_ins_real_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_COMP_ins_slice_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_COMP_ins_w2m_MT_UX_DEBUG)
+	@-$(RM) $(OBJ_TEST_COMP_ins_stm_ch_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_COMP_ins_thrid_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_COMP_log_1_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_COMP_pan_puts_MT_UX_DEBUG)
@@ -3916,6 +3954,8 @@ $(OBJ_ins_host_MT_UX): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(PR
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_MT_UX): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_MT_UX): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_MT_UX): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_MT_UX): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -3926,6 +3966,8 @@ $(OBJ_ins_slice_MT_UX): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(PR
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_MT_UX): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_MT_UX): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_MT_UX): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -3960,6 +4002,8 @@ $(OBJ_ins_host_MT_UX_DEBUG): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_MT_UX_DEBUG): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_MT_UX_DEBUG): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_MT_UX_DEBUG): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_MT_UX_DEBUG): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -3970,6 +4014,8 @@ $(OBJ_ins_slice_MT_UX_DEBUG): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_MT_UX_DEBUG): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_MT_UX_DEBUG): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_MT_UX_DEBUG): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -7030,6 +7076,52 @@ $(TARG_TEST_COMP_ins_slice_MT_UX_DEBUG):	\
 
 $(OBJ_TEST_COMP_ins_slice_MT_UX_DEBUG):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.slice\test.component.inserters.slice.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.slice\test.component.inserters.slice.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_MT_UX):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_MT_UX)\
+			$(LIB_CORE_MT_UX)\
+			$(LIB_UTIL_MT_UX)\
+			$(LIB_FE_ALL_MT_UX)\
+			$(LIB_BE_TEST_MT_UX)\
+			$(LIB_BEC_TEST_MT_UX)\
+			$(LIB_XTESTS_MT_UX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_MT_UX)\
+		$(LIB_CORE_MT_UX)\
+		$(LIB_FE_ALL_MT_UX)\
+		$(LIB_BE_TEST_MT_UX)\
+		$(LIB_BEC_TEST_MT_UX)\
+		$(LIB_XTESTS_MT_UX)\
+		$(LIB_UTIL_MT_UX)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_UX)
+
+$(OBJ_TEST_COMP_ins_stm_ch_MT_UX):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_MT_UX_DEBUG):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_MT_UX_DEBUG)\
+			$(LIB_CORE_MT_UX_DEBUG)\
+			$(LIB_UTIL_MT_UX_DEBUG)\
+			$(LIB_FE_ALL_MT_UX_DEBUG)\
+			$(LIB_BE_TEST_MT_UX_DEBUG)\
+			$(LIB_BEC_TEST_MT_UX_DEBUG)\
+			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_MT_UX_DEBUG)\
+		$(LIB_CORE_MT_UX_DEBUG)\
+		$(LIB_FE_ALL_MT_UX_DEBUG)\
+		$(LIB_BE_TEST_MT_UX_DEBUG)\
+		$(LIB_BEC_TEST_MT_UX_DEBUG)\
+		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIB_UTIL_MT_UX_DEBUG)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_UX_DEBUG)
+
+$(OBJ_TEST_COMP_ins_stm_ch_MT_UX_DEBUG):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
 
 $(TARG_TEST_COMP_ins_thrid_MT_UX):	\
 			$(OBJ_TEST_COMP_ins_thrid_MT_UX)\

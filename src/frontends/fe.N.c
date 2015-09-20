@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the Pantheios fe.N Stock Front-end API.
  *
  * Created:     18th October 2006
- * Updated:     23rd May 2011
+ * Updated:     26th August 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,10 +59,29 @@ struct pantheios_fe_N_init_t
 typedef struct pantheios_fe_N_init_t pantheios_fe_N_init_t;
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Macros
+ */
+
+#define PAN_FE_N_HAS_backEndId()        (1)
+#define PAN_FE_N_HAS_severityCeiling()  (1)
+/*
+#define PAN_FE_N_HAS_severityFloor()    (pantheios_fe_N_get_compiled_ver() >= 0x010001d7)
+*/
+
+/* /////////////////////////////////////////////////////////////////////////
  * Helper functions
  */
 
-static size_t pantheios_fe_N_countBackEnds_(void)
+static
+pan_uint32_t
+pantheios_fe_N_get_compiled_ver(void)
+{
+    return PAN_FE_N_SEVERITY_CEILINGS[0].pantheios_version_;
+}
+
+static
+size_t
+pantheios_fe_N_countBackEnds_(void)
 {
     size_t              n = 0;
     pan_fe_N_t const*   frontEnd;
@@ -73,7 +92,9 @@ static size_t pantheios_fe_N_countBackEnds_(void)
     return n;
 }
 
-static int pantheios_fe_N_calc0Level_(size_t numBackEnds)
+static
+int
+pantheios_fe_N_calc0Level_(size_t numBackEnds)
 {
     size_t  n;
     int     severityCeiling = PAN_FE_N_SEVERITY_CEILINGS[numBackEnds].severityCeiling;
@@ -97,7 +118,8 @@ static int pantheios_fe_N_calc0Level_(size_t numBackEnds)
  * NOTE: We use *token for storing the (pre-calculated) 0 level
  */
 
-PANTHEIOS_CALL(int) pantheios_fe_init(
+PANTHEIOS_CALL(int)
+pantheios_fe_init(
     void*   reserved
 ,   void**  ptoken
 )
@@ -126,7 +148,8 @@ PANTHEIOS_CALL(int) pantheios_fe_init(
     }
 }
 
-PANTHEIOS_CALL(void) pantheios_fe_uninit(
+PANTHEIOS_CALL(void)
+pantheios_fe_uninit(
     void* token
 )
 {
@@ -135,7 +158,8 @@ PANTHEIOS_CALL(void) pantheios_fe_uninit(
     free(token);
 }
 
-PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(
+PANTHEIOS_CALL(PAN_CHAR_T const*)
+pantheios_fe_getProcessIdentity(
     void* token
 )
 {
@@ -151,7 +175,8 @@ PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(
 #endif /* PANTHEIOS_BE_USE_CALLBACK */
 }
 
-PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
+PANTHEIOS_CALL(int)
+pantheios_fe_isSeverityLogged(
     void*   token
 ,   int     severity
 ,   int     backEndId

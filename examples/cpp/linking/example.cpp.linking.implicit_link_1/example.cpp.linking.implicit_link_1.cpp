@@ -6,7 +6,7 @@
  *                - use of implicit linking to bind in front-end and back-end
  *
  * Created:     31st August 2006
- * Updated:     7th December 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -23,13 +23,13 @@
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS // Faster compilation
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>              // Pantheios C++ main header
 #include <pantheios/implicit_link/core.h>       // Implicitly link the core
 #include <pantheios/implicit_link/fe.simple.h>  // Implicitly link the stock front-end fe.simple
 #include <pantheios/implicit_link/be.fprintf.h> // Implicitly link the stock back-end be.fprintf
 
-/* Standard C/C++ Header Files */
+/* Standard C/C++ header files */
 #include <string>                               // for std::string
 #include <stdlib.h>                             // for exit codes
 

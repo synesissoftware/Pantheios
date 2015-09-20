@@ -4,13 +4,13 @@
  * Purpose:     Implicit link file for the test.scratch.be.N.fail project.
  *
  * Created:     19th December 2008
- * Updated:     20th December 2010
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -18,7 +18,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/implicit_link/core.h>
 #include <pantheios/implicit_link/fe.N.h>
 #include <pantheios/implicit_link/be.N.h>
@@ -32,7 +32,7 @@
 # include <pantheios/implicit_link/bec.WindowsSyslog.h>
 #endif /* OS */
 
-/* UNIXem Header Files */
+/* UNIXem header files */
 #include <platformstl/platformstl.h>
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
     defined(_WIN32)

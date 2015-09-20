@@ -4,11 +4,11 @@
  * Purpose:     Time functions for use in Pantheios back-ends.
  *
  * Created:     22nd August 2006
- * Updated:     17th March 2012
+ * Updated:     1st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,12 +42,17 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/lean.h>
 
+#include <pantheios/util/memory/memcopy.h>
 #include <pantheios/util/time/currenttime.h>
 
 #include <pantheios/quality/contract.h>
 #include <pantheios/internal/safestr.h>
 
-#include <stlsoft/algorithms/std/alt.hpp>
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# include <stlsoft/algorithm/std/alt.hpp>
+#else
+# include <stlsoft/algorithms/std/alt.hpp>
+#endif
 #include <stlsoft/conversion/integer_to_string.hpp>
 #include <stlsoft/util/minmax.hpp>
 
@@ -152,7 +157,7 @@ namespace
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -164,6 +169,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
     using pantheios::util::pantheios_onBailOut3;
+    using pantheios::util::pantheios_onBailOut4;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -256,7 +262,11 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                 };
                 pan_char_t*         e       =   &szTime[0] + cchTime;
                 long                divisor =   s_divisors[numDecPlaces];
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+                pan_char_t const*   r       =   stlsoft::integer_to_decimal_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
+#else /* ? STLSoft 1.12+ */
                 pan_char_t const*   r       =   stlsoft::integer_to_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
+#endif /* STLSoft 1.12+ */
 
                 0[e] = '.';
                 stlsoft::std_fill_n(e + 1, static_cast<size_t>(r - (e + 1)), '0');
@@ -276,7 +286,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
             {
                 tm->len = stlsoft::minimum(tm->capacity, cchTime);
 
-                ::memcpy(tm->str, szTime, tm->len * sizeof(pan_char_t));
+                PANTHEIOS_char_copy(tm->str, szTime, tm->len);
                 if(tm->len < tm->capacity)
                 {
                     tm->str[tm->len] = '\0';
@@ -428,14 +438,24 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when eliciting timestamp", NULL);
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when eliciting timestamp", NULL);
+        pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when eliciting timestamp", NULL, x.what());
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown error when eliciting timestamp", NULL);
+        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when eliciting timestamp", NULL);
+
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
+        ;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
 
     return 0;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

@@ -4,11 +4,11 @@
  * Purpose:     String inserter for std::exception-derived types.
  *
  * Created:     22nd March 2010
- * Updated:     26th November 2010
+ * Updated:     11th October 2012
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_EDIT       2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_EDIT       4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -176,35 +176,53 @@ namespace shims
     using inserters::exception_inserter;
 #  endif /* !PANTHEIOS_NO_NAMESPACE */
 
-/** \overload c_str_data_a(exception_inserter const&) */
-inline wchar_t const* c_str_data_w(exception_inserter const& i)
+inline
+wchar_t const*
+c_str_data_w(
+    exception_inserter const& i
+)
 {
     return i.data();
 }
-/** \overload c_str_data(exception_inserter const&) */
-inline pan_char_t const* c_str_data(exception_inserter const& i)
+inline
+pan_char_t const*
+c_str_data(
+    exception_inserter const& i
+)
 {
     return i.data();
 }
 
-/** \overload c_str_len_a(exception_inserter const&) */
-inline size_t c_str_len_w(exception_inserter const& i)
+inline
+size_t
+c_str_len_w(
+    exception_inserter const& i
+)
 {
     return i.length();
 }
-/** \overload c_str_len(exception_inserter const&) */
-inline size_t c_str_len(exception_inserter const& i)
+inline
+size_t
+c_str_len(
+    exception_inserter const& i
+)
 {
     return i.length();
 }
 
-/** \overload c_str_ptr_a(exception_inserter const&) */
-inline wchar_t const* c_str_ptr_w(exception_inserter const& i)
+inline
+wchar_t const*
+c_str_ptr_w(
+    exception_inserter const& i
+)
 {
     return i.c_str();
 }
-/** \overload c_str_ptr(exception_inserter const&) */
-inline pan_char_t const* c_str_ptr(exception_inserter const& i)
+inline
+pan_char_t const*
+c_str_ptr(
+    exception_inserter const& i
+)
 {
     return i.c_str();
 }

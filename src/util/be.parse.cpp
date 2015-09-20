@@ -4,11 +4,11 @@
  * Purpose:     Utility functions for use in Pantheios back-ends.
  *
  * Created:     19th August 2007
- * Updated:     10th August 2009
+ * Updated:     1st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,6 +44,7 @@
 #include <pantheios/backend.h>
 #include <pantheios/quality/contract.h>
 #include <pantheios/util/backends/arguments.h>
+#include <pantheios/util/memory/memcopy.h>
 
 #include <stlsoft/string/string_view.hpp>
 #include <stlsoft/string/split_functions.hpp>
@@ -88,6 +89,7 @@ using pantheios::pan_uint32_t;
 using pantheios::pan_char_t;
 using pantheios::pan_slice_t;
 using pantheios::util::pantheios_onBailOut3;
+using pantheios::util::pantheios_onBailOut4;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,10 +129,10 @@ namespace
         {
             pan_char_t copy[6];
 
-            ::memcpy(&copy[0], value.data(), n * sizeof(pan_char_t));
+            PANTHEIOS_char_copy(&copy[0], value.data(), n);
             ::memset(&copy[0] + n, '\0', (6 - n) * sizeof(pan_char_t));
 
-            PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL('\0' == copy[5], "the character at [6] must be the nul-terminator");
+            PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL('\0' == copy[5], "the character at [5] must be the nul-terminator");
 
             { for(size_t i = 0; '\0' != copy[i]; ++i)
             {
@@ -162,7 +164,7 @@ namespace
         return false;
     }
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -183,21 +185,27 @@ PANTHEIOS_CALL(int) pantheios_be_parseBooleanArg(   size_t              numArgs
     catch(std::bad_alloc&)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when parsing boolean argument", NULL);
-
-        return 0;
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing boolean argument", NULL);
-
-        return 0;
+        pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing boolean argument", NULL, x.what());
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown error when parsing boolean argument", NULL);
+        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when parsing boolean argument", NULL);
 
-        return 0;
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
+        ;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
+
+    return 0;
 }
 
 static int pantheios_be_parseBooleanArg_(   size_t              numArgs
@@ -273,14 +281,24 @@ PANTHEIOS_CALL(int) pantheios_be_parseStringArg(size_t              numArgs
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when parsing string argument", NULL);
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing string argument", NULL);
+        pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing string argument", NULL, x.what());
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown error when parsing string argument", NULL);
+        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when parsing boolean argument", NULL);
+
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
+        ;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
 
     return 0;
 }
@@ -340,14 +358,24 @@ PANTHEIOS_CALL(int) pantheios_be_parseStockArgs(size_t              numArgs
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when parsing stock argument", NULL);
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing stock argument", NULL);
+        pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing stock argument", NULL, x.what());
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown error when parsing stock argument", NULL);
+        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when parsing stock argument", NULL);
+
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
+        ;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
 
     return 0;
 }

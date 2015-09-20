@@ -4,11 +4,11 @@
  * Purpose:     Implementation of pantheios::util::backends::Context.
  *
  * Created:     18th December 2006
- * Updated:     5th August 2012
+ * Updated:     9th December 2013
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -60,8 +60,13 @@
 
 /* STLSoft Header files */
 #include <stlsoft/conversion/integer_to_string.hpp>
-#include <stlsoft/iterators/member_selector_iterator.hpp>
-#include <stlsoft/iterators/cstring_concatenator_iterator.hpp>
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# include <stlsoft/iterator/member_selector_iterator.hpp>
+# include <stlsoft/iterator/cstring_concatenator_iterator.hpp>
+#else
+# include <stlsoft/iterators/member_selector_iterator.hpp>
+# include <stlsoft/iterators/cstring_concatenator_iterator.hpp>
+#endif
 
 /* Standard C++ Header files */
 #include <algorithm>
@@ -350,8 +355,8 @@ int Context::logEntry(int severity, pan_char_t const* entry, size_t cchEntry)
 
     if(0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY))
     {
-        *slice++ = pan_slice_t( pantheios_getSeverityString(pan_sev_t(severity4))
-                            ,   pantheios_getSeverityStringLength(pan_sev_t(severity4)));
+        *slice++ = pan_slice_t( pantheios_getStockSeverityString(pan_sev_t(severity4))
+                            ,   pantheios_getStockSeverityStringLength(pan_sev_t(severity4)));
     }
     else
     {
@@ -449,9 +454,9 @@ int Context::getBackEndId() const
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} // namespace backends
-} // namespace util
-} // namespace pantheios
+} /* namespace backends */
+} /* namespace util */
+} /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

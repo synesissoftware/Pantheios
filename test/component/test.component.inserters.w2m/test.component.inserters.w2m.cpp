@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.w2m project.
  *
  * Created:     19th October 2006
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,25 +20,25 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <stlsoft/string/simple_string.hpp>
 #include <pantheios/pantheios.hpp>          // Pantheios C++ main header
 #include <pantheios/inserters/w2m.hpp>      // for pantheios::w2m
 #include <pantheios/backends/bec.test.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/util/limit_traits.h>
 #include <stlsoft/string/simple_string.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <string>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

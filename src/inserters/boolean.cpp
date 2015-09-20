@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the pantheios::boolean inserter class.
  *
  * Created:     7th August 2008
- * Updated:     18th June 2012
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,17 +41,17 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/inserters/boolean.hpp>
+#include <pantheios/util/memory/memcopy.h>
 #include <pantheios/util/system/hostname.h>
 #include <pantheios/util/string/strdup.h>
-#include <pantheios/util/memory/auto_buffer_selector.hpp>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/string/char_traits.hpp>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # include <memory.h>
 #endif /* compiler */
@@ -136,7 +136,7 @@ typedef stlsoft::stlsoft_char_traits<pan_char_t>    char_traits_t;
  * Namespace
  */
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Inserter classes
@@ -169,7 +169,7 @@ no_falseName:
         {
 //          pantheios_atExit(pantheios_free, falseNameCopy);
 
-            ::memcpy(falseNameCopy, falseName, sizeof(pan_char_t) * (1 + cchFalseName));
+            PANTHEIOS_char_copy(falseNameCopy, falseName, (1 + cchFalseName));
 
             s_falseCustomSlice = pan_slice_t(falseNameCopy, cchFalseName);
 
@@ -202,7 +202,7 @@ no_trueName:
         }
         else
         {
-            ::memcpy(trueNameCopy, trueName, sizeof(pan_char_t) * (1 + cchTrueName));
+            PANTHEIOS_char_copy(trueNameCopy, trueName, (1 + cchTrueName));
 
             s_trueCustomSlice = pan_slice_t(trueNameCopy, cchTrueName);
 

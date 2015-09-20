@@ -5,11 +5,11 @@
  *              ends.
  *
  * Created:     3rd November 2007
- * Updated:     10th August 2009
+ * Updated:     9th May 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MAJOR    2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MINOR    1
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     15
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,9 +73,6 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_FRONTEND
 # include <pantheios/frontend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_FRONTEND */
-#ifndef PANTHEIOS_INCL_PANTHEIOS_H_INIT_CODES
-# include <pantheios/init_codes.h>
-#endif /* !PANTHEIOS_INCL_PANTHEIOS_H_INIT_CODES */
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
@@ -142,14 +139,24 @@ typedef int (PANTHEIOS_CALLCONV* pantheios_be_X_logEntry_pfn_t)(
  * \param pfn The front-end initialisation function
  * \param reserved The <code>reserved</code> parameter to be passed to <code>pfn</code>
  * \param ptoken The <code>ptoken</code> parameter to be passed to <code>pfn</code>
+ * \param feName A human-readable name that identifies the front-end, used in
+ *   bail-out calls in severe/fatal conditions
  */
 PANTHEIOS_CALL(int) pantheios_call_fe_init(
     pantheios_fe_X_init_pfn_t   pfn
 ,   void*                       reserved
 ,   void**                      ptoken
+,   char const*                 feName
 );
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-inline int pantheios_call_fe_uninit(pantheios_fe_X_init_pfn_t pfn, void* reserved, void** ptoken)
+inline
+int
+pantheios_call_fe_init(
+    pantheios_fe_X_init_pfn_t   pfn
+,   void*                       reserved
+,   void**                      ptoken
+,   char const*                 /* feName */
+)
 {
     return pfn(reserved, ptoken);
 }
@@ -163,13 +170,22 @@ inline int pantheios_call_fe_uninit(pantheios_fe_X_init_pfn_t pfn, void* reserve
  *
  * \param pfn The front-end uninitialisation function
  * \param token The <code>token</code> parameter to be passed to <code>pfn</code>
+ * \param feName A human-readable name that identifies the front-end, used in
+ *   bail-out calls in severe/fatal conditions
  */
 PANTHEIOS_CALL(int) pantheios_call_fe_uninit(
     pantheios_fe_X_uninit_pfn_t pfn
 ,   void*                       token
+,   char const*                 feName
 );
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-inline int pantheios_call_fe_uninit(pantheios_fe_X_uninit_pfn_t pfn, void* token)
+inline
+int
+pantheios_call_fe_uninit(
+    pantheios_fe_X_uninit_pfn_t pfn
+,   void*                       token
+,   char const*                 /* feName */
+)
 {
     return pfn(token);
 }
@@ -183,13 +199,22 @@ inline int pantheios_call_fe_uninit(pantheios_fe_X_uninit_pfn_t pfn, void* token
  *
  * \param pfn The front-end process-identity function
  * \param token The <code>token</code> parameter to be passed to <code>pfn</code>
+ * \param feName A human-readable name that identifies the front-end, used in
+ *   bail-out calls in severe/fatal conditions
  */
 PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_call_fe_getProcessIdentity(
     pantheios_fe_X_getProcessIdentity_pfn_t pfn
 ,   void*                                   token
+,   char const*                             feName
 );
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-inline PAN_CHAR_T const* pantheios_call_fe_getProcessIdentity(pantheios_fe_X_getProcessIdentity_pfn_t pfn, void* token)
+inline
+PAN_CHAR_T const*
+pantheios_call_fe_getProcessIdentity(
+    pantheios_fe_X_getProcessIdentity_pfn_t pfn
+,   void*                                   token
+,   char const*                             /* feName */
+)
 {
     return pfn(token);
 }
@@ -212,15 +237,26 @@ inline PAN_CHAR_T const* pantheios_call_fe_getProcessIdentity(pantheios_fe_X_get
  *   stands for every back-end. All other values indicate specific
  *   back-end splits, although by convention 1 indicates local logging
  *   and 2 indicates remote logging.
+ * \param feName A human-readable name that identifies the front-end, used in
+ *   bail-out calls in severe/fatal conditions
  */
 PANTHEIOS_CALL(int) pantheios_call_fe_isSeverityLogged(
     pantheios_fe_X_isSeverityLogged_pfn_t   pfn
 ,   void*                                   token
 ,   int                                     severity
 ,   int                                     backEndId
+,   char const*                             feName
 );
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-inline int pantheios_call_fe_isSeverityLogged(pantheios_fe_X_isSeverityLogged_pfn_t pfn, void* token, int severity, int backEndId)
+inline
+int
+pantheios_call_fe_isSeverityLogged(
+    pantheios_fe_X_isSeverityLogged_pfn_t   pfn
+,   void*                                   token
+,   int                                     severity
+,   int                                     backEndId
+,   char const*                             /* feName */
+)
 {
     return pfn(token, severity, backEndId);
 }
@@ -241,6 +277,8 @@ inline int pantheios_call_fe_isSeverityLogged(pantheios_fe_X_isSeverityLogged_pf
  * \param init The <code>init</code> parameter to be passed to <code>pfn</code>
  * \param reserved The <code>reserved</code> parameter to be passed to <code>pfn</code>
  * \param ptoken The <code>ptoken</code> parameter to be passed to <code>pfn</code>
+ * \param beName A human-readable name that identifies the back-end, used in
+ *   bail-out calls in severe/fatal conditions
  */
 PANTHEIOS_CALL(int) pantheios_call_be_void_init(
     pantheios_be_X_init_pfn_t   pfn
@@ -249,15 +287,19 @@ PANTHEIOS_CALL(int) pantheios_call_be_void_init(
 ,   void const*                 init
 ,   void*                       reserved
 ,   void**                      ptoken
+,   char const*                 beName
 );
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-inline int pantheios_call_be_void_init(
+inline
+int
+pantheios_call_be_void_init(
     pantheios_be_X_init_pfn_t   pfn
 ,   PAN_CHAR_T const*           processIdentity
 ,   int                         backEndId
 ,   void const*                 init
 ,   void*                       reserved
 ,   void**                      ptoken
+,   char const*                 /* beName */
 )
 {
     return pfn(processIdentity, backEndId, init, reserved, ptoken);
@@ -274,9 +316,13 @@ inline int pantheios_call_be_void_init(
  * \param init The <code>init</code> parameter to be passed to <code>pfn</code>
  * \param reserved The <code>reserved</code> parameter to be passed to <code>pfn</code>
  * \param ptoken The <code>ptoken</code> parameter to be passed to <code>pfn</code>
+ * \param beName A human-readable name that identifies the back-end, used in
+ *   bail-out calls in severe/fatal conditions
  */
 template <typename T>
-inline int pantheios_call_be_X_init(
+inline
+int
+pantheios_call_be_X_init(
 #ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
     int (*                      pfn)(PAN_CHAR_T const*, int, T const*, void*, void**)
 #else /* ? PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
@@ -287,9 +333,10 @@ inline int pantheios_call_be_X_init(
 ,   T const*                    init
 ,   void*                       reserved
 ,   void**                      ptoken
+,   char const*                 beName
 )
 {
-    return pantheios_call_be_void_init(reinterpret_cast<pantheios_be_X_init_pfn_t>(pfn), processIdentity, backEndId, init, reserved, ptoken);
+    return pantheios_call_be_void_init(reinterpret_cast<pantheios_be_X_init_pfn_t>(pfn), processIdentity, backEndId, init, reserved, ptoken, beName);
 }
 
 
@@ -300,13 +347,22 @@ inline int pantheios_call_be_X_init(
  *
  * \param pfn The back-end uninitialisation function
  * \param token The <code>token</code> parameter to be passed to <code>pfn</code>
+ * \param beName A human-readable name that identifies the back-end, used in
+ *   bail-out calls in severe/fatal conditions
  */
 PANTHEIOS_CALL(int) pantheios_call_be_uninit(
     pantheios_be_X_uninit_pfn_t pfn
 ,   void*                       token
+,   char const*                 beName
 );
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-inline int pantheios_call_be_uninit(pantheios_be_X_uninit_pfn_t pfn, void* token)
+inline
+int
+pantheios_call_be_uninit(
+    pantheios_be_X_uninit_pfn_t pfn
+,   void*                       token
+,   char const*                 /* beName */
+)
 {
     return pfn(token);
 }
@@ -324,6 +380,8 @@ inline int pantheios_call_be_uninit(pantheios_be_X_uninit_pfn_t pfn, void* token
  * \param severity The <code>severity</code> parameter to be passed to <code>pfn</code>
  * \param entry The <code>entry</code> parameter to be passed to <code>pfn</code>
  * \param cchEntry The <code>cchEntry</code> parameter to be passed to <code>pfn</code>
+ * \param beName A human-readable name that identifies the back-end, used in
+ *   bail-out calls in severe/fatal conditions
  */
 PANTHEIOS_CALL(int) pantheios_call_be_logEntry(
     pantheios_be_X_logEntry_pfn_t   pfn
@@ -332,15 +390,19 @@ PANTHEIOS_CALL(int) pantheios_call_be_logEntry(
 ,   int                             severity
 ,   PAN_CHAR_T const*               entry
 ,   size_t                          cchEntry
+,   char const*                     beName
 );
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-inline int pantheios_call_be_logEntry(
+inline
+int
+pantheios_call_be_logEntry(
     pantheios_be_X_logEntry_pfn_t   pfn
 ,   void*                           feToken
 ,   void*                           beToken
 ,   int                             severity
 ,   PAN_CHAR_T const*               entry
 ,   size_t                          cchEntry
+,   char const*                     /* beName */
 )
 {
     return pfn(feToken, beToken, severity, entry, cchEntry);

@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.b64 project.
  *
  * Created:     31st July 2006
- * Updated:     23rd March 2010
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,25 +20,25 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* b64 Header Files */
+/* b64 header files */
 #include <b64/b64.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>          // Pantheios C++ main header
 #include <pantheios/inserters/b64.hpp>      // for pantheios::b64
 #include <pantheios/backends/bec.test.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/util/limit_traits.h>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <string>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

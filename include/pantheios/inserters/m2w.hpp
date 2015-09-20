@@ -5,11 +5,11 @@
  *              wide string statement.
  *
  * Created:     22nd November 2010
- * Updated:     22nd November 2010
+ * Updated:     1st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MAJOR    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MINOR    0
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_REVISION 0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,13 +71,13 @@
 # include <pantheios/inserters/fmt.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_FMT */
 
+#ifndef PANTHEIOS_USE_WIDE_STRINGS
+# error You may not include pantheios/inserters/m2w.hpp in multibyte string compilations; instead, use the new m2t inserter
+#endif /* !PANTHEIOS_USE_WIDE_STRINGS */
+
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-
-#ifndef PANTHEIOS_USE_WIDE_STRINGS
-# include <stlsoft/string/string_view.hpp>
-#endif /* !PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -113,12 +113,6 @@ namespace pantheios
  *
  * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, ws=def, str=ghi</b>
  */
-
-#ifndef PANTHEIOS_USE_WIDE_STRINGS
-
-typedef stlsoft_ns_qual(string_view)    m2w;
-
-#else /* ? !PANTHEIOS_USE_WIDE_STRINGS */
 
 class m2w
 {
@@ -205,13 +199,9 @@ private: // Member Variables
     size_t      m_length;
 };
 
-#endif /* !PANTHEIOS_USE_WIDE_STRINGS */
-
 /* /////////////////////////////////////////////////////////////////////////
  * String Access Shims
  */
-
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
 namespace shims
@@ -220,35 +210,53 @@ namespace shims
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
-/** \overload c_str_data_w(m2w const&) */
-inline wchar_t const* c_str_data_w(m2w const& r)
+inline
+wchar_t const*
+c_str_data_w(
+    m2w const& r
+)
 {
     return r.data();
 }
-/** \overload c_str_data(m2w const&) */
-inline pan_char_t const* c_str_data(m2w const& r)
+inline
+pan_char_t const*
+c_str_data(
+    m2w const& r
+)
 {
     return r.data();
 }
 
-/** \overload c_str_len_w(m2w const&) */
-inline size_t c_str_len_w(m2w const& r)
+inline
+size_t
+c_str_len_w(
+    m2w const& r
+)
 {
     return r.length();
 }
-/** \overload c_str_len(m2w const&) */
-inline size_t c_str_len(m2w const& r)
+inline
+size_t
+c_str_len(
+    m2w const& r
+)
 {
     return r.length();
 }
 
-/** \overload c_str_ptr_w(m2w const&) */
-inline wchar_t const* c_str_ptr_w(m2w const& r)
+inline
+wchar_t const*
+c_str_ptr_w(
+    m2w const& r
+)
 {
     return r.c_str();
 }
-/** \overload c_str_ptr(m2w const&) */
-inline pan_char_t const* c_str_ptr(m2w const& r)
+inline
+pan_char_t const*
+c_str_ptr(
+    m2w const& r
+)
 {
     return r.c_str();
 }
@@ -276,16 +284,12 @@ inline pan_char_t const* c_str_ptr(m2w const& r)
 
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
-
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
-
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
 
 namespace stlsoft
 {
@@ -305,8 +309,6 @@ namespace stlsoft
     using ::pantheios::shims::c_str_ptr_w;
     using ::pantheios::shims::c_str_ptr;
 }
-
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 

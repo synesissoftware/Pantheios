@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     5th August 2012
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/lean.h>
 
@@ -69,7 +69,6 @@
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 namespace pantheios
 {
-
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,6 +77,11 @@ namespace pantheios
 
 struct processId_t const* processId =   0;
 
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER >= 1900
+# define processId  processId_another_symbol_
+#endif
+
 /* /////////////////////////////////////////////////////////////////////////
  * Helper functions
  */
@@ -85,14 +89,22 @@ struct processId_t const* processId =   0;
 namespace
 {
 
-    void pantheios_getProcessId_(pan_char_t const** processId, size_t* processIdLength)
+    void
+    pantheios_getProcessId_(
+        pan_char_t const**  processId
+    ,   size_t*             processIdLength
+    )
     {
         // NOTE: This function is _not_ threadsafe. However, this does not matter
         // because any overwrite, should it occur, will be entirely benign
 
         static pan_char_t           s_processIdBuff[21];    // Large enough for 64-bit signed/unsigned integer
         static size_t               s_processIdLength;
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+        static pan_char_t const*    s_processId = ::stlsoft::integer_to_decimal_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
+#else /* ? STLSoft 1.12+ */
         static pan_char_t const*    s_processId = ::stlsoft::integer_to_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
+#endif /* STLSoft 1.12+ */
 
         if(NULL != processId)
         {
@@ -105,7 +117,7 @@ namespace
         }
     }
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions

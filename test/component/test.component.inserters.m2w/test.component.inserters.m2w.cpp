@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.m2w project.
  *
  * Created:     22nd November 2010
- * Updated:     22nd November 2010
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2010-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -22,10 +22,10 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 # error This program source only valid in wide string builds
@@ -35,15 +35,15 @@
 #include <pantheios/inserters/m2w.hpp>      // for pantheios::m2w
 #include <pantheios/backends/bec.test.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/util/limit_traits.h>
 #include <stlsoft/string/simple_string.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <string>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

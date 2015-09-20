@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the b64 inserter class.
  *
  * Created:     31st July 2006
- * Updated:     22nd March 2010
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 
 #include <pantheios/inserters/b64.hpp>
@@ -52,7 +52,7 @@
 # include <stlsoft/conversion/char_conversions.hpp>
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-/* b64 Header Files */
+/* b64 header files */
 #include <b64/b64.h>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,11 +63,13 @@
 namespace pantheios
 {
 
+namespace
+{
+
     using ::pantheios::core::pantheios_inserterAllocate;
     using ::pantheios::core::pantheios_inserterDeallocate;
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    using ::pantheios::util::auto_buffer_selector;
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+} /* anonymous namespace */
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
@@ -171,11 +173,7 @@ void b64::construct_()
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# if defined(PANTHEIOS_NO_NAMESPACE)
-        auto_buffer_selector<
-# else /* ? PANTHEIOS_NO_NAMESPACE */
-        ::pantheios::util::auto_buffer_selector<
-# endif /* PANTHEIOS_NO_NAMESPACE */
+        PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
             char
         ,   256
         >::type     buff(1 + cch);

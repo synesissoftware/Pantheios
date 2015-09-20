@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     5th August 2012
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,16 +41,17 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 
 #include <pantheios/inserters/threadid.hpp>
 
+#include <pantheios/util/memory/memcopy.h>
 #include <pantheios/util/system/threadid.h>
 
 #include <stlsoft/conversion/integer_to_string.hpp>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # include <memory.h>
 #endif /* compiler */
@@ -103,9 +104,13 @@ inline void thread_id_t::construct_() const
 void thread_id_t::construct_()
 {
     pan_char_t          sz[21]; // This is large enough for any number up to 64-bits
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+    pan_char_t const*   num = stlsoft::integer_to_decimal_string(&sz[0], STLSOFT_NUM_ELEMENTS(sz), pantheios_getCurrentThreadId(), &m_len);
+#else /* ? STLSoft 1.12+ */
     pan_char_t const*   num = stlsoft::integer_to_string(&sz[0], STLSOFT_NUM_ELEMENTS(sz), pantheios_getCurrentThreadId(), &m_len);
+#endif /* STLSoft 1.12+ */
 
-    ::memcpy(&m_value[0], num, (m_len + 1) * sizeof(pan_char_t));
+    PANTHEIOS_char_copy(&m_value[0], num, (m_len + 1));
 }
 
 thread_id_t::thread_id_t()

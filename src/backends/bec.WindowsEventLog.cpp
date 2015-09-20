@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the WindowsEventLog back-end
  *
  * Created:     8th May 2006
- * Updated:     23rd May 2011
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/winlean.h>
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
@@ -50,10 +50,10 @@
 #include <pantheios/util/core/apidefs.hpp>
 #include <pantheios/util/severity/WindowsEventLog.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <winstl/memory/processheap_allocator.hpp>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <string.h>
 
@@ -91,7 +91,7 @@ namespace
     using ::pantheios::pan_char_t;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -106,7 +106,7 @@ namespace
     using ::pantheios::pantheios_severity_to_WindowsEventLog_type;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Structures
@@ -192,7 +192,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_init(
 ,   void**              ptoken
 )
 {
-    return pantheios_call_be_X_init<void>(pantheios_be_WindowsEventLog_init_, processIdentity, id, unused, reserved, ptoken);
+    return pantheios_call_be_X_init<void>(pantheios_be_WindowsEventLog_init_, processIdentity, id, unused, reserved, ptoken, "be.WindowsEventLog");
 }
 
 PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_uninit(void* token)
@@ -242,8 +242,8 @@ int WindowsEventLog_Context::ReportEvent(
 )
 {
     WORD            wType;
-    pan_uint16_t    category;
-    pan_uint32_t    eventId;
+    pan_uint16_t    category    =   0xFFFF;
+    pan_uint32_t    eventId     =   0xFFFFFFFF;
     PSID            lpUserSid   =   NULL;
     WORD            wNumStrings =   1;
     DWORD           dwDataSize  =   0;
@@ -254,19 +254,27 @@ int WindowsEventLog_Context::ReportEvent(
 
     pantheios_be_WindowsEventLog_calcCategoryAndEventId(this->id, severity, &category, &eventId);
 
+    if( 0xFFFF == category &&
+        0xFFFFFFFF == eventId)
+    {
+        return 0;
+    }
+
     severity &= 0x7;    /* This stock back-end ignores any custom severity information. */
 
     wType = pantheios_severity_to_WindowsEventLog_type(severity);
 
-    if(!pan_ReportEvent_(   hEvLog
-                        ,   wType
-                        ,   category
-                        ,   eventId
-                        ,   lpUserSid
-                        ,   wNumStrings
-                        ,   dwDataSize
-                        ,   lpStrings
-                        ,   lpRawData))
+    if(!pan_ReportEvent_(
+            hEvLog
+        ,   wType
+        ,   category
+        ,   eventId
+        ,   lpUserSid
+        ,   wNumStrings
+        ,   dwDataSize
+        ,   lpStrings
+        ,   lpRawData
+        ))
     {
         return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
     }

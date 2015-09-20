@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     14th February 2010
- * Updated:     5th August 2012
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/nox.h>
 #include <pantheios/internal/safestr.h>
@@ -61,15 +61,20 @@
 /* STLSoft header files */
 
 #include <stlsoft/conversion/integer_to_string.hpp>
-#include <stlsoft/iterators/cstring_concatenator_iterator.hpp>
-#include <stlsoft/iterators/member_selector_iterator.hpp>
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# include <stlsoft/iterator/cstring_concatenator_iterator.hpp>
+# include <stlsoft/iterator/member_selector_iterator.hpp>
+#else /* ? STLSoft 1.12+ */
+# include <stlsoft/iterators/cstring_concatenator_iterator.hpp>
+# include <stlsoft/iterators/member_selector_iterator.hpp>
+#endif /* STLSoft 1.12+ */
 
 /* Standard C++ header files */
 
 #include <algorithm>
 #include <numeric>
 
-/* Standard C Header Files */
+/* Standard C header files */
 
 #include <string.h>
 
@@ -87,14 +92,18 @@
  */
 
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
-# include <stlsoft/algorithms/std/alt.hpp>
+# ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#  include <stlsoft/algorithm/std/alt.hpp>
+# else /* ? STLSoft 1.12+ */
+#  include <stlsoft/algorithms/std/alt.hpp>
+# endif /* STLSoft 1.12+ */
 namespace std
 {
     using stlsoft::std_copy;
 
 # define copy std_copy
 
-} // namespace std
+} /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -191,7 +200,11 @@ void slice_inserter::construct_()
         slices[5] = equals;                         // 5: equals (for len)
 
         size_t              lenLen;
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+        pan_char_t const*   lenPtr = stlsoft::integer_to_decimal_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
+#else /* ? STLSoft 1.12+ */
         pan_char_t const*   lenPtr = stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
+#endif /* STLSoft 1.12+ */
 
         slices[6] = pan_slice_t(lenPtr, lenLen);
     }

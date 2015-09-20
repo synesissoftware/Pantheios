@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.fe project.
  *
  * Created:     21st June 2005
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
@@ -44,7 +44,7 @@
 /* This inclusion required for suppressing warnings during NoX (No eXception-support) configurations. */
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/integer.hpp>
 #include <pantheios/inserters/pointer.hpp>
@@ -53,10 +53,10 @@
 #include <pantheios/frontend.h>
 #include <pantheios/quality/contract.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <iostream>
 #include <string>
@@ -66,7 +66,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>

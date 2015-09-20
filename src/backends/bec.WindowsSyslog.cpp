@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        src/backends/bec.WindowsSyslog.cpp
  *
- * Purpose:     Implementation of the Pantheios Windows-SysLog Stock Back-end API.
+ * Purpose:     Implementation of the Pantheios Windows-SysLog Stock
+ *              Back-end API.
  *
  * Created:     23rd September 2005
- * Updated:     5th August 2012
+ * Updated:     1st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +40,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/nox.h>
 #include <pantheios/internal/winlean.h>
@@ -51,22 +52,24 @@
 #include <pantheios/quality/contract.h>
 #include <pantheios/util/core/apidefs.hpp>
 #include <pantheios/util/backends/arguments.h>
+#include <pantheios/util/memory/memcopy.h>
 #include <pantheios/util/string/strdup.h>
 #include <pantheios/util/system/hostname.h>
 
-/* STLSoft Header files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <pantheios/util/memory/auto_buffer_selector.hpp>
+#include <winstl/conversion/char_conversions.hpp>
 #include <stlsoft/conversion/char_conversions.hpp>
 #include <stlsoft/conversion/integer_to_string.hpp>
 #include <stlsoft/util/minmax.hpp>
 
-/* Standard C Header files */
+/* Standard C header files */
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
 
-/* Windows Header Files */
+/* Windows header files */
 #include <winsock2.h>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,11 +107,7 @@ namespace
     struct buffer_selector_
     {
         typedef ss_typename_type_k
-#if !defined(PANTHEIOS_NO_NAMESPACE)
-            pantheios::util::auto_buffer_selector<
-#else /* ? !PANTHEIOS_NO_NAMESPACE */
-            auto_buffer_selector<
-#endif /* !PANTHEIOS_NO_NAMESPACE */
+            PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
             T
         ,   1024
         >::type                                 type;
@@ -118,7 +117,7 @@ namespace
     typedef buffer_selector_<wchar_t>::type     buffer_w_t;
     typedef buffer_selector_<pan_char_t>::type  buffer_t;
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Typedefs
@@ -140,27 +139,67 @@ namespace
     };
     typedef struct WindowsSysLog_Context   WindowsSysLog_Context;
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Helper functions
  */
 
-static char* pan_make_hostIdentity_(void);
-static char* pri_print_(char* s, size_t cch, int i, size_t& cchWritten);
-static int pantheios_be_WindowsSyslog_logEntry_a_(
+static
+int
+pan_atoi_(
+    pan_char_t const*   s
+)
+{
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+    return ::_wtoi(s);
+#else
+    return ::atoi(s);
+#endif
+}
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Helper functions
+ */
+
+static
+char*
+pan_make_hostIdentity_(void);
+static
+char*
+pri_print_(
+    char*       s
+,   size_t      cch
+,   int         i
+,   size_t&     cchWritten
+);
+static
+int
+pantheios_be_WindowsSyslog_logEntry_a_(
     void*       feToken
 ,   void*       beToken
 ,   int         severity
 ,   char const* entry
 ,   size_t      cchEntry
 );
-static int pantheios_be_WindowsSyslog_init_a_(
+static
+int
+pantheios_be_WindowsSyslog_init_(
+    pan_char_t const*                   processIdentity
+,   int                                 id
+,   pan_be_WindowsSyslog_init_t const*  init
+,   void*                               reserved
+,   void**                              ptoken
+);
+static
+int
+pantheios_be_WindowsSyslog_init_a_(
     char const*                         processIdentity
 ,   int                                 id
 ,   pan_be_WindowsSyslog_init_t const*  init
 ,   void*                               reserved
 ,   void**                              ptoken
+,   char const*                         hostName
 );
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -171,8 +210,10 @@ static int pantheios_be_WindowsSyslog_init_a_(
  * - the processIdentity is
  */
 
-
-PANTHEIOS_CALL(void) pantheios_be_WindowsSyslog_getDefaultAppInit(pan_be_WindowsSyslog_init_t* init) /* throw() */
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsSyslog_getDefaultAppInit(
+    pan_be_WindowsSyslog_init_t* init
+) /* throw() */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
 
@@ -188,7 +229,8 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsSyslog_getDefaultAppInit(pan_be_Windows
     init->facility      =   PANTHEIOS_SYSLOG_FAC_USER;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_init(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsSyslog_init(
     pan_char_t const*                   processIdentity
 ,   int                                 id
 ,   pan_be_WindowsSyslog_init_t const*  init
@@ -196,19 +238,53 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_init(
 ,   void**                              ptoken
 )
 {
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-    return pantheios_be_WindowsSyslog_init_a_(stlsoft::w2m(processIdentity), id, init, reserved, ptoken);
-#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    return pantheios_be_WindowsSyslog_init_a_(processIdentity, id, init, reserved, ptoken);
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+    return pantheios_call_be_X_init<pan_be_WindowsSyslog_init_t>(pantheios_be_WindowsSyslog_init_, processIdentity, id, init, reserved, ptoken, "be.WindowsSyslog");
 }
 
-static int pantheios_be_WindowsSyslog_init_a_(
+static
+int
+pantheios_be_WindowsSyslog_init_(
+    pan_char_t const*                   processIdentity
+,   int                                 id
+,   pan_be_WindowsSyslog_init_t const*  init
+,   void*                               reserved
+,   void**                              ptoken
+)
+{
+    if( NULL != init &&
+        NULL != init->hostName)
+    {
+        return pantheios_be_WindowsSyslog_init_a_(
+                    winstl::t2m(processIdentity)
+                ,   id
+                ,   init
+                ,   reserved
+                ,   ptoken
+                ,   winstl::t2m(init->hostName)
+                );
+    }
+    else
+    {
+        return pantheios_be_WindowsSyslog_init_a_(
+                    winstl::t2m(processIdentity)
+                ,   id
+                ,   init
+                ,   reserved
+                ,   ptoken
+                ,   NULL
+                );
+    }
+}
+
+static
+int
+pantheios_be_WindowsSyslog_init_a_(
     char const*                         processIdentity
 ,   int                                 id
 ,   pan_be_WindowsSyslog_init_t const*  init
 ,   void*                               reserved
 ,   void**                              ptoken
+,   char const*                         hostName
 )
 {
     WindowsSysLog_Context* ctxt = static_cast<WindowsSysLog_Context*>(::calloc(1, sizeof(WindowsSysLog_Context)));
@@ -259,14 +335,14 @@ static int pantheios_be_WindowsSyslog_init_a_(
 
         memset(&addr_in, 0, sizeof(addr_in));
         if( 0 == init->addrSize &&
-            NULL != init->hostName)
+            NULL != hostName)
         {
-            unsigned long   addr = ::inet_addr(init->hostName);
+            unsigned long   addr = ::inet_addr(hostName);
             struct hostent* he;
 
             if( INADDR_BROADCAST == addr &&
-                0 != ::strcmp(init->hostName, "255.255.255.255") &&
-                NULL != (he = ::gethostbyname(init->hostName)))
+                0 != ::strcmp(hostName, "255.255.255.255") &&
+                NULL != (he = ::gethostbyname(hostName)))
             {
                 memcpy(&addr_in.sin_addr, he->h_addr, he->h_length);
             }
@@ -352,7 +428,10 @@ error_startup:
     }
 }
 
-PANTHEIOS_CALL(void) pantheios_be_WindowsSyslog_uninit(void* token)
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsSyslog_uninit(
+    void* token
+)
 {
     WindowsSysLog_Context* ctxt = static_cast<WindowsSysLog_Context*>(token);
 
@@ -365,7 +444,9 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsSyslog_uninit(void* token)
     ::free(ctxt);
 }
 
-static int pantheios_be_WindowsSyslog_logEntry_(
+static
+int
+pantheios_be_WindowsSyslog_logEntry_(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -384,7 +465,9 @@ static int pantheios_be_WindowsSyslog_logEntry_(
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 }
 
-static int pantheios_be_WindowsSyslog_logEntry_a_(
+static
+int
+pantheios_be_WindowsSyslog_logEntry_a_(
     void*       feToken
 ,   void*       beToken
 ,   int         severity
@@ -456,32 +539,32 @@ static int pantheios_be_WindowsSyslog_logEntry_a_(
         size_t  cchWritten  =   0;
         char*   p           =   &buffer[0];
 
-        ::memcpy(p, szPri, cchPriority * sizeof(char));
+        PANTHEIOS_char_copy(p, szPri, cchPriority);
         cchWritten += cchPriority;
         p += cchPriority;
 
-        ::memcpy(p, szTime, cchTime * sizeof(char));
+        PANTHEIOS_char_copy(p, szTime, cchTime);
         cchWritten += cchTime;
         p += cchTime;
 
         *p++ = ' ';
         ++cchWritten;
 
-        ::memcpy(p, ctxt->hostIdentity, ctxt->cchHostIdentity * sizeof(char));
+        PANTHEIOS_char_copy(p, ctxt->hostIdentity, ctxt->cchHostIdentity);
         cchWritten += ctxt->cchHostIdentity;
         p += ctxt->cchHostIdentity;
 
         *p++ = ' ';
         ++cchWritten;
 
-        ::memcpy(p, ctxt->processIdentity, ctxt->cchProcessIdentity * sizeof(char));
+        PANTHEIOS_char_copy(p, ctxt->processIdentity, ctxt->cchProcessIdentity);
         cchWritten += ctxt->cchProcessIdentity;
         p += ctxt->cchProcessIdentity;
 
         *p++ = ' ';
         ++cchWritten;
 
-        ::memcpy(p, entry, cchEntry * sizeof(char));
+        PANTHEIOS_char_copy(p, entry, cchEntry);
         cchWritten += cchEntry;
         p += cchEntry;
 
@@ -494,7 +577,8 @@ static int pantheios_be_WindowsSyslog_logEntry_a_(
     }
 }
 
-PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsSyslog_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -502,10 +586,11 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_logEntry(
 ,   size_t              cchEntry
 )
 {
-    return pantheios_call_be_logEntry(pantheios_be_WindowsSyslog_logEntry_, feToken,beToken, severity, entry, cchEntry);
+    return pantheios_call_be_logEntry(pantheios_be_WindowsSyslog_logEntry_, feToken,beToken, severity, entry, cchEntry, "be.WindowsSyslog");
 }
 
-PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_parseArgs(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsSyslog_parseArgs(
     size_t                          numArgs
 ,   pan_slice_t* const              args
 ,   pan_be_WindowsSyslog_init_t*    init
@@ -536,7 +621,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_parseArgs(
             }
             else
             {
-                ::memcpy(&init->hostNameBuff[0], address.ptr, sizeof(pan_char_t) * STLSOFT_NUM_ELEMENTS(init->hostNameBuff));
+                PANTHEIOS_char_copy(&init->hostNameBuff[0], address.ptr, STLSOFT_NUM_ELEMENTS(init->hostNameBuff));
                 init->hostNameBuff[address.len] = '\0';
                 init->hostName = &init->hostNameBuff[0];
                 init->addrSize = 0;
@@ -550,13 +635,13 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_parseArgs(
 
             if(res > 0)
             {
-                char    sz[21];
-                int     portNum;
+                pan_char_t  sz[21];
+                int         portNum;
 
-                ::memcpy(&sz[0], port.ptr, stlsoft::minimum(port.len, sizeof(pan_char_t) * STLSOFT_NUM_ELEMENTS(sz) - 1));
+                PANTHEIOS_char_copy(&sz[0], port.ptr, stlsoft::minimum(port.len, STLSOFT_NUM_ELEMENTS(sz) - 1));
                 sz[stlsoft::minimum(port.len, STLSOFT_NUM_ELEMENTS(sz) - 1)] = '\0';
 
-                portNum = ::atoi(sz);
+                portNum = pan_atoi_(sz);
 
                 if( portNum > 0 &&
                     portNum < 65536)
@@ -577,13 +662,13 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_parseArgs(
 
             if(res > 0)
             {
-                char    sz[21];
-                int     facilityNum;
+                pan_char_t  sz[21];
+                int         facilityNum;
 
-                ::memcpy(&sz[0], facility.ptr, stlsoft::minimum(facility.len, sizeof(pan_char_t) * STLSOFT_NUM_ELEMENTS(sz) - 1));
+                PANTHEIOS_char_copy(&sz[0], facility.ptr, stlsoft::minimum(facility.len, STLSOFT_NUM_ELEMENTS(sz) - 1));
                 sz[stlsoft::minimum(facility.len, STLSOFT_NUM_ELEMENTS(sz) - 1)] = '\0';
 
-                facilityNum = ::atoi(sz);
+                facilityNum = pan_atoi_(sz);
 
                 if( facilityNum >= 0 &&
                     facilityNum < 24)
@@ -628,7 +713,9 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsSyslog_parseArgs(
 /* ////////////////////////////////////////////////////////////////////// */
 
 // TODO: This should go in a src/util/x/y.cpp file
-static char* pan_make_hostIdentity_(void)
+static
+char*
+pan_make_hostIdentity_(void)
 {
     pan_char_t  szHostName[1 + MAX_COMPUTERNAME_LENGTH];
     size_t      cch = pantheios_getHostName(&szHostName[0], STLSOFT_NUM_ELEMENTS(szHostName));
@@ -647,7 +734,13 @@ static char* pan_make_hostIdentity_(void)
     }
 }
 
-char* pri_print_(char* s, size_t cch, int i, size_t& cchWritten)
+char*
+pri_print_(
+    char*   s
+,   size_t  cch
+,   int     i
+,   size_t& cchWritten
+)
 {
     STLSOFT_ASSERT(NULL != s);
     STLSOFT_ASSERT(i >= 0);
@@ -657,7 +750,7 @@ char* pri_print_(char* s, size_t cch, int i, size_t& cchWritten)
     s[0]        = '\0';
     s[cch - 1]  = '\0';
 
-    char* r = const_cast<char*>(stlsoft::integer_to_string(s, cch - 1, i, &cchWritten));
+    char* r = const_cast<char*>(stlsoft::integer_to_string(s, cch - 1, static_cast<stlsoft::uint8_t>(i), &cchWritten));
 
     s[cch - 2]  = '>';  ++cchWritten;
     *--r        = '<';  ++cchWritten;

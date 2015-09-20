@@ -8,7 +8,7 @@
  *                  strings
  *
  * Created:     27th December 2010
- * Updated:     4th January 2011
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -25,13 +25,13 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/util/string/strdup.h>       // for pantheios::util::strdup_throw/strdup_nothrow()
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>                    // for STLSOFT_CF_THROW_BAD_ALLOC
 
-/* Standard C/C++ Header Files */
+/* Standard C/C++ header files */
 #include <new>                                  // for std::bad_alloc
 #include <stdlib.h>                             // for exit codes
 

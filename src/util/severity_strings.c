@@ -4,11 +4,11 @@
  * Purpose:     Severity strings for Pantheios API
  *
  * Created:     26th July 2005
- * Updated:     10th August 2009
+ * Updated:     9th December 2013
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -117,7 +117,7 @@ static pan_char_t const* pantheios_LookupCodeA_(int severity, SeverityString con
     return (*len = 0, PANTHEIOS_LITERAL_STRING(""));
 }
 
-static pan_char_t const* pantheios_LookupSeverityStringA_(int error, size_t* len)
+static pan_char_t const* pantheios_LookupSeverityStringA_(int code, size_t* len)
 {
     SEVERITY_STR_DECL(PANTHEIOS_SEV_EMERGENCY        ,   PANTHEIOS_LITERAL_STRING("Emergency")      );
     SEVERITY_STR_DECL(PANTHEIOS_SEV_ALERT            ,   PANTHEIOS_LITERAL_STRING("Alert")          );
@@ -140,7 +140,7 @@ static pan_char_t const* pantheios_LookupSeverityStringA_(int error, size_t* len
         SEVERITY_STR_ENTRY(PANTHEIOS_SEV_DEBUG),
     };
 
-    return pantheios_LookupCodeA_(error, s_strings, STLSOFT_NUM_ELEMENTS(s_strings), len);
+    return pantheios_LookupCodeA_(code, s_strings, STLSOFT_NUM_ELEMENTS(s_strings), len);
 }
 
 /* deprecated */

@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the ACE back-end
  *
  * Created:     26th June 2005
- * Updated:     8th November 2010
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # pragma warning(pop)
 #endif /* compiler */
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
 #include <pantheios/backends/bec.ACE.h>
@@ -59,10 +59,10 @@
 #include <pantheios/util/severity/ACE.h>
 #include <pantheios/util/string/strdup.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/conversion/char_conversions.hpp>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 
 /* /////////////////////////////////////////////////////////////////////////

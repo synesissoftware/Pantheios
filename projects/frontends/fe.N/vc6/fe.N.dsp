@@ -7,16 +7,16 @@
 CFG=fe.N - Win32 Release
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "fe.N.mak".
-!MESSAGE 
+!MESSAGE
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "fe.N.mak" CFG="fe.N - Win32 Release"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "fe.N - Win32 Release" (based on "Win32 (x86) Static Library")
 !MESSAGE "fe.N - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE "fe.N - Win32 Release Multithreaded" (based on "Win32 (x86) Static Library")
@@ -41,7 +41,7 @@ CFG=fe.N - Win32 Release
 !MESSAGE "fe.N - Win32 Debug Multithreaded pseudoUNIX" (based on "Win32 (x86) Static Library")
 !MESSAGE "fe.N - Win32 Release Multithreaded DLL pseudoUNIX" (based on "Win32 (x86) Static Library")
 !MESSAGE "fe.N - Win32 Debug Multithreaded DLL pseudoUNIX" (based on "Win32 (x86) Static Library")
-!MESSAGE 
+!MESSAGE
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -697,11 +697,23 @@ SOURCE=..\..\..\..\src\frontends\fe.N.c
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\internal\head_version.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\intel.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\internal\lead_version.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\msvc.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\obsolete.h"
 # End Source File
 # Begin Source File
 
@@ -714,6 +726,10 @@ SOURCE="$(STLSOFT)\include\stlsoft\stlsoft.h"
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\quality\contract.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\frontends\fe.N.h"
 # End Source File
 # Begin Source File
@@ -722,11 +738,23 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\frontend.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\init_codes.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h"
 # End Source File
 # Begin Source File
 
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\frontends\stock.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\string_encoding.h"
 # End Source File
 # End Group
 # End Group

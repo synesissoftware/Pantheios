@@ -743,6 +743,10 @@ SOURCE=..\..\..\src\inserters\integer.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\..\src\inserters\interval.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\..\src\inserters\m2w.cpp
 
 !IF  "$(CFG)" == "pantheios.core - Win32 Release"
@@ -850,6 +854,10 @@ SOURCE=..\..\..\src\inserters\slice.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\..\src\inserters\stream_character.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\..\src\inserters\threadid.cpp
 # End Source File
 # Begin Source File
@@ -936,10 +944,6 @@ SOURCE=..\..\..\src\inserters\exception.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\memory\allocator_base.hpp"
-# End Source File
-# Begin Source File
-
 SOURCE="$(STLSOFT)\include\stlsoft\memory\allocator_features.hpp"
 # End Source File
 # Begin Source File
@@ -957,10 +961,6 @@ SOURCE="$(STLSOFT)\include\stlsoft\memory\auto_buffer.hpp"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\std\basic_string.hpp"
-# End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT)\include\stlsoft\algorithms\bounded.hpp"
 # End Source File
 # Begin Source File
 
@@ -1012,15 +1012,15 @@ SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\fwd.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\internal\head_version.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\conversion\integer_to_string.hpp"
 # End Source File
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\util\integral_printf_traits.hpp"
-# End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\intel.h"
 # End Source File
 # Begin Source File
 
@@ -1040,11 +1040,11 @@ SOURCE="$(STLSOFT)\include\stlsoft\meta\is_same_type.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\util\std\iterator_generators.hpp"
+SOURCE="$(STLSOFT)\include\stlsoft\util\std\iterator_helper.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\util\std\iterator_helper.hpp"
+SOURCE="$(STLSOFT)\include\stlsoft\internal\lead_version.h"
 # End Source File
 # Begin Source File
 
@@ -1061,10 +1061,6 @@ SOURCE="$(STLSOFT)\include\stlsoft\iterators\member_selector_iterator.hpp"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\meta\util\meta_.hpp"
-# End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT)\include\stlsoft\util\minmax.hpp"
 # End Source File
 # Begin Source File
 
@@ -1108,10 +1104,6 @@ SOURCE="$(STLSOFT)\include\stlsoft\util\sign_traits.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\string\simple_string.hpp"
-# End Source File
-# Begin Source File
-
 SOURCE="$(STLSOFT)\include\stlsoft\meta\size_of.hpp"
 # End Source File
 # Begin Source File
@@ -1133,14 +1125,6 @@ SOURCE="$(STLSOFT)\include\stlsoft\stlsoft.h"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string.hpp"
-# End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT)\include\stlsoft\string\string_traits_fwd.hpp"
-# End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT)\include\stlsoft\string\string_view.hpp"
 # End Source File
 # Begin Source File
 
@@ -1178,10 +1162,6 @@ SOURCE="$(STLSOFT)\include\platformstl\platformstl.hpp"
 
 SOURCE="$(STLSOFT)\include\platformstl\synch\spin_mutex.hpp"
 # End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT)\include\platformstl\synch\thread_mutex.hpp"
-# End Source File
 # End Group
 # Begin Group "UNIXSTL"
 
@@ -1212,10 +1192,6 @@ SOURCE="$(STLSOFT)\include\winstl\synch\spin_mutex.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\winstl\synch\thread_mutex.hpp"
-# End Source File
-# Begin Source File
-
 SOURCE="$(STLSOFT)\include\winstl\winstl.h"
 # End Source File
 # End Group
@@ -1226,10 +1202,6 @@ SOURCE="$(STLSOFT)\include\winstl\winstl.h"
 # Begin Source File
 
 SOURCE="$(PANTHEIOS_ROOT)\include\b64\b64.h"
-# End Source File
-# Begin Source File
-
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\inserters\b64.hpp"
 # End Source File
 # End Group
 # Begin Group "Pantheios Header Files"
@@ -1242,6 +1214,10 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\inserters\args.hpp"
 # Begin Source File
 
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\util\memory\auto_buffer_selector.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\inserters\b64.hpp"
 # End Source File
 # Begin Source File
 
@@ -1285,11 +1261,11 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\init_codes.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\initialiser.hpp"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\inserters\integer.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\inserters\integer.hpp"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\inserters\interval.hpp"
 # End Source File
 # Begin Source File
 
@@ -1305,23 +1281,7 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_dispatch_func
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_dispatch_functions.hpp"
-# End Source File
-# Begin Source File
-
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h"
-# End Source File
-# Begin Source File
-
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.hpp"
-# End Source File
-# Begin Source File
-
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_sev_functions.hpp"
-# End Source File
-# Begin Source File
-
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\inserters\m2w.hpp"
 # End Source File
 # Begin Source File
 
@@ -1329,11 +1289,15 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\nox.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\shims\access\string\core\pan_severity_t.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.hpp"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\shims\access\string\core\pan_slice_t.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h"
 # End Source File
 # Begin Source File
 
@@ -1357,7 +1321,15 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\safestr.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\shim_declarations.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\inserters\slice.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\slice.hpp"
 # End Source File
 # Begin Source File
 
@@ -1370,6 +1342,10 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\stock_levels.hpp"
 # Begin Source File
 
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\util\string\strdup.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\inserters\stream_character.hpp"
 # End Source File
 # Begin Source File
 
@@ -1402,6 +1378,14 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\winlean.h"
 # Begin Source File
 
 SOURCE="$(UNIXEM)\include\unistd.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(UNIXEM)\include\unixem\unistd.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(UNIXEM)\include\unixem\unixem.h"
 # End Source File
 # End Group
 # Begin Group "Synesis Software Header Files"

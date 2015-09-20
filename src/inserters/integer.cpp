@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     7th August 2012
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -42,7 +42,7 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 
 #if defined(STLSOFT_COMPILER_IS_MWERKS)
@@ -62,18 +62,23 @@
 #  define PANTHEIOS_COVER_MARK_ENTRY()  static_cast<void>(0)
 # endif
 #endif
+#include <pantheios/util/memory/memcopy.h>
 #include <pantheios/util/string/snprintf.h>
 #include <pantheios/internal/safestr.h>
 
 #include <stlsoft/conversion/integer_to_string.hpp>
-#include <stlsoft/util/integral_printf_traits.hpp>
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# include <stlsoft/traits/integral_printf_format_traits.hpp>
+#else /* ? STLSoft 1.12+ */
+# include <stlsoft/util/integral_printf_traits.hpp>
+#endif /* STLSoft 1.12+ */
 
 //#include <stlsoft/meta/yesno.hpp> // TODO: Use this to remove "runtime" constant tests in integer::init_()
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <algorithm>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # include <memory.h>
 #endif /* compiler */
@@ -88,19 +93,27 @@
 # pragma warn -8066
 #endif /* compiler */
 
+#if defined(STLSOFT_COMPILER_IS_MSVC)
+# pragma warning(disable : 4127)
+#endif /* compiler */
+
 /* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
-# include <stlsoft/algorithms/std/alt.hpp>
+# ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#  include <stlsoft/algorithm/std/alt.hpp>
+# else /* ? STLSoft 1.12+ */
+#  include <stlsoft/algorithms/std/alt.hpp>
+# endif /* STLSoft 1.12+ */
 namespace std
 {
     using stlsoft::std_fill_n;
 
 # define fill_n std_fill_n
 
-} // namespace std
+} /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -140,7 +153,11 @@ namespace
             // integer_to_string() function suite.
 
             size_t      n /* = 0 */;
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+            pan_char_t* s = const_cast<pan_char_t*>(stlsoft::integer_to_decimal_string(&buffer[0], cchBuffer, i, &n));
+#else /* ? STLSoft 1.12+ */
             pan_char_t* s = const_cast<pan_char_t*>(stlsoft::integer_to_string(&buffer[0], cchBuffer, i, &n));
+#endif /* STLSoft 1.12+ */
 
             if(s != &buffer[0])
             {
@@ -154,6 +171,15 @@ namespace
             // These static initialisations are subject to races
             // in a multi-threaded process, but it is entirely benign
 
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# ifdef PANTHEIOS_USE_WIDE_STRINGS
+            static pan_char_t const* const  s_decFmt    =   ::stlsoft::integral_printf_format_traits<I>::decimal_format_w();
+            static pan_char_t const* const  s_hexFmt    =   ::stlsoft::integral_printf_format_traits<I>::hexadecimal_format_w(false);
+# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+            static pan_char_t const* const  s_decFmt    =   ::stlsoft::integral_printf_format_traits<I>::decimal_format_a();
+            static pan_char_t const* const  s_hexFmt    =   ::stlsoft::integral_printf_format_traits<I>::hexadecimal_format_a(false);
+# endif /* PANTHEIOS_USE_WIDE_STRINGS */
+#else /* ? STLSoft 1.12+ */
 # ifdef PANTHEIOS_USE_WIDE_STRINGS
             static pan_char_t const* const  s_decFmt    =   ::stlsoft::integral_printf_traits<I>::decimal_format_w();
             static pan_char_t const* const  s_hexFmt    =   ::stlsoft::integral_printf_traits<I>::hexadecimal_format_w(false);
@@ -161,11 +187,13 @@ namespace
             static pan_char_t const* const  s_decFmt    =   ::stlsoft::integral_printf_traits<I>::decimal_format_a();
             static pan_char_t const* const  s_hexFmt    =   ::stlsoft::integral_printf_traits<I>::hexadecimal_format_a(false);
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
+#endif /* STLSoft 1.12+ */
 
             pan_char_t          szFmt[101];
             int                 width;
             pan_char_t const*   zeroX;
             pan_char_t const*   leadingMinus;
+            pan_char_t const*   leadingPlus             =   (fmt::showPlus & format) ? PANTHEIOS_LITERAL_STRING("+") : PANTHEIOS_LITERAL_STRING("");
             pan_char_t const*   zeroPad;
 
             if(minWidth < 0)
@@ -218,7 +246,7 @@ namespace
                     {
                         PANTHEIOS_COVER_MARK_ENTRY();
 
-                        ::memcpy(&buffer[0], szTemp, static_cast<size_t>(n) * sizeof(pan_char_t));
+                        PANTHEIOS_char_copy(&buffer[0], szTemp, static_cast<size_t>(n));
                         std::fill_n(&buffer[0] + n, static_cast<size_t>(width - n), ' ');
                         buffer[width] = '\0';
 
@@ -229,7 +257,7 @@ namespace
                         PANTHEIOS_COVER_MARK_ENTRY();
 
                         std::fill_n(&buffer[0], static_cast<size_t>(width - n), ' ');
-                        ::memcpy(&buffer[0] + (size_t(width) - n), szTemp, static_cast<size_t>(n + 1) * sizeof(pan_char_t));
+                        PANTHEIOS_char_copy(&buffer[0] + (size_t(width) - n), szTemp, static_cast<size_t>(n + 1));
 
                         return static_cast<size_t>(width);
                     }
@@ -238,7 +266,7 @@ namespace
                 {
                     PANTHEIOS_COVER_MARK_ENTRY();
 
-                    ::memcpy(&buffer[0], szTemp, static_cast<size_t>(n + 1) * sizeof(pan_char_t));
+                    PANTHEIOS_char_copy(&buffer[0], szTemp, static_cast<size_t>(n + 1));
 
                     return static_cast<size_t>(n);
                 }
@@ -249,8 +277,9 @@ namespace
 
                 pantheios_util_snprintf(&szFmt[0]
                                     ,   STLSOFT_NUM_ELEMENTS(szFmt)
-                                    ,   PANTHEIOS_LITERAL_STRING("%s%%%s%s%d%s")
+                                    ,   PANTHEIOS_LITERAL_STRING("%s%%%s%s%s%d%s")
                                     ,   zeroX
+                                    ,   leadingPlus
                                     ,   leadingMinus
                                     ,   zeroPad
                                     ,   width
@@ -280,7 +309,7 @@ namespace
         }
     }
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * integer

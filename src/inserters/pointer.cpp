@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -42,7 +42,7 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/nox.h>
 #include <pantheios/internal/safestr.h>
@@ -58,18 +58,19 @@
 #include <pantheios/inserters/pointer.hpp>
 
 #include <pantheios/quality/contract.h>
+#include <pantheios/util/memory/memcopy.h>
 #include <pantheios/util/string/snprintf.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 
 #include <stlsoft/conversion/union_cast.hpp>
 #include <stlsoft/util/size_traits.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 
 #include <algorithm>
 
-/* Standard C Header Files */
+/* Standard C header files */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # include <memory.h>
@@ -90,14 +91,18 @@
  */
 
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
-# include <stlsoft/algorithms/std/alt.hpp>
+# ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#  include <stlsoft/algorithm/std/alt.hpp>
+# else /* ? STLSoft 1.12+ */
+#  include <stlsoft/algorithms/std/alt.hpp>
+# endif /* STLSoft 1.12+ */
 namespace std
 {
     using stlsoft::std_fill_n;
 
 # define fill_n std_fill_n
 
-} // namespace std
+} /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -246,21 +251,21 @@ void pointer::construct_()
                 {
                     if(m_minWidth < 0)
                     {
-                        ::memcpy(&m_sz[0], szTemp, n * sizeof(pan_char_t));
+                        PANTHEIOS_char_copy(&m_sz[0], szTemp, n);
                         std::fill_n(&m_sz[0] + n, size_t(width - n), ' ');
                         m_sz[width] = '\0';
                     }
                     else
                     {
                         std::fill_n(&m_sz[0], size_t(width - n), ' ');
-                        ::memcpy(&m_sz[0] + (size_t(width) - n), szTemp, (n + 1) * sizeof(pan_char_t));
+                        PANTHEIOS_char_copy(&m_sz[0] + (size_t(width) - n), szTemp, (n + 1));
                     }
 
                     m_len = static_cast<size_t>(width);
                 }
                 else
                 {
-                    ::memcpy(&m_sz[0], szTemp, (n + 1) * sizeof(pan_char_t));
+                    PANTHEIOS_char_copy(&m_sz[0], szTemp, (n + 1));
 
                     m_len = n;
                 }

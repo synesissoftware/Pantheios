@@ -5,11 +5,11 @@
  *              functions.
  *
  * Created:     21st June 2005
- * Updated:     31st July 2012
+ * Updated:     9th December 2013
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2013, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -75,6 +75,8 @@
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # pragma warn -8080
+#elif defined(STLSOFT_COMPILER_IS_MSVC)
+# pragma warning(disable : 4127)
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////

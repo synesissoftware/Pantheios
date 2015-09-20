@@ -7,7 +7,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     10th December 2010
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -30,7 +30,7 @@
 # error This example only compatible with multibyte string builds
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pan.hpp>
 #include <pantheios/inserters/args.hpp>
 #include <pantheios/inserters/w2m.hpp>

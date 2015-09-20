@@ -6,7 +6,7 @@
  *                - use of pantheios_log_?() in C compilation units
  *
  * Created:     31st August 2006
- * Updated:     22nd March 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -21,12 +21,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>            /* Pantheios C main header */
 #include <pantheios/util/string/snprintf.h> /* for pantheios_util_snprintf() */
 #include <pantheios/internal/safestr.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>                    /* for sprintf() */
 #include <stdlib.h>                   /* for exit codes */
 

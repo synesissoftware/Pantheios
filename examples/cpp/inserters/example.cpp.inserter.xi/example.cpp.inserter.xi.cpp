@@ -9,7 +9,7 @@
  *                - use of shorthand xi for hex integer inserter
  *
  * Created:     30th October 2010
- * Updated:     6th December 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -26,15 +26,15 @@
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS // Faster compilation
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pan.hpp>                  // Pantheios C++ main header
 #include <pantheios/inserters/xi.hpp>         // for pan::xi
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>                // for sized integer types
 #include <stlsoft/util/limit_traits.h>
 
-/* Standard C/C++ Header Files */
+/* Standard C/C++ header files */
 #include <exception>                        // for std::exception
 #include <new>                              // for std::bad_alloc
 #include <string>                           // for std::string

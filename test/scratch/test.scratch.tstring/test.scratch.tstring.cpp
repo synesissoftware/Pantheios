@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.tstring project.
  *
  * Created:     23rd February 2010
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010-2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2010-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -21,21 +21,21 @@
 #define PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pan.hpp>
 #include <pantheios/inserters/w2m.hpp>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/string/simple_string.hpp>
 #include <platformstl/platformstl.hpp>
 
-/* UNIXEm Header Files */
+/* UNIXem header files */
 #if defined(_WIN32) || \
     defined(_WIN64)
 # include <unixem/unixem.h>
 #endif /* Win32 || Win64 */
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #if 0
 #include <algorithm>
@@ -56,7 +56,7 @@ namespace std
 }
 #endif /* __WATCOMC__ */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

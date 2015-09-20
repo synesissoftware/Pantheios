@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.fe.WindowsRegistry.controller project.
  *
  * Created:     2nd December 2007
- * Updated:     19th December 2008
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2008, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -21,14 +21,14 @@
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
 
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* PlatformSTL Header Files */
+/* PlatformSTL header files */
 #include <platformstl/platformstl.hpp>
 
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #if 0
 #include <algorithm>
@@ -38,7 +38,7 @@
 #include <vector>
 #endif /* 0 */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -70,10 +70,10 @@ namespace control
             }
         };
 
-    } // namespace fe
+    } /* namespace fe */
 
-} // namespace control
-} // namespace pantheios
+} /* namespace control */
+} /* namespace pantheios */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

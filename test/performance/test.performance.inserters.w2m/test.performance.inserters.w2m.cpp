@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.performance.inserters.w2m project.
  *
  * Created:     2nd September 2008
- * Updated:     10th January 2011
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2011, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -19,13 +19,13 @@
 
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/exception.hpp>
 #include <pantheios/inserters/w2m.hpp>
 #include <pantheios/frontends/fe.simple.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <platformstl/platformstl.hpp>
 #include <platformstl/performance/performance_counter.hpp>
@@ -35,10 +35,10 @@
 # include <stlsoft/conversion/w2m.hpp>
 #endif /* OS */
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

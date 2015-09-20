@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.extras.com_exception_helpers project.
  *
  * Created:     19th December 2008
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,12 +20,12 @@
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/extras/com/exception_helpers.hpp>
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/args.hpp>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <stlsoft/smartptr/ref_ptr.hpp>
 
@@ -37,11 +37,11 @@
 #include <winstl/winstl.h>
 #include <winstl/error/error_desc.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <stdexcept>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

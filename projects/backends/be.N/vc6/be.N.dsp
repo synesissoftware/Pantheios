@@ -396,6 +396,14 @@ SOURCE=..\..\..\..\src\backends\be.N.c
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\internal\head_version.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\internal\lead_version.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\msvc.h"
 # End Source File
 # Begin Source File
@@ -438,6 +446,10 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h"
 # Begin Source File
 
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\string_encoding.h"
 # End Source File
 # End Group
 # End Group

@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios fe.N Stock Front-end API.
  *
  * Created:     18th October 2006
- * Updated:     20th March 2012
+ * Updated:     20th September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MAJOR     2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MINOR     2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      15
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MINOR     3
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  2
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,10 +105,33 @@ struct pan_fe_N_t
     int backEndId;
     /** The severity ceiling. When backEndId is 0, this specifies the default ceiling */
     int severityCeiling;
+
+#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+    /* INTERNAL USE ONLY */
+    PANTHEIOS_NS_QUAL(pan_uint32_t) pantheios_version_;
+#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
+#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# define PANTHEIOS_FE_N_RESERVED_VALUES_            0, 0, { 0 }
+    /* The following fields are reserved for future use */
+    PANTHEIOS_NS_QUAL(pan_uint32_t) reserved0;
+    PANTHEIOS_NS_QUAL(pan_uint32_t) reserved1;
+    PANTHEIOS_NS_QUAL(pan_uint32_t) reservedN[8];
+#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 };
 #ifndef __cplusplus
 typedef struct pan_fe_N_t   pan_fe_N_t;
 #endif /* __cplusplus */
+
+/** \def PANTHEIOS_FE_N_ENTRY2
+ *
+ * Defines an entry in an array of pan_fe_N_t
+ *
+ * \ingroup group__frontend__stock_frontends__N
+ *
+ * \see pan_fe_N_t
+ */
+#define PANTHEIOS_FE_N_ENTRY2(backEndId, severityCeiling)       { backEndId, severityCeiling, PANTHEIOS_VER, PANTHEIOS_FE_N_RESERVED_VALUES_ }
 
 /** \def PANTHEIOS_FE_N_TERMINATOR_ENTRY
  *
@@ -118,7 +141,7 @@ typedef struct pan_fe_N_t   pan_fe_N_t;
  *
  * \see pan_fe_N_t
  */
-#define PANTHEIOS_FE_N_TERMINATOR_ENTRY(defaultCeiling)         { 0, defaultCeiling }
+#define PANTHEIOS_FE_N_TERMINATOR_ENTRY(defaultCeiling)         { 0, defaultCeiling, PANTHEIOS_VER, PANTHEIOS_FE_N_RESERVED_VALUES_ }
 
 /* /////////////////////////////////////////////////////////////////////////
  * External Declarations

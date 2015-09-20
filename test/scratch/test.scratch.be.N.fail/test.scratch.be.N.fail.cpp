@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the be.N.fail.test project.
  *
  * Created:     9th January 2007
- * Updated:     23rd March 2010
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -23,7 +23,7 @@
 /* This inclusion required for suppressing warnings during NoX (No eXception-support) configurations. */
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/exception.hpp>
 
@@ -33,12 +33,12 @@
 #include <pantheios/backends/bec.file.h>
 #include <pantheios/backends/bec.fprintf.h>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <exception>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>
 
 #if defined(_MSC_VER) && \

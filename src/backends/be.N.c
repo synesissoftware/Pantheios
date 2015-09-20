@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the Pantheios be.N Stock Back-end API.
  *
  * Created:     18th October 2006
- * Updated:     27th December 2010
+ * Updated:     26th August 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,26 +48,62 @@
 #include <pantheios/quality/contract.h>
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Macros
+ */
+
+#define PAN_BE_N_HAS_flags()            (1)
+#define PAN_BE_N_HAS_backEndId()        (1)
+#define PAN_BE_N_HAS_pfnInit()          (1)
+#define PAN_BE_N_HAS_pfnUninit()        (1)
+#define PAN_BE_N_HAS_pfnLogEntry()      (1)
+#define PAN_BE_N_HAS_severityCeiling()  (1)
+#define PAN_BE_N_HAS_token()            (1)
+/*
+#define PAN_BE_N_HAS_severityFloor()    (pantheios_be_N_get_compiled_ver() >= 0x010001d7)
+*/
+
+/* /////////////////////////////////////////////////////////////////////////
  * Helper functions
  */
 
-static size_t pantheios_be_N_countBackEnds_everytime_(void);
-static size_t pantheios_be_N_countBackEnds_onetime_(void);
+static
+pan_uint32_t
+pantheios_be_N_get_compiled_ver(void);
+
+static
+pan_uint32_t
+pantheios_be_N_get_compiled_ver(void)
+{
+    return PAN_BE_N_BACKEND_LIST[0].pantheios_version_;
+}
+
+static
+size_t
+pantheios_be_N_countBackEnds_everytime_(void);
+static
+size_t
+pantheios_be_N_countBackEnds_onetime_(void);
 
 
-static size_t pantheios_be_N_countBackEnds_(void)
+static
+size_t
+pantheios_be_N_countBackEnds_(void)
 {
     return pantheios_be_N_countBackEnds_onetime_();
 }
 
-static size_t pantheios_be_N_countBackEnds_onetime_(void)
+static
+size_t
+pantheios_be_N_countBackEnds_onetime_(void)
 {
     size_t const numBackEnds = pantheios_be_N_countBackEnds_everytime_();
 
     return numBackEnds;
 }
 
-static size_t pantheios_be_N_countBackEnds_everytime_(void)
+static
+size_t
+pantheios_be_N_countBackEnds_everytime_(void)
 {
     size_t      n   =   0;
     pan_be_N_t* backEnd;
@@ -85,7 +121,8 @@ static size_t pantheios_be_N_countBackEnds_everytime_(void)
  * API
  */
 
-PANTHEIOS_CALL(int) pantheios_be_init(
+PANTHEIOS_CALL(int)
+pantheios_be_init(
     PAN_CHAR_T const*   processIdentity
 ,   void*               reserved
 ,   void**              ptoken
@@ -187,7 +224,10 @@ PANTHEIOS_CALL(int) pantheios_be_init(
     return res;
 }
 
-PANTHEIOS_CALL(void) pantheios_be_uninit(void* token)
+PANTHEIOS_CALL(void)
+pantheios_be_uninit(
+    void* token
+)
 {
     size_t const    numBackEnds =   pantheios_be_N_countBackEnds_();
     size_t          n;
@@ -209,7 +249,8 @@ PANTHEIOS_CALL(void) pantheios_be_uninit(void* token)
     }
 }
 
-PANTHEIOS_CALL(int) pantheios_be_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity

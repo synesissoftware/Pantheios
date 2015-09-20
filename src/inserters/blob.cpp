@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     10th August 2009
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -42,7 +42,7 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 
 #if defined(STLSOFT_COMPILER_IS_MWERKS)
@@ -83,11 +83,13 @@
 namespace pantheios
 {
 
+namespace
+{
+
     using ::pantheios::core::pantheios_inserterAllocate;
     using ::pantheios::core::pantheios_inserterDeallocate;
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    using ::pantheios::util::auto_buffer_selector;
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+} /* anonymous namespace */
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
@@ -202,11 +204,7 @@ void blob::construct_()
     {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# if defined(PANTHEIOS_NO_NAMESPACE)
-        auto_buffer_selector<
-# else /* ? PANTHEIOS_NO_NAMESPACE */
-        ::pantheios::util::auto_buffer_selector<
-# endif /* PANTHEIOS_NO_NAMESPACE */
+        PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
             char
         ,   256
         >::type     buff(1 + cch);

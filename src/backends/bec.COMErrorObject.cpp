@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the COMErrorObject back-end
  *
  * Created:     9th April 2006
- * Updated:     27th December 2010
+ * Updated:     1st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,19 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* /////////////////////////////////////////////////////////////////////////
+ * Preprocessor feature control
+ */
+
+#define PANTHEIOS_USE_CATCHALL
+#define PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS
+#define PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Includes
+ */
+
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/winlean.h>
 #include <pantheios/internal/nox.h>
@@ -50,8 +62,9 @@
 #include <pantheios/quality/contract.h>
 #include <pantheios/util/core/apidefs.hpp>
 #include <pantheios/util/backends/arguments.h>
+#include <pantheios/util/memory/memcopy.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <pantheios/util/memory/auto_buffer_selector.hpp>
 #include <stlsoft/shims/access/string/std/c_string.h>
 
@@ -62,12 +75,24 @@ extern "C" const IID IID_IErrorInfo_;
 
 #define IID_IErrorInfo  IID_IErrorInfo_
 
-#include <comstl/error/errorinfo_functions.h>
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# include <comstl/diagnostics/errorinfo_functions.h>
+#else /* ? PANTHEIOS_STLSOFT_1_12_OR_LATER */
+# include <comstl/error/errorinfo_functions.h>
+#endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
 
 #include <winstl/memory/processheap_allocator.hpp>
-#include <winstl/conversion/char_conversions.hpp>
 
-/* Standard C Header Files */
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+//# ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+//#  include <winstl/conversion/a2w.hpp>
+//# else /* ? PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#  include <winstl/conversion/char_conversions.hpp>
+//# endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+/* Standard C header files */
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,21 +121,18 @@ namespace
     using ::pantheios::pan_sev_t;
     using ::pantheios::pantheios_getStockSeverityString;
     using ::pantheios::pantheios_getStockSeverityStringLength;
+    using ::pantheios::core::pantheios_exitProcess;
+    using ::pantheios::util::pantheios_onBailOut3;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-
-#if !defined(PANTHEIOS_NO_NAMESPACE)
-    typedef pantheios::util::auto_buffer_selector<
-#else /* ? !PANTHEIOS_NO_NAMESPACE */
-    typedef auto_buffer_selector<
-#endif /* !PANTHEIOS_NO_NAMESPACE */
+    typedef PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
         pan_char_t
     ,   2048
     ,   winstl::processheap_allocator<pan_char_t>
     >::type                                             buffer_t;
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Structures
@@ -154,7 +176,7 @@ namespace
         ErrorObject_Context& operator =(ErrorObject_Context const&);
     };
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -231,7 +253,9 @@ PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_init(
 ,   void**                              ptoken
 )
 {
-    return pantheios_call_be_X_init<pan_be_COMErrorObject_init_t>(pantheios_be_COMErrorObject_init_, processIdentity, backEndId, init, reserved, ptoken);
+    PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != ptoken, "token pointer may not be null");
+
+    return pantheios_call_be_X_init<pan_be_COMErrorObject_init_t>(pantheios_be_COMErrorObject_init_, processIdentity, backEndId, init, reserved, ptoken, "be.COMErrorObject");
 }
 
 PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_uninit(void* token)
@@ -243,7 +267,7 @@ PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_uninit(void* token)
     delete ctxt;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_logEntry(
+static int pantheios_be_COMErrorObject_logEntry_(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -280,95 +304,86 @@ PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_logEntry(
         return static_cast<int>(cchEntry);
     }
 
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    try
-    {
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-        // TODO: Determine whether it's more efficient to prepare the
-        // string first, and then a=>w it, or vice versa
+    // TODO: Determine whether it's more efficient to prepare the
+    // string first, and then a=>w it, or vice versa
 
-        // Possible formats:
-        //
-        //  "[<severity>]: <entry>"
-        //  "<entry>"
+    // Possible formats:
+    //
+    //  "[<severity>]: <entry>"
+    //  "<entry>"
 
-        int                 bShowSev    =   (0 == (ctxt->flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY));
-        pan_char_t const*   sevName     =   pantheios_getStockSeverityString(pan_sev_t(severity));
-        const size_t        lenSeverity =   pantheios_getStockSeverityStringLength(pan_sev_t(severity));
-        const size_t        len         =   (bShowSev ? (1 + lenSeverity + 3) : 0) + cchEntry;
-        buffer_t            buff(1 + len);
+    int                 bShowSev    =   (0 == (ctxt->flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY));
+    pan_char_t const*   sevName     =   pantheios_getStockSeverityString(pan_sev_t(severity));
+    const size_t        lenSeverity =   pantheios_getStockSeverityStringLength(pan_sev_t(severity));
+    const size_t        len         =   (bShowSev ? (1 + lenSeverity + 3) : 0) + cchEntry;
+    buffer_t            buff(1 + len);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-        if(0 == buff.size())
-        {
-            return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
-        }
-#endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
-
-        size_t          cchTotal    =   0;
-        pan_char_t*     p           =   &buff[0];
-
-        if(bShowSev)
-        {
-            // "[%s]: %s" + (bShowSev ? 0 : 6), bShowSev ? sevName : entry, entry
-
-            *p++    =   '[';
-            ++cchTotal;
-
-            ::memcpy(p, sevName, lenSeverity * sizeof(pan_char_t));
-            cchTotal += lenSeverity;
-            p += lenSeverity;
-
-            *p++    =   ']';
-            ++cchTotal;
-
-            *p++    =   ':';
-            ++cchTotal;
-
-            *p++    =   ' ';
-            ++cchTotal;
-        }
-
-        ::memcpy(p, entry, cchEntry * sizeof(pan_char_t));
-        cchTotal += cchEntry;
-        buff[cchTotal] = '\0';
-        p += cchEntry;
-
-        if(bShowSev)
-        {
-            PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal + 1 == buff.size());
-            PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal == size_t(p - buff.data()));
-        }
-        else
-        {
-            PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal == cchEntry);
-            PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal + 1 <= buff.size());
-            PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(p < &*buff.end());
-        }
-
-        STLSOFT_SUPPRESS_UNUSED(p);
-
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-        return static_cast<int>(comstl::set_error_info(&buff[0], ctxt->sz));
-#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-        return static_cast<int>(comstl::set_error_info(winstl::a2w(&buff[0], cchTotal).c_str(), ctxt->sz));
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
-
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    }
-    catch(std::bad_alloc&)
+    if(0 == buff.size())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception&)
+#endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
+
+    size_t          cchTotal    =   0;
+    pan_char_t*     p           =   &buff[0];
+
+    if(bShowSev)
     {
-        return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
+        // "[%s]: %s" + (bShowSev ? 0 : 6), bShowSev ? sevName : entry, entry
+
+        *p++    =   '[';
+        ++cchTotal;
+
+        PANTHEIOS_char_copy(p, sevName, lenSeverity);
+        cchTotal += lenSeverity;
+        p += lenSeverity;
+
+        *p++    =   ']';
+        ++cchTotal;
+
+        *p++    =   ':';
+        ++cchTotal;
+
+        *p++    =   ' ';
+        ++cchTotal;
     }
-    catch(...)
+
+    PANTHEIOS_char_copy(p, entry, cchEntry);
+    cchTotal += cchEntry;
+    buff[cchTotal] = '\0';
+    p += cchEntry;
+
+    if(bShowSev)
     {
-        return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
+        PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal + 1 == buff.size());
+        PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal == size_t(p - buff.data()));
     }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    else
+    {
+        PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal == cchEntry);
+        PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal + 1 <= buff.size());
+        PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(p < &*buff.end());
+    }
+
+    STLSOFT_SUPPRESS_UNUSED(p);
+
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+    return static_cast<int>(comstl::set_error_info(&buff[0], ctxt->sz));
+#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+    return static_cast<int>(comstl::set_error_info(winstl::a2w(&buff[0], cchTotal).c_str(), ctxt->sz));
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+}
+
+PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_logEntry(
+    void*               feToken
+,   void*               beToken
+,   int                 severity
+,   pan_char_t const*   entry
+,   size_t              cchEntry
+)
+{
+    return pantheios_call_be_logEntry(pantheios_be_COMErrorObject_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.COMErrorObject");
 }
 
 PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_parseArgs(
@@ -410,7 +425,7 @@ void* ErrorObject_Context::operator new(size_t /* cb */, pan_char_t const* s)
 
         ctxt->u.len =   len;
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-        ::memcpy(&ctxt->sz[0], s, (1 + len) * sizeof(pan_char_t));
+        PANTHEIOS_char_copy(&ctxt->sz[0], s, (1 + len));
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
         (void)::MultiByteToWideChar(0, 0, s, static_cast<int>(len), &ctxt->sz[0], static_cast<int>(1 + len));
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */

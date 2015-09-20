@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.be.file.threading project.
  *
  * Created:     3rd July 2009
- * Updated:     10th January 2011
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2009-2011, Synesis Software Pty Ltd.
+ *              Copyright (c) 2009-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,7 +20,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pan.hpp>
 #include <pantheios/backends/be.N.h>
 #include <pantheios/backends/bec.console.h>
@@ -31,23 +31,23 @@
 #include <pantheios/inserters/exception.hpp>
 #include <pantheios/inserters/integer.hpp>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/string/split_functions.hpp>
 #include <stlsoft/string/string_view.hpp>
 #include <platformstl/filesystem/file_lines.hpp>
 #include <platformstl/filesystem/filesystem_traits.hpp>
 #include <platformstl/synch/sleep_functions.h>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 
- /* PThreads Header Files */
+ /* PThreads header files */
 # include <pthread.h>
 # include <sched.h>
 
- /* UNIXEm Header Files */
+ /* UNIXem header files */
 # if defined(_WIN32) || \
      defined(_WIN64)
 #  include <unixem/unixem.h>
@@ -64,7 +64,7 @@
 # error Operating system not discriminated
 #endif /* OS */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

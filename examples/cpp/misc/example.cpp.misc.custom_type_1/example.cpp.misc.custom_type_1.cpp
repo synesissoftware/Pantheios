@@ -10,7 +10,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     31st August 2006
- * Updated:     7th December 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -74,24 +74,24 @@ namespace stlsoft
   size_t c_str_len_a(Person const& pi);
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* compiler */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>                          // Pantheios C++ main header
 #include <pantheios/inserters/integer.hpp>                  // for pantheios::integer
 #include <pantheios/inserters/w2m.hpp>                      // for pantheios::w2m
 #include <pantheios/quality/contract.h>
 #include <pantheios/internal/safestr.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/conversion/char_conversions.hpp>          // for stlsoft::w2m
 #include <stlsoft/conversion/integer_to_string.hpp>         // for stlsoft::integer_to_string
 #include <pantheios/util/memory/auto_buffer_selector.hpp>   // for stlsoft::auto_buffer
 #include <stlsoft/string/shim_string.hpp>                   // for stlsoft::shim_string
 
-/* Standard C/C++ Header Files */
+/* Standard C/C++ header files */
 #include <exception>                                        // for std::exception
 #include <new>                                              // for std::bad_alloc
 #include <string>                                           // for std::string
@@ -304,7 +304,7 @@ namespace stlsoft
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
   }
 
-} // namespace stlsoft
+} /* namespace stlsoft */
 
 static void log_with_string_access_shims(Person const& person)
 {
@@ -412,7 +412,7 @@ namespace stlsoft
     return pi.size();
   }
 
-} // namespace stlsoft
+} /* namespace stlsoft */
 
 static void log_with_inserter_class(Person const& person)
 {

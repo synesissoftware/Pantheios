@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.inserter.integer project.
  *
  * Created:     21st December 2010
- * Updated:     6th August 2011
+ * Updated:     15th July 2014
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010-2011, Synesis Software Pty Ltd.
+ *              Copyright (c) 2010-2014, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -48,7 +48,7 @@ static void test_1_10();
 static void test_1_11();
 static void test_1_12();
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -164,6 +164,6 @@ static void test_1_12()
 {
 }
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */

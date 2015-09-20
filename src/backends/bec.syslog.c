@@ -4,14 +4,14 @@
  * Purpose:     Implementation for the UNIX SysLog back-end
  *
  * Created:     29th June 2005
- * Updated:     26th August 2009
+ * Updated:     21st September 2015
  *
  * Thanks to:   Jonathan Wakely for detecting Solaris compilation defects &
  *              fixes.
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
 #include <pantheios/backends/bec.syslog.h>
@@ -52,7 +52,7 @@
 #include <pantheios/util/backends/arguments.h>
 #include <pantheios/util/severity/syslog.h>
 
-/* Standard Header Files */
+/* Standard header files */
 #include <string.h>
 #include <syslog.h>
 
@@ -66,7 +66,7 @@
 # undef LOG_PERROR
 #endif /* LOG_PERROR */
 
-/* Standard Header Files */
+/* Standard header files */
 #ifndef LOG_PERROR
 # include <stdio.h>
 #endif /* !LOG_PERROR */

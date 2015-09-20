@@ -4,11 +4,11 @@
  * Purpose:     String inserter for std::exception-derived types.
  *
  * Created:     22nd March 2010
- * Updated:     22nd March 2010
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,17 +41,17 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/nox.h>
 
 #include <pantheios/inserters/exception.hpp>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 
 #include <stlsoft/conversion/char_conversions.hpp>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # include <memory.h>
 #endif /* compiler */

@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the pantheios::w2m inserter class.
  *
  * Created:     7th August 2008
- * Updated:     22nd November 2010
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 
 #define PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 # error This file can only be used in multibyte string builds
@@ -51,7 +51,7 @@
 #include <pantheios/inserters/w2m.hpp>
 #include <pantheios/internal/safestr.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <string.h>
 #include <wchar.h>
 

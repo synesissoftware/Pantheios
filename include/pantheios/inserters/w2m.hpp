@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        pantheios/inserters/w2m.hpp
  *
- * Purpose:     Class for inserting wide strings.
+ * Purpose:     Inserter class for incorporating wide strings into a
+ *              multibyte string statement.
  *
  * Created:     2nd September 2008
- * Updated:     23rd July 2010
+ * Updated:     1st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +54,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MAJOR    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MINOR    2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     13
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MINOR    3
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,13 +70,13 @@
 # include <pantheios/inserters/fmt.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_FMT */
 
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+# error You may not include pantheios/inserters/m2w.hpp in wide string compilations; instead, use the new w2t inserter
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-# include <stlsoft/string/string_view.hpp>
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -111,12 +112,6 @@ namespace pantheios
  *
  * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, c=abc, str=def</b>
  */
-
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-
-typedef stlsoft_ns_qual(wstring_view)   w2m;
-
-#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 class w2m
 {
@@ -203,13 +198,9 @@ private: // Member Variables
     size_t          m_length;
 };
 
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
-
 /* /////////////////////////////////////////////////////////////////////////
  * String Access Shims
  */
-
-#ifndef PANTHEIOS_USE_WIDE_STRINGS
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
@@ -220,34 +211,58 @@ namespace shims
 
 
 /** \overload c_str_data_a(w2m const&) */
-inline char const* c_str_data_a(w2m const& r)
+inline
+char const*
+c_str_data_a(
+    w2m const& r
+)
 {
     return r.data();
 }
 /** \overload c_str_data(w2m const&) */
-inline pan_char_t const* c_str_data(w2m const& r)
+inline
+pan_char_t const*
+c_str_data(
+    w2m const& r
+)
 {
     return r.data();
 }
 
 /** \overload c_str_len_a(w2m const&) */
-inline size_t c_str_len_a(w2m const& r)
+inline
+size_t
+c_str_len_a(
+    w2m const& r
+)
 {
     return r.length();
 }
 /** \overload c_str_len(w2m const&) */
-inline size_t c_str_len(w2m const& r)
+inline
+size_t
+c_str_len(
+    w2m const& r
+)
 {
     return r.length();
 }
 
 /** \overload c_str_ptr_a(w2m const&) */
-inline char const* c_str_ptr_a(w2m const& r)
+inline
+char const*
+c_str_ptr_a(
+    w2m const& r
+)
 {
     return r.c_str();
 }
 /** \overload c_str_ptr(w2m const&) */
-inline pan_char_t const* c_str_ptr(w2m const& r)
+inline
+pan_char_t const*
+c_str_ptr(
+    w2m const& r
+)
 {
     return r.c_str();
 }
@@ -275,16 +290,12 @@ inline pan_char_t const* c_str_ptr(w2m const& r)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
-
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
-
-#ifndef PANTHEIOS_USE_WIDE_STRINGS
 
 namespace stlsoft
 {
@@ -304,8 +315,6 @@ namespace stlsoft
     using ::pantheios::shims::c_str_ptr_a;
     using ::pantheios::shims::c_str_ptr;
 }
-
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 

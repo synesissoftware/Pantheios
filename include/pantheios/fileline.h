@@ -5,11 +5,11 @@
  *              Assertion and Tracing APIs.
  *
  * Created:     11th November 2007
- * Updated:     7th December 2010
+ * Updated:     11th October 2012
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_MINOR       0
-# define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_EDIT        15
+# define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_EDIT        16
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,9 @@
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
 
-#include <stlsoft/stlsoft.h>
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Tracing features

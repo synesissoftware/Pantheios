@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the speech back-end
  *
  * Created:     31st August 2006
- * Updated:     23rd May 2011
+ * Updated:     19th August 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,7 +66,12 @@
 #include <comstl/util/interface_traits.hpp>
 
 #include <winstl/conversion/char_conversions.hpp>
-#include <winstl/error/error_desc.hpp>
+#if defined(STLSOFT_VER) && \
+    STLSOFT_VER >= 0x010c0000
+# include <winstl/diagnostics/error_desc.hpp>
+#else /* ? STLSoft 1.12+ */
+# include <winstl/error/error_desc.hpp>
+#endif /* STLSoft 1.12+ */
 #include <winstl/memory/processheap_allocator.hpp>
 
 /* Standard C++ Header files */
@@ -90,6 +95,7 @@
 
 namespace
 {
+
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
     using ::pantheios::pan_char_t;
@@ -97,21 +103,17 @@ namespace
     using ::pantheios::pan_slice_t;
     using ::pantheios::util::backends::Context;
     using ::pantheios::util::pantheios_onBailOut3;
+    using ::pantheios::util::pantheios_onBailOut6;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-
-#if !defined(PANTHEIOS_NO_NAMESPACE)
-    typedef pantheios::util::auto_buffer_selector<
-#else /* ? !PANTHEIOS_NO_NAMESPACE */
-    typedef auto_buffer_selector<
-#endif /* !PANTHEIOS_NO_NAMESPACE */
+    typedef PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
         pan_char_t
     ,   2048
     ,   winstl::processheap_allocator<pan_char_t>
     >::type                                     buffer_t;
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Typedefs
@@ -165,7 +167,7 @@ namespace
         voice_type              voice;
     };
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -328,7 +330,7 @@ PANTHEIOS_CALL(int) pantheios_be_speech_logEntry(
 ,   size_t              cchEntry
 )
 {
-    return pantheios_call_be_logEntry(pantheios_be_speech_logEntry_, feToken, beToken, severity, entry, cchEntry);
+    return pantheios_call_be_logEntry(pantheios_be_speech_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.speech");
 }
 
 PANTHEIOS_CALL(int) pantheios_be_speech_parseArgs(
@@ -482,14 +484,27 @@ int be_speech_context::speak(
         }
     }
 
-
     try
     {
+        HRESULT hr;
+
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-        voice->Speak(entry, flags, 0);
+        hr = voice->Speak(entry, flags, 0);
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-        voice->Speak(winstl::a2w(entry, cchEntry), flags, 0);
+        hr = voice->Speak(winstl::a2w(entry, cchEntry), flags, 0);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+        if(FAILED(hr))
+        {
+            pantheios_onBailOut6(
+                PANTHEIOS_SEV_ERROR
+                ,   "failed to speak diagnostic log message"
+                ,   NULL
+                ,   winstl::error_desc_a(hr).c_str()
+                ,   NULL
+                ,   "bec.speech"
+                );
+        }
 
         return static_cast<int>(cchEntry);
     }

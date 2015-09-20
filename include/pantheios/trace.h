@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Tracing API.
  *
  * Created:     11th November 2007
- * Updated:     23rd July 2010
+ * Updated:     11th October 2012
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MINOR      3
-# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       16
+# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,9 @@
 # error The Pantheios Tracing API is currently only supported in multibyte builds
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-#include <stlsoft/stlsoft.h>
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Tracing features

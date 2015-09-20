@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for string duplication utility functions.
  *
  * Created:     21st June 2005
- * Updated:     23rd March 2010
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -40,7 +40,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 
 #if defined(STLSOFT_COMPILER_IS_MWERKS)
@@ -55,6 +55,7 @@
 #include <stlsoft/stlsoft.h>
 
 /* Standard C header files */
+#include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
 

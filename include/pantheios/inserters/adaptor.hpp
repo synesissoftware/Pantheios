@@ -4,7 +4,7 @@
  * Purpose:     Inserter adaptors for the Pantheios application layer.
  *
  * Created:     29th July 2006
- * Updated:     18th June 2012
+ * Updated:     11th October 2012
  *
  * Home:        http://www.pantheios.org/
  *
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        17
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,9 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS
+# include <pantheios/internal/shim_declarations.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -194,13 +197,10 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k S
         >
 inline
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-wchar_t const*
-c_str_data_w(inserter<T, S> const& i)
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-char const*
-c_str_data_a(inserter<T, S> const& i)
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
+PAN_CHAR_T const*
+PANTHEIOS_c_str_data_name_(
+    inserter<T, S> const& i
+)
 {
     return i.data();
 }
@@ -210,11 +210,9 @@ template<   ss_typename_param_k T
         >
 inline
 size_t
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-c_str_len_w(inserter<T, S> const& i)
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-c_str_len_a(inserter<T, S> const& i)
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
+PANTHEIOS_c_str_len_name_(
+    inserter<T, S> const& i
+)
 {
     return i.length();
 }
@@ -228,13 +226,8 @@ c_str_len_a(inserter<T, S> const& i)
      * shims into the same namespace as the inserter class
      * in order that ADL can suffice instead.
      */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    using ::pantheios::shims::c_str_data_w;
-    using ::pantheios::shims::c_str_len_w;
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    using ::pantheios::shims::c_str_data_a;
-    using ::pantheios::shims::c_str_len_a;
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
+    using ::pantheios::shims::PANTHEIOS_c_str_data_name_;
+    using ::pantheios::shims::PANTHEIOS_c_str_len_name_;
 
 #  endif /* compiler */
 
@@ -256,13 +249,8 @@ namespace stlsoft
     // may find a legitimate use for the conversion classes additional to
     // the type-tunneling of the Pantheios API.
 
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    using ::pantheios::shims::c_str_data_w;
-    using ::pantheios::shims::c_str_len_w;
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    using ::pantheios::shims::c_str_data_a;
-    using ::pantheios::shims::c_str_len_a;
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
+    using ::pantheios::shims::PANTHEIOS_c_str_data_name_;
+    using ::pantheios::shims::PANTHEIOS_c_str_len_name_;
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */

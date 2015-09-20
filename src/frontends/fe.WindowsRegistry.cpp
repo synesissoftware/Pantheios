@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the fe.WindowsRegistry front-end.
  *
  * Created:     28th October 2007
- * Updated:     23rd May 2011
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,16 +39,17 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/winlean.h>
 #include <pantheios/frontends/fe.WindowsRegistry.h>
+#include <pantheios/util/core/apidefs.hpp>
 
 #include <pantheios/init_codes.h>
 #include <pantheios/frontend.h>
 #include <pantheios/quality/contract.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/conversion/char_conversions.hpp>
 #include <winstl/registry/reg_key.hpp>
 #include <winstl/registry/reg_value.hpp>
@@ -66,8 +67,9 @@ namespace
 
     using ::pantheios::pan_char_t;
     using ::pantheios::util::pantheios_onBailOut3;
+    using ::pantheios::util::pantheios_onBailOut6;
 
-} // anonymous namespace
+} /* anonymous namespace */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,7 +88,7 @@ namespace
     int const           PANTHEIOS_FE_WINDOWSREGISTRY_DEFAULT_FILTER =   0x7f;
 #endif /* _DEBUG */
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Context
@@ -104,6 +106,7 @@ namespace
         int isSeverityLogged(int severity) const;
 
     private:
+#if 0
         struct // NOTE: do we care that this is endian-specific?
         {
             DWORD   showEmergency       :   1;
@@ -115,14 +118,29 @@ namespace
             DWORD   showInformational   :   1;
             DWORD   showDebug           :   1;
         } levels;
+#endif /* 0 */
         DWORD   levels_;
     };
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
+
+static int pantheios_fe_WindowsRegistry_init_(
+    void*   reserved
+,   void**  ptoken
+)
+{
+    PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != ptoken, "token pointer may not be null");
+
+    STLSOFT_SUPPRESS_UNUSED(reserved);
+
+    *ptoken = new fe_WindowsRegistry_Context();
+
+    return 0;
+}
 
 PANTHEIOS_CALL(int) pantheios_fe_init(
     void*   reserved
@@ -130,31 +148,31 @@ PANTHEIOS_CALL(int) pantheios_fe_init(
 )
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != ptoken, "token pointer may not be null");
-    /* PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_API(pantheios::isInitialising(), "This can only be called when Pantheios is initialising"); */
 
-    STLSOFT_SUPPRESS_UNUSED(reserved);
-
+#if 0
+    return pantheios_call_fe_init(pantheios_fe_WindowsRegistry_init_, reserved, ptoken, "fe.WindowsRegistry");
+#else
     try
     {
-        *ptoken = new fe_WindowsRegistry_Context();
-
-        return 0;
+        return pantheios_fe_WindowsRegistry_init_(reserved, ptoken);
     }
     catch(std::bad_alloc&)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "could not initialise front-end", NULL, "out of memory", "fe.WindowsRegistry", NULL);
+
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
 #if 0
     catch(pantheios::init_exception& x)
     {
-        pantheios_onBailOut3(x.get_severity(), x.what(), NULL);
+        pantheios_onBailOut6(x.get_severity(), "could not initialise front-end", NULL, x.what(), "fe.WindowsRegistry", NULL);
 
         return x.get_return_code();
     }
 #endif /* 0 */
     catch(winstl::windows_exception& x)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, x.what(), NULL);
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "could not initialise front-end", NULL, x.what(), "fe.WindowsRegistry", NULL);
 
         return (ERROR_FILE_NOT_FOUND == x.get_error_code()) ? PANTHEIOS_FE_INIT_RC_INIT_CONFIG_REQUIRED : PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
@@ -164,10 +182,21 @@ PANTHEIOS_CALL(int) pantheios_fe_init(
 
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "could not initialise front-end", NULL, "unknown failure", "fe.WindowsRegistry", NULL);
+
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
         return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
+#endif /* 0 */
 }
 
 PANTHEIOS_CALL(void) pantheios_fe_uninit(
@@ -234,6 +263,8 @@ namespace
             reg_key     processKey;
             reg_value   value;
 
+            // Create the key if it does not exist
+
             try
             {
                 reg_key baseKey = reg_key::create_key(HKEY_CURRENT_USER, PANTHEIOS_FE_WINDOWSREGISTRY_REG_KEY);
@@ -251,6 +282,8 @@ namespace
 
                 processKey = reg_key(baseKey, PANTHEIOS_FE_PROCESS_IDENTITY);
             }
+
+            // 
 
             try
             {
@@ -286,6 +319,8 @@ namespace
                     throw;
                 }
             }
+
+            // 
 
             if(REG_NONE == value.type())
             {
@@ -353,6 +388,6 @@ namespace
         return 0 != (levels_ & index);
     }
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ///////////////////////////// end of file //////////////////////////// */

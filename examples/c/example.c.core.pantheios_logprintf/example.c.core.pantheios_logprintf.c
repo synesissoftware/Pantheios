@@ -6,7 +6,7 @@
  *                - use of pantheios_logprintf() in C compilation units
  *
  * Created:     31st August 2006
- * Updated:     22nd March 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -21,10 +21,10 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>            /* Pantheios C main header */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>                         /* for exit codes */
 
 /* ////////////////////////////////////////////////////////////////////// */

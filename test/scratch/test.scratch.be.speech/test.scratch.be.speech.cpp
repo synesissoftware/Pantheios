@@ -8,7 +8,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     31st August 2006
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -26,7 +26,7 @@
 /* This inclusion required for suppressing warnings during NoX (No eXception-support) configurations. */
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/backend.h>
 #include <pantheios/implicit_link/core.h>
@@ -36,7 +36,7 @@
 #include <pantheios/implicit_link/bec.speech.WithCallback.h>
 #include <pantheios/backends/bec.speech.h>
 
-/* Standard C/C++ Header Files */
+/* Standard C/C++ header files */
 #include <exception>                        // for std::exception
 #include <string>                           // for std::string
 #include <stdio.h>                          // for fprintf()

@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.getversion project.
  *
  * Created:     28th August 2008
- * Updated:     10th January 2011
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2011, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -28,13 +28,13 @@
  * Includes
  */
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,9 +82,9 @@ int main(int argc, char **argv)
 
 static void test_signature()
 {
-//  pan_uint32_t (PANTHEIOS_CALL *pfn)(void) = pantheios_getVersion;
+    pan_uint32_t (PANTHEIOS_CALLCONV *pfn)(void) = pantheios_getVersion;
 
-    XTESTS_TEST_PASSED();
+    XTESTS_TEST(((pan_uint32_t (PANTHEIOS_CALLCONV *)(void))0) != pfn);
 }
 
 static void test_call()
@@ -96,28 +96,28 @@ static void test_call()
 
 static void test_version()
 {
-    pan_uint32_t    ver = pantheios_getVersion();
+    pan_uint32_t const ver = pantheios_getVersion();
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER, ver);
 }
 
 static void test_major()
 {
-    pan_uint32_t    verMajor = (pantheios_getVersion() & 0xff000000) >> 24;
+    pan_uint32_t const verMajor = (pantheios_getVersion() & 0xff000000) >> 24;
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER_MAJOR, verMajor);
 }
 
 static void test_minor()
 {
-    pan_uint32_t    verMinor = (pantheios_getVersion() & 0x00ff0000) >> 16;
+    pan_uint32_t const verMinor = (pantheios_getVersion() & 0x00ff0000) >> 16;
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER_MINOR, verMinor);
 }
 
 static void test_revision()
 {
-    pan_uint32_t    verRevision = (pantheios_getVersion() & 0x0000ff00) >> 8;
+    pan_uint32_t const verRevision = (pantheios_getVersion() & 0x0000ff00) >> 8;
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER_REVISION, verRevision);
 }

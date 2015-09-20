@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.be.file project.
  *
  * Created:     3rd August 2008
- * Updated:     22nd March 2010
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,24 +20,24 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/backends/bec.fprintf.h>
 #include <pantheios/init_codes.h>
 #include <pantheios/util/system/threadid.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/conversion/char_conversions.hpp>
 #include <stlsoft/conversion/integer_to_string.hpp>
 #include <platformstl/filesystem/file_lines.hpp>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>                    // for std::exception
 #include <new>                          // for std::bad_alloc
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>                      // for fprintf(), remove()
 #include <stdlib.h>                     // for exit codes
 
@@ -52,7 +52,7 @@ namespace
 
     const char STDERR_FILE_NAME[] = "stderr.txt";
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Macros
@@ -121,7 +121,7 @@ static void test_1_0d();
 static void test_1_0e();
 static void test_1_0f();
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -1176,6 +1176,6 @@ static void test_1_0f()
     }
 }
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ///////////////////////////// end of file //////////////////////////// */

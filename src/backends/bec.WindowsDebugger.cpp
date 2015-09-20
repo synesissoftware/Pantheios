@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the WindowsDebugger back-end
  *
  * Created:     18th July 2005
- * Updated:     23rd May 2011
+ * Updated:     9th December 2013
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -84,18 +84,13 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-
-#if !defined(PANTHEIOS_NO_NAMESPACE)
-    typedef pantheios::util::auto_buffer_selector<
-#else /* ? !PANTHEIOS_NO_NAMESPACE */
-    typedef auto_buffer_selector<
-#endif /* !PANTHEIOS_NO_NAMESPACE */
+    typedef PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
         pan_char_t
     ,   2048
     ,   winstl_ns_qual(processheap_allocator)<pan_char_t>
     >::type                                     buffer_t;
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Structures
@@ -152,7 +147,7 @@ namespace
     /// @}
     };
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -232,7 +227,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_init(
 ,   void**                                  ptoken
 )
 {
-    return pantheios_call_be_X_init<pan_be_WindowsDebugger_init_t>(pantheios_be_WindowsDebugger_init_, processIdentity, backEndId, init, reserved, ptoken);
+    return pantheios_call_be_X_init<pan_be_WindowsDebugger_init_t>(pantheios_be_WindowsDebugger_init_, processIdentity, backEndId, init, reserved, ptoken, "be.WindowsDebugger");
 }
 
 PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_uninit(void* token)
@@ -259,7 +254,6 @@ static int pantheios_be_WindowsDebugger_logEntry_(
     Context* ctxt = static_cast<Context*>(beToken);
 
     return ctxt->logEntry(severity, entry, cchEntry);
-
 }
 
 PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
@@ -270,7 +264,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
 ,   size_t              cchEntry
 )
 {
-    return pantheios_call_be_logEntry(pantheios_be_WindowsDebugger_logEntry_, feToken, beToken, severity, entry, cchEntry);
+    return pantheios_call_be_logEntry(pantheios_be_WindowsDebugger_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.WindowsDebugger");
 }
 
 /* /////////////////////////////////////////////////////////////////////////

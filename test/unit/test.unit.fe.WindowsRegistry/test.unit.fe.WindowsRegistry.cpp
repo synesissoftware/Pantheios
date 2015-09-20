@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.fe.WindowsRegistry project.
  *
  * Created:     14th May 2008
- * Updated:     4th January 2011
+ * Updated:     27th May 2014
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2011, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2014, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -186,6 +186,32 @@ namespace stub
         STLSOFT_SUPPRESS_UNUSED(processId);
 #endif /* 0 */
     }
+
+    PANTHEIOS_CALL(void) pantheios_onBailOut6(
+        int           severity
+    ,   char const*   message
+    ,   char const*   processId
+    ,   char const*   qualifier
+    ,   char const*   frontEndName
+    ,   char const*   backEndName
+    );
+    PANTHEIOS_CALL(void) pantheios_onBailOut6(
+        int           severity
+    ,   char const*   message
+    ,   char const*   processId
+    ,   char const*   qualifier
+    ,   char const*   frontEndName
+    ,   char const*   backEndName
+    )
+    {
+        STLSOFT_SUPPRESS_UNUSED(severity);
+        STLSOFT_SUPPRESS_UNUSED(message);
+        STLSOFT_SUPPRESS_UNUSED(processId);
+        STLSOFT_SUPPRESS_UNUSED(qualifier);
+        STLSOFT_SUPPRESS_UNUSED(frontEndName);
+        STLSOFT_SUPPRESS_UNUSED(backEndName);
+    }
+
 
 } /* namespace stub */
 

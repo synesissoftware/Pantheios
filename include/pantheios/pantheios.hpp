@@ -4,11 +4,11 @@
  * Purpose:     Primary header file for Pantheios
  *
  * Created:     21st June 2005
- * Updated:     9th January 2011
+ * Updated:     11th October 2012
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -60,9 +60,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MAJOR      3
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      9
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       102
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      10
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   1
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       103
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -285,6 +285,20 @@ namespace pantheios
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
+# include <pantheios/internal/shim_declarations.hpp>
+# ifndef PANTHEIOS_c_str_data_name_
+#  error PANTHEIOS_c_str_data_name_ not defined
+# endif /* !PANTHEIOS_c_str_data_name_ */
+# ifndef PANTHEIOS_c_str_len_name_
+#  error PANTHEIOS_c_str_len_name_ not defined
+# endif /* !PANTHEIOS_c_str_len_name_ */
+# ifndef PANTHEIOS_c_str_ptr_name_
+#  error PANTHEIOS_c_str_ptr_name_ not defined
+# endif /* !PANTHEIOS_c_str_ptr_name_ */
+# ifndef PANTHEIOS_c_str_ptr_null_name_
+#  error PANTHEIOS_c_str_ptr_null_name_ not defined
+# endif /* !PANTHEIOS_c_str_ptr_null_name_ */
+
 # ifdef PANTHEIOS_INVOKE_c_str_data_
 #  undef PANTHEIOS_INVOKE_c_str_data_
 # endif /* PANTHEIOS_INVOKE_c_str_data_ */
@@ -297,20 +311,7 @@ namespace pantheios
 # ifdef PANTHEIOS_INVOKE_SHIM_PAIR_
 #  undef PANTHEIOS_INVOKE_SHIM_PAIR_
 # endif /* PANTHEIOS_INVOKE_SHIM_PAIR_ */
-# ifdef PANTHEIOS_c_str_data_name_
-#  undef PANTHEIOS_c_str_data_name_
-# endif /* PANTHEIOS_c_str_data_name_ */
 
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-#  define PANTHEIOS_c_str_data_name_                    c_str_data_w
-#  define PANTHEIOS_c_str_len_name_                     c_str_len_w
-#  define PANTHEIOS_c_str_ptr_name_                     c_str_ptr_w
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */               
-#  define PANTHEIOS_c_str_data_name_                    c_str_data_a
-#  define PANTHEIOS_c_str_len_name_                     c_str_len_a
-#  define PANTHEIOS_c_str_ptr_name_                     c_str_ptr_a
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */                
-                                                        
 # if defined(STLSOFT_COMPILER_IS_DMC)                   
 #  define PANTHEIOS_DECLARE_SHIM_PAIR_()                ((void)0)
 #  define PANTHEIOS_INVOKE_SHIM_PAIR_(x)                stlsoft::PANTHEIOS_c_str_len_name_(x), stlsoft::PANTHEIOS_c_str_data_name_(x)

@@ -5,7 +5,7 @@
 #			compiler, on Win32
 #
 # Created:	15th Feburary 2005
-# Updated:	31st July 2012
+# Updated:	27th May 2014
 #
 ############################################################################
 
@@ -1028,6 +1028,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\hex_ptr.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\hostid.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\integer.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\interval.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\m2w.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\p.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\pad.hpp\
@@ -1035,6 +1036,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\processid.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\real.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\slice.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\stream_character.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\threadid.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\w2m.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\variant_bool.hpp\
@@ -1046,6 +1048,8 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\stock_levels.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\nox.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\safestr.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\shim_declarations.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\slice.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\threading.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\quality\contract.h\
@@ -1055,6 +1059,9 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\severity\levels.hpp\
+ \
+ $(PROJ_INCLUDE_DIR)\pantheios\shims\access\string\core\pan_severity_t.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\shims\access\string\core\pan_slice_t.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\backends\arguments.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\backends\context.hpp\
@@ -4295,6 +4302,24 @@ TARG_TEST_COMP_ins_slice_W_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.compone
 TARG_TEST_COMP_ins_slice_W_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_slice_W_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_slice_W_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).widestring.exe
+TARG_TEST_COMP_ins_stm_ch_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_stm_ch_MT_D_NOX	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.nox.debug.exe
+TARG_TEST_COMP_ins_stm_ch_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_COMP_ins_stm_ch_DLL_D_NOX	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).dll.nox.debug.exe
+TARG_TEST_COMP_ins_stm_ch_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_COMP_ins_stm_ch_DLL_R_NOX	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).dll.nox.exe
+TARG_TEST_COMP_ins_stm_ch_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_stm_ch_MT_R_NOX	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.nox.exe
+TARG_TEST_COMP_ins_stm_ch_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_stm_ch_ST_D_NOX	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).nox.debug.exe
+TARG_TEST_COMP_ins_stm_ch_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_stm_ch_ST_R_NOX	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).nox.exe
+TARG_TEST_COMP_ins_stm_ch_W_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_COMP_ins_stm_ch_W_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_COMP_ins_stm_ch_W_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_COMP_ins_stm_ch_W_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_COMP_ins_stm_ch_W_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.debug.exe
+TARG_TEST_COMP_ins_stm_ch_W_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_thrid_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_thrid_MT_D_NOX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.nox.debug.exe
 TARG_TEST_COMP_ins_thrid_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).dll.debug.exe
@@ -5118,11 +5143,13 @@ OBJ_ins_bool_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.debug.obj
 OBJ_ins_excp_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.debug.obj
 OBJ_ins_host_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.debug.obj
 OBJ_ins_int_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.integer.mt.debug.obj
+OBJ_ins_ivl_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.interval.mt.debug.obj
 OBJ_ins_ptr_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.pointer.mt.debug.obj
 OBJ_ins_prid_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.debug.obj
 OBJ_ins_real_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.real.mt.debug.obj
 OBJ_ins_slice_MT_D	 	= $(PROJ_OBJ_DIR)\inserters.slice.mt.debug.obj
 OBJ_ins_thrid_MT_D	 	= $(PROJ_OBJ_DIR)\inserters.threadid.mt.debug.obj
+OBJ_ins_stm_ch_MT_D	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.debug.obj
 OBJ_ins_w2m_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.w2m.mt.debug.obj
 PDB_utl_bailout_MT_D		= $(PROJ_OBJ_DIR)\util.bailout.mt.debug.pdb
 PDB_utl_init_code_strs_MT_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.mt.debug.pdb
@@ -5147,11 +5174,13 @@ PDB_ins_bool_MT_D 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.debug.pdb
 PDB_ins_excp_MT_D 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.debug.pdb
 PDB_ins_host_MT_D 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.debug.pdb
 PDB_ins_int_MT_D 			= $(PROJ_OBJ_DIR)\inserters.integer.mt.debug.pdb
+PDB_ins_ivl_MT_D 			= $(PROJ_OBJ_DIR)\inserters.interval.mt.debug.pdb
 PDB_ins_ptr_MT_D 			= $(PROJ_OBJ_DIR)\inserters.pointer.mt.debug.pdb
 PDB_ins_prid_MT_D 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.debug.pdb
 PDB_ins_real_MT_D 		= $(PROJ_OBJ_DIR)\inserters.real.mt.debug.pdb
 PDB_ins_slice_MT_D 		= $(PROJ_OBJ_DIR)\inserters.slice.mt.debug.pdb
 PDB_ins_thrid_MT_D 		= $(PROJ_OBJ_DIR)\inserters.threadid.mt.debug.pdb
+PDB_ins_stm_ch_MT_D 		= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.debug.pdb
 PDB_ins_vbool_MT_D 		= $(PROJ_OBJ_DIR)\inserters.variant_bool.mt.debug.pdb
 PDB_ins_w2m_MT_D 			= $(PROJ_OBJ_DIR)\inserters.w2m.mt.debug.pdb
 #PDB_bec_test_MT_D 		= $(PROJ_OBJ_DIR)\bec.test.mt.debug.pdb
@@ -5261,11 +5290,13 @@ OBJ_CORE_MT_D=\
  $(OBJ_ins_excp_MT_D)\
  $(OBJ_ins_host_MT_D)\
  $(OBJ_ins_int_MT_D)\
+ $(OBJ_ins_ivl_MT_D)\
  $(OBJ_ins_ptr_MT_D)\
  $(OBJ_ins_prid_MT_D)\
  $(OBJ_ins_real_MT_D)\
  $(OBJ_ins_slice_MT_D)\
  $(OBJ_ins_thrid_MT_D)\
+ $(OBJ_ins_stm_ch_MT_D)\
  $(OBJ_ins_w2m_MT_D)\
  \
 
@@ -5277,11 +5308,13 @@ OBJ_APPL_MT_D=\
  $(OBJ_ins_excp_MT_D)\
  $(OBJ_ins_host_MT_D)\
  $(OBJ_ins_int_MT_D)\
+ $(OBJ_ins_ivl_MT_D)\
  $(OBJ_ins_ptr_MT_D)\
  $(OBJ_ins_prid_MT_D)\
  $(OBJ_ins_real_MT_D)\
  $(OBJ_ins_slice_MT_D)\
  $(OBJ_ins_thrid_MT_D)\
+ $(OBJ_ins_stm_ch_MT_D)\
  $(OBJ_ins_w2m_MT_D)\
  \
 
@@ -5312,12 +5345,15 @@ PDB_CORE_MT_D=\
  $(PDB_ins_excp_MT_D)\
  $(PDB_ins_host_MT_D)\
  $(PDB_ins_int_MT_D)\
+ $(PDB_ins_ivl_MT_D)\
  $(PDB_ins_ptr_MT_D)\
  $(PDB_ins_prid_MT_D)\
  $(PDB_ins_real_MT_D)\
  $(PDB_ins_slice_MT_D)\
  $(PDB_ins_thrid_MT_D)\
+	$(PDB_ins_stm_ch_MT_D)\
  $(PDB_ins_vbool_MT_D)\
+ $(PDB_ins_w2m_MT_D)\
  \
 
 
@@ -5658,11 +5694,13 @@ OBJ_ins_bool_MT_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.nox.debug.obj
 OBJ_ins_excp_MT_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.nox.debug.obj
 OBJ_ins_host_MT_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.nox.debug.obj
 OBJ_ins_int_MT_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.integer.mt.nox.debug.obj
+OBJ_ins_ivl_MT_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.interval.mt.nox.debug.obj
 OBJ_ins_ptr_MT_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.pointer.mt.nox.debug.obj
 OBJ_ins_prid_MT_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.nox.debug.obj
 OBJ_ins_real_MT_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.real.mt.nox.debug.obj
 OBJ_ins_slice_MT_D_NOX	 	= $(PROJ_OBJ_DIR)\inserters.slice.mt.nox.debug.obj
 OBJ_ins_thrid_MT_D_NOX	 	= $(PROJ_OBJ_DIR)\inserters.threadid.mt.nox.debug.obj
+OBJ_ins_stm_ch_MT_D_NOX	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.nox.debug.obj
 OBJ_ins_w2m_MT_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.w2m.mt.nox.debug.obj
 PDB_utl_bailout_MT_D_NOX		= $(PROJ_OBJ_DIR)\util.bailout.mt.nox.debug.pdb
 PDB_utl_init_code_strs_MT_D_NOX	= $(PROJ_OBJ_DIR)\util.init_err_strings.mt.nox.debug.pdb
@@ -5687,11 +5725,13 @@ PDB_ins_bool_MT_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.nox.debug.pdb
 PDB_ins_excp_MT_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.nox.debug.pdb
 PDB_ins_host_MT_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.nox.debug.pdb
 PDB_ins_int_MT_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.integer.mt.nox.debug.pdb
+PDB_ins_ivl_MT_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.interval.mt.nox.debug.pdb
 PDB_ins_ptr_MT_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.pointer.mt.nox.debug.pdb
 PDB_ins_prid_MT_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.nox.debug.pdb
 PDB_ins_real_MT_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.real.mt.nox.debug.pdb
 PDB_ins_slice_MT_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.slice.mt.nox.debug.pdb
 PDB_ins_thrid_MT_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.threadid.mt.nox.debug.pdb
+PDB_ins_stm_ch_MT_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.nox.debug.pdb
 PDB_ins_vbool_MT_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.variant_bool.mt.nox.debug.pdb
 PDB_ins_w2m_MT_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.w2m.mt.nox.debug.pdb
 #PDB_bec_test_MT_D_NOX 		= $(PROJ_OBJ_DIR)\bec.test.mt.nox.debug.pdb
@@ -5788,11 +5828,13 @@ OBJ_CORE_MT_D_NOX=\
  $(OBJ_ins_excp_MT_D_NOX)\
  $(OBJ_ins_host_MT_D_NOX)\
  $(OBJ_ins_int_MT_D_NOX)\
+ $(OBJ_ins_ivl_MT_D_NOX)\
  $(OBJ_ins_ptr_MT_D_NOX)\
  $(OBJ_ins_prid_MT_D_NOX)\
  $(OBJ_ins_real_MT_D_NOX)\
  $(OBJ_ins_slice_MT_D_NOX)\
  $(OBJ_ins_thrid_MT_D_NOX)\
+ $(OBJ_ins_stm_ch_MT_D_NOX)\
  $(OBJ_ins_w2m_MT_D_NOX)\
  \
 
@@ -5804,11 +5846,13 @@ OBJ_APPL_MT_D_NOX=\
  $(OBJ_ins_excp_MT_D_NOX)\
  $(OBJ_ins_host_MT_D_NOX)\
  $(OBJ_ins_int_MT_D_NOX)\
+ $(OBJ_ins_ivl_MT_D_NOX)\
  $(OBJ_ins_ptr_MT_D_NOX)\
  $(OBJ_ins_prid_MT_D_NOX)\
  $(OBJ_ins_real_MT_D_NOX)\
  $(OBJ_ins_slice_MT_D_NOX)\
  $(OBJ_ins_thrid_MT_D_NOX)\
+ $(OBJ_ins_stm_ch_MT_D_NOX)\
  $(OBJ_ins_w2m_MT_D_NOX)\
  \
 
@@ -5839,12 +5883,15 @@ PDB_CORE_MT_D_NOX=\
  $(PDB_ins_excp_MT_D_NOX)\
  $(PDB_ins_host_MT_D_NOX)\
  $(PDB_ins_int_MT_D_NOX)\
+ $(PDB_ins_ivl_MT_D_NOX)\
  $(PDB_ins_ptr_MT_D_NOX)\
  $(PDB_ins_prid_MT_D_NOX)\
  $(PDB_ins_real_MT_D_NOX)\
  $(PDB_ins_slice_MT_D_NOX)\
  $(PDB_ins_thrid_MT_D_NOX)\
+	$(PDB_ins_stm_ch_MT_D_NOX)\
  $(PDB_ins_vbool_MT_D_NOX)\
+ $(PDB_ins_w2m_MT_D_NOX)\
  \
 
 
@@ -6139,11 +6186,13 @@ OBJ_ins_bool_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.boolean.dll.debug.obj
 OBJ_ins_excp_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.exception.dll.debug.obj
 OBJ_ins_host_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.hostid.dll.debug.obj
 OBJ_ins_int_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.integer.dll.debug.obj
+OBJ_ins_ivl_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.interval.dll.debug.obj
 OBJ_ins_ptr_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.pointer.dll.debug.obj
 OBJ_ins_prid_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.processid.dll.debug.obj
 OBJ_ins_real_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.real.dll.debug.obj
 OBJ_ins_slice_DLL_D	 	= $(PROJ_OBJ_DIR)\inserters.slice.dll.debug.obj
 OBJ_ins_thrid_DLL_D	 	= $(PROJ_OBJ_DIR)\inserters.threadid.dll.debug.obj
+OBJ_ins_stm_ch_DLL_D	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.dll.debug.obj
 OBJ_ins_w2m_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.w2m.dll.debug.obj
 PDB_utl_bailout_DLL_D		= $(PROJ_OBJ_DIR)\util.bailout.dll.debug.pdb
 PDB_utl_init_code_strs_DLL_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.dll.debug.pdb
@@ -6168,11 +6217,13 @@ PDB_ins_bool_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.boolean.dll.debug.pdb
 PDB_ins_excp_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.exception.dll.debug.pdb
 PDB_ins_host_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.hostid.dll.debug.pdb
 PDB_ins_int_DLL_D 			= $(PROJ_OBJ_DIR)\inserters.integer.dll.debug.pdb
+PDB_ins_ivl_DLL_D 			= $(PROJ_OBJ_DIR)\inserters.interval.dll.debug.pdb
 PDB_ins_ptr_DLL_D 			= $(PROJ_OBJ_DIR)\inserters.pointer.dll.debug.pdb
 PDB_ins_prid_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.processid.dll.debug.pdb
 PDB_ins_real_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.real.dll.debug.pdb
 PDB_ins_slice_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.slice.dll.debug.pdb
 PDB_ins_thrid_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.threadid.dll.debug.pdb
+PDB_ins_stm_ch_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.stream_character.dll.debug.pdb
 PDB_ins_vbool_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.variant_bool.dll.debug.pdb
 PDB_ins_w2m_DLL_D 			= $(PROJ_OBJ_DIR)\inserters.w2m.dll.debug.pdb
 #PDB_bec_test_DLL_D 		= $(PROJ_OBJ_DIR)\bec.test.dll.debug.pdb
@@ -6282,11 +6333,13 @@ OBJ_CORE_DLL_D=\
  $(OBJ_ins_excp_DLL_D)\
  $(OBJ_ins_host_DLL_D)\
  $(OBJ_ins_int_DLL_D)\
+ $(OBJ_ins_ivl_DLL_D)\
  $(OBJ_ins_ptr_DLL_D)\
  $(OBJ_ins_prid_DLL_D)\
  $(OBJ_ins_real_DLL_D)\
  $(OBJ_ins_slice_DLL_D)\
  $(OBJ_ins_thrid_DLL_D)\
+ $(OBJ_ins_stm_ch_DLL_D)\
  $(OBJ_ins_w2m_DLL_D)\
  \
 
@@ -6298,11 +6351,13 @@ OBJ_APPL_DLL_D=\
  $(OBJ_ins_excp_DLL_D)\
  $(OBJ_ins_host_DLL_D)\
  $(OBJ_ins_int_DLL_D)\
+ $(OBJ_ins_ivl_DLL_D)\
  $(OBJ_ins_ptr_DLL_D)\
  $(OBJ_ins_prid_DLL_D)\
  $(OBJ_ins_real_DLL_D)\
  $(OBJ_ins_slice_DLL_D)\
  $(OBJ_ins_thrid_DLL_D)\
+ $(OBJ_ins_stm_ch_DLL_D)\
  $(OBJ_ins_w2m_DLL_D)\
  \
 
@@ -6333,12 +6388,15 @@ PDB_CORE_DLL_D=\
  $(PDB_ins_excp_DLL_D)\
  $(PDB_ins_host_DLL_D)\
  $(PDB_ins_int_DLL_D)\
+ $(PDB_ins_ivl_DLL_D)\
  $(PDB_ins_ptr_DLL_D)\
  $(PDB_ins_prid_DLL_D)\
  $(PDB_ins_real_DLL_D)\
  $(PDB_ins_slice_DLL_D)\
  $(PDB_ins_thrid_DLL_D)\
+	$(PDB_ins_stm_ch_DLL_D)\
  $(PDB_ins_vbool_DLL_D)\
+ $(PDB_ins_w2m_DLL_D)\
  \
 
 
@@ -6679,11 +6737,13 @@ OBJ_ins_bool_DLL_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.boolean.dll.nox.debug.obj
 OBJ_ins_excp_DLL_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.exception.dll.nox.debug.obj
 OBJ_ins_host_DLL_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.hostid.dll.nox.debug.obj
 OBJ_ins_int_DLL_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.integer.dll.nox.debug.obj
+OBJ_ins_ivl_DLL_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.interval.dll.nox.debug.obj
 OBJ_ins_ptr_DLL_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.pointer.dll.nox.debug.obj
 OBJ_ins_prid_DLL_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.processid.dll.nox.debug.obj
 OBJ_ins_real_DLL_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.real.dll.nox.debug.obj
 OBJ_ins_slice_DLL_D_NOX	 	= $(PROJ_OBJ_DIR)\inserters.slice.dll.nox.debug.obj
 OBJ_ins_thrid_DLL_D_NOX	 	= $(PROJ_OBJ_DIR)\inserters.threadid.dll.nox.debug.obj
+OBJ_ins_stm_ch_DLL_D_NOX	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.dll.nox.debug.obj
 OBJ_ins_w2m_DLL_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.w2m.dll.nox.debug.obj
 PDB_utl_bailout_DLL_D_NOX		= $(PROJ_OBJ_DIR)\util.bailout.dll.nox.debug.pdb
 PDB_utl_init_code_strs_DLL_D_NOX	= $(PROJ_OBJ_DIR)\util.init_err_strings.dll.nox.debug.pdb
@@ -6708,11 +6768,13 @@ PDB_ins_bool_DLL_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.boolean.dll.nox.debug.pdb
 PDB_ins_excp_DLL_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.exception.dll.nox.debug.pdb
 PDB_ins_host_DLL_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.hostid.dll.nox.debug.pdb
 PDB_ins_int_DLL_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.integer.dll.nox.debug.pdb
+PDB_ins_ivl_DLL_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.interval.dll.nox.debug.pdb
 PDB_ins_ptr_DLL_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.pointer.dll.nox.debug.pdb
 PDB_ins_prid_DLL_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.processid.dll.nox.debug.pdb
 PDB_ins_real_DLL_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.real.dll.nox.debug.pdb
 PDB_ins_slice_DLL_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.slice.dll.nox.debug.pdb
 PDB_ins_thrid_DLL_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.threadid.dll.nox.debug.pdb
+PDB_ins_stm_ch_DLL_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.stream_character.dll.nox.debug.pdb
 PDB_ins_vbool_DLL_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.variant_bool.dll.nox.debug.pdb
 PDB_ins_w2m_DLL_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.w2m.dll.nox.debug.pdb
 #PDB_bec_test_DLL_D_NOX 		= $(PROJ_OBJ_DIR)\bec.test.dll.nox.debug.pdb
@@ -6809,11 +6871,13 @@ OBJ_CORE_DLL_D_NOX=\
  $(OBJ_ins_excp_DLL_D_NOX)\
  $(OBJ_ins_host_DLL_D_NOX)\
  $(OBJ_ins_int_DLL_D_NOX)\
+ $(OBJ_ins_ivl_DLL_D_NOX)\
  $(OBJ_ins_ptr_DLL_D_NOX)\
  $(OBJ_ins_prid_DLL_D_NOX)\
  $(OBJ_ins_real_DLL_D_NOX)\
  $(OBJ_ins_slice_DLL_D_NOX)\
  $(OBJ_ins_thrid_DLL_D_NOX)\
+ $(OBJ_ins_stm_ch_DLL_D_NOX)\
  $(OBJ_ins_w2m_DLL_D_NOX)\
  \
 
@@ -6825,11 +6889,13 @@ OBJ_APPL_DLL_D_NOX=\
  $(OBJ_ins_excp_DLL_D_NOX)\
  $(OBJ_ins_host_DLL_D_NOX)\
  $(OBJ_ins_int_DLL_D_NOX)\
+ $(OBJ_ins_ivl_DLL_D_NOX)\
  $(OBJ_ins_ptr_DLL_D_NOX)\
  $(OBJ_ins_prid_DLL_D_NOX)\
  $(OBJ_ins_real_DLL_D_NOX)\
  $(OBJ_ins_slice_DLL_D_NOX)\
  $(OBJ_ins_thrid_DLL_D_NOX)\
+ $(OBJ_ins_stm_ch_DLL_D_NOX)\
  $(OBJ_ins_w2m_DLL_D_NOX)\
  \
 
@@ -6860,12 +6926,15 @@ PDB_CORE_DLL_D_NOX=\
  $(PDB_ins_excp_DLL_D_NOX)\
  $(PDB_ins_host_DLL_D_NOX)\
  $(PDB_ins_int_DLL_D_NOX)\
+ $(PDB_ins_ivl_DLL_D_NOX)\
  $(PDB_ins_ptr_DLL_D_NOX)\
  $(PDB_ins_prid_DLL_D_NOX)\
  $(PDB_ins_real_DLL_D_NOX)\
  $(PDB_ins_slice_DLL_D_NOX)\
  $(PDB_ins_thrid_DLL_D_NOX)\
+	$(PDB_ins_stm_ch_DLL_D_NOX)\
  $(PDB_ins_vbool_DLL_D_NOX)\
+ $(PDB_ins_w2m_DLL_D_NOX)\
  \
 
 
@@ -7160,11 +7229,13 @@ OBJ_ins_bool_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.boolean.dll.obj
 OBJ_ins_excp_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.exception.dll.obj
 OBJ_ins_host_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.hostid.dll.obj
 OBJ_ins_int_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.integer.dll.obj
+OBJ_ins_ivl_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.interval.dll.obj
 OBJ_ins_ptr_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.pointer.dll.obj
 OBJ_ins_prid_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.processid.dll.obj
 OBJ_ins_real_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.real.dll.obj
 OBJ_ins_slice_DLL_R	 	= $(PROJ_OBJ_DIR)\inserters.slice.dll.obj
 OBJ_ins_thrid_DLL_R	 	= $(PROJ_OBJ_DIR)\inserters.threadid.dll.obj
+OBJ_ins_stm_ch_DLL_R	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.dll.obj
 OBJ_ins_w2m_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.w2m.dll.obj
 #PDB_bec_test_DLL_R 		= $(PROJ_OBJ_DIR)\bec.test.dll.pdb
 OBJ_bec_test_DLL_R 		= $(PROJ_OBJ_DIR)\bec.test.dll.obj
@@ -7273,11 +7344,13 @@ OBJ_CORE_DLL_R=\
  $(OBJ_ins_excp_DLL_R)\
  $(OBJ_ins_host_DLL_R)\
  $(OBJ_ins_int_DLL_R)\
+ $(OBJ_ins_ivl_DLL_R)\
  $(OBJ_ins_ptr_DLL_R)\
  $(OBJ_ins_prid_DLL_R)\
  $(OBJ_ins_real_DLL_R)\
  $(OBJ_ins_slice_DLL_R)\
  $(OBJ_ins_thrid_DLL_R)\
+ $(OBJ_ins_stm_ch_DLL_R)\
  $(OBJ_ins_w2m_DLL_R)\
  \
 
@@ -7289,11 +7362,13 @@ OBJ_APPL_DLL_R=\
  $(OBJ_ins_excp_DLL_R)\
  $(OBJ_ins_host_DLL_R)\
  $(OBJ_ins_int_DLL_R)\
+ $(OBJ_ins_ivl_DLL_R)\
  $(OBJ_ins_ptr_DLL_R)\
  $(OBJ_ins_prid_DLL_R)\
  $(OBJ_ins_real_DLL_R)\
  $(OBJ_ins_slice_DLL_R)\
  $(OBJ_ins_thrid_DLL_R)\
+ $(OBJ_ins_stm_ch_DLL_R)\
  $(OBJ_ins_w2m_DLL_R)\
  \
 
@@ -7619,11 +7694,13 @@ OBJ_ins_bool_DLL_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.boolean.dll.nox.obj
 OBJ_ins_excp_DLL_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.exception.dll.nox.obj
 OBJ_ins_host_DLL_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.hostid.dll.nox.obj
 OBJ_ins_int_DLL_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.integer.dll.nox.obj
+OBJ_ins_ivl_DLL_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.interval.dll.nox.obj
 OBJ_ins_ptr_DLL_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.pointer.dll.nox.obj
 OBJ_ins_prid_DLL_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.processid.dll.nox.obj
 OBJ_ins_real_DLL_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.real.dll.nox.obj
 OBJ_ins_slice_DLL_R_NOX	 	= $(PROJ_OBJ_DIR)\inserters.slice.dll.nox.obj
 OBJ_ins_thrid_DLL_R_NOX	 	= $(PROJ_OBJ_DIR)\inserters.threadid.dll.nox.obj
+OBJ_ins_stm_ch_DLL_R_NOX	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.dll.nox.obj
 OBJ_ins_w2m_DLL_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.w2m.dll.nox.obj
 #PDB_bec_test_DLL_R_NOX 		= $(PROJ_OBJ_DIR)\bec.test.dll.nox.pdb
 OBJ_bec_test_DLL_R_NOX 		= $(PROJ_OBJ_DIR)\bec.test.dll.nox.obj
@@ -7719,11 +7796,13 @@ OBJ_CORE_DLL_R_NOX=\
  $(OBJ_ins_excp_DLL_R_NOX)\
  $(OBJ_ins_host_DLL_R_NOX)\
  $(OBJ_ins_int_DLL_R_NOX)\
+ $(OBJ_ins_ivl_DLL_R_NOX)\
  $(OBJ_ins_ptr_DLL_R_NOX)\
  $(OBJ_ins_prid_DLL_R_NOX)\
  $(OBJ_ins_real_DLL_R_NOX)\
  $(OBJ_ins_slice_DLL_R_NOX)\
  $(OBJ_ins_thrid_DLL_R_NOX)\
+ $(OBJ_ins_stm_ch_DLL_R_NOX)\
  $(OBJ_ins_w2m_DLL_R_NOX)\
  \
 
@@ -7735,11 +7814,13 @@ OBJ_APPL_DLL_R_NOX=\
  $(OBJ_ins_excp_DLL_R_NOX)\
  $(OBJ_ins_host_DLL_R_NOX)\
  $(OBJ_ins_int_DLL_R_NOX)\
+ $(OBJ_ins_ivl_DLL_R_NOX)\
  $(OBJ_ins_ptr_DLL_R_NOX)\
  $(OBJ_ins_prid_DLL_R_NOX)\
  $(OBJ_ins_real_DLL_R_NOX)\
  $(OBJ_ins_slice_DLL_R_NOX)\
  $(OBJ_ins_thrid_DLL_R_NOX)\
+ $(OBJ_ins_stm_ch_DLL_R_NOX)\
  $(OBJ_ins_w2m_DLL_R_NOX)\
  \
 
@@ -8019,11 +8100,13 @@ OBJ_ins_bool_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.obj
 OBJ_ins_excp_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.obj
 OBJ_ins_host_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.obj
 OBJ_ins_int_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.integer.mt.obj
+OBJ_ins_ivl_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.interval.mt.obj
 OBJ_ins_ptr_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.pointer.mt.obj
 OBJ_ins_prid_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.obj
 OBJ_ins_real_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.real.mt.obj
 OBJ_ins_slice_MT_R	 	= $(PROJ_OBJ_DIR)\inserters.slice.mt.obj
 OBJ_ins_thrid_MT_R	 	= $(PROJ_OBJ_DIR)\inserters.threadid.mt.obj
+OBJ_ins_stm_ch_MT_R	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.obj
 OBJ_ins_w2m_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.w2m.mt.obj
 #PDB_bec_test_MT_R 		= $(PROJ_OBJ_DIR)\bec.test.mt.pdb
 OBJ_bec_test_MT_R 		= $(PROJ_OBJ_DIR)\bec.test.mt.obj
@@ -8132,11 +8215,13 @@ OBJ_CORE_MT_R=\
  $(OBJ_ins_excp_MT_R)\
  $(OBJ_ins_host_MT_R)\
  $(OBJ_ins_int_MT_R)\
+ $(OBJ_ins_ivl_MT_R)\
  $(OBJ_ins_ptr_MT_R)\
  $(OBJ_ins_prid_MT_R)\
  $(OBJ_ins_real_MT_R)\
  $(OBJ_ins_slice_MT_R)\
  $(OBJ_ins_thrid_MT_R)\
+ $(OBJ_ins_stm_ch_MT_R)\
  $(OBJ_ins_w2m_MT_R)\
  \
 
@@ -8148,11 +8233,13 @@ OBJ_APPL_MT_R=\
  $(OBJ_ins_excp_MT_R)\
  $(OBJ_ins_host_MT_R)\
  $(OBJ_ins_int_MT_R)\
+ $(OBJ_ins_ivl_MT_R)\
  $(OBJ_ins_ptr_MT_R)\
  $(OBJ_ins_prid_MT_R)\
  $(OBJ_ins_real_MT_R)\
  $(OBJ_ins_slice_MT_R)\
  $(OBJ_ins_thrid_MT_R)\
+ $(OBJ_ins_stm_ch_MT_R)\
  $(OBJ_ins_w2m_MT_R)\
  \
 
@@ -8478,11 +8565,13 @@ OBJ_ins_bool_MT_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.nox.obj
 OBJ_ins_excp_MT_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.nox.obj
 OBJ_ins_host_MT_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.nox.obj
 OBJ_ins_int_MT_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.integer.mt.nox.obj
+OBJ_ins_ivl_MT_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.interval.mt.nox.obj
 OBJ_ins_ptr_MT_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.pointer.mt.nox.obj
 OBJ_ins_prid_MT_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.nox.obj
 OBJ_ins_real_MT_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.real.mt.nox.obj
 OBJ_ins_slice_MT_R_NOX	 	= $(PROJ_OBJ_DIR)\inserters.slice.mt.nox.obj
 OBJ_ins_thrid_MT_R_NOX	 	= $(PROJ_OBJ_DIR)\inserters.threadid.mt.nox.obj
+OBJ_ins_stm_ch_MT_R_NOX	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.nox.obj
 OBJ_ins_w2m_MT_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.w2m.mt.nox.obj
 #PDB_bec_test_MT_R_NOX 		= $(PROJ_OBJ_DIR)\bec.test.mt.nox.pdb
 OBJ_bec_test_MT_R_NOX 		= $(PROJ_OBJ_DIR)\bec.test.mt.nox.obj
@@ -8578,11 +8667,13 @@ OBJ_CORE_MT_R_NOX=\
  $(OBJ_ins_excp_MT_R_NOX)\
  $(OBJ_ins_host_MT_R_NOX)\
  $(OBJ_ins_int_MT_R_NOX)\
+ $(OBJ_ins_ivl_MT_R_NOX)\
  $(OBJ_ins_ptr_MT_R_NOX)\
  $(OBJ_ins_prid_MT_R_NOX)\
  $(OBJ_ins_real_MT_R_NOX)\
  $(OBJ_ins_slice_MT_R_NOX)\
  $(OBJ_ins_thrid_MT_R_NOX)\
+ $(OBJ_ins_stm_ch_MT_R_NOX)\
  $(OBJ_ins_w2m_MT_R_NOX)\
  \
 
@@ -8594,11 +8685,13 @@ OBJ_APPL_MT_R_NOX=\
  $(OBJ_ins_excp_MT_R_NOX)\
  $(OBJ_ins_host_MT_R_NOX)\
  $(OBJ_ins_int_MT_R_NOX)\
+ $(OBJ_ins_ivl_MT_R_NOX)\
  $(OBJ_ins_ptr_MT_R_NOX)\
  $(OBJ_ins_prid_MT_R_NOX)\
  $(OBJ_ins_real_MT_R_NOX)\
  $(OBJ_ins_slice_MT_R_NOX)\
  $(OBJ_ins_thrid_MT_R_NOX)\
+ $(OBJ_ins_stm_ch_MT_R_NOX)\
  $(OBJ_ins_w2m_MT_R_NOX)\
  \
 
@@ -8878,11 +8971,13 @@ OBJ_ins_bool_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.boolean.debug.obj
 OBJ_ins_excp_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.exception.debug.obj
 OBJ_ins_host_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.hostid.debug.obj
 OBJ_ins_int_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.integer.debug.obj
+OBJ_ins_ivl_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.interval.debug.obj
 OBJ_ins_ptr_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.pointer.debug.obj
 OBJ_ins_prid_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.processid.debug.obj
 OBJ_ins_real_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.real.debug.obj
 OBJ_ins_slice_ST_D	 	= $(PROJ_OBJ_DIR)\inserters.slice.debug.obj
 OBJ_ins_thrid_ST_D	 	= $(PROJ_OBJ_DIR)\inserters.threadid.debug.obj
+OBJ_ins_stm_ch_ST_D	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.debug.obj
 OBJ_ins_w2m_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.w2m.debug.obj
 PDB_utl_bailout_ST_D		= $(PROJ_OBJ_DIR)\util.bailout.debug.pdb
 PDB_utl_init_code_strs_ST_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.debug.pdb
@@ -8907,11 +9002,13 @@ PDB_ins_bool_ST_D 		= $(PROJ_OBJ_DIR)\inserters.boolean.debug.pdb
 PDB_ins_excp_ST_D 		= $(PROJ_OBJ_DIR)\inserters.exception.debug.pdb
 PDB_ins_host_ST_D 		= $(PROJ_OBJ_DIR)\inserters.hostid.debug.pdb
 PDB_ins_int_ST_D 			= $(PROJ_OBJ_DIR)\inserters.integer.debug.pdb
+PDB_ins_ivl_ST_D 			= $(PROJ_OBJ_DIR)\inserters.interval.debug.pdb
 PDB_ins_ptr_ST_D 			= $(PROJ_OBJ_DIR)\inserters.pointer.debug.pdb
 PDB_ins_prid_ST_D 		= $(PROJ_OBJ_DIR)\inserters.processid.debug.pdb
 PDB_ins_real_ST_D 		= $(PROJ_OBJ_DIR)\inserters.real.debug.pdb
 PDB_ins_slice_ST_D 		= $(PROJ_OBJ_DIR)\inserters.slice.debug.pdb
 PDB_ins_thrid_ST_D 		= $(PROJ_OBJ_DIR)\inserters.threadid.debug.pdb
+PDB_ins_stm_ch_ST_D 		= $(PROJ_OBJ_DIR)\inserters.stream_character.debug.pdb
 PDB_ins_vbool_ST_D 		= $(PROJ_OBJ_DIR)\inserters.variant_bool.debug.pdb
 PDB_ins_w2m_ST_D 			= $(PROJ_OBJ_DIR)\inserters.w2m.debug.pdb
 #PDB_bec_test_ST_D 		= $(PROJ_OBJ_DIR)\bec.test.debug.pdb
@@ -9021,11 +9118,13 @@ OBJ_CORE_ST_D=\
  $(OBJ_ins_excp_ST_D)\
  $(OBJ_ins_host_ST_D)\
  $(OBJ_ins_int_ST_D)\
+ $(OBJ_ins_ivl_ST_D)\
  $(OBJ_ins_ptr_ST_D)\
  $(OBJ_ins_prid_ST_D)\
  $(OBJ_ins_real_ST_D)\
  $(OBJ_ins_slice_ST_D)\
  $(OBJ_ins_thrid_ST_D)\
+ $(OBJ_ins_stm_ch_ST_D)\
  $(OBJ_ins_w2m_ST_D)\
  \
 
@@ -9037,11 +9136,13 @@ OBJ_APPL_ST_D=\
  $(OBJ_ins_excp_ST_D)\
  $(OBJ_ins_host_ST_D)\
  $(OBJ_ins_int_ST_D)\
+ $(OBJ_ins_ivl_ST_D)\
  $(OBJ_ins_ptr_ST_D)\
  $(OBJ_ins_prid_ST_D)\
  $(OBJ_ins_real_ST_D)\
  $(OBJ_ins_slice_ST_D)\
  $(OBJ_ins_thrid_ST_D)\
+ $(OBJ_ins_stm_ch_ST_D)\
  $(OBJ_ins_w2m_ST_D)\
  \
 
@@ -9072,12 +9173,15 @@ PDB_CORE_ST_D=\
  $(PDB_ins_excp_ST_D)\
  $(PDB_ins_host_ST_D)\
  $(PDB_ins_int_ST_D)\
+ $(PDB_ins_ivl_ST_D)\
  $(PDB_ins_ptr_ST_D)\
  $(PDB_ins_prid_ST_D)\
  $(PDB_ins_real_ST_D)\
  $(PDB_ins_slice_ST_D)\
  $(PDB_ins_thrid_ST_D)\
+	$(PDB_ins_stm_ch_ST_D)\
  $(PDB_ins_vbool_ST_D)\
+ $(PDB_ins_w2m_ST_D)\
  \
 
 
@@ -9418,11 +9522,13 @@ OBJ_ins_bool_ST_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.boolean.nox.debug.obj
 OBJ_ins_excp_ST_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.exception.nox.debug.obj
 OBJ_ins_host_ST_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.hostid.nox.debug.obj
 OBJ_ins_int_ST_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.integer.nox.debug.obj
+OBJ_ins_ivl_ST_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.interval.nox.debug.obj
 OBJ_ins_ptr_ST_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.pointer.nox.debug.obj
 OBJ_ins_prid_ST_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.processid.nox.debug.obj
 OBJ_ins_real_ST_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.real.nox.debug.obj
 OBJ_ins_slice_ST_D_NOX	 	= $(PROJ_OBJ_DIR)\inserters.slice.nox.debug.obj
 OBJ_ins_thrid_ST_D_NOX	 	= $(PROJ_OBJ_DIR)\inserters.threadid.nox.debug.obj
+OBJ_ins_stm_ch_ST_D_NOX	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.nox.debug.obj
 OBJ_ins_w2m_ST_D_NOX	 		= $(PROJ_OBJ_DIR)\inserters.w2m.nox.debug.obj
 PDB_utl_bailout_ST_D_NOX		= $(PROJ_OBJ_DIR)\util.bailout.nox.debug.pdb
 PDB_utl_init_code_strs_ST_D_NOX	= $(PROJ_OBJ_DIR)\util.init_err_strings.nox.debug.pdb
@@ -9447,11 +9553,13 @@ PDB_ins_bool_ST_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.boolean.nox.debug.pdb
 PDB_ins_excp_ST_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.exception.nox.debug.pdb
 PDB_ins_host_ST_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.hostid.nox.debug.pdb
 PDB_ins_int_ST_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.integer.nox.debug.pdb
+PDB_ins_ivl_ST_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.interval.nox.debug.pdb
 PDB_ins_ptr_ST_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.pointer.nox.debug.pdb
 PDB_ins_prid_ST_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.processid.nox.debug.pdb
 PDB_ins_real_ST_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.real.nox.debug.pdb
 PDB_ins_slice_ST_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.slice.nox.debug.pdb
 PDB_ins_thrid_ST_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.threadid.nox.debug.pdb
+PDB_ins_stm_ch_ST_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.stream_character.nox.debug.pdb
 PDB_ins_vbool_ST_D_NOX 		= $(PROJ_OBJ_DIR)\inserters.variant_bool.nox.debug.pdb
 PDB_ins_w2m_ST_D_NOX 			= $(PROJ_OBJ_DIR)\inserters.w2m.nox.debug.pdb
 #PDB_bec_test_ST_D_NOX 		= $(PROJ_OBJ_DIR)\bec.test.nox.debug.pdb
@@ -9548,11 +9656,13 @@ OBJ_CORE_ST_D_NOX=\
  $(OBJ_ins_excp_ST_D_NOX)\
  $(OBJ_ins_host_ST_D_NOX)\
  $(OBJ_ins_int_ST_D_NOX)\
+ $(OBJ_ins_ivl_ST_D_NOX)\
  $(OBJ_ins_ptr_ST_D_NOX)\
  $(OBJ_ins_prid_ST_D_NOX)\
  $(OBJ_ins_real_ST_D_NOX)\
  $(OBJ_ins_slice_ST_D_NOX)\
  $(OBJ_ins_thrid_ST_D_NOX)\
+ $(OBJ_ins_stm_ch_ST_D_NOX)\
  $(OBJ_ins_w2m_ST_D_NOX)\
  \
 
@@ -9564,11 +9674,13 @@ OBJ_APPL_ST_D_NOX=\
  $(OBJ_ins_excp_ST_D_NOX)\
  $(OBJ_ins_host_ST_D_NOX)\
  $(OBJ_ins_int_ST_D_NOX)\
+ $(OBJ_ins_ivl_ST_D_NOX)\
  $(OBJ_ins_ptr_ST_D_NOX)\
  $(OBJ_ins_prid_ST_D_NOX)\
  $(OBJ_ins_real_ST_D_NOX)\
  $(OBJ_ins_slice_ST_D_NOX)\
  $(OBJ_ins_thrid_ST_D_NOX)\
+ $(OBJ_ins_stm_ch_ST_D_NOX)\
  $(OBJ_ins_w2m_ST_D_NOX)\
  \
 
@@ -9599,12 +9711,15 @@ PDB_CORE_ST_D_NOX=\
  $(PDB_ins_excp_ST_D_NOX)\
  $(PDB_ins_host_ST_D_NOX)\
  $(PDB_ins_int_ST_D_NOX)\
+ $(PDB_ins_ivl_ST_D_NOX)\
  $(PDB_ins_ptr_ST_D_NOX)\
  $(PDB_ins_prid_ST_D_NOX)\
  $(PDB_ins_real_ST_D_NOX)\
  $(PDB_ins_slice_ST_D_NOX)\
  $(PDB_ins_thrid_ST_D_NOX)\
+	$(PDB_ins_stm_ch_ST_D_NOX)\
  $(PDB_ins_vbool_ST_D_NOX)\
+ $(PDB_ins_w2m_ST_D_NOX)\
  \
 
 
@@ -9899,11 +10014,13 @@ OBJ_ins_bool_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.boolean.obj
 OBJ_ins_excp_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.exception.obj
 OBJ_ins_host_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.hostid.obj
 OBJ_ins_int_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.integer.obj
+OBJ_ins_ivl_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.interval.obj
 OBJ_ins_ptr_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.pointer.obj
 OBJ_ins_prid_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.processid.obj
 OBJ_ins_real_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.real.obj
 OBJ_ins_slice_ST_R	 	= $(PROJ_OBJ_DIR)\inserters.slice.obj
 OBJ_ins_thrid_ST_R	 	= $(PROJ_OBJ_DIR)\inserters.threadid.obj
+OBJ_ins_stm_ch_ST_R	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.obj
 OBJ_ins_w2m_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.w2m.obj
 #PDB_bec_test_ST_R 		= $(PROJ_OBJ_DIR)\bec.test.pdb
 OBJ_bec_test_ST_R 		= $(PROJ_OBJ_DIR)\bec.test.obj
@@ -10012,11 +10129,13 @@ OBJ_CORE_ST_R=\
  $(OBJ_ins_excp_ST_R)\
  $(OBJ_ins_host_ST_R)\
  $(OBJ_ins_int_ST_R)\
+ $(OBJ_ins_ivl_ST_R)\
  $(OBJ_ins_ptr_ST_R)\
  $(OBJ_ins_prid_ST_R)\
  $(OBJ_ins_real_ST_R)\
  $(OBJ_ins_slice_ST_R)\
  $(OBJ_ins_thrid_ST_R)\
+ $(OBJ_ins_stm_ch_ST_R)\
  $(OBJ_ins_w2m_ST_R)\
  \
 
@@ -10028,11 +10147,13 @@ OBJ_APPL_ST_R=\
  $(OBJ_ins_excp_ST_R)\
  $(OBJ_ins_host_ST_R)\
  $(OBJ_ins_int_ST_R)\
+ $(OBJ_ins_ivl_ST_R)\
  $(OBJ_ins_ptr_ST_R)\
  $(OBJ_ins_prid_ST_R)\
  $(OBJ_ins_real_ST_R)\
  $(OBJ_ins_slice_ST_R)\
  $(OBJ_ins_thrid_ST_R)\
+ $(OBJ_ins_stm_ch_ST_R)\
  $(OBJ_ins_w2m_ST_R)\
  \
 
@@ -10358,11 +10479,13 @@ OBJ_ins_bool_ST_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.boolean.nox.obj
 OBJ_ins_excp_ST_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.exception.nox.obj
 OBJ_ins_host_ST_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.hostid.nox.obj
 OBJ_ins_int_ST_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.integer.nox.obj
+OBJ_ins_ivl_ST_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.interval.nox.obj
 OBJ_ins_ptr_ST_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.pointer.nox.obj
 OBJ_ins_prid_ST_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.processid.nox.obj
 OBJ_ins_real_ST_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.real.nox.obj
 OBJ_ins_slice_ST_R_NOX	 	= $(PROJ_OBJ_DIR)\inserters.slice.nox.obj
 OBJ_ins_thrid_ST_R_NOX	 	= $(PROJ_OBJ_DIR)\inserters.threadid.nox.obj
+OBJ_ins_stm_ch_ST_R_NOX	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.nox.obj
 OBJ_ins_w2m_ST_R_NOX	 		= $(PROJ_OBJ_DIR)\inserters.w2m.nox.obj
 #PDB_bec_test_ST_R_NOX 		= $(PROJ_OBJ_DIR)\bec.test.nox.pdb
 OBJ_bec_test_ST_R_NOX 		= $(PROJ_OBJ_DIR)\bec.test.nox.obj
@@ -10458,11 +10581,13 @@ OBJ_CORE_ST_R_NOX=\
  $(OBJ_ins_excp_ST_R_NOX)\
  $(OBJ_ins_host_ST_R_NOX)\
  $(OBJ_ins_int_ST_R_NOX)\
+ $(OBJ_ins_ivl_ST_R_NOX)\
  $(OBJ_ins_ptr_ST_R_NOX)\
  $(OBJ_ins_prid_ST_R_NOX)\
  $(OBJ_ins_real_ST_R_NOX)\
  $(OBJ_ins_slice_ST_R_NOX)\
  $(OBJ_ins_thrid_ST_R_NOX)\
+ $(OBJ_ins_stm_ch_ST_R_NOX)\
  $(OBJ_ins_w2m_ST_R_NOX)\
  \
 
@@ -10474,11 +10599,13 @@ OBJ_APPL_ST_R_NOX=\
  $(OBJ_ins_excp_ST_R_NOX)\
  $(OBJ_ins_host_ST_R_NOX)\
  $(OBJ_ins_int_ST_R_NOX)\
+ $(OBJ_ins_ivl_ST_R_NOX)\
  $(OBJ_ins_ptr_ST_R_NOX)\
  $(OBJ_ins_prid_ST_R_NOX)\
  $(OBJ_ins_real_ST_R_NOX)\
  $(OBJ_ins_slice_ST_R_NOX)\
  $(OBJ_ins_thrid_ST_R_NOX)\
+ $(OBJ_ins_stm_ch_ST_R_NOX)\
  $(OBJ_ins_w2m_ST_R_NOX)\
  \
 
@@ -10758,11 +10885,13 @@ OBJ_ins_bool_W_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.boolean.ws.mt.debug.obj
 OBJ_ins_excp_W_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.exception.ws.mt.debug.obj
 OBJ_ins_host_W_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.hostid.ws.mt.debug.obj
 OBJ_ins_int_W_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.integer.ws.mt.debug.obj
+OBJ_ins_ivl_W_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.interval.ws.mt.debug.obj
 OBJ_ins_ptr_W_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.pointer.ws.mt.debug.obj
 OBJ_ins_prid_W_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.processid.ws.mt.debug.obj
 OBJ_ins_real_W_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.real.ws.mt.debug.obj
 OBJ_ins_slice_W_MT_D	 	= $(PROJ_OBJ_DIR)\inserters.slice.ws.mt.debug.obj
 OBJ_ins_thrid_W_MT_D	 	= $(PROJ_OBJ_DIR)\inserters.threadid.ws.mt.debug.obj
+OBJ_ins_stm_ch_W_MT_D	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.ws.mt.debug.obj
 OBJ_ins_m2w_W_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.m2w.ws.mt.debug.obj
 PDB_utl_bailout_W_MT_D		= $(PROJ_OBJ_DIR)\util.bailout.ws.mt.debug.pdb
 PDB_utl_init_code_strs_W_MT_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.ws.mt.debug.pdb
@@ -10787,11 +10916,13 @@ PDB_ins_bool_W_MT_D 		= $(PROJ_OBJ_DIR)\inserters.boolean.ws.mt.debug.pdb
 PDB_ins_excp_W_MT_D 		= $(PROJ_OBJ_DIR)\inserters.exception.ws.mt.debug.pdb
 PDB_ins_host_W_MT_D 		= $(PROJ_OBJ_DIR)\inserters.hostid.ws.mt.debug.pdb
 PDB_ins_int_W_MT_D 			= $(PROJ_OBJ_DIR)\inserters.integer.ws.mt.debug.pdb
+PDB_ins_ivl_W_MT_D 			= $(PROJ_OBJ_DIR)\inserters.interval.ws.mt.debug.pdb
 PDB_ins_ptr_W_MT_D 			= $(PROJ_OBJ_DIR)\inserters.pointer.ws.mt.debug.pdb
 PDB_ins_prid_W_MT_D 		= $(PROJ_OBJ_DIR)\inserters.processid.ws.mt.debug.pdb
 PDB_ins_real_W_MT_D 		= $(PROJ_OBJ_DIR)\inserters.real.ws.mt.debug.pdb
 PDB_ins_slice_W_MT_D 		= $(PROJ_OBJ_DIR)\inserters.slice.ws.mt.debug.pdb
 PDB_ins_thrid_W_MT_D 		= $(PROJ_OBJ_DIR)\inserters.threadid.ws.mt.debug.pdb
+PDB_ins_stm_ch_W_MT_D 		= $(PROJ_OBJ_DIR)\inserters.stream_character.ws.mt.debug.pdb
 PDB_ins_vbool_W_MT_D 		= $(PROJ_OBJ_DIR)\inserters.variant_bool.ws.mt.debug.pdb
 PDB_ins_m2w_W_MT_D 			= $(PROJ_OBJ_DIR)\inserters.m2w.ws.mt.debug.pdb
 #PDB_bec_test_W_MT_D 		= $(PROJ_OBJ_DIR)\bec.test.widestring.mt.debug.pdb
@@ -10901,11 +11032,13 @@ OBJ_CORE_W_MT_D=\
  $(OBJ_ins_excp_W_MT_D)\
  $(OBJ_ins_host_W_MT_D)\
  $(OBJ_ins_int_W_MT_D)\
+ $(OBJ_ins_ivl_W_MT_D)\
  $(OBJ_ins_ptr_W_MT_D)\
  $(OBJ_ins_prid_W_MT_D)\
  $(OBJ_ins_real_W_MT_D)\
  $(OBJ_ins_slice_W_MT_D)\
  $(OBJ_ins_thrid_W_MT_D)\
+ $(OBJ_ins_stm_ch_W_MT_D)\
  $(OBJ_ins_m2w_W_MT_D)\
  \
 
@@ -10917,11 +11050,13 @@ OBJ_APPL_W_MT_D=\
  $(OBJ_ins_excp_W_MT_D)\
  $(OBJ_ins_host_W_MT_D)\
  $(OBJ_ins_int_W_MT_D)\
+ $(OBJ_ins_ivl_W_MT_D)\
  $(OBJ_ins_ptr_W_MT_D)\
  $(OBJ_ins_prid_W_MT_D)\
  $(OBJ_ins_real_W_MT_D)\
  $(OBJ_ins_slice_W_MT_D)\
  $(OBJ_ins_thrid_W_MT_D)\
+ $(OBJ_ins_stm_ch_W_MT_D)\
  $(OBJ_ins_m2w_W_MT_D)\
  \
 
@@ -10952,12 +11087,15 @@ PDB_CORE_W_MT_D=\
  $(PDB_ins_excp_W_MT_D)\
  $(PDB_ins_host_W_MT_D)\
  $(PDB_ins_int_W_MT_D)\
+ $(PDB_ins_ivl_W_MT_D)\
  $(PDB_ins_ptr_W_MT_D)\
  $(PDB_ins_prid_W_MT_D)\
  $(PDB_ins_real_W_MT_D)\
  $(PDB_ins_slice_W_MT_D)\
  $(PDB_ins_thrid_W_MT_D)\
+	$(PDB_ins_stm_ch_W_MT_D)\
  $(PDB_ins_vbool_W_MT_D)\
+ $(PDB_ins_m2w_W_MT_D)\
  \
 
 
@@ -11298,11 +11436,13 @@ OBJ_ins_bool_W_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.boolean.ws.dll.debug.obj
 OBJ_ins_excp_W_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.exception.ws.dll.debug.obj
 OBJ_ins_host_W_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.hostid.ws.dll.debug.obj
 OBJ_ins_int_W_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.integer.ws.dll.debug.obj
+OBJ_ins_ivl_W_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.interval.ws.dll.debug.obj
 OBJ_ins_ptr_W_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.pointer.ws.dll.debug.obj
 OBJ_ins_prid_W_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.processid.ws.dll.debug.obj
 OBJ_ins_real_W_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.real.ws.dll.debug.obj
 OBJ_ins_slice_W_DLL_D	 	= $(PROJ_OBJ_DIR)\inserters.slice.ws.dll.debug.obj
 OBJ_ins_thrid_W_DLL_D	 	= $(PROJ_OBJ_DIR)\inserters.threadid.ws.dll.debug.obj
+OBJ_ins_stm_ch_W_DLL_D	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.ws.dll.debug.obj
 OBJ_ins_m2w_W_DLL_D	 		= $(PROJ_OBJ_DIR)\inserters.m2w.ws.dll.debug.obj
 PDB_utl_bailout_W_DLL_D		= $(PROJ_OBJ_DIR)\util.bailout.ws.dll.debug.pdb
 PDB_utl_init_code_strs_W_DLL_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.ws.dll.debug.pdb
@@ -11327,11 +11467,13 @@ PDB_ins_bool_W_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.boolean.ws.dll.debug.pdb
 PDB_ins_excp_W_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.exception.ws.dll.debug.pdb
 PDB_ins_host_W_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.hostid.ws.dll.debug.pdb
 PDB_ins_int_W_DLL_D 			= $(PROJ_OBJ_DIR)\inserters.integer.ws.dll.debug.pdb
+PDB_ins_ivl_W_DLL_D 			= $(PROJ_OBJ_DIR)\inserters.interval.ws.dll.debug.pdb
 PDB_ins_ptr_W_DLL_D 			= $(PROJ_OBJ_DIR)\inserters.pointer.ws.dll.debug.pdb
 PDB_ins_prid_W_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.processid.ws.dll.debug.pdb
 PDB_ins_real_W_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.real.ws.dll.debug.pdb
 PDB_ins_slice_W_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.slice.ws.dll.debug.pdb
 PDB_ins_thrid_W_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.threadid.ws.dll.debug.pdb
+PDB_ins_stm_ch_W_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.stream_character.ws.dll.debug.pdb
 PDB_ins_vbool_W_DLL_D 		= $(PROJ_OBJ_DIR)\inserters.variant_bool.ws.dll.debug.pdb
 PDB_ins_m2w_W_DLL_D 			= $(PROJ_OBJ_DIR)\inserters.m2w.ws.dll.debug.pdb
 #PDB_bec_test_W_DLL_D 		= $(PROJ_OBJ_DIR)\bec.test.widestring.dll.debug.pdb
@@ -11441,11 +11583,13 @@ OBJ_CORE_W_DLL_D=\
  $(OBJ_ins_excp_W_DLL_D)\
  $(OBJ_ins_host_W_DLL_D)\
  $(OBJ_ins_int_W_DLL_D)\
+ $(OBJ_ins_ivl_W_DLL_D)\
  $(OBJ_ins_ptr_W_DLL_D)\
  $(OBJ_ins_prid_W_DLL_D)\
  $(OBJ_ins_real_W_DLL_D)\
  $(OBJ_ins_slice_W_DLL_D)\
  $(OBJ_ins_thrid_W_DLL_D)\
+ $(OBJ_ins_stm_ch_W_DLL_D)\
  $(OBJ_ins_m2w_W_DLL_D)\
  \
 
@@ -11457,11 +11601,13 @@ OBJ_APPL_W_DLL_D=\
  $(OBJ_ins_excp_W_DLL_D)\
  $(OBJ_ins_host_W_DLL_D)\
  $(OBJ_ins_int_W_DLL_D)\
+ $(OBJ_ins_ivl_W_DLL_D)\
  $(OBJ_ins_ptr_W_DLL_D)\
  $(OBJ_ins_prid_W_DLL_D)\
  $(OBJ_ins_real_W_DLL_D)\
  $(OBJ_ins_slice_W_DLL_D)\
  $(OBJ_ins_thrid_W_DLL_D)\
+ $(OBJ_ins_stm_ch_W_DLL_D)\
  $(OBJ_ins_m2w_W_DLL_D)\
  \
 
@@ -11492,12 +11638,15 @@ PDB_CORE_W_DLL_D=\
  $(PDB_ins_excp_W_DLL_D)\
  $(PDB_ins_host_W_DLL_D)\
  $(PDB_ins_int_W_DLL_D)\
+ $(PDB_ins_ivl_W_DLL_D)\
  $(PDB_ins_ptr_W_DLL_D)\
  $(PDB_ins_prid_W_DLL_D)\
  $(PDB_ins_real_W_DLL_D)\
  $(PDB_ins_slice_W_DLL_D)\
  $(PDB_ins_thrid_W_DLL_D)\
+	$(PDB_ins_stm_ch_W_DLL_D)\
  $(PDB_ins_vbool_W_DLL_D)\
+ $(PDB_ins_m2w_W_DLL_D)\
  \
 
 
@@ -11838,11 +11987,13 @@ OBJ_ins_bool_W_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.boolean.ws.dll.obj
 OBJ_ins_excp_W_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.exception.ws.dll.obj
 OBJ_ins_host_W_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.hostid.ws.dll.obj
 OBJ_ins_int_W_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.integer.ws.dll.obj
+OBJ_ins_ivl_W_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.interval.ws.dll.obj
 OBJ_ins_ptr_W_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.pointer.ws.dll.obj
 OBJ_ins_prid_W_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.processid.ws.dll.obj
 OBJ_ins_real_W_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.real.ws.dll.obj
 OBJ_ins_slice_W_DLL_R	 	= $(PROJ_OBJ_DIR)\inserters.slice.ws.dll.obj
 OBJ_ins_thrid_W_DLL_R	 	= $(PROJ_OBJ_DIR)\inserters.threadid.ws.dll.obj
+OBJ_ins_stm_ch_W_DLL_R	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.ws.dll.obj
 OBJ_ins_m2w_W_DLL_R	 		= $(PROJ_OBJ_DIR)\inserters.m2w.ws.dll.obj
 #PDB_bec_test_W_DLL_R 		= $(PROJ_OBJ_DIR)\bec.test.widestring.dll.pdb
 OBJ_bec_test_W_DLL_R 		= $(PROJ_OBJ_DIR)\bec.test.ws.dll.obj
@@ -11951,11 +12102,13 @@ OBJ_CORE_W_DLL_R=\
  $(OBJ_ins_excp_W_DLL_R)\
  $(OBJ_ins_host_W_DLL_R)\
  $(OBJ_ins_int_W_DLL_R)\
+ $(OBJ_ins_ivl_W_DLL_R)\
  $(OBJ_ins_ptr_W_DLL_R)\
  $(OBJ_ins_prid_W_DLL_R)\
  $(OBJ_ins_real_W_DLL_R)\
  $(OBJ_ins_slice_W_DLL_R)\
  $(OBJ_ins_thrid_W_DLL_R)\
+ $(OBJ_ins_stm_ch_W_DLL_R)\
  $(OBJ_ins_m2w_W_DLL_R)\
  \
 
@@ -11967,11 +12120,13 @@ OBJ_APPL_W_DLL_R=\
  $(OBJ_ins_excp_W_DLL_R)\
  $(OBJ_ins_host_W_DLL_R)\
  $(OBJ_ins_int_W_DLL_R)\
+ $(OBJ_ins_ivl_W_DLL_R)\
  $(OBJ_ins_ptr_W_DLL_R)\
  $(OBJ_ins_prid_W_DLL_R)\
  $(OBJ_ins_real_W_DLL_R)\
  $(OBJ_ins_slice_W_DLL_R)\
  $(OBJ_ins_thrid_W_DLL_R)\
+ $(OBJ_ins_stm_ch_W_DLL_R)\
  $(OBJ_ins_m2w_W_DLL_R)\
  \
 
@@ -12297,11 +12452,13 @@ OBJ_ins_bool_W_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.boolean.ws.mt.obj
 OBJ_ins_excp_W_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.exception.ws.mt.obj
 OBJ_ins_host_W_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.hostid.ws.mt.obj
 OBJ_ins_int_W_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.integer.ws.mt.obj
+OBJ_ins_ivl_W_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.interval.ws.mt.obj
 OBJ_ins_ptr_W_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.pointer.ws.mt.obj
 OBJ_ins_prid_W_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.processid.ws.mt.obj
 OBJ_ins_real_W_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.real.ws.mt.obj
 OBJ_ins_slice_W_MT_R	 	= $(PROJ_OBJ_DIR)\inserters.slice.ws.mt.obj
 OBJ_ins_thrid_W_MT_R	 	= $(PROJ_OBJ_DIR)\inserters.threadid.ws.mt.obj
+OBJ_ins_stm_ch_W_MT_R	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.ws.mt.obj
 OBJ_ins_m2w_W_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.m2w.ws.mt.obj
 #PDB_bec_test_W_MT_R 		= $(PROJ_OBJ_DIR)\bec.test.widestring.mt.pdb
 OBJ_bec_test_W_MT_R 		= $(PROJ_OBJ_DIR)\bec.test.ws.mt.obj
@@ -12410,11 +12567,13 @@ OBJ_CORE_W_MT_R=\
  $(OBJ_ins_excp_W_MT_R)\
  $(OBJ_ins_host_W_MT_R)\
  $(OBJ_ins_int_W_MT_R)\
+ $(OBJ_ins_ivl_W_MT_R)\
  $(OBJ_ins_ptr_W_MT_R)\
  $(OBJ_ins_prid_W_MT_R)\
  $(OBJ_ins_real_W_MT_R)\
  $(OBJ_ins_slice_W_MT_R)\
  $(OBJ_ins_thrid_W_MT_R)\
+ $(OBJ_ins_stm_ch_W_MT_R)\
  $(OBJ_ins_m2w_W_MT_R)\
  \
 
@@ -12426,11 +12585,13 @@ OBJ_APPL_W_MT_R=\
  $(OBJ_ins_excp_W_MT_R)\
  $(OBJ_ins_host_W_MT_R)\
  $(OBJ_ins_int_W_MT_R)\
+ $(OBJ_ins_ivl_W_MT_R)\
  $(OBJ_ins_ptr_W_MT_R)\
  $(OBJ_ins_prid_W_MT_R)\
  $(OBJ_ins_real_W_MT_R)\
  $(OBJ_ins_slice_W_MT_R)\
  $(OBJ_ins_thrid_W_MT_R)\
+ $(OBJ_ins_stm_ch_W_MT_R)\
  $(OBJ_ins_m2w_W_MT_R)\
  \
 
@@ -12756,11 +12917,13 @@ OBJ_ins_bool_W_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.boolean.ws.debug.obj
 OBJ_ins_excp_W_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.exception.ws.debug.obj
 OBJ_ins_host_W_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.hostid.ws.debug.obj
 OBJ_ins_int_W_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.integer.ws.debug.obj
+OBJ_ins_ivl_W_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.interval.ws.debug.obj
 OBJ_ins_ptr_W_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.pointer.ws.debug.obj
 OBJ_ins_prid_W_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.processid.ws.debug.obj
 OBJ_ins_real_W_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.real.ws.debug.obj
 OBJ_ins_slice_W_ST_D	 	= $(PROJ_OBJ_DIR)\inserters.slice.ws.debug.obj
 OBJ_ins_thrid_W_ST_D	 	= $(PROJ_OBJ_DIR)\inserters.threadid.ws.debug.obj
+OBJ_ins_stm_ch_W_ST_D	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.ws.debug.obj
 OBJ_ins_m2w_W_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.m2w.ws.debug.obj
 PDB_utl_bailout_W_ST_D		= $(PROJ_OBJ_DIR)\util.bailout.ws.debug.pdb
 PDB_utl_init_code_strs_W_ST_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.ws.debug.pdb
@@ -12785,11 +12948,13 @@ PDB_ins_bool_W_ST_D 		= $(PROJ_OBJ_DIR)\inserters.boolean.ws.debug.pdb
 PDB_ins_excp_W_ST_D 		= $(PROJ_OBJ_DIR)\inserters.exception.ws.debug.pdb
 PDB_ins_host_W_ST_D 		= $(PROJ_OBJ_DIR)\inserters.hostid.ws.debug.pdb
 PDB_ins_int_W_ST_D 			= $(PROJ_OBJ_DIR)\inserters.integer.ws.debug.pdb
+PDB_ins_ivl_W_ST_D 			= $(PROJ_OBJ_DIR)\inserters.interval.ws.debug.pdb
 PDB_ins_ptr_W_ST_D 			= $(PROJ_OBJ_DIR)\inserters.pointer.ws.debug.pdb
 PDB_ins_prid_W_ST_D 		= $(PROJ_OBJ_DIR)\inserters.processid.ws.debug.pdb
 PDB_ins_real_W_ST_D 		= $(PROJ_OBJ_DIR)\inserters.real.ws.debug.pdb
 PDB_ins_slice_W_ST_D 		= $(PROJ_OBJ_DIR)\inserters.slice.ws.debug.pdb
 PDB_ins_thrid_W_ST_D 		= $(PROJ_OBJ_DIR)\inserters.threadid.ws.debug.pdb
+PDB_ins_stm_ch_W_ST_D 		= $(PROJ_OBJ_DIR)\inserters.stream_character.ws.debug.pdb
 PDB_ins_vbool_W_ST_D 		= $(PROJ_OBJ_DIR)\inserters.variant_bool.ws.debug.pdb
 PDB_ins_m2w_W_ST_D 			= $(PROJ_OBJ_DIR)\inserters.m2w.ws.debug.pdb
 #PDB_bec_test_W_ST_D 		= $(PROJ_OBJ_DIR)\bec.test.widestring.debug.pdb
@@ -12899,11 +13064,13 @@ OBJ_CORE_W_ST_D=\
  $(OBJ_ins_excp_W_ST_D)\
  $(OBJ_ins_host_W_ST_D)\
  $(OBJ_ins_int_W_ST_D)\
+ $(OBJ_ins_ivl_W_ST_D)\
  $(OBJ_ins_ptr_W_ST_D)\
  $(OBJ_ins_prid_W_ST_D)\
  $(OBJ_ins_real_W_ST_D)\
  $(OBJ_ins_slice_W_ST_D)\
  $(OBJ_ins_thrid_W_ST_D)\
+ $(OBJ_ins_stm_ch_W_ST_D)\
  $(OBJ_ins_m2w_W_ST_D)\
  \
 
@@ -12915,11 +13082,13 @@ OBJ_APPL_W_ST_D=\
  $(OBJ_ins_excp_W_ST_D)\
  $(OBJ_ins_host_W_ST_D)\
  $(OBJ_ins_int_W_ST_D)\
+ $(OBJ_ins_ivl_W_ST_D)\
  $(OBJ_ins_ptr_W_ST_D)\
  $(OBJ_ins_prid_W_ST_D)\
  $(OBJ_ins_real_W_ST_D)\
  $(OBJ_ins_slice_W_ST_D)\
  $(OBJ_ins_thrid_W_ST_D)\
+ $(OBJ_ins_stm_ch_W_ST_D)\
  $(OBJ_ins_m2w_W_ST_D)\
  \
 
@@ -12950,12 +13119,15 @@ PDB_CORE_W_ST_D=\
  $(PDB_ins_excp_W_ST_D)\
  $(PDB_ins_host_W_ST_D)\
  $(PDB_ins_int_W_ST_D)\
+ $(PDB_ins_ivl_W_ST_D)\
  $(PDB_ins_ptr_W_ST_D)\
  $(PDB_ins_prid_W_ST_D)\
  $(PDB_ins_real_W_ST_D)\
  $(PDB_ins_slice_W_ST_D)\
  $(PDB_ins_thrid_W_ST_D)\
+	$(PDB_ins_stm_ch_W_ST_D)\
  $(PDB_ins_vbool_W_ST_D)\
+ $(PDB_ins_m2w_W_ST_D)\
  \
 
 
@@ -13296,11 +13468,13 @@ OBJ_ins_bool_W_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.boolean.ws.obj
 OBJ_ins_excp_W_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.exception.ws.obj
 OBJ_ins_host_W_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.hostid.ws.obj
 OBJ_ins_int_W_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.integer.ws.obj
+OBJ_ins_ivl_W_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.interval.ws.obj
 OBJ_ins_ptr_W_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.pointer.ws.obj
 OBJ_ins_prid_W_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.processid.ws.obj
 OBJ_ins_real_W_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.real.ws.obj
 OBJ_ins_slice_W_ST_R	 	= $(PROJ_OBJ_DIR)\inserters.slice.ws.obj
 OBJ_ins_thrid_W_ST_R	 	= $(PROJ_OBJ_DIR)\inserters.threadid.ws.obj
+OBJ_ins_stm_ch_W_ST_R	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.ws.obj
 OBJ_ins_m2w_W_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.m2w.ws.obj
 #PDB_bec_test_W_ST_R 		= $(PROJ_OBJ_DIR)\bec.test.widestring.pdb
 OBJ_bec_test_W_ST_R 		= $(PROJ_OBJ_DIR)\bec.test.ws.obj
@@ -13409,11 +13583,13 @@ OBJ_CORE_W_ST_R=\
  $(OBJ_ins_excp_W_ST_R)\
  $(OBJ_ins_host_W_ST_R)\
  $(OBJ_ins_int_W_ST_R)\
+ $(OBJ_ins_ivl_W_ST_R)\
  $(OBJ_ins_ptr_W_ST_R)\
  $(OBJ_ins_prid_W_ST_R)\
  $(OBJ_ins_real_W_ST_R)\
  $(OBJ_ins_slice_W_ST_R)\
  $(OBJ_ins_thrid_W_ST_R)\
+ $(OBJ_ins_stm_ch_W_ST_R)\
  $(OBJ_ins_m2w_W_ST_R)\
  \
 
@@ -13425,11 +13601,13 @@ OBJ_APPL_W_ST_R=\
  $(OBJ_ins_excp_W_ST_R)\
  $(OBJ_ins_host_W_ST_R)\
  $(OBJ_ins_int_W_ST_R)\
+ $(OBJ_ins_ivl_W_ST_R)\
  $(OBJ_ins_ptr_W_ST_R)\
  $(OBJ_ins_prid_W_ST_R)\
  $(OBJ_ins_real_W_ST_R)\
  $(OBJ_ins_slice_W_ST_R)\
  $(OBJ_ins_thrid_W_ST_R)\
+ $(OBJ_ins_stm_ch_W_ST_R)\
  $(OBJ_ins_m2w_W_ST_R)\
  \
 
@@ -15354,6 +15532,24 @@ OBJ_TEST_COMP_ins_slice_W_DLL_R	=	.\test.component.inserters.slice.ws.dll.obj
 OBJ_TEST_COMP_ins_slice_W_MT_R	=	.\test.component.inserters.slice.ws.mt.obj
 OBJ_TEST_COMP_ins_slice_W_ST_D	=	.\test.component.inserters.slice.ws.debug.obj
 OBJ_TEST_COMP_ins_slice_W_ST_R	=	.\test.component.inserters.slice.ws.obj
+OBJ_TEST_COMP_ins_stm_ch_MT_D	=	.\test.component.inserters.stream_character.mt.debug.obj
+OBJ_TEST_COMP_ins_stm_ch_MT_D_NOX	=	.\test.component.inserters.stream_character.mt.nox.debug.obj
+OBJ_TEST_COMP_ins_stm_ch_DLL_D	=	.\test.component.inserters.stream_character.dll.debug.obj
+OBJ_TEST_COMP_ins_stm_ch_DLL_D_NOX	=	.\test.component.inserters.stream_character.dll.nox.debug.obj
+OBJ_TEST_COMP_ins_stm_ch_DLL_R	=	.\test.component.inserters.stream_character.dll.obj
+OBJ_TEST_COMP_ins_stm_ch_DLL_R_NOX	=	.\test.component.inserters.stream_character.dll.nox.obj
+OBJ_TEST_COMP_ins_stm_ch_MT_R	=	.\test.component.inserters.stream_character.mt.obj
+OBJ_TEST_COMP_ins_stm_ch_MT_R_NOX	=	.\test.component.inserters.stream_character.mt.nox.obj
+OBJ_TEST_COMP_ins_stm_ch_ST_D	=	.\test.component.inserters.stream_character.debug.obj
+OBJ_TEST_COMP_ins_stm_ch_ST_D_NOX	=	.\test.component.inserters.stream_character.nox.debug.obj
+OBJ_TEST_COMP_ins_stm_ch_ST_R	=	.\test.component.inserters.stream_character.obj
+OBJ_TEST_COMP_ins_stm_ch_ST_R_NOX	=	.\test.component.inserters.stream_character.nox.obj
+OBJ_TEST_COMP_ins_stm_ch_W_MT_D	=	.\test.component.inserters.stream_character.ws.mt.debug.obj
+OBJ_TEST_COMP_ins_stm_ch_W_DLL_D	=	.\test.component.inserters.stream_character.ws.dll.debug.obj
+OBJ_TEST_COMP_ins_stm_ch_W_DLL_R	=	.\test.component.inserters.stream_character.ws.dll.obj
+OBJ_TEST_COMP_ins_stm_ch_W_MT_R	=	.\test.component.inserters.stream_character.ws.mt.obj
+OBJ_TEST_COMP_ins_stm_ch_W_ST_D	=	.\test.component.inserters.stream_character.ws.debug.obj
+OBJ_TEST_COMP_ins_stm_ch_W_ST_R	=	.\test.component.inserters.stream_character.ws.obj
 OBJ_TEST_COMP_ins_thrid_MT_D	=	.\test.component.inserters.threadId.mt.debug.obj
 OBJ_TEST_COMP_ins_thrid_MT_D_NOX	=	.\test.component.inserters.threadId.mt.nox.debug.obj
 OBJ_TEST_COMP_ins_thrid_DLL_D	=	.\test.component.inserters.threadId.dll.debug.obj
@@ -17992,6 +18188,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_MT_D)\
  $(OBJ_TEST_COMP_ins_real_MT_D)\
  $(OBJ_TEST_COMP_ins_slice_MT_D)\
+ $(OBJ_TEST_COMP_ins_stm_ch_MT_D)\
  $(OBJ_TEST_COMP_ins_thrid_MT_D)\
  $(OBJ_TEST_COMP_ins_vbool_MT_D)\
  $(OBJ_TEST_COMP_ins_w2m_MT_D)\
@@ -18011,6 +18208,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_MT_D_NOX)\
  $(OBJ_TEST_COMP_ins_real_MT_D_NOX)\
  $(OBJ_TEST_COMP_ins_slice_MT_D_NOX)\
+ $(OBJ_TEST_COMP_ins_stm_ch_MT_D_NOX)\
  $(OBJ_TEST_COMP_ins_thrid_MT_D_NOX)\
  $(OBJ_TEST_COMP_ins_vbool_MT_D_NOX)\
  $(OBJ_TEST_COMP_ins_w2m_MT_D_NOX)\
@@ -18030,6 +18228,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_DLL_D)\
  $(OBJ_TEST_COMP_ins_real_DLL_D)\
  $(OBJ_TEST_COMP_ins_slice_DLL_D)\
+ $(OBJ_TEST_COMP_ins_stm_ch_DLL_D)\
  $(OBJ_TEST_COMP_ins_thrid_DLL_D)\
  $(OBJ_TEST_COMP_ins_vbool_DLL_D)\
  $(OBJ_TEST_COMP_ins_w2m_DLL_D)\
@@ -18049,6 +18248,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_DLL_D_NOX)\
  $(OBJ_TEST_COMP_ins_real_DLL_D_NOX)\
  $(OBJ_TEST_COMP_ins_slice_DLL_D_NOX)\
+ $(OBJ_TEST_COMP_ins_stm_ch_DLL_D_NOX)\
  $(OBJ_TEST_COMP_ins_thrid_DLL_D_NOX)\
  $(OBJ_TEST_COMP_ins_vbool_DLL_D_NOX)\
  $(OBJ_TEST_COMP_ins_w2m_DLL_D_NOX)\
@@ -18068,6 +18268,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_DLL_R)\
  $(OBJ_TEST_COMP_ins_real_DLL_R)\
  $(OBJ_TEST_COMP_ins_slice_DLL_R)\
+ $(OBJ_TEST_COMP_ins_stm_ch_DLL_R)\
  $(OBJ_TEST_COMP_ins_thrid_DLL_R)\
  $(OBJ_TEST_COMP_ins_vbool_DLL_R)\
  $(OBJ_TEST_COMP_ins_w2m_DLL_R)\
@@ -18087,6 +18288,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_DLL_R_NOX)\
  $(OBJ_TEST_COMP_ins_real_DLL_R_NOX)\
  $(OBJ_TEST_COMP_ins_slice_DLL_R_NOX)\
+ $(OBJ_TEST_COMP_ins_stm_ch_DLL_R_NOX)\
  $(OBJ_TEST_COMP_ins_thrid_DLL_R_NOX)\
  $(OBJ_TEST_COMP_ins_vbool_DLL_R_NOX)\
  $(OBJ_TEST_COMP_ins_w2m_DLL_R_NOX)\
@@ -18106,6 +18308,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_MT_R)\
  $(OBJ_TEST_COMP_ins_real_MT_R)\
  $(OBJ_TEST_COMP_ins_slice_MT_R)\
+ $(OBJ_TEST_COMP_ins_stm_ch_MT_R)\
  $(OBJ_TEST_COMP_ins_thrid_MT_R)\
  $(OBJ_TEST_COMP_ins_vbool_MT_R)\
  $(OBJ_TEST_COMP_ins_w2m_MT_R)\
@@ -18125,6 +18328,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_MT_R_NOX)\
  $(OBJ_TEST_COMP_ins_real_MT_R_NOX)\
  $(OBJ_TEST_COMP_ins_slice_MT_R_NOX)\
+ $(OBJ_TEST_COMP_ins_stm_ch_MT_R_NOX)\
  $(OBJ_TEST_COMP_ins_thrid_MT_R_NOX)\
  $(OBJ_TEST_COMP_ins_vbool_MT_R_NOX)\
  $(OBJ_TEST_COMP_ins_w2m_MT_R_NOX)\
@@ -18143,6 +18347,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_ST_D)\
  $(OBJ_TEST_COMP_ins_real_ST_D)\
  $(OBJ_TEST_COMP_ins_slice_ST_D)\
+ $(OBJ_TEST_COMP_ins_stm_ch_ST_D)\
  $(OBJ_TEST_COMP_ins_thrid_ST_D)\
  $(OBJ_TEST_COMP_ins_vbool_ST_D)\
  $(OBJ_TEST_COMP_ins_w2m_ST_D)\
@@ -18161,6 +18366,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_ST_D_NOX)\
  $(OBJ_TEST_COMP_ins_real_ST_D_NOX)\
  $(OBJ_TEST_COMP_ins_slice_ST_D_NOX)\
+ $(OBJ_TEST_COMP_ins_stm_ch_ST_D_NOX)\
  $(OBJ_TEST_COMP_ins_thrid_ST_D_NOX)\
  $(OBJ_TEST_COMP_ins_vbool_ST_D_NOX)\
  $(OBJ_TEST_COMP_ins_w2m_ST_D_NOX)\
@@ -18179,6 +18385,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_ST_R)\
  $(OBJ_TEST_COMP_ins_real_ST_R)\
  $(OBJ_TEST_COMP_ins_slice_ST_R)\
+ $(OBJ_TEST_COMP_ins_stm_ch_ST_R)\
  $(OBJ_TEST_COMP_ins_thrid_ST_R)\
  $(OBJ_TEST_COMP_ins_vbool_ST_R)\
  $(OBJ_TEST_COMP_ins_w2m_ST_R)\
@@ -18197,6 +18404,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_ST_R_NOX)\
  $(OBJ_TEST_COMP_ins_real_ST_R_NOX)\
  $(OBJ_TEST_COMP_ins_slice_ST_R_NOX)\
+ $(OBJ_TEST_COMP_ins_stm_ch_ST_R_NOX)\
  $(OBJ_TEST_COMP_ins_thrid_ST_R_NOX)\
  $(OBJ_TEST_COMP_ins_vbool_ST_R_NOX)\
  $(OBJ_TEST_COMP_ins_w2m_ST_R_NOX)\
@@ -18216,6 +18424,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_W_MT_D)\
  $(OBJ_TEST_COMP_ins_real_W_MT_D)\
  $(OBJ_TEST_COMP_ins_slice_W_MT_D)\
+ $(OBJ_TEST_COMP_ins_stm_ch_W_MT_D)\
  $(OBJ_TEST_COMP_ins_thrid_W_MT_D)\
  $(OBJ_TEST_COMP_ins_vbool_W_MT_D)\
  $(OBJ_TEST_COMP_ins_m2w_W_MT_D)\
@@ -18235,6 +18444,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_W_DLL_D)\
  $(OBJ_TEST_COMP_ins_real_W_DLL_D)\
  $(OBJ_TEST_COMP_ins_slice_W_DLL_D)\
+ $(OBJ_TEST_COMP_ins_stm_ch_W_DLL_D)\
  $(OBJ_TEST_COMP_ins_thrid_W_DLL_D)\
  $(OBJ_TEST_COMP_ins_vbool_W_DLL_D)\
  $(OBJ_TEST_COMP_ins_m2w_W_DLL_D)\
@@ -18254,6 +18464,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_W_DLL_R)\
  $(OBJ_TEST_COMP_ins_real_W_DLL_R)\
  $(OBJ_TEST_COMP_ins_slice_W_DLL_R)\
+ $(OBJ_TEST_COMP_ins_stm_ch_W_DLL_R)\
  $(OBJ_TEST_COMP_ins_thrid_W_DLL_R)\
  $(OBJ_TEST_COMP_ins_vbool_W_DLL_R)\
  $(OBJ_TEST_COMP_ins_m2w_W_DLL_R)\
@@ -18273,6 +18484,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_W_MT_R)\
  $(OBJ_TEST_COMP_ins_real_W_MT_R)\
  $(OBJ_TEST_COMP_ins_slice_W_MT_R)\
+ $(OBJ_TEST_COMP_ins_stm_ch_W_MT_R)\
  $(OBJ_TEST_COMP_ins_thrid_W_MT_R)\
  $(OBJ_TEST_COMP_ins_vbool_W_MT_R)\
  $(OBJ_TEST_COMP_ins_m2w_W_MT_R)\
@@ -18291,6 +18503,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_W_ST_D)\
  $(OBJ_TEST_COMP_ins_real_W_ST_D)\
  $(OBJ_TEST_COMP_ins_slice_W_ST_D)\
+ $(OBJ_TEST_COMP_ins_stm_ch_W_ST_D)\
  $(OBJ_TEST_COMP_ins_thrid_W_ST_D)\
  $(OBJ_TEST_COMP_ins_vbool_W_ST_D)\
  $(OBJ_TEST_COMP_ins_m2w_W_ST_D)\
@@ -18309,6 +18522,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_prid_W_ST_R)\
  $(OBJ_TEST_COMP_ins_real_W_ST_R)\
  $(OBJ_TEST_COMP_ins_slice_W_ST_R)\
+ $(OBJ_TEST_COMP_ins_stm_ch_W_ST_R)\
  $(OBJ_TEST_COMP_ins_thrid_W_ST_R)\
  $(OBJ_TEST_COMP_ins_vbool_W_ST_R)\
  $(OBJ_TEST_COMP_ins_m2w_W_ST_R)\
@@ -21195,6 +21409,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_MT_D)\
  $(TARG_TEST_COMP_ins_real_MT_D)\
  $(TARG_TEST_COMP_ins_slice_MT_D)\
+ $(TARG_TEST_COMP_ins_stm_ch_MT_D)\
  $(TARG_TEST_COMP_ins_thrid_MT_D)\
  $(TARG_TEST_COMP_ins_vbool_MT_D)\
  $(TARG_TEST_COMP_ins_w2m_MT_D)\
@@ -21214,6 +21429,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_MT_D_NOX)\
  $(TARG_TEST_COMP_ins_real_MT_D_NOX)\
  $(TARG_TEST_COMP_ins_slice_MT_D_NOX)\
+ $(TARG_TEST_COMP_ins_stm_ch_MT_D_NOX)\
  $(TARG_TEST_COMP_ins_thrid_MT_D_NOX)\
  $(TARG_TEST_COMP_ins_vbool_MT_D_NOX)\
  $(TARG_TEST_COMP_ins_w2m_MT_D_NOX)\
@@ -21233,6 +21449,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_DLL_D)\
  $(TARG_TEST_COMP_ins_real_DLL_D)\
  $(TARG_TEST_COMP_ins_slice_DLL_D)\
+ $(TARG_TEST_COMP_ins_stm_ch_DLL_D)\
  $(TARG_TEST_COMP_ins_thrid_DLL_D)\
  $(TARG_TEST_COMP_ins_vbool_DLL_D)\
  $(TARG_TEST_COMP_ins_w2m_DLL_D)\
@@ -21252,6 +21469,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_DLL_D_NOX)\
  $(TARG_TEST_COMP_ins_real_DLL_D_NOX)\
  $(TARG_TEST_COMP_ins_slice_DLL_D_NOX)\
+ $(TARG_TEST_COMP_ins_stm_ch_DLL_D_NOX)\
  $(TARG_TEST_COMP_ins_thrid_DLL_D_NOX)\
  $(TARG_TEST_COMP_ins_vbool_DLL_D_NOX)\
  $(TARG_TEST_COMP_ins_w2m_DLL_D_NOX)\
@@ -21271,6 +21489,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_DLL_R)\
  $(TARG_TEST_COMP_ins_real_DLL_R)\
  $(TARG_TEST_COMP_ins_slice_DLL_R)\
+ $(TARG_TEST_COMP_ins_stm_ch_DLL_R)\
  $(TARG_TEST_COMP_ins_thrid_DLL_R)\
  $(TARG_TEST_COMP_ins_vbool_DLL_R)\
  $(TARG_TEST_COMP_ins_w2m_DLL_R)\
@@ -21290,6 +21509,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_DLL_R_NOX)\
  $(TARG_TEST_COMP_ins_real_DLL_R_NOX)\
  $(TARG_TEST_COMP_ins_slice_DLL_R_NOX)\
+ $(TARG_TEST_COMP_ins_stm_ch_DLL_R_NOX)\
  $(TARG_TEST_COMP_ins_thrid_DLL_R_NOX)\
  $(TARG_TEST_COMP_ins_vbool_DLL_R_NOX)\
  $(TARG_TEST_COMP_ins_w2m_DLL_R_NOX)\
@@ -21309,6 +21529,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_MT_R)\
  $(TARG_TEST_COMP_ins_real_MT_R)\
  $(TARG_TEST_COMP_ins_slice_MT_R)\
+ $(TARG_TEST_COMP_ins_stm_ch_MT_R)\
  $(TARG_TEST_COMP_ins_thrid_MT_R)\
  $(TARG_TEST_COMP_ins_vbool_MT_R)\
  $(TARG_TEST_COMP_ins_w2m_MT_R)\
@@ -21328,6 +21549,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_MT_R_NOX)\
  $(TARG_TEST_COMP_ins_real_MT_R_NOX)\
  $(TARG_TEST_COMP_ins_slice_MT_R_NOX)\
+ $(TARG_TEST_COMP_ins_stm_ch_MT_R_NOX)\
  $(TARG_TEST_COMP_ins_thrid_MT_R_NOX)\
  $(TARG_TEST_COMP_ins_vbool_MT_R_NOX)\
  $(TARG_TEST_COMP_ins_w2m_MT_R_NOX)\
@@ -21346,6 +21568,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_ST_D)\
  $(TARG_TEST_COMP_ins_real_ST_D)\
  $(TARG_TEST_COMP_ins_slice_ST_D)\
+ $(TARG_TEST_COMP_ins_stm_ch_ST_D)\
  $(TARG_TEST_COMP_ins_thrid_ST_D)\
  $(TARG_TEST_COMP_ins_vbool_ST_D)\
  $(TARG_TEST_COMP_ins_w2m_ST_D)\
@@ -21364,6 +21587,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_ST_D_NOX)\
  $(TARG_TEST_COMP_ins_real_ST_D_NOX)\
  $(TARG_TEST_COMP_ins_slice_ST_D_NOX)\
+ $(TARG_TEST_COMP_ins_stm_ch_ST_D_NOX)\
  $(TARG_TEST_COMP_ins_thrid_ST_D_NOX)\
  $(TARG_TEST_COMP_ins_vbool_ST_D_NOX)\
  $(TARG_TEST_COMP_ins_w2m_ST_D_NOX)\
@@ -21382,6 +21606,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_ST_R)\
  $(TARG_TEST_COMP_ins_real_ST_R)\
  $(TARG_TEST_COMP_ins_slice_ST_R)\
+ $(TARG_TEST_COMP_ins_stm_ch_ST_R)\
  $(TARG_TEST_COMP_ins_thrid_ST_R)\
  $(TARG_TEST_COMP_ins_vbool_ST_R)\
  $(TARG_TEST_COMP_ins_w2m_ST_R)\
@@ -21400,6 +21625,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_ST_R_NOX)\
  $(TARG_TEST_COMP_ins_real_ST_R_NOX)\
  $(TARG_TEST_COMP_ins_slice_ST_R_NOX)\
+ $(TARG_TEST_COMP_ins_stm_ch_ST_R_NOX)\
  $(TARG_TEST_COMP_ins_thrid_ST_R_NOX)\
  $(TARG_TEST_COMP_ins_vbool_ST_R_NOX)\
  $(TARG_TEST_COMP_ins_w2m_ST_R_NOX)\
@@ -21419,6 +21645,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_W_MT_D)\
  $(TARG_TEST_COMP_ins_real_W_MT_D)\
  $(TARG_TEST_COMP_ins_slice_W_MT_D)\
+ $(TARG_TEST_COMP_ins_stm_ch_W_MT_D)\
  $(TARG_TEST_COMP_ins_thrid_W_MT_D)\
  $(TARG_TEST_COMP_ins_vbool_W_MT_D)\
  $(TARG_TEST_COMP_ins_m2w_W_MT_D)\
@@ -21438,6 +21665,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_W_DLL_D)\
  $(TARG_TEST_COMP_ins_real_W_DLL_D)\
  $(TARG_TEST_COMP_ins_slice_W_DLL_D)\
+ $(TARG_TEST_COMP_ins_stm_ch_W_DLL_D)\
  $(TARG_TEST_COMP_ins_thrid_W_DLL_D)\
  $(TARG_TEST_COMP_ins_vbool_W_DLL_D)\
  $(TARG_TEST_COMP_ins_m2w_W_DLL_D)\
@@ -21457,6 +21685,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_W_DLL_R)\
  $(TARG_TEST_COMP_ins_real_W_DLL_R)\
  $(TARG_TEST_COMP_ins_slice_W_DLL_R)\
+ $(TARG_TEST_COMP_ins_stm_ch_W_DLL_R)\
  $(TARG_TEST_COMP_ins_thrid_W_DLL_R)\
  $(TARG_TEST_COMP_ins_vbool_W_DLL_R)\
  $(TARG_TEST_COMP_ins_m2w_W_DLL_R)\
@@ -21476,6 +21705,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_W_MT_R)\
  $(TARG_TEST_COMP_ins_real_W_MT_R)\
  $(TARG_TEST_COMP_ins_slice_W_MT_R)\
+ $(TARG_TEST_COMP_ins_stm_ch_W_MT_R)\
  $(TARG_TEST_COMP_ins_thrid_W_MT_R)\
  $(TARG_TEST_COMP_ins_vbool_W_MT_R)\
  $(TARG_TEST_COMP_ins_m2w_W_MT_R)\
@@ -21494,6 +21724,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_W_ST_D)\
  $(TARG_TEST_COMP_ins_real_W_ST_D)\
  $(TARG_TEST_COMP_ins_slice_W_ST_D)\
+ $(TARG_TEST_COMP_ins_stm_ch_W_ST_D)\
  $(TARG_TEST_COMP_ins_thrid_W_ST_D)\
  $(TARG_TEST_COMP_ins_vbool_W_ST_D)\
  $(TARG_TEST_COMP_ins_m2w_W_ST_D)\
@@ -21512,6 +21743,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_prid_W_ST_R)\
  $(TARG_TEST_COMP_ins_real_W_ST_R)\
  $(TARG_TEST_COMP_ins_slice_W_ST_R)\
+ $(TARG_TEST_COMP_ins_stm_ch_W_ST_R)\
  $(TARG_TEST_COMP_ins_thrid_W_ST_R)\
  $(TARG_TEST_COMP_ins_vbool_W_ST_R)\
  $(TARG_TEST_COMP_ins_m2w_W_ST_R)\
@@ -22658,6 +22890,24 @@ test.component_:
 	$(TARG_TEST_COMP_ins_real_W_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_real_W_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_real_W_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_MT_D_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_DLL_D_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_DLL_R_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_MT_R_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_ST_D_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_ST_R_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_W_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_W_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_W_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_stm_ch_W_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_thrid_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_thrid_MT_D_NOX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_thrid_DLL_D) --verbosity=$(TEST_VERBOSITY)
@@ -23930,8 +24180,8 @@ clean.libs.core:
 	@-if exist util.*.pdb $(RM) util.*.pdb
 	@-if exist core.*.pdb $(RM) core.*.pdb
 	@-if exist inserters.*.pdb $(RM) inserters.*.pdb
-	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_TAG)*.lib
-	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).util.$(COMP_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).util.$(COMP_TAG)*.lib
+	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).core.$(COMP_ARCH_OS_TAG)*.lib
+	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).util.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).util.$(COMP_ARCH_OS_TAG)*.lib
 
 clean.libs.be:
 	@echo Cleaning Back-end libraries ...
@@ -23943,35 +24193,35 @@ clean.libs.be:
 	@-if exist bel.*.pdb $(RM) bel.*.pdb
 	@-if exist ber.*.pdb $(RM) ber.*.pdb
 	@-if exist be.*.pdb $(RM) be.*.pdb
-	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.*.$(COMP_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.*.$(COMP_TAG)*.lib
-	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.*.$(COMP_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.*.$(COMP_TAG)*.lib
-	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.*.$(COMP_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.*.$(COMP_TAG)*.lib
-	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.*.$(COMP_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.*.$(COMP_TAG)*.lib
+	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.*.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.*.$(COMP_ARCH_OS_TAG)*.lib
+	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.*.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.*.$(COMP_ARCH_OS_TAG)*.lib
+	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.*.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.*.$(COMP_ARCH_OS_TAG)*.lib
+	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.*.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.*.$(COMP_ARCH_OS_TAG)*.lib
 
 
 clean.libs.fe:
 	@echo Cleaning Front-end libraries ...
 	@-if exist fe.*.obj $(RM) fe.*.obj
 	@-if exist fe.*.pdb $(RM) fe.*.pdb
-	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).fe.*.$(COMP_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).fe.*.$(COMP_TAG)*.lib
+	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).fe.*.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).fe.*.$(COMP_ARCH_OS_TAG)*.lib
 
 clean.libs.b64:
 	@echo Cleaning b64 libraries ...
 	@-if exist b64.*.obj $(RM) b64.*.obj
 	@-if exist b64.*.pdb $(RM) b64.*.pdb
-	@-if exist $(PROJ_LIB_DIR)\$(B64_TAG_VER).pan.$(COMP_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(B64_TAG_VER).pan.$(COMP_TAG)*.lib
+	@-if exist $(PROJ_LIB_DIR)\$(B64_TAG_VER).pan.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(B64_TAG_VER).pan.$(COMP_ARCH_OS_TAG)*.lib
 
 clean.libs.shwild:
 	@echo Cleaning shwild libraries ...
 	@-if exist shwild.*.obj $(RM) shwild.*.obj
 	@-if exist shwild.*.pdb $(RM) shwild.*.pdb
-	@-if exist $(PROJ_LIB_DIR)\$(SHWILD_TAG_VER).pan.$(COMP_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(SHWILD_TAG_VER).pan.$(COMP_TAG)*.lib
+	@-if exist $(PROJ_LIB_DIR)\$(SHWILD_TAG_VER).pan.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(SHWILD_TAG_VER).pan.$(COMP_ARCH_OS_TAG)*.lib
 
 clean.libs.xtests:
 	@echo Cleaning xTests libraries ...
 	@-if exist xtests.*.obj $(RM) xtests.*.obj
 	@-if exist xtests.*.pdb $(RM) xtests.*.pdb
-	@-if exist $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).pan.$(COMP_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).pan.$(COMP_TAG)*.lib
+	@-if exist $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).pan.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).pan.$(COMP_ARCH_OS_TAG)*.lib
 
 !ifdef ACE
 clean.libs.ace:
@@ -24046,7 +24296,7 @@ clean.examples:
 	@echo Cleaning examples ...
 	@-if exist ex.*.obj $(RM) ex.*.obj
 	@-if exist ex.*.pdb $(RM) ex.*.pdb
-	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.*.$(COMP_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.*.$(COMP_TAG)*.exe
+	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.*.$(COMP_ARCH_OS_TAG)*.exe
 
 clean.samples:
 	@echo Cleaning samples ...
@@ -24059,25 +24309,25 @@ clean.test.unit:
 	@echo Cleaning unit tests ...
 	@-if exist test.unit.*.obj $(RM) test.unit.*.obj
 	@-if exist test.unit.*.pdb $(RM) test.unit.*.pdb
-	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.*.$(COMP_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.*.$(COMP_TAG)*.exe
+	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.*.$(COMP_ARCH_OS_TAG)*.exe
 
 clean.test.component:
 	@echo Cleaning component tests ...
 	@-if exist test.component.*.obj $(RM) test.component.*.obj
 	@-if exist test.component.*.pdb $(RM) test.component.*.pdb
-	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.*.$(COMP_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.*.$(COMP_TAG)*.exe
+	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.*.$(COMP_ARCH_OS_TAG)*.exe
 
 clean.test.performance:
 	@echo Cleaning performance tests ...
 	@-if exist test.performance.*.obj $(RM) test.performance.*.obj
 	@-if exist test.performance.*.pdb $(RM) test.performance.*.pdb
-	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.performance.*.$(COMP_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.performance.*.$(COMP_TAG)*.exe
+	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.performance.*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.performance.*.$(COMP_ARCH_OS_TAG)*.exe
 
 clean.test.scratch:
 	@echo Cleaning scratch tests ...
 	@-if exist test.*.obj $(RM) test.*.obj
 	@-if exist test.*.pdb $(RM) test.*.pdb
-	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.*.$(COMP_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.*.$(COMP_TAG)*.exe
+	@-if exist $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.*.$(COMP_ARCH_OS_TAG)*.exe $(RM) $(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.*.$(COMP_ARCH_OS_TAG)*.exe
 
 !ifdef ACE
 clean.test.ace:
@@ -24784,6 +25034,8 @@ $(OBJ_ins_host_MT_D): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(PRO
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_MT_D): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_MT_D): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_MT_D): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_MT_D): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -24794,6 +25046,8 @@ $(OBJ_ins_slice_MT_D): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(PRO
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_MT_D): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_MT_D): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_MT_D): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -24828,6 +25082,8 @@ $(OBJ_ins_host_MT_D_NOX): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_MT_D_NOX): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_MT_D_NOX): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_MT_D_NOX): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_MT_D_NOX): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -24838,6 +25094,8 @@ $(OBJ_ins_slice_MT_D_NOX): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_MT_D_NOX): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_MT_D_NOX): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_MT_D_NOX): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -24872,6 +25130,8 @@ $(OBJ_ins_host_DLL_D): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(PR
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_DLL_D): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_DLL_D): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_DLL_D): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_DLL_D): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -24882,6 +25142,8 @@ $(OBJ_ins_slice_DLL_D): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(PR
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_DLL_D): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_DLL_D): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_DLL_D): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -24916,6 +25178,8 @@ $(OBJ_ins_host_DLL_D_NOX): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) 
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_DLL_D_NOX): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_DLL_D_NOX): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_DLL_D_NOX): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_DLL_D_NOX): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -24926,6 +25190,8 @@ $(OBJ_ins_slice_DLL_D_NOX): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) 
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_DLL_D_NOX): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_DLL_D_NOX): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_DLL_D_NOX): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -24960,6 +25226,8 @@ $(OBJ_ins_host_DLL_R): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(PR
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_DLL_R): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_DLL_R): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_DLL_R): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_DLL_R): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -24970,6 +25238,8 @@ $(OBJ_ins_slice_DLL_R): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(PR
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_DLL_R): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_DLL_R): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_DLL_R): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -25004,6 +25274,8 @@ $(OBJ_ins_host_DLL_R_NOX): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) 
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_DLL_R_NOX): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_DLL_R_NOX): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_DLL_R_NOX): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_DLL_R_NOX): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25014,6 +25286,8 @@ $(OBJ_ins_slice_DLL_R_NOX): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) 
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_DLL_R_NOX): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_DLL_R_NOX): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_DLL_R_NOX): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -25048,6 +25322,8 @@ $(OBJ_ins_host_MT_R): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(PRO
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_MT_R): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_MT_R): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_MT_R): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_MT_R): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25058,6 +25334,8 @@ $(OBJ_ins_slice_MT_R): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(PRO
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_MT_R): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_MT_R): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_MT_R): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -25092,6 +25370,8 @@ $(OBJ_ins_host_MT_R_NOX): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_MT_R_NOX): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_MT_R_NOX): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_MT_R_NOX): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_MT_R_NOX): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25102,6 +25382,8 @@ $(OBJ_ins_slice_MT_R_NOX): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_MT_R_NOX): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_MT_R_NOX): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_MT_R_NOX): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -25136,6 +25418,8 @@ $(OBJ_ins_host_ST_D): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(PRO
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_ST_D): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_ST_D): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_ST_D): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_ST_D): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25146,6 +25430,8 @@ $(OBJ_ins_slice_ST_D): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(PRO
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_ST_D): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_ST_D): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_ST_D): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -25180,6 +25466,8 @@ $(OBJ_ins_host_ST_D_NOX): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_ST_D_NOX): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_ST_D_NOX): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_ST_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_ST_D_NOX): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_ST_D_NOX): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25190,6 +25478,8 @@ $(OBJ_ins_slice_ST_D_NOX): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_ST_D_NOX): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_ST_D_NOX): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_ST_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_ST_D_NOX): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -25224,6 +25514,8 @@ $(OBJ_ins_host_ST_R): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(PRO
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_ST_R): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_ST_R): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_ST_R): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_ST_R): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25234,6 +25526,8 @@ $(OBJ_ins_slice_ST_R): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(PRO
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_ST_R): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_ST_R): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_ST_R): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -25268,6 +25562,8 @@ $(OBJ_ins_host_ST_R_NOX): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_ST_R_NOX): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_ST_R_NOX): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_ST_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_ST_R_NOX): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_ST_R_NOX): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25278,6 +25574,8 @@ $(OBJ_ins_slice_ST_R_NOX): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_ST_R_NOX): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_ST_R_NOX): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_ST_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_w2m_ST_R_NOX): $(PROJ_SRC_DIR)\inserters\w2m.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\w2m.cpp
 
@@ -25312,6 +25610,8 @@ $(OBJ_ins_host_W_MT_D): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(P
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_W_MT_D): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_W_MT_D): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_W_MT_D): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_W_MT_D): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25322,6 +25622,8 @@ $(OBJ_ins_slice_W_MT_D): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(P
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_W_MT_D): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_W_MT_D): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_m2w_W_MT_D): $(PROJ_SRC_DIR)\inserters\m2w.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\m2w.cpp
 
@@ -25356,6 +25658,8 @@ $(OBJ_ins_host_W_DLL_D): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_W_DLL_D): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_W_DLL_D): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_W_DLL_D): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_W_DLL_D): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25366,6 +25670,8 @@ $(OBJ_ins_slice_W_DLL_D): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_W_DLL_D): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_W_DLL_D): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_m2w_W_DLL_D): $(PROJ_SRC_DIR)\inserters\m2w.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\m2w.cpp
 
@@ -25400,6 +25706,8 @@ $(OBJ_ins_host_W_DLL_R): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_W_DLL_R): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_W_DLL_R): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_W_DLL_R): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_W_DLL_R): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25410,6 +25718,8 @@ $(OBJ_ins_slice_W_DLL_R): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_W_DLL_R): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_W_DLL_R): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_m2w_W_DLL_R): $(PROJ_SRC_DIR)\inserters\m2w.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\m2w.cpp
 
@@ -25444,6 +25754,8 @@ $(OBJ_ins_host_W_MT_R): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(P
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_W_MT_R): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_W_MT_R): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_W_MT_R): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_W_MT_R): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25454,6 +25766,8 @@ $(OBJ_ins_slice_W_MT_R): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(P
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_W_MT_R): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_W_MT_R): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_m2w_W_MT_R): $(PROJ_SRC_DIR)\inserters\m2w.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\m2w.cpp
 
@@ -25488,6 +25802,8 @@ $(OBJ_ins_host_W_ST_D): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(P
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_W_ST_D): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_W_ST_D): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_W_ST_D): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_W_ST_D): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25498,6 +25814,8 @@ $(OBJ_ins_slice_W_ST_D): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(P
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_W_ST_D): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_W_ST_D): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_m2w_W_ST_D): $(PROJ_SRC_DIR)\inserters\m2w.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\m2w.cpp
 
@@ -25532,6 +25850,8 @@ $(OBJ_ins_host_W_ST_R): $(PROJ_SRC_DIR)\inserters\hostid.cpp $(CORE_HEADERS) $(P
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\hostid.cpp
 $(OBJ_ins_int_W_ST_R): $(PROJ_SRC_DIR)\inserters\integer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\integer.cpp
+$(OBJ_ins_ivl_W_ST_R): $(PROJ_SRC_DIR)\inserters\interval.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\interval.cpp
 $(OBJ_ins_ptr_W_ST_R): $(PROJ_SRC_DIR)\inserters\pointer.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\pointer.cpp
 $(OBJ_ins_prid_W_ST_R): $(PROJ_SRC_DIR)\inserters\processid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -25542,6 +25862,8 @@ $(OBJ_ins_slice_W_ST_R): $(PROJ_SRC_DIR)\inserters\slice.cpp $(CORE_HEADERS) $(P
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\slice.cpp
 $(OBJ_ins_thrid_W_ST_R): $(PROJ_SRC_DIR)\inserters\threadid.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\threadid.cpp
+$(OBJ_ins_stm_ch_W_ST_R): $(PROJ_SRC_DIR)\inserters\stream_character.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\stream_character.cpp
 $(OBJ_ins_m2w_W_ST_R): $(PROJ_SRC_DIR)\inserters\m2w.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\inserters\m2w.cpp
 
@@ -51569,6 +51891,420 @@ $(TARG_TEST_COMP_ins_slice_W_ST_R):	\
 
 $(OBJ_TEST_COMP_ins_slice_W_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.slice\test.component.inserters.slice.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.slice\test.component.inserters.slice.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_MT_D):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_MT_D)\
+			$(LIB_CORE_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIB_FE_ALL_MT_D)\
+			$(LIB_BE_TEST_MT_D)\
+			$(LIB_BEC_TEST_MT_D)\
+			$(LIB_XTESTS_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_FE_ALL_MT_D)\
+		$(LIB_BE_TEST_MT_D)\
+		$(LIB_BEC_TEST_MT_D)\
+		$(LIB_XTESTS_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_COMP_ins_stm_ch_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_MT_D_NOX):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_MT_D_NOX)\
+			$(LIB_CORE_MT_D_NOX)\
+			$(LIB_UTIL_MT_D_NOX)\
+			$(LIB_FE_ALL_MT_D_NOX)\
+			$(LIB_BE_TEST_MT_D_NOX)\
+			$(LIB_BEC_TEST_MT_D_NOX)\
+			$(LIB_XTESTS_MT_D_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D_NOX) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_MT_D_NOX)\
+		$(LIB_CORE_MT_D_NOX)\
+		$(LIB_FE_ALL_MT_D_NOX)\
+		$(LIB_BE_TEST_MT_D_NOX)\
+		$(LIB_BEC_TEST_MT_D_NOX)\
+		$(LIB_XTESTS_MT_D_NOX)\
+		$(LIB_UTIL_MT_D_NOX)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_D_NOX)
+
+$(OBJ_TEST_COMP_ins_stm_ch_MT_D_NOX):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_DLL_D):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_DLL_D)\
+			$(LIB_CORE_DLL_D)\
+			$(LIB_UTIL_DLL_D)\
+			$(LIB_FE_ALL_DLL_D)\
+			$(LIB_BE_TEST_DLL_D)\
+			$(LIB_BEC_TEST_DLL_D)\
+			$(LIB_XTESTS_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_DLL_D)\
+		$(LIB_CORE_DLL_D)\
+		$(LIB_FE_ALL_DLL_D)\
+		$(LIB_BE_TEST_DLL_D)\
+		$(LIB_BEC_TEST_DLL_D)\
+		$(LIB_XTESTS_DLL_D)\
+		$(LIB_UTIL_DLL_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_DLL_D)
+
+$(OBJ_TEST_COMP_ins_stm_ch_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_DLL_D_NOX):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_DLL_D_NOX)\
+			$(LIB_CORE_DLL_D_NOX)\
+			$(LIB_UTIL_DLL_D_NOX)\
+			$(LIB_FE_ALL_DLL_D_NOX)\
+			$(LIB_BE_TEST_DLL_D_NOX)\
+			$(LIB_BEC_TEST_DLL_D_NOX)\
+			$(LIB_XTESTS_DLL_D_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_D_NOX) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_DLL_D_NOX)\
+		$(LIB_CORE_DLL_D_NOX)\
+		$(LIB_FE_ALL_DLL_D_NOX)\
+		$(LIB_BE_TEST_DLL_D_NOX)\
+		$(LIB_BEC_TEST_DLL_D_NOX)\
+		$(LIB_XTESTS_DLL_D_NOX)\
+		$(LIB_UTIL_DLL_D_NOX)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_DLL_D_NOX)
+
+$(OBJ_TEST_COMP_ins_stm_ch_DLL_D_NOX):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_DLL_R):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_DLL_R)\
+			$(LIB_CORE_DLL_R)\
+			$(LIB_UTIL_DLL_R)\
+			$(LIB_FE_ALL_DLL_R)\
+			$(LIB_BE_TEST_DLL_R)\
+			$(LIB_BEC_TEST_DLL_R)\
+			$(LIB_XTESTS_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_DLL_R)\
+		$(LIB_CORE_DLL_R)\
+		$(LIB_FE_ALL_DLL_R)\
+		$(LIB_BE_TEST_DLL_R)\
+		$(LIB_BEC_TEST_DLL_R)\
+		$(LIB_XTESTS_DLL_R)\
+		$(LIB_UTIL_DLL_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_DLL_R)
+
+$(OBJ_TEST_COMP_ins_stm_ch_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_DLL_R_NOX):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_DLL_R_NOX)\
+			$(LIB_CORE_DLL_R_NOX)\
+			$(LIB_UTIL_DLL_R_NOX)\
+			$(LIB_FE_ALL_DLL_R_NOX)\
+			$(LIB_BE_TEST_DLL_R_NOX)\
+			$(LIB_BEC_TEST_DLL_R_NOX)\
+			$(LIB_XTESTS_DLL_R_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_R_NOX) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_DLL_R_NOX)\
+		$(LIB_CORE_DLL_R_NOX)\
+		$(LIB_FE_ALL_DLL_R_NOX)\
+		$(LIB_BE_TEST_DLL_R_NOX)\
+		$(LIB_BEC_TEST_DLL_R_NOX)\
+		$(LIB_XTESTS_DLL_R_NOX)\
+		$(LIB_UTIL_DLL_R_NOX)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_DLL_R_NOX)
+
+$(OBJ_TEST_COMP_ins_stm_ch_DLL_R_NOX):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_MT_R):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_MT_R)\
+			$(LIB_CORE_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIB_FE_ALL_MT_R)\
+			$(LIB_BE_TEST_MT_R)\
+			$(LIB_BEC_TEST_MT_R)\
+			$(LIB_XTESTS_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_FE_ALL_MT_R)\
+		$(LIB_BE_TEST_MT_R)\
+		$(LIB_BEC_TEST_MT_R)\
+		$(LIB_XTESTS_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_COMP_ins_stm_ch_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_MT_R_NOX):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_MT_R_NOX)\
+			$(LIB_CORE_MT_R_NOX)\
+			$(LIB_UTIL_MT_R_NOX)\
+			$(LIB_FE_ALL_MT_R_NOX)\
+			$(LIB_BE_TEST_MT_R_NOX)\
+			$(LIB_BEC_TEST_MT_R_NOX)\
+			$(LIB_XTESTS_MT_R_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R_NOX) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_MT_R_NOX)\
+		$(LIB_CORE_MT_R_NOX)\
+		$(LIB_FE_ALL_MT_R_NOX)\
+		$(LIB_BE_TEST_MT_R_NOX)\
+		$(LIB_BEC_TEST_MT_R_NOX)\
+		$(LIB_XTESTS_MT_R_NOX)\
+		$(LIB_UTIL_MT_R_NOX)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_R_NOX)
+
+$(OBJ_TEST_COMP_ins_stm_ch_MT_R_NOX):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_ST_D):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_ST_D)\
+			$(LIB_CORE_ST_D)\
+			$(LIB_UTIL_ST_D)\
+			$(LIB_FE_ALL_ST_D)\
+			$(LIB_BE_TEST_ST_D)\
+			$(LIB_BEC_TEST_ST_D)\
+			$(LIB_XTESTS_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIB_FE_ALL_ST_D)\
+		$(LIB_BE_TEST_ST_D)\
+		$(LIB_BEC_TEST_ST_D)\
+		$(LIB_XTESTS_ST_D)\
+		$(LIB_UTIL_ST_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_COMP_ins_stm_ch_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_ST_D_NOX):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_ST_D_NOX)\
+			$(LIB_CORE_ST_D_NOX)\
+			$(LIB_UTIL_ST_D_NOX)\
+			$(LIB_FE_ALL_ST_D_NOX)\
+			$(LIB_BE_TEST_ST_D_NOX)\
+			$(LIB_BEC_TEST_ST_D_NOX)\
+			$(LIB_XTESTS_ST_D_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D_NOX) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_ST_D_NOX)\
+		$(LIB_CORE_ST_D_NOX)\
+		$(LIB_FE_ALL_ST_D_NOX)\
+		$(LIB_BE_TEST_ST_D_NOX)\
+		$(LIB_BEC_TEST_ST_D_NOX)\
+		$(LIB_XTESTS_ST_D_NOX)\
+		$(LIB_UTIL_ST_D_NOX)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_ST_D_NOX)
+
+$(OBJ_TEST_COMP_ins_stm_ch_ST_D_NOX):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_ST_R):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_ST_R)\
+			$(LIB_CORE_ST_R)\
+			$(LIB_UTIL_ST_R)\
+			$(LIB_FE_ALL_ST_R)\
+			$(LIB_BE_TEST_ST_R)\
+			$(LIB_BEC_TEST_ST_R)\
+			$(LIB_XTESTS_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIB_FE_ALL_ST_R)\
+		$(LIB_BE_TEST_ST_R)\
+		$(LIB_BEC_TEST_ST_R)\
+		$(LIB_XTESTS_ST_R)\
+		$(LIB_UTIL_ST_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_COMP_ins_stm_ch_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_ST_R_NOX):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_ST_R_NOX)\
+			$(LIB_CORE_ST_R_NOX)\
+			$(LIB_UTIL_ST_R_NOX)\
+			$(LIB_FE_ALL_ST_R_NOX)\
+			$(LIB_BE_TEST_ST_R_NOX)\
+			$(LIB_BEC_TEST_ST_R_NOX)\
+			$(LIB_XTESTS_ST_R_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R_NOX) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_ST_R_NOX)\
+		$(LIB_CORE_ST_R_NOX)\
+		$(LIB_FE_ALL_ST_R_NOX)\
+		$(LIB_BE_TEST_ST_R_NOX)\
+		$(LIB_BEC_TEST_ST_R_NOX)\
+		$(LIB_XTESTS_ST_R_NOX)\
+		$(LIB_UTIL_ST_R_NOX)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_ST_R_NOX)
+
+$(OBJ_TEST_COMP_ins_stm_ch_ST_R_NOX):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R_NOX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_W_MT_D):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_W_MT_D)\
+			$(LIB_CORE_W_MT_D)\
+			$(LIB_UTIL_W_MT_D)\
+			$(LIB_FE_ALL_W_MT_D)\
+			$(LIB_BE_TEST_W_MT_D)\
+			$(LIB_BEC_TEST_W_MT_D)\
+			$(LIB_XTESTS_W_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_W_MT_D)\
+		$(LIB_CORE_W_MT_D)\
+		$(LIB_FE_ALL_W_MT_D)\
+		$(LIB_BE_TEST_W_MT_D)\
+		$(LIB_BEC_TEST_W_MT_D)\
+		$(LIB_XTESTS_W_MT_D)\
+		$(LIB_UTIL_W_MT_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_MT_D)
+
+$(OBJ_TEST_COMP_ins_stm_ch_W_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_W_DLL_D):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_W_DLL_D)\
+			$(LIB_CORE_W_DLL_D)\
+			$(LIB_UTIL_W_DLL_D)\
+			$(LIB_FE_ALL_W_DLL_D)\
+			$(LIB_BE_TEST_W_DLL_D)\
+			$(LIB_BEC_TEST_W_DLL_D)\
+			$(LIB_XTESTS_W_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_W_DLL_D)\
+		$(LIB_CORE_W_DLL_D)\
+		$(LIB_FE_ALL_W_DLL_D)\
+		$(LIB_BE_TEST_W_DLL_D)\
+		$(LIB_BEC_TEST_W_DLL_D)\
+		$(LIB_XTESTS_W_DLL_D)\
+		$(LIB_UTIL_W_DLL_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_DLL_D)
+
+$(OBJ_TEST_COMP_ins_stm_ch_W_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_W_DLL_R):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_W_DLL_R)\
+			$(LIB_CORE_W_DLL_R)\
+			$(LIB_UTIL_W_DLL_R)\
+			$(LIB_FE_ALL_W_DLL_R)\
+			$(LIB_BE_TEST_W_DLL_R)\
+			$(LIB_BEC_TEST_W_DLL_R)\
+			$(LIB_XTESTS_W_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_W_DLL_R)\
+		$(LIB_CORE_W_DLL_R)\
+		$(LIB_FE_ALL_W_DLL_R)\
+		$(LIB_BE_TEST_W_DLL_R)\
+		$(LIB_BEC_TEST_W_DLL_R)\
+		$(LIB_XTESTS_W_DLL_R)\
+		$(LIB_UTIL_W_DLL_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_DLL_R)
+
+$(OBJ_TEST_COMP_ins_stm_ch_W_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_W_MT_R):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_W_MT_R)\
+			$(LIB_CORE_W_MT_R)\
+			$(LIB_UTIL_W_MT_R)\
+			$(LIB_FE_ALL_W_MT_R)\
+			$(LIB_BE_TEST_W_MT_R)\
+			$(LIB_BEC_TEST_W_MT_R)\
+			$(LIB_XTESTS_W_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_W_MT_R)\
+		$(LIB_CORE_W_MT_R)\
+		$(LIB_FE_ALL_W_MT_R)\
+		$(LIB_BE_TEST_W_MT_R)\
+		$(LIB_BEC_TEST_W_MT_R)\
+		$(LIB_XTESTS_W_MT_R)\
+		$(LIB_UTIL_W_MT_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_MT_R)
+
+$(OBJ_TEST_COMP_ins_stm_ch_W_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_W_ST_D):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_W_ST_D)\
+			$(LIB_CORE_W_ST_D)\
+			$(LIB_UTIL_W_ST_D)\
+			$(LIB_FE_ALL_W_ST_D)\
+			$(LIB_BE_TEST_W_ST_D)\
+			$(LIB_BEC_TEST_W_ST_D)\
+			$(LIB_XTESTS_W_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_ST_D) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_W_ST_D)\
+		$(LIB_CORE_W_ST_D)\
+		$(LIB_FE_ALL_W_ST_D)\
+		$(LIB_BE_TEST_W_ST_D)\
+		$(LIB_BEC_TEST_W_ST_D)\
+		$(LIB_XTESTS_W_ST_D)\
+		$(LIB_UTIL_W_ST_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_ST_D)
+
+$(OBJ_TEST_COMP_ins_stm_ch_W_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
+
+$(TARG_TEST_COMP_ins_stm_ch_W_ST_R):	\
+			$(OBJ_TEST_COMP_ins_stm_ch_W_ST_R)\
+			$(LIB_CORE_W_ST_R)\
+			$(LIB_UTIL_W_ST_R)\
+			$(LIB_FE_ALL_W_ST_R)\
+			$(LIB_BE_TEST_W_ST_R)\
+			$(LIB_BEC_TEST_W_ST_R)\
+			$(LIB_XTESTS_W_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_ST_R) -out:$@ \
+		$(OBJ_TEST_COMP_ins_stm_ch_W_ST_R)\
+		$(LIB_CORE_W_ST_R)\
+		$(LIB_FE_ALL_W_ST_R)\
+		$(LIB_BE_TEST_W_ST_R)\
+		$(LIB_BEC_TEST_W_ST_R)\
+		$(LIB_XTESTS_W_ST_R)\
+		$(LIB_UTIL_W_ST_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_ST_R)
+
+$(OBJ_TEST_COMP_ins_stm_ch_W_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.stream_character\test.component.inserters.stream_character.cpp
 
 $(TARG_TEST_COMP_ins_thrid_MT_D):	\
 			$(OBJ_TEST_COMP_ins_thrid_MT_D)\

@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios WindowsEventLog Stock Back-end API.
  *
  * Created:     8th May 2006
- * Updated:     26th December 2010
+ * Updated:     26th August 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MAJOR       1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        27
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MINOR       3
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_REVISION    1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,13 +97,29 @@ struct Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_pantheios_be_Windo
 
 
 /** Evaluates the appropriate category and event identifiers for a given
- *   back-end identifier and Pantheios severity level.
+ *   back-end identifier and Pantheios severity level just prior to
+ *   emitting the log entry to the event log.
  *
  * \note This is an application-specified function.
  *
  * \ingroup group__backend__stock_backends__WindowsEventLog
+ *
+ * \param backEndId The back-end identifier
+ * \param severity The severity associated with the event
+ * \param category A pointer to a variable to receive the Event Log category
+ *   to be used
+ * \param eventId A pointer to a variable to receive the Event Log event
+ *   identifier to be used
+ *
+ * \note As of Pantheios 1.0.1 beta-215, if the values of
+ *   <code>*category</code> and <code>*eventId</code> are set to the
+ *   maximum limit for those types - 0xFFFF and 0xFFFFFFFF, respectively -
+ *   then no statement is emitted. When the function is called, these
+ *   values are preset. Note that this is an inefficient way of filtering
+ *   messages, and users should prefer to filter via a suitable front-end.
  */
-PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_calcCategoryAndEventId(
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsEventLog_calcCategoryAndEventId(
     int                     backEndId
 ,   int                     severity
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -123,7 +139,8 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_calcCategoryAndEventId(
  *
  * \ingroup group__backend__stock_backends__WindowsEventLog
  */
-PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_init(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsEventLog_init(
     PAN_CHAR_T const*   processIdentity
 ,   int                 id
 ,   void*               unused
@@ -134,14 +151,16 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_init(
 /** Implements the functionality for pantheios_be_uninit() over the Windows EventLog API.
  * \ingroup group__backend__stock_backends__WindowsEventLog
  */
-PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_uninit(
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsEventLog_uninit(
     void* token
 );
 
 /** Implements the functionality for pantheios_be_logEntry() over the Windows EventLog API.
  * \ingroup group__backend__stock_backends__WindowsEventLog
  */
-PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsEventLog_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -157,25 +176,34 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_logEntry(
 
 /** This helper function can be used to defer 
  */
-PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_getPantheiosDotComCategoryAndEventId(
-        int                     backEndId
-    ,   int                     severity
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsEventLog_getPantheiosDotComCategoryAndEventId(
+    int                     backEndId
+,   int                     severity
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-    ,   pantheios::uint16_t*    category
-    ,   pantheios::uint32_t*    eventId
+,   pantheios::uint16_t*    category
+,   pantheios::uint32_t*    eventId
 #else /* ? !PANTHEIOS_NO_NAMESPACE */
-    ,   pan_uint16_t*           category
-    ,   pan_uint32_t*           eventId
+,   pan_uint16_t*           category
+,   pan_uint32_t*           eventId
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 ) /* throw() */;
 
 /** Registers an event source for use with Pantheios.COM
  */
-PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_registerEventSourceUsingPantheiosDotCom(PAN_CHAR_T const* sourceName, PAN_CHAR_T const* pantheiosDotComPath);
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsEventLog_registerEventSourceUsingPantheiosDotCom(
+    PAN_CHAR_T const* sourceName
+,   PAN_CHAR_T const* pantheiosDotComPath
+);
 
 /** Unregisters an event source for use with Pantheios.COM
  */
-PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_unregisterEventSourceUsingPantheiosDotCom(PAN_CHAR_T const* sourceName, PAN_CHAR_T const* pantheiosDotComPath);
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsEventLog_unregisterEventSourceUsingPantheiosDotCom(
+    PAN_CHAR_T const* sourceName
+,   PAN_CHAR_T const* pantheiosDotComPath
+);
 
 #endif /* 0 */
 

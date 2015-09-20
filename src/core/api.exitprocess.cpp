@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/core/api.exitprocess.cpp
+ * File:        src/core/api.exitprocess.cpp (originally in core/api.cpp)
  *
  * Purpose:     Implementation file for Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     20th March 2012
+ * Updated:     8th August 2012
  *
  * Home:        http://www.pantheios.org/
  *
@@ -80,7 +80,7 @@ PANTHEIOS_CALL(void) pantheios_exitProcess(int code)
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 
     // By rights, Windows programs should use exit() to close down. However,
-    // pantheios_exit_process() is not a general substitute for exit(). It is
+    // pantheios_exitProcess() is not a general substitute for exit(). It is
     // specifically intended to Get-Out-Of-Dodge asap, in the rare case where
     // Pantheios cannot be initialised.
     //

@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the file back-end.
  *
  * Created:     25th November 2006
- * Updated:     23rd May 2011
+ * Updated:     1st September 2015
  *
  * Thanks to:   CookieRaver for filling in the (accidental) blanks in the
  *              UNIX implementation.
@@ -22,7 +22,7 @@
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,6 +53,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+#if defined(_MSC_VER) && \
+    1200 == _MSC_VER
+# include <stlsoft/synch/concepts.hpp> // VC++ 6 ICE
+#endif
+
 /* Pantheios Header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/lean.h>
@@ -70,6 +75,7 @@
 #include <pantheios/util/core/apidefs.hpp>
 #include <pantheios/util/backends/arguments.h>
 #include <pantheios/util/backends/context.hpp>
+#include <pantheios/util/memory/memcopy.h>
 #include <pantheios/util/string/snprintf.h>
 
 /* STLSoft Header files */
@@ -212,6 +218,7 @@ namespace
     using ::pantheios::util::backends::Context;
     using ::pantheios::util::pantheios_onBailOut3;
     using ::pantheios::util::pantheios_onBailOut4;
+    using ::pantheios::util::pantheios_onBailOut6;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
@@ -219,31 +226,23 @@ namespace
     struct buffer_selector_
     {
         typedef ss_typename_type_k
-#if !defined(PANTHEIOS_NO_NAMESPACE)
-            pantheios::util::auto_buffer_selector<
-#else /* ? !PANTHEIOS_NO_NAMESPACE */
-            auto_buffer_selector<
-#endif /* !PANTHEIOS_NO_NAMESPACE */
+            PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
             T
         ,   2048
         ,   stlsoft::malloc_allocator<T>
-        >::type                                 type;
-
-        typedef ss_typename_type_k
-#if !defined(PANTHEIOS_NO_NAMESPACE)
-            pantheios::util::auto_buffer_selector<
-#else /* ? !PANTHEIOS_NO_NAMESPACE */
-            auto_buffer_selector<
-#endif /* !PANTHEIOS_NO_NAMESPACE */
-            T
-        ,   256
-        ,   stlsoft::malloc_allocator<T>
-        >::type                                 small_type;
-    };
-
-    typedef buffer_selector_<char>::type        buffer_a_t;
-    typedef buffer_selector_<wchar_t>::type     buffer_w_t;
-    typedef buffer_selector_<pan_char_t>::type  buffer_t;
+        >::type                                         type;
+                                                        
+        typedef ss_typename_type_k                      
+            PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<                       
+            T                                           
+        ,   256                                         
+        ,   stlsoft::malloc_allocator<T>                
+        >::type                                         small_type;
+    };                                                  
+                                                        
+    typedef buffer_selector_<char>::type                buffer_a_t;
+    typedef buffer_selector_<wchar_t>::type             buffer_w_t;
+    typedef buffer_selector_<pan_char_t>::type          buffer_t;
 
     typedef platformstl::filesystem_traits<pan_char_t>  traits_t;
 
@@ -309,6 +308,7 @@ public:
     ,   pan_uint32_t        fileFlags
     );
     int Flush();
+    int EmptyCache();
 /// @}
 
 /// \name Overrides
@@ -387,7 +387,8 @@ public:
     ,   int                 backEndId
     );
     int     Flush(int backEndId);
-    int     Add(int backEndId, be_file_Context* ctxt);
+    int     EmptyCache(int backEndId);
+    void    Add(int backEndId, be_file_Context* ctxt);
     void    Remove(int backEndId);
 
 private:
@@ -647,13 +648,15 @@ static int pantheios_be_file_init_(
         }
         else
         {
-            r = s_ctxtMap->Add(backEndId, ctxt.get());
-
-            if(0 != r)
+            try
+            {
+                s_ctxtMap->Add(backEndId, ctxt.get());
+            }
+            catch(...)
             {
                 be_file_ContextMap_Release();
 
-                return r;
+                throw;
             }
         }
     }
@@ -671,7 +674,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_init(
 ,   void**                      ptoken
 )
 {
-    return pantheios_call_be_X_init<pan_be_file_init_t>(pantheios_be_file_init_, processIdentity, backEndId, init, reserved, ptoken);
+    return pantheios_call_be_X_init<pan_be_file_init_t>(pantheios_be_file_init_, processIdentity, backEndId, init, reserved, ptoken, "be.file");
 }
 
 PANTHEIOS_CALL(void) pantheios_be_file_uninit(void* token)
@@ -729,7 +732,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_logEntry(
 ,   size_t              cchEntry
 )
 {
-    return pantheios_call_be_logEntry(pantheios_be_file_logEntry_, feToken, beToken, severity, entry, cchEntry);
+    return pantheios_call_be_logEntry(pantheios_be_file_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.file");
 }
 
 PANTHEIOS_CALL(int) pantheios_be_file_setFilePath(
@@ -764,16 +767,30 @@ PANTHEIOS_CALL(int) pantheios_be_file_setFilePath(
     }
     catch(std::bad_alloc&)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "failed to set path", NULL, "out of memory", NULL, "be.file");
+
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_CRITICAL, "failed to set path", NULL, x.what(), NULL, "be.file");
+
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "failed to set path", NULL, "unknown failure", NULL, "be.file");
+
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
         return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
@@ -804,16 +821,84 @@ PANTHEIOS_CALL(int) pantheios_be_file_flush(int backEndId)
     }
     catch(std::bad_alloc&)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "failed to flush file", NULL, "out of memory", NULL, "be.file");
+
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_CRITICAL, "failed to flush file", NULL, x.what(), NULL, "be.file");
+
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "failed to flush path", NULL, "unknown failure", NULL, "be.file");
+
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
         return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+}
+
+PANTHEIOS_CALL(int) pantheios_be_file_emptyCache(int backEndId)
+{
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    try
+    {
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+#ifdef PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS
+        platformstl::spin_mutex                         mx(&s_mxc, false);
+#else /* ? PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
+        static api_mutex_t&                             mx = *s_pmx;
+#endif /* PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
+        stlsoft::lock_scope<api_mutex_t>                lock(mx);
+
+        if(0 == s_rc)
+        {
+            return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
+        }
+        else
+        {
+            return s_ctxtMap->EmptyCache(backEndId);
+        }
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    }
+    catch(std::bad_alloc&)
+    {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "failed to empty cache", NULL, "out of memory", NULL, "be.file");
+
+        return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
+    }
+    catch(std::exception& x)
+    {
+        pantheios_onBailOut6(PANTHEIOS_SEV_CRITICAL, "failed to empty cache", NULL, x.what(), NULL, "be.file");
+
+        return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
+    }
+# ifdef PANTHEIOS_USE_CATCHALL
+    catch(...)
+    {
+        pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "failed to empty cache", NULL, "unknown failure", NULL, "be.file");
+
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
+        return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
+    }
+# endif /* PANTHEIOS_USE_CATCHALL */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
@@ -848,7 +933,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_parseArgs(
             }
             else
             {
-                ::memcpy(&init->buff[0], fileName.ptr, sizeof(pan_char_t) * fileName.len);
+                PANTHEIOS_char_copy(&init->buff[0], fileName.ptr, fileName.len);
                 init->buff[fileName.len] = '\0';
                 init->fileName = &init->buff[0];
             }
@@ -1012,6 +1097,15 @@ int be_file_Context::Flush()
 #endif
 }
 
+int be_file_Context::EmptyCache()
+{
+    stlsoft::lock_scope<mutex_type> lock(m_mx);
+
+    ClearAllPendingEntries();
+
+    return 0;
+}
+
 void be_file_Context::WriteAllPendingEntries()
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(FileErrorValue != m_hFile && !m_filePath.empty(), "cannot write all pending entries when the file is not open");
@@ -1139,25 +1233,25 @@ int be_file_Context::Open(
         size_t const        n0  =   static_cast<size_t>(p1s - s);
 
         // before 1st replacement
-        ::memcpy(d, s, n0 * sizeof(pan_char_t));
+        PANTHEIOS_char_copy(d, s, n0);
         s += n0;
         d += n0;
         // 1st replacement
-        ::memcpy(d, p1r, n1 * sizeof(pan_char_t));
+        PANTHEIOS_char_copy(d, p1r, n1);
         d += n1;
         s += 2;
         // between 1st and 2nd replacements
-        ::memcpy(d, s, n2 * sizeof(pan_char_t));
+        PANTHEIOS_char_copy(d, s, n2);
         d += n2;
         s += n2;
         // 2nd replacement
-        ::memcpy(d, p3r, n3 * sizeof(pan_char_t));
+        PANTHEIOS_char_copy(d, p3r, n3);
         d += n3;
         s += 2;
         // after 2nd replacement
         size_t const        n4  =   nameLen - (s - fileName);
 
-        ::memcpy(d, s, n4 * sizeof(pan_char_t));
+        PANTHEIOS_char_copy(d, s, n4);
         d += n4;
 
         *d = '\0';
@@ -1340,7 +1434,7 @@ int be_file_Context::rawLogEntry(
     }
 #endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
 
-    ::memcpy(&buff[0], entry, cchEntry * sizeof(pan_char_t));
+    PANTHEIOS_char_copy(&buff[0], entry, cchEntry);
 
     pan_char_t* p = &cchEntry[buff.data()];
 
@@ -1586,32 +1680,48 @@ int be_file_ContextMap::Flush(int backEndId)
     }
 }
 
-int be_file_ContextMap::Add(int backEndId, be_file_Context* ctxt)
+int be_file_ContextMap::EmptyCache(int backEndId)
 {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    try
+    if(PANTHEIOS_BEID_ALL == backEndId)
     {
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        int r = 0;
 
-        m_entries.insert(std::make_pair(backEndId, ctxt));
+        { for(entries_type::iterator b = m_entries.begin(), e = m_entries.end(); b != e; ++b)
+        {
+            int r2 = (*b).second->EmptyCache();
 
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-    }
-    catch(std::bad_alloc&)
-    {
-        return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
-    }
-    catch(std::exception&)
-    {
-        return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
-    }
-    catch(...)
-    {
-        return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
-    }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+            if(0 != r2)
+            {
+                char beid[21];
 
-    return 0;
+                pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "failed to clear cache for back-end", NULL, stlsoft::integer_to_string(beid, STLSOFT_NUM_ELEMENTS(beid), (*b).first));
+
+                r = r2;
+            }
+        }}
+
+        return r;
+    }
+    else
+    {
+        entries_type::iterator it = m_entries.find(backEndId);
+
+        if(it == m_entries.end())
+        {
+            return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
+        }
+        else
+        {
+            be_file_Context* ctxt = (*it).second;
+
+            return ctxt->EmptyCache();
+        }
+    }
+}
+
+void be_file_ContextMap::Add(int backEndId, be_file_Context* ctxt)
+{
+    m_entries.insert(std::make_pair(backEndId, ctxt));
 }
 
 void be_file_ContextMap::Remove(int backEndId)

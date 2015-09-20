@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.processId project.
  *
  * Created:     17th October 2006
- * Updated:     23rd March 2010
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,19 +20,19 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>      // Pantheios C++ main header
 #include <pantheios/inserters/ids.hpp>  // for pantheios::processId
 #include <pantheios/backends/bec.test.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/conversion/integer_to_string.hpp>
 #include <platformstl/platformstl.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>                     // for exit codes
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)

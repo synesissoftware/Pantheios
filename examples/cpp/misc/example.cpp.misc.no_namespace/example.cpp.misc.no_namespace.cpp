@@ -6,7 +6,7 @@
  *                - use of Pantheios with the namespace suppressed
  *
  * Created:     15th March 2008
- * Updated:     6th December 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -21,15 +21,15 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #define PANTHEIOS_NO_NAMESPACE                            // Suppress the namespace
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS // Faster compilation
 #include <pantheios/pantheios.hpp>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>                         // for exit codes
 
 /* ////////////////////////////////////////////////////////////////////// */

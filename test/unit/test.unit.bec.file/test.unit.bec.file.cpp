@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.be.file project.
  *
  * Created:     19th January 2008
- * Updated:     14th November 2010
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,25 +20,25 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/backends/bec.file.h>
 #include <pantheios/init_codes.h>
 #include <pantheios/util/system/threadid.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/conversion/char_conversions.hpp>
 #include <stlsoft/conversion/integer_to_string.hpp>
 #include <platformstl/filesystem/file_lines.hpp>
 #include <platformstl/filesystem/filesystem_traits.hpp>
 
-/* xTests Header Files */
+/* xTests header files */
 #include <xtests/xtests.h>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>                    // for std::exception
 #include <new>                          // for std::bad_alloc
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>                      // for fprintf(), remove()
 #include <stdlib.h>                     // for exit codes
 
@@ -158,7 +158,7 @@ static void test_3_0f();
 static void test_4_00();
 static void test_4_01();
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -3036,6 +3036,6 @@ static void test_4_01()
 }
 
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ///////////////////////////// end of file //////////////////////////// */

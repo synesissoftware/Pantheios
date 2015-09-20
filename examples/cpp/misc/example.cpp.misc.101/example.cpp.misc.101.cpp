@@ -10,7 +10,7 @@
  *                - use of pantheios::log()
  *
  * Created:     17th January 2008
- * Updated:     6th December 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -25,15 +25,15 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>      /* The root header for Panthieos when using the C++-API. */
 #include <pantheios/inserters.hpp>      /* Includes all headers for inserters, incl. integer, real, character */
 #include <pantheios/frontends/stock.h>  /* Declares the process identity symbol PANTHEIOS_FE_PROCESS_IDENTITY */
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <algorithm>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.be.pantheios.COM project.
  *
  * Created:     9th October 2006
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -20,10 +20,10 @@
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
 
-/* Open-RJ Header Files */
+/* Open-RJ header files */
 //#include <openrj/implicit_link.h>
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/implicit_link/core.h>
 #include <pantheios/implicit_link/fe.simple.h>
@@ -38,18 +38,18 @@
 # include <pantheios/implicit_link/ber.WindowsSyslog.h>
 #endif /* operating system */
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* PlatformSTL Header Files */
+/* PlatformSTL header files */
 #include <platformstl/platformstl.hpp>
 
 
-/* UNIXEm Header Files */
+/* UNIXem header files */
 #include <unixem/unixem.h>
 #include <unixem/implicit_link.h>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #if 0
 #include <algorithm>
@@ -70,7 +70,7 @@ namespace std
 }
 #endif /* __WATCOMC__ */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>
 
 #if defined(_MSC_VER) && \

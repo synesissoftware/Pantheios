@@ -4,11 +4,11 @@
  * Purpose:     Format constants for Pantheios inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     6th August 2012
+ * Updated:     1st April 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2014, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_FMT_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_FMT_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_FMT_REVISION 12
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_FMT_EDIT     23
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_FMT_EDIT     24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ struct fmt
         ,   showPlus    =   0x0800  /*!< [PROVISIONAL] Shows a leading plus '+' for positively valued numeric arguments. */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
     };
-}; // namespace fmt
+}; /* namespace fmt */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

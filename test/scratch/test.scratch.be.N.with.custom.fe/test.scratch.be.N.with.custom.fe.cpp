@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.be.N.with.custom.fe project.
  *
  * Created:     23rd December 2010
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Thanks:      To wassime, for submitting the original program definition.
  *
@@ -12,7 +12,7 @@
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010-2012, Synesis Software Pty Ltd.
+ *              Copyright (c) 2010-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -22,22 +22,22 @@
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pan.hpp>
 #include <pantheios/backends/be.N.h>
 #include <pantheios/backends/bec.file.h>
 #include <pantheios/backends/bec.console.h>
 #include <pantheios/frontend.h>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #include <platformstl/platformstl.hpp>
 
-/* Standard C++ Header Files */
+/* Standard C++ header files */
 #include <exception>
 #include <iostream>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Core and Util APIs.
  *
  * Created:     21st June 2005
- * Updated:     6th August 2012
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      46
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      49
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       350
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       359
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -100,6 +100,7 @@
 # define PANTHEIOS_VER_1_0_1_B212               0x010001d4
 # define PANTHEIOS_VER_1_0_1_B213               0x010001d5
 # define PANTHEIOS_VER_1_0_1_B214               0x010001d6
+# define PANTHEIOS_VER_1_0_1_B215               0x010001d7
 # define PANTHEIOS_VER_1_0_1                    0x010001ff
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -107,7 +108,7 @@
 #define PANTHEIOS_VER_MINOR                     0
 #define PANTHEIOS_VER_REVISION                  1
 
-#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B214
+#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B215
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes - 1
@@ -120,9 +121,16 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010973ff
-# error This version Pantheios requires STLSoft 1.9.115, or later. (www.stlsoft.org)
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# undef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
+
+#if defined(STLSOFT_VER) && \
+    STLSOFT_VER >= 0x010c0000
+# define PANTHEIOS_STLSOFT_1_12_OR_LATER
+#elif !defined(_STLSOFT_VER) || \
+    _STLSOFT_VER < 0x010978ff
+# error This version Pantheios requires STLSoft 1.9.120, or later. (www.stlsoft.org)
 #endif /* STLSoft version */
 
 #ifndef PANTHEIOS_INCL_H_STDARG
@@ -843,6 +851,17 @@ PANTHEIOS_CALL(void) pantheios_onBailOut4(
 ,   char const*   qualifier
 );
 
+#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+PANTHEIOS_CALL(void) pantheios_onBailOut6(
+    int           severity
+,   char const*   message
+,   char const*   processId
+,   char const*   qualifier
+,   char const*   frontEndName
+,   char const*   backEndName
+);
+#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 /** Prints a bail-out message to operating system-dependent
  *    facilities (e.g. console, file, debugger, event log, etc.) in
  *    the event that initialisation (of front-end and/or back-end(s))
@@ -1069,7 +1088,13 @@ PANTHEIOS_CALL(void) pantheios_logputs(
  */
 PANTHEIOS_CALL_DEPRECATED(void, pantheios_puts, pantheios_logputs) pantheios_puts(pan_sev_t severity, pan_char_t const* message);
 
+
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+/*
+ * \ingroup group__core_library
+ *
+ * Assert implementation
+ */
 PANTHEIOS_CALL(void) pantheios_logassertfail(
     pan_sev_t   severity
 ,   char const* fileLine
@@ -1183,17 +1208,35 @@ namespace util
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
-inline void onBailOut(int severity, char const* message, char const* processId)
+inline
+void
+onBailOut(
+    int         severity
+,   char const* message
+,   char const* processId
+)
 {
     pantheios_onBailOut3(severity, message, processId);
 }
 
-inline void onBailOut(int severity, char const* message, char const* processId, char const* qualifier)
+inline
+void
+onBailOut(
+    int         severity
+,   char const* message
+,   char const* processId
+,   char const* qualifier
+)
 {
     pantheios_onBailOut4(severity, message, processId, qualifier);
 }
 
-inline size_t strnlen(pan_char_t const* s, size_t len)
+inline
+size_t
+strnlen(
+    pan_char_t const*   s
+,   size_t              len
+)
 {
     return pantheios_util_strnlen(s, len);
 }
@@ -1210,7 +1253,9 @@ inline size_t strnlen(pan_char_t const* s, size_t len)
  *
  * \ingroup group__core_library
  */
-inline int init()
+inline
+int
+init()
 {
     return pantheios_init();
 }
@@ -1219,7 +1264,9 @@ inline int init()
  *
  * \ingroup group__core_library
  */
-inline void uninit()
+inline
+void
+uninit()
 {
     pantheios_uninit();
 }
@@ -1229,52 +1276,73 @@ namespace core
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
-inline int isInitialising()
+inline
+int
+isInitialising()
 {
     return pantheios_isInitialising();
 }
 
-inline int isInitialised()
+inline
+int
+isInitialised()
 {
     return pantheios_isInitialised();
 }
 
 #  if defined(STLSOFT_COMPILER_IS_GCC)
-void exitProcess(int code)
+void
+exitProcess(int code)
 __attribute__((noreturn));
 #  endif /* compiler */
 
 #  if defined(STLSOFT_COMPILER_IS_MSVC)
 __declspec(noreturn)
 #  endif /* compiler */
-inline void exitProcess(int code)
+inline
+void
+exitProcess(int code)
 {
     pantheios_exitProcess(code);
 }
 
-inline PANTHEIOS_DECLARE_DEPRECATION("function", exit_process, exitProcess) void exit_process(int code)
+inline
+PANTHEIOS_DECLARE_DEPRECATION("function", exit_process, exitProcess)
+void
+exit_process(int code)
 {
     exitProcess(code);
 }
 
 #ifndef malloc
-inline void* malloc(size_t cb)
+inline
+void*
+malloc(size_t cb)
 {
     return pantheios_malloc(cb);
 }
 #endif /* !malloc */
 
-inline void* inserterAllocate(size_t cb)
+inline
+void*
+inserterAllocate(size_t cb)
 {
     return pantheios_inserterAllocate(cb);
 }
 
-inline void inserterDeallocate(void* pv)
+inline
+void
+inserterDeallocate(void* pv)
 {
     pantheios_inserterDeallocate(pv);
 }
 
-inline pan_char_t const* getPad(size_t minimumWidth, size_t* actualWidth)
+inline
+pan_char_t const*
+getPad(
+    size_t  minimumWidth
+,   size_t* actualWidth
+)
 {
     return pantheios_getPad(minimumWidth, actualWidth);
 }
@@ -1287,7 +1355,11 @@ inline pan_char_t const* getPad(size_t minimumWidth, size_t* actualWidth)
  *
  * \ingroup group__core_library
  */
-inline int isSeverityLogged(pan_sev_t severity)
+inline
+int
+isSeverityLogged(
+    pan_sev_t severity
+)
 {
     return pantheios_isSeverityLogged(severity);
 }
@@ -1298,7 +1370,9 @@ inline int isSeverityLogged(pan_sev_t severity)
  * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
  */
-inline pan_char_t const* getProcessIdentity()
+inline
+pan_char_t const*
+getProcessIdentity()
 {
     return pantheios_getProcessIdentity();
 }
@@ -1308,14 +1382,23 @@ inline pan_char_t const* getProcessIdentity()
  *
  * \ingroup group__core_library
  */
-inline pan_char_t const* getStockSeverityString(pan_sev_t severity)
+inline
+pan_char_t const*
+getStockSeverityString(
+    pan_sev_t severity
+)
 {
     return pantheios_getStockSeverityString(severity);
 }
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
-inline PANTHEIOS_DECLARE_DEPRECATION("function", getSeverityString, getStockSeverityString) pan_char_t const* getSeverityString(pan_sev_t severity)
+inline
+PANTHEIOS_DECLARE_DEPRECATION("function", getSeverityString, getStockSeverityString)
+pan_char_t const*
+getSeverityString(
+    pan_sev_t severity
+)
 {
     return getStockSeverityString(severity);
 }
@@ -1326,14 +1409,23 @@ inline PANTHEIOS_DECLARE_DEPRECATION("function", getSeverityString, getStockSeve
  *
  * \ingroup group__core_library
  */
-inline size_t getStockSeverityStringLength(pan_sev_t severity)
+inline
+size_t
+getStockSeverityStringLength(
+    pan_sev_t severity
+)
 {
     return pantheios_getStockSeverityStringLength(severity);
 }
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
-inline PANTHEIOS_DECLARE_DEPRECATION("function", getSeverityStringLength, getStockSeverityStringLength) size_t getSeverityStringLength(pan_sev_t severity)
+inline
+PANTHEIOS_DECLARE_DEPRECATION("function", getSeverityStringLength, getStockSeverityStringLength)
+size_t
+getSeverityStringLength(
+    pan_sev_t severity
+)
 {
     return getStockSeverityStringLength(severity);
 }
@@ -1344,14 +1436,23 @@ inline PANTHEIOS_DECLARE_DEPRECATION("function", getSeverityStringLength, getSto
  *
  * \ingroup group__core_library
  */
-inline char const* getInitCodeString(int code)
+inline
+char const*
+getInitCodeString(
+    int code
+)
 {
     return pantheios_getInitCodeString(code);
 }
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
-inline PANTHEIOS_DECLARE_DEPRECATION("function", getInitErrorString, getInitCodeString) char const* getInitErrorString(int code)
+inline
+PANTHEIOS_DECLARE_DEPRECATION("function", getInitErrorString, getInitCodeString)
+char const*
+getInitErrorString(
+    int code
+)
 {
     return getInitCodeString(code);
 }
@@ -1362,14 +1463,23 @@ inline PANTHEIOS_DECLARE_DEPRECATION("function", getInitErrorString, getInitCode
  *
  * \ingroup group__core_library
  */
-inline size_t getInitCodeStringLength(int code)
+inline
+size_t
+getInitCodeStringLength(
+    int code
+)
 {
     return pantheios_getInitCodeStringLength(code);
 }
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
-inline PANTHEIOS_DECLARE_DEPRECATION("function", getInitErrorStringLength, getInitCodeStringLength) size_t getInitErrorStringLength(int code)
+inline
+PANTHEIOS_DECLARE_DEPRECATION("function", getInitErrorStringLength, getInitCodeStringLength)
+size_t
+getInitErrorStringLength(
+    int code
+)
 {
     return getStockSeverityStringLength(code);
 }
@@ -1384,7 +1494,9 @@ namespace core
  * \pre The behaviour of this function is undefined if it is called more
  *   than INT_MAX - 1000 times in the lifetime of a process
  */
-inline int getNextBackEndId()
+inline
+int
+getNextBackEndId()
 {
     return pantheios_getNextBackEndId();
 }
@@ -1395,7 +1507,9 @@ inline int getNextBackEndId()
  *
  * \ingroup group__core_library
  */
-inline void logputs(
+inline
+void
+logputs(
     pan_sev_t           severity
 ,   pan_char_t const*   message
 )
@@ -1411,7 +1525,13 @@ inline void logputs(
  *   version of Pantheios; instead
  *   use \link pantheios::logputs logputs()\endlink.
  */
-inline PANTHEIOS_DECLARE_DEPRECATION("function", puts, logputs) void puts(pan_sev_t severity, pan_char_t const* message)
+inline
+PANTHEIOS_DECLARE_DEPRECATION("function", puts, logputs)
+void
+puts(
+    pan_sev_t           severity
+,   pan_char_t const*   message
+)
 {
     pantheios_logputs(severity, message);
 }
@@ -1432,7 +1552,9 @@ __attribute__((format(printf,2,3)))
 ;
 #endif /* compiler */
 
-inline int logprintf(
+inline
+int
+logprintf(
     pan_sev_t           severity
 ,   pan_char_t const*   format
 ,   ...
@@ -1455,7 +1577,9 @@ inline int logprintf(
  *
  * \ingroup group__core_library
  */
-inline int logvprintf(
+inline
+int
+logvprintf(
     pan_sev_t           severity
 ,   pan_char_t const*   format
 ,   va_list             args
@@ -1467,281 +1591,37 @@ inline int logvprintf(
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+#if !defined(PANTHEIOS_NO_NAMESPACE)
+} /* namespace pantheios */
+
+# ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+#  define PANTHEIOS_NS_QUAL(x)                      ::pantheios::x
+#  define PANTHEIOS_NS_QUAL_(ns, x)                 ::pantheios::ns::x
+# endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
+#else /* ? !PANTHEIOS_NO_NAMESPACE */
+
+# ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+#  define PANTHEIOS_NS_QUAL(x)                      x
+#  define PANTHEIOS_NS_QUAL_(ns, x)                 x
+# endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
+# endif /* !PANTHEIOS_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
  * String access shims
  */
 
-/* TODO: move all these shims into a separate file */
-
 #ifdef __cplusplus
 
-# if !defined(PANTHEIOS_NO_NAMESPACE)
-namespace shims
-{
-# endif /* !PANTHEIOS_NO_NAMESPACE */
-
-/** Returns a nul-terminated non-NULL C-style string representing the slice */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_ptr_w(pan_slice_t const& s)
-{
-    return (0 == s.len) ? L"" : s.ptr;
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_ptr_a(pan_slice_t const& s)
-{
-    return (0 == s.len) ? "" : s.ptr;
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns a nul-terminated non-NULL C-style string representing the slice */
-inline pan_char_t const* c_str_ptr(pan_slice_t const& s)
-{
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    return c_str_ptr_w(s);
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    return c_str_ptr_a(s);
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-}
-
-/** Returns a nul-terminated potentially null C-style string representing the slice */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_ptr_null_w(pan_slice_t const& s)
-{
-    return (0 != s.len) ? s.ptr : NULL;
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_ptr_null_a(pan_slice_t const& s)
-{
-    return (0 != s.len) ? s.ptr : NULL;
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns a nul-terminated potentially null C-style string representing the slice */
-inline pan_char_t const* c_str_ptr_null(pan_slice_t const& s)
-{
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    return c_str_ptr_null_w(s);
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    return c_str_ptr_null_a(s);
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-}
-
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_data_w(pan_slice_t const& s)
-{
-    return c_str_ptr(s);
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_data_a(pan_slice_t const& s)
-{
-    return c_str_ptr(s);
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
-inline pan_char_t const* c_str_data(pan_slice_t const& s)
-{
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    return c_str_data_w(s);
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    return c_str_data_a(s);
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-}
-
-/** Returns the number of characters in the length of the C-style string representing the slice */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline size_t c_str_len_w(pan_slice_t const& s)
-{
-    return s.len;
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline size_t c_str_len_a(pan_slice_t const& s)
-{
-    return s.len;
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns the number of characters in the length of the C-style string representing the slice */
-inline size_t c_str_len(pan_slice_t const& s)
-{
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    return c_str_len_w(s);
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    return c_str_len_a(s);
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-}
-
-
-
-/** Returns a nul-terminated non-NULL C-style string representing the slice */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_ptr_w(pan_slice_t const* s)
-{
-    return (NULL != s) ? c_str_ptr_w(*s) : L"";
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_ptr_a(pan_slice_t const* s)
-{
-    return (NULL != s) ? c_str_ptr_a(*s) : "";
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns a nul-terminated non-NULL C-style string representing the slice */
-inline pan_char_t const* c_str_ptr(pan_slice_t const* s)
-{
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    return c_str_ptr_w(s);
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    return c_str_ptr_a(s);
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-}
-
-/** Returns a nul-terminated potentially null C-style string representing the slice */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_ptr_null_w(pan_slice_t const* s)
-{
-    return (NULL != s && (0 != s->len)) ? s->ptr : NULL;
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_ptr_null_a(pan_slice_t const* s)
-{
-    return (NULL != s && (0 != s->len)) ? s->ptr : NULL;
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns a nul-terminated potentially null C-style string representing the slice */
-inline pan_char_t const* c_str_ptr_null(pan_slice_t const* s)
-{
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    return c_str_ptr_null_w(s);
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    return c_str_ptr_null_a(s);
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-}
-
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_data_w(pan_slice_t const* s)
-{
-    return c_str_ptr(s);
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_data_a(pan_slice_t const* s)
-{
-    return c_str_ptr(s);
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
-inline pan_char_t const* c_str_data(pan_slice_t const* s)
-{
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    return c_str_data_w(s);
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    return c_str_data_a(s);
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-}
-
-/** Returns the number of characters in the length of the C-style string representing the slice */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline size_t c_str_len_w(pan_slice_t const* s)
-{
-    return (NULL != s) ? s->len : 0;
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline size_t c_str_len_a(pan_slice_t const* s)
-{
-    return (NULL != s) ? s->len : 0;
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns the number of characters in the length of the C-style string representing the slice */
-inline size_t c_str_len(pan_slice_t const* s)
-{
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    return c_str_len_w(s);
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    return c_str_len_a(s);
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-}
-
-
+# include <pantheios/shims/access/string/core/pan_slice_t.hpp>
 
 # ifndef PANTHEIOS_NO_STOCK_LEVELS
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the severity */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_data_w(pan_severity_t severity)
-{
-    return pantheios_getStockSeverityString(severity);
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_data_a(pan_severity_t severity)
-{
-    return pantheios_getStockSeverityString(severity);
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the severity */
-inline pan_char_t const* c_str_data(pan_severity_t severity)
-{
-    return pantheios_getStockSeverityString(severity);
-}
-
-/** Returns the number of characters in the length of the C-style string representing the severity */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline size_t c_str_len_w(pan_severity_t severity)
-{
-    return pantheios_getStockSeverityStringLength(severity);
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline size_t c_str_len_a(pan_severity_t severity)
-{
-    return pantheios_getStockSeverityStringLength(severity);
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns the number of characters in the length of the C-style string representing the severity */
-inline size_t c_str_len(pan_severity_t severity)
-{
-    return pantheios_getStockSeverityStringLength(severity);
-}
-
-/** Returns a nul-terminated non-NULL C-style string representing the severity */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_ptr_w(pan_severity_t severity)
-{
-    return pantheios_getStockSeverityString(severity);
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_ptr_a(pan_severity_t severity)
-{
-    return pantheios_getStockSeverityString(severity);
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns a nul-terminated non-NULL C-style string representing the severity */
-inline pan_char_t const* c_str_ptr(pan_severity_t severity)
-{
-    return pantheios_getStockSeverityString(severity);
-}
-
-/** Returns a nul-terminated potentially null C-style string representing the severity */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_ptr_null_w(pan_severity_t severity)
-{
-    wchar_t const* s = pantheios_getStockSeverityString(severity);
-
-    return ('\0' != *s) ? s : NULL;
-}
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_ptr_null_a(pan_severity_t severity)
-{
-    char const* s = pantheios_getStockSeverityString(severity);
-
-    return ('\0' != *s) ? s : NULL;
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** Returns a nul-terminated potentially null C-style string representing the severity */
-inline pan_char_t const* c_str_ptr_null(pan_severity_t severity)
-{
-    pan_char_t const* s = pantheios_getStockSeverityString(severity);
-
-    return ('\0' != *s) ? s : NULL;
-}
+#  include <pantheios/shims/access/string/core/pan_severity_t.hpp>
 # endif /* !PANTHEIOS_NO_STOCK_LEVELS */
-
-# if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
-# endif /* !PANTHEIOS_NO_NAMESPACE */
 
 #endif /* __cplusplus */
 
@@ -1750,52 +1630,9 @@ inline pan_char_t const* c_str_ptr_null(pan_severity_t severity)
  */
 
 #ifdef __cplusplus
-# ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
-inline /* static */ size_t pan_slice_t::calc_length_n_(pan_char_t const* s, size_t len)
-{
-#if !defined(PANTHEIOS_NO_NAMESPACE)
-    return pantheios::util::strnlen(s, len);
-#else /* ? !PANTHEIOS_NO_NAMESPACE */
-    return pantheios_util_strnlen(s, len);
-#endif /* !PANTHEIOS_NO_NAMESPACE */
-}
+# include <pantheios/internal/slice.hpp>
 
-inline pan_slice_t::pan_slice_t()
-    : len(0)
-    , ptr(NULL)
-{}
-
-inline pan_slice_t::pan_slice_t(pan_char_t const* p, size_t l)
-    : len(l)
-    , ptr(p)
-{
-    static size_t const topBit = size_t(0x01) << (sizeof(size_t) * 8 - 1);
-
-    if(topBit & len)
-    {
-        this->len = calc_length_n_(p, len);
-    }
-}
-
-inline pan_slice_t::pan_slice_t(pan_slice_t const& rhs)
-    : len(rhs.len)
-    , ptr(rhs.ptr)
-{}
-inline pan_slice_t& pan_slice_t::operator =(pan_slice_t const& rhs)
-{
-    len = rhs.len;
-    ptr = rhs.ptr;
-
-    return *this;
-}
-
-inline pan_slice_t::pan_slice_t(int l, pan_char_t const* p)
-    : len(calc_length_n_(p, static_cast<size_t>(l)))
-    , ptr(p)
-{}
-
-# endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1803,9 +1640,6 @@ inline pan_slice_t::pan_slice_t(int l, pan_char_t const* p)
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
-
-
 # ifndef PANTHEIOS_NO_STOCK_LEVELS
 
 /* #define the severity levels at the global level, since the construction
@@ -1864,7 +1698,7 @@ inline pan_slice_t::pan_slice_t(int l, pan_char_t const* p)
 # endif /* !PANTHEIOS_NO_STOCK_LEVELS */
 
 
-#ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 /** The <a href = "http://stlsoft.org" target="_blank">STLSoft</a> namespace - \c stlsoft.
  *
  * The Pantheios project inserts overloads of the <strong>c_str_data_a</strong> and <strong>c_str_len_a</strong>
@@ -1878,21 +1712,15 @@ inline pan_slice_t::pan_slice_t(int l, pan_char_t const* p)
  * are unbound sets of functions, opening and extending the
  * <code>stlsoft</code> namespace in this way is quite legitimate.
  */
-#endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+# endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+# include <pantheios/internal/shim_declarations.hpp>
 namespace stlsoft
 {
 
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-    using ::pantheios::shims::c_str_data_w;
-    using ::pantheios::shims::c_str_len_w;
-    using ::pantheios::shims::c_str_ptr_w;
-    using ::pantheios::shims::c_str_ptr_null_w;
-#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    using ::pantheios::shims::c_str_data_a;
-    using ::pantheios::shims::c_str_len_a;
-    using ::pantheios::shims::c_str_ptr_a;
-    using ::pantheios::shims::c_str_ptr_null_a;
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+    using ::pantheios::shims::PANTHEIOS_c_str_data_name_;
+    using ::pantheios::shims::PANTHEIOS_c_str_len_name_;
+    using ::pantheios::shims::PANTHEIOS_c_str_ptr_name_;
+    using ::pantheios::shims::PANTHEIOS_c_str_ptr_null_name_;
     using ::pantheios::shims::c_str_data;
     using ::pantheios::shims::c_str_len;
     using ::pantheios::shims::c_str_ptr;
@@ -1903,20 +1731,14 @@ namespace stlsoft
 #else /* ? !PANTHEIOS_NO_NAMESPACE */
 
 # ifdef __cplusplus
+#  include <pantheios/internal/shim_declarations.hpp>
 namespace stlsoft
 {
 
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-    using ::c_str_data_w;
-    using ::c_str_len_w;
-    using ::c_str_ptr_w;
-    using ::c_str_ptr_null_w;
-#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    using ::c_str_data_a;
-    using ::c_str_len_a;
-    using ::c_str_ptr_a;
-    using ::c_str_ptr_null_a;
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+    using ::PANTHEIOS_c_str_data_name_;
+    using ::PANTHEIOS_c_str_len_name_;
+    using ::PANTHEIOS_c_str_ptr_name_;
+    using ::PANTHEIOS_c_str_ptr_null_name_;
     using ::c_str_data;
     using ::c_str_len;
     using ::c_str_ptr;

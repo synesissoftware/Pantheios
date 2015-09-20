@@ -4,11 +4,11 @@
  * Purpose:     Implementation
  *
  * Created:     26th June 2005
- * Updated:     22nd March 2010
+ * Updated:     9th December 2013
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -152,7 +152,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
             ? pantheios_be_remote_logEntry(feToken, tokens->remoteToken, severity, entry, cchEntry)
             : 0;
 
-    /* Remote is given priority in error stakes. It's probably of little significance,
+    /* Remote is given priority in failure stakes. It's probably of little significance,
      * but a choice was demanded.
      */
     if(r2 < 0)

@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the fprintf() back-end
  *
  * Created:     26th June 2005
- * Updated:     23rd May 2011
+ * Updated:     9th December 2013
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -79,7 +79,7 @@ namespace
     using ::pantheios::util::pantheios_onBailOut3;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Typedefs
@@ -155,7 +155,7 @@ namespace
         }
     }
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -234,7 +234,7 @@ PANTHEIOS_CALL(int) pantheios_be_fprintf_init(
 ,   void**                          ptoken
 )
 {
-    return pantheios_call_be_X_init<pan_be_fprintf_init_t>(pantheios_be_fprintf_init_, processIdentity, backEndId, init, reserved, ptoken);
+    return pantheios_call_be_X_init<pan_be_fprintf_init_t>(pantheios_be_fprintf_init_, processIdentity, backEndId, init, reserved, ptoken, "be.fprintf");
 }
 
 PANTHEIOS_CALL(void) pantheios_be_fprintf_uninit(void* token)
@@ -271,7 +271,7 @@ PANTHEIOS_CALL(int) pantheios_be_fprintf_logEntry(
 ,   size_t              cchEntry
 )
 {
-    return pantheios_call_be_logEntry(pantheios_be_fprintf_logEntry_, feToken, beToken, severity, entry, cchEntry);
+    return pantheios_call_be_logEntry(pantheios_be_fprintf_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.fprintf");
 }
 
 /* /////////////////////////////////////////////////////////////////////////

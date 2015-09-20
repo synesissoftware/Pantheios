@@ -4,11 +4,11 @@
  * Purpose:     String inserter for binary regions.
  *
  * Created:     21st June 2005
- * Updated:     22nd March 2010
+ * Updated:     11th October 2012
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MINOR       4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        27
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_REVISION    5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,6 +70,9 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_FMT
 # include <pantheios/inserters/fmt.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_FMT */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS
+# include <pantheios/internal/shim_declarations.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
 # include <stlsoft/shims/access/string/fwd.h>
@@ -259,53 +262,50 @@ namespace shims
 {
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
-/** \overload c_str_data_a(blob const&) */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_data_w(blob const& b)
+inline
+PAN_CHAR_T const*
+PANTHEIOS_c_str_data_name_(
+    blob const& b
+)
 {
     return b.data();
 }
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_data_a(blob const& b)
-{
-    return b.data();
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** \overload c_str_data(blob const&) */
-inline pan_char_t const* c_str_data(blob const& b)
+inline
+pan_char_t const*
+c_str_data(blob const& b)
 {
     return b.data();
 }
 
-/** \overload c_str_len_a(blob const&) */
+inline
+size_t
 # ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline size_t c_str_len_w(blob const& b)
 # else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline size_t c_str_len_a(blob const& b)
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
+PANTHEIOS_c_str_len_name_(
+    blob const& b
+)
 {
     return b.length();
 }
-/** \overload c_str_len(blob const&) */
-inline size_t c_str_len(blob const& b)
+inline
+size_t
+c_str_len(blob const& b)
 {
     return b.length();
 }
 
-/** \overload c_str_ptr_a(blob const&) */
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-inline wchar_t const* c_str_ptr_w(blob const& b)
+inline
+PAN_CHAR_T const*
+PANTHEIOS_c_str_ptr_name_(
+    blob const& b
+)
 {
     return b.c_str();
 }
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-inline char const* c_str_ptr_a(blob const& b)
-{
-    return b.c_str();
-}
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
-/** \overload c_str_ptr(blob const&) */
-inline pan_char_t const* c_str_ptr(blob const& b)
+inline
+pan_char_t const*
+c_str_ptr(blob const& b)
 {
     return b.c_str();
 }
@@ -319,15 +319,9 @@ inline pan_char_t const* c_str_ptr(blob const& b)
      * shims into the same namespace as the inserter class
      * in order that ADL can suffice instead.
      */
-#   ifdef PANTHEIOS_USE_WIDE_STRINGS
-    using ::pantheios::shims::c_str_data_w;
-    using ::pantheios::shims::c_str_len_w;
-    using ::pantheios::shims::c_str_ptr_w;
-#   else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    using ::pantheios::shims::c_str_data_a;
-    using ::pantheios::shims::c_str_len_a;
-    using ::pantheios::shims::c_str_ptr_a;
-#   endif /* PANTHEIOS_USE_WIDE_STRINGS */
+    using ::pantheios::shims::PANTHEIOS_c_str_data_name_;
+    using ::pantheios::shims::PANTHEIOS_c_str_len_name_;
+    using ::pantheios::shims::PANTHEIOS_c_str_ptr_name_;
     using ::pantheios::shims::c_str_data;
     using ::pantheios::shims::c_str_len;
     using ::pantheios::shims::c_str_ptr;
@@ -353,15 +347,9 @@ namespace stlsoft
     // may find a legitimate use for the conversion classes additional to
     // the type-tunneling of the Pantheios API.
 
-# ifdef PANTHEIOS_USE_WIDE_STRINGS
-    using ::pantheios::shims::c_str_data_w;
-    using ::pantheios::shims::c_str_len_w;
-    using ::pantheios::shims::c_str_ptr_w;
-# else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    using ::pantheios::shims::c_str_data_a;
-    using ::pantheios::shims::c_str_len_a;
-    using ::pantheios::shims::c_str_ptr_a;
-# endif /* PANTHEIOS_USE_WIDE_STRINGS */
+    using ::pantheios::shims::PANTHEIOS_c_str_data_name_;
+    using ::pantheios::shims::PANTHEIOS_c_str_len_name_;
+    using ::pantheios::shims::PANTHEIOS_c_str_ptr_name_;
     using ::pantheios::shims::c_str_data;
     using ::pantheios::shims::c_str_len;
     using ::pantheios::shims::c_str_ptr;

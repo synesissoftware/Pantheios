@@ -4,13 +4,13 @@
  * Purpose:     Pantheios Assertion API.
  *
  * Created:     8th May 2009
- * Updated:     6th November 2010
+ * Updated:     11th October 2012
  *
  * Thanks to:   markitus82 for requesting this functionality
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2009-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2009-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MAJOR     1
-# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MINOR     1
+# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      8
+# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,25 @@
 # include <pantheios/fileline.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_FILELINE */
 
-#include <stlsoft/stlsoft.h>
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
+#include <stdlib.h>
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Helper macros
+ */
+
+#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+
+# ifdef PANTHEIOS_ASSERT_ABORT_ON_FAILURE
+#  define PANTHEIOS_ASSERT_CALL_EXIT_()     PANTHEIOS_NS_QUAL(pantheios_exitProcess)(EXIT_FAILURE)
+# else /* ? PANTHEIOS_ASSERT_ABORT_ON_FAILURE */
+#  define PANTHEIOS_ASSERT_CALL_EXIT_()     stlsoft_static_cast(void, 0)
+# endif /* PANTHEIOS_ASSERT_ABORT_ON_FAILURE */
+
+#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Assertion features
@@ -119,8 +137,12 @@
  *
  * If the expression evaluates to false a log statement will be
  * submitted at the PANTHEIOS_ASSERT_SEVERITY_LEVEL severity level, and
- * emitted if that level is currently switched on. The expression will also
- * be subjected to an assert, via \c STLSOFT_ASSERT()
+ * emitted if that level is currently switched on.
+ *
+ * If the preprocessor symbol PANTHEIOS_ASSERT_ABORT_ON_FAILURE is
+ * defined, then pantheios_exitProcess() will be invoked for a failed
+ * expression; if not, the expression will also be subjected to a
+ * "standard" assert, via \c STLSOFT_ASSERT()
  *
  * \ingroup group__assertion
  */
@@ -132,6 +154,8 @@
         if(!(expr))                         \
         {                                   \
             PANTHEIOS_NS_QUAL(pantheios_logassertfail)(PANTHEIOS_ASSERT_SEVERITY_LEVEL, PANTHEIOS_FILELINE_A, "assertion failed: " #expr); \
+                                            \
+            PANTHEIOS_ASSERT_CALL_EXIT_();  \
         }                                   \
                                             \
         STLSOFT_ASSERT(expr);               \
@@ -147,8 +171,12 @@
  *
  * If the expression evaluates to false a log statement will be
  * submitted at the PANTHEIOS_ASSERT_SEVERITY_LEVEL severity level, and
- * emitted if that level is currently switched on. The expression will also
- * be subjected to an assert, via \c STLSOFT_MESSAGE_ASSERT()
+ * emitted if that level is currently switched on.
+ *
+ * If the preprocessor symbol PANTHEIOS_ASSERT_ABORT_ON_FAILURE is
+ * defined, then pantheios_exitProcess() will be invoked for a failed
+ * expression; if not, the expression will also be subjected to a
+ * "standard" assert, via \c STLSOFT_MESSAGE_ASSERT()
  *
  * \ingroup group__assertion
  */
@@ -160,6 +188,8 @@
         if(!(expr))                         \
         {                                   \
             PANTHEIOS_NS_QUAL(pantheios_logassertfail)(PANTHEIOS_ASSERT_SEVERITY_LEVEL, PANTHEIOS_FILELINE_A, "assertion failed: " #expr "; message: " msg); \
+                                            \
+            PANTHEIOS_ASSERT_CALL_EXIT_();  \
         }                                   \
                                             \
         STLSOFT_MESSAGE_ASSERT(msg, expr);  \

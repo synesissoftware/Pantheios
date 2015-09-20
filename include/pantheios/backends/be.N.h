@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios be.N Stock Back-end API.
  *
  * Created:     18th October 2006
- * Updated:     26th November 2010
+ * Updated:     26th August 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -52,9 +52,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MAJOR      1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      6
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       21
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      7
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       22
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -173,6 +173,19 @@ struct pan_be_N_t
     /* INTERNAL USE ONLY */
     void*   token;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
+#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+    /* INTERNAL USE ONLY */
+    PANTHEIOS_NS_QUAL(pan_uint32_t) pantheios_version_;
+#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
+#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# define PANTHEIOS_BE_N_RESERVED_VALUES_            0, 0, { 0 }
+    /* The following fields are reserved for future use */
+    PANTHEIOS_NS_QUAL(pan_uint32_t) reserved0;
+    PANTHEIOS_NS_QUAL(pan_uint32_t) reserved1;
+    PANTHEIOS_NS_QUAL(pan_uint32_t) reservedN[8];
+#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 };
 #ifndef __cplusplus
 typedef struct pan_be_N_t   pan_be_N_t;
@@ -215,15 +228,17 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
  *
  * \note This is to be used insead of PANTHEIOS_BE_N_ENTRY
  */
-#define PANTHEIOS_BE_N_STDFORM_ENTRY(backEndId, be_prefix, flags)   \
-    {                                                               \
-            flags                                                   \
-        ,   backEndId                                               \
-        ,   (int(PANTHEIOS_CALLCONV *)(PAN_CHAR_T const*,int,void const*,void*,void**))be_prefix ## _init \
-        ,   be_prefix ## _uninit                                    \
-        ,   be_prefix ## _logEntry                                  \
-        ,   INT_MAX                                                 \
-        ,   NULL                                                    \
+#define PANTHEIOS_BE_N_STDFORM_ENTRY(backEndId, be_prefix, flags)                                           \
+    {                                                                                                       \
+            flags                                                                                           \
+        ,   backEndId                                                                                       \
+        ,   (int(PANTHEIOS_CALLCONV *)(PAN_CHAR_T const*,int,void const*,void*,void**))be_prefix ## _init   \
+        ,   be_prefix ## _uninit                                                                            \
+        ,   be_prefix ## _logEntry                                                                          \
+        ,   INT_MAX                                                                                         \
+        ,   NULL                                                                                            \
+        ,   PANTHEIOS_VER                                                                                   \
+        ,   PANTHEIOS_BE_N_RESERVED_VALUES_                                                                 \
     }
 
 /** \def PANTHEIOS_BE_N_FILTERED_ENTRY
@@ -273,6 +288,8 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
         ,   be_prefix ## _logEntry                                                                          \
         ,   severityCeiling                                                                                 \
         ,   NULL                                                                                            \
+        ,   PANTHEIOS_VER                                                                                   \
+        ,   PANTHEIOS_BE_N_RESERVED_VALUES_                                                                 \
     }
 
 /** \def PANTHEIOS_BE_N_TERMINATOR_ENTRY
@@ -283,7 +300,7 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
  *
  * \see PANTHEIOS_BE_N_STDFORM_ENTRY
  */
-#define PANTHEIOS_BE_N_TERMINATOR_ENTRY                 { 0, 0, NULL, NULL, NULL, -1, NULL }
+#define PANTHEIOS_BE_N_TERMINATOR_ENTRY                 { 0, 0, NULL, NULL, NULL, -1, NULL, PANTHEIOS_VER, PANTHEIOS_BE_N_RESERVED_VALUES_ }
 
 /* /////////////////////////////////////////////////////////////////////////
  * External Declarations

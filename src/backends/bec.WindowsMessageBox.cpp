@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the WindowsMessageBox back-end
  *
  * Created:     10th March 2008
- * Updated:     10th August 2009
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/winlean.h>
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
@@ -49,10 +49,10 @@
 #include <pantheios/quality/contract.h>
 #include <pantheios/util/core/apidefs.hpp>
 
-/* STLSoft Header Files */
+/* STLSoft header files */
 #include <winstl/memory/processheap_allocator.hpp>
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
@@ -89,7 +89,7 @@ namespace
     using ::pantheios::pan_char_t;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Structures
@@ -169,7 +169,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsMessageBox_init(
 ,   void**              ptoken
 )
 {
-    return pantheios_call_be_X_init<void>(pantheios_be_WindowsMessageBox_init_, processIdentity, id, unused, reserved, ptoken);
+    return pantheios_call_be_X_init<void>(pantheios_be_WindowsMessageBox_init_, processIdentity, id, unused, reserved, ptoken, "be.WindowsMessageBox");
 }
 
 PANTHEIOS_CALL(void) pantheios_be_WindowsMessageBox_uninit(void* token)

@@ -5,11 +5,11 @@
  *              ends.
  *
  * Created:     19th August 2007
- * Updated:     27th December 2010
+ * Updated:     9th December 2013
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,13 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * Includes
+ */
+
 #include <pantheios/pantheios.h>
 #include <pantheios/util/core/apidefs.hpp>
+#include <pantheios/init_codes.h>
 
 #include <pantheios/backend.h>
 #include <pantheios/quality/contract.h>
@@ -50,38 +55,74 @@
 #include <new>
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Namespace
+ */
+
+namespace
+{
+#if !defined(PANTHEIOS_NO_NAMESPACE)
+
+    using ::pantheios::util::pantheios_onBailOut6;
+
+#endif /* !PANTHEIOS_NO_NAMESPACE */
+
+} /* anonymous namespace */
+
+/* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
+/* /////////////////////////////////////
+ * Front-end functions
+ */
+
 PANTHEIOS_CALL(int) pantheios_call_fe_init(
     pantheios_fe_X_init_pfn_t   pfn
 ,   void*                       reserved
 ,   void**                      ptoken
+,   char const*                 feName
 )
 {
+    PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != ptoken, "token pointer may not be null");
+
     try
     {
         return pfn(reserved, ptoken);
     }
     catch(std::bad_alloc&)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "front-end initialisation failed", NULL, "out of memory", feName, NULL);
+
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "front-end initialisation failed", NULL, x.what(), feName, NULL);
+
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "front-end initialisation failed", NULL, "unknown failure", feName, NULL);
+
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
         return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
 }
 
 PANTHEIOS_CALL(int) pantheios_call_fe_uninit(
     pantheios_fe_X_uninit_pfn_t pfn
 ,   void*                       token
+,   char const*                 feName
 )
 {
     try
@@ -90,31 +131,50 @@ PANTHEIOS_CALL(int) pantheios_call_fe_uninit(
     }
     catch(std::bad_alloc&)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "front-end uninitialisation failed", NULL, "out of memory", feName, NULL);
+
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "front-end uninitialisation failed", NULL, x.what(), feName, NULL);
+
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
+        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "front-end uninitialisation failed", NULL, "unknown failure", feName, NULL);
+
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
         return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
 }
 
+#if 0
 PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_call_fe_getProcessIdentity(
     pantheios_fe_X_getProcessIdentity_pfn_t pfn
 ,   void*                                   token
+,   char const*                             feName
 )
 {
     try
     {
         return pfn(token);
     }
+#error Do separately for std::exception
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
         return PANTHEIOS_LITERAL_STRING("");
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
 }
 
 PANTHEIOS_CALL(int) pantheios_call_fe_isSeverityLogged(
@@ -122,11 +182,14 @@ PANTHEIOS_CALL(int) pantheios_call_fe_isSeverityLogged(
 ,   void*                                   token
 ,   int                                     severity
 ,   int                                     backEndId
+,   char const*                             feName
 )
 {
     try
     {
         return pfn(token, severity, backEndId);
+
+#error This is wrong
     }
     catch(std::bad_alloc&)
     {
@@ -136,14 +199,18 @@ PANTHEIOS_CALL(int) pantheios_call_fe_isSeverityLogged(
     {
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
         return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
 }
+#endif /* 0 */
 
-
-
+/* /////////////////////////////////////
+ * Back-end functions
+ */
 
 PANTHEIOS_CALL(int) pantheios_call_be_void_init(
     pantheios_be_X_init_pfn_t   pfn
@@ -152,30 +219,47 @@ PANTHEIOS_CALL(int) pantheios_call_be_void_init(
 ,   void const*                 init
 ,   void*                       reserved
 ,   void**                      ptoken
+,   char const*                 beName
 )
 {
+    PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != ptoken, "token pointer may not be null");
+
     try
     {
         return pfn(processIdentity, backEndId, init, reserved, ptoken);
     }
     catch(std::bad_alloc&)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "back-end initialisation failed", NULL, "out of memory", NULL, beName);
+
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "back-end initialisation failed", NULL, x.what(), NULL, beName);
+
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
-        return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
-    }
-}
+        pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "back-end initialisation failed", NULL, "unknown failure", NULL, beName);
 
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
+        return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
+    }
+# endif /* PANTHEIOS_USE_CATCHALL */
+}
 
 PANTHEIOS_CALL(int) pantheios_call_be_uninit(
     pantheios_be_X_uninit_pfn_t pfn
 ,   void*                       token
+,   char const*                 beName
 )
 {
     try
@@ -184,18 +268,31 @@ PANTHEIOS_CALL(int) pantheios_call_be_uninit(
     }
     catch(std::bad_alloc&)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "back-end uninitialisation failed", NULL, "out of memory", NULL, beName);
+
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "back-end uninitialisation failed", NULL, x.what(), NULL, beName);
+
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
-        return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
-    }
-}
+        pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "back-end uninitialisation failed", NULL, "unknown failure", NULL, beName);
 
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
+        return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
+    }
+# endif /* PANTHEIOS_USE_CATCHALL */
+}
 
 PANTHEIOS_CALL(int) pantheios_call_be_logEntry(
     pantheios_be_X_logEntry_pfn_t   pfn
@@ -204,6 +301,7 @@ PANTHEIOS_CALL(int) pantheios_call_be_logEntry(
 ,   int                             severity
 ,   PAN_CHAR_T const*               entry
 ,   size_t                          cchEntry
+,   char const*                     beName
 )
 {
     try
@@ -212,16 +310,30 @@ PANTHEIOS_CALL(int) pantheios_call_be_logEntry(
     }
     catch(std::bad_alloc&)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_CRITICAL, "back-end failed to log entry", NULL, "out of memory", NULL, beName);
+
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception&)
+    catch(std::exception& x)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_CRITICAL, "back-end failed to log entry", NULL, x.what(), NULL, beName);
+
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
+# ifdef PANTHEIOS_USE_CATCHALL
     catch(...)
     {
+        pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "back-end failed to log entry", NULL, "unknown failure", NULL, beName);
+
+#  if defined(PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE)
         return PANTHEIOS_INIT_RC_UNKNOWN_FAILURE;
+#  elif defined(PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS)
+        throw;
+#  else
+        pantheios_exitProcess(EXIT_FAILURE);
+#  endif
     }
+# endif /* PANTHEIOS_USE_CATCHALL */
 }
 
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

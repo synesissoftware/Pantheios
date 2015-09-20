@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios file Stock Back-end API.
  *
  * Created:     10th July 2006
- * Updated:     27th December 2010
+ * Updated:     4th September 2014
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MAJOR      4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MINOR      3
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MINOR      4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       33
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -398,6 +398,19 @@ inline int pantheios_be_file_setFilePath(PAN_CHAR_T const* fileName, int backEnd
  *   then all back-ends will be flushed.
  */
 PANTHEIOS_CALL(int) pantheios_be_file_flush(int backEndId);
+
+/** Empties the cache of one/all back-ends.
+ *
+ * \ingroup group__backend__stock_backends__file
+ *
+ * \param backEndId The back-end identifier. If this is
+ *   \ref PANTHEIOS_BEID_ALL,
+ *   then the caches of all back-ends will be emptied.
+ *
+ * \note If the back-end(s) have already been opened, this operation has
+ *   no effect
+ */
+PANTHEIOS_CALL(int) pantheios_be_file_emptyCache(int backEndId);
 
 /** Parses the be.file back-end flags
  *

@@ -9,7 +9,7 @@
  *                  for be.N
  *
  * Created:     5th December 2006
- * Updated:     22nd March 2010
+ * Updated:     21st September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -24,10 +24,10 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* PlatformSTL Header Files */
+/* PlatformSTL header files */
 #include <platformstl/platformstl.h>                /* for platform discrimination */
 
-/* Pantheios Header Files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>                    /* main Pantheios C header file */
 #include <pantheios/frontends/fe.N.h>
 #include <pantheios/backends/be.N.h>
@@ -42,7 +42,7 @@
 # error Operating system not discriminated
 #endif /* OS */
 
-/* Standard C Header Files */
+/* Standard C header files */
 #include <stdlib.h>                                 /* for exit codes */
 
 /* /////////////////////////////////////////////////////////////////////////
