@@ -15,10 +15,104 @@
 ############################################################
 
 
-require 'recls'				# Download from http://synesis.com.au/software
-require 'synsoft/srcutil'	# Download from http://synesis.com.au/software
+# ##########################################################
+# functions - 1
 
-############################################################
+def program_name
+
+	bn = File.basename(__FILE__)
+
+    bn =~ /\.rb$/ ? "#$`(#$&)" : bn
+end
+
+# ##########################################################
+# imports
+
+IMPORTS = {
+	colcon: 'colcon',
+
+	clasp: 'CLASP.Ruby',
+	highline: 'Highline',
+	recls: 'recls.Ruby',
+}
+
+IMPORTS.each do |required_file, friendly_name|
+	begin
+		require required_file.to_s
+	rescue LoadError
+		bold = unbold = msgB = msgA = ''
+		if defined?(Colcon)
+			bold	=	"#{::Colcon::Decorations::Bold}"
+			unbold	=	"#{::Colcon::Decorations::Unbold}"
+			msgB	=	"#{::Colcon::Foreground::Red}"
+			msgA	=	"#{::Colcon::Foreground::Default}"
+		end
+		$stderr.puts "#{bold}#{program_name}#{unbold}: #{msgB}could not load #{bold}#{friendly_name}#{unbold}#{msgA}: #$!"
+		$!.backtrace.each { |l| $stderr.puts "\t#{l}" }
+		$stderr.puts 'search path sequence:'
+		$:.each { |l| $stderr.puts "\t#{l}" }
+		exit 1
+	end
+end
+
+begin
+	require 'synsoft/srcutil'
+rescue LoadError
+end
+
+require 'date'
+
+# ##########################################################
+# includes
+
+include Colcon::Decorations
+include Colcon::Foreground
+include Colcon::General
+
+# ##########################################################
+# constants
+
+PROGRAM_VER_MAJOR               =   2
+PROGRAM_VER_MINOR               =   0
+PROGRAM_VER_REVISION            =   6
+
+# ##########################################################
+# aliases
+
+Option_NumberOfParameters		=	Clasp.Option('--number-of-parameters', alias: '-n', help: "specifies the (maximum) number of parameters")
+
+Aliases		=	[
+	Clasp::Flag.Help,
+	Clasp::Flag.Version,
+
+	# options
+
+	Option_NumberOfParameters,
+]
+
+# ##########################################################
+# functions - 2
+
+alias :old_program_name :program_name
+
+def program_name
+
+	"#{Bold}#{old_program_name}#{Unbold}"
+end
+
+def usage
+
+	flags = Aliases.select { |f| f.is_a? Clasp::Flag }.map { |a| ([a.name] + a.aliases).join(' | ') }.map { |s| "[ { #{s} } ]" }.join(' ')
+
+	"USAGE: #{program_name} #{flags} <dir-1> [ ... <dir-N> ]"
+end
+
+def version
+
+	"#{program_name} #{PROGRAM_VER_MAJOR}.#{PROGRAM_VER_MINOR}.#{PROGRAM_VER_REVISION}"
+end
+
+# ##########################################################
 # functions
 
 def current_date
@@ -56,25 +150,60 @@ def declare_function_parameter_list(f, from, to)
 		end
 		f << "              , T#{to - 1} const    &v#{to - 1})" << ENDL
 	else
-		s = "              "
+		s = '              '
 		(from ... to - 1).each do |j| 
 			s = s + ", T#{j} const& v#{j}"
 		end
 		s = s + ", T#{to - 1} const& v#{to - 1})"
 		f << s << ENDL
 	end
-
-end # declare_function_parameter_list
+end
 
 def round_up(n, granularity)
 
 	((n + (granularity - 1)) / granularity) * granularity
-
 end
 
 ############################################################
+# main()
+
+Arguments	=	Clasp::Arguments.new(ARGV, Aliases)
+
+Flags		=	Arguments.flags
+Options		=	Arguments.options
+Values		=	Arguments.values.to_a
 
 numParams			=	32
+
+Flags.each do |f|
+	case	f.name
+	when Clasp::Flag.Help.name
+		if Clasp::VERSION_MAJOR > 0 || Clasp::VERSION_MINOR > 4
+			Clasp.show_usage Aliases, exit: 0, program_name: program_name, aliases: Aliases, values: '<output-dir>'
+		else
+			puts usage
+			exit 0
+		end
+	when Clasp::Flag.Version.name
+		puts version
+		exit 0
+	else
+		abort "#{program_name}: unrecognised flag '#{Bold}#{f}#{Unbold}'; use --help for usage"
+	end
+end
+
+Options.each do |o|
+	case o.name
+	when Option_NumberOfParameters.name
+		begin
+			numParams = Integer(o.value)
+		rescue ArgumentError
+			abort "#{program_name}: number of parameters must be an integer; use --help for usage"
+		end
+	else
+		abort "#{program_name}: unrecognised option '#{Bold}#{o.given_name}#{Unbold}'; use --help for usage"
+	end
+end
 
 if ARGV.length > 0
 	n = Integer(ARGV[0])
