@@ -5,7 +5,7 @@
 #			compiler, on Mac OS-X
 #
 # Created:	15th Feburary 2005
-# Updated:	27th May 2014
+# Updated:	21st September 2015
 #
 ############################################################################
 
@@ -4504,14 +4504,14 @@ PANTHEIOS_PREP_FILE			=	$(PROJ_INCLUDE_DIR)/pantheios/internal/dos2unix.has.been
 $(STLSOFT_PREP_FILE):	$(STLSOFT_SENTINEL_HEADER)
 	@echo Ensuring all STLSoft C source files are in UNIX format
 	@find $(STLSOFT) -name '*.h' | while read f ; do \
-	  set -e ; sed 's/\r$$//' $$f > $$f.tmp ; mv $$f.tmp $$f ; \
+	  set -e ; sed "s/$(printf '\r')$$//" $$f > $$f.tmp ; mv $$f.tmp $$f ; \
 	done
 	@echo dos2unix.has.been.performed > $(STLSOFT_PREP_FILE)
 
 $(PANTHEIOS_PREP_FILE):	$(PANTHEIOS_SENTINEL_HEADER)
 	@echo Ensuring all Pantheios - and bundled library - C source files are in UNIX format
 	@find $(PROJ_BASE_DIR) -name '*.[ch]' | while read f ; do \
-	  set -e ; sed 's/\r$$//' $$f > $$f.tmp ; mv $$f.tmp $$f ; \
+	  set -e ; sed "s/$(printf '\r')$$//" $$f > $$f.tmp ; mv $$f.tmp $$f ; \
 	done
 	@echo dos2unix.has.been.performed > $(PANTHEIOS_PREP_FILE)
 
