@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for low-level Pantheios bail out.
  *
  * Created:     21st June 2005
- * Updated:     26th August 2014
+ * Updated:     21st September 2014
  *
  * Home:        http://www.pantheios.org/
  *
@@ -272,7 +272,7 @@ PANTHEIOS_CALL(void) pantheios_onBailOut6(
             {
                 p1[0] = '\0';
 
-                r = pantheios_util_snprintf_a(p1, (end - p1), ", be=%.*s" + ((0 != cchFeName) ? 0 : 2), (int)cchBeName, beName);
+                r = pantheios_util_snprintf_a(p1, (end - p1), &", be=%.*s"[(0 != cchFeName) ? 0 : 2], (int)cchBeName, beName);
             }
 
             if(r < 0)
