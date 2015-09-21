@@ -4,7 +4,7 @@
  * Purpose:     String inserter for host identity.
  *
  * Created:     14th March 2008
- * Updated:     21st September 2015
+ * Updated:     22nd September 2015
  *
  * Home:        http://www.pantheios.org/
  *
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_MINOR     3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_EDIT      12
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_REVISION  3
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_EDIT      13
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -224,7 +224,10 @@ c_str_ptr(PANTHEIOS_INSERTERS_DECLARE_host_id_t::id_type const*)
 # if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace shims */
 
-#  if defined(STLSOFT_COMPILER_IS_GCC)
+#  if 0 || \
+      defined(STLSOFT_COMPILER_IS_CLANG) || \
+      defined(STLSOFT_COMPILER_IS_GCC) || \
+      0
     /* GCC does not seem to correctly handle the phases of
      * processing of C++ templates, so we need to 'use' the
      * shims into the same namespace as the inserter class

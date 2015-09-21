@@ -6842,28 +6842,28 @@ $(LIB_BE_TEST_MT_D): $(OBJ_BE_TEST_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BE_TEST_MT_D)
 
 $(OBJ_be_test_MT_D): $(PROJ_SRC_DIR)/backends/be/be.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/be/be.test.c
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/be/be.test.c
 
 $(LIB_BE_TEST_MT_R): $(OBJ_BE_TEST_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BE_TEST_MT_R)
 
 $(OBJ_be_test_MT_R): $(PROJ_SRC_DIR)/backends/be/be.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/be/be.test.c
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/be/be.test.c
 
 $(LIB_BE_TEST_ST_D): $(OBJ_BE_TEST_ST_D) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BE_TEST_ST_D)
 
 $(OBJ_be_test_ST_D): $(PROJ_SRC_DIR)/backends/be/be.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/be/be.test.c
+	$(CC) $(CC_LIB_ARGS_ST_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/be/be.test.c
 
 $(LIB_BE_TEST_ST_R): $(OBJ_BE_TEST_ST_R) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BE_TEST_ST_R)
 
 $(OBJ_be_test_ST_R): $(PROJ_SRC_DIR)/backends/be/be.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/be/be.test.c
+	$(CC) $(CC_LIB_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/be/be.test.c
 
 ########################################
 # Back-end library - 'pantheios.bel.test.a'
@@ -6873,28 +6873,28 @@ $(LIB_BEL_TEST_MT_D): $(OBJ_BEL_TEST_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BEL_TEST_MT_D)
 
 $(OBJ_bel_test_MT_D): $(PROJ_SRC_DIR)/backends/bel/bel.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.test.c
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.test.c
 
 $(LIB_BEL_TEST_MT_R): $(OBJ_BEL_TEST_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BEL_TEST_MT_R)
 
 $(OBJ_bel_test_MT_R): $(PROJ_SRC_DIR)/backends/bel/bel.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.test.c
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.test.c
 
 $(LIB_BEL_TEST_ST_D): $(OBJ_BEL_TEST_ST_D) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BEL_TEST_ST_D)
 
 $(OBJ_bel_test_ST_D): $(PROJ_SRC_DIR)/backends/bel/bel.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.test.c
+	$(CC) $(CC_LIB_ARGS_ST_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.test.c
 
 $(LIB_BEL_TEST_ST_R): $(OBJ_BEL_TEST_ST_R) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BEL_TEST_ST_R)
 
 $(OBJ_bel_test_ST_R): $(PROJ_SRC_DIR)/backends/bel/bel.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.test.c
+	$(CC) $(CC_LIB_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.test.c
 
 ########################################
 # Back-end library - 'pantheios.ber.test.a'
@@ -6904,28 +6904,28 @@ $(LIB_BER_TEST_MT_D): $(OBJ_BER_TEST_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BER_TEST_MT_D)
 
 $(OBJ_ber_test_MT_D): $(PROJ_SRC_DIR)/backends/ber/ber.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.test.c
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.test.c
 
 $(LIB_BER_TEST_MT_R): $(OBJ_BER_TEST_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BER_TEST_MT_R)
 
 $(OBJ_ber_test_MT_R): $(PROJ_SRC_DIR)/backends/ber/ber.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.test.c
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.test.c
 
 $(LIB_BER_TEST_ST_D): $(OBJ_BER_TEST_ST_D) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BER_TEST_ST_D)
 
 $(OBJ_ber_test_ST_D): $(PROJ_SRC_DIR)/backends/ber/ber.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.test.c
+	$(CC) $(CC_LIB_ARGS_ST_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.test.c
 
 $(LIB_BER_TEST_ST_R): $(OBJ_BER_TEST_ST_R) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BER_TEST_ST_R)
 
 $(OBJ_ber_test_ST_R): $(PROJ_SRC_DIR)/backends/ber/ber.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.test.c
+	$(CC) $(CC_LIB_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.test.c
 
 ########################################
 # Backend library - 'pantheios.bec.fail.a'

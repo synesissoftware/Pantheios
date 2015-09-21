@@ -5,7 +5,7 @@
  *              multibyte string statement.
  *
  * Created:     2nd September 2008
- * Updated:     1st September 2015
+ * Updated:     22nd September 2015
  *
  * Home:        http://www.pantheios.org/
  *
@@ -55,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MINOR    3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     15
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     16
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -158,7 +158,10 @@ public: // Construction
     ~w2m() stlsoft_throw_0();
 
 private:
-#if !defined(STLSOFT_COMPILER_IS_GCC)
+#if 1 && \
+    !defined(STLSOFT_COMPILER_IS_CLANG) && \
+    !defined(STLSOFT_COMPILER_IS_GCC) && \
+    1
     w2m(class_type const&);
 #endif /* compiler */
     class_type& operator =(class_type const&);
@@ -270,7 +273,10 @@ c_str_ptr(
 # if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace shims */
 
-#  if defined(STLSOFT_COMPILER_IS_GCC)
+#  if 0 || \
+      defined(STLSOFT_COMPILER_IS_CLANG) || \
+      defined(STLSOFT_COMPILER_IS_GCC) || \
+      0
     /* GCC does not seem to correctly handle the phases of
      * processing of C++ templates, so we need to 'use' the
      * shims into the same namespace as the inserter class

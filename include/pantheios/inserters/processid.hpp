@@ -4,11 +4,11 @@
  * Purpose:     String inserter for process identity.
  *
  * Created:     16th October 2006
- * Updated:     11th October 2012
+ * Updated:     22nd September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_MINOR      2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_REVISION   4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_EDIT       21
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_REVISION   5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_EDIT       22
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -186,7 +186,10 @@ c_str_ptr(
 # if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace shims */
 
-#  if defined(STLSOFT_COMPILER_IS_GCC)
+#  if 0 || \
+      defined(STLSOFT_COMPILER_IS_CLANG) || \
+      defined(STLSOFT_COMPILER_IS_GCC) || \
+      0
     /* GCC does not seem to correctly handle the phases of
      * processing of C++ templates, so we need to 'use' the
      * shims into the same namespace as the inserter class
