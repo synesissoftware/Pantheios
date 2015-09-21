@@ -21,6 +21,8 @@ ideas/
 
 perf_test/
 
+scripts/internal/
+
 Debug/
 Debug Multithreaded/
 Debug Multithreaded DLL/
