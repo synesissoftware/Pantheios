@@ -4,11 +4,11 @@
  * Purpose:     String inserter for host identity.
  *
  * Created:     14th March 2008
- * Updated:     11th October 2012
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -141,6 +141,7 @@ public:
     ~host_id_t() stlsoft_throw_0();
 private:
 #if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
+    !defined(STLSOFT_COMPILER_IS_CLANG) && \
     !defined(STLSOFT_COMPILER_IS_GCC) && \
     !defined(STLSOFT_COMPILER_IS_MSVC)
     host_id_t(class_type const&);

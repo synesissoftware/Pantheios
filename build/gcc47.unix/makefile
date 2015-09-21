@@ -4,7 +4,7 @@
 # Purpose:	Makefile for the Pantheios project, for the GCC 4.7 (UNIX)
 #			compiler, on UNIX
 #
-# Created:	15th Feburary 2005
+# Created:	15th February 2005
 # Updated:	21st September 2015
 #
 ############################################################################
@@ -69,14 +69,55 @@ PROJ_TEST_PERFORMANCE_DIR	=	$(PROJ_TEST_ROOT_DIR)/performance
 PROJ_TEST_SCRATCH_DIR	=	$(PROJ_TEST_ROOT_DIR)/scratch
 PROJ_TEST_UNIT_DIR		=	$(PROJ_TEST_ROOT_DIR)/unit
 
+B64_PROJ_INCLUDE		=	
+ifdef PANTHEIOS_B64_BASE_DIR
+B64_INCLUDE_DIR			=   $(PANTHEIOS_B64_BASE_DIR)/include
+B64_SRC_DIR				=   $(PANTHEIOS_B64_BASE_DIR)/src
+B64_PROJ_INCLUDE		=	-I$(B64_INCLUDE_DIR)
+else
 B64_INCLUDE_DIR			=   $(PROJ_BASE_DIR)/include
 B64_SRC_DIR				=   $(PROJ_SRC_DIR)/b64
+endif # !PANTHEIOS_B64_BASE_DIR
 
-SHWILD_INCLUDE_DIR      =   $(PROJ_BASE_DIR)/include
-SHWILD_SRC_DIR          =   $(PROJ_SRC_DIR)/shwild
+SHWILD_PROJ_INCLUDE		=	
+ifdef PANTHEIOS_SHWILD_BASE_DIR
+SHWILD_INCLUDE_DIR		=   $(PANTHEIOS_SHWILD_BASE_DIR)/include
+SHWILD_SRC_DIR			=   $(PANTHEIOS_SHWILD_BASE_DIR)/src
+SHWILD_PROJ_INCLUDE		=	-I$(SHWILD_INCLUDE_DIR)
+else
+SHWILD_INCLUDE_DIR		=   $(PROJ_BASE_DIR)/include
+SHWILD_SRC_DIR			=   $(PROJ_SRC_DIR)/shwild
+endif # !PANTHEIOS_SHWILD_BASE_DIR
 
-XTESTS_INCLUDE_DIR      =   $(PROJ_BASE_DIR)/include
-XTESTS_SRC_DIR          =   $(PROJ_SRC_DIR)/xtests
+XCONTRACT_PROJ_INCLUDE	=	
+ifdef PANTHEIOS_XCONTRACT_BASE_DIR
+XCONTRACT_INCLUDE_DIR	=   $(PANTHEIOS_XCONTRACT_BASE_DIR)/include
+XCONTRACT_SRC_DIR		=   $(PANTHEIOS_XCONTRACT_BASE_DIR)/src
+XCONTRACT_PROJ_INCLUDE	=	-I$(XCONTRACT_INCLUDE_DIR)
+else
+XCONTRACT_INCLUDE_DIR	=   $(PROJ_BASE_DIR)/include
+XCONTRACT_SRC_DIR		=   $(PROJ_SRC_DIR)/xcontract
+endif # !PANTHEIOS_XCONTRACT_BASE_DIR
+
+XCOVER_PROJ_INCLUDE		=	
+ifdef PANTHEIOS_XCOVER_BASE_DIR
+XCOVER_INCLUDE_DIR		=   $(PANTHEIOS_XCOVER_BASE_DIR)/include
+XCOVER_SRC_DIR			=   $(PANTHEIOS_XCOVER_BASE_DIR)/src
+XCOVER_PROJ_INCLUDE		=	-I$(XCOVER_INCLUDE_DIR)
+else
+XCOVER_INCLUDE_DIR		=   $(PROJ_BASE_DIR)/include
+XCOVER_SRC_DIR			=   $(PROJ_SRC_DIR)/xcover
+endif # !PANTHEIOS_XCOVER_BASE_DIR
+
+XTESTS_PROJ_INCLUDE		=	
+ifdef PANTHEIOS_XTESTS_BASE_DIR
+XTESTS_INCLUDE_DIR		=   $(PANTHEIOS_XTESTS_BASE_DIR)/include
+XTESTS_SRC_DIR			=   $(PANTHEIOS_XTESTS_BASE_DIR)/src
+XTESTS_PROJ_INCLUDE		=	-I$(XTESTS_INCLUDE_DIR)
+else
+XTESTS_INCLUDE_DIR		=   $(PROJ_BASE_DIR)/include
+XTESTS_SRC_DIR			=   $(PROJ_SRC_DIR)/xtests
+endif # !PANTHEIOS_XTESTS_BASE_DIR
 
 ########################################
 # tools
@@ -102,6 +143,11 @@ COMMON_INCLUDES		=
 CC_INCLUDES_BASE=\
 $(INCLUDES_LEADER)\
 $(PROJ_INCLUDE)\
+$(B64_PROJ_INCLUDE)\
+$(SHWILD_PROJ_INCLUDE)\
+$(XCONTRACT_PROJ_INCLUDE)\
+$(XCOVER_PROJ_INCLUDE)\
+$(XTESTS_PROJ_INCLUDE)\
 -I"$(STLSOFT)/include"\
 $(COMMON_INCLUDES)\
 $(ENV_INCLUDES)\
@@ -123,6 +169,11 @@ endif # ACE
 CPPC_INCLUDES_BASE=\
 $(INCLUDES_LEADER)\
 $(PROJ_INCLUDE)\
+$(B64_PROJ_INCLUDE)\
+$(SHWILD_PROJ_INCLUDE)\
+$(XCONTRACT_PROJ_INCLUDE)\
+$(XCOVER_PROJ_INCLUDE)\
+$(XTESTS_PROJ_INCLUDE)\
 -I"$(STLSOFT)/include"\
 $(COMMON_INCLUDES)\
 $(ENV_INCLUDES)\
@@ -629,17 +680,17 @@ TEST_CPP_HEADERS=\
  \
 
 B64_HEADERS=\
- $(PROJ_INCLUDE_DIR)/b64/b64.h\
- $(PROJ_INCLUDE_DIR)/b64/b64.hpp\
+ $(B64_INCLUDE_DIR)/b64/b64.h\
+ $(B64_INCLUDE_DIR)/b64/b64.hpp\
  \
 
 SHWILD_HEADERS=\
- $(PROJ_INCLUDE_DIR)/shwild/shwild.h\
- $(PROJ_INCLUDE_DIR)/shwild/shwild.hpp\
+ $(SHWILD_INCLUDE_DIR)/shwild/shwild.h\
+ $(SHWILD_INCLUDE_DIR)/shwild/shwild.hpp\
  \
 
 XTESTS_HEADERS=\
- $(PROJ_INCLUDE_DIR)/xtests/xtests.h\
+ $(XTESTS_INCLUDE_DIR)/xtests/xtests.h\
  \
 
 ############################################################################
@@ -4504,14 +4555,14 @@ PANTHEIOS_PREP_FILE			=	$(PROJ_INCLUDE_DIR)/pantheios/internal/dos2unix.has.been
 $(STLSOFT_PREP_FILE):	$(STLSOFT_SENTINEL_HEADER)
 	@echo Ensuring all STLSoft C source files are in UNIX format
 	@find $(STLSOFT) -name '*.h' | while read f ; do \
-	  set -e ; sed "s/$(printf '\r')$$//" $$f > $$f.tmp ; mv $$f.tmp $$f ; \
+	  set -e ; LC_ALL=C sed "s/$(printf '\r')$$//" $$f > $$f.tmp ; mv $$f.tmp $$f ; \
 	done
 	@echo dos2unix.has.been.performed > $(STLSOFT_PREP_FILE)
 
 $(PANTHEIOS_PREP_FILE):	$(PANTHEIOS_SENTINEL_HEADER)
 	@echo Ensuring all Pantheios - and bundled library - C source files are in UNIX format
 	@find $(PROJ_BASE_DIR) -name '*.[ch]' | while read f ; do \
-	  set -e ; sed "s/$(printf '\r')$$//" $$f > $$f.tmp ; mv $$f.tmp $$f ; \
+	  set -e ; LC_ALL=C sed "s/$(printf '\r')$$//" $$f > $$f.tmp ; mv $$f.tmp $$f ; \
 	done
 	@echo dos2unix.has.been.performed > $(PANTHEIOS_PREP_FILE)
 
