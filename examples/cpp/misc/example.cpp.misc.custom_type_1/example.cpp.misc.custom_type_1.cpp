@@ -10,7 +10,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     31st August 2006
- * Updated:     21st September 2015
+ * Updated:     22nd September 2015
  *
  * www:         http://www.pantheios.org/
  *
@@ -81,7 +81,7 @@ namespace stlsoft
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>                          // Pantheios C++ main header
 #include <pantheios/inserters/integer.hpp>                  // for pantheios::integer
-#include <pantheios/inserters/w2m.hpp>                      // for pantheios::w2m
+#include <pantheios/inserters/w2t.hpp>                      // for pantheios::w2t
 #include <pantheios/quality/contract.h>
 #include <pantheios/internal/safestr.h>
 
@@ -218,7 +218,7 @@ static void log_with_explicit_conversion_code(Person const& person)
     // 1. Create buffers for conversion. (auto_buffer used to minimise heap
     //     when not necessary.)
 
-    pantheios::log_NOTICE(PSTR("Person: "), pantheios::w2m(person.forename().c_str()), PSTR(" "), pantheios::w2m(person.surname().c_str()), PSTR(", aged "), pantheios::integer(person.age()));
+    pantheios::log_NOTICE(PSTR("Person: "), pantheios::w2t(person.forename().c_str()), PSTR(" "), pantheios::w2t(person.surname().c_str()), PSTR(", aged "), pantheios::integer(person.age()));
   }
 }
 
@@ -324,7 +324,10 @@ public:
     , m_value()
   {}
 
-#if defined(STLSOFT_COMPILER_IS_GCC)
+#if 0 || \
+	defined(STLSOFT_COMPILER_IS_GCC) || \
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+	0
   Person_inserter(class_type const& rhs)
     : m_person(rhs.m_person)
     , m_value(rhs.m_value)

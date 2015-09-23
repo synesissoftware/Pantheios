@@ -10,7 +10,7 @@
  *                - use of pantheios::log()
  *
  * Created:     17th January 2008
- * Updated:     21st September 2015
+ * Updated:     22nd September 2015
  *
  * www:         http://www.pantheios.org/
  *
