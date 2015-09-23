@@ -24,12 +24,18 @@ perf_test/
 scripts/internal/
 
 Debug/
+DebugMt/
+DebugDll/
+DebugDLLUNIX/
 Debug Multithreaded/
 Debug Multithreaded DLL/
 Unicode Debug/
 Unicode Debug Multithreaded/
 Unicode Debug Multithreaded DLL/
 Release/
+ReleaseMt/
+ReleaseDll/
+ReleaseDLLUNIX/
 Release Multithreaded/
 Release Multithreaded DLL/
 Unicode Release/
@@ -69,6 +75,7 @@ src/backends/ber/ber.loader.c
 *.o
 *.obj
 *.opensdf
+*.opt
 *.out
 *.pch
 *.pdb
