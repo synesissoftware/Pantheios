@@ -4,11 +4,11 @@
  * Purpose:     Main include file for all Pantheios standard inserters.
  *
  * Created:     21st June 2005
- * Updated:     12th December 2010
+ * Updated:     22nd September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -54,9 +54,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MAJOR    2
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MINOR    6
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MINOR    7
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     21
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     233
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,6 +66,10 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS */
+
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_ADAPTOR
+# include <pantheios/inserters/adaptor.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_ADAPTOR */
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_ARGS
 # include <pantheios/inserters/args.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_ARGS */
@@ -87,6 +91,9 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CHARACTER
 # include <pantheios/inserters/character.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CHARACTER */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_EXCEPTION
+# include <pantheios/inserters/exception.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_EXCEPTION */
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HEX_PTR
 # include <pantheios/inserters/hex_ptr.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HEX_PTR */
@@ -96,12 +103,23 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_I
 # include <pantheios/inserters/i.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_I */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_IDS
+# include <pantheios/inserters/ids.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_IDS */
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTEGER
 # include <pantheios/inserters/integer.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTEGER */
-#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_M2W
-# include <pantheios/inserters/m2w.hpp>
-#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_M2W */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTERVAL
+# include <pantheios/inserters/interval.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTERVAL */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_M2T
+# include <pantheios/inserters/m2t.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_M2T */
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+# ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_M2W
+#  include <pantheios/inserters/m2w.hpp>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_M2W */
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_P
 # include <pantheios/inserters/p.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_P */
@@ -120,18 +138,41 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_SLICE
 # include <pantheios/inserters/slice.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_SLICE */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER
+# include <pantheios/inserters/stream_character.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER */
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID
 # include <pantheios/inserters/threadid.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID */
-#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2M
-# include <pantheios/inserters/w2m.hpp>
-#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2M */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL
+# include <pantheios/inserters/variant_bool.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB
+# include <pantheios/inserters/vb.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB */
+#ifndef PANTHEIOS_USE_WIDE_STRINGS
+# ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2M
+#  include <pantheios/inserters/w2m.hpp>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2M */
+#endif /* !PANTHEIOS_USE_WIDE_STRINGS */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2T
+# include <pantheios/inserters/w2t.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2T */
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_XI
 # include <pantheios/inserters/xi.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_XI */
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_XP
 # include <pantheios/inserters/xp.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_XP */
+#if defined(WIN32) || \
+    defined(WIN64)
+# ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC
+#  include <pantheios/inserters/windows/sc.hpp>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC */
+# ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE
+#  include <pantheios/inserters/windows/status_code.hpp>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE */
+#endif
 
 /* ////////////////////////////////////////////////////////////////////// */
 
