@@ -4,11 +4,11 @@
  * Purpose:     String inserter for booleans.
  *
  * Created:     3rd August 2008
- * Updated:     11th October 2012
+ * Updated:     22nd September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_MINOR    3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_EDIT     20
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_REVISION 5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_EDIT     21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -247,7 +247,10 @@ c_str_ptr(boolean const& b)
 # if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace shims */
 
-#  if defined(STLSOFT_COMPILER_IS_GCC)
+#  if 0 || \
+      defined(STLSOFT_COMPILER_IS_CLANG) || \
+      defined(STLSOFT_COMPILER_IS_GCC) || \
+      0
     /* GCC does not seem to correctly handle the phases of
      * processing of C++ templates, so we need to 'use' the
      * shims into the same namespace as the inserter class
