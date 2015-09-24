@@ -814,7 +814,7 @@ void integer::construct_()
         {
             case    typeIsU8:
             case    typeIsU16:
-                m_len = sprint_(static_cast<::stlsoft::sint32_t>(m_value.u32), minWidth, m_format, m_sz, STLSOFT_NUM_ELEMENTS(m_sz));
+                m_len = sprint_(static_cast< ::stlsoft::sint32_t>(m_value.u32), minWidth, m_format, m_sz, STLSOFT_NUM_ELEMENTS(m_sz));
                 return;
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
             case    typeIsU64:
@@ -823,12 +823,15 @@ void integer::construct_()
                     // Can't handle this at the moment. No + for you!
                     break;
                 }
-                m_len = sprint_(static_cast<::stlsoft::sint64_t>(m_value.u64), minWidth, m_format, m_sz, STLSOFT_NUM_ELEMENTS(m_sz));
+                m_len = sprint_(static_cast< ::stlsoft::sint64_t>(m_value.u64), minWidth, m_format, m_sz, STLSOFT_NUM_ELEMENTS(m_sz));
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
                 return;
             case    typeIsU32:
-                m_len = sprint_(static_cast<::stlsoft::sint64_t>(m_value.u32), minWidth, m_format, m_sz, STLSOFT_NUM_ELEMENTS(m_sz));
+                m_len = sprint_(static_cast< ::stlsoft::sint64_t>(m_value.u32), minWidth, m_format, m_sz, STLSOFT_NUM_ELEMENTS(m_sz));
                 return;
+
+            default:
+                break;
         }
     }
 
