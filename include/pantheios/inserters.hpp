@@ -4,7 +4,7 @@
  * Purpose:     Main include file for all Pantheios standard inserters.
  *
  * Created:     21st June 2005
- * Updated:     22nd September 2015
+ * Updated:     25th September 2015
  *
  * Home:        http://www.pantheios.org/
  *
@@ -55,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MINOR    7
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     233
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     234
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -144,12 +144,16 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID
 # include <pantheios/inserters/threadid.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID */
-#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL
-# include <pantheios/inserters/variant_bool.hpp>
-#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL */
-#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB
-# include <pantheios/inserters/vb.hpp>
-#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB */
+#if defined(WIN32) || \
+    defined(WIN64)
+#error
+# ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL
+#  include <pantheios/inserters/variant_bool.hpp>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL */
+# ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB
+#  include <pantheios/inserters/vb.hpp>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB */
+#endif
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 # ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2M
 #  include <pantheios/inserters/w2m.hpp>
