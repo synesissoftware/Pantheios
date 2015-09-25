@@ -4,7 +4,7 @@
  * Purpose:     Pantheios Core and Util APIs.
  *
  * Created:     21st June 2005
- * Updated:     24th September 2015
+ * Updated:     25th September 2015
  *
  * Home:        http://www.pantheios.org/
  *

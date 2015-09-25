@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for low-level Pantheios bail out.
  *
  * Created:     21st June 2005
- * Updated:     21st September 2014
+ * Updated:     21st September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *

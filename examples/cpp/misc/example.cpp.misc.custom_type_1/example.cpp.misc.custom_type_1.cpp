@@ -325,9 +325,9 @@ public:
   {}
 
 #if 0 || \
-	defined(STLSOFT_COMPILER_IS_GCC) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
     defined(STLSOFT_COMPILER_IS_CLANG) || \
-	0
+    0
   Person_inserter(class_type const& rhs)
     : m_person(rhs.m_person)
     , m_value(rhs.m_value)
