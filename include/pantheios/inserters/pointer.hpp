@@ -4,7 +4,7 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     22nd September 2015
+ * Updated:     25th September 2015
  *
  * Home:        http://www.pantheios.org/
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MINOR    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_REVISION 5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     31
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_REVISION 6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     32
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     String inserter for characters as read from streams.
  *
  * Created:     3rd July 2011
- * Updated:     22nd September 2015
+ * Updated:     25th September 2015
  *
  * Home:        http://www.pantheios.org/
  *
@@ -303,5 +303,3 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER */
 
 /* ///////////////////////////// end of file //////////////////////////// */
-
-
