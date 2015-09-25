@@ -5,7 +5,7 @@
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	24th September 2015
+# Updated:	26th September 2015
 #
 ############################################################################
 
@@ -54,7 +54,9 @@ NOTHING				=
 ########################################
 # Testing verbosity
 
+ifndef TEST_VERBOSITY
 TEST_VERBOSITY		=	2
+endif
 
 ########################################
 # Directories
