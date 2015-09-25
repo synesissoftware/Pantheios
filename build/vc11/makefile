@@ -5,7 +5,7 @@
 #			compiler, on Win32
 #
 # Created:	15th February 2005
-# Updated:	24th September 2015
+# Updated:	25th September 2015
 #
 ############################################################################
 
@@ -54,7 +54,9 @@ NOTHING				=
 ########################################
 # Testing verbosity
 
-TEST_VERBOSITY		=	2
+!ifndef TEST_VERBOSITY
+TEST_VERBOSITY      =   2
+!endif # !TEST_VERBOSITY
 
 ########################################
 # Directories
@@ -11654,7 +11656,12 @@ compile.libs.xcover:        $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_X
 
 compile.libs.xtests:        $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_XTESTS)
 
-compile.libs.3pty:                                                      compile.libs.b64 compile.libs.shwild compile.libs.xcontract compile.libs.xcover compile.libs.xtests
+compile.libs.3pty:	\
+ compile.libs.b64 \
+ compile.libs.shwild \
+ compile.libs.xcontract \
+ compile.libs.xcover \
+ compile.libs.xtests
 
 compile.libs.all:                                                       compile.libs compile.libs.3pty
 
@@ -11715,7 +11722,13 @@ build.libs.xcover:          check.lib.dir           prep.files.for.os   $(TARGET
 
 build.libs.xtests:          check.lib.dir           prep.files.for.os   $(TARGETS_LIB_XTESTS)
 
-build.libs.3pty:            check.lib.dir                               build.libs.b64 build.libs.shwild build.libs.xcontract build.libs.xcover build.libs.xtests
+build.libs.3pty:	\
+ check.lib.dir \
+ build.libs.b64 \
+ build.libs.shwild \
+ build.libs.xcontract \
+ build.libs.xcover \
+ build.libs.xtests
 
 # obsolete
 build.libs.std:                                                         check.lib.dir build.libs.fe build.libs.be
@@ -12824,16 +12837,21 @@ clean.unittest.ace:
 
 clean.libs: 		clean.libs.core clean.libs.be clean.libs.fe
 
-clean.libs.3pty:	clean.libs.b64 clean.libs.shwild clean.libs.xcontract clean.libs.xcover clean.libs.xtests
+clean.libs.3pty:	\
+ clean.libs.b64 \
+ clean.libs.shwild \
+ clean.libs.xcontract \
+ clean.libs.xcover \
+ clean.libs.xtests
 
 clean.libs.all: 	clean.libs clean.libs.3pty
 
 clean.test:			clean.test.unit clean.test.component clean.test.scratch clean.test.performance
 
 !ifdef ACE
-clean.test.all:		clean.test clean.libs.b64 clean.libs.shwild clean.libs.xcontract clean.libs.xcover clean.libs.xtests clean.test.ace
+clean.test.all:		clean.test clean.libs.3pty clean.test.ace
 !else # ACE
-clean.test.all:		clean.test clean.libs.b64 clean.libs.shwild clean.libs.xcontract clean.libs.xcover clean.libs.xtests
+clean.test.all:		clean.test clean.libs.3pty
 !endif # ACE
 
 clean.unittest:		clean.unittest.std
@@ -25413,21 +25431,66 @@ $(TARG_EX_C_7_W_MT_R): \
 ##############################
 # Component Tests
 
+LIBS_SYNSOFT_TEST_COMP_MT_D=\
+			$(LIB_SHWILD_MT_D)\
+			$(LIB_XCONTRACT_MT_D)\
+			$(LIB_XCOVER_MT_D)\
+			$(LIB_XTESTS_MT_D)\
+
+LIBS_SYNSOFT_TEST_COMP_DLL_D=\
+			$(LIB_SHWILD_DLL_D)\
+			$(LIB_XCONTRACT_DLL_D)\
+			$(LIB_XCOVER_DLL_D)\
+			$(LIB_XTESTS_DLL_D)\
+
+LIBS_SYNSOFT_TEST_COMP_DLL_R=\
+			$(LIB_SHWILD_DLL_R)\
+			$(LIB_XCONTRACT_DLL_R)\
+			$(LIB_XCOVER_DLL_R)\
+			$(LIB_XTESTS_DLL_R)\
+
+LIBS_SYNSOFT_TEST_COMP_MT_R=\
+			$(LIB_SHWILD_MT_R)\
+			$(LIB_XCONTRACT_MT_R)\
+			$(LIB_XCOVER_MT_R)\
+			$(LIB_XTESTS_MT_R)\
+
+LIBS_SYNSOFT_TEST_COMP_W_MT_D=\
+			$(LIB_SHWILD_W_MT_D)\
+			$(LIB_XCONTRACT_W_MT_D)\
+			$(LIB_XCOVER_W_MT_D)\
+			$(LIB_XTESTS_W_MT_D)\
+
+LIBS_SYNSOFT_TEST_COMP_W_DLL_D=\
+			$(LIB_SHWILD_W_DLL_D)\
+			$(LIB_XCONTRACT_W_DLL_D)\
+			$(LIB_XCOVER_W_DLL_D)\
+			$(LIB_XTESTS_W_DLL_D)\
+
+LIBS_SYNSOFT_TEST_COMP_W_DLL_R=\
+			$(LIB_SHWILD_W_DLL_R)\
+			$(LIB_XCONTRACT_W_DLL_R)\
+			$(LIB_XCOVER_W_DLL_R)\
+			$(LIB_XTESTS_W_DLL_R)\
+
+LIBS_SYNSOFT_TEST_COMP_W_MT_R=\
+			$(LIB_SHWILD_W_MT_R)\
+			$(LIB_XCONTRACT_W_MT_R)\
+			$(LIB_XCOVER_W_MT_R)\
+			$(LIB_XTESTS_W_MT_R)\
+
+
 $(TARG_TEST_COMP_core_initseq_MT_D):	\
 			$(OBJ_TEST_COMP_core_initseq_MT_D)\
 			$(LIB_CORE_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_core_initseq_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
 
@@ -25438,17 +25501,13 @@ $(TARG_TEST_COMP_core_initseq_DLL_D):	\
 			$(OBJ_TEST_COMP_core_initseq_DLL_D)\
 			$(LIB_CORE_DLL_D)\
 			$(LIB_UTIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_core_initseq_DLL_D)\
 		$(LIB_CORE_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
 
@@ -25459,17 +25518,13 @@ $(TARG_TEST_COMP_core_initseq_DLL_R):	\
 			$(OBJ_TEST_COMP_core_initseq_DLL_R)\
 			$(LIB_CORE_DLL_R)\
 			$(LIB_UTIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_core_initseq_DLL_R)\
 		$(LIB_CORE_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
 
@@ -25480,17 +25535,13 @@ $(TARG_TEST_COMP_core_initseq_MT_R):	\
 			$(OBJ_TEST_COMP_core_initseq_MT_R)\
 			$(LIB_CORE_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_core_initseq_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
 
@@ -25501,17 +25552,13 @@ $(TARG_TEST_COMP_core_initseq_W_MT_D):	\
 			$(OBJ_TEST_COMP_core_initseq_W_MT_D)\
 			$(LIB_CORE_W_MT_D)\
 			$(LIB_UTIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_core_initseq_W_MT_D)\
 		$(LIB_CORE_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -25522,17 +25569,13 @@ $(TARG_TEST_COMP_core_initseq_W_DLL_D):	\
 			$(OBJ_TEST_COMP_core_initseq_W_DLL_D)\
 			$(LIB_CORE_W_DLL_D)\
 			$(LIB_UTIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_core_initseq_W_DLL_D)\
 		$(LIB_CORE_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -25543,17 +25586,13 @@ $(TARG_TEST_COMP_core_initseq_W_DLL_R):	\
 			$(OBJ_TEST_COMP_core_initseq_W_DLL_R)\
 			$(LIB_CORE_W_DLL_R)\
 			$(LIB_UTIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_core_initseq_W_DLL_R)\
 		$(LIB_CORE_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -25564,17 +25603,13 @@ $(TARG_TEST_COMP_core_initseq_W_MT_R):	\
 			$(OBJ_TEST_COMP_core_initseq_W_MT_R)\
 			$(LIB_CORE_W_MT_R)\
 			$(LIB_UTIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_core_initseq_W_MT_R)\
 		$(LIB_CORE_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -25588,9 +25623,7 @@ $(TARG_TEST_COMP_custsev_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_custsev_MT_D)\
@@ -25598,9 +25631,7 @@ $(TARG_TEST_COMP_custsev_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -25615,9 +25646,7 @@ $(TARG_TEST_COMP_custsev_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_custsev_DLL_D)\
@@ -25625,9 +25654,7 @@ $(TARG_TEST_COMP_custsev_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -25642,9 +25669,7 @@ $(TARG_TEST_COMP_custsev_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_custsev_DLL_R)\
@@ -25652,9 +25677,7 @@ $(TARG_TEST_COMP_custsev_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -25669,9 +25692,7 @@ $(TARG_TEST_COMP_custsev_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_custsev_MT_R)\
@@ -25679,9 +25700,7 @@ $(TARG_TEST_COMP_custsev_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -25696,9 +25715,7 @@ $(TARG_TEST_COMP_custsev_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_custsev_W_MT_D)\
@@ -25706,9 +25723,7 @@ $(TARG_TEST_COMP_custsev_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -25723,9 +25738,7 @@ $(TARG_TEST_COMP_custsev_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_custsev_W_DLL_D)\
@@ -25733,9 +25746,7 @@ $(TARG_TEST_COMP_custsev_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -25750,9 +25761,7 @@ $(TARG_TEST_COMP_custsev_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_custsev_W_DLL_R)\
@@ -25760,9 +25769,7 @@ $(TARG_TEST_COMP_custsev_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -25777,9 +25784,7 @@ $(TARG_TEST_COMP_custsev_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_custsev_W_MT_R)\
@@ -25787,9 +25792,7 @@ $(TARG_TEST_COMP_custsev_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -25805,9 +25808,7 @@ $(TARG_TEST_COMP_filemt_MT_D):	\
 			$(LIB_BE_N_MT_D)\
 			$(LIB_BEC_FILE_MT_D)\
 			$(LIB_BEC_W32CONS_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_filemt_MT_D)\
@@ -25816,9 +25817,7 @@ $(TARG_TEST_COMP_filemt_MT_D):	\
 		$(LIB_BE_N_MT_D)\
 		$(LIB_BEC_FILE_MT_D)\
 		$(LIB_BEC_W32CONS_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -25834,9 +25833,7 @@ $(TARG_TEST_COMP_filemt_DLL_D):	\
 			$(LIB_BE_N_DLL_D)\
 			$(LIB_BEC_FILE_DLL_D)\
 			$(LIB_BEC_W32CONS_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_filemt_DLL_D)\
@@ -25845,9 +25842,7 @@ $(TARG_TEST_COMP_filemt_DLL_D):	\
 		$(LIB_BE_N_DLL_D)\
 		$(LIB_BEC_FILE_DLL_D)\
 		$(LIB_BEC_W32CONS_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -25863,9 +25858,7 @@ $(TARG_TEST_COMP_filemt_DLL_R):	\
 			$(LIB_BE_N_DLL_R)\
 			$(LIB_BEC_FILE_DLL_R)\
 			$(LIB_BEC_W32CONS_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_filemt_DLL_R)\
@@ -25874,9 +25867,7 @@ $(TARG_TEST_COMP_filemt_DLL_R):	\
 		$(LIB_BE_N_DLL_R)\
 		$(LIB_BEC_FILE_DLL_R)\
 		$(LIB_BEC_W32CONS_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -25892,9 +25883,7 @@ $(TARG_TEST_COMP_filemt_MT_R):	\
 			$(LIB_BE_N_MT_R)\
 			$(LIB_BEC_FILE_MT_R)\
 			$(LIB_BEC_W32CONS_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_filemt_MT_R)\
@@ -25903,9 +25892,7 @@ $(TARG_TEST_COMP_filemt_MT_R):	\
 		$(LIB_BE_N_MT_R)\
 		$(LIB_BEC_FILE_MT_R)\
 		$(LIB_BEC_W32CONS_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -25921,9 +25908,7 @@ $(TARG_TEST_COMP_filemt_W_MT_D):	\
 			$(LIB_BE_N_W_MT_D)\
 			$(LIB_BEC_FILE_W_MT_D)\
 			$(LIB_BEC_W32CONS_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_filemt_W_MT_D)\
@@ -25932,9 +25917,7 @@ $(TARG_TEST_COMP_filemt_W_MT_D):	\
 		$(LIB_BE_N_W_MT_D)\
 		$(LIB_BEC_FILE_W_MT_D)\
 		$(LIB_BEC_W32CONS_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -25950,9 +25933,7 @@ $(TARG_TEST_COMP_filemt_W_DLL_D):	\
 			$(LIB_BE_N_W_DLL_D)\
 			$(LIB_BEC_FILE_W_DLL_D)\
 			$(LIB_BEC_W32CONS_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_filemt_W_DLL_D)\
@@ -25961,9 +25942,7 @@ $(TARG_TEST_COMP_filemt_W_DLL_D):	\
 		$(LIB_BE_N_W_DLL_D)\
 		$(LIB_BEC_FILE_W_DLL_D)\
 		$(LIB_BEC_W32CONS_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -25979,9 +25958,7 @@ $(TARG_TEST_COMP_filemt_W_DLL_R):	\
 			$(LIB_BE_N_W_DLL_R)\
 			$(LIB_BEC_FILE_W_DLL_R)\
 			$(LIB_BEC_W32CONS_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_filemt_W_DLL_R)\
@@ -25990,9 +25967,7 @@ $(TARG_TEST_COMP_filemt_W_DLL_R):	\
 		$(LIB_BE_N_W_DLL_R)\
 		$(LIB_BEC_FILE_W_DLL_R)\
 		$(LIB_BEC_W32CONS_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -26008,9 +25983,7 @@ $(TARG_TEST_COMP_filemt_W_MT_R):	\
 			$(LIB_BE_N_W_MT_R)\
 			$(LIB_BEC_FILE_W_MT_R)\
 			$(LIB_BEC_W32CONS_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_filemt_W_MT_R)\
@@ -26019,9 +25992,7 @@ $(TARG_TEST_COMP_filemt_W_MT_R):	\
 		$(LIB_BE_N_W_MT_R)\
 		$(LIB_BEC_FILE_W_MT_R)\
 		$(LIB_BEC_W32CONS_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -26036,9 +26007,7 @@ $(TARG_TEST_COMP_ins_args_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_args_MT_D)\
@@ -26046,9 +26015,7 @@ $(TARG_TEST_COMP_ins_args_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -26063,9 +26030,7 @@ $(TARG_TEST_COMP_ins_args_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_args_DLL_D)\
@@ -26073,9 +26038,7 @@ $(TARG_TEST_COMP_ins_args_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -26090,9 +26053,7 @@ $(TARG_TEST_COMP_ins_args_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_args_DLL_R)\
@@ -26100,9 +26061,7 @@ $(TARG_TEST_COMP_ins_args_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -26117,9 +26076,7 @@ $(TARG_TEST_COMP_ins_args_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_args_MT_R)\
@@ -26127,9 +26084,7 @@ $(TARG_TEST_COMP_ins_args_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -26144,9 +26099,7 @@ $(TARG_TEST_COMP_ins_args_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_args_W_MT_D)\
@@ -26154,9 +26107,7 @@ $(TARG_TEST_COMP_ins_args_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -26171,9 +26122,7 @@ $(TARG_TEST_COMP_ins_args_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_args_W_DLL_D)\
@@ -26181,9 +26130,7 @@ $(TARG_TEST_COMP_ins_args_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -26198,9 +26145,7 @@ $(TARG_TEST_COMP_ins_args_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_args_W_DLL_R)\
@@ -26208,9 +26153,7 @@ $(TARG_TEST_COMP_ins_args_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -26225,9 +26168,7 @@ $(TARG_TEST_COMP_ins_args_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_args_W_MT_R)\
@@ -26235,9 +26176,7 @@ $(TARG_TEST_COMP_ins_args_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -26252,9 +26191,7 @@ $(TARG_TEST_COMP_ins_b64_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(LIB_B64_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
@@ -26263,9 +26200,7 @@ $(TARG_TEST_COMP_ins_b64_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_B64_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -26281,9 +26216,7 @@ $(TARG_TEST_COMP_ins_b64_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(LIB_B64_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
@@ -26292,9 +26225,7 @@ $(TARG_TEST_COMP_ins_b64_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_B64_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -26310,9 +26241,7 @@ $(TARG_TEST_COMP_ins_b64_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(LIB_B64_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
@@ -26321,9 +26250,7 @@ $(TARG_TEST_COMP_ins_b64_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_B64_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -26339,9 +26266,7 @@ $(TARG_TEST_COMP_ins_b64_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(LIB_B64_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
@@ -26350,9 +26275,7 @@ $(TARG_TEST_COMP_ins_b64_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_B64_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -26368,9 +26291,7 @@ $(TARG_TEST_COMP_ins_b64_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(LIB_B64_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
@@ -26379,9 +26300,7 @@ $(TARG_TEST_COMP_ins_b64_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_B64_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -26397,9 +26316,7 @@ $(TARG_TEST_COMP_ins_b64_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(LIB_B64_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
@@ -26408,9 +26325,7 @@ $(TARG_TEST_COMP_ins_b64_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_B64_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -26426,9 +26341,7 @@ $(TARG_TEST_COMP_ins_b64_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(LIB_B64_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
@@ -26437,9 +26350,7 @@ $(TARG_TEST_COMP_ins_b64_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_B64_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -26455,9 +26366,7 @@ $(TARG_TEST_COMP_ins_b64_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(LIB_B64_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
@@ -26466,9 +26375,7 @@ $(TARG_TEST_COMP_ins_b64_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_B64_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -26484,9 +26391,7 @@ $(TARG_TEST_COMP_ins_bool_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_bool_MT_D)\
@@ -26494,9 +26399,7 @@ $(TARG_TEST_COMP_ins_bool_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -26511,9 +26414,7 @@ $(TARG_TEST_COMP_ins_bool_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_bool_DLL_D)\
@@ -26521,9 +26422,7 @@ $(TARG_TEST_COMP_ins_bool_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -26538,9 +26437,7 @@ $(TARG_TEST_COMP_ins_bool_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_bool_DLL_R)\
@@ -26548,9 +26445,7 @@ $(TARG_TEST_COMP_ins_bool_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -26565,9 +26460,7 @@ $(TARG_TEST_COMP_ins_bool_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_bool_MT_R)\
@@ -26575,9 +26468,7 @@ $(TARG_TEST_COMP_ins_bool_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -26592,9 +26483,7 @@ $(TARG_TEST_COMP_ins_bool_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_bool_W_MT_D)\
@@ -26602,9 +26491,7 @@ $(TARG_TEST_COMP_ins_bool_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -26619,9 +26506,7 @@ $(TARG_TEST_COMP_ins_bool_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_bool_W_DLL_D)\
@@ -26629,9 +26514,7 @@ $(TARG_TEST_COMP_ins_bool_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -26646,9 +26529,7 @@ $(TARG_TEST_COMP_ins_bool_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_bool_W_DLL_R)\
@@ -26656,9 +26537,7 @@ $(TARG_TEST_COMP_ins_bool_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -26673,9 +26552,7 @@ $(TARG_TEST_COMP_ins_bool_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_bool_W_MT_R)\
@@ -26683,9 +26560,7 @@ $(TARG_TEST_COMP_ins_bool_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -26700,9 +26575,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_hostid_MT_D)\
@@ -26710,9 +26583,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -26727,9 +26598,7 @@ $(TARG_TEST_COMP_ins_hostid_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_hostid_DLL_D)\
@@ -26737,9 +26606,7 @@ $(TARG_TEST_COMP_ins_hostid_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -26754,9 +26621,7 @@ $(TARG_TEST_COMP_ins_hostid_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_hostid_DLL_R)\
@@ -26764,9 +26629,7 @@ $(TARG_TEST_COMP_ins_hostid_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -26781,9 +26644,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_hostid_MT_R)\
@@ -26791,9 +26652,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -26808,9 +26667,7 @@ $(TARG_TEST_COMP_ins_hostid_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_hostid_W_MT_D)\
@@ -26818,9 +26675,7 @@ $(TARG_TEST_COMP_ins_hostid_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -26835,9 +26690,7 @@ $(TARG_TEST_COMP_ins_hostid_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_hostid_W_DLL_D)\
@@ -26845,9 +26698,7 @@ $(TARG_TEST_COMP_ins_hostid_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -26862,9 +26713,7 @@ $(TARG_TEST_COMP_ins_hostid_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_hostid_W_DLL_R)\
@@ -26872,9 +26721,7 @@ $(TARG_TEST_COMP_ins_hostid_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -26889,9 +26736,7 @@ $(TARG_TEST_COMP_ins_hostid_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_hostid_W_MT_R)\
@@ -26899,9 +26744,7 @@ $(TARG_TEST_COMP_ins_hostid_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -26916,9 +26759,7 @@ $(TARG_TEST_COMP_ins_int_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_int_MT_D)\
@@ -26926,9 +26767,7 @@ $(TARG_TEST_COMP_ins_int_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -26943,9 +26782,7 @@ $(TARG_TEST_COMP_ins_int_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_int_DLL_D)\
@@ -26953,9 +26790,7 @@ $(TARG_TEST_COMP_ins_int_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -26970,9 +26805,7 @@ $(TARG_TEST_COMP_ins_int_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_int_DLL_R)\
@@ -26980,9 +26813,7 @@ $(TARG_TEST_COMP_ins_int_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -26997,9 +26828,7 @@ $(TARG_TEST_COMP_ins_int_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_int_MT_R)\
@@ -27007,9 +26836,7 @@ $(TARG_TEST_COMP_ins_int_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -27024,9 +26851,7 @@ $(TARG_TEST_COMP_ins_int_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_int_W_MT_D)\
@@ -27034,9 +26859,7 @@ $(TARG_TEST_COMP_ins_int_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -27051,9 +26874,7 @@ $(TARG_TEST_COMP_ins_int_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_int_W_DLL_D)\
@@ -27061,9 +26882,7 @@ $(TARG_TEST_COMP_ins_int_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -27078,9 +26897,7 @@ $(TARG_TEST_COMP_ins_int_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_int_W_DLL_R)\
@@ -27088,9 +26905,7 @@ $(TARG_TEST_COMP_ins_int_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -27105,9 +26920,7 @@ $(TARG_TEST_COMP_ins_int_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_int_W_MT_R)\
@@ -27115,9 +26928,7 @@ $(TARG_TEST_COMP_ins_int_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -27132,9 +26943,7 @@ $(TARG_TEST_COMP_ins_pad_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_pad_MT_D)\
@@ -27142,9 +26951,7 @@ $(TARG_TEST_COMP_ins_pad_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -27159,9 +26966,7 @@ $(TARG_TEST_COMP_ins_pad_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_pad_DLL_D)\
@@ -27169,9 +26974,7 @@ $(TARG_TEST_COMP_ins_pad_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -27186,9 +26989,7 @@ $(TARG_TEST_COMP_ins_pad_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_pad_DLL_R)\
@@ -27196,9 +26997,7 @@ $(TARG_TEST_COMP_ins_pad_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -27213,9 +27012,7 @@ $(TARG_TEST_COMP_ins_pad_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_pad_MT_R)\
@@ -27223,9 +27020,7 @@ $(TARG_TEST_COMP_ins_pad_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -27240,9 +27035,7 @@ $(TARG_TEST_COMP_ins_pad_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_pad_W_MT_D)\
@@ -27250,9 +27043,7 @@ $(TARG_TEST_COMP_ins_pad_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -27267,9 +27058,7 @@ $(TARG_TEST_COMP_ins_pad_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_pad_W_DLL_D)\
@@ -27277,9 +27066,7 @@ $(TARG_TEST_COMP_ins_pad_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -27294,9 +27081,7 @@ $(TARG_TEST_COMP_ins_pad_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_pad_W_DLL_R)\
@@ -27304,9 +27089,7 @@ $(TARG_TEST_COMP_ins_pad_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -27321,9 +27104,7 @@ $(TARG_TEST_COMP_ins_pad_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_pad_W_MT_R)\
@@ -27331,9 +27112,7 @@ $(TARG_TEST_COMP_ins_pad_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -27348,9 +27127,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_ptr_MT_D)\
@@ -27358,9 +27135,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -27375,9 +27150,7 @@ $(TARG_TEST_COMP_ins_ptr_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_ptr_DLL_D)\
@@ -27385,9 +27158,7 @@ $(TARG_TEST_COMP_ins_ptr_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -27402,9 +27173,7 @@ $(TARG_TEST_COMP_ins_ptr_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_ptr_DLL_R)\
@@ -27412,9 +27181,7 @@ $(TARG_TEST_COMP_ins_ptr_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -27429,9 +27196,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_ptr_MT_R)\
@@ -27439,9 +27204,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -27456,9 +27219,7 @@ $(TARG_TEST_COMP_ins_ptr_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_ptr_W_MT_D)\
@@ -27466,9 +27227,7 @@ $(TARG_TEST_COMP_ins_ptr_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -27483,9 +27242,7 @@ $(TARG_TEST_COMP_ins_ptr_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_ptr_W_DLL_D)\
@@ -27493,9 +27250,7 @@ $(TARG_TEST_COMP_ins_ptr_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -27510,9 +27265,7 @@ $(TARG_TEST_COMP_ins_ptr_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_ptr_W_DLL_R)\
@@ -27520,9 +27273,7 @@ $(TARG_TEST_COMP_ins_ptr_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -27537,9 +27288,7 @@ $(TARG_TEST_COMP_ins_ptr_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_ptr_W_MT_R)\
@@ -27547,9 +27296,7 @@ $(TARG_TEST_COMP_ins_ptr_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -27564,9 +27311,7 @@ $(TARG_TEST_COMP_ins_prid_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_prid_MT_D)\
@@ -27574,9 +27319,7 @@ $(TARG_TEST_COMP_ins_prid_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -27591,9 +27334,7 @@ $(TARG_TEST_COMP_ins_prid_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_prid_DLL_D)\
@@ -27601,9 +27342,7 @@ $(TARG_TEST_COMP_ins_prid_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -27618,9 +27357,7 @@ $(TARG_TEST_COMP_ins_prid_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_prid_DLL_R)\
@@ -27628,9 +27365,7 @@ $(TARG_TEST_COMP_ins_prid_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -27645,9 +27380,7 @@ $(TARG_TEST_COMP_ins_prid_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_prid_MT_R)\
@@ -27655,9 +27388,7 @@ $(TARG_TEST_COMP_ins_prid_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -27672,9 +27403,7 @@ $(TARG_TEST_COMP_ins_prid_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_prid_W_MT_D)\
@@ -27682,9 +27411,7 @@ $(TARG_TEST_COMP_ins_prid_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -27699,9 +27426,7 @@ $(TARG_TEST_COMP_ins_prid_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_prid_W_DLL_D)\
@@ -27709,9 +27434,7 @@ $(TARG_TEST_COMP_ins_prid_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -27726,9 +27449,7 @@ $(TARG_TEST_COMP_ins_prid_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_prid_W_DLL_R)\
@@ -27736,9 +27457,7 @@ $(TARG_TEST_COMP_ins_prid_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -27753,9 +27472,7 @@ $(TARG_TEST_COMP_ins_prid_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_prid_W_MT_R)\
@@ -27763,9 +27480,7 @@ $(TARG_TEST_COMP_ins_prid_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -27780,9 +27495,9 @@ $(TARG_TEST_COMP_ins_real_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_real_MT_D)\
@@ -27790,9 +27505,7 @@ $(TARG_TEST_COMP_ins_real_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -27807,9 +27520,9 @@ $(TARG_TEST_COMP_ins_real_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_real_DLL_D)\
@@ -27817,9 +27530,7 @@ $(TARG_TEST_COMP_ins_real_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -27834,9 +27545,9 @@ $(TARG_TEST_COMP_ins_real_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_real_DLL_R)\
@@ -27844,9 +27555,7 @@ $(TARG_TEST_COMP_ins_real_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -27861,9 +27570,9 @@ $(TARG_TEST_COMP_ins_real_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_real_MT_R)\
@@ -27871,9 +27580,7 @@ $(TARG_TEST_COMP_ins_real_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -27888,9 +27595,9 @@ $(TARG_TEST_COMP_ins_real_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_real_W_MT_D)\
@@ -27898,9 +27605,7 @@ $(TARG_TEST_COMP_ins_real_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -27915,9 +27620,9 @@ $(TARG_TEST_COMP_ins_real_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_real_W_DLL_D)\
@@ -27925,9 +27630,7 @@ $(TARG_TEST_COMP_ins_real_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -27942,9 +27645,9 @@ $(TARG_TEST_COMP_ins_real_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_real_W_DLL_R)\
@@ -27952,9 +27655,7 @@ $(TARG_TEST_COMP_ins_real_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -27969,9 +27670,9 @@ $(TARG_TEST_COMP_ins_real_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_real_W_MT_R)\
@@ -27979,9 +27680,7 @@ $(TARG_TEST_COMP_ins_real_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -27996,9 +27695,7 @@ $(TARG_TEST_COMP_ins_slice_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_slice_MT_D)\
@@ -28006,9 +27703,7 @@ $(TARG_TEST_COMP_ins_slice_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -28023,9 +27718,7 @@ $(TARG_TEST_COMP_ins_slice_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_slice_DLL_D)\
@@ -28033,9 +27726,7 @@ $(TARG_TEST_COMP_ins_slice_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -28050,9 +27741,7 @@ $(TARG_TEST_COMP_ins_slice_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_slice_DLL_R)\
@@ -28060,9 +27749,7 @@ $(TARG_TEST_COMP_ins_slice_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -28077,9 +27764,7 @@ $(TARG_TEST_COMP_ins_slice_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_slice_MT_R)\
@@ -28087,9 +27772,7 @@ $(TARG_TEST_COMP_ins_slice_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -28104,9 +27787,7 @@ $(TARG_TEST_COMP_ins_slice_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_slice_W_MT_D)\
@@ -28114,9 +27795,7 @@ $(TARG_TEST_COMP_ins_slice_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -28131,9 +27810,7 @@ $(TARG_TEST_COMP_ins_slice_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_slice_W_DLL_D)\
@@ -28141,9 +27818,7 @@ $(TARG_TEST_COMP_ins_slice_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -28158,9 +27833,7 @@ $(TARG_TEST_COMP_ins_slice_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_slice_W_DLL_R)\
@@ -28168,9 +27841,7 @@ $(TARG_TEST_COMP_ins_slice_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -28185,9 +27856,7 @@ $(TARG_TEST_COMP_ins_slice_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_slice_W_MT_R)\
@@ -28195,9 +27864,7 @@ $(TARG_TEST_COMP_ins_slice_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -28212,9 +27879,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_MT_D)\
@@ -28222,9 +27887,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -28239,9 +27902,7 @@ $(TARG_TEST_COMP_ins_stm_ch_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_DLL_D)\
@@ -28249,9 +27910,7 @@ $(TARG_TEST_COMP_ins_stm_ch_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -28266,9 +27925,7 @@ $(TARG_TEST_COMP_ins_stm_ch_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_DLL_R)\
@@ -28276,9 +27933,7 @@ $(TARG_TEST_COMP_ins_stm_ch_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -28293,9 +27948,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_MT_R)\
@@ -28303,9 +27956,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -28320,9 +27971,7 @@ $(TARG_TEST_COMP_ins_stm_ch_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_W_MT_D)\
@@ -28330,9 +27979,7 @@ $(TARG_TEST_COMP_ins_stm_ch_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -28347,9 +27994,7 @@ $(TARG_TEST_COMP_ins_stm_ch_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_W_DLL_D)\
@@ -28357,9 +28002,7 @@ $(TARG_TEST_COMP_ins_stm_ch_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -28374,9 +28017,7 @@ $(TARG_TEST_COMP_ins_stm_ch_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_W_DLL_R)\
@@ -28384,9 +28025,7 @@ $(TARG_TEST_COMP_ins_stm_ch_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -28401,9 +28040,7 @@ $(TARG_TEST_COMP_ins_stm_ch_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_W_MT_R)\
@@ -28411,9 +28048,7 @@ $(TARG_TEST_COMP_ins_stm_ch_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -28428,9 +28063,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_thrid_MT_D)\
@@ -28438,9 +28071,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -28455,9 +28086,7 @@ $(TARG_TEST_COMP_ins_thrid_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_thrid_DLL_D)\
@@ -28465,9 +28094,7 @@ $(TARG_TEST_COMP_ins_thrid_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -28482,9 +28109,7 @@ $(TARG_TEST_COMP_ins_thrid_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_thrid_DLL_R)\
@@ -28492,9 +28117,7 @@ $(TARG_TEST_COMP_ins_thrid_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -28509,9 +28132,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_thrid_MT_R)\
@@ -28519,9 +28140,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -28536,9 +28155,7 @@ $(TARG_TEST_COMP_ins_thrid_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_thrid_W_MT_D)\
@@ -28546,9 +28163,7 @@ $(TARG_TEST_COMP_ins_thrid_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -28563,9 +28178,7 @@ $(TARG_TEST_COMP_ins_thrid_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_thrid_W_DLL_D)\
@@ -28573,9 +28186,7 @@ $(TARG_TEST_COMP_ins_thrid_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -28590,9 +28201,7 @@ $(TARG_TEST_COMP_ins_thrid_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_thrid_W_DLL_R)\
@@ -28600,9 +28209,7 @@ $(TARG_TEST_COMP_ins_thrid_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -28617,9 +28224,7 @@ $(TARG_TEST_COMP_ins_thrid_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_thrid_W_MT_R)\
@@ -28627,9 +28232,7 @@ $(TARG_TEST_COMP_ins_thrid_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -28644,9 +28247,7 @@ $(TARG_TEST_COMP_ins_vbool_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_vbool_MT_D)\
@@ -28654,9 +28255,7 @@ $(TARG_TEST_COMP_ins_vbool_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -28671,9 +28270,7 @@ $(TARG_TEST_COMP_ins_vbool_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_vbool_DLL_D)\
@@ -28681,9 +28278,7 @@ $(TARG_TEST_COMP_ins_vbool_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -28698,9 +28293,7 @@ $(TARG_TEST_COMP_ins_vbool_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_vbool_DLL_R)\
@@ -28708,9 +28301,7 @@ $(TARG_TEST_COMP_ins_vbool_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -28725,9 +28316,7 @@ $(TARG_TEST_COMP_ins_vbool_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_vbool_MT_R)\
@@ -28735,9 +28324,7 @@ $(TARG_TEST_COMP_ins_vbool_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -28752,9 +28339,7 @@ $(TARG_TEST_COMP_ins_vbool_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_vbool_W_MT_D)\
@@ -28762,9 +28347,7 @@ $(TARG_TEST_COMP_ins_vbool_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -28779,9 +28362,7 @@ $(TARG_TEST_COMP_ins_vbool_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_vbool_W_DLL_D)\
@@ -28789,9 +28370,7 @@ $(TARG_TEST_COMP_ins_vbool_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -28806,9 +28385,7 @@ $(TARG_TEST_COMP_ins_vbool_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_vbool_W_DLL_R)\
@@ -28816,9 +28393,7 @@ $(TARG_TEST_COMP_ins_vbool_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -28833,9 +28408,7 @@ $(TARG_TEST_COMP_ins_vbool_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_vbool_W_MT_R)\
@@ -28843,9 +28416,7 @@ $(TARG_TEST_COMP_ins_vbool_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -28860,9 +28431,7 @@ $(TARG_TEST_COMP_ins_m2w_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_m2w_W_MT_D)\
@@ -28870,9 +28439,7 @@ $(TARG_TEST_COMP_ins_m2w_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -28887,9 +28454,7 @@ $(TARG_TEST_COMP_ins_m2w_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_m2w_W_DLL_D)\
@@ -28897,9 +28462,7 @@ $(TARG_TEST_COMP_ins_m2w_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -28914,9 +28477,7 @@ $(TARG_TEST_COMP_ins_m2w_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_m2w_W_DLL_R)\
@@ -28924,9 +28485,7 @@ $(TARG_TEST_COMP_ins_m2w_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -28941,9 +28500,7 @@ $(TARG_TEST_COMP_ins_m2w_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_m2w_W_MT_R)\
@@ -28951,9 +28508,7 @@ $(TARG_TEST_COMP_ins_m2w_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -28968,9 +28523,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_w2m_MT_D)\
@@ -28978,9 +28531,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -28995,9 +28546,7 @@ $(TARG_TEST_COMP_ins_w2m_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_ins_w2m_DLL_D)\
@@ -29005,9 +28554,7 @@ $(TARG_TEST_COMP_ins_w2m_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -29022,9 +28569,7 @@ $(TARG_TEST_COMP_ins_w2m_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_w2m_DLL_R)\
@@ -29032,9 +28577,7 @@ $(TARG_TEST_COMP_ins_w2m_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -29049,9 +28592,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_ins_w2m_MT_R)\
@@ -29059,9 +28600,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -29076,9 +28615,7 @@ $(TARG_TEST_COMP_log_1_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_log_1_MT_D)\
@@ -29086,9 +28623,7 @@ $(TARG_TEST_COMP_log_1_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -29103,9 +28638,7 @@ $(TARG_TEST_COMP_log_1_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_log_1_DLL_D)\
@@ -29113,9 +28646,7 @@ $(TARG_TEST_COMP_log_1_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -29130,9 +28661,7 @@ $(TARG_TEST_COMP_log_1_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_log_1_DLL_R)\
@@ -29140,9 +28669,7 @@ $(TARG_TEST_COMP_log_1_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -29157,9 +28684,7 @@ $(TARG_TEST_COMP_log_1_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_log_1_MT_R)\
@@ -29167,9 +28692,7 @@ $(TARG_TEST_COMP_log_1_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -29184,9 +28707,7 @@ $(TARG_TEST_COMP_log_1_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_log_1_W_MT_D)\
@@ -29194,9 +28715,7 @@ $(TARG_TEST_COMP_log_1_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -29211,9 +28730,7 @@ $(TARG_TEST_COMP_log_1_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_log_1_W_DLL_D)\
@@ -29221,9 +28738,7 @@ $(TARG_TEST_COMP_log_1_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -29238,9 +28753,7 @@ $(TARG_TEST_COMP_log_1_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_log_1_W_DLL_R)\
@@ -29248,9 +28761,7 @@ $(TARG_TEST_COMP_log_1_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -29265,9 +28776,7 @@ $(TARG_TEST_COMP_log_1_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_log_1_W_MT_R)\
@@ -29275,9 +28784,7 @@ $(TARG_TEST_COMP_log_1_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -29292,9 +28799,7 @@ $(TARG_TEST_COMP_trace_1_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_trace_1_MT_D)\
@@ -29302,9 +28807,7 @@ $(TARG_TEST_COMP_trace_1_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -29319,9 +28822,7 @@ $(TARG_TEST_COMP_trace_1_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_trace_1_DLL_D)\
@@ -29329,9 +28830,7 @@ $(TARG_TEST_COMP_trace_1_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -29346,9 +28845,7 @@ $(TARG_TEST_COMP_trace_1_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_trace_1_DLL_R)\
@@ -29356,9 +28853,7 @@ $(TARG_TEST_COMP_trace_1_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -29373,9 +28868,7 @@ $(TARG_TEST_COMP_trace_1_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_trace_1_MT_R)\
@@ -29383,9 +28876,7 @@ $(TARG_TEST_COMP_trace_1_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -29400,9 +28891,7 @@ $(TARG_TEST_COMP_pan_puts_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_pan_puts_MT_D)\
@@ -29410,9 +28899,7 @@ $(TARG_TEST_COMP_pan_puts_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -29427,9 +28914,7 @@ $(TARG_TEST_COMP_pan_puts_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_pan_puts_DLL_D)\
@@ -29437,9 +28922,7 @@ $(TARG_TEST_COMP_pan_puts_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -29454,9 +28937,7 @@ $(TARG_TEST_COMP_pan_puts_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_pan_puts_DLL_R)\
@@ -29464,9 +28945,7 @@ $(TARG_TEST_COMP_pan_puts_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -29481,9 +28960,7 @@ $(TARG_TEST_COMP_pan_puts_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_pan_puts_MT_R)\
@@ -29491,9 +28968,7 @@ $(TARG_TEST_COMP_pan_puts_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -29508,9 +28983,7 @@ $(TARG_TEST_COMP_pan_puts_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_pan_puts_W_MT_D)\
@@ -29518,9 +28991,7 @@ $(TARG_TEST_COMP_pan_puts_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -29535,9 +29006,7 @@ $(TARG_TEST_COMP_pan_puts_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_pan_puts_W_DLL_D)\
@@ -29545,9 +29014,7 @@ $(TARG_TEST_COMP_pan_puts_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -29562,9 +29029,7 @@ $(TARG_TEST_COMP_pan_puts_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_pan_puts_W_DLL_R)\
@@ -29572,9 +29037,7 @@ $(TARG_TEST_COMP_pan_puts_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -29589,9 +29052,7 @@ $(TARG_TEST_COMP_pan_puts_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_pan_puts_W_MT_R)\
@@ -29599,9 +29060,7 @@ $(TARG_TEST_COMP_pan_puts_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -29616,9 +29075,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_pan_prtf_MT_D)\
@@ -29626,9 +29083,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
@@ -29643,9 +29098,7 @@ $(TARG_TEST_COMP_pan_prtf_DLL_D):	\
 			$(LIB_FE_ALL_DLL_D)\
 			$(LIB_BE_TEST_DLL_D)\
 			$(LIB_BEC_TEST_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_pan_prtf_DLL_D)\
@@ -29653,9 +29106,7 @@ $(TARG_TEST_COMP_pan_prtf_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_BE_TEST_DLL_D)\
 		$(LIB_BEC_TEST_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
@@ -29670,9 +29121,7 @@ $(TARG_TEST_COMP_pan_prtf_DLL_R):	\
 			$(LIB_FE_ALL_DLL_R)\
 			$(LIB_BE_TEST_DLL_R)\
 			$(LIB_BEC_TEST_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_pan_prtf_DLL_R)\
@@ -29680,9 +29129,7 @@ $(TARG_TEST_COMP_pan_prtf_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_BE_TEST_DLL_R)\
 		$(LIB_BEC_TEST_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
@@ -29697,9 +29144,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_pan_prtf_MT_R)\
@@ -29707,9 +29152,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
@@ -29724,9 +29167,7 @@ $(TARG_TEST_COMP_pan_prtf_W_MT_D):	\
 			$(LIB_FE_ALL_W_MT_D)\
 			$(LIB_BE_TEST_W_MT_D)\
 			$(LIB_BEC_TEST_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_COMP_pan_prtf_W_MT_D)\
@@ -29734,9 +29175,7 @@ $(TARG_TEST_COMP_pan_prtf_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_BE_TEST_W_MT_D)\
 		$(LIB_BEC_TEST_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_D)
@@ -29751,9 +29190,7 @@ $(TARG_TEST_COMP_pan_prtf_W_DLL_D):	\
 			$(LIB_FE_ALL_W_DLL_D)\
 			$(LIB_BE_TEST_W_DLL_D)\
 			$(LIB_BEC_TEST_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_COMP_pan_prtf_W_DLL_D)\
@@ -29761,9 +29198,7 @@ $(TARG_TEST_COMP_pan_prtf_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_BE_TEST_W_DLL_D)\
 		$(LIB_BEC_TEST_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_D)
@@ -29778,9 +29213,7 @@ $(TARG_TEST_COMP_pan_prtf_W_DLL_R):	\
 			$(LIB_FE_ALL_W_DLL_R)\
 			$(LIB_BE_TEST_W_DLL_R)\
 			$(LIB_BEC_TEST_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_COMP_pan_prtf_W_DLL_R)\
@@ -29788,9 +29221,7 @@ $(TARG_TEST_COMP_pan_prtf_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_BE_TEST_W_DLL_R)\
 		$(LIB_BEC_TEST_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_DLL_R)
@@ -29805,9 +29236,7 @@ $(TARG_TEST_COMP_pan_prtf_W_MT_R):	\
 			$(LIB_FE_ALL_W_MT_R)\
 			$(LIB_BE_TEST_W_MT_R)\
 			$(LIB_BEC_TEST_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_COMP_pan_prtf_W_MT_R)\
@@ -29815,9 +29244,7 @@ $(TARG_TEST_COMP_pan_prtf_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_BE_TEST_W_MT_R)\
 		$(LIB_BEC_TEST_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_W_MT_R)
@@ -31959,19 +31386,64 @@ $(OBJ_TEST_FE_SIMPLE_WC_W_MT_R):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.fe.simple
 ##############################
 # Unit Tests
 
-$(TARG_TEST_UNIT_lvls_dyninit_MT_D):	\
-			$(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
-			$(LIB_UTIL_MT_D)\
+LIBS_SYNSOFT_TEST_UNIT_MT_D=\
+			$(LIB_SHWILD_MT_D)\
 			$(LIB_XCONTRACT_MT_D)\
 			$(LIB_XCOVER_MT_D)\
 			$(LIB_XTESTS_MT_D)\
+
+LIBS_SYNSOFT_TEST_UNIT_DLL_D=\
+			$(LIB_SHWILD_DLL_D)\
+			$(LIB_XCONTRACT_DLL_D)\
+			$(LIB_XCOVER_DLL_D)\
+			$(LIB_XTESTS_DLL_D)\
+
+LIBS_SYNSOFT_TEST_UNIT_DLL_R=\
+			$(LIB_SHWILD_DLL_R)\
+			$(LIB_XCONTRACT_DLL_R)\
+			$(LIB_XCOVER_DLL_R)\
+			$(LIB_XTESTS_DLL_R)\
+
+LIBS_SYNSOFT_TEST_UNIT_MT_R=\
+			$(LIB_SHWILD_MT_R)\
+			$(LIB_XCONTRACT_MT_R)\
+			$(LIB_XCOVER_MT_R)\
+			$(LIB_XTESTS_MT_R)\
+
+LIBS_SYNSOFT_TEST_UNIT_W_MT_D=\
+			$(LIB_SHWILD_W_MT_D)\
+			$(LIB_XCONTRACT_W_MT_D)\
+			$(LIB_XCOVER_W_MT_D)\
+			$(LIB_XTESTS_W_MT_D)\
+
+LIBS_SYNSOFT_TEST_UNIT_W_DLL_D=\
+			$(LIB_SHWILD_W_DLL_D)\
+			$(LIB_XCONTRACT_W_DLL_D)\
+			$(LIB_XCOVER_W_DLL_D)\
+			$(LIB_XTESTS_W_DLL_D)\
+
+LIBS_SYNSOFT_TEST_UNIT_W_DLL_R=\
+			$(LIB_SHWILD_W_DLL_R)\
+			$(LIB_XCONTRACT_W_DLL_R)\
+			$(LIB_XCOVER_W_DLL_R)\
+			$(LIB_XTESTS_W_DLL_R)\
+
+LIBS_SYNSOFT_TEST_UNIT_W_MT_R=\
+			$(LIB_SHWILD_W_MT_R)\
+			$(LIB_XCONTRACT_W_MT_R)\
+			$(LIB_XCOVER_W_MT_R)\
+			$(LIB_XTESTS_W_MT_R)\
+
+
+$(TARG_TEST_UNIT_lvls_dyninit_MT_D):	\
+			$(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -31981,16 +31453,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.dynam
 $(TARG_TEST_UNIT_lvls_dyninit_DLL_D):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_DLL_D)\
 			$(LIB_UTIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -32000,16 +31468,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.dyna
 $(TARG_TEST_UNIT_lvls_dyninit_DLL_R):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_DLL_R)\
 			$(LIB_UTIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -32019,16 +31483,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.dyna
 $(TARG_TEST_UNIT_lvls_dyninit_MT_R):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -32038,16 +31498,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.dynam
 $(TARG_TEST_UNIT_lvls_dyninit_W_MT_D):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_W_MT_D)\
 			$(LIB_UTIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -32057,16 +31513,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.dyn
 $(TARG_TEST_UNIT_lvls_dyninit_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_W_DLL_D)\
 			$(LIB_UTIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -32076,16 +31528,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.dy
 $(TARG_TEST_UNIT_lvls_dyninit_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_W_DLL_R)\
 			$(LIB_UTIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -32095,16 +31543,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.dy
 $(TARG_TEST_UNIT_lvls_dyninit_W_MT_R):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_W_MT_R)\
 			$(LIB_UTIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -32114,16 +31558,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.dyn
 $(TARG_TEST_UNIT_lvls_vals_MT_D):	\
 			$(OBJ_TEST_UNIT_lvls_vals_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_vals_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -32133,16 +31573,12 @@ $(OBJ_TEST_UNIT_lvls_vals_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.values\t
 $(TARG_TEST_UNIT_lvls_vals_DLL_D):	\
 			$(OBJ_TEST_UNIT_lvls_vals_DLL_D)\
 			$(LIB_UTIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_vals_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -32152,16 +31588,12 @@ $(OBJ_TEST_UNIT_lvls_vals_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.values\
 $(TARG_TEST_UNIT_lvls_vals_DLL_R):	\
 			$(OBJ_TEST_UNIT_lvls_vals_DLL_R)\
 			$(LIB_UTIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_vals_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -32171,16 +31603,12 @@ $(OBJ_TEST_UNIT_lvls_vals_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.values\
 $(TARG_TEST_UNIT_lvls_vals_MT_R):	\
 			$(OBJ_TEST_UNIT_lvls_vals_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_vals_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -32190,16 +31618,12 @@ $(OBJ_TEST_UNIT_lvls_vals_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.values\t
 $(TARG_TEST_UNIT_lvls_vals_W_MT_D):	\
 			$(OBJ_TEST_UNIT_lvls_vals_W_MT_D)\
 			$(LIB_UTIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_vals_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -32209,16 +31633,12 @@ $(OBJ_TEST_UNIT_lvls_vals_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.values
 $(TARG_TEST_UNIT_lvls_vals_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_lvls_vals_W_DLL_D)\
 			$(LIB_UTIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_vals_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -32228,16 +31648,12 @@ $(OBJ_TEST_UNIT_lvls_vals_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.value
 $(TARG_TEST_UNIT_lvls_vals_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_lvls_vals_W_DLL_R)\
 			$(LIB_UTIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_vals_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -32247,16 +31663,12 @@ $(OBJ_TEST_UNIT_lvls_vals_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.value
 $(TARG_TEST_UNIT_lvls_vals_W_MT_R):	\
 			$(OBJ_TEST_UNIT_lvls_vals_W_MT_R)\
 			$(LIB_UTIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_vals_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -32266,18 +31678,12 @@ $(OBJ_TEST_UNIT_lvls_vals_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.values
 $(TARG_TEST_UNIT_getcurrtm_MT_D):	\
 			$(OBJ_TEST_UNIT_getcurrtm_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_getcurrtm_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -32287,18 +31693,12 @@ $(OBJ_TEST_UNIT_getcurrtm_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getcurrent
 $(TARG_TEST_UNIT_getcurrtm_DLL_D):	\
 			$(OBJ_TEST_UNIT_getcurrtm_DLL_D)\
 			$(LIB_UTIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_getcurrtm_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -32308,18 +31708,12 @@ $(OBJ_TEST_UNIT_getcurrtm_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getcurren
 $(TARG_TEST_UNIT_getcurrtm_DLL_R):	\
 			$(OBJ_TEST_UNIT_getcurrtm_DLL_R)\
 			$(LIB_UTIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_getcurrtm_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -32329,18 +31723,12 @@ $(OBJ_TEST_UNIT_getcurrtm_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getcurren
 $(TARG_TEST_UNIT_getcurrtm_MT_R):	\
 			$(OBJ_TEST_UNIT_getcurrtm_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_getcurrtm_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -32350,18 +31738,12 @@ $(OBJ_TEST_UNIT_getcurrtm_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getcurrent
 $(TARG_TEST_UNIT_getcurrtm_W_MT_D):	\
 			$(OBJ_TEST_UNIT_getcurrtm_W_MT_D)\
 			$(LIB_UTIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_getcurrtm_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -32371,18 +31753,12 @@ $(OBJ_TEST_UNIT_getcurrtm_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getcurre
 $(TARG_TEST_UNIT_getcurrtm_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_getcurrtm_W_DLL_D)\
 			$(LIB_UTIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_getcurrtm_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -32392,18 +31768,12 @@ $(OBJ_TEST_UNIT_getcurrtm_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getcurr
 $(TARG_TEST_UNIT_getcurrtm_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_getcurrtm_W_DLL_R)\
 			$(LIB_UTIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_getcurrtm_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -32413,18 +31783,12 @@ $(OBJ_TEST_UNIT_getcurrtm_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getcurr
 $(TARG_TEST_UNIT_getcurrtm_W_MT_R):	\
 			$(OBJ_TEST_UNIT_getcurrtm_W_MT_R)\
 			$(LIB_UTIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_getcurrtm_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -32438,10 +31802,7 @@ $(TARG_TEST_UNIT_getversion_MT_D):	\
 			$(LIB_FE_FAIL_MT_D)\
 			$(LIB_BE_FAIL_MT_D)\
 			$(LIB_BEC_FAIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_getversion_MT_D)\
@@ -32450,10 +31811,7 @@ $(TARG_TEST_UNIT_getversion_MT_D):	\
 		$(LIB_FE_FAIL_MT_D)\
 		$(LIB_BE_FAIL_MT_D)\
 		$(LIB_BEC_FAIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -32467,10 +31825,7 @@ $(TARG_TEST_UNIT_getversion_DLL_D):	\
 			$(LIB_FE_FAIL_DLL_D)\
 			$(LIB_BE_FAIL_DLL_D)\
 			$(LIB_BEC_FAIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_getversion_DLL_D)\
@@ -32479,10 +31834,7 @@ $(TARG_TEST_UNIT_getversion_DLL_D):	\
 		$(LIB_FE_FAIL_DLL_D)\
 		$(LIB_BE_FAIL_DLL_D)\
 		$(LIB_BEC_FAIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -32496,10 +31848,7 @@ $(TARG_TEST_UNIT_getversion_DLL_R):	\
 			$(LIB_FE_FAIL_DLL_R)\
 			$(LIB_BE_FAIL_DLL_R)\
 			$(LIB_BEC_FAIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_getversion_DLL_R)\
@@ -32508,10 +31857,7 @@ $(TARG_TEST_UNIT_getversion_DLL_R):	\
 		$(LIB_FE_FAIL_DLL_R)\
 		$(LIB_BE_FAIL_DLL_R)\
 		$(LIB_BEC_FAIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -32525,10 +31871,7 @@ $(TARG_TEST_UNIT_getversion_MT_R):	\
 			$(LIB_FE_FAIL_MT_R)\
 			$(LIB_BE_FAIL_MT_R)\
 			$(LIB_BEC_FAIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_getversion_MT_R)\
@@ -32537,10 +31880,7 @@ $(TARG_TEST_UNIT_getversion_MT_R):	\
 		$(LIB_FE_FAIL_MT_R)\
 		$(LIB_BE_FAIL_MT_R)\
 		$(LIB_BEC_FAIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -32554,10 +31894,7 @@ $(TARG_TEST_UNIT_getversion_W_MT_D):	\
 			$(LIB_FE_FAIL_W_MT_D)\
 			$(LIB_BE_FAIL_W_MT_D)\
 			$(LIB_BEC_FAIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_getversion_W_MT_D)\
@@ -32566,10 +31903,7 @@ $(TARG_TEST_UNIT_getversion_W_MT_D):	\
 		$(LIB_FE_FAIL_W_MT_D)\
 		$(LIB_BE_FAIL_W_MT_D)\
 		$(LIB_BEC_FAIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -32583,10 +31917,7 @@ $(TARG_TEST_UNIT_getversion_W_DLL_D):	\
 			$(LIB_FE_FAIL_W_DLL_D)\
 			$(LIB_BE_FAIL_W_DLL_D)\
 			$(LIB_BEC_FAIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_getversion_W_DLL_D)\
@@ -32595,10 +31926,7 @@ $(TARG_TEST_UNIT_getversion_W_DLL_D):	\
 		$(LIB_FE_FAIL_W_DLL_D)\
 		$(LIB_BE_FAIL_W_DLL_D)\
 		$(LIB_BEC_FAIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -32612,10 +31940,7 @@ $(TARG_TEST_UNIT_getversion_W_DLL_R):	\
 			$(LIB_FE_FAIL_W_DLL_R)\
 			$(LIB_BE_FAIL_W_DLL_R)\
 			$(LIB_BEC_FAIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_getversion_W_DLL_R)\
@@ -32624,10 +31949,7 @@ $(TARG_TEST_UNIT_getversion_W_DLL_R):	\
 		$(LIB_FE_FAIL_W_DLL_R)\
 		$(LIB_BE_FAIL_W_DLL_R)\
 		$(LIB_BEC_FAIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -32641,10 +31963,7 @@ $(TARG_TEST_UNIT_getversion_W_MT_R):	\
 			$(LIB_FE_FAIL_W_MT_R)\
 			$(LIB_BE_FAIL_W_MT_R)\
 			$(LIB_BEC_FAIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_getversion_W_MT_R)\
@@ -32653,10 +31972,7 @@ $(TARG_TEST_UNIT_getversion_W_MT_R):	\
 		$(LIB_FE_FAIL_W_MT_R)\
 		$(LIB_BE_FAIL_W_MT_R)\
 		$(LIB_BEC_FAIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -32666,18 +31982,12 @@ $(OBJ_TEST_UNIT_getversion_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.getversion\t
 $(TARG_TEST_UNIT_gethostname_MT_D):	\
 			$(OBJ_TEST_UNIT_gethostname_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_gethostname_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -32687,18 +31997,12 @@ $(OBJ_TEST_UNIT_gethostname_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.gethostn
 $(TARG_TEST_UNIT_gethostname_DLL_D):	\
 			$(OBJ_TEST_UNIT_gethostname_DLL_D)\
 			$(LIB_UTIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_gethostname_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -32708,18 +32012,12 @@ $(OBJ_TEST_UNIT_gethostname_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.gethost
 $(TARG_TEST_UNIT_gethostname_DLL_R):	\
 			$(OBJ_TEST_UNIT_gethostname_DLL_R)\
 			$(LIB_UTIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_gethostname_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -32729,18 +32027,12 @@ $(OBJ_TEST_UNIT_gethostname_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.gethost
 $(TARG_TEST_UNIT_gethostname_MT_R):	\
 			$(OBJ_TEST_UNIT_gethostname_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_gethostname_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -32750,18 +32042,12 @@ $(OBJ_TEST_UNIT_gethostname_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.gethostn
 $(TARG_TEST_UNIT_gethostname_W_MT_D):	\
 			$(OBJ_TEST_UNIT_gethostname_W_MT_D)\
 			$(LIB_UTIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_gethostname_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -32771,18 +32057,12 @@ $(OBJ_TEST_UNIT_gethostname_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.gethos
 $(TARG_TEST_UNIT_gethostname_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_gethostname_W_DLL_D)\
 			$(LIB_UTIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_gethostname_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -32792,18 +32072,12 @@ $(OBJ_TEST_UNIT_gethostname_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getho
 $(TARG_TEST_UNIT_gethostname_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_gethostname_W_DLL_R)\
 			$(LIB_UTIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_gethostname_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -32813,18 +32087,12 @@ $(OBJ_TEST_UNIT_gethostname_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getho
 $(TARG_TEST_UNIT_gethostname_W_MT_R):	\
 			$(OBJ_TEST_UNIT_gethostname_W_MT_R)\
 			$(LIB_UTIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_gethostname_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -32833,17 +32101,11 @@ $(OBJ_TEST_UNIT_gethostname_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.gethos
 
 $(TARG_TEST_UNIT_onbailout_MT_D):	\
 			$(OBJ_TEST_UNIT_onbailout_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_onbailout_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -32852,17 +32114,11 @@ $(OBJ_TEST_UNIT_onbailout_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailout\
 
 $(TARG_TEST_UNIT_onbailout_DLL_D):	\
 			$(OBJ_TEST_UNIT_onbailout_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_onbailout_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -32871,17 +32127,11 @@ $(OBJ_TEST_UNIT_onbailout_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailout
 
 $(TARG_TEST_UNIT_onbailout_DLL_R):	\
 			$(OBJ_TEST_UNIT_onbailout_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_onbailout_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -32890,17 +32140,11 @@ $(OBJ_TEST_UNIT_onbailout_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailout
 
 $(TARG_TEST_UNIT_onbailout_MT_R):	\
 			$(OBJ_TEST_UNIT_onbailout_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_onbailout_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -32909,17 +32153,11 @@ $(OBJ_TEST_UNIT_onbailout_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailout\
 
 $(TARG_TEST_UNIT_onbailout_W_MT_D):	\
 			$(OBJ_TEST_UNIT_onbailout_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_onbailout_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -32928,17 +32166,11 @@ $(OBJ_TEST_UNIT_onbailout_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailou
 
 $(TARG_TEST_UNIT_onbailout_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_onbailout_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_onbailout_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -32947,17 +32179,11 @@ $(OBJ_TEST_UNIT_onbailout_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailo
 
 $(TARG_TEST_UNIT_onbailout_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_onbailout_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_onbailout_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -32966,17 +32192,11 @@ $(OBJ_TEST_UNIT_onbailout_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailo
 
 $(TARG_TEST_UNIT_onbailout_W_MT_R):	\
 			$(OBJ_TEST_UNIT_onbailout_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_onbailout_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -32986,18 +32206,12 @@ $(OBJ_TEST_UNIT_onbailout_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailou
 $(TARG_TEST_UNIT_strnlen_MT_D):	\
 			$(OBJ_TEST_UNIT_strnlen_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_strnlen_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -33007,18 +32221,12 @@ $(OBJ_TEST_UNIT_strnlen_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.strnlen\test
 $(TARG_TEST_UNIT_strnlen_DLL_D):	\
 			$(OBJ_TEST_UNIT_strnlen_DLL_D)\
 			$(LIB_UTIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_strnlen_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -33028,18 +32236,12 @@ $(OBJ_TEST_UNIT_strnlen_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.strnlen\tes
 $(TARG_TEST_UNIT_strnlen_DLL_R):	\
 			$(OBJ_TEST_UNIT_strnlen_DLL_R)\
 			$(LIB_UTIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_strnlen_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -33049,18 +32251,12 @@ $(OBJ_TEST_UNIT_strnlen_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.strnlen\tes
 $(TARG_TEST_UNIT_strnlen_MT_R):	\
 			$(OBJ_TEST_UNIT_strnlen_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_strnlen_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -33070,18 +32266,12 @@ $(OBJ_TEST_UNIT_strnlen_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.strnlen\test
 $(TARG_TEST_UNIT_strnlen_W_MT_D):	\
 			$(OBJ_TEST_UNIT_strnlen_W_MT_D)\
 			$(LIB_UTIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_strnlen_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -33091,18 +32281,12 @@ $(OBJ_TEST_UNIT_strnlen_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.strnlen\te
 $(TARG_TEST_UNIT_strnlen_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_strnlen_W_DLL_D)\
 			$(LIB_UTIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_strnlen_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -33112,18 +32296,12 @@ $(OBJ_TEST_UNIT_strnlen_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.strnlen\t
 $(TARG_TEST_UNIT_strnlen_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_strnlen_W_DLL_R)\
 			$(LIB_UTIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_strnlen_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -33133,18 +32311,12 @@ $(OBJ_TEST_UNIT_strnlen_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.strnlen\t
 $(TARG_TEST_UNIT_strnlen_W_MT_R):	\
 			$(OBJ_TEST_UNIT_strnlen_W_MT_R)\
 			$(LIB_UTIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_strnlen_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -33155,19 +32327,13 @@ $(TARG_TEST_UNIT_bec_CEO_MT_D):	\
 			$(OBJ_TEST_UNIT_bec_CEO_MT_D)\
 			$(LIB_BEC_COMERROBJ_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_CEO_MT_D)\
 		$(LIB_BEC_COMERROBJ_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -33178,19 +32344,13 @@ $(TARG_TEST_UNIT_bec_CEO_DLL_D):	\
 			$(OBJ_TEST_UNIT_bec_CEO_DLL_D)\
 			$(LIB_BEC_COMERROBJ_DLL_D)\
 			$(LIB_UTIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_CEO_DLL_D)\
 		$(LIB_BEC_COMERROBJ_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -33201,19 +32361,13 @@ $(TARG_TEST_UNIT_bec_CEO_DLL_R):	\
 			$(OBJ_TEST_UNIT_bec_CEO_DLL_R)\
 			$(LIB_BEC_COMERROBJ_DLL_R)\
 			$(LIB_UTIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_CEO_DLL_R)\
 		$(LIB_BEC_COMERROBJ_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -33224,19 +32378,13 @@ $(TARG_TEST_UNIT_bec_CEO_MT_R):	\
 			$(OBJ_TEST_UNIT_bec_CEO_MT_R)\
 			$(LIB_BEC_COMERROBJ_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_CEO_MT_R)\
 		$(LIB_BEC_COMERROBJ_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -33247,19 +32395,13 @@ $(TARG_TEST_UNIT_bec_CEO_W_MT_D):	\
 			$(OBJ_TEST_UNIT_bec_CEO_W_MT_D)\
 			$(LIB_BEC_COMERROBJ_W_MT_D)\
 			$(LIB_UTIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_CEO_W_MT_D)\
 		$(LIB_BEC_COMERROBJ_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -33270,19 +32412,13 @@ $(TARG_TEST_UNIT_bec_CEO_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_bec_CEO_W_DLL_D)\
 			$(LIB_BEC_COMERROBJ_W_DLL_D)\
 			$(LIB_UTIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_CEO_W_DLL_D)\
 		$(LIB_BEC_COMERROBJ_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -33293,19 +32429,13 @@ $(TARG_TEST_UNIT_bec_CEO_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_bec_CEO_W_DLL_R)\
 			$(LIB_BEC_COMERROBJ_W_DLL_R)\
 			$(LIB_UTIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_CEO_W_DLL_R)\
 		$(LIB_BEC_COMERROBJ_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -33316,19 +32446,13 @@ $(TARG_TEST_UNIT_bec_CEO_W_MT_R):	\
 			$(OBJ_TEST_UNIT_bec_CEO_W_MT_R)\
 			$(LIB_BEC_COMERROBJ_W_MT_R)\
 			$(LIB_UTIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_CEO_W_MT_R)\
 		$(LIB_BEC_COMERROBJ_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -33342,10 +32466,7 @@ $(TARG_TEST_UNIT_bec_file_MT_D):	\
 			$(LIB_FE_SIMPLE_MT_D)\
 			$(LIB_BE_NULL_MT_D)\
 			$(LIB_BEC_NULL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_file_MT_D)\
@@ -33354,10 +32475,7 @@ $(TARG_TEST_UNIT_bec_file_MT_D):	\
 		$(LIB_BE_NULL_MT_D)\
 		$(LIB_BEC_NULL_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -33371,10 +32489,7 @@ $(TARG_TEST_UNIT_bec_file_DLL_D):	\
 			$(LIB_FE_SIMPLE_DLL_D)\
 			$(LIB_BE_NULL_DLL_D)\
 			$(LIB_BEC_NULL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_file_DLL_D)\
@@ -33383,10 +32498,7 @@ $(TARG_TEST_UNIT_bec_file_DLL_D):	\
 		$(LIB_BE_NULL_DLL_D)\
 		$(LIB_BEC_NULL_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -33400,10 +32512,7 @@ $(TARG_TEST_UNIT_bec_file_DLL_R):	\
 			$(LIB_FE_SIMPLE_DLL_R)\
 			$(LIB_BE_NULL_DLL_R)\
 			$(LIB_BEC_NULL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_file_DLL_R)\
@@ -33412,10 +32521,7 @@ $(TARG_TEST_UNIT_bec_file_DLL_R):	\
 		$(LIB_BE_NULL_DLL_R)\
 		$(LIB_BEC_NULL_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -33429,10 +32535,7 @@ $(TARG_TEST_UNIT_bec_file_MT_R):	\
 			$(LIB_FE_SIMPLE_MT_R)\
 			$(LIB_BE_NULL_MT_R)\
 			$(LIB_BEC_NULL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_file_MT_R)\
@@ -33441,10 +32544,7 @@ $(TARG_TEST_UNIT_bec_file_MT_R):	\
 		$(LIB_BE_NULL_MT_R)\
 		$(LIB_BEC_NULL_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -33458,10 +32558,7 @@ $(TARG_TEST_UNIT_bec_file_W_MT_D):	\
 			$(LIB_FE_SIMPLE_W_MT_D)\
 			$(LIB_BE_NULL_W_MT_D)\
 			$(LIB_BEC_NULL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_file_W_MT_D)\
@@ -33470,10 +32567,7 @@ $(TARG_TEST_UNIT_bec_file_W_MT_D):	\
 		$(LIB_BE_NULL_W_MT_D)\
 		$(LIB_BEC_NULL_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -33487,10 +32581,7 @@ $(TARG_TEST_UNIT_bec_file_W_DLL_D):	\
 			$(LIB_FE_SIMPLE_W_DLL_D)\
 			$(LIB_BE_NULL_W_DLL_D)\
 			$(LIB_BEC_NULL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_file_W_DLL_D)\
@@ -33499,10 +32590,7 @@ $(TARG_TEST_UNIT_bec_file_W_DLL_D):	\
 		$(LIB_BE_NULL_W_DLL_D)\
 		$(LIB_BEC_NULL_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -33516,10 +32604,7 @@ $(TARG_TEST_UNIT_bec_file_W_DLL_R):	\
 			$(LIB_FE_SIMPLE_W_DLL_R)\
 			$(LIB_BE_NULL_W_DLL_R)\
 			$(LIB_BEC_NULL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_file_W_DLL_R)\
@@ -33528,10 +32613,7 @@ $(TARG_TEST_UNIT_bec_file_W_DLL_R):	\
 		$(LIB_BE_NULL_W_DLL_R)\
 		$(LIB_BEC_NULL_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -33545,10 +32627,7 @@ $(TARG_TEST_UNIT_bec_file_W_MT_R):	\
 			$(LIB_FE_SIMPLE_W_MT_R)\
 			$(LIB_BE_NULL_W_MT_R)\
 			$(LIB_BEC_NULL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_file_W_MT_R)\
@@ -33557,10 +32636,7 @@ $(TARG_TEST_UNIT_bec_file_W_MT_R):	\
 		$(LIB_BE_NULL_W_MT_R)\
 		$(LIB_BEC_NULL_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -33574,10 +32650,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_D):	\
 			$(LIB_FE_SIMPLE_MT_D)\
 			$(LIB_BE_NULL_MT_D)\
 			$(LIB_BEC_NULL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_MT_D)\
@@ -33586,10 +32659,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_D):	\
 		$(LIB_BE_NULL_MT_D)\
 		$(LIB_BEC_NULL_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -33603,10 +32673,7 @@ $(TARG_TEST_UNIT_bec_fprintf_DLL_D):	\
 			$(LIB_FE_SIMPLE_DLL_D)\
 			$(LIB_BE_NULL_DLL_D)\
 			$(LIB_BEC_NULL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_DLL_D)\
@@ -33615,10 +32682,7 @@ $(TARG_TEST_UNIT_bec_fprintf_DLL_D):	\
 		$(LIB_BE_NULL_DLL_D)\
 		$(LIB_BEC_NULL_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -33632,10 +32696,7 @@ $(TARG_TEST_UNIT_bec_fprintf_DLL_R):	\
 			$(LIB_FE_SIMPLE_DLL_R)\
 			$(LIB_BE_NULL_DLL_R)\
 			$(LIB_BEC_NULL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_DLL_R)\
@@ -33644,10 +32705,7 @@ $(TARG_TEST_UNIT_bec_fprintf_DLL_R):	\
 		$(LIB_BE_NULL_DLL_R)\
 		$(LIB_BEC_NULL_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -33661,10 +32719,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_R):	\
 			$(LIB_FE_SIMPLE_MT_R)\
 			$(LIB_BE_NULL_MT_R)\
 			$(LIB_BEC_NULL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_MT_R)\
@@ -33673,10 +32728,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_R):	\
 		$(LIB_BE_NULL_MT_R)\
 		$(LIB_BEC_NULL_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -33690,10 +32742,7 @@ $(TARG_TEST_UNIT_bec_fprintf_W_MT_D):	\
 			$(LIB_FE_SIMPLE_W_MT_D)\
 			$(LIB_BE_NULL_W_MT_D)\
 			$(LIB_BEC_NULL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_W_MT_D)\
@@ -33702,10 +32751,7 @@ $(TARG_TEST_UNIT_bec_fprintf_W_MT_D):	\
 		$(LIB_BE_NULL_W_MT_D)\
 		$(LIB_BEC_NULL_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -33719,10 +32765,7 @@ $(TARG_TEST_UNIT_bec_fprintf_W_DLL_D):	\
 			$(LIB_FE_SIMPLE_W_DLL_D)\
 			$(LIB_BE_NULL_W_DLL_D)\
 			$(LIB_BEC_NULL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_W_DLL_D)\
@@ -33731,10 +32774,7 @@ $(TARG_TEST_UNIT_bec_fprintf_W_DLL_D):	\
 		$(LIB_BE_NULL_W_DLL_D)\
 		$(LIB_BEC_NULL_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -33748,10 +32788,7 @@ $(TARG_TEST_UNIT_bec_fprintf_W_DLL_R):	\
 			$(LIB_FE_SIMPLE_W_DLL_R)\
 			$(LIB_BE_NULL_W_DLL_R)\
 			$(LIB_BEC_NULL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_W_DLL_R)\
@@ -33760,10 +32797,7 @@ $(TARG_TEST_UNIT_bec_fprintf_W_DLL_R):	\
 		$(LIB_BE_NULL_W_DLL_R)\
 		$(LIB_BEC_NULL_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -33777,10 +32811,7 @@ $(TARG_TEST_UNIT_bec_fprintf_W_MT_R):	\
 			$(LIB_FE_SIMPLE_W_MT_R)\
 			$(LIB_BE_NULL_W_MT_R)\
 			$(LIB_BEC_NULL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_W_MT_R)\
@@ -33789,10 +32820,7 @@ $(TARG_TEST_UNIT_bec_fprintf_W_MT_R):	\
 		$(LIB_BE_NULL_W_MT_R)\
 		$(LIB_BEC_NULL_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -33802,18 +32830,12 @@ $(OBJ_TEST_UNIT_bec_fprintf_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.bec.fprintf
 $(TARG_TEST_UNIT_bec_fail_MT_D):	\
 			$(OBJ_TEST_UNIT_bec_fail_MT_D)\
 			$(LIB_BEC_FAIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fail_MT_D)\
 		$(LIB_BEC_FAIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -33823,18 +32845,12 @@ $(OBJ_TEST_UNIT_bec_fail_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.bec.fail\test.un
 $(TARG_TEST_UNIT_bec_fail_DLL_D):	\
 			$(OBJ_TEST_UNIT_bec_fail_DLL_D)\
 			$(LIB_BEC_FAIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fail_DLL_D)\
 		$(LIB_BEC_FAIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -33844,18 +32860,12 @@ $(OBJ_TEST_UNIT_bec_fail_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.bec.fail\test.u
 $(TARG_TEST_UNIT_bec_fail_DLL_R):	\
 			$(OBJ_TEST_UNIT_bec_fail_DLL_R)\
 			$(LIB_BEC_FAIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fail_DLL_R)\
 		$(LIB_BEC_FAIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -33865,18 +32875,12 @@ $(OBJ_TEST_UNIT_bec_fail_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.bec.fail\test.u
 $(TARG_TEST_UNIT_bec_fail_MT_R):	\
 			$(OBJ_TEST_UNIT_bec_fail_MT_R)\
 			$(LIB_BEC_FAIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fail_MT_R)\
 		$(LIB_BEC_FAIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -33886,18 +32890,12 @@ $(OBJ_TEST_UNIT_bec_fail_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.bec.fail\test.un
 $(TARG_TEST_UNIT_bec_fail_W_MT_D):	\
 			$(OBJ_TEST_UNIT_bec_fail_W_MT_D)\
 			$(LIB_BEC_FAIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fail_W_MT_D)\
 		$(LIB_BEC_FAIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -33907,18 +32905,12 @@ $(OBJ_TEST_UNIT_bec_fail_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.bec.fail\test.
 $(TARG_TEST_UNIT_bec_fail_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_bec_fail_W_DLL_D)\
 			$(LIB_BEC_FAIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fail_W_DLL_D)\
 		$(LIB_BEC_FAIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -33928,18 +32920,12 @@ $(OBJ_TEST_UNIT_bec_fail_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.bec.fail\test
 $(TARG_TEST_UNIT_bec_fail_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_bec_fail_W_DLL_R)\
 			$(LIB_BEC_FAIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fail_W_DLL_R)\
 		$(LIB_BEC_FAIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -33949,18 +32935,12 @@ $(OBJ_TEST_UNIT_bec_fail_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.bec.fail\test
 $(TARG_TEST_UNIT_bec_fail_W_MT_R):	\
 			$(OBJ_TEST_UNIT_bec_fail_W_MT_R)\
 			$(LIB_BEC_FAIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fail_W_MT_R)\
 		$(LIB_BEC_FAIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -33971,19 +32951,13 @@ $(TARG_TEST_UNIT_be_fail_MT_D):	\
 			$(OBJ_TEST_UNIT_be_fail_MT_D)\
 			$(LIB_BE_FAIL_MT_D)\
 			$(LIB_BEC_FAIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_fail_MT_D)\
 		$(LIB_BE_FAIL_MT_D)\
 		$(LIB_BEC_FAIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -33994,19 +32968,13 @@ $(TARG_TEST_UNIT_be_fail_DLL_D):	\
 			$(OBJ_TEST_UNIT_be_fail_DLL_D)\
 			$(LIB_BE_FAIL_DLL_D)\
 			$(LIB_BEC_FAIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_fail_DLL_D)\
 		$(LIB_BE_FAIL_DLL_D)\
 		$(LIB_BEC_FAIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -34017,19 +32985,13 @@ $(TARG_TEST_UNIT_be_fail_DLL_R):	\
 			$(OBJ_TEST_UNIT_be_fail_DLL_R)\
 			$(LIB_BE_FAIL_DLL_R)\
 			$(LIB_BEC_FAIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_fail_DLL_R)\
 		$(LIB_BE_FAIL_DLL_R)\
 		$(LIB_BEC_FAIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -34040,19 +33002,13 @@ $(TARG_TEST_UNIT_be_fail_MT_R):	\
 			$(OBJ_TEST_UNIT_be_fail_MT_R)\
 			$(LIB_BE_FAIL_MT_R)\
 			$(LIB_BEC_FAIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_fail_MT_R)\
 		$(LIB_BE_FAIL_MT_R)\
 		$(LIB_BEC_FAIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -34063,19 +33019,13 @@ $(TARG_TEST_UNIT_be_fail_W_MT_D):	\
 			$(OBJ_TEST_UNIT_be_fail_W_MT_D)\
 			$(LIB_BE_FAIL_W_MT_D)\
 			$(LIB_BEC_FAIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_fail_W_MT_D)\
 		$(LIB_BE_FAIL_W_MT_D)\
 		$(LIB_BEC_FAIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -34086,19 +33036,13 @@ $(TARG_TEST_UNIT_be_fail_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_be_fail_W_DLL_D)\
 			$(LIB_BE_FAIL_W_DLL_D)\
 			$(LIB_BEC_FAIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_fail_W_DLL_D)\
 		$(LIB_BE_FAIL_W_DLL_D)\
 		$(LIB_BEC_FAIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -34109,19 +33053,13 @@ $(TARG_TEST_UNIT_be_fail_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_be_fail_W_DLL_R)\
 			$(LIB_BE_FAIL_W_DLL_R)\
 			$(LIB_BEC_FAIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_fail_W_DLL_R)\
 		$(LIB_BE_FAIL_W_DLL_R)\
 		$(LIB_BEC_FAIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -34132,19 +33070,13 @@ $(TARG_TEST_UNIT_be_fail_W_MT_R):	\
 			$(OBJ_TEST_UNIT_be_fail_W_MT_R)\
 			$(LIB_BE_FAIL_W_MT_R)\
 			$(LIB_BEC_FAIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_fail_W_MT_R)\
 		$(LIB_BE_FAIL_W_MT_R)\
 		$(LIB_BEC_FAIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -34156,19 +33088,13 @@ $(TARG_TEST_UNIT_be_lrsplit_MT_D):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_MT_D)\
 			$(LIB_BE_LRSPLIT_MT_D)\
 			$(LIB_FE_ALL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_MT_D)\
 		$(LIB_BE_LRSPLIT_MT_D)\
 		$(LIB_FE_ALL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -34179,19 +33105,13 @@ $(TARG_TEST_UNIT_be_lrsplit_DLL_D):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_DLL_D)\
 			$(LIB_BE_LRSPLIT_DLL_D)\
 			$(LIB_FE_ALL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_DLL_D)\
 		$(LIB_BE_LRSPLIT_DLL_D)\
 		$(LIB_FE_ALL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -34202,19 +33122,13 @@ $(TARG_TEST_UNIT_be_lrsplit_DLL_R):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_DLL_R)\
 			$(LIB_BE_LRSPLIT_DLL_R)\
 			$(LIB_FE_ALL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_DLL_R)\
 		$(LIB_BE_LRSPLIT_DLL_R)\
 		$(LIB_FE_ALL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -34225,19 +33139,13 @@ $(TARG_TEST_UNIT_be_lrsplit_MT_R):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_MT_R)\
 			$(LIB_BE_LRSPLIT_MT_R)\
 			$(LIB_FE_ALL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_MT_R)\
 		$(LIB_BE_LRSPLIT_MT_R)\
 		$(LIB_FE_ALL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -34248,19 +33156,13 @@ $(TARG_TEST_UNIT_be_lrsplit_W_MT_D):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_W_MT_D)\
 			$(LIB_BE_LRSPLIT_W_MT_D)\
 			$(LIB_FE_ALL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_W_MT_D)\
 		$(LIB_BE_LRSPLIT_W_MT_D)\
 		$(LIB_FE_ALL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -34271,19 +33173,13 @@ $(TARG_TEST_UNIT_be_lrsplit_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_W_DLL_D)\
 			$(LIB_BE_LRSPLIT_W_DLL_D)\
 			$(LIB_FE_ALL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_W_DLL_D)\
 		$(LIB_BE_LRSPLIT_W_DLL_D)\
 		$(LIB_FE_ALL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -34294,19 +33190,13 @@ $(TARG_TEST_UNIT_be_lrsplit_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_W_DLL_R)\
 			$(LIB_BE_LRSPLIT_W_DLL_R)\
 			$(LIB_FE_ALL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_W_DLL_R)\
 		$(LIB_BE_LRSPLIT_W_DLL_R)\
 		$(LIB_FE_ALL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -34317,19 +33207,13 @@ $(TARG_TEST_UNIT_be_lrsplit_W_MT_R):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_W_MT_R)\
 			$(LIB_BE_LRSPLIT_W_MT_R)\
 			$(LIB_FE_ALL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_W_MT_R)\
 		$(LIB_BE_LRSPLIT_W_MT_R)\
 		$(LIB_FE_ALL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -34342,10 +33226,7 @@ $(TARG_TEST_UNIT_be_N_MT_D):	\
 			$(LIB_CORE_MT_D)\
 			$(LIB_BE_N_MT_D)\
 			$(LIB_FE_ALL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_N_MT_D)\
@@ -34353,10 +33234,7 @@ $(TARG_TEST_UNIT_be_N_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -34369,10 +33247,7 @@ $(TARG_TEST_UNIT_be_N_DLL_D):	\
 			$(LIB_CORE_DLL_D)\
 			$(LIB_BE_N_DLL_D)\
 			$(LIB_FE_ALL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_N_DLL_D)\
@@ -34380,10 +33255,7 @@ $(TARG_TEST_UNIT_be_N_DLL_D):	\
 		$(LIB_FE_ALL_DLL_D)\
 		$(LIB_CORE_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -34396,10 +33268,7 @@ $(TARG_TEST_UNIT_be_N_DLL_R):	\
 			$(LIB_CORE_DLL_R)\
 			$(LIB_BE_N_DLL_R)\
 			$(LIB_FE_ALL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_N_DLL_R)\
@@ -34407,10 +33276,7 @@ $(TARG_TEST_UNIT_be_N_DLL_R):	\
 		$(LIB_FE_ALL_DLL_R)\
 		$(LIB_CORE_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -34423,10 +33289,7 @@ $(TARG_TEST_UNIT_be_N_MT_R):	\
 			$(LIB_CORE_MT_R)\
 			$(LIB_BE_N_MT_R)\
 			$(LIB_FE_ALL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_N_MT_R)\
@@ -34434,10 +33297,7 @@ $(TARG_TEST_UNIT_be_N_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -34450,10 +33310,7 @@ $(TARG_TEST_UNIT_be_N_W_MT_D):	\
 			$(LIB_CORE_W_MT_D)\
 			$(LIB_BE_N_W_MT_D)\
 			$(LIB_FE_ALL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_N_W_MT_D)\
@@ -34461,10 +33318,7 @@ $(TARG_TEST_UNIT_be_N_W_MT_D):	\
 		$(LIB_FE_ALL_W_MT_D)\
 		$(LIB_CORE_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -34477,10 +33331,7 @@ $(TARG_TEST_UNIT_be_N_W_DLL_D):	\
 			$(LIB_CORE_W_DLL_D)\
 			$(LIB_BE_N_W_DLL_D)\
 			$(LIB_FE_ALL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_be_N_W_DLL_D)\
@@ -34488,10 +33339,7 @@ $(TARG_TEST_UNIT_be_N_W_DLL_D):	\
 		$(LIB_FE_ALL_W_DLL_D)\
 		$(LIB_CORE_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -34504,10 +33352,7 @@ $(TARG_TEST_UNIT_be_N_W_DLL_R):	\
 			$(LIB_CORE_W_DLL_R)\
 			$(LIB_BE_N_W_DLL_R)\
 			$(LIB_FE_ALL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_N_W_DLL_R)\
@@ -34515,10 +33360,7 @@ $(TARG_TEST_UNIT_be_N_W_DLL_R):	\
 		$(LIB_FE_ALL_W_DLL_R)\
 		$(LIB_CORE_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -34531,10 +33373,7 @@ $(TARG_TEST_UNIT_be_N_W_MT_R):	\
 			$(LIB_CORE_W_MT_R)\
 			$(LIB_BE_N_W_MT_R)\
 			$(LIB_FE_ALL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_be_N_W_MT_R)\
@@ -34542,10 +33381,7 @@ $(TARG_TEST_UNIT_be_N_W_MT_R):	\
 		$(LIB_FE_ALL_W_MT_R)\
 		$(LIB_CORE_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -34555,18 +33391,12 @@ $(OBJ_TEST_UNIT_be_N_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N\test.unit.be.
 $(TARG_TEST_UNIT_fe_all_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_all_MT_D)\
 			$(LIB_FE_ALL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_all_MT_D)\
 		$(LIB_FE_ALL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -34576,18 +33406,12 @@ $(OBJ_TEST_UNIT_fe_all_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.all\test.unit.f
 $(TARG_TEST_UNIT_fe_all_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_all_DLL_D)\
 			$(LIB_FE_ALL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_all_DLL_D)\
 		$(LIB_FE_ALL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -34597,18 +33421,12 @@ $(OBJ_TEST_UNIT_fe_all_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.all\test.unit.
 $(TARG_TEST_UNIT_fe_all_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_all_DLL_R)\
 			$(LIB_FE_ALL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_all_DLL_R)\
 		$(LIB_FE_ALL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -34618,18 +33436,12 @@ $(OBJ_TEST_UNIT_fe_all_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.all\test.unit.
 $(TARG_TEST_UNIT_fe_all_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_all_MT_R)\
 			$(LIB_FE_ALL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_all_MT_R)\
 		$(LIB_FE_ALL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -34639,18 +33451,12 @@ $(OBJ_TEST_UNIT_fe_all_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.all\test.unit.f
 $(TARG_TEST_UNIT_fe_all_W_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_all_W_MT_D)\
 			$(LIB_FE_ALL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_all_W_MT_D)\
 		$(LIB_FE_ALL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -34660,18 +33466,12 @@ $(OBJ_TEST_UNIT_fe_all_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.all\test.unit
 $(TARG_TEST_UNIT_fe_all_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_all_W_DLL_D)\
 			$(LIB_FE_ALL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_all_W_DLL_D)\
 		$(LIB_FE_ALL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -34681,18 +33481,12 @@ $(OBJ_TEST_UNIT_fe_all_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.all\test.uni
 $(TARG_TEST_UNIT_fe_all_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_all_W_DLL_R)\
 			$(LIB_FE_ALL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_all_W_DLL_R)\
 		$(LIB_FE_ALL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -34702,18 +33496,12 @@ $(OBJ_TEST_UNIT_fe_all_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.all\test.uni
 $(TARG_TEST_UNIT_fe_all_W_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_all_W_MT_R)\
 			$(LIB_FE_ALL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_all_W_MT_R)\
 		$(LIB_FE_ALL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -34723,18 +33511,12 @@ $(OBJ_TEST_UNIT_fe_all_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.all\test.unit
 $(TARG_TEST_UNIT_fe_fail_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_fail_MT_D)\
 			$(LIB_FE_FAIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_fail_MT_D)\
 		$(LIB_FE_FAIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -34744,18 +33526,12 @@ $(OBJ_TEST_UNIT_fe_fail_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.fail\test.unit
 $(TARG_TEST_UNIT_fe_fail_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_fail_DLL_D)\
 			$(LIB_FE_FAIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_fail_DLL_D)\
 		$(LIB_FE_FAIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -34765,18 +33541,12 @@ $(OBJ_TEST_UNIT_fe_fail_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.fail\test.uni
 $(TARG_TEST_UNIT_fe_fail_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_fail_DLL_R)\
 			$(LIB_FE_FAIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_fail_DLL_R)\
 		$(LIB_FE_FAIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -34786,18 +33556,12 @@ $(OBJ_TEST_UNIT_fe_fail_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.fail\test.uni
 $(TARG_TEST_UNIT_fe_fail_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_fail_MT_R)\
 			$(LIB_FE_FAIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_fail_MT_R)\
 		$(LIB_FE_FAIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -34807,18 +33571,12 @@ $(OBJ_TEST_UNIT_fe_fail_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.fail\test.unit
 $(TARG_TEST_UNIT_fe_fail_W_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_fail_W_MT_D)\
 			$(LIB_FE_FAIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_fail_W_MT_D)\
 		$(LIB_FE_FAIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -34828,18 +33586,12 @@ $(OBJ_TEST_UNIT_fe_fail_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.fail\test.un
 $(TARG_TEST_UNIT_fe_fail_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_fail_W_DLL_D)\
 			$(LIB_FE_FAIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_fail_W_DLL_D)\
 		$(LIB_FE_FAIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -34849,18 +33601,12 @@ $(OBJ_TEST_UNIT_fe_fail_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.fail\test.u
 $(TARG_TEST_UNIT_fe_fail_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_fail_W_DLL_R)\
 			$(LIB_FE_FAIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_fail_W_DLL_R)\
 		$(LIB_FE_FAIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -34870,18 +33616,12 @@ $(OBJ_TEST_UNIT_fe_fail_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.fail\test.u
 $(TARG_TEST_UNIT_fe_fail_W_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_fail_W_MT_R)\
 			$(LIB_FE_FAIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_fail_W_MT_R)\
 		$(LIB_FE_FAIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -34892,19 +33632,13 @@ $(TARG_TEST_UNIT_fe_N_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_N_MT_D)\
 			$(LIB_FE_N_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_N_MT_D)\
 		$(LIB_FE_N_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -34915,19 +33649,13 @@ $(TARG_TEST_UNIT_fe_N_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_N_DLL_D)\
 			$(LIB_FE_N_DLL_D)\
 			$(LIB_UTIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_N_DLL_D)\
 		$(LIB_FE_N_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -34938,19 +33666,13 @@ $(TARG_TEST_UNIT_fe_N_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_N_DLL_R)\
 			$(LIB_FE_N_DLL_R)\
 			$(LIB_UTIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_N_DLL_R)\
 		$(LIB_FE_N_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -34961,19 +33683,13 @@ $(TARG_TEST_UNIT_fe_N_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_N_MT_R)\
 			$(LIB_FE_N_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_N_MT_R)\
 		$(LIB_FE_N_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -34984,19 +33700,13 @@ $(TARG_TEST_UNIT_fe_N_W_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_N_W_MT_D)\
 			$(LIB_FE_N_W_MT_D)\
 			$(LIB_UTIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_N_W_MT_D)\
 		$(LIB_FE_N_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -35007,19 +33717,13 @@ $(TARG_TEST_UNIT_fe_N_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_N_W_DLL_D)\
 			$(LIB_FE_N_W_DLL_D)\
 			$(LIB_UTIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_N_W_DLL_D)\
 		$(LIB_FE_N_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -35030,19 +33734,13 @@ $(TARG_TEST_UNIT_fe_N_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_N_W_DLL_R)\
 			$(LIB_FE_N_W_DLL_R)\
 			$(LIB_UTIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_N_W_DLL_R)\
 		$(LIB_FE_N_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -35053,19 +33751,13 @@ $(TARG_TEST_UNIT_fe_N_W_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_N_W_MT_R)\
 			$(LIB_FE_N_W_MT_R)\
 			$(LIB_UTIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_N_W_MT_R)\
 		$(LIB_FE_N_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -35075,18 +33767,12 @@ $(OBJ_TEST_UNIT_fe_N_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.N\test.unit.fe.
 $(TARG_TEST_UNIT_fe_null_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_null_MT_D)\
 			$(LIB_FE_NULL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_null_MT_D)\
 		$(LIB_FE_NULL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -35096,18 +33782,12 @@ $(OBJ_TEST_UNIT_fe_null_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.null\test.unit
 $(TARG_TEST_UNIT_fe_null_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_null_DLL_D)\
 			$(LIB_FE_NULL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_null_DLL_D)\
 		$(LIB_FE_NULL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -35117,18 +33797,12 @@ $(OBJ_TEST_UNIT_fe_null_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.null\test.uni
 $(TARG_TEST_UNIT_fe_null_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_null_DLL_R)\
 			$(LIB_FE_NULL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_null_DLL_R)\
 		$(LIB_FE_NULL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -35138,18 +33812,12 @@ $(OBJ_TEST_UNIT_fe_null_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.null\test.uni
 $(TARG_TEST_UNIT_fe_null_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_null_MT_R)\
 			$(LIB_FE_NULL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_null_MT_R)\
 		$(LIB_FE_NULL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -35159,18 +33827,12 @@ $(OBJ_TEST_UNIT_fe_null_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.null\test.unit
 $(TARG_TEST_UNIT_fe_null_W_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_null_W_MT_D)\
 			$(LIB_FE_NULL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_null_W_MT_D)\
 		$(LIB_FE_NULL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -35180,18 +33842,12 @@ $(OBJ_TEST_UNIT_fe_null_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.null\test.un
 $(TARG_TEST_UNIT_fe_null_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_null_W_DLL_D)\
 			$(LIB_FE_NULL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_null_W_DLL_D)\
 		$(LIB_FE_NULL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -35201,18 +33857,12 @@ $(OBJ_TEST_UNIT_fe_null_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.null\test.u
 $(TARG_TEST_UNIT_fe_null_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_null_W_DLL_R)\
 			$(LIB_FE_NULL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_null_W_DLL_R)\
 		$(LIB_FE_NULL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -35222,18 +33872,12 @@ $(OBJ_TEST_UNIT_fe_null_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.null\test.u
 $(TARG_TEST_UNIT_fe_null_W_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_null_W_MT_R)\
 			$(LIB_FE_NULL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_null_W_MT_R)\
 		$(LIB_FE_NULL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -35243,18 +33887,12 @@ $(OBJ_TEST_UNIT_fe_null_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.null\test.un
 $(TARG_TEST_UNIT_fe_simple_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_simple_MT_D)\
 			$(LIB_FE_SIMPLE_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_simple_MT_D)\
 		$(LIB_FE_SIMPLE_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -35264,18 +33902,12 @@ $(OBJ_TEST_UNIT_fe_simple_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.simple\test.
 $(TARG_TEST_UNIT_fe_simple_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_simple_DLL_D)\
 			$(LIB_FE_SIMPLE_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_simple_DLL_D)\
 		$(LIB_FE_SIMPLE_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -35285,18 +33917,12 @@ $(OBJ_TEST_UNIT_fe_simple_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.simple\test
 $(TARG_TEST_UNIT_fe_simple_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_simple_DLL_R)\
 			$(LIB_FE_SIMPLE_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_simple_DLL_R)\
 		$(LIB_FE_SIMPLE_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -35306,18 +33932,12 @@ $(OBJ_TEST_UNIT_fe_simple_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.simple\test
 $(TARG_TEST_UNIT_fe_simple_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_simple_MT_R)\
 			$(LIB_FE_SIMPLE_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_simple_MT_R)\
 		$(LIB_FE_SIMPLE_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -35327,18 +33947,12 @@ $(OBJ_TEST_UNIT_fe_simple_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.simple\test.
 $(TARG_TEST_UNIT_fe_simple_W_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_simple_W_MT_D)\
 			$(LIB_FE_SIMPLE_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_simple_W_MT_D)\
 		$(LIB_FE_SIMPLE_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -35348,18 +33962,12 @@ $(OBJ_TEST_UNIT_fe_simple_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.simple\tes
 $(TARG_TEST_UNIT_fe_simple_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_simple_W_DLL_D)\
 			$(LIB_FE_SIMPLE_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_simple_W_DLL_D)\
 		$(LIB_FE_SIMPLE_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -35369,18 +33977,12 @@ $(OBJ_TEST_UNIT_fe_simple_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.simple\te
 $(TARG_TEST_UNIT_fe_simple_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_simple_W_DLL_R)\
 			$(LIB_FE_SIMPLE_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_simple_W_DLL_R)\
 		$(LIB_FE_SIMPLE_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -35390,18 +33992,12 @@ $(OBJ_TEST_UNIT_fe_simple_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.simple\te
 $(TARG_TEST_UNIT_fe_simple_W_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_simple_W_MT_R)\
 			$(LIB_FE_SIMPLE_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_simple_W_MT_R)\
 		$(LIB_FE_SIMPLE_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -35411,18 +34007,12 @@ $(OBJ_TEST_UNIT_fe_simple_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.simple\tes
 $(TARG_TEST_UNIT_fe_WinReg_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_WinReg_MT_D)\
 			$(LIB_FE_WINREG_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_WinReg_MT_D)\
 		$(LIB_FE_WINREG_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -35432,18 +34022,12 @@ $(OBJ_TEST_UNIT_fe_WinReg_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.WindowsRegis
 $(TARG_TEST_UNIT_fe_WinReg_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_WinReg_DLL_D)\
 			$(LIB_FE_WINREG_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
-			$(LIB_SHWILD_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_WinReg_DLL_D)\
 		$(LIB_FE_WINREG_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
-		$(LIB_SHWILD_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -35453,18 +34037,12 @@ $(OBJ_TEST_UNIT_fe_WinReg_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.WindowsRegi
 $(TARG_TEST_UNIT_fe_WinReg_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_WinReg_DLL_R)\
 			$(LIB_FE_WINREG_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
-			$(LIB_SHWILD_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_WinReg_DLL_R)\
 		$(LIB_FE_WINREG_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
-		$(LIB_SHWILD_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -35474,18 +34052,12 @@ $(OBJ_TEST_UNIT_fe_WinReg_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.WindowsRegi
 $(TARG_TEST_UNIT_fe_WinReg_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_WinReg_MT_R)\
 			$(LIB_FE_WINREG_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_WinReg_MT_R)\
 		$(LIB_FE_WINREG_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -35495,18 +34067,12 @@ $(OBJ_TEST_UNIT_fe_WinReg_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.WindowsRegis
 $(TARG_TEST_UNIT_fe_WinReg_W_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_WinReg_W_MT_D)\
 			$(LIB_FE_WINREG_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
-			$(LIB_SHWILD_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_WinReg_W_MT_D)\
 		$(LIB_FE_WINREG_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
-		$(LIB_SHWILD_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -35516,18 +34082,12 @@ $(OBJ_TEST_UNIT_fe_WinReg_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.WindowsReg
 $(TARG_TEST_UNIT_fe_WinReg_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_fe_WinReg_W_DLL_D)\
 			$(LIB_FE_WINREG_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
-			$(LIB_SHWILD_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_WinReg_W_DLL_D)\
 		$(LIB_FE_WINREG_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
-		$(LIB_SHWILD_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -35537,18 +34097,12 @@ $(OBJ_TEST_UNIT_fe_WinReg_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.WindowsRe
 $(TARG_TEST_UNIT_fe_WinReg_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_fe_WinReg_W_DLL_R)\
 			$(LIB_FE_WINREG_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
-			$(LIB_SHWILD_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_WinReg_W_DLL_R)\
 		$(LIB_FE_WINREG_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
-		$(LIB_SHWILD_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -35558,18 +34112,12 @@ $(OBJ_TEST_UNIT_fe_WinReg_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.WindowsRe
 $(TARG_TEST_UNIT_fe_WinReg_W_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_WinReg_W_MT_R)\
 			$(LIB_FE_WINREG_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
-			$(LIB_SHWILD_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_WinReg_W_MT_R)\
 		$(LIB_FE_WINREG_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
-		$(LIB_SHWILD_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -35580,17 +34128,13 @@ $(TARG_TEST_UNIT_ins_int_MT_D):	\
 			$(OBJ_TEST_UNIT_ins_int_MT_D)\
 			$(LIB_CORE_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_int_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -35601,17 +34145,13 @@ $(TARG_TEST_UNIT_ins_int_DLL_D):	\
 			$(OBJ_TEST_UNIT_ins_int_DLL_D)\
 			$(LIB_CORE_DLL_D)\
 			$(LIB_UTIL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_int_DLL_D)\
 		$(LIB_CORE_DLL_D)\
 		$(LIB_UTIL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -35622,17 +34162,13 @@ $(TARG_TEST_UNIT_ins_int_DLL_R):	\
 			$(OBJ_TEST_UNIT_ins_int_DLL_R)\
 			$(LIB_CORE_DLL_R)\
 			$(LIB_UTIL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_int_DLL_R)\
 		$(LIB_CORE_DLL_R)\
 		$(LIB_UTIL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -35643,17 +34179,13 @@ $(TARG_TEST_UNIT_ins_int_MT_R):	\
 			$(OBJ_TEST_UNIT_ins_int_MT_R)\
 			$(LIB_CORE_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_int_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -35664,17 +34196,13 @@ $(TARG_TEST_UNIT_ins_int_W_MT_D):	\
 			$(OBJ_TEST_UNIT_ins_int_W_MT_D)\
 			$(LIB_CORE_W_MT_D)\
 			$(LIB_UTIL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_int_W_MT_D)\
 		$(LIB_CORE_W_MT_D)\
 		$(LIB_UTIL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -35685,17 +34213,13 @@ $(TARG_TEST_UNIT_ins_int_W_DLL_D):	\
 			$(OBJ_TEST_UNIT_ins_int_W_DLL_D)\
 			$(LIB_CORE_W_DLL_D)\
 			$(LIB_UTIL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_int_W_DLL_D)\
 		$(LIB_CORE_W_DLL_D)\
 		$(LIB_UTIL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -35706,17 +34230,13 @@ $(TARG_TEST_UNIT_ins_int_W_DLL_R):	\
 			$(OBJ_TEST_UNIT_ins_int_W_DLL_R)\
 			$(LIB_CORE_W_DLL_R)\
 			$(LIB_UTIL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_int_W_DLL_R)\
 		$(LIB_CORE_W_DLL_R)\
 		$(LIB_UTIL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -35727,17 +34247,13 @@ $(TARG_TEST_UNIT_ins_int_W_MT_R):	\
 			$(OBJ_TEST_UNIT_ins_int_W_MT_R)\
 			$(LIB_CORE_W_MT_R)\
 			$(LIB_UTIL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_int_W_MT_R)\
 		$(LIB_CORE_W_MT_R)\
 		$(LIB_UTIL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 
@@ -35751,9 +34267,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_D):	\
 			$(LIB_FE_NULL_MT_D)\
 			$(LIB_BE_NULL_MT_D)\
 			$(LIB_BEC_NULL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_w2m_MT_D)\
@@ -35762,9 +34276,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_D):	\
 		$(LIB_FE_NULL_MT_D)\
 		$(LIB_BE_NULL_MT_D)\
 		$(LIB_BEC_NULL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -35778,9 +34290,7 @@ $(TARG_TEST_UNIT_ins_w2m_DLL_D):	\
 			$(LIB_FE_NULL_DLL_D)\
 			$(LIB_BE_NULL_DLL_D)\
 			$(LIB_BEC_NULL_DLL_D)\
-			$(LIB_XCONTRACT_DLL_D)\
-			$(LIB_XCOVER_DLL_D)\
-			$(LIB_XTESTS_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_w2m_DLL_D)\
@@ -35789,9 +34299,7 @@ $(TARG_TEST_UNIT_ins_w2m_DLL_D):	\
 		$(LIB_FE_NULL_DLL_D)\
 		$(LIB_BE_NULL_DLL_D)\
 		$(LIB_BEC_NULL_DLL_D)\
-		$(LIB_XCONTRACT_DLL_D)\
-		$(LIB_XCOVER_DLL_D)\
-		$(LIB_XTESTS_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_D)
 
@@ -35805,9 +34313,7 @@ $(TARG_TEST_UNIT_ins_w2m_DLL_R):	\
 			$(LIB_FE_NULL_DLL_R)\
 			$(LIB_BE_NULL_DLL_R)\
 			$(LIB_BEC_NULL_DLL_R)\
-			$(LIB_XCONTRACT_DLL_R)\
-			$(LIB_XCOVER_DLL_R)\
-			$(LIB_XTESTS_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_w2m_DLL_R)\
@@ -35816,9 +34322,7 @@ $(TARG_TEST_UNIT_ins_w2m_DLL_R):	\
 		$(LIB_FE_NULL_DLL_R)\
 		$(LIB_BE_NULL_DLL_R)\
 		$(LIB_BEC_NULL_DLL_R)\
-		$(LIB_XCONTRACT_DLL_R)\
-		$(LIB_XCOVER_DLL_R)\
-		$(LIB_XTESTS_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_DLL_R)
 
@@ -35832,9 +34336,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_R):	\
 			$(LIB_FE_NULL_MT_R)\
 			$(LIB_BE_NULL_MT_R)\
 			$(LIB_BEC_NULL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_w2m_MT_R)\
@@ -35843,9 +34345,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_R):	\
 		$(LIB_FE_NULL_MT_R)\
 		$(LIB_BE_NULL_MT_R)\
 		$(LIB_BEC_NULL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -35859,9 +34359,7 @@ $(TARG_TEST_UNIT_ins_m2w_W_MT_D):	\
 			$(LIB_FE_NULL_W_MT_D)\
 			$(LIB_BE_NULL_W_MT_D)\
 			$(LIB_BEC_NULL_W_MT_D)\
-			$(LIB_XCONTRACT_W_MT_D)\
-			$(LIB_XCOVER_W_MT_D)\
-			$(LIB_XTESTS_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_m2w_W_MT_D)\
@@ -35870,9 +34368,7 @@ $(TARG_TEST_UNIT_ins_m2w_W_MT_D):	\
 		$(LIB_FE_NULL_W_MT_D)\
 		$(LIB_BE_NULL_W_MT_D)\
 		$(LIB_BEC_NULL_W_MT_D)\
-		$(LIB_XCONTRACT_W_MT_D)\
-		$(LIB_XCOVER_W_MT_D)\
-		$(LIB_XTESTS_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_D)
 
@@ -35886,9 +34382,7 @@ $(TARG_TEST_UNIT_ins_m2w_W_DLL_D):	\
 			$(LIB_FE_NULL_W_DLL_D)\
 			$(LIB_BE_NULL_W_DLL_D)\
 			$(LIB_BEC_NULL_W_DLL_D)\
-			$(LIB_XCONTRACT_W_DLL_D)\
-			$(LIB_XCOVER_W_DLL_D)\
-			$(LIB_XTESTS_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_m2w_W_DLL_D)\
@@ -35897,9 +34391,7 @@ $(TARG_TEST_UNIT_ins_m2w_W_DLL_D):	\
 		$(LIB_FE_NULL_W_DLL_D)\
 		$(LIB_BE_NULL_W_DLL_D)\
 		$(LIB_BEC_NULL_W_DLL_D)\
-		$(LIB_XCONTRACT_W_DLL_D)\
-		$(LIB_XCOVER_W_DLL_D)\
-		$(LIB_XTESTS_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_D)
 
@@ -35913,9 +34405,7 @@ $(TARG_TEST_UNIT_ins_m2w_W_DLL_R):	\
 			$(LIB_FE_NULL_W_DLL_R)\
 			$(LIB_BE_NULL_W_DLL_R)\
 			$(LIB_BEC_NULL_W_DLL_R)\
-			$(LIB_XCONTRACT_W_DLL_R)\
-			$(LIB_XCOVER_W_DLL_R)\
-			$(LIB_XTESTS_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_m2w_W_DLL_R)\
@@ -35924,9 +34414,7 @@ $(TARG_TEST_UNIT_ins_m2w_W_DLL_R):	\
 		$(LIB_FE_NULL_W_DLL_R)\
 		$(LIB_BE_NULL_W_DLL_R)\
 		$(LIB_BEC_NULL_W_DLL_R)\
-		$(LIB_XCONTRACT_W_DLL_R)\
-		$(LIB_XCOVER_W_DLL_R)\
-		$(LIB_XTESTS_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_DLL_R)
 
@@ -35940,9 +34428,7 @@ $(TARG_TEST_UNIT_ins_m2w_W_MT_R):	\
 			$(LIB_FE_NULL_W_MT_R)\
 			$(LIB_BE_NULL_W_MT_R)\
 			$(LIB_BEC_NULL_W_MT_R)\
-			$(LIB_XCONTRACT_W_MT_R)\
-			$(LIB_XCOVER_W_MT_R)\
-			$(LIB_XTESTS_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_m2w_W_MT_R)\
@@ -35951,9 +34437,7 @@ $(TARG_TEST_UNIT_ins_m2w_W_MT_R):	\
 		$(LIB_FE_NULL_W_MT_R)\
 		$(LIB_BE_NULL_W_MT_R)\
 		$(LIB_BEC_NULL_W_MT_R)\
-		$(LIB_XCONTRACT_W_MT_R)\
-		$(LIB_XCOVER_W_MT_R)\
-		$(LIB_XTESTS_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_W_MT_R)
 

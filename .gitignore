@@ -75,6 +75,7 @@ src/backends/ber/ber.loader.c
 *.gch
 *.ilk
 *.lib
+*.log
 *.ncb
 *.o
 *.obj

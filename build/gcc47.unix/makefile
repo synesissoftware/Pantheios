@@ -5,7 +5,7 @@
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	26th September 2015
+# Updated:	25th September 2015
 #
 ############################################################################
 
@@ -55,8 +55,8 @@ NOTHING				=
 # Testing verbosity
 
 ifndef TEST_VERBOSITY
-TEST_VERBOSITY		=	2
-endif
+TEST_VERBOSITY      =   2
+endif # !TEST_VERBOSITY
 
 ########################################
 # Directories
@@ -4886,7 +4886,12 @@ compile.libs.xcover:        $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_X
 
 compile.libs.xtests:        $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_XTESTS)
 
-compile.libs.3pty:                                                      compile.libs.b64 compile.libs.shwild compile.libs.xcontract compile.libs.xcover compile.libs.xtests
+compile.libs.3pty:	\
+ compile.libs.b64 \
+ compile.libs.shwild \
+ compile.libs.xcontract \
+ compile.libs.xcover \
+ compile.libs.xtests
 
 compile.libs.all:                                                       compile.libs compile.libs.3pty
 
@@ -4947,7 +4952,13 @@ build.libs.xcover:          check.lib.dir           prep.files.for.os   $(TARGET
 
 build.libs.xtests:          check.lib.dir           prep.files.for.os   $(TARGETS_LIB_XTESTS)
 
-build.libs.3pty:            check.lib.dir                               build.libs.b64 build.libs.shwild build.libs.xcontract build.libs.xcover build.libs.xtests
+build.libs.3pty:	\
+ check.lib.dir \
+ build.libs.b64 \
+ build.libs.shwild \
+ build.libs.xcontract \
+ build.libs.xcover \
+ build.libs.xtests
 
 # obsolete
 build.libs.std:                                                         check.lib.dir build.libs.fe build.libs.be
@@ -6648,16 +6659,21 @@ endif # ACE
 
 clean.libs: 		clean.libs.core clean.libs.be clean.libs.fe
 
-clean.libs.3pty:	clean.libs.b64 clean.libs.shwild clean.libs.xcontract clean.libs.xcover clean.libs.xtests
+clean.libs.3pty:	\
+ clean.libs.b64 \
+ clean.libs.shwild \
+ clean.libs.xcontract \
+ clean.libs.xcover \
+ clean.libs.xtests
 
 clean.libs.all: 	clean.libs clean.libs.3pty
 
 clean.test:			clean.test.unit clean.test.component clean.test.scratch clean.test.performance
 
 ifdef ACE
-clean.test.all:		clean.test clean.libs.b64 clean.libs.shwild clean.libs.xcontract clean.libs.xcover clean.libs.xtests clean.test.ace
+clean.test.all:		clean.test clean.libs.3pty clean.test.ace
 else # ACE
-clean.test.all:		clean.test clean.libs.b64 clean.libs.shwild clean.libs.xcontract clean.libs.xcover clean.libs.xtests
+clean.test.all:		clean.test clean.libs.3pty
 endif # ACE
 
 clean.unittest:		clean.unittest.std
@@ -12254,21 +12270,42 @@ $(TARG_EX_C_7_ST_R): \
 ##############################
 # Component Tests
 
+LIBS_SYNSOFT_TEST_COMP_MT_D=\
+			$(LIB_SHWILD_MT_D)\
+			$(LIB_XCONTRACT_MT_D)\
+			$(LIB_XCOVER_MT_D)\
+			$(LIB_XTESTS_MT_D)\
+
+LIBS_SYNSOFT_TEST_COMP_MT_R=\
+			$(LIB_SHWILD_MT_R)\
+			$(LIB_XCONTRACT_MT_R)\
+			$(LIB_XCOVER_MT_R)\
+			$(LIB_XTESTS_MT_R)\
+
+LIBS_SYNSOFT_TEST_COMP_ST_D=\
+			$(LIB_SHWILD_ST_D)\
+			$(LIB_XCONTRACT_ST_D)\
+			$(LIB_XCOVER_ST_D)\
+			$(LIB_XTESTS_ST_D)\
+
+LIBS_SYNSOFT_TEST_COMP_ST_R=\
+			$(LIB_SHWILD_ST_R)\
+			$(LIB_XCONTRACT_ST_R)\
+			$(LIB_XCOVER_ST_R)\
+			$(LIB_XTESTS_ST_R)\
+
+
 $(TARG_TEST_COMP_core_initseq_MT_D):	\
 			$(OBJ_TEST_COMP_core_initseq_MT_D)\
 			$(LIB_CORE_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_core_initseq_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
 
@@ -12279,17 +12316,13 @@ $(TARG_TEST_COMP_core_initseq_MT_R):	\
 			$(OBJ_TEST_COMP_core_initseq_MT_R)\
 			$(LIB_CORE_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_core_initseq_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
 
@@ -12300,17 +12333,13 @@ $(TARG_TEST_COMP_core_initseq_ST_D):	\
 			$(OBJ_TEST_COMP_core_initseq_ST_D)\
 			$(LIB_CORE_ST_D)\
 			$(LIB_UTIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_core_initseq_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_ST_D)
 
@@ -12321,17 +12350,13 @@ $(TARG_TEST_COMP_core_initseq_ST_R):	\
 			$(OBJ_TEST_COMP_core_initseq_ST_R)\
 			$(LIB_CORE_ST_R)\
 			$(LIB_UTIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_core_initseq_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_ST_R)
 
@@ -12345,9 +12370,7 @@ $(TARG_TEST_COMP_custsev_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_custsev_MT_D)\
@@ -12355,9 +12378,7 @@ $(TARG_TEST_COMP_custsev_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12373,9 +12394,7 @@ $(TARG_TEST_COMP_custsev_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_custsev_MT_R)\
@@ -12383,9 +12402,7 @@ $(TARG_TEST_COMP_custsev_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12401,9 +12418,7 @@ $(TARG_TEST_COMP_custsev_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_custsev_ST_D)\
@@ -12411,9 +12426,7 @@ $(TARG_TEST_COMP_custsev_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12429,9 +12442,7 @@ $(TARG_TEST_COMP_custsev_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_custsev_ST_R)\
@@ -12439,9 +12450,7 @@ $(TARG_TEST_COMP_custsev_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12458,9 +12467,7 @@ $(TARG_TEST_COMP_filemt_MT_D):	\
 			$(LIB_BE_N_MT_D)\
 			$(LIB_BEC_FILE_MT_D)\
 			$(LIB_BEC_FPRINTF_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_filemt_MT_D)\
@@ -12469,9 +12476,7 @@ $(TARG_TEST_COMP_filemt_MT_D):	\
 		$(LIB_BE_N_MT_D)\
 		$(LIB_BEC_FILE_MT_D)\
 		$(LIB_BEC_FPRINTF_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12488,9 +12493,7 @@ $(TARG_TEST_COMP_filemt_MT_R):	\
 			$(LIB_BE_N_MT_R)\
 			$(LIB_BEC_FILE_MT_R)\
 			$(LIB_BEC_FPRINTF_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_filemt_MT_R)\
@@ -12499,9 +12502,7 @@ $(TARG_TEST_COMP_filemt_MT_R):	\
 		$(LIB_BE_N_MT_R)\
 		$(LIB_BEC_FILE_MT_R)\
 		$(LIB_BEC_FPRINTF_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12517,9 +12518,7 @@ $(TARG_TEST_COMP_ins_args_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_args_MT_D)\
@@ -12527,9 +12526,7 @@ $(TARG_TEST_COMP_ins_args_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12545,9 +12542,7 @@ $(TARG_TEST_COMP_ins_args_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_args_MT_R)\
@@ -12555,9 +12550,7 @@ $(TARG_TEST_COMP_ins_args_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12573,9 +12566,7 @@ $(TARG_TEST_COMP_ins_args_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_args_ST_D)\
@@ -12583,9 +12574,7 @@ $(TARG_TEST_COMP_ins_args_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12601,9 +12590,7 @@ $(TARG_TEST_COMP_ins_args_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_args_ST_R)\
@@ -12611,9 +12598,7 @@ $(TARG_TEST_COMP_ins_args_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12629,9 +12614,7 @@ $(TARG_TEST_COMP_ins_b64_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(LIB_B64_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
@@ -12640,9 +12623,7 @@ $(TARG_TEST_COMP_ins_b64_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_B64_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
@@ -12659,9 +12640,7 @@ $(TARG_TEST_COMP_ins_b64_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(LIB_B64_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
@@ -12670,9 +12649,7 @@ $(TARG_TEST_COMP_ins_b64_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_B64_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
@@ -12689,9 +12666,7 @@ $(TARG_TEST_COMP_ins_b64_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(LIB_B64_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
@@ -12700,9 +12675,7 @@ $(TARG_TEST_COMP_ins_b64_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_B64_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
@@ -12719,9 +12692,7 @@ $(TARG_TEST_COMP_ins_b64_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(LIB_B64_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
@@ -12730,9 +12701,7 @@ $(TARG_TEST_COMP_ins_b64_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_B64_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
@@ -12749,9 +12718,7 @@ $(TARG_TEST_COMP_ins_bool_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_bool_MT_D)\
@@ -12759,9 +12726,7 @@ $(TARG_TEST_COMP_ins_bool_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12777,9 +12742,7 @@ $(TARG_TEST_COMP_ins_bool_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_bool_MT_R)\
@@ -12787,9 +12750,7 @@ $(TARG_TEST_COMP_ins_bool_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12805,9 +12766,7 @@ $(TARG_TEST_COMP_ins_bool_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_bool_ST_D)\
@@ -12815,9 +12774,7 @@ $(TARG_TEST_COMP_ins_bool_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12833,9 +12790,7 @@ $(TARG_TEST_COMP_ins_bool_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_bool_ST_R)\
@@ -12843,9 +12798,7 @@ $(TARG_TEST_COMP_ins_bool_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12861,9 +12814,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_hostid_MT_D)\
@@ -12871,9 +12822,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12889,9 +12838,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_hostid_MT_R)\
@@ -12899,9 +12846,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12917,9 +12862,7 @@ $(TARG_TEST_COMP_ins_hostid_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_hostid_ST_D)\
@@ -12927,9 +12870,7 @@ $(TARG_TEST_COMP_ins_hostid_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12945,9 +12886,7 @@ $(TARG_TEST_COMP_ins_hostid_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_hostid_ST_R)\
@@ -12955,9 +12894,7 @@ $(TARG_TEST_COMP_ins_hostid_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -12973,9 +12910,7 @@ $(TARG_TEST_COMP_ins_int_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_int_MT_D)\
@@ -12983,9 +12918,7 @@ $(TARG_TEST_COMP_ins_int_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13001,9 +12934,7 @@ $(TARG_TEST_COMP_ins_int_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_int_MT_R)\
@@ -13011,9 +12942,7 @@ $(TARG_TEST_COMP_ins_int_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13029,9 +12958,7 @@ $(TARG_TEST_COMP_ins_int_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_int_ST_D)\
@@ -13039,9 +12966,7 @@ $(TARG_TEST_COMP_ins_int_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13057,9 +12982,7 @@ $(TARG_TEST_COMP_ins_int_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_int_ST_R)\
@@ -13067,9 +12990,7 @@ $(TARG_TEST_COMP_ins_int_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13085,9 +13006,7 @@ $(TARG_TEST_COMP_ins_pad_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_pad_MT_D)\
@@ -13095,9 +13014,7 @@ $(TARG_TEST_COMP_ins_pad_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13113,9 +13030,7 @@ $(TARG_TEST_COMP_ins_pad_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_pad_MT_R)\
@@ -13123,9 +13038,7 @@ $(TARG_TEST_COMP_ins_pad_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13141,9 +13054,7 @@ $(TARG_TEST_COMP_ins_pad_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_pad_ST_D)\
@@ -13151,9 +13062,7 @@ $(TARG_TEST_COMP_ins_pad_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13169,9 +13078,7 @@ $(TARG_TEST_COMP_ins_pad_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_pad_ST_R)\
@@ -13179,9 +13086,7 @@ $(TARG_TEST_COMP_ins_pad_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13197,9 +13102,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_ptr_MT_D)\
@@ -13207,9 +13110,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13225,9 +13126,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_ptr_MT_R)\
@@ -13235,9 +13134,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13253,9 +13150,7 @@ $(TARG_TEST_COMP_ins_ptr_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_ptr_ST_D)\
@@ -13263,9 +13158,7 @@ $(TARG_TEST_COMP_ins_ptr_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13281,9 +13174,7 @@ $(TARG_TEST_COMP_ins_ptr_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_ptr_ST_R)\
@@ -13291,9 +13182,7 @@ $(TARG_TEST_COMP_ins_ptr_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13309,9 +13198,7 @@ $(TARG_TEST_COMP_ins_prid_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_prid_MT_D)\
@@ -13319,9 +13206,7 @@ $(TARG_TEST_COMP_ins_prid_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13337,9 +13222,7 @@ $(TARG_TEST_COMP_ins_prid_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_prid_MT_R)\
@@ -13347,9 +13230,7 @@ $(TARG_TEST_COMP_ins_prid_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13365,9 +13246,7 @@ $(TARG_TEST_COMP_ins_prid_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_prid_ST_D)\
@@ -13375,9 +13254,7 @@ $(TARG_TEST_COMP_ins_prid_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13393,9 +13270,7 @@ $(TARG_TEST_COMP_ins_prid_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_prid_ST_R)\
@@ -13403,9 +13278,7 @@ $(TARG_TEST_COMP_ins_prid_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13421,9 +13294,9 @@ $(TARG_TEST_COMP_ins_real_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_real_MT_D)\
@@ -13431,9 +13304,7 @@ $(TARG_TEST_COMP_ins_real_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13449,9 +13320,9 @@ $(TARG_TEST_COMP_ins_real_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_real_MT_R)\
@@ -13459,9 +13330,7 @@ $(TARG_TEST_COMP_ins_real_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13477,9 +13346,9 @@ $(TARG_TEST_COMP_ins_real_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_real_ST_D)\
@@ -13487,9 +13356,7 @@ $(TARG_TEST_COMP_ins_real_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13505,9 +13372,9 @@ $(TARG_TEST_COMP_ins_real_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_real_ST_R)\
@@ -13515,9 +13382,7 @@ $(TARG_TEST_COMP_ins_real_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13533,9 +13398,7 @@ $(TARG_TEST_COMP_ins_slice_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_slice_MT_D)\
@@ -13543,9 +13406,7 @@ $(TARG_TEST_COMP_ins_slice_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13561,9 +13422,7 @@ $(TARG_TEST_COMP_ins_slice_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_slice_MT_R)\
@@ -13571,9 +13430,7 @@ $(TARG_TEST_COMP_ins_slice_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13589,9 +13446,7 @@ $(TARG_TEST_COMP_ins_slice_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_slice_ST_D)\
@@ -13599,9 +13454,7 @@ $(TARG_TEST_COMP_ins_slice_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13617,9 +13470,7 @@ $(TARG_TEST_COMP_ins_slice_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_slice_ST_R)\
@@ -13627,9 +13478,7 @@ $(TARG_TEST_COMP_ins_slice_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13645,9 +13494,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_MT_D)\
@@ -13655,9 +13502,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13673,9 +13518,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_MT_R)\
@@ -13683,9 +13526,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13701,9 +13542,7 @@ $(TARG_TEST_COMP_ins_stm_ch_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_ST_D)\
@@ -13711,9 +13550,7 @@ $(TARG_TEST_COMP_ins_stm_ch_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13729,9 +13566,7 @@ $(TARG_TEST_COMP_ins_stm_ch_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_ST_R)\
@@ -13739,9 +13574,7 @@ $(TARG_TEST_COMP_ins_stm_ch_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13757,9 +13590,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_thrid_MT_D)\
@@ -13767,9 +13598,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13785,9 +13614,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_thrid_MT_R)\
@@ -13795,9 +13622,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13813,9 +13638,7 @@ $(TARG_TEST_COMP_ins_thrid_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_thrid_ST_D)\
@@ -13823,9 +13646,7 @@ $(TARG_TEST_COMP_ins_thrid_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13841,9 +13662,7 @@ $(TARG_TEST_COMP_ins_thrid_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_thrid_ST_R)\
@@ -13851,9 +13670,7 @@ $(TARG_TEST_COMP_ins_thrid_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13869,9 +13686,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_w2m_MT_D)\
@@ -13879,9 +13694,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13897,9 +13710,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_w2m_MT_R)\
@@ -13907,9 +13718,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13925,9 +13734,7 @@ $(TARG_TEST_COMP_ins_w2m_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_ins_w2m_ST_D)\
@@ -13935,9 +13742,7 @@ $(TARG_TEST_COMP_ins_w2m_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13953,9 +13758,7 @@ $(TARG_TEST_COMP_ins_w2m_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_ins_w2m_ST_R)\
@@ -13963,9 +13766,7 @@ $(TARG_TEST_COMP_ins_w2m_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -13981,9 +13782,7 @@ $(TARG_TEST_COMP_log_1_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_log_1_MT_D)\
@@ -13991,9 +13790,7 @@ $(TARG_TEST_COMP_log_1_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14009,9 +13806,7 @@ $(TARG_TEST_COMP_log_1_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_log_1_MT_R)\
@@ -14019,9 +13814,7 @@ $(TARG_TEST_COMP_log_1_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14037,9 +13830,7 @@ $(TARG_TEST_COMP_log_1_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_log_1_ST_D)\
@@ -14047,9 +13838,7 @@ $(TARG_TEST_COMP_log_1_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14065,9 +13854,7 @@ $(TARG_TEST_COMP_log_1_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_log_1_ST_R)\
@@ -14075,9 +13862,7 @@ $(TARG_TEST_COMP_log_1_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14093,9 +13878,7 @@ $(TARG_TEST_COMP_trace_1_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_trace_1_MT_D)\
@@ -14103,9 +13886,7 @@ $(TARG_TEST_COMP_trace_1_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14121,9 +13902,7 @@ $(TARG_TEST_COMP_trace_1_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_trace_1_MT_R)\
@@ -14131,9 +13910,7 @@ $(TARG_TEST_COMP_trace_1_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14149,9 +13926,7 @@ $(TARG_TEST_COMP_trace_1_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_trace_1_ST_D)\
@@ -14159,9 +13934,7 @@ $(TARG_TEST_COMP_trace_1_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14177,9 +13950,7 @@ $(TARG_TEST_COMP_trace_1_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_trace_1_ST_R)\
@@ -14187,9 +13958,7 @@ $(TARG_TEST_COMP_trace_1_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14205,9 +13974,7 @@ $(TARG_TEST_COMP_pan_puts_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_pan_puts_MT_D)\
@@ -14215,9 +13982,7 @@ $(TARG_TEST_COMP_pan_puts_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14233,9 +13998,7 @@ $(TARG_TEST_COMP_pan_puts_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_pan_puts_MT_R)\
@@ -14243,9 +14006,7 @@ $(TARG_TEST_COMP_pan_puts_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14261,9 +14022,7 @@ $(TARG_TEST_COMP_pan_puts_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_pan_puts_ST_D)\
@@ -14271,9 +14030,7 @@ $(TARG_TEST_COMP_pan_puts_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14289,9 +14046,7 @@ $(TARG_TEST_COMP_pan_puts_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_pan_puts_ST_R)\
@@ -14299,9 +14054,7 @@ $(TARG_TEST_COMP_pan_puts_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14317,9 +14070,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_D):	\
 			$(LIB_FE_ALL_MT_D)\
 			$(LIB_BE_TEST_MT_D)\
 			$(LIB_BEC_TEST_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_COMP_pan_prtf_MT_D)\
@@ -14327,9 +14078,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_BE_TEST_MT_D)\
 		$(LIB_BEC_TEST_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14345,9 +14094,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_R):	\
 			$(LIB_FE_ALL_MT_R)\
 			$(LIB_BE_TEST_MT_R)\
 			$(LIB_BEC_TEST_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_COMP_pan_prtf_MT_R)\
@@ -14355,9 +14102,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_BE_TEST_MT_R)\
 		$(LIB_BEC_TEST_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14373,9 +14118,7 @@ $(TARG_TEST_COMP_pan_prtf_ST_D):	\
 			$(LIB_FE_ALL_ST_D)\
 			$(LIB_BE_TEST_ST_D)\
 			$(LIB_BEC_TEST_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_COMP_pan_prtf_ST_D)\
@@ -14383,9 +14126,7 @@ $(TARG_TEST_COMP_pan_prtf_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_BE_TEST_ST_D)\
 		$(LIB_BEC_TEST_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -14401,9 +14142,7 @@ $(TARG_TEST_COMP_pan_prtf_ST_R):	\
 			$(LIB_FE_ALL_ST_R)\
 			$(LIB_BE_TEST_ST_R)\
 			$(LIB_BEC_TEST_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_COMP_pan_prtf_ST_R)\
@@ -14411,9 +14150,7 @@ $(TARG_TEST_COMP_pan_prtf_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_BE_TEST_ST_R)\
 		$(LIB_BEC_TEST_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -15188,19 +14925,40 @@ $(OBJ_TEST_FE_SIMPLE_WC_ST_R):	$(PROJ_TEST_SCRATCH_DIR)/test.scratch.fe.simple.W
 ##############################
 # Unit Tests
 
-$(TARG_TEST_UNIT_lvls_dyninit_MT_D):	\
-			$(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
-			$(LIB_UTIL_MT_D)\
+LIBS_SYNSOFT_TEST_UNIT_MT_D=\
+			$(LIB_SHWILD_MT_D)\
 			$(LIB_XCONTRACT_MT_D)\
 			$(LIB_XCOVER_MT_D)\
 			$(LIB_XTESTS_MT_D)\
+
+LIBS_SYNSOFT_TEST_UNIT_MT_R=\
+			$(LIB_SHWILD_MT_R)\
+			$(LIB_XCONTRACT_MT_R)\
+			$(LIB_XCOVER_MT_R)\
+			$(LIB_XTESTS_MT_R)\
+
+LIBS_SYNSOFT_TEST_UNIT_ST_D=\
+			$(LIB_SHWILD_ST_D)\
+			$(LIB_XCONTRACT_ST_D)\
+			$(LIB_XCOVER_ST_D)\
+			$(LIB_XTESTS_ST_D)\
+
+LIBS_SYNSOFT_TEST_UNIT_ST_R=\
+			$(LIB_SHWILD_ST_R)\
+			$(LIB_XCONTRACT_ST_R)\
+			$(LIB_XCOVER_ST_R)\
+			$(LIB_XTESTS_ST_R)\
+
+
+$(TARG_TEST_UNIT_lvls_dyninit_MT_D):	\
+			$(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -15210,16 +14968,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.levels.dynam
 $(TARG_TEST_UNIT_lvls_dyninit_MT_R):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -15229,16 +14983,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.levels.dynam
 $(TARG_TEST_UNIT_lvls_dyninit_ST_D):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_ST_D)\
 			$(LIB_UTIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -15248,16 +14998,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.levels.dynam
 $(TARG_TEST_UNIT_lvls_dyninit_ST_R):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_ST_R)\
 			$(LIB_UTIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -15267,16 +15013,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.levels.dynam
 $(TARG_TEST_UNIT_lvls_vals_MT_D):	\
 			$(OBJ_TEST_UNIT_lvls_vals_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_lvls_vals_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -15286,16 +15028,12 @@ $(OBJ_TEST_UNIT_lvls_vals_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.levels.values/t
 $(TARG_TEST_UNIT_lvls_vals_MT_R):	\
 			$(OBJ_TEST_UNIT_lvls_vals_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_lvls_vals_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -15305,16 +15043,12 @@ $(OBJ_TEST_UNIT_lvls_vals_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.levels.values/t
 $(TARG_TEST_UNIT_lvls_vals_ST_D):	\
 			$(OBJ_TEST_UNIT_lvls_vals_ST_D)\
 			$(LIB_UTIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_lvls_vals_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -15324,16 +15058,12 @@ $(OBJ_TEST_UNIT_lvls_vals_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.levels.values/t
 $(TARG_TEST_UNIT_lvls_vals_ST_R):	\
 			$(OBJ_TEST_UNIT_lvls_vals_ST_R)\
 			$(LIB_UTIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_lvls_vals_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -15343,18 +15073,12 @@ $(OBJ_TEST_UNIT_lvls_vals_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.levels.values/t
 $(TARG_TEST_UNIT_getcurrtm_MT_D):	\
 			$(OBJ_TEST_UNIT_getcurrtm_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_getcurrtm_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -15364,18 +15088,12 @@ $(OBJ_TEST_UNIT_getcurrtm_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.getcurrent
 $(TARG_TEST_UNIT_getcurrtm_MT_R):	\
 			$(OBJ_TEST_UNIT_getcurrtm_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_getcurrtm_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -15385,18 +15103,12 @@ $(OBJ_TEST_UNIT_getcurrtm_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.getcurrent
 $(TARG_TEST_UNIT_getcurrtm_ST_D):	\
 			$(OBJ_TEST_UNIT_getcurrtm_ST_D)\
 			$(LIB_UTIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_getcurrtm_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -15406,18 +15118,12 @@ $(OBJ_TEST_UNIT_getcurrtm_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.getcurrent
 $(TARG_TEST_UNIT_getcurrtm_ST_R):	\
 			$(OBJ_TEST_UNIT_getcurrtm_ST_R)\
 			$(LIB_UTIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_getcurrtm_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -15431,10 +15137,7 @@ $(TARG_TEST_UNIT_getversion_MT_D):	\
 			$(LIB_FE_FAIL_MT_D)\
 			$(LIB_BE_FAIL_MT_D)\
 			$(LIB_BEC_FAIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_getversion_MT_D)\
@@ -15444,10 +15147,7 @@ $(TARG_TEST_UNIT_getversion_MT_D):	\
 		$(LIB_BE_FAIL_MT_D)\
 		$(LIB_BEC_FAIL_MT_D)\
 		$(LIB_CORE_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -15461,10 +15161,7 @@ $(TARG_TEST_UNIT_getversion_MT_R):	\
 			$(LIB_FE_FAIL_MT_R)\
 			$(LIB_BE_FAIL_MT_R)\
 			$(LIB_BEC_FAIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_getversion_MT_R)\
@@ -15474,10 +15171,7 @@ $(TARG_TEST_UNIT_getversion_MT_R):	\
 		$(LIB_BE_FAIL_MT_R)\
 		$(LIB_BEC_FAIL_MT_R)\
 		$(LIB_CORE_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -15491,10 +15185,7 @@ $(TARG_TEST_UNIT_getversion_ST_D):	\
 			$(LIB_FE_FAIL_ST_D)\
 			$(LIB_BE_FAIL_ST_D)\
 			$(LIB_BEC_FAIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_getversion_ST_D)\
@@ -15504,10 +15195,7 @@ $(TARG_TEST_UNIT_getversion_ST_D):	\
 		$(LIB_BE_FAIL_ST_D)\
 		$(LIB_BEC_FAIL_ST_D)\
 		$(LIB_CORE_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -15521,10 +15209,7 @@ $(TARG_TEST_UNIT_getversion_ST_R):	\
 			$(LIB_FE_FAIL_ST_R)\
 			$(LIB_BE_FAIL_ST_R)\
 			$(LIB_BEC_FAIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_getversion_ST_R)\
@@ -15534,10 +15219,7 @@ $(TARG_TEST_UNIT_getversion_ST_R):	\
 		$(LIB_BE_FAIL_ST_R)\
 		$(LIB_BEC_FAIL_ST_R)\
 		$(LIB_CORE_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -15547,18 +15229,12 @@ $(OBJ_TEST_UNIT_getversion_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.getversion/tes
 $(TARG_TEST_UNIT_gethostname_MT_D):	\
 			$(OBJ_TEST_UNIT_gethostname_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_gethostname_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -15568,18 +15244,12 @@ $(OBJ_TEST_UNIT_gethostname_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.gethostn
 $(TARG_TEST_UNIT_gethostname_MT_R):	\
 			$(OBJ_TEST_UNIT_gethostname_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_gethostname_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -15589,18 +15259,12 @@ $(OBJ_TEST_UNIT_gethostname_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.gethostn
 $(TARG_TEST_UNIT_gethostname_ST_D):	\
 			$(OBJ_TEST_UNIT_gethostname_ST_D)\
 			$(LIB_UTIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_gethostname_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -15610,18 +15274,12 @@ $(OBJ_TEST_UNIT_gethostname_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.gethostn
 $(TARG_TEST_UNIT_gethostname_ST_R):	\
 			$(OBJ_TEST_UNIT_gethostname_ST_R)\
 			$(LIB_UTIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_gethostname_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -15630,17 +15288,11 @@ $(OBJ_TEST_UNIT_gethostname_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.gethostn
 
 $(TARG_TEST_UNIT_onbailout_MT_D):	\
 			$(OBJ_TEST_UNIT_onbailout_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_onbailout_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -15649,17 +15301,11 @@ $(OBJ_TEST_UNIT_onbailout_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.onbailout/
 
 $(TARG_TEST_UNIT_onbailout_MT_R):	\
 			$(OBJ_TEST_UNIT_onbailout_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_onbailout_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -15668,17 +15314,11 @@ $(OBJ_TEST_UNIT_onbailout_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.onbailout/
 
 $(TARG_TEST_UNIT_onbailout_ST_D):	\
 			$(OBJ_TEST_UNIT_onbailout_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_onbailout_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -15687,17 +15327,11 @@ $(OBJ_TEST_UNIT_onbailout_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.onbailout/
 
 $(TARG_TEST_UNIT_onbailout_ST_R):	\
 			$(OBJ_TEST_UNIT_onbailout_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_onbailout_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -15707,18 +15341,12 @@ $(OBJ_TEST_UNIT_onbailout_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.onbailout/
 $(TARG_TEST_UNIT_strnlen_MT_D):	\
 			$(OBJ_TEST_UNIT_strnlen_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_strnlen_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -15728,18 +15356,12 @@ $(OBJ_TEST_UNIT_strnlen_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.strnlen/test
 $(TARG_TEST_UNIT_strnlen_MT_R):	\
 			$(OBJ_TEST_UNIT_strnlen_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_strnlen_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -15749,18 +15371,12 @@ $(OBJ_TEST_UNIT_strnlen_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.strnlen/test
 $(TARG_TEST_UNIT_strnlen_ST_D):	\
 			$(OBJ_TEST_UNIT_strnlen_ST_D)\
 			$(LIB_UTIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_strnlen_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -15770,18 +15386,12 @@ $(OBJ_TEST_UNIT_strnlen_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.strnlen/test
 $(TARG_TEST_UNIT_strnlen_ST_R):	\
 			$(OBJ_TEST_UNIT_strnlen_ST_R)\
 			$(LIB_UTIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_strnlen_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -15795,10 +15405,7 @@ $(TARG_TEST_UNIT_bec_file_MT_D):	\
 			$(LIB_FE_SIMPLE_MT_D)\
 			$(LIB_BE_NULL_MT_D)\
 			$(LIB_BEC_NULL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_bec_file_MT_D)\
@@ -15807,10 +15414,7 @@ $(TARG_TEST_UNIT_bec_file_MT_D):	\
 		$(LIB_BE_NULL_MT_D)\
 		$(LIB_BEC_NULL_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -15824,10 +15428,7 @@ $(TARG_TEST_UNIT_bec_file_MT_R):	\
 			$(LIB_FE_SIMPLE_MT_R)\
 			$(LIB_BE_NULL_MT_R)\
 			$(LIB_BEC_NULL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_bec_file_MT_R)\
@@ -15836,10 +15437,7 @@ $(TARG_TEST_UNIT_bec_file_MT_R):	\
 		$(LIB_BE_NULL_MT_R)\
 		$(LIB_BEC_NULL_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -15853,10 +15451,7 @@ $(TARG_TEST_UNIT_bec_file_ST_D):	\
 			$(LIB_FE_SIMPLE_ST_D)\
 			$(LIB_BE_NULL_ST_D)\
 			$(LIB_BEC_NULL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_bec_file_ST_D)\
@@ -15865,10 +15460,7 @@ $(TARG_TEST_UNIT_bec_file_ST_D):	\
 		$(LIB_BE_NULL_ST_D)\
 		$(LIB_BEC_NULL_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -15882,10 +15474,7 @@ $(TARG_TEST_UNIT_bec_file_ST_R):	\
 			$(LIB_FE_SIMPLE_ST_R)\
 			$(LIB_BE_NULL_ST_R)\
 			$(LIB_BEC_NULL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_bec_file_ST_R)\
@@ -15894,10 +15483,7 @@ $(TARG_TEST_UNIT_bec_file_ST_R):	\
 		$(LIB_BE_NULL_ST_R)\
 		$(LIB_BEC_NULL_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -15911,10 +15497,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_D):	\
 			$(LIB_FE_SIMPLE_MT_D)\
 			$(LIB_BE_NULL_MT_D)\
 			$(LIB_BEC_NULL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_MT_D)\
@@ -15923,10 +15506,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_D):	\
 		$(LIB_BE_NULL_MT_D)\
 		$(LIB_BEC_NULL_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -15940,10 +15520,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_R):	\
 			$(LIB_FE_SIMPLE_MT_R)\
 			$(LIB_BE_NULL_MT_R)\
 			$(LIB_BEC_NULL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_MT_R)\
@@ -15952,10 +15529,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_R):	\
 		$(LIB_BE_NULL_MT_R)\
 		$(LIB_BEC_NULL_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -15969,10 +15543,7 @@ $(TARG_TEST_UNIT_bec_fprintf_ST_D):	\
 			$(LIB_FE_SIMPLE_ST_D)\
 			$(LIB_BE_NULL_ST_D)\
 			$(LIB_BEC_NULL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_ST_D)\
@@ -15981,10 +15552,7 @@ $(TARG_TEST_UNIT_bec_fprintf_ST_D):	\
 		$(LIB_BE_NULL_ST_D)\
 		$(LIB_BEC_NULL_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -15998,10 +15566,7 @@ $(TARG_TEST_UNIT_bec_fprintf_ST_R):	\
 			$(LIB_FE_SIMPLE_ST_R)\
 			$(LIB_BE_NULL_ST_R)\
 			$(LIB_BEC_NULL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_ST_R)\
@@ -16010,10 +15575,7 @@ $(TARG_TEST_UNIT_bec_fprintf_ST_R):	\
 		$(LIB_BE_NULL_ST_R)\
 		$(LIB_BEC_NULL_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16023,18 +15585,12 @@ $(OBJ_TEST_UNIT_bec_fprintf_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.bec.fprintf/t
 $(TARG_TEST_UNIT_bec_fail_MT_D):	\
 			$(OBJ_TEST_UNIT_bec_fail_MT_D)\
 			$(LIB_BEC_FAIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_bec_fail_MT_D)\
 		$(LIB_BEC_FAIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16044,18 +15600,12 @@ $(OBJ_TEST_UNIT_bec_fail_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.bec.fail/test.un
 $(TARG_TEST_UNIT_bec_fail_MT_R):	\
 			$(OBJ_TEST_UNIT_bec_fail_MT_R)\
 			$(LIB_BEC_FAIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_bec_fail_MT_R)\
 		$(LIB_BEC_FAIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16065,18 +15615,12 @@ $(OBJ_TEST_UNIT_bec_fail_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.bec.fail/test.un
 $(TARG_TEST_UNIT_bec_fail_ST_D):	\
 			$(OBJ_TEST_UNIT_bec_fail_ST_D)\
 			$(LIB_BEC_FAIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_bec_fail_ST_D)\
 		$(LIB_BEC_FAIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -16086,18 +15630,12 @@ $(OBJ_TEST_UNIT_bec_fail_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.bec.fail/test.un
 $(TARG_TEST_UNIT_bec_fail_ST_R):	\
 			$(OBJ_TEST_UNIT_bec_fail_ST_R)\
 			$(LIB_BEC_FAIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_bec_fail_ST_R)\
 		$(LIB_BEC_FAIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16108,19 +15646,13 @@ $(TARG_TEST_UNIT_be_fail_MT_D):	\
 			$(OBJ_TEST_UNIT_be_fail_MT_D)\
 			$(LIB_BE_FAIL_MT_D)\
 			$(LIB_BEC_FAIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_be_fail_MT_D)\
 		$(LIB_BE_FAIL_MT_D)\
 		$(LIB_BEC_FAIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16131,19 +15663,13 @@ $(TARG_TEST_UNIT_be_fail_MT_R):	\
 			$(OBJ_TEST_UNIT_be_fail_MT_R)\
 			$(LIB_BE_FAIL_MT_R)\
 			$(LIB_BEC_FAIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_be_fail_MT_R)\
 		$(LIB_BE_FAIL_MT_R)\
 		$(LIB_BEC_FAIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16154,19 +15680,13 @@ $(TARG_TEST_UNIT_be_fail_ST_D):	\
 			$(OBJ_TEST_UNIT_be_fail_ST_D)\
 			$(LIB_BE_FAIL_ST_D)\
 			$(LIB_BEC_FAIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_be_fail_ST_D)\
 		$(LIB_BE_FAIL_ST_D)\
 		$(LIB_BEC_FAIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -16177,19 +15697,13 @@ $(TARG_TEST_UNIT_be_fail_ST_R):	\
 			$(OBJ_TEST_UNIT_be_fail_ST_R)\
 			$(LIB_BE_FAIL_ST_R)\
 			$(LIB_BEC_FAIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_be_fail_ST_R)\
 		$(LIB_BE_FAIL_ST_R)\
 		$(LIB_BEC_FAIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16201,19 +15715,13 @@ $(TARG_TEST_UNIT_be_lrsplit_MT_D):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_MT_D)\
 			$(LIB_BE_LRSPLIT_MT_D)\
 			$(LIB_FE_ALL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_MT_D)\
 		$(LIB_BE_LRSPLIT_MT_D)\
 		$(LIB_FE_ALL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16224,19 +15732,13 @@ $(TARG_TEST_UNIT_be_lrsplit_MT_R):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_MT_R)\
 			$(LIB_BE_LRSPLIT_MT_R)\
 			$(LIB_FE_ALL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_MT_R)\
 		$(LIB_BE_LRSPLIT_MT_R)\
 		$(LIB_FE_ALL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16247,19 +15749,13 @@ $(TARG_TEST_UNIT_be_lrsplit_ST_D):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_ST_D)\
 			$(LIB_BE_LRSPLIT_ST_D)\
 			$(LIB_FE_ALL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_ST_D)\
 		$(LIB_BE_LRSPLIT_ST_D)\
 		$(LIB_FE_ALL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -16270,19 +15766,13 @@ $(TARG_TEST_UNIT_be_lrsplit_ST_R):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_ST_R)\
 			$(LIB_BE_LRSPLIT_ST_R)\
 			$(LIB_FE_ALL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_ST_R)\
 		$(LIB_BE_LRSPLIT_ST_R)\
 		$(LIB_FE_ALL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16295,10 +15785,7 @@ $(TARG_TEST_UNIT_be_N_MT_D):	\
 			$(LIB_CORE_MT_D)\
 			$(LIB_BE_N_MT_D)\
 			$(LIB_FE_ALL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_be_N_MT_D)\
@@ -16306,10 +15793,7 @@ $(TARG_TEST_UNIT_be_N_MT_D):	\
 		$(LIB_FE_ALL_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16322,10 +15806,7 @@ $(TARG_TEST_UNIT_be_N_MT_R):	\
 			$(LIB_CORE_MT_R)\
 			$(LIB_BE_N_MT_R)\
 			$(LIB_FE_ALL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_be_N_MT_R)\
@@ -16333,10 +15814,7 @@ $(TARG_TEST_UNIT_be_N_MT_R):	\
 		$(LIB_FE_ALL_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16349,10 +15827,7 @@ $(TARG_TEST_UNIT_be_N_ST_D):	\
 			$(LIB_CORE_ST_D)\
 			$(LIB_BE_N_ST_D)\
 			$(LIB_FE_ALL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_be_N_ST_D)\
@@ -16360,10 +15835,7 @@ $(TARG_TEST_UNIT_be_N_ST_D):	\
 		$(LIB_FE_ALL_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -16376,10 +15848,7 @@ $(TARG_TEST_UNIT_be_N_ST_R):	\
 			$(LIB_CORE_ST_R)\
 			$(LIB_BE_N_ST_R)\
 			$(LIB_FE_ALL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_be_N_ST_R)\
@@ -16387,10 +15856,7 @@ $(TARG_TEST_UNIT_be_N_ST_R):	\
 		$(LIB_FE_ALL_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16400,18 +15866,12 @@ $(OBJ_TEST_UNIT_be_N_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.be.N/test.unit.be.N.
 $(TARG_TEST_UNIT_fe_all_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_all_MT_D)\
 			$(LIB_FE_ALL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_fe_all_MT_D)\
 		$(LIB_FE_ALL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16421,18 +15881,12 @@ $(OBJ_TEST_UNIT_fe_all_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.all/test.unit.f
 $(TARG_TEST_UNIT_fe_all_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_all_MT_R)\
 			$(LIB_FE_ALL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_fe_all_MT_R)\
 		$(LIB_FE_ALL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16442,18 +15896,12 @@ $(OBJ_TEST_UNIT_fe_all_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.all/test.unit.f
 $(TARG_TEST_UNIT_fe_all_ST_D):	\
 			$(OBJ_TEST_UNIT_fe_all_ST_D)\
 			$(LIB_FE_ALL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_fe_all_ST_D)\
 		$(LIB_FE_ALL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -16463,18 +15911,12 @@ $(OBJ_TEST_UNIT_fe_all_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.all/test.unit.f
 $(TARG_TEST_UNIT_fe_all_ST_R):	\
 			$(OBJ_TEST_UNIT_fe_all_ST_R)\
 			$(LIB_FE_ALL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_fe_all_ST_R)\
 		$(LIB_FE_ALL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16484,18 +15926,12 @@ $(OBJ_TEST_UNIT_fe_all_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.all/test.unit.f
 $(TARG_TEST_UNIT_fe_fail_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_fail_MT_D)\
 			$(LIB_FE_FAIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_fe_fail_MT_D)\
 		$(LIB_FE_FAIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16505,18 +15941,12 @@ $(OBJ_TEST_UNIT_fe_fail_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.fail/test.unit
 $(TARG_TEST_UNIT_fe_fail_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_fail_MT_R)\
 			$(LIB_FE_FAIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_fe_fail_MT_R)\
 		$(LIB_FE_FAIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16526,18 +15956,12 @@ $(OBJ_TEST_UNIT_fe_fail_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.fail/test.unit
 $(TARG_TEST_UNIT_fe_fail_ST_D):	\
 			$(OBJ_TEST_UNIT_fe_fail_ST_D)\
 			$(LIB_FE_FAIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_fe_fail_ST_D)\
 		$(LIB_FE_FAIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -16547,18 +15971,12 @@ $(OBJ_TEST_UNIT_fe_fail_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.fail/test.unit
 $(TARG_TEST_UNIT_fe_fail_ST_R):	\
 			$(OBJ_TEST_UNIT_fe_fail_ST_R)\
 			$(LIB_FE_FAIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_fe_fail_ST_R)\
 		$(LIB_FE_FAIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16569,19 +15987,13 @@ $(TARG_TEST_UNIT_fe_N_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_N_MT_D)\
 			$(LIB_FE_N_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_fe_N_MT_D)\
 		$(LIB_FE_N_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16592,19 +16004,13 @@ $(TARG_TEST_UNIT_fe_N_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_N_MT_R)\
 			$(LIB_FE_N_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_fe_N_MT_R)\
 		$(LIB_FE_N_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16615,19 +16021,13 @@ $(TARG_TEST_UNIT_fe_N_ST_D):	\
 			$(OBJ_TEST_UNIT_fe_N_ST_D)\
 			$(LIB_FE_N_ST_D)\
 			$(LIB_UTIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_fe_N_ST_D)\
 		$(LIB_FE_N_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -16638,19 +16038,13 @@ $(TARG_TEST_UNIT_fe_N_ST_R):	\
 			$(OBJ_TEST_UNIT_fe_N_ST_R)\
 			$(LIB_FE_N_ST_R)\
 			$(LIB_UTIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_fe_N_ST_R)\
 		$(LIB_FE_N_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16660,18 +16054,12 @@ $(OBJ_TEST_UNIT_fe_N_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.N/test.unit.fe.N.
 $(TARG_TEST_UNIT_fe_null_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_null_MT_D)\
 			$(LIB_FE_NULL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_fe_null_MT_D)\
 		$(LIB_FE_NULL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16681,18 +16069,12 @@ $(OBJ_TEST_UNIT_fe_null_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.null/test.unit
 $(TARG_TEST_UNIT_fe_null_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_null_MT_R)\
 			$(LIB_FE_NULL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_fe_null_MT_R)\
 		$(LIB_FE_NULL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16702,18 +16084,12 @@ $(OBJ_TEST_UNIT_fe_null_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.null/test.unit
 $(TARG_TEST_UNIT_fe_null_ST_D):	\
 			$(OBJ_TEST_UNIT_fe_null_ST_D)\
 			$(LIB_FE_NULL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_fe_null_ST_D)\
 		$(LIB_FE_NULL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -16723,18 +16099,12 @@ $(OBJ_TEST_UNIT_fe_null_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.null/test.unit
 $(TARG_TEST_UNIT_fe_null_ST_R):	\
 			$(OBJ_TEST_UNIT_fe_null_ST_R)\
 			$(LIB_FE_NULL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_fe_null_ST_R)\
 		$(LIB_FE_NULL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16744,18 +16114,12 @@ $(OBJ_TEST_UNIT_fe_null_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.null/test.unit
 $(TARG_TEST_UNIT_fe_simple_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_simple_MT_D)\
 			$(LIB_FE_SIMPLE_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
-			$(LIB_SHWILD_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_fe_simple_MT_D)\
 		$(LIB_FE_SIMPLE_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
-		$(LIB_SHWILD_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16765,18 +16129,12 @@ $(OBJ_TEST_UNIT_fe_simple_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.simple/test.
 $(TARG_TEST_UNIT_fe_simple_MT_R):	\
 			$(OBJ_TEST_UNIT_fe_simple_MT_R)\
 			$(LIB_FE_SIMPLE_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
-			$(LIB_SHWILD_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_fe_simple_MT_R)\
 		$(LIB_FE_SIMPLE_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
-		$(LIB_SHWILD_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16786,18 +16144,12 @@ $(OBJ_TEST_UNIT_fe_simple_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.simple/test.
 $(TARG_TEST_UNIT_fe_simple_ST_D):	\
 			$(OBJ_TEST_UNIT_fe_simple_ST_D)\
 			$(LIB_FE_SIMPLE_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
-			$(LIB_SHWILD_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_fe_simple_ST_D)\
 		$(LIB_FE_SIMPLE_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
-		$(LIB_SHWILD_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -16807,18 +16159,12 @@ $(OBJ_TEST_UNIT_fe_simple_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.fe.simple/test.
 $(TARG_TEST_UNIT_fe_simple_ST_R):	\
 			$(OBJ_TEST_UNIT_fe_simple_ST_R)\
 			$(LIB_FE_SIMPLE_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
-			$(LIB_SHWILD_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_fe_simple_ST_R)\
 		$(LIB_FE_SIMPLE_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
-		$(LIB_SHWILD_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16829,17 +16175,13 @@ $(TARG_TEST_UNIT_ins_int_MT_D):	\
 			$(OBJ_TEST_UNIT_ins_int_MT_D)\
 			$(LIB_CORE_MT_D)\
 			$(LIB_UTIL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_ins_int_MT_D)\
 		$(LIB_CORE_MT_D)\
 		$(LIB_UTIL_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16850,17 +16192,13 @@ $(TARG_TEST_UNIT_ins_int_MT_R):	\
 			$(OBJ_TEST_UNIT_ins_int_MT_R)\
 			$(LIB_CORE_MT_R)\
 			$(LIB_UTIL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_ins_int_MT_R)\
 		$(LIB_CORE_MT_R)\
 		$(LIB_UTIL_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16871,17 +16209,13 @@ $(TARG_TEST_UNIT_ins_int_ST_D):	\
 			$(OBJ_TEST_UNIT_ins_int_ST_D)\
 			$(LIB_CORE_ST_D)\
 			$(LIB_UTIL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_ins_int_ST_D)\
 		$(LIB_CORE_ST_D)\
 		$(LIB_UTIL_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -16892,17 +16226,13 @@ $(TARG_TEST_UNIT_ins_int_ST_R):	\
 			$(OBJ_TEST_UNIT_ins_int_ST_R)\
 			$(LIB_CORE_ST_R)\
 			$(LIB_UTIL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_ins_int_ST_R)\
 		$(LIB_CORE_ST_R)\
 		$(LIB_UTIL_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
@@ -16916,9 +16246,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_D):	\
 			$(LIB_FE_NULL_MT_D)\
 			$(LIB_BE_NULL_MT_D)\
 			$(LIB_BEC_NULL_MT_D)\
-			$(LIB_XCONTRACT_MT_D)\
-			$(LIB_XCOVER_MT_D)\
-			$(LIB_XTESTS_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_D) -o $@ \
 		$(OBJ_TEST_UNIT_ins_w2m_MT_D)\
@@ -16928,9 +16256,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_D):	\
 		$(LIB_BE_NULL_MT_D)\
 		$(LIB_BEC_NULL_MT_D)\
 		$(LIB_CORE_MT_D)\
-		$(LIB_XCONTRACT_MT_D)\
-		$(LIB_XCOVER_MT_D)\
-		$(LIB_XTESTS_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_D)
 
@@ -16944,9 +16270,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_R):	\
 			$(LIB_FE_NULL_MT_R)\
 			$(LIB_BE_NULL_MT_R)\
 			$(LIB_BEC_NULL_MT_R)\
-			$(LIB_XCONTRACT_MT_R)\
-			$(LIB_XCOVER_MT_R)\
-			$(LIB_XTESTS_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_R) -o $@ \
 		$(OBJ_TEST_UNIT_ins_w2m_MT_R)\
@@ -16956,9 +16280,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_R):	\
 		$(LIB_BE_NULL_MT_R)\
 		$(LIB_BEC_NULL_MT_R)\
 		$(LIB_CORE_MT_R)\
-		$(LIB_XCONTRACT_MT_R)\
-		$(LIB_XCOVER_MT_R)\
-		$(LIB_XTESTS_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_R)
 
@@ -16972,9 +16294,7 @@ $(TARG_TEST_UNIT_ins_w2m_ST_D):	\
 			$(LIB_FE_NULL_ST_D)\
 			$(LIB_BE_NULL_ST_D)\
 			$(LIB_BEC_NULL_ST_D)\
-			$(LIB_XCONTRACT_ST_D)\
-			$(LIB_XCOVER_ST_D)\
-			$(LIB_XTESTS_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_D) -o $@ \
 		$(OBJ_TEST_UNIT_ins_w2m_ST_D)\
@@ -16984,9 +16304,7 @@ $(TARG_TEST_UNIT_ins_w2m_ST_D):	\
 		$(LIB_BE_NULL_ST_D)\
 		$(LIB_BEC_NULL_ST_D)\
 		$(LIB_CORE_ST_D)\
-		$(LIB_XCONTRACT_ST_D)\
-		$(LIB_XCOVER_ST_D)\
-		$(LIB_XTESTS_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_D)
 
@@ -17000,9 +16318,7 @@ $(TARG_TEST_UNIT_ins_w2m_ST_R):	\
 			$(LIB_FE_NULL_ST_R)\
 			$(LIB_BE_NULL_ST_R)\
 			$(LIB_BEC_NULL_ST_R)\
-			$(LIB_XCONTRACT_ST_R)\
-			$(LIB_XCOVER_ST_R)\
-			$(LIB_XTESTS_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_ST_R) -o $@ \
 		$(OBJ_TEST_UNIT_ins_w2m_ST_R)\
@@ -17012,9 +16328,7 @@ $(TARG_TEST_UNIT_ins_w2m_ST_R):	\
 		$(LIB_BE_NULL_ST_R)\
 		$(LIB_BEC_NULL_ST_R)\
 		$(LIB_CORE_ST_R)\
-		$(LIB_XCONTRACT_ST_R)\
-		$(LIB_XCOVER_ST_R)\
-		$(LIB_XTESTS_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_ST_R)
 
