@@ -1,13 +1,15 @@
 pantheios - News
 ================
 
-Updated:    21st September 2015
+Updated:    27th September 2015
 
 
 
 News:
 
-  19th Sep 2015     -   Pantheios repo on GitHub
+  27th Sep 2015     -   Pantheios 1.0.1 beta 215 released
+
+  September 2015    -   Pantheios now available on GitHub : https://github.com/synesissoftware/Pantheios
 
   7th Aug 2012      -   Pantheios 1.0.1 beta 214 released
 

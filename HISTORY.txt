@@ -1,7 +1,20 @@
 pantheios - History
 ===================
 
-Updated:    7th August 2012
+Updated:    27th September 2015
+
+
+27th September 2015 - 1.0.1 beta 215
+------------------------------------
+
+ * added interval inserter
+ * added stream_character inserter
+ * Clang-compatibility
+ * VC++ 11-compatibility
+ * VC++ 12-compatibility
+ * VC++ 14-compatibility
+ * showPlus format flag support in pantheios::integer (pan::i)
+ * makefiles customisable to specify non-bundled locations of b64, shwild, xContract, xCover, and xTests libraries (useful to getting head from GitHub)
 
 
 7th August 2012 - 1.0.1 beta 214
