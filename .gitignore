@@ -4,36 +4,65 @@
 include/b64/
 include/shwild/
 include/xcontract/
+include/xcover/
 include/xtests/
 
 src/b64/
 src/shwild/
+src/xcontract/
+src/xcover/
 src/xtests/
 
-vc71/
-vc8/
-vc9/
+_internal/
+
+bin/
+
+doc/
 
 ideas/
 
+perf_test/
+
+scripts/internal/
+
 Debug/
+DebugMt/
+DebugDll/
+DebugDLLUNIX/
 Debug Multithreaded/
 Debug Multithreaded DLL/
 Unicode Debug/
 Unicode Debug Multithreaded/
 Unicode Debug Multithreaded DLL/
 Release/
+ReleaseMt/
+ReleaseDll/
+ReleaseDLLUNIX/
 Release Multithreaded/
 Release Multithreaded DLL/
 Unicode Release/
 Unicode Release Multithreaded/
 Unicode Release Multithreaded DLL/
 
+vc71/
+vc8/
+vc9/
+
 # directories (by pattern)
 
 # files (by name)
 
 list_changes.cmd
+prepare.cmd
+
+include/pantheios/internal/dos2unix.has.been.performed
+
+# TODO: remove these exclusions when be.loader released
+include/pantheios/backends/bec.loader.h
+src/backends/be/be.loader.c
+src/backends/bec.loader.cpp
+src/backends/bel/bel.loader.c
+src/backends/ber/ber.loader.c
 
 # files (by pattern)
 
@@ -46,10 +75,12 @@ list_changes.cmd
 *.gch
 *.ilk
 *.lib
+*.log
 *.ncb
 *.o
 *.obj
 *.opensdf
+*.opt
 *.out
 *.pch
 *.pdb
