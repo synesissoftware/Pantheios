@@ -4,11 +4,11 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     11th October 2012
+ * Updated:     22nd September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_MINOR       3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_REVISION    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_EDIT        28
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_REVISION    6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_EDIT        29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -179,7 +179,10 @@ private:
     const int   m_widthAndFormat;
 
 private:
-#if !defined(STLSOFT_COMPILER_IS_GCC)
+#if 1 && \
+    !defined(STLSOFT_COMPILER_IS_CLANG) && \
+    !defined(STLSOFT_COMPILER_IS_GCC) && \
+    1
     real(class_type const&);
 #endif /* compiler */
     class_type& operator =(class_type const&);
@@ -250,7 +253,10 @@ c_str_ptr(
 # if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace shims */
 
-#  if defined(STLSOFT_COMPILER_IS_GCC)
+#  if 0 || \
+      defined(STLSOFT_COMPILER_IS_CLANG) || \
+      defined(STLSOFT_COMPILER_IS_GCC) || \
+      0
     /* GCC does not seem to correctly handle the phases of
      * processing of C++ templates, so we need to 'use' the
      * shims into the same namespace as the inserter class

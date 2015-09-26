@@ -4,11 +4,11 @@
  * Purpose:     String inserters for execution environment identities.
  *
  * Created:     16th October 2006
- * Updated:     14th February 2010
+ * Updated:     22nd September 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_MAJOR    2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_MINOR    0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_EDIT     13
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_MINOR    1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_EDIT     14
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,9 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
-#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_FMT
-# include <pantheios/inserters/fmt.hpp>
-#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_FMT */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HOSTID
+# include <pantheios/inserters/hostid.hpp>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HOSTID */
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PROCESSID
 # include <pantheios/inserters/processid.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PROCESSID */

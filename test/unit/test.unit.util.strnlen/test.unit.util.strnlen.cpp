@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.util.strnlen project.
  *
  * Created:     17th April 2009
- * Updated:     9th December 2013
+ * Updated:     21st September 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2013, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -56,7 +56,7 @@ static void test_1_12();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.util.strnlen");
+PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.util.strnlen");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
