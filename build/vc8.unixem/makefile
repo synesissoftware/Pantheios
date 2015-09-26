@@ -4,8 +4,8 @@
 # Purpose:	Makefile for the Pantheios project, for the Visual C++ 8.0 (UNIXem)
 #			compiler, on UNIX
 #
-# Created:	15th Feburary 2005
-# Updated:	31st July 2015
+# Created:	15th February 2005
+# Updated:	25th September 2015
 #
 ############################################################################
 
@@ -44,11 +44,14 @@ B64_TAG_VER			=   b64.$(B64_VER_MAJOR)
 SHWILD_VER_MAJOR    =   0
 SHWILD_TAG_VER      =   shwild.$(SHWILD_VER_MAJOR)
 
+XCONTRACT_VER_MAJOR =   0
+XCONTRACT_TAG_VER   =   xcontract.$(XCONTRACT_VER_MAJOR)
+
 XTESTS_VER_MAJOR    =   0
 XTESTS_TAG_VER      =   xtests.$(XTESTS_VER_MAJOR)
 
 UNIXEM_VER_MAJOR	=	1
-UNIXEM_TAG_VER      =   unixem.$(XTESTS_VER_MAJOR)
+UNIXEM_TAG_VER      =   unixem.$(UNIXEM_VER_MAJOR)
 
 PROJ_MAKEFILE_NAME  =   makefile
 
@@ -57,7 +60,9 @@ NOTHING				=
 ########################################
 # Testing verbosity
 
-TEST_VERBOSITY		=	2
+!ifndef TEST_VERBOSITY
+TEST_VERBOSITY      =   2
+!endif # !TEST_VERBOSITY
 
 ########################################
 # Directories
@@ -78,14 +83,45 @@ PROJ_TEST_PERFORMANCE_DIR	=	$(PROJ_TEST_ROOT_DIR)\performance
 PROJ_TEST_SCRATCH_DIR	=	$(PROJ_TEST_ROOT_DIR)\scratch
 PROJ_TEST_UNIT_DIR		=	$(PROJ_TEST_ROOT_DIR)\unit
 
+B64_PROJ_INCLUDE		=	
+!ifdef PANTHEIOS_B64_BASE_DIR
+B64_INCLUDE_DIR			=   $(PANTHEIOS_B64_BASE_DIR)\include
+B64_SRC_DIR				=   $(PANTHEIOS_B64_BASE_DIR)\src
+B64_PROJ_INCLUDE		=	-I$(B64_INCLUDE_DIR)
+!else
 B64_INCLUDE_DIR			=   $(PROJ_BASE_DIR)\include
 B64_SRC_DIR				=   $(PROJ_SRC_DIR)\b64
+!endif # !PANTHEIOS_B64_BASE_DIR
 
-SHWILD_INCLUDE_DIR      =   $(PROJ_BASE_DIR)\include
-SHWILD_SRC_DIR          =   $(PROJ_SRC_DIR)\shwild
+SHWILD_PROJ_INCLUDE		=	
+!ifdef PANTHEIOS_SHWILD_BASE_DIR
+SHWILD_INCLUDE_DIR		=   $(PANTHEIOS_SHWILD_BASE_DIR)\include
+SHWILD_SRC_DIR			=   $(PANTHEIOS_SHWILD_BASE_DIR)\src
+SHWILD_PROJ_INCLUDE		=	-I$(SHWILD_INCLUDE_DIR)
+!else
+SHWILD_INCLUDE_DIR		=   $(PROJ_BASE_DIR)\include
+SHWILD_SRC_DIR			=   $(PROJ_SRC_DIR)\shwild
+!endif # !PANTHEIOS_SHWILD_BASE_DIR
 
-XTESTS_INCLUDE_DIR      =   $(PROJ_BASE_DIR)\include
-XTESTS_SRC_DIR          =   $(PROJ_SRC_DIR)\xtests
+XCONTRACT_PROJ_INCLUDE	=	
+!ifdef PANTHEIOS_XCONTRACT_BASE_DIR
+XCONTRACT_INCLUDE_DIR	=   $(PANTHEIOS_XCONTRACT_BASE_DIR)\include
+XCONTRACT_SRC_DIR		=   $(PANTHEIOS_XCONTRACT_BASE_DIR)\src
+XCONTRACT_PROJ_INCLUDE	=	-I$(XCONTRACT_INCLUDE_DIR)
+!else
+XCONTRACT_INCLUDE_DIR	=   $(PROJ_BASE_DIR)\include
+XCONTRACT_SRC_DIR		=   $(PROJ_SRC_DIR)\xcontract
+!endif # !PANTHEIOS_XCONTRACT_BASE_DIR
+
+XTESTS_PROJ_INCLUDE		=	
+!ifdef PANTHEIOS_XTESTS_BASE_DIR
+XTESTS_INCLUDE_DIR		=   $(PANTHEIOS_XTESTS_BASE_DIR)\include
+XTESTS_SRC_DIR			=   $(PANTHEIOS_XTESTS_BASE_DIR)\src
+XTESTS_PROJ_INCLUDE		=	-I$(XTESTS_INCLUDE_DIR)
+!else
+XTESTS_INCLUDE_DIR		=   $(PROJ_BASE_DIR)\include
+XTESTS_SRC_DIR			=   $(PROJ_SRC_DIR)\xtests
+!endif # !PANTHEIOS_XTESTS_BASE_DIR
 
 ########################################
 # tools
@@ -111,6 +147,10 @@ COMMON_INCLUDES 	=	-I$(SYNESIS_DEV)/include -I$(SYNESIS_DEV)/libraries/include
 CC_INCLUDES_BASE=\
 $(INCLUDES_LEADER)\
 $(PROJ_INCLUDE)\
+$(B64_PROJ_INCLUDE)\
+$(SHWILD_PROJ_INCLUDE)\
+$(XCONTRACT_PROJ_INCLUDE)\
+$(XTESTS_PROJ_INCLUDE)\
 -I"$(STLSOFT)\include"\
 $(COMMON_INCLUDES)\
 -I"$(PTHREADS_WIN32)\include"\
@@ -134,6 +174,10 @@ $(CC_INCLUDES_BASE)\
 CPPC_INCLUDES_BASE=\
 $(INCLUDES_LEADER)\
 $(PROJ_INCLUDE)\
+$(B64_PROJ_INCLUDE)\
+$(SHWILD_PROJ_INCLUDE)\
+$(XCONTRACT_PROJ_INCLUDE)\
+$(XTESTS_PROJ_INCLUDE)\
 -I"$(STLSOFT)\include"\
 $(COMMON_INCLUDES)\
 -I"$(PTHREADS_WIN32)\include"\
@@ -184,6 +228,19 @@ $(CPPC_B64_INCLUDES_BASE)\
 
 # shwild
 
+CC_SHWILD_INCLUDES_BASE =\
+$(CC_INCLUDES_BASE)\
+ \
+
+CC_SHWILD_INCLUDES_MT_UX =\
+$(CC_SHWILD_INCLUDES_BASE)\
+ \
+
+CC_SHWILD_INCLUDES_MT_UX_DEBUG =\
+$(CC_SHWILD_INCLUDES_BASE)\
+ \
+
+
 CPPC_SHWILD_INCLUDES_BASE =\
 $(CPPC_INCLUDES_BASE)\
  \
@@ -197,7 +254,48 @@ $(CPPC_SHWILD_INCLUDES_BASE)\
  \
 
 
+# xContract
+
+CC_XCONTRACT_INCLUDES_BASE =\
+$(CC_INCLUDES_BASE)\
+ \
+
+CPPC_XCONTRACT_INCLUDES_MT_UX =\
+$(CPPC_XCONTRACT_INCLUDES_BASE)\
+ \
+
+CPPC_XCONTRACT_INCLUDES_MT_UX_DEBUG =\
+$(CPPC_XCONTRACT_INCLUDES_BASE)\
+ \
+
+
+CPPC_XCONTRACT_INCLUDES_BASE =\
+$(CPPC_INCLUDES_BASE)\
+ \
+
+CC_XCONTRACT_INCLUDES_MT_UX =\
+$(CC_XCONTRACT_INCLUDES_BASE)\
+ \
+
+CC_XCONTRACT_INCLUDES_MT_UX_DEBUG =\
+$(CC_XCONTRACT_INCLUDES_BASE)\
+ \
+
+
 # xTests
+
+CC_XTESTS_INCLUDES_BASE =\
+$(CC_INCLUDES_BASE)\
+ \
+
+CC_XTESTS_INCLUDES_MT_UX =\
+$(CC_XTESTS_INCLUDES_BASE)\
+ \
+
+CC_XTESTS_INCLUDES_MT_UX_DEBUG =\
+$(CC_XTESTS_INCLUDES_BASE)\
+ \
+
 
 CPPC_XTESTS_INCLUDES_BASE =\
 $(CPPC_INCLUDES_BASE)\
@@ -236,8 +334,8 @@ $(ENV_LIBPATHS)\
 
 # lib names
 
-TARGET_LIB_MT_UX	= kernel32.lib user32.lib advapi32.lib uuid.lib wininet.lib ole32.lib oleaut32.lib ws2_32.lib pthreadVC.lib
-TARGET_LIB_MT_UX_DEBUG	= kernel32.lib user32.lib advapi32.lib uuid.lib wininet.lib ole32.lib oleaut32.lib ws2_32.lib pthreadVC.lib
+TARGET_LIB_MT_UX	= kernel32.lib user32.lib advapi32.lib uuid.lib wininet.lib ole32.lib oleaut32.lib shlwapi.lib ws2_32.lib pthreadVC.lib
+TARGET_LIB_MT_UX_DEBUG	= kernel32.lib user32.lib advapi32.lib uuid.lib wininet.lib ole32.lib oleaut32.lib shlwapi.lib ws2_32.lib pthreadVC.lib
 
 # #defines
 #
@@ -360,6 +458,12 @@ CC_SHWILD_FLAGS = $(CC_APP_FLAGS)
 CPPC_SHWILD_FLAGS = $(CPPC_APP_FLAGS)
 
 
+# - xContract
+CC_XCONTRACT_FLAGS = $(CC_APP_FLAGS)
+
+CPPC_XCONTRACT_FLAGS = $(CPPC_APP_FLAGS)
+
+
 # - xTests
 CC_XTESTS_FLAGS = $(CC_APP_FLAGS)
 
@@ -419,12 +523,20 @@ CPPC_SHWILD_ARGS_MT_UX		=	$(CPPC_SHWILD_FLAGS) $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_
 CPPC_SHWILD_ARGS_MT_UX_DEBUG		=	$(CPPC_SHWILD_FLAGS) $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MTd -D_DEBUG -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CPPC_DEFS)
 
 
-# - xTests
-CC_XTESTS_ARGS_MT_UX			=	$(CC_XTESTS_FLAGS) -MTd -DNDEBUG $(CC_F_MAXIMUM_SPEED) -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CC_DEFS)
-CC_XTESTS_ARGS_MT_UX_DEBUG			=	$(CC_XTESTS_FLAGS) -MTd -D_DEBUG -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CC_DEFS)
+# - xContract
+CC_XCONTRACT_ARGS_MT_UX	=	$(CC_XCONTRACT_FLAGS) -MTd -DNDEBUG $(CC_F_MAXIMUM_SPEED) -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CC_DEFS)
+CC_XCONTRACT_ARGS_MT_UX_DEBUG	=	$(CC_XCONTRACT_FLAGS) -MTd -D_DEBUG -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CC_DEFS)
 
-CPPC_XTESTS_ARGS_MT_UX			=	$(CPPC_XTESTS_FLAGS) $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MTd -DNDEBUG $(CPPC_F_MAXIMUM_SPEED) -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CPPC_DEFS)
-CPPC_XTESTS_ARGS_MT_UX_DEBUG			=	$(CPPC_XTESTS_FLAGS) $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MTd -D_DEBUG -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CPPC_DEFS)
+CPPC_XCONTRACT_ARGS_MT_UX  =	$(CPPC_XCONTRACT_FLAGS) $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MTd -DNDEBUG $(CPPC_F_MAXIMUM_SPEED) -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CPPC_DEFS)
+CPPC_XCONTRACT_ARGS_MT_UX_DEBUG  =	$(CPPC_XCONTRACT_FLAGS) $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MTd -D_DEBUG -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CPPC_DEFS)
+
+
+# - xTests
+CC_XTESTS_ARGS_MT_UX		=	$(CC_XTESTS_FLAGS) -MTd -DNDEBUG $(CC_F_MAXIMUM_SPEED) -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CC_DEFS)
+CC_XTESTS_ARGS_MT_UX_DEBUG		=	$(CC_XTESTS_FLAGS) -MTd -D_DEBUG -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CC_DEFS)
+
+CPPC_XTESTS_ARGS_MT_UX		=	$(CPPC_XTESTS_FLAGS) $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MTd -DNDEBUG $(CPPC_F_MAXIMUM_SPEED) -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CPPC_DEFS)
+CPPC_XTESTS_ARGS_MT_UX_DEBUG		=	$(CPPC_XTESTS_FLAGS) $(CPPC_F_EXCEPTIONS_ON) $(CPPC_F_RTTI_ON) -MTd -D_DEBUG -D_STLSOFT_FORCE_ANY_COMPILER -Zi -Fd$*.pdb  $(CPPC_DEFS)
 
 
 # - Examples
@@ -576,17 +688,21 @@ TEST_CPP_HEADERS=\
  \
 
 B64_HEADERS=\
- $(PROJ_INCLUDE_DIR)\b64\b64.h\
- $(PROJ_INCLUDE_DIR)\b64\b64.hpp\
+ $(B64_INCLUDE_DIR)\b64\b64.h\
+ $(B64_INCLUDE_DIR)\b64\b64.hpp\
  \
 
 SHWILD_HEADERS=\
- $(PROJ_INCLUDE_DIR)\shwild\shwild.h\
- $(PROJ_INCLUDE_DIR)\shwild\shwild.hpp\
+ $(SHWILD_INCLUDE_DIR)\shwild\shwild.h\
+ $(SHWILD_INCLUDE_DIR)\shwild\shwild.hpp\
+ \
+
+XCONTRACT_HEADERS=\
+ $(XCONTRACT_INCLUDE_DIR)\xcontract\xcontract.h\
  \
 
 XTESTS_HEADERS=\
- $(PROJ_INCLUDE_DIR)\xtests\xtests.h\
+ $(XTESTS_INCLUDE_DIR)\xtests\xtests.h\
  \
 
 ############################################################################
@@ -741,12 +857,16 @@ LIB_B64_MT_UX			=   $(PROJ_LIB_DIR)\$(B64_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.li
 LIB_B64_MT_UX_DEBUG			=   $(PROJ_LIB_DIR)\$(B64_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.debug.lib
 
 # shwild
-LIB_SHWILD_MT_UX         =   $(PROJ_LIB_DIR)\$(SHWILD_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_SHWILD_MT_UX_DEBUG         =   $(PROJ_LIB_DIR)\$(SHWILD_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_SHWILD_MT_UX       =   $(PROJ_LIB_DIR)\$(SHWILD_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_SHWILD_MT_UX_DEBUG       =   $(PROJ_LIB_DIR)\$(SHWILD_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.debug.lib
 
-# xtests
-LIB_XTESTS_MT_UX         =   $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_XTESTS_MT_UX_DEBUG         =   $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.debug.lib
+# xContract
+LIB_XCONTRACT_MT_UX    =   $(PROJ_LIB_DIR)\$(XCONTRACT_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_XCONTRACT_MT_UX_DEBUG    =   $(PROJ_LIB_DIR)\$(XCONTRACT_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.debug.lib
+
+# xTests
+LIB_XTESTS_MT_UX       =   $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_XTESTS_MT_UX_DEBUG       =   $(PROJ_LIB_DIR)\$(XTESTS_TAG_VER).pan.$(COMP_ARCH_OS_TAG).mt.debug.lib
 
 ########################################
 # Examples
@@ -1733,7 +1853,27 @@ PDB_SHWILD_MT_UX_DEBUG=\
  \
 
 
-# xtests
+# xContract
+
+OBJ_xct_core_MT_UX           = $(PROJ_OBJ_DIR)\xcontract.pan.core.api.mt.obj
+
+OBJ_XCONTRACT_MT_UX=\
+ $(OBJ_xct_core_MT_UX)\
+ \
+
+OBJ_xct_core_MT_UX_DEBUG           = $(PROJ_OBJ_DIR)\xcontract.pan.core.api.mt.debug.obj
+PDB_xct_core_MT_UX_DEBUG           = $(PROJ_OBJ_DIR)\xcontract.pan.core.api.mt.debug.pdb
+
+OBJ_XCONTRACT_MT_UX_DEBUG=\
+ $(OBJ_xct_core_MT_UX_DEBUG)\
+ \
+
+PDB_XCONTRACT_MT_UX_DEBUG=\
+ $(PDB_xct_core_MT_UX_DEBUG)\
+ \
+
+
+# xTests
 
 OBJ_xts_core_MT_UX           = $(PROJ_OBJ_DIR)\xtests.pan.core.api.mt.obj
 
@@ -2088,7 +2228,13 @@ OBJS_SHWILD=\
  $(OBJ_SHWILD_MT_UX_DEBUG)\
  \
 
-# xtests
+# xContract
+OBJS_XCONTRACT=\
+ $(OBJ_XCONTRACT_MT_UX)\
+ $(OBJ_XCONTRACT_MT_UX_DEBUG)\
+ \
+
+# xTests
 OBJS_XTESTS=\
  $(OBJ_XTESTS_MT_UX)\
  $(OBJ_XTESTS_MT_UX_DEBUG)\
@@ -2481,6 +2627,11 @@ TARGETS_LIB_SHWILD=\
  $(LIB_SHWILD_MT_UX_DEBUG)\
  \
 
+TARGETS_LIB_XCONTRACT=\
+ $(LIB_XCONTRACT_MT_UX)\
+ $(LIB_XCONTRACT_MT_UX_DEBUG)\
+ \
+
 TARGETS_LIB_XTESTS=\
  $(LIB_XTESTS_MT_UX)\
  $(LIB_XTESTS_MT_UX_DEBUG)\
@@ -2807,9 +2958,15 @@ compile.libs.b64:           $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_B
 
 compile.libs.shwild:        $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_SHWILD)
 
+compile.libs.xcontract:     $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_XCONTRACT)
+
 compile.libs.xtests:        $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_XTESTS)
 
-compile.libs.3pty:                                                      compile.libs.b64 compile.libs.shwild compile.libs.xtests
+compile.libs.3pty:	\
+ compile.libs.b64 \
+ compile.libs.shwild \
+ compile.libs.xcontract \
+ compile.libs.xtests
 
 compile.libs.all:                                                       compile.libs compile.libs.3pty
 
@@ -2864,9 +3021,16 @@ build.libs.b64:             check.lib.dir           prep.files.for.os   $(TARGET
 
 build.libs.shwild:          check.lib.dir           prep.files.for.os   $(TARGETS_LIB_SHWILD)
 
+build.libs.xcontract:       check.lib.dir           prep.files.for.os   $(TARGETS_LIB_XCONTRACT)
+
 build.libs.xtests:          check.lib.dir           prep.files.for.os   $(TARGETS_LIB_XTESTS)
 
-build.libs.3pty:            check.lib.dir                               build.libs.b64 build.libs.shwild build.libs.xtests
+build.libs.3pty:	\
+ check.lib.dir \
+ build.libs.b64 \
+ build.libs.shwild \
+ build.libs.xcontract \
+ build.libs.xtests
 
 # obsolete
 build.libs.std:                                                         check.lib.dir build.libs.fe build.libs.be
@@ -3374,6 +3538,14 @@ clean.libs.shwild:
 	@-$(RM) $(OBJ_SHWILD_MT_UX_DEBUG)
 	@-$(RM) $(PDB_SHWILD_MT_UX_DEBUG)
 
+clean.libs.xcontract:
+	@echo Cleaning xContract libraries ...
+	@-$(RM) $(LIB_XCONTRACT_MT_UX)
+	@-$(RM) $(LIB_XCONTRACT_MT_UX_DEBUG)
+	@-$(RM) $(OBJ_XCONTRACT_MT_UX)
+	@-$(RM) $(OBJ_XCONTRACT_MT_UX_DEBUG)
+	@-$(RM) $(PDB_XCONTRACT_MT_UX_DEBUG)
+
 clean.libs.xtests:
 	@echo Cleaning xTests libraries ...
 	@-$(RM) $(LIB_XTESTS_MT_UX)
@@ -3805,16 +3977,20 @@ clean.unittest.ace:
 
 clean.libs: 		clean.libs.core clean.libs.be clean.libs.fe
 
-clean.libs.3pty:	clean.libs.b64 clean.libs.shwild clean.libs.xtests
+clean.libs.3pty:	\
+ clean.libs.b64 \
+ clean.libs.shwild \
+ clean.libs.xcontract \
+ clean.libs.xtests
 
 clean.libs.all: 	clean.libs clean.libs.3pty
 
 clean.test:			clean.test.unit clean.test.component clean.test.scratch clean.test.performance
 
 !ifdef ACE
-clean.test.all:		clean.test clean.libs.b64 clean.libs.shwild clean.libs.xtests clean.test.ace
+clean.test.all:		clean.test clean.libs.3pty clean.test.ace
 !else # ACE
-clean.test.all:		clean.test clean.libs.b64 clean.libs.shwild clean.libs.xtests
+clean.test.all:		clean.test clean.libs.3pty
 !endif # ACE
 
 clean.unittest:		clean.unittest.std
@@ -4095,14 +4271,14 @@ $(LIB_BE_TEST_MT_UX): $(OBJ_BE_TEST_MT_UX) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BE_TEST_MT_UX)
 
 $(OBJ_be_test_MT_UX): $(PROJ_SRC_DIR)\backends\be\be.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.test.c
+	$(CC) $(CC_LIB_ARGS_MT_UX) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.test.c
 
 $(LIB_BE_TEST_MT_UX_DEBUG): $(OBJ_BE_TEST_MT_UX_DEBUG) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BE_TEST_MT_UX_DEBUG)
 
 $(OBJ_be_test_MT_UX_DEBUG): $(PROJ_SRC_DIR)\backends\be\be.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.test.c
+	$(CC) $(CC_LIB_ARGS_MT_UX_DEBUG) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.test.c
 
 ########################################
 # Back-end library - 'pantheios.bel.test.a'
@@ -4112,14 +4288,14 @@ $(LIB_BEL_TEST_MT_UX): $(OBJ_BEL_TEST_MT_UX) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEL_TEST_MT_UX)
 
 $(OBJ_bel_test_MT_UX): $(PROJ_SRC_DIR)\backends\bel\bel.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.test.c
+	$(CC) $(CC_LIB_ARGS_MT_UX) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.test.c
 
 $(LIB_BEL_TEST_MT_UX_DEBUG): $(OBJ_BEL_TEST_MT_UX_DEBUG) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEL_TEST_MT_UX_DEBUG)
 
 $(OBJ_bel_test_MT_UX_DEBUG): $(PROJ_SRC_DIR)\backends\bel\bel.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.test.c
+	$(CC) $(CC_LIB_ARGS_MT_UX_DEBUG) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.test.c
 
 ########################################
 # Back-end library - 'pantheios.ber.test.a'
@@ -4129,14 +4305,14 @@ $(LIB_BER_TEST_MT_UX): $(OBJ_BER_TEST_MT_UX) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BER_TEST_MT_UX)
 
 $(OBJ_ber_test_MT_UX): $(PROJ_SRC_DIR)\backends\ber\ber.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.test.c
+	$(CC) $(CC_LIB_ARGS_MT_UX) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.test.c
 
 $(LIB_BER_TEST_MT_UX_DEBUG): $(OBJ_BER_TEST_MT_UX_DEBUG) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BER_TEST_MT_UX_DEBUG)
 
 $(OBJ_ber_test_MT_UX_DEBUG): $(PROJ_SRC_DIR)\backends\ber\ber.test.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.test.c
+	$(CC) $(CC_LIB_ARGS_MT_UX_DEBUG) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.test.c
 
 ########################################
 # Backend library - 'pantheios.bec.fail.a'
@@ -4746,6 +4922,23 @@ $(OBJ_shw_matches_MT_UX_DEBUG): $(SHWILD_SRC_DIR)\matches.cpp $(SHWILD_HEADERS) 
 	$(CPPC) $(CPPC_SHWILD_ARGS_MT_UX_DEBUG) $(CPPC_SHWILD_INCLUDES_MT_UX_DEBUG) -Fo$@ $(SHWILD_SRC_DIR)\matches.cpp
 $(OBJ_shw_pattern_MT_UX_DEBUG): $(SHWILD_SRC_DIR)\pattern.cpp $(SHWILD_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_SHWILD_ARGS_MT_UX_DEBUG) $(CPPC_SHWILD_INCLUDES_MT_UX_DEBUG) -Fo$@ $(SHWILD_SRC_DIR)\pattern.cpp
+
+########################################
+# xContract library - 'xcontract.X.pan.core.a'
+
+$(LIB_XCONTRACT_MT_UX): $(OBJ_XCONTRACT_MT_UX) $(PROJ_MAKEFILE_NAME)
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	$(AR) $(AR_ARGS) -out:$@ $(OBJ_XCONTRACT_MT_UX)
+
+$(OBJ_xct_core_MT_UX): $(XCONTRACT_SRC_DIR)\xcontract.core.c $(XCONTRACT_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_XCONTRACT_ARGS_MT_UX) $(CC_XCONTRACT_INCLUDES_MT_UX) -Fo$@ $(XCONTRACT_SRC_DIR)\xcontract.core.c
+
+$(LIB_XCONTRACT_MT_UX_DEBUG): $(OBJ_XCONTRACT_MT_UX_DEBUG) $(PROJ_MAKEFILE_NAME)
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	$(AR) $(AR_ARGS) -out:$@ $(OBJ_XCONTRACT_MT_UX_DEBUG)
+
+$(OBJ_xct_core_MT_UX_DEBUG): $(XCONTRACT_SRC_DIR)\xcontract.core.c $(XCONTRACT_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_XCONTRACT_ARGS_MT_UX_DEBUG) $(CC_XCONTRACT_INCLUDES_MT_UX_DEBUG) -Fo$@ $(XCONTRACT_SRC_DIR)\xcontract.core.c
 
 ########################################
 # xTests library - 'xtests.X.pan.core.a'
@@ -6533,17 +6726,28 @@ $(TARG_EX_C_7_MT_UX_DEBUG): \
 ##############################
 # Component Tests
 
+LIBS_SYNSOFT_TEST_COMP_MT_UX=\
+			$(LIB_SHWILD_MT_UX)\
+			$(LIB_XCONTRACT_MT_UX)\
+			$(LIB_XTESTS_MT_UX)\
+
+LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG=\
+			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIB_XCONTRACT_MT_UX_DEBUG)\
+			$(LIB_XTESTS_MT_UX_DEBUG)\
+
+
 $(TARG_TEST_COMP_core_initseq_MT_UX):	\
 			$(OBJ_TEST_COMP_core_initseq_MT_UX)\
 			$(LIB_CORE_MT_UX)\
 			$(LIB_UTIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_core_initseq_MT_UX)\
 		$(LIB_CORE_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
 
@@ -6554,13 +6758,13 @@ $(TARG_TEST_COMP_core_initseq_MT_UX_DEBUG):	\
 			$(OBJ_TEST_COMP_core_initseq_MT_UX_DEBUG)\
 			$(LIB_CORE_MT_UX_DEBUG)\
 			$(LIB_UTIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_core_initseq_MT_UX_DEBUG)\
 		$(LIB_CORE_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -6574,7 +6778,7 @@ $(TARG_TEST_COMP_custsev_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_custsev_MT_UX)\
@@ -6582,7 +6786,7 @@ $(TARG_TEST_COMP_custsev_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -6597,7 +6801,7 @@ $(TARG_TEST_COMP_custsev_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_custsev_MT_UX_DEBUG)\
@@ -6605,7 +6809,7 @@ $(TARG_TEST_COMP_custsev_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -6620,7 +6824,7 @@ $(TARG_TEST_COMP_ins_args_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_args_MT_UX)\
@@ -6628,7 +6832,7 @@ $(TARG_TEST_COMP_ins_args_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -6643,7 +6847,7 @@ $(TARG_TEST_COMP_ins_args_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_args_MT_UX_DEBUG)\
@@ -6651,7 +6855,7 @@ $(TARG_TEST_COMP_ins_args_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -6666,7 +6870,7 @@ $(TARG_TEST_COMP_ins_b64_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(LIB_B64_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
@@ -6675,7 +6879,7 @@ $(TARG_TEST_COMP_ins_b64_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_B64_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -6691,7 +6895,7 @@ $(TARG_TEST_COMP_ins_b64_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(LIB_B64_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
@@ -6700,7 +6904,7 @@ $(TARG_TEST_COMP_ins_b64_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_B64_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
@@ -6716,7 +6920,7 @@ $(TARG_TEST_COMP_ins_bool_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_bool_MT_UX)\
@@ -6724,7 +6928,7 @@ $(TARG_TEST_COMP_ins_bool_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -6739,7 +6943,7 @@ $(TARG_TEST_COMP_ins_bool_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_bool_MT_UX_DEBUG)\
@@ -6747,7 +6951,7 @@ $(TARG_TEST_COMP_ins_bool_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -6762,7 +6966,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_hostid_MT_UX)\
@@ -6770,7 +6974,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -6785,7 +6989,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_hostid_MT_UX_DEBUG)\
@@ -6793,7 +6997,7 @@ $(TARG_TEST_COMP_ins_hostid_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -6808,7 +7012,7 @@ $(TARG_TEST_COMP_ins_int_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_int_MT_UX)\
@@ -6816,7 +7020,7 @@ $(TARG_TEST_COMP_ins_int_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -6831,7 +7035,7 @@ $(TARG_TEST_COMP_ins_int_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_int_MT_UX_DEBUG)\
@@ -6839,7 +7043,7 @@ $(TARG_TEST_COMP_ins_int_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -6854,7 +7058,7 @@ $(TARG_TEST_COMP_ins_pad_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_pad_MT_UX)\
@@ -6862,7 +7066,7 @@ $(TARG_TEST_COMP_ins_pad_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -6877,7 +7081,7 @@ $(TARG_TEST_COMP_ins_pad_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_pad_MT_UX_DEBUG)\
@@ -6885,7 +7089,7 @@ $(TARG_TEST_COMP_ins_pad_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -6900,7 +7104,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_ptr_MT_UX)\
@@ -6908,7 +7112,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -6923,7 +7127,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_ptr_MT_UX_DEBUG)\
@@ -6931,7 +7135,7 @@ $(TARG_TEST_COMP_ins_ptr_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -6946,7 +7150,7 @@ $(TARG_TEST_COMP_ins_prid_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_prid_MT_UX)\
@@ -6954,7 +7158,7 @@ $(TARG_TEST_COMP_ins_prid_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -6969,7 +7173,7 @@ $(TARG_TEST_COMP_ins_prid_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_prid_MT_UX_DEBUG)\
@@ -6977,7 +7181,7 @@ $(TARG_TEST_COMP_ins_prid_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -6992,7 +7196,9 @@ $(TARG_TEST_COMP_ins_real_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_real_MT_UX)\
@@ -7000,7 +7206,7 @@ $(TARG_TEST_COMP_ins_real_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -7015,7 +7221,9 @@ $(TARG_TEST_COMP_ins_real_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_real_MT_UX_DEBUG)\
@@ -7023,7 +7231,7 @@ $(TARG_TEST_COMP_ins_real_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -7038,7 +7246,7 @@ $(TARG_TEST_COMP_ins_slice_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_slice_MT_UX)\
@@ -7046,7 +7254,7 @@ $(TARG_TEST_COMP_ins_slice_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -7061,7 +7269,7 @@ $(TARG_TEST_COMP_ins_slice_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_slice_MT_UX_DEBUG)\
@@ -7069,7 +7277,7 @@ $(TARG_TEST_COMP_ins_slice_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -7084,7 +7292,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_MT_UX)\
@@ -7092,7 +7300,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -7107,7 +7315,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_stm_ch_MT_UX_DEBUG)\
@@ -7115,7 +7323,7 @@ $(TARG_TEST_COMP_ins_stm_ch_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -7130,7 +7338,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_thrid_MT_UX)\
@@ -7138,7 +7346,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -7153,7 +7361,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_thrid_MT_UX_DEBUG)\
@@ -7161,7 +7369,7 @@ $(TARG_TEST_COMP_ins_thrid_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -7176,7 +7384,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_ins_w2m_MT_UX)\
@@ -7184,7 +7392,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -7199,7 +7407,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_ins_w2m_MT_UX_DEBUG)\
@@ -7207,7 +7415,7 @@ $(TARG_TEST_COMP_ins_w2m_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -7222,7 +7430,7 @@ $(TARG_TEST_COMP_log_1_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_log_1_MT_UX)\
@@ -7230,7 +7438,7 @@ $(TARG_TEST_COMP_log_1_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -7245,7 +7453,7 @@ $(TARG_TEST_COMP_log_1_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_log_1_MT_UX_DEBUG)\
@@ -7253,7 +7461,7 @@ $(TARG_TEST_COMP_log_1_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -7268,7 +7476,7 @@ $(TARG_TEST_COMP_pan_puts_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_pan_puts_MT_UX)\
@@ -7276,7 +7484,7 @@ $(TARG_TEST_COMP_pan_puts_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -7291,7 +7499,7 @@ $(TARG_TEST_COMP_pan_puts_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_pan_puts_MT_UX_DEBUG)\
@@ -7299,7 +7507,7 @@ $(TARG_TEST_COMP_pan_puts_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -7314,7 +7522,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_UX):	\
 			$(LIB_FE_ALL_MT_UX)\
 			$(LIB_BE_TEST_MT_UX)\
 			$(LIB_BEC_TEST_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_COMP_pan_prtf_MT_UX)\
@@ -7322,7 +7530,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_BE_TEST_MT_UX)\
 		$(LIB_BEC_TEST_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX)
@@ -7337,7 +7545,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_UX_DEBUG):	\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
 			$(LIB_BE_TEST_MT_UX_DEBUG)\
 			$(LIB_BEC_TEST_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_COMP_pan_prtf_MT_UX_DEBUG)\
@@ -7345,7 +7553,7 @@ $(TARG_TEST_COMP_pan_prtf_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_BE_TEST_MT_UX_DEBUG)\
 		$(LIB_BEC_TEST_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_UX_DEBUG)
@@ -7705,15 +7913,26 @@ $(OBJ_TEST_FE_SIMPLE_WC_MT_UX_DEBUG):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.fe.s
 ##############################
 # Unit Tests
 
+LIBS_SYNSOFT_TEST_UNIT_MT_UX=\
+			$(LIB_SHWILD_MT_UX)\
+			$(LIB_XCONTRACT_MT_UX)\
+			$(LIB_XTESTS_MT_UX)\
+
+LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG=\
+			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIB_XCONTRACT_MT_UX_DEBUG)\
+			$(LIB_XTESTS_MT_UX_DEBUG)\
+
+
 $(TARG_TEST_UNIT_lvls_dyninit_MT_UX):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_MT_UX)\
 			$(LIB_UTIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -7723,12 +7942,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.dyna
 $(TARG_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG)\
 			$(LIB_UTIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -7738,12 +7957,12 @@ $(OBJ_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.level
 $(TARG_TEST_UNIT_lvls_vals_MT_UX):	\
 			$(OBJ_TEST_UNIT_lvls_vals_MT_UX)\
 			$(LIB_UTIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_vals_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -7753,12 +7972,12 @@ $(OBJ_TEST_UNIT_lvls_vals_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.values\
 $(TARG_TEST_UNIT_lvls_vals_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_lvls_vals_MT_UX_DEBUG)\
 			$(LIB_UTIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_lvls_vals_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -7768,14 +7987,12 @@ $(OBJ_TEST_UNIT_lvls_vals_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.levels.v
 $(TARG_TEST_UNIT_getcurrtm_MT_UX):	\
 			$(OBJ_TEST_UNIT_getcurrtm_MT_UX)\
 			$(LIB_UTIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_getcurrtm_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -7785,14 +8002,12 @@ $(OBJ_TEST_UNIT_getcurrtm_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getcurren
 $(TARG_TEST_UNIT_getcurrtm_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_getcurrtm_MT_UX_DEBUG)\
 			$(LIB_UTIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_getcurrtm_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -7806,8 +8021,7 @@ $(TARG_TEST_UNIT_getversion_MT_UX):	\
 			$(LIB_FE_FAIL_MT_UX)\
 			$(LIB_BE_FAIL_MT_UX)\
 			$(LIB_BEC_FAIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_getversion_MT_UX)\
@@ -7816,8 +8030,7 @@ $(TARG_TEST_UNIT_getversion_MT_UX):	\
 		$(LIB_FE_FAIL_MT_UX)\
 		$(LIB_BE_FAIL_MT_UX)\
 		$(LIB_BEC_FAIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -7831,8 +8044,7 @@ $(TARG_TEST_UNIT_getversion_MT_UX_DEBUG):	\
 			$(LIB_FE_FAIL_MT_UX_DEBUG)\
 			$(LIB_BE_FAIL_MT_UX_DEBUG)\
 			$(LIB_BEC_FAIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_getversion_MT_UX_DEBUG)\
@@ -7841,8 +8053,7 @@ $(TARG_TEST_UNIT_getversion_MT_UX_DEBUG):	\
 		$(LIB_FE_FAIL_MT_UX_DEBUG)\
 		$(LIB_BE_FAIL_MT_UX_DEBUG)\
 		$(LIB_BEC_FAIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -7852,14 +8063,12 @@ $(OBJ_TEST_UNIT_getversion_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.getvers
 $(TARG_TEST_UNIT_gethostname_MT_UX):	\
 			$(OBJ_TEST_UNIT_gethostname_MT_UX)\
 			$(LIB_UTIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_gethostname_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -7869,14 +8078,12 @@ $(OBJ_TEST_UNIT_gethostname_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.gethost
 $(TARG_TEST_UNIT_gethostname_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_gethostname_MT_UX_DEBUG)\
 			$(LIB_UTIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_gethostname_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -7885,13 +8092,11 @@ $(OBJ_TEST_UNIT_gethostname_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.g
 
 $(TARG_TEST_UNIT_onbailout_MT_UX):	\
 			$(OBJ_TEST_UNIT_onbailout_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_onbailout_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -7900,13 +8105,11 @@ $(OBJ_TEST_UNIT_onbailout_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailout
 
 $(TARG_TEST_UNIT_onbailout_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_onbailout_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_onbailout_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -7916,14 +8119,12 @@ $(OBJ_TEST_UNIT_onbailout_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onb
 $(TARG_TEST_UNIT_strnlen_MT_UX):	\
 			$(OBJ_TEST_UNIT_strnlen_MT_UX)\
 			$(LIB_UTIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_strnlen_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -7933,14 +8134,12 @@ $(OBJ_TEST_UNIT_strnlen_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.strnlen\tes
 $(TARG_TEST_UNIT_strnlen_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_strnlen_MT_UX_DEBUG)\
 			$(LIB_UTIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_strnlen_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -7954,8 +8153,7 @@ $(TARG_TEST_UNIT_bec_file_MT_UX):	\
 			$(LIB_FE_SIMPLE_MT_UX)\
 			$(LIB_BE_NULL_MT_UX)\
 			$(LIB_BEC_NULL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_file_MT_UX)\
@@ -7964,8 +8162,7 @@ $(TARG_TEST_UNIT_bec_file_MT_UX):	\
 		$(LIB_BE_NULL_MT_UX)\
 		$(LIB_BEC_NULL_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -7979,8 +8176,7 @@ $(TARG_TEST_UNIT_bec_file_MT_UX_DEBUG):	\
 			$(LIB_FE_SIMPLE_MT_UX_DEBUG)\
 			$(LIB_BE_NULL_MT_UX_DEBUG)\
 			$(LIB_BEC_NULL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_file_MT_UX_DEBUG)\
@@ -7989,8 +8185,7 @@ $(TARG_TEST_UNIT_bec_file_MT_UX_DEBUG):	\
 		$(LIB_BE_NULL_MT_UX_DEBUG)\
 		$(LIB_BEC_NULL_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8004,8 +8199,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_UX):	\
 			$(LIB_FE_SIMPLE_MT_UX)\
 			$(LIB_BE_NULL_MT_UX)\
 			$(LIB_BEC_NULL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_MT_UX)\
@@ -8014,8 +8208,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_UX):	\
 		$(LIB_BE_NULL_MT_UX)\
 		$(LIB_BEC_NULL_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8029,8 +8222,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_UX_DEBUG):	\
 			$(LIB_FE_SIMPLE_MT_UX_DEBUG)\
 			$(LIB_BE_NULL_MT_UX_DEBUG)\
 			$(LIB_BEC_NULL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fprintf_MT_UX_DEBUG)\
@@ -8039,8 +8231,7 @@ $(TARG_TEST_UNIT_bec_fprintf_MT_UX_DEBUG):	\
 		$(LIB_BE_NULL_MT_UX_DEBUG)\
 		$(LIB_BEC_NULL_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8050,14 +8241,12 @@ $(OBJ_TEST_UNIT_bec_fprintf_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.bec.fp
 $(TARG_TEST_UNIT_bec_fail_MT_UX):	\
 			$(OBJ_TEST_UNIT_bec_fail_MT_UX)\
 			$(LIB_BEC_FAIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fail_MT_UX)\
 		$(LIB_BEC_FAIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8067,14 +8256,12 @@ $(OBJ_TEST_UNIT_bec_fail_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.bec.fail\test.u
 $(TARG_TEST_UNIT_bec_fail_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_bec_fail_MT_UX_DEBUG)\
 			$(LIB_BEC_FAIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_bec_fail_MT_UX_DEBUG)\
 		$(LIB_BEC_FAIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8085,15 +8272,13 @@ $(TARG_TEST_UNIT_be_fail_MT_UX):	\
 			$(OBJ_TEST_UNIT_be_fail_MT_UX)\
 			$(LIB_BE_FAIL_MT_UX)\
 			$(LIB_BEC_FAIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_be_fail_MT_UX)\
 		$(LIB_BE_FAIL_MT_UX)\
 		$(LIB_BEC_FAIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8104,15 +8289,13 @@ $(TARG_TEST_UNIT_be_fail_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_be_fail_MT_UX_DEBUG)\
 			$(LIB_BE_FAIL_MT_UX_DEBUG)\
 			$(LIB_BEC_FAIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_be_fail_MT_UX_DEBUG)\
 		$(LIB_BE_FAIL_MT_UX_DEBUG)\
 		$(LIB_BEC_FAIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8124,15 +8307,13 @@ $(TARG_TEST_UNIT_be_lrsplit_MT_UX):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_MT_UX)\
 			$(LIB_BE_LRSPLIT_MT_UX)\
 			$(LIB_FE_ALL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_MT_UX)\
 		$(LIB_BE_LRSPLIT_MT_UX)\
 		$(LIB_FE_ALL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8143,15 +8324,13 @@ $(TARG_TEST_UNIT_be_lrsplit_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_be_lrsplit_MT_UX_DEBUG)\
 			$(LIB_BE_LRSPLIT_MT_UX_DEBUG)\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_be_lrsplit_MT_UX_DEBUG)\
 		$(LIB_BE_LRSPLIT_MT_UX_DEBUG)\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8164,8 +8343,7 @@ $(TARG_TEST_UNIT_be_N_MT_UX):	\
 			$(LIB_CORE_MT_UX)\
 			$(LIB_BE_N_MT_UX)\
 			$(LIB_FE_ALL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_be_N_MT_UX)\
@@ -8173,8 +8351,7 @@ $(TARG_TEST_UNIT_be_N_MT_UX):	\
 		$(LIB_FE_ALL_MT_UX)\
 		$(LIB_CORE_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8187,8 +8364,7 @@ $(TARG_TEST_UNIT_be_N_MT_UX_DEBUG):	\
 			$(LIB_CORE_MT_UX_DEBUG)\
 			$(LIB_BE_N_MT_UX_DEBUG)\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_be_N_MT_UX_DEBUG)\
@@ -8196,8 +8372,7 @@ $(TARG_TEST_UNIT_be_N_MT_UX_DEBUG):	\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
 		$(LIB_CORE_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8207,14 +8382,12 @@ $(OBJ_TEST_UNIT_be_N_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N\test.uni
 $(TARG_TEST_UNIT_fe_all_MT_UX):	\
 			$(OBJ_TEST_UNIT_fe_all_MT_UX)\
 			$(LIB_FE_ALL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_all_MT_UX)\
 		$(LIB_FE_ALL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8224,14 +8397,12 @@ $(OBJ_TEST_UNIT_fe_all_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.all\test.unit.
 $(TARG_TEST_UNIT_fe_all_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_fe_all_MT_UX_DEBUG)\
 			$(LIB_FE_ALL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_all_MT_UX_DEBUG)\
 		$(LIB_FE_ALL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8241,14 +8412,12 @@ $(OBJ_TEST_UNIT_fe_all_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.all\test
 $(TARG_TEST_UNIT_fe_fail_MT_UX):	\
 			$(OBJ_TEST_UNIT_fe_fail_MT_UX)\
 			$(LIB_FE_FAIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_fail_MT_UX)\
 		$(LIB_FE_FAIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8258,14 +8427,12 @@ $(OBJ_TEST_UNIT_fe_fail_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.fail\test.uni
 $(TARG_TEST_UNIT_fe_fail_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_fe_fail_MT_UX_DEBUG)\
 			$(LIB_FE_FAIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_fail_MT_UX_DEBUG)\
 		$(LIB_FE_FAIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8276,15 +8443,13 @@ $(TARG_TEST_UNIT_fe_N_MT_UX):	\
 			$(OBJ_TEST_UNIT_fe_N_MT_UX)\
 			$(LIB_FE_N_MT_UX)\
 			$(LIB_UTIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_N_MT_UX)\
 		$(LIB_FE_N_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8295,15 +8460,13 @@ $(TARG_TEST_UNIT_fe_N_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_fe_N_MT_UX_DEBUG)\
 			$(LIB_FE_N_MT_UX_DEBUG)\
 			$(LIB_UTIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_N_MT_UX_DEBUG)\
 		$(LIB_FE_N_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8313,14 +8476,12 @@ $(OBJ_TEST_UNIT_fe_N_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.N\test.uni
 $(TARG_TEST_UNIT_fe_null_MT_UX):	\
 			$(OBJ_TEST_UNIT_fe_null_MT_UX)\
 			$(LIB_FE_NULL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_null_MT_UX)\
 		$(LIB_FE_NULL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8330,14 +8491,12 @@ $(OBJ_TEST_UNIT_fe_null_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.null\test.uni
 $(TARG_TEST_UNIT_fe_null_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_fe_null_MT_UX_DEBUG)\
 			$(LIB_FE_NULL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_null_MT_UX_DEBUG)\
 		$(LIB_FE_NULL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8347,14 +8506,12 @@ $(OBJ_TEST_UNIT_fe_null_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.null\te
 $(TARG_TEST_UNIT_fe_simple_MT_UX):	\
 			$(OBJ_TEST_UNIT_fe_simple_MT_UX)\
 			$(LIB_FE_SIMPLE_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
-			$(LIB_SHWILD_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_simple_MT_UX)\
 		$(LIB_FE_SIMPLE_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
-		$(LIB_SHWILD_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8364,14 +8521,12 @@ $(OBJ_TEST_UNIT_fe_simple_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.fe.simple\test
 $(TARG_TEST_UNIT_fe_simple_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_fe_simple_MT_UX_DEBUG)\
 			$(LIB_FE_SIMPLE_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
-			$(LIB_SHWILD_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_fe_simple_MT_UX_DEBUG)\
 		$(LIB_FE_SIMPLE_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
-		$(LIB_SHWILD_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8382,13 +8537,13 @@ $(TARG_TEST_UNIT_ins_int_MT_UX):	\
 			$(OBJ_TEST_UNIT_ins_int_MT_UX)\
 			$(LIB_CORE_MT_UX)\
 			$(LIB_UTIL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_int_MT_UX)\
 		$(LIB_CORE_MT_UX)\
 		$(LIB_UTIL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8399,13 +8554,13 @@ $(TARG_TEST_UNIT_ins_int_MT_UX_DEBUG):	\
 			$(OBJ_TEST_UNIT_ins_int_MT_UX_DEBUG)\
 			$(LIB_CORE_MT_UX_DEBUG)\
 			$(LIB_UTIL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_int_MT_UX_DEBUG)\
 		$(LIB_CORE_MT_UX_DEBUG)\
 		$(LIB_UTIL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 
@@ -8419,7 +8574,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_UX):	\
 			$(LIB_FE_NULL_MT_UX)\
 			$(LIB_BE_NULL_MT_UX)\
 			$(LIB_BEC_NULL_MT_UX)\
-			$(LIB_XTESTS_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_w2m_MT_UX)\
@@ -8428,7 +8583,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_UX):	\
 		$(LIB_FE_NULL_MT_UX)\
 		$(LIB_BE_NULL_MT_UX)\
 		$(LIB_BEC_NULL_MT_UX)\
-		$(LIB_XTESTS_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX)
 
@@ -8442,7 +8597,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_UX_DEBUG):	\
 			$(LIB_FE_NULL_MT_UX_DEBUG)\
 			$(LIB_BE_NULL_MT_UX_DEBUG)\
 			$(LIB_BEC_NULL_MT_UX_DEBUG)\
-			$(LIB_XTESTS_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 			$(PROJ_MAKEFILE_NAME)
 	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
 		$(OBJ_TEST_UNIT_ins_w2m_MT_UX_DEBUG)\
@@ -8451,7 +8606,7 @@ $(TARG_TEST_UNIT_ins_w2m_MT_UX_DEBUG):	\
 		$(LIB_FE_NULL_MT_UX_DEBUG)\
 		$(LIB_BE_NULL_MT_UX_DEBUG)\
 		$(LIB_BEC_NULL_MT_UX_DEBUG)\
-		$(LIB_XTESTS_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
 		$(LIBS_3PTY_TEST_UNIT)\
 		$(TARGET_LIB_MT_UX_DEBUG)
 

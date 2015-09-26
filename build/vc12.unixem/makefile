@@ -1,7 +1,7 @@
 ############################################################################
 # File: 	makefile
 #
-# Purpose:	Makefile for the Pantheios project, for the Visual C++ 9.0 (x86 UNIXem)
+# Purpose:	Makefile for the Pantheios project, for the Visual C++ 12.0 (x86 UNIXem)
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
@@ -30,7 +30,7 @@
 ########################################
 # Project & compiler version
 
-COMP_TAG			=	vc9
+COMP_TAG			=	vc12
 ARCH_TAG            =   
 OS_TAG				=   .unix
 PROJ_TAG			=	pantheios
