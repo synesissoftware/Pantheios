@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{512263be-29e5-4311-bc96-04e5aa378add}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{471529d9-7911-4cb2-b377-4aa18b36e643}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Header Files\STLSoft Header Files">
+      <UniqueIdentifier>{a2709f5b-a277-4c6d-a495-8c666cb58dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\STLSoft Header Files\STLSoft">
+      <UniqueIdentifier>{5d58f548-c20e-42de-a7e6-4a799f50c602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Pantheios Header Files">
+      <UniqueIdentifier>{5a147577-73f1-4d02-80a7-bf3795bbe25b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\frontends\fe.null.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(STLSOFT)\include\stlsoft\internal\cccap\intel.h">
+      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
+    </ClInclude>
+    <ClInclude Include="$(STLSOFT)\include\stlsoft\internal\cccap\msvc.h">
+      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
+    </ClInclude>
+    <ClInclude Include="$(STLSOFT)\include\stlsoft\stlsoft.h">
+      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\frontends\fe.null.WithCallback.h">
+      <Filter>Header Files\Pantheios Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\frontend.h">
+      <Filter>Header Files\Pantheios Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h">
+      <Filter>Header Files\Pantheios Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h">
+      <Filter>Header Files\Pantheios Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

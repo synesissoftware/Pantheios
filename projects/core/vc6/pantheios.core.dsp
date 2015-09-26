@@ -7,16 +7,16 @@
 CFG=pantheios.core - Win32 Release
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "pantheios.core.mak".
-!MESSAGE 
+!MESSAGE
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "pantheios.core.mak" CFG="pantheios.core - Win32 Release"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "pantheios.core - Win32 Release" (based on "Win32 (x86) Static Library")
 !MESSAGE "pantheios.core - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE "pantheios.core - Win32 Release Multithreaded" (based on "Win32 (x86) Static Library")
@@ -41,7 +41,7 @@ CFG=pantheios.core - Win32 Release
 !MESSAGE "pantheios.core - Win32 Debug Multithreaded pseudoUNIX" (based on "Win32 (x86) Static Library")
 !MESSAGE "pantheios.core - Win32 Release Multithreaded DLL pseudoUNIX" (based on "Win32 (x86) Static Library")
 !MESSAGE "pantheios.core - Win32 Debug Multithreaded DLL pseudoUNIX" (based on "Win32 (x86) Static Library")
-!MESSAGE 
+!MESSAGE
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -650,7 +650,7 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"../../../lib/pantheios.1.core.vc6.unix.dll.debug.lib"
 # ADD LIB32 /nologo /out:"../../../lib/pantheios.1.core.vc6.unix.dll.debug.lib"
 
-!ENDIF 
+!ENDIF
 
 # Begin Target
 
@@ -833,7 +833,7 @@ SOURCE=..\..\..\src\inserters\m2w.cpp
 
 # PROP Exclude_From_Build 1
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 # Begin Source File
@@ -924,7 +924,7 @@ SOURCE=..\..\..\src\inserters\w2m.cpp
 
 !ELSEIF  "$(CFG)" == "pantheios.core - Win32 Debug Multithreaded DLL pseudoUNIX"
 
-!ENDIF 
+!ENDIF
 
 # End Source File
 # End Group
@@ -1040,6 +1040,10 @@ SOURCE="$(STLSOFT)\include\stlsoft\meta\is_same_type.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_signed_type.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\util\std\iterator_helper.hpp"
 # End Source File
 # Begin Source File
@@ -1049,6 +1053,10 @@ SOURCE="$(STLSOFT)\include\stlsoft\internal\lead_version.h"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\util\std\library_discriminator.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\util\limit_traits.h"
 # End Source File
 # Begin Source File
 
@@ -1285,6 +1293,10 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\util\memory\memcopy.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\nox.h"
 # End Source File
 # Begin Source File
@@ -1388,14 +1400,10 @@ SOURCE="$(UNIXEM)\include\unixem\unistd.h"
 SOURCE="$(UNIXEM)\include\unixem\unixem.h"
 # End Source File
 # End Group
-# Begin Group "Synesis Software Header Files"
-
-# PROP Default_Filter ""
 # Begin Source File
 
 SOURCE="$(SYNESIS_DEV)\libraries\include\syslog.h"
 # End Source File
-# End Group
 # End Group
 # Begin Group "Script Files"
 
