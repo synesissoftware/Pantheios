@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     21st September 2015
+ * Updated:     24th September 2015
  *
  * Home:        http://www.pantheios.org/
  *
@@ -72,6 +72,7 @@
 #else /* ? STLSoft 1.12+ */
 # include <stlsoft/util/integral_printf_traits.hpp>
 #endif /* STLSoft 1.12+ */
+#include <stlsoft/util/limit_traits.h>
 
 //#include <stlsoft/meta/yesno.hpp> // TODO: Use this to remove "runtime" constant tests in integer::init_()
 
@@ -144,7 +145,15 @@ namespace
     };
 
     template <ss_typename_param_k I>
-    inline size_t sprint_(I const& i, int minWidth, int format, pan_char_t buffer[], size_t cchBuffer)
+    inline
+    size_t
+    sprint_(
+        I const&    i
+    ,   int         minWidth
+    ,   int         format
+    ,   pan_char_t  buffer[]
+    ,   size_t      cchBuffer
+    )
     {
         if( 0 == minWidth &&
             0 == format)
@@ -193,7 +202,7 @@ namespace
             int                 width;
             pan_char_t const*   zeroX;
             pan_char_t const*   leadingMinus;
-            pan_char_t const*   leadingPlus             =   (fmt::showPlus & format) ? PANTHEIOS_LITERAL_STRING("+") : PANTHEIOS_LITERAL_STRING("");
+            pan_char_t const*   leadingPlus;
             pan_char_t const*   zeroPad;
 
             if(minWidth < 0)
@@ -205,6 +214,15 @@ namespace
             {
                 width           =   minWidth;
                 leadingMinus    =   PANTHEIOS_LITERAL_STRING("");
+            }
+
+            if(fmt::showPlus & format)
+            {
+                leadingPlus     =   PANTHEIOS_LITERAL_STRING("+");
+            }
+            else
+            {
+                leadingPlus     =   PANTHEIOS_LITERAL_STRING("");
             }
 
             zeroX   =   ((fmt::hex | fmt::zeroXPrefix) == (format & (fmt::hex | fmt::zeroXPrefix))) ? PANTHEIOS_LITERAL_STRING("0x") : PANTHEIOS_LITERAL_STRING("");
@@ -279,8 +297,8 @@ namespace
                                     ,   STLSOFT_NUM_ELEMENTS(szFmt)
                                     ,   PANTHEIOS_LITERAL_STRING("%s%%%s%s%s%d%s")
                                     ,   zeroX
-                                    ,   leadingPlus
                                     ,   leadingMinus
+                                    ,   leadingPlus
                                     ,   zeroPad
                                     ,   width
                                     ,   ((format & fmt::hex) ? s_hexFmt : s_decFmt) + 1);
@@ -784,6 +802,36 @@ void integer::construct_()
                     }
                 }
             }
+        }
+    }
+
+    if(m_format & fmt::showPlus)
+    {
+        // TODO: sort this in a better fashion in future, perhaps
+        // with STLSoft 1.12+'s i2s functionality
+
+        switch(size)
+        {
+            case    typeIsU8:
+            case    typeIsU16:
+                m_len = sprint_(static_cast< ::stlsoft::sint32_t>(m_value.u32), minWidth, m_format, m_sz, STLSOFT_NUM_ELEMENTS(m_sz));
+                return;
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+            case    typeIsU64:
+                if(m_value.u64 > STLSOFT_LIMIT_TRAITS__SINT64_MAX)
+                {
+                    // Can't handle this at the moment. No + for you!
+                    break;
+                }
+                m_len = sprint_(static_cast< ::stlsoft::sint64_t>(m_value.u64), minWidth, m_format, m_sz, STLSOFT_NUM_ELEMENTS(m_sz));
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+                return;
+            case    typeIsU32:
+                m_len = sprint_(static_cast< ::stlsoft::sint64_t>(m_value.u32), minWidth, m_format, m_sz, STLSOFT_NUM_ELEMENTS(m_sz));
+                return;
+
+            default:
+                break;
         }
     }
 
