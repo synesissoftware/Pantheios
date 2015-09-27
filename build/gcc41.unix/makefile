@@ -5,7 +5,7 @@
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	25th September 2015
+# Updated:	27th September 2015
 #
 ############################################################################
 
@@ -403,9 +403,22 @@ CC_CUSTOM_DEFS		=	$(CUSTOM_DEFS)
 
 CPPC_CUSTOM_DEFS	=	$(CUSTOM_DEFS)
 
-CC_DEFS 			=	$(COMMON_DEFS) $(OS_DEFS) $(CC_CUSTOM_DEFS)
+CC_DEFS =\
+ $(COMMON_DEFS)\
+ $(OS_DEFS)\
+ $(CC_CUSTOM_DEFS)\
+ \
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
+ \
 
-CPPC_DEFS			=	$(COMMON_DEFS) $(OS_DEFS) $(CPPC_CUSTOM_DEFS)
+CPPC_DEFS =\
+ $(COMMON_DEFS)\
+ $(OS_DEFS)\
+ $(CPPC_CUSTOM_DEFS)\
+ \
+ -DSHWILD_QUALITY_NO_USE_XCOVER\
+ \
+
 
 # CC flags
 
