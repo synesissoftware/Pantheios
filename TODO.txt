@@ -14,6 +14,8 @@ Pantheios 1.0 TODOs:
  + new logo
 	+ new website
 	+ integrated blog
+ ~ separate out all utility code into separate headers, impl files, etc.
+ + PANTHEIOS_NOTHROW()
 	~ rewrite Core in pure C (or NoX for VC++ 7.1+ and GCC)
 	~ rewrite Back-ends in pure C (or NoX for VC++ 7.1+ and GCC)
 	~ rewrite Front-ends in pure C (or NoX for VC++ 7.1+ and GCC)
@@ -45,7 +47,6 @@ Pantheios 1.1 TODOs:
 
  + README.TXT
  ~ complete, sensible distribution files
- + new website
  + separate UNIX and Windows distros, with the appropriate
    newline sequence for each
  ~ sort out \file fields
