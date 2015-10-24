@@ -1,7 +1,7 @@
 pantheios - Authors
 ===================
 
-Updated:    13th August 2011
+Updated:    24th October 2015
 
 
 Authors:
@@ -68,6 +68,8 @@ very grateful):
   Johan Franzén - reported unwanted conversion of integral argument to
       CComBSTR / CString instance
   itti83, mitchomtl - VC++10 compilation issues in test program(s);
+  Devharsh Trivedi - reporting introduced defect in 1.0.1 b215
+
 
 Contributions are welcomed.
 
