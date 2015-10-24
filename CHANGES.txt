@@ -1,7 +1,7 @@
 pantheios - Changes
 ===================
 
-Updated:    7th August 2012
+Updated:    27th September 2015
 
 
     ************************************
@@ -13,6 +13,35 @@ Updated:    7th August 2012
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+27th September 2015 - 1.0.1 beta 215
+====================================
+
+Summary:
+--------
+
+ * added interval inserter
+ * added stream_character inserter
+ * Clang-compatibility
+ * VC++ 11-compatibility
+ * VC++ 12-compatibility
+ * VC++ 14-compatibility
+ * showPlus format flag support in pantheios::integer (pan::i)
+ * makefiles customisable to specify non-bundled locations of b64, shwild, xContract, xCover, and xTests libraries (useful to getting head from GitHub)
+
+Details:
+--------
+
+ NOTE: there are too many differences to list - it's  been 3 years! - and also the change of source-control systems has resulted in an inability to derive differences automatically, so the above summary is all you get in this release :-/
+
+Dependencies:
+
+ * STLSoft 1.9.121 or later, available from http://stlsoft.org/
+ * b64 1.4, bundled in this distribution
+ * shwild 0.10.1, bundled in this distribution
+ * xTests 0.18.3, bundled in this distribution
+
 
 
 7th August 2012 - 1.0.1 beta 214

@@ -146,7 +146,6 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID */
 #if defined(WIN32) || \
     defined(WIN64)
-#error
 # ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL
 #  include <pantheios/inserters/variant_bool.hpp>
 # endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL */
