@@ -5,11 +5,11 @@
  *              Elements.
  *
  * Created:     23rd November 2007
- * Updated:     6th August 2012
+ * Updated:     24th October 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     13
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     14
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -136,7 +136,7 @@
  * \note The process identity must not contain any whitespace characters,
  *   otherwise Pantheios library initialisation will fail.
  *
- * \warn If you define the variable as a pointer
+ * \warning If you define the variable as a pointer
  *   (<code>PAN_CHAR_T const*</code>) the behaviour of the link unit is
  *   undefined.
  */
