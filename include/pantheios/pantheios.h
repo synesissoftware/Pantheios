@@ -4,7 +4,7 @@
  * Purpose:     Pantheios Core and Util APIs.
  *
  * Created:     21st June 2005
- * Updated:     24th October 2015
+ * Updated:     25th October 2015
  *
  * Home:        http://www.pantheios.org/
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      49
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       361
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       362
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -753,13 +753,13 @@ PANTHEIOS_CALL(int) pantheios_log_n(
 #endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 );
 
-#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+#ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# include <pantheios/internal/generated/log_functions.h>
+#else /* ? PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 # define PANTHEIOS_INCLUDING_C_API_FUNCTIONS
-#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
-#include "./internal/generated/log_functions.h"    /* pantheios_log_1() (pantheios::log_1()), etc.  */
-#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# include "./internal/generated/log_functions.h"    /* pantheios_log_1() (pantheios::log_1()), etc.  */
 # undef PANTHEIOS_INCLUDING_C_API_FUNCTIONS
-#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+#endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace core */

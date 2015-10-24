@@ -4,11 +4,11 @@
  * Purpose:     Selective format string inserter for Windows status codes.
  *
  * Created:     5th April 2014
- * Updated:     25th August 2014
+ * Updated:     25th October 2015
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2014-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     3
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,22 +92,27 @@ class status_code
     : public PANTHEIOS_NS_QUAL(integer)
 {
 public: // Types
+    /// This type
     typedef status_code                 class_type;
+    /// The parent class type
     typedef PANTHEIOS_NS_QUAL(integer)  parent_class_type;
 
 public: // Construction
+    /// Constructs an instance
     explicit
     status_code(
         DWORD e
     )
         : parent_class_type(e, get_width_(e), get_format_(e))
     {}
+    /// Constructs an instance
     explicit
     status_code(
         int e
     )
         : parent_class_type(e, get_width_(e), get_format_(e))
     {}
+    /// Constructs an instance
     explicit
     status_code(
         LONG e

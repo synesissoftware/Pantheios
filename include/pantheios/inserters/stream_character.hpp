@@ -4,7 +4,7 @@
  * Purpose:     String inserter for characters as read from streams.
  *
  * Created:     3rd July 2011
- * Updated:     25th September 2015
+ * Updated:     25th October 2015
  *
  * Home:        http://www.pantheios.org/
  *
@@ -55,7 +55,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ public:
 public:
     /// Construct from a stream character value
     ///
-    /// \param value The stream character whose value will be represented as
+    /// \param ch The stream character whose value will be represented as
     ///   a string
     explicit stream_character(int ch)
         : m_ch(ch)
