@@ -1,7 +1,7 @@
 pantheios - Changes
 ===================
 
-Updated:    27th September 2015
+Updated:    24th October 2015
 
 
     ************************************
@@ -13,6 +13,13 @@ Updated:    27th September 2015
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+24th October 2015 - 1.0.1 beta 216
+==================================
+
+ * fixed defect introduced in 1.0.1 beta 215
+
 
 
 27th September 2015 - 1.0.1 beta 215

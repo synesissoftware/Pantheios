@@ -1,7 +1,7 @@
 pantheios - TODO lists
 ======================
 
-Updated:    7th August 2012
+Updated:    24th October 2015
 
 
 Summaries:
@@ -24,7 +24,6 @@ Pantheios 1.0 TODOs:
 	+ rolling file
 	+ be.N static filtering
 	~ reimplement integral conversion in terms of new STLSoft 1.10 components
-	+ showPlus format flag support
 	* release by Q4 2012!!!
 
 
@@ -62,7 +61,6 @@ Pantheios 1.1 TODOs:
 Pantheios 1.1 TODOs:
 --------------------
 
- + makefiles for SunStudio (on Solaris and Linux)
  + full complement of Turbo C++ project/solution files
  (possibly, + full complement of XCode project/solution files)
  + be.file buffering
