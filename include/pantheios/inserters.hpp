@@ -4,7 +4,7 @@
  * Purpose:     Main include file for all Pantheios standard inserters.
  *
  * Created:     21st June 2005
- * Updated:     25th September 2015
+ * Updated:     24th October 2015
  *
  * Home:        http://www.pantheios.org/
  *
@@ -55,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MINOR    7
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     234
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 3
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     235
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
