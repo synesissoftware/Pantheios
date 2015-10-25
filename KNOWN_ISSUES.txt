@@ -1,7 +1,7 @@
 pantheios - Known Issues
 ========================
 
-Updated:    24th October 2015
+Updated:    25th October 2015
 
 
 

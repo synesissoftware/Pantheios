@@ -1,7 +1,7 @@
 pantheios - Changes
 ===================
 
-Updated:    24th October 2015
+Updated:    25th October 2015
 
 
     ************************************
@@ -15,7 +15,7 @@ Updated:    24th October 2015
     ************************************
 
 
-24th October 2015 - 1.0.1 beta 216
+25th October 2015 - 1.0.1 beta 216
 ==================================
 
 Summary:
@@ -26,12 +26,22 @@ Summary:
 Details:
 --------
 
+Application Layer:
+
+ ~ include/pantheios/inserters.hpp:
+    ~ fixed #error defect introduced in 1.0.1 beta 215
+
+Makefiles / Project-files:
+
+ * numerous trivial improvements
+
 Dependencies:
 
  * STLSoft 1.9.121 or later, available from http://stlsoft.org/
  * b64 1.4, bundled in this distribution
  * shwild 0.10.1, bundled in this distribution
- * xTests 0.18.3, bundled in this distribution
+ * xCover 0.3.3, bundled in this distribution
+ * xTests 0.18.5, bundled in this distribution
 
 
 
