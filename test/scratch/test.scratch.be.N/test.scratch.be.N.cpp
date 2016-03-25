@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.be.N project.
  *
  * Created: 18th October 2006
- * Updated: 14th July 2024
+ * Updated: 16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,9 +41,13 @@
  * globals
  */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.N");
+extern "C"
+{
 
-PANTHEIOS_EXTERN pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.N");
+
+/* Declared in include:pantheios/frontends/fe.N.h */
+pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
 {
     PANTHEIOS_FE_N_ENTRY2(1,  PANTHEIOS_SEV_NOTICE)         /* Filters out everything below 'notice' */
   , PANTHEIOS_FE_N_ENTRY2(2,  PANTHEIOS_SEV_INFORMATIONAL)  /* Filters out everything below 'informational' */
@@ -53,7 +57,8 @@ PANTHEIOS_EXTERN pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
   , PANTHEIOS_FE_N_ENTRY2(0,  PANTHEIOS_SEV_NOTICE)         /* Terminates the array; sets the default ceiling to 'notice' */
 };
 
-PANTHEIOS_EXTERN pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
+/* Declared in include:pantheios/backends/be.N.h */
+pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
     PANTHEIOS_BE_N_STDFORM_ENTRY(1, pantheios_be_file, 0)
   , PANTHEIOS_BE_N_STDFORM_ENTRY(2, pantheios_be_fprintf, PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28)
@@ -67,6 +72,8 @@ PANTHEIOS_EXTERN pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 
   , PANTHEIOS_BE_N_TERMINATOR_ENTRY
 };
+
+} // extern "C"
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(
