@@ -6,7 +6,7 @@
 # Purpose:      Generates the Pantheios logging API N-param functions
 #
 # Created:      21st June 2005
-# Updated:      20th September 2015
+# Updated:      29th June 2016
 #
 # Author:       Matthew Wilson
 #
@@ -28,62 +28,44 @@ end
 # ##########################################################
 # imports
 
-IMPORTS = {
-	colcon: 'colcon',
+begin require 'synsoft/srcutil'; rescue LoadError; end
 
-	clasp: 'CLASP.Ruby',
-	highline: 'Highline',
-	recls: 'recls.Ruby',
-}
-
-IMPORTS.each do |required_file, friendly_name|
-	begin
-		require required_file.to_s
-	rescue LoadError
-		bold = unbold = msgB = msgA = ''
-		if defined?(Colcon)
-			bold	=	"#{::Colcon::Decorations::Bold}"
-			unbold	=	"#{::Colcon::Decorations::Unbold}"
-			msgB	=	"#{::Colcon::Foreground::Red}"
-			msgA	=	"#{::Colcon::Foreground::Default}"
-		end
-		$stderr.puts "#{bold}#{program_name}#{unbold}: #{msgB}could not load #{bold}#{friendly_name}#{unbold}#{msgA}: #$!"
-		$!.backtrace.each { |l| $stderr.puts "\t#{l}" }
-		$stderr.puts 'search path sequence:'
-		$:.each { |l| $stderr.puts "\t#{l}" }
-		exit 1
-	end
-end
-
-begin
-	require 'synsoft/srcutil'
-rescue LoadError
-end
+require 'clasp'
+begin require 'colcon'; rescue LoadError; end
+require 'recls'
 
 require 'date'
 
 # ##########################################################
 # includes
 
-include Colcon::Decorations
-include Colcon::Foreground
-include Colcon::General
+if defined? Colcon
+
+	include Colcon::Decorations
+	include Colcon::Foreground
+	include Colcon::General
+else
+
+	Bold	=	''
+	Unbold	=	''
+end
 
 # ##########################################################
 # constants
 
 PROGRAM_VER_MAJOR               =   2
 PROGRAM_VER_MINOR               =   0
-PROGRAM_VER_REVISION            =   6
+PROGRAM_VER_REVISION            =   7
 
 # ##########################################################
 # aliases
 
-Option_NumberOfParameters		=	Clasp.Option('--number-of-parameters', alias: '-n', help: "specifies the (maximum) number of parameters")
+Option_NumberOfParameters		=	CLASP.Option('--number-of-parameters', alias: '-n', help: "specifies the (maximum) number of parameters")
 
 Aliases		=	[
-	Clasp::Flag.Help,
-	Clasp::Flag.Version,
+
+	CLASP::Flag.Help,
+	CLASP::Flag.Version,
 
 	# options
 
@@ -102,7 +84,7 @@ end
 
 def usage
 
-	flags = Aliases.select { |f| f.is_a? Clasp::Flag }.map { |a| ([a.name] + a.aliases).join(' | ') }.map { |s| "[ { #{s} } ]" }.join(' ')
+	flags = Aliases.select { |f| f.is_a? CLASP::Flag }.map { |a| ([a.name] + a.aliases).join(' | ') }.map { |s| "[ { #{s} } ]" }.join(' ')
 
 	"USAGE: #{program_name} #{flags} <dir-1> [ ... <dir-N> ]"
 end
@@ -118,6 +100,7 @@ end
 def current_date
 
 	if defined? SrcUtil
+
 			return SrcUtil.currentDate
 	end
 
@@ -127,14 +110,18 @@ end
 def declare_template_parameter_list(f, i)
 
 	if false
+
 		f << 'template< typename T0' << ENDL
 		(1 ... i).each do |j|
+
 			f << "        , typename T#{j}" << ENDL
 		end
 		f << '        >' << ENDL
 	else
+
 		s = 'template<typename T0';
 		(1 ... i).each do |j|
+
 			s = s + ", typename T#{j}"
 		end
 		s = s + '>'
@@ -145,13 +132,17 @@ end
 def declare_function_parameter_list(f, from, to)
 
 	if false
+
 		(from ... to - 1).each do |j| 
+
 			f << "              , T#{j} const    &v#{j}" << ENDL
 		end
 		f << "              , T#{to - 1} const    &v#{to - 1})" << ENDL
 	else
+
 		s = '              '
 		(from ... to - 1).each do |j| 
+
 			s = s + ", T#{j} const& v#{j}"
 		end
 		s = s + ", T#{to - 1} const& v#{to - 1})"
@@ -167,7 +158,7 @@ end
 ############################################################
 # main()
 
-Arguments	=	Clasp::Arguments.new(ARGV, Aliases)
+Arguments	=	CLASP::Arguments.new(ARGV, Aliases)
 
 Flags		=	Arguments.flags
 Options		=	Arguments.options
@@ -176,39 +167,52 @@ Values		=	Arguments.values.to_a
 numParams			=	32
 
 Flags.each do |f|
+
 	case	f.name
-	when Clasp::Flag.Help.name
-		if Clasp::VERSION_MAJOR > 0 || Clasp::VERSION_MINOR > 4
-			Clasp.show_usage Aliases, exit: 0, program_name: program_name, aliases: Aliases, values: '<output-dir>'
+	when CLASP::Flag.Help.name
+
+		if CLASP::VERSION_MAJOR > 0 || CLASP::VERSION_MINOR > 4
+
+			CLASP.show_usage Aliases, exit: 0, program_name: program_name, aliases: Aliases, values: '<output-dir>'
 		else
+
 			puts usage
 			exit 0
 		end
-	when Clasp::Flag.Version.name
+	when CLASP::Flag.Version.name
+
 		puts version
 		exit 0
 	else
+
 		abort "#{program_name}: unrecognised flag '#{Bold}#{f}#{Unbold}'; use --help for usage"
 	end
 end
 
 Options.each do |o|
+
 	case o.name
 	when Option_NumberOfParameters.name
+
 		begin
+
 			numParams = Integer(o.value)
 		rescue ArgumentError
+
 			abort "#{program_name}: number of parameters must be an integer; use --help for usage"
 		end
 	else
+
 		abort "#{program_name}: unrecognised option '#{Bold}#{o.given_name}#{Unbold}'; use --help for usage"
 	end
 end
 
 if ARGV.length > 0
+
 	n = Integer(ARGV[0])
 
 	if n > 0 && n < 256
+
 		numParams = n
 	end
 end
@@ -304,10 +308,13 @@ f << '' << ENDL
 
 
 PARAM_RANGE.each do |i|
+
 		sig 	= 	"PANTHEIOS_CALL(int) pantheios_log_#{i}("
 		if USE_SHORT_ARG_LMARGIN
+
 				len		=	SHORT_ARG_LMARGIN
 		else
+
 				len		=	round_up(sig.length, TAB_SIZE)
 		end
 		len0	=	len - TAB_SIZE
@@ -316,7 +323,7 @@ PARAM_RANGE.each do |i|
 
 		# Documentation comment
 
-		f << "/** Logs #{i} parameter#{plural}, subject to external (not in \\ref group__core_library) severity-level filtering " << ENDL
+		f << "/** Logs #{i} parameter#{plural}, subject to external (not in \\ref group__core_library) severity-level filtering" << ENDL
 		f << " * \\ingroup group__application_layer_interface__generated" << ENDL
 		f << ' */' << ENDL
 
@@ -325,6 +332,7 @@ PARAM_RANGE.each do |i|
 
 		f << "#{sig}pan_sev_t severity" << ENDL
 		(0 ... i). each do |j|
+
 				f << ''.ljust(len0) + ", pan_char_t const* p#{j}, int l#{j} /* -1 => 'strlen(p#{j})' */" << ENDL
 		end
 		f << ');' << ENDL;
@@ -368,10 +376,13 @@ f << '' << ENDL
 f << '' << ENDL
 
 PARAM_RANGE.each do |i|
+
 		sig 	= 	"PANTHEIOS_CALL(int) pantheios_log_#{i}_no_test("
 		if USE_SHORT_ARG_LMARGIN
+
 				len		=	SHORT_ARG_LMARGIN
 		else
+
 				len		=	round_up(sig.length, TAB_SIZE)
 		end
 		len0	=	len - TAB_SIZE
@@ -379,6 +390,7 @@ PARAM_RANGE.each do |i|
 
 		f << "#{sig}pan_sev_t severity" << ENDL
 		(0 ... i - 1). each do |j|
+
 			f << ''.ljust(len0) + ", pan_slice_t const& slice#{j}" << ENDL
 		end
 		f << ''.ljust(len0) + ", pan_slice_t const& slice#{i - 1})" << ENDL
@@ -386,14 +398,18 @@ PARAM_RANGE.each do |i|
 		f << "#{TAB}const pan_slice_t slices[#{i}] =" << ENDL
 		f << "#{TAB}{" << ENDL
 		if INITIALISERS_INLINE
+
 			f << "#{TAB}#{TAB}slice0"
 			(1 ... i). each do |j|
+
 				f << ", slice#{j}"
 			end
 			f << '' << ENDL
 		else
+
 			f << "#{TAB}#{TAB}  slice0" << ENDL
 			(1 ... i). each do |j|
+
 				f << "#{TAB}#{TAB}, slice#{j}" << ENDL
 			end
 		end
@@ -407,16 +423,20 @@ PARAM_RANGE.each do |i|
 end
 
 PARAM_RANGE.each do |i|
+
 		sig 	= 	"PANTHEIOS_CALL(int) pantheios_log_#{i}("
 		if USE_SHORT_ARG_LMARGIN
+
 				len		=	SHORT_ARG_LMARGIN
 		else
+
 				len		=	round_up(sig.length, TAB_SIZE)
 		end
 		len0	=	len - TAB_SIZE
 		sig		=	sig.ljust(len)
 		f << "#{sig}pan_sev_t severity" << ENDL
 		(0 ... i - 1). each do |j|
+
 				f << ''.ljust(len0) + ", pan_char_t const* p#{j}, int l#{j}" << ENDL
 		end
 		f << ''.ljust(len0) + ", pan_char_t const* p#{i - 1}, int l#{i - 1})" << ENDL
@@ -430,18 +450,24 @@ PARAM_RANGE.each do |i|
 		f << "#{TAB}#{TAB}const pan_slice_t slices[#{i}] =" << ENDL
 		f << "#{TAB}#{TAB}{" << ENDL
 		if INITIALISERS_INLINE
+
 			f << "#{TAB}#{TAB}#{TAB}pan_slice_t(l0, p0)"
 		else
+
 			f << "#{TAB}#{TAB}#{TAB}pan_slice_t(l0, p0)" << ENDL
 		end
 		(1 ... i). each do |j|
+
 			if INITIALISERS_INLINE
+
 				f << ", pan_slice_t(l#{j}, p#{j})"
 			else
+
 				f << "#{TAB}#{TAB}#{TAB}, pan_slice_t(l#{j}, p#{j})" << ENDL
 			end
 		end
 		if INITIALISERS_INLINE
+
 			f << '' << ENDL
 		end
 		f << "#{TAB}#{TAB}};" << ENDL
@@ -491,8 +517,10 @@ PARAM_RANGE.each do |i|
 
 		sig 	= 	"PANTHEIOS_CALL(int) pantheios_log_#{i}_no_test("
 		if USE_SHORT_ARG_LMARGIN
+
 				len		=	SHORT_ARG_LMARGIN
 		else
+
 				len		=	round_up(sig.length, TAB_SIZE)
 		end
 		len0	=	len - TAB_SIZE
@@ -505,6 +533,7 @@ PARAM_RANGE.each do |i|
 		f << "#{sig}" << ENDL
 		f << ''.ljust(len0) + '  pan_sev_t severity' << ENDL
 		(0 ... i). each do |j|
+
 			f << ''.ljust(len0) + ", pan_slice_t const& s#{j}" << ENDL
 		end
 		f << ');' << ENDL
@@ -551,8 +580,10 @@ PARAM_RANGE.each do |i|
 
 		sig 	= 	"inline int log_dispatch_#{i}("
 		if USE_SHORT_ARG_LMARGIN
+
 				len		=	SHORT_ARG_LMARGIN
 		else
+
 				len		=	round_up(sig.length, TAB_SIZE)
 		end
 		len0	=	len - TAB_SIZE
@@ -568,20 +599,24 @@ PARAM_RANGE.each do |i|
 
 		f << "#{sig}pan_sev_t severity" << ENDL
 		(0 ... i). each do |j|
+
 			f << ''.ljust(len0) + ", size_t l#{j}, pan_char_t const* p#{j}" << ENDL
 		end
 		f << ')' << ENDL
 		f << '{' << ENDL
 		stm		=	"  return pantheios_log_#{i}_no_test("
 		if USE_SHORT_ARG_LMARGIN
+
 				len		=	SHORT_ARG_LMARGIN
 		else
+
 				len		=	round_up(sig.length, TAB_SIZE)
 		end
 		len0	=	len - TAB_SIZE
 		stm = stm.ljust(len)
 		f << "#{stm}severity" << ENDL
 		(0 ... i).each do |j|
+
 				f << ''.ljust(len0) + ", pan_slice_t(p#{j}, l#{j})" << ENDL
 		end
 		f << ''.ljust(len0) + ');' << ENDL
@@ -626,6 +661,7 @@ f << '' << ENDL
 f << '' << ENDL
 
 PARAM_RANGE.each do |i|
+
 		plural	=	(i > 1) ? 's' : ''
 
 		# Pre-processor limits
@@ -663,6 +699,7 @@ PARAM_RANGE.each do |i|
 		# log_dispatch_N() call
 
 		if USE_USING_DECLARATION
+
 				f << "#{TAB}#{TAB}PANTHEIOS_DECLARE_SHIM_PAIR_();" << ENDL
 				f << ENDL
 		end
@@ -671,6 +708,7 @@ PARAM_RANGE.each do |i|
 		f << "#{TAB}#{TAB}// NOTE: if one of the following lines causes a compile error," << ENDL;
 		f << "#{TAB}#{TAB}// you have passed a fundamental type to the log() statement." << ENDL;
 		(0 ... i).each do |j| 
+
 				f << "#{TAB}#{TAB}PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_(T#{j});" << ENDL;
 		end
 		f << '#endif /* PANTHEIOS_FORCE_ALLOW_FUNDAMENTAL_ARGUMENTS */' << ENDL;
@@ -678,11 +716,15 @@ PARAM_RANGE.each do |i|
 
 		f << "#{TAB}#{TAB}return internal::log_dispatch_#{i}(severity" << ENDL
 		(0 ... i).each do |j| 
+
 			if USE_SHIM_PAIR_MACRO
+
 					f << "#{CALL_LMARGIN}, PANTHEIOS_INVOKE_SHIM_PAIR_(v#{j})" << ENDL
 			elsif USE_USING_DECLARATION
+
 					f << "#{CALL_LMARGIN}, c_str_len_a(v#{j}), c_str_data_a(v#{j})" << ENDL
 			else
+
 					f << "#{CALL_LMARGIN}, ::stlsoft::c_str_len_a(v#{j}), ::stlsoft::c_str_data_a(v#{j})" << ENDL
 			end
 		end
@@ -731,6 +773,7 @@ f << '' << ENDL
 SEVERITY_LEVELS.each do |severityLevel|
 	
 	PARAM_RANGE.each do |i|
+
 		plural	=	(i > 1) ? 's' : ''
 
 		# Pre-processor limits
@@ -749,8 +792,10 @@ SEVERITY_LEVELS.each do |severityLevel|
 		# Function signature
 
 		if i == 1
+
 				f << "inline int log_#{severityLevel}(T0 const& v0)" << ENDL
 		else
+
 			sig 	= 	"inline int log_#{severityLevel}("
 			len		=	((sig.length + 3) / TAB_SIZE) * TAB_SIZE
 			len0	=	len - 2
@@ -776,6 +821,7 @@ SEVERITY_LEVELS.each do |severityLevel|
 		# log_dispatch_N() call
 
 		if USE_USING_DECLARATION
+
 				f << "#{TAB}#{TAB}PANTHEIOS_DECLARE_SHIM_PAIR_();" << ENDL
 				f << ENDL
 		end
@@ -784,6 +830,7 @@ SEVERITY_LEVELS.each do |severityLevel|
 		f << "#{TAB}#{TAB}// NOTE: if one of the following lines causes a compile error," << ENDL;
 		f << "#{TAB}#{TAB}// you have passed a fundamental type to the log_#{severityLevel}() statement." << ENDL;
 		(0 ... i).each do |j| 
+
 				f << "#{TAB}#{TAB}PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_(T#{j});" << ENDL;
 		end
 		f << '#endif /* PANTHEIOS_FORCE_ALLOW_FUNDAMENTAL_ARGUMENTS */' << ENDL;
@@ -792,11 +839,16 @@ SEVERITY_LEVELS.each do |severityLevel|
 		f << "#{TAB}#{TAB}return internal::log_dispatch_#{i}(PANTHEIOS_SEV_#{severityLevel}" << ENDL
 
 		(0 ... i).each do |j| 
+
 			if USE_SHIM_PAIR_MACRO
+
 					f << "#{CALL_LMARGIN}, PANTHEIOS_INVOKE_SHIM_PAIR_(v#{j})" << ENDL
 			elsif USE_USING_DECLARATION
+
+
 					f << "#{CALL_LMARGIN}, c_str_len_a(v#{j}), c_str_data_a(v#{j})" << ENDL
 			else
+
 					f << "#{CALL_LMARGIN}, ::stlsoft::c_str_len_a(v#{j}), ::stlsoft::c_str_data_a(v#{j})" << ENDL
 			end
 		end
