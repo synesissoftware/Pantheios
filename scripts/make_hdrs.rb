@@ -1,4 +1,4 @@
-#! /usr/bin/ruby
+#! /usr/bin/env ruby
 
 # ######################################################################### #
 # File:         make_hdrs.rb
@@ -16,22 +16,11 @@
 
 
 # ##########################################################
-# functions - 1
-
-def program_name
-
-	bn = File.basename(__FILE__)
-
-    bn =~ /\.rb$/ ? "#$`(#$&)" : bn
-end
-
-# ##########################################################
 # imports
 
 begin require 'synsoft/srcutil'; rescue LoadError; end
 
-require 'clasp'
-begin require 'colcon'; rescue LoadError; end
+require 'libclimate'
 require 'recls'
 
 require 'date'
@@ -39,60 +28,12 @@ require 'date'
 # ##########################################################
 # includes
 
-if defined? Colcon
-
-	include Colcon::Decorations
-	include Colcon::Foreground
-	include Colcon::General
-else
-
-	Bold	=	''
-	Unbold	=	''
-end
-
 # ##########################################################
 # constants
 
 PROGRAM_VER_MAJOR               =   2
 PROGRAM_VER_MINOR               =   0
-PROGRAM_VER_REVISION            =   7
-
-# ##########################################################
-# aliases
-
-Option_NumberOfParameters		=	CLASP.Option('--number-of-parameters', alias: '-n', help: "specifies the (maximum) number of parameters")
-
-Aliases		=	[
-
-	CLASP::Flag.Help,
-	CLASP::Flag.Version,
-
-	# options
-
-	Option_NumberOfParameters,
-]
-
-# ##########################################################
-# functions - 2
-
-alias :old_program_name :program_name
-
-def program_name
-
-	"#{Bold}#{old_program_name}#{Unbold}"
-end
-
-def usage
-
-	flags = Aliases.select { |f| f.is_a? CLASP::Flag }.map { |a| ([a.name] + a.aliases).join(' | ') }.map { |s| "[ { #{s} } ]" }.join(' ')
-
-	"USAGE: #{program_name} #{flags} <dir-1> [ ... <dir-N> ]"
-end
-
-def version
-
-	"#{program_name} #{PROGRAM_VER_MAJOR}.#{PROGRAM_VER_MINOR}.#{PROGRAM_VER_REVISION}"
-end
+PROGRAM_VER_REVISION            =   8
 
 # ##########################################################
 # functions
@@ -156,56 +97,40 @@ def round_up(n, granularity)
 end
 
 ############################################################
-# main()
+# command-line processing
 
-Arguments	=	CLASP::Arguments.new(ARGV, Aliases)
+options		=	{}
+numParams	=	32
 
-Flags		=	Arguments.flags
-Options		=	Arguments.options
-Values		=	Arguments.values.to_a
+climate = LibCLImate::Climate.new do |climate|
 
-numParams			=	32
-
-Flags.each do |f|
-
-	case	f.name
-	when CLASP::Flag.Help.name
-
-		if CLASP::VERSION_MAJOR > 0 || CLASP::VERSION_MINOR > 4
-
-			CLASP.show_usage Aliases, exit: 0, program_name: program_name, aliases: Aliases, values: '<output-dir>'
-		else
-
-			puts usage
-			exit 0
-		end
-	when CLASP::Flag.Version.name
-
-		puts version
-		exit 0
-	else
-
-		abort "#{program_name}: unrecognised flag '#{Bold}#{f}#{Unbold}'; use --help for usage"
-	end
-end
-
-Options.each do |o|
-
-	case o.name
-	when Option_NumberOfParameters.name
+	climate.add_option('--number-of-parameters', alias: '-n', help: 'specifies the (maximum) number of parameters') do |o|
 
 		begin
 
-			numParams = Integer(o.value)
+			numParams = Integer(o.value, 10)
 		rescue ArgumentError
 
-			abort "#{program_name}: number of parameters must be an integer; use --help for usage"
+			climate.abort "invalid number '#{o.value}'; use --help for usage"
 		end
-	else
+	end
 
-		abort "#{program_name}: unrecognised option '#{Bold}#{o.given_name}#{Unbold}'; use --help for usage"
+	climate.info_lines = [
+
+		'Pantheios N-ary function template generator script',
+		'Copyright Synesis Software Pty Ltd (c) 2005-2016',
+		:version,
+		'',
+	]
+	climate.version = [ PROGRAM_VER_MAJOR, PROGRAM_VER_MINOR, PROGRAM_VER_REVISION ]
+
+	trap 'SIGINT' do
+
+		climate.abort 'processing cancelled ...', exit: 130
 	end
 end
+
+r = climate.run ARGV
 
 if ARGV.length > 0
 
@@ -217,12 +142,14 @@ if ARGV.length > 0
 	end
 end
 
+############################################################
+# main()
 
-NUM_PARAMS			=	numParams
-PARAM_RANGE			=	(1 .. NUM_PARAMS)
-TAB_SIZE			=	1 #4
-TAB					=	' ' * TAB_SIZE
-SHORT_ARG_LMARGIN	=	2
+NUM_PARAMS				=	numParams
+PARAM_RANGE				=	(1 .. NUM_PARAMS)
+TAB_SIZE				=	1 #4
+TAB						=	' ' * TAB_SIZE
+SHORT_ARG_LMARGIN		=	2
 
 USE_USING_DECLARATION	=	true
 USE_SHIM_PAIR_MACRO		=	true
