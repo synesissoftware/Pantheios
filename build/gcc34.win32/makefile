@@ -5,7 +5,7 @@
 #			compiler, on Win32
 #
 # Created:	15th February 2005
-# Updated:	29th September 2015
+# Updated:	28th June 2016
 #
 ############################################################################
 
@@ -737,18 +737,23 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\xp.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\internal\initialiser.hpp\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\stock_levels.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\lean.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\nox.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\safestr.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\shim_declarations.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\slice.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\stock_levels.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\threading.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\winlean.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\quality\contract.h\
  \
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_dispatch_functions.h\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.c\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_dispatch_functions.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_dispatch_functions.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.inl\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_functions.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_functions.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_sev_functions.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\severity\levels.hpp\
  \
@@ -768,6 +773,7 @@ CORE_HEADERS=\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\string\snprintf.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\string\strdup.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\util\string\strnlen.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\system\hostname.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\system\processid.h\
@@ -1608,6 +1614,10 @@ TARG_TEST_UNIT_be_N_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(
 TARG_TEST_UNIT_be_N_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_be_N_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_be_N_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_be_N_filt_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_N_filt_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_N_filt_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_be_N_filt_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_fe_all_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_fe_all_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_fe_all_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).debug.exe
@@ -4012,6 +4022,10 @@ OBJ_TEST_UNIT_be_N_MT_D			=	.\test.unit.be.N.mt.debug.obj
 OBJ_TEST_UNIT_be_N_MT_R			=	.\test.unit.be.N.mt.obj
 OBJ_TEST_UNIT_be_N_ST_D			=	.\test.unit.be.N.debug.obj
 OBJ_TEST_UNIT_be_N_ST_R			=	.\test.unit.be.N.obj
+OBJ_TEST_UNIT_be_N_filt_MT_D		=	.\test.unit.be.N.filtering.mt.debug.obj
+OBJ_TEST_UNIT_be_N_filt_MT_R		=	.\test.unit.be.N.filtering.mt.obj
+OBJ_TEST_UNIT_be_N_filt_ST_D		=	.\test.unit.be.N.filtering.debug.obj
+OBJ_TEST_UNIT_be_N_filt_ST_R		=	.\test.unit.be.N.filtering.obj
 OBJ_TEST_UNIT_fe_all_MT_D		=	.\test.unit.fe.all.mt.debug.obj
 OBJ_TEST_UNIT_fe_all_MT_R		=	.\test.unit.fe.all.mt.obj
 OBJ_TEST_UNIT_fe_all_ST_D		=	.\test.unit.fe.all.debug.obj
@@ -4730,6 +4744,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_MT_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_D)\
  $(OBJ_TEST_UNIT_be_N_MT_D)\
+ $(OBJ_TEST_UNIT_be_N_filt_MT_D)\
  \
  $(OBJ_TEST_UNIT_fe_all_MT_D)\
  $(OBJ_TEST_UNIT_fe_fail_MT_D)\
@@ -4754,6 +4769,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_MT_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_R)\
  $(OBJ_TEST_UNIT_be_N_MT_R)\
+ $(OBJ_TEST_UNIT_be_N_filt_MT_R)\
  \
  $(OBJ_TEST_UNIT_fe_all_MT_R)\
  $(OBJ_TEST_UNIT_fe_fail_MT_R)\
@@ -4778,6 +4794,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_ST_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_D)\
  $(OBJ_TEST_UNIT_be_N_ST_D)\
+ $(OBJ_TEST_UNIT_be_N_filt_ST_D)\
  \
  $(OBJ_TEST_UNIT_fe_all_ST_D)\
  $(OBJ_TEST_UNIT_fe_fail_ST_D)\
@@ -4802,6 +4819,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_ST_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_R)\
  $(OBJ_TEST_UNIT_be_N_ST_R)\
+ $(OBJ_TEST_UNIT_be_N_filt_ST_R)\
  \
  $(OBJ_TEST_UNIT_fe_all_ST_R)\
  $(OBJ_TEST_UNIT_fe_fail_ST_R)\
@@ -5635,6 +5653,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_MT_D)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_D)\
  $(TARG_TEST_UNIT_be_N_MT_D)\
+ $(TARG_TEST_UNIT_be_N_filt_MT_D)\
  \
  $(TARG_TEST_UNIT_fe_all_MT_D)\
  $(TARG_TEST_UNIT_fe_fail_MT_D)\
@@ -5659,6 +5678,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_MT_R)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_R)\
  $(TARG_TEST_UNIT_be_N_MT_R)\
+ $(TARG_TEST_UNIT_be_N_filt_MT_R)\
  \
  $(TARG_TEST_UNIT_fe_all_MT_R)\
  $(TARG_TEST_UNIT_fe_fail_MT_R)\
@@ -5683,6 +5703,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_ST_D)\
  $(TARG_TEST_UNIT_be_lrsplit_ST_D)\
  $(TARG_TEST_UNIT_be_N_ST_D)\
+ $(TARG_TEST_UNIT_be_N_filt_ST_D)\
  \
  $(TARG_TEST_UNIT_fe_all_ST_D)\
  $(TARG_TEST_UNIT_fe_fail_ST_D)\
@@ -5707,6 +5728,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_ST_R)\
  $(TARG_TEST_UNIT_be_lrsplit_ST_R)\
  $(TARG_TEST_UNIT_be_N_ST_R)\
+ $(TARG_TEST_UNIT_be_N_filt_ST_R)\
  \
  $(TARG_TEST_UNIT_fe_all_ST_R)\
  $(TARG_TEST_UNIT_fe_fail_ST_R)\
@@ -6161,6 +6183,10 @@ test.unit_:
 	$(TARG_TEST_UNIT_be_N_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_be_N_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_be_N_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_fe_all_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_fe_all_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_fe_all_ST_D) --verbosity=$(TEST_VERBOSITY)
@@ -17158,6 +17184,90 @@ $(TARG_TEST_UNIT_be_N_ST_R):	\
 
 $(OBJ_TEST_UNIT_be_N_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N\test.unit.be.N.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_TEST_UNIT_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N\test.unit.be.N.c
+
+$(TARG_TEST_UNIT_be_N_filt_MT_D):	\
+			$(OBJ_TEST_UNIT_be_N_filt_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIB_CORE_MT_D)\
+			$(LIB_BE_N_MT_D)\
+			$(LIB_FE_ALL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -o $@ \
+		$(OBJ_TEST_UNIT_be_N_filt_MT_D)\
+		$(LIB_BE_N_MT_D)\
+		$(LIB_FE_ALL_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_UNIT_be_N_filt_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_MT_D) $(CC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_MT_R):	\
+			$(OBJ_TEST_UNIT_be_N_filt_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIB_CORE_MT_R)\
+			$(LIB_BE_N_MT_R)\
+			$(LIB_FE_ALL_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -o $@ \
+		$(OBJ_TEST_UNIT_be_N_filt_MT_R)\
+		$(LIB_BE_N_MT_R)\
+		$(LIB_FE_ALL_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_UNIT_be_N_filt_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_MT_R) $(CC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_ST_D):	\
+			$(OBJ_TEST_UNIT_be_N_filt_ST_D)\
+			$(LIB_UTIL_ST_D)\
+			$(LIB_CORE_ST_D)\
+			$(LIB_BE_N_ST_D)\
+			$(LIB_FE_ALL_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -o $@ \
+		$(OBJ_TEST_UNIT_be_N_filt_ST_D)\
+		$(LIB_BE_N_ST_D)\
+		$(LIB_FE_ALL_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIB_UTIL_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_UNIT_be_N_filt_ST_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_ST_D) $(CC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_ST_R):	\
+			$(OBJ_TEST_UNIT_be_N_filt_ST_R)\
+			$(LIB_UTIL_ST_R)\
+			$(LIB_CORE_ST_R)\
+			$(LIB_BE_N_ST_R)\
+			$(LIB_FE_ALL_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -o $@ \
+		$(OBJ_TEST_UNIT_be_N_filt_ST_R)\
+		$(LIB_BE_N_ST_R)\
+		$(LIB_FE_ALL_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIB_UTIL_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_UNIT_be_N_filt_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
 
 $(TARG_TEST_UNIT_fe_all_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_all_MT_D)\

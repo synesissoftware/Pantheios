@@ -5,7 +5,7 @@
 #			compiler, on Win32
 #
 # Created:	15th February 2005
-# Updated:	29th September 2015
+# Updated:	28th June 2016
 #
 ############################################################################
 
@@ -1465,18 +1465,23 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\xp.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\internal\initialiser.hpp\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\stock_levels.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\lean.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\nox.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\safestr.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\shim_declarations.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\slice.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\stock_levels.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\threading.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\winlean.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\quality\contract.h\
  \
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_dispatch_functions.h\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.c\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_dispatch_functions.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_dispatch_functions.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.inl\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_functions.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_functions.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_sev_functions.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\severity\levels.hpp\
  \
@@ -1496,6 +1501,7 @@ CORE_HEADERS=\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\string\snprintf.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\string\strdup.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\util\string\strnlen.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\system\hostname.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\system\processid.h\
@@ -5412,6 +5418,24 @@ TARG_TEST_UNIT_be_N_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N
 TARG_TEST_UNIT_be_N_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_be_N_W_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_be_N_W_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).widestring.exe
+TARG_TEST_UNIT_be_N_filt_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_N_filt_MT_D_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.nox.debug.exe
+TARG_TEST_UNIT_be_N_filt_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_UNIT_be_N_filt_DLL_D_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).dll.nox.debug.exe
+TARG_TEST_UNIT_be_N_filt_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_UNIT_be_N_filt_DLL_R_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).dll.nox.exe
+TARG_TEST_UNIT_be_N_filt_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_N_filt_MT_R_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.nox.exe
+TARG_TEST_UNIT_be_N_filt_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_be_N_filt_ST_D_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).nox.debug.exe
+TARG_TEST_UNIT_be_N_filt_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_be_N_filt_ST_R_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).nox.exe
+TARG_TEST_UNIT_be_N_filt_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_UNIT_be_N_filt_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_UNIT_be_N_filt_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_UNIT_be_N_filt_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_UNIT_be_N_filt_W_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.debug.exe
+TARG_TEST_UNIT_be_N_filt_W_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_UNIT_fe_all_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_fe_all_MT_D_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.nox.debug.exe
 TARG_TEST_UNIT_fe_all_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).dll.debug.exe
@@ -16648,6 +16672,24 @@ OBJ_TEST_UNIT_be_N_W_DLL_R			=	.\test.unit.be.N.ws.dll.obj
 OBJ_TEST_UNIT_be_N_W_MT_R			=	.\test.unit.be.N.ws.mt.obj
 OBJ_TEST_UNIT_be_N_W_ST_D			=	.\test.unit.be.N.ws.debug.obj
 OBJ_TEST_UNIT_be_N_W_ST_R			=	.\test.unit.be.N.ws.obj
+OBJ_TEST_UNIT_be_N_filt_MT_D		=	.\test.unit.be.N.filtering.mt.debug.obj
+OBJ_TEST_UNIT_be_N_filt_MT_D_NOX		=	.\test.unit.be.N.filtering.mt.nox.debug.obj
+OBJ_TEST_UNIT_be_N_filt_DLL_D		=	.\test.unit.be.N.filtering.dll.debug.obj
+OBJ_TEST_UNIT_be_N_filt_DLL_D_NOX		=	.\test.unit.be.N.filtering.dll.nox.debug.obj
+OBJ_TEST_UNIT_be_N_filt_DLL_R		=	.\test.unit.be.N.filtering.dll.obj
+OBJ_TEST_UNIT_be_N_filt_DLL_R_NOX		=	.\test.unit.be.N.filtering.dll.nox.obj
+OBJ_TEST_UNIT_be_N_filt_MT_R		=	.\test.unit.be.N.filtering.mt.obj
+OBJ_TEST_UNIT_be_N_filt_MT_R_NOX		=	.\test.unit.be.N.filtering.mt.nox.obj
+OBJ_TEST_UNIT_be_N_filt_ST_D		=	.\test.unit.be.N.filtering.debug.obj
+OBJ_TEST_UNIT_be_N_filt_ST_D_NOX		=	.\test.unit.be.N.filtering.nox.debug.obj
+OBJ_TEST_UNIT_be_N_filt_ST_R		=	.\test.unit.be.N.filtering.obj
+OBJ_TEST_UNIT_be_N_filt_ST_R_NOX		=	.\test.unit.be.N.filtering.nox.obj
+OBJ_TEST_UNIT_be_N_filt_W_MT_D		=	.\test.unit.be.N.filtering.ws.mt.debug.obj
+OBJ_TEST_UNIT_be_N_filt_W_DLL_D		=	.\test.unit.be.N.filtering.ws.dll.debug.obj
+OBJ_TEST_UNIT_be_N_filt_W_DLL_R		=	.\test.unit.be.N.filtering.ws.dll.obj
+OBJ_TEST_UNIT_be_N_filt_W_MT_R		=	.\test.unit.be.N.filtering.ws.mt.obj
+OBJ_TEST_UNIT_be_N_filt_W_ST_D		=	.\test.unit.be.N.filtering.ws.debug.obj
+OBJ_TEST_UNIT_be_N_filt_W_ST_R		=	.\test.unit.be.N.filtering.ws.obj
 OBJ_TEST_UNIT_fe_all_MT_D		=	.\test.unit.fe.all.mt.debug.obj
 OBJ_TEST_UNIT_fe_all_MT_D_NOX		=	.\test.unit.fe.all.mt.nox.debug.obj
 OBJ_TEST_UNIT_fe_all_DLL_D		=	.\test.unit.fe.all.dll.debug.obj
@@ -19256,6 +19298,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_MT_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_D)\
  $(OBJ_TEST_UNIT_be_N_MT_D)\
+ $(OBJ_TEST_UNIT_be_N_filt_MT_D)\
  \
  $(OBJ_TEST_UNIT_fe_all_MT_D)\
  $(OBJ_TEST_UNIT_fe_fail_MT_D)\
@@ -19280,6 +19323,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_MT_D_NOX)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_D_NOX)\
  $(OBJ_TEST_UNIT_be_N_MT_D_NOX)\
+ $(OBJ_TEST_UNIT_be_N_filt_MT_D_NOX)\
  \
  $(OBJ_TEST_UNIT_fe_all_MT_D_NOX)\
  $(OBJ_TEST_UNIT_fe_fail_MT_D_NOX)\
@@ -19303,6 +19347,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_DLL_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_DLL_D)\
  $(OBJ_TEST_UNIT_be_N_DLL_D)\
+ $(OBJ_TEST_UNIT_be_N_filt_DLL_D)\
  \
  $(OBJ_TEST_UNIT_fe_all_DLL_D)\
  $(OBJ_TEST_UNIT_fe_fail_DLL_D)\
@@ -19327,6 +19372,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_DLL_D_NOX)\
  $(OBJ_TEST_UNIT_be_lrsplit_DLL_D_NOX)\
  $(OBJ_TEST_UNIT_be_N_DLL_D_NOX)\
+ $(OBJ_TEST_UNIT_be_N_filt_DLL_D_NOX)\
  \
  $(OBJ_TEST_UNIT_fe_all_DLL_D_NOX)\
  $(OBJ_TEST_UNIT_fe_fail_DLL_D_NOX)\
@@ -19350,6 +19396,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_DLL_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_DLL_R)\
  $(OBJ_TEST_UNIT_be_N_DLL_R)\
+ $(OBJ_TEST_UNIT_be_N_filt_DLL_R)\
  \
  $(OBJ_TEST_UNIT_fe_all_DLL_R)\
  $(OBJ_TEST_UNIT_fe_fail_DLL_R)\
@@ -19374,6 +19421,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_DLL_R_NOX)\
  $(OBJ_TEST_UNIT_be_lrsplit_DLL_R_NOX)\
  $(OBJ_TEST_UNIT_be_N_DLL_R_NOX)\
+ $(OBJ_TEST_UNIT_be_N_filt_DLL_R_NOX)\
  \
  $(OBJ_TEST_UNIT_fe_all_DLL_R_NOX)\
  $(OBJ_TEST_UNIT_fe_fail_DLL_R_NOX)\
@@ -19397,6 +19445,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_MT_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_R)\
  $(OBJ_TEST_UNIT_be_N_MT_R)\
+ $(OBJ_TEST_UNIT_be_N_filt_MT_R)\
  \
  $(OBJ_TEST_UNIT_fe_all_MT_R)\
  $(OBJ_TEST_UNIT_fe_fail_MT_R)\
@@ -19421,6 +19470,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_MT_R_NOX)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_R_NOX)\
  $(OBJ_TEST_UNIT_be_N_MT_R_NOX)\
+ $(OBJ_TEST_UNIT_be_N_filt_MT_R_NOX)\
  \
  $(OBJ_TEST_UNIT_fe_all_MT_R_NOX)\
  $(OBJ_TEST_UNIT_fe_fail_MT_R_NOX)\
@@ -19444,6 +19494,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_ST_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_D)\
  $(OBJ_TEST_UNIT_be_N_ST_D)\
+ $(OBJ_TEST_UNIT_be_N_filt_ST_D)\
  \
  $(OBJ_TEST_UNIT_fe_all_ST_D)\
  $(OBJ_TEST_UNIT_fe_fail_ST_D)\
@@ -19468,6 +19519,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_ST_D_NOX)\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_D_NOX)\
  $(OBJ_TEST_UNIT_be_N_ST_D_NOX)\
+ $(OBJ_TEST_UNIT_be_N_filt_ST_D_NOX)\
  \
  $(OBJ_TEST_UNIT_fe_all_ST_D_NOX)\
  $(OBJ_TEST_UNIT_fe_fail_ST_D_NOX)\
@@ -19491,6 +19543,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_ST_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_R)\
  $(OBJ_TEST_UNIT_be_N_ST_R)\
+ $(OBJ_TEST_UNIT_be_N_filt_ST_R)\
  \
  $(OBJ_TEST_UNIT_fe_all_ST_R)\
  $(OBJ_TEST_UNIT_fe_fail_ST_R)\
@@ -19515,6 +19568,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_ST_R_NOX)\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_R_NOX)\
  $(OBJ_TEST_UNIT_be_N_ST_R_NOX)\
+ $(OBJ_TEST_UNIT_be_N_filt_ST_R_NOX)\
  \
  $(OBJ_TEST_UNIT_fe_all_ST_R_NOX)\
  $(OBJ_TEST_UNIT_fe_fail_ST_R_NOX)\
@@ -19538,6 +19592,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_W_MT_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_W_MT_D)\
  $(OBJ_TEST_UNIT_be_N_W_MT_D)\
+ $(OBJ_TEST_UNIT_be_N_filt_W_MT_D)\
  \
  $(OBJ_TEST_UNIT_fe_all_W_MT_D)\
  $(OBJ_TEST_UNIT_fe_fail_W_MT_D)\
@@ -19562,6 +19617,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_W_DLL_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_W_DLL_D)\
  $(OBJ_TEST_UNIT_be_N_W_DLL_D)\
+ $(OBJ_TEST_UNIT_be_N_filt_W_DLL_D)\
  \
  $(OBJ_TEST_UNIT_fe_all_W_DLL_D)\
  $(OBJ_TEST_UNIT_fe_fail_W_DLL_D)\
@@ -19586,6 +19642,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_W_DLL_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_W_DLL_R)\
  $(OBJ_TEST_UNIT_be_N_W_DLL_R)\
+ $(OBJ_TEST_UNIT_be_N_filt_W_DLL_R)\
  \
  $(OBJ_TEST_UNIT_fe_all_W_DLL_R)\
  $(OBJ_TEST_UNIT_fe_fail_W_DLL_R)\
@@ -19610,6 +19667,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_W_MT_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_W_MT_R)\
  $(OBJ_TEST_UNIT_be_N_W_MT_R)\
+ $(OBJ_TEST_UNIT_be_N_filt_W_MT_R)\
  \
  $(OBJ_TEST_UNIT_fe_all_W_MT_R)\
  $(OBJ_TEST_UNIT_fe_fail_W_MT_R)\
@@ -19634,6 +19692,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_W_ST_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_W_ST_D)\
  $(OBJ_TEST_UNIT_be_N_W_ST_D)\
+ $(OBJ_TEST_UNIT_be_N_filt_W_ST_D)\
  \
  $(OBJ_TEST_UNIT_fe_all_W_ST_D)\
  $(OBJ_TEST_UNIT_fe_fail_W_ST_D)\
@@ -19658,6 +19717,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_W_ST_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_W_ST_R)\
  $(OBJ_TEST_UNIT_be_N_W_ST_R)\
+ $(OBJ_TEST_UNIT_be_N_filt_W_ST_R)\
  \
  $(OBJ_TEST_UNIT_fe_all_W_ST_R)\
  $(OBJ_TEST_UNIT_fe_fail_W_ST_R)\
@@ -22675,6 +22735,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_MT_D)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_D)\
  $(TARG_TEST_UNIT_be_N_MT_D)\
+ $(TARG_TEST_UNIT_be_N_filt_MT_D)\
  \
  $(TARG_TEST_UNIT_fe_all_MT_D)\
  $(TARG_TEST_UNIT_fe_fail_MT_D)\
@@ -22699,6 +22760,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_MT_D_NOX)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_D_NOX)\
  $(TARG_TEST_UNIT_be_N_MT_D_NOX)\
+ $(TARG_TEST_UNIT_be_N_filt_MT_D_NOX)\
  \
  $(TARG_TEST_UNIT_fe_all_MT_D_NOX)\
  $(TARG_TEST_UNIT_fe_fail_MT_D_NOX)\
@@ -22722,6 +22784,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_DLL_D)\
  $(TARG_TEST_UNIT_be_lrsplit_DLL_D)\
  $(TARG_TEST_UNIT_be_N_DLL_D)\
+ $(TARG_TEST_UNIT_be_N_filt_DLL_D)\
  \
  $(TARG_TEST_UNIT_fe_all_DLL_D)\
  $(TARG_TEST_UNIT_fe_fail_DLL_D)\
@@ -22746,6 +22809,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_DLL_D_NOX)\
  $(TARG_TEST_UNIT_be_lrsplit_DLL_D_NOX)\
  $(TARG_TEST_UNIT_be_N_DLL_D_NOX)\
+ $(TARG_TEST_UNIT_be_N_filt_DLL_D_NOX)\
  \
  $(TARG_TEST_UNIT_fe_all_DLL_D_NOX)\
  $(TARG_TEST_UNIT_fe_fail_DLL_D_NOX)\
@@ -22769,6 +22833,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_DLL_R)\
  $(TARG_TEST_UNIT_be_lrsplit_DLL_R)\
  $(TARG_TEST_UNIT_be_N_DLL_R)\
+ $(TARG_TEST_UNIT_be_N_filt_DLL_R)\
  \
  $(TARG_TEST_UNIT_fe_all_DLL_R)\
  $(TARG_TEST_UNIT_fe_fail_DLL_R)\
@@ -22793,6 +22858,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_DLL_R_NOX)\
  $(TARG_TEST_UNIT_be_lrsplit_DLL_R_NOX)\
  $(TARG_TEST_UNIT_be_N_DLL_R_NOX)\
+ $(TARG_TEST_UNIT_be_N_filt_DLL_R_NOX)\
  \
  $(TARG_TEST_UNIT_fe_all_DLL_R_NOX)\
  $(TARG_TEST_UNIT_fe_fail_DLL_R_NOX)\
@@ -22816,6 +22882,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_MT_R)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_R)\
  $(TARG_TEST_UNIT_be_N_MT_R)\
+ $(TARG_TEST_UNIT_be_N_filt_MT_R)\
  \
  $(TARG_TEST_UNIT_fe_all_MT_R)\
  $(TARG_TEST_UNIT_fe_fail_MT_R)\
@@ -22840,6 +22907,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_MT_R_NOX)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_R_NOX)\
  $(TARG_TEST_UNIT_be_N_MT_R_NOX)\
+ $(TARG_TEST_UNIT_be_N_filt_MT_R_NOX)\
  \
  $(TARG_TEST_UNIT_fe_all_MT_R_NOX)\
  $(TARG_TEST_UNIT_fe_fail_MT_R_NOX)\
@@ -22863,6 +22931,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_ST_D)\
  $(TARG_TEST_UNIT_be_lrsplit_ST_D)\
  $(TARG_TEST_UNIT_be_N_ST_D)\
+ $(TARG_TEST_UNIT_be_N_filt_ST_D)\
  \
  $(TARG_TEST_UNIT_fe_all_ST_D)\
  $(TARG_TEST_UNIT_fe_fail_ST_D)\
@@ -22887,6 +22956,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_ST_D_NOX)\
  $(TARG_TEST_UNIT_be_lrsplit_ST_D_NOX)\
  $(TARG_TEST_UNIT_be_N_ST_D_NOX)\
+ $(TARG_TEST_UNIT_be_N_filt_ST_D_NOX)\
  \
  $(TARG_TEST_UNIT_fe_all_ST_D_NOX)\
  $(TARG_TEST_UNIT_fe_fail_ST_D_NOX)\
@@ -22910,6 +22980,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_ST_R)\
  $(TARG_TEST_UNIT_be_lrsplit_ST_R)\
  $(TARG_TEST_UNIT_be_N_ST_R)\
+ $(TARG_TEST_UNIT_be_N_filt_ST_R)\
  \
  $(TARG_TEST_UNIT_fe_all_ST_R)\
  $(TARG_TEST_UNIT_fe_fail_ST_R)\
@@ -22934,6 +23005,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_ST_R_NOX)\
  $(TARG_TEST_UNIT_be_lrsplit_ST_R_NOX)\
  $(TARG_TEST_UNIT_be_N_ST_R_NOX)\
+ $(TARG_TEST_UNIT_be_N_filt_ST_R_NOX)\
  \
  $(TARG_TEST_UNIT_fe_all_ST_R_NOX)\
  $(TARG_TEST_UNIT_fe_fail_ST_R_NOX)\
@@ -22957,6 +23029,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_W_MT_D)\
  $(TARG_TEST_UNIT_be_lrsplit_W_MT_D)\
  $(TARG_TEST_UNIT_be_N_W_MT_D)\
+ $(TARG_TEST_UNIT_be_N_filt_W_MT_D)\
  \
  $(TARG_TEST_UNIT_fe_all_W_MT_D)\
  $(TARG_TEST_UNIT_fe_fail_W_MT_D)\
@@ -22981,6 +23054,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_W_DLL_D)\
  $(TARG_TEST_UNIT_be_lrsplit_W_DLL_D)\
  $(TARG_TEST_UNIT_be_N_W_DLL_D)\
+ $(TARG_TEST_UNIT_be_N_filt_W_DLL_D)\
  \
  $(TARG_TEST_UNIT_fe_all_W_DLL_D)\
  $(TARG_TEST_UNIT_fe_fail_W_DLL_D)\
@@ -23005,6 +23079,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_W_DLL_R)\
  $(TARG_TEST_UNIT_be_lrsplit_W_DLL_R)\
  $(TARG_TEST_UNIT_be_N_W_DLL_R)\
+ $(TARG_TEST_UNIT_be_N_filt_W_DLL_R)\
  \
  $(TARG_TEST_UNIT_fe_all_W_DLL_R)\
  $(TARG_TEST_UNIT_fe_fail_W_DLL_R)\
@@ -23029,6 +23104,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_W_MT_R)\
  $(TARG_TEST_UNIT_be_lrsplit_W_MT_R)\
  $(TARG_TEST_UNIT_be_N_W_MT_R)\
+ $(TARG_TEST_UNIT_be_N_filt_W_MT_R)\
  \
  $(TARG_TEST_UNIT_fe_all_W_MT_R)\
  $(TARG_TEST_UNIT_fe_fail_W_MT_R)\
@@ -23053,6 +23129,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_W_ST_D)\
  $(TARG_TEST_UNIT_be_lrsplit_W_ST_D)\
  $(TARG_TEST_UNIT_be_N_W_ST_D)\
+ $(TARG_TEST_UNIT_be_N_filt_W_ST_D)\
  \
  $(TARG_TEST_UNIT_fe_all_W_ST_D)\
  $(TARG_TEST_UNIT_fe_fail_W_ST_D)\
@@ -23077,6 +23154,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_W_ST_R)\
  $(TARG_TEST_UNIT_be_lrsplit_W_ST_R)\
  $(TARG_TEST_UNIT_be_N_W_ST_R)\
+ $(TARG_TEST_UNIT_be_N_filt_W_ST_R)\
  \
  $(TARG_TEST_UNIT_fe_all_W_ST_R)\
  $(TARG_TEST_UNIT_fe_fail_W_ST_R)\
@@ -24089,6 +24167,24 @@ test.unit_:
 	$(TARG_TEST_UNIT_be_N_W_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_be_N_W_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_be_N_W_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_MT_D_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_DLL_D_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_DLL_R_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_MT_R_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_ST_D_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_ST_R_NOX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_W_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_W_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_W_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_W_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_fe_all_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_fe_all_MT_D_NOX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_fe_all_DLL_D) --verbosity=$(TEST_VERBOSITY)
@@ -64497,6 +64593,384 @@ $(TARG_TEST_UNIT_be_N_W_ST_R):	\
 
 $(OBJ_TEST_UNIT_be_N_W_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N\test.unit.be.N.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_TEST_UNIT_ARGS_W_ST_R) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N\test.unit.be.N.c
+
+$(TARG_TEST_UNIT_be_N_filt_MT_D):	\
+			$(OBJ_TEST_UNIT_be_N_filt_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIB_CORE_MT_D)\
+			$(LIB_BE_N_MT_D)\
+			$(LIB_FE_ALL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_MT_D)\
+		$(LIB_BE_N_MT_D)\
+		$(LIB_FE_ALL_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_UNIT_be_N_filt_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_MT_D_NOX):	\
+			$(OBJ_TEST_UNIT_be_N_filt_MT_D_NOX)\
+			$(LIB_UTIL_MT_D_NOX)\
+			$(LIB_CORE_MT_D_NOX)\
+			$(LIB_BE_N_MT_D_NOX)\
+			$(LIB_FE_ALL_MT_D_NOX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D_NOX) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_MT_D_NOX)\
+		$(LIB_BE_N_MT_D_NOX)\
+		$(LIB_FE_ALL_MT_D_NOX)\
+		$(LIB_CORE_MT_D_NOX)\
+		$(LIB_UTIL_MT_D_NOX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D_NOX)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D_NOX)
+
+$(OBJ_TEST_UNIT_be_N_filt_MT_D_NOX):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_MT_D_NOX) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_DLL_D):	\
+			$(OBJ_TEST_UNIT_be_N_filt_DLL_D)\
+			$(LIB_UTIL_DLL_D)\
+			$(LIB_CORE_DLL_D)\
+			$(LIB_BE_N_DLL_D)\
+			$(LIB_FE_ALL_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_DLL_D)\
+		$(LIB_BE_N_DLL_D)\
+		$(LIB_FE_ALL_DLL_D)\
+		$(LIB_CORE_DLL_D)\
+		$(LIB_UTIL_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_DLL_D)
+
+$(OBJ_TEST_UNIT_be_N_filt_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_DLL_D_NOX):	\
+			$(OBJ_TEST_UNIT_be_N_filt_DLL_D_NOX)\
+			$(LIB_UTIL_DLL_D_NOX)\
+			$(LIB_CORE_DLL_D_NOX)\
+			$(LIB_BE_N_DLL_D_NOX)\
+			$(LIB_FE_ALL_DLL_D_NOX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_D_NOX) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_DLL_D_NOX)\
+		$(LIB_BE_N_DLL_D_NOX)\
+		$(LIB_FE_ALL_DLL_D_NOX)\
+		$(LIB_CORE_DLL_D_NOX)\
+		$(LIB_UTIL_DLL_D_NOX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D_NOX)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_DLL_D_NOX)
+
+$(OBJ_TEST_UNIT_be_N_filt_DLL_D_NOX):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_DLL_D_NOX) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_DLL_R):	\
+			$(OBJ_TEST_UNIT_be_N_filt_DLL_R)\
+			$(LIB_UTIL_DLL_R)\
+			$(LIB_CORE_DLL_R)\
+			$(LIB_BE_N_DLL_R)\
+			$(LIB_FE_ALL_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_DLL_R)\
+		$(LIB_BE_N_DLL_R)\
+		$(LIB_FE_ALL_DLL_R)\
+		$(LIB_CORE_DLL_R)\
+		$(LIB_UTIL_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_DLL_R)
+
+$(OBJ_TEST_UNIT_be_N_filt_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_DLL_R_NOX):	\
+			$(OBJ_TEST_UNIT_be_N_filt_DLL_R_NOX)\
+			$(LIB_UTIL_DLL_R_NOX)\
+			$(LIB_CORE_DLL_R_NOX)\
+			$(LIB_BE_N_DLL_R_NOX)\
+			$(LIB_FE_ALL_DLL_R_NOX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_R_NOX) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_DLL_R_NOX)\
+		$(LIB_BE_N_DLL_R_NOX)\
+		$(LIB_FE_ALL_DLL_R_NOX)\
+		$(LIB_CORE_DLL_R_NOX)\
+		$(LIB_UTIL_DLL_R_NOX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R_NOX)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_DLL_R_NOX)
+
+$(OBJ_TEST_UNIT_be_N_filt_DLL_R_NOX):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_DLL_R_NOX) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_MT_R):	\
+			$(OBJ_TEST_UNIT_be_N_filt_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIB_CORE_MT_R)\
+			$(LIB_BE_N_MT_R)\
+			$(LIB_FE_ALL_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_MT_R)\
+		$(LIB_BE_N_MT_R)\
+		$(LIB_FE_ALL_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_UNIT_be_N_filt_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_MT_R_NOX):	\
+			$(OBJ_TEST_UNIT_be_N_filt_MT_R_NOX)\
+			$(LIB_UTIL_MT_R_NOX)\
+			$(LIB_CORE_MT_R_NOX)\
+			$(LIB_BE_N_MT_R_NOX)\
+			$(LIB_FE_ALL_MT_R_NOX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R_NOX) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_MT_R_NOX)\
+		$(LIB_BE_N_MT_R_NOX)\
+		$(LIB_FE_ALL_MT_R_NOX)\
+		$(LIB_CORE_MT_R_NOX)\
+		$(LIB_UTIL_MT_R_NOX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R_NOX)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R_NOX)
+
+$(OBJ_TEST_UNIT_be_N_filt_MT_R_NOX):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_MT_R_NOX) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_ST_D):	\
+			$(OBJ_TEST_UNIT_be_N_filt_ST_D)\
+			$(LIB_UTIL_ST_D)\
+			$(LIB_CORE_ST_D)\
+			$(LIB_BE_N_ST_D)\
+			$(LIB_FE_ALL_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_ST_D)\
+		$(LIB_BE_N_ST_D)\
+		$(LIB_FE_ALL_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIB_UTIL_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_UNIT_be_N_filt_ST_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_ST_D) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_ST_D_NOX):	\
+			$(OBJ_TEST_UNIT_be_N_filt_ST_D_NOX)\
+			$(LIB_UTIL_ST_D_NOX)\
+			$(LIB_CORE_ST_D_NOX)\
+			$(LIB_BE_N_ST_D_NOX)\
+			$(LIB_FE_ALL_ST_D_NOX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D_NOX) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_ST_D_NOX)\
+		$(LIB_BE_N_ST_D_NOX)\
+		$(LIB_FE_ALL_ST_D_NOX)\
+		$(LIB_CORE_ST_D_NOX)\
+		$(LIB_UTIL_ST_D_NOX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D_NOX)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_D_NOX)
+
+$(OBJ_TEST_UNIT_be_N_filt_ST_D_NOX):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_ST_D_NOX) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_ST_R):	\
+			$(OBJ_TEST_UNIT_be_N_filt_ST_R)\
+			$(LIB_UTIL_ST_R)\
+			$(LIB_CORE_ST_R)\
+			$(LIB_BE_N_ST_R)\
+			$(LIB_FE_ALL_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_ST_R)\
+		$(LIB_BE_N_ST_R)\
+		$(LIB_FE_ALL_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIB_UTIL_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_UNIT_be_N_filt_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_ST_R) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_ST_R_NOX):	\
+			$(OBJ_TEST_UNIT_be_N_filt_ST_R_NOX)\
+			$(LIB_UTIL_ST_R_NOX)\
+			$(LIB_CORE_ST_R_NOX)\
+			$(LIB_BE_N_ST_R_NOX)\
+			$(LIB_FE_ALL_ST_R_NOX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R_NOX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R_NOX) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_ST_R_NOX)\
+		$(LIB_BE_N_ST_R_NOX)\
+		$(LIB_FE_ALL_ST_R_NOX)\
+		$(LIB_CORE_ST_R_NOX)\
+		$(LIB_UTIL_ST_R_NOX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R_NOX)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_R_NOX)
+
+$(OBJ_TEST_UNIT_be_N_filt_ST_R_NOX):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_ST_R_NOX) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_W_MT_D):	\
+			$(OBJ_TEST_UNIT_be_N_filt_W_MT_D)\
+			$(LIB_UTIL_W_MT_D)\
+			$(LIB_CORE_W_MT_D)\
+			$(LIB_BE_N_W_MT_D)\
+			$(LIB_FE_ALL_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_W_MT_D)\
+		$(LIB_BE_N_W_MT_D)\
+		$(LIB_FE_ALL_W_MT_D)\
+		$(LIB_CORE_W_MT_D)\
+		$(LIB_UTIL_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_MT_D)
+
+$(OBJ_TEST_UNIT_be_N_filt_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_W_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_W_DLL_D):	\
+			$(OBJ_TEST_UNIT_be_N_filt_W_DLL_D)\
+			$(LIB_UTIL_W_DLL_D)\
+			$(LIB_CORE_W_DLL_D)\
+			$(LIB_BE_N_W_DLL_D)\
+			$(LIB_FE_ALL_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_W_DLL_D)\
+		$(LIB_BE_N_W_DLL_D)\
+		$(LIB_FE_ALL_W_DLL_D)\
+		$(LIB_CORE_W_DLL_D)\
+		$(LIB_UTIL_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_DLL_D)
+
+$(OBJ_TEST_UNIT_be_N_filt_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_W_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_W_DLL_R):	\
+			$(OBJ_TEST_UNIT_be_N_filt_W_DLL_R)\
+			$(LIB_UTIL_W_DLL_R)\
+			$(LIB_CORE_W_DLL_R)\
+			$(LIB_BE_N_W_DLL_R)\
+			$(LIB_FE_ALL_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_W_DLL_R)\
+		$(LIB_BE_N_W_DLL_R)\
+		$(LIB_FE_ALL_W_DLL_R)\
+		$(LIB_CORE_W_DLL_R)\
+		$(LIB_UTIL_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_DLL_R)
+
+$(OBJ_TEST_UNIT_be_N_filt_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_W_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_W_MT_R):	\
+			$(OBJ_TEST_UNIT_be_N_filt_W_MT_R)\
+			$(LIB_UTIL_W_MT_R)\
+			$(LIB_CORE_W_MT_R)\
+			$(LIB_BE_N_W_MT_R)\
+			$(LIB_FE_ALL_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_W_MT_R)\
+		$(LIB_BE_N_W_MT_R)\
+		$(LIB_FE_ALL_W_MT_R)\
+		$(LIB_CORE_W_MT_R)\
+		$(LIB_UTIL_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_MT_R)
+
+$(OBJ_TEST_UNIT_be_N_filt_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_W_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_W_ST_D):	\
+			$(OBJ_TEST_UNIT_be_N_filt_W_ST_D)\
+			$(LIB_UTIL_W_ST_D)\
+			$(LIB_CORE_W_ST_D)\
+			$(LIB_BE_N_W_ST_D)\
+			$(LIB_FE_ALL_W_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_ST_D) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_W_ST_D)\
+		$(LIB_BE_N_W_ST_D)\
+		$(LIB_FE_ALL_W_ST_D)\
+		$(LIB_CORE_W_ST_D)\
+		$(LIB_UTIL_W_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_ST_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_ST_D)
+
+$(OBJ_TEST_UNIT_be_N_filt_W_ST_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_W_ST_D) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_W_ST_R):	\
+			$(OBJ_TEST_UNIT_be_N_filt_W_ST_R)\
+			$(LIB_UTIL_W_ST_R)\
+			$(LIB_CORE_W_ST_R)\
+			$(LIB_BE_N_W_ST_R)\
+			$(LIB_FE_ALL_W_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_ST_R) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_W_ST_R)\
+		$(LIB_BE_N_W_ST_R)\
+		$(LIB_FE_ALL_W_ST_R)\
+		$(LIB_CORE_W_ST_R)\
+		$(LIB_UTIL_W_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_ST_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_ST_R)
+
+$(OBJ_TEST_UNIT_be_N_filt_W_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_W_ST_R) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
 
 $(TARG_TEST_UNIT_fe_all_MT_D):	\
 			$(OBJ_TEST_UNIT_fe_all_MT_D)\

@@ -55,8 +55,8 @@ namespace core
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#include "pantheios/internal/generated/log_dispatch_functions.h"
-#include "pantheios/internal/generated/log_functions.c"
+#include "pantheios/generated/log_dispatch_functions.h"
+#include "pantheios/internal/generated/log_functions.inl"
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

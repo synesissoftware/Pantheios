@@ -5,7 +5,7 @@
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	29th September 2015
+# Updated:	28th June 2016
 #
 ############################################################################
 
@@ -646,18 +646,23 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\xp.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\internal\initialiser.hpp\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\stock_levels.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\lean.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\nox.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\safestr.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\shim_declarations.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\slice.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\stock_levels.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\threading.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\winlean.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\quality\contract.h\
  \
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_dispatch_functions.h\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.c\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_dispatch_functions.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_dispatch_functions.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.inl\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_functions.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_functions.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\generated\log_sev_functions.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\severity\levels.hpp\
  \
@@ -677,6 +682,7 @@ CORE_HEADERS=\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\string\snprintf.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\string\strdup.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\util\string\strnlen.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\system\hostname.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\system\processid.h\
@@ -1092,6 +1098,8 @@ TARG_TEST_UNIT_be_lrsplit_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.b
 TARG_TEST_UNIT_be_lrsplit_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_be_N_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_be_N_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_N_filt_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_N_filt_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_fe_all_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_fe_all_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_fe_fail_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).mt.exe
@@ -2108,6 +2116,8 @@ OBJ_TEST_UNIT_be_lrsplit_MT_UX	=	.\test.unit.be.lrsplit.mt.obj
 OBJ_TEST_UNIT_be_lrsplit_MT_UX_DEBUG	=	.\test.unit.be.lrsplit.mt.debug.obj
 OBJ_TEST_UNIT_be_N_MT_UX			=	.\test.unit.be.N.mt.obj
 OBJ_TEST_UNIT_be_N_MT_UX_DEBUG			=	.\test.unit.be.N.mt.debug.obj
+OBJ_TEST_UNIT_be_N_filt_MT_UX		=	.\test.unit.be.N.filtering.mt.obj
+OBJ_TEST_UNIT_be_N_filt_MT_UX_DEBUG		=	.\test.unit.be.N.filtering.mt.debug.obj
 OBJ_TEST_UNIT_fe_all_MT_UX		=	.\test.unit.fe.all.mt.obj
 OBJ_TEST_UNIT_fe_all_MT_UX_DEBUG		=	.\test.unit.fe.all.mt.debug.obj
 OBJ_TEST_UNIT_fe_fail_MT_UX		=	.\test.unit.fe.fail.mt.obj
@@ -2441,6 +2451,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_MT_UX)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_UX)\
  $(OBJ_TEST_UNIT_be_N_MT_UX)\
+ $(OBJ_TEST_UNIT_be_N_filt_MT_UX)\
  \
  $(OBJ_TEST_UNIT_fe_all_MT_UX)\
  $(OBJ_TEST_UNIT_fe_fail_MT_UX)\
@@ -2463,6 +2474,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_fail_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_be_N_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_be_N_filt_MT_UX_DEBUG)\
  \
  $(OBJ_TEST_UNIT_fe_all_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_fe_fail_MT_UX_DEBUG)\
@@ -2856,6 +2868,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_MT_UX)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_UX)\
  $(TARG_TEST_UNIT_be_N_MT_UX)\
+ $(TARG_TEST_UNIT_be_N_filt_MT_UX)\
  \
  $(TARG_TEST_UNIT_fe_all_MT_UX)\
  $(TARG_TEST_UNIT_fe_fail_MT_UX)\
@@ -2878,6 +2891,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_fail_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_be_N_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_be_N_filt_MT_UX_DEBUG)\
  \
  $(TARG_TEST_UNIT_fe_all_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_fe_fail_MT_UX_DEBUG)\
@@ -3212,6 +3226,8 @@ test.unit_:
 	$(TARG_TEST_UNIT_be_lrsplit_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_be_N_MT_UX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_be_N_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_MT_UX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_be_N_filt_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_fe_all_MT_UX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_fe_all_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_fe_fail_MT_UX) --verbosity=$(TEST_VERBOSITY)
@@ -3786,6 +3802,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_be_fail_MT_UX)
 	@-$(RM) $(TARG_TEST_UNIT_be_lrsplit_MT_UX)
 	@-$(RM) $(TARG_TEST_UNIT_be_N_MT_UX)
+	@-$(RM) $(TARG_TEST_UNIT_be_N_filt_MT_UX)
 	@-$(RM) $(TARG_TEST_UNIT_fe_all_MT_UX)
 	@-$(RM) $(TARG_TEST_UNIT_fe_fail_MT_UX)
 	@-$(RM) $(TARG_TEST_UNIT_fe_N_MT_UX)
@@ -3806,6 +3823,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_be_fail_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_UNIT_be_lrsplit_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_UNIT_be_N_MT_UX_DEBUG)
+	@-$(RM) $(TARG_TEST_UNIT_be_N_filt_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_UNIT_fe_all_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_UNIT_fe_fail_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_UNIT_fe_N_MT_UX_DEBUG)
@@ -3826,6 +3844,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_be_fail_MT_UX)
 	@-$(RM) $(OBJ_TEST_UNIT_be_lrsplit_MT_UX)
 	@-$(RM) $(OBJ_TEST_UNIT_be_N_MT_UX)
+	@-$(RM) $(OBJ_TEST_UNIT_be_N_filt_MT_UX)
 	@-$(RM) $(OBJ_TEST_UNIT_fe_all_MT_UX)
 	@-$(RM) $(OBJ_TEST_UNIT_fe_fail_MT_UX)
 	@-$(RM) $(OBJ_TEST_UNIT_fe_N_MT_UX)
@@ -3846,6 +3865,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_be_fail_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_UNIT_be_lrsplit_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_UNIT_be_N_MT_UX_DEBUG)
+	@-$(RM) $(OBJ_TEST_UNIT_be_N_filt_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_UNIT_fe_all_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_UNIT_fe_fail_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_UNIT_fe_N_MT_UX_DEBUG)
@@ -8398,6 +8418,48 @@ $(TARG_TEST_UNIT_be_N_MT_UX_DEBUG):	\
 
 $(OBJ_TEST_UNIT_be_N_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N\test.unit.be.N.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_TEST_UNIT_ARGS_MT_UX_DEBUG) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N\test.unit.be.N.c
+
+$(TARG_TEST_UNIT_be_N_filt_MT_UX):	\
+			$(OBJ_TEST_UNIT_be_N_filt_MT_UX)\
+			$(LIB_UTIL_MT_UX)\
+			$(LIB_CORE_MT_UX)\
+			$(LIB_BE_N_MT_UX)\
+			$(LIB_FE_ALL_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_MT_UX)\
+		$(LIB_BE_N_MT_UX)\
+		$(LIB_FE_ALL_MT_UX)\
+		$(LIB_CORE_MT_UX)\
+		$(LIB_UTIL_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_UX)
+
+$(OBJ_TEST_UNIT_be_N_filt_MT_UX):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_MT_UX) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
+
+$(TARG_TEST_UNIT_be_N_filt_MT_UX_DEBUG):	\
+			$(OBJ_TEST_UNIT_be_N_filt_MT_UX_DEBUG)\
+			$(LIB_UTIL_MT_UX_DEBUG)\
+			$(LIB_CORE_MT_UX_DEBUG)\
+			$(LIB_BE_N_MT_UX_DEBUG)\
+			$(LIB_FE_ALL_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
+		$(OBJ_TEST_UNIT_be_N_filt_MT_UX_DEBUG)\
+		$(LIB_BE_N_MT_UX_DEBUG)\
+		$(LIB_FE_ALL_MT_UX_DEBUG)\
+		$(LIB_CORE_MT_UX_DEBUG)\
+		$(LIB_UTIL_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_UX_DEBUG)
+
+$(OBJ_TEST_UNIT_be_N_filt_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_TEST_UNIT_ARGS_MT_UX_DEBUG) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.be.N.filtering\test.unit.be.N.filtering.c
 
 $(TARG_TEST_UNIT_fe_all_MT_UX):	\
 			$(OBJ_TEST_UNIT_fe_all_MT_UX)\

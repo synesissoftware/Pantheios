@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      50
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      51
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       364
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       365
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -492,14 +492,14 @@ struct pan_slice_t
     pan_slice_t(int len, pan_char_t const* p);
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
-#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
     /**
      *
      * \pre fromLen <= 32767
      * \pre toLen <= 32767
      */
     static size_t   get_lazy_length(size_t fromLen, size_t toLen);
-#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+# endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 private:
     static size_t   calc_length_n_(pan_char_t const* s, size_t len);
@@ -755,10 +755,10 @@ PANTHEIOS_CALL(int) pantheios_log_n(
 );
 
 #ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# include <pantheios/internal/generated/log_functions.h>
+# include <pantheios/generated/log_functions.h>
 #else /* ? PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 # define PANTHEIOS_INCLUDING_C_API_FUNCTIONS
-# include "./internal/generated/log_functions.h"    /* pantheios_log_1() (pantheios::log_1()), etc.  */
+# include "./generated/log_functions.h"     /* pantheios_log_1() (pantheios::log_1()), etc.  */
 # undef PANTHEIOS_INCLUDING_C_API_FUNCTIONS
 #endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 

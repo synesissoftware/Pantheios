@@ -60,9 +60,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MAJOR      3
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      10
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      11
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       104
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       105
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -331,15 +331,15 @@ namespace pantheios
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 namespace internal
 {
-#  include "./internal/generated/log_dispatch_functions.h"
-#  include "./internal/generated/log_dispatch_functions.hpp"
+#  include "./generated/log_dispatch_functions.h"
+#  include "./generated/log_dispatch_functions.hpp"
 } /* namespace internal */
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 # if !defined(PANTHEIOS_NO_LOG_FUNCTIONS)
-#  include "./internal/generated/log_functions.hpp"     // log(s), log(s, s) etc etc
+#  include "./generated/log_functions.hpp"     // log(s), log(s, s) etc etc
 # endif /* !PANTHEIOS_NO_LOG_FUNCTIONS */
 # if !defined(PANTHEIOS_NO_LOG_SEV_FUNCTIONS)
-#  include "./internal/generated/log_sev_functions.hpp" // log_ALERT() overloads, log_ERROR() overloads, etc.
+#  include "./generated/log_sev_functions.hpp" // log_ALERT() overloads, log_ERROR() overloads, etc.
 # endif /* !PANTHEIOS_NO_LOG_SEV_FUNCTIONS */
 #endif /* !PANTHEIOS_NO_GENERATED_FUNCTIONS */
 
@@ -354,7 +354,7 @@ namespace internal
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Auto-initialisation
+ * auto-initialisation
  *
  * Except when making a DLL, this is automatic, unless PANTHEIOS_NO_AUTO_INIT
  * is defined.

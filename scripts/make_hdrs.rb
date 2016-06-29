@@ -32,7 +32,7 @@ require 'date'
 # constants
 
 PROGRAM_VER_MAJOR               =   2
-PROGRAM_VER_MINOR               =   1
+PROGRAM_VER_MINOR               =   3
 PROGRAM_VER_REVISION            =   1
 
 # ##########################################################
@@ -161,22 +161,27 @@ SEVERITY_LEVELS			=	%w{ EMERGENCY ALERT CRITICAL ERROR WARNING NOTICE INFORMATIO
 d	=	Recls::stat('.')
 
 if d.fileName == 'scripts'
+
 		d = Recls::stat('../include/pantheios')
 end
 
 if !d or d.fileName != 'pantheios'
+
 		abort "Not running in the correct directory; needs to be /???/include/pantheios"
 end
 
 SEP		=	Recls::pathNameSeparator
 ENDL	=	"\n"
 
-C_LOG_FUNCTIONS_HEADER_NAME					=	'internal/generated/log_functions.h'
-C_LOG_FUNCTIONS_IMPL_NAME					=	'internal/generated/log_functions.c'
-C_LOG_DISPATCH_FUNCTIONS_HEADER_NAME		=	'internal/generated/log_dispatch_functions.h'
-Cpp_LOG_DISPATCH_FUNCTIONS_HEADER_NAME		=	'internal/generated/log_dispatch_functions.hpp'
-Cpp_LOG_FUNCTIONS_HEADER_NAME				=	'internal/generated/log_functions.hpp'
-Cpp_LOG_SEV_FUNCTIONS_HEADER_NAME			=	'internal/generated/log_sev_functions.hpp'
+GENERATED_HEADER_DIRECTORY					=	'generated'
+GENERATED_IMPL_DIRECTORY					=	'internal/generated'
+
+C_LOG_FUNCTIONS_HEADER_NAME					=	GENERATED_HEADER_DIRECTORY + '/log_functions.h'
+C_LOG_FUNCTIONS_IMPL_NAME					=	GENERATED_IMPL_DIRECTORY + '/log_functions.inl'
+C_LOG_DISPATCH_FUNCTIONS_HEADER_NAME		=	GENERATED_HEADER_DIRECTORY + '/log_dispatch_functions.h'
+Cpp_LOG_DISPATCH_FUNCTIONS_HEADER_NAME		=	GENERATED_HEADER_DIRECTORY + '/log_dispatch_functions.hpp'
+Cpp_LOG_FUNCTIONS_HEADER_NAME				=	GENERATED_HEADER_DIRECTORY + '/log_functions.hpp'
+Cpp_LOG_SEV_FUNCTIONS_HEADER_NAME			=	GENERATED_HEADER_DIRECTORY + '/log_sev_functions.hpp'
 
 C_LOG_FUNCTIONS_HEADER						=	"#{d.path}#{SEP}" + C_LOG_FUNCTIONS_HEADER_NAME.gsub('/', SEP)
 C_LOG_FUNCTIONS_IMPL						=	"#{d.path}#{SEP}" + C_LOG_FUNCTIONS_IMPL_NAME.gsub('/', SEP)
