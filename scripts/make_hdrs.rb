@@ -32,8 +32,8 @@ require 'date'
 # constants
 
 PROGRAM_VER_MAJOR               =   2
-PROGRAM_VER_MINOR               =   0
-PROGRAM_VER_REVISION            =   8
+PROGRAM_VER_MINOR               =   1
+PROGRAM_VER_REVISION            =   1
 
 # ##########################################################
 # functions
@@ -132,15 +132,7 @@ end
 
 r = climate.run ARGV
 
-if ARGV.length > 0
-
-	n = Integer(ARGV[0])
-
-	if n > 0 && n < 256
-
-		numParams = n
-	end
-end
+climate.abort "too many values; use --help for usage" unless ARGV.empty?
 
 ############################################################
 # main()
