@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 
 #include <pantheios/internal/nox.h>
@@ -63,7 +63,7 @@
 # pragma warning(disable : 4702)
 #endif /* compiler */
 
-/* STLSoft Header files */
+/* STLSoft header files */
 #include <pantheios/util/memory/auto_buffer_selector.hpp>
 #include <stlsoft/synch/lock_scope.hpp>
 
@@ -75,11 +75,11 @@
 /* #include <winstl/synch/thread_mutex.hpp> */
 #include <winstl/system/console_colour_scope.hpp>
 
-/* Standard C++ Header files */
+/* Standard C++ header files */
 #include <map>
 #include <string>
 
-/* Standard C Header files */
+/* Standard C header files */
 #include <stdio.h>
 #include <string.h>
 
@@ -205,7 +205,7 @@ namespace
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * structures
+ * types
  */
 
 namespace

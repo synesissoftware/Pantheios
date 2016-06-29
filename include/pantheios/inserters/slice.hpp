@@ -87,7 +87,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 #ifdef PANTHEIOS_CF_NAMESPACE_SUPPORT

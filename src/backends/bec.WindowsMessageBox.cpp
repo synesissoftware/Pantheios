@@ -92,7 +92,7 @@ namespace
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * structures
+ * types
  */
 
 class WindowsMessageBox_Context

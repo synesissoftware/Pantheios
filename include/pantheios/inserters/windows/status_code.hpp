@@ -85,7 +85,7 @@ namespace windows
 {
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 /** Class for inserting Windows status codes, either Windows API

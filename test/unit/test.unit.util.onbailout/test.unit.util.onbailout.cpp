@@ -92,7 +92,7 @@ static void test_1_12();
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 namespace

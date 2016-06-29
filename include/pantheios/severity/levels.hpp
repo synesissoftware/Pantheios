@@ -81,7 +81,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 /** Class that acts as an integer value - indicating a severity

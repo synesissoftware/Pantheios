@@ -84,7 +84,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 /** Class for inserting VARIANT_BOOL variables into Pantheios diagnostic

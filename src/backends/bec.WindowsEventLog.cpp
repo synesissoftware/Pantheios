@@ -109,7 +109,7 @@ namespace
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * structures
+ * types
  */
 
 class WindowsEventLog_Context

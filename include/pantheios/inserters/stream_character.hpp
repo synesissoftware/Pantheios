@@ -83,7 +83,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 /** Class for inserting stream characters into Pantheios diagnostic logging

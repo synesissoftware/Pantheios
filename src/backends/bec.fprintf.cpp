@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
 #include <pantheios/backends/bec.fprintf.h>
@@ -49,10 +49,10 @@
 #include <pantheios/util/core/apidefs.hpp>
 #include <pantheios/util/backends/context.hpp>
 
-/* STLSoft Header files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
-/* Standard C Header files */
+/* Standard C header files */
 #include <stdio.h>
 
 /* /////////////////////////////////////////////////////////////////////////

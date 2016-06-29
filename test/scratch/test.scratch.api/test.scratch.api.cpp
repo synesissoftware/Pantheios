@@ -157,7 +157,7 @@ static void some_logging_with_explicit_qualification();
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 class Thingy

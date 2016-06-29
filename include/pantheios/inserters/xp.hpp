@@ -82,7 +82,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 /** Shortcut inserter class for inserting pointers in a hexadecimal format.

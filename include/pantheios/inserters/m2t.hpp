@@ -84,7 +84,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS

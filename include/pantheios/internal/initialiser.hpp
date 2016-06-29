@@ -62,7 +62,7 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 /** Schwarz Counter initialiser for the Pantheios library

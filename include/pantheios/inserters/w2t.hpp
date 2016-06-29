@@ -8,7 +8,7 @@
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2015-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -84,7 +84,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS

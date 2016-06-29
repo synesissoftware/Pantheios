@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/nox.h>
 
@@ -58,7 +58,7 @@
 #include <pantheios/util/system/threadid.h>
 #include <pantheios/util/time/currenttime.h>
 
-/* STLSoft Header files */
+/* STLSoft header files */
 #include <stlsoft/conversion/integer_to_string.hpp>
 #ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 # include <stlsoft/iterator/member_selector_iterator.hpp>
@@ -68,7 +68,7 @@
 # include <stlsoft/iterators/cstring_concatenator_iterator.hpp>
 #endif
 
-/* Standard C++ Header files */
+/* Standard C++ header files */
 #include <algorithm>
 #include <numeric>
 
@@ -86,7 +86,7 @@ namespace backends
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * context
+ * Context
  */
 
 inline pan_char_t* make_process_identity_(pan_char_t const* processIdentity)

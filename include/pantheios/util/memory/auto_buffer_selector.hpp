@@ -110,7 +110,7 @@ namespace util
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 /** <a href = "http://extendedstl.com/glossary.html#type_generator">Type-generator template</a>

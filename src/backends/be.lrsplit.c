@@ -51,7 +51,7 @@
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 #define pan_lr_tokens_t         pantheios_src_util_pan_lr_tokens_t

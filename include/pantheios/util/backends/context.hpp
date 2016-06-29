@@ -87,7 +87,7 @@ namespace backends
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 /** Framework class for assisting in the writing of \ref group__backend "Back-ends".

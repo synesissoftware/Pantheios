@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Warning suppressions */
+/* warning suppressions */
 #include <stlsoft/stlsoft.h>
 #if defined(STLSOFT_COMPILER_IS_MSVC)
 # if defined(STLSOFT_CF_EXCEPTION_SUPPORT)
@@ -48,12 +48,12 @@
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #endif /* compiler */
 
-/* Pantheios.Test Header files */
+/* Pantheios.Test header files */
 #include <pantheios/internal/nox.h>
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
 #include <pantheios/backends/bec.test.h>
 
-/* Pantheios Header files */
+/* Pantheios header files */
 
 #include <pantheios/init_codes.h>
 #include <pantheios/frontends/stock.h>
@@ -62,7 +62,7 @@
 #include <pantheios/quality/contract.h>
 #include <pantheios/internal/threading.h>
 
-/* STLSoft Header files */
+/* STLSoft header files */
 
 #ifdef PANTHEIOS_MT
 # include <platformstl/synch/thread_mutex.hpp>
@@ -74,11 +74,11 @@
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/synch/lock_scope.hpp>
 
-/* Standard C/C++ Header files */
+/* Standard C/C++ header files */
 
 #include <vector>
 
-/* Warning suppressions */
+/* warning suppressions */
 #if defined(STLSOFT_COMPILER_IS_MSVC)
 # if defined(STLSOFT_CF_EXCEPTION_SUPPORT)
 # else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -86,7 +86,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 namespace pantheios

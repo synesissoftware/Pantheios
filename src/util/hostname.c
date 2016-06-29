@@ -82,7 +82,7 @@
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * helper Functions
+ * helper functions
  */
 
 # if defined(UNIXSTL_OS_IS_MACOSX)

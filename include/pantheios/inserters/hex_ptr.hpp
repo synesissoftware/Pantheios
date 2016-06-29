@@ -80,7 +80,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 /** [DEPRECATED] Class for inserting pointers into Pantheios diagnostic

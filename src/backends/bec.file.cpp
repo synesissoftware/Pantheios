@@ -58,7 +58,7 @@
 # include <stlsoft/synch/concepts.hpp> // VC++ 6 ICE
 #endif
 
-/* Pantheios Header files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/lean.h>
 #include <pantheios/internal/nox.h>
@@ -78,7 +78,7 @@
 #include <pantheios/util/memory/memcopy.h>
 #include <pantheios/util/string/snprintf.h>
 
-/* STLSoft Header files */
+/* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 #if _STLSOFT_VER < 0x01096bff
 # error This file requires STLSoft 1.9.107 or later
@@ -114,7 +114,7 @@
 # include <stlsoft/synch/null_mutex.hpp>
 #endif /* PANTHEIOS_MT */
 
-/* Standard C++ Header files */
+/* Standard C++ header files */
 
 #include <list>
 #include <map>
@@ -122,11 +122,11 @@
 #include <string>
 #include <utility>
 
-/* Standard C Header files */
+/* Standard C header files */
 
 #include <stdio.h>
 
-/* UNIX C Header files */
+/* UNIX C header files */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # include <fcntl.h>
@@ -178,7 +178,7 @@
 #endif /* OS */
 #include <time.h>
 
-/* Compiler-specific Header files */
+/* Compiler-specific header files */
 
 #if defined(_DEBUG) && \
     defined(STLSOFT_COMPILER_IS_MSVC)

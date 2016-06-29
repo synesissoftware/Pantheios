@@ -41,7 +41,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files
+/* Pantheios header files
  *
  * NOTE: We do _not_ include pantheios/pantheios.hpp here, since we are
  *  not using any of the Application Layer.

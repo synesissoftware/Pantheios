@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/winlean.h>
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
@@ -51,7 +51,7 @@
 #include <pantheios/util/backends/arguments.h>
 #include <pantheios/util/backends/context.hpp>
 
-/* STLSoft Header files */
+/* STLSoft header files */
 #include <pantheios/util/memory/auto_buffer_selector.hpp>
 #include <stlsoft/smartptr/ref_ptr.hpp>
 
@@ -74,10 +74,10 @@
 #endif /* STLSoft 1.12+ */
 #include <winstl/memory/processheap_allocator.hpp>
 
-/* Standard C++ Header files */
+/* Standard C++ header files */
 #include <string>
 
-/* Standard C Header files */
+/* Standard C header files */
 #include <stdio.h>
 
 /* /////////////////////////////////////////////////////////////////////////
