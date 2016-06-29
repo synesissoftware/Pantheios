@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for string duplication utility functions.
  *
  * Created:     21st June 2005
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -72,7 +72,7 @@ namespace pantheios
  * API
  */
 
-PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) /* STLSOFT_NOEXCEPT */
 {
     if(NULL == s)
     {
@@ -92,12 +92,12 @@ PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) /* stlsoft_
     }
 }
 
-PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) /* STLSOFT_NOEXCEPT */
 {
     free(s);
 }
 
-PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) /* STLSOFT_NOEXCEPT */
 {
     if(NULL == s)
     {
@@ -117,12 +117,12 @@ PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) /* st
     }
 }
 
-PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) /* STLSOFT_NOEXCEPT */
 {
     free(s);
 }
 
-PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) /* STLSOFT_NOEXCEPT */
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     return pantheios_util_strdup_nothrow_w(s);
@@ -131,7 +131,7 @@ PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) /
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 }
 
-PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) /* STLSOFT_NOEXCEPT */
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     pantheios_util_strfree_w(s);

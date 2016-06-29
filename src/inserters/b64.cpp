@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the b64 inserter class.
  *
  * Created:     31st July 2006
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -116,7 +116,7 @@ b64::b64(   void const*     pv
 
 // TODO: create a Pantheios fast arena
 
-b64::~b64() stlsoft_throw_0()
+b64::~b64() STLSOFT_NOEXCEPT
 {
     pantheios_inserterDeallocate(const_cast<pan_char_t*>(m_value));
 }

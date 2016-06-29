@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the pantheios::hostId inserter class.
  *
  * Created:     14th April 2008
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -139,7 +139,7 @@ host_id_t::host_id_t()
     , m_len(0)
 {}
 
-host_id_t::~host_id_t() stlsoft_throw_0()
+host_id_t::~host_id_t() STLSOFT_NOEXCEPT
 {
     pantheios_util_strfree(const_cast<pan_char_t*>(m_value));
 }

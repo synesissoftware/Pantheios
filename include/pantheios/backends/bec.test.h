@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the be.test library.
  *
  * Created:     1st November 2006
- * Updated:     22nd March 2010
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  1
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      24
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  2
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -201,7 +201,7 @@ namespace test
         /** Copies the contents */
         Results(class_type const& rhs);
         /** Destroys the instance */
-        ~Results()  stlsoft_throw_0();
+        ~Results()  STLSOFT_NOEXCEPT;
 
     public: /* Accessors */
         /** Indicates whether the container is empty */

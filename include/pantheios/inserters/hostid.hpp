@@ -4,11 +4,11 @@
  * Purpose:     String inserter for host identity.
  *
  * Created:     14th March 2008
- * Updated:     22nd September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_MINOR     3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_EDIT      13
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_REVISION  4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_EDIT      14
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ public:
 
 public:
     host_id_t();
-    ~host_id_t() stlsoft_throw_0();
+    ~host_id_t() STLSOFT_NOEXCEPT;
 private:
 #if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
     !defined(STLSOFT_COMPILER_IS_CLANG) && \

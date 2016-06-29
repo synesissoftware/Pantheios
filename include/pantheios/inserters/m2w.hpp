@@ -5,11 +5,11 @@
  *              wide string statement.
  *
  * Created:     22nd November 2010
- * Updated:     1st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_REVISION 0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -156,7 +156,7 @@ public: // Construction
 #endif /* !PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES */
     }
     /// Releases any resources allocated for the conversion
-    ~m2w() stlsoft_throw_0();
+    ~m2w() STLSOFT_NOEXCEPT;
 
 private:
 #if !defined(STLSOFT_COMPILER_IS_GCC)

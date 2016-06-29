@@ -4,11 +4,11 @@
  * Purpose:     String inserter for argc+argv pairs.
  *
  * Created:     19th October 2006
- * Updated:     22nd September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_MINOR       6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_REVISION    6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_EDIT        31
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_REVISION    7
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_EDIT        32
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -181,7 +181,7 @@ public:
 #endif /* STLSOFT_COMPILER_IS_BORLAND */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-    ~args() stlsoft_throw_0();
+    ~args() STLSOFT_NOEXCEPT;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 /// @}
 

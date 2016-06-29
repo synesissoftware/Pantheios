@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -114,7 +114,7 @@ args::args(int argc, pan_char_t** argv, int flags /* = quoteArgsWithSpaces */, p
 }
 #endif /* STLSOFT_COMPILER_IS_BORLAND */
 
-args::~args() stlsoft_throw_0() // This is defined so that the destructors for the member variables are executed in the same link unit
+args::~args() STLSOFT_NOEXCEPT // This is defined so that the destructors for the member variables are executed in the same link unit
 {}
 
 pan_char_t const* args::data() const

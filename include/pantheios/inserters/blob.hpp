@@ -4,11 +4,11 @@
  * Purpose:     String inserter for binary regions.
  *
  * Created:     21st June 2005
- * Updated:     22nd September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MINOR       4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_REVISION    6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        30
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_REVISION    7
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -207,7 +207,7 @@ public:
     );
 
     ///  Releases any storage associated with the instance.
-    ~blob() stlsoft_throw_0();
+    ~blob() STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name Accessors

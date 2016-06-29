@@ -4,11 +4,11 @@
  * Purpose:     String inserter for binary regions in Base-64.
  *
  * Created:     31st July 2006
- * Updated:     22nd September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MINOR    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     27
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -227,7 +227,7 @@ public:
         ,   int         lineLen
         ,   B64_RC*     rc = NULL);
 
-    ~b64() stlsoft_throw_0();
+    ~b64() STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name Accessors

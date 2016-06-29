@@ -5,11 +5,11 @@
  *              multibyte string statement.
  *
  * Created:     2nd September 2008
- * Updated:     22nd September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MINOR    3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     16
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_REVISION 3
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@ public: // Construction
 #endif /* !PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES */
     }
     /// Releases any resources allocated for the conversion
-    ~w2m() stlsoft_throw_0();
+    ~w2m() STLSOFT_NOEXCEPT;
 
 private:
 #if 1 && \

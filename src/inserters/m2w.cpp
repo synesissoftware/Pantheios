@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the pantheios::m2w inserter class.
  *
  * Created:     22nd November 2010
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -107,7 +107,7 @@ int m2w::init_(char const* s, size_t n)
     return 0;
 }
 
-m2w::~m2w() stlsoft_throw_0()
+m2w::~m2w() STLSOFT_NOEXCEPT
 {
     pantheios_inserterDeallocate(m_result);
 }

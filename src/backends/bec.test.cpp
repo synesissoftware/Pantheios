@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the be.test back-end
  *
  * Created:     1st November 2006
- * Updated:     9th May 2014
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -260,7 +260,7 @@ namespace test
 
         m_impl->AddRef();
     }
-    Results::~Results() stlsoft_throw_0()
+    Results::~Results() STLSOFT_NOEXCEPT
     {
         PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(NULL != m_impl, "implementation class pointer may not be null");
 

@@ -4,11 +4,11 @@
  * Purpose:     String duplication utilty functions.
  *
  * Created:     19th April 2008
- * Updated:     22nd March 2010
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_MINOR     2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      6
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_REVISION  3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,21 +100,21 @@ namespace pantheios
  *
  * \note The returned value must be freed using pantheios_util_free()
  */
-PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) /* stlsoft_throw_0() */;
+PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) /* STLSOFT_NOEXCEPT */;
 
 /** Frees a duplicated string allocated by pantheios_util_strdup_nothrow()
  *   or pantheios_util_strdup_throw()
  *
  * \param s The string to deallocate
  */
-PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) /* stlsoft_throw_0() */;
+PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) /* STLSOFT_NOEXCEPT */;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) /* stlsoft_throw_0() */;
-PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) /* stlsoft_throw_0() */;
+PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) /* STLSOFT_NOEXCEPT */;
+PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) /* STLSOFT_NOEXCEPT */;
 
-PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) /* stlsoft_throw_0() */;
-PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) /* stlsoft_throw_0() */;
+PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) /* STLSOFT_NOEXCEPT */;
+PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) /* STLSOFT_NOEXCEPT */;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -156,7 +156,7 @@ namespace util
  *
  * \ingroup group__utility
  */
-inline pan_char_t* strdup_nothrow(pan_char_t const* s) stlsoft_throw_0()
+inline pan_char_t* strdup_nothrow(pan_char_t const* s) STLSOFT_NOEXCEPT
 {
     return pantheios_util_strdup_nothrow(s);
 }
@@ -176,7 +176,7 @@ inline pan_char_t* strdup_throw(pan_char_t const* s)
  *
  * \ingroup group__utility
  */
-inline void strfree(pan_char_t* s) stlsoft_throw_0()
+inline void strfree(pan_char_t* s) STLSOFT_NOEXCEPT
 {
     pantheios_util_strfree(s);
 }

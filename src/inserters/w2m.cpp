@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the pantheios::w2m inserter class.
  *
  * Created:     7th August 2008
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -107,7 +107,7 @@ int w2m::init_(wchar_t const* s, size_t n)
     return 0;
 }
 
-w2m::~w2m() stlsoft_throw_0()
+w2m::~w2m() STLSOFT_NOEXCEPT
 {
     pantheios_inserterDeallocate(m_result);
 }
