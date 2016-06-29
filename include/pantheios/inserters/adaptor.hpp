@@ -4,11 +4,11 @@
  * Purpose:     Inserter adaptors for the Pantheios application layer.
  *
  * Created:     29th July 2006
- * Updated:     11th October 2012
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        20
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,9 +87,10 @@ namespace pantheios
  * \ingroup group__application_layer_interface__inserters
  *
  */
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
 class inserter
 {
 public:
@@ -104,6 +105,9 @@ public:
         , m_pfn(pfn)
         , m_bInitialised(false)
     {}
+
+private:
+    class_type& operator =(class_type const&);
 
 public:
     pan_char_t const* data() const
@@ -141,44 +145,53 @@ private:
     S       m_convertedValue;
     S       (*m_pfn)(T);
     bool    m_bInitialised;
-
-private:
-    class_type& operator =(class_type const&);
 };
 
 /* /////////////////////////////////////////////////////////////////////////
  * Inserter functions
  */
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
-inline inserter<T, S> insert(T &value, S (*pfn)(T))
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
+inline
+inserter<T, S>
+insert(T &value, S (*pfn)(T))
 {
     return inserter<T, S>(value, pfn);
 }
 
 #if 0
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
-inline inserter<T const&, S> insert(T const& value, S (*pfn)(T const&))
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
+inline
+inserter<T const&, S>
+insert(T const& value, S (*pfn)(T const&))
 {
     return inserter<T const&, S>(value, pfn);
 }
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
-inline inserter<T const*, S> insert(T const* value, S (*pfn)(T const*))
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
+inline
+inserter<T const*, S>
+insert(T const* value, S (*pfn)(T const*))
 {
     return inserter<T const*, S>(value, pfn);
 }
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
-inline inserter<T*, S> insert(T *value, S (*pfn)(T*))
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
+inline
+inserter<T*, S>
+insert(T *value, S (*pfn)(T*))
 {
     return inserter<T*, S>(value, pfn);
 }
@@ -193,9 +206,10 @@ namespace shims
 {
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
 inline
 PAN_CHAR_T const*
 PANTHEIOS_c_str_data_name_(
@@ -205,9 +219,10 @@ PANTHEIOS_c_str_data_name_(
     return i.data();
 }
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
 inline
 size_t
 PANTHEIOS_c_str_len_name_(
