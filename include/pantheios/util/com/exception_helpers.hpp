@@ -6,11 +6,11 @@
  *              pantheios/extras/com/exception_helpers.hpp.
  *
  * Created:     1st May 2006
- * Updated:     27th December 2010
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,18 +51,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_EDIT        21
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_EDIT        23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS

@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.be.file.threading project.
  *
  * Created:     3rd July 2009
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2009-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2009-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -81,7 +81,7 @@
 #define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * character encoding
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -95,7 +95,7 @@
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants and definitions
+ * constants
  */
 
 #ifdef _DEBUG
@@ -118,7 +118,7 @@ const size_t    SET_PATH_DELAY      =   1000 * 1000 * 10;
 const PAN_CHAR_T LOG_FILE_NAME[]    =   PSTR("test.component.be.file.threading.log");
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
@@ -132,7 +132,7 @@ static int              s_showNotices   =   true;
 extern "C" const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PSTR("test.component.be.file.threading");
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
@@ -154,7 +154,7 @@ typedef platformstl::basic_file_lines<PAN_CHAR_T>   lines_t;
 typedef stlsoft::basic_string_view<PAN_CHAR_T>          string_view_t;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)

@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios be.N Stock Back-end API.
  *
  * Created:     18th October 2006
- * Updated:     26th August 2014
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -47,18 +47,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_BE_N
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      7
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       22
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -71,7 +71,7 @@
 #include <limits.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__backend__stock_backends__N Pantheios N Stock Back-end
@@ -84,7 +84,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 /** \defgroup group__backend__stock_backends__N__flags Pantheios be.N Stock Back-end Flags
@@ -127,7 +127,7 @@
 #define PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED   (0x00800000)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Structure that describes a back-end to be used by the \ref group__backend__stock_backends__N.
@@ -303,7 +303,7 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
 #define PANTHEIOS_BE_N_TERMINATOR_ENTRY                 { 0, 0, NULL, NULL, NULL, -1, NULL, PANTHEIOS_VER, PANTHEIOS_BE_N_RESERVED_VALUES_ }
 
 /* /////////////////////////////////////////////////////////////////////////
- * External Declarations
+ * external declarations
  */
 
 /** The application-defined array of back-end descriptors that specify what

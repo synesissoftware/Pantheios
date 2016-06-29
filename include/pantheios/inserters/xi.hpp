@@ -5,11 +5,11 @@
  *              class for inserting integers in hexadecimal format.
  *
  * Created:     12th March 2010
- * Updated:     26th November 2010
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,18 +50,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_XI
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XI_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XI_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XI_REVISION  4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XI_EDIT      6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XI_EDIT      7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -73,7 +73,7 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTEGER */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -82,7 +82,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 /** Shortcut inserter class for inserting integers in a hexadecimal format.
@@ -169,7 +169,7 @@ public:
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -177,7 +177,7 @@ public:
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT

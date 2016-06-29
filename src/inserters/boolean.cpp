@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the pantheios::boolean inserter class.
  *
  * Created:     7th August 2008
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,7 +58,7 @@
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppression
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -67,7 +67,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -79,14 +79,14 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 namespace
 {
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 // Define pan_slice_pod_t, equivalent to pan_slice_t, in order to get
@@ -133,13 +133,13 @@ static pan_slice_t const*       s_slices[2][2] =
 typedef stlsoft::stlsoft_char_traits<pan_char_t>    char_traits_t;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /* static */ void boolean::set_value_strings(pan_char_t const* falseName, pan_char_t const* trueName) /* throw(std::bad_alloc) */
@@ -228,7 +228,7 @@ no_trueName:
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)

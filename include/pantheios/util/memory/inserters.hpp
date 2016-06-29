@@ -4,11 +4,11 @@
  * Purpose:     Memory (de-)allocation for the inserters.
  *
  * Created:     8th January 2008
- * Updated:     14th October 2008
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,18 +48,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_EDIT     7
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_EDIT     9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS

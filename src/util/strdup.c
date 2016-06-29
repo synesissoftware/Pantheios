@@ -60,7 +60,7 @@
 #include <wchar.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -141,7 +141,7 @@ PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) STLSOFT_NOEXCEPT
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)

@@ -4,11 +4,11 @@
  * Purpose:     Pantheios back end API
  *
  * Created:     21st June 2005
- * Updated:     26th November 2010
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -49,18 +49,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_H_BACKEND
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MINOR      11
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       31
+# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       33
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -136,7 +136,7 @@
 #define PANTHEIOS_BEID_REMOTE                   (2)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 /** \defgroup group__backend__init__flags Pantheios Back-end Initialisation Flags
@@ -337,7 +337,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 /** @} group__backend */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Generation Macros
+ * generation macros
  */
 
 /** \def PANTHEIOS_BE_DEFINE_BE_FUNCTIONS(expr)

@@ -4,11 +4,11 @@
  * Purpose:     Time functions for use in Pantheios back-ends.
  *
  * Created:     22nd August 2006
- * Updated:     9th December 2013
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,7 +59,7 @@
 #endif /* PLATFORMSTL_OS_IS_???? */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Character string encoding support
+ * character string encoding support
  */
 
 /* We _could_ just use GetComputerName() here, and rely on a correlation between
@@ -82,7 +82,7 @@
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper Functions
+ * helper Functions
  */
 
 # if defined(UNIXSTL_OS_IS_MACOSX)
@@ -208,7 +208,7 @@ static size_t pantheios_getHostName_body_(pan_char_t* buffer, size_t cchBuffer)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * API Functions
+ * API functions
  */
 
 size_t pantheios_getHostName(pan_char_t* buffer, size_t cchBuffer)

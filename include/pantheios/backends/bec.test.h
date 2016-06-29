@@ -48,18 +48,18 @@
 #define PANTHEIOS_INCL_BACKENDS_H_BEC_TEST
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  2
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      25
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -134,7 +134,7 @@ PANTHEIOS_CALL(int) pantheios_be_test_logEntry(
 #define pantheios_be_test_parseArgs         NULL
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifdef __cplusplus
@@ -228,7 +228,7 @@ namespace test
     Results results();
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 } /* namespace test */

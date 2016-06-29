@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the fe.WindowsRegistry front-end.
  *
  * Created:     28th October 2007
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,7 +58,7 @@
 #include <new>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants & definitions
+ * namespace
  */
 
 #ifndef PANTHEIOS_NO_NAMESPACE
@@ -73,7 +73,7 @@ namespace
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants & definitions
+ * constants
  */
 
 namespace
@@ -91,7 +91,7 @@ namespace
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Context
+ * context
  */
 
 namespace

@@ -9,7 +9,7 @@
  *                  for be.N
  *
  * Created:     5th December 2006
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * www:         http://www.pantheios.org/
  *
@@ -46,7 +46,7 @@
 #include <stdlib.h>                                 /* for exit codes */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 /* Define the stock front-end process identity, so that it links when using

@@ -4,13 +4,13 @@
  * Purpose:     Implicit link file for the test.unit.fe.simple project.
  *
  * Created:     2nd August 2009
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -19,7 +19,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* Pantheios header files */

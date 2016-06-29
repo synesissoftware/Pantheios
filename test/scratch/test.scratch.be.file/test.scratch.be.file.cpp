@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.be.file project.
  *
  * Created:     27th November 2006
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -45,20 +45,20 @@
 #define PSTR        PANTHEIOS_LITERAL_STRING
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PSTR("test.scratch.be.file");
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants & definitions
+ * constants
  */
 
 static const char   FILENAME_LOCAL[]    =   "log.test.local";
 static const char   FILENAME_REMOTE[]   =   "log.test.remote";
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 typedef platformstl::filesystem_traits<char>    fs_traits_t;

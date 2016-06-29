@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.m2w project.
  *
  * Created:     22nd November 2010
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2010-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -50,7 +50,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_1_01();
@@ -85,7 +85,7 @@ static void test_3_09();
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = L"test.component.inserters.m2w";

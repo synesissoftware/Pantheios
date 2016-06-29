@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for low-level Pantheios bail out.
  *
  * Created:     21st June 2005
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -97,7 +97,7 @@
 #endif /* OS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 #if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -117,7 +117,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppression
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -125,7 +125,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * String encoding compatibility
+ * string encoding compatibility
  */
 
 /* TODO: decide finally whether bail-out supports widestring and, if not,
@@ -147,7 +147,7 @@
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -156,7 +156,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
@@ -171,7 +171,7 @@ static int pantheios_util_onBailOut_canUseWarnMessage_(void);
 #endif /* PLATFORMSTL_OS_IS_WINDOWS && !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 #ifndef PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE
@@ -202,7 +202,7 @@ static int pantheios_util_onBailOut_canUseWarnMessage_(void);
 #endif /* PLATFORMSTL_OS_IS_WINDOWS && !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Utility functions
+ * Util API
  */
 
 PANTHEIOS_CALL(void) pantheios_onBailOut6(
@@ -678,7 +678,7 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
@@ -737,7 +737,7 @@ static int pantheios_util_onBailOut_canUseWarnMessage_(void)
 #endif /* PLATFORMSTL_OS_IS_WINDOWS && !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)

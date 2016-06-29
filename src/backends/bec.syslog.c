@@ -4,14 +4,14 @@
  * Purpose:     Implementation for the UNIX SysLog back-end
  *
  * Created:     29th June 2005
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Thanks to:   Jonathan Wakely for detecting Solaris compilation defects &
  *              fixes.
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,7 +57,7 @@
 #include <syslog.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Platform compatibility
+ * platform compatibility
  */
 
 #if defined(_WIN32) && \

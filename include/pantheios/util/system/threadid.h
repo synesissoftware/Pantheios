@@ -4,11 +4,11 @@
  * Purpose:     Functions for eliciting thread identifier
  *
  * Created:     4th January 2008
- * Updated:     10th August 2009
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,18 +48,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_THREADID
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_EDIT     8
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_EDIT     9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -70,7 +70,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -110,7 +110,7 @@ inline stlsoft_ns_qual(ss_sint64_t) getCurrentThreadId()
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)

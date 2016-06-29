@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.levels.dynamic_initialisation project.
  *
  * Created:     20th October 2007
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -61,13 +61,13 @@ private:
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.levels.dynamic_initialisation");

@@ -86,7 +86,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 namespace pantheios
@@ -354,7 +354,7 @@ namespace test
 } /* namespace pantheios */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 namespace

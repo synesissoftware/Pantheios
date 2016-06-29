@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the COMErrorObject back-end
  *
  * Created:     9th April 2006
- * Updated:     1st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Preprocessor feature control
+ * preprocessor feature control
  */
 
 #define PANTHEIOS_USE_CATCHALL
@@ -48,7 +48,7 @@
 #define PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* Pantheios header files */
@@ -96,7 +96,7 @@ extern "C" const IID IID_IErrorInfo_;
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler features
+ * compiler features
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
@@ -107,7 +107,7 @@ extern "C" const IID IID_IErrorInfo_;
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 namespace
@@ -135,13 +135,13 @@ namespace
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Structures
+ * constants
  */
 
 extern "C" const IID IID_IErrorInfo_ = { 0x1CF2B120, 0x547D, 0x101B, { 0x8E, 0x65, 0x08, 0x00, 0x2B, 0x2B, 0xD1, 0x19 } };
 
 /* /////////////////////////////////////////////////////////////////////////
- * Structures
+ * structures
  */
 
 namespace

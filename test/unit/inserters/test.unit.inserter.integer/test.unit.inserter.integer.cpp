@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.inserter.integer project.
  *
  * Created:     21st December 2010
- * Updated:     15th July 2014
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010-2014, Synesis Software Pty Ltd.
+ *              Copyright (c) 2010-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -29,7 +29,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -55,7 +55,7 @@ static void test_1_12();
 #define PSTR(x)                         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * character encoding
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS

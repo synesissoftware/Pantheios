@@ -4,11 +4,11 @@
  * Purpose:     Implementation
  *
  * Created:     26th June 2005
- * Updated:     9th December 2013
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 #define pan_lr_tokens_t         pantheios_src_util_pan_lr_tokens_t

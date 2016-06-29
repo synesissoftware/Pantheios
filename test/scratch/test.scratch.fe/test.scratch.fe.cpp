@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.fe project.
  *
  * Created:     21st June 2005
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
@@ -72,7 +72,7 @@ using std::endl;
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 #if (   defined(_WIN32) || \
@@ -82,7 +82,7 @@ extern "C" void __stdcall Sleep(unsigned long);
 #endif /* WIN32 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 static int  severities[8] = { 1, 1, 1, 1, 1, 1, 1, 1 };

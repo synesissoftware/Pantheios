@@ -50,18 +50,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MINOR    4
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     28
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -133,7 +133,7 @@ namespace b64_api = ::b64;
 #endif /* !PANTHEIOS_INCL_H_STDIO */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -143,7 +143,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /** Class for inserting binary regions types into Pantheios diagnostic
@@ -274,7 +274,7 @@ private:
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -354,7 +354,7 @@ c_str_ptr(b64 const& i)
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -380,7 +380,7 @@ namespace stlsoft
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT

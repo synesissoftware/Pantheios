@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.c_api project.
  *
  * Created:     14th October 2005
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
@@ -55,7 +55,7 @@
 #include <time.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static int main_(int /* argc */, char ** /*argv*/);
@@ -64,7 +64,7 @@ static void some_logging_2();
 static void some_logging_3();
 
 /* /////////////////////////////////////////////////////////////////////////
- * Process Identity
+ * process identity
  *
  * This is defined for when we link with the pantheios.fe.simple front-end
  * library, which implements pantheios_fe_getProcessIdentity() in terms of this

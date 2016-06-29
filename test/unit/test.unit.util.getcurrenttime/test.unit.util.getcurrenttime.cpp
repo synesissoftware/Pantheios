@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.util.getcurrenttime project.
  *
  * Created:     10th November 2007
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -70,25 +70,25 @@
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 typedef std::basic_string<PAN_CHAR_T>   string_t;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros and definitions
+ * macros
  */
 
 #define PANTHEIOS_TEST_TIME(buffSize, flags, result, pattern)   test_time(__FILE__, __LINE__, buffSize, flags, result, pattern)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.util.getcurrenttime");
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static int      test_time(char const* file, int line, size_t cchBuff, int flags, size_t expectedResult, PAN_CHAR_T const* pattern);

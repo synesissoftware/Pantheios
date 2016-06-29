@@ -4,13 +4,13 @@
  * Purpose:     Pantheios Assertion API.
  *
  * Created:     8th May 2009
- * Updated:     11th October 2012
+ * Updated:     29th June 2016
  *
  * Thanks to:   markitus82 for requesting this functionality
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2009-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2009-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,18 +50,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_H_ASSERT
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      10
+# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      11
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -78,7 +78,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper macros
+ * helper macros
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -92,7 +92,7 @@
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Assertion features
+ * assertion features
  */
 
 /** \defgroup group__assertion Pantheios Assertion API
@@ -197,7 +197,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT

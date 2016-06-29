@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.fe.N project.
  *
  * Created:     24th August 2008
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -19,13 +19,13 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <pantheios/frontends/fe.N.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* xTests header files */
@@ -39,7 +39,7 @@
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_empty_array_with_negative_default_ceiling(void);
@@ -49,7 +49,7 @@ static void test_array_with_one_specific_id(void);
 static void test_array_with_three_specific_ids(void);
 
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main
  */
 
 int main(int argc, char **argv)
@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 static const int s_severityLevels[] =
@@ -94,7 +94,7 @@ static const int s_severityLevels[] =
 #define s_defaultCeiling    -1
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.N");
@@ -122,7 +122,7 @@ static void reinitialise_ceilings(void)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
 static void test_empty_array_with_negative_default_ceiling()

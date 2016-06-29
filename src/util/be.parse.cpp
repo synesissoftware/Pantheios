@@ -4,11 +4,11 @@
  * Purpose:     Utility functions for use in Pantheios back-ends.
  *
  * Created:     19th August 2007
- * Updated:     1st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -60,7 +60,7 @@
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -69,7 +69,7 @@
 #endif /* _MSC_VER >= 1400 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * String encoding compatibility
+ * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -81,7 +81,7 @@ typedef stlsoft::string_view            string_view_t;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifndef PANTHEIOS_NO_NAMESPACE
@@ -93,7 +93,7 @@ using pantheios::util::pantheios_onBailOut4;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -114,7 +114,7 @@ static int pantheios_be_parseStockArgs_(    size_t              numArgs
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 namespace

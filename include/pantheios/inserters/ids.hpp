@@ -4,11 +4,11 @@
  * Purpose:     String inserters for execution environment identities.
  *
  * Created:     16th October 2006
- * Updated:     22nd September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,18 +48,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_IDS
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_EDIT     14
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_EDIT     15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -76,7 +76,7 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT

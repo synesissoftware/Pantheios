@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.util.onbailout project.
  *
  * Created:     29th April 2008
- * Updated:     9th December 2013
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2013, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -70,7 +70,7 @@
         :   XTESTS_TEST_FAIL_WITH_QUALIFIER(std::string("the actual value did not match the pattern '") + pattern + "'", value))
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -92,7 +92,7 @@ static void test_1_12();
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 namespace

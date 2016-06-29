@@ -4,11 +4,11 @@
  * Purpose:     Inserter class for incorporating multibyte strings.
  *
  * Created:     1st September 2015
- * Updated:     1st September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2015-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,18 +48,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_M2T
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2T_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2T_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2T_REVISION 0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2T_EDIT     1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2T_EDIT     2
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS

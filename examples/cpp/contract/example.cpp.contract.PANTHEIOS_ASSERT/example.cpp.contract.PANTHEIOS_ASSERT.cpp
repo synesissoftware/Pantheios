@@ -7,7 +7,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     8th May 2009
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * www:         http://www.pantheios.org/
  *
@@ -31,7 +31,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 #ifdef STLSOFT_COMPILER_IS_BORLAND

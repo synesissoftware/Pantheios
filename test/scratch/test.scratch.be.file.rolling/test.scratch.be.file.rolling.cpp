@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.be.file.rolling project.
  *
  * Created:     24th October 2007
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -46,7 +46,7 @@
 #endif /* _MSC_VER) && _DEBUG */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Constants & definitions
+ * constants
  */
 
 //static const char FILENAME_REMOTE[]   =   "rolling-log.test.remote";
@@ -54,7 +54,7 @@
 static const int ENTRY_QUANTUM = 10;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Function implementations
+ * function implementations
  */
 
 PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(int backEndId, pan_be_file_init_t* init) /* throw() */
@@ -70,13 +70,13 @@ PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(int backEndId, pan_be_file_ini
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.file.rolling");
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 typedef platformstl::filesystem_traits<char>    fs_traits_t;
@@ -84,7 +84,7 @@ typedef platformstl::basic_path<char>           path_t;
 typedef platformstl::file_lines                 file_lines_t;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_ROLL_ON_ENTRIES();

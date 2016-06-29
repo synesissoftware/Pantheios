@@ -5,11 +5,11 @@
  *              for which NoX builds are provided in the distribution.
  *
  * Created:     7th February 2008
- * Updated:     10th August 2009
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -55,7 +55,7 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \

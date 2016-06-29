@@ -14,7 +14,7 @@
  *                  pantheios_logprintf()
  *
  * Created:     17th January 2008
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * www:         http://www.pantheios.org/
  *
@@ -39,7 +39,7 @@
 #include <string.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.c.101");

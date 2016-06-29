@@ -10,7 +10,7 @@
  *                  PANTHEIOS_MAKE_EXTENDED_SEVERITY()
  *
  * Created:     21st May 2009
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * www:         http://www.pantheios.org/
  *
@@ -32,7 +32,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 #ifdef STLSOFT_COMPILER_IS_BORLAND

@@ -4,11 +4,11 @@
  * Purpose:     Deprecated parts of the Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     18th March 2012
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -52,7 +52,7 @@
 #include <pantheios/frontend.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -84,7 +84,7 @@ PANTHEIOS_CALL(void) pantheios_puts(pan_sev_t severity, pan_char_t const* s)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)

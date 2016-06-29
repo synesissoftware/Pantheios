@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.core.getProcessIdentity project.
  *
  * Created:     6th August 2012
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2012-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2012-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -19,13 +19,13 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <pantheios/pantheios.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* xTests header files */
@@ -38,7 +38,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_1_0(void);
@@ -67,7 +67,7 @@ static int teardown(void*);
 static void* param;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main
  */
 
 int main(int argc, char **argv)
@@ -166,7 +166,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
 static int setup(void* param)

@@ -4,11 +4,11 @@
  * Purpose: Implicitly links in the Pantheios syslog Back-End Library
  *
  * Created: 10th November 2010
- * Updated: 10th November 2010
+ * Updated: 29th June 2016
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,18 +50,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BE_SYSLOG_WITHCALLBACK
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_SYSLOG_WITHCALLBACK_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_SYSLOG_WITHCALLBACK_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_SYSLOG_WITHCALLBACK_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_SYSLOG_WITHCALLBACK_EDIT        1
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_SYSLOG_WITHCALLBACK_EDIT        2
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -75,7 +75,7 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_SYSLOG_WITHCALLBACK */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Implicit-linking directives
+ * implicit-linking directives
  */
 
 #ifdef PANTHEIOS_IMPLICIT_LINK_SUPPORT

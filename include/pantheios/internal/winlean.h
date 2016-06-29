@@ -5,11 +5,11 @@
  *              decrease compilation times.
  *
  * Created:     22nd April 2008
- * Updated:     15th February 2010
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,7 +50,7 @@
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_WINLEAN
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compatility
+ * compatility
  */
 
 #if !defined(_WIN32) && \
@@ -64,7 +64,7 @@
 #endif /* _WINDOWS_ */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Feature suppression
+ * feature suppression
  */
 
 #if !defined(__MINGW32__)

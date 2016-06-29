@@ -50,14 +50,14 @@
 #define PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      50
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       363
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       364
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -113,7 +113,7 @@
 #define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B217
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes - 1
+ * includes - 1
  */
 
 /* Pantheios core API relies on STLSoft for compiler/library discrimination,
@@ -145,7 +145,7 @@
 #endif /* !PANTHEIOS_INCL_H_STDDEF */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Feature detection
+ * feature detection
  */
 
 /* By default, Pantheios is a multi-byte string library
@@ -176,7 +176,7 @@
 #endif /* PANTHEIOS_NO_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes - 2
+ * includes - 2
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -189,7 +189,7 @@
 #include <pantheios/internal/string_encoding.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros and definitions
+ * macros
  */
 
 /** \def PANTHEIOS_STRINGIZE(x)
@@ -351,7 +351,7 @@
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if defined(STLSOFT_CF_NAMESPACE_SUPPORT)
@@ -416,7 +416,7 @@ namespace core
  */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Types
+ * types
  */
 
 /* Basic types */
@@ -811,7 +811,7 @@ PANTHEIOS_CALL(int) pantheios_logvprintf(
 );
 
 /* /////////////////////////////////////////////////////////////////////////
- * Utility functions
+ * Util API
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -903,7 +903,7 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Utility functions
+ * Util API
  */
 
 #ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -925,7 +925,7 @@ namespace core
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 /* /////////////////////////////////////
- * Undocumented API functions
+ * undocumented API functions
  *
  * ALL OF THE FUNCTIONS IN THIS SECTION ARE NOT PART OF THE PUBLICLY
  * DOCUMENTED API OF PANTHEIOS, AND ARE SUBJECT TO REMOVAL/CHANGE IN A
@@ -1157,7 +1157,7 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_remove(int backEndId);
 #endif /* 0 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Generated function control
+ * generated function control
  */
 
 #if defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) || \
@@ -1202,7 +1202,7 @@ typedef pan_sint32_t    sint32_t;
 typedef pan_sint64_t    sint64_t;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Utility Functions
+ * Util API
  */
 
 namespace util
@@ -1252,7 +1252,7 @@ onBailOut(
 } /* namespace util */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Core Functions
+ * Core functions
  */
 
 /** Equivalent to \ref pantheios::pantheios_init "pantheios_init()".
@@ -1597,7 +1597,7 @@ logvprintf(
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -1618,7 +1618,7 @@ logvprintf(
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * String access shims
+ * string access shims
  */
 
 #ifdef __cplusplus
@@ -1645,7 +1645,7 @@ logvprintf(
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -1761,7 +1761,7 @@ namespace stlsoft
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT

@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.fe.null project.
  *
  * Created:     14th May 2008
- * Updated:     22nd March 2010
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -29,7 +29,7 @@
 #include <stdlib.h>                 /* for EXIT_SUCCESS, EXIT_FAILURE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * character encoding
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -43,13 +43,13 @@
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.null");
 
 /* /////////////////////////////////////////////////////////////////////////
- * Statics and constants
+ * statics and constants
  */
 
 static const int s_severityLevels[] =

@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the Pantheios fe.N Stock Front-end API.
  *
  * Created:     18th October 2006
- * Updated:     26th August 2014
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,7 +48,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 struct pantheios_fe_N_init_t
@@ -59,7 +59,7 @@ struct pantheios_fe_N_init_t
 typedef struct pantheios_fe_N_init_t pantheios_fe_N_init_t;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #define PAN_FE_N_HAS_backEndId()        (1)
@@ -69,7 +69,7 @@ typedef struct pantheios_fe_N_init_t pantheios_fe_N_init_t;
 */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 static

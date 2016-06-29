@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the pseudoUNIX.test project.
  *
  * Created:     23rd September 2006
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -46,7 +46,7 @@
 #include <stdlib.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros and definitions
+ * macros
  */
 
 #ifdef true
@@ -59,7 +59,7 @@
 #define false   (0)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 #if defined(_DEBUG) || \
@@ -72,12 +72,12 @@ static int  s_bDebugging                =   false;
 PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("pseudoUNIX.test");
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void usage(int bExit, char const *reason, int invalidArg, int argc, char **argv);

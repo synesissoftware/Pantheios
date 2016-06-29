@@ -4,11 +4,11 @@
  * Purpose:     Shorthand inserter ch for pantheios::character.
  *
  * Created:     21st June 2005
- * Updated:     16th October 2010
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -74,18 +74,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CH
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_EDIT      1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_EDIT      2
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -96,7 +96,7 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CHARACTER */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -106,7 +106,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /** Class for inserting characters into Pantheios diagnostic logging
@@ -141,7 +141,7 @@ namespace pantheios
 typedef character ch;
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -149,7 +149,7 @@ typedef character ch;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT

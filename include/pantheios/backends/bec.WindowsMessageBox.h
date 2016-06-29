@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios WindowsMessageBox Stock Back-end API.
  *
  * Created:     8th March 2008
- * Updated:     11th September 2009
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,7 +48,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_WINDOWSMESSAGEBOX
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * version information
+ */
+
+#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_MAJOR     1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_MINOR     1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_REVISION  1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_EDIT      9
+#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -59,7 +70,7 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__backend__stock_backends__WindowsMessageBox Pantheios Windows Message Box Stock Back-end

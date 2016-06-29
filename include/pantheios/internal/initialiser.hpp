@@ -4,11 +4,11 @@
  * Purpose:     Automatic initialisation of Pantheios Core API
  *
  * Created:     21st June 2005
- * Updated:     2nd August 2010
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -54,7 +54,7 @@
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_INITIALISER
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -62,7 +62,7 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 /** Schwarz Counter initialiser for the Pantheios library

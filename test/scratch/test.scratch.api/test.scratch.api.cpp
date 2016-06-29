@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.api project.
  *
  * Created:     26th June 2005
- * Updated:     21st September 2015
+ * Updated:     29th June 2016
  *
  * Status:      Wizard-generated
  *
@@ -126,7 +126,7 @@ int main()
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static int main_(int /* argc */, char ** /*argv*/);
@@ -135,13 +135,13 @@ static void some_logging_with_using_declarations();
 static void some_logging_with_explicit_qualification();
 
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #define P_STR   PANTHEIOS_LITERAL_STRING
 
 /* /////////////////////////////////////////////////////////////////////////
- * String encoding compatibility
+ * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -157,7 +157,7 @@ static void some_logging_with_explicit_qualification();
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * classes
  */
 
 class Thingy
@@ -201,7 +201,7 @@ std::string Thingy_to_string(Thingy const *thingy)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Process Identity
+ * process identity
  *
  * This is defined for when we link with the pantheios.fe.simple front-end
  * library, which implements pantheios_fe_getProcessIdentity() in terms of this

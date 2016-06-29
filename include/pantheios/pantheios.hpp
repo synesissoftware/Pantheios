@@ -4,11 +4,11 @@
  * Purpose:     Primary header file for Pantheios
  *
  * Created:     21st June 2005
- * Updated:     11th October 2012
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -55,18 +55,18 @@
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      10
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       103
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       104
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* Main Pantheios Header */
@@ -223,7 +223,7 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -264,7 +264,7 @@ namespace pantheios
 #endif /* PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_ */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 /* The Digital Mars and GCC compilers both exhibit strange behaviour (bugs?)
@@ -346,7 +346,7 @@ namespace internal
 #undef PANTHEIOS_INVOKE_SHIM_PAIR_
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -374,7 +374,7 @@ namespace internal
 #endif /* PANTHEIOS_FORCE_AUTO_INIT || !PANTHEIOS_NO_AUTO_INIT */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
