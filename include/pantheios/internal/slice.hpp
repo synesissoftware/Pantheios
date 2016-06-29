@@ -42,8 +42,8 @@
 
 /** \file pantheios/internal/slice.hpp
  *
- * [C, C++] Primary include file for the \ref group__core_library and
- *  \ref group__util_library.
+ * [C, C++] INTERNAL FILE (AND SUBJECT TO CHANGE): pan_slice_t
+ *  implementation.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SLICE

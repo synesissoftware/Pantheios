@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        22
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,23 +93,22 @@ template<
 >
 class inserter
 {
-public:
+public: // types
     typedef T                   value_type;
     typedef S                   string_type;
     typedef inserter<T, S>      class_type;
 
-public:
+public: // construction
     inserter(T value, S (*pfn)(T))
         : m_sourceValue(value)
         , m_convertedValue()
         , m_pfn(pfn)
         , m_bInitialised(false)
     {}
-
 private:
-    class_type& operator =(class_type const&);
+    class_type& operator =(class_type const&); // proscribed
 
-public:
+public: // accessors
     pan_char_t const* data() const
     {
         if(!m_bInitialised)
@@ -129,7 +128,7 @@ public:
         return m_convertedValue.length();
     }
 
-private:
+private: // implementation
     void convert_() const
     {
         const_cast<class_type*>(this)->convert_();
@@ -140,7 +139,7 @@ private:
         m_bInitialised      =   true;
     }
 
-private:
+private: // fields
     T       m_sourceValue;
     S       m_convertedValue;
     S       (*m_pfn)(T);
@@ -157,7 +156,7 @@ template<
 >
 inline
 inserter<T, S>
-insert(T &value, S (*pfn)(T))
+insert(T& value, S (*pfn)(T))
 {
     return inserter<T, S>(value, pfn);
 }

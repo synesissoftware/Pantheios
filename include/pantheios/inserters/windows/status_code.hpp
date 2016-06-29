@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     6
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,6 +88,14 @@ namespace windows
  * classes
  */
 
+/** Class for inserting Windows status codes, either Windows API
+ * <code>DWORD</code> values (from <code>GetLastError()</code>), which will
+ * be rendered as plain integers, or COM <code>HRESULT</code> values, which
+ * will be rendered as 0xYYYYYYYY.
+ *
+ * \ingroup group__application_layer_interface__inserters
+ *
+ */
 class status_code
     : public PANTHEIOS_NS_QUAL(integer)
 {
