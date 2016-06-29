@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Core and Util APIs.
  *
  * Created:     21st June 2005
- * Updated:     25th October 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      49
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       362
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      50
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   1
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       363
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -102,6 +102,7 @@
 # define PANTHEIOS_VER_1_0_1_B214               0x010001d6
 # define PANTHEIOS_VER_1_0_1_B215               0x010001d7
 # define PANTHEIOS_VER_1_0_1_B216               0x010001d8
+# define PANTHEIOS_VER_1_0_1_B217               0x010001d9
 # define PANTHEIOS_VER_1_0_1                    0x010001ff
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -109,7 +110,7 @@
 #define PANTHEIOS_VER_MINOR                     0
 #define PANTHEIOS_VER_REVISION                  1
 
-#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B216
+#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B217
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes - 1
@@ -130,8 +131,8 @@
     STLSOFT_VER >= 0x010c0000
 # define PANTHEIOS_STLSOFT_1_12_OR_LATER
 #elif !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010978ff
-# error This version Pantheios requires STLSoft 1.9.120, or later. (www.stlsoft.org)
+    _STLSOFT_VER < 0x01098dff
+# error This version Pantheios requires STLSoft 1.9.125, or later. (www.stlsoft.org)
 #endif /* STLSoft version */
 
 #ifndef PANTHEIOS_INCL_H_STDARG
@@ -896,28 +897,28 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
 ,   char const*   processId
 );
 
-# ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-
-/** [Currently undocumented] Calculates the length of a string, in light of
- * special conditions indicated by special values of the len parameter.
- *
- * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
- *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
- */
-PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pan_char_t const* s, size_t len);
-PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_strnlen, pantheios_util_strnlen) pantheios_strnlen(pan_char_t const* s, size_t len);
-
-# endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
-
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace util */
+} /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Utility functions
+ */
+
+#ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# include <pantheios/util/string/strnlen.h>
+#else /* ? PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+# include "./util/string/strnlen.h"
+#endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Core functions
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
+namespace pantheios
+{
 namespace core
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
@@ -1233,13 +1234,17 @@ onBailOut(
 }
 
 inline
-size_t
-strnlen(
-    pan_char_t const*   s
-,   size_t              len
+void
+onBailOut(
+    int           severity
+,   char const*   message
+,   char const*   processId
+,   char const*   qualifier
+,   char const*   frontEndName
+,   char const*   backEndName
 )
 {
-    return pantheios_util_strnlen(s, len);
+    pantheios_onBailOut6(severity, message, processId, qualifier, frontEndName, backEndName);
 }
 
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
@@ -1618,9 +1623,11 @@ logvprintf(
 
 #ifdef __cplusplus
 
+/* TODO: make this include relative */
 # include <pantheios/shims/access/string/core/pan_slice_t.hpp>
 
 # ifndef PANTHEIOS_NO_STOCK_LEVELS
+/* TODO: make this include relative */
 #  include <pantheios/shims/access/string/core/pan_severity_t.hpp>
 # endif /* !PANTHEIOS_NO_STOCK_LEVELS */
 
@@ -1632,6 +1639,7 @@ logvprintf(
 
 #ifdef __cplusplus
 
+/* TODO: make this include relative */
 # include <pantheios/internal/slice.hpp>
 
 #endif /* __cplusplus */
@@ -1714,6 +1722,7 @@ logvprintf(
  * <code>stlsoft</code> namespace in this way is quite legitimate.
  */
 # endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+/* TODO: make this include relative */
 # include <pantheios/internal/shim_declarations.hpp>
 namespace stlsoft
 {
@@ -1732,6 +1741,7 @@ namespace stlsoft
 #else /* ? !PANTHEIOS_NO_NAMESPACE */
 
 # ifdef __cplusplus
+/* TODO: make this include relative */
 #  include <pantheios/internal/shim_declarations.hpp>
 namespace stlsoft
 {
