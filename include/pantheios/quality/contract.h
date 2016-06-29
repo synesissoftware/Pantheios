@@ -5,11 +5,11 @@
  *              Pantheios core and APIs.
  *
  * Created:     26th June 2005
- * Updated:     2nd August 2010
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -57,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        16
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,8 @@
 #   if defined(STLSOFT_COMPILER_IS_BORLAND) || \
        defined(STLSOFT_COMPILER_IS_MWERKS) || \
        defined(STLSOFT_COMPILER_IS_DMC) || \
-       defined(STLSOFT_COMPILER_IS_MSVC)
+       (    defined(STLSOFT_COMPILER_IS_MSVC) && \
+            _MSC_VER > 1200)
 #    define PANTHEIOS_QA_DO_MSG_TYPECHECK
 #   endif /* compiler */
 #  endif /* C99 or custom inline */
@@ -117,7 +118,11 @@
 # endif /* !PANTHEIOS_QA_DO_MSG_TYPECHECK */
 
 # if defined(PANTHEIOS_QA_DO_MSG_TYPECHECK)
-STLSOFT_INLINE char const* PANTHEIOS_TYPECHECK_MSG_(char const* msg)
+STLSOFT_INLINE
+char const*
+PANTHEIOS_TYPECHECK_MSG_(
+    char const* msg
+)
 {
     return msg;
 }
@@ -125,12 +130,17 @@ STLSOFT_INLINE char const* PANTHEIOS_TYPECHECK_MSG_(char const* msg)
 #  if defined(__cplusplus)
 #   ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 template <size_t N>
-inline char const* PANTHEIOS_TYPECHECK_MSG_(char (&ar)[N])
+char const*
+PANTHEIOS_TYPECHECK_MSG_(
+    char (&ar)[N]
+)
 {
     return &ar[0];
 }
 #   endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
-inline void PANTHEIOS_TYPECHECK_MSG_(...)
+inline
+void
+PANTHEIOS_TYPECHECK_MSG_(...)
 {}
 #  endif /* __cplusplus */
 
