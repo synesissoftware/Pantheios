@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.be.N project.
  *
  * Created:     29th January 2008
- * Updated:     22nd March 2010
+ * Updated:     28th June 2016
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -28,10 +28,14 @@
 #include <stdio.h>                  /* for fprintf() */
 #include <stdlib.h>                 /* for EXIT_SUCCESS, EXIT_FAILURE */
 
+
 const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.N");
 
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
 
-#define DECLARE_BACK_END_IMPL_N(n)                                          \
+#define DECLARE_BACK_END_IMPL_N_(n)                                         \
                                                                             \
     PANTHEIOS_CALL(int) pantheios_be_N_test_ ## n ## _init(                 \
         PAN_CHAR_T const*   processIdentity                                 \
@@ -95,6 +99,10 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
         return 0;                                                           \
     }
 
+/* /////////////////////////////////////////////////////////////////////////
+ * backends
+ */
+
 #define NUM_BACKENDS    (5)
 
 static int s_retVals[1 + NUM_BACKENDS];     /* 0th element is not used. */
@@ -109,11 +117,11 @@ static int s_flags[1 + NUM_BACKENDS] =
     PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED
 };
 
-DECLARE_BACK_END_IMPL_N(1)
-DECLARE_BACK_END_IMPL_N(2)
-DECLARE_BACK_END_IMPL_N(3)
-DECLARE_BACK_END_IMPL_N(4)
-DECLARE_BACK_END_IMPL_N(5)
+DECLARE_BACK_END_IMPL_N_(1)
+DECLARE_BACK_END_IMPL_N_(2)
+DECLARE_BACK_END_IMPL_N_(3)
+DECLARE_BACK_END_IMPL_N_(4)
+DECLARE_BACK_END_IMPL_N_(5)
 
 pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
@@ -126,9 +134,9 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
     PANTHEIOS_BE_N_STDFORM_ENTRY(3, pantheios_be_N_test_3, 0),
     PANTHEIOS_BE_N_STDFORM_ENTRY(4, pantheios_be_N_test_4, 0),
     PANTHEIOS_BE_N_STDFORM_ENTRY(5, pantheios_be_N_test_5, 0),
+
     PANTHEIOS_BE_N_TERMINATOR_ENTRY
 };
-
 
 static void reset_state_(void)
 {
@@ -139,6 +147,15 @@ static void reset_state_(void)
         s_retVals[i]                    =   0;              /* Mark to pass */
         s_initCounts[0]                 =   0;              /* Reset init ref count */
     }
+}
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+PANTHEIOS_CALL(int) pantheios_getNextBackEndId(void)
+{
+    static int s_nextId = 1000;
+
+    return ++s_nextId;
 }
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -295,7 +312,7 @@ int main(int argc, char** argv)
             XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[4]);
             XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[5]);
 
-            /* pantheios_be_uninit(token); */
+            pantheios_be_uninit(token);
 
             XTESTS_CASE_END("Test-5");
         }

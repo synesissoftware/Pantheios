@@ -271,6 +271,10 @@ pantheios_be_logEntry(
         {
             /* Was not initialised. */
         }
+        else if(severity4 < backEnd->severityFloor)
+        {
+            /* Statically filtered out */
+        }
         else if(severity4 > backEnd->severityCeiling)
         {
             /* Statically filtered out */

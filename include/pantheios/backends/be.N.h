@@ -52,9 +52,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MAJOR      1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      7
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      8
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       23
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -173,6 +173,9 @@ struct pan_be_N_t
     /* INTERNAL USE ONLY */
     void*   token;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+    /** A per-back-end static severity floor
+     */
+    int     severityFloor;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
     /* INTERNAL USE ONLY */
@@ -208,7 +211,7 @@ typedef struct pan_be_N_t   pan_be_N_t;
  * This is used in combination with PANTHEIOS_BE_N_TERMINATOR_ENTRY to
  * define the set of concrete back-ends are to be attached to the program:
 <pre>
-pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
+pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
     PANTHEIOS_BE_N_STDFORM_ENTRY(1, pantheios_be_file, 0)
   , PANTHEIOS_BE_N_STDFORM_ENTRY(2, pantheios_be_fprintf, 0)
@@ -237,6 +240,7 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
         ,   be_prefix ## _logEntry                                                                          \
         ,   INT_MAX                                                                                         \
         ,   NULL                                                                                            \
+        ,   INT_MIN                                                                                         \
         ,   PANTHEIOS_VER                                                                                   \
         ,   PANTHEIOS_BE_N_RESERVED_VALUES_                                                                 \
     }
@@ -257,7 +261,7 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
  * This is used in combination with PANTHEIOS_BE_N_TERMINATOR_ENTRY to
  * define the set of concrete back-ends are to be attached to the program:
 <pre>
-pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
+pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
     PANTHEIOS_BE_N_STDFORM_ENTRY(1, pantheios_be_file, 0)
   , PANTHEIOS_BE_N_STDFORM_ENTRY(2, pantheios_be_fprintf, 0)
@@ -288,6 +292,21 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
         ,   be_prefix ## _logEntry                                                                          \
         ,   severityCeiling                                                                                 \
         ,   NULL                                                                                            \
+        ,   INT_MIN                                                                                         \
+        ,   PANTHEIOS_VER                                                                                   \
+        ,   PANTHEIOS_BE_N_RESERVED_VALUES_                                                                 \
+    }
+
+#define PANTHEIOS_BE_N_FILTERED_ENTRY_FLOOR(backEndId, be_prefix, severityFloor, severityCeiling, flags)    \
+    {                                                                                                       \
+            flags                                                                                           \
+        ,   backEndId                                                                                       \
+        ,   (int(PANTHEIOS_CALLCONV*)(PAN_CHAR_T const*,int,void const*,void*,void**))be_prefix ## _init    \
+        ,   be_prefix ## _uninit                                                                            \
+        ,   be_prefix ## _logEntry                                                                          \
+        ,   severityCeiling                                                                                 \
+        ,   NULL                                                                                            \
+        ,   severityFloor                                                                                   \
         ,   PANTHEIOS_VER                                                                                   \
         ,   PANTHEIOS_BE_N_RESERVED_VALUES_                                                                 \
     }
@@ -300,7 +319,7 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
  *
  * \see PANTHEIOS_BE_N_STDFORM_ENTRY
  */
-#define PANTHEIOS_BE_N_TERMINATOR_ENTRY                 { 0, 0, NULL, NULL, NULL, -1, NULL, PANTHEIOS_VER, PANTHEIOS_BE_N_RESERVED_VALUES_ }
+#define PANTHEIOS_BE_N_TERMINATOR_ENTRY                 { 0, 0, NULL, NULL, NULL, -1, NULL, 0, PANTHEIOS_VER, PANTHEIOS_BE_N_RESERVED_VALUES_ }
 
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations
@@ -314,7 +333,7 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
  *
  * \ingroup group__backend__stock_backends__N
  */
-PANTHEIOS_EXTERN_C pan_be_N_t       PAN_BE_N_BACKEND_LIST[];
+PANTHEIOS_EXTERN_C pan_be_N_t   PAN_BE_N_BACKEND_LIST[];
 
 /* ////////////////////////////////////////////////////////////////////// */
 
