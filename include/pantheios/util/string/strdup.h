@@ -48,14 +48,14 @@
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_STRDUP
 
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_MINOR     2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      7
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_REVISION  4
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,21 +100,21 @@ namespace pantheios
  *
  * \note The returned value must be freed using pantheios_util_free()
  */
-PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) /* STLSOFT_NOEXCEPT */;
+PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) STLSOFT_NOEXCEPT;
 
 /** Frees a duplicated string allocated by pantheios_util_strdup_nothrow()
  *   or pantheios_util_strdup_throw()
  *
  * \param s The string to deallocate
  */
-PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) /* STLSOFT_NOEXCEPT */;
+PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) STLSOFT_NOEXCEPT;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) /* STLSOFT_NOEXCEPT */;
-PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) /* STLSOFT_NOEXCEPT */;
+PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) STLSOFT_NOEXCEPT;
+PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) STLSOFT_NOEXCEPT;
 
-PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) /* STLSOFT_NOEXCEPT */;
-PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) /* STLSOFT_NOEXCEPT */;
+PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) STLSOFT_NOEXCEPT;
+PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) STLSOFT_NOEXCEPT;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
