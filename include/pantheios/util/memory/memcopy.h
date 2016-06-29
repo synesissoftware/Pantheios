@@ -41,7 +41,8 @@
 
 /** \file pantheios/util/memory/memcopy.h
  *
- * \brief [C, C++] INTERNAL FILE: Memory-copying functions.
+ * \brief [C, C++] INTERNAL FILE (AND SUBJECT TO CHANGE): Memory-copying
+ *   functions.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_MINOR    0
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_REVISION 0
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_EDIT     3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_EDIT     5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,8 +70,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifdef __cplusplus
+# ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_CHARACTER_TYPE
+#  include <stlsoft/meta/is_character_type.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_CHARACTER_TYPE */
+#endif /* __cplusplus */
 
-#include <string.h>
+#ifdef __cplusplus
+# include <string.h>
+#endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -87,8 +95,18 @@ namespace util
  * functions
  */
 
-#ifdef __cplusplus
+#if defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) || \
+    defined(__cplusplus)
 
+/** Copies \c cch characters from \c src to \c dest
+ *
+ * \param dest Destination
+ * \param src The destination
+ * \param cch The number of characters
+ *
+ * \pre (NULL != dest)
+ * \pre (NULL != src)
+ */
 template <typename C>
 inline
 C*
@@ -98,10 +116,74 @@ pantheios_util_memory_copyChars(
 ,   size_t              cch
 )
 {
+    STLSOFT_STATIC_ASSERT(stlsoft::is_character_type<C>::value);
+
     return static_cast<C*>(STLSOFT_NS_GLOBAL(memcpy)(dest, src, sizeof(C) * cch));
 }
-#else /* ? __cplusplus */
-# define pantheios_util_memory_copyChars(d, s, n)   stlsoft_static_cast(PAN_CHAR_T*, memcpy((d), (s), (n) * sizeof(PAN_CHAR_T)))
+#endif
+
+#if defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) || \
+    !defined(__cplusplus)
+
+/** Copies \c cch multibyte characters from \c src to \c dest
+ *
+ * \param dest Destination
+ * \param src The destination
+ * \param cch The number of characters
+ *
+ * \pre (NULL != dest)
+ * \pre (NULL != src)
+ */
+PANTHEIOS_CALL(char const*)
+pantheios_util_memory_copyChars_m(
+    char*               dest
+,   char const*         src
+,   size_t              cch
+);
+
+/** Copies \c cch wide characters from \c src to \c dest
+ *
+ * \param dest Destination
+ * \param src The destination
+ * \param cch The number of characters
+ *
+ * \pre (NULL != dest)
+ * \pre (NULL != src)
+ */
+PANTHEIOS_CALL(wchar_t const*)
+pantheios_util_memory_copyChars_w(
+    wchar_t*            dest
+,   wchar_t const*      src
+,   size_t              cch
+);
+
+/** \def pantheios_util_memory_copyChars(dest, src, cch)
+ *
+ * Copies \c cch parameters from \c src to \c dest
+ *
+ * \param dest Destination
+ * \param src The destination
+ * \param cch The number of characters
+ *
+ * \pre (NULL != dest)
+ * \pre (NULL != src)
+ */
+
+# define pantheios_util_memory_copyChars(dest, src, cch)   stlsoft_static_cast(PAN_CHAR_T*, memcpy((dest), (src), (cch) * sizeof(PAN_CHAR_T)))
+#endif /* __cplusplus */
+
+#ifdef __cplusplus
+
+# ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+
+#  if defined(PANTHEIOS_NO_NAMESPACE)
+
+#   define pantheios_util_memory_copyChars_     pantheios_util_memory_copyChars
+#  else /* PANTHEIOS_NO_NAMESPACE */
+
+#   define pantheios_util_memory_copyChars_     ::pantheios::util::pantheios_util_memory_copyChars
+#  endif /* !PANTHEIOS_NO_NAMESPACE */
+# endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 #endif /* __cplusplus */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,13 +191,15 @@ pantheios_util_memory_copyChars(
  */
 
 #if defined(PANTHEIOS_NO_NAMESPACE)
-# define PANTHEIOS_char_copy(d, s, n)       pantheios_util_memory_copyChars(d, s, n)
-# define PANTHEIOS_char_copy_m(d, s, n)     pantheios_util_memory_copyChars(d, s, n)
-# define PANTHEIOS_char_copy_w(d, s, n)     pantheios_util_memory_copyChars(d, s, n)
+
+# define PANTHEIOS_char_copy(dest, src, cch)    pantheios_util_memory_copyChars(dest, src, cch)
+# define PANTHEIOS_char_copy_m(dest, src, cch)  pantheios_util_memory_copyChars(dest, src, cch)
+# define PANTHEIOS_char_copy_w(dest, src, cch)  pantheios_util_memory_copyChars(dest, src, cch)
 #else /* PANTHEIOS_NO_NAMESPACE */
-# define PANTHEIOS_char_copy(d, s, n)       ::pantheios::util::pantheios_util_memory_copyChars(d, s, n)
-# define PANTHEIOS_char_copy_m(d, s, n)     ::pantheios::util::pantheios_util_memory_copyChars_m(d, s, n)
-# define PANTHEIOS_char_copy_w(d, s, n)     ::pantheios::util::pantheios_util_memory_copyChars_w(d, s, n)
+
+# define PANTHEIOS_char_copy(dest, src, cch)    ::pantheios::util::pantheios_util_memory_copyChars(dest, src, cch)
+# define PANTHEIOS_char_copy_m(dest, src, cch)  ::pantheios::util::pantheios_util_memory_copyChars_m(dest, src, cch)
+# define PANTHEIOS_char_copy_w(dest, src, cch)  ::pantheios::util::pantheios_util_memory_copyChars_w(dest, src, cch)
 
 } /* namespace util */
 } /* namespace pantheios */
