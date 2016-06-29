@@ -4,11 +4,11 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     25th September 2015
+ * Updated:     29th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MAJOR    2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MINOR    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_REVISION 6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     32
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MINOR    5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     33
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -155,6 +155,12 @@ private:
     void construct_();
 
     static int validate_width_(int minWidth);
+
+protected:
+    void const volatile* get_value() const
+    {
+        return m_value;
+    }
 
 private:
     void const volatile*    m_value;
