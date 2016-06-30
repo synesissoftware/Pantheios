@@ -706,7 +706,7 @@ SOURCE=..\..\..\src\core\auto.cpp
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.c"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.inl"
 # PROP Exclude_From_Build 1
 # End Source File
 # Begin Source File
@@ -1285,11 +1285,11 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\severity\levels.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_dispatch_functions.h"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\generated\log_dispatch_functions.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\generated\log_functions.h"
 # End Source File
 # Begin Source File
 

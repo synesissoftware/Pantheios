@@ -1153,7 +1153,7 @@
     <ClCompile Include="..\..\..\src\core\api.exitprocess.cpp" />
     <ClCompile Include="..\..\..\src\core\api.logputs.cpp" />
     <ClCompile Include="..\..\..\src\core\auto.cpp" />
-    <ClCompile Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.c">
+    <ClCompile Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.inl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded DLL pseudoUNIX|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded DLL|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded pseudoUNIX|x64'">true</ExcludedFromBuild>
