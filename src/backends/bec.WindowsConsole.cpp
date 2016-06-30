@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
  * Created:     17th July 2006
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -117,6 +117,8 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+    using ::winstl::ws_uint32_t;
+    using ::winstl::ws_uint64_t;
     using ::winstl::ws_uintptr_t;
 
     template <ss_typename_param_k T>
@@ -152,7 +154,9 @@ namespace
     ,   HWND        hwnd
     )
     {
-        return pantheios_util_snprintf(buff, cchBuff, PANTHEIOS_LITERAL_STRING("%08X"), hwnd);
+        ws_uint32_t const u = reinterpret_cast< winstl_ns_qual(ws_uint32_t)>(hwnd);
+
+        return pantheios_util_snprintf(buff, cchBuff, PANTHEIOS_LITERAL_STRING("%08X"), u);
     }
 
     template <>
@@ -163,9 +167,11 @@ namespace
     ,   HWND        hwnd
     )
     {
-        ws_uintptr_t const u = reinterpret_cast< winstl_ns_qual(ws_uintptr_t)>(hwnd);
+        ws_uint64_t const u = reinterpret_cast< winstl_ns_qual(ws_uint64_t)>(hwnd);
+        ws_uint32_t const h = (u >> (4 * sizeof(hwnd)));
+        ws_uint32_t const l = (u & 0xFFFFFFFF);
 
-        return pantheios_util_snprintf(buff, cchBuff, PANTHEIOS_LITERAL_STRING("%08X%08X"), (u & 0xFFFFFFFF), (u >> (4 * sizeof(hwnd))));
+        return pantheios_util_snprintf(buff, cchBuff, PANTHEIOS_LITERAL_STRING("%08X%08X"), h, l);
     }
 
     int
