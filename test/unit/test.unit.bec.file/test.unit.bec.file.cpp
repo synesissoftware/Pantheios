@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.be.file project.
  *
  * Created:     19th January 2008
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *

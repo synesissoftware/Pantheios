@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.performance.inserters.w2m project.
  *
  * Created:     2nd September 2008
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *

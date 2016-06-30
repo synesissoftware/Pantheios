@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.inserters.pad project.
  *
  * Created:     29th June 2009
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *

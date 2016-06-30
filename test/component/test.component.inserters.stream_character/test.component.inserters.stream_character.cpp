@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.inserters.stream_character project.
  *
  * Created:     9th May 2014
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *

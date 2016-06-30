@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.util.gethostname project.
  *
  * Created:     14th April 2008
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *

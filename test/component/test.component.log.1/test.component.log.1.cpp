@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.log.1 project.
  *
  * Created:     25th November 2007
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *

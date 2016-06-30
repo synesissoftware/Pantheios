@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.inserters.boolean project.
  *
  * Created:     7th August 2008
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *

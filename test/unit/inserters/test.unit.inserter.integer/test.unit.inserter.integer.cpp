@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.inserter.integer project.
  *
  * Created:     21st December 2010
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *
@@ -128,6 +128,9 @@ static void test_1_03()
 
 static void test_1_04()
 {
+    XTESTS_TEST_STRING_EQUAL(PSTR("+0"), pantheios::integer( 0, 0, pantheios::fmt::showPlus));
+    XTESTS_TEST_STRING_EQUAL(PSTR("-1"), pantheios::integer(-1, 0, pantheios::fmt::showPlus));
+    XTESTS_TEST_STRING_EQUAL(PSTR("+1"), pantheios::integer(+1, 0, pantheios::fmt::showPlus));
 }
 
 static void test_1_05()

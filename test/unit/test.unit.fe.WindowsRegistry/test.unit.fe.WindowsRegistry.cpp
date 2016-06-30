@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.fe.WindowsRegistry project.
  *
  * Created:     14th May 2008
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *
@@ -93,7 +93,7 @@ namespace
     static void test_1_18(void);
     static void test_cleanup(void);
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -211,7 +211,6 @@ namespace stub
         STLSOFT_SUPPRESS_UNUSED(frontEndName);
         STLSOFT_SUPPRESS_UNUSED(backEndName);
     }
-
 
 } /* namespace stub */
 
@@ -675,6 +674,6 @@ static void test_cleanup()
 }
 
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ///////////////////////////// end of file //////////////////////////// */

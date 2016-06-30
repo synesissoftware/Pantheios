@@ -203,7 +203,7 @@ std::string Thingy_to_string(Thingy const *thingy)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Process Identity
+ * process identity
  *
  * This is defined for when we link with the pantheios.fe.simple front-end
  * library, which implements pantheios_fe_getProcessIdentity() in terms of this

@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.fe.simple project.
  *
  * Created:     14th May 2008
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *

@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.be.COMErrorObject project.
  *
  * Created:     1st January 2008
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *

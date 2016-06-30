@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.core.pantheios_logputs project.
  *
  * Created:     19th November 2008
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *

@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.inserters.b64 project.
  *
  * Created:     31st July 2006
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *
