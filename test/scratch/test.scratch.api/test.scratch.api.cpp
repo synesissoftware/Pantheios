@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.api project.
  *
  * Created:     26th June 2005
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *
@@ -39,7 +39,9 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
+#ifndef __GNUC__
+# define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
+#endif
 
 /* This inclusion required for suppressing warnings during NoX (No eXception-support) configurations. */
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
@@ -201,7 +203,7 @@ std::string Thingy_to_string(Thingy const *thingy)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * process identity
+ * Process Identity
  *
  * This is defined for when we link with the pantheios.fe.simple front-end
  * library, which implements pantheios_fe_getProcessIdentity() in terms of this
@@ -308,7 +310,6 @@ int main(int argc, char *argv[])
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 #if !defined(STLSOFT_COMPILER_IS_GCC)
-        if(1)
         {
             Thingy  thingy;
 
@@ -317,7 +318,6 @@ int main(int argc, char *argv[])
 #endif /* compiler */
 
 #if 0
-        if(1)
         {
             Thingy      thingy;
 
@@ -325,7 +325,6 @@ int main(int argc, char *argv[])
         }
 #endif /* 0 */
 
-        if(1)
         {
   short         s     = 123;
   int           i     = 456;
@@ -343,7 +342,6 @@ int main(int argc, char *argv[])
                               , P_STR("and a blob ("), pantheios::blob(ar, sizeof(ar), 2, P_STR("-"), 3, P_STR("\n\t")), P_STR("); "));
         }
 
-        if(1)
         {
   using namespace pantheios;
 
@@ -362,7 +360,6 @@ int main(int argc, char *argv[])
                    );
         }
 
-        if(1)
         {
   using pantheios::log_INFORMATIONAL;
   using pantheios::integer;
@@ -385,11 +382,6 @@ int main(int argc, char *argv[])
                    );
         }
 
-        if(1)
-        {
-        }
-
-        if(1)
         {
   void        *p  = reinterpret_cast<void*>(0x01234567);
   char        s[] = "abc";
@@ -398,7 +390,6 @@ int main(int argc, char *argv[])
   pantheios::log(pantheios::notice, "s=", s, ", p=", pantheios::pointer(p, 8 | pantheios::fmt::fullHex), ", str=", str);
         }
 
-        if(1)
         {
   double      d   = 123.456;
   char        s[] = "abc";
@@ -407,7 +398,6 @@ int main(int argc, char *argv[])
   pantheios::log(pantheios::notice, "s=", s, ", d=", pantheios::real(d), ", str=", str);
         }
 
-        if(1)
         {
   int         i   = 123;
   char        s[] = "abc";

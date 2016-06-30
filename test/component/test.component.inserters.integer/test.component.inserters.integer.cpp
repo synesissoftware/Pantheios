@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.inserters.integer project.
  *
  * Created:     19th October 2006
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *
@@ -80,7 +80,7 @@ PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_
 #define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
- * character encoding
+ * Character encoding
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -111,7 +111,7 @@ int main(int argc, char** argv)
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%d", 11);
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%+d", 11);
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%u", 11);
-        pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%+u", 11);
+        pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "+%u", 11);
 #endif /* 0 */
 
     }

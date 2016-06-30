@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.be.N.filtering project.
  *
  * Created:     28th June 2016
- * Updated:     29th June 2016
+ * Updated:     30th June 2016
  *
  * Status:      Wizard-generated
  *
@@ -51,7 +51,7 @@ typedef struct results_t    results_t;
     PANTHEIOS_CALL(int) pantheios_be_N_test_ ## n ## _init(                 \
         PAN_CHAR_T const*   processIdentity                                 \
     ,   int                 backEndId                                       \
-    ,   void const*         init                                            \
+    ,   void*               init                                            \
     ,   void*               reserved                                        \
     ,   void**              ptoken                                          \
     );                                                                      \
@@ -121,7 +121,7 @@ typedef struct results_t    results_t;
 
 #define NUM_BACKENDS    (5)
 
-static results_t results = { 0 };
+static results_t results;
 
 DECLARE_BACK_END_IMPL_N_(1)
 DECLARE_BACK_END_IMPL_N_(2)

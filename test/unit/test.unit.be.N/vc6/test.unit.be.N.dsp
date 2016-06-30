@@ -7,16 +7,16 @@
 CFG=test.unit.be.N - Win32 Release
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "test.unit.be.N.mak".
-!MESSAGE 
+!MESSAGE
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "test.unit.be.N.mak" CFG="test.unit.be.N - Win32 Release"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "test.unit.be.N - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "test.unit.be.N - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE "test.unit.be.N - Win32 Release Multithreaded" (based on "Win32 (x86) Application")
@@ -41,7 +41,7 @@ CFG=test.unit.be.N - Win32 Release
 !MESSAGE "test.unit.be.N - Win32 Debug Multithreaded pseudoUNIX" (based on "Win32 (x86) Application")
 !MESSAGE "test.unit.be.N - Win32 Release Multithreaded DLL pseudoUNIX" (based on "Win32 (x86) Application")
 !MESSAGE "test.unit.be.N - Win32 Debug Multithreaded DLL pseudoUNIX" (based on "Win32 (x86) Application")
-!MESSAGE 
+!MESSAGE
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -76,8 +76,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Debug"
 
@@ -104,8 +104,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Release Multithreaded"
 
@@ -132,8 +132,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Debug Multithreaded"
 
@@ -160,8 +160,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Release Multithreaded DLL"
 
@@ -188,8 +188,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Debug Multithreaded DLL"
 
@@ -216,8 +216,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Unicode Release"
 
@@ -244,8 +244,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Unicode Debug"
 
@@ -272,8 +272,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Unicode Release Multithreaded"
 
@@ -300,8 +300,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Unicode Debug Multithreaded"
 
@@ -328,8 +328,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Unicode Release Multithreaded DLL"
 
@@ -356,8 +356,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Unicode Debug Multithreaded DLL"
 
@@ -384,8 +384,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.widestring.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Release NoX"
 
@@ -412,8 +412,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Debug NoX"
 
@@ -440,8 +440,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Release Multithreaded NoX"
 
@@ -468,8 +468,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Debug Multithreaded NoX"
 
@@ -496,8 +496,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.mt.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Release Multithreaded DLL NoX"
 
@@ -524,8 +524,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.nox.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Debug Multithreaded DLL NoX"
 
@@ -552,8 +552,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.dll.nox.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Release pseudoUNIX"
 
@@ -580,8 +580,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Debug pseudoUNIX"
 
@@ -608,8 +608,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Release Multithreaded pseudoUNIX"
 
@@ -636,8 +636,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.mt.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Debug Multithreaded pseudoUNIX"
 
@@ -664,8 +664,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.mt.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Release Multithreaded DLL pseudoUNIX"
 
@@ -692,8 +692,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.dll.exe" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
 
 !ELSEIF  "$(CFG)" == "test.unit.be.N - Win32 Debug Multithreaded DLL pseudoUNIX"
 
@@ -720,8 +720,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
-# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib" 
+# ADD BASE LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
+# ADD LINK32 advapi32.lib kernel32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../bin/test.unit.be.N.vc6.unix.dll.debug.exe" /pdbtype:sept /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(UNIXEM)/lib" /libpath:"$(SYNESIS_DEV)/lib"
 
 !ENDIF
 
@@ -774,6 +774,22 @@ SOURCE=..\test.unit.be.N.c
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\memory\allocator_features.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\memory\allocator_selector.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\algorithms\std\alt.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\memory\auto_buffer.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\std\basic_string.hpp"
 # End Source File
 # Begin Source File
@@ -786,6 +802,22 @@ SOURCE="$(STLSOFT)\include\stlsoft\meta\capabilities.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\string\char_traits.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\collections\util\collections.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\util\constraints.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\error\conversion_error.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\std\exception.hpp"
 # End Source File
 # Begin Source File
@@ -794,7 +826,7 @@ SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\fwd.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\intel.h"
+SOURCE="$(STLSOFT)\include\stlsoft\internal\head_version.h"
 # End Source File
 # Begin Source File
 
@@ -802,7 +834,23 @@ SOURCE="$(STLSOFT)\include\stlsoft\meta\is_integral_type.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_pointer_type.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\meta\is_same_type.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\util\std\iterator_helper.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\internal\lead_version.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\util\std\library_discriminator.hpp"
 # End Source File
 # Begin Source File
 
@@ -814,11 +862,43 @@ SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\msvc.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\meta\n_types.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\obsolete.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\algorithms\pod.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\internal\safestr.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\meta\select_first_type_if.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\string\shim_string.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\util\sign_traits.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\size_of.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\util\size_traits.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\util\std_swap.hpp"
 # End Source File
 # Begin Source File
 
@@ -836,10 +916,6 @@ SOURCE="$(STLSOFT)\include\stlsoft\meta\yesno.hpp"
 # Begin Group "PlatformSTL"
 
 # PROP Default_Filter ""
-# Begin Source File
-
-SOURCE="$(STLSOFT)\include\platformstl\synch\util\features.h"
-# End Source File
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\platformstl\platformstl.h"
@@ -862,10 +938,6 @@ SOURCE="$(STLSOFT)\include\unixstl\unixstl.h"
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\winstl\synch\util\features.h"
-# End Source File
-# Begin Source File
-
 SOURCE="$(STLSOFT)\include\winstl\winstl.h"
 # End Source File
 # End Group
@@ -879,23 +951,11 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\backend.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\implicit_link\be.test.h"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\backends\be.N.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\backends\bec.test.h"
-# End Source File
-# Begin Source File
-
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\implicit_link\bec.test.h"
-# End Source File
-# Begin Source File
-
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\util\test\compiler_warnings_suppression.first_include.h"
-# End Source File
-# Begin Source File
-
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\util\test\compiler_warnings_suppression.last_include.h"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\implicit_link\be.N.h"
 # End Source File
 # Begin Source File
 
@@ -903,7 +963,15 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\quality\contract.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\implicit_link\fe.simple.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\implicit_link\implicit_link_base_.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\init_codes.h"
 # End Source File
 # Begin Source File
 
@@ -911,11 +979,27 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\severity\levels.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\generated\log_functions.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\shims\access\string\core\pan_severity_t.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\shims\access\string\core\pan_slice_t.hpp"
 # End Source File
 # Begin Source File
 
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\shim_declarations.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\slice.hpp"
 # End Source File
 # Begin Source File
 
@@ -924,6 +1008,10 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\stock_levels.hpp"
 # Begin Source File
 
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\string_encoding.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\util\string\strnlen.h"
 # End Source File
 # End Group
 # Begin Group "shwild Header Files"
@@ -944,6 +1032,10 @@ SOURCE="$(SHWILD_ROOT)\include\shwild\shwild.h"
 # Begin Source File
 
 SOURCE="$(UNIXEM)\include\unistd.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(UNIXEM)\include\unixem\unixem.h"
 # End Source File
 # End Group
 # Begin Group "xTests Header Files"
