@@ -5,7 +5,7 @@
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	28th June 2016
+# Updated:	10th August 2016
 #
 ############################################################################
 
@@ -3357,22 +3357,25 @@ test.all:                   test.scratch test.examples test.performance test
 
 # clean targets
 
+clean.libs.util:
+	@echo Cleaning Util libraries ...
+	@-$(RM) $(LIB_UTIL_MT_UX)
+	@-$(RM) $(LIB_UTIL_MT_UX_DEBUG)
+	@-$(RM) $(OBJ_UTIL_MT_UX)
+	@-$(RM) $(OBJ_UTIL_MT_UX_DEBUG)
+	@-$(RM) $(PDB_UTIL_MT_UX_DEBUG)
+
 clean.libs.core:
 	@echo Cleaning Core libraries ...
-	@-$(RM) $(LIB_UTIL_MT_UX)
 	@-$(RM) $(LIB_CORE_MT_UX)
 	@-$(RM) $(LIB_APPL_MT_UX)
-	@-$(RM) $(LIB_UTIL_MT_UX_DEBUG)
 	@-$(RM) $(LIB_CORE_MT_UX_DEBUG)
 	@-$(RM) $(LIB_APPL_MT_UX_DEBUG)
-	@-$(RM) $(OBJ_UTIL_MT_UX)
 	@-$(RM) $(OBJ_CORE_MT_UX)
 	@-$(RM) $(OBJ_APPL_MT_UX)
-	@-$(RM) $(OBJ_UTIL_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_CORE_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_APPL_MT_UX_DEBUG)
 	@-$(RM) $(PDB_CORE_MT_UX_DEBUG)
-	@-$(RM) $(PDB_UTIL_MT_UX_DEBUG)
 
 clean.libs.be:
 	@echo Cleaning Back-end libraries ...

@@ -5,7 +5,7 @@
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	28th June 2016
+# Updated:	10th August 2016
 #
 ############################################################################
 
@@ -5038,30 +5038,33 @@ test.all:                   test.scratch test.examples test.performance test
 
 # clean targets
 
+clean.libs.util:
+	@echo Cleaning Util libraries ...
+	@-$(RM) $(LIB_UTIL_MT_D)
+	@-$(RM) $(LIB_UTIL_MT_R)
+	@-$(RM) $(LIB_UTIL_ST_D)
+	@-$(RM) $(LIB_UTIL_ST_R)
+	@-$(RM) $(OBJ_UTIL_MT_D)
+	@-$(RM) $(OBJ_UTIL_MT_R)
+	@-$(RM) $(OBJ_UTIL_ST_D)
+	@-$(RM) $(OBJ_UTIL_ST_R)
+
 clean.libs.core:
 	@echo Cleaning Core libraries ...
-	@-$(RM) $(LIB_UTIL_MT_D)
 	@-$(RM) $(LIB_CORE_MT_D)
 	@-$(RM) $(LIB_APPL_MT_D)
-	@-$(RM) $(LIB_UTIL_MT_R)
 	@-$(RM) $(LIB_CORE_MT_R)
 	@-$(RM) $(LIB_APPL_MT_R)
-	@-$(RM) $(LIB_UTIL_ST_D)
 	@-$(RM) $(LIB_CORE_ST_D)
 	@-$(RM) $(LIB_APPL_ST_D)
-	@-$(RM) $(LIB_UTIL_ST_R)
 	@-$(RM) $(LIB_CORE_ST_R)
 	@-$(RM) $(LIB_APPL_ST_R)
-	@-$(RM) $(OBJ_UTIL_MT_D)
 	@-$(RM) $(OBJ_CORE_MT_D)
 	@-$(RM) $(OBJ_APPL_MT_D)
-	@-$(RM) $(OBJ_UTIL_MT_R)
 	@-$(RM) $(OBJ_CORE_MT_R)
 	@-$(RM) $(OBJ_APPL_MT_R)
-	@-$(RM) $(OBJ_UTIL_ST_D)
 	@-$(RM) $(OBJ_CORE_ST_D)
 	@-$(RM) $(OBJ_APPL_ST_D)
-	@-$(RM) $(OBJ_UTIL_ST_R)
 	@-$(RM) $(OBJ_CORE_ST_R)
 	@-$(RM) $(OBJ_APPL_ST_R)
 

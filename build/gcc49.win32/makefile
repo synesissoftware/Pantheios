@@ -1,7 +1,7 @@
 ############################################################################
 # File: 	makefile
 #
-# Purpose:	Makefile for the Pantheios project, for the GCC 3.3
+# Purpose:	Makefile for the Pantheios project, for the GCC 3.4
 #			compiler, on Win32
 #
 # Created:	15th February 2005
@@ -24,7 +24,7 @@ endif # !STLSOFT
 ########################################
 # Project & compiler version
 
-COMP_TAG			=	gcc33
+COMP_TAG			=	gcc49
 ARCH_TAG            =   
 OS_TAG				=   
 PROJ_TAG			=	pantheios
@@ -443,7 +443,7 @@ CC_F_ADDITIONAL			=
 
 CPPC_F_NOLOGO			=	
 CPPC_F_COMPILE_ONLY 	=	-c
-CPPC_F_WARNING_MAX		=	-Wall -pedantic -Wno-long-long -Wno-unused-value -Wno-unused-function
+CPPC_F_WARNING_MAX		=	-Wall -pedantic -Wno-long-long -Wno-unused-value -Wno-unused-function                  -Wno-uninitialized
 CPPC_F_WARNING_ERR		=	-Werror
 CPPC_F_EXCEPTIONS_ON	=	
 CPPC_F_EXCEPTIONS_OFF	=	
@@ -455,7 +455,7 @@ CPPC_F_WARNINGS_LIMIT	=
 CPPC_F_MINIMUM_SIZE 	=	-O1
 CPPC_F_MAXIMUM_SPEED	=	-O3
 CPPC_F_OPTIMISED		=	$(CPPC_F_MAXIMUM_SPEED)
-CPPC_APP_F_WARNING_MAX	=	-Wall           -Wno-long-long -Wno-unused-value -Wno-unused-function
+CPPC_APP_F_WARNING_MAX	=	-Wall           -Wno-long-long -Wno-unused-value -Wno-unused-function                  -Wno-uninitialized
 CPPC_APP_F_WARNING_ERR	=	$(CPPC_F_WARNING_ERR)
 CPPC_F_ADDITIONAL		=	
 
