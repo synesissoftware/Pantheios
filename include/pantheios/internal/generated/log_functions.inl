@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/internal/generated/log_functions.c
+ * File:        pantheios/internal/generated/log_functions.inl
  *
  * Purpose:     Definitions of the pantheios_log_<N>() and
  *              pantheios_log_<N>_no_test() functions
  *
- * Generated:   8th January 2011
+ * Generated:   29th June 2016
  *
  * Status:      This file is auto-generated: DO NOT EDIT!
  *

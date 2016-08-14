@@ -4,7 +4,7 @@
  * Purpose:     Pantheios Core and Util APIs.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     10th August 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      51
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       365
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   4
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       366
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -131,8 +131,8 @@
     STLSOFT_VER >= 0x010c0000
 # define PANTHEIOS_STLSOFT_1_12_OR_LATER
 #elif !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x01098dff
-# error This version Pantheios requires STLSoft 1.9.125, or later. (www.stlsoft.org)
+    _STLSOFT_VER < 0x010981ff
+# error This version Pantheios requires STLSoft 1.9.129, or later. (www.stlsoft.org)
 #endif /* STLSoft version */
 
 #ifndef PANTHEIOS_INCL_H_STDARG

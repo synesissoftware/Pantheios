@@ -1,9 +1,9 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/internal/generated/log_sev_functions.hpp
+ * File:        pantheios/generated/log_sev_functions.hpp
  *
  * Purpose:     Definitions of the log_<LEVEL>() functions
  *
- * Generated:   9th January 2011
+ * Generated:   29th June 2016
  *
  * Status:      This file is auto-generated: DO NOT EDIT!
  *

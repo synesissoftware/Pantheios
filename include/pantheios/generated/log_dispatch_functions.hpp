@@ -1,9 +1,9 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/internal/generated/log_dispatch_functions.hpp
+ * File:        pantheios/generated/log_dispatch_functions.hpp
  *
  * Purpose:     Inline definitions of the log_dispatch_<N>() functions
  *
- * Generated:   8th January 2011
+ * Generated:   29th June 2016
  *
  * Status:      This file is auto-generated: DO NOT EDIT!
  *
