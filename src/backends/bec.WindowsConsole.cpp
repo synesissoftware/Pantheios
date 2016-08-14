@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
  * Created:     17th July 2006
- * Updated:     30th June 2016
+ * Updated:     15th August 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -168,7 +168,7 @@ namespace
     )
     {
         ws_uint64_t const u = reinterpret_cast< winstl_ns_qual(ws_uint64_t)>(hwnd);
-        ws_uint32_t const h = (u >> (4 * sizeof(hwnd)));
+        ws_uint32_t const h = static_cast<ws_uint32_t>(u >> (4 * sizeof(hwnd)));
         ws_uint32_t const l = (u & 0xFFFFFFFF);
 
         return pantheios_util_snprintf(buff, cchBuff, PANTHEIOS_LITERAL_STRING("%08X%08X"), h, l);
