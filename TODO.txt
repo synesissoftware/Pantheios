@@ -12,21 +12,21 @@ Pantheios 1.0 TODOs:
 --------------------
 
  + new logo
-	+ new website
-	+ integrated blog
+ + new website
+ + integrated blog
  ~ separate out all utility code into separate headers, impl files, etc.
  + PANTHEIOS_NOTHROW()
-	~ rewrite Core in pure C (or NoX for VC++ 7.1+ and GCC)
-	~ rewrite Back-ends in pure C (or NoX for VC++ 7.1+ and GCC)
-	~ rewrite Front-ends in pure C (or NoX for VC++ 7.1+ and GCC)
-	+ auto-generate project files for VS'98, 2008, 2010
-	+ auto-generate implicit-link files
-	+ auto-generate be l/r source files
-	+ auto-generate be l/r header files
-	+ rolling file
-	+ be.N static filtering
-	~ reimplement integral conversion in terms of new STLSoft 1.10 components
-	* release by Q4 2012!!!
+ ~ rewrite Core in pure C (or NoX for VC++ 7.1+ and GCC)
+ ~ rewrite Back-ends in pure C (or NoX for VC++ 7.1+ and GCC)
+ ~ rewrite Front-ends in pure C (or NoX for VC++ 7.1+ and GCC)
+ + auto-generate project files for VS'98, 2008, 2010
+ + auto-generate implicit-link files
+ + auto-generate be l/r source files
+ + auto-generate be l/r header files
+ + rolling file
+ + be.N static filtering
+ ~ reimplement integral conversion in terms of new STLSoft 1.10 components
+ * release by Q4 2012!!!
 
 
 

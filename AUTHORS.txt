@@ -70,7 +70,6 @@ very grateful):
   itti83, mitchomtl - VC++10 compilation issues in test program(s);
   Devharsh Trivedi - reporting introduced defect in 1.0.1 b215
 
-
 Contributions are welcomed.
 
 =============================== End of file ================================

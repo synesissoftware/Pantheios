@@ -439,17 +439,17 @@ A15:
     }
 
 
-Q16: "Currently the logging format is something like: 
+Q16: "Currently the logging format is something like:
 
-    [Project.5844, 5/20/2009 1:58:37.006 PM; Debug ]: logging message 
- 
+    [Project.5844, 5/20/2009 1:58:37.006 PM; Debug ]: logging message
+
   Is there any way to modify the format of this?"   [21st May 2009]
 
 A16:
   Yes, in a limited way, via the callback mechanism. Link to a callback
   version of a particular back-end library and implement the back-end
   callback initialisation function.
-  
+
   This allows you to turn on/off various format prefix fields
 
     [process identity, thread identity, date, time, severity, etc.]
@@ -459,12 +459,12 @@ A16:
   pantheios.1.bec.fprintf.vc9.lib), whereas the callback version is defined
   in the bec.fprintf.WithCallback library (e.g.
   pantheios.1.bec.fprintf.WithCallback.vc6.lib).
-  
-  The callback initialisation function for be.fprintf is 
+
+  The callback initialisation function for be.fprintf is
   pantheios_be_fprintf_getAppInit(). You implement this function and
   customise the behaviour of be.fprintf via the flags member of
   pan_be_fprintf_init_t.
-    
+
   Note that the only reordering possible is to put the whole prefix,
   en-bloc, to the end (as a suffix). For more sophisticated ordering, the
   only option currently available is to write your own back-end, or engage
@@ -477,22 +477,22 @@ Q17: "I'm going through and converting a lot of printf statements to
   formatting aspects. For types with explicit inserters (real, int, etc.)
   it seems I can use the width and fmt parameters to log prettily, but its
   unclear how to space strings.
-  
+
   For example how should I translate:
 
-    printf("Name: %40s", name.c_str()); 
-  
+    printf("Name: %40s", name.c_str());
+
   "   [24th June 2009]
 
 A17:
   As of 1.0.1 beta 189, the padding inserter pantheios::pad() can be used
   to provide a string of spaces of the necessary size to pad a variable of
   arbitrary type, as in:
-  
+
     #include <pantheios/inserters/pad.hpp>          // for pantheios::pad
 
 
-    printf("Name: %40s.\n", name.c_str()); 
+    printf("Name: %40s.\n", name.c_str());
 
     pantheios::log_NOTICE("Name: ", PANTHEIOS_LPAD(name, 40), ".");
 
@@ -514,7 +514,7 @@ A18:
   Multiplexing back-ends (e.g. be.N) also call pantheios_fe_isSeverityLogged()
   to determine whether a specific back-end is interested in the given log
   statement (based on its severity level).
-  
+
   So, if you are writing a custom front-end, you must handle both cases: 0
   for "any back-ends?", and specific non-0 values (your specific back-end
   identifiers) representing your specific back-ends. The scratch test
@@ -527,14 +527,14 @@ A18:
     {
       // Must handle PANTHEIOS_BEID_ALL, as that's the Application Layer's
       // (initial) enquiry as to whether anything should be logged at all
-      case  PANTHEIOS_BEID_ALL: 
+      case  PANTHEIOS_BEID_ALL:
   #if 0
         // The inefficient way to do this is to just 'return true'
         return true;
   #else /* ? 0 */
         // The efficient (but complicated) way to do this is to see if
         // *any* back-end wants output, in which case we say yes
-        return  severity <= iCeilingMain || 
+        return  severity <= iCeilingMain ||
             severity <= iCeilingConsole ||
             severity <= iCeilingError;
   #endif /* 0 */

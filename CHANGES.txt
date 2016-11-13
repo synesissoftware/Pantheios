@@ -1,7 +1,7 @@
 pantheios - Changes
 ===================
 
-Updated:    25th October 2015
+Updated:    30th June 2016
 
 
     ************************************
@@ -13,6 +13,72 @@ Updated:    25th October 2015
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+30th June 2016 - 1.0.1 beta 217
+===============================
+
+Summary:
+--------
+
+ * added severityFloor to be.N
+ * test.unit.be.N.filtering
+ * pantheios::pointer : + added protected method get_value(), to be used by deriving types such as forthcoming pantheios::windows::hive inserter
+ * PANTHEIOS_ASSERT() and PANTHEIOS_MESSAGE_ASSERT() underlying assertions may now be overriden (via preprocessor)
+ * changed names and locations of generated files
+ * changed no-throw declaration from stlsoft_throw_0() to STLSOFT_NOEXCEPT
+ * refactoring of pantheios_util_strnlen()
+ * added GCC 4.8 support
+ * added GCC 4.9 support
+
+Details:
+--------
+
+General:
+
+Core:
+
+Application Layer:
+
+Tracing:
+
+Assertion:
+
+Util:
+
+Extras:
+
+Front-ends:
+
+Back-ends:
+
+Distribution:
+
+Documentation:
+
+Makefiles / Project-files:
+
+Examples:
+
+Test:
+
+Test.Unit:
+
+Test.Component:
+
+Test.Performance:
+
+Test.Scratch:
+
+Dependencies:
+
+ * STLSoft 1.9.125 or later, available from http://stlsoft.org/
+ * b64 1.4.3, bundled in this distribution
+ * shwild 0.10.1, bundled in this distribution
+ * xContract 0.3.8, bundled in this distribution
+ * xCover 0.5.1, bundled in this distribution
+ * xTests 0.18.6, bundled in this distribution
+
 
 
 25th October 2015 - 1.0.1 beta 216

@@ -1,7 +1,21 @@
 pantheios - History
 ===================
 
-Updated:    25th October 2015
+Updated:    30th June 2016
+
+
+30th June 2016 - 1.0.1 beta 217
+-------------------------------
+
+ * added severityFloor to be.N
+ * test.unit.be.N.filtering
+ * pantheios::pointer : + added protected method get_value(), to be used by deriving types such as forthcoming pantheios::windows::hive inserter
+ * PANTHEIOS_ASSERT() and PANTHEIOS_MESSAGE_ASSERT() underlying assertions may now be overriden (via preprocessor)
+ * changed names and locations of generated files
+ * changed no-throw declaration from stlsoft_throw_0() to STLSOFT_NOEXCEPT
+ * refactoring of pantheios_util_strnlen()
+ * added GCC 4.8 support
+ * added GCC 4.9 support
 
 
 25th October 2015 - 1.0.1 beta 216
@@ -141,7 +155,7 @@ Updated:    25th October 2015
 -----------------------------------
 
  * added new example example.cpp.inserter.w2m
- * added new implicit link header include/pantheios/implicit_link/appl.h 
+ * added new implicit link header include/pantheios/implicit_link/appl.h
  * added example.cpp.inserter.m2w to makefile(s)
  * various improvements to examples and documentation
 
@@ -1291,7 +1305,7 @@ Updated:    25th October 2015
 ----------------------------------
 
  * reduction of source code size in generated headers
- * ability to reduce compilation load of Application Layer by 
+ * ability to reduce compilation load of Application Layer by
    control of PANTHEIOS_APPL_PARAMS_LIMIT pre-processor symbol
  * new FAQ item
  * minor inconsistency fix in shim suppression symbols
@@ -1320,7 +1334,7 @@ Updated:    25th October 2015
 
  * bug fix in pantheios::threadId inserter (when used on UNIX)
  * significant refactoring of back-end argument parsing API and
-   include file directory structure 
+   include file directory structure
 
 20th November 2007 - 1.0.1 beta 55
 ----------------------------------
