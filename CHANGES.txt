@@ -325,7 +325,7 @@ Makefiles / Project-files:
     + added test.unit.inserters.windows.sc
     ~ refactored generation of lib and bin directories (copied from libCLImate)
     ~ ACE-related items
-    ~ moved pantheios_exitProcess (src/core/api.exitprocess.cpp) from Core library into Util library 
+    ~ moved pantheios_exitProcess (src/core/api.exitprocess.cpp) from Core library into Util library
     + added test.unit.util.date_elements_to_string
     + callback functionality for be.WindowsEventLog
     + added date elements -> string conversion

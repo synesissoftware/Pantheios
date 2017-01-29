@@ -1,7 +1,7 @@
 pantheios - Authors
 ===================
 
-Updated:    25th October 2015
+Updated:    29th January 2017
 
 
 Authors:
@@ -17,7 +17,7 @@ very grateful):
   Felix Gartsman - VC++ 8 build problem
   Mike Batten - GCC build problem on Linux
   Volker Lucas - GCC build problem
-  CookieRaver - broken UNIX makefiles; be.file fixes and 
+  CookieRaver - broken UNIX makefiles; be.file fixes and
       suggestions; fe.N criticism
   David Wang - VC++ string access shim (SYSTEMTIME) bug
   Simon Sadler - suggestion for be.file; VC8 compilation issues;
