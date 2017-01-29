@@ -6,7 +6,7 @@
  *                - low-resolution date/time fields in statements
  *
  * Created:     12th November 2007
- * Updated:     21st September 2015
+ * Updated:     27th January 2017
  *
  * www:         http://www.pantheios.org/
  *
@@ -48,7 +48,7 @@ PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(int /* backEndId */, pan_be
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.format.lowres");
+PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.format.lowres");
 
 /* ////////////////////////////////////////////////////////////////////// */
 

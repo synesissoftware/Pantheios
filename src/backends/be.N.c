@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the Pantheios be.N Stock Back-end API.
  *
  * Created:     18th October 2006
- * Updated:     29th June 2016
+ * Updated:     22nd October 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -322,6 +322,49 @@ pantheios_be_logEntry(
     }
 
     return res;
+}
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
+
+static
+void*
+pantheios_be_N_tokenFromId_(
+    int                 backEndId
+,   pan_be_N_t const*   backEndList
+);
+
+PANTHEIOS_CALL(void*)
+pantheios_be_N_tokenFromId(
+    int     backEndId
+,   void*   reserved
+)
+{
+    STLSOFT_ASSERT(NULL == reserved);
+    STLSOFT_SUPPRESS_UNUSED(reserved);
+
+    return pantheios_be_N_tokenFromId_(backEndId, &PAN_BE_N_BACKEND_LIST[0]);
+}
+
+static
+void*
+pantheios_be_N_tokenFromId_(
+    int                 backEndId
+,   pan_be_N_t const*   backEndList
+)
+{
+    pan_be_N_t const* backEnd;
+
+    for(backEnd = backEndList; NULL != backEnd->pfnInit; ++backEnd)
+    {
+        if(backEnd->backEndId == backEndId)
+        {
+            return backEnd->token;
+        }
+    }
+
+    return NULL;
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */

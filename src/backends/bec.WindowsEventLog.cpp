@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the WindowsEventLog back-end
  *
  * Created:     8th May 2006
- * Updated:     29th June 2016
+ * Updated:     9th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -88,8 +88,6 @@ namespace
 {
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_char_t;
-
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 } /* anonymous namespace */
 
@@ -101,8 +99,6 @@ namespace
 {
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_uint16_t;
-    using ::pantheios::pan_uint32_t;
     using ::pantheios::pantheios_severity_to_WindowsEventLog_type;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
@@ -114,50 +110,105 @@ namespace
 
 class WindowsEventLog_Context
 {
+// types
 public:
-    explicit WindowsEventLog_Context(int id)
+    typedef WindowsEventLog_Context                         class_type;
+    typedef pantheios_uint16_t                            (*pfnMapSev_t)(int);
+
+// construction
+public:
+    WindowsEventLog_Context(
+        int         id
+    ,   pfnMapSev_t pfnMapSev
+    )
         : hEvLog(NULL)
         , id(id)
-    {}
+        , pfnMapSev(pfnMapSev)
+    {
+        PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_RETURN_INTERNAL(NULL != pfnMapSev, "mapping function may not be null");
+    }
+
+private:
+    WindowsEventLog_Context(class_type const&); // copy-construction proscribed
+    class_type &operator =(class_type const&);  // copy-assignment proscribed
 
 public:
-    int     Register(pan_char_t const* processIdentity);
+    int     Register(PAN_CHAR_T const* processIdentity);
     void    Deregister();
     int     ReportEvent(
         int                 severity
-    ,   pan_char_t const*   entry
+    ,   PAN_CHAR_T const*   entry
     ,   size_t              cchEntry
     );
 
 private:
-    HANDLE      hEvLog;
-    const int   id;
-
-private:
-    WindowsEventLog_Context(WindowsEventLog_Context const&);
-    WindowsEventLog_Context &operator =(WindowsEventLog_Context const&);
+    HANDLE              hEvLog;
+    int const           id;
+    pfnMapSev_t const   pfnMapSev;
 };
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
 
+PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_getDefaultAppInit(pan_be_WindowsEventLog_init_t* init)
+{
+    PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
+
+    init->version   =   PANTHEIOS_VER;
+    init->flags     =   0;
+
+    init->pfnMapSev =   NULL;
+}
+
+
 static int pantheios_be_WindowsEventLog_init_(
-    pan_char_t const*   processIdentity
-,   int                 id
-,   void const*         unused
-,   void*               reserved
-,   void**              ptoken
+    PAN_CHAR_T const*                       processIdentity
+,   int                                     id
+,   pan_be_WindowsEventLog_init_t const*    init
+,   void*                                   reserved
+,   void**                                  ptoken
 )
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != processIdentity, "process identity may not be NULL");
 
-    STLSOFT_SUPPRESS_UNUSED(unused);
     STLSOFT_SUPPRESS_UNUSED(reserved);
+
+    /* (i) apply Null Object (Variable) pattern */
+
+    pan_be_WindowsEventLog_init_t init_;
+
+    if(NULL == init)
+    {
+        pantheios_be_WindowsEventLog_getDefaultAppInit(&init_);
+
+#ifdef PANTHEIOS_BE_USE_CALLBACK
+        pantheios_be_WindowsEventLog_getAppInit(id, &init_);
+#endif /* PANTHEIOS_BE_USE_CALLBACK */
+
+        init = &init_;
+    }
+
+    /* (ii) verify the version */
+
+    if(init->version < 0x010001b8)
+    {
+        return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
+    }
+    else if(init->version > PANTHEIOS_VER)
+    {
+        return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
+    }
+
+    /* (iii) create the context */
 
     // (iii) create the context
 
-    WindowsEventLog_Context* ctxt   =   new WindowsEventLog_Context(id);
+    WindowsEventLog_Context::pfnMapSev_t    pfnMapSev   =   (NULL != init->pfnMapSev)
+                                                                ? init->pfnMapSev
+                                                                : &pantheios_severity_to_WindowsEventLog_type
+                                                                ;
+    WindowsEventLog_Context* const          ctxt        =   new WindowsEventLog_Context(id, pfnMapSev);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
     if(NULL == ctxt)
@@ -185,14 +236,14 @@ static int pantheios_be_WindowsEventLog_init_(
 }
 
 PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_init(
-    pan_char_t const*   processIdentity
-,   int                 id
-,   void*               unused
-,   void*               reserved
-,   void**              ptoken
+    PAN_CHAR_T const*                       processIdentity
+,   int                                     id
+,   pan_be_WindowsEventLog_init_t const*    init
+,   void*                                   reserved
+,   void**                                  ptoken
 )
 {
-    return pantheios_call_be_X_init<void>(pantheios_be_WindowsEventLog_init_, processIdentity, id, unused, reserved, ptoken, "be.WindowsEventLog");
+    return pantheios_call_be_X_init<pan_be_WindowsEventLog_init_t>(pantheios_be_WindowsEventLog_init_, processIdentity, id, init, reserved, ptoken, "be.WindowsEventLog");
 }
 
 PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_uninit(void* token)
@@ -208,7 +259,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -223,7 +274,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_logEntry(
  * WindowsEventLog_Context
  */
 
-int WindowsEventLog_Context::Register(pan_char_t const* processIdentity)
+int WindowsEventLog_Context::Register(PAN_CHAR_T const* processIdentity)
 {
     this->hEvLog = pan_RegisterEventSource_(NULL, processIdentity);
 
@@ -237,20 +288,18 @@ void WindowsEventLog_Context::Deregister()
 
 int WindowsEventLog_Context::ReportEvent(
     int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              /* cchEntry */
 )
 {
-    WORD            wType;
-    pan_uint16_t    category    =   0xFFFF;
-    pan_uint32_t    eventId     =   0xFFFFFFFF;
-    PSID            lpUserSid   =   NULL;
-    WORD            wNumStrings =   1;
-    DWORD           dwDataSize  =   0;
-    LPCTSTR*        lpStrings   =   &entry;
-    LPVOID          lpRawData   =   NULL;
-
-    PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == (severity & 0x08), "be.WindowsEventLog can only be used with the stock severity levels in the range [0, 8). Levels in the range [8, 16) are not allowed");
+    WORD                wType;
+    pantheios_uint16_t  category    =   0xFFFF;
+    pantheios_uint32_t  eventId     =   0xFFFFFFFF;
+    PSID                lpUserSid   =   NULL;
+    WORD                wNumStrings =   1;
+    DWORD               dwDataSize  =   0;
+    LPCTSTR*            lpStrings   =   &entry;
+    LPVOID              lpRawData   =   NULL;
 
     pantheios_be_WindowsEventLog_calcCategoryAndEventId(this->id, severity, &category, &eventId);
 
@@ -260,9 +309,9 @@ int WindowsEventLog_Context::ReportEvent(
         return 0;
     }
 
-    severity &= 0x7;    /* This stock back-end ignores any custom severity information. */
+    severity &= 0xf;    /* This stock back-end ignores any custom severity information. */
 
-    wType = pantheios_severity_to_WindowsEventLog_type(severity);
+    wType = (*this->pfnMapSev)(severity);
 
     if(!pan_ReportEvent_(
             hEvLog

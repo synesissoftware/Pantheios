@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.boolean project.
  *
  * Created:     7th August 2008
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -60,7 +60,7 @@ static void test_1_10();
  * globals
  */
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.boolean");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.boolean");
 
 /* ////////////////////////////////////////////////////////////////////// */
 

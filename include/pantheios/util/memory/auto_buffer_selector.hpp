@@ -5,11 +5,11 @@
  *              specialisations.
  *
  * Created:     9th November 2007
- * Updated:     29th June 2016
+ * Updated:     23rd January 2017
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MINOR     2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      13
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_REVISION  4
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      14
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@
 #endif /* compiler */
 
 #ifndef PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_
-# ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 #  ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
 #   include <stlsoft/memory/util/allocator_selector.hpp>
 #  endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */

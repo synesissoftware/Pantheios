@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     19th April 2014
- * Updated:     29th June 2016
+ * Updated:     17th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -50,11 +50,11 @@
 #include <pantheios/internal/safestr.h>
 
 /* STLSoft header files */
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 # include <stlsoft/conversion/integer_to_string/integer_to_decimal_string.hpp>
-#else /* ? PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#else /* ? STLSoft version */
 # include <stlsoft/conversion/integer_to_string.hpp>
-#endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#endif /* STLSoft version */
 #include <stlsoft/shims/access/string/std/c_string.h>
 #include <platformstl/platformstl.h>
 
@@ -213,11 +213,11 @@ void interval::construct_()
 
         pan_char_t              buf[21];
         size_t                  cch;
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
         pan_char_t const* const num =   stlsoft::integer_to_decimal_string(buf, STLSOFT_NUM_ELEMENTS(buf), interval, &cch);
-#else /* ? PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#else /* ? STLSoft version */
         pan_char_t const* const num =   stlsoft::integer_to_string(buf, STLSOFT_NUM_ELEMENTS(buf), interval, cch);
-#endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#endif /* STLSoft version */
 
         m_result.assign(num, cch);
         m_result.append(1, ' ');

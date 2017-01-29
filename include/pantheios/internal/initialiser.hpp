@@ -4,7 +4,7 @@
  * Purpose:     Automatic initialisation of Pantheios Core API
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     18th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -141,14 +141,6 @@ private:
     class_type& operator =(class_type const&);
 /// @}
 };
-
-namespace
-{
-    /// The per-compilation unit instance of pantheios_initialiser, which
-    /// ensures that the Pantheios library is initialised prior to use.
-    static pantheios_initialiser    s_pantheios_initialiser;
-
-} /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

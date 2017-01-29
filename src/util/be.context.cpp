@@ -4,11 +4,11 @@
  * Purpose:     Implementation of pantheios::util::backends::Context.
  *
  * Created:     18th December 2006
- * Updated:     29th June 2016
+ * Updated:     10th January 2017
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -86,7 +86,7 @@ namespace backends
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Context
+ * context
  */
 
 inline pan_char_t* make_process_identity_(pan_char_t const* processIdentity)
@@ -260,6 +260,7 @@ int Context::logEntry(int severity, pan_char_t const* entry, size_t cchEntry)
     pan_beutil_time_t   tm(STLSOFT_NUM_ELEMENTS(szTime), szTime);
     pan_char_t          num[21];
     pan_slice_t         threadId;
+    pan_char_t          numSev[21];
 
     // 0: "["
     // 1: process Id
@@ -355,13 +356,22 @@ int Context::logEntry(int severity, pan_char_t const* entry, size_t cchEntry)
 
     if(0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY))
     {
-        *slice++ = pan_slice_t( pantheios_getStockSeverityString(pan_sev_t(severity4))
-                            ,   pantheios_getStockSeverityStringLength(pan_sev_t(severity4)));
+        if(0 != (PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY & m_flags))
+        {
+do_sev_as_integer:
+            slice->ptr = stlsoft::integer_to_string(&numSev[0], STLSOFT_NUM_ELEMENTS(numSev), severity4, &slice->len);
+        }
+        else
+        {
+            *slice = pan_slice_t(pantheios_getStockSeverityStringSlice(pan_sev_t(severity4)));
+
+            if(0 == slice->len)
+            {
+                goto do_sev_as_integer;
+            }
+        }
     }
-    else
-    {
-        ++slice;
-    }
+    ++slice;
 
     *slice++ = m_slice8;
 
@@ -378,7 +388,17 @@ int Context::logEntry(int severity, pan_char_t const* entry, size_t cchEntry)
 
     PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(static_cast<size_t>(slice - &slices[0]) == STLSOFT_NUM_ELEMENTS(slices));
 
-#if !defined(STLSOFT_COMPILER_IS_BORLAND)
+#if 0 || \
+    defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1310) || \
+    0
+# define PANTHEIOS_CANNOT_USE_STLSOFT_MSI_
+#endif
+
+
+#ifndef PANTHEIOS_CANNOT_USE_STLSOFT_MSI_
+
 
     // The sophisticated way
     const size_t cchTotal = std::accumulate(stlsoft::member_selector(&slices[0], &pan_slice_t::len)

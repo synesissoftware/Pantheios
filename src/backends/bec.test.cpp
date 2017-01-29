@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the be.test back-end
  *
  * Created:     1st November 2006
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -102,7 +102,7 @@ namespace test
 
     Entry::Entry(
         int                 severity
-    ,   pan_char_t const*   entry
+    ,   PAN_CHAR_T const*   entry
     ,   size_t              cchEntry
     )
         : time(Time::now())
@@ -125,16 +125,19 @@ namespace test
             typedef stlsoft::null_mutex         mutex_type_;
 #endif /* PANTHEIOS_MT */
         public:
-            Context(pan_char_t const* processIdentity, int backEndId)
+            Context(PAN_CHAR_T const* processIdentity, int backEndId)
                 : m_processIdentity(processIdentity)
                 , m_backEndId(backEndId)
             {}
+        private:
+            Context(class_type const&);                 // copy-construction proscribed
+            class_type& operator =(class_type const&);  // copy-assignment proscribed
 
         public:
             void logEntry(
                 void*               /* feToken */
             ,   int                 severity
-            ,   pan_char_t const*   entry
+            ,   PAN_CHAR_T const*   entry
             ,   size_t              cchEntry
             )
             {
@@ -192,10 +195,6 @@ namespace test
             const int                   m_backEndId;
             entries_type                m_entries;
             mutex_type_                 m_mx;
-
-        private: // Not to be implemented
-            Context(class_type const&);
-            class_type& operator =(class_type const&);
         };
 
     } /* namespace ximpl_be_test */
@@ -362,7 +361,6 @@ namespace
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_char_t;
     using ::pantheios::util::pantheios_onBailOut6;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
@@ -374,7 +372,7 @@ namespace
  */
 
 static int pantheios_be_test_init_(
-    pan_char_t const*   processIdentity
+    PAN_CHAR_T const*   processIdentity
 ,   int                 id
 ,   void const*         unused
 ,   void*               reserved
@@ -382,7 +380,7 @@ static int pantheios_be_test_init_(
 );
 
 PANTHEIOS_CALL(int) pantheios_be_test_init(
-    pan_char_t const*   processIdentity
+    PAN_CHAR_T const*   processIdentity
 ,   int                 id
 ,   void*               unused
 ,   void*               reserved
@@ -393,7 +391,7 @@ PANTHEIOS_CALL(int) pantheios_be_test_init(
 }
 
 static int pantheios_be_test_init_(
-    pan_char_t const*   processIdentity
+    PAN_CHAR_T const*   processIdentity
 ,   int                 id
 ,   void const*         /* unused */
 ,   void*               /* reserved */
@@ -431,7 +429,7 @@ static int pantheios_be_test_logEntry_(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 );
 
@@ -439,7 +437,7 @@ PANTHEIOS_CALL(int) pantheios_be_test_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -450,7 +448,7 @@ static int pantheios_be_test_logEntry_(
     void*               feToken
 ,   void*               /* beToken */
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {

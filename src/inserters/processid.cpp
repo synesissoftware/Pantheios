@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     29th June 2016
+ * Updated:     17th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -100,11 +100,11 @@ namespace
 
         static pan_char_t           s_processIdBuff[21];    // Large enough for 64-bit signed/unsigned integer
         static size_t               s_processIdLength;
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
         static pan_char_t const*    s_processId = ::stlsoft::integer_to_decimal_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
         static pan_char_t const*    s_processId = ::stlsoft::integer_to_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 
         if(NULL != processId)
         {

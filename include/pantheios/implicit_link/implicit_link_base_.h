@@ -4,7 +4,7 @@
  * Purpose: Implicit linking for the Pantheios libraries
  *
  * Created: 18th July 2005
- * Updated: 29th June 2016
+ * Updated: 9th November 2016
  *
  * Home:    http://pantheios.org/
  *
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__MINOR      8
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__EDIT       20
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__EDIT       21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -315,7 +315,7 @@
                                                         PANTHEIOS_IMPL_LINK_DEBUG_TAG \
                                                         PANTHEIOS_IMPL_LINK_SUFFIX
 
-#  pragma message("Implicit linking to Pantheios libraries: (" PANTHEIOS_IMPL_LINK_LIBRARY_NAME_("$(XXXX)") "")
+#  pragma message("Implicit linking to Pantheios libraries: (" PANTHEIOS_IMPL_LINK_LIBRARY_NAME_("$(XXXX)") ")")
 
 # endif /* PANTHEIOS_IMPLICIT_LINK_SUPPORT */
 

@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.fe.WindowsRegistry project.
  *
  * Created:     14th May 2008
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -63,7 +63,7 @@
  * globals
  */
 
-const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.WindowsRegistry");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.WindowsRegistry");
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -215,12 +215,36 @@ namespace stub
 } /* namespace stub */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * helpers
+ */
+
+namespace
+{
+
+inline
+DWORD
+get_exception_status_code(
+    winstl::windows_exception& x
+)
+{
+#if _STLSOFT_VER >= 0x010a0181
+
+    return x.status_code();
+#else
+
+    return x.get_error_code();
+#endif
+}
+
+} /* anonymous namespace */
+
+/* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
 namespace
 {
-    static const PAN_CHAR_T ROOT_KEY_PATH[] = PANTHEIOS_LITERAL_STRING("SOFTWARE\\Synesis Software\\Logging Tools\\Pantheios\\fe.WindowsRegistry");
+    static PAN_CHAR_T const ROOT_KEY_PATH[] = PANTHEIOS_LITERAL_STRING("SOFTWARE\\Synesis Software\\Logging Tools\\Pantheios\\fe.WindowsRegistry");
 
     static const int s_severityLevels[] =
     {
@@ -278,7 +302,7 @@ namespace
         }
         catch(winstl::windows_exception& x)
         {
-            if(ERROR_ACCESS_DENIED == x.get_error_code())
+            if(ERROR_ACCESS_DENIED == get_exception_status_code(x))
             {
                 return false;
             }
@@ -308,7 +332,7 @@ namespace
         }
         catch(winstl::windows_exception& x)
         {
-            if(ERROR_ACCESS_DENIED == x.get_error_code())
+            if(ERROR_ACCESS_DENIED == get_exception_status_code(x))
             {
                 return false;
             }

@@ -1,11 +1,13 @@
 pantheios - News
 ================
 
-Updated:    30th June 2016
+Updated:    29th January 2017
 
 
 
 News:
+
+  29th Jan 2017     -   Pantheios 1.0.1 beta 218 released
 
   30th Jun 2016     -   Pantheios 1.0.1 beta 217 released
 

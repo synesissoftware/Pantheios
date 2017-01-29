@@ -5,7 +5,7 @@
 #			compiler, on Win32
 #
 # Created:	15th February 2005
-# Updated:	10th August 2016
+# Updated:	25th January 2017
 #
 ############################################################################
 
@@ -793,9 +793,11 @@ CC_TEST_UNIT_FLAGS = $(CC_APP_FLAGS)
 CPPC_TEST_UNIT_FLAGS = $(CPPC_APP_FLAGS)
 
 
+!ifdef ACE
+# ACE additional arguments
+CPPC_ACE_ADDITIONAL_ARGS	=	-wd4127
 
-
-
+!endif # ACE
 ########################################
 # Arguments (= flags + defines + includes)
 
@@ -1012,12 +1014,12 @@ LD_F_NOLOGO = -nologo
 
 # LD args
 
-LD_ARGS_MT_D =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
-LD_ARGS_DLL_D =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
+LD_ARGS_MT_D = -debug $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
+LD_ARGS_DLL_D = -debug $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
 LD_ARGS_DLL_R =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
 LD_ARGS_MT_R =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
-LD_ARGS_W_MT_D =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
-LD_ARGS_W_DLL_D =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
+LD_ARGS_W_MT_D = -debug $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
+LD_ARGS_W_DLL_D = -debug $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
 LD_ARGS_W_DLL_R =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
 LD_ARGS_W_MT_R =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
 
@@ -1060,6 +1062,9 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\vb.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\xi.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\xp.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\windows\hive.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\windows\sc.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\windows\status_code.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\internal\initialiser.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\lean.h\
@@ -1096,6 +1101,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\util\severity\syslog.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\severity\WindowsEventLog.h\
  \
+ $(PROJ_INCLUDE_DIR)\pantheios\util\string\date_elements_to_string.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\string\snprintf.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\string\strdup.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\string\strnlen.h\
@@ -1225,6 +1231,7 @@ LIB_BE_SPEECH_MT_D 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS_
 LIB_BEL_SPEECH_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).mt.debug.lib
 LIB_BER_SPEECH_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).mt.debug.lib
 LIB_BEC_WINEVLOG_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_WINEVLOGWC_MT_D	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.lib
 LIB_BE_WINEVLOG_MT_D 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.lib
 LIB_BEL_WINEVLOG_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.lib
 LIB_BER_WINEVLOG_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.lib
@@ -1313,6 +1320,7 @@ LIB_BE_SPEECH_DLL_D 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS
 LIB_BEL_SPEECH_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).dll.debug.lib
 LIB_BER_SPEECH_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).dll.debug.lib
 LIB_BEC_WINEVLOG_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).dll.debug.lib
+LIB_BEC_WINEVLOGWC_DLL_D	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).dll.debug.lib
 LIB_BE_WINEVLOG_DLL_D 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).dll.debug.lib
 LIB_BEL_WINEVLOG_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).dll.debug.lib
 LIB_BER_WINEVLOG_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).dll.debug.lib
@@ -1401,6 +1409,7 @@ LIB_BE_SPEECH_DLL_R 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS
 LIB_BEL_SPEECH_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).dll.lib
 LIB_BER_SPEECH_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).dll.lib
 LIB_BEC_WINEVLOG_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).dll.lib
+LIB_BEC_WINEVLOGWC_DLL_R	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).dll.lib
 LIB_BE_WINEVLOG_DLL_R 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).dll.lib
 LIB_BEL_WINEVLOG_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).dll.lib
 LIB_BER_WINEVLOG_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).dll.lib
@@ -1489,6 +1498,7 @@ LIB_BE_SPEECH_MT_R 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS_
 LIB_BEL_SPEECH_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).mt.lib
 LIB_BER_SPEECH_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).mt.lib
 LIB_BEC_WINEVLOG_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_WINEVLOGWC_MT_R	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).mt.lib
 LIB_BE_WINEVLOG_MT_R 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.lib
 LIB_BEL_WINEVLOG_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.lib
 LIB_BER_WINEVLOG_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.lib
@@ -1577,6 +1587,7 @@ LIB_BE_SPEECH_W_MT_D 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_O
 LIB_BEL_SPEECH_W_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).widestring.mt.debug.lib
 LIB_BER_SPEECH_W_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).widestring.mt.debug.lib
 LIB_BEC_WINEVLOG_W_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.mt.debug.lib
+LIB_BEC_WINEVLOGWC_W_MT_D	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).widestring.mt.debug.lib
 LIB_BE_WINEVLOG_W_MT_D 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.mt.debug.lib
 LIB_BEL_WINEVLOG_W_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.mt.debug.lib
 LIB_BER_WINEVLOG_W_MT_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.mt.debug.lib
@@ -1665,6 +1676,7 @@ LIB_BE_SPEECH_W_DLL_D 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_
 LIB_BEL_SPEECH_W_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).widestring.dll.debug.lib
 LIB_BER_SPEECH_W_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).widestring.dll.debug.lib
 LIB_BEC_WINEVLOG_W_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.dll.debug.lib
+LIB_BEC_WINEVLOGWC_W_DLL_D	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).widestring.dll.debug.lib
 LIB_BE_WINEVLOG_W_DLL_D 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.dll.debug.lib
 LIB_BEL_WINEVLOG_W_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.dll.debug.lib
 LIB_BER_WINEVLOG_W_DLL_D		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.dll.debug.lib
@@ -1753,6 +1765,7 @@ LIB_BE_SPEECH_W_DLL_R 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_
 LIB_BEL_SPEECH_W_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).widestring.dll.lib
 LIB_BER_SPEECH_W_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).widestring.dll.lib
 LIB_BEC_WINEVLOG_W_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.dll.lib
+LIB_BEC_WINEVLOGWC_W_DLL_R	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).widestring.dll.lib
 LIB_BE_WINEVLOG_W_DLL_R 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.dll.lib
 LIB_BEL_WINEVLOG_W_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.dll.lib
 LIB_BER_WINEVLOG_W_DLL_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.dll.lib
@@ -1841,6 +1854,7 @@ LIB_BE_SPEECH_W_MT_R 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_O
 LIB_BEL_SPEECH_W_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).widestring.mt.lib
 LIB_BER_SPEECH_W_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).widestring.mt.lib
 LIB_BEC_WINEVLOG_W_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.mt.lib
+LIB_BEC_WINEVLOGWC_W_MT_R	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).widestring.mt.lib
 LIB_BE_WINEVLOG_W_MT_R 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.mt.lib
 LIB_BEL_WINEVLOG_W_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.mt.lib
 LIB_BER_WINEVLOG_W_MT_R		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).widestring.mt.lib
@@ -2709,6 +2723,14 @@ TARG_TEST_COMP_ins_m2w_W_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.
 TARG_TEST_COMP_ins_m2w_W_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.m2w.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_m2w_W_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.m2w.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_m2w_W_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.m2w.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_COMP_ins_w_hive_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_w_hive_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_COMP_ins_w_hive_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_COMP_ins_w_hive_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_w_hive_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_COMP_ins_w_hive_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_COMP_ins_w_hive_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_COMP_ins_w_hive_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_log_1_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_log_1_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_log_1_DLL_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).dll.exe
@@ -2764,7 +2786,7 @@ TARG_TEST_PERF_ins_m2w_W_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.
 # The strange naming conventions of these targets are to placate some
 # make utilities, which have a limit to the identifier length.
 !ifdef ACE
-TEST_SCRT_ACE_MT_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.ACE.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TEST_SCRT_ACE_MT_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt.debug.exe
 !endif # ACE
 TARG_TEST_MT_D_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_MT_D_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.exe
@@ -2779,7 +2801,7 @@ TARG_TEST_FE_MT_D 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP
 TARG_TEST_BE_N_FAIL_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_FE_SIMPLE_WC_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.debug.exe
 !ifdef ACE
-TEST_SCRT_ACE_DLL_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.ACE.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TEST_SCRT_ACE_DLL_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).dll.debug.exe
 !endif # ACE
 TARG_TEST_DLL_D_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_DLL_D_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).dll.debug.exe
@@ -2794,7 +2816,7 @@ TARG_TEST_FE_DLL_D 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COM
 TARG_TEST_BE_N_FAIL_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_FE_SIMPLE_WC_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).dll.debug.exe
 !ifdef ACE
-TEST_SCRT_ACE_DLL_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.ACE.$(COMP_ARCH_OS_TAG).dll.exe
+TEST_SCRT_ACE_DLL_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).dll.exe
 !endif # ACE
 TARG_TEST_DLL_R_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_DLL_R_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).dll.exe
@@ -2809,7 +2831,7 @@ TARG_TEST_FE_DLL_R 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COM
 TARG_TEST_BE_N_FAIL_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_FE_SIMPLE_WC_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).dll.exe
 !ifdef ACE
-TEST_SCRT_ACE_MT_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.ACE.$(COMP_ARCH_OS_TAG).mt.exe
+TEST_SCRT_ACE_MT_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt.exe
 !endif # ACE
 TARG_TEST_MT_R_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_MT_R_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.exe
@@ -2824,7 +2846,7 @@ TARG_TEST_FE_MT_R 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP
 TARG_TEST_BE_N_FAIL_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_FE_SIMPLE_WC_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.exe
 !ifdef ACE
-TEST_SCRT_ACE_W_MT_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.ACE.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TEST_SCRT_ACE_W_MT_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 !endif # ACE
 TARG_TEST_W_MT_D_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_W_MT_D_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
@@ -2839,7 +2861,7 @@ TARG_TEST_FE_W_MT_D 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(CO
 TARG_TEST_BE_N_FAIL_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_FE_SIMPLE_WC_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 !ifdef ACE
-TEST_SCRT_ACE_W_DLL_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.ACE.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TEST_SCRT_ACE_W_DLL_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 !endif # ACE
 TARG_TEST_W_DLL_D_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_W_DLL_D_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
@@ -2854,7 +2876,7 @@ TARG_TEST_FE_W_DLL_D 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(C
 TARG_TEST_BE_N_FAIL_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_FE_SIMPLE_WC_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 !ifdef ACE
-TEST_SCRT_ACE_W_DLL_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.ACE.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TEST_SCRT_ACE_W_DLL_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 !endif # ACE
 TARG_TEST_W_DLL_R_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_W_DLL_R_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).widestring.dll.exe
@@ -2869,7 +2891,7 @@ TARG_TEST_FE_W_DLL_R 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(C
 TARG_TEST_BE_N_FAIL_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_FE_SIMPLE_WC_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 !ifdef ACE
-TEST_SCRT_ACE_W_MT_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.ACE.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TEST_SCRT_ACE_W_MT_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 !endif # ACE
 TARG_TEST_W_MT_R_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_W_MT_R_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).widestring.mt.exe
@@ -2886,8 +2908,6 @@ TARG_TEST_FE_SIMPLE_WC_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.
 
 ##############################
 # Unit Tests
-#
-# NOTE: dynamic_initialisation is contracted, as scares CodeWarrior's linker (for being longer than 63 chars)
 
 TARG_TEST_UNIT_lvls_dyninit_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_lvls_dyninit_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).dll.debug.exe
@@ -2913,6 +2933,14 @@ TARG_TEST_UNIT_getcurrtm_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.u
 TARG_TEST_UNIT_getcurrtm_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_getcurrtm_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_getcurrtm_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_UNIT_dtel2s_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_dtel2s_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_UNIT_dtel2s_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_UNIT_dtel2s_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_dtel2s_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_UNIT_dtel2s_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_UNIT_dtel2s_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_UNIT_dtel2s_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_getversion_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_getversion_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_getversion_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).dll.exe
@@ -2921,6 +2949,14 @@ TARG_TEST_UNIT_getversion_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.
 TARG_TEST_UNIT_getversion_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_getversion_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_getversion_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_UNIT_ins_w_sc_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_ins_w_sc_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_UNIT_ins_w_sc_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_UNIT_ins_w_sc_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_ins_w_sc_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_UNIT_ins_w_sc_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_UNIT_ins_w_sc_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_UNIT_ins_w_sc_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_gethostname_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_gethostname_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_gethostname_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).dll.exe
@@ -2929,30 +2965,30 @@ TARG_TEST_UNIT_gethostname_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit
 TARG_TEST_UNIT_gethostname_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_gethostname_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_gethostname_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).widestring.mt.exe
-TARG_TEST_UNIT_onbailout_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_strnlen_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_onbailout_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).dll.debug.exe
-TARG_TEST_UNIT_strnlen_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).dll.debug.exe
-TARG_TEST_UNIT_onbailout_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).dll.exe
-TARG_TEST_UNIT_strnlen_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).dll.exe
-TARG_TEST_UNIT_onbailout_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_strnlen_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_onbailout_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
-TARG_TEST_UNIT_strnlen_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
-TARG_TEST_UNIT_onbailout_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
-TARG_TEST_UNIT_strnlen_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
-TARG_TEST_UNIT_onbailout_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.dll.exe
-TARG_TEST_UNIT_strnlen_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.dll.exe
-TARG_TEST_UNIT_onbailout_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.mt.exe
-TARG_TEST_UNIT_strnlen_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.mt.exe
-TARG_TEST_UNIT_bec_CEO_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_bec_CEO_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrorObject.$(COMP_ARCH_OS_TAG).dll.debug.exe
-TARG_TEST_UNIT_bec_CEO_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrorObject.$(COMP_ARCH_OS_TAG).dll.exe
-TARG_TEST_UNIT_bec_CEO_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_bec_CEO_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrorObject.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
-TARG_TEST_UNIT_bec_CEO_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrorObject.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
-TARG_TEST_UNIT_bec_CEO_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrorObject.$(COMP_ARCH_OS_TAG).widestring.dll.exe
-TARG_TEST_UNIT_bec_CEO_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrorObject.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_UNIT_onbailout_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_strnlen_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_onbailout_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_UNIT_strnlen_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_UNIT_onbailout_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_UNIT_strnlen_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_UNIT_onbailout_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_strnlen_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_onbailout_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_UNIT_strnlen_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_UNIT_onbailout_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_UNIT_strnlen_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_UNIT_onbailout_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_UNIT_strnlen_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_UNIT_onbailout_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_UNIT_strnlen_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_UNIT_bec_CEO_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_bec_CEO_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_UNIT_bec_CEO_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_UNIT_bec_CEO_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_bec_CEO_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_UNIT_bec_CEO_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_UNIT_bec_CEO_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_UNIT_bec_CEO_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_bec_file_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_bec_file_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_bec_file_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).dll.exe
@@ -3092,6 +3128,7 @@ TARG_TEST_UNIT_ins_m2w_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins
 # core
 
 OBJ_utl_bailout_MT_D		= $(PROJ_OBJ_DIR)\util.bailout.mt.debug.obj
+OBJ_utl_dtel2s_MT_D		= $(PROJ_OBJ_DIR)\util.dtel2s.mt.debug.obj
 OBJ_utl_init_code_strs_MT_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.mt.debug.obj
 OBJ_utl_sev_strs_MT_D		= $(PROJ_OBJ_DIR)\util.sev_strings.mt.debug.obj
 OBJ_utl_snprintf_MT_D 	= $(PROJ_OBJ_DIR)\util.snprintf.mt.debug.obj
@@ -3107,7 +3144,7 @@ OBJ_utl_time_MT_D			= $(PROJ_OBJ_DIR)\util.time.mt.debug.obj
 OBJ_utl_host_name_MT_D	= $(PROJ_OBJ_DIR)\util.host_name.mt.debug.obj
 OBJ_cr_api_MT_D 			= $(PROJ_OBJ_DIR)\core.api.mt.debug.obj
 OBJ_cr_api_dep_MT_D 		= $(PROJ_OBJ_DIR)\core.api.deprecated.mt.debug.obj
-OBJ_cr_api_exit_MT_D 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.debug.obj
+OBJ_utl_api_exit_MT_D 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.debug.obj
 OBJ_cr_api_logprintf_MT_D	= $(PROJ_OBJ_DIR)\core.api.logprintf.mt.debug.obj
 OBJ_cr_api_logputs_MT_D	= $(PROJ_OBJ_DIR)\core.api.logputs.mt.debug.obj
 OBJ_cr_auto_MT_D 			= $(PROJ_OBJ_DIR)\core.auto.mt.debug.obj
@@ -3200,6 +3237,7 @@ OBJ_be_SPEECH_MT_D		= $(PROJ_OBJ_DIR)\be.speech.mt.debug.obj
 OBJ_bel_SPEECH_MT_D		= $(PROJ_OBJ_DIR)\bel.speech.mt.debug.obj
 OBJ_ber_SPEECH_MT_D		= $(PROJ_OBJ_DIR)\ber.speech.mt.debug.obj
 OBJ_bec_WINEVLOG_MT_D		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.mt.debug.obj
+OBJ_bec_WINEVLOGWC_MT_D	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.mt.debug.obj
 OBJ_be_WINEVLOG_MT_D		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.mt.debug.obj
 OBJ_bel_WINEVLOG_MT_D		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.mt.debug.obj
 OBJ_ber_WINEVLOG_MT_D		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.mt.debug.obj
@@ -3235,7 +3273,9 @@ OBJ_fe_winreg_MT_D 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.mt.debug.obj
 OBJ_fe_winreg_WC_MT_D 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.mt.debug.obj
 
 OBJ_UTIL_MT_D=\
+ $(OBJ_utl_api_exit_MT_D)\
  $(OBJ_utl_bailout_MT_D)\
+ $(OBJ_utl_dtel2s_MT_D)\
  $(OBJ_utl_init_code_strs_MT_D)\
  $(OBJ_utl_sev_strs_MT_D)\
  $(OBJ_utl_snprintf_MT_D)\
@@ -3254,7 +3294,6 @@ OBJ_UTIL_MT_D=\
 OBJ_CORE_MT_D=\
  $(OBJ_cr_api_MT_D)\
  $(OBJ_cr_api_dep_MT_D)\
- $(OBJ_cr_api_exit_MT_D)\
  $(OBJ_cr_api_logprintf_MT_D)\
  $(OBJ_cr_api_logputs_MT_D)\
  $(OBJ_cr_auto_MT_D)\
@@ -3510,6 +3549,10 @@ OBJ_BEC_WINEVLOG_MT_D=\
  $(OBJ_bec_WINEVLOG_MT_D)\
  \
 
+OBJ_BEC_WINEVLOGWC_MT_D=\
+ $(OBJ_bec_WINEVLOGWC_MT_D)\
+ \
+
 OBJ_BE_WINEVLOG_MT_D=\
  $(OBJ_be_WINEVLOG_MT_D)\
  \
@@ -3643,6 +3686,7 @@ OBJ_FE_WINREG_WC_MT_D=\
  \
 
 OBJ_utl_bailout_DLL_D		= $(PROJ_OBJ_DIR)\util.bailout.dll.debug.obj
+OBJ_utl_dtel2s_DLL_D		= $(PROJ_OBJ_DIR)\util.dtel2s.dll.debug.obj
 OBJ_utl_init_code_strs_DLL_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.dll.debug.obj
 OBJ_utl_sev_strs_DLL_D		= $(PROJ_OBJ_DIR)\util.sev_strings.dll.debug.obj
 OBJ_utl_snprintf_DLL_D 	= $(PROJ_OBJ_DIR)\util.snprintf.dll.debug.obj
@@ -3658,7 +3702,7 @@ OBJ_utl_time_DLL_D			= $(PROJ_OBJ_DIR)\util.time.dll.debug.obj
 OBJ_utl_host_name_DLL_D	= $(PROJ_OBJ_DIR)\util.host_name.dll.debug.obj
 OBJ_cr_api_DLL_D 			= $(PROJ_OBJ_DIR)\core.api.dll.debug.obj
 OBJ_cr_api_dep_DLL_D 		= $(PROJ_OBJ_DIR)\core.api.deprecated.dll.debug.obj
-OBJ_cr_api_exit_DLL_D 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.dll.debug.obj
+OBJ_utl_api_exit_DLL_D 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.dll.debug.obj
 OBJ_cr_api_logprintf_DLL_D	= $(PROJ_OBJ_DIR)\core.api.logprintf.dll.debug.obj
 OBJ_cr_api_logputs_DLL_D	= $(PROJ_OBJ_DIR)\core.api.logputs.dll.debug.obj
 OBJ_cr_auto_DLL_D 			= $(PROJ_OBJ_DIR)\core.auto.dll.debug.obj
@@ -3751,6 +3795,7 @@ OBJ_be_SPEECH_DLL_D		= $(PROJ_OBJ_DIR)\be.speech.dll.debug.obj
 OBJ_bel_SPEECH_DLL_D		= $(PROJ_OBJ_DIR)\bel.speech.dll.debug.obj
 OBJ_ber_SPEECH_DLL_D		= $(PROJ_OBJ_DIR)\ber.speech.dll.debug.obj
 OBJ_bec_WINEVLOG_DLL_D		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.dll.debug.obj
+OBJ_bec_WINEVLOGWC_DLL_D	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.dll.debug.obj
 OBJ_be_WINEVLOG_DLL_D		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.dll.debug.obj
 OBJ_bel_WINEVLOG_DLL_D		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.dll.debug.obj
 OBJ_ber_WINEVLOG_DLL_D		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.dll.debug.obj
@@ -3786,7 +3831,9 @@ OBJ_fe_winreg_DLL_D 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.dll.debug.obj
 OBJ_fe_winreg_WC_DLL_D 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.dll.debug.obj
 
 OBJ_UTIL_DLL_D=\
+ $(OBJ_utl_api_exit_DLL_D)\
  $(OBJ_utl_bailout_DLL_D)\
+ $(OBJ_utl_dtel2s_DLL_D)\
  $(OBJ_utl_init_code_strs_DLL_D)\
  $(OBJ_utl_sev_strs_DLL_D)\
  $(OBJ_utl_snprintf_DLL_D)\
@@ -3805,7 +3852,6 @@ OBJ_UTIL_DLL_D=\
 OBJ_CORE_DLL_D=\
  $(OBJ_cr_api_DLL_D)\
  $(OBJ_cr_api_dep_DLL_D)\
- $(OBJ_cr_api_exit_DLL_D)\
  $(OBJ_cr_api_logprintf_DLL_D)\
  $(OBJ_cr_api_logputs_DLL_D)\
  $(OBJ_cr_auto_DLL_D)\
@@ -4061,6 +4107,10 @@ OBJ_BEC_WINEVLOG_DLL_D=\
  $(OBJ_bec_WINEVLOG_DLL_D)\
  \
 
+OBJ_BEC_WINEVLOGWC_DLL_D=\
+ $(OBJ_bec_WINEVLOGWC_DLL_D)\
+ \
+
 OBJ_BE_WINEVLOG_DLL_D=\
  $(OBJ_be_WINEVLOG_DLL_D)\
  \
@@ -4194,6 +4244,7 @@ OBJ_FE_WINREG_WC_DLL_D=\
  \
 
 OBJ_utl_bailout_DLL_R		= $(PROJ_OBJ_DIR)\util.bailout.dll.obj
+OBJ_utl_dtel2s_DLL_R		= $(PROJ_OBJ_DIR)\util.dtel2s.dll.obj
 OBJ_utl_init_code_strs_DLL_R	= $(PROJ_OBJ_DIR)\util.init_err_strings.dll.obj
 OBJ_utl_sev_strs_DLL_R		= $(PROJ_OBJ_DIR)\util.sev_strings.dll.obj
 OBJ_utl_snprintf_DLL_R 	= $(PROJ_OBJ_DIR)\util.snprintf.dll.obj
@@ -4209,7 +4260,7 @@ OBJ_utl_time_DLL_R			= $(PROJ_OBJ_DIR)\util.time.dll.obj
 OBJ_utl_host_name_DLL_R	= $(PROJ_OBJ_DIR)\util.host_name.dll.obj
 OBJ_cr_api_DLL_R 			= $(PROJ_OBJ_DIR)\core.api.dll.obj
 OBJ_cr_api_dep_DLL_R 		= $(PROJ_OBJ_DIR)\core.api.deprecated.dll.obj
-OBJ_cr_api_exit_DLL_R 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.dll.obj
+OBJ_utl_api_exit_DLL_R 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.dll.obj
 OBJ_cr_api_logprintf_DLL_R	= $(PROJ_OBJ_DIR)\core.api.logprintf.dll.obj
 OBJ_cr_api_logputs_DLL_R	= $(PROJ_OBJ_DIR)\core.api.logputs.dll.obj
 OBJ_cr_auto_DLL_R 			= $(PROJ_OBJ_DIR)\core.auto.dll.obj
@@ -4270,6 +4321,7 @@ OBJ_be_SPEECH_DLL_R		= $(PROJ_OBJ_DIR)\be.speech.dll.obj
 OBJ_bel_SPEECH_DLL_R		= $(PROJ_OBJ_DIR)\bel.speech.dll.obj
 OBJ_ber_SPEECH_DLL_R		= $(PROJ_OBJ_DIR)\ber.speech.dll.obj
 OBJ_bec_WINEVLOG_DLL_R		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.dll.obj
+OBJ_bec_WINEVLOGWC_DLL_R	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.dll.obj
 OBJ_be_WINEVLOG_DLL_R		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.dll.obj
 OBJ_bel_WINEVLOG_DLL_R		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.dll.obj
 OBJ_ber_WINEVLOG_DLL_R		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.dll.obj
@@ -4305,7 +4357,9 @@ OBJ_fe_winreg_DLL_R 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.dll.obj
 OBJ_fe_winreg_WC_DLL_R 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.dll.obj
 
 OBJ_UTIL_DLL_R=\
+ $(OBJ_utl_api_exit_DLL_R)\
  $(OBJ_utl_bailout_DLL_R)\
+ $(OBJ_utl_dtel2s_DLL_R)\
  $(OBJ_utl_init_code_strs_DLL_R)\
  $(OBJ_utl_sev_strs_DLL_R)\
  $(OBJ_utl_snprintf_DLL_R)\
@@ -4324,7 +4378,6 @@ OBJ_UTIL_DLL_R=\
 OBJ_CORE_DLL_R=\
  $(OBJ_cr_api_DLL_R)\
  $(OBJ_cr_api_dep_DLL_R)\
- $(OBJ_cr_api_exit_DLL_R)\
  $(OBJ_cr_api_logprintf_DLL_R)\
  $(OBJ_cr_api_logputs_DLL_R)\
  $(OBJ_cr_auto_DLL_R)\
@@ -4526,6 +4579,10 @@ OBJ_BEC_WINEVLOG_DLL_R=\
  $(OBJ_bec_WINEVLOG_DLL_R)\
  \
 
+OBJ_BEC_WINEVLOGWC_DLL_R=\
+ $(OBJ_bec_WINEVLOGWC_DLL_R)\
+ \
+
 OBJ_BE_WINEVLOG_DLL_R=\
  $(OBJ_be_WINEVLOG_DLL_R)\
  \
@@ -4659,6 +4716,7 @@ OBJ_FE_WINREG_WC_DLL_R=\
  \
 
 OBJ_utl_bailout_MT_R		= $(PROJ_OBJ_DIR)\util.bailout.mt.obj
+OBJ_utl_dtel2s_MT_R		= $(PROJ_OBJ_DIR)\util.dtel2s.mt.obj
 OBJ_utl_init_code_strs_MT_R	= $(PROJ_OBJ_DIR)\util.init_err_strings.mt.obj
 OBJ_utl_sev_strs_MT_R		= $(PROJ_OBJ_DIR)\util.sev_strings.mt.obj
 OBJ_utl_snprintf_MT_R 	= $(PROJ_OBJ_DIR)\util.snprintf.mt.obj
@@ -4674,7 +4732,7 @@ OBJ_utl_time_MT_R			= $(PROJ_OBJ_DIR)\util.time.mt.obj
 OBJ_utl_host_name_MT_R	= $(PROJ_OBJ_DIR)\util.host_name.mt.obj
 OBJ_cr_api_MT_R 			= $(PROJ_OBJ_DIR)\core.api.mt.obj
 OBJ_cr_api_dep_MT_R 		= $(PROJ_OBJ_DIR)\core.api.deprecated.mt.obj
-OBJ_cr_api_exit_MT_R 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.obj
+OBJ_utl_api_exit_MT_R 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.obj
 OBJ_cr_api_logprintf_MT_R	= $(PROJ_OBJ_DIR)\core.api.logprintf.mt.obj
 OBJ_cr_api_logputs_MT_R	= $(PROJ_OBJ_DIR)\core.api.logputs.mt.obj
 OBJ_cr_auto_MT_R 			= $(PROJ_OBJ_DIR)\core.auto.mt.obj
@@ -4735,6 +4793,7 @@ OBJ_be_SPEECH_MT_R		= $(PROJ_OBJ_DIR)\be.speech.mt.obj
 OBJ_bel_SPEECH_MT_R		= $(PROJ_OBJ_DIR)\bel.speech.mt.obj
 OBJ_ber_SPEECH_MT_R		= $(PROJ_OBJ_DIR)\ber.speech.mt.obj
 OBJ_bec_WINEVLOG_MT_R		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.mt.obj
+OBJ_bec_WINEVLOGWC_MT_R	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.mt.obj
 OBJ_be_WINEVLOG_MT_R		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.mt.obj
 OBJ_bel_WINEVLOG_MT_R		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.mt.obj
 OBJ_ber_WINEVLOG_MT_R		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.mt.obj
@@ -4770,7 +4829,9 @@ OBJ_fe_winreg_MT_R 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.mt.obj
 OBJ_fe_winreg_WC_MT_R 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.mt.obj
 
 OBJ_UTIL_MT_R=\
+ $(OBJ_utl_api_exit_MT_R)\
  $(OBJ_utl_bailout_MT_R)\
+ $(OBJ_utl_dtel2s_MT_R)\
  $(OBJ_utl_init_code_strs_MT_R)\
  $(OBJ_utl_sev_strs_MT_R)\
  $(OBJ_utl_snprintf_MT_R)\
@@ -4789,7 +4850,6 @@ OBJ_UTIL_MT_R=\
 OBJ_CORE_MT_R=\
  $(OBJ_cr_api_MT_R)\
  $(OBJ_cr_api_dep_MT_R)\
- $(OBJ_cr_api_exit_MT_R)\
  $(OBJ_cr_api_logprintf_MT_R)\
  $(OBJ_cr_api_logputs_MT_R)\
  $(OBJ_cr_auto_MT_R)\
@@ -4991,6 +5051,10 @@ OBJ_BEC_WINEVLOG_MT_R=\
  $(OBJ_bec_WINEVLOG_MT_R)\
  \
 
+OBJ_BEC_WINEVLOGWC_MT_R=\
+ $(OBJ_bec_WINEVLOGWC_MT_R)\
+ \
+
 OBJ_BE_WINEVLOG_MT_R=\
  $(OBJ_be_WINEVLOG_MT_R)\
  \
@@ -5124,6 +5188,7 @@ OBJ_FE_WINREG_WC_MT_R=\
  \
 
 OBJ_utl_bailout_W_MT_D		= $(PROJ_OBJ_DIR)\util.bailout.ws.mt.debug.obj
+OBJ_utl_dtel2s_W_MT_D		= $(PROJ_OBJ_DIR)\util.dtel2s.ws.mt.debug.obj
 OBJ_utl_init_code_strs_W_MT_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.ws.mt.debug.obj
 OBJ_utl_sev_strs_W_MT_D		= $(PROJ_OBJ_DIR)\util.sev_strings.ws.mt.debug.obj
 OBJ_utl_snprintf_W_MT_D 	= $(PROJ_OBJ_DIR)\util.snprintf.ws.mt.debug.obj
@@ -5139,7 +5204,7 @@ OBJ_utl_time_W_MT_D			= $(PROJ_OBJ_DIR)\util.time.ws.mt.debug.obj
 OBJ_utl_host_name_W_MT_D	= $(PROJ_OBJ_DIR)\util.host_name.ws.mt.debug.obj
 OBJ_cr_api_W_MT_D 			= $(PROJ_OBJ_DIR)\core.api.ws.mt.debug.obj
 OBJ_cr_api_dep_W_MT_D 		= $(PROJ_OBJ_DIR)\core.api.deprecated.ws.mt.debug.obj
-OBJ_cr_api_exit_W_MT_D 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.ws.mt.debug.obj
+OBJ_utl_api_exit_W_MT_D 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.ws.mt.debug.obj
 OBJ_cr_api_logprintf_W_MT_D	= $(PROJ_OBJ_DIR)\core.api.logprintf.ws.mt.debug.obj
 OBJ_cr_api_logputs_W_MT_D	= $(PROJ_OBJ_DIR)\core.api.logputs.ws.mt.debug.obj
 OBJ_cr_auto_W_MT_D 			= $(PROJ_OBJ_DIR)\core.auto.ws.mt.debug.obj
@@ -5232,6 +5297,7 @@ OBJ_be_SPEECH_W_MT_D		= $(PROJ_OBJ_DIR)\be.speech.ws.mt.debug.obj
 OBJ_bel_SPEECH_W_MT_D		= $(PROJ_OBJ_DIR)\bel.speech.ws.mt.debug.obj
 OBJ_ber_SPEECH_W_MT_D		= $(PROJ_OBJ_DIR)\ber.speech.ws.mt.debug.obj
 OBJ_bec_WINEVLOG_W_MT_D		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.ws.mt.debug.obj
+OBJ_bec_WINEVLOGWC_W_MT_D	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.ws.mt.debug.obj
 OBJ_be_WINEVLOG_W_MT_D		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.ws.mt.debug.obj
 OBJ_bel_WINEVLOG_W_MT_D		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.ws.mt.debug.obj
 OBJ_ber_WINEVLOG_W_MT_D		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.ws.mt.debug.obj
@@ -5267,7 +5333,9 @@ OBJ_fe_winreg_W_MT_D 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.ws.mt.debug.obj
 OBJ_fe_winreg_WC_W_MT_D 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.ws.mt.debug.obj
 
 OBJ_UTIL_W_MT_D=\
+ $(OBJ_utl_api_exit_W_MT_D)\
  $(OBJ_utl_bailout_W_MT_D)\
+ $(OBJ_utl_dtel2s_W_MT_D)\
  $(OBJ_utl_init_code_strs_W_MT_D)\
  $(OBJ_utl_sev_strs_W_MT_D)\
  $(OBJ_utl_snprintf_W_MT_D)\
@@ -5286,7 +5354,6 @@ OBJ_UTIL_W_MT_D=\
 OBJ_CORE_W_MT_D=\
  $(OBJ_cr_api_W_MT_D)\
  $(OBJ_cr_api_dep_W_MT_D)\
- $(OBJ_cr_api_exit_W_MT_D)\
  $(OBJ_cr_api_logprintf_W_MT_D)\
  $(OBJ_cr_api_logputs_W_MT_D)\
  $(OBJ_cr_auto_W_MT_D)\
@@ -5542,6 +5609,10 @@ OBJ_BEC_WINEVLOG_W_MT_D=\
  $(OBJ_bec_WINEVLOG_W_MT_D)\
  \
 
+OBJ_BEC_WINEVLOGWC_W_MT_D=\
+ $(OBJ_bec_WINEVLOGWC_W_MT_D)\
+ \
+
 OBJ_BE_WINEVLOG_W_MT_D=\
  $(OBJ_be_WINEVLOG_W_MT_D)\
  \
@@ -5675,6 +5746,7 @@ OBJ_FE_WINREG_WC_W_MT_D=\
  \
 
 OBJ_utl_bailout_W_DLL_D		= $(PROJ_OBJ_DIR)\util.bailout.ws.dll.debug.obj
+OBJ_utl_dtel2s_W_DLL_D		= $(PROJ_OBJ_DIR)\util.dtel2s.ws.dll.debug.obj
 OBJ_utl_init_code_strs_W_DLL_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.ws.dll.debug.obj
 OBJ_utl_sev_strs_W_DLL_D		= $(PROJ_OBJ_DIR)\util.sev_strings.ws.dll.debug.obj
 OBJ_utl_snprintf_W_DLL_D 	= $(PROJ_OBJ_DIR)\util.snprintf.ws.dll.debug.obj
@@ -5690,7 +5762,7 @@ OBJ_utl_time_W_DLL_D			= $(PROJ_OBJ_DIR)\util.time.ws.dll.debug.obj
 OBJ_utl_host_name_W_DLL_D	= $(PROJ_OBJ_DIR)\util.host_name.ws.dll.debug.obj
 OBJ_cr_api_W_DLL_D 			= $(PROJ_OBJ_DIR)\core.api.ws.dll.debug.obj
 OBJ_cr_api_dep_W_DLL_D 		= $(PROJ_OBJ_DIR)\core.api.deprecated.ws.dll.debug.obj
-OBJ_cr_api_exit_W_DLL_D 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.ws.dll.debug.obj
+OBJ_utl_api_exit_W_DLL_D 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.ws.dll.debug.obj
 OBJ_cr_api_logprintf_W_DLL_D	= $(PROJ_OBJ_DIR)\core.api.logprintf.ws.dll.debug.obj
 OBJ_cr_api_logputs_W_DLL_D	= $(PROJ_OBJ_DIR)\core.api.logputs.ws.dll.debug.obj
 OBJ_cr_auto_W_DLL_D 			= $(PROJ_OBJ_DIR)\core.auto.ws.dll.debug.obj
@@ -5783,6 +5855,7 @@ OBJ_be_SPEECH_W_DLL_D		= $(PROJ_OBJ_DIR)\be.speech.ws.dll.debug.obj
 OBJ_bel_SPEECH_W_DLL_D		= $(PROJ_OBJ_DIR)\bel.speech.ws.dll.debug.obj
 OBJ_ber_SPEECH_W_DLL_D		= $(PROJ_OBJ_DIR)\ber.speech.ws.dll.debug.obj
 OBJ_bec_WINEVLOG_W_DLL_D		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.ws.dll.debug.obj
+OBJ_bec_WINEVLOGWC_W_DLL_D	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.ws.dll.debug.obj
 OBJ_be_WINEVLOG_W_DLL_D		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.ws.dll.debug.obj
 OBJ_bel_WINEVLOG_W_DLL_D		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.ws.dll.debug.obj
 OBJ_ber_WINEVLOG_W_DLL_D		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.ws.dll.debug.obj
@@ -5818,7 +5891,9 @@ OBJ_fe_winreg_W_DLL_D 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.ws.dll.debug.obj
 OBJ_fe_winreg_WC_W_DLL_D 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.ws.dll.debug.obj
 
 OBJ_UTIL_W_DLL_D=\
+ $(OBJ_utl_api_exit_W_DLL_D)\
  $(OBJ_utl_bailout_W_DLL_D)\
+ $(OBJ_utl_dtel2s_W_DLL_D)\
  $(OBJ_utl_init_code_strs_W_DLL_D)\
  $(OBJ_utl_sev_strs_W_DLL_D)\
  $(OBJ_utl_snprintf_W_DLL_D)\
@@ -5837,7 +5912,6 @@ OBJ_UTIL_W_DLL_D=\
 OBJ_CORE_W_DLL_D=\
  $(OBJ_cr_api_W_DLL_D)\
  $(OBJ_cr_api_dep_W_DLL_D)\
- $(OBJ_cr_api_exit_W_DLL_D)\
  $(OBJ_cr_api_logprintf_W_DLL_D)\
  $(OBJ_cr_api_logputs_W_DLL_D)\
  $(OBJ_cr_auto_W_DLL_D)\
@@ -6093,6 +6167,10 @@ OBJ_BEC_WINEVLOG_W_DLL_D=\
  $(OBJ_bec_WINEVLOG_W_DLL_D)\
  \
 
+OBJ_BEC_WINEVLOGWC_W_DLL_D=\
+ $(OBJ_bec_WINEVLOGWC_W_DLL_D)\
+ \
+
 OBJ_BE_WINEVLOG_W_DLL_D=\
  $(OBJ_be_WINEVLOG_W_DLL_D)\
  \
@@ -6226,6 +6304,7 @@ OBJ_FE_WINREG_WC_W_DLL_D=\
  \
 
 OBJ_utl_bailout_W_DLL_R		= $(PROJ_OBJ_DIR)\util.bailout.ws.dll.obj
+OBJ_utl_dtel2s_W_DLL_R		= $(PROJ_OBJ_DIR)\util.dtel2s.ws.dll.obj
 OBJ_utl_init_code_strs_W_DLL_R	= $(PROJ_OBJ_DIR)\util.init_err_strings.ws.dll.obj
 OBJ_utl_sev_strs_W_DLL_R		= $(PROJ_OBJ_DIR)\util.sev_strings.ws.dll.obj
 OBJ_utl_snprintf_W_DLL_R 	= $(PROJ_OBJ_DIR)\util.snprintf.ws.dll.obj
@@ -6241,7 +6320,7 @@ OBJ_utl_time_W_DLL_R			= $(PROJ_OBJ_DIR)\util.time.ws.dll.obj
 OBJ_utl_host_name_W_DLL_R	= $(PROJ_OBJ_DIR)\util.host_name.ws.dll.obj
 OBJ_cr_api_W_DLL_R 			= $(PROJ_OBJ_DIR)\core.api.ws.dll.obj
 OBJ_cr_api_dep_W_DLL_R 		= $(PROJ_OBJ_DIR)\core.api.deprecated.ws.dll.obj
-OBJ_cr_api_exit_W_DLL_R 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.ws.dll.obj
+OBJ_utl_api_exit_W_DLL_R 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.ws.dll.obj
 OBJ_cr_api_logprintf_W_DLL_R	= $(PROJ_OBJ_DIR)\core.api.logprintf.ws.dll.obj
 OBJ_cr_api_logputs_W_DLL_R	= $(PROJ_OBJ_DIR)\core.api.logputs.ws.dll.obj
 OBJ_cr_auto_W_DLL_R 			= $(PROJ_OBJ_DIR)\core.auto.ws.dll.obj
@@ -6302,6 +6381,7 @@ OBJ_be_SPEECH_W_DLL_R		= $(PROJ_OBJ_DIR)\be.speech.ws.dll.obj
 OBJ_bel_SPEECH_W_DLL_R		= $(PROJ_OBJ_DIR)\bel.speech.ws.dll.obj
 OBJ_ber_SPEECH_W_DLL_R		= $(PROJ_OBJ_DIR)\ber.speech.ws.dll.obj
 OBJ_bec_WINEVLOG_W_DLL_R		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.ws.dll.obj
+OBJ_bec_WINEVLOGWC_W_DLL_R	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.ws.dll.obj
 OBJ_be_WINEVLOG_W_DLL_R		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.ws.dll.obj
 OBJ_bel_WINEVLOG_W_DLL_R		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.ws.dll.obj
 OBJ_ber_WINEVLOG_W_DLL_R		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.ws.dll.obj
@@ -6337,7 +6417,9 @@ OBJ_fe_winreg_W_DLL_R 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.ws.dll.obj
 OBJ_fe_winreg_WC_W_DLL_R 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.ws.dll.obj
 
 OBJ_UTIL_W_DLL_R=\
+ $(OBJ_utl_api_exit_W_DLL_R)\
  $(OBJ_utl_bailout_W_DLL_R)\
+ $(OBJ_utl_dtel2s_W_DLL_R)\
  $(OBJ_utl_init_code_strs_W_DLL_R)\
  $(OBJ_utl_sev_strs_W_DLL_R)\
  $(OBJ_utl_snprintf_W_DLL_R)\
@@ -6356,7 +6438,6 @@ OBJ_UTIL_W_DLL_R=\
 OBJ_CORE_W_DLL_R=\
  $(OBJ_cr_api_W_DLL_R)\
  $(OBJ_cr_api_dep_W_DLL_R)\
- $(OBJ_cr_api_exit_W_DLL_R)\
  $(OBJ_cr_api_logprintf_W_DLL_R)\
  $(OBJ_cr_api_logputs_W_DLL_R)\
  $(OBJ_cr_auto_W_DLL_R)\
@@ -6558,6 +6639,10 @@ OBJ_BEC_WINEVLOG_W_DLL_R=\
  $(OBJ_bec_WINEVLOG_W_DLL_R)\
  \
 
+OBJ_BEC_WINEVLOGWC_W_DLL_R=\
+ $(OBJ_bec_WINEVLOGWC_W_DLL_R)\
+ \
+
 OBJ_BE_WINEVLOG_W_DLL_R=\
  $(OBJ_be_WINEVLOG_W_DLL_R)\
  \
@@ -6691,6 +6776,7 @@ OBJ_FE_WINREG_WC_W_DLL_R=\
  \
 
 OBJ_utl_bailout_W_MT_R		= $(PROJ_OBJ_DIR)\util.bailout.ws.mt.obj
+OBJ_utl_dtel2s_W_MT_R		= $(PROJ_OBJ_DIR)\util.dtel2s.ws.mt.obj
 OBJ_utl_init_code_strs_W_MT_R	= $(PROJ_OBJ_DIR)\util.init_err_strings.ws.mt.obj
 OBJ_utl_sev_strs_W_MT_R		= $(PROJ_OBJ_DIR)\util.sev_strings.ws.mt.obj
 OBJ_utl_snprintf_W_MT_R 	= $(PROJ_OBJ_DIR)\util.snprintf.ws.mt.obj
@@ -6706,7 +6792,7 @@ OBJ_utl_time_W_MT_R			= $(PROJ_OBJ_DIR)\util.time.ws.mt.obj
 OBJ_utl_host_name_W_MT_R	= $(PROJ_OBJ_DIR)\util.host_name.ws.mt.obj
 OBJ_cr_api_W_MT_R 			= $(PROJ_OBJ_DIR)\core.api.ws.mt.obj
 OBJ_cr_api_dep_W_MT_R 		= $(PROJ_OBJ_DIR)\core.api.deprecated.ws.mt.obj
-OBJ_cr_api_exit_W_MT_R 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.ws.mt.obj
+OBJ_utl_api_exit_W_MT_R 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.ws.mt.obj
 OBJ_cr_api_logprintf_W_MT_R	= $(PROJ_OBJ_DIR)\core.api.logprintf.ws.mt.obj
 OBJ_cr_api_logputs_W_MT_R	= $(PROJ_OBJ_DIR)\core.api.logputs.ws.mt.obj
 OBJ_cr_auto_W_MT_R 			= $(PROJ_OBJ_DIR)\core.auto.ws.mt.obj
@@ -6767,6 +6853,7 @@ OBJ_be_SPEECH_W_MT_R		= $(PROJ_OBJ_DIR)\be.speech.ws.mt.obj
 OBJ_bel_SPEECH_W_MT_R		= $(PROJ_OBJ_DIR)\bel.speech.ws.mt.obj
 OBJ_ber_SPEECH_W_MT_R		= $(PROJ_OBJ_DIR)\ber.speech.ws.mt.obj
 OBJ_bec_WINEVLOG_W_MT_R		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.ws.mt.obj
+OBJ_bec_WINEVLOGWC_W_MT_R	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.ws.mt.obj
 OBJ_be_WINEVLOG_W_MT_R		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.ws.mt.obj
 OBJ_bel_WINEVLOG_W_MT_R		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.ws.mt.obj
 OBJ_ber_WINEVLOG_W_MT_R		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.ws.mt.obj
@@ -6802,7 +6889,9 @@ OBJ_fe_winreg_W_MT_R 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.ws.mt.obj
 OBJ_fe_winreg_WC_W_MT_R 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.ws.mt.obj
 
 OBJ_UTIL_W_MT_R=\
+ $(OBJ_utl_api_exit_W_MT_R)\
  $(OBJ_utl_bailout_W_MT_R)\
+ $(OBJ_utl_dtel2s_W_MT_R)\
  $(OBJ_utl_init_code_strs_W_MT_R)\
  $(OBJ_utl_sev_strs_W_MT_R)\
  $(OBJ_utl_snprintf_W_MT_R)\
@@ -6821,7 +6910,6 @@ OBJ_UTIL_W_MT_R=\
 OBJ_CORE_W_MT_R=\
  $(OBJ_cr_api_W_MT_R)\
  $(OBJ_cr_api_dep_W_MT_R)\
- $(OBJ_cr_api_exit_W_MT_R)\
  $(OBJ_cr_api_logprintf_W_MT_R)\
  $(OBJ_cr_api_logputs_W_MT_R)\
  $(OBJ_cr_auto_W_MT_R)\
@@ -7021,6 +7109,10 @@ OBJ_BER_SPEECH_W_MT_R=\
 
 OBJ_BEC_WINEVLOG_W_MT_R=\
  $(OBJ_bec_WINEVLOG_W_MT_R)\
+ \
+
+OBJ_BEC_WINEVLOGWC_W_MT_R=\
+ $(OBJ_bec_WINEVLOGWC_W_MT_R)\
  \
 
 OBJ_BE_WINEVLOG_W_MT_R=\
@@ -8074,6 +8166,14 @@ OBJ_TEST_COMP_ins_m2w_W_MT_D	=	.\test.component.inserters.m2w.ws.mt.debug.obj
 OBJ_TEST_COMP_ins_m2w_W_DLL_D	=	.\test.component.inserters.m2w.ws.dll.debug.obj
 OBJ_TEST_COMP_ins_m2w_W_DLL_R	=	.\test.component.inserters.m2w.ws.dll.obj
 OBJ_TEST_COMP_ins_m2w_W_MT_R	=	.\test.component.inserters.m2w.ws.mt.obj
+OBJ_TEST_COMP_ins_w_hive_MT_D	=	.\test.unit.ins.windows.hive.mt.debug.obj
+OBJ_TEST_COMP_ins_w_hive_DLL_D	=	.\test.unit.ins.windows.hive.dll.debug.obj
+OBJ_TEST_COMP_ins_w_hive_DLL_R	=	.\test.unit.ins.windows.hive.dll.obj
+OBJ_TEST_COMP_ins_w_hive_MT_R	=	.\test.unit.ins.windows.hive.mt.obj
+OBJ_TEST_COMP_ins_w_hive_W_MT_D	=	.\test.unit.ins.windows.hive.ws.mt.debug.obj
+OBJ_TEST_COMP_ins_w_hive_W_DLL_D	=	.\test.unit.ins.windows.hive.ws.dll.debug.obj
+OBJ_TEST_COMP_ins_w_hive_W_DLL_R	=	.\test.unit.ins.windows.hive.ws.dll.obj
+OBJ_TEST_COMP_ins_w_hive_W_MT_R	=	.\test.unit.ins.windows.hive.ws.mt.obj
 OBJ_TEST_COMP_log_1_MT_D	=	.\test.component.log.1.mt.debug.obj
 OBJ_TEST_COMP_log_1_DLL_D	=	.\test.component.log.1.dll.debug.obj
 OBJ_TEST_COMP_log_1_DLL_R	=	.\test.component.log.1.dll.obj
@@ -8119,56 +8219,56 @@ OBJ_TEST_PERF_ins_m2w_W_MT_R		=	.\test.performance.inserters.m2w.ws.mt.obj
 # Scratch Tests
 
 !ifdef ACE
-OBJ_SCRT_ACE_MT_D					=	.\test.scratch.ACE.mt.debug.obj
+OBJ_SCRT_ACE_MT_D					=	.\test.scratch.be.ACE.mt.debug.obj
 !endif # ACE
 OBJ_TEST_API_MT_D					=	.\test.api.mt.debug.obj
 OBJ_TEST_FE_MT_D					=	.\test.fe.mt.debug.obj
 OBJ_TEST_BE_N_MT_D				=	.\test.be.N.fail.mt.debug.obj
 OBJ_TEST_FE_SIMPLE_WC_MT_D		=	.\test.fe.simple.WithCallback.mt.debug.obj
 !ifdef ACE
-OBJ_SCRT_ACE_DLL_D					=	.\test.scratch.ACE.dll.debug.obj
+OBJ_SCRT_ACE_DLL_D					=	.\test.scratch.be.ACE.dll.debug.obj
 !endif # ACE
 OBJ_TEST_API_DLL_D					=	.\test.api.dll.debug.obj
 OBJ_TEST_FE_DLL_D					=	.\test.fe.dll.debug.obj
 OBJ_TEST_BE_N_DLL_D				=	.\test.be.N.fail.dll.debug.obj
 OBJ_TEST_FE_SIMPLE_WC_DLL_D		=	.\test.fe.simple.WithCallback.dll.debug.obj
 !ifdef ACE
-OBJ_SCRT_ACE_DLL_R					=	.\test.scratch.ACE.dll.obj
+OBJ_SCRT_ACE_DLL_R					=	.\test.scratch.be.ACE.dll.obj
 !endif # ACE
 OBJ_TEST_API_DLL_R					=	.\test.api.dll.obj
 OBJ_TEST_FE_DLL_R					=	.\test.fe.dll.obj
 OBJ_TEST_BE_N_DLL_R				=	.\test.be.N.fail.dll.obj
 OBJ_TEST_FE_SIMPLE_WC_DLL_R		=	.\test.fe.simple.WithCallback.dll.obj
 !ifdef ACE
-OBJ_SCRT_ACE_MT_R					=	.\test.scratch.ACE.mt.obj
+OBJ_SCRT_ACE_MT_R					=	.\test.scratch.be.ACE.mt.obj
 !endif # ACE
 OBJ_TEST_API_MT_R					=	.\test.api.mt.obj
 OBJ_TEST_FE_MT_R					=	.\test.fe.mt.obj
 OBJ_TEST_BE_N_MT_R				=	.\test.be.N.fail.mt.obj
 OBJ_TEST_FE_SIMPLE_WC_MT_R		=	.\test.fe.simple.WithCallback.mt.obj
 !ifdef ACE
-OBJ_SCRT_ACE_W_MT_D					=	.\test.scratch.ACE.ws.mt.debug.obj
+OBJ_SCRT_ACE_W_MT_D					=	.\test.scratch.be.ACE.ws.mt.debug.obj
 !endif # ACE
 OBJ_TEST_API_W_MT_D					=	.\test.api.ws.mt.debug.obj
 OBJ_TEST_FE_W_MT_D					=	.\test.fe.ws.mt.debug.obj
 OBJ_TEST_BE_N_W_MT_D				=	.\test.be.N.fail.ws.mt.debug.obj
 OBJ_TEST_FE_SIMPLE_WC_W_MT_D		=	.\test.fe.simple.WithCallback.ws.mt.debug.obj
 !ifdef ACE
-OBJ_SCRT_ACE_W_DLL_D					=	.\test.scratch.ACE.ws.dll.debug.obj
+OBJ_SCRT_ACE_W_DLL_D					=	.\test.scratch.be.ACE.ws.dll.debug.obj
 !endif # ACE
 OBJ_TEST_API_W_DLL_D					=	.\test.api.ws.dll.debug.obj
 OBJ_TEST_FE_W_DLL_D					=	.\test.fe.ws.dll.debug.obj
 OBJ_TEST_BE_N_W_DLL_D				=	.\test.be.N.fail.ws.dll.debug.obj
 OBJ_TEST_FE_SIMPLE_WC_W_DLL_D		=	.\test.fe.simple.WithCallback.ws.dll.debug.obj
 !ifdef ACE
-OBJ_SCRT_ACE_W_DLL_R					=	.\test.scratch.ACE.ws.dll.obj
+OBJ_SCRT_ACE_W_DLL_R					=	.\test.scratch.be.ACE.ws.dll.obj
 !endif # ACE
 OBJ_TEST_API_W_DLL_R					=	.\test.api.ws.dll.obj
 OBJ_TEST_FE_W_DLL_R					=	.\test.fe.ws.dll.obj
 OBJ_TEST_BE_N_W_DLL_R				=	.\test.be.N.fail.ws.dll.obj
 OBJ_TEST_FE_SIMPLE_WC_W_DLL_R		=	.\test.fe.simple.WithCallback.ws.dll.obj
 !ifdef ACE
-OBJ_SCRT_ACE_W_MT_R					=	.\test.scratch.ACE.ws.mt.obj
+OBJ_SCRT_ACE_W_MT_R					=	.\test.scratch.be.ACE.ws.mt.obj
 !endif # ACE
 OBJ_TEST_API_W_MT_R					=	.\test.api.ws.mt.obj
 OBJ_TEST_FE_W_MT_R					=	.\test.fe.ws.mt.obj
@@ -8177,6 +8277,8 @@ OBJ_TEST_FE_SIMPLE_WC_W_MT_R		=	.\test.fe.simple.WithCallback.ws.mt.obj
 
 ##############################
 # Unit Tests
+#
+# NOTE: some names are as names longer than 63 characters scare CodeWarrior's linker
 
 OBJ_TEST_UNIT_lvls_dyninit_MT_D	=	.\test.unit.levels.dynamic_init.mt.debug.obj
 OBJ_TEST_UNIT_lvls_dyninit_DLL_D	=	.\test.unit.levels.dynamic_init.dll.debug.obj
@@ -8202,6 +8304,14 @@ OBJ_TEST_UNIT_getcurrtm_W_MT_D	=	.\test.unit.util.getcurrenttime.ws.mt.debug.obj
 OBJ_TEST_UNIT_getcurrtm_W_DLL_D	=	.\test.unit.util.getcurrenttime.ws.dll.debug.obj
 OBJ_TEST_UNIT_getcurrtm_W_DLL_R	=	.\test.unit.util.getcurrenttime.ws.dll.obj
 OBJ_TEST_UNIT_getcurrtm_W_MT_R	=	.\test.unit.util.getcurrenttime.ws.mt.obj
+OBJ_TEST_UNIT_dtel2s_MT_D	    =	.\test.unit.util.dtel2s.mt.debug.obj
+OBJ_TEST_UNIT_dtel2s_DLL_D	    =	.\test.unit.util.dtel2s.dll.debug.obj
+OBJ_TEST_UNIT_dtel2s_DLL_R	    =	.\test.unit.util.dtel2s.dll.obj
+OBJ_TEST_UNIT_dtel2s_MT_R	    =	.\test.unit.util.dtel2s.mt.obj
+OBJ_TEST_UNIT_dtel2s_W_MT_D	    =	.\test.unit.util.dtel2s.ws.mt.debug.obj
+OBJ_TEST_UNIT_dtel2s_W_DLL_D	    =	.\test.unit.util.dtel2s.ws.dll.debug.obj
+OBJ_TEST_UNIT_dtel2s_W_DLL_R	    =	.\test.unit.util.dtel2s.ws.dll.obj
+OBJ_TEST_UNIT_dtel2s_W_MT_R	    =	.\test.unit.util.dtel2s.ws.mt.obj
 OBJ_TEST_UNIT_getversion_MT_D	=	.\test.unit.getversion.mt.debug.obj
 OBJ_TEST_UNIT_getversion_DLL_D	=	.\test.unit.getversion.dll.debug.obj
 OBJ_TEST_UNIT_getversion_DLL_R	=	.\test.unit.getversion.dll.obj
@@ -8210,6 +8320,14 @@ OBJ_TEST_UNIT_getversion_W_MT_D	=	.\test.unit.getversion.ws.mt.debug.obj
 OBJ_TEST_UNIT_getversion_W_DLL_D	=	.\test.unit.getversion.ws.dll.debug.obj
 OBJ_TEST_UNIT_getversion_W_DLL_R	=	.\test.unit.getversion.ws.dll.obj
 OBJ_TEST_UNIT_getversion_W_MT_R	=	.\test.unit.getversion.ws.mt.obj
+OBJ_TEST_UNIT_ins_w_sc_MT_D	=	.\test.unit.ins.windows.sc.mt.debug.obj
+OBJ_TEST_UNIT_ins_w_sc_DLL_D	=	.\test.unit.ins.windows.sc.dll.debug.obj
+OBJ_TEST_UNIT_ins_w_sc_DLL_R	=	.\test.unit.ins.windows.sc.dll.obj
+OBJ_TEST_UNIT_ins_w_sc_MT_R	=	.\test.unit.ins.windows.sc.mt.obj
+OBJ_TEST_UNIT_ins_w_sc_W_MT_D	=	.\test.unit.ins.windows.sc.ws.mt.debug.obj
+OBJ_TEST_UNIT_ins_w_sc_W_DLL_D	=	.\test.unit.ins.windows.sc.ws.dll.debug.obj
+OBJ_TEST_UNIT_ins_w_sc_W_DLL_R	=	.\test.unit.ins.windows.sc.ws.dll.obj
+OBJ_TEST_UNIT_ins_w_sc_W_MT_R	=	.\test.unit.ins.windows.sc.ws.mt.obj
 OBJ_TEST_UNIT_gethostname_MT_D	=	.\test.unit.util.gethostname.mt.debug.obj
 OBJ_TEST_UNIT_gethostname_DLL_D	=	.\test.unit.util.gethostname.dll.debug.obj
 OBJ_TEST_UNIT_gethostname_DLL_R	=	.\test.unit.util.gethostname.dll.obj
@@ -8234,14 +8352,14 @@ OBJ_TEST_UNIT_onbailout_W_DLL_R	=	.\test.unit.util.onbailout.ws.dll.obj
 OBJ_TEST_UNIT_strnlen_W_DLL_R	=	.\test.unit.util.strnlen.ws.dll.obj
 OBJ_TEST_UNIT_onbailout_W_MT_R	=	.\test.unit.util.onbailout.ws.mt.obj
 OBJ_TEST_UNIT_strnlen_W_MT_R	=	.\test.unit.util.strnlen.ws.mt.obj
-OBJ_TEST_UNIT_bec_CEO_MT_D		=	.\test.unit.bec.COMErrorObject.mt.debug.obj
-OBJ_TEST_UNIT_bec_CEO_DLL_D		=	.\test.unit.bec.COMErrorObject.dll.debug.obj
-OBJ_TEST_UNIT_bec_CEO_DLL_R		=	.\test.unit.bec.COMErrorObject.dll.obj
-OBJ_TEST_UNIT_bec_CEO_MT_R		=	.\test.unit.bec.COMErrorObject.mt.obj
-OBJ_TEST_UNIT_bec_CEO_W_MT_D		=	.\test.unit.bec.COMErrorObject.ws.mt.debug.obj
-OBJ_TEST_UNIT_bec_CEO_W_DLL_D		=	.\test.unit.bec.COMErrorObject.ws.dll.debug.obj
-OBJ_TEST_UNIT_bec_CEO_W_DLL_R		=	.\test.unit.bec.COMErrorObject.ws.dll.obj
-OBJ_TEST_UNIT_bec_CEO_W_MT_R		=	.\test.unit.bec.COMErrorObject.ws.mt.obj
+OBJ_TEST_UNIT_bec_CEO_MT_D		=	.\test.unit.bec.COMErrObj.mt.debug.obj
+OBJ_TEST_UNIT_bec_CEO_DLL_D		=	.\test.unit.bec.COMErrObj.dll.debug.obj
+OBJ_TEST_UNIT_bec_CEO_DLL_R		=	.\test.unit.bec.COMErrObj.dll.obj
+OBJ_TEST_UNIT_bec_CEO_MT_R		=	.\test.unit.bec.COMErrObj.mt.obj
+OBJ_TEST_UNIT_bec_CEO_W_MT_D		=	.\test.unit.bec.COMErrObj.ws.mt.debug.obj
+OBJ_TEST_UNIT_bec_CEO_W_DLL_D		=	.\test.unit.bec.COMErrObj.ws.dll.debug.obj
+OBJ_TEST_UNIT_bec_CEO_W_DLL_R		=	.\test.unit.bec.COMErrObj.ws.dll.obj
+OBJ_TEST_UNIT_bec_CEO_W_MT_R		=	.\test.unit.bec.COMErrObj.ws.mt.obj
 OBJ_TEST_UNIT_bec_file_MT_D		=	.\test.unit.bec.file.mt.debug.obj
 OBJ_TEST_UNIT_bec_file_DLL_D		=	.\test.unit.bec.file.dll.debug.obj
 OBJ_TEST_UNIT_bec_file_DLL_R		=	.\test.unit.bec.file.dll.obj
@@ -8535,6 +8653,7 @@ OBJS_BE=\
  $(OBJ_BEL_SPEECH_MT_D)\
  $(OBJ_BER_SPEECH_MT_D)\
  $(OBJ_BEC_WINEVLOG_MT_D)\
+ $(OBJ_BEC_WINEVLOGWC_MT_D)\
  $(OBJ_BE_WINEVLOG_MT_D)\
  $(OBJ_BEL_WINEVLOG_MT_D)\
  $(OBJ_BER_WINEVLOG_MT_D)\
@@ -8592,6 +8711,7 @@ OBJS_BE=\
  $(OBJ_BEL_SPEECH_DLL_D)\
  $(OBJ_BER_SPEECH_DLL_D)\
  $(OBJ_BEC_WINEVLOG_DLL_D)\
+ $(OBJ_BEC_WINEVLOGWC_DLL_D)\
  $(OBJ_BE_WINEVLOG_DLL_D)\
  $(OBJ_BEL_WINEVLOG_DLL_D)\
  $(OBJ_BER_WINEVLOG_DLL_D)\
@@ -8649,6 +8769,7 @@ OBJS_BE=\
  $(OBJ_BEL_SPEECH_DLL_R)\
  $(OBJ_BER_SPEECH_DLL_R)\
  $(OBJ_BEC_WINEVLOG_DLL_R)\
+ $(OBJ_BEC_WINEVLOGWC_DLL_R)\
  $(OBJ_BE_WINEVLOG_DLL_R)\
  $(OBJ_BEL_WINEVLOG_DLL_R)\
  $(OBJ_BER_WINEVLOG_DLL_R)\
@@ -8706,6 +8827,7 @@ OBJS_BE=\
  $(OBJ_BEL_SPEECH_MT_R)\
  $(OBJ_BER_SPEECH_MT_R)\
  $(OBJ_BEC_WINEVLOG_MT_R)\
+ $(OBJ_BEC_WINEVLOGWC_MT_R)\
  $(OBJ_BE_WINEVLOG_MT_R)\
  $(OBJ_BEL_WINEVLOG_MT_R)\
  $(OBJ_BER_WINEVLOG_MT_R)\
@@ -8763,6 +8885,7 @@ OBJS_BE=\
  $(OBJ_BEL_SPEECH_W_MT_D)\
  $(OBJ_BER_SPEECH_W_MT_D)\
  $(OBJ_BEC_WINEVLOG_W_MT_D)\
+ $(OBJ_BEC_WINEVLOGWC_W_MT_D)\
  $(OBJ_BE_WINEVLOG_W_MT_D)\
  $(OBJ_BEL_WINEVLOG_W_MT_D)\
  $(OBJ_BER_WINEVLOG_W_MT_D)\
@@ -8820,6 +8943,7 @@ OBJS_BE=\
  $(OBJ_BEL_SPEECH_W_DLL_D)\
  $(OBJ_BER_SPEECH_W_DLL_D)\
  $(OBJ_BEC_WINEVLOG_W_DLL_D)\
+ $(OBJ_BEC_WINEVLOGWC_W_DLL_D)\
  $(OBJ_BE_WINEVLOG_W_DLL_D)\
  $(OBJ_BEL_WINEVLOG_W_DLL_D)\
  $(OBJ_BER_WINEVLOG_W_DLL_D)\
@@ -8877,6 +9001,7 @@ OBJS_BE=\
  $(OBJ_BEL_SPEECH_W_DLL_R)\
  $(OBJ_BER_SPEECH_W_DLL_R)\
  $(OBJ_BEC_WINEVLOG_W_DLL_R)\
+ $(OBJ_BEC_WINEVLOGWC_W_DLL_R)\
  $(OBJ_BE_WINEVLOG_W_DLL_R)\
  $(OBJ_BEL_WINEVLOG_W_DLL_R)\
  $(OBJ_BER_WINEVLOG_W_DLL_R)\
@@ -8934,6 +9059,7 @@ OBJS_BE=\
  $(OBJ_BEL_SPEECH_W_MT_R)\
  $(OBJ_BER_SPEECH_W_MT_R)\
  $(OBJ_BEC_WINEVLOG_W_MT_R)\
+ $(OBJ_BEC_WINEVLOGWC_W_MT_R)\
  $(OBJ_BE_WINEVLOG_W_MT_R)\
  $(OBJ_BEL_WINEVLOG_W_MT_R)\
  $(OBJ_BER_WINEVLOG_W_MT_R)\
@@ -9456,6 +9582,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_thrid_MT_D)\
  $(OBJ_TEST_COMP_ins_vbool_MT_D)\
  $(OBJ_TEST_COMP_ins_w2m_MT_D)\
+ $(OBJ_TEST_COMP_ins_w_hive_MT_D)\
  $(OBJ_TEST_COMP_log_1_MT_D)\
  $(OBJ_TEST_COMP_pan_puts_MT_D)\
  $(OBJ_TEST_COMP_pan_prtf_MT_D)\
@@ -9477,6 +9604,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_thrid_DLL_D)\
  $(OBJ_TEST_COMP_ins_vbool_DLL_D)\
  $(OBJ_TEST_COMP_ins_w2m_DLL_D)\
+ $(OBJ_TEST_COMP_ins_w_hive_DLL_D)\
  $(OBJ_TEST_COMP_log_1_DLL_D)\
  $(OBJ_TEST_COMP_pan_puts_DLL_D)\
  $(OBJ_TEST_COMP_pan_prtf_DLL_D)\
@@ -9498,6 +9626,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_thrid_DLL_R)\
  $(OBJ_TEST_COMP_ins_vbool_DLL_R)\
  $(OBJ_TEST_COMP_ins_w2m_DLL_R)\
+ $(OBJ_TEST_COMP_ins_w_hive_DLL_R)\
  $(OBJ_TEST_COMP_log_1_DLL_R)\
  $(OBJ_TEST_COMP_pan_puts_DLL_R)\
  $(OBJ_TEST_COMP_pan_prtf_DLL_R)\
@@ -9519,6 +9648,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_thrid_MT_R)\
  $(OBJ_TEST_COMP_ins_vbool_MT_R)\
  $(OBJ_TEST_COMP_ins_w2m_MT_R)\
+ $(OBJ_TEST_COMP_ins_w_hive_MT_R)\
  $(OBJ_TEST_COMP_log_1_MT_R)\
  $(OBJ_TEST_COMP_pan_puts_MT_R)\
  $(OBJ_TEST_COMP_pan_prtf_MT_R)\
@@ -9540,6 +9670,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_thrid_W_MT_D)\
  $(OBJ_TEST_COMP_ins_vbool_W_MT_D)\
  $(OBJ_TEST_COMP_ins_m2w_W_MT_D)\
+ $(OBJ_TEST_COMP_ins_w_hive_W_MT_D)\
  $(OBJ_TEST_COMP_log_1_W_MT_D)\
  $(OBJ_TEST_COMP_pan_puts_W_MT_D)\
  $(OBJ_TEST_COMP_pan_prtf_W_MT_D)\
@@ -9560,6 +9691,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_thrid_W_DLL_D)\
  $(OBJ_TEST_COMP_ins_vbool_W_DLL_D)\
  $(OBJ_TEST_COMP_ins_m2w_W_DLL_D)\
+ $(OBJ_TEST_COMP_ins_w_hive_W_DLL_D)\
  $(OBJ_TEST_COMP_log_1_W_DLL_D)\
  $(OBJ_TEST_COMP_pan_puts_W_DLL_D)\
  $(OBJ_TEST_COMP_pan_prtf_W_DLL_D)\
@@ -9580,6 +9712,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_thrid_W_DLL_R)\
  $(OBJ_TEST_COMP_ins_vbool_W_DLL_R)\
  $(OBJ_TEST_COMP_ins_m2w_W_DLL_R)\
+ $(OBJ_TEST_COMP_ins_w_hive_W_DLL_R)\
  $(OBJ_TEST_COMP_log_1_W_DLL_R)\
  $(OBJ_TEST_COMP_pan_puts_W_DLL_R)\
  $(OBJ_TEST_COMP_pan_prtf_W_DLL_R)\
@@ -9600,6 +9733,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_ins_thrid_W_MT_R)\
  $(OBJ_TEST_COMP_ins_vbool_W_MT_R)\
  $(OBJ_TEST_COMP_ins_m2w_W_MT_R)\
+ $(OBJ_TEST_COMP_ins_w_hive_W_MT_R)\
  $(OBJ_TEST_COMP_log_1_W_MT_R)\
  $(OBJ_TEST_COMP_pan_puts_W_MT_R)\
  $(OBJ_TEST_COMP_pan_prtf_W_MT_R)\
@@ -9658,7 +9792,9 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
  $(OBJ_TEST_UNIT_lvls_vals_MT_D)\
  $(OBJ_TEST_UNIT_getcurrtm_MT_D)\
+ $(OBJ_TEST_UNIT_dtel2s_MT_D)\
  $(OBJ_TEST_UNIT_getversion_MT_D)\
+ $(OBJ_TEST_UNIT_ins_w_sc_MT_D)\
  $(OBJ_TEST_UNIT_gethostname_MT_D)\
  $(OBJ_TEST_UNIT_onbailout_MT_D)\
  $(OBJ_TEST_UNIT_strnlen_MT_D)\
@@ -9683,7 +9819,9 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_DLL_D)\
  $(OBJ_TEST_UNIT_lvls_vals_DLL_D)\
  $(OBJ_TEST_UNIT_getcurrtm_DLL_D)\
+ $(OBJ_TEST_UNIT_dtel2s_DLL_D)\
  $(OBJ_TEST_UNIT_getversion_DLL_D)\
+ $(OBJ_TEST_UNIT_ins_w_sc_DLL_D)\
  $(OBJ_TEST_UNIT_gethostname_DLL_D)\
  $(OBJ_TEST_UNIT_onbailout_DLL_D)\
  $(OBJ_TEST_UNIT_strnlen_DLL_D)\
@@ -9708,7 +9846,9 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_DLL_R)\
  $(OBJ_TEST_UNIT_lvls_vals_DLL_R)\
  $(OBJ_TEST_UNIT_getcurrtm_DLL_R)\
+ $(OBJ_TEST_UNIT_dtel2s_DLL_R)\
  $(OBJ_TEST_UNIT_getversion_DLL_R)\
+ $(OBJ_TEST_UNIT_ins_w_sc_DLL_R)\
  $(OBJ_TEST_UNIT_gethostname_DLL_R)\
  $(OBJ_TEST_UNIT_onbailout_DLL_R)\
  $(OBJ_TEST_UNIT_strnlen_DLL_R)\
@@ -9733,7 +9873,9 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_MT_R)\
  $(OBJ_TEST_UNIT_lvls_vals_MT_R)\
  $(OBJ_TEST_UNIT_getcurrtm_MT_R)\
+ $(OBJ_TEST_UNIT_dtel2s_MT_R)\
  $(OBJ_TEST_UNIT_getversion_MT_R)\
+ $(OBJ_TEST_UNIT_ins_w_sc_MT_R)\
  $(OBJ_TEST_UNIT_gethostname_MT_R)\
  $(OBJ_TEST_UNIT_onbailout_MT_R)\
  $(OBJ_TEST_UNIT_strnlen_MT_R)\
@@ -9758,7 +9900,9 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_W_MT_D)\
  $(OBJ_TEST_UNIT_lvls_vals_W_MT_D)\
  $(OBJ_TEST_UNIT_getcurrtm_W_MT_D)\
+ $(OBJ_TEST_UNIT_dtel2s_W_MT_D)\
  $(OBJ_TEST_UNIT_getversion_W_MT_D)\
+ $(OBJ_TEST_UNIT_ins_w_sc_W_MT_D)\
  $(OBJ_TEST_UNIT_gethostname_W_MT_D)\
  $(OBJ_TEST_UNIT_onbailout_W_MT_D)\
  $(OBJ_TEST_UNIT_strnlen_W_MT_D)\
@@ -9783,7 +9927,9 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_W_DLL_D)\
  $(OBJ_TEST_UNIT_lvls_vals_W_DLL_D)\
  $(OBJ_TEST_UNIT_getcurrtm_W_DLL_D)\
+ $(OBJ_TEST_UNIT_dtel2s_W_DLL_D)\
  $(OBJ_TEST_UNIT_getversion_W_DLL_D)\
+ $(OBJ_TEST_UNIT_ins_w_sc_W_DLL_D)\
  $(OBJ_TEST_UNIT_gethostname_W_DLL_D)\
  $(OBJ_TEST_UNIT_onbailout_W_DLL_D)\
  $(OBJ_TEST_UNIT_strnlen_W_DLL_D)\
@@ -9808,7 +9954,9 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_W_DLL_R)\
  $(OBJ_TEST_UNIT_lvls_vals_W_DLL_R)\
  $(OBJ_TEST_UNIT_getcurrtm_W_DLL_R)\
+ $(OBJ_TEST_UNIT_dtel2s_W_DLL_R)\
  $(OBJ_TEST_UNIT_getversion_W_DLL_R)\
+ $(OBJ_TEST_UNIT_ins_w_sc_W_DLL_R)\
  $(OBJ_TEST_UNIT_gethostname_W_DLL_R)\
  $(OBJ_TEST_UNIT_onbailout_W_DLL_R)\
  $(OBJ_TEST_UNIT_strnlen_W_DLL_R)\
@@ -9833,7 +9981,9 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_W_MT_R)\
  $(OBJ_TEST_UNIT_lvls_vals_W_MT_R)\
  $(OBJ_TEST_UNIT_getcurrtm_W_MT_R)\
+ $(OBJ_TEST_UNIT_dtel2s_W_MT_R)\
  $(OBJ_TEST_UNIT_getversion_W_MT_R)\
+ $(OBJ_TEST_UNIT_ins_w_sc_W_MT_R)\
  $(OBJ_TEST_UNIT_gethostname_W_MT_R)\
  $(OBJ_TEST_UNIT_onbailout_W_MT_R)\
  $(OBJ_TEST_UNIT_strnlen_W_MT_R)\
@@ -10189,6 +10339,7 @@ TARGETS_LIB_BE=\
  $(LIB_BEL_SPEECH_MT_D)\
  $(LIB_BER_SPEECH_MT_D)\
  $(LIB_BEC_WINEVLOG_MT_D)\
+ $(LIB_BEC_WINEVLOGWC_MT_D)\
  $(LIB_BE_WINEVLOG_MT_D)\
  $(LIB_BEL_WINEVLOG_MT_D)\
  $(LIB_BER_WINEVLOG_MT_D)\
@@ -10246,6 +10397,7 @@ TARGETS_LIB_BE=\
  $(LIB_BEL_SPEECH_DLL_D)\
  $(LIB_BER_SPEECH_DLL_D)\
  $(LIB_BEC_WINEVLOG_DLL_D)\
+ $(LIB_BEC_WINEVLOGWC_DLL_D)\
  $(LIB_BE_WINEVLOG_DLL_D)\
  $(LIB_BEL_WINEVLOG_DLL_D)\
  $(LIB_BER_WINEVLOG_DLL_D)\
@@ -10303,6 +10455,7 @@ TARGETS_LIB_BE=\
  $(LIB_BEL_SPEECH_DLL_R)\
  $(LIB_BER_SPEECH_DLL_R)\
  $(LIB_BEC_WINEVLOG_DLL_R)\
+ $(LIB_BEC_WINEVLOGWC_DLL_R)\
  $(LIB_BE_WINEVLOG_DLL_R)\
  $(LIB_BEL_WINEVLOG_DLL_R)\
  $(LIB_BER_WINEVLOG_DLL_R)\
@@ -10360,6 +10513,7 @@ TARGETS_LIB_BE=\
  $(LIB_BEL_SPEECH_MT_R)\
  $(LIB_BER_SPEECH_MT_R)\
  $(LIB_BEC_WINEVLOG_MT_R)\
+ $(LIB_BEC_WINEVLOGWC_MT_R)\
  $(LIB_BE_WINEVLOG_MT_R)\
  $(LIB_BEL_WINEVLOG_MT_R)\
  $(LIB_BER_WINEVLOG_MT_R)\
@@ -10417,6 +10571,7 @@ TARGETS_LIB_BE=\
  $(LIB_BEL_SPEECH_W_MT_D)\
  $(LIB_BER_SPEECH_W_MT_D)\
  $(LIB_BEC_WINEVLOG_W_MT_D)\
+ $(LIB_BEC_WINEVLOGWC_W_MT_D)\
  $(LIB_BE_WINEVLOG_W_MT_D)\
  $(LIB_BEL_WINEVLOG_W_MT_D)\
  $(LIB_BER_WINEVLOG_W_MT_D)\
@@ -10474,6 +10629,7 @@ TARGETS_LIB_BE=\
  $(LIB_BEL_SPEECH_W_DLL_D)\
  $(LIB_BER_SPEECH_W_DLL_D)\
  $(LIB_BEC_WINEVLOG_W_DLL_D)\
+ $(LIB_BEC_WINEVLOGWC_W_DLL_D)\
  $(LIB_BE_WINEVLOG_W_DLL_D)\
  $(LIB_BEL_WINEVLOG_W_DLL_D)\
  $(LIB_BER_WINEVLOG_W_DLL_D)\
@@ -10531,6 +10687,7 @@ TARGETS_LIB_BE=\
  $(LIB_BEL_SPEECH_W_DLL_R)\
  $(LIB_BER_SPEECH_W_DLL_R)\
  $(LIB_BEC_WINEVLOG_W_DLL_R)\
+ $(LIB_BEC_WINEVLOGWC_W_DLL_R)\
  $(LIB_BE_WINEVLOG_W_DLL_R)\
  $(LIB_BEL_WINEVLOG_W_DLL_R)\
  $(LIB_BER_WINEVLOG_W_DLL_R)\
@@ -10588,6 +10745,7 @@ TARGETS_LIB_BE=\
  $(LIB_BEL_SPEECH_W_MT_R)\
  $(LIB_BER_SPEECH_W_MT_R)\
  $(LIB_BEC_WINEVLOG_W_MT_R)\
+ $(LIB_BEC_WINEVLOGWC_W_MT_R)\
  $(LIB_BE_WINEVLOG_W_MT_R)\
  $(LIB_BEL_WINEVLOG_W_MT_R)\
  $(LIB_BER_WINEVLOG_W_MT_R)\
@@ -11121,6 +11279,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_thrid_MT_D)\
  $(TARG_TEST_COMP_ins_vbool_MT_D)\
  $(TARG_TEST_COMP_ins_w2m_MT_D)\
+ $(TARG_TEST_COMP_ins_w_hive_MT_D)\
  $(TARG_TEST_COMP_log_1_MT_D)\
  $(TARG_TEST_COMP_pan_puts_MT_D)\
  $(TARG_TEST_COMP_pan_prtf_MT_D)\
@@ -11142,6 +11301,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_thrid_DLL_D)\
  $(TARG_TEST_COMP_ins_vbool_DLL_D)\
  $(TARG_TEST_COMP_ins_w2m_DLL_D)\
+ $(TARG_TEST_COMP_ins_w_hive_DLL_D)\
  $(TARG_TEST_COMP_log_1_DLL_D)\
  $(TARG_TEST_COMP_pan_puts_DLL_D)\
  $(TARG_TEST_COMP_pan_prtf_DLL_D)\
@@ -11163,6 +11323,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_thrid_DLL_R)\
  $(TARG_TEST_COMP_ins_vbool_DLL_R)\
  $(TARG_TEST_COMP_ins_w2m_DLL_R)\
+ $(TARG_TEST_COMP_ins_w_hive_DLL_R)\
  $(TARG_TEST_COMP_log_1_DLL_R)\
  $(TARG_TEST_COMP_pan_puts_DLL_R)\
  $(TARG_TEST_COMP_pan_prtf_DLL_R)\
@@ -11184,6 +11345,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_thrid_MT_R)\
  $(TARG_TEST_COMP_ins_vbool_MT_R)\
  $(TARG_TEST_COMP_ins_w2m_MT_R)\
+ $(TARG_TEST_COMP_ins_w_hive_MT_R)\
  $(TARG_TEST_COMP_log_1_MT_R)\
  $(TARG_TEST_COMP_pan_puts_MT_R)\
  $(TARG_TEST_COMP_pan_prtf_MT_R)\
@@ -11205,6 +11367,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_thrid_W_MT_D)\
  $(TARG_TEST_COMP_ins_vbool_W_MT_D)\
  $(TARG_TEST_COMP_ins_m2w_W_MT_D)\
+ $(TARG_TEST_COMP_ins_w_hive_W_MT_D)\
  $(TARG_TEST_COMP_log_1_W_MT_D)\
  $(TARG_TEST_COMP_pan_puts_W_MT_D)\
  $(TARG_TEST_COMP_pan_prtf_W_MT_D)\
@@ -11225,6 +11388,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_thrid_W_DLL_D)\
  $(TARG_TEST_COMP_ins_vbool_W_DLL_D)\
  $(TARG_TEST_COMP_ins_m2w_W_DLL_D)\
+ $(TARG_TEST_COMP_ins_w_hive_W_DLL_D)\
  $(TARG_TEST_COMP_log_1_W_DLL_D)\
  $(TARG_TEST_COMP_pan_puts_W_DLL_D)\
  $(TARG_TEST_COMP_pan_prtf_W_DLL_D)\
@@ -11245,6 +11409,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_thrid_W_DLL_R)\
  $(TARG_TEST_COMP_ins_vbool_W_DLL_R)\
  $(TARG_TEST_COMP_ins_m2w_W_DLL_R)\
+ $(TARG_TEST_COMP_ins_w_hive_W_DLL_R)\
  $(TARG_TEST_COMP_log_1_W_DLL_R)\
  $(TARG_TEST_COMP_pan_puts_W_DLL_R)\
  $(TARG_TEST_COMP_pan_prtf_W_DLL_R)\
@@ -11265,6 +11430,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_ins_thrid_W_MT_R)\
  $(TARG_TEST_COMP_ins_vbool_W_MT_R)\
  $(TARG_TEST_COMP_ins_m2w_W_MT_R)\
+ $(TARG_TEST_COMP_ins_w_hive_W_MT_R)\
  $(TARG_TEST_COMP_log_1_W_MT_R)\
  $(TARG_TEST_COMP_pan_puts_W_MT_R)\
  $(TARG_TEST_COMP_pan_prtf_W_MT_R)\
@@ -11410,7 +11576,9 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_MT_D)\
  $(TARG_TEST_UNIT_lvls_vals_MT_D)\
  $(TARG_TEST_UNIT_getcurrtm_MT_D)\
+ $(TARG_TEST_UNIT_dtel2s_MT_D)\
  $(TARG_TEST_UNIT_getversion_MT_D)\
+ $(TARG_TEST_UNIT_ins_w_sc_MT_D)\
  $(TARG_TEST_UNIT_gethostname_MT_D)\
  $(TARG_TEST_UNIT_onbailout_MT_D)\
  $(TARG_TEST_UNIT_strnlen_MT_D)\
@@ -11435,7 +11603,9 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_DLL_D)\
  $(TARG_TEST_UNIT_lvls_vals_DLL_D)\
  $(TARG_TEST_UNIT_getcurrtm_DLL_D)\
+ $(TARG_TEST_UNIT_dtel2s_DLL_D)\
  $(TARG_TEST_UNIT_getversion_DLL_D)\
+ $(TARG_TEST_UNIT_ins_w_sc_DLL_D)\
  $(TARG_TEST_UNIT_gethostname_DLL_D)\
  $(TARG_TEST_UNIT_onbailout_DLL_D)\
  $(TARG_TEST_UNIT_strnlen_DLL_D)\
@@ -11460,7 +11630,9 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_DLL_R)\
  $(TARG_TEST_UNIT_lvls_vals_DLL_R)\
  $(TARG_TEST_UNIT_getcurrtm_DLL_R)\
+ $(TARG_TEST_UNIT_dtel2s_DLL_R)\
  $(TARG_TEST_UNIT_getversion_DLL_R)\
+ $(TARG_TEST_UNIT_ins_w_sc_DLL_R)\
  $(TARG_TEST_UNIT_gethostname_DLL_R)\
  $(TARG_TEST_UNIT_onbailout_DLL_R)\
  $(TARG_TEST_UNIT_strnlen_DLL_R)\
@@ -11485,7 +11657,9 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_MT_R)\
  $(TARG_TEST_UNIT_lvls_vals_MT_R)\
  $(TARG_TEST_UNIT_getcurrtm_MT_R)\
+ $(TARG_TEST_UNIT_dtel2s_MT_R)\
  $(TARG_TEST_UNIT_getversion_MT_R)\
+ $(TARG_TEST_UNIT_ins_w_sc_MT_R)\
  $(TARG_TEST_UNIT_gethostname_MT_R)\
  $(TARG_TEST_UNIT_onbailout_MT_R)\
  $(TARG_TEST_UNIT_strnlen_MT_R)\
@@ -11510,7 +11684,9 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_W_MT_D)\
  $(TARG_TEST_UNIT_lvls_vals_W_MT_D)\
  $(TARG_TEST_UNIT_getcurrtm_W_MT_D)\
+ $(TARG_TEST_UNIT_dtel2s_W_MT_D)\
  $(TARG_TEST_UNIT_getversion_W_MT_D)\
+ $(TARG_TEST_UNIT_ins_w_sc_W_MT_D)\
  $(TARG_TEST_UNIT_gethostname_W_MT_D)\
  $(TARG_TEST_UNIT_onbailout_W_MT_D)\
  $(TARG_TEST_UNIT_strnlen_W_MT_D)\
@@ -11535,7 +11711,9 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_W_DLL_D)\
  $(TARG_TEST_UNIT_lvls_vals_W_DLL_D)\
  $(TARG_TEST_UNIT_getcurrtm_W_DLL_D)\
+ $(TARG_TEST_UNIT_dtel2s_W_DLL_D)\
  $(TARG_TEST_UNIT_getversion_W_DLL_D)\
+ $(TARG_TEST_UNIT_ins_w_sc_W_DLL_D)\
  $(TARG_TEST_UNIT_gethostname_W_DLL_D)\
  $(TARG_TEST_UNIT_onbailout_W_DLL_D)\
  $(TARG_TEST_UNIT_strnlen_W_DLL_D)\
@@ -11560,7 +11738,9 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_W_DLL_R)\
  $(TARG_TEST_UNIT_lvls_vals_W_DLL_R)\
  $(TARG_TEST_UNIT_getcurrtm_W_DLL_R)\
+ $(TARG_TEST_UNIT_dtel2s_W_DLL_R)\
  $(TARG_TEST_UNIT_getversion_W_DLL_R)\
+ $(TARG_TEST_UNIT_ins_w_sc_W_DLL_R)\
  $(TARG_TEST_UNIT_gethostname_W_DLL_R)\
  $(TARG_TEST_UNIT_onbailout_W_DLL_R)\
  $(TARG_TEST_UNIT_strnlen_W_DLL_R)\
@@ -11585,7 +11765,9 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_W_MT_R)\
  $(TARG_TEST_UNIT_lvls_vals_W_MT_R)\
  $(TARG_TEST_UNIT_getcurrtm_W_MT_R)\
+ $(TARG_TEST_UNIT_dtel2s_W_MT_R)\
  $(TARG_TEST_UNIT_getversion_W_MT_R)\
+ $(TARG_TEST_UNIT_ins_w_sc_W_MT_R)\
  $(TARG_TEST_UNIT_gethostname_W_MT_R)\
  $(TARG_TEST_UNIT_onbailout_W_MT_R)\
  $(TARG_TEST_UNIT_strnlen_W_MT_R)\
@@ -11685,11 +11867,22 @@ prep.files.for.os:	$(PROJ_MAKEFILE_NAME)\
 prep:	prep.files.for.os
 
 
-check.lib.dir:		$(PROJ_MAKEFILE_NAME)
-	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+CHECK_FILE_lib_dir	=	$(PROJ_LIB_DIR)\.dir_exists
+CHECK_FILE_bin_dir	=	$(PROJ_BIN_DIR)\.dir_exists
 
-check.bin.dir:		$(PROJ_MAKEFILE_NAME)
+check.lib.dir:		$(PROJ_MAKEFILE_NAME) $(CHECK_FILE_lib_dir)
+
+$(CHECK_FILE_lib_dir):
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	@echo .dir_exists > $(CHECK_FILE_lib_dir)
+	@attrib +h $(CHECK_FILE_lib_dir)
+
+check.bin.dir:		$(PROJ_MAKEFILE_NAME) $(CHECK_FILE_bin_dir)
+
+$(CHECK_FILE_bin_dir):
 	@-if not exist $(PROJ_BIN_DIR)\NUL mkdir $(PROJ_BIN_DIR)
+	@echo .dir_exists > $(CHECK_FILE_bin_dir)
+	@attrib +h $(CHECK_FILE_bin_dir)
 
 
 # compile targets
@@ -11743,7 +11936,9 @@ compile.test.scratch:       $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_T
 
 compile.test.unit:          $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_TEST_UNIT)
 
-compile.test:                                                           compile.test.unit compile.test.component compile.test.performance compile.test.scratch
+compile.test:                                                           compile.test.unit compile.test.component
+
+compile.test.all:                                                       compile.test.unit compile.test.component compile.test.performance compile.test.scratch
 
 compile:                                                                compile.libs compile.libs.3pty compile.examples compile.test
 
@@ -11991,6 +12186,14 @@ test.component_:
 	$(TARG_TEST_COMP_ins_m2w_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_m2w_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_m2w_W_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_w_hive_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_w_hive_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_w_hive_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_w_hive_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_w_hive_W_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_w_hive_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_w_hive_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_ins_w_hive_W_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_log_1_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_log_1_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_log_1_DLL_R) --verbosity=$(TEST_VERBOSITY)
@@ -12156,6 +12359,14 @@ test.unit_:
 	$(TARG_TEST_UNIT_getcurrtm_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getcurrtm_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getcurrtm_W_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_W_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_W_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getversion_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getversion_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getversion_DLL_R) --verbosity=$(TEST_VERBOSITY)
@@ -12164,6 +12375,14 @@ test.unit_:
 	$(TARG_TEST_UNIT_getversion_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getversion_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getversion_W_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_W_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_W_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_gethostname_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_gethostname_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_gethostname_DLL_R) --verbosity=$(TEST_VERBOSITY)
@@ -12736,7 +12955,6 @@ clean.libs.be:
 	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.*.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.*.$(COMP_ARCH_OS_TAG)*.lib
 	@-if exist $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.*.$(COMP_ARCH_OS_TAG)*.lib $(RM) $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.*.$(COMP_ARCH_OS_TAG)*.lib
 
-
 clean.libs.fe:
 	@echo Cleaning Front-end libraries ...
 	@-if exist fe.*.obj $(RM) fe.*.obj
@@ -12967,6 +13185,8 @@ $(LIB_UTIL_MT_D): $(OBJ_UTIL_MT_D) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_MT_D): $(PROJ_SRC_DIR)\util\bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\bailout.c
+$(OBJ_utl_dtel2s_MT_D): $(PROJ_SRC_DIR)\util\date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\date_elements_to_string.c
 $(OBJ_utl_init_code_strs_MT_D): $(PROJ_SRC_DIR)\util\init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\init_code_strings.c
 $(OBJ_utl_sev_strs_MT_D): $(PROJ_SRC_DIR)\util\severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -13000,6 +13220,8 @@ $(LIB_UTIL_DLL_D): $(OBJ_UTIL_DLL_D) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_DLL_D): $(PROJ_SRC_DIR)\util\bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\bailout.c
+$(OBJ_utl_dtel2s_DLL_D): $(PROJ_SRC_DIR)\util\date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\date_elements_to_string.c
 $(OBJ_utl_init_code_strs_DLL_D): $(PROJ_SRC_DIR)\util\init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\init_code_strings.c
 $(OBJ_utl_sev_strs_DLL_D): $(PROJ_SRC_DIR)\util\severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -13033,6 +13255,8 @@ $(LIB_UTIL_DLL_R): $(OBJ_UTIL_DLL_R) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_DLL_R): $(PROJ_SRC_DIR)\util\bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\bailout.c
+$(OBJ_utl_dtel2s_DLL_R): $(PROJ_SRC_DIR)\util\date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\date_elements_to_string.c
 $(OBJ_utl_init_code_strs_DLL_R): $(PROJ_SRC_DIR)\util\init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\init_code_strings.c
 $(OBJ_utl_sev_strs_DLL_R): $(PROJ_SRC_DIR)\util\severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -13066,6 +13290,8 @@ $(LIB_UTIL_MT_R): $(OBJ_UTIL_MT_R) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_MT_R): $(PROJ_SRC_DIR)\util\bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\bailout.c
+$(OBJ_utl_dtel2s_MT_R): $(PROJ_SRC_DIR)\util\date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\date_elements_to_string.c
 $(OBJ_utl_init_code_strs_MT_R): $(PROJ_SRC_DIR)\util\init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\init_code_strings.c
 $(OBJ_utl_sev_strs_MT_R): $(PROJ_SRC_DIR)\util\severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -13099,6 +13325,8 @@ $(LIB_UTIL_W_MT_D): $(OBJ_UTIL_W_MT_D) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_W_MT_D): $(PROJ_SRC_DIR)\util\bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\bailout.c
+$(OBJ_utl_dtel2s_W_MT_D): $(PROJ_SRC_DIR)\util\date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\date_elements_to_string.c
 $(OBJ_utl_init_code_strs_W_MT_D): $(PROJ_SRC_DIR)\util\init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\init_code_strings.c
 $(OBJ_utl_sev_strs_W_MT_D): $(PROJ_SRC_DIR)\util\severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -13132,6 +13360,8 @@ $(LIB_UTIL_W_DLL_D): $(OBJ_UTIL_W_DLL_D) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_W_DLL_D): $(PROJ_SRC_DIR)\util\bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\bailout.c
+$(OBJ_utl_dtel2s_W_DLL_D): $(PROJ_SRC_DIR)\util\date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\date_elements_to_string.c
 $(OBJ_utl_init_code_strs_W_DLL_D): $(PROJ_SRC_DIR)\util\init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\init_code_strings.c
 $(OBJ_utl_sev_strs_W_DLL_D): $(PROJ_SRC_DIR)\util\severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -13165,6 +13395,8 @@ $(LIB_UTIL_W_DLL_R): $(OBJ_UTIL_W_DLL_R) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_W_DLL_R): $(PROJ_SRC_DIR)\util\bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\bailout.c
+$(OBJ_utl_dtel2s_W_DLL_R): $(PROJ_SRC_DIR)\util\date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\date_elements_to_string.c
 $(OBJ_utl_init_code_strs_W_DLL_R): $(PROJ_SRC_DIR)\util\init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\init_code_strings.c
 $(OBJ_utl_sev_strs_W_DLL_R): $(PROJ_SRC_DIR)\util\severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -13198,6 +13430,8 @@ $(LIB_UTIL_W_MT_R): $(OBJ_UTIL_W_MT_R) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_W_MT_R): $(PROJ_SRC_DIR)\util\bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\bailout.c
+$(OBJ_utl_dtel2s_W_MT_R): $(PROJ_SRC_DIR)\util\date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\date_elements_to_string.c
 $(OBJ_utl_init_code_strs_W_MT_R): $(PROJ_SRC_DIR)\util\init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\util\init_code_strings.c
 $(OBJ_utl_sev_strs_W_MT_R): $(PROJ_SRC_DIR)\util\severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -13237,7 +13471,7 @@ $(OBJ_cr_api_MT_D): $(PROJ_SRC_DIR)\core\api.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.cpp
 $(OBJ_cr_api_dep_MT_D): $(PROJ_SRC_DIR)\core\api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.deprecated.c
-$(OBJ_cr_api_exit_MT_D): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_MT_D): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_MT_D): $(PROJ_SRC_DIR)\core\logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\logprintf.c
@@ -13285,7 +13519,7 @@ $(OBJ_cr_api_DLL_D): $(PROJ_SRC_DIR)\core\api.cpp $(CORE_HEADERS) $(PROJ_MAKEFIL
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.cpp
 $(OBJ_cr_api_dep_DLL_D): $(PROJ_SRC_DIR)\core\api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.deprecated.c
-$(OBJ_cr_api_exit_DLL_D): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_DLL_D): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_DLL_D): $(PROJ_SRC_DIR)\core\logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\logprintf.c
@@ -13333,7 +13567,7 @@ $(OBJ_cr_api_DLL_R): $(PROJ_SRC_DIR)\core\api.cpp $(CORE_HEADERS) $(PROJ_MAKEFIL
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.cpp
 $(OBJ_cr_api_dep_DLL_R): $(PROJ_SRC_DIR)\core\api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.deprecated.c
-$(OBJ_cr_api_exit_DLL_R): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_DLL_R): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_DLL_R): $(PROJ_SRC_DIR)\core\logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\logprintf.c
@@ -13381,7 +13615,7 @@ $(OBJ_cr_api_MT_R): $(PROJ_SRC_DIR)\core\api.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.cpp
 $(OBJ_cr_api_dep_MT_R): $(PROJ_SRC_DIR)\core\api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.deprecated.c
-$(OBJ_cr_api_exit_MT_R): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_MT_R): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_MT_R): $(PROJ_SRC_DIR)\core\logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\logprintf.c
@@ -13429,7 +13663,7 @@ $(OBJ_cr_api_W_MT_D): $(PROJ_SRC_DIR)\core\api.cpp $(CORE_HEADERS) $(PROJ_MAKEFI
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.cpp
 $(OBJ_cr_api_dep_W_MT_D): $(PROJ_SRC_DIR)\core\api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.deprecated.c
-$(OBJ_cr_api_exit_W_MT_D): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_W_MT_D): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_W_MT_D): $(PROJ_SRC_DIR)\core\logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\logprintf.c
@@ -13477,7 +13711,7 @@ $(OBJ_cr_api_W_DLL_D): $(PROJ_SRC_DIR)\core\api.cpp $(CORE_HEADERS) $(PROJ_MAKEF
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.cpp
 $(OBJ_cr_api_dep_W_DLL_D): $(PROJ_SRC_DIR)\core\api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.deprecated.c
-$(OBJ_cr_api_exit_W_DLL_D): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_W_DLL_D): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_W_DLL_D): $(PROJ_SRC_DIR)\core\logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\logprintf.c
@@ -13525,7 +13759,7 @@ $(OBJ_cr_api_W_DLL_R): $(PROJ_SRC_DIR)\core\api.cpp $(CORE_HEADERS) $(PROJ_MAKEF
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.cpp
 $(OBJ_cr_api_dep_W_DLL_R): $(PROJ_SRC_DIR)\core\api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.deprecated.c
-$(OBJ_cr_api_exit_W_DLL_R): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_W_DLL_R): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_W_DLL_R): $(PROJ_SRC_DIR)\core\logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\logprintf.c
@@ -13573,7 +13807,7 @@ $(OBJ_cr_api_W_MT_R): $(PROJ_SRC_DIR)\core\api.cpp $(CORE_HEADERS) $(PROJ_MAKEFI
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.cpp
 $(OBJ_cr_api_dep_W_MT_R): $(PROJ_SRC_DIR)\core\api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.deprecated.c
-$(OBJ_cr_api_exit_W_MT_R): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_W_MT_R): $(PROJ_SRC_DIR)\core\api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_W_MT_R): $(PROJ_SRC_DIR)\core\logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\core\logprintf.c
@@ -15097,56 +15331,56 @@ $(LIB_BEC_ACE_MT_D): $(OBJ_BEC_ACE_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_ACE_MT_D)
 
 $(OBJ_bec_ACE_MT_D): $(PROJ_SRC_DIR)\backends\bec.ACE.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
+	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
 
 $(LIB_BEC_ACE_DLL_D): $(OBJ_BEC_ACE_DLL_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_ACE_DLL_D)
 
 $(OBJ_bec_ACE_DLL_D): $(PROJ_SRC_DIR)\backends\bec.ACE.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
 
 $(LIB_BEC_ACE_DLL_R): $(OBJ_BEC_ACE_DLL_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_ACE_DLL_R)
 
 $(OBJ_bec_ACE_DLL_R): $(PROJ_SRC_DIR)\backends\bec.ACE.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
 
 $(LIB_BEC_ACE_MT_R): $(OBJ_BEC_ACE_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_ACE_MT_R)
 
 $(OBJ_bec_ACE_MT_R): $(PROJ_SRC_DIR)\backends\bec.ACE.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
+	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
 
 $(LIB_BEC_ACE_W_MT_D): $(OBJ_BEC_ACE_W_MT_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_ACE_W_MT_D)
 
 $(OBJ_bec_ACE_W_MT_D): $(PROJ_SRC_DIR)\backends\bec.ACE.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
+	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
 
 $(LIB_BEC_ACE_W_DLL_D): $(OBJ_BEC_ACE_W_DLL_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_ACE_W_DLL_D)
 
 $(OBJ_bec_ACE_W_DLL_D): $(PROJ_SRC_DIR)\backends\bec.ACE.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
+	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
 
 $(LIB_BEC_ACE_W_DLL_R): $(OBJ_BEC_ACE_W_DLL_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_ACE_W_DLL_R)
 
 $(OBJ_bec_ACE_W_DLL_R): $(PROJ_SRC_DIR)\backends\bec.ACE.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
+	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
 
 $(LIB_BEC_ACE_W_MT_R): $(OBJ_BEC_ACE_W_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_ACE_W_MT_R)
 
 $(OBJ_bec_ACE_W_MT_R): $(PROJ_SRC_DIR)\backends\bec.ACE.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
+	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.ACE.cpp
 
 
 ########################################
@@ -15157,56 +15391,56 @@ $(LIB_BE_ACE_MT_D): $(OBJ_BE_ACE_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BE_ACE_MT_D)
 
 $(OBJ_be_ACE_MT_D): $(PROJ_SRC_DIR)\backends\be\be.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
 
 $(LIB_BE_ACE_DLL_D): $(OBJ_BE_ACE_DLL_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BE_ACE_DLL_D)
 
 $(OBJ_be_ACE_DLL_D): $(PROJ_SRC_DIR)\backends\be\be.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
+	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
 
 $(LIB_BE_ACE_DLL_R): $(OBJ_BE_ACE_DLL_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BE_ACE_DLL_R)
 
 $(OBJ_be_ACE_DLL_R): $(PROJ_SRC_DIR)\backends\be\be.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
+	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
 
 $(LIB_BE_ACE_MT_R): $(OBJ_BE_ACE_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BE_ACE_MT_R)
 
 $(OBJ_be_ACE_MT_R): $(PROJ_SRC_DIR)\backends\be\be.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
 
 $(LIB_BE_ACE_W_MT_D): $(OBJ_BE_ACE_W_MT_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BE_ACE_W_MT_D)
 
 $(OBJ_be_ACE_W_MT_D): $(PROJ_SRC_DIR)\backends\be\be.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
 
 $(LIB_BE_ACE_W_DLL_D): $(OBJ_BE_ACE_W_DLL_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BE_ACE_W_DLL_D)
 
 $(OBJ_be_ACE_W_DLL_D): $(PROJ_SRC_DIR)\backends\be\be.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
 
 $(LIB_BE_ACE_W_DLL_R): $(OBJ_BE_ACE_W_DLL_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BE_ACE_W_DLL_R)
 
 $(OBJ_be_ACE_W_DLL_R): $(PROJ_SRC_DIR)\backends\be\be.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
 
 $(LIB_BE_ACE_W_MT_R): $(OBJ_BE_ACE_W_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BE_ACE_W_MT_R)
 
 $(OBJ_be_ACE_W_MT_R): $(PROJ_SRC_DIR)\backends\be\be.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\be\be.ACE.c
 
 
 ########################################
@@ -15217,56 +15451,56 @@ $(LIB_BEL_ACE_MT_D): $(OBJ_BEL_ACE_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEL_ACE_MT_D)
 
 $(OBJ_bel_ACE_MT_D): $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
 
 $(LIB_BEL_ACE_DLL_D): $(OBJ_BEL_ACE_DLL_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEL_ACE_DLL_D)
 
 $(OBJ_bel_ACE_DLL_D): $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
+	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
 
 $(LIB_BEL_ACE_DLL_R): $(OBJ_BEL_ACE_DLL_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEL_ACE_DLL_R)
 
 $(OBJ_bel_ACE_DLL_R): $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
+	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
 
 $(LIB_BEL_ACE_MT_R): $(OBJ_BEL_ACE_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEL_ACE_MT_R)
 
 $(OBJ_bel_ACE_MT_R): $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
 
 $(LIB_BEL_ACE_W_MT_D): $(OBJ_BEL_ACE_W_MT_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEL_ACE_W_MT_D)
 
 $(OBJ_bel_ACE_W_MT_D): $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
 
 $(LIB_BEL_ACE_W_DLL_D): $(OBJ_BEL_ACE_W_DLL_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEL_ACE_W_DLL_D)
 
 $(OBJ_bel_ACE_W_DLL_D): $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
 
 $(LIB_BEL_ACE_W_DLL_R): $(OBJ_BEL_ACE_W_DLL_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEL_ACE_W_DLL_R)
 
 $(OBJ_bel_ACE_W_DLL_R): $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
 
 $(LIB_BEL_ACE_W_MT_R): $(OBJ_BEL_ACE_W_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEL_ACE_W_MT_R)
 
 $(OBJ_bel_ACE_W_MT_R): $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\bel\bel.ACE.c
 
 
 ########################################
@@ -15277,56 +15511,56 @@ $(LIB_BER_ACE_MT_D): $(OBJ_BER_ACE_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BER_ACE_MT_D)
 
 $(OBJ_ber_ACE_MT_D): $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
 
 $(LIB_BER_ACE_DLL_D): $(OBJ_BER_ACE_DLL_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BER_ACE_DLL_D)
 
 $(OBJ_ber_ACE_DLL_D): $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
+	$(CC) $(CC_LIB_ARGS_DLL_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
 
 $(LIB_BER_ACE_DLL_R): $(OBJ_BER_ACE_DLL_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BER_ACE_DLL_R)
 
 $(OBJ_ber_ACE_DLL_R): $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
+	$(CC) $(CC_LIB_ARGS_DLL_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
 
 $(LIB_BER_ACE_MT_R): $(OBJ_BER_ACE_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BER_ACE_MT_R)
 
 $(OBJ_ber_ACE_MT_R): $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
 
 $(LIB_BER_ACE_W_MT_D): $(OBJ_BER_ACE_W_MT_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BER_ACE_W_MT_D)
 
 $(OBJ_ber_ACE_W_MT_D): $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_MT_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
 
 $(LIB_BER_ACE_W_DLL_D): $(OBJ_BER_ACE_W_DLL_D) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BER_ACE_W_DLL_D)
 
 $(OBJ_ber_ACE_W_DLL_D): $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_DLL_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
 
 $(LIB_BER_ACE_W_DLL_R): $(OBJ_BER_ACE_W_DLL_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BER_ACE_W_DLL_R)
 
 $(OBJ_ber_ACE_W_DLL_R): $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_DLL_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
 
 $(LIB_BER_ACE_W_MT_R): $(OBJ_BER_ACE_W_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BER_ACE_W_MT_R)
 
 $(OBJ_ber_ACE_W_MT_R): $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
+	$(CC) $(CC_LIB_ARGS_W_MT_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -Fo$@ $(PROJ_SRC_DIR)\backends\ber\ber.ACE.c
 
 
 !endif # ACE
@@ -15988,6 +16222,66 @@ $(LIB_BEC_WINEVLOG_W_MT_R): $(OBJ_BEC_WINEVLOG_W_MT_R) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_bec_WINEVLOG_W_MT_R): $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp
+
+
+########################################
+# Backend library - 'pantheios.bec.WindowsEventLog.a'
+
+$(LIB_BEC_WINEVLOGWC_MT_D): $(OBJ_BEC_WINEVLOGWC_MT_D) $(PROJ_MAKEFILE_NAME)
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_WINEVLOGWC_MT_D)
+
+$(OBJ_bec_WINEVLOGWC_MT_D): $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_D) -DPANTHEIOS_BE_USE_CALLBACK $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp
+
+$(LIB_BEC_WINEVLOGWC_DLL_D): $(OBJ_BEC_WINEVLOGWC_DLL_D) $(PROJ_MAKEFILE_NAME)
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_WINEVLOGWC_DLL_D)
+
+$(OBJ_bec_WINEVLOGWC_DLL_D): $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_D) -DPANTHEIOS_BE_USE_CALLBACK $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp
+
+$(LIB_BEC_WINEVLOGWC_DLL_R): $(OBJ_BEC_WINEVLOGWC_DLL_R) $(PROJ_MAKEFILE_NAME)
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_WINEVLOGWC_DLL_R)
+
+$(OBJ_bec_WINEVLOGWC_DLL_R): $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_DLL_R) -DPANTHEIOS_BE_USE_CALLBACK $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp
+
+$(LIB_BEC_WINEVLOGWC_MT_R): $(OBJ_BEC_WINEVLOGWC_MT_R) $(PROJ_MAKEFILE_NAME)
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_WINEVLOGWC_MT_R)
+
+$(OBJ_bec_WINEVLOGWC_MT_R): $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_MT_R) -DPANTHEIOS_BE_USE_CALLBACK $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp
+
+$(LIB_BEC_WINEVLOGWC_W_MT_D): $(OBJ_BEC_WINEVLOGWC_W_MT_D) $(PROJ_MAKEFILE_NAME)
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_WINEVLOGWC_W_MT_D)
+
+$(OBJ_bec_WINEVLOGWC_W_MT_D): $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_MT_D) -DPANTHEIOS_BE_USE_CALLBACK $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp
+
+$(LIB_BEC_WINEVLOGWC_W_DLL_D): $(OBJ_BEC_WINEVLOGWC_W_DLL_D) $(PROJ_MAKEFILE_NAME)
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_WINEVLOGWC_W_DLL_D)
+
+$(OBJ_bec_WINEVLOGWC_W_DLL_D): $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_D) -DPANTHEIOS_BE_USE_CALLBACK $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp
+
+$(LIB_BEC_WINEVLOGWC_W_DLL_R): $(OBJ_BEC_WINEVLOGWC_W_DLL_R) $(PROJ_MAKEFILE_NAME)
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_WINEVLOGWC_W_DLL_R)
+
+$(OBJ_bec_WINEVLOGWC_W_DLL_R): $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_DLL_R) -DPANTHEIOS_BE_USE_CALLBACK $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp
+
+$(LIB_BEC_WINEVLOGWC_W_MT_R): $(OBJ_BEC_WINEVLOGWC_W_MT_R) $(PROJ_MAKEFILE_NAME)
+	@-if not exist $(PROJ_LIB_DIR)\NUL mkdir $(PROJ_LIB_DIR)
+	$(AR) $(AR_ARGS) -out:$@ $(OBJ_BEC_WINEVLOGWC_W_MT_R)
+
+$(OBJ_bec_WINEVLOGWC_W_MT_R): $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_LIB_ARGS_W_MT_R) -DPANTHEIOS_BE_USE_CALLBACK $(CPPC_INCLUDES) -Fo$@ $(PROJ_SRC_DIR)\backends\bec.WindowsEventLog.cpp
 
 
 ########################################
@@ -28679,6 +28973,190 @@ $(TARG_TEST_COMP_ins_w2m_MT_R):	\
 $(OBJ_TEST_COMP_ins_w2m_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.w2m\test.component.inserters.w2m.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.w2m\test.component.inserters.w2m.cpp
 
+$(TARG_TEST_COMP_ins_w_hive_MT_D):	\
+			$(OBJ_TEST_COMP_ins_w_hive_MT_D)\
+			$(LIB_CORE_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIB_FE_ALL_MT_D)\
+			$(LIB_BE_TEST_MT_D)\
+			$(LIB_BEC_TEST_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ \
+		$(OBJ_TEST_COMP_ins_w_hive_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_FE_ALL_MT_D)\
+		$(LIB_BE_TEST_MT_D)\
+		$(LIB_BEC_TEST_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_COMP_ins_w_hive_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_COMPONENT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp
+
+$(TARG_TEST_COMP_ins_w_hive_DLL_D):	\
+			$(OBJ_TEST_COMP_ins_w_hive_DLL_D)\
+			$(LIB_CORE_DLL_D)\
+			$(LIB_UTIL_DLL_D)\
+			$(LIB_FE_ALL_DLL_D)\
+			$(LIB_BE_TEST_DLL_D)\
+			$(LIB_BEC_TEST_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
+		$(OBJ_TEST_COMP_ins_w_hive_DLL_D)\
+		$(LIB_CORE_DLL_D)\
+		$(LIB_FE_ALL_DLL_D)\
+		$(LIB_BE_TEST_DLL_D)\
+		$(LIB_BEC_TEST_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
+		$(LIB_UTIL_DLL_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_DLL_D)
+
+$(OBJ_TEST_COMP_ins_w_hive_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_COMPONENT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp
+
+$(TARG_TEST_COMP_ins_w_hive_DLL_R):	\
+			$(OBJ_TEST_COMP_ins_w_hive_DLL_R)\
+			$(LIB_CORE_DLL_R)\
+			$(LIB_UTIL_DLL_R)\
+			$(LIB_FE_ALL_DLL_R)\
+			$(LIB_BE_TEST_DLL_R)\
+			$(LIB_BEC_TEST_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
+		$(OBJ_TEST_COMP_ins_w_hive_DLL_R)\
+		$(LIB_CORE_DLL_R)\
+		$(LIB_FE_ALL_DLL_R)\
+		$(LIB_BE_TEST_DLL_R)\
+		$(LIB_BEC_TEST_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
+		$(LIB_UTIL_DLL_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_DLL_R)
+
+$(OBJ_TEST_COMP_ins_w_hive_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_COMPONENT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp
+
+$(TARG_TEST_COMP_ins_w_hive_MT_R):	\
+			$(OBJ_TEST_COMP_ins_w_hive_MT_R)\
+			$(LIB_CORE_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIB_FE_ALL_MT_R)\
+			$(LIB_BE_TEST_MT_R)\
+			$(LIB_BEC_TEST_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ \
+		$(OBJ_TEST_COMP_ins_w_hive_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_FE_ALL_MT_R)\
+		$(LIB_BE_TEST_MT_R)\
+		$(LIB_BEC_TEST_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_COMP_ins_w_hive_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_COMPONENT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp
+
+$(TARG_TEST_COMP_ins_w_hive_W_MT_D):	\
+			$(OBJ_TEST_COMP_ins_w_hive_W_MT_D)\
+			$(LIB_CORE_W_MT_D)\
+			$(LIB_UTIL_W_MT_D)\
+			$(LIB_FE_ALL_W_MT_D)\
+			$(LIB_BE_TEST_W_MT_D)\
+			$(LIB_BEC_TEST_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
+		$(OBJ_TEST_COMP_ins_w_hive_W_MT_D)\
+		$(LIB_CORE_W_MT_D)\
+		$(LIB_FE_ALL_W_MT_D)\
+		$(LIB_BE_TEST_W_MT_D)\
+		$(LIB_BEC_TEST_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
+		$(LIB_UTIL_W_MT_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_MT_D)
+
+$(OBJ_TEST_COMP_ins_w_hive_W_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_COMPONENT_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp
+
+$(TARG_TEST_COMP_ins_w_hive_W_DLL_D):	\
+			$(OBJ_TEST_COMP_ins_w_hive_W_DLL_D)\
+			$(LIB_CORE_W_DLL_D)\
+			$(LIB_UTIL_W_DLL_D)\
+			$(LIB_FE_ALL_W_DLL_D)\
+			$(LIB_BE_TEST_W_DLL_D)\
+			$(LIB_BEC_TEST_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
+		$(OBJ_TEST_COMP_ins_w_hive_W_DLL_D)\
+		$(LIB_CORE_W_DLL_D)\
+		$(LIB_FE_ALL_W_DLL_D)\
+		$(LIB_BE_TEST_W_DLL_D)\
+		$(LIB_BEC_TEST_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
+		$(LIB_UTIL_W_DLL_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_DLL_D)
+
+$(OBJ_TEST_COMP_ins_w_hive_W_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_COMPONENT_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp
+
+$(TARG_TEST_COMP_ins_w_hive_W_DLL_R):	\
+			$(OBJ_TEST_COMP_ins_w_hive_W_DLL_R)\
+			$(LIB_CORE_W_DLL_R)\
+			$(LIB_UTIL_W_DLL_R)\
+			$(LIB_FE_ALL_W_DLL_R)\
+			$(LIB_BE_TEST_W_DLL_R)\
+			$(LIB_BEC_TEST_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
+		$(OBJ_TEST_COMP_ins_w_hive_W_DLL_R)\
+		$(LIB_CORE_W_DLL_R)\
+		$(LIB_FE_ALL_W_DLL_R)\
+		$(LIB_BE_TEST_W_DLL_R)\
+		$(LIB_BEC_TEST_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
+		$(LIB_UTIL_W_DLL_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_DLL_R)
+
+$(OBJ_TEST_COMP_ins_w_hive_W_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_COMPONENT_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp
+
+$(TARG_TEST_COMP_ins_w_hive_W_MT_R):	\
+			$(OBJ_TEST_COMP_ins_w_hive_W_MT_R)\
+			$(LIB_CORE_W_MT_R)\
+			$(LIB_UTIL_W_MT_R)\
+			$(LIB_FE_ALL_W_MT_R)\
+			$(LIB_BE_TEST_W_MT_R)\
+			$(LIB_BEC_TEST_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
+		$(OBJ_TEST_COMP_ins_w_hive_W_MT_R)\
+		$(LIB_CORE_W_MT_R)\
+		$(LIB_FE_ALL_W_MT_R)\
+		$(LIB_BE_TEST_W_MT_R)\
+		$(LIB_BEC_TEST_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
+		$(LIB_UTIL_W_MT_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_MT_R)
+
+$(OBJ_TEST_COMP_ins_w_hive_W_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_COMPONENT_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.windows.hive\test.component.inserters.windows.hive.cpp
+
 $(TARG_TEST_COMP_log_1_MT_D):	\
 			$(OBJ_TEST_COMP_log_1_MT_D)\
 			$(LIB_CORE_MT_D)\
@@ -29538,8 +30016,8 @@ $(TEST_SCRT_ACE_MT_D):	\
 		$(LIBS_3PTY_ACE)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_SCRT_ACE_MT_D):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_MT_D) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp
+$(OBJ_SCRT_ACE_MT_D):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_MT_D) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp
 !endif # ACE
 
 $(TARG_TEST_MT_D_APIwBE_FPRINTF):	\
@@ -29780,8 +30258,8 @@ $(TEST_SCRT_ACE_DLL_D):	\
 		$(LIBS_3PTY_ACE)\
 		$(TARGET_LIB_DLL_D)
 
-$(OBJ_SCRT_ACE_DLL_D):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_DLL_D) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp
+$(OBJ_SCRT_ACE_DLL_D):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_DLL_D) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp
 !endif # ACE
 
 $(TARG_TEST_DLL_D_APIwBE_FPRINTF):	\
@@ -30022,8 +30500,8 @@ $(TEST_SCRT_ACE_DLL_R):	\
 		$(LIBS_3PTY_ACE)\
 		$(TARGET_LIB_DLL_R)
 
-$(OBJ_SCRT_ACE_DLL_R):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_DLL_R) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp
+$(OBJ_SCRT_ACE_DLL_R):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_DLL_R) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp
 !endif # ACE
 
 $(TARG_TEST_DLL_R_APIwBE_FPRINTF):	\
@@ -30264,8 +30742,8 @@ $(TEST_SCRT_ACE_MT_R):	\
 		$(LIBS_3PTY_ACE)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_SCRT_ACE_MT_R):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_MT_R) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp
+$(OBJ_SCRT_ACE_MT_R):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_MT_R) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp
 !endif # ACE
 
 $(TARG_TEST_MT_R_APIwBE_FPRINTF):	\
@@ -30506,8 +30984,8 @@ $(TEST_SCRT_ACE_W_MT_D):	\
 		$(LIBS_3PTY_ACE)\
 		$(TARGET_LIB_W_MT_D)
 
-$(OBJ_SCRT_ACE_W_MT_D):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_W_MT_D) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp
+$(OBJ_SCRT_ACE_W_MT_D):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_W_MT_D) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp
 !endif # ACE
 
 $(TARG_TEST_W_MT_D_APIwBE_FPRINTF):	\
@@ -30748,8 +31226,8 @@ $(TEST_SCRT_ACE_W_DLL_D):	\
 		$(LIBS_3PTY_ACE)\
 		$(TARGET_LIB_W_DLL_D)
 
-$(OBJ_SCRT_ACE_W_DLL_D):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_W_DLL_D) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp
+$(OBJ_SCRT_ACE_W_DLL_D):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_W_DLL_D) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp
 !endif # ACE
 
 $(TARG_TEST_W_DLL_D_APIwBE_FPRINTF):	\
@@ -30990,8 +31468,8 @@ $(TEST_SCRT_ACE_W_DLL_R):	\
 		$(LIBS_3PTY_ACE)\
 		$(TARGET_LIB_W_DLL_R)
 
-$(OBJ_SCRT_ACE_W_DLL_R):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_W_DLL_R) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp
+$(OBJ_SCRT_ACE_W_DLL_R):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_W_DLL_R) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp
 !endif # ACE
 
 $(TARG_TEST_W_DLL_R_APIwBE_FPRINTF):	\
@@ -31232,8 +31710,8 @@ $(TEST_SCRT_ACE_W_MT_R):	\
 		$(LIBS_3PTY_ACE)\
 		$(TARGET_LIB_W_MT_R)
 
-$(OBJ_SCRT_ACE_W_MT_R):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_W_MT_R) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.ACE\test.scratch.ACE.cpp
+$(OBJ_SCRT_ACE_W_MT_R):	$(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_W_MT_R) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -Fo$@ $(PROJ_TEST_SCRATCH_DIR)\test.scratch.be.ACE\test.scratch.be.ACE.cpp
 !endif # ACE
 
 $(TARG_TEST_W_MT_R_APIwBE_FPRINTF):	\
@@ -31866,6 +32344,190 @@ $(TARG_TEST_UNIT_getcurrtm_W_MT_R):	\
 $(OBJ_TEST_UNIT_getcurrtm_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.getcurrenttime\test.unit.util.getcurrenttime.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.getcurrenttime\test.unit.util.getcurrenttime.cpp
 
+$(TARG_TEST_UNIT_dtel2s_MT_D):	\
+			$(OBJ_TEST_UNIT_dtel2s_MT_D)\
+			$(LIB_CORE_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIB_FE_FAIL_MT_D)\
+			$(LIB_BE_FAIL_MT_D)\
+			$(LIB_BEC_FAIL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ \
+		$(OBJ_TEST_UNIT_dtel2s_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIB_FE_FAIL_MT_D)\
+		$(LIB_BE_FAIL_MT_D)\
+		$(LIB_BEC_FAIL_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_UNIT_dtel2s_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp
+
+$(TARG_TEST_UNIT_dtel2s_DLL_D):	\
+			$(OBJ_TEST_UNIT_dtel2s_DLL_D)\
+			$(LIB_CORE_DLL_D)\
+			$(LIB_UTIL_DLL_D)\
+			$(LIB_FE_FAIL_DLL_D)\
+			$(LIB_BE_FAIL_DLL_D)\
+			$(LIB_BEC_FAIL_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
+		$(OBJ_TEST_UNIT_dtel2s_DLL_D)\
+		$(LIB_CORE_DLL_D)\
+		$(LIB_UTIL_DLL_D)\
+		$(LIB_FE_FAIL_DLL_D)\
+		$(LIB_BE_FAIL_DLL_D)\
+		$(LIB_BEC_FAIL_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_DLL_D)
+
+$(OBJ_TEST_UNIT_dtel2s_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp
+
+$(TARG_TEST_UNIT_dtel2s_DLL_R):	\
+			$(OBJ_TEST_UNIT_dtel2s_DLL_R)\
+			$(LIB_CORE_DLL_R)\
+			$(LIB_UTIL_DLL_R)\
+			$(LIB_FE_FAIL_DLL_R)\
+			$(LIB_BE_FAIL_DLL_R)\
+			$(LIB_BEC_FAIL_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
+		$(OBJ_TEST_UNIT_dtel2s_DLL_R)\
+		$(LIB_CORE_DLL_R)\
+		$(LIB_UTIL_DLL_R)\
+		$(LIB_FE_FAIL_DLL_R)\
+		$(LIB_BE_FAIL_DLL_R)\
+		$(LIB_BEC_FAIL_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_DLL_R)
+
+$(OBJ_TEST_UNIT_dtel2s_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp
+
+$(TARG_TEST_UNIT_dtel2s_MT_R):	\
+			$(OBJ_TEST_UNIT_dtel2s_MT_R)\
+			$(LIB_CORE_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIB_FE_FAIL_MT_R)\
+			$(LIB_BE_FAIL_MT_R)\
+			$(LIB_BEC_FAIL_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ \
+		$(OBJ_TEST_UNIT_dtel2s_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIB_FE_FAIL_MT_R)\
+		$(LIB_BE_FAIL_MT_R)\
+		$(LIB_BEC_FAIL_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_UNIT_dtel2s_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp
+
+$(TARG_TEST_UNIT_dtel2s_W_MT_D):	\
+			$(OBJ_TEST_UNIT_dtel2s_W_MT_D)\
+			$(LIB_CORE_W_MT_D)\
+			$(LIB_UTIL_W_MT_D)\
+			$(LIB_FE_FAIL_W_MT_D)\
+			$(LIB_BE_FAIL_W_MT_D)\
+			$(LIB_BEC_FAIL_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
+		$(OBJ_TEST_UNIT_dtel2s_W_MT_D)\
+		$(LIB_CORE_W_MT_D)\
+		$(LIB_UTIL_W_MT_D)\
+		$(LIB_FE_FAIL_W_MT_D)\
+		$(LIB_BE_FAIL_W_MT_D)\
+		$(LIB_BEC_FAIL_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_MT_D)
+
+$(OBJ_TEST_UNIT_dtel2s_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp
+
+$(TARG_TEST_UNIT_dtel2s_W_DLL_D):	\
+			$(OBJ_TEST_UNIT_dtel2s_W_DLL_D)\
+			$(LIB_CORE_W_DLL_D)\
+			$(LIB_UTIL_W_DLL_D)\
+			$(LIB_FE_FAIL_W_DLL_D)\
+			$(LIB_BE_FAIL_W_DLL_D)\
+			$(LIB_BEC_FAIL_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
+		$(OBJ_TEST_UNIT_dtel2s_W_DLL_D)\
+		$(LIB_CORE_W_DLL_D)\
+		$(LIB_UTIL_W_DLL_D)\
+		$(LIB_FE_FAIL_W_DLL_D)\
+		$(LIB_BE_FAIL_W_DLL_D)\
+		$(LIB_BEC_FAIL_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_DLL_D)
+
+$(OBJ_TEST_UNIT_dtel2s_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp
+
+$(TARG_TEST_UNIT_dtel2s_W_DLL_R):	\
+			$(OBJ_TEST_UNIT_dtel2s_W_DLL_R)\
+			$(LIB_CORE_W_DLL_R)\
+			$(LIB_UTIL_W_DLL_R)\
+			$(LIB_FE_FAIL_W_DLL_R)\
+			$(LIB_BE_FAIL_W_DLL_R)\
+			$(LIB_BEC_FAIL_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
+		$(OBJ_TEST_UNIT_dtel2s_W_DLL_R)\
+		$(LIB_CORE_W_DLL_R)\
+		$(LIB_UTIL_W_DLL_R)\
+		$(LIB_FE_FAIL_W_DLL_R)\
+		$(LIB_BE_FAIL_W_DLL_R)\
+		$(LIB_BEC_FAIL_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_DLL_R)
+
+$(OBJ_TEST_UNIT_dtel2s_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp
+
+$(TARG_TEST_UNIT_dtel2s_W_MT_R):	\
+			$(OBJ_TEST_UNIT_dtel2s_W_MT_R)\
+			$(LIB_CORE_W_MT_R)\
+			$(LIB_UTIL_W_MT_R)\
+			$(LIB_FE_FAIL_W_MT_R)\
+			$(LIB_BE_FAIL_W_MT_R)\
+			$(LIB_BEC_FAIL_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
+		$(OBJ_TEST_UNIT_dtel2s_W_MT_R)\
+		$(LIB_CORE_W_MT_R)\
+		$(LIB_UTIL_W_MT_R)\
+		$(LIB_FE_FAIL_W_MT_R)\
+		$(LIB_BE_FAIL_W_MT_R)\
+		$(LIB_BEC_FAIL_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_MT_R)
+
+$(OBJ_TEST_UNIT_dtel2s_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.date_elements_to_string\test.unit.util.date_elements_to_string.cpp
+
 $(TARG_TEST_UNIT_getversion_MT_D):	\
 			$(OBJ_TEST_UNIT_getversion_MT_D)\
 			$(LIB_CORE_MT_D)\
@@ -32049,6 +32711,190 @@ $(TARG_TEST_UNIT_getversion_W_MT_R):	\
 
 $(OBJ_TEST_UNIT_getversion_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.getversion\test.unit.getversion.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_TEST_UNIT_ARGS_W_MT_R) $(CC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.getversion\test.unit.getversion.c
+
+$(TARG_TEST_UNIT_ins_w_sc_MT_D):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_MT_D)\
+			$(LIB_CORE_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIB_FE_FAIL_MT_D)\
+			$(LIB_BE_FAIL_MT_D)\
+			$(LIB_BEC_FAIL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIB_FE_FAIL_MT_D)\
+		$(LIB_BE_FAIL_MT_D)\
+		$(LIB_BEC_FAIL_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_UNIT_ins_w_sc_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_DLL_D):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_DLL_D)\
+			$(LIB_CORE_DLL_D)\
+			$(LIB_UTIL_DLL_D)\
+			$(LIB_FE_FAIL_DLL_D)\
+			$(LIB_BE_FAIL_DLL_D)\
+			$(LIB_BEC_FAIL_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_DLL_D)\
+		$(LIB_CORE_DLL_D)\
+		$(LIB_UTIL_DLL_D)\
+		$(LIB_FE_FAIL_DLL_D)\
+		$(LIB_BE_FAIL_DLL_D)\
+		$(LIB_BEC_FAIL_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_DLL_D)
+
+$(OBJ_TEST_UNIT_ins_w_sc_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_DLL_R):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_DLL_R)\
+			$(LIB_CORE_DLL_R)\
+			$(LIB_UTIL_DLL_R)\
+			$(LIB_FE_FAIL_DLL_R)\
+			$(LIB_BE_FAIL_DLL_R)\
+			$(LIB_BEC_FAIL_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_DLL_R)\
+		$(LIB_CORE_DLL_R)\
+		$(LIB_UTIL_DLL_R)\
+		$(LIB_FE_FAIL_DLL_R)\
+		$(LIB_BE_FAIL_DLL_R)\
+		$(LIB_BEC_FAIL_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_DLL_R)
+
+$(OBJ_TEST_UNIT_ins_w_sc_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_MT_R):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_MT_R)\
+			$(LIB_CORE_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIB_FE_FAIL_MT_R)\
+			$(LIB_BE_FAIL_MT_R)\
+			$(LIB_BEC_FAIL_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIB_FE_FAIL_MT_R)\
+		$(LIB_BE_FAIL_MT_R)\
+		$(LIB_BEC_FAIL_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_UNIT_ins_w_sc_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_W_MT_D):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_W_MT_D)\
+			$(LIB_CORE_W_MT_D)\
+			$(LIB_UTIL_W_MT_D)\
+			$(LIB_FE_FAIL_W_MT_D)\
+			$(LIB_BE_FAIL_W_MT_D)\
+			$(LIB_BEC_FAIL_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_W_MT_D)\
+		$(LIB_CORE_W_MT_D)\
+		$(LIB_UTIL_W_MT_D)\
+		$(LIB_FE_FAIL_W_MT_D)\
+		$(LIB_BE_FAIL_W_MT_D)\
+		$(LIB_BEC_FAIL_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_MT_D)
+
+$(OBJ_TEST_UNIT_ins_w_sc_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_W_DLL_D):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_W_DLL_D)\
+			$(LIB_CORE_W_DLL_D)\
+			$(LIB_UTIL_W_DLL_D)\
+			$(LIB_FE_FAIL_W_DLL_D)\
+			$(LIB_BE_FAIL_W_DLL_D)\
+			$(LIB_BEC_FAIL_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_W_DLL_D)\
+		$(LIB_CORE_W_DLL_D)\
+		$(LIB_UTIL_W_DLL_D)\
+		$(LIB_FE_FAIL_W_DLL_D)\
+		$(LIB_BE_FAIL_W_DLL_D)\
+		$(LIB_BEC_FAIL_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_DLL_D)
+
+$(OBJ_TEST_UNIT_ins_w_sc_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_W_DLL_R):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_W_DLL_R)\
+			$(LIB_CORE_W_DLL_R)\
+			$(LIB_UTIL_W_DLL_R)\
+			$(LIB_FE_FAIL_W_DLL_R)\
+			$(LIB_BE_FAIL_W_DLL_R)\
+			$(LIB_BEC_FAIL_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_W_DLL_R)\
+		$(LIB_CORE_W_DLL_R)\
+		$(LIB_UTIL_W_DLL_R)\
+		$(LIB_FE_FAIL_W_DLL_R)\
+		$(LIB_BE_FAIL_W_DLL_R)\
+		$(LIB_BEC_FAIL_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_DLL_R)
+
+$(OBJ_TEST_UNIT_ins_w_sc_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_W_MT_R):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_W_MT_R)\
+			$(LIB_CORE_W_MT_R)\
+			$(LIB_UTIL_W_MT_R)\
+			$(LIB_FE_FAIL_W_MT_R)\
+			$(LIB_BE_FAIL_W_MT_R)\
+			$(LIB_BEC_FAIL_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_W_MT_R)\
+		$(LIB_CORE_W_MT_R)\
+		$(LIB_UTIL_W_MT_R)\
+		$(LIB_FE_FAIL_W_MT_R)\
+		$(LIB_BE_FAIL_W_MT_R)\
+		$(LIB_BEC_FAIL_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_MT_R)
+
+$(OBJ_TEST_UNIT_ins_w_sc_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
 
 $(TARG_TEST_UNIT_gethostname_MT_D):	\
 			$(OBJ_TEST_UNIT_gethostname_MT_D)\

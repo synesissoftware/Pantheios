@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -67,12 +67,15 @@
 #ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 # include <stlsoft/iterator/cstring_concatenator_iterator.hpp>
 # include <stlsoft/iterator/member_selector_iterator.hpp>
-# include <stlsoft/memory/util/allocator_selector.hpp>
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
 # include <stlsoft/iterators/cstring_concatenator_iterator.hpp>
 # include <stlsoft/iterators/member_selector_iterator.hpp>
+#endif /* STLSoft version */
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+# include <stlsoft/memory/util/allocator_selector.hpp>
+#else /* ? STLSoft version */
 # include <stlsoft/memory/allocator_selector.hpp>
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 #include <pantheios/util/memory/auto_buffer_selector.hpp>
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/smartptr/scoped_handle.hpp>
@@ -210,9 +213,9 @@ namespace
 
 # ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 #  include <stlsoft/algorithm/std/alt.hpp>
-# else /* ? STLSoft 1.12+ */
+# else /* ? STLSoft version */
 #  include <stlsoft/algorithms/std/alt.hpp>
-# endif /* STLSoft 1.12+ */
+# endif /* STLSoft version */
 namespace std
 {
     using stlsoft::std_fill_n;
@@ -278,6 +281,8 @@ namespace pantheios_x
 # else /* ? PANTHEIOS_MT */
         typedef stlsoft::null_mutex         parent_class_type;
 # endif /* PANTHEIOS_MT */
+        typedef thread_mutex_t              class_type;
+
     public: // Construction
         explicit thread_mutex_t(bool b)
 # if defined(PANTHEIOS_MT) && \
@@ -289,8 +294,8 @@ namespace pantheios_x
         }
 
     private:
-        thread_mutex_t(thread_mutex_t const&);
-        thread_mutex_t& operator =(thread_mutex_t const&);
+        thread_mutex_t(class_type const&);
+        class_type& operator =(class_type const&);
     };
 
 } /* namespace pantheios_x */
@@ -580,7 +585,7 @@ namespace
 #endif /* !_PANTHEIOS_COMPILER_CANNOT_USE_ANONYMOUS_NAMESPACES */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Core functions
+ * core functions
  */
 
 #ifndef _PANTHEIOS_COMPILER_CANNOT_USE_ANONYMOUS_NAMESPACES
@@ -770,6 +775,8 @@ namespace
                 if(NULL == s_internalProcessIdentity)
                 {
                     r = PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
+
+                    pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "could not cache front-end identity", NULL, pantheios_getInitCodeString(r));
                 }
                 else
                 {
@@ -781,28 +788,30 @@ namespace
                 PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(NULL == s_internalProcessIdentity);
             }
 
-            // Before we do the back-end initialisation, we need to get the
-            // process identity from the front-end and, if in widestring
-            // mode, convert it to multibyte in case we need to pass it to
-            // bail-out.
-            //
-            // Note: there is no failure response here, since we only use it
-            // in bail-out.
+            if(r >= 0)
+            {
+                // Before we do the back-end initialisation, we need to get the
+                // process identity from the front-end and, if in widestring
+                // mode, convert it to multibyte in case we need to pass it to
+                // bail-out.
+                //
+                // Note: there is no failure response here, since we only use it
+                // in bail-out.
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-            char            processIdentity_[PANTHEIOS_MAXIMUM_MAX_PROCESS_IDENTITY_LENGTH + 1];
-            size_t const    n = ::wcstombs(processIdentity_, processIdentity, STLSOFT_NUM_ELEMENTS(processIdentity_) - 1);
-            char const*     processIdentity_m;
+                char            processIdentity_[PANTHEIOS_MAXIMUM_MAX_PROCESS_IDENTITY_LENGTH + 1];
+                size_t const    n = ::wcstombs(processIdentity_, processIdentity, STLSOFT_NUM_ELEMENTS(processIdentity_) - 1);
+                char const*     processIdentity_m;
 
-            if(n < STLSOFT_NUM_ELEMENTS(processIdentity_))
-            {
-                processIdentity_[STLSOFT_NUM_ELEMENTS(processIdentity_) - 1] = '\0';
-                processIdentity_m = processIdentity_;
-            }
-            else
-            {
-                processIdentity_m = NULL;
-            }
+                if(n < STLSOFT_NUM_ELEMENTS(processIdentity_))
+                {
+                    processIdentity_[STLSOFT_NUM_ELEMENTS(processIdentity_) - 1] = '\0';
+                    processIdentity_m = processIdentity_;
+                }
+                else
+                {
+                    processIdentity_m = NULL;
+                }
 
 # define pantheios_core_impl_getProcessIdentity_a() processIdentity_m
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
@@ -810,32 +819,33 @@ namespace
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #ifdef PANTHEIOS_DEFINE_BACK_END_MAP
-            // 2. Initialise back-end map
+                // 2. Initialise back-end map
 
-            r = pantheios_init_backEndMap();
-
-            if(r < 0)
-            {
-                pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "back-end map creation failed", pantheios_core_impl_getProcessIdentity_a(), pantheios_getInitCodeString(r));
-            }
-            else
-#endif /* PANTHEIOS_DEFINE_BACK_END_MAP */
-            {
-                // 3. Initialise back-end
-
-                r = pantheios_be_init(processIdentity, 0, &s_beToken);
+                r = pantheios_init_backEndMap();
 
                 if(r < 0)
                 {
-                    pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "back-end did not initialise", pantheios_core_impl_getProcessIdentity_a(), pantheios_getInitCodeString(r));
+                    pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "back-end map creation failed", pantheios_core_impl_getProcessIdentity_a(), pantheios_getInitCodeString(r));
                 }
+                else
+#endif /* PANTHEIOS_DEFINE_BACK_END_MAP */
+                {
+                    // 3. Initialise back-end
+
+                    r = pantheios_be_init(processIdentity, 0, &s_beToken);
+
+                    if(r < 0)
+                    {
+                        pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "back-end did not initialise", pantheios_core_impl_getProcessIdentity_a(), pantheios_getInitCodeString(r));
+                    }
 
 #ifdef PANTHEIOS_DEFINE_BACK_END_MAP
-                if(r < 0)
-                {
-                    pantheios_uninit_backEndMap();
-                }
+                    if(r < 0)
+                    {
+                        pantheios_uninit_backEndMap();
+                    }
 #endif /* PANTHEIOS_DEFINE_BACK_END_MAP */
+                }
             }
 
             if(r < 0)
@@ -932,7 +942,7 @@ namespace
 #endif /* !_PANTHEIOS_COMPILER_CANNOT_USE_ANONYMOUS_NAMESPACES */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Core API
+ * core API
  *
  * Note: for those compilers that object to instantiating templates within
  * extern "C" functions, the actual functions and their implementations are
@@ -973,9 +983,9 @@ extern "C++" int pantheios_dispatch__cpp(
 ,   pan_char_t const*   entry
 );
 extern "C++" int pantheios_log_n__cpp(
-    pan_sev_t           severity
-,   size_t              numSlices
-,   pan_slice_t const*  slices
+    pan_sev_t                   severity
+,   size_t                      numSlices
+,   pantheios_slice_t const     slices[]
 );
 #endif /* _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS */
 
@@ -1321,16 +1331,22 @@ int pantheios_dispatch__cpp(
 }
 
 /* assembler for all log_???? functions */
-PANTHEIOS_CALL(int) pantheios_log_n(    pan_sev_t           severity
-                                    ,   size_t              numSlices
-                                    ,   pan_slice_t const*  slices)
+PANTHEIOS_CALL(int)
+pantheios_log_n(
+    pan_sev_t                   severity
+,   size_t                      numSlices
+,   pantheios_slice_t const     slices[]
+)
 #ifdef _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 {
     return pantheios_log_n__cpp(severity, numSlices, slices);
 }
-int pantheios_log_n__cpp(   pan_sev_t           severity
-                        ,   size_t              numSlices
-                        ,   pan_slice_t const*  slices)
+int
+pantheios_log_n__cpp(
+    pan_sev_t                   severity
+,   size_t                      numSlices
+,   pantheios_slice_t const     slices[]
+)
 #endif /* _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS */
 {
     // Precondition check
@@ -1491,7 +1507,7 @@ pantheios_logvprintf(
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Core functions
+ * core functions
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)

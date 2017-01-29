@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the fe.WindowsRegistry front-end.
  *
  * Created:     28th October 2007
- * Updated:     29th June 2016
+ * Updated:     9th January 2017
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -91,7 +91,31 @@ namespace
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
- * context
+ * helpers
+ */
+
+namespace
+{
+
+inline
+DWORD
+get_exception_status_code(
+    winstl::windows_exception& x
+)
+{
+#if _STLSOFT_VER >= 0x010a0181
+
+    return x.status_code();
+#else
+
+    return x.get_error_code();
+#endif
+}
+
+} /* anonymous namespace */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * types
  */
 
 namespace
@@ -174,7 +198,7 @@ PANTHEIOS_CALL(int) pantheios_fe_init(
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "could not initialise front-end", NULL, x.what(), "fe.WindowsRegistry", NULL);
 
-        return (ERROR_FILE_NOT_FOUND == x.get_error_code()) ? PANTHEIOS_FE_INIT_RC_INIT_CONFIG_REQUIRED : PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
+        return (ERROR_FILE_NOT_FOUND == get_exception_status_code(x)) ? PANTHEIOS_FE_INIT_RC_INIT_CONFIG_REQUIRED : PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
     catch(std::exception& x)
     {
@@ -273,7 +297,7 @@ namespace
             }
             catch(winstl::registry_exception& x)
             {
-                if(ERROR_FILE_NOT_FOUND != x.get_error_code())
+                if(ERROR_FILE_NOT_FOUND != get_exception_status_code(x))
                 {
                     throw;
                 }
@@ -314,7 +338,7 @@ namespace
             }
             catch(winstl::registry_exception& x)
             {
-                if(ERROR_FILE_NOT_FOUND != x.get_error_code())
+                if(ERROR_FILE_NOT_FOUND != get_exception_status_code(x))
                 {
                     throw;
                 }
@@ -354,7 +378,7 @@ namespace
         }
         catch(winstl::windows_exception& x)
         {
-            if(ERROR_FILE_NOT_FOUND == x.get_error_code())
+            if(ERROR_FILE_NOT_FOUND == get_exception_status_code(x))
             {
                 reg_string_t message2;
 
@@ -369,9 +393,11 @@ namespace
                 message2 += PANTHEIOS_LITERAL_STRING("' in either user hive or machine hive");
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-                throw winstl::windows_exception(stlsoft::w2m(message2), x.get_error_code());
+
+                throw winstl::windows_exception(stlsoft::w2m(message2), get_exception_status_code(x));
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-                throw winstl::windows_exception(message2.c_str(), x.get_error_code());
+
+                throw winstl::windows_exception(message2.c_str(), get_exception_status_code(x));
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
             }
 

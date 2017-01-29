@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.be.N project.
  *
  * Created:     29th January 2008
- * Updated:     28th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -29,7 +29,7 @@
 #include <stdlib.h>                 /* for EXIT_SUCCESS, EXIT_FAILURE */
 
 
-const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.N");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.N");
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -65,7 +65,8 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
         STLSOFT_SUPPRESS_UNUSED(backEndId);                                 \
         STLSOFT_SUPPRESS_UNUSED(init);                                      \
         STLSOFT_SUPPRESS_UNUSED(reserved);                                  \
-        STLSOFT_SUPPRESS_UNUSED(ptoken);                                    \
+                                                                            \
+        *ptoken = (char*)(0) + n;                                           \
                                                                             \
         if(s_retVals[n] >= 0)                                               \
         {                                                                   \
@@ -315,6 +316,48 @@ int main(int argc, char** argv)
             pantheios_be_uninit(token);
 
             XTESTS_CASE_END("Test-5");
+        }
+
+
+        /* Test-6 */
+        if(XTESTS_CASE_BEGIN("Test-6", "Verify that can obtain contexts from ids"))
+        {
+            void*   token;
+            int     res;
+            void*   tokens[1 + NUM_BACKENDS];
+
+            reset_state_();
+
+            res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
+
+            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
+            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[1]);
+            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[2]);
+            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[3]);
+            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[4]);
+            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[5]);
+
+
+            XTESTS_TEST_POINTER_EQUAL(NULL, pantheios_be_N_tokenFromId(-1, NULL));
+            XTESTS_TEST_POINTER_EQUAL(NULL, pantheios_be_N_tokenFromId( 0, NULL));
+            { size_t i; for(i = 0 ; i != STLSOFT_NUM_ELEMENTS(tokens); ++i)
+            {
+                tokens[i] = pantheios_be_N_tokenFromId((int)i, NULL);
+
+                if(i > 0)
+                {
+                    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, tokens[i]);
+                }
+                if(i > 1)
+                {
+                    XTESTS_TEST_POINTER_LESS(tokens[i], tokens[i - 1]);
+                }
+            }}
+
+
+            pantheios_be_uninit(token);
+
+            XTESTS_CASE_END("Test-1");
         }
 
 

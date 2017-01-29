@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the UNIX SysLog back-end
  *
  * Created:     29th June 2005
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Thanks to:   Jonathan Wakely for detecting Solaris compilation defects &
  *              fixes.
@@ -226,9 +226,10 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_logEntry(
     return 0;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_syslog_parseArgs(
+PANTHEIOS_CALL(int)
+pantheios_be_syslog_parseArgs(
     size_t                      numArgs
-,   struct pan_slice_t* const   args
+,   pantheios_slice_t           args[]
 ,   pan_be_syslog_init_t*       init
 )
 {

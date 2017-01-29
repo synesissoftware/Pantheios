@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.util.strnlen project.
  *
  * Created:     17th April 2009
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -56,7 +56,7 @@ static void test_1_12();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.util.strnlen");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.util.strnlen");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -147,7 +147,7 @@ static void test_length_calculated_forwards()
      * is calculated between the given limits
      */
 
-    const PAN_CHAR_T string[] = PANTHEIOS_LITERAL_STRING("abcdefghijklm\0nop\0qrs\0tuvwxyz"); // lengths: 13, 17, 21
+    PAN_CHAR_T const string[] = PANTHEIOS_LITERAL_STRING("abcdefghijklm\0nop\0qrs\0tuvwxyz"); // lengths: 13, 17, 21
 
     XTESTS_TEST_INTEGER_EQUAL( 0u, pantheios_util_strnlen(string, get_min_max( 0,  0)));
     XTESTS_TEST_INTEGER_EQUAL( 1u, pantheios_util_strnlen(string, get_min_max( 0,  1)));
@@ -210,7 +210,7 @@ static void test_length_calculated_backwards()
      * is calculated between the given limits
      */
 
-    const PAN_CHAR_T string[] = PANTHEIOS_LITERAL_STRING("abcdefghijklm\0nop\0qrs\0tuvwxyz"); // lengths: 13, 17, 21
+    PAN_CHAR_T const string[] = PANTHEIOS_LITERAL_STRING("abcdefghijklm\0nop\0qrs\0tuvwxyz"); // lengths: 13, 17, 21
 
     XTESTS_TEST_INTEGER_EQUAL( 0u, pantheios_util_strnlen(string, get_min_max( 0,  0)));
     XTESTS_TEST_INTEGER_EQUAL( 1u, pantheios_util_strnlen(string, get_min_max( 1,  0)));

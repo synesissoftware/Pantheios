@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios be.N Stock Back-end API.
  *
  * Created:     18th October 2006
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2017, Matthew Wilson and Synesis Software
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -52,9 +52,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MAJOR      1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      8
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       24
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      9
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -333,7 +333,23 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
  *
  * \ingroup group__backend__stock_backends__N
  */
-PANTHEIOS_EXTERN_C pan_be_N_t   PAN_BE_N_BACKEND_LIST[];
+PANTHEIOS_EXTERN pan_be_N_t PAN_BE_N_BACKEND_LIST[];
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
+
+/** Obtains the (internal) initialisation token for the given back-end
+ *
+ * \retval NULL \c backEndId is not recognised
+ *
+ * \pre NULL == reserved
+ */
+PANTHEIOS_CALL(void*)
+pantheios_be_N_tokenFromId(
+    int     backEndId
+,   void*   reserved
+);
 
 /* ////////////////////////////////////////////////////////////////////// */
 

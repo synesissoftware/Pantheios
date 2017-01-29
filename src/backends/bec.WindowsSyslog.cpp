@@ -5,7 +5,7 @@
  *              Back-end API.
  *
  * Created:     23rd September 2005
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -90,10 +90,6 @@ namespace
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_char_t;
-    using ::pantheios::pan_uint8_t;
-    using ::pantheios::pan_uint16_t;
-    using ::pantheios::pan_uint32_t;
     using ::pantheios::pan_slice_t;
     using ::pantheios::pan_sev_t;
     using ::pantheios::pantheios_getHostName;
@@ -115,7 +111,7 @@ namespace
 
     typedef buffer_selector_<char>::type        buffer_a_t;
     typedef buffer_selector_<wchar_t>::type     buffer_w_t;
-    typedef buffer_selector_<pan_char_t>::type  buffer_t;
+    typedef buffer_selector_<PAN_CHAR_T>::type  buffer_t;
 
 } /* anonymous namespace */
 
@@ -148,7 +144,7 @@ namespace
 static
 int
 pan_atoi_(
-    pan_char_t const*   s
+    PAN_CHAR_T const*   s
 )
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -185,7 +181,7 @@ pantheios_be_WindowsSyslog_logEntry_a_(
 static
 int
 pantheios_be_WindowsSyslog_init_(
-    pan_char_t const*                   processIdentity
+    PAN_CHAR_T const*                   processIdentity
 ,   int                                 id
 ,   pan_be_WindowsSyslog_init_t const*  init
 ,   void*                               reserved
@@ -231,7 +227,7 @@ pantheios_be_WindowsSyslog_getDefaultAppInit(
 
 PANTHEIOS_CALL(int)
 pantheios_be_WindowsSyslog_init(
-    pan_char_t const*                   processIdentity
+    PAN_CHAR_T const*                   processIdentity
 ,   int                                 id
 ,   pan_be_WindowsSyslog_init_t const*  init
 ,   void*                               reserved
@@ -244,7 +240,7 @@ pantheios_be_WindowsSyslog_init(
 static
 int
 pantheios_be_WindowsSyslog_init_(
-    pan_char_t const*                   processIdentity
+    PAN_CHAR_T const*                   processIdentity
 ,   int                                 id
 ,   pan_be_WindowsSyslog_init_t const*  init
 ,   void*                               reserved
@@ -450,7 +446,7 @@ pantheios_be_WindowsSyslog_logEntry_(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -582,7 +578,7 @@ pantheios_be_WindowsSyslog_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -592,7 +588,7 @@ pantheios_be_WindowsSyslog_logEntry(
 PANTHEIOS_CALL(int)
 pantheios_be_WindowsSyslog_parseArgs(
     size_t                          numArgs
-,   pan_slice_t* const              args
+,   pantheios_slice_t               args[]
 ,   pan_be_WindowsSyslog_init_t*    init
 )
 {
@@ -635,7 +631,7 @@ pantheios_be_WindowsSyslog_parseArgs(
 
             if(res > 0)
             {
-                pan_char_t  sz[21];
+                PAN_CHAR_T  sz[21];
                 int         portNum;
 
                 PANTHEIOS_char_copy(&sz[0], port.ptr, stlsoft::minimum(port.len, STLSOFT_NUM_ELEMENTS(sz) - 1));
@@ -646,7 +642,7 @@ pantheios_be_WindowsSyslog_parseArgs(
                 if( portNum > 0 &&
                     portNum < 65536)
                 {
-                    init->port = static_cast<pan_uint16_t>(portNum);
+                    init->port = static_cast<pantheios_uint16_t>(portNum);
                 }
                 else
                 {
@@ -662,7 +658,7 @@ pantheios_be_WindowsSyslog_parseArgs(
 
             if(res > 0)
             {
-                pan_char_t  sz[21];
+                PAN_CHAR_T  sz[21];
                 int         facilityNum;
 
                 PANTHEIOS_char_copy(&sz[0], facility.ptr, stlsoft::minimum(facility.len, STLSOFT_NUM_ELEMENTS(sz) - 1));
@@ -673,7 +669,7 @@ pantheios_be_WindowsSyslog_parseArgs(
                 if( facilityNum >= 0 &&
                     facilityNum < 24)
                 {
-                    init->facility = static_cast<pan_uint8_t>(facilityNum);
+                    init->facility = static_cast<pantheios_uint8_t>(facilityNum);
                 }
                 else
                 {
@@ -717,7 +713,7 @@ static
 char*
 pan_make_hostIdentity_(void)
 {
-    pan_char_t  szHostName[1 + MAX_COMPUTERNAME_LENGTH];
+    PAN_CHAR_T  szHostName[1 + MAX_COMPUTERNAME_LENGTH];
     size_t      cch = pantheios_getHostName(&szHostName[0], STLSOFT_NUM_ELEMENTS(szHostName));
 
     switch(cch)

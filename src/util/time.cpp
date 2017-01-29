@@ -4,7 +4,7 @@
  * Purpose:     Time functions for use in Pantheios back-ends.
  *
  * Created:     22nd August 2006
- * Updated:     29th June 2016
+ * Updated:     17th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -262,11 +262,11 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                 };
                 pan_char_t*         e       =   &szTime[0] + cchTime;
                 long                divisor =   s_divisors[numDecPlaces];
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
                 pan_char_t const*   r       =   stlsoft::integer_to_decimal_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
                 pan_char_t const*   r       =   stlsoft::integer_to_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 
                 0[e] = '.';
                 stlsoft::std_fill_n(e + 1, static_cast<size_t>(r - (e + 1)), '0');

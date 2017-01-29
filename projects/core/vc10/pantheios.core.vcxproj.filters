@@ -63,9 +63,6 @@
     <ClCompile Include="..\..\..\src\core\auto.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.c">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\core\logprintf.c">
       <Filter>Source Files\core</Filter>
     </ClCompile>
@@ -116,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\inserters\exception.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.inl">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

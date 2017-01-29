@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.api project.
  *
  * Created:     26th June 2005
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
@@ -93,7 +93,7 @@ using std::endl;
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.api");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.api");
 
 /* The following allows this to be used with the Windows
  * EventLog back-end.
@@ -210,7 +210,7 @@ std::string Thingy_to_string(Thingy const *thingy)
  * externally defined array
  */
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.api");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.api");
 
 /* The following allows this to be used with the Windows
  * EventLog back-end.

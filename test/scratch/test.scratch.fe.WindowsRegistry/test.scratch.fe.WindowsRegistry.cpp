@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.fe.WindowsRegistry project.
  *
  * Created:     28th October 2007
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -43,7 +43,7 @@
  * globals
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.fe.WindowsRegistry");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.fe.WindowsRegistry");
 
 /* ////////////////////////////////////////////////////////////////////// */
 

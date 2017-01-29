@@ -1,18 +1,18 @@
 pantheios - Known Issues
 ========================
 
-Updated:    30th June 2016
+Updated:    29th January 2017
 
 
 
-Pantheios 1.0.1 Beta 217 Known Issues:
+Pantheios 1.0.1 Beta 218 Known Issues:
 --------------------------------------
 
  <none>
 
 
 
-Pantheios 1.0.1 Beta 217 Suspected Issues:
+Pantheios 1.0.1 Beta 218 Suspected Issues:
 ------------------------------------------
 
  <none>

@@ -4,7 +4,7 @@
  * Purpose:     Primary header file for Pantheios
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     18th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -61,8 +61,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      11
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       105
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       106
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -371,6 +371,14 @@ namespace internal
 #if defined(PANTHEIOS_FORCE_AUTO_INIT) || \
     !defined(PANTHEIOS_NO_AUTO_INIT)
 # include "./internal/initialiser.hpp"    // Schwarz counter initialisation
+
+namespace
+{
+    /// The per-compilation unit instance of pantheios_initialiser, which
+    /// ensures that the Pantheios library is initialised prior to use.
+    static pantheios_initialiser    s_pantheios_initialiser;
+
+} /* anonymous namespace */
 #endif /* PANTHEIOS_FORCE_AUTO_INIT || !PANTHEIOS_NO_AUTO_INIT */
 
 /* /////////////////////////////////////////////////////////////////////////

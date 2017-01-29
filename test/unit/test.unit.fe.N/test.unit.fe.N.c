@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.fe.N project.
  *
  * Created:     24th August 2008
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -97,7 +97,7 @@ static const int s_severityLevels[] =
  * globals
  */
 
-const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.N");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.N");
 
 const pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS_DEFAULT[10] =
 {

@@ -4,7 +4,7 @@
  * Purpose:     Pantheios back end API
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MAJOR      3
-# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MINOR      11
+# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MINOR      12
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       33
+# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -214,6 +214,11 @@
  * \ingroup group__backend__init__flags
  */
 
+/** \def PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+ *  Causes the back-end to represent the severity, if shown, as an integer.
+ * \ingroup group__backend__init__flags
+ */
+
 
 #define PANTHEIOS_BE_INIT_F_NO_PROCESS_ID       (0x00000001)
 #define PANTHEIOS_BE_INIT_F_NO_THREAD_ID        (0x00001000)
@@ -226,6 +231,7 @@
 #define PANTHEIOS_BE_INIT_F_HIDE_TIME           (0x00000080)
 #define PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION     (0x00000100)
 #define PANTHEIOS_BE_INIT_F_LOW_RESOLUTION      (0x00000200)
+#define PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY    (0x00000400)
 
 
 /** \def PANTHEIOS_BE_INIT_F_COMMON_MASK

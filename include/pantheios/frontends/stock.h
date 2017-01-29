@@ -5,11 +5,11 @@
  *              Elements.
  *
  * Created:     23rd November 2007
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MINOR    2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     15
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 3
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     16
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,14 +121,14 @@
 </pre>
 \endhtmlonly
  *
- * For convenience, the constructs PANTHEIOS_EXTERN_C, PAN_CHAR_T, and
+ * For convenience, the constructs PANTHEIOS_EXTERN, PAN_CHAR_T, and
  * PANTHEIOS_LITERAL_STRING() may be employed to write the variable
  * definition in a manner independent of language and/or character encoding,
  * as in:
 \htmlonly
 <pre>
   /\* C or C++; multibyte or wide string build \*\/
-  PANTHEIOS_EXTERN_C PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("my.app");
+  PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("my.app");
 
 </pre>
 \endhtmlonly
@@ -140,7 +140,7 @@
  *   (<code>PAN_CHAR_T const*</code>) the behaviour of the link unit is
  *   undefined.
  */
-PANTHEIOS_EXTERN_C PAN_CHAR_T const     PANTHEIOS_FE_PROCESS_IDENTITY[];
+PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
 
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions

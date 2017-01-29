@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the WindowsDebugger back-end
  *
  * Created:     18th July 2005
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -76,18 +76,15 @@ namespace
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_char_t;
-    using ::pantheios::pan_uint16_t;
-    using ::pantheios::pan_uint32_t;
     using ::pantheios::pan_slice_t;
     using ::pantheios::util::backends::Context;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
     typedef PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
-        pan_char_t
+        PAN_CHAR_T
     ,   2048
-    ,   winstl_ns_qual(processheap_allocator)<pan_char_t>
+    ,   winstl_ns_qual(processheap_allocator)<PAN_CHAR_T>
     >::type                                     buffer_t;
 
 } /* anonymous namespace */
@@ -122,7 +119,7 @@ namespace
     /// @{
     public:
         WindowsDebugger_Context(
-            pan_char_t const*                       processIdentity
+            PAN_CHAR_T const*                       processIdentity
         ,   int                                     backEndId
         ,   pan_be_WindowsDebugger_init_t const*    init
         );
@@ -141,7 +138,7 @@ namespace
         virtual int rawLogEntry(
             int                 severity4
         ,   int                 severityX
-        ,   pan_char_t const*   entry
+        ,   PAN_CHAR_T const*   entry
         ,   size_t              cchEntry
         );
     /// @}
@@ -162,7 +159,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getDefaultAppInit(pan_be_Windo
 }
 
 static int pantheios_be_WindowsDebugger_init_(
-    pan_char_t const*                       processIdentity
+    PAN_CHAR_T const*                       processIdentity
 ,   int                                     backEndId
 ,   pan_be_WindowsDebugger_init_t const*    init
 ,   void*                                   reserved
@@ -220,7 +217,7 @@ static int pantheios_be_WindowsDebugger_init_(
 }
 
 PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_init(
-    pan_char_t const*                       processIdentity
+    PAN_CHAR_T const*                       processIdentity
 ,   int                                     backEndId
 ,   pan_be_WindowsDebugger_init_t const*    init
 ,   void*                                   reserved
@@ -243,7 +240,7 @@ static int pantheios_be_WindowsDebugger_logEntry_(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -260,7 +257,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -272,7 +269,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
  */
 
 WindowsDebugger_Context::WindowsDebugger_Context(
-    pan_char_t const*                       processIdentity
+    PAN_CHAR_T const*                       processIdentity
 ,   int                                     backEndId
 ,   pan_be_WindowsDebugger_init_t const*    init
 )
@@ -317,7 +314,7 @@ int WindowsDebugger_Context::rawLogEntry(int /* severity4 */, int /* severityX *
 int WindowsDebugger_Context::rawLogEntry(
     int                 /* severity4 */
 ,   int                 /* severityX */
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {

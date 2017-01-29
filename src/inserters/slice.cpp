@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     14th February 2010
- * Updated:     29th June 2016
+ * Updated:     17th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -64,10 +64,10 @@
 #ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 # include <stlsoft/iterator/cstring_concatenator_iterator.hpp>
 # include <stlsoft/iterator/member_selector_iterator.hpp>
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
 # include <stlsoft/iterators/cstring_concatenator_iterator.hpp>
 # include <stlsoft/iterators/member_selector_iterator.hpp>
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 
 /* Standard C++ header files */
 
@@ -94,9 +94,9 @@
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
 # ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 #  include <stlsoft/algorithm/std/alt.hpp>
-# else /* ? STLSoft 1.12+ */
+# else /* ? STLSoft version */
 #  include <stlsoft/algorithms/std/alt.hpp>
-# endif /* STLSoft 1.12+ */
+# endif /* STLSoft version */
 namespace std
 {
     using stlsoft::std_copy;
@@ -200,18 +200,27 @@ void slice_inserter::construct_()
         slices[5] = equals;                         // 5: equals (for len)
 
         size_t              lenLen;
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
         pan_char_t const*   lenPtr = stlsoft::integer_to_decimal_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
         pan_char_t const*   lenPtr = stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 
         slices[6] = pan_slice_t(lenPtr, lenLen);
     }
 
     // calc buffer size, resize, and write all slices into buffer
 
-#if !defined(STLSOFT_COMPILER_IS_BORLAND)
+#if 0 || \
+    defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1310) || \
+    0
+# define PANTHEIOS_CANNOT_USE_STLSOFT_MSI_
+#endif
+
+
+#ifndef PANTHEIOS_CANNOT_USE_STLSOFT_MSI_
 
     const size_t n = std::accumulate(   stlsoft::member_selector(slices, &pan_slice_t::len)
                                     ,   stlsoft::member_selector(slices + STLSOFT_NUM_ELEMENTS(slices), &pan_slice_t::len)

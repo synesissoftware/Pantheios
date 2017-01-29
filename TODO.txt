@@ -1,7 +1,7 @@
 pantheios - TODO lists
 ======================
 
-Updated:    25th October 2015
+Updated:    29th January 2017
 
 
 Summaries:
@@ -24,7 +24,6 @@ Pantheios 1.0 TODOs:
  + auto-generate be l/r source files
  + auto-generate be l/r header files
  + rolling file
- + be.N static filtering
  ~ reimplement integral conversion in terms of new STLSoft 1.10 components
  * release by Q4 2012!!!
 

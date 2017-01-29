@@ -4,7 +4,7 @@
  * Purpose:     Declaration of the Pantheios WindowsDebugger Stock Back-end API.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MINOR       1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        23
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,13 +101,8 @@
 
 struct pan_be_WindowsDebugger_init_t
 {
-#if !defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) && \
-    !defined(PANTHEIOS_NO_NAMESPACE)
-    typedef pantheios::pan_uint32_t pan_uint32_t;
-#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION && !PANTHEIOS_NO_NAMESPACE */
-
-    pan_uint32_t    version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
-    pan_uint32_t    flags;      /*!< \ref group__backend__stock_backends__WindowsDebugger__flags "Flags" that control the information displayed. */
+    pantheios_uint32_t      version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
+    pantheios_uint32_t      flags;      /*!< \ref group__backend__stock_backends__WindowsDebugger__flags "Flags" that control the information displayed. */
 
 #ifdef __cplusplus
 public: /* Construction */
@@ -212,7 +207,8 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
 
 #ifdef __cplusplus
 # ifndef PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
-inline pan_be_WindowsDebugger_init_t::pan_be_WindowsDebugger_init_t()
+inline
+pan_be_WindowsDebugger_init_t::pan_be_WindowsDebugger_init_t()
 {
     pantheios_be_WindowsDebugger_getDefaultAppInit(this);
 }

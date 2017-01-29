@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the NULL back-end.
  *
  * Created:     10th July 2006
- * Updated:     21st September 2015
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
  */
 
 PANTHEIOS_CALL(int) pantheios_be_null_init(
-    pan_char_t const*   processIdentity
+    PAN_CHAR_T const*   processIdentity
 ,   int                 id
 ,   void*               unused
 ,   void*               reserved
@@ -81,7 +81,7 @@ PANTHEIOS_CALL(int) pantheios_be_null_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {

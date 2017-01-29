@@ -1,7 +1,7 @@
 pantheios - Changes
 ===================
 
-Updated:    30th June 2016
+Updated:    29th January 2017
 
 
     ************************************
@@ -13,6 +13,503 @@ Updated:    30th June 2016
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+29th January 2017 - 1.0.1 beta 218
+==================================
+
+Summary:
+--------
+
+ * added pantheios::windows::hive inserter and component test
+ * added date elements -> string conversion functions
+ * added pantheios::windows::hive inserter
+ * added pantheios_be_N_tokenFromId()
+ * added pantheios_getStockSeverityStringSlice()
+ * added test.component.inserters.windows.hive
+ * added test.performance.util.date_elements_to_string
+ * added test.unit.inserters.windows.sc
+ * added test.unit.util.date_elements_to_string
+ * added callback functionality for be.WindowsEventLog
+ * added PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY flag, which specifies that the severity will always be presented in numeric form in stock back-ends
+ * added PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT
+ * added PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES
+ * stock back-ends now use the severity number for severity levels in the range [8, 16)
+ * tightening up initialisation logic, in case where process identity cannot be provided by the front-end (which should not strictly happen, but we want to be as tight as possible)
+ * separated out the default initialiser Schwarz counter instance from the counter header (so that it can be used separately)
+ * extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+ * compatibility with STLSoft 1.9 and STLSoft 1.10.1 beta 2+
+ * added CC_CUSTOM_DEFS_DEBUG, CC_CUSTOM_DEFS_RELEASE, CPPC_CUSTOM_DEFS_DEBUG, CPPC_CUSTOM_DEFS_RELEASE
+ * moved pantheios_exitProcess (src/core/api.exitprocess.cpp) from Core to Util library
+ * added clean.libs.util target
+ * added compile.test.all target
+ * changed compile.test target to be dependent only on compile.test.unit and compile.test.component targets
+ * improved use of make preprocessor
+ * shortening some target/intermediate names
+
+Details:
+--------
+
+General:
+
+ ~ include/pantheios/pantheios.h:
+    + added PANTHEIOS_EXTERN, which is extern "C" in C++  and extern in C
+    ~ redefined PANTHEIOS_EXTERN_C in C-compilation (to nothing)
+    ~ section-header canonicalisation
+    + added pantheios_getStockSeverityStringSlice()
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+    ~ required STLSoft 1.9.129
+
+ ~ include/pantheios/internal/initialiser.hpp:
+    ~ separated out the default initialiser Schwarz counter instance from the counter header (so that it can be used separately)
+
+ ~ include/pantheios/internal/slice.hpp:
+ ~ include/pantheios/shims/access/string/core/pan_slice_t.hpp:
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+
+ ~ include/pantheios/implicit_link/implicit_link_base_.h:
+    ~ fixing implicit-link compiler message
+
+Core:
+
+ ~ src/core/api.cpp:
+    ~ STLSoft 1.10+ compatibility
+    ~ section-header canonicalisation
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+    ~ tightening up initialisation logic, in case where process identity cannot be provided by the front-end (which should not strictly happen, but we want to be as tight as possible)
+    ~ preparatory refactoring
+
+ ~ src/core/api.deprecated.c:
+ ~ src/core/api.exitprocess.cpp:
+ ~ src/core/api.logputs.cpp:
+    ~ section-header canonicalisation
+
+Application Layer:
+
+ ~ include/pantheios/pantheios.hpp:
+    ~ separated out the default initialiser Schwarz counter instance from the counter header (so that it can be used separately)
+
+ + include/pantheios/inserters/windows/hive.hpp:
+    + added pantheios::windows::hive inserter
+
+ ~ src/inserters/integer.cpp:
+ ~ src/inserters/interval.cpp:
+ ~ src/inserters/processid.cpp:
+ ~ src/inserters/slice.cpp:
+ ~ src/inserters/threadid.cpp:
+    ~ compatibility with the imminent STLSoft 1.10 b1
+    ~ compatibility with STLSoft 1.10 (beta 1) (or later)
+    ~ preparatory refactoring
+
+ ~ src/inserters/pointer.cpp:
+    ~ preparatory refactoring
+
+Tracing:
+
+Assertion:
+
+Util:
+
+ ~ include/pantheios/util/backends/arguments.h:
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+
+ ~ include/pantheios/util/memory/auto_buffer_selector.hpp:
+    ~ STLSoft 1.10+ compatibility
+
+ ~ include/pantheios/util/severity/WindowsEventLog.h:
+    + added date elements -> string conversion
+
+ + include/pantheios/util/string/date_elements_to_string.h:
+    + added pantheios_util_formatMillisecondToString3()
+    + added pantheios_util_formatMicrosecondToString6()
+    ~ whitespace
+    + added date elements -> string conversion
+
+ ~ src/util/bailout.c:
+    ~ section-header canonicalisation
+    ~ warning
+
+ ~ src/util/be.context.cpp:
+    ~ section-header canonicalisation
+    ~ stock back-ends now use the severity number for severity levels in the range [8, 16)
+    + added PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY flag, which specifies that the severity will always be presented in numeric form in stock back-ends
+
+ ~ src/util/be.parse.cpp:
+    + added PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY flag, which specifies that the severity will always be presented in numeric form in stock back-ends
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+
+ + src/util/date_elements_to_string.c:
+    ~ section-header canonicalisation
+    + added pantheios_util_formatMillisecondToString3()
+    + added pantheios_util_formatMicrosecondToString6()
+
+ ~ src/util/severity_strings.c:
+    + added pantheios_getStockSeverityStringSlice()
+
+ ~ src/util/strnlen.cpp:
+ ~ src/util/util.strnlen.c:
+    ~ section-header canonicalisation
+
+ ~ src/util/time.cpp:
+    ~ compatibility with the imminent STLSoft 1.10 b1
+    ~ preparatory refactoring
+
+Extras:
+
+Front-ends:
+
+ ~ include/pantheios/frontend.h:
+    ~ formatting
+
+ ~ include/pantheios/frontends/fe.N.h:
+ ~ include/pantheios/frontends/stock.h:
+    + added PANTHEIOS_EXTERN, which is extern "C" in C++  and extern in C
+    ~ redefined PANTHEIOS_EXTERN_C in C-compilation (to nothing)
+
+ ~ src/frontends/fe.WindowsRegistry.cpp:
+    ~ forward compatibility with STLSoft 1.10+
+
+Back-ends:
+
+ ~ include/pantheios/backend.h:
+    + added PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY flag, which specifies that the severity will always be presented in numeric form in stock back-ends
+
+ ~ include/pantheios/backends/be.N.h:
+    + added PANTHEIOS_EXTERN, which is extern "C" in C++  and extern in C
+    ~ redefined PANTHEIOS_EXTERN_C in C-compilation (to nothing)
+    + added pantheios_be_N_tokenFromId()
+
+ ~ include/pantheios/backends/bec.COMErrorObject.h:
+ ~ include/pantheios/backends/bec.WindowsDebugger.h:
+ ~ include/pantheios/backends/bec.WindowsSyslog.h:
+ ~ include/pantheios/backends/bec.file.h:
+ ~ include/pantheios/backends/bec.fprintf.h:
+ ~ include/pantheios/backends/bec.loader.h:
+ ~ include/pantheios/backends/bec.speech.h:
+ ~ include/pantheios/backends/bec.syslog.h:
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+
+ ~ include/pantheios/backends/bec.WindowsConsole.h:
+    + added PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT
+    + added PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+
+ ~ include/pantheios/backends/bec.WindowsEventLog.h:
+    + callback functionality for be.WindowsEventLog
+
+ + include/pantheios/implicit_link/be.WindowsEventLog.WithCallback.h:
+ + include/pantheios/implicit_link/bec.WindowsEventLog.WithCallback.h:
+ + include/pantheios/implicit_link/bel.WindowsEventLog.WithCallback.h:
+ + include/pantheios/implicit_link/ber.WindowsEventLog.WithCallback.h:
+    + callback functionality for be.WindowsEventLog
+
+ ~ src/backends/be.N.c:
+    + added pantheios_be_N_tokenFromId()
+
+ ~ src/backends/bec.COMErrorObject.cpp:
+ ~ src/backends/bec.WindowsDebugger.cpp:
+ ~ src/backends/bec.WindowsMessageBox.cpp:
+ ~ src/backends/bec.WindowsSyslog.cpp:
+ ~ src/backends/bec.fail.c:
+ ~ src/backends/bec.fprintf.cpp:
+ ~ src/backends/bec.null.c:
+ ~ src/backends/bec.speech.cpp:
+ ~ src/backends/bec.syslog.c:
+ ~ src/backends/bec.test.cpp:
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+
+ ~ src/backends/bec.WindowsConsole.cpp:
+    ~ VC++ 14 (2015) compatibility
+    + added PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT
+    + added PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+    ~ fixed conversion warning
+
+ ~ src/backends/bec.WindowsEventLog.cpp:
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+    + callback functionality for be.WindowsEventLog
+
+ ~ src/backends/bec.file.cpp:
+    ~ STLSoft 1.10+ compatibility
+    ~ refactoring
+    ~ extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+
+Distribution:
+
+Documentation:
+
+Makefiles / Project-files:
+
+ ~ projects/core/vc10/pantheios.core.vcxproj:
+ ~ projects/core/vc10/pantheios.core.vcxproj.filters:
+    ~ fixes
+
+ ~ projects/util/vc10/pantheios.util.vcxproj:
+ ~ projects/util/vc10/pantheios.util.vcxproj.filters:
+ ~ projects/util/vc6/pantheios.util.dsp:
+    + added date elements -> string conversion
+
+ ~ build/ar/makefile:
+ ~ build/bc551/makefile:
+ ~ build/bc56/makefile:
+ ~ build/bc564/makefile:
+ ~ build/bc582/makefile:
+ ~ build/bc59x/makefile:
+ ~ build/bc61x/makefile:
+ + build/bc62x/makefile:
+ ~ build/como433.unix/makefile:
+ ~ build/como433.win32/makefile:
+ ~ build/cw8.unix/makefile:
+ ~ build/cw8.win32/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc32.win32/makefile:
+ ~ build/gcc33.win32/makefile:
+ ~ build/gcc34.win32/makefile:
+ ~ build/gcc32.unix/makefile:
+ ~ build/gcc33.mac/makefile:
+ ~ build/gcc33.unix/makefile:
+ ~ build/gcc34.unix/makefile:
+ ~ build/gcc40.mac.x64/makefile:
+ ~ build/gcc40.mac/makefile:
+ ~ build/gcc40.unix/makefile:
+ ~ build/gcc41.unix/makefile:
+ ~ build/gcc42.unix/makefile:
+ ~ build/gcc43.unix/makefile:
+ ~ build/gcc44.unix.file64bit/makefile:
+ ~ build/gcc44.unix/makefile:
+ ~ build/gcc45.unix.file64bit/makefile:
+ ~ build/gcc45.unix/makefile:
+ ~ build/gcc46.unix.file64bit/makefile:
+ ~ build/gcc46.unix/makefile:
+ ~ build/gcc47.unix.file64bit/makefile:
+ ~ build/gcc47.unix/makefile:
+ ~ build/gcc48.unix.file64bit/makefile:
+ ~ build/gcc48.unix/makefile:
+ ~ build/gcc49.win32/makefile:
+ ~ build/icl10.win32/makefile:
+ ~ build/icl11.win32/makefile:
+ ~ build/icl12.win32/makefile:
+ ~ build/icl6.win32/makefile:
+ ~ build/icl7.win32/makefile:
+ ~ build/icl8.win32/makefile:
+ ~ build/icl9.win32/makefile:
+ ~ build/sunpro59x.unix/makefile:
+ ~ build/vc10.unixem/makefile:
+ ~ build/vc10.x64/makefile:
+ ~ build/vc10/makefile:
+ ~ build/vc11.unixem/makefile:
+ ~ build/vc11.x64/makefile:
+ ~ build/vc11/makefile:
+ ~ build/vc12.unixem/makefile:
+ ~ build/vc12.x64/makefile:
+ ~ build/vc12/makefile:
+ ~ build/vc14.unixem/makefile:
+ ~ build/vc14.x64/makefile:
+ ~ build/vc14/makefile:
+ ~ build/vc5/makefile:
+ ~ build/vc6.unixem/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc7/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8.unixem/makefile:
+ ~ build/vc8.x64/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9.unixem/makefile:
+ ~ build/vc9.x64/makefile:
+ ~ build/vc9/makefile:
+    ~ tidying of makefiles
+    + added compile.test.all target
+    ~ changed compile.test target to be dependent only on compile.test.unit and compile.test.component targets
+    + added test.component.inserters.windows.hive
+    ~ shortening some target/intermediate names
+    + added test.unit.inserters.windows.sc
+    ~ refactored generation of lib and bin directories (copied from libCLImate)
+    ~ ACE-related items
+    ~ moved pantheios_exitProcess (src/core/api.exitprocess.cpp) from Core library into Util library 
+    + added test.unit.util.date_elements_to_string
+    + callback functionality for be.WindowsEventLog
+    + added date elements -> string conversion
+    ~ making pdb files' names unique across all compiler/configurations
+    + added clean.libs.util target
+    + added CC_CUSTOM_DEFS_DEBUG, CC_CUSTOM_DEFS_RELEASE, CPPC_CUSTOM_DEFS_DEBUG, CPPC_CUSTOM_DEFS_RELEASE
+
+Examples:
+
+ ~ examples/c/util/example.c.util.gethostname/example.c.util.gethostname.c:
+    ~ forward-compatibility with STLSoft 1.10+
+
+ ~ examples/cpp/backends/example.cpp.backends.callback/example.cpp.backends.callback.cpp:
+ ~ examples/cpp/backends/example.cpp.backends.file.callback/example.cpp.backends.file.callback.cpp:
+ ~ examples/cpp/backends/example.cpp.backends.file.lrsplit/example.cpp.backends.file.lrsplit.cpp:
+ ~ examples/cpp/backends/example.cpp.backends.file/example.cpp.backends.file.cpp:
+ ~ examples/cpp/contract/example.cpp.contract.PANTHEIOS_ASSERT/example.cpp.contract.PANTHEIOS_ASSERT.cpp:
+ ~ examples/cpp/contract/example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT/example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT.cpp:
+ ~ examples/cpp/format/example.cpp.format.highres/example.cpp.format.highres.cpp:
+ ~ examples/cpp/format/example.cpp.format.lowres/example.cpp.format.lowres.cpp:
+ ~ examples/cpp/format/example.cpp.format.pad/example.cpp.format.pad.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.args/example.cpp.inserter.args.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.b/example.cpp.inserter.b.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.b64/example.cpp.inserter.b64.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.blob/example.cpp.inserter.blob.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.character/example.cpp.inserter.character.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.hex_ptr/example.cpp.inserter.hex_ptr.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.hostid/example.cpp.inserter.hostid.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.i/example.cpp.inserter.i.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.integer/example.cpp.inserter.integer.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.m2w/example.cpp.inserter.m2w.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.p/example.cpp.inserter.p.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.pointer/example.cpp.inserter.pointer.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.processid/example.cpp.inserter.processid.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.real/example.cpp.inserter.real.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.threadid/example.cpp.inserter.threadid.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.w2m/example.cpp.inserter.w2m.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.xi/example.cpp.inserter.xi.cpp:
+ ~ examples/cpp/inserters/example.cpp.inserter.xp/example.cpp.inserter.xp.cpp:
+ ~ examples/cpp/linking/example.cpp.linking.implicit_link_1/example.cpp.linking.implicit_link_1.cpp:
+ ~ examples/cpp/misc/example.cpp.misc.custom_type_1/example.cpp.misc.custom_type_1.cpp:
+ ~ examples/cpp/misc/example.cpp.misc.extended_severity_information/example.cpp.misc.extended_severity_information.cpp:
+ ~ examples/cpp/misc/example.cpp.misc.hetero1/example.cpp.misc.hetero1.cpp:
+ ~ examples/cpp/misc/example.cpp.misc.strings/example.cpp.misc.strings.cpp:
+ ~ examples/cpp/tracing/example.cpp.tracing.standard/example.cpp.tracing.standard.cpp:
+ ~ examples/cpp/tracing/example.cpp.tracing.with_function/example.cpp.tracing.with_function.cpp:
+    + added PANTHEIOS_EXTERN, which is extern "C" in C++  and extern in C
+    ~ redefined PANTHEIOS_EXTERN_C in C-compilation (to nothing)
+
+ ~ examples/cpp/backends/example.cpp.backends.mx.1/example.cpp.backends.mx.1.cpp:
+ ~ examples/cpp/backends/example.cpp.backends.mx.2/example.cpp.backends.mx.2.cpp:
+    ~ section-header canonicalisation
+
+Test:
+
+Test.Unit:
+
+ ~ test/unit/inserters/test.unit.inserter.integer/test.unit.inserter.integer.cpp:
+ ~ test/unit/inserters/test.unit.inserter.m2w/test.unit.inserter.m2w.cpp:
+ ~ test/unit/inserters/test.unit.inserter.w2m/test.unit.inserter.w2m.cpp:
+ ~ test/unit/test.unit.be.N.filtering/test.unit.be.N.filtering.c:
+ ~ test/unit/test.unit.be.WindowsSyslog/test.unit.be.WindowsSyslog.cpp:
+ ~ test/unit/test.unit.be.fail/test.unit.be.fail.c:
+ ~ test/unit/test.unit.be.lrsplit/test.unit.be.lrsplit.c:
+ ~ test/unit/test.unit.bec.COMErrorObject/test.unit.bec.COMErrorObject.cpp:
+ ~ test/unit/test.unit.bec.fail/test.unit.bec.fail.c:
+ ~ test/unit/test.unit.fe.N/test.unit.fe.N.c:
+ ~ test/unit/test.unit.fe.all/test.unit.fe.all.c:
+ ~ test/unit/test.unit.fe.fail/test.unit.fe.fail.c:
+ ~ test/unit/test.unit.fe.null/test.unit.fe.null.c:
+ ~ test/unit/test.unit.fe.simple/test.unit.fe.simple.c:
+ ~ test/unit/test.unit.inserters.windows.sc/implicit_link.cpp:
+ ~ test/unit/test.unit.inserters.windows.sc/test.unit.inserters.windows.sc.cpp:
+ ~ test/unit/test.unit.levels.dynamic_initialisation/test.unit.levels.dynamic_initialisation.cpp:
+ ~ test/unit/test.unit.util.getcurrenttime/test.unit.util.getcurrenttime.cpp:
+ ~ test/unit/test.unit.util.gethostname/test.unit.util.gethostname.cpp:
+ ~ test/unit/test.unit.util.onbailout/test.unit.util.onbailout.cpp:
+ ~ test/unit/test.unit.util.strnlen/test.unit.util.strnlen.cpp:
+    + added PANTHEIOS_EXTERN, which is extern "C" in C++  and extern in C
+    ~ redefined PANTHEIOS_EXTERN_C in C-compilation (to nothing)
+
+ ~ test/unit/test.unit.be.N/test.unit.be.N.c:
+ ~ test/unit/test.unit.bec.file/test.unit.bec.file.cpp:
+ ~ test/unit/test.unit.bec.fprintf/test.unit.bec.fprintf.cpp:
+ ~ test/unit/test.unit.fe.WindowsRegistry/test.unit.fe.WindowsRegistry.cpp:
+    + added PANTHEIOS_EXTERN, which is extern "C" in C++  and extern in C
+    ~ redefined PANTHEIOS_EXTERN_C in C-compilation (to nothing)
+    ~ dependencies
+
+ + test/unit/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp:
+    + added PANTHEIOS_EXTERN, which is extern "C" in C++  and extern in C
+    ~ redefined PANTHEIOS_EXTERN_C in C-compilation (to nothing)
+    ~ dependencies
+    + added pantheios_util_formatMillisecondToString3()
+    + added pantheios_util_formatMicrosecondToString6()
+    ~ using conversion in concert
+
+Test.Component:
+
+ ~ test/component/test.component.be.file.threading/test.component.be.file.threading.cpp:
+ ~ test/component/test.component.core.pantheios_logprintf/test.component.core.pantheios_logprintf.cpp:
+ ~ test/component/test.component.core.pantheios_logputs/test.component.core.pantheios_logputs.cpp:
+ ~ test/component/test.component.custom_severity/test.component.custom_severity.cpp:
+ ~ test/component/test.component.inserters.args/test.component.inserters.args.cpp:
+ ~ test/component/test.component.inserters.b64/test.component.inserters.b64.cpp:
+ ~ test/component/test.component.inserters.boolean/test.component.inserters.boolean.cpp:
+ ~ test/component/test.component.inserters.hostId/test.component.inserters.hostId.cpp:
+ ~ test/component/test.component.inserters.integer/test.component.inserters.integer.cpp:
+ ~ test/component/test.component.inserters.m2w/test.component.inserters.m2w.cpp:
+ ~ test/component/test.component.inserters.pad/test.component.inserters.pad.cpp:
+ ~ test/component/test.component.inserters.pointer/test.component.inserters.pointer.cpp:
+ ~ test/component/test.component.inserters.processId/test.component.inserters.processId.cpp:
+ ~ test/component/test.component.inserters.real/test.component.inserters.real.cpp:
+ ~ test/component/test.component.inserters.slice/test.component.inserters.slice.cpp:
+ ~ test/component/test.component.inserters.stream_character/test.component.inserters.stream_character.cpp:
+ ~ test/component/test.component.inserters.threadId/test.component.inserters.threadId.cpp:
+ ~ test/component/test.component.inserters.variant_bool/test.component.inserters.variant_bool.cpp:
+ ~ test/component/test.component.inserters.w2m/test.component.inserters.w2m.cpp:
+ ~ test/component/test.component.log.1/test.component.log.1.cpp:
+ ~ test/component/test.component.trace.1/test.component.trace.1.cpp:
+ + test/performance/test.performance.util.date_elements_to_string/test.performance.util.date_elements_to_string.cpp:
+    + added PANTHEIOS_EXTERN, which is extern "C" in C++  and extern in C
+    ~ redefined PANTHEIOS_EXTERN_C in C-compilation (to nothing)
+
+ + test/component/test.component.inserters.windows.hive/implicit_link.cpp:
+ + test/component/test.component.inserters.windows.hive/test.component.inserters.windows.hive.cpp:
+    + added test.component.inserters.windows.hive
+
+Test.Performance:
+
+ ~ test/performance/pantheios.test.performance.vc6.dsw:
+    + added test.performance.util.date_elements_to_string
+
+ ~ test/performance/test.performance.inserters.m2w/test.performance.inserters.m2w.cpp:
+ ~ test/performance/test.performance.inserters.w2m/test.performance.inserters.w2m.cpp:
+    + added PANTHEIOS_EXTERN, which is extern "C" in C++  and extern in C
+    ~ redefined PANTHEIOS_EXTERN_C in C-compilation (to nothing)
+
+ + test/performance/test.performance.util.date_elements_to_string/test.performance.util.date_elements_to_string.cpp:
+    + added test.performance.util.date_elements_to_string
+
+Test.Scratch:
+
+ ~ test/scratch/test.scratch.I18N/test.scratch.I18N.cpp:
+ ~ test/scratch/test.scratch.WideString/test.scratch.WideString.cpp:
+ ~ test/scratch/test.scratch.api/test.scratch.api.cpp:
+ + test/scratch/test.scratch.be.ACE/test.scratch.be.ACE.cpp:
+ ~ test/scratch/test.scratch.be.N.fail/test.scratch.be.N.fail.cpp:
+ ~ test/scratch/test.scratch.be.N.with.custom.fe/test.scratch.be.N.with.custom.fe.cpp:
+ ~ test/scratch/test.scratch.be.N/test.scratch.be.N.cpp:
+ ~ test/scratch/test.scratch.be.WindowsSyslog.WithCallback/test.scratch.be.WindowsSyslog.WithCallback.cpp:
+ ~ test/scratch/test.scratch.be.WindowsSyslog/test.scratch.be.WindowsSyslog.cpp:
+ ~ test/scratch/test.scratch.be.file.rolling/test.scratch.be.file.rolling.cpp:
+ ~ test/scratch/test.scratch.be.file/test.scratch.be.file.cpp:
+ ~ test/scratch/test.scratch.be.pantheios.COM/test.scratch.be.pantheios.COM.cpp:
+ ~ test/scratch/test.scratch.be.speech/test.scratch.be.speech.cpp:
+ ~ test/scratch/test.scratch.be.syslog.WithCallback/test.scratch.be.syslog.WithCallback.cpp:
+ ~ test/scratch/test.scratch.be.syslog/test.scratch.be.syslog.cpp:
+ ~ test/scratch/test.scratch.bec.WindowsConsoleCallback/test.scratch.bec.WindowsConsoleCallback.cpp:
+ ~ test/scratch/test.scratch.bec.WindowsMessageBox/test.scratch.bec.WindowsMessageBox.cpp:
+ ~ test/scratch/test.scratch.c_api/test.scratch.c_api.c:
+ ~ test/scratch/test.scratch.extras.com.invoke_nothrow_method/test.scratch.extras.com.invoke_nothrow_method.cpp:
+ ~ test/scratch/test.scratch.extras.com_exception_helpers/test.scratch.extras.com_exception_helpers.cpp:
+ ~ test/scratch/test.scratch.fe.WindowsRegistry/test.scratch.fe.WindowsRegistry.cpp:
+ ~ test/scratch/test.scratch.implicit_link/test.scratch.implicit_link.cpp:
+ ~ test/scratch/test.scratch.pseudoUNIX/test.scratch.pseudoUNIX.c:
+ ~ test/scratch/test.scratch.trace/test.scratch.trace.cpp:
+ ~ test/scratch/test.scratch.tstring/test.scratch.tstring.cpp:
+ ~ test/scratch/test.scratch.util.onbailout/test.scratch.util.onbailout.cpp:
+    + added PANTHEIOS_EXTERN, which is extern "C" in C++  and extern in C
+    ~ redefined PANTHEIOS_EXTERN_C in C-compilation (to nothing)
+
+ + test/scratch/test.scratch.bec.WindowsConsole/diagnostics.cpp:
+    + added test.scratch.bec.WindowsConsole
+
+Dependencies:
+
+ * STLSoft 1.9.131 or later, available from http://stlsoft.org/, or STLSoft 1.10.1-beta2 available from http://github.com/synesissoftware/STLSoft-1.10/
+ * b64 1.4.4, bundled in this distribution
+ * shwild 0.10.4, bundled in this distribution (Required only for Unit and Component tests)
+ * xContract 0.3.11, bundled in this distribution (Only required if custom preprocessor object-like macro PANTHEIOS_QA_USE_XCONTRACT is specified)
+ * xCover 0.5.2, bundled in this distribution (Only required if custom preprocessor object-like macro PANTHEIOS_COVER_MARK_ENTRY is specified)
+ * xTests 0.18.10, bundled in this distribution (Required only for Unit and Component tests)
+
 
 
 30th June 2016 - 1.0.1 beta 217

@@ -4,7 +4,7 @@
  * Purpose:     Declaration of the Pantheios Windows-SysLog Stock Back-end API.
  *
  * Created:     23rd September 2005
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MAJOR     4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MINOR     2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      25
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_REVISION  2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -436,22 +436,14 @@
  */
 struct pan_be_WindowsSyslog_init_t
 {
-#if !defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) && \
-    !defined(PANTHEIOS_NO_NAMESPACE)
-    typedef pantheios::pan_char_t   pan_char_t;
-    typedef pantheios::pan_uint8_t  pan_uint8_t;
-    typedef pantheios::pan_uint16_t pan_uint16_t;
-    typedef pantheios::pan_uint32_t pan_uint32_t;
-#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION && !PANTHEIOS_NO_NAMESPACE */
-
-    pan_uint32_t        version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
-    pan_uint32_t        flags;      /*!< \ref group__backend__stock_backends__WindowsSyslog__flags "Flags" that control the information displayed. */
-    size_t              addrSize;   /*!< Number of elements in array. Must be 0, 4 or 16. 0 means hostName is used; 4 means IPv4; 16 means IPv6. \note IPv6 is not currently supported. */
-    pan_uint8_t         bytes[16];  /*!< IPv4 or IPv6 address elements. */
-    pan_char_t const*   hostName;   /*!< Host name. Must be non-NULL when 0 == addrSize. */
-    pan_uint16_t        port;       /*!< Port to be used for transmission. */
-    pan_uint8_t         facility;   /*!< The facility used by the process. Must be <= 124. Defaults to PANTHEIOS_SYSLOG_FAC_USER */
-    pan_char_t          hostNameBuff[101]; /*!< Buffer for use by client to write host name, to which \link pan_be_WindowsSyslog_init_t::hostName hostName\endlink can be pointed. */
+    pantheios_uint32_t      version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
+    pantheios_uint32_t      flags;      /*!< \ref group__backend__stock_backends__WindowsSyslog__flags "Flags" that control the information displayed. */
+    size_t                  addrSize;   /*!< Number of elements in array. Must be 0, 4 or 16. 0 means hostName is used; 4 means IPv4; 16 means IPv6. \note IPv6 is not currently supported. */
+    pantheios_uint8_t       bytes[16];  /*!< IPv4 or IPv6 address elements. */
+    PAN_CHAR_T const*       hostName;   /*!< Host name. Must be non-NULL when 0 == addrSize. */
+    pantheios_uint16_t      port;       /*!< Port to be used for transmission. */
+    pantheios_uint8_t       facility;   /*!< The facility used by the process. Must be <= 124. Defaults to PANTHEIOS_SYSLOG_FAC_USER */
+    PAN_CHAR_T              hostNameBuff[101]; /*!< Buffer for use by client to write host name, to which \link pan_be_WindowsSyslog_init_t::hostName hostName\endlink can be pointed. */
 
 #ifdef __cplusplus
 public: /* Construction */
@@ -579,11 +571,7 @@ pantheios_be_WindowsSyslog_logEntry(
 PANTHEIOS_CALL(int)
 pantheios_be_WindowsSyslog_parseArgs(
     size_t                          numArgs
-#ifdef PANTHEIOS_NO_NAMESPACE
-,   struct pan_slice_t* const       args
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-,   pantheios::pan_slice_t* const   args
-#endif /* PANTHEIOS_NO_NAMESPACE */
+,   pantheios_slice_t               args[]
 ,   pan_be_WindowsSyslog_init_t*    init
 );
 
@@ -591,7 +579,8 @@ pantheios_be_WindowsSyslog_parseArgs(
 
 #ifdef __cplusplus
 # ifndef PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
-inline pan_be_WindowsSyslog_init_t::pan_be_WindowsSyslog_init_t()
+inline
+pan_be_WindowsSyslog_init_t::pan_be_WindowsSyslog_init_t()
 {
     pantheios_be_WindowsSyslog_getDefaultAppInit(this);
 }

@@ -4,7 +4,7 @@
  * Purpose:     Severity strings for Pantheios API
  *
  * Created:     26th July 2005
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -166,6 +166,20 @@ PANTHEIOS_CALL(size_t) pantheios_getStockSeverityStringLength(pan_sev_t severity
 
     return (pantheios_LookupSeverityStringA_((int)severity, &len), len);
 }
+
+PANTHEIOS_CALL(pantheios_slice_t)
+pantheios_getStockSeverityStringSlice(
+    pan_sev_t severity
+)
+{
+    pantheios_slice_t r;
+
+    r.ptr = pantheios_LookupSeverityStringA_((int)severity, &r.len);
+
+    return r;
+}
+
+
 
 #if 0
 PANTHEIOS_CALL(pan_char_t const*) pantheios_getInserterFormat(pan_char_t buff[200], int widthAndFormat, int bUnsigned, int intSize)

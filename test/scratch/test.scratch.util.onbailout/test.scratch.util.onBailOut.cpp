@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.util.onbailout project.
  *
  * Created:     21st June 2005
- * Updated:     21st September 2015
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
@@ -65,7 +65,7 @@ using std::endl;
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.util.onbailout");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.util.onbailout");
 
 static int main_(int /* argc */, char ** /*argv*/)
 {

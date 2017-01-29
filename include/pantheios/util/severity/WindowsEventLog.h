@@ -5,7 +5,7 @@
  *              Log type.
  *
  * Created:     13th November 2007
- * Updated:     29th June 2016
+ * Updated:     7th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_MINOR      2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_EDIT       16
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_REVISION   3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_EDIT       17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,13 +94,13 @@ namespace pantheios
  * \param severity The Pantheios \link pantheios::pan_severity_t severity level\endlink
  *
  * \return The Windows Event Log event type
+ *
+ * \pre (severity >= 0) && (severity < 16)
  */
-#ifdef __cplusplus
-inline
-#else /* ? __cplusplus */
-static
-#endif /* __cplusplus */
-       WORD pantheios_severity_to_WindowsEventLog_type(int severity)
+pantheios_uint16_t
+pantheios_severity_to_WindowsEventLog_type(
+    int severity
+)
 {
     WORD type;
 

@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.be.file project.
  *
  * Created:     19th January 2008
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -26,10 +26,11 @@
 #include <pantheios/util/system/threadid.h>
 
 /* STLSoft header files */
-#include <stlsoft/conversion/char_conversions.hpp>
-#include <stlsoft/conversion/integer_to_string.hpp>
 #include <platformstl/filesystem/file_lines.hpp>
 #include <platformstl/filesystem/filesystem_traits.hpp>
+#include <stlsoft/conversion/char_conversions.hpp>
+#include <stlsoft/conversion/integer_to_string.hpp>
+#include <stlsoft/smartptr/scoped_handle.hpp>
 
 /* xTests header files */
 #include <xtests/xtests.h>
@@ -95,7 +96,7 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
  * globals
  */
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.file");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.file");
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -297,7 +298,7 @@ static void test_1_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -351,7 +352,7 @@ static void test_1_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -405,7 +406,7 @@ static void test_1_02()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -459,7 +460,7 @@ static void test_1_03()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -513,7 +514,7 @@ static void test_1_04()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -569,7 +570,7 @@ static void test_1_05()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -625,7 +626,7 @@ static void test_1_06()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -681,7 +682,7 @@ static void test_1_07()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -737,7 +738,7 @@ static void test_1_08()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -791,7 +792,7 @@ static void test_1_09()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -845,7 +846,7 @@ static void test_1_0a()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -899,7 +900,7 @@ static void test_1_0b()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -953,7 +954,7 @@ static void test_1_0c()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1009,7 +1010,7 @@ static void test_1_0d()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1065,7 +1066,7 @@ static void test_1_0e()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1121,7 +1122,7 @@ static void test_1_0f()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1179,7 +1180,7 @@ static void test_2_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1233,7 +1234,7 @@ static void test_2_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1287,7 +1288,7 @@ static void test_2_02()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1341,7 +1342,7 @@ static void test_2_03()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1395,7 +1396,7 @@ static void test_2_04()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1451,7 +1452,7 @@ static void test_2_05()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1507,7 +1508,7 @@ static void test_2_06()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1563,7 +1564,7 @@ static void test_2_07()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1619,7 +1620,7 @@ static void test_2_08()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1673,7 +1674,7 @@ static void test_2_09()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1727,7 +1728,7 @@ static void test_2_0a()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1781,7 +1782,7 @@ static void test_2_0b()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1835,7 +1836,7 @@ static void test_2_0c()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1891,7 +1892,7 @@ static void test_2_0d()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1947,7 +1948,7 @@ static void test_2_0e()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2003,7 +2004,7 @@ static void test_2_0f()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2060,7 +2061,7 @@ static void test_3_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2113,7 +2114,7 @@ static void test_3_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2166,7 +2167,7 @@ static void test_3_02()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2219,7 +2220,7 @@ static void test_3_03()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2272,7 +2273,7 @@ static void test_3_04()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2327,7 +2328,7 @@ static void test_3_05()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2382,7 +2383,7 @@ static void test_3_06()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2437,7 +2438,7 @@ static void test_3_07()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2492,7 +2493,7 @@ static void test_3_08()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2545,7 +2546,7 @@ static void test_3_09()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2598,7 +2599,7 @@ static void test_3_0a()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0a.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0a.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2651,7 +2652,7 @@ static void test_3_0b()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0b.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0b.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2704,7 +2705,7 @@ static void test_3_0c()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0c.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0c.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2759,7 +2760,7 @@ static void test_3_0d()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0d.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0d.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2814,7 +2815,7 @@ static void test_3_0e()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0e.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0e.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2869,7 +2870,7 @@ static void test_3_0f()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0f.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0f.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2922,7 +2923,7 @@ static void test_4_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
 
 
         { // (i) Writing something (none-0 length)
@@ -2992,7 +2993,7 @@ static void test_4_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
 
 
         { // (i) Writing something (none-0 length)

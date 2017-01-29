@@ -7,16 +7,16 @@
 CFG=bec.WindowsConsole - Win32 Release
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "bec.WindowsConsole.mak".
-!MESSAGE 
+!MESSAGE
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE 
+!MESSAGE
 !MESSAGE NMAKE /f "bec.WindowsConsole.mak" CFG="bec.WindowsConsole - Win32 Release"
-!MESSAGE 
+!MESSAGE
 !MESSAGE Possible choices for configuration are:
-!MESSAGE 
+!MESSAGE
 !MESSAGE "bec.WindowsConsole - Win32 Release" (based on "Win32 (x86) Static Library")
 !MESSAGE "bec.WindowsConsole - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE "bec.WindowsConsole - Win32 Release Multithreaded" (based on "Win32 (x86) Static Library")
@@ -35,7 +35,7 @@ CFG=bec.WindowsConsole - Win32 Release
 !MESSAGE "bec.WindowsConsole - Win32 Debug Multithreaded NoX" (based on "Win32 (x86) Static Library")
 !MESSAGE "bec.WindowsConsole - Win32 Release Multithreaded DLL NoX" (based on "Win32 (x86) Static Library")
 !MESSAGE "bec.WindowsConsole - Win32 Debug Multithreaded DLL NoX" (based on "Win32 (x86) Static Library")
-!MESSAGE 
+!MESSAGE
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -551,11 +551,23 @@ SOURCE="$(STLSOFT)\include\stlsoft\algorithms\std\alt.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\containers\util\array_policies.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\memory\auto_buffer.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\algorithms\bounded.hpp"
+SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\std\basic_string.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\std\c_string.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\capabilities.hpp"
 # End Source File
 # Begin Source File
 
@@ -575,27 +587,79 @@ SOURCE="$(STLSOFT)\include\stlsoft\util\constraints.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\quality\contract.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\error\conversion_error.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\string\copy_functions.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\quality\cover.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\std\exception.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\util\exception_string.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\error\exceptions.hpp"
+SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\fwd.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\intel.h"
+SOURCE="$(STLSOFT)\include\stlsoft\internal\head_version.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\intel.h"
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_bool_type.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\util\std\iterator_generators.hpp"
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_character_type.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_floating_point_type.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_function_pointer_type.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_fundamental_type.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_integral_type.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_pointer_type.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_same_type.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_void_type.hpp"
 # End Source File
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\util\std\iterator_helper.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\internal\lead_version.h"
 # End Source File
 # Begin Source File
 
@@ -607,7 +671,7 @@ SOURCE="$(STLSOFT)\include\stlsoft\synch\lock_scope.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\util\minmax.hpp"
+SOURCE="$(STLSOFT)\include\stlsoft\meta\util\meta_.hpp"
 # End Source File
 # Begin Source File
 
@@ -615,7 +679,11 @@ SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\msvc.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\msvc.h"
+SOURCE="$(STLSOFT)\include\stlsoft\meta\n_types.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\memory\null_allocator.hpp"
 # End Source File
 # Begin Source File
 
@@ -623,11 +691,23 @@ SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\obsolete.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\obsolete.h"
+SOURCE="$(STLSOFT)\include\stlsoft\exception\os_exception.hpp"
 # End Source File
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\algorithms\pod.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\exception\project_exception.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\diagnostics\ProjectIdentifier.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\exception\root_exception.hpp"
 # End Source File
 # Begin Source File
 
@@ -639,11 +719,15 @@ SOURCE="$(STLSOFT)\include\stlsoft\conversion\sap_cast.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\util\sign_traits.hpp"
+SOURCE="$(STLSOFT)\include\stlsoft\smartptr\scoped_handle.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\stlsoft\string\simple_string.hpp"
+SOURCE="$(STLSOFT)\include\stlsoft\string\shim_string.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\util\sign_traits.hpp"
 # End Source File
 # Begin Source File
 
@@ -655,6 +739,14 @@ SOURCE="$(STLSOFT)\include\stlsoft\util\size_traits.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\string\split_functions.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\containers\static_array.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\util\std_swap.hpp"
 # End Source File
 # Begin Source File
@@ -663,7 +755,31 @@ SOURCE="$(STLSOFT)\include\stlsoft\stlsoft.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\string\string_traits_fwd.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\string\string_view.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\internal\warnings\pop\suppress_deprecation_.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\internal\warnings\push\suppress_deprecation_.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\std\time.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\std\type_info.hpp"
 # End Source File
 # Begin Source File
 
@@ -675,7 +791,23 @@ SOURCE="$(STLSOFT)\include\stlsoft\meta\yesno.hpp"
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\winstl\synch\common.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\api\external\Console.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\winstl\system\console_colour_scope.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\system\directory_functions.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\dl\dl_call.hpp"
 # End Source File
 # Begin Source File
 
@@ -683,11 +815,23 @@ SOURCE="$(STLSOFT)\include\winstl\error\error_functions.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\winstl\error\exceptions.hpp"
+SOURCE="$(STLSOFT)\include\winstl\synch\exceptions.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(STLSOFT)\include\winstl\synch\error\exceptions.hpp"
+SOURCE="$(STLSOFT)\include\winstl\synch\diagnostics\failure_handling.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\filesystem\file_path_buffer.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\api\external\MemoryManagement.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\dl\module.hpp"
 # End Source File
 # Begin Source File
 
@@ -699,7 +843,31 @@ SOURCE="$(STLSOFT)\include\winstl\memory\processheap_allocator.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\winstl\synch\Synchronisation_status_code.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\api\external\Synchronization.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\system\system_traits.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\internal\windows_version.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\winstl\winstl.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\exception\winstl_exception.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\api\winstl_win32_winnt_.h"
 # End Source File
 # End Group
 # End Group
@@ -713,10 +881,6 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\util\core\apidefs.hpp"
 # Begin Source File
 
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\util\backends\arguments.h"
-# End Source File
-# Begin Source File
-
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\contract\assert.h"
 # End Source File
 # Begin Source File
 
@@ -748,11 +912,23 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\init_codes.h"
 # End Source File
 # Begin Source File
 
-SOURCE="$(project.root.directory.variable)\include\pantheios\severity\levels.hpp"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\severity\levels.hpp"
 # End Source File
 # Begin Source File
 
-SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h"
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\generated\log_functions.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\nox.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\shims\access\string\core\pan_severity_t.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\shims\access\string\core\pan_slice_t.hpp"
 # End Source File
 # Begin Source File
 
@@ -760,7 +936,35 @@ SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\safestr.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\shim_declarations.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\slice.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\util\string\snprintf.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\stock_levels.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\string_encoding.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\util\string\strnlen.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(PANTHEIOS_ROOT)\include\pantheios\internal\winlean.h"
 # End Source File
 # End Group
 # End Group

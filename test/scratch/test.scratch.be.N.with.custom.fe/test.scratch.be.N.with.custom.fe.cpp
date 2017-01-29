@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.be.N.with.custom.fe project.
  *
  * Created:     23rd December 2010
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Thanks:      To wassime, for submitting the original program definition.
  *
@@ -12,7 +12,7 @@
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2010-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -60,7 +60,7 @@ static int iCeilingError    = PANTHEIOS_SEV_ERROR;
  * globals
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.N.with.custom.fe");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.N.with.custom.fe");
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()

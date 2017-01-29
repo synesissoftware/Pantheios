@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     20th October 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -93,9 +93,9 @@
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
 # ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 #  include <stlsoft/algorithm/std/alt.hpp>
-# else /* ? STLSoft 1.12+ */
+# else /* ? STLSoft version */
 #  include <stlsoft/algorithms/std/alt.hpp>
-# endif /* STLSoft 1.12+ */
+# endif /* STLSoft version */
 namespace std
 {
     using stlsoft::std_fill_n;

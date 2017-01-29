@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the example.c.util.gethostname project.
  *
  * Created:     25th August 2008
- * Updated:     21st September 2015
+ * Updated:     25th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -69,7 +69,11 @@ int main(int argc, char** argv)
         DWORD   error = GetLastError();
         char*   message;
 
+# if _STLSOFT_VER >= 0x010a0181
+        if(NULL == (message = winstl_C_format_message_strerror_a(error)))
+# else
         if(0 == winstl_C_format_message_alloc_a(error, NULL, &message))
+# endif
         {
             /* Could not retrieve a string-form of the error, so print
              * out the error code (in case that might help)

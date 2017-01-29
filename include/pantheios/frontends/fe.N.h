@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios fe.N Stock Front-end API.
  *
  * Created:     18th October 2006
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2017, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MINOR     3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      18
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  3
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@
  *
 \htmlonly
 <pre>
-  PANTHEIOS_EXTERN_C pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
+  PANTHEIOS_EXTERN pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
   {
     { 1, PANTHEIOS_SEV_WARNING }, // Back-end 1 has a ceiling of WARNING (so will log WARNING, ERROR, CRITICAL, ALERT, and EMERGENCY)
     { 2, PANTHEIOS_SEV_ERROR   }, // Back-end 2 has a ceiling of ERROR (so will log ERROR, CRITICAL, ALERT, and EMERGENCY)
@@ -170,7 +170,7 @@ struct Pantheios_no_longer_uses_the_symbol_PAN_FE_N_PROCESS_IDENTITY_all_front_e
  *
  * \ingroup group__frontend__stock_frontends__N
  */
-PANTHEIOS_EXTERN_C pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[];
+PANTHEIOS_EXTERN pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[];
 
 /* ////////////////////////////////////////////////////////////////////// */
 

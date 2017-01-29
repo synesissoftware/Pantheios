@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.be.N project.
  *
  * Created:     18th October 2006
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -49,9 +49,9 @@
  * globals
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.N");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.N");
 
-PANTHEIOS_EXTERN_C pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
+PANTHEIOS_EXTERN pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
 {
     { 1,  PANTHEIOS_SEV_NOTICE }            /* Filters out everything below 'notice' */
   , { 2,  PANTHEIOS_SEV_INFORMATIONAL  }    /* Filters out everything below 'informational' */
@@ -61,7 +61,7 @@ PANTHEIOS_EXTERN_C pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
   , { 0,  PANTHEIOS_SEV_NOTICE }            /* Terminates the array; sets the default ceiling to 'notice' */
 };
 
-PANTHEIOS_EXTERN_C pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
+PANTHEIOS_EXTERN pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
     PANTHEIOS_BE_N_STDFORM_ENTRY(1, pantheios_be_file, 0)
   , PANTHEIOS_BE_N_STDFORM_ENTRY(2, pantheios_be_fprintf, PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28)

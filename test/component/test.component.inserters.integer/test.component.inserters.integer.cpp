@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.integer project.
  *
  * Created:     19th October 2006
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www: http://www.synesis.com.au/software
@@ -73,24 +73,20 @@ static void test_1_24();
  * globals
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.integer");
-
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.integer");
 
 /* /////////////////////////////////////////////////////////////////////////
- * character encoding
+ * macros
  */
+
+#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
 # define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 # define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* ////////////////////////////////////////////////////////////////////// */

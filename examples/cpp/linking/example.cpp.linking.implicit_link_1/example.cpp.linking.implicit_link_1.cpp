@@ -6,7 +6,7 @@
  *                - use of implicit linking to bind in front-end and back-end
  *
  * Created:     31st August 2006
- * Updated:     21st September 2015
+ * Updated:     27th January 2017
  *
  * www:         http://www.pantheios.org/
  *
@@ -37,7 +37,7 @@
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.linking.implicit_link_1");
+PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.linking.implicit_link_1");
 
 /* ////////////////////////////////////////////////////////////////////// */
 

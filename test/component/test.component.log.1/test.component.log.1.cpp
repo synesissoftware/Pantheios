@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.log.1 project.
  *
  * Created:     25th November 2007
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -32,7 +32,7 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.log.1");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.log.1");
 
 /* ////////////////////////////////////////////////////////////////////// */
 

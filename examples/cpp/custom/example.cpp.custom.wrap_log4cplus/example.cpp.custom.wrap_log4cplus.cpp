@@ -9,7 +9,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     16th August 2006
- * Updated:     21st September 2015
+ * Updated:     22nd October 2016
  *
  * www:         http://www.pantheios.org/
  *
@@ -182,13 +182,13 @@ PANTHEIOS_CALL(int) pantheios_be_init(
   }
   catch(std::bad_alloc&)
   {
-    pantheios::util::onBailOut(PANTHEIOS_LOG_ALERT, "failed to initialise back-end", processIdentity, "out of memory");
+    pantheios::util::onBailOut(PANTHEIOS_SEV_ALERT, "failed to initialise back-end", processIdentity, "out of memory");
 
     return PANTHEIOS_INIT_RC_OUT_OF_MEMORY
   }
   catch(std::exception& x)
   {
-    pantheios::util::onBailOut(PANTHEIOS_LOG_ALERT, "failed to initialise back-end", processIdentity, x.what());
+    pantheios::util::onBailOut(PANTHEIOS_SEV_ALERT, "failed to initialise back-end", processIdentity, x.what());
 
     return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
   }

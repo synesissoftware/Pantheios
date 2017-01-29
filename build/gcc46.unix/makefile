@@ -5,7 +5,7 @@
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	10th August 2016
+# Updated:	25th January 2017
 #
 ############################################################################
 
@@ -494,7 +494,7 @@ CC_F_WARNING_ERR		=	-Werror
 CC_F_WARNINGS_LIMIT		=	
 CC_F_MINIMUM_SIZE		=	-O1
 #CC_F_MAXIMUM_SPEED		=	-O3
-CC_APP_F_WARNING_MAX	=	-Wall           -Wno-long-long -Wno-unused-value -Wno-unused-function -Wundef -Wshadow
+CC_APP_F_WARNING_MAX	=	-Wall -Wno-long-long -Wno-unused-value -Wno-unused-function -Wundef -Wshadow
 CC_APP_F_WARNING_ERR	=	$(CC_F_WARNING_ERR)
 CC_F_ADDITIONAL			=	
 
@@ -502,7 +502,7 @@ CC_F_ADDITIONAL			=
 
 CPPC_F_NOLOGO			=	
 CPPC_F_COMPILE_ONLY 	=	-c
-CPPC_F_WARNING_MAX		=	-Wall -pedantic -Wno-long-long -Wno-unused-value -Wno-unused-function                  -Wno-array-bounds
+CPPC_F_WARNING_MAX		=	-Wall -pedantic -Wno-long-long -Wno-unused-value -Wno-unused-function -Wno-array-bounds
 CPPC_F_WARNING_ERR		=	-Werror
 CPPC_F_EXCEPTIONS_ON	=	
 CPPC_F_EXCEPTIONS_OFF	=	
@@ -514,7 +514,7 @@ CPPC_F_WARNINGS_LIMIT	=
 CPPC_F_MINIMUM_SIZE 	=	-O1
 CPPC_F_MAXIMUM_SPEED	=	-O3
 CPPC_F_OPTIMISED		=	$(CPPC_F_MAXIMUM_SPEED)
-CPPC_APP_F_WARNING_MAX	=	-Wall           -Wno-long-long -Wno-unused-value -Wno-unused-function                  -Wno-array-bounds
+CPPC_APP_F_WARNING_MAX	=	-Wall -Wno-long-long -Wno-unused-value -Wno-unused-function -Wno-array-bounds
 CPPC_APP_F_WARNING_ERR	=	$(CPPC_F_WARNING_ERR)
 CPPC_F_ADDITIONAL		=	
 
@@ -629,9 +629,11 @@ CC_TEST_UNIT_FLAGS = $(CC_APP_FLAGS)
 CPPC_TEST_UNIT_FLAGS = $(CPPC_APP_FLAGS)
 
 
+ifdef ACE
+# ACE additional arguments
+CPPC_ACE_ADDITIONAL_ARGS	=
 
-
-
+endif # ACE
 ########################################
 # Arguments (= flags + defines + includes)
 
@@ -846,6 +848,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/pantheios/util/severity/syslog.h\
  $(PROJ_INCLUDE_DIR)/pantheios/util/severity/WindowsEventLog.h\
  \
+ $(PROJ_INCLUDE_DIR)/pantheios/util/string/date_elements_to_string.h\
  $(PROJ_INCLUDE_DIR)/pantheios/util/string/snprintf.h\
  $(PROJ_INCLUDE_DIR)/pantheios/util/string/strdup.h\
  $(PROJ_INCLUDE_DIR)/pantheios/util/string/strnlen.h\
@@ -1452,7 +1455,7 @@ TARG_TEST_PERF_ins_w2m_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.in
 # The strange naming conventions of these targets are to placate some
 # make utilities, which have a limit to the identifier length.
 ifdef ACE
-TEST_SCRT_ACE_MT_D						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.ACE.$(COMP_ARCH_OS_TAG).mt.debug
+TEST_SCRT_ACE_MT_D						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt.debug
 endif # ACE
 TARG_TEST_MT_D_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_SCRT_BE_SYSLOG_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).mt.debug
@@ -1462,7 +1465,7 @@ TARG_TEST_FE_MT_D 						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.$(COMP
 TARG_TEST_BE_N_FAIL_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_FE_SIMPLE_WC_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.debug
 ifdef ACE
-TEST_SCRT_ACE_MT_R						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.ACE.$(COMP_ARCH_OS_TAG).mt
+TEST_SCRT_ACE_MT_R						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt
 endif # ACE
 TARG_TEST_MT_R_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_SCRT_BE_SYSLOG_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).mt
@@ -1488,8 +1491,6 @@ TARG_TEST_FE_SIMPLE_WC_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe
 
 ##############################
 # Unit Tests
-#
-# NOTE: dynamic_initialisation is contracted, as scares CodeWarrior's linker (for being longer than 63 chars)
 
 TARG_TEST_UNIT_lvls_dyninit_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_lvls_dyninit_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt
@@ -1503,6 +1504,10 @@ TARG_TEST_UNIT_getcurrtm_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.uti
 TARG_TEST_UNIT_getcurrtm_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_UNIT_getcurrtm_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_UNIT_getcurrtm_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_dtel2s_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_dtel2s_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_dtel2s_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_dtel2s_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG)
 TARG_TEST_UNIT_getversion_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_getversion_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_UNIT_getversion_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).debug
@@ -1511,14 +1516,14 @@ TARG_TEST_UNIT_gethostname_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.u
 TARG_TEST_UNIT_gethostname_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_UNIT_gethostname_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_UNIT_gethostname_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_onbailout_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_strnlen_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_onbailout_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_strnlen_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_onbailout_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_strnlen_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_onbailout_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_strnlen_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_onbailout_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_strnlen_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_onbailout_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_strnlen_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_onbailout_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_strnlen_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_onbailout_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_strnlen_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG)
 TARG_TEST_UNIT_bec_file_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_bec_file_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_UNIT_bec_file_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).debug
@@ -1590,6 +1595,7 @@ TARG_TEST_UNIT_ins_w2m_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inser
 # core
 
 OBJ_utl_bailout_MT_D		= $(PROJ_OBJ_DIR)/util.bailout.mt.debug.o
+OBJ_utl_dtel2s_MT_D		= $(PROJ_OBJ_DIR)/util.dtel2s.mt.debug.o
 OBJ_utl_init_code_strs_MT_D	= $(PROJ_OBJ_DIR)/util.init_err_strings.mt.debug.o
 OBJ_utl_sev_strs_MT_D		= $(PROJ_OBJ_DIR)/util.sev_strings.mt.debug.o
 OBJ_utl_snprintf_MT_D 	= $(PROJ_OBJ_DIR)/util.snprintf.mt.debug.o
@@ -1605,7 +1611,7 @@ OBJ_utl_time_MT_D			= $(PROJ_OBJ_DIR)/util.time.mt.debug.o
 OBJ_utl_host_name_MT_D	= $(PROJ_OBJ_DIR)/util.host_name.mt.debug.o
 OBJ_cr_api_MT_D 			= $(PROJ_OBJ_DIR)/core.api.mt.debug.o
 OBJ_cr_api_dep_MT_D 		= $(PROJ_OBJ_DIR)/core.api.deprecated.mt.debug.o
-OBJ_cr_api_exit_MT_D 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.mt.debug.o
+OBJ_utl_api_exit_MT_D 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.mt.debug.o
 OBJ_cr_api_logprintf_MT_D	= $(PROJ_OBJ_DIR)/core.api.logprintf.mt.debug.o
 OBJ_cr_api_logputs_MT_D	= $(PROJ_OBJ_DIR)/core.api.logputs.mt.debug.o
 OBJ_cr_auto_MT_D 			= $(PROJ_OBJ_DIR)/core.auto.mt.debug.o
@@ -1670,7 +1676,9 @@ OBJ_fe_simple_MT_D 		= $(PROJ_OBJ_DIR)/fe.simple.mt.debug.o
 OBJ_fe_simple_WC_MT_D 	= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.mt.debug.o
 
 OBJ_UTIL_MT_D=\
+ $(OBJ_utl_api_exit_MT_D)\
  $(OBJ_utl_bailout_MT_D)\
+ $(OBJ_utl_dtel2s_MT_D)\
  $(OBJ_utl_init_code_strs_MT_D)\
  $(OBJ_utl_sev_strs_MT_D)\
  $(OBJ_utl_snprintf_MT_D)\
@@ -1689,7 +1697,6 @@ OBJ_UTIL_MT_D=\
 OBJ_CORE_MT_D=\
  $(OBJ_cr_api_MT_D)\
  $(OBJ_cr_api_dep_MT_D)\
- $(OBJ_cr_api_exit_MT_D)\
  $(OBJ_cr_api_logprintf_MT_D)\
  $(OBJ_cr_api_logputs_MT_D)\
  $(OBJ_cr_auto_MT_D)\
@@ -1900,6 +1907,7 @@ OBJ_FE_SIMPLE_WC_MT_D=\
  \
 
 OBJ_utl_bailout_MT_R		= $(PROJ_OBJ_DIR)/util.bailout.mt.o
+OBJ_utl_dtel2s_MT_R		= $(PROJ_OBJ_DIR)/util.dtel2s.mt.o
 OBJ_utl_init_code_strs_MT_R	= $(PROJ_OBJ_DIR)/util.init_err_strings.mt.o
 OBJ_utl_sev_strs_MT_R		= $(PROJ_OBJ_DIR)/util.sev_strings.mt.o
 OBJ_utl_snprintf_MT_R 	= $(PROJ_OBJ_DIR)/util.snprintf.mt.o
@@ -1915,7 +1923,7 @@ OBJ_utl_time_MT_R			= $(PROJ_OBJ_DIR)/util.time.mt.o
 OBJ_utl_host_name_MT_R	= $(PROJ_OBJ_DIR)/util.host_name.mt.o
 OBJ_cr_api_MT_R 			= $(PROJ_OBJ_DIR)/core.api.mt.o
 OBJ_cr_api_dep_MT_R 		= $(PROJ_OBJ_DIR)/core.api.deprecated.mt.o
-OBJ_cr_api_exit_MT_R 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.mt.o
+OBJ_utl_api_exit_MT_R 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.mt.o
 OBJ_cr_api_logprintf_MT_R	= $(PROJ_OBJ_DIR)/core.api.logprintf.mt.o
 OBJ_cr_api_logputs_MT_R	= $(PROJ_OBJ_DIR)/core.api.logputs.mt.o
 OBJ_cr_auto_MT_R 			= $(PROJ_OBJ_DIR)/core.auto.mt.o
@@ -1980,7 +1988,9 @@ OBJ_fe_simple_MT_R 		= $(PROJ_OBJ_DIR)/fe.simple.mt.o
 OBJ_fe_simple_WC_MT_R 	= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.mt.o
 
 OBJ_UTIL_MT_R=\
+ $(OBJ_utl_api_exit_MT_R)\
  $(OBJ_utl_bailout_MT_R)\
+ $(OBJ_utl_dtel2s_MT_R)\
  $(OBJ_utl_init_code_strs_MT_R)\
  $(OBJ_utl_sev_strs_MT_R)\
  $(OBJ_utl_snprintf_MT_R)\
@@ -1999,7 +2009,6 @@ OBJ_UTIL_MT_R=\
 OBJ_CORE_MT_R=\
  $(OBJ_cr_api_MT_R)\
  $(OBJ_cr_api_dep_MT_R)\
- $(OBJ_cr_api_exit_MT_R)\
  $(OBJ_cr_api_logprintf_MT_R)\
  $(OBJ_cr_api_logputs_MT_R)\
  $(OBJ_cr_auto_MT_R)\
@@ -2210,6 +2219,7 @@ OBJ_FE_SIMPLE_WC_MT_R=\
  \
 
 OBJ_utl_bailout_ST_D		= $(PROJ_OBJ_DIR)/util.bailout.debug.o
+OBJ_utl_dtel2s_ST_D		= $(PROJ_OBJ_DIR)/util.dtel2s.debug.o
 OBJ_utl_init_code_strs_ST_D	= $(PROJ_OBJ_DIR)/util.init_err_strings.debug.o
 OBJ_utl_sev_strs_ST_D		= $(PROJ_OBJ_DIR)/util.sev_strings.debug.o
 OBJ_utl_snprintf_ST_D 	= $(PROJ_OBJ_DIR)/util.snprintf.debug.o
@@ -2225,7 +2235,7 @@ OBJ_utl_time_ST_D			= $(PROJ_OBJ_DIR)/util.time.debug.o
 OBJ_utl_host_name_ST_D	= $(PROJ_OBJ_DIR)/util.host_name.debug.o
 OBJ_cr_api_ST_D 			= $(PROJ_OBJ_DIR)/core.api.debug.o
 OBJ_cr_api_dep_ST_D 		= $(PROJ_OBJ_DIR)/core.api.deprecated.debug.o
-OBJ_cr_api_exit_ST_D 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.debug.o
+OBJ_utl_api_exit_ST_D 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.debug.o
 OBJ_cr_api_logprintf_ST_D	= $(PROJ_OBJ_DIR)/core.api.logprintf.debug.o
 OBJ_cr_api_logputs_ST_D	= $(PROJ_OBJ_DIR)/core.api.logputs.debug.o
 OBJ_cr_auto_ST_D 			= $(PROJ_OBJ_DIR)/core.auto.debug.o
@@ -2290,7 +2300,9 @@ OBJ_fe_simple_ST_D 		= $(PROJ_OBJ_DIR)/fe.simple.debug.o
 OBJ_fe_simple_WC_ST_D 	= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.debug.o
 
 OBJ_UTIL_ST_D=\
+ $(OBJ_utl_api_exit_ST_D)\
  $(OBJ_utl_bailout_ST_D)\
+ $(OBJ_utl_dtel2s_ST_D)\
  $(OBJ_utl_init_code_strs_ST_D)\
  $(OBJ_utl_sev_strs_ST_D)\
  $(OBJ_utl_snprintf_ST_D)\
@@ -2309,7 +2321,6 @@ OBJ_UTIL_ST_D=\
 OBJ_CORE_ST_D=\
  $(OBJ_cr_api_ST_D)\
  $(OBJ_cr_api_dep_ST_D)\
- $(OBJ_cr_api_exit_ST_D)\
  $(OBJ_cr_api_logprintf_ST_D)\
  $(OBJ_cr_api_logputs_ST_D)\
  $(OBJ_cr_auto_ST_D)\
@@ -2520,6 +2531,7 @@ OBJ_FE_SIMPLE_WC_ST_D=\
  \
 
 OBJ_utl_bailout_ST_R		= $(PROJ_OBJ_DIR)/util.bailout.o
+OBJ_utl_dtel2s_ST_R		= $(PROJ_OBJ_DIR)/util.dtel2s.o
 OBJ_utl_init_code_strs_ST_R	= $(PROJ_OBJ_DIR)/util.init_err_strings.o
 OBJ_utl_sev_strs_ST_R		= $(PROJ_OBJ_DIR)/util.sev_strings.o
 OBJ_utl_snprintf_ST_R 	= $(PROJ_OBJ_DIR)/util.snprintf.o
@@ -2535,7 +2547,7 @@ OBJ_utl_time_ST_R			= $(PROJ_OBJ_DIR)/util.time.o
 OBJ_utl_host_name_ST_R	= $(PROJ_OBJ_DIR)/util.host_name.o
 OBJ_cr_api_ST_R 			= $(PROJ_OBJ_DIR)/core.api.o
 OBJ_cr_api_dep_ST_R 		= $(PROJ_OBJ_DIR)/core.api.deprecated.o
-OBJ_cr_api_exit_ST_R 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.o
+OBJ_utl_api_exit_ST_R 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.o
 OBJ_cr_api_logprintf_ST_R	= $(PROJ_OBJ_DIR)/core.api.logprintf.o
 OBJ_cr_api_logputs_ST_R	= $(PROJ_OBJ_DIR)/core.api.logputs.o
 OBJ_cr_auto_ST_R 			= $(PROJ_OBJ_DIR)/core.auto.o
@@ -2600,7 +2612,9 @@ OBJ_fe_simple_ST_R 		= $(PROJ_OBJ_DIR)/fe.simple.o
 OBJ_fe_simple_WC_ST_R 	= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.o
 
 OBJ_UTIL_ST_R=\
+ $(OBJ_utl_api_exit_ST_R)\
  $(OBJ_utl_bailout_ST_R)\
+ $(OBJ_utl_dtel2s_ST_R)\
  $(OBJ_utl_init_code_strs_ST_R)\
  $(OBJ_utl_sev_strs_ST_R)\
  $(OBJ_utl_snprintf_ST_R)\
@@ -2619,7 +2633,6 @@ OBJ_UTIL_ST_R=\
 OBJ_CORE_ST_R=\
  $(OBJ_cr_api_ST_R)\
  $(OBJ_cr_api_dep_ST_R)\
- $(OBJ_cr_api_exit_ST_R)\
  $(OBJ_cr_api_logprintf_ST_R)\
  $(OBJ_cr_api_logputs_ST_R)\
  $(OBJ_cr_auto_ST_R)\
@@ -3267,7 +3280,7 @@ OBJ_TEST_PERF_ins_w2m_ST_R		=	./test.performance.inserters.w2m.o
 # Scratch Tests
 
 ifdef ACE
-OBJ_SCRT_ACE_MT_D					=	./test.scratch.ACE.mt.debug.o
+OBJ_SCRT_ACE_MT_D					=	./test.scratch.be.ACE.mt.debug.o
 endif # ACE
 OBJ_TEST_API_MT_D					=	./test.api.mt.debug.o
 OBJ_TEST_FE_MT_D					=	./test.fe.mt.debug.o
@@ -3276,7 +3289,7 @@ OBJ_TEST_FE_SIMPLE_WC_MT_D		=	./test.fe.simple.WithCallback.mt.debug.o
 OBJ_TEST_SCRT_BE_SYSLOG_MT_D		=	./test.scratch.be.syslog.mt.debug.o
 OBJ_TEST_SCRT_BE_SYSLOGWC_MT_D	=	./test.scratch.be.syslog.WithCallback.mt.debug.o
 ifdef ACE
-OBJ_SCRT_ACE_MT_R					=	./test.scratch.ACE.mt.o
+OBJ_SCRT_ACE_MT_R					=	./test.scratch.be.ACE.mt.o
 endif # ACE
 OBJ_TEST_API_MT_R					=	./test.api.mt.o
 OBJ_TEST_FE_MT_R					=	./test.fe.mt.o
@@ -3285,7 +3298,7 @@ OBJ_TEST_FE_SIMPLE_WC_MT_R		=	./test.fe.simple.WithCallback.mt.o
 OBJ_TEST_SCRT_BE_SYSLOG_MT_R		=	./test.scratch.be.syslog.mt.o
 OBJ_TEST_SCRT_BE_SYSLOGWC_MT_R	=	./test.scratch.be.syslog.WithCallback.mt.o
 ifdef ACE
-OBJ_SCRT_ACE_ST_D					=	./test.scratch.ACE.debug.o
+OBJ_SCRT_ACE_ST_D					=	./test.scratch.be.ACE.debug.o
 endif # ACE
 OBJ_TEST_API_ST_D					=	./test.api.debug.o
 OBJ_TEST_FE_ST_D					=	./test.fe.debug.o
@@ -3294,7 +3307,7 @@ OBJ_TEST_FE_SIMPLE_WC_ST_D		=	./test.fe.simple.WithCallback.debug.o
 OBJ_TEST_SCRT_BE_SYSLOG_ST_D		=	./test.scratch.be.syslog.debug.o
 OBJ_TEST_SCRT_BE_SYSLOGWC_ST_D	=	./test.scratch.be.syslog.WithCallback.debug.o
 ifdef ACE
-OBJ_SCRT_ACE_ST_R					=	./test.scratch.ACE.o
+OBJ_SCRT_ACE_ST_R					=	./test.scratch.be.ACE.o
 endif # ACE
 OBJ_TEST_API_ST_R					=	./test.api.o
 OBJ_TEST_FE_ST_R					=	./test.fe.o
@@ -3305,6 +3318,8 @@ OBJ_TEST_SCRT_BE_SYSLOGWC_ST_R	=	./test.scratch.be.syslog.WithCallback.o
 
 ##############################
 # Unit Tests
+#
+# NOTE: some names are as names longer than 63 characters scare CodeWarrior's linker
 
 OBJ_TEST_UNIT_lvls_dyninit_MT_D	=	./test.unit.levels.dynamic_init.mt.debug.o
 OBJ_TEST_UNIT_lvls_dyninit_MT_R	=	./test.unit.levels.dynamic_init.mt.o
@@ -3318,6 +3333,10 @@ OBJ_TEST_UNIT_getcurrtm_MT_D	=	./test.unit.util.getcurrenttime.mt.debug.o
 OBJ_TEST_UNIT_getcurrtm_MT_R	=	./test.unit.util.getcurrenttime.mt.o
 OBJ_TEST_UNIT_getcurrtm_ST_D	=	./test.unit.util.getcurrenttime.debug.o
 OBJ_TEST_UNIT_getcurrtm_ST_R	=	./test.unit.util.getcurrenttime.o
+OBJ_TEST_UNIT_dtel2s_MT_D	    =	./test.unit.util.dtel2s.mt.debug.o
+OBJ_TEST_UNIT_dtel2s_MT_R	    =	./test.unit.util.dtel2s.mt.o
+OBJ_TEST_UNIT_dtel2s_ST_D	    =	./test.unit.util.dtel2s.debug.o
+OBJ_TEST_UNIT_dtel2s_ST_R	    =	./test.unit.util.dtel2s.o
 OBJ_TEST_UNIT_getversion_MT_D	=	./test.unit.getversion.mt.debug.o
 OBJ_TEST_UNIT_getversion_MT_R	=	./test.unit.getversion.mt.o
 OBJ_TEST_UNIT_getversion_ST_D	=	./test.unit.getversion.debug.o
@@ -3952,6 +3971,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
  $(OBJ_TEST_UNIT_lvls_vals_MT_D)\
  $(OBJ_TEST_UNIT_getcurrtm_MT_D)\
+ $(OBJ_TEST_UNIT_dtel2s_MT_D)\
  $(OBJ_TEST_UNIT_getversion_MT_D)\
  $(OBJ_TEST_UNIT_gethostname_MT_D)\
  $(OBJ_TEST_UNIT_onbailout_MT_D)\
@@ -3975,6 +3995,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_MT_R)\
  $(OBJ_TEST_UNIT_lvls_vals_MT_R)\
  $(OBJ_TEST_UNIT_getcurrtm_MT_R)\
+ $(OBJ_TEST_UNIT_dtel2s_MT_R)\
  $(OBJ_TEST_UNIT_getversion_MT_R)\
  $(OBJ_TEST_UNIT_gethostname_MT_R)\
  $(OBJ_TEST_UNIT_onbailout_MT_R)\
@@ -3998,6 +4019,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_ST_D)\
  $(OBJ_TEST_UNIT_lvls_vals_ST_D)\
  $(OBJ_TEST_UNIT_getcurrtm_ST_D)\
+ $(OBJ_TEST_UNIT_dtel2s_ST_D)\
  $(OBJ_TEST_UNIT_getversion_ST_D)\
  $(OBJ_TEST_UNIT_gethostname_ST_D)\
  $(OBJ_TEST_UNIT_onbailout_ST_D)\
@@ -4021,6 +4043,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_lvls_dyninit_ST_R)\
  $(OBJ_TEST_UNIT_lvls_vals_ST_R)\
  $(OBJ_TEST_UNIT_getcurrtm_ST_R)\
+ $(OBJ_TEST_UNIT_dtel2s_ST_R)\
  $(OBJ_TEST_UNIT_getversion_ST_R)\
  $(OBJ_TEST_UNIT_gethostname_ST_R)\
  $(OBJ_TEST_UNIT_onbailout_ST_R)\
@@ -4716,6 +4739,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_MT_D)\
  $(TARG_TEST_UNIT_lvls_vals_MT_D)\
  $(TARG_TEST_UNIT_getcurrtm_MT_D)\
+ $(TARG_TEST_UNIT_dtel2s_MT_D)\
  $(TARG_TEST_UNIT_getversion_MT_D)\
  $(TARG_TEST_UNIT_gethostname_MT_D)\
  $(TARG_TEST_UNIT_onbailout_MT_D)\
@@ -4739,6 +4763,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_MT_R)\
  $(TARG_TEST_UNIT_lvls_vals_MT_R)\
  $(TARG_TEST_UNIT_getcurrtm_MT_R)\
+ $(TARG_TEST_UNIT_dtel2s_MT_R)\
  $(TARG_TEST_UNIT_getversion_MT_R)\
  $(TARG_TEST_UNIT_gethostname_MT_R)\
  $(TARG_TEST_UNIT_onbailout_MT_R)\
@@ -4762,6 +4787,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_ST_D)\
  $(TARG_TEST_UNIT_lvls_vals_ST_D)\
  $(TARG_TEST_UNIT_getcurrtm_ST_D)\
+ $(TARG_TEST_UNIT_dtel2s_ST_D)\
  $(TARG_TEST_UNIT_getversion_ST_D)\
  $(TARG_TEST_UNIT_gethostname_ST_D)\
  $(TARG_TEST_UNIT_onbailout_ST_D)\
@@ -4785,6 +4811,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_lvls_dyninit_ST_R)\
  $(TARG_TEST_UNIT_lvls_vals_ST_R)\
  $(TARG_TEST_UNIT_getcurrtm_ST_R)\
+ $(TARG_TEST_UNIT_dtel2s_ST_R)\
  $(TARG_TEST_UNIT_getversion_ST_R)\
  $(TARG_TEST_UNIT_gethostname_ST_R)\
  $(TARG_TEST_UNIT_onbailout_ST_R)\
@@ -4899,11 +4926,20 @@ prep.files.for.os:	$(PROJ_MAKEFILE_NAME)\
 prep:	prep.files.for.os
 
 
-check.lib.dir:		$(PROJ_MAKEFILE_NAME)
-	@-mkdir -p $(PROJ_LIB_DIR)
+CHECK_FILE_lib_dir	=	$(PROJ_LIB_DIR)/.dir_exists
+CHECK_FILE_bin_dir	=	$(PROJ_BIN_DIR)/.dir_exists
 
-check.bin.dir:		$(PROJ_MAKEFILE_NAME)
-	@-mkdir -p $(PROJ_BIN_DIR)
+check.lib.dir:		$(PROJ_MAKEFILE_NAME) $(CHECK_FILE_lib_dir)
+
+$(CHECK_FILE_lib_dir):
+	@mkdir -p $(PROJ_LIB_DIR)
+	@touch $(CHECK_FILE_lib_dir)
+
+check.bin.dir:		$(PROJ_MAKEFILE_NAME) $(CHECK_FILE_bin_dir)
+
+$(CHECK_FILE_bin_dir):
+	@mkdir -p $(PROJ_BIN_DIR)
+	@touch $(CHECK_FILE_bin_dir)
 
 
 # compile targets
@@ -4957,7 +4993,9 @@ compile.test.scratch:       $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_T
 
 compile.test.unit:          $(PROJ_MAKEFILE_NAME)   prep.files.for.os   $(OBJS_TEST_UNIT)
 
-compile.test:                                                           compile.test.unit compile.test.component compile.test.performance compile.test.scratch
+compile.test:                                                           compile.test.unit compile.test.component
+
+compile.test.all:                                                       compile.test.unit compile.test.component compile.test.performance compile.test.scratch
 
 compile:                                                                compile.libs compile.libs.3pty compile.examples compile.test
 
@@ -5208,6 +5246,10 @@ test.unit_:
 	$(TARG_TEST_UNIT_getcurrtm_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getcurrtm_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getcurrtm_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_dtel2s_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getversion_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getversion_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getversion_ST_D) --verbosity=$(TEST_VERBOSITY)
@@ -5744,7 +5786,6 @@ clean.libs.be:
 	@-$(RM) $(OBJ_BE_SYSLOG_ST_R)
 	@-$(RM) $(OBJ_BER_SYSLOG_ST_R)
 
-
 clean.libs.fe:
 	@echo Cleaning Front-end libraries ...
 	@-$(RM) $(LIB_FE_ALL_MT_D)
@@ -6279,6 +6320,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_lvls_dyninit_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_vals_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_getcurrtm_MT_D)
+	@-$(RM) $(TARG_TEST_UNIT_dtel2s_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_getversion_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_gethostname_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_onbailout_MT_D)
@@ -6300,6 +6342,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_lvls_dyninit_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_vals_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_getcurrtm_MT_R)
+	@-$(RM) $(TARG_TEST_UNIT_dtel2s_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_getversion_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_gethostname_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_onbailout_MT_R)
@@ -6321,6 +6364,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_lvls_dyninit_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_vals_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_getcurrtm_ST_D)
+	@-$(RM) $(TARG_TEST_UNIT_dtel2s_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_getversion_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_gethostname_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_onbailout_ST_D)
@@ -6342,6 +6386,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_lvls_dyninit_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_vals_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_getcurrtm_ST_R)
+	@-$(RM) $(TARG_TEST_UNIT_dtel2s_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_getversion_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_gethostname_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_onbailout_ST_R)
@@ -6363,6 +6408,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_dyninit_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_vals_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_getcurrtm_MT_D)
+	@-$(RM) $(OBJ_TEST_UNIT_dtel2s_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_getversion_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_gethostname_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_onbailout_MT_D)
@@ -6384,6 +6430,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_dyninit_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_vals_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_getcurrtm_MT_R)
+	@-$(RM) $(OBJ_TEST_UNIT_dtel2s_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_getversion_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_gethostname_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_onbailout_MT_R)
@@ -6405,6 +6452,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_dyninit_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_vals_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_getcurrtm_ST_D)
+	@-$(RM) $(OBJ_TEST_UNIT_dtel2s_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_getversion_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_gethostname_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_onbailout_ST_D)
@@ -6426,6 +6474,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_dyninit_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_vals_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_getcurrtm_ST_R)
+	@-$(RM) $(OBJ_TEST_UNIT_dtel2s_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_getversion_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_gethostname_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_onbailout_ST_R)
@@ -6775,6 +6824,8 @@ $(LIB_UTIL_MT_D): $(OBJ_UTIL_MT_D) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_MT_D): $(PROJ_SRC_DIR)/util/bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/bailout.c
+$(OBJ_utl_dtel2s_MT_D): $(PROJ_SRC_DIR)/util/date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/date_elements_to_string.c
 $(OBJ_utl_init_code_strs_MT_D): $(PROJ_SRC_DIR)/util/init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/init_code_strings.c
 $(OBJ_utl_sev_strs_MT_D): $(PROJ_SRC_DIR)/util/severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -6808,6 +6859,8 @@ $(LIB_UTIL_MT_R): $(OBJ_UTIL_MT_R) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_MT_R): $(PROJ_SRC_DIR)/util/bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/bailout.c
+$(OBJ_utl_dtel2s_MT_R): $(PROJ_SRC_DIR)/util/date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/date_elements_to_string.c
 $(OBJ_utl_init_code_strs_MT_R): $(PROJ_SRC_DIR)/util/init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/init_code_strings.c
 $(OBJ_utl_sev_strs_MT_R): $(PROJ_SRC_DIR)/util/severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -6841,6 +6894,8 @@ $(LIB_UTIL_ST_D): $(OBJ_UTIL_ST_D) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_ST_D): $(PROJ_SRC_DIR)/util/bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_ST_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/bailout.c
+$(OBJ_utl_dtel2s_ST_D): $(PROJ_SRC_DIR)/util/date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_ST_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/date_elements_to_string.c
 $(OBJ_utl_init_code_strs_ST_D): $(PROJ_SRC_DIR)/util/init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_ST_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/init_code_strings.c
 $(OBJ_utl_sev_strs_ST_D): $(PROJ_SRC_DIR)/util/severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -6874,6 +6929,8 @@ $(LIB_UTIL_ST_R): $(OBJ_UTIL_ST_R) $(PROJ_MAKEFILE_NAME)
 
 $(OBJ_utl_bailout_ST_R): $(PROJ_SRC_DIR)/util/bailout.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/bailout.c
+$(OBJ_utl_dtel2s_ST_R): $(PROJ_SRC_DIR)/util/date_elements_to_string.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CC) $(CC_LIB_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/date_elements_to_string.c
 $(OBJ_utl_init_code_strs_ST_R): $(PROJ_SRC_DIR)/util/init_code_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/util/init_code_strings.c
 $(OBJ_utl_sev_strs_ST_R): $(PROJ_SRC_DIR)/util/severity_strings.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
@@ -6913,7 +6970,7 @@ $(OBJ_cr_api_MT_D): $(PROJ_SRC_DIR)/core/api.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.cpp
 $(OBJ_cr_api_dep_MT_D): $(PROJ_SRC_DIR)/core/api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.deprecated.c
-$(OBJ_cr_api_exit_MT_D): $(PROJ_SRC_DIR)/core/api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_MT_D): $(PROJ_SRC_DIR)/core/api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_MT_D): $(PROJ_SRC_DIR)/core/logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/logprintf.c
@@ -6961,7 +7018,7 @@ $(OBJ_cr_api_MT_R): $(PROJ_SRC_DIR)/core/api.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.cpp
 $(OBJ_cr_api_dep_MT_R): $(PROJ_SRC_DIR)/core/api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.deprecated.c
-$(OBJ_cr_api_exit_MT_R): $(PROJ_SRC_DIR)/core/api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_MT_R): $(PROJ_SRC_DIR)/core/api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_MT_R): $(PROJ_SRC_DIR)/core/logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/logprintf.c
@@ -7009,7 +7066,7 @@ $(OBJ_cr_api_ST_D): $(PROJ_SRC_DIR)/core/api.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.cpp
 $(OBJ_cr_api_dep_ST_D): $(PROJ_SRC_DIR)/core/api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_ST_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.deprecated.c
-$(OBJ_cr_api_exit_ST_D): $(PROJ_SRC_DIR)/core/api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_ST_D): $(PROJ_SRC_DIR)/core/api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_ST_D): $(PROJ_SRC_DIR)/core/logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_ST_D) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/logprintf.c
@@ -7057,7 +7114,7 @@ $(OBJ_cr_api_ST_R): $(PROJ_SRC_DIR)/core/api.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.cpp
 $(OBJ_cr_api_dep_ST_R): $(PROJ_SRC_DIR)/core/api.deprecated.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.deprecated.c
-$(OBJ_cr_api_exit_ST_R): $(PROJ_SRC_DIR)/core/api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
+$(OBJ_utl_api_exit_ST_R): $(PROJ_SRC_DIR)/core/api.exitprocess.cpp $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_LIB_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/api.exitprocess.cpp
 $(OBJ_cr_api_logprintf_ST_R): $(PROJ_SRC_DIR)/core/logprintf.c $(CORE_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_LIB_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_SRC_DIR)/core/logprintf.c
@@ -7893,14 +7950,14 @@ $(LIB_BEC_ACE_MT_D): $(OBJ_BEC_ACE_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BEC_ACE_MT_D)
 
 $(OBJ_bec_ACE_MT_D): $(PROJ_SRC_DIR)/backends/bec.ACE.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/bec.ACE.cpp
+	$(CPPC) $(CPPC_LIB_ARGS_MT_D) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/bec.ACE.cpp
 
 $(LIB_BEC_ACE_MT_R): $(OBJ_BEC_ACE_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BEC_ACE_MT_R)
 
 $(OBJ_bec_ACE_MT_R): $(PROJ_SRC_DIR)/backends/bec.ACE.cpp $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/bec.ACE.cpp
+	$(CPPC) $(CPPC_LIB_ARGS_MT_R) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/bec.ACE.cpp
 
 
 ########################################
@@ -7911,14 +7968,14 @@ $(LIB_BE_ACE_MT_D): $(OBJ_BE_ACE_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BE_ACE_MT_D)
 
 $(OBJ_be_ACE_MT_D): $(PROJ_SRC_DIR)/backends/be/be.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/be/be.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/be/be.ACE.c
 
 $(LIB_BE_ACE_MT_R): $(OBJ_BE_ACE_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BE_ACE_MT_R)
 
 $(OBJ_be_ACE_MT_R): $(PROJ_SRC_DIR)/backends/be/be.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/be/be.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/be/be.ACE.c
 
 
 ########################################
@@ -7929,14 +7986,14 @@ $(LIB_BEL_ACE_MT_D): $(OBJ_BEL_ACE_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BEL_ACE_MT_D)
 
 $(OBJ_bel_ACE_MT_D): $(PROJ_SRC_DIR)/backends/bel/bel.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.ACE.c
 
 $(LIB_BEL_ACE_MT_R): $(OBJ_BEL_ACE_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BEL_ACE_MT_R)
 
 $(OBJ_bel_ACE_MT_R): $(PROJ_SRC_DIR)/backends/bel/bel.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/bel/bel.ACE.c
 
 
 ########################################
@@ -7947,14 +8004,14 @@ $(LIB_BER_ACE_MT_D): $(OBJ_BER_ACE_MT_D) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BER_ACE_MT_D)
 
 $(OBJ_ber_ACE_MT_D): $(PROJ_SRC_DIR)/backends/ber/ber.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_D) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.ACE.c
 
 $(LIB_BER_ACE_MT_R): $(OBJ_BER_ACE_MT_R) $(PROJ_MAKEFILE_NAME)
 	@-mkdir -p $(PROJ_LIB_DIR)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_BER_ACE_MT_R)
 
 $(OBJ_ber_ACE_MT_R): $(PROJ_SRC_DIR)/backends/ber/ber.ACE.c $(BE_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.ACE.c
+	$(CC) $(CC_LIB_ARGS_MT_R) $(CC_ARGS_ACE) $(CC_INCLUDES_ACE) -o $@ $(PROJ_SRC_DIR)/backends/ber/ber.ACE.c
 
 
 endif # ACE
@@ -14344,8 +14401,8 @@ $(TEST_SCRT_ACE_MT_D):	\
 		$(LIBS_3PTY_ACE)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_SCRT_ACE_MT_D):	$(PROJ_TEST_SCRATCH_DIR)/test.scratch.ACE/test.scratch.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_MT_D) $(CPPC_INCLUDES_ACE) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.ACE/test.scratch.ACE.cpp
+$(OBJ_SCRT_ACE_MT_D):	$(PROJ_TEST_SCRATCH_DIR)/test.scratch.be.ACE/test.scratch.be.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_MT_D) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.be.ACE/test.scratch.be.ACE.cpp
 endif # ACE
 
 $(TARG_TEST_MT_D_APIwBE_FPRINTF):	\
@@ -14520,8 +14577,8 @@ $(TEST_SCRT_ACE_MT_R):	\
 		$(LIBS_3PTY_ACE)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_SCRT_ACE_MT_R):	$(PROJ_TEST_SCRATCH_DIR)/test.scratch.ACE/test.scratch.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_MT_R) $(CPPC_INCLUDES_ACE) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.ACE/test.scratch.ACE.cpp
+$(OBJ_SCRT_ACE_MT_R):	$(PROJ_TEST_SCRATCH_DIR)/test.scratch.be.ACE/test.scratch.be.ACE.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_MT_R) $(CPPC_ACE_ADDITIONAL_ARGS) $(CPPC_INCLUDES_ACE) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.be.ACE/test.scratch.be.ACE.cpp
 endif # ACE
 
 $(TARG_TEST_MT_R_APIwBE_FPRINTF):	\
@@ -15186,6 +15243,102 @@ $(TARG_TEST_UNIT_getcurrtm_ST_R):	\
 
 $(OBJ_TEST_UNIT_getcurrtm_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.getcurrenttime/test.unit.util.getcurrenttime.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.util.getcurrenttime/test.unit.util.getcurrenttime.cpp
+
+$(TARG_TEST_UNIT_dtel2s_MT_D):	\
+			$(OBJ_TEST_UNIT_dtel2s_MT_D)\
+			$(LIB_CORE_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIB_FE_FAIL_MT_D)\
+			$(LIB_BE_FAIL_MT_D)\
+			$(LIB_BEC_FAIL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -o $@ \
+		$(OBJ_TEST_UNIT_dtel2s_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIB_FE_FAIL_MT_D)\
+		$(LIB_BE_FAIL_MT_D)\
+		$(LIB_BEC_FAIL_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_UNIT_dtel2s_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp
+
+$(TARG_TEST_UNIT_dtel2s_MT_R):	\
+			$(OBJ_TEST_UNIT_dtel2s_MT_R)\
+			$(LIB_CORE_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIB_FE_FAIL_MT_R)\
+			$(LIB_BE_FAIL_MT_R)\
+			$(LIB_BEC_FAIL_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -o $@ \
+		$(OBJ_TEST_UNIT_dtel2s_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIB_FE_FAIL_MT_R)\
+		$(LIB_BE_FAIL_MT_R)\
+		$(LIB_BEC_FAIL_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_UNIT_dtel2s_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp
+
+$(TARG_TEST_UNIT_dtel2s_ST_D):	\
+			$(OBJ_TEST_UNIT_dtel2s_ST_D)\
+			$(LIB_CORE_ST_D)\
+			$(LIB_UTIL_ST_D)\
+			$(LIB_FE_FAIL_ST_D)\
+			$(LIB_BE_FAIL_ST_D)\
+			$(LIB_BEC_FAIL_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -o $@ \
+		$(OBJ_TEST_UNIT_dtel2s_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIB_UTIL_ST_D)\
+		$(LIB_FE_FAIL_ST_D)\
+		$(LIB_BE_FAIL_ST_D)\
+		$(LIB_BEC_FAIL_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_UNIT_dtel2s_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp
+
+$(TARG_TEST_UNIT_dtel2s_ST_R):	\
+			$(OBJ_TEST_UNIT_dtel2s_ST_R)\
+			$(LIB_CORE_ST_R)\
+			$(LIB_UTIL_ST_R)\
+			$(LIB_FE_FAIL_ST_R)\
+			$(LIB_BE_FAIL_ST_R)\
+			$(LIB_BEC_FAIL_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -o $@ \
+		$(OBJ_TEST_UNIT_dtel2s_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIB_UTIL_ST_R)\
+		$(LIB_FE_FAIL_ST_R)\
+		$(LIB_BE_FAIL_ST_R)\
+		$(LIB_BEC_FAIL_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_UNIT_dtel2s_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp
 
 $(TARG_TEST_UNIT_getversion_MT_D):	\
 			$(OBJ_TEST_UNIT_getversion_MT_D)\

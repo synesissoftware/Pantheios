@@ -4,7 +4,7 @@
  * Purpose:     pan_slice_t implementation.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     17th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -95,33 +95,48 @@ pan_slice_t::calc_length_n_(
 
 inline
 pan_slice_t::pan_slice_t()
-    : len(0)
-    , ptr(NULL)
-{}
+{
+    this->len   =   0;
+    this->ptr   =   NULL;
+}
 
 inline
 pan_slice_t::pan_slice_t(
     pan_char_t const*   p
 ,   size_t              l
 )
-    : len(l)
-    , ptr(p)
 {
     static size_t const topBit = size_t(0x01) << (sizeof(size_t) * 8 - 1);
 
-    if(topBit & len)
+    if(topBit & l)
     {
-        this->len = calc_length_n_(p, len);
+        this->len = calc_length_n_(p, l);
     }
+    else
+    {
+        this->len = l;
+    }
+
+    this->ptr = p;
 }
 
 inline
 pan_slice_t::pan_slice_t(
     pan_slice_t const& rhs
 )
-    : len(rhs.len)
-    , ptr(rhs.ptr)
-{}
+{
+    this->len = rhs.len;
+    this->ptr = rhs.ptr;
+}
+
+inline
+pan_slice_t::pan_slice_t(
+    pantheios_slice_t const& rhs
+)
+{
+    this->len = rhs.len;
+    this->ptr = rhs.ptr;
+}
 
 inline
 pan_slice_t&
@@ -129,8 +144,20 @@ pan_slice_t::operator =(
     pan_slice_t const& rhs
 )
 {
-    len = rhs.len;
-    ptr = rhs.ptr;
+    this->len = rhs.len;
+    this->ptr = rhs.ptr;
+
+    return *this;
+}
+
+inline
+pan_slice_t&
+pan_slice_t::operator =(
+    pantheios_slice_t const& rhs
+)
+{
+    this->len = rhs.len;
+    this->ptr = rhs.ptr;
 
     return *this;
 }
@@ -140,9 +167,10 @@ pan_slice_t::pan_slice_t(
     int                 l
 ,   pan_char_t const*   p
 )
-    : len(calc_length_n_(p, static_cast<size_t>(l)))
-    , ptr(p)
-{}
+{
+    this->len   =   calc_length_n_(p, static_cast<size_t>(l));
+    this->ptr   =   p;
+}
 
 /* ////////////////////////////////////////////////////////////////////// */
 

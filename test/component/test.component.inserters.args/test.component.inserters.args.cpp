@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.args project.
  *
  * Created:     19th October 2006
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -69,7 +69,7 @@ static void test_1_19();
  * globals
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.args");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.args");
 
 /* ////////////////////////////////////////////////////////////////////// */
 

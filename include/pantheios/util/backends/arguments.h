@@ -4,7 +4,7 @@
  * Purpose:     Pantheios back end API
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     17th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -55,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     24
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,20 +102,15 @@
  * \pre NULL != argName
  * \pre NULL != flags
  */
-PANTHEIOS_CALL(int) pantheios_be_parseBooleanArg(size_t                         numArgs
-#ifdef PANTHEIOS_NO_NAMESPACE
-                                            ,   pan_slice_t* const              args
-                                            ,   pan_char_t const*               argName
-                                            ,   int                             flagSuppressesAction
-                                            ,   pan_uint32_t                    flagValue
-                                            ,   pan_uint32_t*                   flags);
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-                                            ,   pantheios::pan_slice_t* const   args
-                                            ,   pantheios::pan_char_t const*    argName
-                                            ,   int                             flagSuppressesAction
-                                            ,   pantheios::pan_uint32_t         flagValue
-                                            ,   pantheios::uint32_t*            flags);
-#endif /* PANTHEIOS_NO_NAMESPACE */
+PANTHEIOS_CALL(int)
+pantheios_be_parseBooleanArg(
+    size_t                      numArgs
+,   pantheios_slice_t           args[]
+,   PAN_CHAR_T const*           argName
+,   int                         flagSuppressesAction
+,   pantheios_uint32_t          flagValue
+,   pantheios_uint32_t*         flags
+);
 
 
 /** Parses a single string back-end argument
@@ -137,16 +132,13 @@ PANTHEIOS_CALL(int) pantheios_be_parseBooleanArg(size_t                         
  * \pre NULL != argName
  * \pre NULL != argValue
  */
-PANTHEIOS_CALL(int) pantheios_be_parseStringArg(size_t                          numArgs
-#ifdef PANTHEIOS_NO_NAMESPACE
-                                            ,   pan_slice_t* const              args
-                                            ,   pan_char_t const*               argName
-                                            ,   pan_slice_t*                    argValue);
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-                                            ,   pantheios::pan_slice_t* const   args
-                                            ,   pantheios::pan_char_t const*    argName
-                                            ,   pantheios::pan_slice_t*         argValue);
-#endif /* PANTHEIOS_NO_NAMESPACE */
+PANTHEIOS_CALL(int)
+pantheios_be_parseStringArg(
+    size_t              numArgs
+,   pantheios_slice_t   args[]
+,   PAN_CHAR_T const*   argName
+,   pantheios_slice_t*  argValue
+);
 
 
 /** Parses the stock back-end arguments
@@ -184,15 +176,12 @@ PANTHEIOS_CALL(int) pantheios_be_parseStringArg(size_t                          
  * \pre NULL != args || 0 == numArgs
  * \pre NULL != flags
  */
-PANTHEIOS_CALL(int) pantheios_be_parseStockArgs(size_t                          numArgs
-#ifdef PANTHEIOS_NO_NAMESPACE
-                                            ,   pan_slice_t* const              args
-                                            ,   pan_uint32_t*                   flags);
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-                                            ,   pantheios::pan_slice_t* const   args
-                                            ,   pantheios::uint32_t*            flags);
-#endif /* PANTHEIOS_NO_NAMESPACE */
-
+PANTHEIOS_CALL(int)
+pantheios_be_parseStockArgs(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   pantheios_uint32_t*     flags
+);
 
 /* ////////////////////////////////////////////////////////////////////// */
 

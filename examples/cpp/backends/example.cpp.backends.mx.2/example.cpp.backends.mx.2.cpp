@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the example.cpp.backends.mx.2 project.
  *
  * Created:     19th September 2008
- * Updated:     29th June 2016
+ * Updated:     10th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software

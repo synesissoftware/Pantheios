@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.be.file.threading project.
  *
  * Created:     3rd July 2009
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2009-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2009-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -115,7 +115,7 @@ const size_t    LOG_ITERATIONS      =   100000;
 const size_t    SET_PATH_DELAY      =   1000 * 1000 * 10;
 #endif /* _DEBUG */
 
-const PAN_CHAR_T LOG_FILE_NAME[]    =   PSTR("test.component.be.file.threading.log");
+PAN_CHAR_T const LOG_FILE_NAME[]    =   PSTR("test.component.be.file.threading.log");
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -129,7 +129,7 @@ static int              s_activeThreads =   0;
 
 static int              s_showNotices   =   true;
 
-extern "C" const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PSTR("test.component.be.file.threading");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PSTR("test.component.be.file.threading");
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs

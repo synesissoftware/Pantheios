@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the speech back-end
  *
  * Created:     31st August 2006
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -69,9 +69,9 @@
 #if defined(STLSOFT_VER) && \
     STLSOFT_VER >= 0x010c0000
 # include <winstl/diagnostics/error_desc.hpp>
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
 # include <winstl/error/error_desc.hpp>
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 #include <winstl/memory/processheap_allocator.hpp>
 
 /* Standard C++ header files */
@@ -98,8 +98,6 @@ namespace
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_char_t;
-    using ::pantheios::pan_uint32_t;
     using ::pantheios::pan_slice_t;
     using ::pantheios::util::backends::Context;
     using ::pantheios::util::pantheios_onBailOut3;
@@ -108,9 +106,9 @@ namespace
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
     typedef PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
-        pan_char_t
+        PAN_CHAR_T
     ,   2048
-    ,   winstl::processheap_allocator<pan_char_t>
+    ,   winstl::processheap_allocator<PAN_CHAR_T>
     >::type                                     buffer_t;
 
 } /* anonymous namespace */
@@ -133,9 +131,9 @@ namespace
 
     public:
         be_speech_context(
-            pan_char_t const*   processIdentity
+            PAN_CHAR_T const*   processIdentity
         ,   int                 id
-        ,   pan_uint32_t        flags
+        ,   pantheios_uint32_t  flags
         ,   voice_type          voice
         );
         ~be_speech_context() throw();
@@ -151,14 +149,14 @@ namespace
         virtual int rawLogEntry(
             int                 severity4
         ,   int                 severityX
-        ,   pan_char_t const*   entry
+        ,   PAN_CHAR_T const*   entry
         ,   size_t              cchEntry
         );
 
     private:
         int speak(
             int                 severity
-        ,   pan_char_t const*   entry
+        ,   PAN_CHAR_T const*   entry
         ,   size_t              cchEntry
         );
 
@@ -186,7 +184,7 @@ PANTHEIOS_CALL(void) pantheios_be_speech_getDefaultAppInit(pan_be_speech_init_t*
 
 #ifdef _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 extern "C++" int pantheios_be_speech_init__cpp(
-    pan_char_t const*           processIdentity
+    PAN_CHAR_T const*           processIdentity
 ,   int                         backEndId
 ,   pan_be_speech_init_t const* init
 ,   void*                       reserved
@@ -197,7 +195,7 @@ extern "C++" int pantheios_be_speech_init__cpp(
 
 
 PANTHEIOS_CALL(int) pantheios_be_speech_init(
-    pan_char_t const*           processIdentity
+    PAN_CHAR_T const*           processIdentity
 ,   int                         backEndId
 ,   pan_be_speech_init_t const* init
 ,   void*                       reserved
@@ -208,7 +206,7 @@ PANTHEIOS_CALL(int) pantheios_be_speech_init(
     return pantheios_be_speech_init__cpp(processIdentity, backEndId, init, reserved, ptoken);
 }
 int pantheios_be_speech_init__cpp(
-    pan_char_t const*           processIdentity
+    PAN_CHAR_T const*           processIdentity
 ,   int                         backEndId
 ,   pan_be_speech_init_t const* init
 ,   void*                       reserved
@@ -311,7 +309,7 @@ static int pantheios_be_speech_logEntry_(
     void*               /* feToken */
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -326,16 +324,17 @@ PANTHEIOS_CALL(int) pantheios_be_speech_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
     return pantheios_call_be_logEntry(pantheios_be_speech_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.speech");
 }
 
-PANTHEIOS_CALL(int) pantheios_be_speech_parseArgs(
+PANTHEIOS_CALL(int)
+pantheios_be_speech_parseArgs(
     size_t                  numArgs
-,   pan_slice_t* const      args
+,   pantheios_slice_t       args[]
 ,   pan_be_speech_init_t*   init
 )
 {
@@ -377,9 +376,9 @@ PANTHEIOS_CALL(int) pantheios_be_speech_parseArgs(
 /* ////////////////////////////////////////////////////////////////////// */
 
 be_speech_context::be_speech_context(
-    pan_char_t const*   processIdentity
+    PAN_CHAR_T const*   processIdentity
 ,   int                 id
-,   pan_uint32_t        flags
+,   pantheios_uint32_t  flags
 ,   voice_type          voice
 )
     : parent_class_type(processIdentity, id, flags, 0x0f)
@@ -433,7 +432,7 @@ int be_speech_context::rawLogEntry(int severity4, int /* severityX */, const pan
 int be_speech_context::rawLogEntry(
     int                 severity4
 ,   int                 /* severityX */
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -442,7 +441,7 @@ int be_speech_context::rawLogEntry(
 
 int be_speech_context::speak(
     int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {

@@ -8,7 +8,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     10th November 2010
- * Updated:     21st September 2015
+ * Updated:     27th January 2017
  *
  * www:         http://www.pantheios.org/
  *
@@ -49,7 +49,7 @@
 /* ////////////////////////////////////////////////////////////////////// */
 
 // Define the fe.simple process identity, so that it links when using fe.simple
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.speech");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.speech");
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for low-level Pantheios bail out.
  *
  * Created:     21st June 2005
- * Updated:     17th July 2016
+ * Updated:     10th January 2017
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -202,7 +202,7 @@ static int pantheios_util_onBailOut_canUseWarnMessage_(void);
 #endif /* PLATFORMSTL_OS_IS_WINDOWS && !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Util API
+ * util API
  */
 
 PANTHEIOS_CALL(void) pantheios_onBailOut6(

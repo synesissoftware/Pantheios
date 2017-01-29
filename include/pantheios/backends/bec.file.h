@@ -4,7 +4,7 @@
  * Purpose:     Declaration of the Pantheios file Stock Back-end API.
  *
  * Created:     10th July 2006
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MAJOR      4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MINOR      4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       35
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       36
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -204,26 +204,19 @@ struct Pantheios_be_file_no_longer_defines_the_function_pantheios_be_file_setFil
  */
 struct pan_be_file_init_t
 {
-#if !defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) && \
-    !defined(PANTHEIOS_NO_NAMESPACE)
-    typedef pantheios::pan_uint16_t pan_uint16_t;
-    typedef pantheios::pan_uint32_t pan_uint32_t;
-    typedef pantheios::pan_uint64_t pan_uint64_t;
-#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION && !PANTHEIOS_NO_NAMESPACE */
-
-    pan_uint32_t        version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
-    pan_uint32_t        flags;      /*!< \ref group__backend__stock_backends__file__flags "Flags" that control the information displayed. */
-    PAN_CHAR_T          buff[1 + (PANTHEIOS_BE_FILE_MAX_FILE_LEN)]; /*!< Buffer for use by client to write file name, to which \link pan_be_file_init_t::fileName fileName\endlink can be pointed. \see PANTHEIOS_BE_FILE_MAX_FILE_LEN*/
-    PAN_CHAR_T const*   fileName;  /*!< Must be pointed to the file name. */
+    pantheios_uint32_t      version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
+    pantheios_uint32_t      flags;      /*!< \ref group__backend__stock_backends__file__flags "Flags" that control the information displayed. */
+    PAN_CHAR_T              buff[1 + (PANTHEIOS_BE_FILE_MAX_FILE_LEN)]; /*!< Buffer for use by client to write file name, to which \link pan_be_file_init_t::fileName fileName\endlink can be pointed. \see PANTHEIOS_BE_FILE_MAX_FILE_LEN*/
+    PAN_CHAR_T const*       fileName;   /*!< Must be pointed to the file name. */
 
 #if 0 /* These features are part of a stream of development for log-file rolling that is incomplete. */
     union
     {
-        pan_uint64_t    fileSizeKB; /*!< Size of file (in KB). Only used if flags contain PANTHEIOS_BE_FILE_F_ROLL_ON_SIZE. */
-        pan_uint64_t    entryCount; /*!< Number of entries in entry count. Only used if flags contain PANTHEIOS_BE_FILE_F_ROLL_ON_ENTRY_COUNT. */
-        pan_uint64_t    interval;   /*!< Number of seconds in interval. Only used if flags contain PANTHEIOS_BE_FILE_F_ROLL_ON_DATETIME. */
+        pantheios_uint64_t  fileSizeKB; /*!< Size of file (in KB). Only used if flags contain PANTHEIOS_BE_FILE_F_ROLL_ON_SIZE. */
+        pantheios_uint64_t  entryCount; /*!< Number of entries in entry count. Only used if flags contain PANTHEIOS_BE_FILE_F_ROLL_ON_ENTRY_COUNT. */
+        pantheios_uint64_t  interval;   /*!< Number of seconds in interval. Only used if flags contain PANTHEIOS_BE_FILE_F_ROLL_ON_DATETIME. */
 
-    }                   roll;       /*!< Union of measures used when file-rolling is in used. */
+    }                       roll;       /*!< Union of measures used when file-rolling is in used. */
 #endif /* 0 */
 
 
@@ -318,7 +311,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_logEntry(
 ,   size_t              cchEntry
 );
 
-/** \fn pantheios_be_file_setFilePath(PAN_CHAR_T const*, pan_be_file_init_t::pan_uint32_t, pan_be_file_init_t::pan_uint32_t, int)
+/** \fn pantheios_be_file_setFilePath(PAN_CHAR_T const*, pantheios_uint32_t, pantheios_uint32_t, int)
  *
  * Sets/changes the log file name for a single back-end.
  *
@@ -345,15 +338,10 @@ PANTHEIOS_CALL(int) pantheios_be_file_logEntry(
  *   the file.
  */
 PANTHEIOS_CALL(int) pantheios_be_file_setFilePath(
-    PAN_CHAR_T const*                   fileName
-#ifndef PANTHEIOS_NO_NAMESPACE
-,   pan_be_file_init_t::pan_uint32_t    fileMask
-,   pan_be_file_init_t::pan_uint32_t    fileFlags
-#else /* ? !PANTHEIOS_NO_NAMESPACE */
-,   pan_uint32_t                        fileMask
-,   pan_uint32_t                        fileFlags
-#endif /* !PANTHEIOS_NO_NAMESPACE */
-,   int                                 backEndId
+    PAN_CHAR_T const*   fileName
+,   pantheios_uint32_t  fileMask
+,   pantheios_uint32_t  fileFlags
+,   int                 backEndId
 );
 
 #ifdef __cplusplus
@@ -442,11 +430,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_emptyCache(int backEndId);
  */
 PANTHEIOS_CALL(int) pantheios_be_file_parseArgs(
     size_t                          numArgs
-#ifdef PANTHEIOS_NO_NAMESPACE
-,   struct pan_slice_t* const       args
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-,   pantheios::pan_slice_t* const   args
-#endif /* PANTHEIOS_NO_NAMESPACE */
+,   pantheios_slice_t               args[]
 ,   pan_be_file_init_t*             init
 );
 
@@ -454,7 +438,8 @@ PANTHEIOS_CALL(int) pantheios_be_file_parseArgs(
 
 #ifdef __cplusplus
 # ifndef PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
-inline pan_be_file_init_t::pan_be_file_init_t()
+inline
+pan_be_file_init_t::pan_be_file_init_t()
 {
     pantheios_be_file_getDefaultAppInit(this);
 }

@@ -1,7 +1,37 @@
 pantheios - History
 ===================
 
-Updated:    30th June 2016
+Updated:    29th January 2017
+
+
+29th January 2017 - 1.0.1 beta 218
+----------------------------------
+
+ * added pantheios::windows::hive inserter and component test
+ * added date elements -> string conversion functions
+ * added pantheios::windows::hive inserter
+ * added pantheios_be_N_tokenFromId()
+ * added pantheios_getStockSeverityStringSlice()
+ * added test.component.inserters.windows.hive
+ * added test.performance.util.date_elements_to_string
+ * added test.unit.inserters.windows.sc
+ * added test.unit.util.date_elements_to_string
+ * added callback functionality for be.WindowsEventLog
+ * added PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY flag, which specifies that the severity will always be presented in numeric form in stock back-ends
+ * added PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT
+ * added PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES
+ * stock back-ends now use the severity number for severity levels in the range [8, 16)
+ * tightening up initialisation logic, in case where process identity cannot be provided by the front-end (which should not strictly happen, but we want to be as tight as possible)
+ * separated out the default initialiser Schwarz counter instance from the counter header (so that it can be used separately)
+ * extracted out pantheios_slice_t and various integer types, and simplified a number of API functions (incl. back-ends)
+ * compatibility with STLSoft 1.9 and STLSoft 1.10.1 beta 2+
+ * added CC_CUSTOM_DEFS_DEBUG, CC_CUSTOM_DEFS_RELEASE, CPPC_CUSTOM_DEFS_DEBUG, CPPC_CUSTOM_DEFS_RELEASE
+ * moved pantheios_exitProcess (src/core/api.exitprocess.cpp) from Core to Util library
+ * added clean.libs.util target
+ * added compile.test.all target
+ * changed compile.test target to be dependent only on compile.test.unit and compile.test.component targets
+ * improved use of make preprocessor
+ * shortening some target/intermediate names
 
 
 30th June 2016 - 1.0.1 beta 217

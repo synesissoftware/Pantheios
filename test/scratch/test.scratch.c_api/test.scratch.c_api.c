@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.c_api project.
  *
  * Created:     14th October 2005
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
@@ -71,7 +71,7 @@ static void some_logging_3();
  * externally defined array
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.c_api");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.c_api");
 
 /* ////////////////////////////////////////////////////////////////////// */
 

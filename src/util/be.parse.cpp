@@ -4,7 +4,7 @@
  * Purpose:     Utility functions for use in Pantheios back-ends.
  *
  * Created:     19th August 2007
- * Updated:     29th June 2016
+ * Updated:     17th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -85,9 +85,6 @@ typedef stlsoft::string_view            string_view_t;
  */
 
 #ifndef PANTHEIOS_NO_NAMESPACE
-using pantheios::pan_uint32_t;
-using pantheios::pan_char_t;
-using pantheios::pan_slice_t;
 using pantheios::util::pantheios_onBailOut3;
 using pantheios::util::pantheios_onBailOut4;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
@@ -97,20 +94,29 @@ using pantheios::util::pantheios_onBailOut4;
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-static int pantheios_be_parseBooleanArg_(   size_t              numArgs
-                                        ,   pan_slice_t* const  args
-                                        ,   pan_char_t const*   argName
-                                        ,   int                 flagSuppressesAction
-                                        ,   pan_uint32_t        flagValue
-                                        ,   pan_uint32_t*       flags);
+static int
+pantheios_be_parseBooleanArg_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   PAN_CHAR_T const*       argName
+,   int                     flagSuppressesAction
+,   pantheios_uint32_t      flagValue
+,   pantheios_uint32_t*     flags
+);
 
-static int pantheios_be_parseStringArg_(    size_t              numArgs
-                                        ,   pan_slice_t* const  args
-                                        ,   pan_char_t const*   argName
-                                        ,   pan_slice_t*        argValue);
-static int pantheios_be_parseStockArgs_(    size_t              numArgs
-                                        ,   pan_slice_t* const  args
-                                        ,   pan_uint32_t*       flags);
+static int
+pantheios_be_parseStringArg_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   PAN_CHAR_T const*       argName
+,   pantheios_slice_t*      argValue
+);
+static int
+pantheios_be_parseStockArgs_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   pantheios_uint32_t*     flags
+);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,16 +133,16 @@ namespace
 
         if(n < 6)
         {
-            pan_char_t copy[6];
+            PAN_CHAR_T copy[6];
 
             PANTHEIOS_char_copy(&copy[0], value.data(), n);
-            ::memset(&copy[0] + n, '\0', (6 - n) * sizeof(pan_char_t));
+            ::memset(&copy[0] + n, '\0', (6 - n) * sizeof(PAN_CHAR_T));
 
             PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL('\0' == copy[5], "the character at [5] must be the nul-terminator");
 
             { for(size_t i = 0; '\0' != copy[i]; ++i)
             {
-                copy[i] = static_cast<pan_char_t>(pan_toupper_(copy[i]));
+                copy[i] = static_cast<PAN_CHAR_T>(pan_toupper_(copy[i]));
             }}
 
             const string_view_t val2(&copy[0], n);
@@ -170,12 +176,15 @@ namespace
  * API functions
  */
 
-PANTHEIOS_CALL(int) pantheios_be_parseBooleanArg(   size_t              numArgs
-                                                ,   pan_slice_t* const  args
-                                                ,   pan_char_t const*   argName
-                                                ,   int                 flagSuppressesAction
-                                                ,   pan_uint32_t        flagValue
-                                                ,   pan_uint32_t*       flags)
+PANTHEIOS_CALL(int)
+pantheios_be_parseBooleanArg(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   PAN_CHAR_T const*       argName
+,   int                     flagSuppressesAction
+,   pantheios_uint32_t      flagValue
+,   pantheios_uint32_t*     flags
+)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 {
     try
@@ -208,12 +217,15 @@ PANTHEIOS_CALL(int) pantheios_be_parseBooleanArg(   size_t              numArgs
     return 0;
 }
 
-static int pantheios_be_parseBooleanArg_(   size_t              numArgs
-                                        ,   pan_slice_t* const  args
-                                        ,   pan_char_t const*   argName
-                                        ,   int                 flagSuppressesAction
-                                        ,   pan_uint32_t        flagValue
-                                        ,   pan_uint32_t*       flags)
+static int
+pantheios_be_parseBooleanArg_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   PAN_CHAR_T const*       argName
+,   int                     flagSuppressesAction
+,   pantheios_uint32_t      flagValue
+,   pantheios_uint32_t*     flags
+)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((NULL != args || 0 == numArgs), "arguments pointer may only be null if the number of arguments is 0");
@@ -225,7 +237,7 @@ static int pantheios_be_parseBooleanArg_(   size_t              numArgs
 
     { for(size_t i = 0; i < numArgs; ++i)
     {
-        pan_slice_t& slice = *(args + i);
+        pantheios_slice_t& slice = *(args + i);
 
         if(0 != slice.len)
         {
@@ -267,10 +279,13 @@ static int pantheios_be_parseBooleanArg_(   size_t              numArgs
     return numProcessed;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_parseStringArg(size_t              numArgs
-                                            ,   pan_slice_t* const  args
-                                            ,   pan_char_t const*   argName
-                                            ,   pan_slice_t*        argValue)
+PANTHEIOS_CALL(int)
+pantheios_be_parseStringArg(
+    size_t              numArgs
+,   pantheios_slice_t   args[]
+,   PAN_CHAR_T const*   argName
+,   pantheios_slice_t*  argValue
+)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 {
     try
@@ -303,10 +318,13 @@ PANTHEIOS_CALL(int) pantheios_be_parseStringArg(size_t              numArgs
     return 0;
 }
 
-static int pantheios_be_parseStringArg_(    size_t              numArgs
-                                        ,   pan_slice_t* const  args
-                                        ,   pan_char_t const*   argName
-                                        ,   pan_slice_t*        argValue)
+static int
+pantheios_be_parseStringArg_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   PAN_CHAR_T const*       argName
+,   pantheios_slice_t*      argValue
+)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((NULL != args || 0 == numArgs), "arguments pointer may only be null if the number of arguments is 0");
@@ -318,7 +336,7 @@ static int pantheios_be_parseStringArg_(    size_t              numArgs
 
     { for(size_t i = 0; i < numArgs; ++i)
     {
-        pan_slice_t& slice = *(args + i);
+        pantheios_slice_t& slice = *(args + i);
 
         if(0 != slice.len)
         {
@@ -345,9 +363,12 @@ static int pantheios_be_parseStringArg_(    size_t              numArgs
     return numProcessed;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_parseStockArgs(size_t              numArgs
-                                            ,   pan_slice_t* const  args
-                                            ,   pan_uint32_t*       flags)
+PANTHEIOS_CALL(int)
+pantheios_be_parseStockArgs(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   pantheios_uint32_t*     flags
+)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 {
     try
@@ -380,9 +401,12 @@ PANTHEIOS_CALL(int) pantheios_be_parseStockArgs(size_t              numArgs
     return 0;
 }
 
-static int pantheios_be_parseStockArgs_(size_t              numArgs
-                                    ,   pan_slice_t* const  args
-                                    ,   pan_uint32_t*       flags)
+static int
+pantheios_be_parseStockArgs_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   pantheios_uint32_t*     flags
+)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((NULL != args || 0 == numArgs), "arguments pointer may only be null if the number of arguments is 0");
@@ -392,7 +416,7 @@ static int pantheios_be_parseStockArgs_(size_t              numArgs
 
     { for(size_t i = 0; i < numArgs; ++i)
     {
-        pan_slice_t& slice = *(args + i);
+        pantheios_slice_t& slice = *(args + i);
 
         if(0 != slice.len)
         {
@@ -475,6 +499,12 @@ static int pantheios_be_parseStockArgs_(size_t              numArgs
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION;
+                }
+                // PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                else if(name == PANTHEIOS_LITERAL_STRING("numericSeverity"))
+                {
+                    flagSuppresses  =   false;
+                    flagValue       =   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY;
                 }
                 else
                 {

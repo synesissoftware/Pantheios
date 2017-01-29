@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     29th June 2016
+ * Updated:     17th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -104,11 +104,11 @@ inline void thread_id_t::construct_() const
 void thread_id_t::construct_()
 {
     pan_char_t          sz[21]; // This is large enough for any number up to 64-bits
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
     pan_char_t const*   num = stlsoft::integer_to_decimal_string(&sz[0], STLSOFT_NUM_ELEMENTS(sz), pantheios_getCurrentThreadId(), &m_len);
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
     pan_char_t const*   num = stlsoft::integer_to_string(&sz[0], STLSOFT_NUM_ELEMENTS(sz), pantheios_getCurrentThreadId(), &m_len);
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 
     PANTHEIOS_char_copy(&m_value[0], num, (m_len + 1));
 }

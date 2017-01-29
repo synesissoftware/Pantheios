@@ -4,7 +4,7 @@
  * Purpose:     Pantheios front end API
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     20th October 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        21
+# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        22
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,7 +117,8 @@
  * \retval <0 Initialisation failed.
  * \retval >=0 Initialisation succeeded
  */
-PANTHEIOS_CALL(int) pantheios_fe_init(
+PANTHEIOS_CALL(int)
+pantheios_fe_init(
     void*   reserved
 ,   void**  ptoken
 );
@@ -132,7 +133,10 @@ PANTHEIOS_CALL(int) pantheios_fe_init(
  *
  * \note This function is called at most once per process.
  */
-PANTHEIOS_CALL(void) pantheios_fe_uninit(void* token);
+PANTHEIOS_CALL(void)
+pantheios_fe_uninit(
+    void* token
+);
 
 /** Defines the process identity
  *
@@ -169,7 +173,10 @@ PANTHEIOS_CALL(void) pantheios_fe_uninit(void* token);
  *   It may also be called if the application, or the front-end or
  *   back-end(s) invoke the bail out handler at any other time.
  */
-PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(void* token);
+PANTHEIOS_CALL(PAN_CHAR_T const*)
+pantheios_fe_getProcessIdentity(
+    void* token
+);
 
 /** Determines whether a given severity is being logged
  *
@@ -200,7 +207,8 @@ PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(void* token);
  * \note This may be called from any thread in a multi-threaded process, and
  *   so it must be safely callable by multiple threads concurrently.
  */
-PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
+PANTHEIOS_CALL(int)
+pantheios_fe_isSeverityLogged(
     void*   token
 ,   int     severity
 ,   int     backEndId

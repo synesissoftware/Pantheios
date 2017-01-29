@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.processId project.
  *
  * Created:     17th October 2006
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -57,7 +57,7 @@ static int pan_get_pid_();
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.processId");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.processId");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -104,7 +104,7 @@ static void test_1_01()
 {
     // 1. Setup
 
-    const PAN_CHAR_T  prefix[]    =   PSTR("process: ");
+    PAN_CHAR_T const  prefix[]    =   PSTR("process: ");
     PAN_CHAR_T        pid_[21 + STLSOFT_NUM_ELEMENTS(prefix)];
     PAN_CHAR_T const* pid         =   stlsoft::integer_to_string(&pid_[0], STLSOFT_NUM_ELEMENTS(pid_), pan_get_pid_());
     PAN_CHAR_T const* stmt        =   pid - (STLSOFT_NUM_ELEMENTS(prefix) - 1);

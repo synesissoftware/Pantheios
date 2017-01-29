@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     17th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -69,9 +69,9 @@
 #include <stlsoft/conversion/integer_to_string.hpp>
 #ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 # include <stlsoft/traits/integral_printf_format_traits.hpp>
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
 # include <stlsoft/util/integral_printf_traits.hpp>
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 #include <stlsoft/util/limit_traits.h>
 
 //#include <stlsoft/meta/yesno.hpp> // TODO: Use this to remove "runtime" constant tests in integer::init_()
@@ -105,9 +105,9 @@
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
 # ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 #  include <stlsoft/algorithm/std/alt.hpp>
-# else /* ? STLSoft 1.12+ */
+# else /* ? STLSoft version */
 #  include <stlsoft/algorithms/std/alt.hpp>
-# endif /* STLSoft 1.12+ */
+# endif /* STLSoft version */
 namespace std
 {
     using stlsoft::std_fill_n;
@@ -162,11 +162,11 @@ namespace
             // integer_to_string() function suite.
 
             size_t      n /* = 0 */;
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
             pan_char_t* s = const_cast<pan_char_t*>(stlsoft::integer_to_decimal_string(&buffer[0], cchBuffer, i, &n));
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
             pan_char_t* s = const_cast<pan_char_t*>(stlsoft::integer_to_string(&buffer[0], cchBuffer, i, &n));
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 
             if(s != &buffer[0])
             {
@@ -188,7 +188,7 @@ namespace
             static pan_char_t const* const  s_decFmt    =   ::stlsoft::integral_printf_format_traits<I>::decimal_format_a();
             static pan_char_t const* const  s_hexFmt    =   ::stlsoft::integral_printf_format_traits<I>::hexadecimal_format_a(false);
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
 # ifdef PANTHEIOS_USE_WIDE_STRINGS
             static pan_char_t const* const  s_decFmt    =   ::stlsoft::integral_printf_traits<I>::decimal_format_w();
             static pan_char_t const* const  s_hexFmt    =   ::stlsoft::integral_printf_traits<I>::hexadecimal_format_w(false);
@@ -196,7 +196,7 @@ namespace
             static pan_char_t const* const  s_decFmt    =   ::stlsoft::integral_printf_traits<I>::decimal_format_a();
             static pan_char_t const* const  s_hexFmt    =   ::stlsoft::integral_printf_traits<I>::hexadecimal_format_a(false);
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 
             pan_char_t          szFmt[101];
             int                 width;

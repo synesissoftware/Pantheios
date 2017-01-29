@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the COMErrorObject back-end
  *
  * Created:     9th April 2006
- * Updated:     29th June 2016
+ * Updated:     8th December 2016
  *
  * Home:        http://www.pantheios.org/
  *
@@ -77,9 +77,9 @@ extern "C" const IID IID_IErrorInfo_;
 
 #ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 # include <comstl/diagnostics/errorinfo_functions.h>
-#else /* ? PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#else /* ? STLSoft version */
 # include <comstl/error/errorinfo_functions.h>
-#endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#endif /* STLSoft version */
 
 #include <winstl/memory/processheap_allocator.hpp>
 
@@ -87,9 +87,9 @@ extern "C" const IID IID_IErrorInfo_;
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 //# ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 //#  include <winstl/conversion/a2w.hpp>
-//# else /* ? PANTHEIOS_STLSOFT_1_12_OR_LATER */
+//# else /* ? STLSoft version */
 #  include <winstl/conversion/char_conversions.hpp>
-//# endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
+//# endif /* STLSoft version */
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* Standard C header files */
@@ -115,9 +115,6 @@ namespace
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_char_t;
-    using ::pantheios::pan_uint32_t;
-    using ::pantheios::pan_slice_t;
     using ::pantheios::pan_sev_t;
     using ::pantheios::pantheios_getStockSeverityString;
     using ::pantheios::pantheios_getStockSeverityStringLength;
@@ -127,9 +124,9 @@ namespace
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
     typedef PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
-        pan_char_t
+        PAN_CHAR_T
     ,   2048
-    ,   winstl::processheap_allocator<pan_char_t>
+    ,   winstl::processheap_allocator<PAN_CHAR_T>
     >::type                                             buffer_t;
 
 } /* anonymous namespace */
@@ -150,7 +147,7 @@ namespace
     struct ErrorObject_Context
     {
     public:
-        typedef pan_uint32_t uint32_t;
+        typedef pantheios_uint32_t uint32_t;
 
     public:
         union
@@ -166,9 +163,9 @@ namespace
             : flags(flags)
         {}
 
-        void* operator new(size_t cb, pan_char_t const* s);
+        void* operator new(size_t cb, PAN_CHAR_T const* s);
 #if !defined(PANTHEIOS_NO_PLACEMENT_DELETE_)
-        void operator delete(void* pv, pan_char_t const*);
+        void operator delete(void* pv, PAN_CHAR_T const*);
 #endif /* !PANTHEIOS_NO_PLACEMENT_DELETE_ */
         void operator delete(void* pv);
 
@@ -191,7 +188,7 @@ PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_getDefaultAppInit(pan_be_COMErr
 }
 
 static int pantheios_be_COMErrorObject_init_(
-    pan_char_t const*                   processIdentity
+    PAN_CHAR_T const*                   processIdentity
 ,   int                                 backEndId
 ,   pan_be_COMErrorObject_init_t const* init
 ,   void*                               reserved
@@ -246,7 +243,7 @@ static int pantheios_be_COMErrorObject_init_(
 }
 
 PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_init(
-    pan_char_t const*                   processIdentity
+    PAN_CHAR_T const*                   processIdentity
 ,   int                                 backEndId
 ,   pan_be_COMErrorObject_init_t const* init
 ,   void*                               reserved
@@ -271,7 +268,7 @@ static int pantheios_be_COMErrorObject_logEntry_(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -313,7 +310,7 @@ static int pantheios_be_COMErrorObject_logEntry_(
     //  "<entry>"
 
     int                 bShowSev    =   (0 == (ctxt->flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY));
-    pan_char_t const*   sevName     =   pantheios_getStockSeverityString(pan_sev_t(severity));
+    PAN_CHAR_T const*   sevName     =   pantheios_getStockSeverityString(pan_sev_t(severity));
     const size_t        lenSeverity =   pantheios_getStockSeverityStringLength(pan_sev_t(severity));
     const size_t        len         =   (bShowSev ? (1 + lenSeverity + 3) : 0) + cchEntry;
     buffer_t            buff(1 + len);
@@ -326,7 +323,7 @@ static int pantheios_be_COMErrorObject_logEntry_(
 #endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
 
     size_t          cchTotal    =   0;
-    pan_char_t*     p           =   &buff[0];
+    PAN_CHAR_T*     p           =   &buff[0];
 
     if(bShowSev)
     {
@@ -379,16 +376,17 @@ PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
     return pantheios_call_be_logEntry(pantheios_be_COMErrorObject_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.COMErrorObject");
 }
 
-PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_parseArgs(
+PANTHEIOS_CALL(int)
+pantheios_be_COMErrorObject_parseArgs(
     size_t                          numArgs
-,   pan_slice_t* const              args
+,   pantheios_slice_t               args[]
 ,   pan_be_COMErrorObject_init_t*   init
 )
 {
@@ -413,7 +411,7 @@ PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_parseArgs(
  *
  */
 
-void* ErrorObject_Context::operator new(size_t /* cb */, pan_char_t const* s)
+void* ErrorObject_Context::operator new(size_t /* cb */, PAN_CHAR_T const* s)
 {
     const size_t    len         =   static_cast<size_t>(stlsoft::c_str_len(s));
     const size_t    cbActual    =   sizeof(ErrorObject_Context) + sizeof(OLECHAR) * (1 + len);
@@ -436,7 +434,7 @@ void* ErrorObject_Context::operator new(size_t /* cb */, pan_char_t const* s)
 }
 
 #if !defined(PANTHEIOS_NO_PLACEMENT_DELETE_)
-void ErrorObject_Context::operator delete(void*, pan_char_t const*)
+void ErrorObject_Context::operator delete(void*, PAN_CHAR_T const*)
 {}
 #endif /* !PANTHEIOS_NO_PLACEMENT_DELETE_ */
 

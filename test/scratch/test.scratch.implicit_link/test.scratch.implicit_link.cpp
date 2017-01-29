@@ -4,13 +4,13 @@
  * Purpose:     Implicit link file for the test.scratch.implicit_link project.
  *
  * Created:     18th July 2007
- * Updated:     21st September 2015
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -31,7 +31,7 @@
 //#include <pantheios/implicit_link/be.lrsplit.h>
 //#include <pantheios/implicit_link/bel.fprintf.h>
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.implicit_link");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.implicit_link");
 
 int main()
 {

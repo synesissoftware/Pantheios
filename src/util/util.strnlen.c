@@ -5,11 +5,11 @@
  *              functions.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     10th January 2017
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -102,7 +102,7 @@ namespace util
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Util API
+ * util API
  */
 
 /* TODO: put this declaration into pantheios/pantheios.h */

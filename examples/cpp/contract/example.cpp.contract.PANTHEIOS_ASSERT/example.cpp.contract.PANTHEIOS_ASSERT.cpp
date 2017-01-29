@@ -7,7 +7,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     8th May 2009
- * Updated:     30th June 2016
+ * Updated:     27th January 2017
  *
  * www:         http://www.pantheios.org/
  *
@@ -43,7 +43,7 @@
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.contract.PANTHEIOS_ASSERT");
+PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.contract.PANTHEIOS_ASSERT");
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -50,6 +50,9 @@
     <ClCompile Include="..\..\..\src\util\core.apidefs.cpp">
       <Filter>Source Files\util</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\util\date_elements_to_string.c">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\src\util\hostname.c">
       <Filter>Source Files\util</Filter>
     </ClCompile>

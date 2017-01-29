@@ -1150,6 +1150,7 @@
     <ClCompile Include="..\..\..\src\util\be.context.cpp" />
     <ClCompile Include="..\..\..\src\util\be.parse.cpp" />
     <ClCompile Include="..\..\..\src\util\core.apidefs.cpp" />
+    <ClCompile Include="..\..\..\src\util\date_elements_to_string.c" />
     <ClCompile Include="..\..\..\src\util\hostname.c" />
     <ClCompile Include="..\..\..\src\util\init_code_strings.c" />
     <ClCompile Include="..\..\..\src\util\processid.c" />

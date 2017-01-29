@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     10th January 2017
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -58,7 +58,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Core API
+ * core API
  *
  * Note: for those compilers that object to instantiating templates within
  * extern "C" functions, the actual functions and their implementations are
@@ -85,7 +85,7 @@ PANTHEIOS_CALL(int) pantheios_dispatch(
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Core functions
+ * core functions
  */
 
 PANTHEIOS_CALL(void) pantheios_logputs(pan_sev_t severity, pan_char_t const* s)

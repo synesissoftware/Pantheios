@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.inserters.windows.sc project.
  *
  * Created:     5th April 2014
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2014-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2014-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -26,6 +26,8 @@
 #include <pantheios/inserters/windows/sc.hpp>
 
 #include <xtests/xtests.h>
+
+#include <winerror.h>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
@@ -51,9 +53,25 @@ static void test_1_12();
 
 } // anonymous namespace
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
-PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.inserters.windows.sc");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.inserters.windows.sc");
+
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
+# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -627,8 +645,12 @@ namespace
         ,   ERROR_EVENTLOG_CANT_START
         ,   ERROR_LOG_FILE_FULL
         ,   ERROR_EVENTLOG_FILE_CHANGED
+#ifdef ERROR_INSTALL_SERVICE
         ,   ERROR_INSTALL_SERVICE
-        ,   ERROR_INSTALL_USEREXIT
+#endif
+#ifdef ERROR_INSTALL_USEREXIT
+//        ,   ERROR_INSTALL_USEREXIT
+#endif
         ,   ERROR_INSTALL_FAILURE
         ,   ERROR_INSTALL_SUSPEND
         ,   ERROR_UNKNOWN_PRODUCT
@@ -639,7 +661,9 @@ namespace
         ,   ERROR_BAD_CONFIGURATION
         ,   ERROR_INDEX_ABSENT
         ,   ERROR_INSTALL_SOURCE_ABSENT
+#ifdef ERROR_BAD_DATABASE_VERSION
         ,   ERROR_BAD_DATABASE_VERSION
+#endif
         ,   ERROR_PRODUCT_UNINSTALLED
         ,   ERROR_BAD_QUERY_SYNTAX
         ,   ERROR_INVALID_FIELD
@@ -829,7 +853,7 @@ namespace
         ,   ERROR_NOT_EXPORT_FORMAT
     };
 
-    DWORD const highbit_hexadecimal_codes[] =
+    LRESULT const highbit_hexadecimal_codes[] =
     {
             E_NOTIMPL
         ,   E_OUTOFMEMORY
@@ -850,483 +874,1437 @@ namespace
         ,   E_FAIL
         ,   E_ACCESSDENIED
         ,   E_PENDING
+#ifdef CO_E_INIT_TLS
         ,   CO_E_INIT_TLS
+#endif
+#ifdef CO_E_INIT_SHARED_ALLOCATOR
         ,   CO_E_INIT_SHARED_ALLOCATOR
+#endif
+#ifdef CO_E_INIT_MEMORY_ALLOCATOR
         ,   CO_E_INIT_MEMORY_ALLOCATOR
+#endif
+#ifdef CO_E_INIT_CLASS_CACHE
         ,   CO_E_INIT_CLASS_CACHE
+#endif
+#ifdef CO_E_INIT_RPC_CHANNEL
         ,   CO_E_INIT_RPC_CHANNEL
+#endif
+#ifdef CO_E_INIT_TLS_SET_CHANNEL_CONTROL
         ,   CO_E_INIT_TLS_SET_CHANNEL_CONTROL
+#endif
+#ifdef CO_E_INIT_TLS_CHANNEL_CONTROL
         ,   CO_E_INIT_TLS_CHANNEL_CONTROL
+#endif
+#ifdef CO_E_INIT_UNACCEPTED_USER_ALLOCATOR
         ,   CO_E_INIT_UNACCEPTED_USER_ALLOCATOR
+#endif
+#ifdef CO_E_INIT_SCM_MUTEX_EXISTS
         ,   CO_E_INIT_SCM_MUTEX_EXISTS
+#endif
+#ifdef CO_E_INIT_SCM_FILE_MAPPING_EXISTS
         ,   CO_E_INIT_SCM_FILE_MAPPING_EXISTS
+#endif
+#ifdef CO_E_INIT_SCM_MAP_VIEW_OF_FILE
         ,   CO_E_INIT_SCM_MAP_VIEW_OF_FILE
+#endif
+#ifdef CO_E_INIT_SCM_EXEC_FAILURE
         ,   CO_E_INIT_SCM_EXEC_FAILURE
+#endif
+#ifdef CO_E_INIT_ONLY_SINGLE_THREADED
         ,   CO_E_INIT_ONLY_SINGLE_THREADED
+#endif
+#ifdef CO_E_CANT_REMOTE
         ,   CO_E_CANT_REMOTE
+#endif
+#ifdef CO_E_BAD_SERVER_NAME
         ,   CO_E_BAD_SERVER_NAME
+#endif
+#ifdef CO_E_WRONG_SERVER_IDENTITY
         ,   CO_E_WRONG_SERVER_IDENTITY
+#endif
+#ifdef CO_E_OLE1DDE_DISABLED
         ,   CO_E_OLE1DDE_DISABLED
+#endif
+#ifdef CO_E_RUNAS_SYNTAX
         ,   CO_E_RUNAS_SYNTAX
+#endif
+#ifdef CO_E_CREATEPROCESS_FAILURE
         ,   CO_E_CREATEPROCESS_FAILURE
+#endif
+#ifdef CO_E_RUNAS_CREATEPROCESS_FAILURE
         ,   CO_E_RUNAS_CREATEPROCESS_FAILURE
+#endif
+#ifdef CO_E_RUNAS_LOGON_FAILURE
         ,   CO_E_RUNAS_LOGON_FAILURE
+#endif
+#ifdef CO_E_LAUNCH_PERMSSION_DENIED
         ,   CO_E_LAUNCH_PERMSSION_DENIED
+#endif
+#ifdef CO_E_START_SERVICE_FAILURE
         ,   CO_E_START_SERVICE_FAILURE
+#endif
+#ifdef CO_E_REMOTE_COMMUNICATION_FAILURE
         ,   CO_E_REMOTE_COMMUNICATION_FAILURE
+#endif
+#ifdef CO_E_SERVER_START_TIMEOUT
         ,   CO_E_SERVER_START_TIMEOUT
+#endif
+#ifdef CO_E_CLSREG_INCONSISTENT
         ,   CO_E_CLSREG_INCONSISTENT
+#endif
+#ifdef CO_E_IIDREG_INCONSISTENT
         ,   CO_E_IIDREG_INCONSISTENT
+#endif
+#ifdef CO_E_NOT_SUPPORTED
         ,   CO_E_NOT_SUPPORTED
+#endif
+#ifdef CO_E_RELOAD_DLL
         ,   CO_E_RELOAD_DLL
+#endif
+#ifdef CO_E_MSI_ERROR
         ,   CO_E_MSI_ERROR
+#endif
+#ifdef OLE_E_OLEVERB
         ,   OLE_E_OLEVERB
+#endif
+#ifdef OLE_E_ADVF
         ,   OLE_E_ADVF
+#endif
+#ifdef OLE_E_ENUM_NOMORE
         ,   OLE_E_ENUM_NOMORE
+#endif
+#ifdef OLE_E_ADVISENOTSUPPORTED
         ,   OLE_E_ADVISENOTSUPPORTED
+#endif
+#ifdef OLE_E_NOCONNECTION
         ,   OLE_E_NOCONNECTION
+#endif
+#ifdef OLE_E_NOTRUNNING
         ,   OLE_E_NOTRUNNING
+#endif
+#ifdef OLE_E_NOCACHE
         ,   OLE_E_NOCACHE
+#endif
+#ifdef OLE_E_BLANK
         ,   OLE_E_BLANK
+#endif
+#ifdef OLE_E_CLASSDIFF
         ,   OLE_E_CLASSDIFF
+#endif
+#ifdef OLE_E_CANT_GETMONIKER
         ,   OLE_E_CANT_GETMONIKER
+#endif
+#ifdef OLE_E_CANT_BINDTOSOURCE
         ,   OLE_E_CANT_BINDTOSOURCE
+#endif
+#ifdef OLE_E_STATIC
         ,   OLE_E_STATIC
+#endif
+#ifdef OLE_E_PROMPTSAVECANCELLED
         ,   OLE_E_PROMPTSAVECANCELLED
+#endif
+#ifdef OLE_E_INVALIDRECT
         ,   OLE_E_INVALIDRECT
+#endif
+#ifdef OLE_E_WRONGCOMPOBJ
         ,   OLE_E_WRONGCOMPOBJ
+#endif
+#ifdef OLE_E_INVALIDHWND
         ,   OLE_E_INVALIDHWND
+#endif
+#ifdef OLE_E_NOT_INPLACEACTIVE
         ,   OLE_E_NOT_INPLACEACTIVE
+#endif
+#ifdef OLE_E_CANTCONVERT
         ,   OLE_E_CANTCONVERT
+#endif
+#ifdef OLE_E_NOSTORAGE
         ,   OLE_E_NOSTORAGE
+#endif
+#ifdef DV_E_FORMATETC
         ,   DV_E_FORMATETC
+#endif
+#ifdef DV_E_DVTARGETDEVICE
         ,   DV_E_DVTARGETDEVICE
+#endif
+#ifdef DV_E_STGMEDIUM
         ,   DV_E_STGMEDIUM
+#endif
+#ifdef DV_E_STATDATA
         ,   DV_E_STATDATA
+#endif
+#ifdef DV_E_LINDEX
         ,   DV_E_LINDEX
+#endif
+#ifdef DV_E_TYMED
         ,   DV_E_TYMED
+#endif
+#ifdef DV_E_CLIPFORMAT
         ,   DV_E_CLIPFORMAT
+#endif
+#ifdef DV_E_DVASPECT
         ,   DV_E_DVASPECT
+#endif
+#ifdef DV_E_DVTARGETDEVICE_SIZE
         ,   DV_E_DVTARGETDEVICE_SIZE
+#endif
+#ifdef DV_E_NOIVIEWOBJECT
         ,   DV_E_NOIVIEWOBJECT
+#endif
+#ifdef DRAGDROP_E_NOTREGISTERED
         ,   DRAGDROP_E_NOTREGISTERED
+#endif
+#ifdef DRAGDROP_E_ALREADYREGISTERED
         ,   DRAGDROP_E_ALREADYREGISTERED
+#endif
+#ifdef DRAGDROP_E_INVALIDHWND
         ,   DRAGDROP_E_INVALIDHWND
+#endif
+#ifdef CLASS_E_NOAGGREGATION
         ,   CLASS_E_NOAGGREGATION
+#endif
+#ifdef CLASS_E_CLASSNOTAVAILABLE
         ,   CLASS_E_CLASSNOTAVAILABLE
+#endif
+#ifdef CLASS_E_NOTLICENSED
         ,   CLASS_E_NOTLICENSED
+#endif
+#ifdef VIEW_E_DRAW
         ,   VIEW_E_DRAW
+#endif
+#ifdef REGDB_E_READREGDB
         ,   REGDB_E_READREGDB
+#endif
+#ifdef REGDB_E_WRITEREGDB
         ,   REGDB_E_WRITEREGDB
+#endif
+#ifdef REGDB_E_KEYMISSING
         ,   REGDB_E_KEYMISSING
+#endif
+#ifdef REGDB_E_INVALIDVALUE
         ,   REGDB_E_INVALIDVALUE
+#endif
+#ifdef REGDB_E_CLASSNOTREG
         ,   REGDB_E_CLASSNOTREG
+#endif
+#ifdef REGDB_E_IIDNOTREG
         ,   REGDB_E_IIDNOTREG
+#endif
+#ifdef CAT_E_CATIDNOEXIST
         ,   CAT_E_CATIDNOEXIST
+#endif
+#ifdef CAT_E_NODESCRIPTION
         ,   CAT_E_NODESCRIPTION
+#endif
+#ifdef CS_E_PACKAGE_NOTFOUND
         ,   CS_E_PACKAGE_NOTFOUND
+#endif
+#ifdef CS_E_NOT_DELETABLE
         ,   CS_E_NOT_DELETABLE
+#endif
+#ifdef CS_E_CLASS_NOTFOUND
         ,   CS_E_CLASS_NOTFOUND
+#endif
+#ifdef CS_E_INVALID_VERSION
         ,   CS_E_INVALID_VERSION
+#endif
+#ifdef CS_E_NO_CLASSSTORE
         ,   CS_E_NO_CLASSSTORE
+#endif
+#ifdef CACHE_E_NOCACHE_UPDATED
         ,   CACHE_E_NOCACHE_UPDATED
+#endif
+#ifdef OLEOBJ_E_NOVERBS
         ,   OLEOBJ_E_NOVERBS
+#endif
+#ifdef OLEOBJ_E_INVALIDVERB
         ,   OLEOBJ_E_INVALIDVERB
+#endif
+#ifdef INPLACE_E_NOTUNDOABLE
         ,   INPLACE_E_NOTUNDOABLE
+#endif
+#ifdef INPLACE_E_NOTOOLSPACE
         ,   INPLACE_E_NOTOOLSPACE
+#endif
+#ifdef CONVERT10_E_OLESTREAM_GET
         ,   CONVERT10_E_OLESTREAM_GET
+#endif
+#ifdef CONVERT10_E_OLESTREAM_PUT
         ,   CONVERT10_E_OLESTREAM_PUT
+#endif
+#ifdef CONVERT10_E_OLESTREAM_FMT
         ,   CONVERT10_E_OLESTREAM_FMT
+#endif
+#ifdef CONVERT10_E_OLESTREAM_BITMAP_TO_DIB
         ,   CONVERT10_E_OLESTREAM_BITMAP_TO_DIB
+#endif
+#ifdef CONVERT10_E_STG_FMT
         ,   CONVERT10_E_STG_FMT
+#endif
+#ifdef CONVERT10_E_STG_NO_STD_STREAM
         ,   CONVERT10_E_STG_NO_STD_STREAM
+#endif
+#ifdef CONVERT10_E_STG_DIB_TO_BITMAP
         ,   CONVERT10_E_STG_DIB_TO_BITMAP
+#endif
+#ifdef CLIPBRD_E_CANT_OPEN
         ,   CLIPBRD_E_CANT_OPEN
+#endif
+#ifdef CLIPBRD_E_CANT_EMPTY
         ,   CLIPBRD_E_CANT_EMPTY
+#endif
+#ifdef CLIPBRD_E_CANT_SET
         ,   CLIPBRD_E_CANT_SET
+#endif
+#ifdef CLIPBRD_E_BAD_DATA
         ,   CLIPBRD_E_BAD_DATA
+#endif
+#ifdef CLIPBRD_E_CANT_CLOSE
         ,   CLIPBRD_E_CANT_CLOSE
+#endif
+#ifdef MK_E_CONNECTMANUALLY
         ,   MK_E_CONNECTMANUALLY
+#endif
+#ifdef MK_E_EXCEEDEDDEADLINE
         ,   MK_E_EXCEEDEDDEADLINE
+#endif
+#ifdef MK_E_NEEDGENERIC
         ,   MK_E_NEEDGENERIC
+#endif
+#ifdef MK_E_UNAVAILABLE
         ,   MK_E_UNAVAILABLE
+#endif
+#ifdef MK_E_SYNTAX
         ,   MK_E_SYNTAX
+#endif
+#ifdef MK_E_NOOBJECT
         ,   MK_E_NOOBJECT
+#endif
+#ifdef MK_E_INVALIDEXTENSION
         ,   MK_E_INVALIDEXTENSION
+#endif
+#ifdef MK_E_INTERMEDIATEINTERFACENOTSUPPORTED
         ,   MK_E_INTERMEDIATEINTERFACENOTSUPPORTED
+#endif
+#ifdef MK_E_NOTBINDABLE
         ,   MK_E_NOTBINDABLE
+#endif
+#ifdef MK_E_NOTBOUND
         ,   MK_E_NOTBOUND
+#endif
+#ifdef MK_E_CANTOPENFILE
         ,   MK_E_CANTOPENFILE
+#endif
+#ifdef MK_E_MUSTBOTHERUSER
         ,   MK_E_MUSTBOTHERUSER
+#endif
+#ifdef MK_E_NOINVERSE
         ,   MK_E_NOINVERSE
+#endif
+#ifdef MK_E_NOSTORAGE
         ,   MK_E_NOSTORAGE
+#endif
+#ifdef MK_E_NOPREFIX
         ,   MK_E_NOPREFIX
+#endif
+#ifdef MK_E_ENUMERATION_FAILED
         ,   MK_E_ENUMERATION_FAILED
+#endif
+#ifdef CO_E_NOTINITIALIZED
         ,   CO_E_NOTINITIALIZED
+#endif
+#ifdef CO_E_ALREADYINITIALIZED
         ,   CO_E_ALREADYINITIALIZED
+#endif
+#ifdef CO_E_CANTDETERMINECLASS
         ,   CO_E_CANTDETERMINECLASS
+#endif
+#ifdef CO_E_CLASSSTRING
         ,   CO_E_CLASSSTRING
+#endif
+#ifdef CO_E_IIDSTRING
         ,   CO_E_IIDSTRING
+#endif
+#ifdef CO_E_APPNOTFOUND
         ,   CO_E_APPNOTFOUND
+#endif
+#ifdef CO_E_APPSINGLEUSE
         ,   CO_E_APPSINGLEUSE
+#endif
+#ifdef CO_E_ERRORINAPP
         ,   CO_E_ERRORINAPP
+#endif
+#ifdef CO_E_DLLNOTFOUND
         ,   CO_E_DLLNOTFOUND
+#endif
+#ifdef CO_E_ERRORINDLL
         ,   CO_E_ERRORINDLL
+#endif
+#ifdef CO_E_WRONGOSFORAPP
         ,   CO_E_WRONGOSFORAPP
+#endif
+#ifdef CO_E_OBJNOTREG
         ,   CO_E_OBJNOTREG
+#endif
+#ifdef CO_E_OBJISREG
         ,   CO_E_OBJISREG
+#endif
+#ifdef CO_E_OBJNOTCONNECTED
         ,   CO_E_OBJNOTCONNECTED
+#endif
+#ifdef CO_E_APPDIDNTREG
         ,   CO_E_APPDIDNTREG
+#endif
+#ifdef CO_E_RELEASED
         ,   CO_E_RELEASED
+#endif
+#ifdef CO_E_FAILEDTOIMPERSONATE
         ,   CO_E_FAILEDTOIMPERSONATE
+#endif
+#ifdef CO_E_FAILEDTOGETSECCTX
         ,   CO_E_FAILEDTOGETSECCTX
+#endif
+#ifdef CO_E_FAILEDTOOPENTHREADTOKEN
         ,   CO_E_FAILEDTOOPENTHREADTOKEN
+#endif
+#ifdef CO_E_FAILEDTOGETTOKENINFO
         ,   CO_E_FAILEDTOGETTOKENINFO
+#endif
+#ifdef CO_E_TRUSTEEDOESNTMATCHCLIENT
         ,   CO_E_TRUSTEEDOESNTMATCHCLIENT
+#endif
+#ifdef CO_E_FAILEDTOQUERYCLIENTBLANKET
         ,   CO_E_FAILEDTOQUERYCLIENTBLANKET
+#endif
+#ifdef CO_E_FAILEDTOSETDACL
         ,   CO_E_FAILEDTOSETDACL
+#endif
+#ifdef CO_E_ACCESSCHECKFAILED
         ,   CO_E_ACCESSCHECKFAILED
+#endif
+#ifdef CO_E_NETACCESSAPIFAILED
         ,   CO_E_NETACCESSAPIFAILED
+#endif
+#ifdef CO_E_WRONGTRUSTEENAMESYNTAX
         ,   CO_E_WRONGTRUSTEENAMESYNTAX
+#endif
+#ifdef CO_E_INVALIDSID
         ,   CO_E_INVALIDSID
+#endif
+#ifdef CO_E_CONVERSIONFAILED
         ,   CO_E_CONVERSIONFAILED
+#endif
+#ifdef CO_E_NOMATCHINGSIDFOUND
         ,   CO_E_NOMATCHINGSIDFOUND
+#endif
+#ifdef CO_E_LOOKUPACCSIDFAILED
         ,   CO_E_LOOKUPACCSIDFAILED
+#endif
+#ifdef CO_E_NOMATCHINGNAMEFOUND
         ,   CO_E_NOMATCHINGNAMEFOUND
+#endif
+#ifdef CO_E_LOOKUPACCNAMEFAILED
         ,   CO_E_LOOKUPACCNAMEFAILED
+#endif
+#ifdef CO_E_SETSERLHNDLFAILED
         ,   CO_E_SETSERLHNDLFAILED
+#endif
+#ifdef CO_E_FAILEDTOGETWINDIR
         ,   CO_E_FAILEDTOGETWINDIR
+#endif
+#ifdef CO_E_PATHTOOLONG
         ,   CO_E_PATHTOOLONG
+#endif
+#ifdef CO_E_FAILEDTOGENUUID
         ,   CO_E_FAILEDTOGENUUID
+#endif
+#ifdef CO_E_FAILEDTOCREATEFILE
         ,   CO_E_FAILEDTOCREATEFILE
+#endif
+#ifdef CO_E_FAILEDTOCLOSEHANDLE
         ,   CO_E_FAILEDTOCLOSEHANDLE
+#endif
+#ifdef CO_E_EXCEEDSYSACLLIMIT
         ,   CO_E_EXCEEDSYSACLLIMIT
+#endif
+#ifdef CO_E_ACESINWRONGORDER
         ,   CO_E_ACESINWRONGORDER
+#endif
+#ifdef CO_E_INCOMPATIBLESTREAMVERSION
         ,   CO_E_INCOMPATIBLESTREAMVERSION
+#endif
+#ifdef CO_E_FAILEDTOOPENPROCESSTOKEN
         ,   CO_E_FAILEDTOOPENPROCESSTOKEN
+#endif
+#ifdef CO_E_DECODEFAILED
         ,   CO_E_DECODEFAILED
+#endif
+#ifdef CO_E_ACNOTINITIALIZED
         ,   CO_E_ACNOTINITIALIZED
+#endif
+#ifdef CO_E_CLASS_CREATE_FAILED
         ,   CO_E_CLASS_CREATE_FAILED
+#endif
+#ifdef CO_E_SCM_ERROR
         ,   CO_E_SCM_ERROR
+#endif
+#ifdef CO_E_SCM_RPC_FAILURE
         ,   CO_E_SCM_RPC_FAILURE
+#endif
+#ifdef CO_E_BAD_PATH
         ,   CO_E_BAD_PATH
+#endif
+#ifdef CO_E_SERVER_EXEC_FAILURE
         ,   CO_E_SERVER_EXEC_FAILURE
+#endif
+#ifdef CO_E_OBJSRV_RPC_FAILURE
         ,   CO_E_OBJSRV_RPC_FAILURE
+#endif
+#ifdef MK_E_NO_NORMALIZED
         ,   MK_E_NO_NORMALIZED
+#endif
+#ifdef CO_E_SERVER_STOPPING
         ,   CO_E_SERVER_STOPPING
+#endif
+#ifdef MEM_E_INVALID_ROOT
         ,   MEM_E_INVALID_ROOT
+#endif
+#ifdef MEM_E_INVALID_LINK
         ,   MEM_E_INVALID_LINK
+#endif
+#ifdef MEM_E_INVALID_SIZE
         ,   MEM_E_INVALID_SIZE
+#endif
+#ifdef DISP_E_UNKNOWNINTERFACE
         ,   DISP_E_UNKNOWNINTERFACE
+#endif
+#ifdef DISP_E_MEMBERNOTFOUND
         ,   DISP_E_MEMBERNOTFOUND
+#endif
+#ifdef DISP_E_PARAMNOTFOUND
         ,   DISP_E_PARAMNOTFOUND
+#endif
+#ifdef DISP_E_TYPEMISMATCH
         ,   DISP_E_TYPEMISMATCH
+#endif
+#ifdef DISP_E_UNKNOWNNAME
         ,   DISP_E_UNKNOWNNAME
+#endif
+#ifdef DISP_E_NONAMEDARGS
         ,   DISP_E_NONAMEDARGS
+#endif
+#ifdef DISP_E_BADVARTYPE
         ,   DISP_E_BADVARTYPE
+#endif
+#ifdef DISP_E_EXCEPTION
         ,   DISP_E_EXCEPTION
+#endif
+#ifdef DISP_E_OVERFLOW
         ,   DISP_E_OVERFLOW
+#endif
+#ifdef DISP_E_BADINDEX
         ,   DISP_E_BADINDEX
+#endif
+#ifdef DISP_E_UNKNOWNLCID
         ,   DISP_E_UNKNOWNLCID
+#endif
+#ifdef DISP_E_ARRAYISLOCKED
         ,   DISP_E_ARRAYISLOCKED
+#endif
+#ifdef DISP_E_BADPARAMCOUNT
         ,   DISP_E_BADPARAMCOUNT
+#endif
+#ifdef DISP_E_PARAMNOTOPTIONAL
         ,   DISP_E_PARAMNOTOPTIONAL
+#endif
+#ifdef DISP_E_BADCALLEE
         ,   DISP_E_BADCALLEE
+#endif
+#ifdef DISP_E_NOTACOLLECTION
         ,   DISP_E_NOTACOLLECTION
+#endif
+#ifdef DISP_E_DIVBYZERO
         ,   DISP_E_DIVBYZERO
+#endif
+#ifdef TYPE_E_BUFFERTOOSMALL
         ,   TYPE_E_BUFFERTOOSMALL
+#endif
+#ifdef TYPE_E_FIELDNOTFOUND
         ,   TYPE_E_FIELDNOTFOUND
+#endif
+#ifdef TYPE_E_INVDATAREAD
         ,   TYPE_E_INVDATAREAD
+#endif
+#ifdef TYPE_E_UNSUPFORMAT
         ,   TYPE_E_UNSUPFORMAT
+#endif
+#ifdef TYPE_E_REGISTRYACCESS
         ,   TYPE_E_REGISTRYACCESS
+#endif
+#ifdef TYPE_E_LIBNOTREGISTERED
         ,   TYPE_E_LIBNOTREGISTERED
+#endif
+#ifdef TYPE_E_UNDEFINEDTYPE
         ,   TYPE_E_UNDEFINEDTYPE
+#endif
+#ifdef TYPE_E_QUALIFIEDNAMEDISALLOWED
         ,   TYPE_E_QUALIFIEDNAMEDISALLOWED
+#endif
+#ifdef TYPE_E_INVALIDSTATE
         ,   TYPE_E_INVALIDSTATE
+#endif
+#ifdef TYPE_E_WRONGTYPEKIND
         ,   TYPE_E_WRONGTYPEKIND
+#endif
+#ifdef TYPE_E_ELEMENTNOTFOUND
         ,   TYPE_E_ELEMENTNOTFOUND
+#endif
+#ifdef TYPE_E_AMBIGUOUSNAME
         ,   TYPE_E_AMBIGUOUSNAME
+#endif
+#ifdef TYPE_E_NAMECONFLICT
         ,   TYPE_E_NAMECONFLICT
+#endif
+#ifdef TYPE_E_UNKNOWNLCID
         ,   TYPE_E_UNKNOWNLCID
+#endif
+#ifdef TYPE_E_DLLFUNCTIONNOTFOUND
         ,   TYPE_E_DLLFUNCTIONNOTFOUND
+#endif
+#ifdef TYPE_E_BADMODULEKIND
         ,   TYPE_E_BADMODULEKIND
+#endif
+#ifdef TYPE_E_SIZETOOBIG
         ,   TYPE_E_SIZETOOBIG
+#endif
+#ifdef TYPE_E_DUPLICATEID
         ,   TYPE_E_DUPLICATEID
+#endif
+#ifdef TYPE_E_INVALIDID
         ,   TYPE_E_INVALIDID
+#endif
+#ifdef TYPE_E_TYPEMISMATCH
         ,   TYPE_E_TYPEMISMATCH
+#endif
+#ifdef TYPE_E_OUTOFBOUNDS
         ,   TYPE_E_OUTOFBOUNDS
+#endif
+#ifdef TYPE_E_IOERROR
         ,   TYPE_E_IOERROR
+#endif
+#ifdef TYPE_E_CANTCREATETMPFILE
         ,   TYPE_E_CANTCREATETMPFILE
+#endif
+#ifdef TYPE_E_CANTLOADLIBRARY
         ,   TYPE_E_CANTLOADLIBRARY
+#endif
+#ifdef TYPE_E_INCONSISTENTPROPFUNCS
         ,   TYPE_E_INCONSISTENTPROPFUNCS
+#endif
+#ifdef TYPE_E_CIRCULARTYPE
         ,   TYPE_E_CIRCULARTYPE
+#endif
+#ifdef STG_E_INVALIDFUNCTION
         ,   STG_E_INVALIDFUNCTION
+#endif
+#ifdef STG_E_FILENOTFOUND
         ,   STG_E_FILENOTFOUND
+#endif
+#ifdef STG_E_PATHNOTFOUND
         ,   STG_E_PATHNOTFOUND
+#endif
+#ifdef STG_E_TOOMANYOPENFILES
         ,   STG_E_TOOMANYOPENFILES
+#endif
+#ifdef STG_E_ACCESSDENIED
         ,   STG_E_ACCESSDENIED
+#endif
+#ifdef STG_E_INVALIDHANDLE
         ,   STG_E_INVALIDHANDLE
+#endif
+#ifdef STG_E_INSUFFICIENTMEMORY
         ,   STG_E_INSUFFICIENTMEMORY
+#endif
+#ifdef STG_E_INVALIDPOINTER
         ,   STG_E_INVALIDPOINTER
+#endif
+#ifdef STG_E_NOMOREFILES
         ,   STG_E_NOMOREFILES
+#endif
+#ifdef STG_E_DISKISWRITEPROTECTED
         ,   STG_E_DISKISWRITEPROTECTED
+#endif
+#ifdef STG_E_SEEKERROR
         ,   STG_E_SEEKERROR
+#endif
+#ifdef STG_E_WRITEFAULT
         ,   STG_E_WRITEFAULT
+#endif
+#ifdef STG_E_READFAULT
         ,   STG_E_READFAULT
+#endif
+#ifdef STG_E_SHAREVIOLATION
         ,   STG_E_SHAREVIOLATION
+#endif
+#ifdef STG_E_LOCKVIOLATION
         ,   STG_E_LOCKVIOLATION
+#endif
+#ifdef STG_E_FILEALREADYEXISTS
         ,   STG_E_FILEALREADYEXISTS
+#endif
+#ifdef STG_E_INVALIDPARAMETER
         ,   STG_E_INVALIDPARAMETER
+#endif
+#ifdef STG_E_MEDIUMFULL
         ,   STG_E_MEDIUMFULL
+#endif
+#ifdef STG_E_PROPSETMISMATCHED
         ,   STG_E_PROPSETMISMATCHED
+#endif
+#ifdef STG_E_ABNORMALAPIEXIT
         ,   STG_E_ABNORMALAPIEXIT
+#endif
+#ifdef STG_E_INVALIDHEADER
         ,   STG_E_INVALIDHEADER
+#endif
+#ifdef STG_E_INVALIDNAME
         ,   STG_E_INVALIDNAME
+#endif
+#ifdef STG_E_UNKNOWN
         ,   STG_E_UNKNOWN
+#endif
+#ifdef STG_E_UNIMPLEMENTEDFUNCTION
         ,   STG_E_UNIMPLEMENTEDFUNCTION
+#endif
+#ifdef STG_E_INVALIDFLAG
         ,   STG_E_INVALIDFLAG
+#endif
+#ifdef STG_E_INUSE
         ,   STG_E_INUSE
+#endif
+#ifdef STG_E_NOTCURRENT
         ,   STG_E_NOTCURRENT
+#endif
+#ifdef STG_E_REVERTED
         ,   STG_E_REVERTED
+#endif
+#ifdef STG_E_CANTSAVE
         ,   STG_E_CANTSAVE
+#endif
+#ifdef STG_E_OLDFORMAT
         ,   STG_E_OLDFORMAT
+#endif
+#ifdef STG_E_OLDDLL
         ,   STG_E_OLDDLL
+#endif
+#ifdef STG_E_SHAREREQUIRED
         ,   STG_E_SHAREREQUIRED
+#endif
+#ifdef STG_E_NOTFILEBASEDSTORAGE
         ,   STG_E_NOTFILEBASEDSTORAGE
+#endif
+#ifdef STG_E_EXTANTMARSHALLINGS
         ,   STG_E_EXTANTMARSHALLINGS
+#endif
+#ifdef STG_E_DOCFILECORRUPT
         ,   STG_E_DOCFILECORRUPT
+#endif
+#ifdef STG_E_BADBASEADDRESS
         ,   STG_E_BADBASEADDRESS
+#endif
+#ifdef STG_E_INCOMPLETE
         ,   STG_E_INCOMPLETE
+#endif
+#ifdef STG_E_TERMINATED
         ,   STG_E_TERMINATED
+#endif
+#ifdef RPC_E_CALL_REJECTED
         ,   RPC_E_CALL_REJECTED
+#endif
+#ifdef RPC_E_CALL_CANCELED
         ,   RPC_E_CALL_CANCELED
+#endif
+#ifdef RPC_E_CANTPOST_INSENDCALL
         ,   RPC_E_CANTPOST_INSENDCALL
+#endif
+#ifdef RPC_E_CANTCALLOUT_INASYNCCALL
         ,   RPC_E_CANTCALLOUT_INASYNCCALL
+#endif
+#ifdef RPC_E_CANTCALLOUT_INEXTERNALCALL
         ,   RPC_E_CANTCALLOUT_INEXTERNALCALL
+#endif
+#ifdef RPC_E_CONNECTION_TERMINATED
         ,   RPC_E_CONNECTION_TERMINATED
+#endif
+#ifdef RPC_E_SERVER_DIED
         ,   RPC_E_SERVER_DIED
+#endif
+#ifdef RPC_E_CLIENT_DIED
         ,   RPC_E_CLIENT_DIED
+#endif
+#ifdef RPC_E_INVALID_DATAPACKET
         ,   RPC_E_INVALID_DATAPACKET
+#endif
+#ifdef RPC_E_CANTTRANSMIT_CALL
         ,   RPC_E_CANTTRANSMIT_CALL
+#endif
+#ifdef RPC_E_CLIENT_CANTMARSHAL_DATA
         ,   RPC_E_CLIENT_CANTMARSHAL_DATA
+#endif
+#ifdef RPC_E_CLIENT_CANTUNMARSHAL_DATA
         ,   RPC_E_CLIENT_CANTUNMARSHAL_DATA
+#endif
+#ifdef RPC_E_SERVER_CANTMARSHAL_DATA
         ,   RPC_E_SERVER_CANTMARSHAL_DATA
+#endif
+#ifdef RPC_E_SERVER_CANTUNMARSHAL_DATA
         ,   RPC_E_SERVER_CANTUNMARSHAL_DATA
+#endif
+#ifdef RPC_E_INVALID_DATA
         ,   RPC_E_INVALID_DATA
+#endif
+#ifdef RPC_E_INVALID_PARAMETER
         ,   RPC_E_INVALID_PARAMETER
+#endif
+#ifdef RPC_E_CANTCALLOUT_AGAIN
         ,   RPC_E_CANTCALLOUT_AGAIN
+#endif
+#ifdef RPC_E_SERVER_DIED_DNE
         ,   RPC_E_SERVER_DIED_DNE
+#endif
+#ifdef RPC_E_SYS_CALL_FAILED
         ,   RPC_E_SYS_CALL_FAILED
+#endif
+#ifdef RPC_E_OUT_OF_RESOURCES
         ,   RPC_E_OUT_OF_RESOURCES
+#endif
+#ifdef RPC_E_ATTEMPTED_MULTITHREAD
         ,   RPC_E_ATTEMPTED_MULTITHREAD
+#endif
+#ifdef RPC_E_NOT_REGISTERED
         ,   RPC_E_NOT_REGISTERED
+#endif
+#ifdef RPC_E_FAULT
         ,   RPC_E_FAULT
+#endif
+#ifdef RPC_E_SERVERFAULT
         ,   RPC_E_SERVERFAULT
+#endif
+#ifdef RPC_E_CHANGED_MODE
         ,   RPC_E_CHANGED_MODE
+#endif
+#ifdef RPC_E_INVALIDMETHOD
         ,   RPC_E_INVALIDMETHOD
+#endif
+#ifdef RPC_E_DISCONNECTED
         ,   RPC_E_DISCONNECTED
+#endif
+#ifdef RPC_E_RETRY
         ,   RPC_E_RETRY
+#endif
+#ifdef RPC_E_SERVERCALL_RETRYLATER
         ,   RPC_E_SERVERCALL_RETRYLATER
+#endif
+#ifdef RPC_E_SERVERCALL_REJECTED
         ,   RPC_E_SERVERCALL_REJECTED
+#endif
+#ifdef RPC_E_INVALID_CALLDATA
         ,   RPC_E_INVALID_CALLDATA
+#endif
+#ifdef RPC_E_CANTCALLOUT_ININPUTSYNCCALL
         ,   RPC_E_CANTCALLOUT_ININPUTSYNCCALL
+#endif
+#ifdef RPC_E_WRONG_THREAD
         ,   RPC_E_WRONG_THREAD
+#endif
+#ifdef RPC_E_THREAD_NOT_INIT
         ,   RPC_E_THREAD_NOT_INIT
+#endif
+#ifdef RPC_E_VERSION_MISMATCH
         ,   RPC_E_VERSION_MISMATCH
+#endif
+#ifdef RPC_E_INVALID_HEADER
         ,   RPC_E_INVALID_HEADER
+#endif
+#ifdef RPC_E_INVALID_EXTENSION
         ,   RPC_E_INVALID_EXTENSION
+#endif
+#ifdef RPC_E_INVALID_IPID
         ,   RPC_E_INVALID_IPID
+#endif
+#ifdef RPC_E_INVALID_OBJECT
         ,   RPC_E_INVALID_OBJECT
+#endif
+#ifdef RPC_S_CALLPENDING
         ,   RPC_S_CALLPENDING
+#endif
+#ifdef RPC_S_WAITONTIMER
         ,   RPC_S_WAITONTIMER
+#endif
+#ifdef RPC_E_CALL_COMPLETE
         ,   RPC_E_CALL_COMPLETE
+#endif
+#ifdef RPC_E_UNSECURE_CALL
         ,   RPC_E_UNSECURE_CALL
+#endif
+#ifdef RPC_E_TOO_LATE
         ,   RPC_E_TOO_LATE
+#endif
+#ifdef RPC_E_NO_GOOD_SECURITY_PACKAGES
         ,   RPC_E_NO_GOOD_SECURITY_PACKAGES
+#endif
+#ifdef RPC_E_ACCESS_DENIED
         ,   RPC_E_ACCESS_DENIED
+#endif
+#ifdef RPC_E_REMOTE_DISABLED
         ,   RPC_E_REMOTE_DISABLED
+#endif
+#ifdef RPC_E_INVALID_OBJREF
         ,   RPC_E_INVALID_OBJREF
+#endif
+#ifdef RPC_E_NO_CONTEXT
         ,   RPC_E_NO_CONTEXT
+#endif
+#ifdef RPC_E_TIMEOUT
         ,   RPC_E_TIMEOUT
+#endif
+#ifdef RPC_E_NO_SYNC
         ,   RPC_E_NO_SYNC
+#endif
+#ifdef RPC_E_UNEXPECTED
         ,   RPC_E_UNEXPECTED
+#endif
+#ifdef NTE_BAD_UID
         ,   NTE_BAD_UID
+#endif
+#ifdef NTE_BAD_HASH
         ,   NTE_BAD_HASH
+#endif
+#ifdef NTE_BAD_KEY
         ,   NTE_BAD_KEY
+#endif
+#ifdef NTE_BAD_LEN
         ,   NTE_BAD_LEN
+#endif
+#ifdef NTE_BAD_DATA
         ,   NTE_BAD_DATA
+#endif
+#ifdef NTE_BAD_SIGNATURE
         ,   NTE_BAD_SIGNATURE
+#endif
+#ifdef NTE_BAD_VER
         ,   NTE_BAD_VER
+#endif
+#ifdef NTE_BAD_ALGID
         ,   NTE_BAD_ALGID
+#endif
+#ifdef NTE_BAD_FLAGS
         ,   NTE_BAD_FLAGS
+#endif
+#ifdef NTE_BAD_TYPE
         ,   NTE_BAD_TYPE
+#endif
+#ifdef NTE_BAD_KEY_STATE
         ,   NTE_BAD_KEY_STATE
+#endif
+#ifdef NTE_BAD_HASH_STATE
         ,   NTE_BAD_HASH_STATE
+#endif
+#ifdef NTE_NO_KEY
         ,   NTE_NO_KEY
+#endif
+#ifdef NTE_NO_MEMORY
         ,   NTE_NO_MEMORY
+#endif
+#ifdef NTE_EXISTS
         ,   NTE_EXISTS
+#endif
+#ifdef NTE_PERM
         ,   NTE_PERM
+#endif
+#ifdef NTE_NOT_FOUND
         ,   NTE_NOT_FOUND
+#endif
+#ifdef NTE_DOUBLE_ENCRYPT
         ,   NTE_DOUBLE_ENCRYPT
+#endif
+#ifdef NTE_BAD_PROVIDER
         ,   NTE_BAD_PROVIDER
+#endif
+#ifdef NTE_BAD_PROV_TYPE
         ,   NTE_BAD_PROV_TYPE
+#endif
+#ifdef NTE_BAD_PUBLIC_KEY
         ,   NTE_BAD_PUBLIC_KEY
+#endif
+#ifdef NTE_BAD_KEYSET
         ,   NTE_BAD_KEYSET
+#endif
+#ifdef NTE_PROV_TYPE_NOT_DEF
         ,   NTE_PROV_TYPE_NOT_DEF
+#endif
+#ifdef NTE_PROV_TYPE_ENTRY_BAD
         ,   NTE_PROV_TYPE_ENTRY_BAD
+#endif
+#ifdef NTE_KEYSET_NOT_DEF
         ,   NTE_KEYSET_NOT_DEF
+#endif
+#ifdef NTE_KEYSET_ENTRY_BAD
         ,   NTE_KEYSET_ENTRY_BAD
+#endif
+#ifdef NTE_PROV_TYPE_NO_MATCH
         ,   NTE_PROV_TYPE_NO_MATCH
+#endif
+#ifdef NTE_SIGNATURE_FILE_BAD
         ,   NTE_SIGNATURE_FILE_BAD
+#endif
+#ifdef NTE_PROVIDER_DLL_FAIL
         ,   NTE_PROVIDER_DLL_FAIL
+#endif
+#ifdef NTE_PROV_DLL_NOT_FOUND
         ,   NTE_PROV_DLL_NOT_FOUND
+#endif
+#ifdef NTE_BAD_KEYSET_PARAM
         ,   NTE_BAD_KEYSET_PARAM
+#endif
+#ifdef NTE_FAIL
         ,   NTE_FAIL
+#endif
+#ifdef NTE_SYS_ERR
         ,   NTE_SYS_ERR
+#endif
+#ifdef CRYPT_E_MSG_ERROR
         ,   CRYPT_E_MSG_ERROR
+#endif
+#ifdef CRYPT_E_UNKNOWN_ALGO
         ,   CRYPT_E_UNKNOWN_ALGO
+#endif
+#ifdef CRYPT_E_OID_FORMAT
         ,   CRYPT_E_OID_FORMAT
+#endif
+#ifdef CRYPT_E_INVALID_MSG_TYPE
         ,   CRYPT_E_INVALID_MSG_TYPE
+#endif
+#ifdef CRYPT_E_UNEXPECTED_ENCODING
         ,   CRYPT_E_UNEXPECTED_ENCODING
+#endif
+#ifdef CRYPT_E_AUTH_ATTR_MISSING
         ,   CRYPT_E_AUTH_ATTR_MISSING
+#endif
+#ifdef CRYPT_E_HASH_VALUE
         ,   CRYPT_E_HASH_VALUE
+#endif
+#ifdef CRYPT_E_INVALID_INDEX
         ,   CRYPT_E_INVALID_INDEX
+#endif
+#ifdef CRYPT_E_ALREADY_DECRYPTED
         ,   CRYPT_E_ALREADY_DECRYPTED
+#endif
+#ifdef CRYPT_E_NOT_DECRYPTED
         ,   CRYPT_E_NOT_DECRYPTED
+#endif
+#ifdef CRYPT_E_RECIPIENT_NOT_FOUND
         ,   CRYPT_E_RECIPIENT_NOT_FOUND
+#endif
+#ifdef CRYPT_E_CONTROL_TYPE
         ,   CRYPT_E_CONTROL_TYPE
+#endif
+#ifdef CRYPT_E_ISSUER_SERIALNUMBER
         ,   CRYPT_E_ISSUER_SERIALNUMBER
+#endif
+#ifdef CRYPT_E_SIGNER_NOT_FOUND
         ,   CRYPT_E_SIGNER_NOT_FOUND
+#endif
+#ifdef CRYPT_E_ATTRIBUTES_MISSING
         ,   CRYPT_E_ATTRIBUTES_MISSING
+#endif
+#ifdef CRYPT_E_STREAM_MSG_NOT_READY
         ,   CRYPT_E_STREAM_MSG_NOT_READY
+#endif
+#ifdef CRYPT_E_STREAM_INSUFFICIENT_DATA
         ,   CRYPT_E_STREAM_INSUFFICIENT_DATA
+#endif
+#ifdef CRYPT_E_BAD_LEN
         ,   CRYPT_E_BAD_LEN
+#endif
+#ifdef CRYPT_E_BAD_ENCODE
         ,   CRYPT_E_BAD_ENCODE
+#endif
+#ifdef CRYPT_E_FILE_ERROR
         ,   CRYPT_E_FILE_ERROR
+#endif
+#ifdef CRYPT_E_NOT_FOUND
         ,   CRYPT_E_NOT_FOUND
+#endif
+#ifdef CRYPT_E_EXISTS
         ,   CRYPT_E_EXISTS
+#endif
+#ifdef CRYPT_E_NO_PROVIDER
         ,   CRYPT_E_NO_PROVIDER
+#endif
+#ifdef CRYPT_E_SELF_SIGNED
         ,   CRYPT_E_SELF_SIGNED
+#endif
+#ifdef CRYPT_E_DELETED_PREV
         ,   CRYPT_E_DELETED_PREV
+#endif
+#ifdef CRYPT_E_NO_MATCH
         ,   CRYPT_E_NO_MATCH
+#endif
+#ifdef CRYPT_E_UNEXPECTED_MSG_TYPE
         ,   CRYPT_E_UNEXPECTED_MSG_TYPE
+#endif
+#ifdef CRYPT_E_NO_KEY_PROPERTY
         ,   CRYPT_E_NO_KEY_PROPERTY
+#endif
+#ifdef CRYPT_E_NO_DECRYPT_CERT
         ,   CRYPT_E_NO_DECRYPT_CERT
+#endif
+#ifdef CRYPT_E_BAD_MSG
         ,   CRYPT_E_BAD_MSG
+#endif
+#ifdef CRYPT_E_NO_SIGNER
         ,   CRYPT_E_NO_SIGNER
+#endif
+#ifdef CRYPT_E_PENDING_CLOSE
         ,   CRYPT_E_PENDING_CLOSE
+#endif
+#ifdef CRYPT_E_REVOKED
         ,   CRYPT_E_REVOKED
+#endif
+#ifdef CRYPT_E_NO_REVOCATION_DLL
         ,   CRYPT_E_NO_REVOCATION_DLL
+#endif
+#ifdef CRYPT_E_NO_REVOCATION_CHECK
         ,   CRYPT_E_NO_REVOCATION_CHECK
+#endif
+#ifdef CRYPT_E_REVOCATION_OFFLINE
         ,   CRYPT_E_REVOCATION_OFFLINE
+#endif
+#ifdef CRYPT_E_NOT_IN_REVOCATION_DATABASE
         ,   CRYPT_E_NOT_IN_REVOCATION_DATABASE
+#endif
+#ifdef CRYPT_E_INVALID_NUMERIC_STRING
         ,   CRYPT_E_INVALID_NUMERIC_STRING
+#endif
+#ifdef CRYPT_E_INVALID_PRINTABLE_STRING
         ,   CRYPT_E_INVALID_PRINTABLE_STRING
+#endif
+#ifdef CRYPT_E_INVALID_IA5_STRING
         ,   CRYPT_E_INVALID_IA5_STRING
+#endif
+#ifdef CRYPT_E_INVALID_X500_STRING
         ,   CRYPT_E_INVALID_X500_STRING
+#endif
+#ifdef CRYPT_E_NOT_CHAR_STRING
         ,   CRYPT_E_NOT_CHAR_STRING
+#endif
+#ifdef CRYPT_E_FILERESIZED
         ,   CRYPT_E_FILERESIZED
+#endif
+#ifdef CRYPT_E_SECURITY_SETTINGS
         ,   CRYPT_E_SECURITY_SETTINGS
+#endif
+#ifdef CRYPT_E_NO_VERIFY_USAGE_DLL
         ,   CRYPT_E_NO_VERIFY_USAGE_DLL
+#endif
+#ifdef CRYPT_E_NO_VERIFY_USAGE_CHECK
         ,   CRYPT_E_NO_VERIFY_USAGE_CHECK
+#endif
+#ifdef CRYPT_E_VERIFY_USAGE_OFFLINE
         ,   CRYPT_E_VERIFY_USAGE_OFFLINE
+#endif
+#ifdef CRYPT_E_NOT_IN_CTL
         ,   CRYPT_E_NOT_IN_CTL
+#endif
+#ifdef CRYPT_E_NO_TRUSTED_SIGNER
         ,   CRYPT_E_NO_TRUSTED_SIGNER
+#endif
+#ifdef CRYPT_E_OSS_ERROR
         ,   CRYPT_E_OSS_ERROR
+#endif
+#ifdef CERTSRV_E_BAD_REQUESTSUBJECT
         ,   CERTSRV_E_BAD_REQUESTSUBJECT
+#endif
+#ifdef CERTSRV_E_NO_REQUEST
         ,   CERTSRV_E_NO_REQUEST
+#endif
+#ifdef CERTSRV_E_BAD_REQUESTSTATUS
         ,   CERTSRV_E_BAD_REQUESTSTATUS
+#endif
+#ifdef CERTSRV_E_PROPERTY_EMPTY
         ,   CERTSRV_E_PROPERTY_EMPTY
+#endif
+#ifdef CERTDB_E_JET_ERROR
         ,   CERTDB_E_JET_ERROR
+#endif
+#ifdef TRUST_E_SYSTEM_ERROR
         ,   TRUST_E_SYSTEM_ERROR
+#endif
+#ifdef TRUST_E_NO_SIGNER_CERT
         ,   TRUST_E_NO_SIGNER_CERT
+#endif
+#ifdef TRUST_E_COUNTER_SIGNER
         ,   TRUST_E_COUNTER_SIGNER
+#endif
+#ifdef TRUST_E_CERT_SIGNATURE
         ,   TRUST_E_CERT_SIGNATURE
+#endif
+#ifdef TRUST_E_TIME_STAMP
         ,   TRUST_E_TIME_STAMP
+#endif
+#ifdef TRUST_E_BAD_DIGEST
         ,   TRUST_E_BAD_DIGEST
+#endif
+#ifdef TRUST_E_BASIC_CONSTRAINTS
         ,   TRUST_E_BASIC_CONSTRAINTS
+#endif
+#ifdef TRUST_E_FINANCIAL_CRITERIA
         ,   TRUST_E_FINANCIAL_CRITERIA
+#endif
+#ifdef TRUST_E_PROVIDER_UNKNOWN
         ,   TRUST_E_PROVIDER_UNKNOWN
+#endif
+#ifdef TRUST_E_ACTION_UNKNOWN
         ,   TRUST_E_ACTION_UNKNOWN
+#endif
+#ifdef TRUST_E_SUBJECT_FORM_UNKNOWN
         ,   TRUST_E_SUBJECT_FORM_UNKNOWN
+#endif
+#ifdef TRUST_E_SUBJECT_NOT_TRUSTED
         ,   TRUST_E_SUBJECT_NOT_TRUSTED
+#endif
+#ifdef DIGSIG_E_ENCODE
         ,   DIGSIG_E_ENCODE
+#endif
+#ifdef DIGSIG_E_DECODE
         ,   DIGSIG_E_DECODE
+#endif
+#ifdef DIGSIG_E_EXTENSIBILITY
         ,   DIGSIG_E_EXTENSIBILITY
+#endif
+#ifdef DIGSIG_E_CRYPTO
         ,   DIGSIG_E_CRYPTO
+#endif
+#ifdef PERSIST_E_SIZEDEFINITE
         ,   PERSIST_E_SIZEDEFINITE
+#endif
+#ifdef PERSIST_E_SIZEINDEFINITE
         ,   PERSIST_E_SIZEINDEFINITE
+#endif
+#ifdef PERSIST_E_NOTSELFSIZING
         ,   PERSIST_E_NOTSELFSIZING
+#endif
+#ifdef TRUST_E_NOSIGNATURE
         ,   TRUST_E_NOSIGNATURE
+#endif
+#ifdef CERT_E_EXPIRED
         ,   CERT_E_EXPIRED
+#endif
+#ifdef CERT_E_VALIDITYPERIODNESTING
         ,   CERT_E_VALIDITYPERIODNESTING
+#endif
+#ifdef CERT_E_ROLE
         ,   CERT_E_ROLE
+#endif
+#ifdef CERT_E_PATHLENCONST
         ,   CERT_E_PATHLENCONST
+#endif
+#ifdef CERT_E_CRITICAL
         ,   CERT_E_CRITICAL
+#endif
+#ifdef CERT_E_PURPOSE
         ,   CERT_E_PURPOSE
+#endif
+#ifdef CERT_E_ISSUERCHAINING
         ,   CERT_E_ISSUERCHAINING
+#endif
+#ifdef CERT_E_MALFORMED
         ,   CERT_E_MALFORMED
+#endif
+#ifdef CERT_E_UNTRUSTEDROOT
         ,   CERT_E_UNTRUSTEDROOT
+#endif
+#ifdef CERT_E_CHAINING
         ,   CERT_E_CHAINING
+#endif
+#ifdef TRUST_E_FAIL
         ,   TRUST_E_FAIL
+#endif
+#ifdef CERT_E_REVOKED
         ,   CERT_E_REVOKED
+#endif
+#ifdef CERT_E_UNTRUSTEDTESTROOT
         ,   CERT_E_UNTRUSTEDTESTROOT
+#endif
+#ifdef CERT_E_REVOCATION_FAILURE
         ,   CERT_E_REVOCATION_FAILURE
+#endif
+#ifdef CERT_E_CN_NO_MATCH
         ,   CERT_E_CN_NO_MATCH
+#endif
+#ifdef CERT_E_WRONG_USAGE
         ,   CERT_E_WRONG_USAGE
+#endif
+#ifdef SPAPI_E_EXPECTED_SECTION_NAME
         ,   SPAPI_E_EXPECTED_SECTION_NAME
+#endif
+#ifdef SPAPI_E_BAD_SECTION_NAME_LINE
         ,   SPAPI_E_BAD_SECTION_NAME_LINE
+#endif
+#ifdef SPAPI_E_SECTION_NAME_TOO_LONG
         ,   SPAPI_E_SECTION_NAME_TOO_LONG
+#endif
+#ifdef SPAPI_E_GENERAL_SYNTAX
         ,   SPAPI_E_GENERAL_SYNTAX
+#endif
+#ifdef SPAPI_E_WRONG_INF_STYLE
         ,   SPAPI_E_WRONG_INF_STYLE
+#endif
+#ifdef SPAPI_E_SECTION_NOT_FOUND
         ,   SPAPI_E_SECTION_NOT_FOUND
+#endif
+#ifdef SPAPI_E_LINE_NOT_FOUND
         ,   SPAPI_E_LINE_NOT_FOUND
+#endif
+#ifdef SPAPI_E_NO_ASSOCIATED_CLASS
         ,   SPAPI_E_NO_ASSOCIATED_CLASS
+#endif
+#ifdef SPAPI_E_CLASS_MISMATCH
         ,   SPAPI_E_CLASS_MISMATCH
+#endif
+#ifdef SPAPI_E_DUPLICATE_FOUND
         ,   SPAPI_E_DUPLICATE_FOUND
+#endif
+#ifdef SPAPI_E_NO_DRIVER_SELECTED
         ,   SPAPI_E_NO_DRIVER_SELECTED
+#endif
+#ifdef SPAPI_E_KEY_DOES_NOT_EXIST
         ,   SPAPI_E_KEY_DOES_NOT_EXIST
+#endif
+#ifdef SPAPI_E_INVALID_DEVINST_NAME
         ,   SPAPI_E_INVALID_DEVINST_NAME
+#endif
+#ifdef SPAPI_E_INVALID_CLASS
         ,   SPAPI_E_INVALID_CLASS
+#endif
+#ifdef SPAPI_E_DEVINST_ALREADY_EXISTS
         ,   SPAPI_E_DEVINST_ALREADY_EXISTS
+#endif
+#ifdef SPAPI_E_DEVINFO_NOT_REGISTERED
         ,   SPAPI_E_DEVINFO_NOT_REGISTERED
+#endif
+#ifdef SPAPI_E_INVALID_REG_PROPERTY
         ,   SPAPI_E_INVALID_REG_PROPERTY
+#endif
+#ifdef SPAPI_E_NO_INF
         ,   SPAPI_E_NO_INF
+#endif
+#ifdef SPAPI_E_NO_SUCH_DEVINST
         ,   SPAPI_E_NO_SUCH_DEVINST
+#endif
+#ifdef SPAPI_E_CANT_LOAD_CLASS_ICON
         ,   SPAPI_E_CANT_LOAD_CLASS_ICON
+#endif
+#ifdef SPAPI_E_INVALID_CLASS_INSTALLER
         ,   SPAPI_E_INVALID_CLASS_INSTALLER
+#endif
+#ifdef SPAPI_E_DI_DO_DEFAULT
         ,   SPAPI_E_DI_DO_DEFAULT
+#endif
+#ifdef SPAPI_E_DI_NOFILECOPY
         ,   SPAPI_E_DI_NOFILECOPY
+#endif
+#ifdef SPAPI_E_INVALID_HWPROFILE
         ,   SPAPI_E_INVALID_HWPROFILE
+#endif
+#ifdef SPAPI_E_NO_DEVICE_SELECTED
         ,   SPAPI_E_NO_DEVICE_SELECTED
+#endif
+#ifdef SPAPI_E_DEVINFO_LIST_LOCKED
         ,   SPAPI_E_DEVINFO_LIST_LOCKED
+#endif
+#ifdef SPAPI_E_DEVINFO_DATA_LOCKED
         ,   SPAPI_E_DEVINFO_DATA_LOCKED
+#endif
+#ifdef SPAPI_E_DI_BAD_PATH
         ,   SPAPI_E_DI_BAD_PATH
+#endif
+#ifdef SPAPI_E_NO_CLASSINSTALL_PARAMS
         ,   SPAPI_E_NO_CLASSINSTALL_PARAMS
+#endif
+#ifdef SPAPI_E_FILEQUEUE_LOCKED
         ,   SPAPI_E_FILEQUEUE_LOCKED
+#endif
+#ifdef SPAPI_E_BAD_SERVICE_INSTALLSECT
         ,   SPAPI_E_BAD_SERVICE_INSTALLSECT
+#endif
+#ifdef SPAPI_E_NO_CLASS_DRIVER_LIST
         ,   SPAPI_E_NO_CLASS_DRIVER_LIST
+#endif
+#ifdef SPAPI_E_NO_ASSOCIATED_SERVICE
         ,   SPAPI_E_NO_ASSOCIATED_SERVICE
+#endif
+#ifdef SPAPI_E_NO_DEFAULT_DEVICE_INTERFACE
         ,   SPAPI_E_NO_DEFAULT_DEVICE_INTERFACE
+#endif
+#ifdef SPAPI_E_DEVICE_INTERFACE_ACTIVE
         ,   SPAPI_E_DEVICE_INTERFACE_ACTIVE
+#endif
+#ifdef SPAPI_E_DEVICE_INTERFACE_REMOVED
         ,   SPAPI_E_DEVICE_INTERFACE_REMOVED
+#endif
+#ifdef SPAPI_E_BAD_INTERFACE_INSTALLSECT
         ,   SPAPI_E_BAD_INTERFACE_INSTALLSECT
+#endif
+#ifdef SPAPI_E_NO_SUCH_INTERFACE_CLASS
         ,   SPAPI_E_NO_SUCH_INTERFACE_CLASS
+#endif
+#ifdef SPAPI_E_INVALID_REFERENCE_STRING
         ,   SPAPI_E_INVALID_REFERENCE_STRING
+#endif
+#ifdef SPAPI_E_INVALID_MACHINENAME
         ,   SPAPI_E_INVALID_MACHINENAME
+#endif
+#ifdef SPAPI_E_REMOTE_COMM_FAILURE
         ,   SPAPI_E_REMOTE_COMM_FAILURE
+#endif
+#ifdef SPAPI_E_MACHINE_UNAVAILABLE
         ,   SPAPI_E_MACHINE_UNAVAILABLE
+#endif
+#ifdef SPAPI_E_NO_CONFIGMGR_SERVICES
         ,   SPAPI_E_NO_CONFIGMGR_SERVICES
+#endif
+#ifdef SPAPI_E_INVALID_PROPPAGE_PROVIDER
         ,   SPAPI_E_INVALID_PROPPAGE_PROVIDER
+#endif
+#ifdef SPAPI_E_NO_SUCH_DEVICE_INTERFACE
         ,   SPAPI_E_NO_SUCH_DEVICE_INTERFACE
+#endif
+#ifdef SPAPI_E_DI_POSTPROCESSING_REQUIRED
         ,   SPAPI_E_DI_POSTPROCESSING_REQUIRED
+#endif
+#ifdef SPAPI_E_INVALID_COINSTALLER
         ,   SPAPI_E_INVALID_COINSTALLER
+#endif
+#ifdef SPAPI_E_NO_COMPAT_DRIVERS
         ,   SPAPI_E_NO_COMPAT_DRIVERS
+#endif
+#ifdef SPAPI_E_NO_DEVICE_ICON
         ,   SPAPI_E_NO_DEVICE_ICON
+#endif
+#ifdef SPAPI_E_INVALID_INF_LOGCONFIG
         ,   SPAPI_E_INVALID_INF_LOGCONFIG
+#endif
+#ifdef SPAPI_E_DI_DONT_INSTALL
         ,   SPAPI_E_DI_DONT_INSTALL
+#endif
+#ifdef SPAPI_E_INVALID_FILTER_DRIVER
         ,   SPAPI_E_INVALID_FILTER_DRIVER
+#endif
+#ifdef SPAPI_E_ERROR_NOT_INSTALLED
         ,   SPAPI_E_ERROR_NOT_INSTALLED
+#endif
     };
 
     int const WSA_decimal_codes[] =
@@ -1390,7 +2368,7 @@ static void test_regular_decimal_codes_DWORD()
     {
         DWORD const code = static_cast<DWORD>(regular_decimal_codes[i]);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(pantheios::integer(code), pantheios::windows::sc(code));
+        XTESTS_TEST_STRING_EQUAL(pantheios::integer(code), pantheios::windows::sc(code));
     }}
 }
 
@@ -1408,7 +2386,7 @@ static void test_highbit_hexadecimal_codes_DWORD()
     {
         DWORD const code = static_cast<DWORD>(highbit_hexadecimal_codes[i]);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(pantheios::integer(code, 8, pantheios::fmt::fullHex), pantheios::windows::sc(code));
+        XTESTS_TEST_STRING_EQUAL(pantheios::integer(code, 8, pantheios::fmt::fullHex), pantheios::windows::sc(code));
     }}
 }
 
@@ -1426,7 +2404,7 @@ static void test_1_07()
     {
         DWORD const code = static_cast<DWORD>(WSA_decimal_codes[i]);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(pantheios::integer(code), pantheios::windows::sc(code));
+        XTESTS_TEST_STRING_EQUAL(pantheios::integer(code), pantheios::windows::sc(code));
     }}
 }
 

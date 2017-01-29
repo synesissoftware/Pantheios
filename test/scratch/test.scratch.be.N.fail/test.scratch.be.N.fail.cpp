@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the be.N.fail.test project.
  *
  * Created:     9th January 2007
- * Updated:     29th June 2016
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2007-2016, Synesis Software Pty Ltd.
+ *              Copyright (c) 2007-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -59,7 +59,7 @@
 extern "C"
 {
 
-const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[]      =   PANTHEIOS_LITERAL_STRING("be.N.fail.test");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]      =   PANTHEIOS_LITERAL_STRING("be.N.fail.test");
 pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[]   =
 {
     {   0,  PANTHEIOS_SEV_DEBUG  }
