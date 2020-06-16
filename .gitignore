@@ -1,6 +1,11 @@
 
 # directories (by name)
 
+/--include
+/--src
+/-include
+/-src
+
 include/b64/
 include/shwild/
 include/xcontract/
@@ -13,13 +18,17 @@ src/xcontract/
 src/xcover/
 src/xtests/
 
-_internal/
+/_internal/
 
-bin/
+/bin/
 
-doc/
+/build/
+
+/doc/
 
 ideas/
+
+/lib/
 
 perf_test/
 
@@ -58,6 +67,8 @@ vc9/
 
 list_changes.cmd
 prepare.cmd
+tidydir.cmd
+update_deps.cmd
 
 build/makefile.tmpl
 build/makefile.tools.xml
