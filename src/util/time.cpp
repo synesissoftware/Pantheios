@@ -4,11 +4,12 @@
  * Purpose:     Time functions for use in Pantheios back-ends.
  *
  * Created:     22nd August 2006
- * Updated:     17th December 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -88,10 +89,6 @@
 
 namespace
 {
-#if !defined(PANTHEIOS_NO_NAMESPACE)
-    using pantheios::pan_char_t;
-#endif /* !PANTHEIOS_NO_NAMESPACE */
-
     int calcDecPlaces_(int flags)
     {
         int decPlaces = (PANTHEIOS_GETCURRENTTIME_F_TIME_RES_MASK & flags) >> 8;
@@ -192,8 +189,8 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
         {
 # endif /* !PLATFORMSTL_OS_IS_UNIX */
 
-            pan_char_t                  szTime[101]                     =   { '\0' };
-            static pan_char_t const*    tm_fmts[]                       =
+            pantheios_char_t                szTime[101]                     =   { '\0' };
+            static pantheios_char_t const*  tm_fmts[]                       =
             {
                 PANTHEIOS_LITERAL_STRING("%b %d %H:%M:%S"),
                 PANTHEIOS_LITERAL_STRING("%H:%M:%S"),
@@ -227,10 +224,10 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                 return 0;
             }
 # else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-            struct tm*          tm_         =   fns[0 != bUseSystemTime](&secs);
+            struct tm*              tm_         =   fns[0 != bUseSystemTime](&secs);
 # endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-            pan_char_t const*   strftimeFmt =   (NULL != tm->strftimeFmt) ? tm->strftimeFmt : tm_fmts[hidesDate + 2 * hidesTime];
-            size_t              cchTime     =   pan_strftime_(szTime, STLSOFT_NUM_ELEMENTS(szTime), strftimeFmt, tm_);
+            pantheios_char_t const* strftimeFmt =   (NULL != tm->strftimeFmt) ? tm->strftimeFmt : tm_fmts[hidesDate + 2 * hidesTime];
+            size_t                  cchTime     =   pan_strftime_(szTime, STLSOFT_NUM_ELEMENTS(szTime), strftimeFmt, tm_);
 
             if( 0 != numDecPlaces &&
                 !hidesTime)
@@ -260,12 +257,12 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                     0,      // Should never be used; divide-by-0 will trap such a case
                     0,      // Should never be used; divide-by-0 will trap such a case
                 };
-                pan_char_t*         e       =   &szTime[0] + cchTime;
-                long                divisor =   s_divisors[numDecPlaces];
+                pantheios_char_t*       e       =   &szTime[0] + cchTime;
+                long                    divisor =   s_divisors[numDecPlaces];
 #ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-                pan_char_t const*   r       =   stlsoft::integer_to_decimal_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
+                pantheios_char_t const* r       =   stlsoft::integer_to_decimal_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
 #else /* ? STLSoft version */
-                pan_char_t const*   r       =   stlsoft::integer_to_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
+                pantheios_char_t const* r       =   stlsoft::integer_to_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
 #endif /* STLSoft version */
 
                 0[e] = '.';

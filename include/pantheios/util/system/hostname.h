@@ -4,11 +4,12 @@
  * Purpose:     Functions for eliciting host name
  *
  * Created:     14th April 2008
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_MINOR    2
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_EDIT     13
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_EDIT     14
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,14 +120,14 @@ namespace pantheios
  * mostly used, via the C++ wrapper, from the pantheios::hostId inserter
  * class, the inconvenience is deemed acceptable.
  */
-PANTHEIOS_CALL(size_t) pantheios_getHostName(pan_char_t* buffer, size_t cchBuffer);
+PANTHEIOS_CALL(size_t) pantheios_getHostName(pantheios_char_t* buffer, size_t cchBuffer);
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 /** Equivalent to \ref pantheios::pantheios_getHostName "pantheios_getHostName()"
  *
  * \ingroup group__utility
  */
-inline size_t getHostName(pan_char_t* buffer, size_t cchBuffer)
+inline size_t getHostName(pantheios_char_t* buffer, size_t cchBuffer)
 {
     return pantheios_getHostName(buffer, cchBuffer);
 }
@@ -150,9 +151,9 @@ inline size_t getHostName(B& buffer)
 #else /* ? compiler */
 template <size_t N, typename A>
 #  ifdef STLSOFT_AUTO_BUFFER_NEW_FORM
-inline size_t getHostName(stlsoft::auto_buffer<pan_char_t, N, A>& buffer)
+inline size_t getHostName(stlsoft::auto_buffer<pantheios_char_t, N, A>& buffer)
 #  else /* ? STLSOFT_AUTO_BUFFER_NEW_FORM */
-inline size_t getHostName(stlsoft::auto_buffer<pan_char_t, A, N>& buffer)
+inline size_t getHostName(stlsoft::auto_buffer<pantheios_char_t, A, N>& buffer)
 #  endif /* STLSOFT_AUTO_BUFFER_NEW_FORM */
 #endif /* compiler */
 {

@@ -4,11 +4,12 @@
  * Purpose:     String inserter for characters as read from streams.
  *
  * Created:     3rd July 2011
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2011-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_MINOR       0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_REVISION    5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,11 +120,11 @@ private:
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const* data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const* c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The length of the c-style string representation of the integer
-    size_t            length() const;
+    size_t                  length() const;
 /// @}
 
 /// \name Implementation
@@ -136,9 +137,9 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    pan_char_t  m_sz[21];
-    const int   m_ch;
-    size_t      m_len;
+    pantheios_char_t    m_sz[21];
+    const int           m_ch;
+    size_t              m_len;
 /// @}
 };
 
@@ -147,14 +148,14 @@ private:
  */
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 stream_character::data() const
 {
     return c_str();
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 stream_character::c_str() const
 {
     if(0 == m_len)
@@ -189,7 +190,7 @@ namespace shims
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_data_name_(
     stream_character const& sc
 )
@@ -197,7 +198,7 @@ PANTHEIOS_c_str_data_name_(
     return sc.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     stream_character const& sc
 )
@@ -223,7 +224,7 @@ c_str_len(
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_ptr_name_(
     stream_character const& sc
 )
@@ -231,7 +232,7 @@ PANTHEIOS_c_str_ptr_name_(
     return sc.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     stream_character const& sc
 )

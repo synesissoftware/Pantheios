@@ -4,11 +4,12 @@
  * Purpose:     String inserter for binary regions in Base-64.
  *
  * Created:     31st July 2006
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MINOR    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     29
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 7
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -234,11 +235,11 @@ public:
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The length of the c-style string representation of the integer
-    size_t              length() const;
+    size_t                  length() const;
 /// @}
 
 /// \name Implementation
@@ -251,13 +252,13 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    pan_char_t const*   m_value;
-    size_t              m_len;
-    void const*         m_pv;
-    size_t              m_cb;
-    unsigned            m_flags;
-    int                 m_lineLen;
-    B64_RC*             m_rc;
+    pantheios_char_t const* m_value;
+    size_t                  m_len;
+    void const*             m_pv;
+    size_t                  m_cb;
+    unsigned                m_flags;
+    int                     m_lineLen;
+    B64_RC*                 m_rc;
 /// @}
 
 /// \name Not to be implemented
@@ -293,7 +294,7 @@ PANTHEIOS_c_str_data_name_(
     return i.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(b64 const& i)
 {
     return i.data();
@@ -323,7 +324,7 @@ PANTHEIOS_c_str_ptr_name_(
     return i.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(b64 const& i)
 {
     return i.c_str();

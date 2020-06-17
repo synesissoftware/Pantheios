@@ -4,11 +4,12 @@
  * Purpose:     Implementation file for Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     27th January 2017
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -573,10 +574,10 @@ namespace
     // process identity is required; otherwise, it's (assumed to be) a 
     // "classic" front-end, and the value has been cached by this
     // variable.
-    pan_char_t*                                 s_internalProcessIdentity   =   NULL;
+    pantheios_char_t*                           s_internalProcessIdentity   =   NULL;
 
     // The padding characters
-    pan_char_t                                  s_padCharacters[PAD_BUFFER_SIZE + 1u];
+    pantheios_char_t                            s_padCharacters[PAD_BUFFER_SIZE + 1u];
 
     //////////////////////////////////////////////////////////////////
 
@@ -959,9 +960,9 @@ namespace core
 
 /* Defined here, for the moment, as not currently declared in pantheios.h */
 PANTHEIOS_CALL(int) pantheios_dispatch(
-    pan_sev_t           severity
-,   size_t              cchEntry
-,   pan_char_t const*   entry
+    pan_sev_t               severity
+,   size_t                  cchEntry
+,   pantheios_char_t const* entry
 );
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -976,11 +977,11 @@ extern "C++" void pantheios_uninit__cpp();
 extern "C++" int pantheios_isSeverityLogged__cpp(
     pan_sev_t  severity
 );
-extern "C++" pan_char_t const* pantheios_getProcessIdentity__cpp();
+extern "C++" pantheios_char_t const* pantheios_getProcessIdentity__cpp();
 extern "C++" int pantheios_dispatch__cpp(
-    pan_sev_t           severity
-,   size_t              cchEntry
-,   pan_char_t const*   entry
+    pan_sev_t               severity
+,   size_t                  cchEntry
+,   pantheios_char_t const* entry
 );
 extern "C++" int pantheios_log_n__cpp(
     pan_sev_t                   severity
@@ -1280,7 +1281,7 @@ int pantheios_isSeverityLogged__cpp(pan_sev_t severity)
 }
 
 /* Core-exposed process identity. */
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getProcessIdentity()
+PANTHEIOS_CALL(pantheios_char_t const*) pantheios_getProcessIdentity()
 #ifdef _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 {
     return pantheios_getProcessIdentity__cpp();
@@ -1309,18 +1310,18 @@ namespace core
 
 /* dispatching for *all* diagnostic logging functions */
 PANTHEIOS_CALL(int) pantheios_dispatch(
-    pan_sev_t           severity
-,   size_t              cchEntry
-,   pan_char_t const*   entry
+    pan_sev_t               severity
+,   size_t                  cchEntry
+,   pantheios_char_t const* entry
 )
 #ifdef _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 {
     return pantheios_dispatch__cpp(severity, numSlices, slices);
 }
 int pantheios_dispatch__cpp(
-    pan_sev_t           severity
-,   size_t              cchEntry
-,   pan_char_t const*   entry
+    pan_sev_t               severity
+,   size_t                  cchEntry
+,   pantheios_char_t const* entry
 )
 #endif /* _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS */
 {
@@ -1353,12 +1354,16 @@ pantheios_log_n__cpp(
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((NULL != slices || 0 == numSlices), "slices may only be null if the number of slices is zero");
 
 #if 1
+
     typedef PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
-        pan_char_t
+        pantheios_char_t
     ,   1 + LOG_STACK_BUFFER_SIZE
-    >::type                                     buffer_t;
+    >::type                                         buffer_t;
 #else /* ? 0 */
-    typedef stlsoft::auto_buffer<pan_char_t>    buffer_t;
+
+    typedef stlsoft::auto_buffer<
+        pantheios_char_t
+    >                                               buffer_t;
 #endif /* 0 */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -1462,9 +1467,9 @@ pantheios_log_n__cpp(
 
 PANTHEIOS_CALL(int)
 pantheios_logvprintf(
-    pan_sev_t           severity
-,   pan_char_t const*   format
-,   va_list             args
+    pan_sev_t               severity
+,   pantheios_char_t const* format
+,   va_list                 args
 )
 {
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -1486,8 +1491,8 @@ pantheios_logvprintf(
          * - write a leading '\0' before calling vsnprintf
          * - write a trailing '\0' after calling vsnprintf
          */
-        pan_char_t  sz[PRINTF_STACK_BUFFER_SIZE + 1] = { '\0' };
-        int         cch = pantheios_util_vsnprintf(&sz[0], STLSOFT_NUM_ELEMENTS(sz) - 1, format, args);
+        pantheios_char_t    sz[PRINTF_STACK_BUFFER_SIZE + 1] = { '\0' };
+        int                 cch = pantheios_util_vsnprintf(&sz[0], STLSOFT_NUM_ELEMENTS(sz) - 1, format, args);
 
         sz[STLSOFT_NUM_ELEMENTS(sz) - 1] = '\0';
 
@@ -1713,7 +1718,11 @@ namespace core
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getPad(size_t minimumWidth, size_t* actualWidth)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getPad(
+    size_t  minimumWidth
+,   size_t* actualWidth
+)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_API(NULL != actualWidth, "pointer cannot be null");
 

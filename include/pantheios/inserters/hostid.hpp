@@ -4,11 +4,12 @@
  * Purpose:     String inserter for host identity.
  *
  * Created:     14th March 2008
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_MINOR     3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_REVISION  4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_EDIT      15
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_REVISION  5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_EDIT      16
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -150,15 +151,15 @@ private:
 
 public:
     operator size_t () const;
-    operator pan_char_t const* () const;
+    operator pantheios_char_t const* () const;
 
 private:
     void construct_();
     void construct_() const;
 
 private:
-    pan_char_t const*   m_value;
-    size_t              m_len;
+    pantheios_char_t const* m_value;
+    size_t                  m_len;
 };
 
 # if !defined(PANTHEIOS_NO_NAMESPACE) && \

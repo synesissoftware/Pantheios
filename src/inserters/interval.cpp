@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     19th April 2014
- * Updated:     17th December 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2014-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -103,7 +104,8 @@ interval::interval(int interval, interval::units units)
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(units >= microseconds && units <= days, "unrecognised units");
 }
 
-pan_char_t const* interval::data() const
+pantheios_char_t const*
+interval::data() const
 {
     if(m_result.empty())
     {
@@ -132,7 +134,7 @@ void interval::construct_()
 
     if(0 == interval)
     {
-        static pan_char_t const* const s_zeroes[] =
+        static pantheios_char_t const* const s_zeroes[] =
         {
                 NULL
             ,   PANTHEIOS_LITERAL_STRING("0 us")
@@ -143,14 +145,14 @@ void interval::construct_()
             ,   PANTHEIOS_LITERAL_STRING("0 days")
         };
 
-        pan_char_t const* const ptr =   s_zeroes[units];
-        size_t const            len =   pan_strlen_(ptr);
+        pantheios_char_t const* const   ptr =   s_zeroes[units];
+        size_t const                    len =   pan_strlen_(ptr);
 
         m_result.assign(ptr, len);
     }
     else
     {
-        pan_char_t const* u = NULL;
+        pantheios_char_t const* u = NULL;
 
         switch(units)
         {
@@ -211,12 +213,12 @@ void interval::construct_()
 
         STLSOFT_ASSERT(NULL != u);
 
-        pan_char_t              buf[21];
-        size_t                  cch;
+        pantheios_char_t                buf[21];
+        size_t                          cch;
 #ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-        pan_char_t const* const num =   stlsoft::integer_to_decimal_string(buf, STLSOFT_NUM_ELEMENTS(buf), interval, &cch);
+        pantheios_char_t const* const   num =   stlsoft::integer_to_decimal_string(buf, STLSOFT_NUM_ELEMENTS(buf), interval, &cch);
 #else /* ? STLSoft version */
-        pan_char_t const* const num =   stlsoft::integer_to_string(buf, STLSOFT_NUM_ELEMENTS(buf), interval, cch);
+        pantheios_char_t const* const   num =   stlsoft::integer_to_string(buf, STLSOFT_NUM_ELEMENTS(buf), interval, cch);
 #endif /* STLSoft version */
 
         m_result.assign(num, cch);

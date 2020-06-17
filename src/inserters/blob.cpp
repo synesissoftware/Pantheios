@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -97,8 +98,10 @@ namespace
  * blob
  */
 
-blob::blob( void const* pv
-        ,   size_t      cb)
+blob::blob(
+    void const* pv
+,   size_t      cb
+)
     : m_value(NULL)
     , m_len(0)
     , m_pv(pv)
@@ -109,10 +112,12 @@ blob::blob( void const* pv
     , m_lineSeparator(NULL)
 {}
 
-blob::blob( void const*         pv
-        ,   size_t              cb
-        ,   unsigned            byteGrouping
-        ,   pan_char_t const*   groupSeparator)
+blob::blob(
+    void const*             pv
+,   size_t                  cb
+,   unsigned                byteGrouping
+,   pantheios_char_t const* groupSeparator
+)
     : m_value(NULL)
     , m_len(0)
     , m_pv(pv)
@@ -123,12 +128,14 @@ blob::blob( void const*         pv
     , m_lineSeparator(NULL)
 {}
 
-blob::blob( void const*         pv
-        ,   size_t              cb
-        ,   unsigned            byteGrouping
-        ,   pan_char_t const*   groupSeparator
-        ,   int                 groupsPerLine
-        ,   pan_char_t const*   lineSeparator)
+blob::blob(
+    void const*             pv
+,   size_t                  cb
+,   unsigned                byteGrouping
+,   pantheios_char_t const* groupSeparator
+,   int                     groupsPerLine
+,   pantheios_char_t const* lineSeparator
+)
     : m_value(NULL)
     , m_len(0)
     , m_pv(pv)
@@ -143,7 +150,7 @@ blob::blob( void const*         pv
 
 blob::~blob() STLSOFT_NOEXCEPT
 {
-    pantheios_inserterDeallocate(const_cast<pan_char_t*>(m_value));
+    pantheios_inserterDeallocate(const_cast<pantheios_char_t*>(m_value));
 }
 
 
@@ -152,7 +159,8 @@ inline void blob::construct_() const
     const_cast<class_type*>(this)->construct_();
 }
 
-pan_char_t const* blob::data() const
+pantheios_char_t const*
+blob::data() const
 {
     if(NULL == m_value)
     {
@@ -168,7 +176,8 @@ pan_char_t const* blob::data() const
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-pan_char_t const* blob::c_str() const
+pantheios_char_t const*
+blob::c_str() const
 {
     return data();
 }
@@ -191,14 +200,16 @@ void blob::construct_()
     // TODO: STLSoft: make format_bytes() be widestring
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-    stlsoft::w2m    lineSep(m_lineSeparator);
-    stlsoft::w2m    grpSep(m_groupSeparator);
+
+    stlsoft::w2m        lineSep(m_lineSeparator);
+    stlsoft::w2m        grpSep(m_groupSeparator);
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    char const*     lineSep =   m_lineSeparator;
-    char const*     grpSep  =   m_groupSeparator;
+
+    char const*         lineSep =   m_lineSeparator;
+    char const*         grpSep  =   m_groupSeparator;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
-    size_t          cch     =   stlsoft::format_bytes(m_pv, m_cb, NULL, 0, m_byteGrouping, grpSep, m_groupsPerLine, lineSep);
-    pan_char_t*     value   =   static_cast<pan_char_t*>(pantheios_inserterAllocate(sizeof(pan_char_t) * (1 + cch)));
+    size_t              cch     =   stlsoft::format_bytes(m_pv, m_cb, NULL, 0, m_byteGrouping, grpSep, m_groupsPerLine, lineSep);
+    pantheios_char_t*   value   =   static_cast<pantheios_char_t*>(pantheios_inserterAllocate(sizeof(pantheios_char_t) * (1 + cch)));
 
     if(NULL != value)
     {
@@ -211,7 +222,7 @@ void blob::construct_()
 
         if(buff.empty())
         {
-            pantheios_inserterDeallocate(const_cast<pan_char_t*>(m_value));
+            pantheios_inserterDeallocate(const_cast<pantheios_char_t*>(m_value));
 
             value   =   NULL;
             cch     =   0;

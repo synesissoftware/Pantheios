@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     4th July 2011
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2011-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -90,8 +91,8 @@ namespace ximpl_stream_character
 {
     struct known_map_entry_t
     {
-        pan_char_t          ch;
-        pan_char_t const*   name;
+        pantheios_char_t        ch;
+        pantheios_char_t const* name;
     };
 
     static known_map_entry_t s_entries[] =
@@ -151,7 +152,7 @@ void stream_character::construct_()
 
     if(isgraph(m_ch))
     {
-        m_sz[0] = static_cast<pan_char_t>(m_ch);
+        m_sz[0] = static_cast<pantheios_char_t>(m_ch);
         m_sz[1] = '\0';
 
         m_len = 1;

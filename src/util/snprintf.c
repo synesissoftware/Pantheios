@@ -4,11 +4,12 @@
  * Purpose:     Implementation file for snprintf() utility functions.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -112,11 +113,12 @@ namespace pantheios
  * private API
  */
 
-PANTHEIOS_CALL(int) pantheios_util_vsnprintf_a(
-    char*       dest
-,   size_t      cchDest
-,   char const* fmt
-,   va_list     args
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf_a(
+    char*           dest
+,   size_t          cchDest
+,   char const*     fmt
+,   va_list         args
 )
 {
     PANTHEIOS_COVER_MARK_ENTRY();
@@ -124,10 +126,11 @@ PANTHEIOS_CALL(int) pantheios_util_vsnprintf_a(
     return pantheios_util_vsnprintf_a_(dest, cchDest, fmt, args);
 }
 
-PANTHEIOS_CALL(int) pantheios_util_snprintf_a(
-    char*       dest
-,   size_t      cchDest
-,   const char* fmt
+PANTHEIOS_CALL(int)
+pantheios_util_snprintf_a(
+    char*           dest
+,   size_t          cchDest
+,   char const*     fmt
 ,   ...
 )
 {
@@ -151,11 +154,12 @@ PANTHEIOS_CALL(int) pantheios_util_snprintf_a(
  * API
  */
 
-PANTHEIOS_CALL(int) pantheios_util_vsnprintf(
-    pan_char_t*         dest
-,   size_t              cchDest
-,   pan_char_t const*   fmt
-,   va_list             args
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf(
+    pantheios_char_t*       dest
+,   size_t                  cchDest
+,   pantheios_char_t const* fmt
+,   va_list                 args
 )
 {
     PANTHEIOS_COVER_MARK_ENTRY();
@@ -163,10 +167,11 @@ PANTHEIOS_CALL(int) pantheios_util_vsnprintf(
     return pantheios_util_vsnprintf_(dest, cchDest, fmt, args);
 }
 
-PANTHEIOS_CALL(int) pantheios_util_snprintf(
-    pan_char_t*         dest
-,   size_t              cchDest
-,   const pan_char_t*   fmt
+PANTHEIOS_CALL(int)
+pantheios_util_snprintf(
+    pantheios_char_t*       dest
+,   size_t                  cchDest
+,   pantheios_char_t const* fmt
 ,   ...
 )
 {
@@ -195,3 +200,4 @@ PANTHEIOS_CALL(int) pantheios_util_snprintf(
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

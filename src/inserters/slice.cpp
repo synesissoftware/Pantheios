@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     14th February 2010
- * Updated:     17th December 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -120,12 +121,12 @@ namespace pantheios
  */
 
 slice_inserter::slice_inserter(
-    pan_char_t const*   str
-,   size_t              len
-,   pan_char_t const*   strName
-,   pan_char_t const*   lenName
-,   pan_char_t const*   equals
-,   pan_char_t const*   separator
+    pantheios_char_t const* str
+,   size_t                  len
+,   pantheios_char_t const* strName
+,   pantheios_char_t const* lenName
+,   pantheios_char_t const* equals
+,   pantheios_char_t const* separator
 )
     : m_str(str)
     , m_len(len)
@@ -151,7 +152,8 @@ inline void slice_inserter::construct_() const
     const_cast<class_type*>(this)->construct_();
 }
 
-pan_char_t const* slice_inserter::data() const
+pantheios_char_t const*
+slice_inserter::data() const
 {
     if(0u == m_buffer.size())
     {
@@ -161,7 +163,8 @@ pan_char_t const* slice_inserter::data() const
     return m_buffer.data();
 }
 
-pan_char_t const* slice_inserter::c_str() const
+pantheios_char_t const*
+slice_inserter::c_str() const
 {
     return data();
 }
@@ -182,7 +185,7 @@ void slice_inserter::construct_()
 
     pan_slice_t         slices[7];
     pan_slice_t const   equals(-1, (NULL != m_equals) ? m_equals : PANTHEIOS_LITERAL_STRING("="));
-    pan_char_t          num[21];
+    pantheios_char_t    num[21];
 
     slices[0] = pan_slice_t(-1, m_strName);         // 0: str name
     slices[2] = pan_slice_t(m_str, m_len);          // 2: str
@@ -194,16 +197,16 @@ void slice_inserter::construct_()
     }
     if(0u != slices[4].len)
     {
-        pan_char_t const* separator = (NULL != m_separator) ? m_separator : PANTHEIOS_LITERAL_STRING(", ");
+        pantheios_char_t const* separator = (NULL != m_separator) ? m_separator : PANTHEIOS_LITERAL_STRING(", ");
 
         slices[3] = pan_slice_t(-1, separator);     // 3: separator
         slices[5] = equals;                         // 5: equals (for len)
 
-        size_t              lenLen;
+        size_t                  lenLen;
 #ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-        pan_char_t const*   lenPtr = stlsoft::integer_to_decimal_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
+        pantheios_char_t const* lenPtr = stlsoft::integer_to_decimal_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
 #else /* ? STLSoft version */
-        pan_char_t const*   lenPtr = stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
+        pantheios_char_t const* lenPtr = stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
 #endif /* STLSoft version */
 
         slices[6] = pan_slice_t(lenPtr, lenLen);

@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the pantheios::boolean inserter class.
  *
  * Created:     7th August 2008
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -94,15 +95,15 @@ namespace
 
 struct pan_slice_pod_t
 {
-    size_t              len;
-    pan_char_t const*   ptr;
+    size_t                  len;
+    pantheios_char_t const* ptr;
 };
 
-static const pan_char_t         s_falseString[]     =   { 'f', 'a', 'l', 's', 'e', '\0' };
-static const pan_char_t         s_trueString[]      =   { 't', 'r', 'u', 'e', '\0' };
+static const pantheios_char_t   s_falseString[]     =   { 'f', 'a', 'l', 's', 'e', '\0' };
+static const pantheios_char_t   s_trueString[]      =   { 't', 'r', 'u', 'e', '\0' };
 
-static const pan_char_t         s_falseVbString[]   =   { 'V', 'A', 'R', 'I', 'A', 'N', 'T', '_', 'F', 'A', 'L', 'S', 'E', '\0' };
-static const pan_char_t         s_trueVbString[]    =   { 'V', 'A', 'R', 'I', 'A', 'N', 'T', '_', 'T', 'R', 'U', 'E', '\0' };
+static const pantheios_char_t   s_falseVbString[]   =   { 'V', 'A', 'R', 'I', 'A', 'N', 'T', '_', 'F', 'A', 'L', 'S', 'E', '\0' };
+static const pantheios_char_t   s_trueVbString[]    =   { 'V', 'A', 'R', 'I', 'A', 'N', 'T', '_', 'T', 'R', 'U', 'E', '\0' };
 
 static const pan_slice_pod_t    s_defaultSlices[2] =
 {
@@ -130,7 +131,7 @@ static pan_slice_t const*       s_slices[2][2] =
     }
 };
 
-typedef stlsoft::stlsoft_char_traits<pan_char_t>    char_traits_t;
+typedef stlsoft::stlsoft_char_traits<pantheios_char_t> char_traits_t;
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -142,7 +143,7 @@ typedef stlsoft::stlsoft_char_traits<pan_char_t>    char_traits_t;
  * inserter classes
  */
 
-/* static */ void boolean::set_value_strings(pan_char_t const* falseName, pan_char_t const* trueName) /* throw(std::bad_alloc) */
+/* static */ void boolean::set_value_strings(pantheios_char_t const* falseName, pantheios_char_t const* trueName) /* throw(std::bad_alloc) */
 {
     if(NULL == falseName)
     {
@@ -154,8 +155,8 @@ no_falseName:
     }
     else
     {
-        const size_t        cchFalseName    =   char_traits_t::length(falseName);
-        pan_char_t* const   falseNameCopy   =   static_cast<pan_char_t*>(pantheios_malloc((1 + cchFalseName) * sizeof(pan_char_t)));
+        const size_t            cchFalseName    =   char_traits_t::length(falseName);
+        pantheios_char_t* const falseNameCopy   =   static_cast<pantheios_char_t*>(pantheios_malloc((1 + cchFalseName) * sizeof(pantheios_char_t)));
 
         if(NULL == falseNameCopy)
         {
@@ -189,8 +190,8 @@ no_trueName:
     }
     else
     {
-        const size_t        cchTrueName     =   char_traits_t::length(trueName);
-        pan_char_t* const   trueNameCopy    =   static_cast<pan_char_t*>(pantheios_malloc((1 + cchTrueName) * sizeof(pan_char_t)));
+        const size_t            cchTrueName     =   char_traits_t::length(trueName);
+        pantheios_char_t* const trueNameCopy    =   static_cast<pantheios_char_t*>(pantheios_malloc((1 + cchTrueName) * sizeof(pantheios_char_t)));
 
         if(NULL == trueNameCopy)
         {

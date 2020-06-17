@@ -4,11 +4,12 @@
  * Purpose:     Declaration of the be.test library.
  *
  * Created:     1st November 2006
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  2
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      26
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  3
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -164,7 +165,7 @@ namespace test
     {
     public: /* Member Types */
         /** The string type */
-        typedef std::basic_string<pan_char_t>   string_type;
+        typedef std::basic_string<pantheios_char_t>   string_type;
 
     public: /* Member Variables */
         /* const */ Time            time;       /*!< The time the entry was logged. */
@@ -173,7 +174,7 @@ namespace test
 
     public: /* Construction */
         /** Creates an instance with the given characteristics */
-        Entry(int severity, pan_char_t const* entry, size_t cchEntry);
+        Entry(int severity, pantheios_char_t const* entry, size_t cchEntry);
     };
 
     /** Represents the collection of entries since the last call

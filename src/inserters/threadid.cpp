@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     17th December 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -103,11 +104,11 @@ inline void thread_id_t::construct_() const
 
 void thread_id_t::construct_()
 {
-    pan_char_t          sz[21]; // This is large enough for any number up to 64-bits
+    pantheios_char_t        sz[21]; // This is large enough for any number up to 64-bits
 #ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-    pan_char_t const*   num = stlsoft::integer_to_decimal_string(&sz[0], STLSOFT_NUM_ELEMENTS(sz), pantheios_getCurrentThreadId(), &m_len);
+    pantheios_char_t const* num = stlsoft::integer_to_decimal_string(&sz[0], STLSOFT_NUM_ELEMENTS(sz), pantheios_getCurrentThreadId(), &m_len);
 #else /* ? STLSoft version */
-    pan_char_t const*   num = stlsoft::integer_to_string(&sz[0], STLSOFT_NUM_ELEMENTS(sz), pantheios_getCurrentThreadId(), &m_len);
+    pantheios_char_t const* num = stlsoft::integer_to_string(&sz[0], STLSOFT_NUM_ELEMENTS(sz), pantheios_getCurrentThreadId(), &m_len);
 #endif /* STLSoft version */
 
     PANTHEIOS_char_copy(&m_value[0], num, (m_len + 1));
@@ -128,7 +129,7 @@ thread_id_t::operator size_t () const
 
     return m_len;
 }
-thread_id_t::operator pan_char_t const* () const
+thread_id_t::operator pantheios_char_t const* () const
 {
     if('\0' == m_value[0])
     {

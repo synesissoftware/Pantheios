@@ -4,11 +4,12 @@
  * Purpose:     Implementation file for string duplication utility functions.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -122,7 +123,10 @@ PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) STLSOFT_NOEXCEPT
     free(s);
 }
 
-PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) STLSOFT_NOEXCEPT
+PANTHEIOS_CALL(pantheios_char_t*)
+pantheios_util_strdup_nothrow(
+    pantheios_char_t const* s
+) STLSOFT_NOEXCEPT
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     return pantheios_util_strdup_nothrow_w(s);
@@ -131,7 +135,10 @@ PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) S
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 }
 
-PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) STLSOFT_NOEXCEPT
+PANTHEIOS_CALL(void)
+pantheios_util_strfree(
+    pantheios_char_t* s
+) STLSOFT_NOEXCEPT
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     pantheios_util_strfree_w(s);

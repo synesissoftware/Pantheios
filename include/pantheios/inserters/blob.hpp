@@ -4,11 +4,12 @@
  * Purpose:     String inserter for binary regions.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -56,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MINOR       4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_REVISION    7
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        32
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_REVISION    8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        33
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -181,10 +182,12 @@ public:
     /// \param cb Number of bytes in the sequence.
     /// \param bytesPerGroup Number of bytes per group. Must be a power of 2.
     /// \param groupSeparator The string used to separate the byte groups.
-    blob(   void const*         pv
-        ,   size_t              cb
-        ,   unsigned            bytesPerGroup
-        ,   pan_char_t const*   groupSeparator);
+    blob(
+        void const*             pv
+    ,   size_t                  cb
+    ,   unsigned                bytesPerGroup
+    ,   pantheios_char_t const* groupSeparator
+    );
 
     ///  Constructs a \link pantheios::blob blob\endlink inserter
     ///   that will break the sequence of hexadecimal digits into groups
@@ -198,12 +201,13 @@ public:
     /// \param groupSeparator The string used to separate the byte groups.
     /// \param groupsPerLine Number of groups per line.
     /// \param lineSeparator The string used to separate the lines.
-    blob(   void const*         pv
-        ,   size_t              cb
-        ,   unsigned            bytesPerGroup
-        ,   pan_char_t const*   groupSeparator
-        ,   int                 groupsPerLine
-        ,   pan_char_t const*   lineSeparator  =   PANTHEIOS_LITERAL_STRING("\n")
+    blob(
+        void const*             pv
+    ,   size_t                  cb
+    ,   unsigned                bytesPerGroup
+    ,   pantheios_char_t const* groupSeparator
+    ,   int                     groupsPerLine
+    ,   pantheios_char_t const* lineSeparator  =   PANTHEIOS_LITERAL_STRING("\n")
     );
 
     ///  Releases any storage associated with the instance.
@@ -214,11 +218,11 @@ public:
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The length of the c-style string representation of the integer
-    size_t              length() const;
+    size_t                  length() const;
 /// @}
 
 /// \name Implementation
@@ -231,14 +235,14 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    pan_char_t const*   m_value;
-    size_t              m_len;
-    void const* const   m_pv;
-    size_t              m_cb;
-    unsigned            m_byteGrouping;
-    pan_char_t const*   m_groupSeparator;
-    int                 m_groupsPerLine;
-    pan_char_t const*   m_lineSeparator;
+    pantheios_char_t const* m_value;
+    size_t                  m_len;
+    void const* const       m_pv;
+    size_t                  m_cb;
+    unsigned                m_byteGrouping;
+    pantheios_char_t const* m_groupSeparator;
+    int                     m_groupsPerLine;
+    pantheios_char_t const* m_lineSeparator;
 /// @}
 
 /// \name Not to be implemented
@@ -274,7 +278,7 @@ PANTHEIOS_c_str_data_name_(
     return b.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(blob const& b)
 {
     return b.data();
@@ -307,7 +311,7 @@ PANTHEIOS_c_str_ptr_name_(
     return b.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(blob const& b)
 {
     return b.c_str();

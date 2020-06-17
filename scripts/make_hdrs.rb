@@ -6,7 +6,7 @@
 # Purpose:      Generates the Pantheios logging API N-param functions
 #
 # Created:      21st June 2005
-# Updated:      29th June 2016
+# Updated:      16th June 2020
 #
 # Author:       Matthew Wilson
 #
@@ -257,7 +257,7 @@ PARAM_RANGE.each do |i|
 		f << "#{sig}pan_sev_t severity" << ENDL
 		(0 ... i). each do |j|
 
-				f << ''.ljust(len0) + ", pan_char_t const* p#{j}, int l#{j} /* -1 => 'strlen(p#{j})' */" << ENDL
+				f << ''.ljust(len0) + ", pantheios_char_t const* p#{j}, int l#{j} /* -1 => 'strlen(p#{j})' */" << ENDL
 		end
 		f << ');' << ENDL;
 		f << '' << ENDL
@@ -361,9 +361,9 @@ PARAM_RANGE.each do |i|
 		f << "#{sig}pan_sev_t severity" << ENDL
 		(0 ... i - 1). each do |j|
 
-				f << ''.ljust(len0) + ", pan_char_t const* p#{j}, int l#{j}" << ENDL
+				f << ''.ljust(len0) + ", pantheios_char_t const* p#{j}, int l#{j}" << ENDL
 		end
-		f << ''.ljust(len0) + ", pan_char_t const* p#{i - 1}, int l#{i - 1})" << ENDL
+		f << ''.ljust(len0) + ", pantheios_char_t const* p#{i - 1}, int l#{i - 1})" << ENDL
 		f << '{' << ENDL
 		f << "#{TAB}if(!pantheios_isSeverityLogged(severity))" << ENDL
 		f << "#{TAB}{" << ENDL
@@ -524,7 +524,7 @@ PARAM_RANGE.each do |i|
 		f << "#{sig}pan_sev_t severity" << ENDL
 		(0 ... i). each do |j|
 
-			f << ''.ljust(len0) + ", size_t l#{j}, pan_char_t const* p#{j}" << ENDL
+			f << ''.ljust(len0) + ", size_t l#{j}, pantheios_char_t const* p#{j}" << ENDL
 		end
 		f << ')' << ENDL
 		f << '{' << ENDL

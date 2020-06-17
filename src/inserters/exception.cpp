@@ -4,11 +4,12 @@
  * Purpose:     String inserter for std::exception-derived types.
  *
  * Created:     22nd March 2010
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -117,12 +118,14 @@ void exception_inserter::construct_()
     , m_x(x)
 {}
 
-pan_char_t const* exception_inserter::c_str() const
+pantheios_char_t const*
+exception_inserter::c_str() const
 {
     return data();
 }
 
-pan_char_t const* exception_inserter::data() const
+pantheios_char_t const*
+exception_inserter::data() const
 {
     if('\0' == m_value[0])
     {

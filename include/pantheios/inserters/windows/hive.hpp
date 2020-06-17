@@ -4,11 +4,12 @@
  * Purpose:     Selective format string inserter for Windows Registry hives.
  *
  * Created:     22nd May 2016
- * Updated:     26th January 2017
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2016-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_MINOR       0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_EDIT        2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_EDIT        3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -116,25 +117,25 @@ public: // Construction
 
 public:
     /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the pointer
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     /// A nul-terminated non-null pointer to the c-style string representation of the pointer
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     /// The length of the c-style string representation of the pointer
-    size_t              length() const;
+    size_t                  length() const;
 
 private:
 // TODO: put into implementation file
     static
     size_t
     lookup_hive_(
-        void const volatile*    value
-    ,   pan_char_t const**      ptr
+        void const volatile*        value
+    ,   pantheios_char_t const**    ptr
     )
     {
 #ifdef HKEY_CLASSES_ROOT
         if(HKEY_CLASSES_ROOT == value)
         {
-            static pan_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CLASSES_ROOT));
+            static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CLASSES_ROOT));
 
             *ptr = s_name;
 
@@ -144,7 +145,7 @@ private:
 #ifdef HKEY_CURRENT_USER
         if(HKEY_CURRENT_USER == value)
         {
-            static pan_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CURRENT_USER));
+            static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CURRENT_USER));
 
             *ptr = s_name;
 
@@ -154,7 +155,7 @@ private:
 #ifdef HKEY_LOCAL_MACHINE
         if(HKEY_LOCAL_MACHINE == value)
         {
-            static pan_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_LOCAL_MACHINE));
+            static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_LOCAL_MACHINE));
 
             *ptr = s_name;
 
@@ -164,7 +165,7 @@ private:
 #ifdef HKEY_USERS
         if(HKEY_USERS == value)
         {
-            static pan_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_USERS));
+            static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_USERS));
 
             *ptr = s_name;
 
@@ -174,7 +175,7 @@ private:
 #ifdef HKEY_PERFORMANCE_DATA
         if(HKEY_PERFORMANCE_DATA == value)
         {
-            static pan_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_PERFORMANCE_DATA));
+            static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_PERFORMANCE_DATA));
 
             *ptr = s_name;
 
@@ -184,7 +185,7 @@ private:
 #ifdef HKEY_CURRENT_CONFIG
         if(HKEY_CURRENT_CONFIG == value)
         {
-            static pan_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CURRENT_CONFIG));
+            static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CURRENT_CONFIG));
 
             *ptr = s_name;
 
@@ -194,7 +195,7 @@ private:
 #ifdef HKEY_DYN_DATA
         if(HKEY_DYN_DATA == value)
         {
-            static pan_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_DYN_DATA));
+            static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_DYN_DATA));
 
             *ptr = s_name;
 
@@ -211,21 +212,21 @@ private:
  */
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 hive::c_str() const
 {
-    pan_char_t const*   p;
-    size_t const        r = lookup_hive_(get_value(), &p);
+    pantheios_char_t const* p;
+    size_t const            r = lookup_hive_(get_value(), &p);
 
     return (0u == r) ? parent_class_type::c_str() : p;
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 hive::data() const
 {
-    pan_char_t const*   p;
-    size_t const        r = lookup_hive_(get_value(), &p);
+    pantheios_char_t const* p;
+    size_t const            r = lookup_hive_(get_value(), &p);
 
     return (0u == r) ? parent_class_type::data() : p;
 }
@@ -234,8 +235,8 @@ inline
 size_t
 hive::length() const
 {
-    pan_char_t const*   p;
-    size_t const        r = lookup_hive_(get_value(), &p);
+    pantheios_char_t const* p;
+    size_t const            r = lookup_hive_(get_value(), &p);
 
     return (0u == r) ? parent_class_type::length() : r;
 }
@@ -266,7 +267,7 @@ PANTHEIOS_c_str_data_name_(
     return h.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     windows::hive const& h
 )
@@ -300,7 +301,7 @@ PANTHEIOS_c_str_ptr_name_(
     return h.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     windows::hive const& h
 )

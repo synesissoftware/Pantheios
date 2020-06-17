@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the b64 inserter class.
  *
  * Created:     31st July 2006
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -118,7 +119,7 @@ b64::b64(   void const*     pv
 
 b64::~b64() STLSOFT_NOEXCEPT
 {
-    pantheios_inserterDeallocate(const_cast<pan_char_t*>(m_value));
+    pantheios_inserterDeallocate(const_cast<pantheios_char_t*>(m_value));
 }
 
 
@@ -127,7 +128,8 @@ inline void b64::construct_() const
     const_cast<class_type*>(this)->construct_();
 }
 
-pan_char_t const* b64::data() const
+pantheios_char_t const*
+b64::data() const
 {
     if(NULL == m_value)
     {
@@ -143,7 +145,8 @@ pan_char_t const* b64::data() const
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-pan_char_t const* b64::c_str() const
+pantheios_char_t const*
+b64::c_str() const
 {
     return data();
 }
@@ -163,8 +166,8 @@ void b64::construct_()
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL == m_value, "cannot construct if value is non-null");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == m_len, "cannot construct if length is non-0");
 
-    size_t      cch     =   b64_api::b64_encode2(m_pv, m_cb, NULL, 0, m_flags, m_lineLen, m_rc);
-    pan_char_t* value   =   static_cast<pan_char_t*>(pantheios_inserterAllocate(sizeof(pan_char_t) * (1 + cch)));
+    size_t              cch     =   b64_api::b64_encode2(m_pv, m_cb, NULL, 0, m_flags, m_lineLen, m_rc);
+    pantheios_char_t*   value   =   static_cast<pantheios_char_t*>(pantheios_inserterAllocate(sizeof(pantheios_char_t) * (1 + cch)));
 
     if(NULL != value)
     {
@@ -180,7 +183,7 @@ void b64::construct_()
 
         if(buff.empty())
         {
-            pantheios_inserterDeallocate(const_cast<pan_char_t*>(m_value));
+            pantheios_inserterDeallocate(const_cast<pantheios_char_t*>(m_value));
 
             value   =   NULL;
             cch     =   0;

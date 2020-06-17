@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     20th October 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -150,7 +151,8 @@ inline void pointer::construct_() const
     const_cast<class_type*>(this)->construct_();
 }
 
-pan_char_t const* pointer::data() const
+pantheios_char_t const*
+pointer::data() const
 {
     if(0 == m_sz[0])
     {
@@ -160,7 +162,8 @@ pan_char_t const* pointer::data() const
     return m_sz;
 }
 
-pan_char_t const* pointer::c_str() const
+pantheios_char_t const*
+pointer::c_str() const
 {
     return data();
 }
@@ -182,7 +185,7 @@ void pointer::construct_()
 
     if(static_cast<void const*>(0) == m_value)
     {
-        static const pan_char_t  s_null[] = PANTHEIOS_LITERAL_STRING("(null)");
+        static const pantheios_char_t  s_null[] = PANTHEIOS_LITERAL_STRING("(null)");
 
         STLSOFT_STATIC_ASSERT(sizeof(m_sz) >= sizeof(s_null));
 
@@ -192,11 +195,11 @@ void pointer::construct_()
     }
     else
     {
-        pan_char_t          szFmt[101];
-        int                 width;
-        pan_char_t const*   zeroX;
-        pan_char_t const*   leadingMinus;
-        pan_char_t const*   zeroPad;
+        pantheios_char_t        szFmt[101];
+        int                     width;
+        pantheios_char_t const* zeroX;
+        pantheios_char_t const* leadingMinus;
+        pantheios_char_t const* zeroPad;
 
         if(m_minWidth < 0)
         {
@@ -217,7 +220,7 @@ void pointer::construct_()
         {
             // Special case
 
-            pan_char_t szTemp[23]; // 23 is always big enough, since the width is 21
+            pantheios_char_t szTemp[23]; // 23 is always big enough, since the width is 21
 
             PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(0 == (m_format & fmt::zeroPad));
 

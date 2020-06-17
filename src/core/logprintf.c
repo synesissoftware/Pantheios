@@ -4,11 +4,12 @@
  * Purpose:     printf()-family functions for Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -67,8 +68,8 @@ namespace pantheios
  */
 
 PANTHEIOS_CALL(int) pantheios_logprintf(
-    pan_sev_t           severity
-,   pan_char_t const*   format
+    pan_sev_t               severity
+,   pantheios_char_t const* format
 ,   ...
 )
 {

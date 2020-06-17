@@ -4,11 +4,12 @@
  * Purpose:     Severity strings for Pantheios API
  *
  * Created:     26th July 2005
- * Updated:     8th December 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,17 +64,17 @@ typedef struct SeverityString  SeverityString;
 struct SeverityString
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 {
-    int                 severity;   /*!< The severity code. */
-    pan_char_t const*   str;        /*!< The string.        */
-    size_t              len;        /*!< The string length. */
+    int                     severity;   /*!< The severity code. */
+    pantheios_char_t const* str;        /*!< The string.        */
+    size_t                  len;        /*!< The string length. */
 };
 
 
 
 #define SEVERITY_STR_DECL(rc, desc)                                                     \
                                                                                         \
-    static const pan_char_t     s_str##rc[] =   desc;                                   \
-    static const SeverityString s_rct##rc = { rc, s_str##rc, STLSOFT_NUM_ELEMENTS(s_str##rc) - 1 }
+    static const pantheios_char_t   s_str##rc[] =   desc;                                   \
+    static const SeverityString     s_rct##rc = { rc, s_str##rc, STLSOFT_NUM_ELEMENTS(s_str##rc) - 1 }
 
 
 #define SEVERITY_STR_ENTRY(rc)                                                          \
@@ -81,7 +82,13 @@ struct SeverityString
     &s_rct##rc
 
 
-static pan_char_t const* pantheios_LookupCodeA_(int severity, SeverityString const** mappings, size_t cMappings, size_t* len)
+static pantheios_char_t const*
+pantheios_LookupCodeA_(
+    int                     severity
+,   SeverityString const**  mappings
+,   size_t                  cMappings
+,   size_t*                 len
+)
 {
     /* Use Null Object (Variable) here for len, so do not need to check
      * elsewhere.
@@ -117,7 +124,8 @@ static pan_char_t const* pantheios_LookupCodeA_(int severity, SeverityString con
     return (*len = 0, PANTHEIOS_LITERAL_STRING(""));
 }
 
-static pan_char_t const* pantheios_LookupSeverityStringA_(int code, size_t* len)
+static pantheios_char_t const*
+pantheios_LookupSeverityStringA_(int code, size_t* len)
 {
     SEVERITY_STR_DECL(PANTHEIOS_SEV_EMERGENCY        ,   PANTHEIOS_LITERAL_STRING("Emergency")      );
     SEVERITY_STR_DECL(PANTHEIOS_SEV_ALERT            ,   PANTHEIOS_LITERAL_STRING("Alert")          );
@@ -144,12 +152,14 @@ static pan_char_t const* pantheios_LookupSeverityStringA_(int code, size_t* len)
 }
 
 /* deprecated */
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getSeverityString(pan_sev_t severity)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getSeverityString(pan_sev_t severity)
 {
     return pantheios_getStockSeverityString(severity);
 }
 
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getStockSeverityString(pan_sev_t severity)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getStockSeverityString(pan_sev_t severity)
 {
     return pantheios_LookupSeverityStringA_((int)severity, NULL);
 }
@@ -182,7 +192,13 @@ pantheios_getStockSeverityStringSlice(
 
 
 #if 0
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getInserterFormat(pan_char_t buff[200], int widthAndFormat, int bUnsigned, int intSize)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getInserterFormat(
+    pantheios_char_t    buff[200]
+,   int                 widthAndFormat
+,   int                 bUnsigned
+,   int                 intSize
+)
 {
     /* Possible formats:
      *

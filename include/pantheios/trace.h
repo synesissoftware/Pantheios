@@ -4,11 +4,12 @@
  * Purpose:     Pantheios Tracing API.
  *
  * Created:     11th November 2007
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MINOR      3
-# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       18
+# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   3
+# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -173,9 +174,9 @@
 
 # if !defined(PANTHEIOS_NO_NAMESPACE) || \
      defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
-#  define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...) ::pantheios::pantheios_logprintf((sev), "%s" fmt, stlsoft_static_cast(PANTHEIOS_NS_QUAL(pan_char_t) const*, PANTHEIOS_TRACE_PREFIX), __VA_ARGS__)
+#  define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...) ::pantheios::pantheios_logprintf((sev), "%s" fmt, stlsoft_static_cast(PANTHEIOS_NS_QUAL(pantheios_char_t) const*, PANTHEIOS_TRACE_PREFIX), __VA_ARGS__)
 # else /* ? __cplusplus */
-#  define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...)              pantheios_logprintf((sev), "%s" fmt, stlsoft_static_cast(PANTHEIOS_NS_QUAL(pan_char_t) const*, PANTHEIOS_TRACE_PREFIX), __VA_ARGS__)
+#  define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...)              pantheios_logprintf((sev), "%s" fmt, stlsoft_static_cast(PANTHEIOS_NS_QUAL(pantheios_char_t) const*, PANTHEIOS_TRACE_PREFIX), __VA_ARGS__)
 # endif /* __cplusplus */
 
 # if !defined(PANTHEIOS_NO_NAMESPACE) || \

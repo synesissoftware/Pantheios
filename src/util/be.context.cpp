@@ -4,11 +4,12 @@
  * Purpose:     Implementation of pantheios::util::backends::Context.
  *
  * Created:     18th December 2006
- * Updated:     10th January 2017
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -89,7 +90,10 @@ namespace backends
  * context
  */
 
-inline pan_char_t* make_process_identity_(pan_char_t const* processIdentity)
+inline pantheios_char_t*
+make_process_identity_(
+    pantheios_char_t const* processIdentity
+)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != processIdentity, "process identity may not be the null string");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API('\0' != 0[processIdentity], "process identity may not be the empty string");
@@ -116,7 +120,12 @@ inline int check_severity_mask_(int severityMask)
     return severityMask;
 }
 
-/* explicit */ Context::Context(pan_char_t const* processIdentity, int id, pan_uint32_t flags, int severityMask)
+/* explicit */ Context::Context(
+    pantheios_char_t const* processIdentity
+,   int                     id
+,   pan_uint32_t            flags
+,   int                     severityMask
+)
     : m_processIdentity(make_process_identity_(processIdentity))
     , m_id(id)
     , m_flags(flags)
@@ -239,7 +248,11 @@ inline int check_severity_mask_(int severityMask)
     pantheios_util_strfree(m_processIdentity);
 }
 
-int Context::logEntry(int severity, pan_char_t const* entry, size_t cchEntry)
+int Context::logEntry(
+    int                     severity
+,   pantheios_char_t const* entry
+,   size_t                  cchEntry
+)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_INTERNAL((m_severityMask >= 0 && m_severityMask < 16), "invalid severity mask");
 
@@ -256,11 +269,11 @@ int Context::logEntry(int severity, pan_char_t const* entry, size_t cchEntry)
 
     pan_slice_t         slices[rawLogArrayDimension];
     pan_slice_t*        slice = &slices[0];
-    pan_char_t          szTime[101];
+    pantheios_char_t    szTime[101];
     pan_beutil_time_t   tm(STLSOFT_NUM_ELEMENTS(szTime), szTime);
-    pan_char_t          num[21];
+    pantheios_char_t    num[21];
     pan_slice_t         threadId;
-    pan_char_t          numSev[21];
+    pantheios_char_t    numSev[21];
 
     // 0: "["
     // 1: process Id
@@ -425,7 +438,12 @@ do_sev_as_integer:
 #endif /* compiler */
 }
 
-/* virtual */ int Context::rawLogEntry(int severity4, int severityX, pan_char_t const* entry, size_t cchEntry)
+/* virtual */ int Context::rawLogEntry(
+    int                     severity4
+,   int                     severityX
+,   pantheios_char_t const* entry
+,   size_t                  cchEntry
+)
 {
     // Since all stock back-ends to this point have overload only the old,
     // two-parameter, overload, we provide a default for this method
@@ -444,7 +462,12 @@ do_sev_as_integer:
 #endif /* compiler */
 }
 
-/* static */ size_t Context::concatenateSlices(pan_char_t* dest, size_t cchDest, size_t numSlices, pan_slice_t const* slices)
+/* static */ size_t Context::concatenateSlices(
+    pantheios_char_t*   dest
+,   size_t              cchDest
+,   size_t              numSlices
+,   pan_slice_t const*  slices
+)
 {
     size_t numWritten = 0;
 
@@ -459,7 +482,8 @@ do_sev_as_integer:
 }
 
 
-pan_char_t const* Context::getProcessIdentity() const
+pantheios_char_t const*
+Context::getProcessIdentity() const
 {
     return m_processIdentity;
 }

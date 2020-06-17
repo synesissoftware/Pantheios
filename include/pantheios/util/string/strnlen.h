@@ -4,11 +4,12 @@
  * Purpose:     String length functions.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_MINOR     0
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_EDIT      2
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_REVISION  2
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_EDIT      3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,10 +94,10 @@ namespace util
  * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
  */
-PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pan_char_t const* s, size_t len);
+PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pantheios_char_t const* s, size_t len);
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_strnlen, pantheios_util_strnlen) pantheios_strnlen(pan_char_t const* s, size_t len);
+PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_strnlen, pantheios_util_strnlen) pantheios_strnlen(pantheios_char_t const* s, size_t len);
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,8 +111,8 @@ extern "C++"
 inline
 size_t
 strnlen(
-    pan_char_t const*   s
-,   size_t              len
+    pantheios_char_t const* s
+,   size_t                  len
 )
 {
     return pantheios_util_strnlen(s, len);

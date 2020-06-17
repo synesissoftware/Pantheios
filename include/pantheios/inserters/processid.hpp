@@ -4,11 +4,12 @@
  * Purpose:     String inserter for process identity.
  *
  * Created:     16th October 2006
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_MINOR      2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_REVISION   5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_EDIT       23
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_REVISION   6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_EDIT       24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,10 +114,10 @@ extern struct processId_t const* processId;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getCurrentProcessIdString(void);
-PANTHEIOS_CALL(size_t)      pantheios_getCurrentProcessIdStringLength(void);
+PANTHEIOS_CALL(pantheios_char_t const*) pantheios_getCurrentProcessIdString(void);
+PANTHEIOS_CALL(size_t)                  pantheios_getCurrentProcessIdStringLength(void);
 
-PANTHEIOS_CALL_DEPRECATED(pan_char_t const*, pantheios_processId, pantheios_getCurrentProcessIdString) pantheios_processId(void);
+PANTHEIOS_CALL_DEPRECATED(pantheios_char_t const*, pantheios_processId, pantheios_getCurrentProcessIdString) pantheios_processId(void);
 PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_processIdLength, pantheios_getCurrentProcessIdStringLength) pantheios_processIdLength(void);
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
@@ -141,7 +142,7 @@ PANTHEIOS_c_str_data_name_(
     return pantheios_getCurrentProcessIdString();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     struct processId_t const*
 )
@@ -175,7 +176,7 @@ PANTHEIOS_c_str_ptr_name_(
     return pantheios_getCurrentProcessIdString();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     struct processId_t const*
 )

@@ -4,11 +4,12 @@
  * Purpose:     Inserter adaptors for the Pantheios application layer.
  *
  * Created:     29th July 2006
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        24
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    7
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,7 +110,7 @@ private:
     class_type& operator =(class_type const&); // proscribed
 
 public: // accessors
-    pan_char_t const* data() const
+    pantheios_char_t const* data() const
     {
         if(!m_bInitialised)
         {

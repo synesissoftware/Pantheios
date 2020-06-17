@@ -4,11 +4,12 @@
  * Purpose:     Pantheios Core and Util APIs.
  *
  * Created:     21st June 2005
- * Updated:     27th January 2017
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -55,9 +56,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      53
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       373
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   1
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       376
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -104,6 +105,7 @@
 # define PANTHEIOS_VER_1_0_1_B216               0x010001d8
 # define PANTHEIOS_VER_1_0_1_B217               0x010001d9
 # define PANTHEIOS_VER_1_0_1_B218               0x010001da
+# define PANTHEIOS_VER_1_0_1_B219               0x010001db
 # define PANTHEIOS_VER_1_0_1                    0x010001ff
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -111,10 +113,10 @@
 #define PANTHEIOS_VER_MINOR                     0
 #define PANTHEIOS_VER_REVISION                  1
 
-#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B218
+#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B219
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes - 1
+ * includes - 1
  */
 
 /* Pantheios core API relies on STLSoft for compiler/library discrimination,
@@ -184,7 +186,7 @@
 #endif /* PANTHEIOS_NO_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes - 2
+ * includes - 2
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -480,6 +482,9 @@ typedef pantheios_sint16_t              pan_sint16_t;
 typedef pantheios_sint32_t              pan_sint32_t;
 typedef pantheios_sint64_t              pan_sint64_t;
 
+#if !defined(PANTHEIOS_NO_NAMESPACE)
+} /* namespace pantheios */
+#endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /** Character type used by the library
  *
@@ -488,19 +493,26 @@ typedef pantheios_sint64_t              pan_sint64_t;
  * <code>char</code>.
  */
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-typedef wchar_t     pan_char_t;
+typedef wchar_t                         pantheios_char_t;
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-typedef char        pan_char_t;
+typedef char                            pantheios_char_t;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+#if !defined(PANTHEIOS_NO_NAMESPACE)
+namespace pantheios
+{
+#endif /* !PANTHEIOS_NO_NAMESPACE */
+
+typedef pantheios_char_t                pan_char_t;
 
 /** \def PAN_CHAR_T
  *
- * The type \c pan_char_t, suitably namespace qualified in the contexts in
- * which the \c pantheios namespace is operative. Acts as a convenient
- * shorthand for <code>::pantheios::pan_char_t</code> when in C++ (and
- * namespace not suppressed) or <code>pan_char_t</code> otherwise.
+ * The type \c pantheios_char_t, suitably namespace qualified in the contexts
+ * in which the \c pantheios namespace is operative. Acts as a convenient
+ * shorthand for <code>::pantheios::pantheios_char_t</code> when in C++ (and
+ * namespace not suppressed) or <code>pantheios_char_t</code> otherwise.
  */
-#define PAN_CHAR_T  PANTHEIOS_NS_QUAL(pan_char_t)
+#define PAN_CHAR_T                      pantheios_char_t
 
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -513,7 +525,7 @@ struct pantheios_slice_t
     PAN_CHAR_T const*   ptr;    /*!<  Pointer to the first character in the c-style string represented by the slice. */
 };
 #ifndef __cplusplus
-typedef struct pantheios_slice_t    pantheios_slice_t;
+typedef struct pantheios_slice_t        pantheios_slice_t;
 #endif /* !__cplusplus */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -540,7 +552,7 @@ struct pan_slice_t
     /** Constructs a null/empty slice. */
     pan_slice_t();
     /** Constructs a slice from the given pointer and length. */
-    pan_slice_t(pan_char_t const* p, size_t l);
+    pan_slice_t(pantheios_char_t const* p, size_t l);
     /** Copy constructor. */
     pan_slice_t(pan_slice_t const& rhs);
     /** Copy constructor (from pantheios_slice_t). */
@@ -552,7 +564,7 @@ struct pan_slice_t
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
     /** "private" constructor for supporting C-compatible log functions. */
-    pan_slice_t(int len, pan_char_t const* p);
+    pan_slice_t(int len, pantheios_char_t const* p);
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -565,7 +577,7 @@ struct pan_slice_t
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 private:
-    static size_t   calc_length_n_(pan_char_t const* s, size_t len);
+    static size_t   calc_length_n_(pantheios_char_t const* s, size_t len);
 };
 
 # ifdef STLSOFT_CF_static_assert_SUPPORT
@@ -731,7 +743,8 @@ PANTHEIOS_CALL(int) pantheios_isSeverityLogged(pan_sev_t severity);
  *   lifetime of the Pantheios core, then use a front-end that itself uses
  *   PANTHEIOS_FE_PROCESS_IDENTITY, and use that.
  */
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getProcessIdentity(void);
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getProcessIdentity(void);
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** Returns a constant pointer to a non-NULL non-modifiable nul-terminated string
@@ -744,9 +757,9 @@ PANTHEIOS_CALL(pan_char_t const*) pantheios_getProcessIdentity(void);
  *   \link pantheios::pan_severity_t PANTHEIOS_SEV_*\endlink enumerators,
  *   otherwise, the empty string (<code>""</code>) will be returned.
  */
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getStockSeverityString(pan_sev_t severity);
+PANTHEIOS_CALL(pantheios_char_t const*) pantheios_getStockSeverityString(pan_sev_t severity);
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL_DEPRECATED(pan_char_t const*, pantheios_getSeverityString, pantheios_getStockSeverityString) pantheios_getSeverityString(pan_sev_t severity);
+PANTHEIOS_CALL_DEPRECATED(pantheios_char_t const*, pantheios_getSeverityString, pantheios_getStockSeverityString) pantheios_getSeverityString(pan_sev_t severity);
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** Returns the length of the string returned by pantheios_getSeverityString().
@@ -852,8 +865,8 @@ PANTHEIOS_CALL(int) pantheios_log_n(
  *   functions.
  */
 PANTHEIOS_CALL(int) pantheios_logprintf(
-    pan_sev_t           severity
-,   pan_char_t const*   format
+    pan_sev_t               severity
+,   pantheios_char_t const* format
 ,   ...
 )
 #if defined(STLSOFT_COMPILER_IS_GCC) /* TODO: Change this to proper discriminated feature */
@@ -878,9 +891,9 @@ __attribute__((format(printf,2,3)))
  *   functions.
  */
 PANTHEIOS_CALL(int) pantheios_logvprintf(
-    pan_sev_t           severity
-,   pan_char_t const*   format
-,   va_list             args
+    pan_sev_t               severity
+,   pantheios_char_t const* format
+,   va_list                 args
 );
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1095,7 +1108,11 @@ PANTHEIOS_CALL(void)    pantheios_inserterDeallocate(void* pv);
  *
  * \pre (NULL != actualWidth)
  */
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getPad(size_t minimumWidth, size_t* actualWidth);
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getPad(
+    size_t  minimumWidth
+,   size_t* actualWidth
+);
 
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -1149,8 +1166,8 @@ PANTHEIOS_CALL(int) pantheios_getNextBackEndId(void);
  * \param message The message to be output.
  */
 PANTHEIOS_CALL(void) pantheios_logputs(
-    pan_sev_t           severity
-,   pan_char_t const*   message
+    pan_sev_t               severity
+,   pantheios_char_t const* message
 );
 
 /** [DEPRECATED] Equivalent to \link pantheios::pantheios_logputs() pantheios_logputs()\endlink.
@@ -1161,7 +1178,11 @@ PANTHEIOS_CALL(void) pantheios_logputs(
  *   version of Pantheios; instead
  *   use \link pantheios::pantheios_logputs pantheios_logputs()\endlink.
  */
-PANTHEIOS_CALL_DEPRECATED(void, pantheios_puts, pantheios_logputs) pantheios_puts(pan_sev_t severity, pan_char_t const* message);
+PANTHEIOS_CALL_DEPRECATED(void, pantheios_puts, pantheios_logputs)
+pantheios_puts(
+    pan_sev_t               severity
+,   pantheios_char_t const* message
+);
 
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -1417,7 +1438,7 @@ inserterDeallocate(void* pv)
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 getPad(
     size_t  minimumWidth
 ,   size_t* actualWidth
@@ -1450,7 +1471,7 @@ isSeverityLogged(
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
  */
 inline
-pan_char_t const*
+pantheios_char_t const*
 getProcessIdentity()
 {
     return pantheios_getProcessIdentity();
@@ -1462,7 +1483,7 @@ getProcessIdentity()
  * \ingroup group__core_library
  */
 inline
-pan_char_t const*
+pantheios_char_t const*
 getStockSeverityString(
     pan_sev_t severity
 )
@@ -1474,7 +1495,7 @@ getStockSeverityString(
 
 inline
 PANTHEIOS_DECLARE_DEPRECATION("function", getSeverityString, getStockSeverityString)
-pan_char_t const*
+pantheios_char_t const*
 getSeverityString(
     pan_sev_t severity
 )
@@ -1603,8 +1624,8 @@ getNextBackEndId()
 inline
 void
 logputs(
-    pan_sev_t           severity
-,   pan_char_t const*   message
+    pan_sev_t               severity
+,   pantheios_char_t const* message
 )
 {
     pantheios_logputs(severity, message);
@@ -1622,8 +1643,8 @@ inline
 PANTHEIOS_DECLARE_DEPRECATION("function", puts, logputs)
 void
 puts(
-    pan_sev_t           severity
-,   pan_char_t const*   message
+    pan_sev_t               severity
+,   pantheios_char_t const* message
 )
 {
     pantheios_logputs(severity, message);
@@ -1637,8 +1658,8 @@ puts(
 #if !defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) && \
     defined(STLSOFT_COMPILER_IS_GCC) /* TODO: Change this to proper discriminated feature */
 int logprintf(
-    pan_sev_t           severity
-,   pan_char_t const*   format
+    pan_sev_t               severity
+,   pantheios_char_t const* format
 ,   ...
 )
 __attribute__((format(printf,2,3)))
@@ -1648,8 +1669,8 @@ __attribute__((format(printf,2,3)))
 inline
 int
 logprintf(
-    pan_sev_t           severity
-,   pan_char_t const*   format
+    pan_sev_t               severity
+,   pantheios_char_t const* format
 ,   ...
 )
 {
@@ -1673,9 +1694,9 @@ logprintf(
 inline
 int
 logvprintf(
-    pan_sev_t           severity
-,   pan_char_t const*   format
-,   va_list             args
+    pan_sev_t               severity
+,   pantheios_char_t const* format
+,   va_list                 args
 )
 {
     return pantheios_logvprintf(severity, format, args);
@@ -1855,8 +1876,7 @@ namespace stlsoft
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

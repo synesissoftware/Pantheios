@@ -4,11 +4,12 @@
  * Purpose:     snprintf() utility functions.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -97,9 +98,9 @@ namespace pantheios
  * \return The usual return values defined for <code>snprinf()</code>
  */
 PANTHEIOS_CALL(int) pantheios_util_snprintf(
-    pan_char_t*         dest
-,   size_t              cchDest
-,   const pan_char_t*   fmt
+    pantheios_char_t*       dest
+,   size_t                  cchDest
+,   const pantheios_char_t* fmt
 ,   ...
 )
 /* TODO: Change this to proper discriminated feature */
@@ -120,13 +121,21 @@ __attribute__((format(printf,3,4)))
  *
  * \return The usual return values defined for <code>vsnprinf()</code>
  */
-PANTHEIOS_CALL(int) pantheios_util_vsnprintf(pan_char_t* dest, size_t cchDest, pan_char_t const* fmt, va_list args);
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf(
+    pantheios_char_t*       dest
+,   size_t                  cchDest
+,   pantheios_char_t const* fmt
+,   va_list                 args
+);
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL(int) pantheios_util_snprintf_a(
-    char*       dest
-,   size_t      cchDest
-,   const char* fmt
+
+PANTHEIOS_CALL(int)
+pantheios_util_snprintf_a(
+    char*               dest
+,   size_t              cchDest
+,   char const*         fmt
 ,   ...
 )
 /* TODO: Change this to proper discriminated feature */
@@ -153,8 +162,7 @@ PANTHEIOS_CALL(int) pantheios_util_vsnprintf_a(char* dest, size_t cchDest, char 
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_SNPRINTF */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the fe.WindowsRegistry front-end.
  *
  * Created:     28th October 2007
- * Updated:     9th January 2017
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -65,7 +66,6 @@
 namespace
 {
 
-    using ::pantheios::pan_char_t;
     using ::pantheios::util::pantheios_onBailOut3;
     using ::pantheios::util::pantheios_onBailOut6;
 

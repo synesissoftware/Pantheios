@@ -4,11 +4,12 @@
  * Purpose:     Implementation class to assist in the creation of back-ends.
  *
  * Created:     16th December 2006
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MINOR    3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     36
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_REVISION 3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     37
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,11 +106,19 @@ public: // Member Types
   typedef stlsoft::ref_ptr<ISpVoice>          voice_type;
 
 public: // Construction
-  be_speech_context(pan_char_t const* processIdentity, int id, pantheios::uint32_t flags, voice_type voice);
+  be_speech_context(
+    pantheios_char_t const*     processIdentity
+  , int id, pantheios::uint32_t flags
+  , voice_type                  voice
+  );
   ~be_speech_context() throw();
 
 private: // Overrides
-  virtual int rawLogEntry(int severity, const pan_slice_t (&ar)[rawLogArrayDimension], size_t cchTotal);
+  virtual int rawLogEntry(
+    int                 severity
+  , const pan_slice_t (&ar)[rawLogArrayDimension]
+  , size_t              cchTotal
+  );
 
   . . .
 };
@@ -122,11 +131,14 @@ private: // Overrides
  * Finally, in the implementation of the back-end's log entry function, the
  * logEntry() method is called, as in:
 <pre>
-static int pantheios_be_speech_logEntry(  void*             // feToken
-                                        , void*             beToken
-                                        , int               severity
-                                        , pan_char_t const* entry
-                                        , size_t            cchEntry)
+static int
+pantheios_be_speech_logEntry(
+  void*                // feToken
+, void*                   beToken
+, int                     severity
+, pantheios_char_t const* entry
+, size_t                  cchEntry
+)
 {
   PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != beToken, "back-end token may not be null");
 
@@ -164,7 +176,12 @@ protected:
     ///   log statements
     /// \param severityMask Mask that prescribes the valid range of the
     ///   severity for the derived class. Must be either 0x07 or 0x0f
-    Context(pan_char_t const* processIdentity, int id, pan_uint32_t flags, int severityMask);
+    Context(
+        pantheios_char_t const* processIdentity
+    ,   int                     id
+    ,   pan_uint32_t            flags
+    ,   int                     severityMask
+    );
     virtual ~Context() throw();
 /// @}
 
@@ -182,7 +199,11 @@ public:
     ///   backends using the class may only need to lock if the underlying
     ///   transmission medium requires it, and this may only need to be
     ///   inside the call to rawLogEntry(), on a back-end-specific basis.
-    int logEntry(int severity, pan_char_t const* entry, size_t cchEntry);
+    int logEntry(
+        int                     severity
+    ,   pantheios_char_t const* entry
+    ,   size_t                  cchEntry
+    );
 /// @}
 
 /// \name Overrides
@@ -190,20 +211,35 @@ public:
 private:
     /// \param severity The severity at which the statement will be logged
     /// \param ar A reference to an array of 'rawLogArrayDimension' slices
-    virtual int rawLogEntry(int severity4, int severityX, const pan_slice_t (&ar)[rawLogArrayDimension], size_t cchTotal) = 0;
+    virtual int rawLogEntry(
+        int                     severity4
+    ,   int                     severityX
+    ,   const pan_slice_t (&ar)[rawLogArrayDimension]
+    ,   size_t                  cchTotal
+    ) = 0;
 
     /// \param severity The severity at which the statement will be logged
     /// \param entry Pointer to the C-style string containing the entry
     /// \param cchEntry Number of characters in the entry, not including the
     ///   nul-terminator
-    virtual int rawLogEntry(int severity4, int severityX, pan_char_t const* entry, size_t cchEntry);
+    virtual int rawLogEntry(
+        int                     severity4
+    ,   int                     severityX
+    ,   pantheios_char_t const* entry
+    ,   size_t                  cchEntry
+    );
 /// @}
 
 /// \name Utilities
 /// @{
 protected:
     /// Concatenates the slices into the given destination
-    static size_t concatenateSlices(pan_char_t* dest, size_t cchDest, size_t numSlices, pan_slice_t const* slices);
+    static size_t concatenateSlices(
+        pantheios_char_t*       dest
+    ,   size_t                  cchDest
+    ,   size_t                  numSlices
+    ,   pan_slice_t const*      slices
+    );
 /// @}
 
 /// \name Accessors
@@ -214,17 +250,17 @@ public:
     /// \note In builds where exceptions are not enabled, or with compilers
     ///   that do not throw std::bad_alloc on allocation failure, this will
     ///   return NULL to indicate that construction has failed
-    pan_char_t const*   getProcessIdentity() const;
-    int                 getBackEndId() const;
+    pantheios_char_t const* getProcessIdentity() const;
+    int                     getBackEndId() const;
 /// @}
 
 /// \name Member Variables
 /// @{
 protected:
-    pan_char_t* const   m_processIdentity;
-    int const           m_id;
-    pan_uint32_t const  m_flags;
-    int const           m_severityMask;
+    pantheios_char_t* const m_processIdentity;
+    int const               m_id;
+    pan_uint32_t const      m_flags;
+    int const               m_severityMask;
 private:
     // 0: "["
     // 1: process Id

@@ -5,11 +5,12 @@
  *              wide string statement.
  *
  * Created:     22nd November 2010
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -219,7 +220,7 @@ c_str_data_w(
     return r.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     m2w const& r
 )
@@ -253,7 +254,7 @@ c_str_ptr_w(
     return r.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     m2w const& r
 )

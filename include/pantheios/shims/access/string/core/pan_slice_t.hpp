@@ -4,11 +4,12 @@
  * Purpose:     Pantheios Core entity string access shims : pantheios_slice_t.
  *
  * Created:     21st June 2005
- * Updated:     8th December 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -55,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_MAJOR     4
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_MINOR     1
-# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_EDIT      356
+# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_REVISION  2
+# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_EDIT      357
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,18 +99,18 @@ namespace shims
 
 /** Returns a nul-terminated non-NULL C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_ptr_name_(
     pantheios_slice_t const& s
 )
 {
-    static pan_char_t const s_empty[1] = { '\0' };
+    static pantheios_char_t const s_empty[1] = { '\0' };
 
     return (0 == s.len) ? s_empty : s.ptr;
 }
 /** Returns a nul-terminated non-NULL C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     pantheios_slice_t const& s
 )
@@ -119,7 +120,7 @@ c_str_ptr(
 
 /** Returns a nul-terminated potentially null C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_ptr_null_name_(
     pantheios_slice_t const& s
 )
@@ -128,7 +129,7 @@ PANTHEIOS_c_str_ptr_null_name_(
 }
 /** Returns a nul-terminated potentially null C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr_null(
     pantheios_slice_t const& s
 )
@@ -138,7 +139,7 @@ c_str_ptr_null(
 
 /** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_data_name_(
     pantheios_slice_t const& s
 )
@@ -147,7 +148,7 @@ PANTHEIOS_c_str_data_name_(
 }
 /** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     pantheios_slice_t const& s
 )
@@ -180,18 +181,18 @@ c_str_len(
 
 /** Returns a nul-terminated non-NULL C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_ptr_name_(
     pantheios_slice_t const* s
 )
 {
-    static pan_char_t const s_empty[1] = { '\0' };
+    static pantheios_char_t const s_empty[1] = { '\0' };
 
     return (NULL != s) ? PANTHEIOS_c_str_ptr_name_(*s) : s_empty;
 }
 /** Returns a nul-terminated non-NULL C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     pantheios_slice_t const* s
 )
@@ -201,7 +202,7 @@ c_str_ptr(
 
 /** Returns a nul-terminated potentially null C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_ptr_null_name_(
     pantheios_slice_t const* s
 )
@@ -210,7 +211,7 @@ PANTHEIOS_c_str_ptr_null_name_(
 }
 /** Returns a nul-terminated potentially null C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr_null(
     pantheios_slice_t const* s
 )
@@ -220,7 +221,7 @@ c_str_ptr_null(
 
 /** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_data_name_(
     pantheios_slice_t const* s
 )
@@ -229,7 +230,7 @@ PANTHEIOS_c_str_data_name_(
 }
 /** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     pantheios_slice_t const* s
 )

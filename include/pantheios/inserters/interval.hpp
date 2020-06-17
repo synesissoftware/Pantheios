@@ -4,11 +4,12 @@
  * Purpose:     String inserter for time intervals pairs.
  *
  * Created:     19th April 2014
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2014-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_MINOR       0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -134,11 +135,11 @@ private:
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The size of the c-style string representation of the integer
-    size_t              size() const;
+    size_t                  size() const;
 /// @}
 
 /// \name Implementation
@@ -151,7 +152,7 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    typedef std::basic_string<pan_char_t> string_type_;
+    typedef std::basic_string<pantheios_char_t> string_type_;
 
     pan_sint64_t const  m_interval;
     units const         m_units;
@@ -180,7 +181,7 @@ PANTHEIOS_c_str_data_name_(
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(interval const& i)
 {
     return i.data();
@@ -211,7 +212,7 @@ PANTHEIOS_c_str_ptr_name_(
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(interval const& i)
 {
     return i.c_str();

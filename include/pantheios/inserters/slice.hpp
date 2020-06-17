@@ -4,11 +4,12 @@
  * Purpose:     String inserter for slices of strings.
  *
  * Created:     13th February 2010
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MINOR    0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     11
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 7
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     12
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,21 +104,21 @@ class slice_inserter
 /// \name Member Types
 /// @{
 public:
-    typedef slice_inserter                          class_type;
+    typedef slice_inserter                              class_type;
 private:
-    typedef stlsoft::auto_buffer<pan_char_t, 256>   buffer_type_;
+    typedef stlsoft::auto_buffer<pantheios_char_t, 256> buffer_type_;
 /// @}
 
 /// \name Construction
 /// @{
 public:
     slice_inserter(
-        pan_char_t const*   str
-    ,   size_t              len
-    ,   pan_char_t const*   strName
-    ,   pan_char_t const*   lenName
-    ,   pan_char_t const*   equals
-    ,   pan_char_t const*   separator
+        pantheios_char_t const* str
+    ,   size_t                  len
+    ,   pantheios_char_t const* strName
+    ,   pantheios_char_t const* lenName
+    ,   pantheios_char_t const* equals
+    ,   pantheios_char_t const* separator
     );
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
     slice_inserter(class_type const& rhs);
@@ -128,11 +129,11 @@ public:
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the slice
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the slice
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The length of the c-style string representation of the slice
-    size_t              length() const;
+    size_t                  length() const;
 /// @}
 
 /// \name Implementation
@@ -145,13 +146,13 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    pan_char_t const*   m_str;
-    size_t              m_len;
-    pan_char_t const*   m_strName;
-    pan_char_t const*   m_lenName;
-    pan_char_t const*   m_equals;
-    pan_char_t const*   m_separator;
-    buffer_type_        m_buffer;
+    pantheios_char_t const* m_str;
+    size_t                  m_len;
+    pantheios_char_t const* m_strName;
+    pantheios_char_t const* m_lenName;
+    pantheios_char_t const* m_equals;
+    pantheios_char_t const* m_separator;
+    buffer_type_            m_buffer;
 /// @}
 
 /// \name Not to be implemented
@@ -177,8 +178,8 @@ private:
  *
  */
 inline pan_slice_t slice(
-    pan_char_t const*   str
-,   size_t              len
+    pantheios_char_t const* str
+,   size_t                  len
 )
 {
     return pan_slice_t(str, len);
@@ -191,9 +192,9 @@ inline pan_slice_t slice(
  * \param strName Name of the string parameter
  */
 inline slice_inserter slice(
-    pan_char_t const*   str
-,   size_t              len
-,   pan_char_t const*   strName
+    pantheios_char_t const* str
+,   size_t                  len
+,   pantheios_char_t const* strName
 )
 {
     return slice_inserter(str, len, strName, NULL, NULL, NULL);
@@ -207,10 +208,10 @@ inline slice_inserter slice(
  * \param lenName Name of the length parameter
  */
 inline slice_inserter slice(
-    pan_char_t const*   str
-,   size_t              len
-,   pan_char_t const*   strName
-,   pan_char_t const*   lenName
+    pantheios_char_t const* str
+,   size_t                  len
+,   pantheios_char_t const* strName
+,   pantheios_char_t const* lenName
 )
 {
     return slice_inserter(str, len, strName, lenName, NULL, NULL);
@@ -225,11 +226,11 @@ inline slice_inserter slice(
  * \param equals The string that separates the name and the value
  */
 inline slice_inserter slice(
-    pan_char_t const*   str
-,   size_t              len
-,   pan_char_t const*   strName
-,   pan_char_t const*   lenName
-,   pan_char_t const*   equals
+    pantheios_char_t const* str
+,   size_t                  len
+,   pantheios_char_t const* strName
+,   pantheios_char_t const* lenName
+,   pantheios_char_t const* equals
 )
 {
     return slice_inserter(str, len, strName, lenName, equals, NULL);
@@ -245,12 +246,12 @@ inline slice_inserter slice(
  * \param separator The string to be used between the string and length parameters
  */
 inline slice_inserter slice(
-    pan_char_t const*   str
-,   size_t              len
-,   pan_char_t const*   strName
-,   pan_char_t const*   lenName
-,   pan_char_t const*   equals
-,   pan_char_t const*   separator
+    pantheios_char_t const* str
+,   size_t                  len
+,   pantheios_char_t const* strName
+,   pantheios_char_t const* lenName
+,   pantheios_char_t const* equals
+,   pantheios_char_t const* separator
 )
 {
     return slice_inserter(str, len, strName, lenName, equals, separator);
@@ -276,7 +277,7 @@ PANTHEIOS_c_str_data_name_(
     return i.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     slice_inserter const& i
 )
@@ -310,7 +311,7 @@ PANTHEIOS_c_str_ptr_name_(
     return i.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     slice_inserter const& i
 )

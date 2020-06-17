@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -92,7 +93,12 @@ inline void args::construct_() const
     const_cast<class_type*>(this)->construct_();
 }
 
-args::args(int argc, pan_char_t const* const* argv, int flags /* = quoteArgsWithSpaces */, pan_char_t const* separator /* = ", " */)
+args::args(
+    int                             argc
+,   pantheios_char_t const* const*  argv
+,   int                             flags   /* = quoteArgsWithSpaces */
+,   pantheios_char_t const*         separator /* = ", " */
+)
     : m_flags(flags)
     , m_argc(argc)
     , m_argv(argv)
@@ -103,7 +109,12 @@ args::args(int argc, pan_char_t const* const* argv, int flags /* = quoteArgsWith
 }
 
 #ifdef STLSOFT_COMPILER_IS_BORLAND
-args::args(int argc, pan_char_t** argv, int flags /* = quoteArgsWithSpaces */, pan_char_t const* separator /* = ", " */)
+args::args(
+    int                             argc
+,   pantheios_char_t**              argv
+,   int                             flags /* = quoteArgsWithSpaces */
+,   pantheios_char_t const*         separator /* = ", " */
+)
     : m_flags(flags)
     , m_argc(argc)
     , m_argv(argv)
@@ -117,7 +128,8 @@ args::args(int argc, pan_char_t** argv, int flags /* = quoteArgsWithSpaces */, p
 args::~args() STLSOFT_NOEXCEPT // This is defined so that the destructors for the member variables are executed in the same link unit
 {}
 
-pan_char_t const* args::data() const
+pantheios_char_t const*
+args::data() const
 {
     if(m_result.empty())
     {
@@ -143,15 +155,15 @@ void args::construct_()
 
     { for(int i = 0; i < m_argc; ++i)
     {
-        pan_char_t const* arg = ::stlsoft::c_str_ptr(m_argv[i]); // ensure arg is never NULL
+        pantheios_char_t const* arg = ::stlsoft::c_str_ptr(m_argv[i]); // ensure arg is never NULL
 
         if(0 == i)
         {
             if(arg0FileOnly == (m_flags & arg0FileOnly))
             {
-                pan_char_t const* slash   =   pan_strrchr_(arg, PANTHEIOS_LITERAL_CHAR('/'));
+                pantheios_char_t const* slash   =   pan_strrchr_(arg, PANTHEIOS_LITERAL_CHAR('/'));
 #ifdef PLATFORMSTL_OS_IS_WINDOWS
-                pan_char_t const* bslash  =   pan_strrchr_(arg, PANTHEIOS_LITERAL_CHAR('\\'));
+                pantheios_char_t const* bslash  =   pan_strrchr_(arg, PANTHEIOS_LITERAL_CHAR('\\'));
 
                 if(NULL == slash)
                 {

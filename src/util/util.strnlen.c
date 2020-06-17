@@ -5,11 +5,12 @@
  *              functions.
  *
  * Created:     21st June 2005
- * Updated:     10th January 2017
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -133,12 +134,20 @@ PANTHEIOS_CALL(size_t) pantheios_util_getSliceLazyLength(size_t fromLen, size_t 
 }
 
 /* deprecated */
-PANTHEIOS_CALL(size_t) pantheios_strnlen(pan_char_t const* s, size_t len)
+PANTHEIOS_CALL(size_t)
+pantheios_strnlen(
+    pantheios_char_t const* s
+,   size_t                  len
+)
 {
     return pantheios_util_strnlen(s, len);
 }
 
-PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pan_char_t const* s, size_t len)
+PANTHEIOS_CALL(size_t)
+pantheios_util_strnlen(
+    pantheios_char_t const* s
+,   size_t                  len
+)
 {
     static size_t const topBit     =   stlsoft_static_cast(size_t, 0x01) << (sizeof(size_t) * 8 - 1);
     static size_t const nextTopBit =   stlsoft_static_cast(size_t, 0x01) << (sizeof(size_t) * 8 - 2);
@@ -170,9 +179,9 @@ PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pan_char_t const* s, size_t len)
             /* toLen is bit16-bit30 */
             size_t const        toLen   =   (len >> 15)  & 0x7fff;
 
-            pan_char_t const*   from    =   s + fromLen;
-            pan_char_t const*   to      =   s + toLen;
-            pan_char_t const*   nul;
+            pantheios_char_t const* from    =   s + fromLen;
+            pantheios_char_t const* to      =   s + toLen;
+            pantheios_char_t const* nul;
 
             if(fromLen < toLen)
             {

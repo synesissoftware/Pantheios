@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     17th December 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -91,19 +92,19 @@ namespace
 
     void
     pantheios_getProcessId_(
-        pan_char_t const**  processId
-    ,   size_t*             processIdLength
+        pantheios_char_t const**    processId
+    ,   size_t*                     processIdLength
     )
     {
         // NOTE: This function is _not_ threadsafe. However, this does not matter
         // because any overwrite, should it occur, will be entirely benign
 
-        static pan_char_t           s_processIdBuff[21];    // Large enough for 64-bit signed/unsigned integer
-        static size_t               s_processIdLength;
+        static pantheios_char_t         s_processIdBuff[21];    // Large enough for 64-bit signed/unsigned integer
+        static size_t                   s_processIdLength;
 #ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-        static pan_char_t const*    s_processId = ::stlsoft::integer_to_decimal_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
+        static pantheios_char_t const*  s_processId = ::stlsoft::integer_to_decimal_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
 #else /* ? STLSoft version */
-        static pan_char_t const*    s_processId = ::stlsoft::integer_to_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
+        static pantheios_char_t const*  s_processId = ::stlsoft::integer_to_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
 #endif /* STLSoft version */
 
         if(NULL != processId)
@@ -123,14 +124,16 @@ namespace
  * API functions
  */
 
-PANTHEIOS_CALL(pan_char_t const*) pantheios_processId(void)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_processId(void)
 {
     return pantheios_getCurrentProcessIdString();
 }
 
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getCurrentProcessIdString(void)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getCurrentProcessIdString(void)
 {
-    pan_char_t const* processId;
+    pantheios_char_t const* processId;
 
     pantheios_getProcessId_(&processId, NULL);
 

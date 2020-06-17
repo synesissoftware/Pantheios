@@ -4,11 +4,12 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -56,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_MINOR    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_REVISION 7
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_EDIT     41
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_REVISION 8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_EDIT     42
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -353,11 +354,11 @@ public:
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The length of the c-style string representation of the integer
-    size_t              length() const;
+    size_t                  length() const;
 /// @}
 
 /// \name Implementation
@@ -382,11 +383,11 @@ private:
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     };
 
-    u           m_value;    // The value, copied for lazy conversion
-    size_t      m_len;      // Length, and marker for type: 1 == float; 2 == double; 3 == long double
-    const int   m_minWidth; // The minimum width
-    const int   m_format;   // The format
-    pan_char_t  m_sz[129];  // Marker for converted, if m_sz[0] == '\0'
+    u                   m_value;    // The value, copied for lazy conversion
+    size_t              m_len;      // Length, and marker for type: 1 == float; 2 == double; 3 == long double
+    const int           m_minWidth; // The minimum width
+    const int           m_format;   // The format
+    pantheios_char_t    m_sz[129];  // Marker for converted, if m_sz[0] == '\0'
 /// @}
 
 /// \name Not to be implemented
@@ -423,7 +424,7 @@ PANTHEIOS_c_str_data_name_(
 }
 /** \overload c_str_data(integer const&) */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(integer const& i)
 {
     return i.data();
@@ -457,7 +458,7 @@ PANTHEIOS_c_str_ptr_name_(
 }
 /** \overload c_str_ptr(integer const&) */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(integer const& i)
 {
     return i.c_str();

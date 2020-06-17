@@ -4,11 +4,12 @@
  * Purpose:     pan_slice_t implementation.
  *
  * Created:     21st June 2005
- * Updated:     17th December 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -82,8 +83,8 @@ inline
 /* static */
 size_t
 pan_slice_t::calc_length_n_(
-    pan_char_t const*   s
-,   size_t              len
+    pantheios_char_t const* s
+,   size_t                  len
 )
 {
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -102,8 +103,8 @@ pan_slice_t::pan_slice_t()
 
 inline
 pan_slice_t::pan_slice_t(
-    pan_char_t const*   p
-,   size_t              l
+    pantheios_char_t const* p
+,   size_t                  l
 )
 {
     static size_t const topBit = size_t(0x01) << (sizeof(size_t) * 8 - 1);
@@ -164,8 +165,8 @@ pan_slice_t::operator =(
 
 inline
 pan_slice_t::pan_slice_t(
-    int                 l
-,   pan_char_t const*   p
+    int                     l
+,   pantheios_char_t const* p
 )
 {
     this->len   =   calc_length_n_(p, static_cast<size_t>(l));
@@ -197,3 +198,4 @@ pan_slice_t::pan_slice_t(
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SLICE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -100,14 +100,14 @@ namespace pantheios
  *
  * \note The returned value must be freed using pantheios_util_free()
  */
-PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) STLSOFT_NOEXCEPT;
+PANTHEIOS_CALL(pantheios_char_t*) pantheios_util_strdup_nothrow(pantheios_char_t const* s) STLSOFT_NOEXCEPT;
 
 /** Frees a duplicated string allocated by pantheios_util_strdup_nothrow()
  *   or pantheios_util_strdup_throw()
  *
  * \param s The string to deallocate
  */
-PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) STLSOFT_NOEXCEPT;
+PANTHEIOS_CALL(void) pantheios_util_strfree(pantheios_char_t* s) STLSOFT_NOEXCEPT;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) STLSOFT_NOEXCEPT;
@@ -133,9 +133,9 @@ PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) STLSOFT_NOEXCEPT;
  *
  * \note The returned value must be freed using pantheios_util_free()
  */
-inline pan_char_t* pantheios_util_strdup_throw(pan_char_t const* s)
+inline pantheios_char_t* pantheios_util_strdup_throw(pantheios_char_t const* s)
 {
-    pan_char_t* s2 = pantheios_util_strdup_nothrow(s);
+    pantheios_char_t* const s2 = pantheios_util_strdup_nothrow(s);
 
     if( NULL == s2 &&
         NULL != s)
@@ -156,7 +156,7 @@ namespace util
  *
  * \ingroup group__utility
  */
-inline pan_char_t* strdup_nothrow(pan_char_t const* s) STLSOFT_NOEXCEPT
+inline pantheios_char_t* strdup_nothrow(pantheios_char_t const* s) STLSOFT_NOEXCEPT
 {
     return pantheios_util_strdup_nothrow(s);
 }
@@ -166,7 +166,7 @@ inline pan_char_t* strdup_nothrow(pan_char_t const* s) STLSOFT_NOEXCEPT
  *
  * \ingroup group__utility
  */
-inline pan_char_t* strdup_throw(pan_char_t const* s)
+inline pantheios_char_t* strdup_throw(pantheios_char_t const* s)
 {
     return pantheios_util_strdup_throw(s);
 }
@@ -176,7 +176,7 @@ inline pan_char_t* strdup_throw(pan_char_t const* s)
  *
  * \ingroup group__utility
  */
-inline void strfree(pan_char_t* s) STLSOFT_NOEXCEPT
+inline void strfree(pantheios_char_t* s) STLSOFT_NOEXCEPT
 {
     pantheios_util_strfree(s);
 }

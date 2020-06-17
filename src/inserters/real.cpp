@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -106,7 +107,8 @@ namespace pantheios
 }
 
 
-pan_char_t const* real::data() const
+pantheios_char_t const*
+real::data() const
 {
     if(0 == m_sz[0])
     {
@@ -116,7 +118,8 @@ pan_char_t const* real::data() const
     return m_sz;
 }
 
-pan_char_t const* real::c_str() const
+pantheios_char_t const*
+real::c_str() const
 {
     return data();
 }

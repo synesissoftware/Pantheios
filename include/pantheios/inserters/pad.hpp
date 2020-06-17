@@ -4,11 +4,12 @@
  * Purpose:     padding of arguments of arbitrary type.
  *
  * Created:     29th June 2009
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2009-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MINOR    0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     6
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,8 +120,8 @@ inline const pan_slice_t pad(S const& arg, size_t minimumWidth)
 
     if(len < minimumWidth)
     {
-        size_t              actualWidth;
-        pan_char_t const*   padding = pantheios::core::pantheios_getPad(minimumWidth - len, &actualWidth);
+        size_t                          actualWidth;
+        pantheios_char_t const* const   padding = pantheios::core::pantheios_getPad(minimumWidth - len, &actualWidth);
 
         return pan_slice_t(padding, actualWidth);
     }

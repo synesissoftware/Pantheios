@@ -4,11 +4,12 @@
  * Purpose:     String inserter for thread identity.
  *
  * Created:     16th October 2006
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_EDIT        23
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_REVISION    5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_EDIT        24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -136,15 +137,15 @@ public:
 
 public:
     operator size_t () const;
-    operator pan_char_t const* () const;
+    operator pantheios_char_t const* () const;
 
 private:
     void construct_();
     void construct_() const;
 
 private:
-    pan_char_t  m_value[21];
-    size_t      m_len;
+    pantheios_char_t    m_value[21];
+    size_t              m_len;
 };
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)

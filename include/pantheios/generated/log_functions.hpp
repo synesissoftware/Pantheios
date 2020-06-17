@@ -3,7 +3,7 @@
  *
  * Purpose:     Definitions of the log() functions
  *
- * Generated:   29th June 2016
+ * Generated:   16/06/2020
  *
  * Status:      This file is auto-generated: DO NOT EDIT!
  *

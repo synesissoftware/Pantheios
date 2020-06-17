@@ -4,11 +4,12 @@
  * Purpose:     Time functions for use in Pantheios back-ends.
  *
  * Created:     22nd August 2006
- * Updated:     29th June 2016
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -91,7 +92,11 @@
  *
  * So, we must establish this for ourselves, as follows:
  */
-int pantheios_gethostname_with_errno_fix_(pan_char_t* buffer, size_t cchBuffer)
+int
+pantheios_gethostname_with_errno_fix_(
+    pantheios_char_t*   buffer
+,   size_t              cchBuffer
+)
 {
     int res = gethostname(&buffer[0], cchBuffer);
 
@@ -115,7 +120,10 @@ int pantheios_gethostname_with_errno_fix_(pan_char_t* buffer, size_t cchBuffer)
 #  define gethostname   pantheios_gethostname_with_errno_fix_
 # endif /* Mac OS-X */
 
-static size_t pantheios_getHostName_body_(pan_char_t* buffer, size_t cchBuffer)
+static size_t pantheios_getHostName_body_(
+    pantheios_char_t*   buffer
+,   size_t              cchBuffer
+)
 {
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 
@@ -211,7 +219,10 @@ static size_t pantheios_getHostName_body_(pan_char_t* buffer, size_t cchBuffer)
  * API functions
  */
 
-size_t pantheios_getHostName(pan_char_t* buffer, size_t cchBuffer)
+size_t pantheios_getHostName(
+    pantheios_char_t*   buffer
+,   size_t              cchBuffer
+)
 {
     size_t  res;
 
