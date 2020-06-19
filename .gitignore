@@ -99,6 +99,7 @@ src/backends/ber/ber.loader.c
 *.obj
 *.opensdf
 *.opt
+*.org
 *.out
 *.pch
 *.pdb
