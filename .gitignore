@@ -21,21 +21,22 @@ src/xtests/
 /_internal/
 
 /bin/
-
-#/build/
-/build/ar*
-/build/bc5*
-/build/como*
-/build/cw*
-/build/icl*
-/build/vc5
-/build/*.zip
+/examples/bin
+/examples/c/bin
+/examples/cpp/bin
 
 /doc/
 
 ideas/
 
+ipch/
+
 /lib/
+/examples/lib
+/examples/c/lib
+/examples/cpp/lib
+
+projects/util/vc10-generated/
 
 perf_test/
 
@@ -68,6 +69,14 @@ vc9/
 
 # directories (by pattern)
 
+/build/ar*
+/build/bc5*
+/build/como*
+/build/cw*
+/build/icl*
+/build/vc5*
+/build/*.zip
+
 # files (by name)
 
 .update_deps
@@ -81,6 +90,8 @@ build/makefile.tmpl
 build/makefile.tools.xml
 
 include/pantheios/internal/dos2unix.has.been.performed
+
+projects/core/vc10/pantheios.core.2.vcxproj
 
 # TODO: remove these exclusions when be.loader released
 include/pantheios/backends/bec.loader.h
