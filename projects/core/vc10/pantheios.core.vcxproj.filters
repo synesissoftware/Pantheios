@@ -1,50 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{d09d2611-56ab-4532-9da7-a404d9fe7cb5}</UniqueIdentifier>
-      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    <Filter Include="Include Files">
+      <UniqueIdentifier>{5298301A-C12D-4A4D-800E-B67F6D1996CE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core">
-      <UniqueIdentifier>{9b29fd57-eb15-4327-8093-ee1a7bd527f6}</UniqueIdentifier>
+    <Filter Include="Include Files\include">
+      <UniqueIdentifier>{722C7F42-1B5E-4D2E-9F25-90D4A20E564A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\inserters">
-      <UniqueIdentifier>{1e04b109-4f7f-4f9a-8ee9-5d7862a21cdb}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios">
+      <UniqueIdentifier>{B9E55206-806A-4D89-B2CF-AFEB1A5806BD}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{bfa168ba-e016-4d88-913b-8888658da718}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    <Filter Include="Include Files\include\pantheios\inserters">
+      <UniqueIdentifier>{C1B9B1E5-3AE0-455E-84FF-73BE05F4D28F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\STLSoft Header Files">
-      <UniqueIdentifier>{deaab7a1-67bf-48dc-9f1c-b3f115d93c4b}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios\internal">
+      <UniqueIdentifier>{953A851F-D822-4D5C-9557-5BF0E2E3C395}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\STLSoft Header Files\STLSoft">
-      <UniqueIdentifier>{dd673b4d-6c9a-4739-ab9e-f92b6daa707e}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios\quality">
+      <UniqueIdentifier>{181BAA52-831B-4480-83BC-00CF45B4EC8D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\STLSoft Header Files\PlatformSTL">
-      <UniqueIdentifier>{a4a8099e-0bac-41b2-bf64-57bd00037fcc}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios\severity">
+      <UniqueIdentifier>{E67A67A8-6430-4525-BFFA-EBD232ADFFF3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\STLSoft Header Files\UNIXSTL">
-      <UniqueIdentifier>{d98da836-fc7e-4df4-bece-9c18bcf30060}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios\shims">
+      <UniqueIdentifier>{748F7719-64E2-4630-9E57-77B826D5B23D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\STLSoft Header Files\WinSTL">
-      <UniqueIdentifier>{3d05f4f7-077d-4573-a1f9-13684a206649}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios\shims\access">
+      <UniqueIdentifier>{C5AB3DA9-486F-4E34-81A3-2239DF1E8C64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\b64 Header Files">
-      <UniqueIdentifier>{c6e7a32a-1e7f-4228-adde-83a4b826e146}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios\shims\access\string">
+      <UniqueIdentifier>{D9CECE57-5D97-4C4F-BF68-6F5288DEC705}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Pantheios Header Files">
-      <UniqueIdentifier>{8f428dda-0683-4fbe-9cda-37aafd3f1dd3}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios\shims\access\string\core">
+      <UniqueIdentifier>{9E70538F-1E9F-462A-8A9C-BA04E055B0B3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\UNIXem Header Files">
-      <UniqueIdentifier>{091b967d-1905-414c-bfb9-d7b0c7807b52}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios\util">
+      <UniqueIdentifier>{5AA295DA-FCB1-4E9F-9106-A2D6866BE7A0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Synesis Software Header Files">
-      <UniqueIdentifier>{9c4afaf4-fd24-4c90-9f56-4c9b4e7c3c10}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios\util\memory">
+      <UniqueIdentifier>{6F79F8D4-4323-4CD2-9E5B-4C4AF2B4DC67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include\pantheios\util\string">
+      <UniqueIdentifier>{8F1EB9D4-F416-459B-BDD6-C71FC8AAB09A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include\pantheios\util\system">
+      <UniqueIdentifier>{DED7261D-D8CE-4C22-BF87-0BB900C3A735}</UniqueIdentifier>
     </Filter>
     <Filter Include="Script Files">
-      <UniqueIdentifier>{f1749e1d-df9a-4756-8db2-a9769aa16d09}</UniqueIdentifier>
+      <UniqueIdentifier>{0288A479-6718-4B21-AE99-A395DA010601}</UniqueIdentifier>
       <Extensions>pl;py;rb;vbs</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>asm;asmx;bat;cpp;c;cc;cxx;def;hpj;idl;odl;r</Extensions>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{9B29FD57-EB15-4327-8093-EE1A7BD527F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\inserters">
+      <UniqueIdentifier>{1E04B109-4F7F-4F9A-8EE9-5D7862A21CDB}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -112,334 +126,137 @@
       <Filter>Source Files\inserters</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\inserters\exception.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\inserters</Filter>
     </ClCompile>
-    <ClCompile Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.inl">
-      <Filter>Header Files</Filter>
-    </ClCompile>
+    <None Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\memory\allocator_features.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\memory\allocator_selector.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\algorithms\std\alt.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\memory\auto_buffer.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\shims\access\string\std\basic_string.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\conversion\byte_format_functions.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\shims\access\string\std\c_string.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\meta\capabilities.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\conversion\char_conversions.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\string\char_traits.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\collections\util\collections.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\synch\concepts.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\util\constraints.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\error\conversion_error.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\iterators\cstring_concatenator_iterator.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\shims\access\string\std\exception.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\shims\access\string\fwd.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\internal\head_version.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\conversion\integer_to_string.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\util\integral_printf_traits.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\meta\is_const_type.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\meta\is_integral_type.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\meta\is_pointer_type.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\meta\is_same_type.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\util\std\iterator_helper.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\internal\lead_version.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\util\std\library_discriminator.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\synch\lock_scope.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\iterators\member_selector_iterator.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\meta\util\meta_.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\internal\cccap\msvc.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\meta\n_types.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\synch\null_mutex.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\internal\cccap\obsolete.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\algorithms\pod.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\internal\safestr.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\conversion\sap_cast.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\smartptr\scoped_handle.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\string\shim_string.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\util\sign_traits.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\meta\size_of.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\util\size_traits.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\synch\spin_policies.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\util\std_swap.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\stlsoft.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\shims\access\string.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\conversion\union_cast.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\meta\yesno.hpp">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\platformstl\synch\atomic_functions.h">
-      <Filter>Header Files\STLSoft Header Files\PlatformSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\platformstl\synch\atomic_types.h">
-      <Filter>Header Files\STLSoft Header Files\PlatformSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\platformstl\synch\util\features.h">
-      <Filter>Header Files\STLSoft Header Files\PlatformSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\platformstl\platformstl.h">
-      <Filter>Header Files\STLSoft Header Files\PlatformSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\platformstl\platformstl.hpp">
-      <Filter>Header Files\STLSoft Header Files\PlatformSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\platformstl\synch\spin_mutex.hpp">
-      <Filter>Header Files\STLSoft Header Files\PlatformSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\unixstl\synch\util\features.h">
-      <Filter>Header Files\STLSoft Header Files\UNIXSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\unixstl\unixstl.h">
-      <Filter>Header Files\STLSoft Header Files\UNIXSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\winstl\synch\atomic_functions.h">
-      <Filter>Header Files\STLSoft Header Files\WinSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\winstl\synch\atomic_types.h">
-      <Filter>Header Files\STLSoft Header Files\WinSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\winstl\synch\spin_mutex.hpp">
-      <Filter>Header Files\STLSoft Header Files\WinSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\winstl\winstl.h">
-      <Filter>Header Files\STLSoft Header Files\WinSTL</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\b64\b64.h">
-      <Filter>Header Files\b64 Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\args.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\memory\auto_buffer_selector.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\b64.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\backend.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\blob.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\boolean.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\quality\contract.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\exception.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\fmt.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\frontend.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\hostid.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\system\hostname.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\init_codes.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\args.hpp">
+      <Filter>Include Files\include\pantheios\inserters</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\b64.hpp">
+      <Filter>Include Files\include\pantheios\inserters</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\blob.hpp">
+      <Filter>Include Files\include\pantheios\inserters</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\boolean.hpp">
+      <Filter>Include Files\include\pantheios\inserters</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\exception.hpp">
+      <Filter>Include Files\include\pantheios\inserters</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\fmt.hpp">
+      <Filter>Include Files\include\pantheios\inserters</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\hostid.hpp">
+      <Filter>Include Files\include\pantheios\inserters</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\integer.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\inserters</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\interval.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\lean.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\severity\levels.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_dispatch_functions.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\nox.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\shims\access\string\core\pan_severity_t.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\shims\access\string\core\pan_slice_t.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\inserters</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\pointer.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\system\processid.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\inserters</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\processid.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\inserters</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\real.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\safestr.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\shim_declarations.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\inserters</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\slice.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\slice.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\string\snprintf.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\stock_levels.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\string\strdup.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\inserters</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\stream_character.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\string_encoding.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\system\threadid.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\inserters</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\threadid.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\threading.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\inserters</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\inserters\w2m.hpp">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\inserters</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_dispatch_functions.h">
+      <Filter>Include Files\include\pantheios\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h">
+      <Filter>Include Files\include\pantheios\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\lean.h">
+      <Filter>Include Files\include\pantheios\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\nox.h">
+      <Filter>Include Files\include\pantheios\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\safestr.h">
+      <Filter>Include Files\include\pantheios\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\shim_declarations.hpp">
+      <Filter>Include Files\include\pantheios\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\slice.hpp">
+      <Filter>Include Files\include\pantheios\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\stock_levels.hpp">
+      <Filter>Include Files\include\pantheios\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\string_encoding.h">
+      <Filter>Include Files\include\pantheios\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\threading.h">
+      <Filter>Include Files\include\pantheios\internal</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\winlean.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\internal</Filter>
     </ClInclude>
-    <ClInclude Include="$(UNIXEM)\include\unistd.h">
-      <Filter>Header Files\UNIXem Header Files</Filter>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h">
+      <Filter>Include Files\include\pantheios</Filter>
     </ClInclude>
-    <ClInclude Include="$(UNIXEM)\include\unixem\unistd.h">
-      <Filter>Header Files\UNIXem Header Files</Filter>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\quality\contract.h">
+      <Filter>Include Files\include\pantheios\quality</Filter>
     </ClInclude>
-    <ClInclude Include="$(UNIXEM)\include\unixem\unixem.h">
-      <Filter>Header Files\UNIXem Header Files</Filter>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\severity\levels.hpp">
+      <Filter>Include Files\include\pantheios\severity</Filter>
     </ClInclude>
-    <ClInclude Include="$(SYNESIS_DEV)\libraries\include\syslog.h">
-      <Filter>Header Files\Synesis Software Header Files</Filter>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\shims\access\string\core\pan_severity_t.hpp">
+      <Filter>Include Files\include\pantheios\shims\access\string\core</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\shims\access\string\core\pan_slice_t.hpp">
+      <Filter>Include Files\include\pantheios\shims\access\string\core</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\memory\auto_buffer_selector.hpp">
+      <Filter>Include Files\include\pantheios\util\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\string\snprintf.h">
+      <Filter>Include Files\include\pantheios\util\string</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\string\strdup.h">
+      <Filter>Include Files\include\pantheios\util\string</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\system\hostname.h">
+      <Filter>Include Files\include\pantheios\util\system</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\system\processid.h">
+      <Filter>Include Files\include\pantheios\util\system</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\util\system\threadid.h">
+      <Filter>Include Files\include\pantheios\util\system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\scripts\make_hdrs.rb">
+    <None Include="$(PANTHEIOS_ROOT)\scripts\make_hdrs.rb">
       <Filter>Script Files</Filter>
     </None>
   </ItemGroup>
