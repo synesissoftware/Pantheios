@@ -22,7 +22,14 @@ src/xtests/
 
 /bin/
 
-/build/
+#/build/
+/build/ar*
+/build/bc5*
+/build/como*
+/build/cw*
+/build/icl*
+/build/vc5
+/build/*.zip
 
 /doc/
 
