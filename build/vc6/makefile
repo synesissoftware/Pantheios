@@ -5,7 +5,7 @@
 #			compiler, on Win32
 #
 # Created:	15th February 2005
-# Updated:	25th January 2017
+# Updated:	13th June 2020
 #
 ############################################################################
 
@@ -25586,7 +25586,7 @@ clean.unittest.ace:
 !endif # ACE
 
 
-clean.libs: 		clean.libs.core clean.libs.be clean.libs.fe
+clean.libs: 		clean.libs.util clean.libs.core clean.libs.be clean.libs.fe
 
 clean.libs.3pty:	\
  clean.libs.b64 \
