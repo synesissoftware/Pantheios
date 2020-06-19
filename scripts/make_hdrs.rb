@@ -6,7 +6,7 @@
 # Purpose:      Generates the Pantheios logging API N-param functions
 #
 # Created:      21st June 2005
-# Updated:      16th June 2020
+# Updated:      19th June 2020
 #
 # Author:       Matthew Wilson
 #
@@ -74,20 +74,20 @@ def declare_function_parameter_list(f, from, to)
 
 	if false
 
-		(from ... to - 1).each do |j| 
+		(from ... to).each do |j|
 
-			f << "              , T#{j} const    &v#{j}" << ENDL
+			f << ", T#{j} const    &v#{j}" << ENDL
 		end
-		f << "              , T#{to - 1} const    &v#{to - 1})" << ENDL
+		f << ')' << ENDL
 	else
 
-		s = '              '
-		(from ... to - 1).each do |j| 
+		s = ''
+		(from ... to).each do |j|
 
 			s = s + ", T#{j} const& v#{j}"
 		end
-		s = s + ", T#{to - 1} const& v#{to - 1})"
 		f << s << ENDL
+		f << ')' << ENDL
 	end
 end
 
@@ -313,13 +313,13 @@ PARAM_RANGE.each do |i|
 		sig		=	sig.ljust(len)
 
 		f << "#{sig}pan_sev_t severity" << ENDL
-		(0 ... i - 1). each do |j|
+		(0 ... i). each do |j|
 
 			f << ''.ljust(len0) + ", pan_slice_t const& slice#{j}" << ENDL
 		end
-		f << ''.ljust(len0) + ", pan_slice_t const& slice#{i - 1})" << ENDL
+		f << ')' << ENDL
 		f << '{' << ENDL
-		f << "#{TAB}const pan_slice_t slices[#{i}] =" << ENDL
+		f << "#{TAB}pan_slice_t const slices[#{i}] =" << ENDL
 		f << "#{TAB}{" << ENDL
 		if INITIALISERS_INLINE
 
@@ -371,7 +371,7 @@ PARAM_RANGE.each do |i|
 		f << "#{TAB}}" << ENDL
 		f << "#{TAB}else" << ENDL
 		f << "#{TAB}{" << ENDL
-		f << "#{TAB}#{TAB}const pan_slice_t slices[#{i}] =" << ENDL
+		f << "#{TAB}#{TAB}pan_slice_t const slices[#{i}] =" << ENDL
 		f << "#{TAB}#{TAB}{" << ENDL
 		if INITIALISERS_INLINE
 
@@ -461,7 +461,7 @@ PARAM_RANGE.each do |i|
 			f << ''.ljust(len0) + ", pan_slice_t const& s#{j}" << ENDL
 		end
 		f << ');' << ENDL
-	
+
 		f << '' << ENDL
 
 		num_pantheios_log_N_no_test_declarations = 1 + num_pantheios_log_N_no_test_declarations
@@ -604,7 +604,8 @@ PARAM_RANGE.each do |i|
 
 		# Function signature
 
-		f << "inline int log( pan_sev_t severity" << ENDL
+		f << "inline int log(" << ENDL
+		f << "  pan_sev_t severity" << ENDL
 		declare_function_parameter_list(f, 0, i)
 
 		# Function body
@@ -631,7 +632,7 @@ PARAM_RANGE.each do |i|
 		f << '#ifndef PANTHEIOS_FORCE_ALLOW_FUNDAMENTAL_ARGUMENTS' << ENDL;
 		f << "#{TAB}#{TAB}// NOTE: if one of the following lines causes a compile error," << ENDL;
 		f << "#{TAB}#{TAB}// you have passed a fundamental type to the log() statement." << ENDL;
-		(0 ... i).each do |j| 
+		(0 ... i).each do |j|
 
 				f << "#{TAB}#{TAB}PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_(T#{j});" << ENDL;
 		end
@@ -639,7 +640,7 @@ PARAM_RANGE.each do |i|
 		f << ENDL
 
 		f << "#{TAB}#{TAB}return internal::log_dispatch_#{i}(severity" << ENDL
-		(0 ... i).each do |j| 
+		(0 ... i).each do |j|
 
 			if USE_SHIM_PAIR_MACRO
 
@@ -695,7 +696,7 @@ f << '' << ENDL
 f << '' << ENDL
 
 SEVERITY_LEVELS.each do |severityLevel|
-	
+
 	PARAM_RANGE.each do |i|
 
 		plural	=	(i > 1) ? 's' : ''
@@ -728,7 +729,7 @@ SEVERITY_LEVELS.each do |severityLevel|
 			f << "#{sig}T0 const  &v0" << ENDL
 			declare_function_parameter_list(f, 1, i)
 		end
-	
+
 		# Function body
 
 		f << '{' << ENDL
@@ -753,7 +754,7 @@ SEVERITY_LEVELS.each do |severityLevel|
 		f << '#ifndef PANTHEIOS_FORCE_ALLOW_FUNDAMENTAL_ARGUMENTS' << ENDL;
 		f << "#{TAB}#{TAB}// NOTE: if one of the following lines causes a compile error," << ENDL;
 		f << "#{TAB}#{TAB}// you have passed a fundamental type to the log_#{severityLevel}() statement." << ENDL;
-		(0 ... i).each do |j| 
+		(0 ... i).each do |j|
 
 				f << "#{TAB}#{TAB}PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_(T#{j});" << ENDL;
 		end
@@ -762,7 +763,7 @@ SEVERITY_LEVELS.each do |severityLevel|
 
 		f << "#{TAB}#{TAB}return internal::log_dispatch_#{i}(PANTHEIOS_SEV_#{severityLevel}" << ENDL
 
-		(0 ... i).each do |j| 
+		(0 ... i).each do |j|
 
 			if USE_SHIM_PAIR_MACRO
 

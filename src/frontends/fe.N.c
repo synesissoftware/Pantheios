@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the Pantheios fe.N Stock Front-end API.
  *
  * Created:     18th October 2006
- * Updated:     29th June 2016
+ * Updated:     13th November 2019
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -230,3 +230,4 @@ pantheios_fe_isSeverityLogged(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
