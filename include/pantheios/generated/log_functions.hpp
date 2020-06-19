@@ -3,7 +3,7 @@
  *
  * Purpose:     Definitions of the log() functions
  *
- * Generated:   16/06/2020
+ * Generated:   19th June 2020
  *
  * Status:      This file is auto-generated: DO NOT EDIT!
  *
@@ -26,8 +26,10 @@
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0>
-inline int log( pan_sev_t severity
-              , T0 const& v0)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -56,8 +58,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -88,8 +92,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -122,8 +128,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -158,8 +166,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -196,8 +206,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -236,8 +248,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -278,8 +292,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -322,8 +338,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -368,8 +386,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -416,8 +436,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -466,8 +488,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -518,8 +542,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -572,8 +598,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -628,8 +656,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -686,8 +716,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -746,8 +778,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -808,8 +842,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -872,8 +908,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -938,8 +976,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1006,8 +1046,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1076,8 +1118,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1148,8 +1192,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21, typename T22>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1222,8 +1268,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21, typename T22, typename T23>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1298,8 +1346,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21, typename T22, typename T23, typename T24>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1376,8 +1426,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21, typename T22, typename T23, typename T24, typename T25>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1456,8 +1508,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21, typename T22, typename T23, typename T24, typename T25, typename T26>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1538,8 +1592,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21, typename T22, typename T23, typename T24, typename T25, typename T26, typename T27>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1622,8 +1678,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21, typename T22, typename T23, typename T24, typename T25, typename T26, typename T27, typename T28>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1708,8 +1766,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21, typename T22, typename T23, typename T24, typename T25, typename T26, typename T27, typename T28, typename T29>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28, T29 const& v29)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28, T29 const& v29
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1796,8 +1856,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21, typename T22, typename T23, typename T24, typename T25, typename T26, typename T27, typename T28, typename T29, typename T30>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28, T29 const& v29, T30 const& v30)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28, T29 const& v29, T30 const& v30
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {
@@ -1886,8 +1948,10 @@ inline int log( pan_sev_t severity
  * \note The \c c_str_data_a() and \c c_str_len_a() string access shims are applied to each parameter, to form a string slice
  */
 template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13, typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20, typename T21, typename T22, typename T23, typename T24, typename T25, typename T26, typename T27, typename T28, typename T29, typename T30, typename T31>
-inline int log( pan_sev_t severity
-              , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28, T29 const& v29, T30 const& v30, T31 const& v31)
+inline int log(
+  pan_sev_t severity
+, T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28, T29 const& v29, T30 const& v30, T31 const& v31
+)
 {
  if(!pantheios_isSeverityLogged(severity))
  {

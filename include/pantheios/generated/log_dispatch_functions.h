@@ -3,7 +3,7 @@
  *
  * Purpose:     Declarations of the pantheios_log_<N>_no_test() functions
  *
- * Generated:   16/06/2020
+ * Generated:   19th June 2020
  *
  * Status:      This file is auto-generated: DO NOT EDIT!
  *

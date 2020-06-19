@@ -3,7 +3,7 @@
  *
  * Purpose:     Inline definitions of the log_dispatch_<N>() functions
  *
- * Generated:   16/06/2020
+ * Generated:   19th June 2020
  *
  * Status:      This file is auto-generated: DO NOT EDIT!
  *
