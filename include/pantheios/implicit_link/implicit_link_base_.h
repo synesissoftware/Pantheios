@@ -4,11 +4,11 @@
  * Purpose: Implicit linking for the Pantheios libraries
  *
  * Created: 18th July 2005
- * Updated: 9th November 2016
+ * Updated: 17th October 2019
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__MINOR      8
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__EDIT       21
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__REVISION   3
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__EDIT       22
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,22 +72,32 @@
  * exception support
  */
 
-#if defined(__MWERKS__)
+#if 0
+#elif defined(__MWERKS__)
+
 # if __option(exceptions)
+
 # else /* ? exceptions */
+
 #  define PANTHEIOS_CF_NOX
 # endif /* exceptions */
 #elif defined(__WATCOMC__) || \
       defined(__VECTORC)
+
 # if defined(__CPPUNWIND)
+
 # else /* ? __CPPUNWIND */
+
 #  define PANTHEIOS_CF_NOX
 # endif /* __CPPUNWIND */
 #elif defined(__DMC__) || \
       defined(__INTEL_COMPILER) || \
       defined(_MSC_VER)
+
 # if defined(_CPPUNWIND)
+
 # else /* ? _CPPUNWIND */
+
 #  define PANTHEIOS_CF_NOX
 # endif /* _CPPUNWIND */
 #endif /* compiler */

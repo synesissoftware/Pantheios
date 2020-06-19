@@ -172,12 +172,14 @@
  * \param fmt The format string
  */
 
-# if !defined(PANTHEIOS_NO_NAMESPACE) || \
-     defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
-#  define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...) ::pantheios::pantheios_logprintf((sev), "%s" fmt, stlsoft_static_cast(PANTHEIOS_NS_QUAL(pantheios_char_t) const*, PANTHEIOS_TRACE_PREFIX), __VA_ARGS__)
-# else /* ? __cplusplus */
-#  define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...)              pantheios_logprintf((sev), "%s" fmt, stlsoft_static_cast(PANTHEIOS_NS_QUAL(pantheios_char_t) const*, PANTHEIOS_TRACE_PREFIX), __VA_ARGS__)
-# endif /* __cplusplus */
+# define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...)                                  \
+                                                                                \
+    PANTHEIOS_NS_QUAL(pantheios_logprintf)(                                     \
+        (sev)                                                                   \
+    ,   "%s" fmt                                                                \
+    ,   stlsoft_static_cast(pantheios_char_t const*, PANTHEIOS_TRACE_PREFIX)    \
+    ,   __VA_ARGS__                                                             \
+    )
 
 # if !defined(PANTHEIOS_NO_NAMESPACE) || \
      defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
@@ -268,8 +270,7 @@
 #   define PANTHEIOS_TRACE_DEBUG(...)           ::pantheios::log(PANTHEIOS_SEV_DEBUG, PANTHEIOS_TRACE_LOG_PREFIX, __VA_ARGS__)
 #  endif /* !PANTHEIOS_NO_STOCK_LEVELS */
 # endif /* __cplusplus */
-
-#endif /* PANTHEIOS_USES_VARIADIC_MACROS */
+#endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion
@@ -279,8 +280,7 @@
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_TRACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
