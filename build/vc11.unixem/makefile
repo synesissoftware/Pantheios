@@ -1,11 +1,11 @@
 ############################################################################
-# File: 	makefile
+# File:	makefile
 #
 # Purpose:	Makefile for the Pantheios project, for the Visual C++ 11.0 (x86 UNIXem)
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	13th June 2020
+# Updated:	19th June 2020
 #
 ############################################################################
 
@@ -130,24 +130,24 @@ STLSOFT_PROJ_INCLUDE	=	-I"$(STLSOFT)\include"
 ########################################
 # tools
 
-CC                      =   cl
-CPPC                    =   cl
-AR                      =   lib
-LD                      =   link
-RM                      =   del /f
-CP                      =   copy
-RC                      =   rc
+CC		=	cl
+CPPC	=	cl
+AR		=	lib
+LD		=	link
+RM		=	del /f
+CP		=	copy
+RC		=	rc
 
 ########################################
 # Include directory symbols
 
-INCLUDES_LEADER 	=	
+INCLUDES_LEADER	=	
 
 PROJ_INCLUDE		=	-I$(PROJ_INCLUDE_DIR)
 
-ENV_INCLUDES 	=
+ENV_INCLUDES	=
 
-COMMON_INCLUDES 	=	-I$(SYNESIS_DEV)/include -I$(SYNESIS_DEV)/libraries/include
+COMMON_INCLUDES	=	-I$(SYNESIS_DEV)/include -I$(SYNESIS_DEV)/libraries/include
 
 CC_INCLUDES_BASE=\
  $(INCLUDES_LEADER)\
@@ -320,7 +320,7 @@ CPPC_XTESTS_INCLUDES_MT_UX_DEBUG =\
 ########################################
 # Library directory symbols
 
-LIBS_LEADER 		=	
+LIBS_LEADER		=	
 
 # lib paths
 
@@ -352,7 +352,7 @@ TARGET_LIB_MT_UX_DEBUG	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwap
 
 OS_DEFS				=	-DUNIX
 
-COMMON_DEFS 		=
+COMMON_DEFS		=
 
 CUSTOM_DEFS			=
 
@@ -379,7 +379,7 @@ CPPC_DEFS =\
 
 # CC flags
 
-CC_F_NOLOGO 			=	-nologo
+CC_F_NOLOGO			=	-nologo
 CC_F_COMPILE_ONLY		=	-c
 CC_F_WARNING_MAX		=	-W4
 CC_F_WARNING_ERR		=	-WX
@@ -393,17 +393,17 @@ CC_F_ADDITIONAL			=
 # CPPC flags
 
 CPPC_F_NOLOGO			=	-nologo
-CPPC_F_COMPILE_ONLY 	=	-c
+CPPC_F_COMPILE_ONLY	=	-c
 CPPC_F_WARNING_MAX		=	-W4 -wd4996
 CPPC_F_WARNING_ERR		=	-WX
 CPPC_F_EXCEPTIONS_ON	=	-EHsc
 CPPC_F_EXCEPTIONS_OFF	=	-wd4530
 CPPC_F_EXCEPTIONS		=	
 CPPC_F_RTTI_ON			=	-GR
-CPPC_F_RTTI_OFF 		=	-GR-
+CPPC_F_RTTI_OFF		=	-GR-
 CPPC_F_RTTI				=	
 CPPC_F_WARNINGS_LIMIT	=	
-CPPC_F_MINIMUM_SIZE 	=	-O1
+CPPC_F_MINIMUM_SIZE	=	-O1
 CPPC_F_MAXIMUM_SPEED	=	-O2
 CPPC_F_OPTIMISED		=	$(CPPC_F_MAXIMUM_SPEED)
 CPPC_APP_F_WARNING_MAX	=	$(CPPC_F_WARNING_MAX)
@@ -414,7 +414,7 @@ CPPC_F_ADDITIONAL		=
 
 CC_TOOL_FLAGS		=
 
-CPPC_TOOL_FLAGS 	=
+CPPC_TOOL_FLAGS	=
 
 
 
@@ -597,12 +597,12 @@ CPPC_TEST_UNIT_ARGS_MT_UX_DEBUG			=	$(CPPC_TEST_UNIT_FLAGS) $(CPPC_F_EXCEPTIONS_
 
 # AR args
 
-AR_ARGS 			=	-nologo
+AR_ARGS			=	-nologo
 
 
 # LD flags
 
-LD_ARGS 		=	
+LD_ARGS		=	
 
 LD_F_NOLOGO = -nologo
 
@@ -615,11 +615,15 @@ LD_ARGS_MT_UX_DEBUG = libWinSysLog.$(COMP_TAG).mt.debug.lib unixem.1.$(COMP_TAG)
 # Headers
 
 CORE_HEADERS=\
- $(PROJ_INCLUDE_DIR)\pantheios\pantheios.h\
+ \
+ $(PROJ_INCLUDE_DIR)\pantheios\assert.h\
  $(PROJ_INCLUDE_DIR)\pantheios\backend.h\
- $(PROJ_INCLUDE_DIR)\pantheios\init_codes.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\fileline.h\
  $(PROJ_INCLUDE_DIR)\pantheios\frontend.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\init_codes.h\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\pan.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\pantheios.h\
  $(PROJ_INCLUDE_DIR)\pantheios\pantheios.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\trace.h\
  \
@@ -634,8 +638,11 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\fmt.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\hex_ptr.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\hostid.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\i.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\ids.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\integer.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\interval.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\m2t.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\m2w.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\p.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\pad.hpp\
@@ -646,6 +653,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\stream_character.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\threadid.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\w2m.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\w2t.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\xi.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\xp.hpp\
  \
@@ -656,6 +664,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\shim_declarations.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\slice.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\stock_levels.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\string_encoding.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\threading.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\winlean.h\
  \
@@ -663,7 +672,6 @@ CORE_HEADERS=\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\generated\log_dispatch_functions.h\
  $(PROJ_INCLUDE_DIR)\pantheios\generated\log_dispatch_functions.hpp\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.inl\
  $(PROJ_INCLUDE_DIR)\pantheios\generated\log_functions.h\
  $(PROJ_INCLUDE_DIR)\pantheios\generated\log_functions.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\generated\log_sev_functions.hpp\
@@ -679,6 +687,8 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\util\core\apidefs.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\memory\auto_buffer_selector.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\util\memory\inserters.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\util\memory\memcopy.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\severity\ACE.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\severity\syslog.h\
@@ -766,35 +776,35 @@ LIB_FE_SIMPLE_MT_UX		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).fe.simple.$(COMP_ARCH_OS_
 LIB_FE_SIMPLE_WC_MT_UX		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).fe.simple.WithCallback.$(COMP_ARCH_OS_TAG).mt.lib
 
 #  back-end(s)
-LIB_BEC_STOCK_MT_UX 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BE_LRSPLIT_MT_UX 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BE_N_MT_UX 			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEC_TEST_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BE_TEST_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEL_TEST_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BER_TEST_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEC_FAIL_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BE_FAIL_MT_UX 			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEL_FAIL_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BER_FAIL_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEC_FILE_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEC_FILE_WC_MT_UX		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BE_FILE_MT_UX 			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEL_FILE_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BER_FILE_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEC_FPRINTF_MT_UX		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEC_FPRINTF_WC_MT_UX	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BE_FPRINTF_MT_UX 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEL_FPRINTF_MT_UX		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BER_FPRINTF_MT_UX		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEC_NULL_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BE_NULL_MT_UX 			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEL_NULL_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BER_NULL_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEC_SYSLOG_MT_UX 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BEC_SYSLOGWC_MT_UX 	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BE_SYSLOG_MT_UX		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).mt.lib
-LIB_BER_SYSLOG_MT_UX 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_STOCK_MT_UX				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BE_LRSPLIT_MT_UX				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BE_N_MT_UX							=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_TEST_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BE_TEST_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEL_TEST_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BER_TEST_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_FAIL_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BE_FAIL_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEL_FAIL_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BER_FAIL_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_FILE_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_FILE_WC_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BE_FILE_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEL_FILE_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BER_FILE_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_FPRINTF_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_FPRINTF_WC_MT_UX		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BE_FPRINTF_MT_UX				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEL_FPRINTF_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BER_FPRINTF_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_NULL_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BE_NULL_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEL_NULL_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BER_NULL_MT_UX					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_SYSLOG_MT_UX				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BEC_SYSLOGWC_MT_UX			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BE_SYSLOG_MT_UX				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).mt.lib
+LIB_BER_SYSLOG_MT_UX				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).mt.lib
 
 #  util
 LIB_UTIL_MT_UX_DEBUG				=   $(PROJ_LIB_DIR)\$(PROJ_TAG_VER).util.$(COMP_ARCH_OS_TAG).mt.debug.lib
@@ -817,70 +827,70 @@ LIB_FE_SIMPLE_MT_UX_DEBUG		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).fe.simple.$(COMP_AR
 LIB_FE_SIMPLE_WC_MT_UX_DEBUG		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).fe.simple.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.lib
 
 #  back-end(s)
-LIB_BEC_STOCK_MT_UX_DEBUG 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BE_LRSPLIT_MT_UX_DEBUG 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BE_N_MT_UX_DEBUG 			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEC_TEST_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BE_TEST_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEL_TEST_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BER_TEST_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEC_FAIL_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BE_FAIL_MT_UX_DEBUG 			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEL_FAIL_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BER_FAIL_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEC_FILE_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEC_FILE_WC_MT_UX_DEBUG		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BE_FILE_MT_UX_DEBUG 			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEL_FILE_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BER_FILE_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEC_FPRINTF_MT_UX_DEBUG		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEC_FPRINTF_WC_MT_UX_DEBUG	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BE_FPRINTF_MT_UX_DEBUG 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEL_FPRINTF_MT_UX_DEBUG		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BER_FPRINTF_MT_UX_DEBUG		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEC_NULL_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BE_NULL_MT_UX_DEBUG 			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEL_NULL_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BER_NULL_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEC_SYSLOG_MT_UX_DEBUG 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BEC_SYSLOGWC_MT_UX_DEBUG 	=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BE_SYSLOG_MT_UX_DEBUG		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).mt.debug.lib
-LIB_BER_SYSLOG_MT_UX_DEBUG 		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_STOCK_MT_UX_DEBUG				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BE_LRSPLIT_MT_UX_DEBUG				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BE_N_MT_UX_DEBUG							=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_TEST_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BE_TEST_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEL_TEST_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BER_TEST_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_FAIL_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BE_FAIL_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEL_FAIL_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BER_FAIL_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_FILE_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_FILE_WC_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BE_FILE_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEL_FILE_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BER_FILE_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_FPRINTF_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_FPRINTF_WC_MT_UX_DEBUG		=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BE_FPRINTF_MT_UX_DEBUG				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEL_FPRINTF_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BER_FPRINTF_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_NULL_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BE_NULL_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEL_NULL_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BER_NULL_MT_UX_DEBUG					=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_SYSLOG_MT_UX_DEBUG				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BEC_SYSLOGWC_MT_UX_DEBUG			=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BE_SYSLOG_MT_UX_DEBUG				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).mt.debug.lib
+LIB_BER_SYSLOG_MT_UX_DEBUG				=	$(PROJ_LIB_DIR)\$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).mt.debug.lib
 
 # core
 
 # front-end(s)
-PDB_FE_ALL_MT_UX_DEBUG			=	$(PROJ_OBJ_DIR)\fe.all.mt.debug.pdb
-PDB_FE_FAIL_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\fe.fail.mt.debug.pdb
-PDB_FE_N_MT_UX_DEBUG			=	$(PROJ_OBJ_DIR)\fe.N.mt.debug.pdb
-PDB_FE_NULL_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\fe.null.mt.debug.pdb
-PDB_FE_SIMPLE_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\fe.simple.mt.debug.pdb
+PDB_FE_ALL_MT_UX_DEBUG						=	$(PROJ_OBJ_DIR)\fe.all.mt.debug.pdb
+PDB_FE_FAIL_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\fe.fail.mt.debug.pdb
+PDB_FE_N_MT_UX_DEBUG							=	$(PROJ_OBJ_DIR)\fe.N.mt.debug.pdb
+PDB_FE_NULL_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\fe.null.mt.debug.pdb
+PDB_FE_SIMPLE_MT_UX_DEBUG				=	$(PROJ_OBJ_DIR)\fe.simple.mt.debug.pdb
 
 # back-end(s)
-PDB_BE_LRSPLIT_MT_UX_DEBUG 	=	$(PROJ_OBJ_DIR)\be.lrsplit.mt.debug.pdb
-PDB_BE_N_MT_UX_DEBUG 			=	$(PROJ_OBJ_DIR)\be.N.mt.debug.pdb
-PDB_BEC_FAIL_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\bec.fail.mt.debug.pdb
-PDB_BE_FAIL_MT_UX_DEBUG 		=	$(PROJ_OBJ_DIR)\be.fail.mt.debug.pdb
-PDB_BEL_FAIL_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\bel.fail.mt.debug.pdb
-PDB_BER_FAIL_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\ber.fail.mt.debug.pdb
-PDB_BEC_FILE_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\bec.file.mt.debug.pdb
-PDB_BEC_FILE_WC_MT_UX_DEBUG	=	$(PROJ_OBJ_DIR)\bec.file.WithCallback.mt.debug.pdb
-PDB_BE_FILE_MT_UX_DEBUG 		=	$(PROJ_OBJ_DIR)\be.file.mt.debug.pdb
-PDB_BEL_FILE_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\bel.file.mt.debug.pdb
-PDB_BER_FILE_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\ber.file.mt.debug.pdb
-PDB_BEC_FPRINTF_MT_UX_DEBUG	=	$(PROJ_OBJ_DIR)\bec.fprintf.mt.debug.pdb
-PDB_BEC_FPRINTF_WC_MT_UX_DEBUG	=	$(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.mt.debug.pdb
-PDB_BE_FPRINTF_MT_UX_DEBUG 	=	$(PROJ_OBJ_DIR)\be.fprintf.mt.debug.pdb
-PDB_BEL_FPRINTF_MT_UX_DEBUG	=	$(PROJ_OBJ_DIR)\bel.fprintf.mt.debug.pdb
-PDB_BER_FPRINTF_MT_UX_DEBUG	=	$(PROJ_OBJ_DIR)\ber.fprintf.mt.debug.pdb
-PDB_BEC_NULL_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\bec.null.mt.debug.pdb
-PDB_BE_NULL_MT_UX_DEBUG 		=	$(PROJ_OBJ_DIR)\be.null.mt.debug.pdb
-PDB_BEL_NULL_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\bel.null.mt.debug.pdb
-PDB_BER_NULL_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\ber.null.mt.debug.pdb
-PDB_BEC_SYSLOG_MT_UX_DEBUG 	=	$(PROJ_OBJ_DIR)\bec.syslog.mt.debug.pdb
-PDB_BEC_SYSLOGWC_MT_UX_DEBUG 	=	$(PROJ_OBJ_DIR)\bec.syslog.mt.debug.pdb
-PDB_BE_SYSLOG_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\be.syslog.mt.debug.pdb
-PDB_BER_SYSLOG_MT_UX_DEBUG 	=	$(PROJ_OBJ_DIR)\ber.syslog.mt.debug.pdb
+PDB_BE_LRSPLIT_MT_UX_DEBUG				=	$(PROJ_OBJ_DIR)\be.lrsplit.mt.debug.pdb
+PDB_BE_N_MT_UX_DEBUG							=	$(PROJ_OBJ_DIR)\be.N.mt.debug.pdb
+PDB_BEC_FAIL_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\bec.fail.mt.debug.pdb
+PDB_BE_FAIL_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\be.fail.mt.debug.pdb
+PDB_BEL_FAIL_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\bel.fail.mt.debug.pdb
+PDB_BER_FAIL_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\ber.fail.mt.debug.pdb
+PDB_BEC_FILE_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\bec.file.mt.debug.pdb
+PDB_BEC_FILE_WC_MT_UX_DEBUG			=	$(PROJ_OBJ_DIR)\bec.file.WithCallback.mt.debug.pdb
+PDB_BE_FILE_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\be.file.mt.debug.pdb
+PDB_BEL_FILE_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\bel.file.mt.debug.pdb
+PDB_BER_FILE_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\ber.file.mt.debug.pdb
+PDB_BEC_FPRINTF_MT_UX_DEBUG			=	$(PROJ_OBJ_DIR)\bec.fprintf.mt.debug.pdb
+PDB_BEC_FPRINTF_WC_MT_UX_DEBUG		=	$(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.mt.debug.pdb
+PDB_BE_FPRINTF_MT_UX_DEBUG				=	$(PROJ_OBJ_DIR)\be.fprintf.mt.debug.pdb
+PDB_BEL_FPRINTF_MT_UX_DEBUG			=	$(PROJ_OBJ_DIR)\bel.fprintf.mt.debug.pdb
+PDB_BER_FPRINTF_MT_UX_DEBUG			=	$(PROJ_OBJ_DIR)\ber.fprintf.mt.debug.pdb
+PDB_BEC_NULL_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\bec.null.mt.debug.pdb
+PDB_BE_NULL_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\be.null.mt.debug.pdb
+PDB_BEL_NULL_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\bel.null.mt.debug.pdb
+PDB_BER_NULL_MT_UX_DEBUG					=	$(PROJ_OBJ_DIR)\ber.null.mt.debug.pdb
+PDB_BEC_SYSLOG_MT_UX_DEBUG				=	$(PROJ_OBJ_DIR)\bec.syslog.mt.debug.pdb
+PDB_BEC_SYSLOGWC_MT_UX_DEBUG			=	$(PROJ_OBJ_DIR)\bec.syslog.mt.debug.pdb
+PDB_BE_SYSLOG_MT_UX_DEBUG				=	$(PROJ_OBJ_DIR)\be.syslog.mt.debug.pdb
+PDB_BER_SYSLOG_MT_UX_DEBUG				=	$(PROJ_OBJ_DIR)\ber.syslog.mt.debug.pdb
 
 
 # b64
@@ -999,48 +1009,54 @@ TARG_EX_C_7_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.c.7.$(COMP_ARCH_OS
 ##############################
 # Component Tests
 
+#### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_MT_UX	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_core_initseq_MT_UX_DEBUG	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_custsev_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_custsev_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_args_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_args_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_b64_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_b64_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_bool_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_bool_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_pan_prtf_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_pan_puts_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_custsev_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_args_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_b64_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_bool_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_hostid_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_int_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_pad_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_ptr_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_prid_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_real_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_slice_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_stm_ch_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_thrid_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_w2m_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_log_1_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.exe
+#### TODO: test.component.no_namespace
+#### TODO: test.component.core.getProcessIdentity
+TARG_TEST_COMP_core_initseq_MT_UX_DEBUG	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_pan_prtf_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_pan_puts_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_custsev_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_args_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_b64_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_bool_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_hostid_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_int_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_int_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_pad_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_pad_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_ptr_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_ptr_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_prid_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_prid_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_real_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_real_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_slice_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_slice_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_stm_ch_MT_UX	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_stm_ch_MT_UX_DEBUG	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_thrid_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_thrid_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_w2m_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_w2m_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_log_1_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_log_1_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_pan_puts_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_pan_puts_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_pan_prtf_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_pan_prtf_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_int_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_pad_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_ptr_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_prid_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_real_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_slice_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_stm_ch_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_thrid_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_w2m_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_log_1_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
+#### TODO: test.component.no_namespace
 
 ##############################
 # Performance Tests
 
 TARG_TEST_PERF_ins_w2m_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.exe
+#### TODO: test.performance.util.date_elements_to_string
 TARG_TEST_PERF_ins_w2m_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
+#### TODO: test.performance.util.date_elements_to_string
 
 ##############################
 # Scratch Tests
@@ -1055,71 +1071,73 @@ TARG_TEST_PERF_ins_w2m_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.compo
 #
 # The strange naming conventions of these targets are to placate some
 # make utilities, which have a limit to the identifier length.
-TARG_TEST_MT_UX_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_SCRT_BE_SYSLOG_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_SCRT_BE_SYSLOGWC_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_MT_UX_APIwBE_FPRINTF								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_SCRT_BE_SYSLOG_MT_UX								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_SCRT_BE_SYSLOGWC_MT_UX							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_MT_UX_APIwBELR_1_FPRINTF_SYSLOG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.l.fprintf-r.syslog.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_FE_MT_UX 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_BE_N_FAIL_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_FE_SIMPLE_WC_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_MT_UX_DEBUG_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_SCRT_BE_SYSLOG_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_SCRT_BE_SYSLOGWC_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_FE_MT_UX														=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_BE_N_FAIL_MT_UX										=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_FE_SIMPLE_WC_MT_UX									=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_MT_UX_DEBUG_APIwBE_FPRINTF								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_SCRT_BE_SYSLOG_MT_UX_DEBUG								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_SCRT_BE_SYSLOGWC_MT_UX_DEBUG							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_MT_UX_DEBUG_APIwBELR_1_FPRINTF_SYSLOG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.l.fprintf-r.syslog.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_FE_MT_UX_DEBUG 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_BE_N_FAIL_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_FE_SIMPLE_WC_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_FE_MT_UX_DEBUG														=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_BE_N_FAIL_MT_UX_DEBUG										=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_FE_SIMPLE_WC_MT_UX_DEBUG									=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.debug.exe
 
 ##############################
 # Unit Tests
 
-TARG_TEST_UNIT_lvls_dyninit_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_lvls_vals_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_lvls_vals_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_getcurrtm_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_getcurrtm_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_dtel2s_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_dtel2s_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_getversion_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_getversion_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_gethostname_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_gethostname_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_onbailout_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_strnlen_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_onbailout_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_strnlen_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_bec_file_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_bec_file_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_bec_fprintf_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_bec_fprintf_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_fail_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_lrsplit_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_N_MT_UX						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_N_filt_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_bec_fail_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_bec_fail_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_fail_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_fail_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_fail_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_fail_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_lrsplit_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_lrsplit_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_N_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_N_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_N_filt_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_N_filt_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_bec_file_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_bec_fprintf_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_fe_all_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_fe_all_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_fe_fail_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_fe_fail_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_fe_N_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_fe_N_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_fe_N_MT_UX						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_fe_null_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_fe_null_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_fe_simple_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_getversion_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.exe
+#### TODO: test.unit.levels.2
+TARG_TEST_UNIT_lvls_dyninit_MT_UX		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_lvls_vals_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_dtel2s_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_getcurrtm_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_gethostname_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_onbailout_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_strnlen_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_fail_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_lrsplit_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_N_MT_UX_DEBUG						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_N_filt_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_bec_fail_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_bec_file_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_bec_fprintf_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_fe_all_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_fe_fail_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_fe_N_MT_UX_DEBUG						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_fe_null_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_fe_simple_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_getversion_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.debug.exe
+#### TODO: test.unit.levels.2
+TARG_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_lvls_vals_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_dtel2s_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_getcurrtm_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_gethostname_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_onbailout_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_strnlen_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug.exe
 
-TARG_TEST_UNIT_ins_int_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_ins_w2m_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_ins_int_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_ins_w2m_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_ins_int_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_ins_w2m_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_ins_stmc_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_ins_int_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_ins_w2m_MT_UX_DEBUG					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_ins_stmc_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG).mt.debug.exe
 
 ############################################################
 # Objects
@@ -1129,86 +1147,86 @@ TARG_TEST_UNIT_ins_w2m_MT_UX_DEBUG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.uni
 
 # core
 
-OBJ_utl_bailout_MT_UX		= $(PROJ_OBJ_DIR)\util.bailout.mt.obj
-OBJ_utl_dtel2s_MT_UX		= $(PROJ_OBJ_DIR)\util.dtel2s.mt.obj
+OBJ_utl_bailout_MT_UX				= $(PROJ_OBJ_DIR)\util.bailout.mt.obj
+OBJ_utl_dtel2s_MT_UX					= $(PROJ_OBJ_DIR)\util.dtel2s.mt.obj
 OBJ_utl_init_code_strs_MT_UX	= $(PROJ_OBJ_DIR)\util.init_err_strings.mt.obj
-OBJ_utl_sev_strs_MT_UX		= $(PROJ_OBJ_DIR)\util.sev_strings.mt.obj
-OBJ_utl_snprintf_MT_UX 	= $(PROJ_OBJ_DIR)\util.snprintf.mt.obj
-OBJ_utl_strdup_MT_UX 		= $(PROJ_OBJ_DIR)\util.strdup.mt.obj
-OBJ_utl_procid_MT_UX 		= $(PROJ_OBJ_DIR)\util.procid.mt.obj
-OBJ_utl_thread_MT_UX 		= $(PROJ_OBJ_DIR)\util.thread.mt.obj
-OBJ_utl_be_context_MT_UX	= $(PROJ_OBJ_DIR)\util.be_context.mt.obj
-OBJ_utl_core_apidefs_MT_UX	= $(PROJ_OBJ_DIR)\util.core_apidefs.mt.obj
-OBJ_utl_be_parse_MT_UX		= $(PROJ_OBJ_DIR)\util.be_parse.mt.obj
-OBJ_utl_strnlen_MT_UX		= $(PROJ_OBJ_DIR)\util.strnlen.mt.obj
-OBJ_utl_strnlenp_MT_UX		= $(PROJ_OBJ_DIR)\util.strnlen.c++.mt.obj
-OBJ_utl_time_MT_UX			= $(PROJ_OBJ_DIR)\util.time.mt.obj
-OBJ_utl_host_name_MT_UX	= $(PROJ_OBJ_DIR)\util.host_name.mt.obj
-OBJ_cr_api_MT_UX 			= $(PROJ_OBJ_DIR)\core.api.mt.obj
-OBJ_cr_api_dep_MT_UX 		= $(PROJ_OBJ_DIR)\core.api.deprecated.mt.obj
-OBJ_utl_api_exit_MT_UX 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.obj
-OBJ_cr_api_logprintf_MT_UX	= $(PROJ_OBJ_DIR)\core.api.logprintf.mt.obj
-OBJ_cr_api_logputs_MT_UX	= $(PROJ_OBJ_DIR)\core.api.logputs.mt.obj
-OBJ_cr_auto_MT_UX 			= $(PROJ_OBJ_DIR)\core.auto.mt.obj
-OBJ_ins_args_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.args.mt.obj
-OBJ_ins_b64_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.b64.mt.obj
-OBJ_ins_blob_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.blob.mt.obj
-OBJ_ins_bool_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.obj
-OBJ_ins_excp_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.obj
-OBJ_ins_host_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.obj
-OBJ_ins_int_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.integer.mt.obj
-OBJ_ins_ivl_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.interval.mt.obj
-OBJ_ins_ptr_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.pointer.mt.obj
-OBJ_ins_prid_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.obj
-OBJ_ins_real_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.real.mt.obj
-OBJ_ins_slice_MT_UX	 	= $(PROJ_OBJ_DIR)\inserters.slice.mt.obj
-OBJ_ins_thrid_MT_UX	 	= $(PROJ_OBJ_DIR)\inserters.threadid.mt.obj
-OBJ_ins_stm_ch_MT_UX	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.obj
-OBJ_ins_w2m_MT_UX	 		= $(PROJ_OBJ_DIR)\inserters.w2m.mt.obj
-#PDB_bec_test_MT_UX 		= $(PROJ_OBJ_DIR)\bec.test.mt.pdb
-OBJ_bec_test_MT_UX 		= $(PROJ_OBJ_DIR)\bec.test.mt.obj
-OBJ_be_test_MT_UX 			= $(PROJ_OBJ_DIR)\be.test.mt.obj
-OBJ_bel_test_MT_UX 		= $(PROJ_OBJ_DIR)\bel.test.mt.obj
-OBJ_ber_test_MT_UX 		= $(PROJ_OBJ_DIR)\ber.test.mt.obj
-OBJ_be_lrsplit_MT_UX		= $(PROJ_OBJ_DIR)\be.lrsplit.mt.obj
-OBJ_be_N_MT_UX				= $(PROJ_OBJ_DIR)\be.N.mt.obj
-OBJ_bec_fail_MT_UX			= $(PROJ_OBJ_DIR)\bec.fail.mt.obj
-OBJ_be_fail_MT_UX			= $(PROJ_OBJ_DIR)\be.fail.mt.obj
-OBJ_bel_fail_MT_UX			= $(PROJ_OBJ_DIR)\bel.fail.mt.obj
-OBJ_ber_fail_MT_UX			= $(PROJ_OBJ_DIR)\ber.fail.mt.obj
-OBJ_bec_file_MT_UX			= $(PROJ_OBJ_DIR)\bec.file.mt.obj
-OBJ_bec_file_WC_MT_UX		= $(PROJ_OBJ_DIR)\bec.file.WithCallback.mt.obj
-OBJ_be_file_MT_UX			= $(PROJ_OBJ_DIR)\be.file.mt.obj
-OBJ_bel_file_MT_UX			= $(PROJ_OBJ_DIR)\bel.file.mt.obj
-OBJ_ber_file_MT_UX			= $(PROJ_OBJ_DIR)\ber.file.mt.obj
-OBJ_bec_fprintf_MT_UX		= $(PROJ_OBJ_DIR)\bec.fprintf.mt.obj
-OBJ_bec_fprintf_WC_MT_UX	= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.mt.obj
-OBJ_be_fprintf_MT_UX		= $(PROJ_OBJ_DIR)\be.fprintf.mt.obj
-OBJ_bel_fprintf_MT_UX		= $(PROJ_OBJ_DIR)\bel.fprintf.mt.obj
-OBJ_ber_fprintf_MT_UX		= $(PROJ_OBJ_DIR)\ber.fprintf.mt.obj
-OBJ_bec_null_MT_UX			= $(PROJ_OBJ_DIR)\bec.null.mt.obj
-OBJ_be_null_MT_UX			= $(PROJ_OBJ_DIR)\be.null.mt.obj
-OBJ_bel_null_MT_UX			= $(PROJ_OBJ_DIR)\bel.null.mt.obj
-OBJ_ber_null_MT_UX			= $(PROJ_OBJ_DIR)\ber.null.mt.obj
+OBJ_utl_sev_strs_MT_UX				= $(PROJ_OBJ_DIR)\util.sev_strings.mt.obj
+OBJ_utl_snprintf_MT_UX				= $(PROJ_OBJ_DIR)\util.snprintf.mt.obj
+OBJ_utl_strdup_MT_UX					= $(PROJ_OBJ_DIR)\util.strdup.mt.obj
+OBJ_utl_procid_MT_UX					= $(PROJ_OBJ_DIR)\util.procid.mt.obj
+OBJ_utl_thread_MT_UX					= $(PROJ_OBJ_DIR)\util.thread.mt.obj
+OBJ_utl_be_context_MT_UX			= $(PROJ_OBJ_DIR)\util.be_context.mt.obj
+OBJ_utl_core_apidefs_MT_UX		= $(PROJ_OBJ_DIR)\util.core_apidefs.mt.obj
+OBJ_utl_be_parse_MT_UX				= $(PROJ_OBJ_DIR)\util.be_parse.mt.obj
+OBJ_utl_strnlen_MT_UX				= $(PROJ_OBJ_DIR)\util.strnlen.mt.obj
+OBJ_utl_strnlenp_MT_UX				= $(PROJ_OBJ_DIR)\util.strnlen.c++.mt.obj
+OBJ_utl_time_MT_UX						= $(PROJ_OBJ_DIR)\util.time.mt.obj
+OBJ_utl_host_name_MT_UX			= $(PROJ_OBJ_DIR)\util.host_name.mt.obj
+OBJ_cr_api_MT_UX							= $(PROJ_OBJ_DIR)\core.api.mt.obj
+OBJ_cr_api_dep_MT_UX					= $(PROJ_OBJ_DIR)\core.api.deprecated.mt.obj
+OBJ_utl_api_exit_MT_UX				= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.obj
+OBJ_cr_api_logprintf_MT_UX		= $(PROJ_OBJ_DIR)\core.api.logprintf.mt.obj
+OBJ_cr_api_logputs_MT_UX			= $(PROJ_OBJ_DIR)\core.api.logputs.mt.obj
+OBJ_cr_auto_MT_UX						= $(PROJ_OBJ_DIR)\core.auto.mt.obj
+OBJ_ins_args_MT_UX						= $(PROJ_OBJ_DIR)\inserters.args.mt.obj
+OBJ_ins_b64_MT_UX						= $(PROJ_OBJ_DIR)\inserters.b64.mt.obj
+OBJ_ins_blob_MT_UX						= $(PROJ_OBJ_DIR)\inserters.blob.mt.obj
+OBJ_ins_bool_MT_UX						= $(PROJ_OBJ_DIR)\inserters.boolean.mt.obj
+OBJ_ins_excp_MT_UX						= $(PROJ_OBJ_DIR)\inserters.exception.mt.obj
+OBJ_ins_host_MT_UX						= $(PROJ_OBJ_DIR)\inserters.hostid.mt.obj
+OBJ_ins_int_MT_UX						= $(PROJ_OBJ_DIR)\inserters.integer.mt.obj
+OBJ_ins_ivl_MT_UX						= $(PROJ_OBJ_DIR)\inserters.interval.mt.obj
+OBJ_ins_ptr_MT_UX						= $(PROJ_OBJ_DIR)\inserters.pointer.mt.obj
+OBJ_ins_prid_MT_UX						= $(PROJ_OBJ_DIR)\inserters.processid.mt.obj
+OBJ_ins_real_MT_UX						= $(PROJ_OBJ_DIR)\inserters.real.mt.obj
+OBJ_ins_slice_MT_UX					= $(PROJ_OBJ_DIR)\inserters.slice.mt.obj
+OBJ_ins_thrid_MT_UX					= $(PROJ_OBJ_DIR)\inserters.threadid.mt.obj
+OBJ_ins_stm_ch_MT_UX					= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.obj
+OBJ_ins_w2m_MT_UX						= $(PROJ_OBJ_DIR)\inserters.w2m.mt.obj
+#PDB_bec_test_MT_UX					= $(PROJ_OBJ_DIR)\bec.test.mt.pdb
+OBJ_bec_test_MT_UX						= $(PROJ_OBJ_DIR)\bec.test.mt.obj
+OBJ_be_test_MT_UX						= $(PROJ_OBJ_DIR)\be.test.mt.obj
+OBJ_bel_test_MT_UX						= $(PROJ_OBJ_DIR)\bel.test.mt.obj
+OBJ_ber_test_MT_UX						= $(PROJ_OBJ_DIR)\ber.test.mt.obj
+OBJ_be_lrsplit_MT_UX					= $(PROJ_OBJ_DIR)\be.lrsplit.mt.obj
+OBJ_be_N_MT_UX								= $(PROJ_OBJ_DIR)\be.N.mt.obj
+OBJ_bec_fail_MT_UX						= $(PROJ_OBJ_DIR)\bec.fail.mt.obj
+OBJ_be_fail_MT_UX						= $(PROJ_OBJ_DIR)\be.fail.mt.obj
+OBJ_bel_fail_MT_UX						= $(PROJ_OBJ_DIR)\bel.fail.mt.obj
+OBJ_ber_fail_MT_UX						= $(PROJ_OBJ_DIR)\ber.fail.mt.obj
+OBJ_bec_file_MT_UX						= $(PROJ_OBJ_DIR)\bec.file.mt.obj
+OBJ_bec_file_WC_MT_UX				= $(PROJ_OBJ_DIR)\bec.file.WithCallback.mt.obj
+OBJ_be_file_MT_UX						= $(PROJ_OBJ_DIR)\be.file.mt.obj
+OBJ_bel_file_MT_UX						= $(PROJ_OBJ_DIR)\bel.file.mt.obj
+OBJ_ber_file_MT_UX						= $(PROJ_OBJ_DIR)\ber.file.mt.obj
+OBJ_bec_fprintf_MT_UX				= $(PROJ_OBJ_DIR)\bec.fprintf.mt.obj
+OBJ_bec_fprintf_WC_MT_UX			= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.mt.obj
+OBJ_be_fprintf_MT_UX					= $(PROJ_OBJ_DIR)\be.fprintf.mt.obj
+OBJ_bel_fprintf_MT_UX				= $(PROJ_OBJ_DIR)\bel.fprintf.mt.obj
+OBJ_ber_fprintf_MT_UX				= $(PROJ_OBJ_DIR)\ber.fprintf.mt.obj
+OBJ_bec_null_MT_UX						= $(PROJ_OBJ_DIR)\bec.null.mt.obj
+OBJ_be_null_MT_UX						= $(PROJ_OBJ_DIR)\be.null.mt.obj
+OBJ_bel_null_MT_UX						= $(PROJ_OBJ_DIR)\bel.null.mt.obj
+OBJ_ber_null_MT_UX						= $(PROJ_OBJ_DIR)\ber.null.mt.obj
 !ifdef ACE
-OBJ_bec_ACE_MT_UX			= $(PROJ_OBJ_DIR)\bec.ACE.mt.obj
-OBJ_be_ACE_MT_UX			= $(PROJ_OBJ_DIR)\be.ACE.mt.obj
-OBJ_bel_ACE_MT_UX			= $(PROJ_OBJ_DIR)\bel.ACE.mt.obj
-OBJ_ber_ACE_MT_UX			= $(PROJ_OBJ_DIR)\ber.ACE.mt.obj
+OBJ_bec_ACE_MT_UX						= $(PROJ_OBJ_DIR)\bec.ACE.mt.obj
+OBJ_be_ACE_MT_UX							= $(PROJ_OBJ_DIR)\be.ACE.mt.obj
+OBJ_bel_ACE_MT_UX						= $(PROJ_OBJ_DIR)\bel.ACE.mt.obj
+OBJ_ber_ACE_MT_UX						= $(PROJ_OBJ_DIR)\ber.ACE.mt.obj
 !endif # ACE
-OBJ_bec_SYSLOG_MT_UX		= $(PROJ_OBJ_DIR)\bec.syslog.mt.obj
-OBJ_bec_SYSLOG_WC_MT_UX	= $(PROJ_OBJ_DIR)\bec.syslog.WithCallback.mt.obj
-OBJ_be_SYSLOG_MT_UX 		= $(PROJ_OBJ_DIR)\be.syslog.mt.obj
-OBJ_ber_SYSLOG_MT_UX		= $(PROJ_OBJ_DIR)\ber.syslog.mt.obj
-OBJ_fe_all_MT_UX 			= $(PROJ_OBJ_DIR)\fe.all.mt.obj
-OBJ_fe_all_WC_MT_UX 		= $(PROJ_OBJ_DIR)\fe.all.WithCallback.mt.obj
-OBJ_fe_fail_MT_UX 			= $(PROJ_OBJ_DIR)\fe.fail.mt.obj
-OBJ_fe_N_MT_UX 			= $(PROJ_OBJ_DIR)\fe.N.mt.obj
-OBJ_fe_N_WC_MT_UX 			= $(PROJ_OBJ_DIR)\fe.N.WithCallback.mt.obj
-OBJ_fe_null_MT_UX 			= $(PROJ_OBJ_DIR)\fe.null.mt.obj
-OBJ_fe_null_WC_MT_UX 		= $(PROJ_OBJ_DIR)\fe.null.WithCallback.mt.obj
-OBJ_fe_simple_MT_UX 		= $(PROJ_OBJ_DIR)\fe.simple.mt.obj
-OBJ_fe_simple_WC_MT_UX 	= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.mt.obj
+OBJ_bec_SYSLOG_MT_UX					= $(PROJ_OBJ_DIR)\bec.syslog.mt.obj
+OBJ_bec_SYSLOG_WC_MT_UX			= $(PROJ_OBJ_DIR)\bec.syslog.WithCallback.mt.obj
+OBJ_be_SYSLOG_MT_UX					= $(PROJ_OBJ_DIR)\be.syslog.mt.obj
+OBJ_ber_SYSLOG_MT_UX					= $(PROJ_OBJ_DIR)\ber.syslog.mt.obj
+OBJ_fe_all_MT_UX							= $(PROJ_OBJ_DIR)\fe.all.mt.obj
+OBJ_fe_all_WC_MT_UX					= $(PROJ_OBJ_DIR)\fe.all.WithCallback.mt.obj
+OBJ_fe_fail_MT_UX						= $(PROJ_OBJ_DIR)\fe.fail.mt.obj
+OBJ_fe_N_MT_UX								= $(PROJ_OBJ_DIR)\fe.N.mt.obj
+OBJ_fe_N_WC_MT_UX						= $(PROJ_OBJ_DIR)\fe.N.WithCallback.mt.obj
+OBJ_fe_null_MT_UX						= $(PROJ_OBJ_DIR)\fe.null.mt.obj
+OBJ_fe_null_WC_MT_UX					= $(PROJ_OBJ_DIR)\fe.null.WithCallback.mt.obj
+OBJ_fe_simple_MT_UX					= $(PROJ_OBJ_DIR)\fe.simple.mt.obj
+OBJ_fe_simple_WC_MT_UX				= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.mt.obj
 
 OBJ_UTIL_MT_UX=\
  $(OBJ_utl_api_exit_MT_UX)\
@@ -1441,117 +1459,117 @@ OBJ_FE_SIMPLE_WC_MT_UX=\
  $(OBJ_fe_simple_WC_MT_UX)\
  \
 
-OBJ_utl_bailout_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.bailout.mt.debug.obj
-OBJ_utl_dtel2s_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.dtel2s.mt.debug.obj
+OBJ_utl_bailout_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.bailout.mt.debug.obj
+OBJ_utl_dtel2s_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\util.dtel2s.mt.debug.obj
 OBJ_utl_init_code_strs_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\util.init_err_strings.mt.debug.obj
-OBJ_utl_sev_strs_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.sev_strings.mt.debug.obj
-OBJ_utl_snprintf_MT_UX_DEBUG 	= $(PROJ_OBJ_DIR)\util.snprintf.mt.debug.obj
-OBJ_utl_strdup_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\util.strdup.mt.debug.obj
-OBJ_utl_procid_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\util.procid.mt.debug.obj
-OBJ_utl_thread_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\util.thread.mt.debug.obj
-OBJ_utl_be_context_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\util.be_context.mt.debug.obj
-OBJ_utl_core_apidefs_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\util.core_apidefs.mt.debug.obj
-OBJ_utl_be_parse_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.be_parse.mt.debug.obj
-OBJ_utl_strnlen_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.strnlen.mt.debug.obj
-OBJ_utl_strnlenp_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.strnlen.c++.mt.debug.obj
-OBJ_utl_time_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\util.time.mt.debug.obj
-OBJ_utl_host_name_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\util.host_name.mt.debug.obj
-OBJ_cr_api_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\core.api.mt.debug.obj
-OBJ_cr_api_dep_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\core.api.deprecated.mt.debug.obj
-OBJ_utl_api_exit_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.debug.obj
-OBJ_cr_api_logprintf_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\core.api.logprintf.mt.debug.obj
-OBJ_cr_api_logputs_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\core.api.logputs.mt.debug.obj
-OBJ_cr_auto_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\core.auto.mt.debug.obj
-OBJ_ins_args_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.args.mt.debug.obj
-OBJ_ins_b64_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.b64.mt.debug.obj
-OBJ_ins_blob_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.blob.mt.debug.obj
-OBJ_ins_bool_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.debug.obj
-OBJ_ins_excp_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.debug.obj
-OBJ_ins_host_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.debug.obj
-OBJ_ins_int_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.integer.mt.debug.obj
-OBJ_ins_ivl_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.interval.mt.debug.obj
-OBJ_ins_ptr_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.pointer.mt.debug.obj
-OBJ_ins_prid_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.debug.obj
-OBJ_ins_real_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.real.mt.debug.obj
-OBJ_ins_slice_MT_UX_DEBUG	 	= $(PROJ_OBJ_DIR)\inserters.slice.mt.debug.obj
-OBJ_ins_thrid_MT_UX_DEBUG	 	= $(PROJ_OBJ_DIR)\inserters.threadid.mt.debug.obj
-OBJ_ins_stm_ch_MT_UX_DEBUG	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.debug.obj
-OBJ_ins_w2m_MT_UX_DEBUG	 		= $(PROJ_OBJ_DIR)\inserters.w2m.mt.debug.obj
-PDB_utl_bailout_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.bailout.mt.debug.pdb
+OBJ_utl_sev_strs_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.sev_strings.mt.debug.obj
+OBJ_utl_snprintf_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.snprintf.mt.debug.obj
+OBJ_utl_strdup_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\util.strdup.mt.debug.obj
+OBJ_utl_procid_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\util.procid.mt.debug.obj
+OBJ_utl_thread_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\util.thread.mt.debug.obj
+OBJ_utl_be_context_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\util.be_context.mt.debug.obj
+OBJ_utl_core_apidefs_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.core_apidefs.mt.debug.obj
+OBJ_utl_be_parse_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.be_parse.mt.debug.obj
+OBJ_utl_strnlen_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.strnlen.mt.debug.obj
+OBJ_utl_strnlenp_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.strnlen.c++.mt.debug.obj
+OBJ_utl_time_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\util.time.mt.debug.obj
+OBJ_utl_host_name_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\util.host_name.mt.debug.obj
+OBJ_cr_api_MT_UX_DEBUG							= $(PROJ_OBJ_DIR)\core.api.mt.debug.obj
+OBJ_cr_api_dep_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\core.api.deprecated.mt.debug.obj
+OBJ_utl_api_exit_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.debug.obj
+OBJ_cr_api_logprintf_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\core.api.logprintf.mt.debug.obj
+OBJ_cr_api_logputs_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\core.api.logputs.mt.debug.obj
+OBJ_cr_auto_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\core.auto.mt.debug.obj
+OBJ_ins_args_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.args.mt.debug.obj
+OBJ_ins_b64_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.b64.mt.debug.obj
+OBJ_ins_blob_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.blob.mt.debug.obj
+OBJ_ins_bool_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.boolean.mt.debug.obj
+OBJ_ins_excp_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.exception.mt.debug.obj
+OBJ_ins_host_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.hostid.mt.debug.obj
+OBJ_ins_int_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.integer.mt.debug.obj
+OBJ_ins_ivl_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.interval.mt.debug.obj
+OBJ_ins_ptr_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.pointer.mt.debug.obj
+OBJ_ins_prid_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.processid.mt.debug.obj
+OBJ_ins_real_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.real.mt.debug.obj
+OBJ_ins_slice_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\inserters.slice.mt.debug.obj
+OBJ_ins_thrid_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\inserters.threadid.mt.debug.obj
+OBJ_ins_stm_ch_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.debug.obj
+OBJ_ins_w2m_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.w2m.mt.debug.obj
+PDB_utl_bailout_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.bailout.mt.debug.pdb
 PDB_utl_init_code_strs_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\util.init_err_strings.mt.debug.pdb
-PDB_utl_sev_strs_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.sev_strings.mt.debug.pdb
-PDB_utl_snprintf_MT_UX_DEBUG 	= $(PROJ_OBJ_DIR)\util.snprintf.mt.debug.pdb
-PDB_utl_strdup_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\util.strdup.mt.debug.pdb
-PDB_utl_procid_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\util.procid.mt.debug.pdb
-PDB_utl_thread_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\util.thread.mt.debug.pdb
-PDB_utl_be_context_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\util.be_context.mt.debug.pdb
-PDB_utl_core_apidefs_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\util.core_apidefs.mt.debug.pdb
-PDB_utl_be_parse_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.be_parse.mt.debug.pdb
-PDB_utl_strnlen_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.strnlen.mt.debug.pdb
-PDB_utl_time_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\util.time.mt.debug.pdb
-PDB_utl_host_name_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\util.host_name.mt.debug.pdb
-PDB_cr_api_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\core.api.mt.debug.pdb
-PDB_cr_auto_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\core.auto.mt.debug.pdb
-PDB_cr_logprintf_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\core.logprintf.mt.debug.pdb
-PDB_ins_args_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.args.mt.debug.pdb
-PDB_ins_b64_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\inserters.b64.mt.debug.pdb
-PDB_ins_blob_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.blob.mt.debug.pdb
-PDB_ins_bool_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.debug.pdb
-PDB_ins_excp_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.debug.pdb
-PDB_ins_host_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.debug.pdb
-PDB_ins_int_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\inserters.integer.mt.debug.pdb
-PDB_ins_ivl_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\inserters.interval.mt.debug.pdb
-PDB_ins_ptr_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\inserters.pointer.mt.debug.pdb
-PDB_ins_prid_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.debug.pdb
-PDB_ins_real_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.real.mt.debug.pdb
-PDB_ins_slice_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.slice.mt.debug.pdb
-PDB_ins_thrid_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.threadid.mt.debug.pdb
-PDB_ins_stm_ch_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.debug.pdb
-PDB_ins_w2m_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\inserters.w2m.mt.debug.pdb
-#PDB_bec_test_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\bec.test.mt.debug.pdb
-OBJ_bec_test_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\bec.test.mt.debug.obj
-OBJ_be_test_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\be.test.mt.debug.obj
-OBJ_bel_test_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\bel.test.mt.debug.obj
-OBJ_ber_test_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\ber.test.mt.debug.obj
-OBJ_be_lrsplit_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\be.lrsplit.mt.debug.obj
-OBJ_be_N_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\be.N.mt.debug.obj
-OBJ_bec_fail_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\bec.fail.mt.debug.obj
-OBJ_be_fail_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\be.fail.mt.debug.obj
-OBJ_bel_fail_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\bel.fail.mt.debug.obj
-OBJ_ber_fail_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\ber.fail.mt.debug.obj
-OBJ_bec_file_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\bec.file.mt.debug.obj
-OBJ_bec_file_WC_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\bec.file.WithCallback.mt.debug.obj
-OBJ_be_file_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\be.file.mt.debug.obj
-OBJ_bel_file_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\bel.file.mt.debug.obj
-OBJ_ber_file_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\ber.file.mt.debug.obj
-OBJ_bec_fprintf_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\bec.fprintf.mt.debug.obj
-OBJ_bec_fprintf_WC_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.mt.debug.obj
-OBJ_be_fprintf_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\be.fprintf.mt.debug.obj
-OBJ_bel_fprintf_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\bel.fprintf.mt.debug.obj
-OBJ_ber_fprintf_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\ber.fprintf.mt.debug.obj
-OBJ_bec_null_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\bec.null.mt.debug.obj
-OBJ_be_null_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\be.null.mt.debug.obj
-OBJ_bel_null_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\bel.null.mt.debug.obj
-OBJ_ber_null_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\ber.null.mt.debug.obj
+PDB_utl_sev_strs_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.sev_strings.mt.debug.pdb
+PDB_utl_snprintf_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.snprintf.mt.debug.pdb
+PDB_utl_strdup_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\util.strdup.mt.debug.pdb
+PDB_utl_procid_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\util.procid.mt.debug.pdb
+PDB_utl_thread_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\util.thread.mt.debug.pdb
+PDB_utl_be_context_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\util.be_context.mt.debug.pdb
+PDB_utl_core_apidefs_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\util.core_apidefs.mt.debug.pdb
+PDB_utl_be_parse_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.be_parse.mt.debug.pdb
+PDB_utl_strnlen_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\util.strnlen.mt.debug.pdb
+PDB_utl_time_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\util.time.mt.debug.pdb
+PDB_utl_host_name_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\util.host_name.mt.debug.pdb
+PDB_cr_api_MT_UX_DEBUG							= $(PROJ_OBJ_DIR)\core.api.mt.debug.pdb
+PDB_cr_auto_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\core.auto.mt.debug.pdb
+PDB_cr_logprintf_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\core.logprintf.mt.debug.pdb
+PDB_ins_args_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.args.mt.debug.pdb
+PDB_ins_b64_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.b64.mt.debug.pdb
+PDB_ins_blob_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.blob.mt.debug.pdb
+PDB_ins_bool_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.boolean.mt.debug.pdb
+PDB_ins_excp_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.exception.mt.debug.pdb
+PDB_ins_host_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.hostid.mt.debug.pdb
+PDB_ins_int_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.integer.mt.debug.pdb
+PDB_ins_ivl_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.interval.mt.debug.pdb
+PDB_ins_ptr_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.pointer.mt.debug.pdb
+PDB_ins_prid_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.processid.mt.debug.pdb
+PDB_ins_real_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.real.mt.debug.pdb
+PDB_ins_slice_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\inserters.slice.mt.debug.pdb
+PDB_ins_thrid_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\inserters.threadid.mt.debug.pdb
+PDB_ins_stm_ch_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.debug.pdb
+PDB_ins_w2m_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\inserters.w2m.mt.debug.pdb
+#PDB_bec_test_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\bec.test.mt.debug.pdb
+OBJ_bec_test_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\bec.test.mt.debug.obj
+OBJ_be_test_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\be.test.mt.debug.obj
+OBJ_bel_test_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\bel.test.mt.debug.obj
+OBJ_ber_test_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\ber.test.mt.debug.obj
+OBJ_be_lrsplit_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\be.lrsplit.mt.debug.obj
+OBJ_be_N_MT_UX_DEBUG								= $(PROJ_OBJ_DIR)\be.N.mt.debug.obj
+OBJ_bec_fail_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\bec.fail.mt.debug.obj
+OBJ_be_fail_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\be.fail.mt.debug.obj
+OBJ_bel_fail_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\bel.fail.mt.debug.obj
+OBJ_ber_fail_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\ber.fail.mt.debug.obj
+OBJ_bec_file_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\bec.file.mt.debug.obj
+OBJ_bec_file_WC_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\bec.file.WithCallback.mt.debug.obj
+OBJ_be_file_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\be.file.mt.debug.obj
+OBJ_bel_file_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\bel.file.mt.debug.obj
+OBJ_ber_file_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\ber.file.mt.debug.obj
+OBJ_bec_fprintf_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\bec.fprintf.mt.debug.obj
+OBJ_bec_fprintf_WC_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.mt.debug.obj
+OBJ_be_fprintf_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\be.fprintf.mt.debug.obj
+OBJ_bel_fprintf_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\bel.fprintf.mt.debug.obj
+OBJ_ber_fprintf_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\ber.fprintf.mt.debug.obj
+OBJ_bec_null_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\bec.null.mt.debug.obj
+OBJ_be_null_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\be.null.mt.debug.obj
+OBJ_bel_null_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\bel.null.mt.debug.obj
+OBJ_ber_null_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\ber.null.mt.debug.obj
 !ifdef ACE
-OBJ_bec_ACE_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\bec.ACE.mt.debug.obj
-OBJ_be_ACE_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\be.ACE.mt.debug.obj
-OBJ_bel_ACE_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\bel.ACE.mt.debug.obj
-OBJ_ber_ACE_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\ber.ACE.mt.debug.obj
+OBJ_bec_ACE_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\bec.ACE.mt.debug.obj
+OBJ_be_ACE_MT_UX_DEBUG							= $(PROJ_OBJ_DIR)\be.ACE.mt.debug.obj
+OBJ_bel_ACE_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\bel.ACE.mt.debug.obj
+OBJ_ber_ACE_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\ber.ACE.mt.debug.obj
 !endif # ACE
-OBJ_bec_SYSLOG_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\bec.syslog.mt.debug.obj
-OBJ_bec_SYSLOG_WC_MT_UX_DEBUG	= $(PROJ_OBJ_DIR)\bec.syslog.WithCallback.mt.debug.obj
-OBJ_be_SYSLOG_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\be.syslog.mt.debug.obj
-OBJ_ber_SYSLOG_MT_UX_DEBUG		= $(PROJ_OBJ_DIR)\ber.syslog.mt.debug.obj
-OBJ_fe_all_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\fe.all.mt.debug.obj
-OBJ_fe_all_WC_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\fe.all.WithCallback.mt.debug.obj
-OBJ_fe_fail_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\fe.fail.mt.debug.obj
-OBJ_fe_N_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\fe.N.mt.debug.obj
-OBJ_fe_N_WC_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\fe.N.WithCallback.mt.debug.obj
-OBJ_fe_null_MT_UX_DEBUG 			= $(PROJ_OBJ_DIR)\fe.null.mt.debug.obj
-OBJ_fe_null_WC_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\fe.null.WithCallback.mt.debug.obj
-OBJ_fe_simple_MT_UX_DEBUG 		= $(PROJ_OBJ_DIR)\fe.simple.mt.debug.obj
-OBJ_fe_simple_WC_MT_UX_DEBUG 	= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.mt.debug.obj
+OBJ_bec_SYSLOG_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\bec.syslog.mt.debug.obj
+OBJ_bec_SYSLOG_WC_MT_UX_DEBUG			= $(PROJ_OBJ_DIR)\bec.syslog.WithCallback.mt.debug.obj
+OBJ_be_SYSLOG_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\be.syslog.mt.debug.obj
+OBJ_ber_SYSLOG_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\ber.syslog.mt.debug.obj
+OBJ_fe_all_MT_UX_DEBUG							= $(PROJ_OBJ_DIR)\fe.all.mt.debug.obj
+OBJ_fe_all_WC_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\fe.all.WithCallback.mt.debug.obj
+OBJ_fe_fail_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\fe.fail.mt.debug.obj
+OBJ_fe_N_MT_UX_DEBUG								= $(PROJ_OBJ_DIR)\fe.N.mt.debug.obj
+OBJ_fe_N_WC_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\fe.N.WithCallback.mt.debug.obj
+OBJ_fe_null_MT_UX_DEBUG						= $(PROJ_OBJ_DIR)\fe.null.mt.debug.obj
+OBJ_fe_null_WC_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\fe.null.WithCallback.mt.debug.obj
+OBJ_fe_simple_MT_UX_DEBUG					= $(PROJ_OBJ_DIR)\fe.simple.mt.debug.obj
+OBJ_fe_simple_WC_MT_UX_DEBUG				= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.mt.debug.obj
 
 OBJ_UTIL_MT_UX_DEBUG=\
  $(OBJ_utl_api_exit_MT_UX_DEBUG)\
@@ -2101,51 +2119,57 @@ OBJ_TEST_SCRT_BE_SYSLOGWC_MT_UX_DEBUG	=	.\test.scratch.be.syslog.WithCallback.mt
 #
 # NOTE: some names are as names longer than 63 characters scare CodeWarrior's linker
 
-OBJ_TEST_UNIT_lvls_dyninit_MT_UX	=	.\test.unit.levels.dynamic_init.mt.obj
-OBJ_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG	=	.\test.unit.levels.dynamic_init.mt.debug.obj
-OBJ_TEST_UNIT_lvls_vals_MT_UX	=	.\test.unit.levels.values.mt.obj
-OBJ_TEST_UNIT_lvls_vals_MT_UX_DEBUG	=	.\test.unit.levels.values.mt.debug.obj
-OBJ_TEST_UNIT_getcurrtm_MT_UX	=	.\test.unit.util.getcurrenttime.mt.obj
-OBJ_TEST_UNIT_getcurrtm_MT_UX_DEBUG	=	.\test.unit.util.getcurrenttime.mt.debug.obj
-OBJ_TEST_UNIT_dtel2s_MT_UX	    =	.\test.unit.util.dtel2s.mt.obj
-OBJ_TEST_UNIT_dtel2s_MT_UX_DEBUG	    =	.\test.unit.util.dtel2s.mt.debug.obj
-OBJ_TEST_UNIT_getversion_MT_UX	=	.\test.unit.getversion.mt.obj
-OBJ_TEST_UNIT_getversion_MT_UX_DEBUG	=	.\test.unit.getversion.mt.debug.obj
-OBJ_TEST_UNIT_gethostname_MT_UX	=	.\test.unit.util.gethostname.mt.obj
-OBJ_TEST_UNIT_gethostname_MT_UX_DEBUG	=	.\test.unit.util.gethostname.mt.debug.obj
-OBJ_TEST_UNIT_onbailout_MT_UX	=	.\test.unit.util.onbailout.mt.obj
-OBJ_TEST_UNIT_strnlen_MT_UX	=	.\test.unit.util.strnlen.mt.obj
-OBJ_TEST_UNIT_onbailout_MT_UX_DEBUG	=	.\test.unit.util.onbailout.mt.debug.obj
-OBJ_TEST_UNIT_strnlen_MT_UX_DEBUG	=	.\test.unit.util.strnlen.mt.debug.obj
-OBJ_TEST_UNIT_bec_file_MT_UX		=	.\test.unit.bec.file.mt.obj
-OBJ_TEST_UNIT_bec_file_MT_UX_DEBUG		=	.\test.unit.bec.file.mt.debug.obj
-OBJ_TEST_UNIT_bec_fprintf_MT_UX	=	.\test.unit.bec.fprintf.mt.obj
-OBJ_TEST_UNIT_bec_fprintf_MT_UX_DEBUG	=	.\test.unit.bec.fprintf.mt.debug.obj
-OBJ_TEST_UNIT_bec_fail_MT_UX		=	.\test.unit.bec.fail.mt.obj
-OBJ_TEST_UNIT_bec_fail_MT_UX_DEBUG		=	.\test.unit.bec.fail.mt.debug.obj
-OBJ_TEST_UNIT_be_fail_MT_UX		=	.\test.unit.be.fail.mt.obj
-OBJ_TEST_UNIT_be_fail_MT_UX_DEBUG		=	.\test.unit.be.fail.mt.debug.obj
-OBJ_TEST_UNIT_be_lrsplit_MT_UX	=	.\test.unit.be.lrsplit.mt.obj
-OBJ_TEST_UNIT_be_lrsplit_MT_UX_DEBUG	=	.\test.unit.be.lrsplit.mt.debug.obj
-OBJ_TEST_UNIT_be_N_MT_UX			=	.\test.unit.be.N.mt.obj
-OBJ_TEST_UNIT_be_N_MT_UX_DEBUG			=	.\test.unit.be.N.mt.debug.obj
-OBJ_TEST_UNIT_be_N_filt_MT_UX		=	.\test.unit.be.N.filtering.mt.obj
-OBJ_TEST_UNIT_be_N_filt_MT_UX_DEBUG		=	.\test.unit.be.N.filtering.mt.debug.obj
-OBJ_TEST_UNIT_fe_all_MT_UX		=	.\test.unit.fe.all.mt.obj
-OBJ_TEST_UNIT_fe_all_MT_UX_DEBUG		=	.\test.unit.fe.all.mt.debug.obj
-OBJ_TEST_UNIT_fe_fail_MT_UX		=	.\test.unit.fe.fail.mt.obj
-OBJ_TEST_UNIT_fe_fail_MT_UX_DEBUG		=	.\test.unit.fe.fail.mt.debug.obj
-OBJ_TEST_UNIT_fe_N_MT_UX			=	.\test.unit.fe.N.mt.obj
-OBJ_TEST_UNIT_fe_N_MT_UX_DEBUG			=	.\test.unit.fe.N.mt.debug.obj
-OBJ_TEST_UNIT_fe_null_MT_UX		=	.\test.unit.fe.null.mt.obj
-OBJ_TEST_UNIT_fe_null_MT_UX_DEBUG		=	.\test.unit.fe.null.mt.debug.obj
-OBJ_TEST_UNIT_fe_simple_MT_UX	=	.\test.unit.fe.simple.mt.obj
-OBJ_TEST_UNIT_fe_simple_MT_UX_DEBUG	=	.\test.unit.fe.simple.mt.debug.obj
 
-OBJ_TEST_UNIT_ins_int_MT_UX	=	.\test.unit.inserter.integer.mt.obj
-OBJ_TEST_UNIT_ins_w2m_MT_UX	=	.\test.unit.inserter.w2m.mt.obj
-OBJ_TEST_UNIT_ins_int_MT_UX_DEBUG	=	.\test.unit.inserter.integer.mt.debug.obj
-OBJ_TEST_UNIT_ins_w2m_MT_UX_DEBUG	=	.\test.unit.inserter.w2m.mt.debug.obj
+OBJ_TEST_UNIT_be_fail_MT_UX			=	.\test.unit.be.fail.mt.obj
+OBJ_TEST_UNIT_be_lrsplit_MT_UX		=	.\test.unit.be.lrsplit.mt.obj
+OBJ_TEST_UNIT_be_N_MT_UX					=	.\test.unit.be.N.mt.obj
+OBJ_TEST_UNIT_be_N_filt_MT_UX		=	.\test.unit.be.N.filtering.mt.obj
+OBJ_TEST_UNIT_bec_fail_MT_UX			=	.\test.unit.bec.fail.mt.obj
+OBJ_TEST_UNIT_bec_file_MT_UX			=	.\test.unit.bec.file.mt.obj
+OBJ_TEST_UNIT_bec_fprintf_MT_UX	=	.\test.unit.bec.fprintf.mt.obj
+OBJ_TEST_UNIT_fe_all_MT_UX				=	.\test.unit.fe.all.mt.obj
+OBJ_TEST_UNIT_fe_fail_MT_UX			=	.\test.unit.fe.fail.mt.obj
+OBJ_TEST_UNIT_fe_N_MT_UX					=	.\test.unit.fe.N.mt.obj
+OBJ_TEST_UNIT_fe_null_MT_UX			=	.\test.unit.fe.null.mt.obj
+OBJ_TEST_UNIT_fe_simple_MT_UX		=	.\test.unit.fe.simple.mt.obj
+OBJ_TEST_UNIT_getversion_MT_UX		=	.\test.unit.getversion.mt.obj
+#### TODO: test.unit.levels.2
+OBJ_TEST_UNIT_lvls_dyninit_MT_UX	=	.\test.unit.levels.dynamic_init.mt.obj
+OBJ_TEST_UNIT_lvls_vals_MT_UX		=	.\test.unit.levels.values.mt.obj
+OBJ_TEST_UNIT_dtel2s_MT_UX				=	.\test.unit.util.dtel2s.mt.obj
+OBJ_TEST_UNIT_getcurrtm_MT_UX		=	.\test.unit.util.getcurrenttime.mt.obj
+OBJ_TEST_UNIT_gethostname_MT_UX	=	.\test.unit.util.gethostname.mt.obj
+OBJ_TEST_UNIT_onbailout_MT_UX		=	.\test.unit.util.onbailout.mt.obj
+OBJ_TEST_UNIT_strnlen_MT_UX			=	.\test.unit.util.strnlen.mt.obj
+
+OBJ_TEST_UNIT_be_fail_MT_UX_DEBUG			=	.\test.unit.be.fail.mt.debug.obj
+OBJ_TEST_UNIT_be_lrsplit_MT_UX_DEBUG		=	.\test.unit.be.lrsplit.mt.debug.obj
+OBJ_TEST_UNIT_be_N_MT_UX_DEBUG					=	.\test.unit.be.N.mt.debug.obj
+OBJ_TEST_UNIT_be_N_filt_MT_UX_DEBUG		=	.\test.unit.be.N.filtering.mt.debug.obj
+OBJ_TEST_UNIT_bec_fail_MT_UX_DEBUG			=	.\test.unit.bec.fail.mt.debug.obj
+OBJ_TEST_UNIT_bec_file_MT_UX_DEBUG			=	.\test.unit.bec.file.mt.debug.obj
+OBJ_TEST_UNIT_bec_fprintf_MT_UX_DEBUG	=	.\test.unit.bec.fprintf.mt.debug.obj
+OBJ_TEST_UNIT_fe_all_MT_UX_DEBUG				=	.\test.unit.fe.all.mt.debug.obj
+OBJ_TEST_UNIT_fe_fail_MT_UX_DEBUG			=	.\test.unit.fe.fail.mt.debug.obj
+OBJ_TEST_UNIT_fe_N_MT_UX_DEBUG					=	.\test.unit.fe.N.mt.debug.obj
+OBJ_TEST_UNIT_fe_null_MT_UX_DEBUG			=	.\test.unit.fe.null.mt.debug.obj
+OBJ_TEST_UNIT_fe_simple_MT_UX_DEBUG		=	.\test.unit.fe.simple.mt.debug.obj
+OBJ_TEST_UNIT_getversion_MT_UX_DEBUG		=	.\test.unit.getversion.mt.debug.obj
+#### TODO: test.unit.levels.2
+OBJ_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG	=	.\test.unit.levels.dynamic_init.mt.debug.obj
+OBJ_TEST_UNIT_lvls_vals_MT_UX_DEBUG		=	.\test.unit.levels.values.mt.debug.obj
+OBJ_TEST_UNIT_dtel2s_MT_UX_DEBUG				=	.\test.unit.util.dtel2s.mt.debug.obj
+OBJ_TEST_UNIT_getcurrtm_MT_UX_DEBUG		=	.\test.unit.util.getcurrenttime.mt.debug.obj
+OBJ_TEST_UNIT_gethostname_MT_UX_DEBUG	=	.\test.unit.util.gethostname.mt.debug.obj
+OBJ_TEST_UNIT_onbailout_MT_UX_DEBUG		=	.\test.unit.util.onbailout.mt.debug.obj
+OBJ_TEST_UNIT_strnlen_MT_UX_DEBUG			=	.\test.unit.util.strnlen.mt.debug.obj
+
+OBJ_TEST_UNIT_ins_int_MT_UX			=	.\test.unit.inserter.integer.mt.obj
+OBJ_TEST_UNIT_ins_w2m_MT_UX			=	.\test.unit.inserter.w2m.mt.obj
+OBJ_TEST_UNIT_ins_stmc_MT_UX			=	.\test.unit.inserter.stream_character.mt.obj
+OBJ_TEST_UNIT_ins_int_MT_UX_DEBUG			=	.\test.unit.inserter.integer.mt.debug.obj
+OBJ_TEST_UNIT_ins_w2m_MT_UX_DEBUG			=	.\test.unit.inserter.w2m.mt.debug.obj
+OBJ_TEST_UNIT_ins_stmc_MT_UX_DEBUG			=	.\test.unit.inserter.stream_character.mt.debug.obj
 
 ##################################################
 # Target groups
@@ -2450,54 +2474,58 @@ OBJS_TEST_SCRATCH=\
 
 # Unit Tests
 OBJS_TEST_UNIT=\
- $(OBJ_TEST_UNIT_lvls_dyninit_MT_UX)\
- $(OBJ_TEST_UNIT_lvls_vals_MT_UX)\
- $(OBJ_TEST_UNIT_getcurrtm_MT_UX)\
- $(OBJ_TEST_UNIT_dtel2s_MT_UX)\
- $(OBJ_TEST_UNIT_getversion_MT_UX)\
- $(OBJ_TEST_UNIT_gethostname_MT_UX)\
- $(OBJ_TEST_UNIT_onbailout_MT_UX)\
- $(OBJ_TEST_UNIT_strnlen_MT_UX)\
  \
- $(OBJ_TEST_UNIT_bec_file_MT_UX)\
- $(OBJ_TEST_UNIT_bec_fprintf_MT_UX)\
- $(OBJ_TEST_UNIT_bec_fail_MT_UX)\
  $(OBJ_TEST_UNIT_be_fail_MT_UX)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_UX)\
  $(OBJ_TEST_UNIT_be_N_MT_UX)\
  $(OBJ_TEST_UNIT_be_N_filt_MT_UX)\
- \
+ $(OBJ_TEST_UNIT_bec_fail_MT_UX)\
+ $(OBJ_TEST_UNIT_bec_file_MT_UX)\
+ $(OBJ_TEST_UNIT_bec_fprintf_MT_UX)\
  $(OBJ_TEST_UNIT_fe_all_MT_UX)\
  $(OBJ_TEST_UNIT_fe_fail_MT_UX)\
  $(OBJ_TEST_UNIT_fe_N_MT_UX)\
  $(OBJ_TEST_UNIT_fe_null_MT_UX)\
  $(OBJ_TEST_UNIT_fe_simple_MT_UX)\
+ $(OBJ_TEST_UNIT_getversion_MT_UX)\
+ \
+ $(OBJ_TEST_UNIT_lvls_dyninit_MT_UX)\
+ $(OBJ_TEST_UNIT_lvls_vals_MT_UX)\
+ $(OBJ_TEST_UNIT_dtel2s_MT_UX)\
+ $(OBJ_TEST_UNIT_getcurrtm_MT_UX)\
+ $(OBJ_TEST_UNIT_gethostname_MT_UX)\
+ $(OBJ_TEST_UNIT_onbailout_MT_UX)\
+ $(OBJ_TEST_UNIT_strnlen_MT_UX)\
+ \
  $(OBJ_TEST_UNIT_ins_int_MT_UX)\
  $(OBJ_TEST_UNIT_ins_w2m_MT_UX)\
- $(OBJ_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG)\
- $(OBJ_TEST_UNIT_lvls_vals_MT_UX_DEBUG)\
- $(OBJ_TEST_UNIT_getcurrtm_MT_UX_DEBUG)\
- $(OBJ_TEST_UNIT_dtel2s_MT_UX_DEBUG)\
- $(OBJ_TEST_UNIT_getversion_MT_UX_DEBUG)\
- $(OBJ_TEST_UNIT_gethostname_MT_UX_DEBUG)\
- $(OBJ_TEST_UNIT_onbailout_MT_UX_DEBUG)\
- $(OBJ_TEST_UNIT_strnlen_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_ins_stmc_MT_UX)\
  \
- $(OBJ_TEST_UNIT_bec_file_MT_UX_DEBUG)\
- $(OBJ_TEST_UNIT_bec_fprintf_MT_UX_DEBUG)\
- $(OBJ_TEST_UNIT_bec_fail_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_be_fail_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_be_N_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_be_N_filt_MT_UX_DEBUG)\
- \
+ $(OBJ_TEST_UNIT_bec_fail_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_bec_file_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_bec_fprintf_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_fe_all_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_fe_fail_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_fe_N_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_fe_null_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_fe_simple_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_getversion_MT_UX_DEBUG)\
+ \
+ $(OBJ_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_lvls_vals_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_dtel2s_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_getcurrtm_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_gethostname_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_onbailout_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_strnlen_MT_UX_DEBUG)\
+ \
  $(OBJ_TEST_UNIT_ins_int_MT_UX_DEBUG)\
  $(OBJ_TEST_UNIT_ins_w2m_MT_UX_DEBUG)\
+ $(OBJ_TEST_UNIT_ins_stmc_MT_UX_DEBUG)\
  \
 
 ########################################
@@ -2869,54 +2897,56 @@ TARGETS_TEST_SCRATCH=\
  \
 
 TARGETS_TEST_UNIT=\
- $(TARG_TEST_UNIT_lvls_dyninit_MT_UX)\
- $(TARG_TEST_UNIT_lvls_vals_MT_UX)\
- $(TARG_TEST_UNIT_getcurrtm_MT_UX)\
- $(TARG_TEST_UNIT_dtel2s_MT_UX)\
- $(TARG_TEST_UNIT_getversion_MT_UX)\
- $(TARG_TEST_UNIT_gethostname_MT_UX)\
- $(TARG_TEST_UNIT_onbailout_MT_UX)\
- $(TARG_TEST_UNIT_strnlen_MT_UX)\
- \
- $(TARG_TEST_UNIT_bec_file_MT_UX)\
- $(TARG_TEST_UNIT_bec_fprintf_MT_UX)\
- $(TARG_TEST_UNIT_bec_fail_MT_UX)\
  $(TARG_TEST_UNIT_be_fail_MT_UX)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_UX)\
  $(TARG_TEST_UNIT_be_N_MT_UX)\
  $(TARG_TEST_UNIT_be_N_filt_MT_UX)\
- \
+ $(TARG_TEST_UNIT_bec_file_MT_UX)\
+ $(TARG_TEST_UNIT_bec_fprintf_MT_UX)\
+ $(TARG_TEST_UNIT_bec_fail_MT_UX)\
  $(TARG_TEST_UNIT_fe_all_MT_UX)\
  $(TARG_TEST_UNIT_fe_fail_MT_UX)\
  $(TARG_TEST_UNIT_fe_N_MT_UX)\
  $(TARG_TEST_UNIT_fe_null_MT_UX)\
  $(TARG_TEST_UNIT_fe_simple_MT_UX)\
+ $(TARG_TEST_UNIT_getversion_MT_UX)\
+ \
+ $(TARG_TEST_UNIT_lvls_dyninit_MT_UX)\
+ $(TARG_TEST_UNIT_lvls_vals_MT_UX)\
+ $(TARG_TEST_UNIT_dtel2s_MT_UX)\
+ $(TARG_TEST_UNIT_getcurrtm_MT_UX)\
+ $(TARG_TEST_UNIT_gethostname_MT_UX)\
+ $(TARG_TEST_UNIT_onbailout_MT_UX)\
+ $(TARG_TEST_UNIT_strnlen_MT_UX)\
+ \
  $(TARG_TEST_UNIT_ins_int_MT_UX)\
  $(TARG_TEST_UNIT_ins_w2m_MT_UX)\
- $(TARG_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG)\
- $(TARG_TEST_UNIT_lvls_vals_MT_UX_DEBUG)\
- $(TARG_TEST_UNIT_getcurrtm_MT_UX_DEBUG)\
- $(TARG_TEST_UNIT_dtel2s_MT_UX_DEBUG)\
- $(TARG_TEST_UNIT_getversion_MT_UX_DEBUG)\
- $(TARG_TEST_UNIT_gethostname_MT_UX_DEBUG)\
- $(TARG_TEST_UNIT_onbailout_MT_UX_DEBUG)\
- $(TARG_TEST_UNIT_strnlen_MT_UX_DEBUG)\
- \
- $(TARG_TEST_UNIT_bec_file_MT_UX_DEBUG)\
- $(TARG_TEST_UNIT_bec_fprintf_MT_UX_DEBUG)\
- $(TARG_TEST_UNIT_bec_fail_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_ins_stmc_MT_UX)\
  $(TARG_TEST_UNIT_be_fail_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_be_N_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_be_N_filt_MT_UX_DEBUG)\
- \
+ $(TARG_TEST_UNIT_bec_file_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_bec_fprintf_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_bec_fail_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_fe_all_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_fe_fail_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_fe_N_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_fe_null_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_fe_simple_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_getversion_MT_UX_DEBUG)\
+ \
+ $(TARG_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_lvls_vals_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_dtel2s_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_getcurrtm_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_gethostname_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_onbailout_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_strnlen_MT_UX_DEBUG)\
+ \
  $(TARG_TEST_UNIT_ins_int_MT_UX_DEBUG)\
  $(TARG_TEST_UNIT_ins_w2m_MT_UX_DEBUG)\
+ $(TARG_TEST_UNIT_ins_stmc_MT_UX_DEBUG)\
  \
 
 ############################################################
@@ -3271,7 +3301,9 @@ test.unit_:
 	$(TARG_TEST_UNIT_ins_int_MT_UX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_int_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_w2m_MT_UX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_stmc_MT_UX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_w2m_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_stmc_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 
 test.examples_:
 	@echo Running Example programs ...
@@ -3843,6 +3875,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_fe_simple_MT_UX)
 	@-$(RM) $(TARG_TEST_UNIT_ins_int_MT_UX)
 	@-$(RM) $(TARG_TEST_UNIT_ins_w2m_MT_UX)
+	@-$(RM) $(TARG_TEST_UNIT_ins_stmc_MT_UX)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_vals_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_UNIT_getcurrtm_MT_UX_DEBUG)
@@ -3865,6 +3898,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_fe_simple_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_UNIT_ins_int_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_UNIT_ins_w2m_MT_UX_DEBUG)
+	@-$(RM) $(TARG_TEST_UNIT_ins_stmc_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_dyninit_MT_UX)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_vals_MT_UX)
 	@-$(RM) $(OBJ_TEST_UNIT_getcurrtm_MT_UX)
@@ -3887,6 +3921,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_fe_simple_MT_UX)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_int_MT_UX)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_w2m_MT_UX)
+	@-$(RM) $(OBJ_TEST_UNIT_ins_stmc_MT_UX)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_dyninit_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_vals_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_UNIT_getcurrtm_MT_UX_DEBUG)
@@ -3909,6 +3944,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_fe_simple_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_int_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_w2m_MT_UX_DEBUG)
+	@-$(RM) $(OBJ_TEST_UNIT_ins_stmc_MT_UX_DEBUG)
 
 clean.test.component:
 	@echo Cleaning component tests ...
@@ -4051,7 +4087,7 @@ clean.unittest.ace:
 !endif # ACE
 
 
-clean.libs: 		clean.libs.util clean.libs.core clean.libs.be clean.libs.fe
+clean.libs:		clean.libs.util clean.libs.core clean.libs.be clean.libs.fe
 
 clean.libs.3pty:	\
  clean.libs.b64 \
@@ -4059,7 +4095,7 @@ clean.libs.3pty:	\
  clean.libs.xcontract \
  clean.libs.xtests
 
-clean.libs.all: 	clean.libs clean.libs.3pty
+clean.libs.all:	clean.libs clean.libs.3pty
 
 clean.test:			clean.test.unit clean.test.component clean.test.scratch clean.test.performance
 
@@ -8780,5 +8816,39 @@ $(TARG_TEST_UNIT_ins_w2m_MT_UX_DEBUG):	\
 
 $(OBJ_TEST_UNIT_ins_w2m_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.w2m\test.unit.inserter.w2m.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.w2m\test.unit.inserter.w2m.cpp
+
+$(TARG_TEST_UNIT_ins_stmc_MT_UX):	\
+			$(OBJ_TEST_UNIT_ins_stmc_MT_UX)\
+			$(LIB_CORE_MT_UX)\
+			$(LIB_UTIL_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
+		$(OBJ_TEST_UNIT_ins_stmc_MT_UX)\
+		$(LIB_CORE_MT_UX)\
+		$(LIB_UTIL_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_UX)
+
+$(OBJ_TEST_UNIT_ins_stmc_MT_UX):	$(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp
+
+$(TARG_TEST_UNIT_ins_stmc_MT_UX_DEBUG):	\
+			$(OBJ_TEST_UNIT_ins_stmc_MT_UX_DEBUG)\
+			$(LIB_CORE_MT_UX_DEBUG)\
+			$(LIB_UTIL_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
+		$(OBJ_TEST_UNIT_ins_stmc_MT_UX_DEBUG)\
+		$(LIB_CORE_MT_UX_DEBUG)\
+		$(LIB_UTIL_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_UX_DEBUG)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_UX_DEBUG)
+
+$(OBJ_TEST_UNIT_ins_stmc_MT_UX_DEBUG):	$(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp
 
 ############################### end of file ################################

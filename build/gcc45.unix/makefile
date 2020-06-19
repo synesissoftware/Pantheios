@@ -1,11 +1,11 @@
 ############################################################################
-# File: 	makefile
+# File:	makefile
 #
 # Purpose:	Makefile for the Pantheios project, for the GCC 4.5 (UNIX)
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	13th June 2020
+# Updated:	19th June 2020
 #
 ############################################################################
 
@@ -132,22 +132,22 @@ STLSOFT_PROJ_INCLUDE	=	-I"$(STLSOFT)/include"
 ########################################
 # tools
 
-CC                      =   gcc
-CPPC                    =   g++
-AR                      =   ar
-LD                      =   g++
-RM                      =   rm -f
-CP                      =   cp
-RC                      =   
+CC		=	gcc
+CPPC	=	g++
+AR		=	ar
+LD		=	g++
+RM		=	rm -f
+CP		=	cp
+RC		=	
 
 ########################################
 # Include directory symbols
 
-INCLUDES_LEADER 	=	
+INCLUDES_LEADER	=	
 
 PROJ_INCLUDE		=	-I$(PROJ_INCLUDE_DIR)
 
-ENV_INCLUDES 	=
+ENV_INCLUDES	=
 
 COMMON_INCLUDES		=
 
@@ -428,7 +428,7 @@ CPPC_XTESTS_INCLUDES_ST_R =\
 ########################################
 # Library directory symbols
 
-LIBS_LEADER 		=	
+LIBS_LEADER		=	
 
 # lib paths
 
@@ -460,7 +460,7 @@ TARGET_LIB_ST_R	=
 
 OS_DEFS				=	-Dunix
 
-COMMON_DEFS 		=
+COMMON_DEFS		=
 
 CUSTOM_DEFS			=
 
@@ -487,7 +487,7 @@ CPPC_DEFS =\
 
 # CC flags
 
-CC_F_NOLOGO 			=	
+CC_F_NOLOGO			=	
 CC_F_COMPILE_ONLY		=	-c
 CC_F_WARNING_MAX		=	-Wall -pedantic -Wno-long-long -Wno-unused-value -Wno-unused-function -Wundef -Wshadow
 CC_F_WARNING_ERR		=	-Werror
@@ -501,17 +501,17 @@ CC_F_ADDITIONAL			=
 # CPPC flags
 
 CPPC_F_NOLOGO			=	
-CPPC_F_COMPILE_ONLY 	=	-c
+CPPC_F_COMPILE_ONLY	=	-c
 CPPC_F_WARNING_MAX		=	-Wall -pedantic -Wno-long-long -Wno-unused-value -Wno-unused-function
 CPPC_F_WARNING_ERR		=	-Werror
 CPPC_F_EXCEPTIONS_ON	=	
 CPPC_F_EXCEPTIONS_OFF	=	
 CPPC_F_EXCEPTIONS		=	$(CPPC_F_EXCEPTIONS_ON)
 CPPC_F_RTTI_ON			=	
-CPPC_F_RTTI_OFF 		=	
+CPPC_F_RTTI_OFF		=	
 CPPC_F_RTTI				=	$(CPPC_F_RTTI_ON)
 CPPC_F_WARNINGS_LIMIT	=	
-CPPC_F_MINIMUM_SIZE 	=	-O1
+CPPC_F_MINIMUM_SIZE	=	-O1
 CPPC_F_MAXIMUM_SPEED	=	-O3
 CPPC_F_OPTIMISED		=	$(CPPC_F_MAXIMUM_SPEED)
 CPPC_APP_F_WARNING_MAX	=	-Wall -Wno-long-long -Wno-unused-value -Wno-unused-function
@@ -522,7 +522,7 @@ CPPC_F_ADDITIONAL		=
 
 CC_TOOL_FLAGS		=
 
-CPPC_TOOL_FLAGS 	=
+CPPC_TOOL_FLAGS	=
 
 
 
@@ -759,12 +759,12 @@ CPPC_TEST_UNIT_ARGS_ST_R			=	$(CPPC_TEST_UNIT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE)
 
 # AR args
 
-AR_ARGS 			=	
+AR_ARGS			=	
 
 
 # LD flags
 
-LD_ARGS 		=	
+LD_ARGS		=	
 
 LD_F_NOLOGO = 
 
@@ -779,11 +779,15 @@ LD_ARGS_ST_R =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
 # Headers
 
 CORE_HEADERS=\
- $(PROJ_INCLUDE_DIR)/pantheios/pantheios.h\
+ \
+ $(PROJ_INCLUDE_DIR)/pantheios/assert.h\
  $(PROJ_INCLUDE_DIR)/pantheios/backend.h\
- $(PROJ_INCLUDE_DIR)/pantheios/init_codes.h\
+ $(PROJ_INCLUDE_DIR)/pantheios/fileline.h\
  $(PROJ_INCLUDE_DIR)/pantheios/frontend.h\
+ $(PROJ_INCLUDE_DIR)/pantheios/init_codes.h\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters.hpp\
+ $(PROJ_INCLUDE_DIR)/pantheios/pan.hpp\
+ $(PROJ_INCLUDE_DIR)/pantheios/pantheios.h\
  $(PROJ_INCLUDE_DIR)/pantheios/pantheios.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/trace.h\
  \
@@ -798,8 +802,11 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/fmt.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/hex_ptr.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/hostid.hpp\
+ $(PROJ_INCLUDE_DIR)/pantheios/inserters/i.hpp\
+ $(PROJ_INCLUDE_DIR)/pantheios/inserters/ids.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/integer.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/interval.hpp\
+ $(PROJ_INCLUDE_DIR)/pantheios/inserters/m2t.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/m2w.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/p.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/pad.hpp\
@@ -810,6 +817,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/stream_character.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/threadid.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/w2m.hpp\
+ $(PROJ_INCLUDE_DIR)/pantheios/inserters/w2t.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/xi.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/inserters/xp.hpp\
  \
@@ -820,6 +828,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/pantheios/internal/shim_declarations.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/internal/slice.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/internal/stock_levels.hpp\
+ $(PROJ_INCLUDE_DIR)/pantheios/internal/string_encoding.h\
  $(PROJ_INCLUDE_DIR)/pantheios/internal/threading.h\
  $(PROJ_INCLUDE_DIR)/pantheios/internal/winlean.h\
  \
@@ -827,7 +836,6 @@ CORE_HEADERS=\
  \
  $(PROJ_INCLUDE_DIR)/pantheios/generated/log_dispatch_functions.h\
  $(PROJ_INCLUDE_DIR)/pantheios/generated/log_dispatch_functions.hpp\
- $(PROJ_INCLUDE_DIR)/pantheios/internal/generated/log_functions.inl\
  $(PROJ_INCLUDE_DIR)/pantheios/generated/log_functions.h\
  $(PROJ_INCLUDE_DIR)/pantheios/generated/log_functions.hpp\
  $(PROJ_INCLUDE_DIR)/pantheios/generated/log_sev_functions.hpp\
@@ -843,6 +851,8 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)/pantheios/util/core/apidefs.hpp\
  \
  $(PROJ_INCLUDE_DIR)/pantheios/util/memory/auto_buffer_selector.hpp\
+ $(PROJ_INCLUDE_DIR)/pantheios/util/memory/inserters.hpp\
+ $(PROJ_INCLUDE_DIR)/pantheios/util/memory/memcopy.h\
  \
  $(PROJ_INCLUDE_DIR)/pantheios/util/severity/ACE.h\
  $(PROJ_INCLUDE_DIR)/pantheios/util/severity/syslog.h\
@@ -934,41 +944,41 @@ LIB_FE_SIMPLE_MT_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).fe.simple.$(COMP_ARCH_O
 LIB_FE_SIMPLE_WC_MT_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).fe.simple.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
 
 #  back-end(s)
-LIB_BEC_STOCK_MT_D 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_LRSPLIT_MT_D 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_N_MT_D 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_TEST_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_TEST_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_TEST_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_TEST_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_FAIL_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_FAIL_MT_D 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_FAIL_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_FAIL_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_FILE_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_FILE_WC_MT_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_FILE_MT_D 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_FILE_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_FILE_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_FPRINTF_MT_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_FPRINTF_WC_MT_D	=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_FPRINTF_MT_D 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_FPRINTF_MT_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_FPRINTF_MT_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_NULL_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_NULL_MT_D 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_NULL_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_NULL_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_STOCK_MT_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_LRSPLIT_MT_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_N_MT_D							=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_TEST_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_TEST_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_TEST_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_TEST_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_FAIL_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_FAIL_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_FAIL_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_FAIL_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_FILE_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_FILE_WC_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_FILE_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_FILE_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_FILE_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_FPRINTF_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_FPRINTF_WC_MT_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_FPRINTF_MT_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_FPRINTF_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_FPRINTF_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_NULL_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_NULL_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_NULL_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_NULL_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.debug.a
 ifdef ACE
-LIB_BEC_ACE_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_ACE_MT_D 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_ACE_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_ACE_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_ACE_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_ACE_MT_D						=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_ACE_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_ACE_MT_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
 endif # ACE
-LIB_BEC_SYSLOG_MT_D 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_SYSLOGWC_MT_D 	=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_SYSLOG_MT_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_SYSLOG_MT_D 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_SYSLOG_MT_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_SYSLOGWC_MT_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_SYSLOG_MT_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_SYSLOG_MT_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).mt.debug.a
 
 #  util
 LIB_UTIL_MT_R				=   $(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).util.$(COMP_ARCH_OS_TAG).mt.a
@@ -991,41 +1001,41 @@ LIB_FE_SIMPLE_MT_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).fe.simple.$(COMP_ARCH_O
 LIB_FE_SIMPLE_WC_MT_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).fe.simple.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
 
 #  back-end(s)
-LIB_BEC_STOCK_MT_R 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_LRSPLIT_MT_R 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_N_MT_R 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_TEST_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_TEST_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_TEST_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_TEST_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_FAIL_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_FAIL_MT_R 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_FAIL_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_FAIL_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_FILE_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_FILE_WC_MT_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_FILE_MT_R 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_FILE_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_FILE_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_FPRINTF_MT_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_FPRINTF_WC_MT_R	=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_FPRINTF_MT_R 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_FPRINTF_MT_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_FPRINTF_MT_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_NULL_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_NULL_MT_R 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_NULL_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_NULL_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_STOCK_MT_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_LRSPLIT_MT_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_N_MT_R							=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_TEST_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_TEST_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_TEST_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_TEST_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_FAIL_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_FAIL_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_FAIL_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_FAIL_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_FILE_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_FILE_WC_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_FILE_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_FILE_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_FILE_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_FPRINTF_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_FPRINTF_WC_MT_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_FPRINTF_MT_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_FPRINTF_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_FPRINTF_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_NULL_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_NULL_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_NULL_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_NULL_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.a
 ifdef ACE
-LIB_BEC_ACE_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.ACE.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_ACE_MT_R 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.ACE.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_ACE_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.ACE.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_ACE_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.ACE.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_ACE_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.ACE.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_ACE_MT_R						=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.ACE.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_ACE_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.ACE.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_ACE_MT_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.ACE.$(COMP_ARCH_OS_TAG).mt.a
 endif # ACE
-LIB_BEC_SYSLOG_MT_R 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_SYSLOGWC_MT_R 	=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_SYSLOG_MT_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_SYSLOG_MT_R 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_SYSLOG_MT_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_SYSLOGWC_MT_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_SYSLOG_MT_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_SYSLOG_MT_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).mt.a
 
 #  util
 LIB_UTIL_ST_D				=   $(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).util.$(COMP_ARCH_OS_TAG).debug.a
@@ -1048,35 +1058,35 @@ LIB_FE_SIMPLE_ST_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).fe.simple.$(COMP_ARCH_O
 LIB_FE_SIMPLE_WC_ST_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).fe.simple.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
 
 #  back-end(s)
-LIB_BEC_STOCK_ST_D 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_LRSPLIT_ST_D 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_N_ST_D 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_TEST_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_TEST_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_TEST_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_TEST_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_FAIL_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_FAIL_ST_D 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_FAIL_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_FAIL_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_FILE_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_FILE_WC_ST_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_FILE_ST_D 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_FILE_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_FILE_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_FPRINTF_ST_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_FPRINTF_WC_ST_D	=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_FPRINTF_ST_D 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_FPRINTF_ST_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_FPRINTF_ST_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_NULL_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_NULL_ST_D 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_NULL_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_NULL_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_SYSLOG_ST_D 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_SYSLOGWC_ST_D 	=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_SYSLOG_ST_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_SYSLOG_ST_D 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_STOCK_ST_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_LRSPLIT_ST_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_N_ST_D							=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_TEST_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_TEST_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_TEST_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_TEST_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_FAIL_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_FAIL_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_FAIL_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_FAIL_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_FILE_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_FILE_WC_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_FILE_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_FILE_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_FILE_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_FPRINTF_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_FPRINTF_WC_ST_D		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_FPRINTF_ST_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_FPRINTF_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_FPRINTF_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_NULL_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_NULL_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_NULL_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_NULL_ST_D					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_SYSLOG_ST_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_SYSLOGWC_ST_D			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_SYSLOG_ST_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_SYSLOG_ST_D				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).debug.a
 
 #  util
 LIB_UTIL_ST_R				=   $(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).util.$(COMP_ARCH_OS_TAG).a
@@ -1099,35 +1109,35 @@ LIB_FE_SIMPLE_ST_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).fe.simple.$(COMP_ARCH_O
 LIB_FE_SIMPLE_WC_ST_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).fe.simple.WithCallback.$(COMP_ARCH_OS_TAG).a
 
 #  back-end(s)
-LIB_BEC_STOCK_ST_R 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).a
-LIB_BE_LRSPLIT_ST_R 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).a
-LIB_BE_N_ST_R 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_TEST_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).a
-LIB_BE_TEST_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_TEST_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).a
-LIB_BER_TEST_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_FAIL_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).a
-LIB_BE_FAIL_ST_R 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_FAIL_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).a
-LIB_BER_FAIL_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_FILE_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_FILE_WC_ST_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_FILE_ST_R 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_FILE_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).a
-LIB_BER_FILE_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_FPRINTF_ST_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_FPRINTF_WC_ST_R	=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_FPRINTF_ST_R 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_FPRINTF_ST_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).a
-LIB_BER_FPRINTF_ST_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_NULL_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).a
-LIB_BE_NULL_ST_R 			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_NULL_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).a
-LIB_BER_NULL_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_SYSLOG_ST_R 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_SYSLOGWC_ST_R 	=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_SYSLOG_ST_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).a
-LIB_BER_SYSLOG_ST_R 		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_STOCK_ST_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).a
+LIB_BE_LRSPLIT_ST_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).a
+LIB_BE_N_ST_R							=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_TEST_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).a
+LIB_BE_TEST_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_TEST_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).a
+LIB_BER_TEST_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_FAIL_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).a
+LIB_BE_FAIL_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_FAIL_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).a
+LIB_BER_FAIL_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_FILE_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_FILE_WC_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).a
+LIB_BE_FILE_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_FILE_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).a
+LIB_BER_FILE_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_FPRINTF_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_FPRINTF_WC_ST_R		=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).a
+LIB_BE_FPRINTF_ST_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_FPRINTF_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).a
+LIB_BER_FPRINTF_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_NULL_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).a
+LIB_BE_NULL_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_NULL_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).a
+LIB_BER_NULL_ST_R					=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_SYSLOG_ST_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_SYSLOGWC_ST_R			=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).bec.syslog.WithCallback.$(COMP_ARCH_OS_TAG).a
+LIB_BE_SYSLOG_ST_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).be.syslog.$(COMP_ARCH_OS_TAG).a
+LIB_BER_SYSLOG_ST_R				=	$(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).ber.syslog.$(COMP_ARCH_OS_TAG).a
 
 
 # b64
@@ -1354,92 +1364,104 @@ TARG_EX_C_7_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).ex.c.7.$(COMP_ARCH_OS_TAG)
 ##############################
 # Component Tests
 
+TARG_TEST_COMP_filemt_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt.debug
+#### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_MT_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_core_initseq_MT_R	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_core_initseq_ST_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_core_initseq_ST_R	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_custsev_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_custsev_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_custsev_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_custsev_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_filemt_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_filemt_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_args_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_args_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_args_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_args_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_b64_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_b64_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_b64_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_b64_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_bool_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_bool_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_bool_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_bool_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_pan_prtf_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_pan_puts_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_custsev_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_args_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_b64_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_bool_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_COMP_ins_hostid_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_int_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_pad_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_ptr_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_prid_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_real_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_slice_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_stm_ch_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_thrid_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_ins_w2m_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_log_1_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.debug
+#### TODO: test.component.no_namespace
+TARG_TEST_COMP_trace_1_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_filemt_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt
+#### TODO: test.component.core.getProcessIdentity
+TARG_TEST_COMP_core_initseq_MT_R	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_pan_prtf_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_pan_puts_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_custsev_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_args_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_b64_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_bool_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_COMP_ins_hostid_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_int_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_pad_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_ptr_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_prid_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_real_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_slice_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_stm_ch_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_thrid_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_ins_w2m_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_log_1_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt
+#### TODO: test.component.no_namespace
+TARG_TEST_COMP_trace_1_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt
+#### TODO: test.component.core.getProcessIdentity
+TARG_TEST_COMP_core_initseq_ST_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_pan_prtf_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_pan_puts_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_custsev_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_args_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_b64_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_bool_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_COMP_ins_hostid_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_int_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_pad_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_ptr_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_prid_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_real_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_slice_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_stm_ch_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_thrid_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_ins_w2m_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_log_1_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).debug
+#### TODO: test.component.no_namespace
+TARG_TEST_COMP_trace_1_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).debug
+#### TODO: test.component.core.getProcessIdentity
+TARG_TEST_COMP_core_initseq_ST_R	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_pan_prtf_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_pan_puts_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_custsev_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_args_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_b64_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_bool_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG)
 TARG_TEST_COMP_ins_hostid_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_int_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_int_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_int_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_int_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_pad_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_pad_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_pad_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_pad_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_ptr_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_ptr_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_ptr_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_ptr_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_prid_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_prid_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_prid_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_prid_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_real_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_real_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_real_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_real_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_slice_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_slice_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_slice_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_slice_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_stm_ch_MT_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_stm_ch_MT_R	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_stm_ch_ST_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_stm_ch_ST_R	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_thrid_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_thrid_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_thrid_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_thrid_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_ins_w2m_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_ins_w2m_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_ins_w2m_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_ins_w2m_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_log_1_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_log_1_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_log_1_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_log_1_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_pan_puts_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_pan_puts_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_pan_puts_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_pan_puts_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_pan_prtf_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_pan_prtf_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_pan_prtf_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_pan_prtf_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG)
-TARG_TEST_COMP_trace_1_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_COMP_trace_1_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_COMP_trace_1_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_COMP_trace_1_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_int_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_pad_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_ptr_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_prid_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_real_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_slice_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_stm_ch_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_thrid_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_ins_w2m_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG)
+TARG_TEST_COMP_log_1_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG)
+#### TODO: test.component.no_namespace
+TARG_TEST_COMP_trace_1_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG)
 
 ##############################
 # Performance Tests
 
 TARG_TEST_PERF_ins_w2m_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.debug
+#### TODO: test.performance.util.date_elements_to_string
 TARG_TEST_PERF_ins_w2m_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG).mt
+#### TODO: test.performance.util.date_elements_to_string
 TARG_TEST_PERF_ins_w2m_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG).debug
+#### TODO: test.performance.util.date_elements_to_string
 TARG_TEST_PERF_ins_w2m_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG)
+#### TODO: test.performance.util.date_elements_to_string
 
 ##############################
 # Scratch Tests
@@ -1455,136 +1477,140 @@ TARG_TEST_PERF_ins_w2m_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.in
 # The strange naming conventions of these targets are to placate some
 # make utilities, which have a limit to the identifier length.
 ifdef ACE
-TEST_SCRT_ACE_MT_D						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt.debug
+TEST_SCRT_ACE_MT_D													=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt.debug
 endif # ACE
-TARG_TEST_MT_D_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_SCRT_BE_SYSLOG_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_SCRT_BE_SYSLOGWC_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_MT_D_APIwBE_FPRINTF								=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_SCRT_BE_SYSLOG_MT_D								=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_SCRT_BE_SYSLOGWC_MT_D							=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_MT_D_APIwBELR_1_FPRINTF_SYSLOG		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.l.fprintf-r.syslog.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_FE_MT_D 						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_BE_N_FAIL_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_FE_SIMPLE_WC_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_FE_MT_D														=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_BE_N_FAIL_MT_D										=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_FE_SIMPLE_WC_MT_D									=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.debug
 ifdef ACE
-TEST_SCRT_ACE_MT_R						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt
+TEST_SCRT_ACE_MT_R													=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt
 endif # ACE
-TARG_TEST_MT_R_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_SCRT_BE_SYSLOG_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_SCRT_BE_SYSLOGWC_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_MT_R_APIwBE_FPRINTF								=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_SCRT_BE_SYSLOG_MT_R								=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_SCRT_BE_SYSLOGWC_MT_R							=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_MT_R_APIwBELR_1_FPRINTF_SYSLOG		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.l.fprintf-r.syslog.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_FE_MT_R 						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_BE_N_FAIL_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_FE_SIMPLE_WC_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_ST_D_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_SCRT_BE_SYSLOG_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_SCRT_BE_SYSLOGWC_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_FE_MT_R														=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_BE_N_FAIL_MT_R										=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_FE_SIMPLE_WC_MT_R									=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_ST_D_APIwBE_FPRINTF								=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_SCRT_BE_SYSLOG_ST_D								=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_SCRT_BE_SYSLOGWC_ST_D							=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_ST_D_APIwBELR_1_FPRINTF_SYSLOG		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.l.fprintf-r.syslog.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_FE_ST_D 						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_BE_N_FAIL_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_FE_SIMPLE_WC_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_ST_R_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG)
-TARG_TEST_SCRT_BE_SYSLOG_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG)
-TARG_TEST_SCRT_BE_SYSLOGWC_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG)
+TARG_TEST_FE_ST_D														=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_BE_N_FAIL_ST_D										=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_FE_SIMPLE_WC_ST_D									=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_ST_R_APIwBE_FPRINTF								=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG)
+TARG_TEST_SCRT_BE_SYSLOG_ST_R								=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.$(COMP_ARCH_OS_TAG)
+TARG_TEST_SCRT_BE_SYSLOGWC_ST_R							=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.syslog.WC.$(COMP_ARCH_OS_TAG)
 TARG_TEST_ST_R_APIwBELR_1_FPRINTF_SYSLOG		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.l.fprintf-r.syslog.$(COMP_ARCH_OS_TAG)
-TARG_TEST_FE_ST_R 						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG)
-TARG_TEST_BE_N_FAIL_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG)
-TARG_TEST_FE_SIMPLE_WC_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG)
+TARG_TEST_FE_ST_R														=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG)
+TARG_TEST_BE_N_FAIL_ST_R										=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG)
+TARG_TEST_FE_SIMPLE_WC_ST_R									=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG)
 
 ##############################
 # Unit Tests
 
-TARG_TEST_UNIT_lvls_dyninit_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_lvls_dyninit_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_lvls_dyninit_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_lvls_dyninit_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_lvls_vals_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_lvls_vals_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_lvls_vals_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_lvls_vals_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_getcurrtm_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_getcurrtm_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_getcurrtm_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_getcurrtm_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_dtel2s_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_dtel2s_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_dtel2s_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_dtel2s_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_getversion_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_getversion_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_getversion_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_getversion_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_gethostname_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_gethostname_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_gethostname_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_gethostname_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_onbailout_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_strnlen_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_onbailout_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_strnlen_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_onbailout_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_strnlen_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_onbailout_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_strnlen_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_bec_file_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_bec_file_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_bec_file_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_bec_file_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_bec_fprintf_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_bec_fprintf_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_bec_fprintf_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_bec_fprintf_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_be_fail_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_be_lrsplit_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_be_N_MT_D						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_be_N_filt_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_bec_fail_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_bec_fail_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_bec_fail_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_bec_fail_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_be_fail_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_be_fail_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_be_fail_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_be_fail_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_be_fail_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_be_fail_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_be_fail_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_be_fail_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_be_lrsplit_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_be_lrsplit_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_be_lrsplit_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_be_lrsplit_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_be_N_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_be_N_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_be_N_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_be_N_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_be_N_filt_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_be_N_filt_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_be_N_filt_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_be_N_filt_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_bec_file_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_bec_fprintf_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_fe_all_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_fe_all_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_fe_all_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_fe_all_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG)
 TARG_TEST_UNIT_fe_fail_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_fe_fail_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_fe_fail_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_fe_fail_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_fe_N_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_fe_N_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_fe_N_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_fe_N_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_fe_N_MT_D						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_fe_null_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_fe_null_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_fe_null_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_fe_null_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG)
 TARG_TEST_UNIT_fe_simple_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_getversion_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.debug
+#### TODO: test.unit.levels.2
+TARG_TEST_UNIT_lvls_dyninit_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_lvls_vals_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_dtel2s_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_getcurrtm_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_gethostname_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_onbailout_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_strnlen_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_be_fail_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_be_lrsplit_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_be_N_MT_R						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_be_N_filt_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_bec_fail_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_bec_file_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_bec_fprintf_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_fe_all_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_fe_fail_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_fe_N_MT_R						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_fe_null_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_UNIT_fe_simple_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_getversion_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt
+#### TODO: test.unit.levels.2
+TARG_TEST_UNIT_lvls_dyninit_MT_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_lvls_vals_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_dtel2s_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_getcurrtm_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_gethostname_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_onbailout_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_strnlen_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_be_fail_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_be_lrsplit_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_be_N_ST_D						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_be_N_filt_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_bec_fail_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_bec_file_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_bec_fprintf_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_fe_all_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_fe_fail_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_fe_N_ST_D						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_fe_null_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_UNIT_fe_simple_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_getversion_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).debug
+#### TODO: test.unit.levels.2
+TARG_TEST_UNIT_lvls_dyninit_ST_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_lvls_vals_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_dtel2s_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_getcurrtm_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_gethostname_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_onbailout_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_strnlen_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_be_fail_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_be_lrsplit_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_be_N_ST_R						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_be_N_filt_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_bec_fail_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_bec_file_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_bec_fprintf_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_fe_all_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_fe_fail_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_fe_N_ST_R						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_fe_null_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG)
 TARG_TEST_UNIT_fe_simple_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_getversion_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG)
+#### TODO: test.unit.levels.2
+TARG_TEST_UNIT_lvls_dyninit_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_lvls_vals_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_dtel2s_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_getcurrtm_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_gethostname_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_onbailout_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_strnlen_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG)
 
-TARG_TEST_UNIT_ins_int_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_ins_w2m_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.debug
-TARG_TEST_UNIT_ins_int_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_ins_w2m_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt
-TARG_TEST_UNIT_ins_int_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_ins_w2m_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).debug
-TARG_TEST_UNIT_ins_int_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG)
-TARG_TEST_UNIT_ins_w2m_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_ins_int_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_ins_w2m_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_ins_stmc_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_ins_int_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_ins_w2m_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_ins_stmc_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_ins_int_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_ins_w2m_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_ins_stmc_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_ins_int_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_ins_w2m_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_ins_stmc_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG)
 
 ############################################################
 # Objects
@@ -1594,86 +1620,86 @@ TARG_TEST_UNIT_ins_w2m_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inser
 
 # core
 
-OBJ_utl_bailout_MT_D		= $(PROJ_OBJ_DIR)/util.bailout.mt.debug.o
-OBJ_utl_dtel2s_MT_D		= $(PROJ_OBJ_DIR)/util.dtel2s.mt.debug.o
+OBJ_utl_bailout_MT_D				= $(PROJ_OBJ_DIR)/util.bailout.mt.debug.o
+OBJ_utl_dtel2s_MT_D					= $(PROJ_OBJ_DIR)/util.dtel2s.mt.debug.o
 OBJ_utl_init_code_strs_MT_D	= $(PROJ_OBJ_DIR)/util.init_err_strings.mt.debug.o
-OBJ_utl_sev_strs_MT_D		= $(PROJ_OBJ_DIR)/util.sev_strings.mt.debug.o
-OBJ_utl_snprintf_MT_D 	= $(PROJ_OBJ_DIR)/util.snprintf.mt.debug.o
-OBJ_utl_strdup_MT_D 		= $(PROJ_OBJ_DIR)/util.strdup.mt.debug.o
-OBJ_utl_procid_MT_D 		= $(PROJ_OBJ_DIR)/util.procid.mt.debug.o
-OBJ_utl_thread_MT_D 		= $(PROJ_OBJ_DIR)/util.thread.mt.debug.o
-OBJ_utl_be_context_MT_D	= $(PROJ_OBJ_DIR)/util.be_context.mt.debug.o
-OBJ_utl_core_apidefs_MT_D	= $(PROJ_OBJ_DIR)/util.core_apidefs.mt.debug.o
-OBJ_utl_be_parse_MT_D		= $(PROJ_OBJ_DIR)/util.be_parse.mt.debug.o
-OBJ_utl_strnlen_MT_D		= $(PROJ_OBJ_DIR)/util.strnlen.mt.debug.o
-OBJ_utl_strnlenp_MT_D		= $(PROJ_OBJ_DIR)/util.strnlen.c++.mt.debug.o
-OBJ_utl_time_MT_D			= $(PROJ_OBJ_DIR)/util.time.mt.debug.o
-OBJ_utl_host_name_MT_D	= $(PROJ_OBJ_DIR)/util.host_name.mt.debug.o
-OBJ_cr_api_MT_D 			= $(PROJ_OBJ_DIR)/core.api.mt.debug.o
-OBJ_cr_api_dep_MT_D 		= $(PROJ_OBJ_DIR)/core.api.deprecated.mt.debug.o
-OBJ_utl_api_exit_MT_D 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.mt.debug.o
-OBJ_cr_api_logprintf_MT_D	= $(PROJ_OBJ_DIR)/core.api.logprintf.mt.debug.o
-OBJ_cr_api_logputs_MT_D	= $(PROJ_OBJ_DIR)/core.api.logputs.mt.debug.o
-OBJ_cr_auto_MT_D 			= $(PROJ_OBJ_DIR)/core.auto.mt.debug.o
-OBJ_ins_args_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.args.mt.debug.o
-OBJ_ins_b64_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.b64.mt.debug.o
-OBJ_ins_blob_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.blob.mt.debug.o
-OBJ_ins_bool_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.boolean.mt.debug.o
-OBJ_ins_excp_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.exception.mt.debug.o
-OBJ_ins_host_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.hostid.mt.debug.o
-OBJ_ins_int_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.integer.mt.debug.o
-OBJ_ins_ivl_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.interval.mt.debug.o
-OBJ_ins_ptr_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.pointer.mt.debug.o
-OBJ_ins_prid_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.processid.mt.debug.o
-OBJ_ins_real_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.real.mt.debug.o
-OBJ_ins_slice_MT_D	 	= $(PROJ_OBJ_DIR)/inserters.slice.mt.debug.o
-OBJ_ins_thrid_MT_D	 	= $(PROJ_OBJ_DIR)/inserters.threadid.mt.debug.o
-OBJ_ins_stm_ch_MT_D	 	= $(PROJ_OBJ_DIR)/inserters.stream_character.mt.debug.o
-OBJ_ins_w2m_MT_D	 		= $(PROJ_OBJ_DIR)/inserters.w2m.mt.debug.o
-#PDB_bec_test_MT_D 		= $(PROJ_OBJ_DIR)/bec.test.mt.debug.pdb
-OBJ_bec_test_MT_D 		= $(PROJ_OBJ_DIR)/bec.test.mt.debug.o
-OBJ_be_test_MT_D 			= $(PROJ_OBJ_DIR)/be.test.mt.debug.o
-OBJ_bel_test_MT_D 		= $(PROJ_OBJ_DIR)/bel.test.mt.debug.o
-OBJ_ber_test_MT_D 		= $(PROJ_OBJ_DIR)/ber.test.mt.debug.o
-OBJ_be_lrsplit_MT_D		= $(PROJ_OBJ_DIR)/be.lrsplit.mt.debug.o
-OBJ_be_N_MT_D				= $(PROJ_OBJ_DIR)/be.N.mt.debug.o
-OBJ_bec_fail_MT_D			= $(PROJ_OBJ_DIR)/bec.fail.mt.debug.o
-OBJ_be_fail_MT_D			= $(PROJ_OBJ_DIR)/be.fail.mt.debug.o
-OBJ_bel_fail_MT_D			= $(PROJ_OBJ_DIR)/bel.fail.mt.debug.o
-OBJ_ber_fail_MT_D			= $(PROJ_OBJ_DIR)/ber.fail.mt.debug.o
-OBJ_bec_file_MT_D			= $(PROJ_OBJ_DIR)/bec.file.mt.debug.o
-OBJ_bec_file_WC_MT_D		= $(PROJ_OBJ_DIR)/bec.file.WithCallback.mt.debug.o
-OBJ_be_file_MT_D			= $(PROJ_OBJ_DIR)/be.file.mt.debug.o
-OBJ_bel_file_MT_D			= $(PROJ_OBJ_DIR)/bel.file.mt.debug.o
-OBJ_ber_file_MT_D			= $(PROJ_OBJ_DIR)/ber.file.mt.debug.o
-OBJ_bec_fprintf_MT_D		= $(PROJ_OBJ_DIR)/bec.fprintf.mt.debug.o
-OBJ_bec_fprintf_WC_MT_D	= $(PROJ_OBJ_DIR)/bec.fprintf.WithCallback.mt.debug.o
-OBJ_be_fprintf_MT_D		= $(PROJ_OBJ_DIR)/be.fprintf.mt.debug.o
-OBJ_bel_fprintf_MT_D		= $(PROJ_OBJ_DIR)/bel.fprintf.mt.debug.o
-OBJ_ber_fprintf_MT_D		= $(PROJ_OBJ_DIR)/ber.fprintf.mt.debug.o
-OBJ_bec_null_MT_D			= $(PROJ_OBJ_DIR)/bec.null.mt.debug.o
-OBJ_be_null_MT_D			= $(PROJ_OBJ_DIR)/be.null.mt.debug.o
-OBJ_bel_null_MT_D			= $(PROJ_OBJ_DIR)/bel.null.mt.debug.o
-OBJ_ber_null_MT_D			= $(PROJ_OBJ_DIR)/ber.null.mt.debug.o
+OBJ_utl_sev_strs_MT_D				= $(PROJ_OBJ_DIR)/util.sev_strings.mt.debug.o
+OBJ_utl_snprintf_MT_D				= $(PROJ_OBJ_DIR)/util.snprintf.mt.debug.o
+OBJ_utl_strdup_MT_D					= $(PROJ_OBJ_DIR)/util.strdup.mt.debug.o
+OBJ_utl_procid_MT_D					= $(PROJ_OBJ_DIR)/util.procid.mt.debug.o
+OBJ_utl_thread_MT_D					= $(PROJ_OBJ_DIR)/util.thread.mt.debug.o
+OBJ_utl_be_context_MT_D			= $(PROJ_OBJ_DIR)/util.be_context.mt.debug.o
+OBJ_utl_core_apidefs_MT_D		= $(PROJ_OBJ_DIR)/util.core_apidefs.mt.debug.o
+OBJ_utl_be_parse_MT_D				= $(PROJ_OBJ_DIR)/util.be_parse.mt.debug.o
+OBJ_utl_strnlen_MT_D				= $(PROJ_OBJ_DIR)/util.strnlen.mt.debug.o
+OBJ_utl_strnlenp_MT_D				= $(PROJ_OBJ_DIR)/util.strnlen.c++.mt.debug.o
+OBJ_utl_time_MT_D						= $(PROJ_OBJ_DIR)/util.time.mt.debug.o
+OBJ_utl_host_name_MT_D			= $(PROJ_OBJ_DIR)/util.host_name.mt.debug.o
+OBJ_cr_api_MT_D							= $(PROJ_OBJ_DIR)/core.api.mt.debug.o
+OBJ_cr_api_dep_MT_D					= $(PROJ_OBJ_DIR)/core.api.deprecated.mt.debug.o
+OBJ_utl_api_exit_MT_D				= $(PROJ_OBJ_DIR)/core.api.exitprocess.mt.debug.o
+OBJ_cr_api_logprintf_MT_D		= $(PROJ_OBJ_DIR)/core.api.logprintf.mt.debug.o
+OBJ_cr_api_logputs_MT_D			= $(PROJ_OBJ_DIR)/core.api.logputs.mt.debug.o
+OBJ_cr_auto_MT_D						= $(PROJ_OBJ_DIR)/core.auto.mt.debug.o
+OBJ_ins_args_MT_D						= $(PROJ_OBJ_DIR)/inserters.args.mt.debug.o
+OBJ_ins_b64_MT_D						= $(PROJ_OBJ_DIR)/inserters.b64.mt.debug.o
+OBJ_ins_blob_MT_D						= $(PROJ_OBJ_DIR)/inserters.blob.mt.debug.o
+OBJ_ins_bool_MT_D						= $(PROJ_OBJ_DIR)/inserters.boolean.mt.debug.o
+OBJ_ins_excp_MT_D						= $(PROJ_OBJ_DIR)/inserters.exception.mt.debug.o
+OBJ_ins_host_MT_D						= $(PROJ_OBJ_DIR)/inserters.hostid.mt.debug.o
+OBJ_ins_int_MT_D						= $(PROJ_OBJ_DIR)/inserters.integer.mt.debug.o
+OBJ_ins_ivl_MT_D						= $(PROJ_OBJ_DIR)/inserters.interval.mt.debug.o
+OBJ_ins_ptr_MT_D						= $(PROJ_OBJ_DIR)/inserters.pointer.mt.debug.o
+OBJ_ins_prid_MT_D						= $(PROJ_OBJ_DIR)/inserters.processid.mt.debug.o
+OBJ_ins_real_MT_D						= $(PROJ_OBJ_DIR)/inserters.real.mt.debug.o
+OBJ_ins_slice_MT_D					= $(PROJ_OBJ_DIR)/inserters.slice.mt.debug.o
+OBJ_ins_thrid_MT_D					= $(PROJ_OBJ_DIR)/inserters.threadid.mt.debug.o
+OBJ_ins_stm_ch_MT_D					= $(PROJ_OBJ_DIR)/inserters.stream_character.mt.debug.o
+OBJ_ins_w2m_MT_D						= $(PROJ_OBJ_DIR)/inserters.w2m.mt.debug.o
+#PDB_bec_test_MT_D					= $(PROJ_OBJ_DIR)/bec.test.mt.debug.pdb
+OBJ_bec_test_MT_D						= $(PROJ_OBJ_DIR)/bec.test.mt.debug.o
+OBJ_be_test_MT_D						= $(PROJ_OBJ_DIR)/be.test.mt.debug.o
+OBJ_bel_test_MT_D						= $(PROJ_OBJ_DIR)/bel.test.mt.debug.o
+OBJ_ber_test_MT_D						= $(PROJ_OBJ_DIR)/ber.test.mt.debug.o
+OBJ_be_lrsplit_MT_D					= $(PROJ_OBJ_DIR)/be.lrsplit.mt.debug.o
+OBJ_be_N_MT_D								= $(PROJ_OBJ_DIR)/be.N.mt.debug.o
+OBJ_bec_fail_MT_D						= $(PROJ_OBJ_DIR)/bec.fail.mt.debug.o
+OBJ_be_fail_MT_D						= $(PROJ_OBJ_DIR)/be.fail.mt.debug.o
+OBJ_bel_fail_MT_D						= $(PROJ_OBJ_DIR)/bel.fail.mt.debug.o
+OBJ_ber_fail_MT_D						= $(PROJ_OBJ_DIR)/ber.fail.mt.debug.o
+OBJ_bec_file_MT_D						= $(PROJ_OBJ_DIR)/bec.file.mt.debug.o
+OBJ_bec_file_WC_MT_D				= $(PROJ_OBJ_DIR)/bec.file.WithCallback.mt.debug.o
+OBJ_be_file_MT_D						= $(PROJ_OBJ_DIR)/be.file.mt.debug.o
+OBJ_bel_file_MT_D						= $(PROJ_OBJ_DIR)/bel.file.mt.debug.o
+OBJ_ber_file_MT_D						= $(PROJ_OBJ_DIR)/ber.file.mt.debug.o
+OBJ_bec_fprintf_MT_D				= $(PROJ_OBJ_DIR)/bec.fprintf.mt.debug.o
+OBJ_bec_fprintf_WC_MT_D			= $(PROJ_OBJ_DIR)/bec.fprintf.WithCallback.mt.debug.o
+OBJ_be_fprintf_MT_D					= $(PROJ_OBJ_DIR)/be.fprintf.mt.debug.o
+OBJ_bel_fprintf_MT_D				= $(PROJ_OBJ_DIR)/bel.fprintf.mt.debug.o
+OBJ_ber_fprintf_MT_D				= $(PROJ_OBJ_DIR)/ber.fprintf.mt.debug.o
+OBJ_bec_null_MT_D						= $(PROJ_OBJ_DIR)/bec.null.mt.debug.o
+OBJ_be_null_MT_D						= $(PROJ_OBJ_DIR)/be.null.mt.debug.o
+OBJ_bel_null_MT_D						= $(PROJ_OBJ_DIR)/bel.null.mt.debug.o
+OBJ_ber_null_MT_D						= $(PROJ_OBJ_DIR)/ber.null.mt.debug.o
 ifdef ACE
-OBJ_bec_ACE_MT_D			= $(PROJ_OBJ_DIR)/bec.ACE.mt.debug.o
-OBJ_be_ACE_MT_D			= $(PROJ_OBJ_DIR)/be.ACE.mt.debug.o
-OBJ_bel_ACE_MT_D			= $(PROJ_OBJ_DIR)/bel.ACE.mt.debug.o
-OBJ_ber_ACE_MT_D			= $(PROJ_OBJ_DIR)/ber.ACE.mt.debug.o
+OBJ_bec_ACE_MT_D						= $(PROJ_OBJ_DIR)/bec.ACE.mt.debug.o
+OBJ_be_ACE_MT_D							= $(PROJ_OBJ_DIR)/be.ACE.mt.debug.o
+OBJ_bel_ACE_MT_D						= $(PROJ_OBJ_DIR)/bel.ACE.mt.debug.o
+OBJ_ber_ACE_MT_D						= $(PROJ_OBJ_DIR)/ber.ACE.mt.debug.o
 endif # ACE
-OBJ_bec_SYSLOG_MT_D		= $(PROJ_OBJ_DIR)/bec.syslog.mt.debug.o
-OBJ_bec_SYSLOG_WC_MT_D	= $(PROJ_OBJ_DIR)/bec.syslog.WithCallback.mt.debug.o
-OBJ_be_SYSLOG_MT_D 		= $(PROJ_OBJ_DIR)/be.syslog.mt.debug.o
-OBJ_ber_SYSLOG_MT_D		= $(PROJ_OBJ_DIR)/ber.syslog.mt.debug.o
-OBJ_fe_all_MT_D 			= $(PROJ_OBJ_DIR)/fe.all.mt.debug.o
-OBJ_fe_all_WC_MT_D 		= $(PROJ_OBJ_DIR)/fe.all.WithCallback.mt.debug.o
-OBJ_fe_fail_MT_D 			= $(PROJ_OBJ_DIR)/fe.fail.mt.debug.o
-OBJ_fe_N_MT_D 			= $(PROJ_OBJ_DIR)/fe.N.mt.debug.o
-OBJ_fe_N_WC_MT_D 			= $(PROJ_OBJ_DIR)/fe.N.WithCallback.mt.debug.o
-OBJ_fe_null_MT_D 			= $(PROJ_OBJ_DIR)/fe.null.mt.debug.o
-OBJ_fe_null_WC_MT_D 		= $(PROJ_OBJ_DIR)/fe.null.WithCallback.mt.debug.o
-OBJ_fe_simple_MT_D 		= $(PROJ_OBJ_DIR)/fe.simple.mt.debug.o
-OBJ_fe_simple_WC_MT_D 	= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.mt.debug.o
+OBJ_bec_SYSLOG_MT_D					= $(PROJ_OBJ_DIR)/bec.syslog.mt.debug.o
+OBJ_bec_SYSLOG_WC_MT_D			= $(PROJ_OBJ_DIR)/bec.syslog.WithCallback.mt.debug.o
+OBJ_be_SYSLOG_MT_D					= $(PROJ_OBJ_DIR)/be.syslog.mt.debug.o
+OBJ_ber_SYSLOG_MT_D					= $(PROJ_OBJ_DIR)/ber.syslog.mt.debug.o
+OBJ_fe_all_MT_D							= $(PROJ_OBJ_DIR)/fe.all.mt.debug.o
+OBJ_fe_all_WC_MT_D					= $(PROJ_OBJ_DIR)/fe.all.WithCallback.mt.debug.o
+OBJ_fe_fail_MT_D						= $(PROJ_OBJ_DIR)/fe.fail.mt.debug.o
+OBJ_fe_N_MT_D								= $(PROJ_OBJ_DIR)/fe.N.mt.debug.o
+OBJ_fe_N_WC_MT_D						= $(PROJ_OBJ_DIR)/fe.N.WithCallback.mt.debug.o
+OBJ_fe_null_MT_D						= $(PROJ_OBJ_DIR)/fe.null.mt.debug.o
+OBJ_fe_null_WC_MT_D					= $(PROJ_OBJ_DIR)/fe.null.WithCallback.mt.debug.o
+OBJ_fe_simple_MT_D					= $(PROJ_OBJ_DIR)/fe.simple.mt.debug.o
+OBJ_fe_simple_WC_MT_D				= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.mt.debug.o
 
 OBJ_UTIL_MT_D=\
  $(OBJ_utl_api_exit_MT_D)\
@@ -1906,86 +1932,86 @@ OBJ_FE_SIMPLE_WC_MT_D=\
  $(OBJ_fe_simple_WC_MT_D)\
  \
 
-OBJ_utl_bailout_MT_R		= $(PROJ_OBJ_DIR)/util.bailout.mt.o
-OBJ_utl_dtel2s_MT_R		= $(PROJ_OBJ_DIR)/util.dtel2s.mt.o
+OBJ_utl_bailout_MT_R				= $(PROJ_OBJ_DIR)/util.bailout.mt.o
+OBJ_utl_dtel2s_MT_R					= $(PROJ_OBJ_DIR)/util.dtel2s.mt.o
 OBJ_utl_init_code_strs_MT_R	= $(PROJ_OBJ_DIR)/util.init_err_strings.mt.o
-OBJ_utl_sev_strs_MT_R		= $(PROJ_OBJ_DIR)/util.sev_strings.mt.o
-OBJ_utl_snprintf_MT_R 	= $(PROJ_OBJ_DIR)/util.snprintf.mt.o
-OBJ_utl_strdup_MT_R 		= $(PROJ_OBJ_DIR)/util.strdup.mt.o
-OBJ_utl_procid_MT_R 		= $(PROJ_OBJ_DIR)/util.procid.mt.o
-OBJ_utl_thread_MT_R 		= $(PROJ_OBJ_DIR)/util.thread.mt.o
-OBJ_utl_be_context_MT_R	= $(PROJ_OBJ_DIR)/util.be_context.mt.o
-OBJ_utl_core_apidefs_MT_R	= $(PROJ_OBJ_DIR)/util.core_apidefs.mt.o
-OBJ_utl_be_parse_MT_R		= $(PROJ_OBJ_DIR)/util.be_parse.mt.o
-OBJ_utl_strnlen_MT_R		= $(PROJ_OBJ_DIR)/util.strnlen.mt.o
-OBJ_utl_strnlenp_MT_R		= $(PROJ_OBJ_DIR)/util.strnlen.c++.mt.o
-OBJ_utl_time_MT_R			= $(PROJ_OBJ_DIR)/util.time.mt.o
-OBJ_utl_host_name_MT_R	= $(PROJ_OBJ_DIR)/util.host_name.mt.o
-OBJ_cr_api_MT_R 			= $(PROJ_OBJ_DIR)/core.api.mt.o
-OBJ_cr_api_dep_MT_R 		= $(PROJ_OBJ_DIR)/core.api.deprecated.mt.o
-OBJ_utl_api_exit_MT_R 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.mt.o
-OBJ_cr_api_logprintf_MT_R	= $(PROJ_OBJ_DIR)/core.api.logprintf.mt.o
-OBJ_cr_api_logputs_MT_R	= $(PROJ_OBJ_DIR)/core.api.logputs.mt.o
-OBJ_cr_auto_MT_R 			= $(PROJ_OBJ_DIR)/core.auto.mt.o
-OBJ_ins_args_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.args.mt.o
-OBJ_ins_b64_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.b64.mt.o
-OBJ_ins_blob_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.blob.mt.o
-OBJ_ins_bool_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.boolean.mt.o
-OBJ_ins_excp_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.exception.mt.o
-OBJ_ins_host_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.hostid.mt.o
-OBJ_ins_int_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.integer.mt.o
-OBJ_ins_ivl_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.interval.mt.o
-OBJ_ins_ptr_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.pointer.mt.o
-OBJ_ins_prid_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.processid.mt.o
-OBJ_ins_real_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.real.mt.o
-OBJ_ins_slice_MT_R	 	= $(PROJ_OBJ_DIR)/inserters.slice.mt.o
-OBJ_ins_thrid_MT_R	 	= $(PROJ_OBJ_DIR)/inserters.threadid.mt.o
-OBJ_ins_stm_ch_MT_R	 	= $(PROJ_OBJ_DIR)/inserters.stream_character.mt.o
-OBJ_ins_w2m_MT_R	 		= $(PROJ_OBJ_DIR)/inserters.w2m.mt.o
-#PDB_bec_test_MT_R 		= $(PROJ_OBJ_DIR)/bec.test.mt.pdb
-OBJ_bec_test_MT_R 		= $(PROJ_OBJ_DIR)/bec.test.mt.o
-OBJ_be_test_MT_R 			= $(PROJ_OBJ_DIR)/be.test.mt.o
-OBJ_bel_test_MT_R 		= $(PROJ_OBJ_DIR)/bel.test.mt.o
-OBJ_ber_test_MT_R 		= $(PROJ_OBJ_DIR)/ber.test.mt.o
-OBJ_be_lrsplit_MT_R		= $(PROJ_OBJ_DIR)/be.lrsplit.mt.o
-OBJ_be_N_MT_R				= $(PROJ_OBJ_DIR)/be.N.mt.o
-OBJ_bec_fail_MT_R			= $(PROJ_OBJ_DIR)/bec.fail.mt.o
-OBJ_be_fail_MT_R			= $(PROJ_OBJ_DIR)/be.fail.mt.o
-OBJ_bel_fail_MT_R			= $(PROJ_OBJ_DIR)/bel.fail.mt.o
-OBJ_ber_fail_MT_R			= $(PROJ_OBJ_DIR)/ber.fail.mt.o
-OBJ_bec_file_MT_R			= $(PROJ_OBJ_DIR)/bec.file.mt.o
-OBJ_bec_file_WC_MT_R		= $(PROJ_OBJ_DIR)/bec.file.WithCallback.mt.o
-OBJ_be_file_MT_R			= $(PROJ_OBJ_DIR)/be.file.mt.o
-OBJ_bel_file_MT_R			= $(PROJ_OBJ_DIR)/bel.file.mt.o
-OBJ_ber_file_MT_R			= $(PROJ_OBJ_DIR)/ber.file.mt.o
-OBJ_bec_fprintf_MT_R		= $(PROJ_OBJ_DIR)/bec.fprintf.mt.o
-OBJ_bec_fprintf_WC_MT_R	= $(PROJ_OBJ_DIR)/bec.fprintf.WithCallback.mt.o
-OBJ_be_fprintf_MT_R		= $(PROJ_OBJ_DIR)/be.fprintf.mt.o
-OBJ_bel_fprintf_MT_R		= $(PROJ_OBJ_DIR)/bel.fprintf.mt.o
-OBJ_ber_fprintf_MT_R		= $(PROJ_OBJ_DIR)/ber.fprintf.mt.o
-OBJ_bec_null_MT_R			= $(PROJ_OBJ_DIR)/bec.null.mt.o
-OBJ_be_null_MT_R			= $(PROJ_OBJ_DIR)/be.null.mt.o
-OBJ_bel_null_MT_R			= $(PROJ_OBJ_DIR)/bel.null.mt.o
-OBJ_ber_null_MT_R			= $(PROJ_OBJ_DIR)/ber.null.mt.o
+OBJ_utl_sev_strs_MT_R				= $(PROJ_OBJ_DIR)/util.sev_strings.mt.o
+OBJ_utl_snprintf_MT_R				= $(PROJ_OBJ_DIR)/util.snprintf.mt.o
+OBJ_utl_strdup_MT_R					= $(PROJ_OBJ_DIR)/util.strdup.mt.o
+OBJ_utl_procid_MT_R					= $(PROJ_OBJ_DIR)/util.procid.mt.o
+OBJ_utl_thread_MT_R					= $(PROJ_OBJ_DIR)/util.thread.mt.o
+OBJ_utl_be_context_MT_R			= $(PROJ_OBJ_DIR)/util.be_context.mt.o
+OBJ_utl_core_apidefs_MT_R		= $(PROJ_OBJ_DIR)/util.core_apidefs.mt.o
+OBJ_utl_be_parse_MT_R				= $(PROJ_OBJ_DIR)/util.be_parse.mt.o
+OBJ_utl_strnlen_MT_R				= $(PROJ_OBJ_DIR)/util.strnlen.mt.o
+OBJ_utl_strnlenp_MT_R				= $(PROJ_OBJ_DIR)/util.strnlen.c++.mt.o
+OBJ_utl_time_MT_R						= $(PROJ_OBJ_DIR)/util.time.mt.o
+OBJ_utl_host_name_MT_R			= $(PROJ_OBJ_DIR)/util.host_name.mt.o
+OBJ_cr_api_MT_R							= $(PROJ_OBJ_DIR)/core.api.mt.o
+OBJ_cr_api_dep_MT_R					= $(PROJ_OBJ_DIR)/core.api.deprecated.mt.o
+OBJ_utl_api_exit_MT_R				= $(PROJ_OBJ_DIR)/core.api.exitprocess.mt.o
+OBJ_cr_api_logprintf_MT_R		= $(PROJ_OBJ_DIR)/core.api.logprintf.mt.o
+OBJ_cr_api_logputs_MT_R			= $(PROJ_OBJ_DIR)/core.api.logputs.mt.o
+OBJ_cr_auto_MT_R						= $(PROJ_OBJ_DIR)/core.auto.mt.o
+OBJ_ins_args_MT_R						= $(PROJ_OBJ_DIR)/inserters.args.mt.o
+OBJ_ins_b64_MT_R						= $(PROJ_OBJ_DIR)/inserters.b64.mt.o
+OBJ_ins_blob_MT_R						= $(PROJ_OBJ_DIR)/inserters.blob.mt.o
+OBJ_ins_bool_MT_R						= $(PROJ_OBJ_DIR)/inserters.boolean.mt.o
+OBJ_ins_excp_MT_R						= $(PROJ_OBJ_DIR)/inserters.exception.mt.o
+OBJ_ins_host_MT_R						= $(PROJ_OBJ_DIR)/inserters.hostid.mt.o
+OBJ_ins_int_MT_R						= $(PROJ_OBJ_DIR)/inserters.integer.mt.o
+OBJ_ins_ivl_MT_R						= $(PROJ_OBJ_DIR)/inserters.interval.mt.o
+OBJ_ins_ptr_MT_R						= $(PROJ_OBJ_DIR)/inserters.pointer.mt.o
+OBJ_ins_prid_MT_R						= $(PROJ_OBJ_DIR)/inserters.processid.mt.o
+OBJ_ins_real_MT_R						= $(PROJ_OBJ_DIR)/inserters.real.mt.o
+OBJ_ins_slice_MT_R					= $(PROJ_OBJ_DIR)/inserters.slice.mt.o
+OBJ_ins_thrid_MT_R					= $(PROJ_OBJ_DIR)/inserters.threadid.mt.o
+OBJ_ins_stm_ch_MT_R					= $(PROJ_OBJ_DIR)/inserters.stream_character.mt.o
+OBJ_ins_w2m_MT_R						= $(PROJ_OBJ_DIR)/inserters.w2m.mt.o
+#PDB_bec_test_MT_R					= $(PROJ_OBJ_DIR)/bec.test.mt.pdb
+OBJ_bec_test_MT_R						= $(PROJ_OBJ_DIR)/bec.test.mt.o
+OBJ_be_test_MT_R						= $(PROJ_OBJ_DIR)/be.test.mt.o
+OBJ_bel_test_MT_R						= $(PROJ_OBJ_DIR)/bel.test.mt.o
+OBJ_ber_test_MT_R						= $(PROJ_OBJ_DIR)/ber.test.mt.o
+OBJ_be_lrsplit_MT_R					= $(PROJ_OBJ_DIR)/be.lrsplit.mt.o
+OBJ_be_N_MT_R								= $(PROJ_OBJ_DIR)/be.N.mt.o
+OBJ_bec_fail_MT_R						= $(PROJ_OBJ_DIR)/bec.fail.mt.o
+OBJ_be_fail_MT_R						= $(PROJ_OBJ_DIR)/be.fail.mt.o
+OBJ_bel_fail_MT_R						= $(PROJ_OBJ_DIR)/bel.fail.mt.o
+OBJ_ber_fail_MT_R						= $(PROJ_OBJ_DIR)/ber.fail.mt.o
+OBJ_bec_file_MT_R						= $(PROJ_OBJ_DIR)/bec.file.mt.o
+OBJ_bec_file_WC_MT_R				= $(PROJ_OBJ_DIR)/bec.file.WithCallback.mt.o
+OBJ_be_file_MT_R						= $(PROJ_OBJ_DIR)/be.file.mt.o
+OBJ_bel_file_MT_R						= $(PROJ_OBJ_DIR)/bel.file.mt.o
+OBJ_ber_file_MT_R						= $(PROJ_OBJ_DIR)/ber.file.mt.o
+OBJ_bec_fprintf_MT_R				= $(PROJ_OBJ_DIR)/bec.fprintf.mt.o
+OBJ_bec_fprintf_WC_MT_R			= $(PROJ_OBJ_DIR)/bec.fprintf.WithCallback.mt.o
+OBJ_be_fprintf_MT_R					= $(PROJ_OBJ_DIR)/be.fprintf.mt.o
+OBJ_bel_fprintf_MT_R				= $(PROJ_OBJ_DIR)/bel.fprintf.mt.o
+OBJ_ber_fprintf_MT_R				= $(PROJ_OBJ_DIR)/ber.fprintf.mt.o
+OBJ_bec_null_MT_R						= $(PROJ_OBJ_DIR)/bec.null.mt.o
+OBJ_be_null_MT_R						= $(PROJ_OBJ_DIR)/be.null.mt.o
+OBJ_bel_null_MT_R						= $(PROJ_OBJ_DIR)/bel.null.mt.o
+OBJ_ber_null_MT_R						= $(PROJ_OBJ_DIR)/ber.null.mt.o
 ifdef ACE
-OBJ_bec_ACE_MT_R			= $(PROJ_OBJ_DIR)/bec.ACE.mt.o
-OBJ_be_ACE_MT_R			= $(PROJ_OBJ_DIR)/be.ACE.mt.o
-OBJ_bel_ACE_MT_R			= $(PROJ_OBJ_DIR)/bel.ACE.mt.o
-OBJ_ber_ACE_MT_R			= $(PROJ_OBJ_DIR)/ber.ACE.mt.o
+OBJ_bec_ACE_MT_R						= $(PROJ_OBJ_DIR)/bec.ACE.mt.o
+OBJ_be_ACE_MT_R							= $(PROJ_OBJ_DIR)/be.ACE.mt.o
+OBJ_bel_ACE_MT_R						= $(PROJ_OBJ_DIR)/bel.ACE.mt.o
+OBJ_ber_ACE_MT_R						= $(PROJ_OBJ_DIR)/ber.ACE.mt.o
 endif # ACE
-OBJ_bec_SYSLOG_MT_R		= $(PROJ_OBJ_DIR)/bec.syslog.mt.o
-OBJ_bec_SYSLOG_WC_MT_R	= $(PROJ_OBJ_DIR)/bec.syslog.WithCallback.mt.o
-OBJ_be_SYSLOG_MT_R 		= $(PROJ_OBJ_DIR)/be.syslog.mt.o
-OBJ_ber_SYSLOG_MT_R		= $(PROJ_OBJ_DIR)/ber.syslog.mt.o
-OBJ_fe_all_MT_R 			= $(PROJ_OBJ_DIR)/fe.all.mt.o
-OBJ_fe_all_WC_MT_R 		= $(PROJ_OBJ_DIR)/fe.all.WithCallback.mt.o
-OBJ_fe_fail_MT_R 			= $(PROJ_OBJ_DIR)/fe.fail.mt.o
-OBJ_fe_N_MT_R 			= $(PROJ_OBJ_DIR)/fe.N.mt.o
-OBJ_fe_N_WC_MT_R 			= $(PROJ_OBJ_DIR)/fe.N.WithCallback.mt.o
-OBJ_fe_null_MT_R 			= $(PROJ_OBJ_DIR)/fe.null.mt.o
-OBJ_fe_null_WC_MT_R 		= $(PROJ_OBJ_DIR)/fe.null.WithCallback.mt.o
-OBJ_fe_simple_MT_R 		= $(PROJ_OBJ_DIR)/fe.simple.mt.o
-OBJ_fe_simple_WC_MT_R 	= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.mt.o
+OBJ_bec_SYSLOG_MT_R					= $(PROJ_OBJ_DIR)/bec.syslog.mt.o
+OBJ_bec_SYSLOG_WC_MT_R			= $(PROJ_OBJ_DIR)/bec.syslog.WithCallback.mt.o
+OBJ_be_SYSLOG_MT_R					= $(PROJ_OBJ_DIR)/be.syslog.mt.o
+OBJ_ber_SYSLOG_MT_R					= $(PROJ_OBJ_DIR)/ber.syslog.mt.o
+OBJ_fe_all_MT_R							= $(PROJ_OBJ_DIR)/fe.all.mt.o
+OBJ_fe_all_WC_MT_R					= $(PROJ_OBJ_DIR)/fe.all.WithCallback.mt.o
+OBJ_fe_fail_MT_R						= $(PROJ_OBJ_DIR)/fe.fail.mt.o
+OBJ_fe_N_MT_R								= $(PROJ_OBJ_DIR)/fe.N.mt.o
+OBJ_fe_N_WC_MT_R						= $(PROJ_OBJ_DIR)/fe.N.WithCallback.mt.o
+OBJ_fe_null_MT_R						= $(PROJ_OBJ_DIR)/fe.null.mt.o
+OBJ_fe_null_WC_MT_R					= $(PROJ_OBJ_DIR)/fe.null.WithCallback.mt.o
+OBJ_fe_simple_MT_R					= $(PROJ_OBJ_DIR)/fe.simple.mt.o
+OBJ_fe_simple_WC_MT_R				= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.mt.o
 
 OBJ_UTIL_MT_R=\
  $(OBJ_utl_api_exit_MT_R)\
@@ -2218,86 +2244,86 @@ OBJ_FE_SIMPLE_WC_MT_R=\
  $(OBJ_fe_simple_WC_MT_R)\
  \
 
-OBJ_utl_bailout_ST_D		= $(PROJ_OBJ_DIR)/util.bailout.debug.o
-OBJ_utl_dtel2s_ST_D		= $(PROJ_OBJ_DIR)/util.dtel2s.debug.o
+OBJ_utl_bailout_ST_D				= $(PROJ_OBJ_DIR)/util.bailout.debug.o
+OBJ_utl_dtel2s_ST_D					= $(PROJ_OBJ_DIR)/util.dtel2s.debug.o
 OBJ_utl_init_code_strs_ST_D	= $(PROJ_OBJ_DIR)/util.init_err_strings.debug.o
-OBJ_utl_sev_strs_ST_D		= $(PROJ_OBJ_DIR)/util.sev_strings.debug.o
-OBJ_utl_snprintf_ST_D 	= $(PROJ_OBJ_DIR)/util.snprintf.debug.o
-OBJ_utl_strdup_ST_D 		= $(PROJ_OBJ_DIR)/util.strdup.debug.o
-OBJ_utl_procid_ST_D 		= $(PROJ_OBJ_DIR)/util.procid.debug.o
-OBJ_utl_thread_ST_D 		= $(PROJ_OBJ_DIR)/util.thread.debug.o
-OBJ_utl_be_context_ST_D	= $(PROJ_OBJ_DIR)/util.be_context.debug.o
-OBJ_utl_core_apidefs_ST_D	= $(PROJ_OBJ_DIR)/util.core_apidefs.debug.o
-OBJ_utl_be_parse_ST_D		= $(PROJ_OBJ_DIR)/util.be_parse.debug.o
-OBJ_utl_strnlen_ST_D		= $(PROJ_OBJ_DIR)/util.strnlen.debug.o
-OBJ_utl_strnlenp_ST_D		= $(PROJ_OBJ_DIR)/util.strnlen.c++.debug.o
-OBJ_utl_time_ST_D			= $(PROJ_OBJ_DIR)/util.time.debug.o
-OBJ_utl_host_name_ST_D	= $(PROJ_OBJ_DIR)/util.host_name.debug.o
-OBJ_cr_api_ST_D 			= $(PROJ_OBJ_DIR)/core.api.debug.o
-OBJ_cr_api_dep_ST_D 		= $(PROJ_OBJ_DIR)/core.api.deprecated.debug.o
-OBJ_utl_api_exit_ST_D 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.debug.o
-OBJ_cr_api_logprintf_ST_D	= $(PROJ_OBJ_DIR)/core.api.logprintf.debug.o
-OBJ_cr_api_logputs_ST_D	= $(PROJ_OBJ_DIR)/core.api.logputs.debug.o
-OBJ_cr_auto_ST_D 			= $(PROJ_OBJ_DIR)/core.auto.debug.o
-OBJ_ins_args_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.args.debug.o
-OBJ_ins_b64_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.b64.debug.o
-OBJ_ins_blob_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.blob.debug.o
-OBJ_ins_bool_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.boolean.debug.o
-OBJ_ins_excp_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.exception.debug.o
-OBJ_ins_host_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.hostid.debug.o
-OBJ_ins_int_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.integer.debug.o
-OBJ_ins_ivl_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.interval.debug.o
-OBJ_ins_ptr_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.pointer.debug.o
-OBJ_ins_prid_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.processid.debug.o
-OBJ_ins_real_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.real.debug.o
-OBJ_ins_slice_ST_D	 	= $(PROJ_OBJ_DIR)/inserters.slice.debug.o
-OBJ_ins_thrid_ST_D	 	= $(PROJ_OBJ_DIR)/inserters.threadid.debug.o
-OBJ_ins_stm_ch_ST_D	 	= $(PROJ_OBJ_DIR)/inserters.stream_character.debug.o
-OBJ_ins_w2m_ST_D	 		= $(PROJ_OBJ_DIR)/inserters.w2m.debug.o
-#PDB_bec_test_ST_D 		= $(PROJ_OBJ_DIR)/bec.test.debug.pdb
-OBJ_bec_test_ST_D 		= $(PROJ_OBJ_DIR)/bec.test.debug.o
-OBJ_be_test_ST_D 			= $(PROJ_OBJ_DIR)/be.test.debug.o
-OBJ_bel_test_ST_D 		= $(PROJ_OBJ_DIR)/bel.test.debug.o
-OBJ_ber_test_ST_D 		= $(PROJ_OBJ_DIR)/ber.test.debug.o
-OBJ_be_lrsplit_ST_D		= $(PROJ_OBJ_DIR)/be.lrsplit.debug.o
-OBJ_be_N_ST_D				= $(PROJ_OBJ_DIR)/be.N.debug.o
-OBJ_bec_fail_ST_D			= $(PROJ_OBJ_DIR)/bec.fail.debug.o
-OBJ_be_fail_ST_D			= $(PROJ_OBJ_DIR)/be.fail.debug.o
-OBJ_bel_fail_ST_D			= $(PROJ_OBJ_DIR)/bel.fail.debug.o
-OBJ_ber_fail_ST_D			= $(PROJ_OBJ_DIR)/ber.fail.debug.o
-OBJ_bec_file_ST_D			= $(PROJ_OBJ_DIR)/bec.file.debug.o
-OBJ_bec_file_WC_ST_D		= $(PROJ_OBJ_DIR)/bec.file.WithCallback.debug.o
-OBJ_be_file_ST_D			= $(PROJ_OBJ_DIR)/be.file.debug.o
-OBJ_bel_file_ST_D			= $(PROJ_OBJ_DIR)/bel.file.debug.o
-OBJ_ber_file_ST_D			= $(PROJ_OBJ_DIR)/ber.file.debug.o
-OBJ_bec_fprintf_ST_D		= $(PROJ_OBJ_DIR)/bec.fprintf.debug.o
-OBJ_bec_fprintf_WC_ST_D	= $(PROJ_OBJ_DIR)/bec.fprintf.WithCallback.debug.o
-OBJ_be_fprintf_ST_D		= $(PROJ_OBJ_DIR)/be.fprintf.debug.o
-OBJ_bel_fprintf_ST_D		= $(PROJ_OBJ_DIR)/bel.fprintf.debug.o
-OBJ_ber_fprintf_ST_D		= $(PROJ_OBJ_DIR)/ber.fprintf.debug.o
-OBJ_bec_null_ST_D			= $(PROJ_OBJ_DIR)/bec.null.debug.o
-OBJ_be_null_ST_D			= $(PROJ_OBJ_DIR)/be.null.debug.o
-OBJ_bel_null_ST_D			= $(PROJ_OBJ_DIR)/bel.null.debug.o
-OBJ_ber_null_ST_D			= $(PROJ_OBJ_DIR)/ber.null.debug.o
+OBJ_utl_sev_strs_ST_D				= $(PROJ_OBJ_DIR)/util.sev_strings.debug.o
+OBJ_utl_snprintf_ST_D				= $(PROJ_OBJ_DIR)/util.snprintf.debug.o
+OBJ_utl_strdup_ST_D					= $(PROJ_OBJ_DIR)/util.strdup.debug.o
+OBJ_utl_procid_ST_D					= $(PROJ_OBJ_DIR)/util.procid.debug.o
+OBJ_utl_thread_ST_D					= $(PROJ_OBJ_DIR)/util.thread.debug.o
+OBJ_utl_be_context_ST_D			= $(PROJ_OBJ_DIR)/util.be_context.debug.o
+OBJ_utl_core_apidefs_ST_D		= $(PROJ_OBJ_DIR)/util.core_apidefs.debug.o
+OBJ_utl_be_parse_ST_D				= $(PROJ_OBJ_DIR)/util.be_parse.debug.o
+OBJ_utl_strnlen_ST_D				= $(PROJ_OBJ_DIR)/util.strnlen.debug.o
+OBJ_utl_strnlenp_ST_D				= $(PROJ_OBJ_DIR)/util.strnlen.c++.debug.o
+OBJ_utl_time_ST_D						= $(PROJ_OBJ_DIR)/util.time.debug.o
+OBJ_utl_host_name_ST_D			= $(PROJ_OBJ_DIR)/util.host_name.debug.o
+OBJ_cr_api_ST_D							= $(PROJ_OBJ_DIR)/core.api.debug.o
+OBJ_cr_api_dep_ST_D					= $(PROJ_OBJ_DIR)/core.api.deprecated.debug.o
+OBJ_utl_api_exit_ST_D				= $(PROJ_OBJ_DIR)/core.api.exitprocess.debug.o
+OBJ_cr_api_logprintf_ST_D		= $(PROJ_OBJ_DIR)/core.api.logprintf.debug.o
+OBJ_cr_api_logputs_ST_D			= $(PROJ_OBJ_DIR)/core.api.logputs.debug.o
+OBJ_cr_auto_ST_D						= $(PROJ_OBJ_DIR)/core.auto.debug.o
+OBJ_ins_args_ST_D						= $(PROJ_OBJ_DIR)/inserters.args.debug.o
+OBJ_ins_b64_ST_D						= $(PROJ_OBJ_DIR)/inserters.b64.debug.o
+OBJ_ins_blob_ST_D						= $(PROJ_OBJ_DIR)/inserters.blob.debug.o
+OBJ_ins_bool_ST_D						= $(PROJ_OBJ_DIR)/inserters.boolean.debug.o
+OBJ_ins_excp_ST_D						= $(PROJ_OBJ_DIR)/inserters.exception.debug.o
+OBJ_ins_host_ST_D						= $(PROJ_OBJ_DIR)/inserters.hostid.debug.o
+OBJ_ins_int_ST_D						= $(PROJ_OBJ_DIR)/inserters.integer.debug.o
+OBJ_ins_ivl_ST_D						= $(PROJ_OBJ_DIR)/inserters.interval.debug.o
+OBJ_ins_ptr_ST_D						= $(PROJ_OBJ_DIR)/inserters.pointer.debug.o
+OBJ_ins_prid_ST_D						= $(PROJ_OBJ_DIR)/inserters.processid.debug.o
+OBJ_ins_real_ST_D						= $(PROJ_OBJ_DIR)/inserters.real.debug.o
+OBJ_ins_slice_ST_D					= $(PROJ_OBJ_DIR)/inserters.slice.debug.o
+OBJ_ins_thrid_ST_D					= $(PROJ_OBJ_DIR)/inserters.threadid.debug.o
+OBJ_ins_stm_ch_ST_D					= $(PROJ_OBJ_DIR)/inserters.stream_character.debug.o
+OBJ_ins_w2m_ST_D						= $(PROJ_OBJ_DIR)/inserters.w2m.debug.o
+#PDB_bec_test_ST_D					= $(PROJ_OBJ_DIR)/bec.test.debug.pdb
+OBJ_bec_test_ST_D						= $(PROJ_OBJ_DIR)/bec.test.debug.o
+OBJ_be_test_ST_D						= $(PROJ_OBJ_DIR)/be.test.debug.o
+OBJ_bel_test_ST_D						= $(PROJ_OBJ_DIR)/bel.test.debug.o
+OBJ_ber_test_ST_D						= $(PROJ_OBJ_DIR)/ber.test.debug.o
+OBJ_be_lrsplit_ST_D					= $(PROJ_OBJ_DIR)/be.lrsplit.debug.o
+OBJ_be_N_ST_D								= $(PROJ_OBJ_DIR)/be.N.debug.o
+OBJ_bec_fail_ST_D						= $(PROJ_OBJ_DIR)/bec.fail.debug.o
+OBJ_be_fail_ST_D						= $(PROJ_OBJ_DIR)/be.fail.debug.o
+OBJ_bel_fail_ST_D						= $(PROJ_OBJ_DIR)/bel.fail.debug.o
+OBJ_ber_fail_ST_D						= $(PROJ_OBJ_DIR)/ber.fail.debug.o
+OBJ_bec_file_ST_D						= $(PROJ_OBJ_DIR)/bec.file.debug.o
+OBJ_bec_file_WC_ST_D				= $(PROJ_OBJ_DIR)/bec.file.WithCallback.debug.o
+OBJ_be_file_ST_D						= $(PROJ_OBJ_DIR)/be.file.debug.o
+OBJ_bel_file_ST_D						= $(PROJ_OBJ_DIR)/bel.file.debug.o
+OBJ_ber_file_ST_D						= $(PROJ_OBJ_DIR)/ber.file.debug.o
+OBJ_bec_fprintf_ST_D				= $(PROJ_OBJ_DIR)/bec.fprintf.debug.o
+OBJ_bec_fprintf_WC_ST_D			= $(PROJ_OBJ_DIR)/bec.fprintf.WithCallback.debug.o
+OBJ_be_fprintf_ST_D					= $(PROJ_OBJ_DIR)/be.fprintf.debug.o
+OBJ_bel_fprintf_ST_D				= $(PROJ_OBJ_DIR)/bel.fprintf.debug.o
+OBJ_ber_fprintf_ST_D				= $(PROJ_OBJ_DIR)/ber.fprintf.debug.o
+OBJ_bec_null_ST_D						= $(PROJ_OBJ_DIR)/bec.null.debug.o
+OBJ_be_null_ST_D						= $(PROJ_OBJ_DIR)/be.null.debug.o
+OBJ_bel_null_ST_D						= $(PROJ_OBJ_DIR)/bel.null.debug.o
+OBJ_ber_null_ST_D						= $(PROJ_OBJ_DIR)/ber.null.debug.o
 ifdef ACE
-OBJ_bec_ACE_ST_D			= $(PROJ_OBJ_DIR)/bec.ACE.debug.o
-OBJ_be_ACE_ST_D			= $(PROJ_OBJ_DIR)/be.ACE.debug.o
-OBJ_bel_ACE_ST_D			= $(PROJ_OBJ_DIR)/bel.ACE.debug.o
-OBJ_ber_ACE_ST_D			= $(PROJ_OBJ_DIR)/ber.ACE.debug.o
+OBJ_bec_ACE_ST_D						= $(PROJ_OBJ_DIR)/bec.ACE.debug.o
+OBJ_be_ACE_ST_D							= $(PROJ_OBJ_DIR)/be.ACE.debug.o
+OBJ_bel_ACE_ST_D						= $(PROJ_OBJ_DIR)/bel.ACE.debug.o
+OBJ_ber_ACE_ST_D						= $(PROJ_OBJ_DIR)/ber.ACE.debug.o
 endif # ACE
-OBJ_bec_SYSLOG_ST_D		= $(PROJ_OBJ_DIR)/bec.syslog.debug.o
-OBJ_bec_SYSLOG_WC_ST_D	= $(PROJ_OBJ_DIR)/bec.syslog.WithCallback.debug.o
-OBJ_be_SYSLOG_ST_D 		= $(PROJ_OBJ_DIR)/be.syslog.debug.o
-OBJ_ber_SYSLOG_ST_D		= $(PROJ_OBJ_DIR)/ber.syslog.debug.o
-OBJ_fe_all_ST_D 			= $(PROJ_OBJ_DIR)/fe.all.debug.o
-OBJ_fe_all_WC_ST_D 		= $(PROJ_OBJ_DIR)/fe.all.WithCallback.debug.o
-OBJ_fe_fail_ST_D 			= $(PROJ_OBJ_DIR)/fe.fail.debug.o
-OBJ_fe_N_ST_D 			= $(PROJ_OBJ_DIR)/fe.N.debug.o
-OBJ_fe_N_WC_ST_D 			= $(PROJ_OBJ_DIR)/fe.N.WithCallback.debug.o
-OBJ_fe_null_ST_D 			= $(PROJ_OBJ_DIR)/fe.null.debug.o
-OBJ_fe_null_WC_ST_D 		= $(PROJ_OBJ_DIR)/fe.null.WithCallback.debug.o
-OBJ_fe_simple_ST_D 		= $(PROJ_OBJ_DIR)/fe.simple.debug.o
-OBJ_fe_simple_WC_ST_D 	= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.debug.o
+OBJ_bec_SYSLOG_ST_D					= $(PROJ_OBJ_DIR)/bec.syslog.debug.o
+OBJ_bec_SYSLOG_WC_ST_D			= $(PROJ_OBJ_DIR)/bec.syslog.WithCallback.debug.o
+OBJ_be_SYSLOG_ST_D					= $(PROJ_OBJ_DIR)/be.syslog.debug.o
+OBJ_ber_SYSLOG_ST_D					= $(PROJ_OBJ_DIR)/ber.syslog.debug.o
+OBJ_fe_all_ST_D							= $(PROJ_OBJ_DIR)/fe.all.debug.o
+OBJ_fe_all_WC_ST_D					= $(PROJ_OBJ_DIR)/fe.all.WithCallback.debug.o
+OBJ_fe_fail_ST_D						= $(PROJ_OBJ_DIR)/fe.fail.debug.o
+OBJ_fe_N_ST_D								= $(PROJ_OBJ_DIR)/fe.N.debug.o
+OBJ_fe_N_WC_ST_D						= $(PROJ_OBJ_DIR)/fe.N.WithCallback.debug.o
+OBJ_fe_null_ST_D						= $(PROJ_OBJ_DIR)/fe.null.debug.o
+OBJ_fe_null_WC_ST_D					= $(PROJ_OBJ_DIR)/fe.null.WithCallback.debug.o
+OBJ_fe_simple_ST_D					= $(PROJ_OBJ_DIR)/fe.simple.debug.o
+OBJ_fe_simple_WC_ST_D				= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.debug.o
 
 OBJ_UTIL_ST_D=\
  $(OBJ_utl_api_exit_ST_D)\
@@ -2530,86 +2556,86 @@ OBJ_FE_SIMPLE_WC_ST_D=\
  $(OBJ_fe_simple_WC_ST_D)\
  \
 
-OBJ_utl_bailout_ST_R		= $(PROJ_OBJ_DIR)/util.bailout.o
-OBJ_utl_dtel2s_ST_R		= $(PROJ_OBJ_DIR)/util.dtel2s.o
+OBJ_utl_bailout_ST_R				= $(PROJ_OBJ_DIR)/util.bailout.o
+OBJ_utl_dtel2s_ST_R					= $(PROJ_OBJ_DIR)/util.dtel2s.o
 OBJ_utl_init_code_strs_ST_R	= $(PROJ_OBJ_DIR)/util.init_err_strings.o
-OBJ_utl_sev_strs_ST_R		= $(PROJ_OBJ_DIR)/util.sev_strings.o
-OBJ_utl_snprintf_ST_R 	= $(PROJ_OBJ_DIR)/util.snprintf.o
-OBJ_utl_strdup_ST_R 		= $(PROJ_OBJ_DIR)/util.strdup.o
-OBJ_utl_procid_ST_R 		= $(PROJ_OBJ_DIR)/util.procid.o
-OBJ_utl_thread_ST_R 		= $(PROJ_OBJ_DIR)/util.thread.o
-OBJ_utl_be_context_ST_R	= $(PROJ_OBJ_DIR)/util.be_context.o
-OBJ_utl_core_apidefs_ST_R	= $(PROJ_OBJ_DIR)/util.core_apidefs.o
-OBJ_utl_be_parse_ST_R		= $(PROJ_OBJ_DIR)/util.be_parse.o
-OBJ_utl_strnlen_ST_R		= $(PROJ_OBJ_DIR)/util.strnlen.o
-OBJ_utl_strnlenp_ST_R		= $(PROJ_OBJ_DIR)/util.strnlen.c++.o
-OBJ_utl_time_ST_R			= $(PROJ_OBJ_DIR)/util.time.o
-OBJ_utl_host_name_ST_R	= $(PROJ_OBJ_DIR)/util.host_name.o
-OBJ_cr_api_ST_R 			= $(PROJ_OBJ_DIR)/core.api.o
-OBJ_cr_api_dep_ST_R 		= $(PROJ_OBJ_DIR)/core.api.deprecated.o
-OBJ_utl_api_exit_ST_R 		= $(PROJ_OBJ_DIR)/core.api.exitprocess.o
-OBJ_cr_api_logprintf_ST_R	= $(PROJ_OBJ_DIR)/core.api.logprintf.o
-OBJ_cr_api_logputs_ST_R	= $(PROJ_OBJ_DIR)/core.api.logputs.o
-OBJ_cr_auto_ST_R 			= $(PROJ_OBJ_DIR)/core.auto.o
-OBJ_ins_args_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.args.o
-OBJ_ins_b64_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.b64.o
-OBJ_ins_blob_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.blob.o
-OBJ_ins_bool_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.boolean.o
-OBJ_ins_excp_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.exception.o
-OBJ_ins_host_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.hostid.o
-OBJ_ins_int_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.integer.o
-OBJ_ins_ivl_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.interval.o
-OBJ_ins_ptr_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.pointer.o
-OBJ_ins_prid_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.processid.o
-OBJ_ins_real_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.real.o
-OBJ_ins_slice_ST_R	 	= $(PROJ_OBJ_DIR)/inserters.slice.o
-OBJ_ins_thrid_ST_R	 	= $(PROJ_OBJ_DIR)/inserters.threadid.o
-OBJ_ins_stm_ch_ST_R	 	= $(PROJ_OBJ_DIR)/inserters.stream_character.o
-OBJ_ins_w2m_ST_R	 		= $(PROJ_OBJ_DIR)/inserters.w2m.o
-#PDB_bec_test_ST_R 		= $(PROJ_OBJ_DIR)/bec.test.pdb
-OBJ_bec_test_ST_R 		= $(PROJ_OBJ_DIR)/bec.test.o
-OBJ_be_test_ST_R 			= $(PROJ_OBJ_DIR)/be.test.o
-OBJ_bel_test_ST_R 		= $(PROJ_OBJ_DIR)/bel.test.o
-OBJ_ber_test_ST_R 		= $(PROJ_OBJ_DIR)/ber.test.o
-OBJ_be_lrsplit_ST_R		= $(PROJ_OBJ_DIR)/be.lrsplit.o
-OBJ_be_N_ST_R				= $(PROJ_OBJ_DIR)/be.N.o
-OBJ_bec_fail_ST_R			= $(PROJ_OBJ_DIR)/bec.fail.o
-OBJ_be_fail_ST_R			= $(PROJ_OBJ_DIR)/be.fail.o
-OBJ_bel_fail_ST_R			= $(PROJ_OBJ_DIR)/bel.fail.o
-OBJ_ber_fail_ST_R			= $(PROJ_OBJ_DIR)/ber.fail.o
-OBJ_bec_file_ST_R			= $(PROJ_OBJ_DIR)/bec.file.o
-OBJ_bec_file_WC_ST_R		= $(PROJ_OBJ_DIR)/bec.file.WithCallback.o
-OBJ_be_file_ST_R			= $(PROJ_OBJ_DIR)/be.file.o
-OBJ_bel_file_ST_R			= $(PROJ_OBJ_DIR)/bel.file.o
-OBJ_ber_file_ST_R			= $(PROJ_OBJ_DIR)/ber.file.o
-OBJ_bec_fprintf_ST_R		= $(PROJ_OBJ_DIR)/bec.fprintf.o
-OBJ_bec_fprintf_WC_ST_R	= $(PROJ_OBJ_DIR)/bec.fprintf.WithCallback.o
-OBJ_be_fprintf_ST_R		= $(PROJ_OBJ_DIR)/be.fprintf.o
-OBJ_bel_fprintf_ST_R		= $(PROJ_OBJ_DIR)/bel.fprintf.o
-OBJ_ber_fprintf_ST_R		= $(PROJ_OBJ_DIR)/ber.fprintf.o
-OBJ_bec_null_ST_R			= $(PROJ_OBJ_DIR)/bec.null.o
-OBJ_be_null_ST_R			= $(PROJ_OBJ_DIR)/be.null.o
-OBJ_bel_null_ST_R			= $(PROJ_OBJ_DIR)/bel.null.o
-OBJ_ber_null_ST_R			= $(PROJ_OBJ_DIR)/ber.null.o
+OBJ_utl_sev_strs_ST_R				= $(PROJ_OBJ_DIR)/util.sev_strings.o
+OBJ_utl_snprintf_ST_R				= $(PROJ_OBJ_DIR)/util.snprintf.o
+OBJ_utl_strdup_ST_R					= $(PROJ_OBJ_DIR)/util.strdup.o
+OBJ_utl_procid_ST_R					= $(PROJ_OBJ_DIR)/util.procid.o
+OBJ_utl_thread_ST_R					= $(PROJ_OBJ_DIR)/util.thread.o
+OBJ_utl_be_context_ST_R			= $(PROJ_OBJ_DIR)/util.be_context.o
+OBJ_utl_core_apidefs_ST_R		= $(PROJ_OBJ_DIR)/util.core_apidefs.o
+OBJ_utl_be_parse_ST_R				= $(PROJ_OBJ_DIR)/util.be_parse.o
+OBJ_utl_strnlen_ST_R				= $(PROJ_OBJ_DIR)/util.strnlen.o
+OBJ_utl_strnlenp_ST_R				= $(PROJ_OBJ_DIR)/util.strnlen.c++.o
+OBJ_utl_time_ST_R						= $(PROJ_OBJ_DIR)/util.time.o
+OBJ_utl_host_name_ST_R			= $(PROJ_OBJ_DIR)/util.host_name.o
+OBJ_cr_api_ST_R							= $(PROJ_OBJ_DIR)/core.api.o
+OBJ_cr_api_dep_ST_R					= $(PROJ_OBJ_DIR)/core.api.deprecated.o
+OBJ_utl_api_exit_ST_R				= $(PROJ_OBJ_DIR)/core.api.exitprocess.o
+OBJ_cr_api_logprintf_ST_R		= $(PROJ_OBJ_DIR)/core.api.logprintf.o
+OBJ_cr_api_logputs_ST_R			= $(PROJ_OBJ_DIR)/core.api.logputs.o
+OBJ_cr_auto_ST_R						= $(PROJ_OBJ_DIR)/core.auto.o
+OBJ_ins_args_ST_R						= $(PROJ_OBJ_DIR)/inserters.args.o
+OBJ_ins_b64_ST_R						= $(PROJ_OBJ_DIR)/inserters.b64.o
+OBJ_ins_blob_ST_R						= $(PROJ_OBJ_DIR)/inserters.blob.o
+OBJ_ins_bool_ST_R						= $(PROJ_OBJ_DIR)/inserters.boolean.o
+OBJ_ins_excp_ST_R						= $(PROJ_OBJ_DIR)/inserters.exception.o
+OBJ_ins_host_ST_R						= $(PROJ_OBJ_DIR)/inserters.hostid.o
+OBJ_ins_int_ST_R						= $(PROJ_OBJ_DIR)/inserters.integer.o
+OBJ_ins_ivl_ST_R						= $(PROJ_OBJ_DIR)/inserters.interval.o
+OBJ_ins_ptr_ST_R						= $(PROJ_OBJ_DIR)/inserters.pointer.o
+OBJ_ins_prid_ST_R						= $(PROJ_OBJ_DIR)/inserters.processid.o
+OBJ_ins_real_ST_R						= $(PROJ_OBJ_DIR)/inserters.real.o
+OBJ_ins_slice_ST_R					= $(PROJ_OBJ_DIR)/inserters.slice.o
+OBJ_ins_thrid_ST_R					= $(PROJ_OBJ_DIR)/inserters.threadid.o
+OBJ_ins_stm_ch_ST_R					= $(PROJ_OBJ_DIR)/inserters.stream_character.o
+OBJ_ins_w2m_ST_R						= $(PROJ_OBJ_DIR)/inserters.w2m.o
+#PDB_bec_test_ST_R					= $(PROJ_OBJ_DIR)/bec.test.pdb
+OBJ_bec_test_ST_R						= $(PROJ_OBJ_DIR)/bec.test.o
+OBJ_be_test_ST_R						= $(PROJ_OBJ_DIR)/be.test.o
+OBJ_bel_test_ST_R						= $(PROJ_OBJ_DIR)/bel.test.o
+OBJ_ber_test_ST_R						= $(PROJ_OBJ_DIR)/ber.test.o
+OBJ_be_lrsplit_ST_R					= $(PROJ_OBJ_DIR)/be.lrsplit.o
+OBJ_be_N_ST_R								= $(PROJ_OBJ_DIR)/be.N.o
+OBJ_bec_fail_ST_R						= $(PROJ_OBJ_DIR)/bec.fail.o
+OBJ_be_fail_ST_R						= $(PROJ_OBJ_DIR)/be.fail.o
+OBJ_bel_fail_ST_R						= $(PROJ_OBJ_DIR)/bel.fail.o
+OBJ_ber_fail_ST_R						= $(PROJ_OBJ_DIR)/ber.fail.o
+OBJ_bec_file_ST_R						= $(PROJ_OBJ_DIR)/bec.file.o
+OBJ_bec_file_WC_ST_R				= $(PROJ_OBJ_DIR)/bec.file.WithCallback.o
+OBJ_be_file_ST_R						= $(PROJ_OBJ_DIR)/be.file.o
+OBJ_bel_file_ST_R						= $(PROJ_OBJ_DIR)/bel.file.o
+OBJ_ber_file_ST_R						= $(PROJ_OBJ_DIR)/ber.file.o
+OBJ_bec_fprintf_ST_R				= $(PROJ_OBJ_DIR)/bec.fprintf.o
+OBJ_bec_fprintf_WC_ST_R			= $(PROJ_OBJ_DIR)/bec.fprintf.WithCallback.o
+OBJ_be_fprintf_ST_R					= $(PROJ_OBJ_DIR)/be.fprintf.o
+OBJ_bel_fprintf_ST_R				= $(PROJ_OBJ_DIR)/bel.fprintf.o
+OBJ_ber_fprintf_ST_R				= $(PROJ_OBJ_DIR)/ber.fprintf.o
+OBJ_bec_null_ST_R						= $(PROJ_OBJ_DIR)/bec.null.o
+OBJ_be_null_ST_R						= $(PROJ_OBJ_DIR)/be.null.o
+OBJ_bel_null_ST_R						= $(PROJ_OBJ_DIR)/bel.null.o
+OBJ_ber_null_ST_R						= $(PROJ_OBJ_DIR)/ber.null.o
 ifdef ACE
-OBJ_bec_ACE_ST_R			= $(PROJ_OBJ_DIR)/bec.ACE.o
-OBJ_be_ACE_ST_R			= $(PROJ_OBJ_DIR)/be.ACE.o
-OBJ_bel_ACE_ST_R			= $(PROJ_OBJ_DIR)/bel.ACE.o
-OBJ_ber_ACE_ST_R			= $(PROJ_OBJ_DIR)/ber.ACE.o
+OBJ_bec_ACE_ST_R						= $(PROJ_OBJ_DIR)/bec.ACE.o
+OBJ_be_ACE_ST_R							= $(PROJ_OBJ_DIR)/be.ACE.o
+OBJ_bel_ACE_ST_R						= $(PROJ_OBJ_DIR)/bel.ACE.o
+OBJ_ber_ACE_ST_R						= $(PROJ_OBJ_DIR)/ber.ACE.o
 endif # ACE
-OBJ_bec_SYSLOG_ST_R		= $(PROJ_OBJ_DIR)/bec.syslog.o
-OBJ_bec_SYSLOG_WC_ST_R	= $(PROJ_OBJ_DIR)/bec.syslog.WithCallback.o
-OBJ_be_SYSLOG_ST_R 		= $(PROJ_OBJ_DIR)/be.syslog.o
-OBJ_ber_SYSLOG_ST_R		= $(PROJ_OBJ_DIR)/ber.syslog.o
-OBJ_fe_all_ST_R 			= $(PROJ_OBJ_DIR)/fe.all.o
-OBJ_fe_all_WC_ST_R 		= $(PROJ_OBJ_DIR)/fe.all.WithCallback.o
-OBJ_fe_fail_ST_R 			= $(PROJ_OBJ_DIR)/fe.fail.o
-OBJ_fe_N_ST_R 			= $(PROJ_OBJ_DIR)/fe.N.o
-OBJ_fe_N_WC_ST_R 			= $(PROJ_OBJ_DIR)/fe.N.WithCallback.o
-OBJ_fe_null_ST_R 			= $(PROJ_OBJ_DIR)/fe.null.o
-OBJ_fe_null_WC_ST_R 		= $(PROJ_OBJ_DIR)/fe.null.WithCallback.o
-OBJ_fe_simple_ST_R 		= $(PROJ_OBJ_DIR)/fe.simple.o
-OBJ_fe_simple_WC_ST_R 	= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.o
+OBJ_bec_SYSLOG_ST_R					= $(PROJ_OBJ_DIR)/bec.syslog.o
+OBJ_bec_SYSLOG_WC_ST_R			= $(PROJ_OBJ_DIR)/bec.syslog.WithCallback.o
+OBJ_be_SYSLOG_ST_R					= $(PROJ_OBJ_DIR)/be.syslog.o
+OBJ_ber_SYSLOG_ST_R					= $(PROJ_OBJ_DIR)/ber.syslog.o
+OBJ_fe_all_ST_R							= $(PROJ_OBJ_DIR)/fe.all.o
+OBJ_fe_all_WC_ST_R					= $(PROJ_OBJ_DIR)/fe.all.WithCallback.o
+OBJ_fe_fail_ST_R						= $(PROJ_OBJ_DIR)/fe.fail.o
+OBJ_fe_N_ST_R								= $(PROJ_OBJ_DIR)/fe.N.o
+OBJ_fe_N_WC_ST_R						= $(PROJ_OBJ_DIR)/fe.N.WithCallback.o
+OBJ_fe_null_ST_R						= $(PROJ_OBJ_DIR)/fe.null.o
+OBJ_fe_null_WC_ST_R					= $(PROJ_OBJ_DIR)/fe.null.WithCallback.o
+OBJ_fe_simple_ST_R					= $(PROJ_OBJ_DIR)/fe.simple.o
+OBJ_fe_simple_WC_ST_R				= $(PROJ_OBJ_DIR)/fe.simple.WithCallback.o
 
 OBJ_UTIL_ST_R=\
  $(OBJ_utl_api_exit_ST_R)\
@@ -3321,95 +3347,107 @@ OBJ_TEST_SCRT_BE_SYSLOGWC_ST_R	=	./test.scratch.be.syslog.WithCallback.o
 #
 # NOTE: some names are as names longer than 63 characters scare CodeWarrior's linker
 
-OBJ_TEST_UNIT_lvls_dyninit_MT_D	=	./test.unit.levels.dynamic_init.mt.debug.o
-OBJ_TEST_UNIT_lvls_dyninit_MT_R	=	./test.unit.levels.dynamic_init.mt.o
-OBJ_TEST_UNIT_lvls_dyninit_ST_D	=	./test.unit.levels.dynamic_init.debug.o
-OBJ_TEST_UNIT_lvls_dyninit_ST_R	=	./test.unit.levels.dynamic_init.o
-OBJ_TEST_UNIT_lvls_vals_MT_D	=	./test.unit.levels.values.mt.debug.o
-OBJ_TEST_UNIT_lvls_vals_MT_R	=	./test.unit.levels.values.mt.o
-OBJ_TEST_UNIT_lvls_vals_ST_D	=	./test.unit.levels.values.debug.o
-OBJ_TEST_UNIT_lvls_vals_ST_R	=	./test.unit.levels.values.o
-OBJ_TEST_UNIT_getcurrtm_MT_D	=	./test.unit.util.getcurrenttime.mt.debug.o
-OBJ_TEST_UNIT_getcurrtm_MT_R	=	./test.unit.util.getcurrenttime.mt.o
-OBJ_TEST_UNIT_getcurrtm_ST_D	=	./test.unit.util.getcurrenttime.debug.o
-OBJ_TEST_UNIT_getcurrtm_ST_R	=	./test.unit.util.getcurrenttime.o
-OBJ_TEST_UNIT_dtel2s_MT_D	    =	./test.unit.util.dtel2s.mt.debug.o
-OBJ_TEST_UNIT_dtel2s_MT_R	    =	./test.unit.util.dtel2s.mt.o
-OBJ_TEST_UNIT_dtel2s_ST_D	    =	./test.unit.util.dtel2s.debug.o
-OBJ_TEST_UNIT_dtel2s_ST_R	    =	./test.unit.util.dtel2s.o
-OBJ_TEST_UNIT_getversion_MT_D	=	./test.unit.getversion.mt.debug.o
-OBJ_TEST_UNIT_getversion_MT_R	=	./test.unit.getversion.mt.o
-OBJ_TEST_UNIT_getversion_ST_D	=	./test.unit.getversion.debug.o
-OBJ_TEST_UNIT_getversion_ST_R	=	./test.unit.getversion.o
-OBJ_TEST_UNIT_gethostname_MT_D	=	./test.unit.util.gethostname.mt.debug.o
-OBJ_TEST_UNIT_gethostname_MT_R	=	./test.unit.util.gethostname.mt.o
-OBJ_TEST_UNIT_gethostname_ST_D	=	./test.unit.util.gethostname.debug.o
-OBJ_TEST_UNIT_gethostname_ST_R	=	./test.unit.util.gethostname.o
-OBJ_TEST_UNIT_onbailout_MT_D	=	./test.unit.util.onbailout.mt.debug.o
-OBJ_TEST_UNIT_strnlen_MT_D	=	./test.unit.util.strnlen.mt.debug.o
-OBJ_TEST_UNIT_onbailout_MT_R	=	./test.unit.util.onbailout.mt.o
-OBJ_TEST_UNIT_strnlen_MT_R	=	./test.unit.util.strnlen.mt.o
-OBJ_TEST_UNIT_onbailout_ST_D	=	./test.unit.util.onbailout.debug.o
-OBJ_TEST_UNIT_strnlen_ST_D	=	./test.unit.util.strnlen.debug.o
-OBJ_TEST_UNIT_onbailout_ST_R	=	./test.unit.util.onbailout.o
-OBJ_TEST_UNIT_strnlen_ST_R	=	./test.unit.util.strnlen.o
-OBJ_TEST_UNIT_bec_file_MT_D		=	./test.unit.bec.file.mt.debug.o
-OBJ_TEST_UNIT_bec_file_MT_R		=	./test.unit.bec.file.mt.o
-OBJ_TEST_UNIT_bec_file_ST_D		=	./test.unit.bec.file.debug.o
-OBJ_TEST_UNIT_bec_file_ST_R		=	./test.unit.bec.file.o
-OBJ_TEST_UNIT_bec_fprintf_MT_D	=	./test.unit.bec.fprintf.mt.debug.o
-OBJ_TEST_UNIT_bec_fprintf_MT_R	=	./test.unit.bec.fprintf.mt.o
-OBJ_TEST_UNIT_bec_fprintf_ST_D	=	./test.unit.bec.fprintf.debug.o
-OBJ_TEST_UNIT_bec_fprintf_ST_R	=	./test.unit.bec.fprintf.o
-OBJ_TEST_UNIT_bec_fail_MT_D		=	./test.unit.bec.fail.mt.debug.o
-OBJ_TEST_UNIT_bec_fail_MT_R		=	./test.unit.bec.fail.mt.o
-OBJ_TEST_UNIT_bec_fail_ST_D		=	./test.unit.bec.fail.debug.o
-OBJ_TEST_UNIT_bec_fail_ST_R		=	./test.unit.bec.fail.o
-OBJ_TEST_UNIT_be_fail_MT_D		=	./test.unit.be.fail.mt.debug.o
-OBJ_TEST_UNIT_be_fail_MT_R		=	./test.unit.be.fail.mt.o
-OBJ_TEST_UNIT_be_fail_ST_D		=	./test.unit.be.fail.debug.o
-OBJ_TEST_UNIT_be_fail_ST_R		=	./test.unit.be.fail.o
-OBJ_TEST_UNIT_be_lrsplit_MT_D	=	./test.unit.be.lrsplit.mt.debug.o
-OBJ_TEST_UNIT_be_lrsplit_MT_R	=	./test.unit.be.lrsplit.mt.o
-OBJ_TEST_UNIT_be_lrsplit_ST_D	=	./test.unit.be.lrsplit.debug.o
-OBJ_TEST_UNIT_be_lrsplit_ST_R	=	./test.unit.be.lrsplit.o
-OBJ_TEST_UNIT_be_N_MT_D			=	./test.unit.be.N.mt.debug.o
-OBJ_TEST_UNIT_be_N_MT_R			=	./test.unit.be.N.mt.o
-OBJ_TEST_UNIT_be_N_ST_D			=	./test.unit.be.N.debug.o
-OBJ_TEST_UNIT_be_N_ST_R			=	./test.unit.be.N.o
-OBJ_TEST_UNIT_be_N_filt_MT_D		=	./test.unit.be.N.filtering.mt.debug.o
-OBJ_TEST_UNIT_be_N_filt_MT_R		=	./test.unit.be.N.filtering.mt.o
-OBJ_TEST_UNIT_be_N_filt_ST_D		=	./test.unit.be.N.filtering.debug.o
-OBJ_TEST_UNIT_be_N_filt_ST_R		=	./test.unit.be.N.filtering.o
-OBJ_TEST_UNIT_fe_all_MT_D		=	./test.unit.fe.all.mt.debug.o
-OBJ_TEST_UNIT_fe_all_MT_R		=	./test.unit.fe.all.mt.o
-OBJ_TEST_UNIT_fe_all_ST_D		=	./test.unit.fe.all.debug.o
-OBJ_TEST_UNIT_fe_all_ST_R		=	./test.unit.fe.all.o
-OBJ_TEST_UNIT_fe_fail_MT_D		=	./test.unit.fe.fail.mt.debug.o
-OBJ_TEST_UNIT_fe_fail_MT_R		=	./test.unit.fe.fail.mt.o
-OBJ_TEST_UNIT_fe_fail_ST_D		=	./test.unit.fe.fail.debug.o
-OBJ_TEST_UNIT_fe_fail_ST_R		=	./test.unit.fe.fail.o
-OBJ_TEST_UNIT_fe_N_MT_D			=	./test.unit.fe.N.mt.debug.o
-OBJ_TEST_UNIT_fe_N_MT_R			=	./test.unit.fe.N.mt.o
-OBJ_TEST_UNIT_fe_N_ST_D			=	./test.unit.fe.N.debug.o
-OBJ_TEST_UNIT_fe_N_ST_R			=	./test.unit.fe.N.o
-OBJ_TEST_UNIT_fe_null_MT_D		=	./test.unit.fe.null.mt.debug.o
-OBJ_TEST_UNIT_fe_null_MT_R		=	./test.unit.fe.null.mt.o
-OBJ_TEST_UNIT_fe_null_ST_D		=	./test.unit.fe.null.debug.o
-OBJ_TEST_UNIT_fe_null_ST_R		=	./test.unit.fe.null.o
-OBJ_TEST_UNIT_fe_simple_MT_D	=	./test.unit.fe.simple.mt.debug.o
-OBJ_TEST_UNIT_fe_simple_MT_R	=	./test.unit.fe.simple.mt.o
-OBJ_TEST_UNIT_fe_simple_ST_D	=	./test.unit.fe.simple.debug.o
-OBJ_TEST_UNIT_fe_simple_ST_R	=	./test.unit.fe.simple.o
 
-OBJ_TEST_UNIT_ins_int_MT_D	=	./test.unit.inserter.integer.mt.debug.o
-OBJ_TEST_UNIT_ins_w2m_MT_D	=	./test.unit.inserter.w2m.mt.debug.o
-OBJ_TEST_UNIT_ins_int_MT_R	=	./test.unit.inserter.integer.mt.o
-OBJ_TEST_UNIT_ins_w2m_MT_R	=	./test.unit.inserter.w2m.mt.o
-OBJ_TEST_UNIT_ins_int_ST_D	=	./test.unit.inserter.integer.debug.o
-OBJ_TEST_UNIT_ins_w2m_ST_D	=	./test.unit.inserter.w2m.debug.o
-OBJ_TEST_UNIT_ins_int_ST_R	=	./test.unit.inserter.integer.o
-OBJ_TEST_UNIT_ins_w2m_ST_R	=	./test.unit.inserter.w2m.o
+OBJ_TEST_UNIT_be_fail_MT_D			=	./test.unit.be.fail.mt.debug.o
+OBJ_TEST_UNIT_be_lrsplit_MT_D		=	./test.unit.be.lrsplit.mt.debug.o
+OBJ_TEST_UNIT_be_N_MT_D					=	./test.unit.be.N.mt.debug.o
+OBJ_TEST_UNIT_be_N_filt_MT_D		=	./test.unit.be.N.filtering.mt.debug.o
+OBJ_TEST_UNIT_bec_fail_MT_D			=	./test.unit.bec.fail.mt.debug.o
+OBJ_TEST_UNIT_bec_file_MT_D			=	./test.unit.bec.file.mt.debug.o
+OBJ_TEST_UNIT_bec_fprintf_MT_D	=	./test.unit.bec.fprintf.mt.debug.o
+OBJ_TEST_UNIT_fe_all_MT_D				=	./test.unit.fe.all.mt.debug.o
+OBJ_TEST_UNIT_fe_fail_MT_D			=	./test.unit.fe.fail.mt.debug.o
+OBJ_TEST_UNIT_fe_N_MT_D					=	./test.unit.fe.N.mt.debug.o
+OBJ_TEST_UNIT_fe_null_MT_D			=	./test.unit.fe.null.mt.debug.o
+OBJ_TEST_UNIT_fe_simple_MT_D		=	./test.unit.fe.simple.mt.debug.o
+OBJ_TEST_UNIT_getversion_MT_D		=	./test.unit.getversion.mt.debug.o
+#### TODO: test.unit.levels.2
+OBJ_TEST_UNIT_lvls_dyninit_MT_D	=	./test.unit.levels.dynamic_init.mt.debug.o
+OBJ_TEST_UNIT_lvls_vals_MT_D		=	./test.unit.levels.values.mt.debug.o
+OBJ_TEST_UNIT_dtel2s_MT_D				=	./test.unit.util.dtel2s.mt.debug.o
+OBJ_TEST_UNIT_getcurrtm_MT_D		=	./test.unit.util.getcurrenttime.mt.debug.o
+OBJ_TEST_UNIT_gethostname_MT_D	=	./test.unit.util.gethostname.mt.debug.o
+OBJ_TEST_UNIT_onbailout_MT_D		=	./test.unit.util.onbailout.mt.debug.o
+OBJ_TEST_UNIT_strnlen_MT_D			=	./test.unit.util.strnlen.mt.debug.o
+
+OBJ_TEST_UNIT_be_fail_MT_R			=	./test.unit.be.fail.mt.o
+OBJ_TEST_UNIT_be_lrsplit_MT_R		=	./test.unit.be.lrsplit.mt.o
+OBJ_TEST_UNIT_be_N_MT_R					=	./test.unit.be.N.mt.o
+OBJ_TEST_UNIT_be_N_filt_MT_R		=	./test.unit.be.N.filtering.mt.o
+OBJ_TEST_UNIT_bec_fail_MT_R			=	./test.unit.bec.fail.mt.o
+OBJ_TEST_UNIT_bec_file_MT_R			=	./test.unit.bec.file.mt.o
+OBJ_TEST_UNIT_bec_fprintf_MT_R	=	./test.unit.bec.fprintf.mt.o
+OBJ_TEST_UNIT_fe_all_MT_R				=	./test.unit.fe.all.mt.o
+OBJ_TEST_UNIT_fe_fail_MT_R			=	./test.unit.fe.fail.mt.o
+OBJ_TEST_UNIT_fe_N_MT_R					=	./test.unit.fe.N.mt.o
+OBJ_TEST_UNIT_fe_null_MT_R			=	./test.unit.fe.null.mt.o
+OBJ_TEST_UNIT_fe_simple_MT_R		=	./test.unit.fe.simple.mt.o
+OBJ_TEST_UNIT_getversion_MT_R		=	./test.unit.getversion.mt.o
+#### TODO: test.unit.levels.2
+OBJ_TEST_UNIT_lvls_dyninit_MT_R	=	./test.unit.levels.dynamic_init.mt.o
+OBJ_TEST_UNIT_lvls_vals_MT_R		=	./test.unit.levels.values.mt.o
+OBJ_TEST_UNIT_dtel2s_MT_R				=	./test.unit.util.dtel2s.mt.o
+OBJ_TEST_UNIT_getcurrtm_MT_R		=	./test.unit.util.getcurrenttime.mt.o
+OBJ_TEST_UNIT_gethostname_MT_R	=	./test.unit.util.gethostname.mt.o
+OBJ_TEST_UNIT_onbailout_MT_R		=	./test.unit.util.onbailout.mt.o
+OBJ_TEST_UNIT_strnlen_MT_R			=	./test.unit.util.strnlen.mt.o
+
+OBJ_TEST_UNIT_be_fail_ST_D			=	./test.unit.be.fail.debug.o
+OBJ_TEST_UNIT_be_lrsplit_ST_D		=	./test.unit.be.lrsplit.debug.o
+OBJ_TEST_UNIT_be_N_ST_D					=	./test.unit.be.N.debug.o
+OBJ_TEST_UNIT_be_N_filt_ST_D		=	./test.unit.be.N.filtering.debug.o
+OBJ_TEST_UNIT_bec_fail_ST_D			=	./test.unit.bec.fail.debug.o
+OBJ_TEST_UNIT_bec_file_ST_D			=	./test.unit.bec.file.debug.o
+OBJ_TEST_UNIT_bec_fprintf_ST_D	=	./test.unit.bec.fprintf.debug.o
+OBJ_TEST_UNIT_fe_all_ST_D				=	./test.unit.fe.all.debug.o
+OBJ_TEST_UNIT_fe_fail_ST_D			=	./test.unit.fe.fail.debug.o
+OBJ_TEST_UNIT_fe_N_ST_D					=	./test.unit.fe.N.debug.o
+OBJ_TEST_UNIT_fe_null_ST_D			=	./test.unit.fe.null.debug.o
+OBJ_TEST_UNIT_fe_simple_ST_D		=	./test.unit.fe.simple.debug.o
+OBJ_TEST_UNIT_getversion_ST_D		=	./test.unit.getversion.debug.o
+#### TODO: test.unit.levels.2
+OBJ_TEST_UNIT_lvls_dyninit_ST_D	=	./test.unit.levels.dynamic_init.debug.o
+OBJ_TEST_UNIT_lvls_vals_ST_D		=	./test.unit.levels.values.debug.o
+OBJ_TEST_UNIT_dtel2s_ST_D				=	./test.unit.util.dtel2s.debug.o
+OBJ_TEST_UNIT_getcurrtm_ST_D		=	./test.unit.util.getcurrenttime.debug.o
+OBJ_TEST_UNIT_gethostname_ST_D	=	./test.unit.util.gethostname.debug.o
+OBJ_TEST_UNIT_onbailout_ST_D		=	./test.unit.util.onbailout.debug.o
+OBJ_TEST_UNIT_strnlen_ST_D			=	./test.unit.util.strnlen.debug.o
+
+OBJ_TEST_UNIT_be_fail_ST_R			=	./test.unit.be.fail.o
+OBJ_TEST_UNIT_be_lrsplit_ST_R		=	./test.unit.be.lrsplit.o
+OBJ_TEST_UNIT_be_N_ST_R					=	./test.unit.be.N.o
+OBJ_TEST_UNIT_be_N_filt_ST_R		=	./test.unit.be.N.filtering.o
+OBJ_TEST_UNIT_bec_fail_ST_R			=	./test.unit.bec.fail.o
+OBJ_TEST_UNIT_bec_file_ST_R			=	./test.unit.bec.file.o
+OBJ_TEST_UNIT_bec_fprintf_ST_R	=	./test.unit.bec.fprintf.o
+OBJ_TEST_UNIT_fe_all_ST_R				=	./test.unit.fe.all.o
+OBJ_TEST_UNIT_fe_fail_ST_R			=	./test.unit.fe.fail.o
+OBJ_TEST_UNIT_fe_N_ST_R					=	./test.unit.fe.N.o
+OBJ_TEST_UNIT_fe_null_ST_R			=	./test.unit.fe.null.o
+OBJ_TEST_UNIT_fe_simple_ST_R		=	./test.unit.fe.simple.o
+OBJ_TEST_UNIT_getversion_ST_R		=	./test.unit.getversion.o
+#### TODO: test.unit.levels.2
+OBJ_TEST_UNIT_lvls_dyninit_ST_R	=	./test.unit.levels.dynamic_init.o
+OBJ_TEST_UNIT_lvls_vals_ST_R		=	./test.unit.levels.values.o
+OBJ_TEST_UNIT_dtel2s_ST_R				=	./test.unit.util.dtel2s.o
+OBJ_TEST_UNIT_getcurrtm_ST_R		=	./test.unit.util.getcurrenttime.o
+OBJ_TEST_UNIT_gethostname_ST_R	=	./test.unit.util.gethostname.o
+OBJ_TEST_UNIT_onbailout_ST_R		=	./test.unit.util.onbailout.o
+OBJ_TEST_UNIT_strnlen_ST_R			=	./test.unit.util.strnlen.o
+
+OBJ_TEST_UNIT_ins_int_MT_D			=	./test.unit.inserter.integer.mt.debug.o
+OBJ_TEST_UNIT_ins_w2m_MT_D			=	./test.unit.inserter.w2m.mt.debug.o
+OBJ_TEST_UNIT_ins_stmc_MT_D			=	./test.unit.inserter.stream_character.mt.debug.o
+OBJ_TEST_UNIT_ins_int_MT_R			=	./test.unit.inserter.integer.mt.o
+OBJ_TEST_UNIT_ins_w2m_MT_R			=	./test.unit.inserter.w2m.mt.o
+OBJ_TEST_UNIT_ins_stmc_MT_R			=	./test.unit.inserter.stream_character.mt.o
+OBJ_TEST_UNIT_ins_int_ST_D			=	./test.unit.inserter.integer.debug.o
+OBJ_TEST_UNIT_ins_w2m_ST_D			=	./test.unit.inserter.w2m.debug.o
+OBJ_TEST_UNIT_ins_stmc_ST_D			=	./test.unit.inserter.stream_character.debug.o
+OBJ_TEST_UNIT_ins_int_ST_R			=	./test.unit.inserter.integer.o
+OBJ_TEST_UNIT_ins_w2m_ST_R			=	./test.unit.inserter.w2m.o
+OBJ_TEST_UNIT_ins_stmc_ST_R			=	./test.unit.inserter.stream_character.o
 
 ##################################################
 # Target groups
@@ -3968,102 +4006,110 @@ OBJS_TEST_SCRATCH=\
 
 # Unit Tests
 OBJS_TEST_UNIT=\
- $(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
- $(OBJ_TEST_UNIT_lvls_vals_MT_D)\
- $(OBJ_TEST_UNIT_getcurrtm_MT_D)\
- $(OBJ_TEST_UNIT_dtel2s_MT_D)\
- $(OBJ_TEST_UNIT_getversion_MT_D)\
- $(OBJ_TEST_UNIT_gethostname_MT_D)\
- $(OBJ_TEST_UNIT_onbailout_MT_D)\
- $(OBJ_TEST_UNIT_strnlen_MT_D)\
  \
- $(OBJ_TEST_UNIT_bec_file_MT_D)\
- $(OBJ_TEST_UNIT_bec_fprintf_MT_D)\
- $(OBJ_TEST_UNIT_bec_fail_MT_D)\
  $(OBJ_TEST_UNIT_be_fail_MT_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_D)\
  $(OBJ_TEST_UNIT_be_N_MT_D)\
  $(OBJ_TEST_UNIT_be_N_filt_MT_D)\
- \
+ $(OBJ_TEST_UNIT_bec_fail_MT_D)\
+ $(OBJ_TEST_UNIT_bec_file_MT_D)\
+ $(OBJ_TEST_UNIT_bec_fprintf_MT_D)\
  $(OBJ_TEST_UNIT_fe_all_MT_D)\
  $(OBJ_TEST_UNIT_fe_fail_MT_D)\
  $(OBJ_TEST_UNIT_fe_N_MT_D)\
  $(OBJ_TEST_UNIT_fe_null_MT_D)\
  $(OBJ_TEST_UNIT_fe_simple_MT_D)\
+ $(OBJ_TEST_UNIT_getversion_MT_D)\
+ \
+ $(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
+ $(OBJ_TEST_UNIT_lvls_vals_MT_D)\
+ $(OBJ_TEST_UNIT_dtel2s_MT_D)\
+ $(OBJ_TEST_UNIT_getcurrtm_MT_D)\
+ $(OBJ_TEST_UNIT_gethostname_MT_D)\
+ $(OBJ_TEST_UNIT_onbailout_MT_D)\
+ $(OBJ_TEST_UNIT_strnlen_MT_D)\
+ \
  $(OBJ_TEST_UNIT_ins_int_MT_D)\
  $(OBJ_TEST_UNIT_ins_w2m_MT_D)\
- $(OBJ_TEST_UNIT_lvls_dyninit_MT_R)\
- $(OBJ_TEST_UNIT_lvls_vals_MT_R)\
- $(OBJ_TEST_UNIT_getcurrtm_MT_R)\
- $(OBJ_TEST_UNIT_dtel2s_MT_R)\
- $(OBJ_TEST_UNIT_getversion_MT_R)\
- $(OBJ_TEST_UNIT_gethostname_MT_R)\
- $(OBJ_TEST_UNIT_onbailout_MT_R)\
- $(OBJ_TEST_UNIT_strnlen_MT_R)\
+ $(OBJ_TEST_UNIT_ins_stmc_MT_D)\
  \
- $(OBJ_TEST_UNIT_bec_file_MT_R)\
- $(OBJ_TEST_UNIT_bec_fprintf_MT_R)\
- $(OBJ_TEST_UNIT_bec_fail_MT_R)\
  $(OBJ_TEST_UNIT_be_fail_MT_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_R)\
  $(OBJ_TEST_UNIT_be_N_MT_R)\
  $(OBJ_TEST_UNIT_be_N_filt_MT_R)\
- \
+ $(OBJ_TEST_UNIT_bec_fail_MT_R)\
+ $(OBJ_TEST_UNIT_bec_file_MT_R)\
+ $(OBJ_TEST_UNIT_bec_fprintf_MT_R)\
  $(OBJ_TEST_UNIT_fe_all_MT_R)\
  $(OBJ_TEST_UNIT_fe_fail_MT_R)\
  $(OBJ_TEST_UNIT_fe_N_MT_R)\
  $(OBJ_TEST_UNIT_fe_null_MT_R)\
  $(OBJ_TEST_UNIT_fe_simple_MT_R)\
+ $(OBJ_TEST_UNIT_getversion_MT_R)\
+ \
+ $(OBJ_TEST_UNIT_lvls_dyninit_MT_R)\
+ $(OBJ_TEST_UNIT_lvls_vals_MT_R)\
+ $(OBJ_TEST_UNIT_dtel2s_MT_R)\
+ $(OBJ_TEST_UNIT_getcurrtm_MT_R)\
+ $(OBJ_TEST_UNIT_gethostname_MT_R)\
+ $(OBJ_TEST_UNIT_onbailout_MT_R)\
+ $(OBJ_TEST_UNIT_strnlen_MT_R)\
+ \
  $(OBJ_TEST_UNIT_ins_int_MT_R)\
  $(OBJ_TEST_UNIT_ins_w2m_MT_R)\
- $(OBJ_TEST_UNIT_lvls_dyninit_ST_D)\
- $(OBJ_TEST_UNIT_lvls_vals_ST_D)\
- $(OBJ_TEST_UNIT_getcurrtm_ST_D)\
- $(OBJ_TEST_UNIT_dtel2s_ST_D)\
- $(OBJ_TEST_UNIT_getversion_ST_D)\
- $(OBJ_TEST_UNIT_gethostname_ST_D)\
- $(OBJ_TEST_UNIT_onbailout_ST_D)\
- $(OBJ_TEST_UNIT_strnlen_ST_D)\
+ $(OBJ_TEST_UNIT_ins_stmc_MT_R)\
  \
- $(OBJ_TEST_UNIT_bec_file_ST_D)\
- $(OBJ_TEST_UNIT_bec_fprintf_ST_D)\
- $(OBJ_TEST_UNIT_bec_fail_ST_D)\
  $(OBJ_TEST_UNIT_be_fail_ST_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_D)\
  $(OBJ_TEST_UNIT_be_N_ST_D)\
  $(OBJ_TEST_UNIT_be_N_filt_ST_D)\
- \
+ $(OBJ_TEST_UNIT_bec_fail_ST_D)\
+ $(OBJ_TEST_UNIT_bec_file_ST_D)\
+ $(OBJ_TEST_UNIT_bec_fprintf_ST_D)\
  $(OBJ_TEST_UNIT_fe_all_ST_D)\
  $(OBJ_TEST_UNIT_fe_fail_ST_D)\
  $(OBJ_TEST_UNIT_fe_N_ST_D)\
  $(OBJ_TEST_UNIT_fe_null_ST_D)\
  $(OBJ_TEST_UNIT_fe_simple_ST_D)\
+ $(OBJ_TEST_UNIT_getversion_ST_D)\
+ \
+ $(OBJ_TEST_UNIT_lvls_dyninit_ST_D)\
+ $(OBJ_TEST_UNIT_lvls_vals_ST_D)\
+ $(OBJ_TEST_UNIT_dtel2s_ST_D)\
+ $(OBJ_TEST_UNIT_getcurrtm_ST_D)\
+ $(OBJ_TEST_UNIT_gethostname_ST_D)\
+ $(OBJ_TEST_UNIT_onbailout_ST_D)\
+ $(OBJ_TEST_UNIT_strnlen_ST_D)\
+ \
  $(OBJ_TEST_UNIT_ins_int_ST_D)\
  $(OBJ_TEST_UNIT_ins_w2m_ST_D)\
- $(OBJ_TEST_UNIT_lvls_dyninit_ST_R)\
- $(OBJ_TEST_UNIT_lvls_vals_ST_R)\
- $(OBJ_TEST_UNIT_getcurrtm_ST_R)\
- $(OBJ_TEST_UNIT_dtel2s_ST_R)\
- $(OBJ_TEST_UNIT_getversion_ST_R)\
- $(OBJ_TEST_UNIT_gethostname_ST_R)\
- $(OBJ_TEST_UNIT_onbailout_ST_R)\
- $(OBJ_TEST_UNIT_strnlen_ST_R)\
+ $(OBJ_TEST_UNIT_ins_stmc_ST_D)\
  \
- $(OBJ_TEST_UNIT_bec_file_ST_R)\
- $(OBJ_TEST_UNIT_bec_fprintf_ST_R)\
- $(OBJ_TEST_UNIT_bec_fail_ST_R)\
  $(OBJ_TEST_UNIT_be_fail_ST_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_R)\
  $(OBJ_TEST_UNIT_be_N_ST_R)\
  $(OBJ_TEST_UNIT_be_N_filt_ST_R)\
- \
+ $(OBJ_TEST_UNIT_bec_fail_ST_R)\
+ $(OBJ_TEST_UNIT_bec_file_ST_R)\
+ $(OBJ_TEST_UNIT_bec_fprintf_ST_R)\
  $(OBJ_TEST_UNIT_fe_all_ST_R)\
  $(OBJ_TEST_UNIT_fe_fail_ST_R)\
  $(OBJ_TEST_UNIT_fe_N_ST_R)\
  $(OBJ_TEST_UNIT_fe_null_ST_R)\
  $(OBJ_TEST_UNIT_fe_simple_ST_R)\
+ $(OBJ_TEST_UNIT_getversion_ST_R)\
+ \
+ $(OBJ_TEST_UNIT_lvls_dyninit_ST_R)\
+ $(OBJ_TEST_UNIT_lvls_vals_ST_R)\
+ $(OBJ_TEST_UNIT_dtel2s_ST_R)\
+ $(OBJ_TEST_UNIT_getcurrtm_ST_R)\
+ $(OBJ_TEST_UNIT_gethostname_ST_R)\
+ $(OBJ_TEST_UNIT_onbailout_ST_R)\
+ $(OBJ_TEST_UNIT_strnlen_ST_R)\
+ \
  $(OBJ_TEST_UNIT_ins_int_ST_R)\
  $(OBJ_TEST_UNIT_ins_w2m_ST_R)\
+ $(OBJ_TEST_UNIT_ins_stmc_ST_R)\
  \
 
 ########################################
@@ -4736,102 +4782,106 @@ TARGETS_TEST_SCRATCH=\
  \
 
 TARGETS_TEST_UNIT=\
- $(TARG_TEST_UNIT_lvls_dyninit_MT_D)\
- $(TARG_TEST_UNIT_lvls_vals_MT_D)\
- $(TARG_TEST_UNIT_getcurrtm_MT_D)\
- $(TARG_TEST_UNIT_dtel2s_MT_D)\
- $(TARG_TEST_UNIT_getversion_MT_D)\
- $(TARG_TEST_UNIT_gethostname_MT_D)\
- $(TARG_TEST_UNIT_onbailout_MT_D)\
- $(TARG_TEST_UNIT_strnlen_MT_D)\
- \
- $(TARG_TEST_UNIT_bec_file_MT_D)\
- $(TARG_TEST_UNIT_bec_fprintf_MT_D)\
- $(TARG_TEST_UNIT_bec_fail_MT_D)\
  $(TARG_TEST_UNIT_be_fail_MT_D)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_D)\
  $(TARG_TEST_UNIT_be_N_MT_D)\
  $(TARG_TEST_UNIT_be_N_filt_MT_D)\
- \
+ $(TARG_TEST_UNIT_bec_file_MT_D)\
+ $(TARG_TEST_UNIT_bec_fprintf_MT_D)\
+ $(TARG_TEST_UNIT_bec_fail_MT_D)\
  $(TARG_TEST_UNIT_fe_all_MT_D)\
  $(TARG_TEST_UNIT_fe_fail_MT_D)\
  $(TARG_TEST_UNIT_fe_N_MT_D)\
  $(TARG_TEST_UNIT_fe_null_MT_D)\
  $(TARG_TEST_UNIT_fe_simple_MT_D)\
+ $(TARG_TEST_UNIT_getversion_MT_D)\
+ \
+ $(TARG_TEST_UNIT_lvls_dyninit_MT_D)\
+ $(TARG_TEST_UNIT_lvls_vals_MT_D)\
+ $(TARG_TEST_UNIT_dtel2s_MT_D)\
+ $(TARG_TEST_UNIT_getcurrtm_MT_D)\
+ $(TARG_TEST_UNIT_gethostname_MT_D)\
+ $(TARG_TEST_UNIT_onbailout_MT_D)\
+ $(TARG_TEST_UNIT_strnlen_MT_D)\
+ \
  $(TARG_TEST_UNIT_ins_int_MT_D)\
  $(TARG_TEST_UNIT_ins_w2m_MT_D)\
- $(TARG_TEST_UNIT_lvls_dyninit_MT_R)\
- $(TARG_TEST_UNIT_lvls_vals_MT_R)\
- $(TARG_TEST_UNIT_getcurrtm_MT_R)\
- $(TARG_TEST_UNIT_dtel2s_MT_R)\
- $(TARG_TEST_UNIT_getversion_MT_R)\
- $(TARG_TEST_UNIT_gethostname_MT_R)\
- $(TARG_TEST_UNIT_onbailout_MT_R)\
- $(TARG_TEST_UNIT_strnlen_MT_R)\
- \
- $(TARG_TEST_UNIT_bec_file_MT_R)\
- $(TARG_TEST_UNIT_bec_fprintf_MT_R)\
- $(TARG_TEST_UNIT_bec_fail_MT_R)\
+ $(TARG_TEST_UNIT_ins_stmc_MT_D)\
  $(TARG_TEST_UNIT_be_fail_MT_R)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_R)\
  $(TARG_TEST_UNIT_be_N_MT_R)\
  $(TARG_TEST_UNIT_be_N_filt_MT_R)\
- \
+ $(TARG_TEST_UNIT_bec_file_MT_R)\
+ $(TARG_TEST_UNIT_bec_fprintf_MT_R)\
+ $(TARG_TEST_UNIT_bec_fail_MT_R)\
  $(TARG_TEST_UNIT_fe_all_MT_R)\
  $(TARG_TEST_UNIT_fe_fail_MT_R)\
  $(TARG_TEST_UNIT_fe_N_MT_R)\
  $(TARG_TEST_UNIT_fe_null_MT_R)\
  $(TARG_TEST_UNIT_fe_simple_MT_R)\
+ $(TARG_TEST_UNIT_getversion_MT_R)\
+ \
+ $(TARG_TEST_UNIT_lvls_dyninit_MT_R)\
+ $(TARG_TEST_UNIT_lvls_vals_MT_R)\
+ $(TARG_TEST_UNIT_dtel2s_MT_R)\
+ $(TARG_TEST_UNIT_getcurrtm_MT_R)\
+ $(TARG_TEST_UNIT_gethostname_MT_R)\
+ $(TARG_TEST_UNIT_onbailout_MT_R)\
+ $(TARG_TEST_UNIT_strnlen_MT_R)\
+ \
  $(TARG_TEST_UNIT_ins_int_MT_R)\
  $(TARG_TEST_UNIT_ins_w2m_MT_R)\
- $(TARG_TEST_UNIT_lvls_dyninit_ST_D)\
- $(TARG_TEST_UNIT_lvls_vals_ST_D)\
- $(TARG_TEST_UNIT_getcurrtm_ST_D)\
- $(TARG_TEST_UNIT_dtel2s_ST_D)\
- $(TARG_TEST_UNIT_getversion_ST_D)\
- $(TARG_TEST_UNIT_gethostname_ST_D)\
- $(TARG_TEST_UNIT_onbailout_ST_D)\
- $(TARG_TEST_UNIT_strnlen_ST_D)\
- \
- $(TARG_TEST_UNIT_bec_file_ST_D)\
- $(TARG_TEST_UNIT_bec_fprintf_ST_D)\
- $(TARG_TEST_UNIT_bec_fail_ST_D)\
+ $(TARG_TEST_UNIT_ins_stmc_MT_R)\
  $(TARG_TEST_UNIT_be_fail_ST_D)\
  $(TARG_TEST_UNIT_be_lrsplit_ST_D)\
  $(TARG_TEST_UNIT_be_N_ST_D)\
  $(TARG_TEST_UNIT_be_N_filt_ST_D)\
- \
+ $(TARG_TEST_UNIT_bec_file_ST_D)\
+ $(TARG_TEST_UNIT_bec_fprintf_ST_D)\
+ $(TARG_TEST_UNIT_bec_fail_ST_D)\
  $(TARG_TEST_UNIT_fe_all_ST_D)\
  $(TARG_TEST_UNIT_fe_fail_ST_D)\
  $(TARG_TEST_UNIT_fe_N_ST_D)\
  $(TARG_TEST_UNIT_fe_null_ST_D)\
  $(TARG_TEST_UNIT_fe_simple_ST_D)\
+ $(TARG_TEST_UNIT_getversion_ST_D)\
+ \
+ $(TARG_TEST_UNIT_lvls_dyninit_ST_D)\
+ $(TARG_TEST_UNIT_lvls_vals_ST_D)\
+ $(TARG_TEST_UNIT_dtel2s_ST_D)\
+ $(TARG_TEST_UNIT_getcurrtm_ST_D)\
+ $(TARG_TEST_UNIT_gethostname_ST_D)\
+ $(TARG_TEST_UNIT_onbailout_ST_D)\
+ $(TARG_TEST_UNIT_strnlen_ST_D)\
+ \
  $(TARG_TEST_UNIT_ins_int_ST_D)\
  $(TARG_TEST_UNIT_ins_w2m_ST_D)\
- $(TARG_TEST_UNIT_lvls_dyninit_ST_R)\
- $(TARG_TEST_UNIT_lvls_vals_ST_R)\
- $(TARG_TEST_UNIT_getcurrtm_ST_R)\
- $(TARG_TEST_UNIT_dtel2s_ST_R)\
- $(TARG_TEST_UNIT_getversion_ST_R)\
- $(TARG_TEST_UNIT_gethostname_ST_R)\
- $(TARG_TEST_UNIT_onbailout_ST_R)\
- $(TARG_TEST_UNIT_strnlen_ST_R)\
- \
- $(TARG_TEST_UNIT_bec_file_ST_R)\
- $(TARG_TEST_UNIT_bec_fprintf_ST_R)\
- $(TARG_TEST_UNIT_bec_fail_ST_R)\
+ $(TARG_TEST_UNIT_ins_stmc_ST_D)\
  $(TARG_TEST_UNIT_be_fail_ST_R)\
  $(TARG_TEST_UNIT_be_lrsplit_ST_R)\
  $(TARG_TEST_UNIT_be_N_ST_R)\
  $(TARG_TEST_UNIT_be_N_filt_ST_R)\
- \
+ $(TARG_TEST_UNIT_bec_file_ST_R)\
+ $(TARG_TEST_UNIT_bec_fprintf_ST_R)\
+ $(TARG_TEST_UNIT_bec_fail_ST_R)\
  $(TARG_TEST_UNIT_fe_all_ST_R)\
  $(TARG_TEST_UNIT_fe_fail_ST_R)\
  $(TARG_TEST_UNIT_fe_N_ST_R)\
  $(TARG_TEST_UNIT_fe_null_ST_R)\
  $(TARG_TEST_UNIT_fe_simple_ST_R)\
+ $(TARG_TEST_UNIT_getversion_ST_R)\
+ \
+ $(TARG_TEST_UNIT_lvls_dyninit_ST_R)\
+ $(TARG_TEST_UNIT_lvls_vals_ST_R)\
+ $(TARG_TEST_UNIT_dtel2s_ST_R)\
+ $(TARG_TEST_UNIT_getcurrtm_ST_R)\
+ $(TARG_TEST_UNIT_gethostname_ST_R)\
+ $(TARG_TEST_UNIT_onbailout_ST_R)\
+ $(TARG_TEST_UNIT_strnlen_ST_R)\
+ \
  $(TARG_TEST_UNIT_ins_int_ST_R)\
  $(TARG_TEST_UNIT_ins_w2m_ST_R)\
+ $(TARG_TEST_UNIT_ins_stmc_ST_R)\
  \
 
 ############################################################
@@ -5319,9 +5369,13 @@ test.unit_:
 	$(TARG_TEST_UNIT_ins_int_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_int_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_w2m_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_stmc_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_w2m_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_stmc_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_w2m_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_stmc_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_w2m_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_stmc_ST_R) --verbosity=$(TEST_VERBOSITY)
 
 test.examples_:
 	@echo Running Example programs ...
@@ -6339,6 +6393,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_fe_simple_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_ins_int_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_ins_w2m_MT_D)
+	@-$(RM) $(TARG_TEST_UNIT_ins_stmc_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_dyninit_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_vals_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_getcurrtm_MT_R)
@@ -6361,6 +6416,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_fe_simple_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_ins_int_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_ins_w2m_MT_R)
+	@-$(RM) $(TARG_TEST_UNIT_ins_stmc_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_dyninit_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_vals_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_getcurrtm_ST_D)
@@ -6383,6 +6439,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_fe_simple_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_ins_int_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_ins_w2m_ST_D)
+	@-$(RM) $(TARG_TEST_UNIT_ins_stmc_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_dyninit_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_lvls_vals_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_getcurrtm_ST_R)
@@ -6405,6 +6462,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_fe_simple_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_ins_int_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_ins_w2m_ST_R)
+	@-$(RM) $(TARG_TEST_UNIT_ins_stmc_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_dyninit_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_vals_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_getcurrtm_MT_D)
@@ -6427,6 +6485,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_fe_simple_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_int_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_w2m_MT_D)
+	@-$(RM) $(OBJ_TEST_UNIT_ins_stmc_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_dyninit_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_vals_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_getcurrtm_MT_R)
@@ -6449,6 +6508,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_fe_simple_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_int_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_w2m_MT_R)
+	@-$(RM) $(OBJ_TEST_UNIT_ins_stmc_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_dyninit_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_vals_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_getcurrtm_ST_D)
@@ -6471,6 +6531,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_fe_simple_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_int_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_w2m_ST_D)
+	@-$(RM) $(OBJ_TEST_UNIT_ins_stmc_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_dyninit_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_lvls_vals_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_getcurrtm_ST_R)
@@ -6493,6 +6554,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_fe_simple_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_int_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_ins_w2m_ST_R)
+	@-$(RM) $(OBJ_TEST_UNIT_ins_stmc_ST_R)
 
 clean.test.component:
 	@echo Cleaning component tests ...
@@ -6763,7 +6825,7 @@ clean.unittest.ace:
 endif # ACE
 
 
-clean.libs: 		clean.libs.util clean.libs.core clean.libs.be clean.libs.fe
+clean.libs:		clean.libs.util clean.libs.core clean.libs.be clean.libs.fe
 
 clean.libs.3pty:	\
  clean.libs.b64 \
@@ -6772,7 +6834,7 @@ clean.libs.3pty:	\
  clean.libs.xcover \
  clean.libs.xtests
 
-clean.libs.all: 	clean.libs clean.libs.3pty
+clean.libs.all:	clean.libs clean.libs.3pty
 
 clean.test:			clean.test.unit clean.test.component clean.test.scratch clean.test.performance
 
@@ -16628,5 +16690,73 @@ $(TARG_TEST_UNIT_ins_w2m_ST_R):	\
 
 $(OBJ_TEST_UNIT_ins_w2m_ST_R):	$(PROJ_TEST_UNIT_DIR)/inserters/test.unit.inserter.w2m/test.unit.inserter.w2m.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/inserters/test.unit.inserter.w2m/test.unit.inserter.w2m.cpp
+
+$(TARG_TEST_UNIT_ins_stmc_MT_D):	\
+			$(OBJ_TEST_UNIT_ins_stmc_MT_D)\
+			$(LIB_CORE_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -o $@ \
+		$(OBJ_TEST_UNIT_ins_stmc_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_UNIT_ins_stmc_MT_D):	$(PROJ_TEST_UNIT_DIR)/inserters/test.unit.inserter.stream_character/test.unit.inserter.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/inserters/test.unit.inserter.stream_character/test.unit.inserter.stream_character.cpp
+
+$(TARG_TEST_UNIT_ins_stmc_MT_R):	\
+			$(OBJ_TEST_UNIT_ins_stmc_MT_R)\
+			$(LIB_CORE_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -o $@ \
+		$(OBJ_TEST_UNIT_ins_stmc_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_UNIT_ins_stmc_MT_R):	$(PROJ_TEST_UNIT_DIR)/inserters/test.unit.inserter.stream_character/test.unit.inserter.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/inserters/test.unit.inserter.stream_character/test.unit.inserter.stream_character.cpp
+
+$(TARG_TEST_UNIT_ins_stmc_ST_D):	\
+			$(OBJ_TEST_UNIT_ins_stmc_ST_D)\
+			$(LIB_CORE_ST_D)\
+			$(LIB_UTIL_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -o $@ \
+		$(OBJ_TEST_UNIT_ins_stmc_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIB_UTIL_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_UNIT_ins_stmc_ST_D):	$(PROJ_TEST_UNIT_DIR)/inserters/test.unit.inserter.stream_character/test.unit.inserter.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/inserters/test.unit.inserter.stream_character/test.unit.inserter.stream_character.cpp
+
+$(TARG_TEST_UNIT_ins_stmc_ST_R):	\
+			$(OBJ_TEST_UNIT_ins_stmc_ST_R)\
+			$(LIB_CORE_ST_R)\
+			$(LIB_UTIL_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -o $@ \
+		$(OBJ_TEST_UNIT_ins_stmc_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIB_UTIL_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_UNIT_ins_stmc_ST_R):	$(PROJ_TEST_UNIT_DIR)/inserters/test.unit.inserter.stream_character/test.unit.inserter.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/inserters/test.unit.inserter.stream_character/test.unit.inserter.stream_character.cpp
 
 ############################### end of file ################################

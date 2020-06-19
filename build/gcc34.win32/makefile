@@ -1,11 +1,11 @@
 ############################################################################
-# File: 	makefile
+# File:	makefile
 #
 # Purpose:	Makefile for the Pantheios project, for the GCC 3.4
 #			compiler, on Win32
 #
 # Created:	15th February 2005
-# Updated:	13th June 2020
+# Updated:	19th June 2020
 #
 ############################################################################
 
@@ -119,22 +119,22 @@ STLSOFT_PROJ_INCLUDE	=	-I"$(STLSOFT)\include"
 ########################################
 # tools
 
-CC                      =   gcc
-CPPC                    =   g++
-AR                      =   ar
-LD                      =   g++
-RM                      =   del /f
-CP                      =   copy
-RC                      =   rc
+CC		=	gcc
+CPPC	=	g++
+AR		=	ar
+LD		=	g++
+RM		=	del /f
+CP		=	copy
+RC		=	rc
 
 ########################################
 # Include directory symbols
 
-INCLUDES_LEADER 	=	
+INCLUDES_LEADER	=	
 
 PROJ_INCLUDE		=	-I$(PROJ_INCLUDE_DIR)
 
-ENV_INCLUDES 	=
+ENV_INCLUDES	=
 
 COMMON_INCLUDES		=
 
@@ -369,7 +369,7 @@ CPPC_XTESTS_INCLUDES_ST_R =\
 ########################################
 # Library directory symbols
 
-LIBS_LEADER 		=	
+LIBS_LEADER		=	
 
 # lib paths
 
@@ -401,7 +401,7 @@ TARGET_LIB_ST_R	= -ladvapi32 -lkernel32 -lole32 -loleaut32 -lshlwapi -luser32 -l
 
 OS_DEFS				=	-DWIN32
 
-COMMON_DEFS 		=
+COMMON_DEFS		=
 
 CUSTOM_DEFS			=
 
@@ -428,7 +428,7 @@ CPPC_DEFS =\
 
 # CC flags
 
-CC_F_NOLOGO 			=	
+CC_F_NOLOGO			=	
 CC_F_COMPILE_ONLY		=	-c
 CC_F_WARNING_MAX		=	-Wall -pedantic -Wno-long-long -Wno-unused-value -Wno-unused-function -Wundef -Wshadow
 CC_F_WARNING_ERR		=	-Werror
@@ -442,17 +442,17 @@ CC_F_ADDITIONAL			=
 # CPPC flags
 
 CPPC_F_NOLOGO			=	
-CPPC_F_COMPILE_ONLY 	=	-c
+CPPC_F_COMPILE_ONLY	=	-c
 CPPC_F_WARNING_MAX		=	-Wall -pedantic -Wno-long-long -Wno-unused-value -Wno-unused-function -Wno-uninitialized
 CPPC_F_WARNING_ERR		=	-Werror
 CPPC_F_EXCEPTIONS_ON	=	
 CPPC_F_EXCEPTIONS_OFF	=	
 CPPC_F_EXCEPTIONS		=	$(CPPC_F_EXCEPTIONS_ON)
 CPPC_F_RTTI_ON			=	
-CPPC_F_RTTI_OFF 		=	
+CPPC_F_RTTI_OFF		=	
 CPPC_F_RTTI				=	$(CPPC_F_RTTI_ON)
 CPPC_F_WARNINGS_LIMIT	=	
-CPPC_F_MINIMUM_SIZE 	=	-O1
+CPPC_F_MINIMUM_SIZE	=	-O1
 CPPC_F_MAXIMUM_SPEED	=	-O3
 CPPC_F_OPTIMISED		=	$(CPPC_F_MAXIMUM_SPEED)
 CPPC_APP_F_WARNING_MAX	=	-Wall -Wno-long-long -Wno-unused-value -Wno-unused-function -Wno-uninitialized
@@ -463,7 +463,7 @@ CPPC_F_ADDITIONAL		=
 
 CC_TOOL_FLAGS		=
 
-CPPC_TOOL_FLAGS 	=
+CPPC_TOOL_FLAGS	=
 
 
 
@@ -682,12 +682,12 @@ CPPC_TEST_UNIT_ARGS_ST_R			=	$(CPPC_TEST_UNIT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE)
 
 # AR args
 
-AR_ARGS 			=	
+AR_ARGS			=	
 
 
 # LD flags
 
-LD_ARGS 		=	
+LD_ARGS		=	
 
 LD_F_NOLOGO = 
 
@@ -702,11 +702,15 @@ LD_ARGS_ST_R =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
 # Headers
 
 CORE_HEADERS=\
- $(PROJ_INCLUDE_DIR)\pantheios\pantheios.h\
+ \
+ $(PROJ_INCLUDE_DIR)\pantheios\assert.h\
  $(PROJ_INCLUDE_DIR)\pantheios\backend.h\
- $(PROJ_INCLUDE_DIR)\pantheios\init_codes.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\fileline.h\
  $(PROJ_INCLUDE_DIR)\pantheios\frontend.h\
+ $(PROJ_INCLUDE_DIR)\pantheios\init_codes.h\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\pan.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\pantheios.h\
  $(PROJ_INCLUDE_DIR)\pantheios\pantheios.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\trace.h\
  \
@@ -721,8 +725,11 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\fmt.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\hex_ptr.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\hostid.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\i.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\ids.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\integer.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\interval.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\m2t.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\m2w.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\p.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\pad.hpp\
@@ -732,9 +739,10 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\slice.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\stream_character.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\threadid.hpp\
- $(PROJ_INCLUDE_DIR)\pantheios\inserters\w2m.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\variant_bool.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\vb.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\w2m.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\inserters\w2t.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\xi.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\xp.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\inserters\windows\hive.hpp\
@@ -748,6 +756,7 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\shim_declarations.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\slice.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\stock_levels.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\internal\string_encoding.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\threading.h\
  $(PROJ_INCLUDE_DIR)\pantheios\internal\winlean.h\
  \
@@ -755,7 +764,6 @@ CORE_HEADERS=\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\generated\log_dispatch_functions.h\
  $(PROJ_INCLUDE_DIR)\pantheios\generated\log_dispatch_functions.hpp\
- $(PROJ_INCLUDE_DIR)\pantheios\internal\generated\log_functions.inl\
  $(PROJ_INCLUDE_DIR)\pantheios\generated\log_functions.h\
  $(PROJ_INCLUDE_DIR)\pantheios\generated\log_functions.hpp\
  $(PROJ_INCLUDE_DIR)\pantheios\generated\log_sev_functions.hpp\
@@ -771,6 +779,8 @@ CORE_HEADERS=\
  $(PROJ_INCLUDE_DIR)\pantheios\util\core\apidefs.hpp\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\memory\auto_buffer_selector.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\util\memory\inserters.hpp\
+ $(PROJ_INCLUDE_DIR)\pantheios\util\memory\memcopy.h\
  \
  $(PROJ_INCLUDE_DIR)\pantheios\util\severity\ACE.h\
  $(PROJ_INCLUDE_DIR)\pantheios\util\severity\syslog.h\
@@ -860,71 +870,71 @@ LIB_FE_WINREG_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).fe.WindowsRegistry.$(CO
 LIB_FE_WINREG_WC_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).fe.WindowsRegistry.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
 
 #  back-end(s)
-LIB_BEC_STOCK_MT_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_LRSPLIT_MT_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_N_MT_D 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_TEST_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_TEST_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_TEST_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_TEST_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_FAIL_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_FAIL_MT_D 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_FAIL_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_FAIL_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_FILE_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_FILE_WC_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_FILE_MT_D 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_FILE_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_FILE_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_FPRINTF_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_FPRINTF_WC_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_FPRINTF_MT_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_FPRINTF_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_FPRINTF_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_NULL_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_NULL_MT_D 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_NULL_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_NULL_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_STOCK_MT_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_LRSPLIT_MT_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_N_MT_D							=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_TEST_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_TEST_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_TEST_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_TEST_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_FAIL_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_FAIL_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_FAIL_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_FAIL_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_FILE_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_FILE_WC_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_FILE_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_FILE_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_FILE_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_FPRINTF_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_FPRINTF_WC_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_FPRINTF_MT_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_FPRINTF_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_FPRINTF_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_NULL_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_NULL_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_NULL_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_NULL_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.debug.a
 ifdef ACE
-LIB_BEC_ACE_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_ACE_MT_D 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_ACE_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_ACE_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_ACE_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_ACE_MT_D						=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_ACE_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_ACE_MT_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.ACE.$(COMP_ARCH_OS_TAG).mt.debug.a
 endif # ACE
-LIB_BEC_COMERROBJ_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_COMERROBJ_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.a
 LIB_BEC_COMERROBJWC_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_COMERROBJ_MT_D 	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_COMERROBJ_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_COMERROBJ_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_SPEECH_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_SPEECHWC_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_SPEECH_MT_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_SPEECH_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_SPEECH_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_WINEVLOG_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_WINEVLOGWC_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_WINEVLOG_MT_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_WINEVLOG_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_WINEVLOG_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_WINMSGBX_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_WINMSGBX_MT_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_WINMSGBX_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_WINMSGBX_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_W32CONS_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_W32CONSWC_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_W32CONS_MT_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_W32CONS_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_W32CONS_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_WINDBGR_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_WINDBGR_WC_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_WINDBGR_MT_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_WINDBGR_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_WINDBGR_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEC_WINSYSLOG_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_COMERROBJ_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_COMERROBJ_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_COMERROBJ_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_SPEECH_MT_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_SPEECHWC_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_SPEECH_MT_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_SPEECH_MT_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_SPEECH_MT_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_WINEVLOG_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_WINEVLOGWC_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_WINEVLOG_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_WINEVLOG_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_WINEVLOG_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_WINMSGBX_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_WINMSGBX_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_WINMSGBX_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_WINMSGBX_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_W32CONS_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_W32CONSWC_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_W32CONS_MT_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_W32CONS_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_W32CONS_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_WINDBGR_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_WINDBGR_WC_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_WINDBGR_MT_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_WINDBGR_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_WINDBGR_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEC_WINSYSLOG_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.a
 LIB_BEC_WINSYSLOG_WC_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.WithCallback.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BE_WINSYSLOG_MT_D 	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BEL_WINSYSLOG_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.a
-LIB_BER_WINSYSLOG_MT_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BE_WINSYSLOG_MT_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BEL_WINSYSLOG_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.a
+LIB_BER_WINSYSLOG_MT_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.a
 
 #  util
 LIB_UTIL_MT_R				=   $(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).util.$(COMP_ARCH_OS_TAG).mt.a
@@ -949,71 +959,71 @@ LIB_FE_WINREG_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).fe.WindowsRegistry.$(CO
 LIB_FE_WINREG_WC_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).fe.WindowsRegistry.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
 
 #  back-end(s)
-LIB_BEC_STOCK_MT_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_LRSPLIT_MT_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_N_MT_R 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_TEST_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_TEST_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_TEST_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_TEST_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_FAIL_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_FAIL_MT_R 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_FAIL_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_FAIL_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_FILE_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_FILE_WC_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_FILE_MT_R 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_FILE_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_FILE_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_FPRINTF_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_FPRINTF_WC_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_FPRINTF_MT_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_FPRINTF_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_FPRINTF_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_NULL_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_NULL_MT_R 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_NULL_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_NULL_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_STOCK_MT_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_LRSPLIT_MT_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_N_MT_R							=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_TEST_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_TEST_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_TEST_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_TEST_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_FAIL_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_FAIL_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_FAIL_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_FAIL_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_FILE_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_FILE_WC_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_FILE_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_FILE_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_FILE_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_FPRINTF_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_FPRINTF_WC_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_FPRINTF_MT_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_FPRINTF_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_FPRINTF_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_NULL_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_NULL_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_NULL_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_NULL_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).mt.a
 ifdef ACE
-LIB_BEC_ACE_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.ACE.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_ACE_MT_R 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.ACE.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_ACE_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.ACE.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_ACE_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.ACE.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_ACE_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.ACE.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_ACE_MT_R						=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.ACE.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_ACE_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.ACE.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_ACE_MT_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.ACE.$(COMP_ARCH_OS_TAG).mt.a
 endif # ACE
-LIB_BEC_COMERROBJ_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_COMERROBJ_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.a
 LIB_BEC_COMERROBJWC_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_COMERROBJ_MT_R 	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_COMERROBJ_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_COMERROBJ_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_SPEECH_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_SPEECHWC_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_SPEECH_MT_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_SPEECH_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_SPEECH_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_WINEVLOG_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_WINEVLOGWC_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_WINEVLOG_MT_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_WINEVLOG_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_WINEVLOG_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_WINMSGBX_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_WINMSGBX_MT_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_WINMSGBX_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_WINMSGBX_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_W32CONS_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_W32CONSWC_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_W32CONS_MT_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_W32CONS_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_W32CONS_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_WINDBGR_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_WINDBGR_WC_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_WINDBGR_MT_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_WINDBGR_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_WINDBGR_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEC_WINSYSLOG_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_COMERROBJ_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_COMERROBJ_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_COMERROBJ_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_SPEECH_MT_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_SPEECHWC_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_SPEECH_MT_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_SPEECH_MT_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_SPEECH_MT_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_WINEVLOG_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_WINEVLOGWC_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_WINEVLOG_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_WINEVLOG_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_WINEVLOG_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_WINMSGBX_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_WINMSGBX_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_WINMSGBX_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_WINMSGBX_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_W32CONS_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_W32CONSWC_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_W32CONS_MT_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_W32CONS_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_W32CONS_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_WINDBGR_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_WINDBGR_WC_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_WINDBGR_MT_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_WINDBGR_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_WINDBGR_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEC_WINSYSLOG_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.a
 LIB_BEC_WINSYSLOG_WC_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.WithCallback.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BE_WINSYSLOG_MT_R 	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BEL_WINSYSLOG_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.a
-LIB_BER_WINSYSLOG_MT_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BE_WINSYSLOG_MT_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BEL_WINSYSLOG_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.a
+LIB_BER_WINSYSLOG_MT_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.a
 
 #  util
 LIB_UTIL_ST_D				=   $(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).util.$(COMP_ARCH_OS_TAG).debug.a
@@ -1038,65 +1048,65 @@ LIB_FE_WINREG_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).fe.WindowsRegistry.$(CO
 LIB_FE_WINREG_WC_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).fe.WindowsRegistry.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
 
 #  back-end(s)
-LIB_BEC_STOCK_ST_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_LRSPLIT_ST_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_N_ST_D 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_TEST_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_TEST_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_TEST_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_TEST_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_FAIL_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_FAIL_ST_D 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_FAIL_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_FAIL_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_FILE_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_FILE_WC_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_FILE_ST_D 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_FILE_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_FILE_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_FPRINTF_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_FPRINTF_WC_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_FPRINTF_ST_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_FPRINTF_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_FPRINTF_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_NULL_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_NULL_ST_D 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_NULL_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_NULL_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_COMERROBJ_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_STOCK_ST_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_LRSPLIT_ST_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_N_ST_D							=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_TEST_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_TEST_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_TEST_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_TEST_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_FAIL_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_FAIL_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_FAIL_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_FAIL_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_FILE_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_FILE_WC_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_FILE_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_FILE_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_FILE_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_FPRINTF_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_FPRINTF_WC_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_FPRINTF_ST_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_FPRINTF_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_FPRINTF_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_NULL_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_NULL_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_NULL_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_NULL_ST_D					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_COMERROBJ_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.$(COMP_ARCH_OS_TAG).debug.a
 LIB_BEC_COMERROBJWC_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_COMERROBJ_ST_D 	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.COMErrorObject.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_COMERROBJ_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.COMErrorObject.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_COMERROBJ_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.COMErrorObject.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_SPEECH_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_SPEECHWC_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_SPEECH_ST_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_SPEECH_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_SPEECH_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_WINEVLOG_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_WINEVLOGWC_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_WINEVLOG_ST_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_WINEVLOG_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_WINEVLOG_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_WINMSGBX_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsMessageBox.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_WINMSGBX_ST_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_WINMSGBX_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsMessageBox.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_WINMSGBX_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsMessageBox.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_W32CONS_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_W32CONSWC_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_W32CONS_ST_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsConsole.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_W32CONS_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsConsole.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_W32CONS_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsConsole.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_WINDBGR_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_WINDBGR_WC_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_WINDBGR_ST_D 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsDebugger.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_WINDBGR_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsDebugger.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_WINDBGR_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsDebugger.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEC_WINSYSLOG_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_COMERROBJ_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.COMErrorObject.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_COMERROBJ_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.COMErrorObject.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_COMERROBJ_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.COMErrorObject.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_SPEECH_ST_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_SPEECHWC_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_SPEECH_ST_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_SPEECH_ST_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_SPEECH_ST_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_WINEVLOG_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_WINEVLOGWC_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_WINEVLOG_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_WINEVLOG_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_WINEVLOG_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_WINMSGBX_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsMessageBox.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_WINMSGBX_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_WINMSGBX_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsMessageBox.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_WINMSGBX_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsMessageBox.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_W32CONS_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_W32CONSWC_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_W32CONS_ST_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsConsole.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_W32CONS_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsConsole.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_W32CONS_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsConsole.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_WINDBGR_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_WINDBGR_WC_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_WINDBGR_ST_D				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsDebugger.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_WINDBGR_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsDebugger.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_WINDBGR_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsDebugger.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEC_WINSYSLOG_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.a
 LIB_BEC_WINSYSLOG_WC_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.WithCallback.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BE_WINSYSLOG_ST_D 	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BEL_WINSYSLOG_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.a
-LIB_BER_WINSYSLOG_ST_D	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BE_WINSYSLOG_ST_D			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BEL_WINSYSLOG_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.a
+LIB_BER_WINSYSLOG_ST_D		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.a
 
 #  util
 LIB_UTIL_ST_R				=   $(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).util.$(COMP_ARCH_OS_TAG).a
@@ -1121,65 +1131,65 @@ LIB_FE_WINREG_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).fe.WindowsRegistry.$(CO
 LIB_FE_WINREG_WC_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).fe.WindowsRegistry.WithCallback.$(COMP_ARCH_OS_TAG).a
 
 #  back-end(s)
-LIB_BEC_STOCK_ST_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).a
-LIB_BE_LRSPLIT_ST_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).a
-LIB_BE_N_ST_R 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_TEST_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).a
-LIB_BE_TEST_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_TEST_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).a
-LIB_BER_TEST_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_FAIL_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).a
-LIB_BE_FAIL_ST_R 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_FAIL_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).a
-LIB_BER_FAIL_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_FILE_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_FILE_WC_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_FILE_ST_R 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_FILE_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).a
-LIB_BER_FILE_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_FPRINTF_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_FPRINTF_WC_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_FPRINTF_ST_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_FPRINTF_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).a
-LIB_BER_FPRINTF_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_NULL_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).a
-LIB_BE_NULL_ST_R 			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_NULL_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).a
-LIB_BER_NULL_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_COMERROBJ_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_STOCK_ST_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.stock.$(COMP_ARCH_OS_TAG).a
+LIB_BE_LRSPLIT_ST_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.lrsplit.$(COMP_ARCH_OS_TAG).a
+LIB_BE_N_ST_R							=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.N.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_TEST_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.test.$(COMP_ARCH_OS_TAG).a
+LIB_BE_TEST_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.test.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_TEST_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.test.$(COMP_ARCH_OS_TAG).a
+LIB_BER_TEST_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.test.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_FAIL_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fail.$(COMP_ARCH_OS_TAG).a
+LIB_BE_FAIL_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fail.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_FAIL_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fail.$(COMP_ARCH_OS_TAG).a
+LIB_BER_FAIL_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fail.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_FILE_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_FILE_WC_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.file.WithCallback.$(COMP_ARCH_OS_TAG).a
+LIB_BE_FILE_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.file.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_FILE_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.file.$(COMP_ARCH_OS_TAG).a
+LIB_BER_FILE_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.file.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_FPRINTF_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_FPRINTF_WC_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.fprintf.WithCallback.$(COMP_ARCH_OS_TAG).a
+LIB_BE_FPRINTF_ST_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.fprintf.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_FPRINTF_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.fprintf.$(COMP_ARCH_OS_TAG).a
+LIB_BER_FPRINTF_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.fprintf.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_NULL_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.null.$(COMP_ARCH_OS_TAG).a
+LIB_BE_NULL_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.null.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_NULL_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.null.$(COMP_ARCH_OS_TAG).a
+LIB_BER_NULL_ST_R					=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.null.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_COMERROBJ_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.$(COMP_ARCH_OS_TAG).a
 LIB_BEC_COMERROBJWC_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.COMErrorObject.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_COMERROBJ_ST_R 	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.COMErrorObject.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_COMERROBJ_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.COMErrorObject.$(COMP_ARCH_OS_TAG).a
-LIB_BER_COMERROBJ_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.COMErrorObject.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_SPEECH_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_SPEECHWC_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_SPEECH_ST_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_SPEECH_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).a
-LIB_BER_SPEECH_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_WINEVLOG_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_WINEVLOGWC_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_WINEVLOG_ST_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_WINEVLOG_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).a
-LIB_BER_WINEVLOG_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_WINMSGBX_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsMessageBox.$(COMP_ARCH_OS_TAG).a
-LIB_BE_WINMSGBX_ST_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_WINMSGBX_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsMessageBox.$(COMP_ARCH_OS_TAG).a
-LIB_BER_WINMSGBX_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsMessageBox.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_W32CONS_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_W32CONSWC_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_W32CONS_ST_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsConsole.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_W32CONS_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsConsole.$(COMP_ARCH_OS_TAG).a
-LIB_BER_W32CONS_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsConsole.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_WINDBGR_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_WINDBGR_WC_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_WINDBGR_ST_R 		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsDebugger.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_WINDBGR_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsDebugger.$(COMP_ARCH_OS_TAG).a
-LIB_BER_WINDBGR_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsDebugger.$(COMP_ARCH_OS_TAG).a
-LIB_BEC_WINSYSLOG_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.$(COMP_ARCH_OS_TAG).a
+LIB_BE_COMERROBJ_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.COMErrorObject.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_COMERROBJ_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.COMErrorObject.$(COMP_ARCH_OS_TAG).a
+LIB_BER_COMERROBJ_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.COMErrorObject.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_SPEECH_ST_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_SPEECHWC_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.speech.WithCallback.$(COMP_ARCH_OS_TAG).a
+LIB_BE_SPEECH_ST_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.speech.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_SPEECH_ST_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.speech.$(COMP_ARCH_OS_TAG).a
+LIB_BER_SPEECH_ST_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.speech.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_WINEVLOG_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_WINEVLOGWC_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsEventLog.WithCallback.$(COMP_ARCH_OS_TAG).a
+LIB_BE_WINEVLOG_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsEventLog.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_WINEVLOG_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsEventLog.$(COMP_ARCH_OS_TAG).a
+LIB_BER_WINEVLOG_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsEventLog.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_WINMSGBX_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsMessageBox.$(COMP_ARCH_OS_TAG).a
+LIB_BE_WINMSGBX_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_WINMSGBX_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsMessageBox.$(COMP_ARCH_OS_TAG).a
+LIB_BER_WINMSGBX_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsMessageBox.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_W32CONS_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_W32CONSWC_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsConsole.WithCallback.$(COMP_ARCH_OS_TAG).a
+LIB_BE_W32CONS_ST_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsConsole.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_W32CONS_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsConsole.$(COMP_ARCH_OS_TAG).a
+LIB_BER_W32CONS_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsConsole.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_WINDBGR_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_WINDBGR_WC_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsDebugger.WithCallback.$(COMP_ARCH_OS_TAG).a
+LIB_BE_WINDBGR_ST_R				=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsDebugger.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_WINDBGR_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsDebugger.$(COMP_ARCH_OS_TAG).a
+LIB_BER_WINDBGR_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsDebugger.$(COMP_ARCH_OS_TAG).a
+LIB_BEC_WINSYSLOG_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.$(COMP_ARCH_OS_TAG).a
 LIB_BEC_WINSYSLOG_WC_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bec.WindowsSyslog.WithCallback.$(COMP_ARCH_OS_TAG).a
-LIB_BE_WINSYSLOG_ST_R 	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsSyslog.$(COMP_ARCH_OS_TAG).a
-LIB_BEL_WINSYSLOG_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsSyslog.$(COMP_ARCH_OS_TAG).a
-LIB_BER_WINSYSLOG_ST_R	=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsSyslog.$(COMP_ARCH_OS_TAG).a
+LIB_BE_WINSYSLOG_ST_R			=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).be.WindowsSyslog.$(COMP_ARCH_OS_TAG).a
+LIB_BEL_WINSYSLOG_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).bel.WindowsSyslog.$(COMP_ARCH_OS_TAG).a
+LIB_BER_WINSYSLOG_ST_R		=	$(PROJ_LIB_DIR)\lib$(PROJ_TAG_VER).ber.WindowsSyslog.$(COMP_ARCH_OS_TAG).a
 
 
 # b64
@@ -1400,100 +1410,112 @@ TARG_EX_C_7_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.c.7.$(COMP_ARCH_OS_TAG).e
 ##############################
 # Component Tests
 
+TARG_TEST_COMP_filemt_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt.debug.exe
+#### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_core_initseq_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_core_initseq_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_core_initseq_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_custsev_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_custsev_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_custsev_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_custsev_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_filemt_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_filemt_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_args_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_args_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_args_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_args_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_b64_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_b64_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_b64_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_b64_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_bool_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_bool_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_bool_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_bool_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_pan_prtf_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_pan_puts_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_custsev_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_args_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_b64_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_bool_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_hostid_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_int_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_pad_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_ptr_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_prid_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_real_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_slice_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_stm_ch_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_thrid_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_vbool_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_w2m_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_w_hive_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_log_1_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
+#### TODO: test.component.no_namespace
+TARG_TEST_COMP_trace_1_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_filemt_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt.exe
+#### TODO: test.component.core.getProcessIdentity
+TARG_TEST_COMP_core_initseq_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_pan_prtf_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_pan_puts_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_custsev_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_args_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_b64_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_bool_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_hostid_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_int_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_pad_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_ptr_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_prid_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_real_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_slice_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_stm_ch_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_thrid_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_vbool_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_w2m_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_w_hive_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_log_1_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.exe
+#### TODO: test.component.no_namespace
+TARG_TEST_COMP_trace_1_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt.exe
+#### TODO: test.component.core.getProcessIdentity
+TARG_TEST_COMP_core_initseq_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_pan_prtf_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_pan_puts_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_custsev_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_args_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_b64_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_bool_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_hostid_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_int_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_pad_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_ptr_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_prid_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_real_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_slice_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_stm_ch_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_thrid_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_vbool_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_w2m_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_w_hive_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_log_1_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).debug.exe
+#### TODO: test.component.no_namespace
+TARG_TEST_COMP_trace_1_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).debug.exe
+#### TODO: test.component.core.getProcessIdentity
+TARG_TEST_COMP_core_initseq_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_pan_prtf_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_pan_puts_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_custsev_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_args_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_b64_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_bool_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_hostid_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_int_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_int_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_int_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_int_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_pad_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_pad_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_pad_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_pad_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_ptr_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_ptr_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_ptr_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_ptr_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_prid_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_prid_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_prid_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_prid_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_real_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_real_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_real_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_real_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_slice_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_slice_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_slice_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_slice_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_stm_ch_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_stm_ch_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_stm_ch_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_stm_ch_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_thrid_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_thrid_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_thrid_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_thrid_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_vbool_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_vbool_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_vbool_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_vbool_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_w2m_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_w2m_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_w2m_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_w2m_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_w_hive_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_w_hive_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_w_hive_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_w_hive_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_log_1_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_log_1_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_log_1_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_log_1_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_pan_puts_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_pan_puts_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_pan_puts_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_pan_puts_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logputs.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_pan_prtf_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_pan_prtf_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_pan_prtf_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_pan_prtf_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_trace_1_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_trace_1_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_trace_1_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_trace_1_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_int_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_pad_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_ptr_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_prid_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_real_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_slice_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_stm_ch_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_thrid_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_vbool_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_w2m_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_w_hive_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_log_1_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).exe
+#### TODO: test.component.no_namespace
+TARG_TEST_COMP_trace_1_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).exe
 
 ##############################
 # Performance Tests
 
 TARG_TEST_PERF_ins_w2m_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
+#### TODO: test.performance.util.date_elements_to_string
 TARG_TEST_PERF_ins_w2m_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.exe
+#### TODO: test.performance.util.date_elements_to_string
 TARG_TEST_PERF_ins_w2m_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG).debug.exe
+#### TODO: test.performance.util.date_elements_to_string
 TARG_TEST_PERF_ins_w2m_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG).exe
+#### TODO: test.performance.util.date_elements_to_string
 
 ##############################
 # Scratch Tests
@@ -1509,168 +1531,176 @@ TARG_TEST_PERF_ins_w2m_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.in
 # The strange naming conventions of these targets are to placate some
 # make utilities, which have a limit to the identifier length.
 ifdef ACE
-TEST_SCRT_ACE_MT_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TEST_SCRT_ACE_MT_D													=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt.debug.exe
 endif # ACE
-TARG_TEST_MT_D_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_MT_D_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_MT_D_APIwBE_WINEVLOG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_MT_D_APIwBE_WINMSGBX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_MT_D_APIwBE_W32CONS					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_MT_D_APIwBE_WINDBGR					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_MT_D_APIwBE_WINSYSLOG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_MT_D_APIwBE_FPRINTF								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_MT_D_APIwBE_COMERROBJ							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_MT_D_APIwBE_WINEVLOG							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_MT_D_APIwBE_WINMSGBX							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_MT_D_APIwBE_W32CONS								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_MT_D_APIwBE_WINDBGR								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_MT_D_APIwBE_WINSYSLOG							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_MT_D_APIwBELR_2_WINDBGRFPRINTF		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.WinDbg_l-r.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_MT_D_APIwBELR_3_WINDBGRWINSYSLOG	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.WinDbg_l-WSyslog_r.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_FE_MT_D 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_BE_N_FAIL_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_FE_SIMPLE_WC_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_FE_MT_D														=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_BE_N_FAIL_MT_D										=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_FE_SIMPLE_WC_MT_D									=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.debug.exe
 ifdef ACE
-TEST_SCRT_ACE_MT_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt.exe
+TEST_SCRT_ACE_MT_R													=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.ACE.$(COMP_ARCH_OS_TAG).mt.exe
 endif # ACE
-TARG_TEST_MT_R_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_MT_R_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_MT_R_APIwBE_WINEVLOG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_MT_R_APIwBE_WINMSGBX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_MT_R_APIwBE_W32CONS					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_MT_R_APIwBE_WINDBGR					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_MT_R_APIwBE_WINSYSLOG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_MT_R_APIwBE_FPRINTF								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_MT_R_APIwBE_COMERROBJ							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_MT_R_APIwBE_WINEVLOG							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsEventLog.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_MT_R_APIwBE_WINMSGBX							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_MT_R_APIwBE_W32CONS								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsConsole.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_MT_R_APIwBE_WINDBGR								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsDebugger.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_MT_R_APIwBE_WINSYSLOG							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_MT_R_APIwBELR_2_WINDBGRFPRINTF		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.WinDbg_l-r.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_MT_R_APIwBELR_3_WINDBGRWINSYSLOG	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.WinDbg_l-WSyslog_r.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_FE_MT_R 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_BE_N_FAIL_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_FE_SIMPLE_WC_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_ST_D_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_ST_D_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_ST_D_APIwBE_WINEVLOG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsEventLog.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_ST_D_APIwBE_WINMSGBX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_ST_D_APIwBE_W32CONS					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsConsole.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_ST_D_APIwBE_WINDBGR					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsDebugger.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_ST_D_APIwBE_WINSYSLOG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_FE_MT_R														=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_BE_N_FAIL_MT_R										=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_FE_SIMPLE_WC_MT_R									=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_ST_D_APIwBE_FPRINTF								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_ST_D_APIwBE_COMERROBJ							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_ST_D_APIwBE_WINEVLOG							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsEventLog.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_ST_D_APIwBE_WINMSGBX							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_ST_D_APIwBE_W32CONS								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsConsole.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_ST_D_APIwBE_WINDBGR								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsDebugger.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_ST_D_APIwBE_WINSYSLOG							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_ST_D_APIwBELR_2_WINDBGRFPRINTF		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.WinDbg_l-r.fprintf.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_ST_D_APIwBELR_3_WINDBGRWINSYSLOG	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.WinDbg_l-WSyslog_r.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_FE_ST_D 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_BE_N_FAIL_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_FE_SIMPLE_WC_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_ST_R_APIwBE_FPRINTF					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_ST_R_APIwBE_COMERROBJ				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_ST_R_APIwBE_WINEVLOG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsEventLog.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_ST_R_APIwBE_WINMSGBX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_ST_R_APIwBE_W32CONS					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsConsole.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_ST_R_APIwBE_WINDBGR					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsDebugger.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_ST_R_APIwBE_WINSYSLOG				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_FE_ST_D														=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_BE_N_FAIL_ST_D										=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_FE_SIMPLE_WC_ST_D									=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_ST_R_APIwBE_FPRINTF								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.fprintf.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_ST_R_APIwBE_COMERROBJ							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.COMErrorObject.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_ST_R_APIwBE_WINEVLOG							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsEventLog.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_ST_R_APIwBE_WINMSGBX							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsMessageBox.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_ST_R_APIwBE_W32CONS								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsConsole.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_ST_R_APIwBE_WINDBGR								=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsDebugger.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_ST_R_APIwBE_WINSYSLOG							=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_ST_R_APIwBELR_2_WINDBGRFPRINTF		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.WinDbg_l-r.fprintf.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_ST_R_APIwBELR_3_WINDBGRWINSYSLOG	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.WinDbg_l-WSyslog_r.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_FE_ST_R 						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_BE_N_FAIL_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_FE_SIMPLE_WC_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_FE_ST_R														=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_BE_N_FAIL_ST_R										=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.be.N.fail.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_FE_SIMPLE_WC_ST_R									=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG).exe
 
 ##############################
 # Unit Tests
 
-TARG_TEST_UNIT_lvls_dyninit_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_lvls_dyninit_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_lvls_dyninit_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_lvls_dyninit_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_lvls_vals_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_lvls_vals_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_lvls_vals_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_lvls_vals_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_getcurrtm_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_getcurrtm_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_getcurrtm_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_getcurrtm_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_dtel2s_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_dtel2s_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_dtel2s_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_dtel2s_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_getversion_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_getversion_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_getversion_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_getversion_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_ins_w_sc_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_ins_w_sc_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_ins_w_sc_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_ins_w_sc_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_gethostname_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_gethostname_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_gethostname_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_gethostname_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_onbailout_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_strnlen_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_onbailout_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_strnlen_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_onbailout_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_strnlen_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_onbailout_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_strnlen_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_be_fail_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_lrsplit_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_N_MT_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_N_filt_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_WinSyslog_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_bec_CEO_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_bec_CEO_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_bec_CEO_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_bec_CEO_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_bec_file_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_bec_file_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_bec_file_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_bec_file_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_bec_fprintf_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_bec_fprintf_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_bec_fprintf_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_bec_fprintf_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_bec_fail_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_bec_fail_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_bec_fail_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_bec_fail_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_be_fail_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_fail_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_fail_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_be_fail_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_be_fail_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_fail_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_fail_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_be_fail_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_be_lrsplit_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_lrsplit_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_lrsplit_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_be_lrsplit_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_be_N_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_N_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_N_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_be_N_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_be_N_filt_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_N_filt_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_N_filt_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_be_N_filt_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_bec_file_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_bec_fprintf_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_fe_all_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_fe_all_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_fe_all_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_fe_all_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_fe_fail_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_fe_fail_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_fe_fail_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_fe_fail_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_fe_N_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_fe_N_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_fe_N_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_fe_N_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_fe_N_MT_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_fe_null_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_fe_null_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_fe_null_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_fe_null_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_fe_simple_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_fe_simple_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_fe_simple_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_fe_simple_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_fe_WinReg_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.WindowsRegistry.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_getversion_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.debug.exe
+#### TODO: test.unit.levels.2
+TARG_TEST_UNIT_lvls_dyninit_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_lvls_vals_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_dtel2s_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_getcurrtm_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_gethostname_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_onbailout_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_strnlen_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_be_fail_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_lrsplit_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_N_MT_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_N_filt_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_WinSyslog_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_bec_CEO_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_bec_fail_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_bec_file_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_bec_fprintf_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_fe_all_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_fe_fail_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_fe_N_MT_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_fe_null_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_fe_simple_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_fe_WinReg_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.WindowsRegistry.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_getversion_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).mt.exe
+#### TODO: test.unit.levels.2
+TARG_TEST_UNIT_lvls_dyninit_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_lvls_vals_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_dtel2s_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_getcurrtm_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_gethostname_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_onbailout_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_strnlen_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_be_fail_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_be_lrsplit_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_be_N_ST_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_be_N_filt_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_be_WinSyslog_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_bec_CEO_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_bec_fail_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_bec_file_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_bec_fprintf_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_fe_all_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_fe_fail_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_fe_N_ST_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_fe_null_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_fe_simple_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_fe_WinReg_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.WindowsRegistry.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_getversion_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).debug.exe
+#### TODO: test.unit.levels.2
+TARG_TEST_UNIT_lvls_dyninit_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_lvls_vals_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_dtel2s_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_getcurrtm_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_gethostname_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_onbailout_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_strnlen_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_be_fail_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_be_lrsplit_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_be_N_ST_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_be_N_filt_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_be_WinSyslog_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_bec_CEO_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_bec_fail_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_bec_file_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_bec_fprintf_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fprintf.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_fe_all_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.all.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_fe_fail_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.fail.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_fe_N_ST_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.N.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_fe_null_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.null.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_fe_simple_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.simple.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_fe_WinReg_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.fe.WindowsRegistry.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_getversion_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.getversion.$(COMP_ARCH_OS_TAG).exe
+#### TODO: test.unit.levels.2
+TARG_TEST_UNIT_lvls_dyninit_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.dynamic_init.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_lvls_vals_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.levels.values.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_dtel2s_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.dtel2s.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_getcurrtm_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_gethostname_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_onbailout_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_strnlen_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).exe
 
-TARG_TEST_UNIT_ins_int_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_ins_w2m_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_ins_int_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_ins_w2m_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_ins_int_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_ins_w2m_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_ins_int_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_ins_w2m_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_ins_int_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_ins_w2m_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_ins_stmc_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_ins_w_sc_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_ins_int_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_ins_w2m_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_ins_stmc_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_ins_w_sc_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_ins_int_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_ins_w2m_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_ins_stmc_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_ins_w_sc_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_ins_int_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_ins_w2m_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.w2m.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_ins_stmc_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_ins_w_sc_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.sc.$(COMP_ARCH_OS_TAG).exe
 
 ############################################################
 # Objects
@@ -1680,118 +1710,118 @@ TARG_TEST_UNIT_ins_w2m_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inser
 
 # core
 
-OBJ_utl_bailout_MT_D		= $(PROJ_OBJ_DIR)\util.bailout.mt.debug.obj
-OBJ_utl_dtel2s_MT_D		= $(PROJ_OBJ_DIR)\util.dtel2s.mt.debug.obj
+OBJ_utl_bailout_MT_D				= $(PROJ_OBJ_DIR)\util.bailout.mt.debug.obj
+OBJ_utl_dtel2s_MT_D					= $(PROJ_OBJ_DIR)\util.dtel2s.mt.debug.obj
 OBJ_utl_init_code_strs_MT_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.mt.debug.obj
-OBJ_utl_sev_strs_MT_D		= $(PROJ_OBJ_DIR)\util.sev_strings.mt.debug.obj
-OBJ_utl_snprintf_MT_D 	= $(PROJ_OBJ_DIR)\util.snprintf.mt.debug.obj
-OBJ_utl_strdup_MT_D 		= $(PROJ_OBJ_DIR)\util.strdup.mt.debug.obj
-OBJ_utl_procid_MT_D 		= $(PROJ_OBJ_DIR)\util.procid.mt.debug.obj
-OBJ_utl_thread_MT_D 		= $(PROJ_OBJ_DIR)\util.thread.mt.debug.obj
-OBJ_utl_be_context_MT_D	= $(PROJ_OBJ_DIR)\util.be_context.mt.debug.obj
-OBJ_utl_core_apidefs_MT_D	= $(PROJ_OBJ_DIR)\util.core_apidefs.mt.debug.obj
-OBJ_utl_be_parse_MT_D		= $(PROJ_OBJ_DIR)\util.be_parse.mt.debug.obj
-OBJ_utl_strnlen_MT_D		= $(PROJ_OBJ_DIR)\util.strnlen.mt.debug.obj
-OBJ_utl_strnlenp_MT_D		= $(PROJ_OBJ_DIR)\util.strnlen.c++.mt.debug.obj
-OBJ_utl_time_MT_D			= $(PROJ_OBJ_DIR)\util.time.mt.debug.obj
-OBJ_utl_host_name_MT_D	= $(PROJ_OBJ_DIR)\util.host_name.mt.debug.obj
-OBJ_cr_api_MT_D 			= $(PROJ_OBJ_DIR)\core.api.mt.debug.obj
-OBJ_cr_api_dep_MT_D 		= $(PROJ_OBJ_DIR)\core.api.deprecated.mt.debug.obj
-OBJ_utl_api_exit_MT_D 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.debug.obj
-OBJ_cr_api_logprintf_MT_D	= $(PROJ_OBJ_DIR)\core.api.logprintf.mt.debug.obj
-OBJ_cr_api_logputs_MT_D	= $(PROJ_OBJ_DIR)\core.api.logputs.mt.debug.obj
-OBJ_cr_auto_MT_D 			= $(PROJ_OBJ_DIR)\core.auto.mt.debug.obj
-OBJ_ins_args_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.args.mt.debug.obj
-OBJ_ins_b64_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.b64.mt.debug.obj
-OBJ_ins_blob_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.blob.mt.debug.obj
-OBJ_ins_bool_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.debug.obj
-OBJ_ins_excp_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.debug.obj
-OBJ_ins_host_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.debug.obj
-OBJ_ins_int_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.integer.mt.debug.obj
-OBJ_ins_ivl_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.interval.mt.debug.obj
-OBJ_ins_ptr_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.pointer.mt.debug.obj
-OBJ_ins_prid_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.debug.obj
-OBJ_ins_real_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.real.mt.debug.obj
-OBJ_ins_slice_MT_D	 	= $(PROJ_OBJ_DIR)\inserters.slice.mt.debug.obj
-OBJ_ins_thrid_MT_D	 	= $(PROJ_OBJ_DIR)\inserters.threadid.mt.debug.obj
-OBJ_ins_stm_ch_MT_D	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.debug.obj
-OBJ_ins_w2m_MT_D	 		= $(PROJ_OBJ_DIR)\inserters.w2m.mt.debug.obj
-#PDB_bec_test_MT_D 		= $(PROJ_OBJ_DIR)\bec.test.mt.debug.pdb
-OBJ_bec_test_MT_D 		= $(PROJ_OBJ_DIR)\bec.test.mt.debug.obj
-OBJ_be_test_MT_D 			= $(PROJ_OBJ_DIR)\be.test.mt.debug.obj
-OBJ_bel_test_MT_D 		= $(PROJ_OBJ_DIR)\bel.test.mt.debug.obj
-OBJ_ber_test_MT_D 		= $(PROJ_OBJ_DIR)\ber.test.mt.debug.obj
-OBJ_be_lrsplit_MT_D		= $(PROJ_OBJ_DIR)\be.lrsplit.mt.debug.obj
-OBJ_be_N_MT_D				= $(PROJ_OBJ_DIR)\be.N.mt.debug.obj
-OBJ_bec_fail_MT_D			= $(PROJ_OBJ_DIR)\bec.fail.mt.debug.obj
-OBJ_be_fail_MT_D			= $(PROJ_OBJ_DIR)\be.fail.mt.debug.obj
-OBJ_bel_fail_MT_D			= $(PROJ_OBJ_DIR)\bel.fail.mt.debug.obj
-OBJ_ber_fail_MT_D			= $(PROJ_OBJ_DIR)\ber.fail.mt.debug.obj
-OBJ_bec_file_MT_D			= $(PROJ_OBJ_DIR)\bec.file.mt.debug.obj
-OBJ_bec_file_WC_MT_D		= $(PROJ_OBJ_DIR)\bec.file.WithCallback.mt.debug.obj
-OBJ_be_file_MT_D			= $(PROJ_OBJ_DIR)\be.file.mt.debug.obj
-OBJ_bel_file_MT_D			= $(PROJ_OBJ_DIR)\bel.file.mt.debug.obj
-OBJ_ber_file_MT_D			= $(PROJ_OBJ_DIR)\ber.file.mt.debug.obj
-OBJ_bec_fprintf_MT_D		= $(PROJ_OBJ_DIR)\bec.fprintf.mt.debug.obj
-OBJ_bec_fprintf_WC_MT_D	= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.mt.debug.obj
-OBJ_be_fprintf_MT_D		= $(PROJ_OBJ_DIR)\be.fprintf.mt.debug.obj
-OBJ_bel_fprintf_MT_D		= $(PROJ_OBJ_DIR)\bel.fprintf.mt.debug.obj
-OBJ_ber_fprintf_MT_D		= $(PROJ_OBJ_DIR)\ber.fprintf.mt.debug.obj
-OBJ_bec_null_MT_D			= $(PROJ_OBJ_DIR)\bec.null.mt.debug.obj
-OBJ_be_null_MT_D			= $(PROJ_OBJ_DIR)\be.null.mt.debug.obj
-OBJ_bel_null_MT_D			= $(PROJ_OBJ_DIR)\bel.null.mt.debug.obj
-OBJ_ber_null_MT_D			= $(PROJ_OBJ_DIR)\ber.null.mt.debug.obj
+OBJ_utl_sev_strs_MT_D				= $(PROJ_OBJ_DIR)\util.sev_strings.mt.debug.obj
+OBJ_utl_snprintf_MT_D				= $(PROJ_OBJ_DIR)\util.snprintf.mt.debug.obj
+OBJ_utl_strdup_MT_D					= $(PROJ_OBJ_DIR)\util.strdup.mt.debug.obj
+OBJ_utl_procid_MT_D					= $(PROJ_OBJ_DIR)\util.procid.mt.debug.obj
+OBJ_utl_thread_MT_D					= $(PROJ_OBJ_DIR)\util.thread.mt.debug.obj
+OBJ_utl_be_context_MT_D			= $(PROJ_OBJ_DIR)\util.be_context.mt.debug.obj
+OBJ_utl_core_apidefs_MT_D		= $(PROJ_OBJ_DIR)\util.core_apidefs.mt.debug.obj
+OBJ_utl_be_parse_MT_D				= $(PROJ_OBJ_DIR)\util.be_parse.mt.debug.obj
+OBJ_utl_strnlen_MT_D				= $(PROJ_OBJ_DIR)\util.strnlen.mt.debug.obj
+OBJ_utl_strnlenp_MT_D				= $(PROJ_OBJ_DIR)\util.strnlen.c++.mt.debug.obj
+OBJ_utl_time_MT_D						= $(PROJ_OBJ_DIR)\util.time.mt.debug.obj
+OBJ_utl_host_name_MT_D			= $(PROJ_OBJ_DIR)\util.host_name.mt.debug.obj
+OBJ_cr_api_MT_D							= $(PROJ_OBJ_DIR)\core.api.mt.debug.obj
+OBJ_cr_api_dep_MT_D					= $(PROJ_OBJ_DIR)\core.api.deprecated.mt.debug.obj
+OBJ_utl_api_exit_MT_D				= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.debug.obj
+OBJ_cr_api_logprintf_MT_D		= $(PROJ_OBJ_DIR)\core.api.logprintf.mt.debug.obj
+OBJ_cr_api_logputs_MT_D			= $(PROJ_OBJ_DIR)\core.api.logputs.mt.debug.obj
+OBJ_cr_auto_MT_D						= $(PROJ_OBJ_DIR)\core.auto.mt.debug.obj
+OBJ_ins_args_MT_D						= $(PROJ_OBJ_DIR)\inserters.args.mt.debug.obj
+OBJ_ins_b64_MT_D						= $(PROJ_OBJ_DIR)\inserters.b64.mt.debug.obj
+OBJ_ins_blob_MT_D						= $(PROJ_OBJ_DIR)\inserters.blob.mt.debug.obj
+OBJ_ins_bool_MT_D						= $(PROJ_OBJ_DIR)\inserters.boolean.mt.debug.obj
+OBJ_ins_excp_MT_D						= $(PROJ_OBJ_DIR)\inserters.exception.mt.debug.obj
+OBJ_ins_host_MT_D						= $(PROJ_OBJ_DIR)\inserters.hostid.mt.debug.obj
+OBJ_ins_int_MT_D						= $(PROJ_OBJ_DIR)\inserters.integer.mt.debug.obj
+OBJ_ins_ivl_MT_D						= $(PROJ_OBJ_DIR)\inserters.interval.mt.debug.obj
+OBJ_ins_ptr_MT_D						= $(PROJ_OBJ_DIR)\inserters.pointer.mt.debug.obj
+OBJ_ins_prid_MT_D						= $(PROJ_OBJ_DIR)\inserters.processid.mt.debug.obj
+OBJ_ins_real_MT_D						= $(PROJ_OBJ_DIR)\inserters.real.mt.debug.obj
+OBJ_ins_slice_MT_D					= $(PROJ_OBJ_DIR)\inserters.slice.mt.debug.obj
+OBJ_ins_thrid_MT_D					= $(PROJ_OBJ_DIR)\inserters.threadid.mt.debug.obj
+OBJ_ins_stm_ch_MT_D					= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.debug.obj
+OBJ_ins_w2m_MT_D						= $(PROJ_OBJ_DIR)\inserters.w2m.mt.debug.obj
+#PDB_bec_test_MT_D					= $(PROJ_OBJ_DIR)\bec.test.mt.debug.pdb
+OBJ_bec_test_MT_D						= $(PROJ_OBJ_DIR)\bec.test.mt.debug.obj
+OBJ_be_test_MT_D						= $(PROJ_OBJ_DIR)\be.test.mt.debug.obj
+OBJ_bel_test_MT_D						= $(PROJ_OBJ_DIR)\bel.test.mt.debug.obj
+OBJ_ber_test_MT_D						= $(PROJ_OBJ_DIR)\ber.test.mt.debug.obj
+OBJ_be_lrsplit_MT_D					= $(PROJ_OBJ_DIR)\be.lrsplit.mt.debug.obj
+OBJ_be_N_MT_D								= $(PROJ_OBJ_DIR)\be.N.mt.debug.obj
+OBJ_bec_fail_MT_D						= $(PROJ_OBJ_DIR)\bec.fail.mt.debug.obj
+OBJ_be_fail_MT_D						= $(PROJ_OBJ_DIR)\be.fail.mt.debug.obj
+OBJ_bel_fail_MT_D						= $(PROJ_OBJ_DIR)\bel.fail.mt.debug.obj
+OBJ_ber_fail_MT_D						= $(PROJ_OBJ_DIR)\ber.fail.mt.debug.obj
+OBJ_bec_file_MT_D						= $(PROJ_OBJ_DIR)\bec.file.mt.debug.obj
+OBJ_bec_file_WC_MT_D				= $(PROJ_OBJ_DIR)\bec.file.WithCallback.mt.debug.obj
+OBJ_be_file_MT_D						= $(PROJ_OBJ_DIR)\be.file.mt.debug.obj
+OBJ_bel_file_MT_D						= $(PROJ_OBJ_DIR)\bel.file.mt.debug.obj
+OBJ_ber_file_MT_D						= $(PROJ_OBJ_DIR)\ber.file.mt.debug.obj
+OBJ_bec_fprintf_MT_D				= $(PROJ_OBJ_DIR)\bec.fprintf.mt.debug.obj
+OBJ_bec_fprintf_WC_MT_D			= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.mt.debug.obj
+OBJ_be_fprintf_MT_D					= $(PROJ_OBJ_DIR)\be.fprintf.mt.debug.obj
+OBJ_bel_fprintf_MT_D				= $(PROJ_OBJ_DIR)\bel.fprintf.mt.debug.obj
+OBJ_ber_fprintf_MT_D				= $(PROJ_OBJ_DIR)\ber.fprintf.mt.debug.obj
+OBJ_bec_null_MT_D						= $(PROJ_OBJ_DIR)\bec.null.mt.debug.obj
+OBJ_be_null_MT_D						= $(PROJ_OBJ_DIR)\be.null.mt.debug.obj
+OBJ_bel_null_MT_D						= $(PROJ_OBJ_DIR)\bel.null.mt.debug.obj
+OBJ_ber_null_MT_D						= $(PROJ_OBJ_DIR)\ber.null.mt.debug.obj
 ifdef ACE
-OBJ_bec_ACE_MT_D			= $(PROJ_OBJ_DIR)\bec.ACE.mt.debug.obj
-OBJ_be_ACE_MT_D			= $(PROJ_OBJ_DIR)\be.ACE.mt.debug.obj
-OBJ_bel_ACE_MT_D			= $(PROJ_OBJ_DIR)\bel.ACE.mt.debug.obj
-OBJ_ber_ACE_MT_D			= $(PROJ_OBJ_DIR)\ber.ACE.mt.debug.obj
+OBJ_bec_ACE_MT_D						= $(PROJ_OBJ_DIR)\bec.ACE.mt.debug.obj
+OBJ_be_ACE_MT_D							= $(PROJ_OBJ_DIR)\be.ACE.mt.debug.obj
+OBJ_bel_ACE_MT_D						= $(PROJ_OBJ_DIR)\bel.ACE.mt.debug.obj
+OBJ_ber_ACE_MT_D						= $(PROJ_OBJ_DIR)\ber.ACE.mt.debug.obj
 endif # ACE
-OBJ_bec_COMERROBJ_MT_D	= $(PROJ_OBJ_DIR)\bec.COMErrorObject.mt.debug.obj
-OBJ_bec_COMERROBJ_WC_MT_D	= $(PROJ_OBJ_DIR)\bec.COMErrorObject.WithCallback.mt.debug.obj
-OBJ_be_COMERROBJ_MT_D		= $(PROJ_OBJ_DIR)\be.COMErrorObject.mt.debug.obj
-OBJ_bel_COMERROBJ_MT_D	= $(PROJ_OBJ_DIR)\bel.COMErrorObject.mt.debug.obj
-OBJ_ber_COMERROBJ_MT_D	= $(PROJ_OBJ_DIR)\ber.COMErrorObject.mt.debug.obj
-OBJ_bec_SPEECH_MT_D		= $(PROJ_OBJ_DIR)\bec.speech.mt.debug.obj
-OBJ_bec_SPEECH_WC_MT_D	= $(PROJ_OBJ_DIR)\bec.speech.WithCallback.mt.debug.obj
-OBJ_be_SPEECH_MT_D		= $(PROJ_OBJ_DIR)\be.speech.mt.debug.obj
-OBJ_bel_SPEECH_MT_D		= $(PROJ_OBJ_DIR)\bel.speech.mt.debug.obj
-OBJ_ber_SPEECH_MT_D		= $(PROJ_OBJ_DIR)\ber.speech.mt.debug.obj
-OBJ_bec_WINEVLOG_MT_D		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.mt.debug.obj
-OBJ_bec_WINEVLOGWC_MT_D	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.mt.debug.obj
-OBJ_be_WINEVLOG_MT_D		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.mt.debug.obj
-OBJ_bel_WINEVLOG_MT_D		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.mt.debug.obj
-OBJ_ber_WINEVLOG_MT_D		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.mt.debug.obj
-OBJ_bec_WINMSGBX_MT_D		= $(PROJ_OBJ_DIR)\bec.WindowsMessageBox.mt.debug.obj
-OBJ_be_WINMSGBX_MT_D		= $(PROJ_OBJ_DIR)\be.WindowsMessageBox.mt.debug.obj
-OBJ_bel_WINMSGBX_MT_D		= $(PROJ_OBJ_DIR)\bel.WindowsMessageBox.mt.debug.obj
-OBJ_ber_WINMSGBX_MT_D		= $(PROJ_OBJ_DIR)\ber.WindowsMessageBox.mt.debug.obj
-OBJ_bec_W32CONS_MT_D		= $(PROJ_OBJ_DIR)\bec.WindowsConsole.mt.debug.obj
-OBJ_bec_W32CONS_WC_MT_D	= $(PROJ_OBJ_DIR)\bec.WindowsConsole.WithCallback.mt.debug.obj
-OBJ_be_W32CONS_MT_D		= $(PROJ_OBJ_DIR)\be.WindowsConsole.mt.debug.obj
-OBJ_bel_W32CONS_MT_D		= $(PROJ_OBJ_DIR)\bel.WindowsConsole.mt.debug.obj
-OBJ_ber_W32CONS_MT_D		= $(PROJ_OBJ_DIR)\ber.WindowsConsole.mt.debug.obj
-OBJ_bec_WINDBGR_MT_D		= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.mt.debug.obj
-OBJ_bec_WINDBGR_WC_MT_D	= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.WithCallback.mt.debug.obj
-OBJ_be_WINDBGR_MT_D		= $(PROJ_OBJ_DIR)\be.WindowsDebugger.mt.debug.obj
-OBJ_bel_WINDBGR_MT_D		= $(PROJ_OBJ_DIR)\bel.WindowsDebugger.mt.debug.obj
-OBJ_ber_WINDBGR_MT_D		= $(PROJ_OBJ_DIR)\ber.WindowsDebugger.mt.debug.obj
-OBJ_bec_WINSYSLOG_MT_D	= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.mt.debug.obj
-OBJ_bec_WINSYSLOG_WC_MT_D	= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.WithCallback.mt.debug.obj
-OBJ_be_WINSYSLOG_MT_D		= $(PROJ_OBJ_DIR)\be.WindowsSyslog.mt.debug.obj
-OBJ_bel_WINSYSLOG_MT_D	= $(PROJ_OBJ_DIR)\bel.WindowsSyslog.mt.debug.obj
-OBJ_ber_WINSYSLOG_MT_D	= $(PROJ_OBJ_DIR)\ber.WindowsSyslog.mt.debug.obj
-OBJ_fe_all_MT_D 			= $(PROJ_OBJ_DIR)\fe.all.mt.debug.obj
-OBJ_fe_all_WC_MT_D 		= $(PROJ_OBJ_DIR)\fe.all.WithCallback.mt.debug.obj
-OBJ_fe_fail_MT_D 			= $(PROJ_OBJ_DIR)\fe.fail.mt.debug.obj
-OBJ_fe_N_MT_D 			= $(PROJ_OBJ_DIR)\fe.N.mt.debug.obj
-OBJ_fe_N_WC_MT_D 			= $(PROJ_OBJ_DIR)\fe.N.WithCallback.mt.debug.obj
-OBJ_fe_null_MT_D 			= $(PROJ_OBJ_DIR)\fe.null.mt.debug.obj
-OBJ_fe_null_WC_MT_D 		= $(PROJ_OBJ_DIR)\fe.null.WithCallback.mt.debug.obj
-OBJ_fe_simple_MT_D 		= $(PROJ_OBJ_DIR)\fe.simple.mt.debug.obj
-OBJ_fe_simple_WC_MT_D 	= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.mt.debug.obj
-OBJ_fe_winreg_MT_D 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.mt.debug.obj
-OBJ_fe_winreg_WC_MT_D 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.mt.debug.obj
+OBJ_bec_COMERROBJ_MT_D			= $(PROJ_OBJ_DIR)\bec.COMErrorObject.mt.debug.obj
+OBJ_bec_COMERROBJ_WC_MT_D		= $(PROJ_OBJ_DIR)\bec.COMErrorObject.WithCallback.mt.debug.obj
+OBJ_be_COMERROBJ_MT_D				= $(PROJ_OBJ_DIR)\be.COMErrorObject.mt.debug.obj
+OBJ_bel_COMERROBJ_MT_D			= $(PROJ_OBJ_DIR)\bel.COMErrorObject.mt.debug.obj
+OBJ_ber_COMERROBJ_MT_D			= $(PROJ_OBJ_DIR)\ber.COMErrorObject.mt.debug.obj
+OBJ_bec_SPEECH_MT_D					= $(PROJ_OBJ_DIR)\bec.speech.mt.debug.obj
+OBJ_bec_SPEECH_WC_MT_D			= $(PROJ_OBJ_DIR)\bec.speech.WithCallback.mt.debug.obj
+OBJ_be_SPEECH_MT_D					= $(PROJ_OBJ_DIR)\be.speech.mt.debug.obj
+OBJ_bel_SPEECH_MT_D					= $(PROJ_OBJ_DIR)\bel.speech.mt.debug.obj
+OBJ_ber_SPEECH_MT_D					= $(PROJ_OBJ_DIR)\ber.speech.mt.debug.obj
+OBJ_bec_WINEVLOG_MT_D				= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.mt.debug.obj
+OBJ_bec_WINEVLOGWC_MT_D			= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.mt.debug.obj
+OBJ_be_WINEVLOG_MT_D				= $(PROJ_OBJ_DIR)\be.WindowsEventLog.mt.debug.obj
+OBJ_bel_WINEVLOG_MT_D				= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.mt.debug.obj
+OBJ_ber_WINEVLOG_MT_D				= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.mt.debug.obj
+OBJ_bec_WINMSGBX_MT_D				= $(PROJ_OBJ_DIR)\bec.WindowsMessageBox.mt.debug.obj
+OBJ_be_WINMSGBX_MT_D				= $(PROJ_OBJ_DIR)\be.WindowsMessageBox.mt.debug.obj
+OBJ_bel_WINMSGBX_MT_D				= $(PROJ_OBJ_DIR)\bel.WindowsMessageBox.mt.debug.obj
+OBJ_ber_WINMSGBX_MT_D				= $(PROJ_OBJ_DIR)\ber.WindowsMessageBox.mt.debug.obj
+OBJ_bec_W32CONS_MT_D				= $(PROJ_OBJ_DIR)\bec.WindowsConsole.mt.debug.obj
+OBJ_bec_W32CONS_WC_MT_D			= $(PROJ_OBJ_DIR)\bec.WindowsConsole.WithCallback.mt.debug.obj
+OBJ_be_W32CONS_MT_D					= $(PROJ_OBJ_DIR)\be.WindowsConsole.mt.debug.obj
+OBJ_bel_W32CONS_MT_D				= $(PROJ_OBJ_DIR)\bel.WindowsConsole.mt.debug.obj
+OBJ_ber_W32CONS_MT_D				= $(PROJ_OBJ_DIR)\ber.WindowsConsole.mt.debug.obj
+OBJ_bec_WINDBGR_MT_D				= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.mt.debug.obj
+OBJ_bec_WINDBGR_WC_MT_D			= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.WithCallback.mt.debug.obj
+OBJ_be_WINDBGR_MT_D					= $(PROJ_OBJ_DIR)\be.WindowsDebugger.mt.debug.obj
+OBJ_bel_WINDBGR_MT_D				= $(PROJ_OBJ_DIR)\bel.WindowsDebugger.mt.debug.obj
+OBJ_ber_WINDBGR_MT_D				= $(PROJ_OBJ_DIR)\ber.WindowsDebugger.mt.debug.obj
+OBJ_bec_WINSYSLOG_MT_D			= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.mt.debug.obj
+OBJ_bec_WINSYSLOG_WC_MT_D		= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.WithCallback.mt.debug.obj
+OBJ_be_WINSYSLOG_MT_D				= $(PROJ_OBJ_DIR)\be.WindowsSyslog.mt.debug.obj
+OBJ_bel_WINSYSLOG_MT_D			= $(PROJ_OBJ_DIR)\bel.WindowsSyslog.mt.debug.obj
+OBJ_ber_WINSYSLOG_MT_D			= $(PROJ_OBJ_DIR)\ber.WindowsSyslog.mt.debug.obj
+OBJ_fe_all_MT_D							= $(PROJ_OBJ_DIR)\fe.all.mt.debug.obj
+OBJ_fe_all_WC_MT_D					= $(PROJ_OBJ_DIR)\fe.all.WithCallback.mt.debug.obj
+OBJ_fe_fail_MT_D						= $(PROJ_OBJ_DIR)\fe.fail.mt.debug.obj
+OBJ_fe_N_MT_D								= $(PROJ_OBJ_DIR)\fe.N.mt.debug.obj
+OBJ_fe_N_WC_MT_D						= $(PROJ_OBJ_DIR)\fe.N.WithCallback.mt.debug.obj
+OBJ_fe_null_MT_D						= $(PROJ_OBJ_DIR)\fe.null.mt.debug.obj
+OBJ_fe_null_WC_MT_D					= $(PROJ_OBJ_DIR)\fe.null.WithCallback.mt.debug.obj
+OBJ_fe_simple_MT_D					= $(PROJ_OBJ_DIR)\fe.simple.mt.debug.obj
+OBJ_fe_simple_WC_MT_D				= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.mt.debug.obj
+OBJ_fe_winreg_MT_D					= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.mt.debug.obj
+OBJ_fe_winreg_WC_MT_D				= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.mt.debug.obj
 
 OBJ_UTIL_MT_D=\
  $(OBJ_utl_api_exit_MT_D)\
@@ -2152,118 +2182,118 @@ OBJ_FE_WINREG_WC_MT_D=\
  $(OBJ_fe_winreg_WC_MT_D)\
  \
 
-OBJ_utl_bailout_MT_R		= $(PROJ_OBJ_DIR)\util.bailout.mt.obj
-OBJ_utl_dtel2s_MT_R		= $(PROJ_OBJ_DIR)\util.dtel2s.mt.obj
+OBJ_utl_bailout_MT_R				= $(PROJ_OBJ_DIR)\util.bailout.mt.obj
+OBJ_utl_dtel2s_MT_R					= $(PROJ_OBJ_DIR)\util.dtel2s.mt.obj
 OBJ_utl_init_code_strs_MT_R	= $(PROJ_OBJ_DIR)\util.init_err_strings.mt.obj
-OBJ_utl_sev_strs_MT_R		= $(PROJ_OBJ_DIR)\util.sev_strings.mt.obj
-OBJ_utl_snprintf_MT_R 	= $(PROJ_OBJ_DIR)\util.snprintf.mt.obj
-OBJ_utl_strdup_MT_R 		= $(PROJ_OBJ_DIR)\util.strdup.mt.obj
-OBJ_utl_procid_MT_R 		= $(PROJ_OBJ_DIR)\util.procid.mt.obj
-OBJ_utl_thread_MT_R 		= $(PROJ_OBJ_DIR)\util.thread.mt.obj
-OBJ_utl_be_context_MT_R	= $(PROJ_OBJ_DIR)\util.be_context.mt.obj
-OBJ_utl_core_apidefs_MT_R	= $(PROJ_OBJ_DIR)\util.core_apidefs.mt.obj
-OBJ_utl_be_parse_MT_R		= $(PROJ_OBJ_DIR)\util.be_parse.mt.obj
-OBJ_utl_strnlen_MT_R		= $(PROJ_OBJ_DIR)\util.strnlen.mt.obj
-OBJ_utl_strnlenp_MT_R		= $(PROJ_OBJ_DIR)\util.strnlen.c++.mt.obj
-OBJ_utl_time_MT_R			= $(PROJ_OBJ_DIR)\util.time.mt.obj
-OBJ_utl_host_name_MT_R	= $(PROJ_OBJ_DIR)\util.host_name.mt.obj
-OBJ_cr_api_MT_R 			= $(PROJ_OBJ_DIR)\core.api.mt.obj
-OBJ_cr_api_dep_MT_R 		= $(PROJ_OBJ_DIR)\core.api.deprecated.mt.obj
-OBJ_utl_api_exit_MT_R 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.obj
-OBJ_cr_api_logprintf_MT_R	= $(PROJ_OBJ_DIR)\core.api.logprintf.mt.obj
-OBJ_cr_api_logputs_MT_R	= $(PROJ_OBJ_DIR)\core.api.logputs.mt.obj
-OBJ_cr_auto_MT_R 			= $(PROJ_OBJ_DIR)\core.auto.mt.obj
-OBJ_ins_args_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.args.mt.obj
-OBJ_ins_b64_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.b64.mt.obj
-OBJ_ins_blob_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.blob.mt.obj
-OBJ_ins_bool_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.boolean.mt.obj
-OBJ_ins_excp_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.exception.mt.obj
-OBJ_ins_host_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.hostid.mt.obj
-OBJ_ins_int_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.integer.mt.obj
-OBJ_ins_ivl_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.interval.mt.obj
-OBJ_ins_ptr_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.pointer.mt.obj
-OBJ_ins_prid_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.processid.mt.obj
-OBJ_ins_real_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.real.mt.obj
-OBJ_ins_slice_MT_R	 	= $(PROJ_OBJ_DIR)\inserters.slice.mt.obj
-OBJ_ins_thrid_MT_R	 	= $(PROJ_OBJ_DIR)\inserters.threadid.mt.obj
-OBJ_ins_stm_ch_MT_R	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.obj
-OBJ_ins_w2m_MT_R	 		= $(PROJ_OBJ_DIR)\inserters.w2m.mt.obj
-#PDB_bec_test_MT_R 		= $(PROJ_OBJ_DIR)\bec.test.mt.pdb
-OBJ_bec_test_MT_R 		= $(PROJ_OBJ_DIR)\bec.test.mt.obj
-OBJ_be_test_MT_R 			= $(PROJ_OBJ_DIR)\be.test.mt.obj
-OBJ_bel_test_MT_R 		= $(PROJ_OBJ_DIR)\bel.test.mt.obj
-OBJ_ber_test_MT_R 		= $(PROJ_OBJ_DIR)\ber.test.mt.obj
-OBJ_be_lrsplit_MT_R		= $(PROJ_OBJ_DIR)\be.lrsplit.mt.obj
-OBJ_be_N_MT_R				= $(PROJ_OBJ_DIR)\be.N.mt.obj
-OBJ_bec_fail_MT_R			= $(PROJ_OBJ_DIR)\bec.fail.mt.obj
-OBJ_be_fail_MT_R			= $(PROJ_OBJ_DIR)\be.fail.mt.obj
-OBJ_bel_fail_MT_R			= $(PROJ_OBJ_DIR)\bel.fail.mt.obj
-OBJ_ber_fail_MT_R			= $(PROJ_OBJ_DIR)\ber.fail.mt.obj
-OBJ_bec_file_MT_R			= $(PROJ_OBJ_DIR)\bec.file.mt.obj
-OBJ_bec_file_WC_MT_R		= $(PROJ_OBJ_DIR)\bec.file.WithCallback.mt.obj
-OBJ_be_file_MT_R			= $(PROJ_OBJ_DIR)\be.file.mt.obj
-OBJ_bel_file_MT_R			= $(PROJ_OBJ_DIR)\bel.file.mt.obj
-OBJ_ber_file_MT_R			= $(PROJ_OBJ_DIR)\ber.file.mt.obj
-OBJ_bec_fprintf_MT_R		= $(PROJ_OBJ_DIR)\bec.fprintf.mt.obj
-OBJ_bec_fprintf_WC_MT_R	= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.mt.obj
-OBJ_be_fprintf_MT_R		= $(PROJ_OBJ_DIR)\be.fprintf.mt.obj
-OBJ_bel_fprintf_MT_R		= $(PROJ_OBJ_DIR)\bel.fprintf.mt.obj
-OBJ_ber_fprintf_MT_R		= $(PROJ_OBJ_DIR)\ber.fprintf.mt.obj
-OBJ_bec_null_MT_R			= $(PROJ_OBJ_DIR)\bec.null.mt.obj
-OBJ_be_null_MT_R			= $(PROJ_OBJ_DIR)\be.null.mt.obj
-OBJ_bel_null_MT_R			= $(PROJ_OBJ_DIR)\bel.null.mt.obj
-OBJ_ber_null_MT_R			= $(PROJ_OBJ_DIR)\ber.null.mt.obj
+OBJ_utl_sev_strs_MT_R				= $(PROJ_OBJ_DIR)\util.sev_strings.mt.obj
+OBJ_utl_snprintf_MT_R				= $(PROJ_OBJ_DIR)\util.snprintf.mt.obj
+OBJ_utl_strdup_MT_R					= $(PROJ_OBJ_DIR)\util.strdup.mt.obj
+OBJ_utl_procid_MT_R					= $(PROJ_OBJ_DIR)\util.procid.mt.obj
+OBJ_utl_thread_MT_R					= $(PROJ_OBJ_DIR)\util.thread.mt.obj
+OBJ_utl_be_context_MT_R			= $(PROJ_OBJ_DIR)\util.be_context.mt.obj
+OBJ_utl_core_apidefs_MT_R		= $(PROJ_OBJ_DIR)\util.core_apidefs.mt.obj
+OBJ_utl_be_parse_MT_R				= $(PROJ_OBJ_DIR)\util.be_parse.mt.obj
+OBJ_utl_strnlen_MT_R				= $(PROJ_OBJ_DIR)\util.strnlen.mt.obj
+OBJ_utl_strnlenp_MT_R				= $(PROJ_OBJ_DIR)\util.strnlen.c++.mt.obj
+OBJ_utl_time_MT_R						= $(PROJ_OBJ_DIR)\util.time.mt.obj
+OBJ_utl_host_name_MT_R			= $(PROJ_OBJ_DIR)\util.host_name.mt.obj
+OBJ_cr_api_MT_R							= $(PROJ_OBJ_DIR)\core.api.mt.obj
+OBJ_cr_api_dep_MT_R					= $(PROJ_OBJ_DIR)\core.api.deprecated.mt.obj
+OBJ_utl_api_exit_MT_R				= $(PROJ_OBJ_DIR)\core.api.exitprocess.mt.obj
+OBJ_cr_api_logprintf_MT_R		= $(PROJ_OBJ_DIR)\core.api.logprintf.mt.obj
+OBJ_cr_api_logputs_MT_R			= $(PROJ_OBJ_DIR)\core.api.logputs.mt.obj
+OBJ_cr_auto_MT_R						= $(PROJ_OBJ_DIR)\core.auto.mt.obj
+OBJ_ins_args_MT_R						= $(PROJ_OBJ_DIR)\inserters.args.mt.obj
+OBJ_ins_b64_MT_R						= $(PROJ_OBJ_DIR)\inserters.b64.mt.obj
+OBJ_ins_blob_MT_R						= $(PROJ_OBJ_DIR)\inserters.blob.mt.obj
+OBJ_ins_bool_MT_R						= $(PROJ_OBJ_DIR)\inserters.boolean.mt.obj
+OBJ_ins_excp_MT_R						= $(PROJ_OBJ_DIR)\inserters.exception.mt.obj
+OBJ_ins_host_MT_R						= $(PROJ_OBJ_DIR)\inserters.hostid.mt.obj
+OBJ_ins_int_MT_R						= $(PROJ_OBJ_DIR)\inserters.integer.mt.obj
+OBJ_ins_ivl_MT_R						= $(PROJ_OBJ_DIR)\inserters.interval.mt.obj
+OBJ_ins_ptr_MT_R						= $(PROJ_OBJ_DIR)\inserters.pointer.mt.obj
+OBJ_ins_prid_MT_R						= $(PROJ_OBJ_DIR)\inserters.processid.mt.obj
+OBJ_ins_real_MT_R						= $(PROJ_OBJ_DIR)\inserters.real.mt.obj
+OBJ_ins_slice_MT_R					= $(PROJ_OBJ_DIR)\inserters.slice.mt.obj
+OBJ_ins_thrid_MT_R					= $(PROJ_OBJ_DIR)\inserters.threadid.mt.obj
+OBJ_ins_stm_ch_MT_R					= $(PROJ_OBJ_DIR)\inserters.stream_character.mt.obj
+OBJ_ins_w2m_MT_R						= $(PROJ_OBJ_DIR)\inserters.w2m.mt.obj
+#PDB_bec_test_MT_R					= $(PROJ_OBJ_DIR)\bec.test.mt.pdb
+OBJ_bec_test_MT_R						= $(PROJ_OBJ_DIR)\bec.test.mt.obj
+OBJ_be_test_MT_R						= $(PROJ_OBJ_DIR)\be.test.mt.obj
+OBJ_bel_test_MT_R						= $(PROJ_OBJ_DIR)\bel.test.mt.obj
+OBJ_ber_test_MT_R						= $(PROJ_OBJ_DIR)\ber.test.mt.obj
+OBJ_be_lrsplit_MT_R					= $(PROJ_OBJ_DIR)\be.lrsplit.mt.obj
+OBJ_be_N_MT_R								= $(PROJ_OBJ_DIR)\be.N.mt.obj
+OBJ_bec_fail_MT_R						= $(PROJ_OBJ_DIR)\bec.fail.mt.obj
+OBJ_be_fail_MT_R						= $(PROJ_OBJ_DIR)\be.fail.mt.obj
+OBJ_bel_fail_MT_R						= $(PROJ_OBJ_DIR)\bel.fail.mt.obj
+OBJ_ber_fail_MT_R						= $(PROJ_OBJ_DIR)\ber.fail.mt.obj
+OBJ_bec_file_MT_R						= $(PROJ_OBJ_DIR)\bec.file.mt.obj
+OBJ_bec_file_WC_MT_R				= $(PROJ_OBJ_DIR)\bec.file.WithCallback.mt.obj
+OBJ_be_file_MT_R						= $(PROJ_OBJ_DIR)\be.file.mt.obj
+OBJ_bel_file_MT_R						= $(PROJ_OBJ_DIR)\bel.file.mt.obj
+OBJ_ber_file_MT_R						= $(PROJ_OBJ_DIR)\ber.file.mt.obj
+OBJ_bec_fprintf_MT_R				= $(PROJ_OBJ_DIR)\bec.fprintf.mt.obj
+OBJ_bec_fprintf_WC_MT_R			= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.mt.obj
+OBJ_be_fprintf_MT_R					= $(PROJ_OBJ_DIR)\be.fprintf.mt.obj
+OBJ_bel_fprintf_MT_R				= $(PROJ_OBJ_DIR)\bel.fprintf.mt.obj
+OBJ_ber_fprintf_MT_R				= $(PROJ_OBJ_DIR)\ber.fprintf.mt.obj
+OBJ_bec_null_MT_R						= $(PROJ_OBJ_DIR)\bec.null.mt.obj
+OBJ_be_null_MT_R						= $(PROJ_OBJ_DIR)\be.null.mt.obj
+OBJ_bel_null_MT_R						= $(PROJ_OBJ_DIR)\bel.null.mt.obj
+OBJ_ber_null_MT_R						= $(PROJ_OBJ_DIR)\ber.null.mt.obj
 ifdef ACE
-OBJ_bec_ACE_MT_R			= $(PROJ_OBJ_DIR)\bec.ACE.mt.obj
-OBJ_be_ACE_MT_R			= $(PROJ_OBJ_DIR)\be.ACE.mt.obj
-OBJ_bel_ACE_MT_R			= $(PROJ_OBJ_DIR)\bel.ACE.mt.obj
-OBJ_ber_ACE_MT_R			= $(PROJ_OBJ_DIR)\ber.ACE.mt.obj
+OBJ_bec_ACE_MT_R						= $(PROJ_OBJ_DIR)\bec.ACE.mt.obj
+OBJ_be_ACE_MT_R							= $(PROJ_OBJ_DIR)\be.ACE.mt.obj
+OBJ_bel_ACE_MT_R						= $(PROJ_OBJ_DIR)\bel.ACE.mt.obj
+OBJ_ber_ACE_MT_R						= $(PROJ_OBJ_DIR)\ber.ACE.mt.obj
 endif # ACE
-OBJ_bec_COMERROBJ_MT_R	= $(PROJ_OBJ_DIR)\bec.COMErrorObject.mt.obj
-OBJ_bec_COMERROBJ_WC_MT_R	= $(PROJ_OBJ_DIR)\bec.COMErrorObject.WithCallback.mt.obj
-OBJ_be_COMERROBJ_MT_R		= $(PROJ_OBJ_DIR)\be.COMErrorObject.mt.obj
-OBJ_bel_COMERROBJ_MT_R	= $(PROJ_OBJ_DIR)\bel.COMErrorObject.mt.obj
-OBJ_ber_COMERROBJ_MT_R	= $(PROJ_OBJ_DIR)\ber.COMErrorObject.mt.obj
-OBJ_bec_SPEECH_MT_R		= $(PROJ_OBJ_DIR)\bec.speech.mt.obj
-OBJ_bec_SPEECH_WC_MT_R	= $(PROJ_OBJ_DIR)\bec.speech.WithCallback.mt.obj
-OBJ_be_SPEECH_MT_R		= $(PROJ_OBJ_DIR)\be.speech.mt.obj
-OBJ_bel_SPEECH_MT_R		= $(PROJ_OBJ_DIR)\bel.speech.mt.obj
-OBJ_ber_SPEECH_MT_R		= $(PROJ_OBJ_DIR)\ber.speech.mt.obj
-OBJ_bec_WINEVLOG_MT_R		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.mt.obj
-OBJ_bec_WINEVLOGWC_MT_R	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.mt.obj
-OBJ_be_WINEVLOG_MT_R		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.mt.obj
-OBJ_bel_WINEVLOG_MT_R		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.mt.obj
-OBJ_ber_WINEVLOG_MT_R		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.mt.obj
-OBJ_bec_WINMSGBX_MT_R		= $(PROJ_OBJ_DIR)\bec.WindowsMessageBox.mt.obj
-OBJ_be_WINMSGBX_MT_R		= $(PROJ_OBJ_DIR)\be.WindowsMessageBox.mt.obj
-OBJ_bel_WINMSGBX_MT_R		= $(PROJ_OBJ_DIR)\bel.WindowsMessageBox.mt.obj
-OBJ_ber_WINMSGBX_MT_R		= $(PROJ_OBJ_DIR)\ber.WindowsMessageBox.mt.obj
-OBJ_bec_W32CONS_MT_R		= $(PROJ_OBJ_DIR)\bec.WindowsConsole.mt.obj
-OBJ_bec_W32CONS_WC_MT_R	= $(PROJ_OBJ_DIR)\bec.WindowsConsole.WithCallback.mt.obj
-OBJ_be_W32CONS_MT_R		= $(PROJ_OBJ_DIR)\be.WindowsConsole.mt.obj
-OBJ_bel_W32CONS_MT_R		= $(PROJ_OBJ_DIR)\bel.WindowsConsole.mt.obj
-OBJ_ber_W32CONS_MT_R		= $(PROJ_OBJ_DIR)\ber.WindowsConsole.mt.obj
-OBJ_bec_WINDBGR_MT_R		= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.mt.obj
-OBJ_bec_WINDBGR_WC_MT_R	= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.WithCallback.mt.obj
-OBJ_be_WINDBGR_MT_R		= $(PROJ_OBJ_DIR)\be.WindowsDebugger.mt.obj
-OBJ_bel_WINDBGR_MT_R		= $(PROJ_OBJ_DIR)\bel.WindowsDebugger.mt.obj
-OBJ_ber_WINDBGR_MT_R		= $(PROJ_OBJ_DIR)\ber.WindowsDebugger.mt.obj
-OBJ_bec_WINSYSLOG_MT_R	= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.mt.obj
-OBJ_bec_WINSYSLOG_WC_MT_R	= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.WithCallback.mt.obj
-OBJ_be_WINSYSLOG_MT_R		= $(PROJ_OBJ_DIR)\be.WindowsSyslog.mt.obj
-OBJ_bel_WINSYSLOG_MT_R	= $(PROJ_OBJ_DIR)\bel.WindowsSyslog.mt.obj
-OBJ_ber_WINSYSLOG_MT_R	= $(PROJ_OBJ_DIR)\ber.WindowsSyslog.mt.obj
-OBJ_fe_all_MT_R 			= $(PROJ_OBJ_DIR)\fe.all.mt.obj
-OBJ_fe_all_WC_MT_R 		= $(PROJ_OBJ_DIR)\fe.all.WithCallback.mt.obj
-OBJ_fe_fail_MT_R 			= $(PROJ_OBJ_DIR)\fe.fail.mt.obj
-OBJ_fe_N_MT_R 			= $(PROJ_OBJ_DIR)\fe.N.mt.obj
-OBJ_fe_N_WC_MT_R 			= $(PROJ_OBJ_DIR)\fe.N.WithCallback.mt.obj
-OBJ_fe_null_MT_R 			= $(PROJ_OBJ_DIR)\fe.null.mt.obj
-OBJ_fe_null_WC_MT_R 		= $(PROJ_OBJ_DIR)\fe.null.WithCallback.mt.obj
-OBJ_fe_simple_MT_R 		= $(PROJ_OBJ_DIR)\fe.simple.mt.obj
-OBJ_fe_simple_WC_MT_R 	= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.mt.obj
-OBJ_fe_winreg_MT_R 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.mt.obj
-OBJ_fe_winreg_WC_MT_R 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.mt.obj
+OBJ_bec_COMERROBJ_MT_R			= $(PROJ_OBJ_DIR)\bec.COMErrorObject.mt.obj
+OBJ_bec_COMERROBJ_WC_MT_R		= $(PROJ_OBJ_DIR)\bec.COMErrorObject.WithCallback.mt.obj
+OBJ_be_COMERROBJ_MT_R				= $(PROJ_OBJ_DIR)\be.COMErrorObject.mt.obj
+OBJ_bel_COMERROBJ_MT_R			= $(PROJ_OBJ_DIR)\bel.COMErrorObject.mt.obj
+OBJ_ber_COMERROBJ_MT_R			= $(PROJ_OBJ_DIR)\ber.COMErrorObject.mt.obj
+OBJ_bec_SPEECH_MT_R					= $(PROJ_OBJ_DIR)\bec.speech.mt.obj
+OBJ_bec_SPEECH_WC_MT_R			= $(PROJ_OBJ_DIR)\bec.speech.WithCallback.mt.obj
+OBJ_be_SPEECH_MT_R					= $(PROJ_OBJ_DIR)\be.speech.mt.obj
+OBJ_bel_SPEECH_MT_R					= $(PROJ_OBJ_DIR)\bel.speech.mt.obj
+OBJ_ber_SPEECH_MT_R					= $(PROJ_OBJ_DIR)\ber.speech.mt.obj
+OBJ_bec_WINEVLOG_MT_R				= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.mt.obj
+OBJ_bec_WINEVLOGWC_MT_R			= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.mt.obj
+OBJ_be_WINEVLOG_MT_R				= $(PROJ_OBJ_DIR)\be.WindowsEventLog.mt.obj
+OBJ_bel_WINEVLOG_MT_R				= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.mt.obj
+OBJ_ber_WINEVLOG_MT_R				= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.mt.obj
+OBJ_bec_WINMSGBX_MT_R				= $(PROJ_OBJ_DIR)\bec.WindowsMessageBox.mt.obj
+OBJ_be_WINMSGBX_MT_R				= $(PROJ_OBJ_DIR)\be.WindowsMessageBox.mt.obj
+OBJ_bel_WINMSGBX_MT_R				= $(PROJ_OBJ_DIR)\bel.WindowsMessageBox.mt.obj
+OBJ_ber_WINMSGBX_MT_R				= $(PROJ_OBJ_DIR)\ber.WindowsMessageBox.mt.obj
+OBJ_bec_W32CONS_MT_R				= $(PROJ_OBJ_DIR)\bec.WindowsConsole.mt.obj
+OBJ_bec_W32CONS_WC_MT_R			= $(PROJ_OBJ_DIR)\bec.WindowsConsole.WithCallback.mt.obj
+OBJ_be_W32CONS_MT_R					= $(PROJ_OBJ_DIR)\be.WindowsConsole.mt.obj
+OBJ_bel_W32CONS_MT_R				= $(PROJ_OBJ_DIR)\bel.WindowsConsole.mt.obj
+OBJ_ber_W32CONS_MT_R				= $(PROJ_OBJ_DIR)\ber.WindowsConsole.mt.obj
+OBJ_bec_WINDBGR_MT_R				= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.mt.obj
+OBJ_bec_WINDBGR_WC_MT_R			= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.WithCallback.mt.obj
+OBJ_be_WINDBGR_MT_R					= $(PROJ_OBJ_DIR)\be.WindowsDebugger.mt.obj
+OBJ_bel_WINDBGR_MT_R				= $(PROJ_OBJ_DIR)\bel.WindowsDebugger.mt.obj
+OBJ_ber_WINDBGR_MT_R				= $(PROJ_OBJ_DIR)\ber.WindowsDebugger.mt.obj
+OBJ_bec_WINSYSLOG_MT_R			= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.mt.obj
+OBJ_bec_WINSYSLOG_WC_MT_R		= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.WithCallback.mt.obj
+OBJ_be_WINSYSLOG_MT_R				= $(PROJ_OBJ_DIR)\be.WindowsSyslog.mt.obj
+OBJ_bel_WINSYSLOG_MT_R			= $(PROJ_OBJ_DIR)\bel.WindowsSyslog.mt.obj
+OBJ_ber_WINSYSLOG_MT_R			= $(PROJ_OBJ_DIR)\ber.WindowsSyslog.mt.obj
+OBJ_fe_all_MT_R							= $(PROJ_OBJ_DIR)\fe.all.mt.obj
+OBJ_fe_all_WC_MT_R					= $(PROJ_OBJ_DIR)\fe.all.WithCallback.mt.obj
+OBJ_fe_fail_MT_R						= $(PROJ_OBJ_DIR)\fe.fail.mt.obj
+OBJ_fe_N_MT_R								= $(PROJ_OBJ_DIR)\fe.N.mt.obj
+OBJ_fe_N_WC_MT_R						= $(PROJ_OBJ_DIR)\fe.N.WithCallback.mt.obj
+OBJ_fe_null_MT_R						= $(PROJ_OBJ_DIR)\fe.null.mt.obj
+OBJ_fe_null_WC_MT_R					= $(PROJ_OBJ_DIR)\fe.null.WithCallback.mt.obj
+OBJ_fe_simple_MT_R					= $(PROJ_OBJ_DIR)\fe.simple.mt.obj
+OBJ_fe_simple_WC_MT_R				= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.mt.obj
+OBJ_fe_winreg_MT_R					= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.mt.obj
+OBJ_fe_winreg_WC_MT_R				= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.mt.obj
 
 OBJ_UTIL_MT_R=\
  $(OBJ_utl_api_exit_MT_R)\
@@ -2624,118 +2654,118 @@ OBJ_FE_WINREG_WC_MT_R=\
  $(OBJ_fe_winreg_WC_MT_R)\
  \
 
-OBJ_utl_bailout_ST_D		= $(PROJ_OBJ_DIR)\util.bailout.debug.obj
-OBJ_utl_dtel2s_ST_D		= $(PROJ_OBJ_DIR)\util.dtel2s.debug.obj
+OBJ_utl_bailout_ST_D				= $(PROJ_OBJ_DIR)\util.bailout.debug.obj
+OBJ_utl_dtel2s_ST_D					= $(PROJ_OBJ_DIR)\util.dtel2s.debug.obj
 OBJ_utl_init_code_strs_ST_D	= $(PROJ_OBJ_DIR)\util.init_err_strings.debug.obj
-OBJ_utl_sev_strs_ST_D		= $(PROJ_OBJ_DIR)\util.sev_strings.debug.obj
-OBJ_utl_snprintf_ST_D 	= $(PROJ_OBJ_DIR)\util.snprintf.debug.obj
-OBJ_utl_strdup_ST_D 		= $(PROJ_OBJ_DIR)\util.strdup.debug.obj
-OBJ_utl_procid_ST_D 		= $(PROJ_OBJ_DIR)\util.procid.debug.obj
-OBJ_utl_thread_ST_D 		= $(PROJ_OBJ_DIR)\util.thread.debug.obj
-OBJ_utl_be_context_ST_D	= $(PROJ_OBJ_DIR)\util.be_context.debug.obj
-OBJ_utl_core_apidefs_ST_D	= $(PROJ_OBJ_DIR)\util.core_apidefs.debug.obj
-OBJ_utl_be_parse_ST_D		= $(PROJ_OBJ_DIR)\util.be_parse.debug.obj
-OBJ_utl_strnlen_ST_D		= $(PROJ_OBJ_DIR)\util.strnlen.debug.obj
-OBJ_utl_strnlenp_ST_D		= $(PROJ_OBJ_DIR)\util.strnlen.c++.debug.obj
-OBJ_utl_time_ST_D			= $(PROJ_OBJ_DIR)\util.time.debug.obj
-OBJ_utl_host_name_ST_D	= $(PROJ_OBJ_DIR)\util.host_name.debug.obj
-OBJ_cr_api_ST_D 			= $(PROJ_OBJ_DIR)\core.api.debug.obj
-OBJ_cr_api_dep_ST_D 		= $(PROJ_OBJ_DIR)\core.api.deprecated.debug.obj
-OBJ_utl_api_exit_ST_D 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.debug.obj
-OBJ_cr_api_logprintf_ST_D	= $(PROJ_OBJ_DIR)\core.api.logprintf.debug.obj
-OBJ_cr_api_logputs_ST_D	= $(PROJ_OBJ_DIR)\core.api.logputs.debug.obj
-OBJ_cr_auto_ST_D 			= $(PROJ_OBJ_DIR)\core.auto.debug.obj
-OBJ_ins_args_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.args.debug.obj
-OBJ_ins_b64_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.b64.debug.obj
-OBJ_ins_blob_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.blob.debug.obj
-OBJ_ins_bool_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.boolean.debug.obj
-OBJ_ins_excp_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.exception.debug.obj
-OBJ_ins_host_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.hostid.debug.obj
-OBJ_ins_int_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.integer.debug.obj
-OBJ_ins_ivl_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.interval.debug.obj
-OBJ_ins_ptr_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.pointer.debug.obj
-OBJ_ins_prid_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.processid.debug.obj
-OBJ_ins_real_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.real.debug.obj
-OBJ_ins_slice_ST_D	 	= $(PROJ_OBJ_DIR)\inserters.slice.debug.obj
-OBJ_ins_thrid_ST_D	 	= $(PROJ_OBJ_DIR)\inserters.threadid.debug.obj
-OBJ_ins_stm_ch_ST_D	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.debug.obj
-OBJ_ins_w2m_ST_D	 		= $(PROJ_OBJ_DIR)\inserters.w2m.debug.obj
-#PDB_bec_test_ST_D 		= $(PROJ_OBJ_DIR)\bec.test.debug.pdb
-OBJ_bec_test_ST_D 		= $(PROJ_OBJ_DIR)\bec.test.debug.obj
-OBJ_be_test_ST_D 			= $(PROJ_OBJ_DIR)\be.test.debug.obj
-OBJ_bel_test_ST_D 		= $(PROJ_OBJ_DIR)\bel.test.debug.obj
-OBJ_ber_test_ST_D 		= $(PROJ_OBJ_DIR)\ber.test.debug.obj
-OBJ_be_lrsplit_ST_D		= $(PROJ_OBJ_DIR)\be.lrsplit.debug.obj
-OBJ_be_N_ST_D				= $(PROJ_OBJ_DIR)\be.N.debug.obj
-OBJ_bec_fail_ST_D			= $(PROJ_OBJ_DIR)\bec.fail.debug.obj
-OBJ_be_fail_ST_D			= $(PROJ_OBJ_DIR)\be.fail.debug.obj
-OBJ_bel_fail_ST_D			= $(PROJ_OBJ_DIR)\bel.fail.debug.obj
-OBJ_ber_fail_ST_D			= $(PROJ_OBJ_DIR)\ber.fail.debug.obj
-OBJ_bec_file_ST_D			= $(PROJ_OBJ_DIR)\bec.file.debug.obj
-OBJ_bec_file_WC_ST_D		= $(PROJ_OBJ_DIR)\bec.file.WithCallback.debug.obj
-OBJ_be_file_ST_D			= $(PROJ_OBJ_DIR)\be.file.debug.obj
-OBJ_bel_file_ST_D			= $(PROJ_OBJ_DIR)\bel.file.debug.obj
-OBJ_ber_file_ST_D			= $(PROJ_OBJ_DIR)\ber.file.debug.obj
-OBJ_bec_fprintf_ST_D		= $(PROJ_OBJ_DIR)\bec.fprintf.debug.obj
-OBJ_bec_fprintf_WC_ST_D	= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.debug.obj
-OBJ_be_fprintf_ST_D		= $(PROJ_OBJ_DIR)\be.fprintf.debug.obj
-OBJ_bel_fprintf_ST_D		= $(PROJ_OBJ_DIR)\bel.fprintf.debug.obj
-OBJ_ber_fprintf_ST_D		= $(PROJ_OBJ_DIR)\ber.fprintf.debug.obj
-OBJ_bec_null_ST_D			= $(PROJ_OBJ_DIR)\bec.null.debug.obj
-OBJ_be_null_ST_D			= $(PROJ_OBJ_DIR)\be.null.debug.obj
-OBJ_bel_null_ST_D			= $(PROJ_OBJ_DIR)\bel.null.debug.obj
-OBJ_ber_null_ST_D			= $(PROJ_OBJ_DIR)\ber.null.debug.obj
+OBJ_utl_sev_strs_ST_D				= $(PROJ_OBJ_DIR)\util.sev_strings.debug.obj
+OBJ_utl_snprintf_ST_D				= $(PROJ_OBJ_DIR)\util.snprintf.debug.obj
+OBJ_utl_strdup_ST_D					= $(PROJ_OBJ_DIR)\util.strdup.debug.obj
+OBJ_utl_procid_ST_D					= $(PROJ_OBJ_DIR)\util.procid.debug.obj
+OBJ_utl_thread_ST_D					= $(PROJ_OBJ_DIR)\util.thread.debug.obj
+OBJ_utl_be_context_ST_D			= $(PROJ_OBJ_DIR)\util.be_context.debug.obj
+OBJ_utl_core_apidefs_ST_D		= $(PROJ_OBJ_DIR)\util.core_apidefs.debug.obj
+OBJ_utl_be_parse_ST_D				= $(PROJ_OBJ_DIR)\util.be_parse.debug.obj
+OBJ_utl_strnlen_ST_D				= $(PROJ_OBJ_DIR)\util.strnlen.debug.obj
+OBJ_utl_strnlenp_ST_D				= $(PROJ_OBJ_DIR)\util.strnlen.c++.debug.obj
+OBJ_utl_time_ST_D						= $(PROJ_OBJ_DIR)\util.time.debug.obj
+OBJ_utl_host_name_ST_D			= $(PROJ_OBJ_DIR)\util.host_name.debug.obj
+OBJ_cr_api_ST_D							= $(PROJ_OBJ_DIR)\core.api.debug.obj
+OBJ_cr_api_dep_ST_D					= $(PROJ_OBJ_DIR)\core.api.deprecated.debug.obj
+OBJ_utl_api_exit_ST_D				= $(PROJ_OBJ_DIR)\core.api.exitprocess.debug.obj
+OBJ_cr_api_logprintf_ST_D		= $(PROJ_OBJ_DIR)\core.api.logprintf.debug.obj
+OBJ_cr_api_logputs_ST_D			= $(PROJ_OBJ_DIR)\core.api.logputs.debug.obj
+OBJ_cr_auto_ST_D						= $(PROJ_OBJ_DIR)\core.auto.debug.obj
+OBJ_ins_args_ST_D						= $(PROJ_OBJ_DIR)\inserters.args.debug.obj
+OBJ_ins_b64_ST_D						= $(PROJ_OBJ_DIR)\inserters.b64.debug.obj
+OBJ_ins_blob_ST_D						= $(PROJ_OBJ_DIR)\inserters.blob.debug.obj
+OBJ_ins_bool_ST_D						= $(PROJ_OBJ_DIR)\inserters.boolean.debug.obj
+OBJ_ins_excp_ST_D						= $(PROJ_OBJ_DIR)\inserters.exception.debug.obj
+OBJ_ins_host_ST_D						= $(PROJ_OBJ_DIR)\inserters.hostid.debug.obj
+OBJ_ins_int_ST_D						= $(PROJ_OBJ_DIR)\inserters.integer.debug.obj
+OBJ_ins_ivl_ST_D						= $(PROJ_OBJ_DIR)\inserters.interval.debug.obj
+OBJ_ins_ptr_ST_D						= $(PROJ_OBJ_DIR)\inserters.pointer.debug.obj
+OBJ_ins_prid_ST_D						= $(PROJ_OBJ_DIR)\inserters.processid.debug.obj
+OBJ_ins_real_ST_D						= $(PROJ_OBJ_DIR)\inserters.real.debug.obj
+OBJ_ins_slice_ST_D					= $(PROJ_OBJ_DIR)\inserters.slice.debug.obj
+OBJ_ins_thrid_ST_D					= $(PROJ_OBJ_DIR)\inserters.threadid.debug.obj
+OBJ_ins_stm_ch_ST_D					= $(PROJ_OBJ_DIR)\inserters.stream_character.debug.obj
+OBJ_ins_w2m_ST_D						= $(PROJ_OBJ_DIR)\inserters.w2m.debug.obj
+#PDB_bec_test_ST_D					= $(PROJ_OBJ_DIR)\bec.test.debug.pdb
+OBJ_bec_test_ST_D						= $(PROJ_OBJ_DIR)\bec.test.debug.obj
+OBJ_be_test_ST_D						= $(PROJ_OBJ_DIR)\be.test.debug.obj
+OBJ_bel_test_ST_D						= $(PROJ_OBJ_DIR)\bel.test.debug.obj
+OBJ_ber_test_ST_D						= $(PROJ_OBJ_DIR)\ber.test.debug.obj
+OBJ_be_lrsplit_ST_D					= $(PROJ_OBJ_DIR)\be.lrsplit.debug.obj
+OBJ_be_N_ST_D								= $(PROJ_OBJ_DIR)\be.N.debug.obj
+OBJ_bec_fail_ST_D						= $(PROJ_OBJ_DIR)\bec.fail.debug.obj
+OBJ_be_fail_ST_D						= $(PROJ_OBJ_DIR)\be.fail.debug.obj
+OBJ_bel_fail_ST_D						= $(PROJ_OBJ_DIR)\bel.fail.debug.obj
+OBJ_ber_fail_ST_D						= $(PROJ_OBJ_DIR)\ber.fail.debug.obj
+OBJ_bec_file_ST_D						= $(PROJ_OBJ_DIR)\bec.file.debug.obj
+OBJ_bec_file_WC_ST_D				= $(PROJ_OBJ_DIR)\bec.file.WithCallback.debug.obj
+OBJ_be_file_ST_D						= $(PROJ_OBJ_DIR)\be.file.debug.obj
+OBJ_bel_file_ST_D						= $(PROJ_OBJ_DIR)\bel.file.debug.obj
+OBJ_ber_file_ST_D						= $(PROJ_OBJ_DIR)\ber.file.debug.obj
+OBJ_bec_fprintf_ST_D				= $(PROJ_OBJ_DIR)\bec.fprintf.debug.obj
+OBJ_bec_fprintf_WC_ST_D			= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.debug.obj
+OBJ_be_fprintf_ST_D					= $(PROJ_OBJ_DIR)\be.fprintf.debug.obj
+OBJ_bel_fprintf_ST_D				= $(PROJ_OBJ_DIR)\bel.fprintf.debug.obj
+OBJ_ber_fprintf_ST_D				= $(PROJ_OBJ_DIR)\ber.fprintf.debug.obj
+OBJ_bec_null_ST_D						= $(PROJ_OBJ_DIR)\bec.null.debug.obj
+OBJ_be_null_ST_D						= $(PROJ_OBJ_DIR)\be.null.debug.obj
+OBJ_bel_null_ST_D						= $(PROJ_OBJ_DIR)\bel.null.debug.obj
+OBJ_ber_null_ST_D						= $(PROJ_OBJ_DIR)\ber.null.debug.obj
 ifdef ACE
-OBJ_bec_ACE_ST_D			= $(PROJ_OBJ_DIR)\bec.ACE.debug.obj
-OBJ_be_ACE_ST_D			= $(PROJ_OBJ_DIR)\be.ACE.debug.obj
-OBJ_bel_ACE_ST_D			= $(PROJ_OBJ_DIR)\bel.ACE.debug.obj
-OBJ_ber_ACE_ST_D			= $(PROJ_OBJ_DIR)\ber.ACE.debug.obj
+OBJ_bec_ACE_ST_D						= $(PROJ_OBJ_DIR)\bec.ACE.debug.obj
+OBJ_be_ACE_ST_D							= $(PROJ_OBJ_DIR)\be.ACE.debug.obj
+OBJ_bel_ACE_ST_D						= $(PROJ_OBJ_DIR)\bel.ACE.debug.obj
+OBJ_ber_ACE_ST_D						= $(PROJ_OBJ_DIR)\ber.ACE.debug.obj
 endif # ACE
-OBJ_bec_COMERROBJ_ST_D	= $(PROJ_OBJ_DIR)\bec.COMErrorObject.debug.obj
-OBJ_bec_COMERROBJ_WC_ST_D	= $(PROJ_OBJ_DIR)\bec.COMErrorObject.WithCallback.debug.obj
-OBJ_be_COMERROBJ_ST_D		= $(PROJ_OBJ_DIR)\be.COMErrorObject.debug.obj
-OBJ_bel_COMERROBJ_ST_D	= $(PROJ_OBJ_DIR)\bel.COMErrorObject.debug.obj
-OBJ_ber_COMERROBJ_ST_D	= $(PROJ_OBJ_DIR)\ber.COMErrorObject.debug.obj
-OBJ_bec_SPEECH_ST_D		= $(PROJ_OBJ_DIR)\bec.speech.debug.obj
-OBJ_bec_SPEECH_WC_ST_D	= $(PROJ_OBJ_DIR)\bec.speech.WithCallback.debug.obj
-OBJ_be_SPEECH_ST_D		= $(PROJ_OBJ_DIR)\be.speech.debug.obj
-OBJ_bel_SPEECH_ST_D		= $(PROJ_OBJ_DIR)\bel.speech.debug.obj
-OBJ_ber_SPEECH_ST_D		= $(PROJ_OBJ_DIR)\ber.speech.debug.obj
-OBJ_bec_WINEVLOG_ST_D		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.debug.obj
-OBJ_bec_WINEVLOGWC_ST_D	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.debug.obj
-OBJ_be_WINEVLOG_ST_D		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.debug.obj
-OBJ_bel_WINEVLOG_ST_D		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.debug.obj
-OBJ_ber_WINEVLOG_ST_D		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.debug.obj
-OBJ_bec_WINMSGBX_ST_D		= $(PROJ_OBJ_DIR)\bec.WindowsMessageBox.debug.obj
-OBJ_be_WINMSGBX_ST_D		= $(PROJ_OBJ_DIR)\be.WindowsMessageBox.debug.obj
-OBJ_bel_WINMSGBX_ST_D		= $(PROJ_OBJ_DIR)\bel.WindowsMessageBox.debug.obj
-OBJ_ber_WINMSGBX_ST_D		= $(PROJ_OBJ_DIR)\ber.WindowsMessageBox.debug.obj
-OBJ_bec_W32CONS_ST_D		= $(PROJ_OBJ_DIR)\bec.WindowsConsole.debug.obj
-OBJ_bec_W32CONS_WC_ST_D	= $(PROJ_OBJ_DIR)\bec.WindowsConsole.WithCallback.debug.obj
-OBJ_be_W32CONS_ST_D		= $(PROJ_OBJ_DIR)\be.WindowsConsole.debug.obj
-OBJ_bel_W32CONS_ST_D		= $(PROJ_OBJ_DIR)\bel.WindowsConsole.debug.obj
-OBJ_ber_W32CONS_ST_D		= $(PROJ_OBJ_DIR)\ber.WindowsConsole.debug.obj
-OBJ_bec_WINDBGR_ST_D		= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.debug.obj
-OBJ_bec_WINDBGR_WC_ST_D	= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.WithCallback.debug.obj
-OBJ_be_WINDBGR_ST_D		= $(PROJ_OBJ_DIR)\be.WindowsDebugger.debug.obj
-OBJ_bel_WINDBGR_ST_D		= $(PROJ_OBJ_DIR)\bel.WindowsDebugger.debug.obj
-OBJ_ber_WINDBGR_ST_D		= $(PROJ_OBJ_DIR)\ber.WindowsDebugger.debug.obj
-OBJ_bec_WINSYSLOG_ST_D	= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.debug.obj
-OBJ_bec_WINSYSLOG_WC_ST_D	= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.WithCallback.debug.obj
-OBJ_be_WINSYSLOG_ST_D		= $(PROJ_OBJ_DIR)\be.WindowsSyslog.debug.obj
-OBJ_bel_WINSYSLOG_ST_D	= $(PROJ_OBJ_DIR)\bel.WindowsSyslog.debug.obj
-OBJ_ber_WINSYSLOG_ST_D	= $(PROJ_OBJ_DIR)\ber.WindowsSyslog.debug.obj
-OBJ_fe_all_ST_D 			= $(PROJ_OBJ_DIR)\fe.all.debug.obj
-OBJ_fe_all_WC_ST_D 		= $(PROJ_OBJ_DIR)\fe.all.WithCallback.debug.obj
-OBJ_fe_fail_ST_D 			= $(PROJ_OBJ_DIR)\fe.fail.debug.obj
-OBJ_fe_N_ST_D 			= $(PROJ_OBJ_DIR)\fe.N.debug.obj
-OBJ_fe_N_WC_ST_D 			= $(PROJ_OBJ_DIR)\fe.N.WithCallback.debug.obj
-OBJ_fe_null_ST_D 			= $(PROJ_OBJ_DIR)\fe.null.debug.obj
-OBJ_fe_null_WC_ST_D 		= $(PROJ_OBJ_DIR)\fe.null.WithCallback.debug.obj
-OBJ_fe_simple_ST_D 		= $(PROJ_OBJ_DIR)\fe.simple.debug.obj
-OBJ_fe_simple_WC_ST_D 	= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.debug.obj
-OBJ_fe_winreg_ST_D 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.debug.obj
-OBJ_fe_winreg_WC_ST_D 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.debug.obj
+OBJ_bec_COMERROBJ_ST_D			= $(PROJ_OBJ_DIR)\bec.COMErrorObject.debug.obj
+OBJ_bec_COMERROBJ_WC_ST_D		= $(PROJ_OBJ_DIR)\bec.COMErrorObject.WithCallback.debug.obj
+OBJ_be_COMERROBJ_ST_D				= $(PROJ_OBJ_DIR)\be.COMErrorObject.debug.obj
+OBJ_bel_COMERROBJ_ST_D			= $(PROJ_OBJ_DIR)\bel.COMErrorObject.debug.obj
+OBJ_ber_COMERROBJ_ST_D			= $(PROJ_OBJ_DIR)\ber.COMErrorObject.debug.obj
+OBJ_bec_SPEECH_ST_D					= $(PROJ_OBJ_DIR)\bec.speech.debug.obj
+OBJ_bec_SPEECH_WC_ST_D			= $(PROJ_OBJ_DIR)\bec.speech.WithCallback.debug.obj
+OBJ_be_SPEECH_ST_D					= $(PROJ_OBJ_DIR)\be.speech.debug.obj
+OBJ_bel_SPEECH_ST_D					= $(PROJ_OBJ_DIR)\bel.speech.debug.obj
+OBJ_ber_SPEECH_ST_D					= $(PROJ_OBJ_DIR)\ber.speech.debug.obj
+OBJ_bec_WINEVLOG_ST_D				= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.debug.obj
+OBJ_bec_WINEVLOGWC_ST_D			= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.debug.obj
+OBJ_be_WINEVLOG_ST_D				= $(PROJ_OBJ_DIR)\be.WindowsEventLog.debug.obj
+OBJ_bel_WINEVLOG_ST_D				= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.debug.obj
+OBJ_ber_WINEVLOG_ST_D				= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.debug.obj
+OBJ_bec_WINMSGBX_ST_D				= $(PROJ_OBJ_DIR)\bec.WindowsMessageBox.debug.obj
+OBJ_be_WINMSGBX_ST_D				= $(PROJ_OBJ_DIR)\be.WindowsMessageBox.debug.obj
+OBJ_bel_WINMSGBX_ST_D				= $(PROJ_OBJ_DIR)\bel.WindowsMessageBox.debug.obj
+OBJ_ber_WINMSGBX_ST_D				= $(PROJ_OBJ_DIR)\ber.WindowsMessageBox.debug.obj
+OBJ_bec_W32CONS_ST_D				= $(PROJ_OBJ_DIR)\bec.WindowsConsole.debug.obj
+OBJ_bec_W32CONS_WC_ST_D			= $(PROJ_OBJ_DIR)\bec.WindowsConsole.WithCallback.debug.obj
+OBJ_be_W32CONS_ST_D					= $(PROJ_OBJ_DIR)\be.WindowsConsole.debug.obj
+OBJ_bel_W32CONS_ST_D				= $(PROJ_OBJ_DIR)\bel.WindowsConsole.debug.obj
+OBJ_ber_W32CONS_ST_D				= $(PROJ_OBJ_DIR)\ber.WindowsConsole.debug.obj
+OBJ_bec_WINDBGR_ST_D				= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.debug.obj
+OBJ_bec_WINDBGR_WC_ST_D			= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.WithCallback.debug.obj
+OBJ_be_WINDBGR_ST_D					= $(PROJ_OBJ_DIR)\be.WindowsDebugger.debug.obj
+OBJ_bel_WINDBGR_ST_D				= $(PROJ_OBJ_DIR)\bel.WindowsDebugger.debug.obj
+OBJ_ber_WINDBGR_ST_D				= $(PROJ_OBJ_DIR)\ber.WindowsDebugger.debug.obj
+OBJ_bec_WINSYSLOG_ST_D			= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.debug.obj
+OBJ_bec_WINSYSLOG_WC_ST_D		= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.WithCallback.debug.obj
+OBJ_be_WINSYSLOG_ST_D				= $(PROJ_OBJ_DIR)\be.WindowsSyslog.debug.obj
+OBJ_bel_WINSYSLOG_ST_D			= $(PROJ_OBJ_DIR)\bel.WindowsSyslog.debug.obj
+OBJ_ber_WINSYSLOG_ST_D			= $(PROJ_OBJ_DIR)\ber.WindowsSyslog.debug.obj
+OBJ_fe_all_ST_D							= $(PROJ_OBJ_DIR)\fe.all.debug.obj
+OBJ_fe_all_WC_ST_D					= $(PROJ_OBJ_DIR)\fe.all.WithCallback.debug.obj
+OBJ_fe_fail_ST_D						= $(PROJ_OBJ_DIR)\fe.fail.debug.obj
+OBJ_fe_N_ST_D								= $(PROJ_OBJ_DIR)\fe.N.debug.obj
+OBJ_fe_N_WC_ST_D						= $(PROJ_OBJ_DIR)\fe.N.WithCallback.debug.obj
+OBJ_fe_null_ST_D						= $(PROJ_OBJ_DIR)\fe.null.debug.obj
+OBJ_fe_null_WC_ST_D					= $(PROJ_OBJ_DIR)\fe.null.WithCallback.debug.obj
+OBJ_fe_simple_ST_D					= $(PROJ_OBJ_DIR)\fe.simple.debug.obj
+OBJ_fe_simple_WC_ST_D				= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.debug.obj
+OBJ_fe_winreg_ST_D					= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.debug.obj
+OBJ_fe_winreg_WC_ST_D				= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.debug.obj
 
 OBJ_UTIL_ST_D=\
  $(OBJ_utl_api_exit_ST_D)\
@@ -3096,118 +3126,118 @@ OBJ_FE_WINREG_WC_ST_D=\
  $(OBJ_fe_winreg_WC_ST_D)\
  \
 
-OBJ_utl_bailout_ST_R		= $(PROJ_OBJ_DIR)\util.bailout.obj
-OBJ_utl_dtel2s_ST_R		= $(PROJ_OBJ_DIR)\util.dtel2s.obj
+OBJ_utl_bailout_ST_R				= $(PROJ_OBJ_DIR)\util.bailout.obj
+OBJ_utl_dtel2s_ST_R					= $(PROJ_OBJ_DIR)\util.dtel2s.obj
 OBJ_utl_init_code_strs_ST_R	= $(PROJ_OBJ_DIR)\util.init_err_strings.obj
-OBJ_utl_sev_strs_ST_R		= $(PROJ_OBJ_DIR)\util.sev_strings.obj
-OBJ_utl_snprintf_ST_R 	= $(PROJ_OBJ_DIR)\util.snprintf.obj
-OBJ_utl_strdup_ST_R 		= $(PROJ_OBJ_DIR)\util.strdup.obj
-OBJ_utl_procid_ST_R 		= $(PROJ_OBJ_DIR)\util.procid.obj
-OBJ_utl_thread_ST_R 		= $(PROJ_OBJ_DIR)\util.thread.obj
-OBJ_utl_be_context_ST_R	= $(PROJ_OBJ_DIR)\util.be_context.obj
-OBJ_utl_core_apidefs_ST_R	= $(PROJ_OBJ_DIR)\util.core_apidefs.obj
-OBJ_utl_be_parse_ST_R		= $(PROJ_OBJ_DIR)\util.be_parse.obj
-OBJ_utl_strnlen_ST_R		= $(PROJ_OBJ_DIR)\util.strnlen.obj
-OBJ_utl_strnlenp_ST_R		= $(PROJ_OBJ_DIR)\util.strnlen.c++.obj
-OBJ_utl_time_ST_R			= $(PROJ_OBJ_DIR)\util.time.obj
-OBJ_utl_host_name_ST_R	= $(PROJ_OBJ_DIR)\util.host_name.obj
-OBJ_cr_api_ST_R 			= $(PROJ_OBJ_DIR)\core.api.obj
-OBJ_cr_api_dep_ST_R 		= $(PROJ_OBJ_DIR)\core.api.deprecated.obj
-OBJ_utl_api_exit_ST_R 		= $(PROJ_OBJ_DIR)\core.api.exitprocess.obj
-OBJ_cr_api_logprintf_ST_R	= $(PROJ_OBJ_DIR)\core.api.logprintf.obj
-OBJ_cr_api_logputs_ST_R	= $(PROJ_OBJ_DIR)\core.api.logputs.obj
-OBJ_cr_auto_ST_R 			= $(PROJ_OBJ_DIR)\core.auto.obj
-OBJ_ins_args_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.args.obj
-OBJ_ins_b64_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.b64.obj
-OBJ_ins_blob_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.blob.obj
-OBJ_ins_bool_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.boolean.obj
-OBJ_ins_excp_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.exception.obj
-OBJ_ins_host_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.hostid.obj
-OBJ_ins_int_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.integer.obj
-OBJ_ins_ivl_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.interval.obj
-OBJ_ins_ptr_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.pointer.obj
-OBJ_ins_prid_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.processid.obj
-OBJ_ins_real_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.real.obj
-OBJ_ins_slice_ST_R	 	= $(PROJ_OBJ_DIR)\inserters.slice.obj
-OBJ_ins_thrid_ST_R	 	= $(PROJ_OBJ_DIR)\inserters.threadid.obj
-OBJ_ins_stm_ch_ST_R	 	= $(PROJ_OBJ_DIR)\inserters.stream_character.obj
-OBJ_ins_w2m_ST_R	 		= $(PROJ_OBJ_DIR)\inserters.w2m.obj
-#PDB_bec_test_ST_R 		= $(PROJ_OBJ_DIR)\bec.test.pdb
-OBJ_bec_test_ST_R 		= $(PROJ_OBJ_DIR)\bec.test.obj
-OBJ_be_test_ST_R 			= $(PROJ_OBJ_DIR)\be.test.obj
-OBJ_bel_test_ST_R 		= $(PROJ_OBJ_DIR)\bel.test.obj
-OBJ_ber_test_ST_R 		= $(PROJ_OBJ_DIR)\ber.test.obj
-OBJ_be_lrsplit_ST_R		= $(PROJ_OBJ_DIR)\be.lrsplit.obj
-OBJ_be_N_ST_R				= $(PROJ_OBJ_DIR)\be.N.obj
-OBJ_bec_fail_ST_R			= $(PROJ_OBJ_DIR)\bec.fail.obj
-OBJ_be_fail_ST_R			= $(PROJ_OBJ_DIR)\be.fail.obj
-OBJ_bel_fail_ST_R			= $(PROJ_OBJ_DIR)\bel.fail.obj
-OBJ_ber_fail_ST_R			= $(PROJ_OBJ_DIR)\ber.fail.obj
-OBJ_bec_file_ST_R			= $(PROJ_OBJ_DIR)\bec.file.obj
-OBJ_bec_file_WC_ST_R		= $(PROJ_OBJ_DIR)\bec.file.WithCallback.obj
-OBJ_be_file_ST_R			= $(PROJ_OBJ_DIR)\be.file.obj
-OBJ_bel_file_ST_R			= $(PROJ_OBJ_DIR)\bel.file.obj
-OBJ_ber_file_ST_R			= $(PROJ_OBJ_DIR)\ber.file.obj
-OBJ_bec_fprintf_ST_R		= $(PROJ_OBJ_DIR)\bec.fprintf.obj
-OBJ_bec_fprintf_WC_ST_R	= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.obj
-OBJ_be_fprintf_ST_R		= $(PROJ_OBJ_DIR)\be.fprintf.obj
-OBJ_bel_fprintf_ST_R		= $(PROJ_OBJ_DIR)\bel.fprintf.obj
-OBJ_ber_fprintf_ST_R		= $(PROJ_OBJ_DIR)\ber.fprintf.obj
-OBJ_bec_null_ST_R			= $(PROJ_OBJ_DIR)\bec.null.obj
-OBJ_be_null_ST_R			= $(PROJ_OBJ_DIR)\be.null.obj
-OBJ_bel_null_ST_R			= $(PROJ_OBJ_DIR)\bel.null.obj
-OBJ_ber_null_ST_R			= $(PROJ_OBJ_DIR)\ber.null.obj
+OBJ_utl_sev_strs_ST_R				= $(PROJ_OBJ_DIR)\util.sev_strings.obj
+OBJ_utl_snprintf_ST_R				= $(PROJ_OBJ_DIR)\util.snprintf.obj
+OBJ_utl_strdup_ST_R					= $(PROJ_OBJ_DIR)\util.strdup.obj
+OBJ_utl_procid_ST_R					= $(PROJ_OBJ_DIR)\util.procid.obj
+OBJ_utl_thread_ST_R					= $(PROJ_OBJ_DIR)\util.thread.obj
+OBJ_utl_be_context_ST_R			= $(PROJ_OBJ_DIR)\util.be_context.obj
+OBJ_utl_core_apidefs_ST_R		= $(PROJ_OBJ_DIR)\util.core_apidefs.obj
+OBJ_utl_be_parse_ST_R				= $(PROJ_OBJ_DIR)\util.be_parse.obj
+OBJ_utl_strnlen_ST_R				= $(PROJ_OBJ_DIR)\util.strnlen.obj
+OBJ_utl_strnlenp_ST_R				= $(PROJ_OBJ_DIR)\util.strnlen.c++.obj
+OBJ_utl_time_ST_R						= $(PROJ_OBJ_DIR)\util.time.obj
+OBJ_utl_host_name_ST_R			= $(PROJ_OBJ_DIR)\util.host_name.obj
+OBJ_cr_api_ST_R							= $(PROJ_OBJ_DIR)\core.api.obj
+OBJ_cr_api_dep_ST_R					= $(PROJ_OBJ_DIR)\core.api.deprecated.obj
+OBJ_utl_api_exit_ST_R				= $(PROJ_OBJ_DIR)\core.api.exitprocess.obj
+OBJ_cr_api_logprintf_ST_R		= $(PROJ_OBJ_DIR)\core.api.logprintf.obj
+OBJ_cr_api_logputs_ST_R			= $(PROJ_OBJ_DIR)\core.api.logputs.obj
+OBJ_cr_auto_ST_R						= $(PROJ_OBJ_DIR)\core.auto.obj
+OBJ_ins_args_ST_R						= $(PROJ_OBJ_DIR)\inserters.args.obj
+OBJ_ins_b64_ST_R						= $(PROJ_OBJ_DIR)\inserters.b64.obj
+OBJ_ins_blob_ST_R						= $(PROJ_OBJ_DIR)\inserters.blob.obj
+OBJ_ins_bool_ST_R						= $(PROJ_OBJ_DIR)\inserters.boolean.obj
+OBJ_ins_excp_ST_R						= $(PROJ_OBJ_DIR)\inserters.exception.obj
+OBJ_ins_host_ST_R						= $(PROJ_OBJ_DIR)\inserters.hostid.obj
+OBJ_ins_int_ST_R						= $(PROJ_OBJ_DIR)\inserters.integer.obj
+OBJ_ins_ivl_ST_R						= $(PROJ_OBJ_DIR)\inserters.interval.obj
+OBJ_ins_ptr_ST_R						= $(PROJ_OBJ_DIR)\inserters.pointer.obj
+OBJ_ins_prid_ST_R						= $(PROJ_OBJ_DIR)\inserters.processid.obj
+OBJ_ins_real_ST_R						= $(PROJ_OBJ_DIR)\inserters.real.obj
+OBJ_ins_slice_ST_R					= $(PROJ_OBJ_DIR)\inserters.slice.obj
+OBJ_ins_thrid_ST_R					= $(PROJ_OBJ_DIR)\inserters.threadid.obj
+OBJ_ins_stm_ch_ST_R					= $(PROJ_OBJ_DIR)\inserters.stream_character.obj
+OBJ_ins_w2m_ST_R						= $(PROJ_OBJ_DIR)\inserters.w2m.obj
+#PDB_bec_test_ST_R					= $(PROJ_OBJ_DIR)\bec.test.pdb
+OBJ_bec_test_ST_R						= $(PROJ_OBJ_DIR)\bec.test.obj
+OBJ_be_test_ST_R						= $(PROJ_OBJ_DIR)\be.test.obj
+OBJ_bel_test_ST_R						= $(PROJ_OBJ_DIR)\bel.test.obj
+OBJ_ber_test_ST_R						= $(PROJ_OBJ_DIR)\ber.test.obj
+OBJ_be_lrsplit_ST_R					= $(PROJ_OBJ_DIR)\be.lrsplit.obj
+OBJ_be_N_ST_R								= $(PROJ_OBJ_DIR)\be.N.obj
+OBJ_bec_fail_ST_R						= $(PROJ_OBJ_DIR)\bec.fail.obj
+OBJ_be_fail_ST_R						= $(PROJ_OBJ_DIR)\be.fail.obj
+OBJ_bel_fail_ST_R						= $(PROJ_OBJ_DIR)\bel.fail.obj
+OBJ_ber_fail_ST_R						= $(PROJ_OBJ_DIR)\ber.fail.obj
+OBJ_bec_file_ST_R						= $(PROJ_OBJ_DIR)\bec.file.obj
+OBJ_bec_file_WC_ST_R				= $(PROJ_OBJ_DIR)\bec.file.WithCallback.obj
+OBJ_be_file_ST_R						= $(PROJ_OBJ_DIR)\be.file.obj
+OBJ_bel_file_ST_R						= $(PROJ_OBJ_DIR)\bel.file.obj
+OBJ_ber_file_ST_R						= $(PROJ_OBJ_DIR)\ber.file.obj
+OBJ_bec_fprintf_ST_R				= $(PROJ_OBJ_DIR)\bec.fprintf.obj
+OBJ_bec_fprintf_WC_ST_R			= $(PROJ_OBJ_DIR)\bec.fprintf.WithCallback.obj
+OBJ_be_fprintf_ST_R					= $(PROJ_OBJ_DIR)\be.fprintf.obj
+OBJ_bel_fprintf_ST_R				= $(PROJ_OBJ_DIR)\bel.fprintf.obj
+OBJ_ber_fprintf_ST_R				= $(PROJ_OBJ_DIR)\ber.fprintf.obj
+OBJ_bec_null_ST_R						= $(PROJ_OBJ_DIR)\bec.null.obj
+OBJ_be_null_ST_R						= $(PROJ_OBJ_DIR)\be.null.obj
+OBJ_bel_null_ST_R						= $(PROJ_OBJ_DIR)\bel.null.obj
+OBJ_ber_null_ST_R						= $(PROJ_OBJ_DIR)\ber.null.obj
 ifdef ACE
-OBJ_bec_ACE_ST_R			= $(PROJ_OBJ_DIR)\bec.ACE.obj
-OBJ_be_ACE_ST_R			= $(PROJ_OBJ_DIR)\be.ACE.obj
-OBJ_bel_ACE_ST_R			= $(PROJ_OBJ_DIR)\bel.ACE.obj
-OBJ_ber_ACE_ST_R			= $(PROJ_OBJ_DIR)\ber.ACE.obj
+OBJ_bec_ACE_ST_R						= $(PROJ_OBJ_DIR)\bec.ACE.obj
+OBJ_be_ACE_ST_R							= $(PROJ_OBJ_DIR)\be.ACE.obj
+OBJ_bel_ACE_ST_R						= $(PROJ_OBJ_DIR)\bel.ACE.obj
+OBJ_ber_ACE_ST_R						= $(PROJ_OBJ_DIR)\ber.ACE.obj
 endif # ACE
-OBJ_bec_COMERROBJ_ST_R	= $(PROJ_OBJ_DIR)\bec.COMErrorObject.obj
-OBJ_bec_COMERROBJ_WC_ST_R	= $(PROJ_OBJ_DIR)\bec.COMErrorObject.WithCallback.obj
-OBJ_be_COMERROBJ_ST_R		= $(PROJ_OBJ_DIR)\be.COMErrorObject.obj
-OBJ_bel_COMERROBJ_ST_R	= $(PROJ_OBJ_DIR)\bel.COMErrorObject.obj
-OBJ_ber_COMERROBJ_ST_R	= $(PROJ_OBJ_DIR)\ber.COMErrorObject.obj
-OBJ_bec_SPEECH_ST_R		= $(PROJ_OBJ_DIR)\bec.speech.obj
-OBJ_bec_SPEECH_WC_ST_R	= $(PROJ_OBJ_DIR)\bec.speech.WithCallback.obj
-OBJ_be_SPEECH_ST_R		= $(PROJ_OBJ_DIR)\be.speech.obj
-OBJ_bel_SPEECH_ST_R		= $(PROJ_OBJ_DIR)\bel.speech.obj
-OBJ_ber_SPEECH_ST_R		= $(PROJ_OBJ_DIR)\ber.speech.obj
-OBJ_bec_WINEVLOG_ST_R		= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.obj
-OBJ_bec_WINEVLOGWC_ST_R	= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.obj
-OBJ_be_WINEVLOG_ST_R		= $(PROJ_OBJ_DIR)\be.WindowsEventLog.obj
-OBJ_bel_WINEVLOG_ST_R		= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.obj
-OBJ_ber_WINEVLOG_ST_R		= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.obj
-OBJ_bec_WINMSGBX_ST_R		= $(PROJ_OBJ_DIR)\bec.WindowsMessageBox.obj
-OBJ_be_WINMSGBX_ST_R		= $(PROJ_OBJ_DIR)\be.WindowsMessageBox.obj
-OBJ_bel_WINMSGBX_ST_R		= $(PROJ_OBJ_DIR)\bel.WindowsMessageBox.obj
-OBJ_ber_WINMSGBX_ST_R		= $(PROJ_OBJ_DIR)\ber.WindowsMessageBox.obj
-OBJ_bec_W32CONS_ST_R		= $(PROJ_OBJ_DIR)\bec.WindowsConsole.obj
-OBJ_bec_W32CONS_WC_ST_R	= $(PROJ_OBJ_DIR)\bec.WindowsConsole.WithCallback.obj
-OBJ_be_W32CONS_ST_R		= $(PROJ_OBJ_DIR)\be.WindowsConsole.obj
-OBJ_bel_W32CONS_ST_R		= $(PROJ_OBJ_DIR)\bel.WindowsConsole.obj
-OBJ_ber_W32CONS_ST_R		= $(PROJ_OBJ_DIR)\ber.WindowsConsole.obj
-OBJ_bec_WINDBGR_ST_R		= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.obj
-OBJ_bec_WINDBGR_WC_ST_R	= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.WithCallback.obj
-OBJ_be_WINDBGR_ST_R		= $(PROJ_OBJ_DIR)\be.WindowsDebugger.obj
-OBJ_bel_WINDBGR_ST_R		= $(PROJ_OBJ_DIR)\bel.WindowsDebugger.obj
-OBJ_ber_WINDBGR_ST_R		= $(PROJ_OBJ_DIR)\ber.WindowsDebugger.obj
-OBJ_bec_WINSYSLOG_ST_R	= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.obj
-OBJ_bec_WINSYSLOG_WC_ST_R	= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.WithCallback.obj
-OBJ_be_WINSYSLOG_ST_R		= $(PROJ_OBJ_DIR)\be.WindowsSyslog.obj
-OBJ_bel_WINSYSLOG_ST_R	= $(PROJ_OBJ_DIR)\bel.WindowsSyslog.obj
-OBJ_ber_WINSYSLOG_ST_R	= $(PROJ_OBJ_DIR)\ber.WindowsSyslog.obj
-OBJ_fe_all_ST_R 			= $(PROJ_OBJ_DIR)\fe.all.obj
-OBJ_fe_all_WC_ST_R 		= $(PROJ_OBJ_DIR)\fe.all.WithCallback.obj
-OBJ_fe_fail_ST_R 			= $(PROJ_OBJ_DIR)\fe.fail.obj
-OBJ_fe_N_ST_R 			= $(PROJ_OBJ_DIR)\fe.N.obj
-OBJ_fe_N_WC_ST_R 			= $(PROJ_OBJ_DIR)\fe.N.WithCallback.obj
-OBJ_fe_null_ST_R 			= $(PROJ_OBJ_DIR)\fe.null.obj
-OBJ_fe_null_WC_ST_R 		= $(PROJ_OBJ_DIR)\fe.null.WithCallback.obj
-OBJ_fe_simple_ST_R 		= $(PROJ_OBJ_DIR)\fe.simple.obj
-OBJ_fe_simple_WC_ST_R 	= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.obj
-OBJ_fe_winreg_ST_R 		= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.obj
-OBJ_fe_winreg_WC_ST_R 	= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.obj
+OBJ_bec_COMERROBJ_ST_R			= $(PROJ_OBJ_DIR)\bec.COMErrorObject.obj
+OBJ_bec_COMERROBJ_WC_ST_R		= $(PROJ_OBJ_DIR)\bec.COMErrorObject.WithCallback.obj
+OBJ_be_COMERROBJ_ST_R				= $(PROJ_OBJ_DIR)\be.COMErrorObject.obj
+OBJ_bel_COMERROBJ_ST_R			= $(PROJ_OBJ_DIR)\bel.COMErrorObject.obj
+OBJ_ber_COMERROBJ_ST_R			= $(PROJ_OBJ_DIR)\ber.COMErrorObject.obj
+OBJ_bec_SPEECH_ST_R					= $(PROJ_OBJ_DIR)\bec.speech.obj
+OBJ_bec_SPEECH_WC_ST_R			= $(PROJ_OBJ_DIR)\bec.speech.WithCallback.obj
+OBJ_be_SPEECH_ST_R					= $(PROJ_OBJ_DIR)\be.speech.obj
+OBJ_bel_SPEECH_ST_R					= $(PROJ_OBJ_DIR)\bel.speech.obj
+OBJ_ber_SPEECH_ST_R					= $(PROJ_OBJ_DIR)\ber.speech.obj
+OBJ_bec_WINEVLOG_ST_R				= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.obj
+OBJ_bec_WINEVLOGWC_ST_R			= $(PROJ_OBJ_DIR)\bec.WindowsEventLog.WithCallback.obj
+OBJ_be_WINEVLOG_ST_R				= $(PROJ_OBJ_DIR)\be.WindowsEventLog.obj
+OBJ_bel_WINEVLOG_ST_R				= $(PROJ_OBJ_DIR)\bel.WindowsEventLog.obj
+OBJ_ber_WINEVLOG_ST_R				= $(PROJ_OBJ_DIR)\ber.WindowsEventLog.obj
+OBJ_bec_WINMSGBX_ST_R				= $(PROJ_OBJ_DIR)\bec.WindowsMessageBox.obj
+OBJ_be_WINMSGBX_ST_R				= $(PROJ_OBJ_DIR)\be.WindowsMessageBox.obj
+OBJ_bel_WINMSGBX_ST_R				= $(PROJ_OBJ_DIR)\bel.WindowsMessageBox.obj
+OBJ_ber_WINMSGBX_ST_R				= $(PROJ_OBJ_DIR)\ber.WindowsMessageBox.obj
+OBJ_bec_W32CONS_ST_R				= $(PROJ_OBJ_DIR)\bec.WindowsConsole.obj
+OBJ_bec_W32CONS_WC_ST_R			= $(PROJ_OBJ_DIR)\bec.WindowsConsole.WithCallback.obj
+OBJ_be_W32CONS_ST_R					= $(PROJ_OBJ_DIR)\be.WindowsConsole.obj
+OBJ_bel_W32CONS_ST_R				= $(PROJ_OBJ_DIR)\bel.WindowsConsole.obj
+OBJ_ber_W32CONS_ST_R				= $(PROJ_OBJ_DIR)\ber.WindowsConsole.obj
+OBJ_bec_WINDBGR_ST_R				= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.obj
+OBJ_bec_WINDBGR_WC_ST_R			= $(PROJ_OBJ_DIR)\bec.WindowsDebugger.WithCallback.obj
+OBJ_be_WINDBGR_ST_R					= $(PROJ_OBJ_DIR)\be.WindowsDebugger.obj
+OBJ_bel_WINDBGR_ST_R				= $(PROJ_OBJ_DIR)\bel.WindowsDebugger.obj
+OBJ_ber_WINDBGR_ST_R				= $(PROJ_OBJ_DIR)\ber.WindowsDebugger.obj
+OBJ_bec_WINSYSLOG_ST_R			= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.obj
+OBJ_bec_WINSYSLOG_WC_ST_R		= $(PROJ_OBJ_DIR)\bec.WindowsSyslog.WithCallback.obj
+OBJ_be_WINSYSLOG_ST_R				= $(PROJ_OBJ_DIR)\be.WindowsSyslog.obj
+OBJ_bel_WINSYSLOG_ST_R			= $(PROJ_OBJ_DIR)\bel.WindowsSyslog.obj
+OBJ_ber_WINSYSLOG_ST_R			= $(PROJ_OBJ_DIR)\ber.WindowsSyslog.obj
+OBJ_fe_all_ST_R							= $(PROJ_OBJ_DIR)\fe.all.obj
+OBJ_fe_all_WC_ST_R					= $(PROJ_OBJ_DIR)\fe.all.WithCallback.obj
+OBJ_fe_fail_ST_R						= $(PROJ_OBJ_DIR)\fe.fail.obj
+OBJ_fe_N_ST_R								= $(PROJ_OBJ_DIR)\fe.N.obj
+OBJ_fe_N_WC_ST_R						= $(PROJ_OBJ_DIR)\fe.N.WithCallback.obj
+OBJ_fe_null_ST_R						= $(PROJ_OBJ_DIR)\fe.null.obj
+OBJ_fe_null_WC_ST_R					= $(PROJ_OBJ_DIR)\fe.null.WithCallback.obj
+OBJ_fe_simple_ST_R					= $(PROJ_OBJ_DIR)\fe.simple.obj
+OBJ_fe_simple_WC_ST_R				= $(PROJ_OBJ_DIR)\fe.simple.WithCallback.obj
+OBJ_fe_winreg_ST_R					= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.obj
+OBJ_fe_winreg_WC_ST_R				= $(PROJ_OBJ_DIR)\fe.WindowsRegistry.WithCallback.obj
 
 OBJ_UTIL_ST_R=\
  $(OBJ_utl_api_exit_ST_R)\
@@ -4020,107 +4050,123 @@ OBJ_TEST_FE_SIMPLE_WC_ST_R		=	.\test.fe.simple.WithCallback.obj
 #
 # NOTE: some names are as names longer than 63 characters scare CodeWarrior's linker
 
-OBJ_TEST_UNIT_lvls_dyninit_MT_D	=	.\test.unit.levels.dynamic_init.mt.debug.obj
-OBJ_TEST_UNIT_lvls_dyninit_MT_R	=	.\test.unit.levels.dynamic_init.mt.obj
-OBJ_TEST_UNIT_lvls_dyninit_ST_D	=	.\test.unit.levels.dynamic_init.debug.obj
-OBJ_TEST_UNIT_lvls_dyninit_ST_R	=	.\test.unit.levels.dynamic_init.obj
-OBJ_TEST_UNIT_lvls_vals_MT_D	=	.\test.unit.levels.values.mt.debug.obj
-OBJ_TEST_UNIT_lvls_vals_MT_R	=	.\test.unit.levels.values.mt.obj
-OBJ_TEST_UNIT_lvls_vals_ST_D	=	.\test.unit.levels.values.debug.obj
-OBJ_TEST_UNIT_lvls_vals_ST_R	=	.\test.unit.levels.values.obj
-OBJ_TEST_UNIT_getcurrtm_MT_D	=	.\test.unit.util.getcurrenttime.mt.debug.obj
-OBJ_TEST_UNIT_getcurrtm_MT_R	=	.\test.unit.util.getcurrenttime.mt.obj
-OBJ_TEST_UNIT_getcurrtm_ST_D	=	.\test.unit.util.getcurrenttime.debug.obj
-OBJ_TEST_UNIT_getcurrtm_ST_R	=	.\test.unit.util.getcurrenttime.obj
-OBJ_TEST_UNIT_dtel2s_MT_D	    =	.\test.unit.util.dtel2s.mt.debug.obj
-OBJ_TEST_UNIT_dtel2s_MT_R	    =	.\test.unit.util.dtel2s.mt.obj
-OBJ_TEST_UNIT_dtel2s_ST_D	    =	.\test.unit.util.dtel2s.debug.obj
-OBJ_TEST_UNIT_dtel2s_ST_R	    =	.\test.unit.util.dtel2s.obj
-OBJ_TEST_UNIT_getversion_MT_D	=	.\test.unit.getversion.mt.debug.obj
-OBJ_TEST_UNIT_getversion_MT_R	=	.\test.unit.getversion.mt.obj
-OBJ_TEST_UNIT_getversion_ST_D	=	.\test.unit.getversion.debug.obj
-OBJ_TEST_UNIT_getversion_ST_R	=	.\test.unit.getversion.obj
-OBJ_TEST_UNIT_ins_w_sc_MT_D	=	.\test.unit.ins.windows.sc.mt.debug.obj
-OBJ_TEST_UNIT_ins_w_sc_MT_R	=	.\test.unit.ins.windows.sc.mt.obj
-OBJ_TEST_UNIT_ins_w_sc_ST_D	=	.\test.unit.ins.windows.sc.debug.obj
-OBJ_TEST_UNIT_ins_w_sc_ST_R	=	.\test.unit.ins.windows.sc.obj
-OBJ_TEST_UNIT_gethostname_MT_D	=	.\test.unit.util.gethostname.mt.debug.obj
-OBJ_TEST_UNIT_gethostname_MT_R	=	.\test.unit.util.gethostname.mt.obj
-OBJ_TEST_UNIT_gethostname_ST_D	=	.\test.unit.util.gethostname.debug.obj
-OBJ_TEST_UNIT_gethostname_ST_R	=	.\test.unit.util.gethostname.obj
-OBJ_TEST_UNIT_onbailout_MT_D	=	.\test.unit.util.onbailout.mt.debug.obj
-OBJ_TEST_UNIT_strnlen_MT_D	=	.\test.unit.util.strnlen.mt.debug.obj
-OBJ_TEST_UNIT_onbailout_MT_R	=	.\test.unit.util.onbailout.mt.obj
-OBJ_TEST_UNIT_strnlen_MT_R	=	.\test.unit.util.strnlen.mt.obj
-OBJ_TEST_UNIT_onbailout_ST_D	=	.\test.unit.util.onbailout.debug.obj
-OBJ_TEST_UNIT_strnlen_ST_D	=	.\test.unit.util.strnlen.debug.obj
-OBJ_TEST_UNIT_onbailout_ST_R	=	.\test.unit.util.onbailout.obj
-OBJ_TEST_UNIT_strnlen_ST_R	=	.\test.unit.util.strnlen.obj
-OBJ_TEST_UNIT_bec_CEO_MT_D		=	.\test.unit.bec.COMErrObj.mt.debug.obj
-OBJ_TEST_UNIT_bec_CEO_MT_R		=	.\test.unit.bec.COMErrObj.mt.obj
-OBJ_TEST_UNIT_bec_CEO_ST_D		=	.\test.unit.bec.COMErrObj.debug.obj
-OBJ_TEST_UNIT_bec_CEO_ST_R		=	.\test.unit.bec.COMErrObj.obj
-OBJ_TEST_UNIT_bec_file_MT_D		=	.\test.unit.bec.file.mt.debug.obj
-OBJ_TEST_UNIT_bec_file_MT_R		=	.\test.unit.bec.file.mt.obj
-OBJ_TEST_UNIT_bec_file_ST_D		=	.\test.unit.bec.file.debug.obj
-OBJ_TEST_UNIT_bec_file_ST_R		=	.\test.unit.bec.file.obj
-OBJ_TEST_UNIT_bec_fprintf_MT_D	=	.\test.unit.bec.fprintf.mt.debug.obj
-OBJ_TEST_UNIT_bec_fprintf_MT_R	=	.\test.unit.bec.fprintf.mt.obj
-OBJ_TEST_UNIT_bec_fprintf_ST_D	=	.\test.unit.bec.fprintf.debug.obj
-OBJ_TEST_UNIT_bec_fprintf_ST_R	=	.\test.unit.bec.fprintf.obj
-OBJ_TEST_UNIT_bec_fail_MT_D		=	.\test.unit.bec.fail.mt.debug.obj
-OBJ_TEST_UNIT_bec_fail_MT_R		=	.\test.unit.bec.fail.mt.obj
-OBJ_TEST_UNIT_bec_fail_ST_D		=	.\test.unit.bec.fail.debug.obj
-OBJ_TEST_UNIT_bec_fail_ST_R		=	.\test.unit.bec.fail.obj
-OBJ_TEST_UNIT_be_fail_MT_D		=	.\test.unit.be.fail.mt.debug.obj
-OBJ_TEST_UNIT_be_fail_MT_R		=	.\test.unit.be.fail.mt.obj
-OBJ_TEST_UNIT_be_fail_ST_D		=	.\test.unit.be.fail.debug.obj
-OBJ_TEST_UNIT_be_fail_ST_R		=	.\test.unit.be.fail.obj
-OBJ_TEST_UNIT_be_lrsplit_MT_D	=	.\test.unit.be.lrsplit.mt.debug.obj
-OBJ_TEST_UNIT_be_lrsplit_MT_R	=	.\test.unit.be.lrsplit.mt.obj
-OBJ_TEST_UNIT_be_lrsplit_ST_D	=	.\test.unit.be.lrsplit.debug.obj
-OBJ_TEST_UNIT_be_lrsplit_ST_R	=	.\test.unit.be.lrsplit.obj
-OBJ_TEST_UNIT_be_N_MT_D			=	.\test.unit.be.N.mt.debug.obj
-OBJ_TEST_UNIT_be_N_MT_R			=	.\test.unit.be.N.mt.obj
-OBJ_TEST_UNIT_be_N_ST_D			=	.\test.unit.be.N.debug.obj
-OBJ_TEST_UNIT_be_N_ST_R			=	.\test.unit.be.N.obj
-OBJ_TEST_UNIT_be_N_filt_MT_D		=	.\test.unit.be.N.filtering.mt.debug.obj
-OBJ_TEST_UNIT_be_N_filt_MT_R		=	.\test.unit.be.N.filtering.mt.obj
-OBJ_TEST_UNIT_be_N_filt_ST_D		=	.\test.unit.be.N.filtering.debug.obj
-OBJ_TEST_UNIT_be_N_filt_ST_R		=	.\test.unit.be.N.filtering.obj
-OBJ_TEST_UNIT_fe_all_MT_D		=	.\test.unit.fe.all.mt.debug.obj
-OBJ_TEST_UNIT_fe_all_MT_R		=	.\test.unit.fe.all.mt.obj
-OBJ_TEST_UNIT_fe_all_ST_D		=	.\test.unit.fe.all.debug.obj
-OBJ_TEST_UNIT_fe_all_ST_R		=	.\test.unit.fe.all.obj
-OBJ_TEST_UNIT_fe_fail_MT_D		=	.\test.unit.fe.fail.mt.debug.obj
-OBJ_TEST_UNIT_fe_fail_MT_R		=	.\test.unit.fe.fail.mt.obj
-OBJ_TEST_UNIT_fe_fail_ST_D		=	.\test.unit.fe.fail.debug.obj
-OBJ_TEST_UNIT_fe_fail_ST_R		=	.\test.unit.fe.fail.obj
-OBJ_TEST_UNIT_fe_N_MT_D			=	.\test.unit.fe.N.mt.debug.obj
-OBJ_TEST_UNIT_fe_N_MT_R			=	.\test.unit.fe.N.mt.obj
-OBJ_TEST_UNIT_fe_N_ST_D			=	.\test.unit.fe.N.debug.obj
-OBJ_TEST_UNIT_fe_N_ST_R			=	.\test.unit.fe.N.obj
-OBJ_TEST_UNIT_fe_null_MT_D		=	.\test.unit.fe.null.mt.debug.obj
-OBJ_TEST_UNIT_fe_null_MT_R		=	.\test.unit.fe.null.mt.obj
-OBJ_TEST_UNIT_fe_null_ST_D		=	.\test.unit.fe.null.debug.obj
-OBJ_TEST_UNIT_fe_null_ST_R		=	.\test.unit.fe.null.obj
-OBJ_TEST_UNIT_fe_simple_MT_D	=	.\test.unit.fe.simple.mt.debug.obj
-OBJ_TEST_UNIT_fe_simple_MT_R	=	.\test.unit.fe.simple.mt.obj
-OBJ_TEST_UNIT_fe_simple_ST_D	=	.\test.unit.fe.simple.debug.obj
-OBJ_TEST_UNIT_fe_simple_ST_R	=	.\test.unit.fe.simple.obj
-OBJ_TEST_UNIT_fe_WinReg_MT_D	=	.\test.unit.fe.WindowsRegistry.mt.debug.obj
-OBJ_TEST_UNIT_fe_WinReg_MT_R	=	.\test.unit.fe.WindowsRegistry.mt.obj
-OBJ_TEST_UNIT_fe_WinReg_ST_D	=	.\test.unit.fe.WindowsRegistry.debug.obj
-OBJ_TEST_UNIT_fe_WinReg_ST_R	=	.\test.unit.fe.WindowsRegistry.obj
 
-OBJ_TEST_UNIT_ins_int_MT_D	=	.\test.unit.inserter.integer.mt.debug.obj
-OBJ_TEST_UNIT_ins_w2m_MT_D	=	.\test.unit.inserter.w2m.mt.debug.obj
-OBJ_TEST_UNIT_ins_int_MT_R	=	.\test.unit.inserter.integer.mt.obj
-OBJ_TEST_UNIT_ins_w2m_MT_R	=	.\test.unit.inserter.w2m.mt.obj
-OBJ_TEST_UNIT_ins_int_ST_D	=	.\test.unit.inserter.integer.debug.obj
-OBJ_TEST_UNIT_ins_w2m_ST_D	=	.\test.unit.inserter.w2m.debug.obj
-OBJ_TEST_UNIT_ins_int_ST_R	=	.\test.unit.inserter.integer.obj
-OBJ_TEST_UNIT_ins_w2m_ST_R	=	.\test.unit.inserter.w2m.obj
+OBJ_TEST_UNIT_be_fail_MT_D			=	.\test.unit.be.fail.mt.debug.obj
+OBJ_TEST_UNIT_be_lrsplit_MT_D		=	.\test.unit.be.lrsplit.mt.debug.obj
+OBJ_TEST_UNIT_be_N_MT_D					=	.\test.unit.be.N.mt.debug.obj
+OBJ_TEST_UNIT_be_N_filt_MT_D		=	.\test.unit.be.N.filtering.mt.debug.obj
+#### TODO: test.unit.be.WindowsSyslog
+OBJ_TEST_UNIT_bec_CEO_MT_D			=	.\test.unit.bec.COMErrObj.mt.debug.obj
+OBJ_TEST_UNIT_bec_fail_MT_D			=	.\test.unit.bec.fail.mt.debug.obj
+OBJ_TEST_UNIT_bec_file_MT_D			=	.\test.unit.bec.file.mt.debug.obj
+OBJ_TEST_UNIT_bec_fprintf_MT_D	=	.\test.unit.bec.fprintf.mt.debug.obj
+OBJ_TEST_UNIT_fe_all_MT_D				=	.\test.unit.fe.all.mt.debug.obj
+OBJ_TEST_UNIT_fe_fail_MT_D			=	.\test.unit.fe.fail.mt.debug.obj
+OBJ_TEST_UNIT_fe_N_MT_D					=	.\test.unit.fe.N.mt.debug.obj
+OBJ_TEST_UNIT_fe_null_MT_D			=	.\test.unit.fe.null.mt.debug.obj
+OBJ_TEST_UNIT_fe_simple_MT_D		=	.\test.unit.fe.simple.mt.debug.obj
+OBJ_TEST_UNIT_fe_WinReg_MT_D		=	.\test.unit.fe.WindowsRegistry.mt.debug.obj
+OBJ_TEST_UNIT_getversion_MT_D		=	.\test.unit.getversion.mt.debug.obj
+#### TODO: test.unit.levels.2
+OBJ_TEST_UNIT_lvls_dyninit_MT_D	=	.\test.unit.levels.dynamic_init.mt.debug.obj
+OBJ_TEST_UNIT_lvls_vals_MT_D		=	.\test.unit.levels.values.mt.debug.obj
+OBJ_TEST_UNIT_dtel2s_MT_D				=	.\test.unit.util.dtel2s.mt.debug.obj
+OBJ_TEST_UNIT_getcurrtm_MT_D		=	.\test.unit.util.getcurrenttime.mt.debug.obj
+OBJ_TEST_UNIT_gethostname_MT_D	=	.\test.unit.util.gethostname.mt.debug.obj
+OBJ_TEST_UNIT_onbailout_MT_D		=	.\test.unit.util.onbailout.mt.debug.obj
+OBJ_TEST_UNIT_strnlen_MT_D			=	.\test.unit.util.strnlen.mt.debug.obj
+
+OBJ_TEST_UNIT_be_fail_MT_R			=	.\test.unit.be.fail.mt.obj
+OBJ_TEST_UNIT_be_lrsplit_MT_R		=	.\test.unit.be.lrsplit.mt.obj
+OBJ_TEST_UNIT_be_N_MT_R					=	.\test.unit.be.N.mt.obj
+OBJ_TEST_UNIT_be_N_filt_MT_R		=	.\test.unit.be.N.filtering.mt.obj
+#### TODO: test.unit.be.WindowsSyslog
+OBJ_TEST_UNIT_bec_CEO_MT_R			=	.\test.unit.bec.COMErrObj.mt.obj
+OBJ_TEST_UNIT_bec_fail_MT_R			=	.\test.unit.bec.fail.mt.obj
+OBJ_TEST_UNIT_bec_file_MT_R			=	.\test.unit.bec.file.mt.obj
+OBJ_TEST_UNIT_bec_fprintf_MT_R	=	.\test.unit.bec.fprintf.mt.obj
+OBJ_TEST_UNIT_fe_all_MT_R				=	.\test.unit.fe.all.mt.obj
+OBJ_TEST_UNIT_fe_fail_MT_R			=	.\test.unit.fe.fail.mt.obj
+OBJ_TEST_UNIT_fe_N_MT_R					=	.\test.unit.fe.N.mt.obj
+OBJ_TEST_UNIT_fe_null_MT_R			=	.\test.unit.fe.null.mt.obj
+OBJ_TEST_UNIT_fe_simple_MT_R		=	.\test.unit.fe.simple.mt.obj
+OBJ_TEST_UNIT_fe_WinReg_MT_R		=	.\test.unit.fe.WindowsRegistry.mt.obj
+OBJ_TEST_UNIT_getversion_MT_R		=	.\test.unit.getversion.mt.obj
+#### TODO: test.unit.levels.2
+OBJ_TEST_UNIT_lvls_dyninit_MT_R	=	.\test.unit.levels.dynamic_init.mt.obj
+OBJ_TEST_UNIT_lvls_vals_MT_R		=	.\test.unit.levels.values.mt.obj
+OBJ_TEST_UNIT_dtel2s_MT_R				=	.\test.unit.util.dtel2s.mt.obj
+OBJ_TEST_UNIT_getcurrtm_MT_R		=	.\test.unit.util.getcurrenttime.mt.obj
+OBJ_TEST_UNIT_gethostname_MT_R	=	.\test.unit.util.gethostname.mt.obj
+OBJ_TEST_UNIT_onbailout_MT_R		=	.\test.unit.util.onbailout.mt.obj
+OBJ_TEST_UNIT_strnlen_MT_R			=	.\test.unit.util.strnlen.mt.obj
+
+OBJ_TEST_UNIT_be_fail_ST_D			=	.\test.unit.be.fail.debug.obj
+OBJ_TEST_UNIT_be_lrsplit_ST_D		=	.\test.unit.be.lrsplit.debug.obj
+OBJ_TEST_UNIT_be_N_ST_D					=	.\test.unit.be.N.debug.obj
+OBJ_TEST_UNIT_be_N_filt_ST_D		=	.\test.unit.be.N.filtering.debug.obj
+#### TODO: test.unit.be.WindowsSyslog
+OBJ_TEST_UNIT_bec_CEO_ST_D			=	.\test.unit.bec.COMErrObj.debug.obj
+OBJ_TEST_UNIT_bec_fail_ST_D			=	.\test.unit.bec.fail.debug.obj
+OBJ_TEST_UNIT_bec_file_ST_D			=	.\test.unit.bec.file.debug.obj
+OBJ_TEST_UNIT_bec_fprintf_ST_D	=	.\test.unit.bec.fprintf.debug.obj
+OBJ_TEST_UNIT_fe_all_ST_D				=	.\test.unit.fe.all.debug.obj
+OBJ_TEST_UNIT_fe_fail_ST_D			=	.\test.unit.fe.fail.debug.obj
+OBJ_TEST_UNIT_fe_N_ST_D					=	.\test.unit.fe.N.debug.obj
+OBJ_TEST_UNIT_fe_null_ST_D			=	.\test.unit.fe.null.debug.obj
+OBJ_TEST_UNIT_fe_simple_ST_D		=	.\test.unit.fe.simple.debug.obj
+OBJ_TEST_UNIT_fe_WinReg_ST_D		=	.\test.unit.fe.WindowsRegistry.debug.obj
+OBJ_TEST_UNIT_getversion_ST_D		=	.\test.unit.getversion.debug.obj
+#### TODO: test.unit.levels.2
+OBJ_TEST_UNIT_lvls_dyninit_ST_D	=	.\test.unit.levels.dynamic_init.debug.obj
+OBJ_TEST_UNIT_lvls_vals_ST_D		=	.\test.unit.levels.values.debug.obj
+OBJ_TEST_UNIT_dtel2s_ST_D				=	.\test.unit.util.dtel2s.debug.obj
+OBJ_TEST_UNIT_getcurrtm_ST_D		=	.\test.unit.util.getcurrenttime.debug.obj
+OBJ_TEST_UNIT_gethostname_ST_D	=	.\test.unit.util.gethostname.debug.obj
+OBJ_TEST_UNIT_onbailout_ST_D		=	.\test.unit.util.onbailout.debug.obj
+OBJ_TEST_UNIT_strnlen_ST_D			=	.\test.unit.util.strnlen.debug.obj
+
+OBJ_TEST_UNIT_be_fail_ST_R			=	.\test.unit.be.fail.obj
+OBJ_TEST_UNIT_be_lrsplit_ST_R		=	.\test.unit.be.lrsplit.obj
+OBJ_TEST_UNIT_be_N_ST_R					=	.\test.unit.be.N.obj
+OBJ_TEST_UNIT_be_N_filt_ST_R		=	.\test.unit.be.N.filtering.obj
+#### TODO: test.unit.be.WindowsSyslog
+OBJ_TEST_UNIT_bec_CEO_ST_R			=	.\test.unit.bec.COMErrObj.obj
+OBJ_TEST_UNIT_bec_fail_ST_R			=	.\test.unit.bec.fail.obj
+OBJ_TEST_UNIT_bec_file_ST_R			=	.\test.unit.bec.file.obj
+OBJ_TEST_UNIT_bec_fprintf_ST_R	=	.\test.unit.bec.fprintf.obj
+OBJ_TEST_UNIT_fe_all_ST_R				=	.\test.unit.fe.all.obj
+OBJ_TEST_UNIT_fe_fail_ST_R			=	.\test.unit.fe.fail.obj
+OBJ_TEST_UNIT_fe_N_ST_R					=	.\test.unit.fe.N.obj
+OBJ_TEST_UNIT_fe_null_ST_R			=	.\test.unit.fe.null.obj
+OBJ_TEST_UNIT_fe_simple_ST_R		=	.\test.unit.fe.simple.obj
+OBJ_TEST_UNIT_fe_WinReg_ST_R		=	.\test.unit.fe.WindowsRegistry.obj
+OBJ_TEST_UNIT_getversion_ST_R		=	.\test.unit.getversion.obj
+#### TODO: test.unit.levels.2
+OBJ_TEST_UNIT_lvls_dyninit_ST_R	=	.\test.unit.levels.dynamic_init.obj
+OBJ_TEST_UNIT_lvls_vals_ST_R		=	.\test.unit.levels.values.obj
+OBJ_TEST_UNIT_dtel2s_ST_R				=	.\test.unit.util.dtel2s.obj
+OBJ_TEST_UNIT_getcurrtm_ST_R		=	.\test.unit.util.getcurrenttime.obj
+OBJ_TEST_UNIT_gethostname_ST_R	=	.\test.unit.util.gethostname.obj
+OBJ_TEST_UNIT_onbailout_ST_R		=	.\test.unit.util.onbailout.obj
+OBJ_TEST_UNIT_strnlen_ST_R			=	.\test.unit.util.strnlen.obj
+
+OBJ_TEST_UNIT_ins_int_MT_D			=	.\test.unit.inserter.integer.mt.debug.obj
+OBJ_TEST_UNIT_ins_w2m_MT_D			=	.\test.unit.inserter.w2m.mt.debug.obj
+OBJ_TEST_UNIT_ins_stmc_MT_D			=	.\test.unit.inserter.stream_character.mt.debug.obj
+OBJ_TEST_UNIT_ins_w_sc_MT_D			=	.\test.unit.ins.windows.sc.mt.debug.obj
+OBJ_TEST_UNIT_ins_int_MT_R			=	.\test.unit.inserter.integer.mt.obj
+OBJ_TEST_UNIT_ins_w2m_MT_R			=	.\test.unit.inserter.w2m.mt.obj
+OBJ_TEST_UNIT_ins_stmc_MT_R			=	.\test.unit.inserter.stream_character.mt.obj
+OBJ_TEST_UNIT_ins_w_sc_MT_R			=	.\test.unit.ins.windows.sc.mt.obj
+OBJ_TEST_UNIT_ins_int_ST_D			=	.\test.unit.inserter.integer.debug.obj
+OBJ_TEST_UNIT_ins_w2m_ST_D			=	.\test.unit.inserter.w2m.debug.obj
+OBJ_TEST_UNIT_ins_stmc_ST_D			=	.\test.unit.inserter.stream_character.debug.obj
+OBJ_TEST_UNIT_ins_w_sc_ST_D			=	.\test.unit.ins.windows.sc.debug.obj
+OBJ_TEST_UNIT_ins_int_ST_R			=	.\test.unit.inserter.integer.obj
+OBJ_TEST_UNIT_ins_w2m_ST_R			=	.\test.unit.inserter.w2m.obj
+OBJ_TEST_UNIT_ins_stmc_ST_R			=	.\test.unit.inserter.stream_character.obj
+OBJ_TEST_UNIT_ins_w_sc_ST_R			=	.\test.unit.ins.windows.sc.obj
 
 ##################################################
 # Target groups
@@ -4799,114 +4845,126 @@ OBJS_TEST_SCRATCH=\
 
 # Unit Tests
 OBJS_TEST_UNIT=\
- $(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
- $(OBJ_TEST_UNIT_lvls_vals_MT_D)\
- $(OBJ_TEST_UNIT_getcurrtm_MT_D)\
- $(OBJ_TEST_UNIT_dtel2s_MT_D)\
- $(OBJ_TEST_UNIT_getversion_MT_D)\
- $(OBJ_TEST_UNIT_ins_w_sc_MT_D)\
- $(OBJ_TEST_UNIT_gethostname_MT_D)\
- $(OBJ_TEST_UNIT_onbailout_MT_D)\
- $(OBJ_TEST_UNIT_strnlen_MT_D)\
  \
- $(OBJ_TEST_UNIT_bec_CEO_MT_D)\
- $(OBJ_TEST_UNIT_bec_file_MT_D)\
- $(OBJ_TEST_UNIT_bec_fprintf_MT_D)\
- $(OBJ_TEST_UNIT_bec_fail_MT_D)\
  $(OBJ_TEST_UNIT_be_fail_MT_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_D)\
  $(OBJ_TEST_UNIT_be_N_MT_D)\
  $(OBJ_TEST_UNIT_be_N_filt_MT_D)\
  \
+ $(OBJ_TEST_UNIT_bec_CEO_MT_D)\
+ $(OBJ_TEST_UNIT_bec_fail_MT_D)\
+ $(OBJ_TEST_UNIT_bec_file_MT_D)\
+ $(OBJ_TEST_UNIT_bec_fprintf_MT_D)\
  $(OBJ_TEST_UNIT_fe_all_MT_D)\
  $(OBJ_TEST_UNIT_fe_fail_MT_D)\
  $(OBJ_TEST_UNIT_fe_N_MT_D)\
  $(OBJ_TEST_UNIT_fe_null_MT_D)\
  $(OBJ_TEST_UNIT_fe_simple_MT_D)\
  $(OBJ_TEST_UNIT_fe_WinReg_MT_D)\
+ $(OBJ_TEST_UNIT_getversion_MT_D)\
+ \
+ $(OBJ_TEST_UNIT_lvls_dyninit_MT_D)\
+ $(OBJ_TEST_UNIT_lvls_vals_MT_D)\
+ $(OBJ_TEST_UNIT_dtel2s_MT_D)\
+ $(OBJ_TEST_UNIT_getcurrtm_MT_D)\
+ $(OBJ_TEST_UNIT_gethostname_MT_D)\
+ $(OBJ_TEST_UNIT_onbailout_MT_D)\
+ $(OBJ_TEST_UNIT_strnlen_MT_D)\
+ \
  $(OBJ_TEST_UNIT_ins_int_MT_D)\
  $(OBJ_TEST_UNIT_ins_w2m_MT_D)\
- $(OBJ_TEST_UNIT_lvls_dyninit_MT_R)\
- $(OBJ_TEST_UNIT_lvls_vals_MT_R)\
- $(OBJ_TEST_UNIT_getcurrtm_MT_R)\
- $(OBJ_TEST_UNIT_dtel2s_MT_R)\
- $(OBJ_TEST_UNIT_getversion_MT_R)\
- $(OBJ_TEST_UNIT_ins_w_sc_MT_R)\
- $(OBJ_TEST_UNIT_gethostname_MT_R)\
- $(OBJ_TEST_UNIT_onbailout_MT_R)\
- $(OBJ_TEST_UNIT_strnlen_MT_R)\
+ $(OBJ_TEST_UNIT_ins_stmc_MT_D)\
+ $(OBJ_TEST_UNIT_ins_w_sc_MT_D)\
  \
- $(OBJ_TEST_UNIT_bec_CEO_MT_R)\
- $(OBJ_TEST_UNIT_bec_file_MT_R)\
- $(OBJ_TEST_UNIT_bec_fprintf_MT_R)\
- $(OBJ_TEST_UNIT_bec_fail_MT_R)\
  $(OBJ_TEST_UNIT_be_fail_MT_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_R)\
  $(OBJ_TEST_UNIT_be_N_MT_R)\
  $(OBJ_TEST_UNIT_be_N_filt_MT_R)\
  \
+ $(OBJ_TEST_UNIT_bec_CEO_MT_R)\
+ $(OBJ_TEST_UNIT_bec_fail_MT_R)\
+ $(OBJ_TEST_UNIT_bec_file_MT_R)\
+ $(OBJ_TEST_UNIT_bec_fprintf_MT_R)\
  $(OBJ_TEST_UNIT_fe_all_MT_R)\
  $(OBJ_TEST_UNIT_fe_fail_MT_R)\
  $(OBJ_TEST_UNIT_fe_N_MT_R)\
  $(OBJ_TEST_UNIT_fe_null_MT_R)\
  $(OBJ_TEST_UNIT_fe_simple_MT_R)\
  $(OBJ_TEST_UNIT_fe_WinReg_MT_R)\
+ $(OBJ_TEST_UNIT_getversion_MT_R)\
+ \
+ $(OBJ_TEST_UNIT_lvls_dyninit_MT_R)\
+ $(OBJ_TEST_UNIT_lvls_vals_MT_R)\
+ $(OBJ_TEST_UNIT_dtel2s_MT_R)\
+ $(OBJ_TEST_UNIT_getcurrtm_MT_R)\
+ $(OBJ_TEST_UNIT_gethostname_MT_R)\
+ $(OBJ_TEST_UNIT_onbailout_MT_R)\
+ $(OBJ_TEST_UNIT_strnlen_MT_R)\
+ \
  $(OBJ_TEST_UNIT_ins_int_MT_R)\
  $(OBJ_TEST_UNIT_ins_w2m_MT_R)\
- $(OBJ_TEST_UNIT_lvls_dyninit_ST_D)\
- $(OBJ_TEST_UNIT_lvls_vals_ST_D)\
- $(OBJ_TEST_UNIT_getcurrtm_ST_D)\
- $(OBJ_TEST_UNIT_dtel2s_ST_D)\
- $(OBJ_TEST_UNIT_getversion_ST_D)\
- $(OBJ_TEST_UNIT_ins_w_sc_ST_D)\
- $(OBJ_TEST_UNIT_gethostname_ST_D)\
- $(OBJ_TEST_UNIT_onbailout_ST_D)\
- $(OBJ_TEST_UNIT_strnlen_ST_D)\
+ $(OBJ_TEST_UNIT_ins_stmc_MT_R)\
+ $(OBJ_TEST_UNIT_ins_w_sc_MT_R)\
  \
- $(OBJ_TEST_UNIT_bec_CEO_ST_D)\
- $(OBJ_TEST_UNIT_bec_file_ST_D)\
- $(OBJ_TEST_UNIT_bec_fprintf_ST_D)\
- $(OBJ_TEST_UNIT_bec_fail_ST_D)\
  $(OBJ_TEST_UNIT_be_fail_ST_D)\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_D)\
  $(OBJ_TEST_UNIT_be_N_ST_D)\
  $(OBJ_TEST_UNIT_be_N_filt_ST_D)\
  \
+ $(OBJ_TEST_UNIT_bec_CEO_ST_D)\
+ $(OBJ_TEST_UNIT_bec_fail_ST_D)\
+ $(OBJ_TEST_UNIT_bec_file_ST_D)\
+ $(OBJ_TEST_UNIT_bec_fprintf_ST_D)\
  $(OBJ_TEST_UNIT_fe_all_ST_D)\
  $(OBJ_TEST_UNIT_fe_fail_ST_D)\
  $(OBJ_TEST_UNIT_fe_N_ST_D)\
  $(OBJ_TEST_UNIT_fe_null_ST_D)\
  $(OBJ_TEST_UNIT_fe_simple_ST_D)\
  $(OBJ_TEST_UNIT_fe_WinReg_ST_D)\
+ $(OBJ_TEST_UNIT_getversion_ST_D)\
+ \
+ $(OBJ_TEST_UNIT_lvls_dyninit_ST_D)\
+ $(OBJ_TEST_UNIT_lvls_vals_ST_D)\
+ $(OBJ_TEST_UNIT_dtel2s_ST_D)\
+ $(OBJ_TEST_UNIT_getcurrtm_ST_D)\
+ $(OBJ_TEST_UNIT_gethostname_ST_D)\
+ $(OBJ_TEST_UNIT_onbailout_ST_D)\
+ $(OBJ_TEST_UNIT_strnlen_ST_D)\
+ \
  $(OBJ_TEST_UNIT_ins_int_ST_D)\
  $(OBJ_TEST_UNIT_ins_w2m_ST_D)\
- $(OBJ_TEST_UNIT_lvls_dyninit_ST_R)\
- $(OBJ_TEST_UNIT_lvls_vals_ST_R)\
- $(OBJ_TEST_UNIT_getcurrtm_ST_R)\
- $(OBJ_TEST_UNIT_dtel2s_ST_R)\
- $(OBJ_TEST_UNIT_getversion_ST_R)\
- $(OBJ_TEST_UNIT_ins_w_sc_ST_R)\
- $(OBJ_TEST_UNIT_gethostname_ST_R)\
- $(OBJ_TEST_UNIT_onbailout_ST_R)\
- $(OBJ_TEST_UNIT_strnlen_ST_R)\
+ $(OBJ_TEST_UNIT_ins_stmc_ST_D)\
+ $(OBJ_TEST_UNIT_ins_w_sc_ST_D)\
  \
- $(OBJ_TEST_UNIT_bec_CEO_ST_R)\
- $(OBJ_TEST_UNIT_bec_file_ST_R)\
- $(OBJ_TEST_UNIT_bec_fprintf_ST_R)\
- $(OBJ_TEST_UNIT_bec_fail_ST_R)\
  $(OBJ_TEST_UNIT_be_fail_ST_R)\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_R)\
  $(OBJ_TEST_UNIT_be_N_ST_R)\
  $(OBJ_TEST_UNIT_be_N_filt_ST_R)\
  \
+ $(OBJ_TEST_UNIT_bec_CEO_ST_R)\
+ $(OBJ_TEST_UNIT_bec_fail_ST_R)\
+ $(OBJ_TEST_UNIT_bec_file_ST_R)\
+ $(OBJ_TEST_UNIT_bec_fprintf_ST_R)\
  $(OBJ_TEST_UNIT_fe_all_ST_R)\
  $(OBJ_TEST_UNIT_fe_fail_ST_R)\
  $(OBJ_TEST_UNIT_fe_N_ST_R)\
  $(OBJ_TEST_UNIT_fe_null_ST_R)\
  $(OBJ_TEST_UNIT_fe_simple_ST_R)\
  $(OBJ_TEST_UNIT_fe_WinReg_ST_R)\
+ $(OBJ_TEST_UNIT_getversion_ST_R)\
+ \
+ $(OBJ_TEST_UNIT_lvls_dyninit_ST_R)\
+ $(OBJ_TEST_UNIT_lvls_vals_ST_R)\
+ $(OBJ_TEST_UNIT_dtel2s_ST_R)\
+ $(OBJ_TEST_UNIT_getcurrtm_ST_R)\
+ $(OBJ_TEST_UNIT_gethostname_ST_R)\
+ $(OBJ_TEST_UNIT_onbailout_ST_R)\
+ $(OBJ_TEST_UNIT_strnlen_ST_R)\
+ \
  $(OBJ_TEST_UNIT_ins_int_ST_R)\
  $(OBJ_TEST_UNIT_ins_w2m_ST_R)\
+ $(OBJ_TEST_UNIT_ins_stmc_ST_R)\
+ $(OBJ_TEST_UNIT_ins_w_sc_ST_R)\
  \
 
 ########################################
@@ -5724,114 +5782,122 @@ TARGETS_TEST_SCRATCH=\
  \
 
 TARGETS_TEST_UNIT=\
- $(TARG_TEST_UNIT_lvls_dyninit_MT_D)\
- $(TARG_TEST_UNIT_lvls_vals_MT_D)\
- $(TARG_TEST_UNIT_getcurrtm_MT_D)\
- $(TARG_TEST_UNIT_dtel2s_MT_D)\
- $(TARG_TEST_UNIT_getversion_MT_D)\
- $(TARG_TEST_UNIT_ins_w_sc_MT_D)\
- $(TARG_TEST_UNIT_gethostname_MT_D)\
- $(TARG_TEST_UNIT_onbailout_MT_D)\
- $(TARG_TEST_UNIT_strnlen_MT_D)\
- \
- $(TARG_TEST_UNIT_bec_CEO_MT_D)\
- $(TARG_TEST_UNIT_bec_file_MT_D)\
- $(TARG_TEST_UNIT_bec_fprintf_MT_D)\
- $(TARG_TEST_UNIT_bec_fail_MT_D)\
  $(TARG_TEST_UNIT_be_fail_MT_D)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_D)\
  $(TARG_TEST_UNIT_be_N_MT_D)\
  $(TARG_TEST_UNIT_be_N_filt_MT_D)\
  \
+ $(TARG_TEST_UNIT_bec_CEO_MT_D)\
+ $(TARG_TEST_UNIT_bec_file_MT_D)\
+ $(TARG_TEST_UNIT_bec_fprintf_MT_D)\
+ $(TARG_TEST_UNIT_bec_fail_MT_D)\
  $(TARG_TEST_UNIT_fe_all_MT_D)\
  $(TARG_TEST_UNIT_fe_fail_MT_D)\
  $(TARG_TEST_UNIT_fe_N_MT_D)\
  $(TARG_TEST_UNIT_fe_null_MT_D)\
  $(TARG_TEST_UNIT_fe_simple_MT_D)\
  $(TARG_TEST_UNIT_fe_WinReg_MT_D)\
+ $(TARG_TEST_UNIT_getversion_MT_D)\
+ \
+ $(TARG_TEST_UNIT_lvls_dyninit_MT_D)\
+ $(TARG_TEST_UNIT_lvls_vals_MT_D)\
+ $(TARG_TEST_UNIT_dtel2s_MT_D)\
+ $(TARG_TEST_UNIT_getcurrtm_MT_D)\
+ $(TARG_TEST_UNIT_gethostname_MT_D)\
+ $(TARG_TEST_UNIT_onbailout_MT_D)\
+ $(TARG_TEST_UNIT_strnlen_MT_D)\
+ \
  $(TARG_TEST_UNIT_ins_int_MT_D)\
  $(TARG_TEST_UNIT_ins_w2m_MT_D)\
- $(TARG_TEST_UNIT_lvls_dyninit_MT_R)\
- $(TARG_TEST_UNIT_lvls_vals_MT_R)\
- $(TARG_TEST_UNIT_getcurrtm_MT_R)\
- $(TARG_TEST_UNIT_dtel2s_MT_R)\
- $(TARG_TEST_UNIT_getversion_MT_R)\
- $(TARG_TEST_UNIT_ins_w_sc_MT_R)\
- $(TARG_TEST_UNIT_gethostname_MT_R)\
- $(TARG_TEST_UNIT_onbailout_MT_R)\
- $(TARG_TEST_UNIT_strnlen_MT_R)\
- \
- $(TARG_TEST_UNIT_bec_CEO_MT_R)\
- $(TARG_TEST_UNIT_bec_file_MT_R)\
- $(TARG_TEST_UNIT_bec_fprintf_MT_R)\
- $(TARG_TEST_UNIT_bec_fail_MT_R)\
+ $(TARG_TEST_UNIT_ins_stmc_MT_D)\
+ $(TARG_TEST_UNIT_ins_w_sc_MT_D)\
  $(TARG_TEST_UNIT_be_fail_MT_R)\
  $(TARG_TEST_UNIT_be_lrsplit_MT_R)\
  $(TARG_TEST_UNIT_be_N_MT_R)\
  $(TARG_TEST_UNIT_be_N_filt_MT_R)\
  \
+ $(TARG_TEST_UNIT_bec_CEO_MT_R)\
+ $(TARG_TEST_UNIT_bec_file_MT_R)\
+ $(TARG_TEST_UNIT_bec_fprintf_MT_R)\
+ $(TARG_TEST_UNIT_bec_fail_MT_R)\
  $(TARG_TEST_UNIT_fe_all_MT_R)\
  $(TARG_TEST_UNIT_fe_fail_MT_R)\
  $(TARG_TEST_UNIT_fe_N_MT_R)\
  $(TARG_TEST_UNIT_fe_null_MT_R)\
  $(TARG_TEST_UNIT_fe_simple_MT_R)\
  $(TARG_TEST_UNIT_fe_WinReg_MT_R)\
+ $(TARG_TEST_UNIT_getversion_MT_R)\
+ \
+ $(TARG_TEST_UNIT_lvls_dyninit_MT_R)\
+ $(TARG_TEST_UNIT_lvls_vals_MT_R)\
+ $(TARG_TEST_UNIT_dtel2s_MT_R)\
+ $(TARG_TEST_UNIT_getcurrtm_MT_R)\
+ $(TARG_TEST_UNIT_gethostname_MT_R)\
+ $(TARG_TEST_UNIT_onbailout_MT_R)\
+ $(TARG_TEST_UNIT_strnlen_MT_R)\
+ \
  $(TARG_TEST_UNIT_ins_int_MT_R)\
  $(TARG_TEST_UNIT_ins_w2m_MT_R)\
- $(TARG_TEST_UNIT_lvls_dyninit_ST_D)\
- $(TARG_TEST_UNIT_lvls_vals_ST_D)\
- $(TARG_TEST_UNIT_getcurrtm_ST_D)\
- $(TARG_TEST_UNIT_dtel2s_ST_D)\
- $(TARG_TEST_UNIT_getversion_ST_D)\
- $(TARG_TEST_UNIT_ins_w_sc_ST_D)\
- $(TARG_TEST_UNIT_gethostname_ST_D)\
- $(TARG_TEST_UNIT_onbailout_ST_D)\
- $(TARG_TEST_UNIT_strnlen_ST_D)\
- \
- $(TARG_TEST_UNIT_bec_CEO_ST_D)\
- $(TARG_TEST_UNIT_bec_file_ST_D)\
- $(TARG_TEST_UNIT_bec_fprintf_ST_D)\
- $(TARG_TEST_UNIT_bec_fail_ST_D)\
+ $(TARG_TEST_UNIT_ins_stmc_MT_R)\
+ $(TARG_TEST_UNIT_ins_w_sc_MT_R)\
  $(TARG_TEST_UNIT_be_fail_ST_D)\
  $(TARG_TEST_UNIT_be_lrsplit_ST_D)\
  $(TARG_TEST_UNIT_be_N_ST_D)\
  $(TARG_TEST_UNIT_be_N_filt_ST_D)\
  \
+ $(TARG_TEST_UNIT_bec_CEO_ST_D)\
+ $(TARG_TEST_UNIT_bec_file_ST_D)\
+ $(TARG_TEST_UNIT_bec_fprintf_ST_D)\
+ $(TARG_TEST_UNIT_bec_fail_ST_D)\
  $(TARG_TEST_UNIT_fe_all_ST_D)\
  $(TARG_TEST_UNIT_fe_fail_ST_D)\
  $(TARG_TEST_UNIT_fe_N_ST_D)\
  $(TARG_TEST_UNIT_fe_null_ST_D)\
  $(TARG_TEST_UNIT_fe_simple_ST_D)\
  $(TARG_TEST_UNIT_fe_WinReg_ST_D)\
+ $(TARG_TEST_UNIT_getversion_ST_D)\
+ \
+ $(TARG_TEST_UNIT_lvls_dyninit_ST_D)\
+ $(TARG_TEST_UNIT_lvls_vals_ST_D)\
+ $(TARG_TEST_UNIT_dtel2s_ST_D)\
+ $(TARG_TEST_UNIT_getcurrtm_ST_D)\
+ $(TARG_TEST_UNIT_gethostname_ST_D)\
+ $(TARG_TEST_UNIT_onbailout_ST_D)\
+ $(TARG_TEST_UNIT_strnlen_ST_D)\
+ \
  $(TARG_TEST_UNIT_ins_int_ST_D)\
  $(TARG_TEST_UNIT_ins_w2m_ST_D)\
- $(TARG_TEST_UNIT_lvls_dyninit_ST_R)\
- $(TARG_TEST_UNIT_lvls_vals_ST_R)\
- $(TARG_TEST_UNIT_getcurrtm_ST_R)\
- $(TARG_TEST_UNIT_dtel2s_ST_R)\
- $(TARG_TEST_UNIT_getversion_ST_R)\
- $(TARG_TEST_UNIT_ins_w_sc_ST_R)\
- $(TARG_TEST_UNIT_gethostname_ST_R)\
- $(TARG_TEST_UNIT_onbailout_ST_R)\
- $(TARG_TEST_UNIT_strnlen_ST_R)\
- \
- $(TARG_TEST_UNIT_bec_CEO_ST_R)\
- $(TARG_TEST_UNIT_bec_file_ST_R)\
- $(TARG_TEST_UNIT_bec_fprintf_ST_R)\
- $(TARG_TEST_UNIT_bec_fail_ST_R)\
+ $(TARG_TEST_UNIT_ins_stmc_ST_D)\
+ $(TARG_TEST_UNIT_ins_w_sc_ST_D)\
  $(TARG_TEST_UNIT_be_fail_ST_R)\
  $(TARG_TEST_UNIT_be_lrsplit_ST_R)\
  $(TARG_TEST_UNIT_be_N_ST_R)\
  $(TARG_TEST_UNIT_be_N_filt_ST_R)\
  \
+ $(TARG_TEST_UNIT_bec_CEO_ST_R)\
+ $(TARG_TEST_UNIT_bec_file_ST_R)\
+ $(TARG_TEST_UNIT_bec_fprintf_ST_R)\
+ $(TARG_TEST_UNIT_bec_fail_ST_R)\
  $(TARG_TEST_UNIT_fe_all_ST_R)\
  $(TARG_TEST_UNIT_fe_fail_ST_R)\
  $(TARG_TEST_UNIT_fe_N_ST_R)\
  $(TARG_TEST_UNIT_fe_null_ST_R)\
  $(TARG_TEST_UNIT_fe_simple_ST_R)\
  $(TARG_TEST_UNIT_fe_WinReg_ST_R)\
+ $(TARG_TEST_UNIT_getversion_ST_R)\
+ \
+ $(TARG_TEST_UNIT_lvls_dyninit_ST_R)\
+ $(TARG_TEST_UNIT_lvls_vals_ST_R)\
+ $(TARG_TEST_UNIT_dtel2s_ST_R)\
+ $(TARG_TEST_UNIT_getcurrtm_ST_R)\
+ $(TARG_TEST_UNIT_gethostname_ST_R)\
+ $(TARG_TEST_UNIT_onbailout_ST_R)\
+ $(TARG_TEST_UNIT_strnlen_ST_R)\
+ \
  $(TARG_TEST_UNIT_ins_int_ST_R)\
  $(TARG_TEST_UNIT_ins_w2m_ST_R)\
+ $(TARG_TEST_UNIT_ins_stmc_ST_R)\
+ $(TARG_TEST_UNIT_ins_w_sc_ST_R)\
  \
 
 ############################################################
@@ -6258,10 +6324,6 @@ test.unit_:
 	$(TARG_TEST_UNIT_getversion_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getversion_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_getversion_ST_R) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_UNIT_ins_w_sc_MT_D) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_UNIT_ins_w_sc_MT_R) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_UNIT_ins_w_sc_ST_D) --verbosity=$(TEST_VERBOSITY)
-	$(TARG_TEST_UNIT_ins_w_sc_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_gethostname_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_gethostname_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_gethostname_ST_D) --verbosity=$(TEST_VERBOSITY)
@@ -6335,9 +6397,17 @@ test.unit_:
 	$(TARG_TEST_UNIT_ins_int_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_int_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_w2m_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_stmc_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_MT_D) --verbostiy=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_w2m_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_stmc_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_MT_R) --verbostiy=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_w2m_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_stmc_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_ST_D) --verbostiy=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_ins_w2m_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_stmc_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_ins_w_sc_ST_R) --verbostiy=$(TEST_VERBOSITY)
 
 test.examples_:
 	@echo Running Example programs ...
@@ -6662,7 +6732,7 @@ clean.unittest.ace:
 endif # ACE
 
 
-clean.libs: 		clean.libs.util clean.libs.core clean.libs.be clean.libs.fe
+clean.libs:		clean.libs.util clean.libs.core clean.libs.be clean.libs.fe
 
 clean.libs.3pty:	\
  clean.libs.b64 \
@@ -6670,7 +6740,7 @@ clean.libs.3pty:	\
  clean.libs.xcontract \
  clean.libs.xtests
 
-clean.libs.all: 	clean.libs clean.libs.3pty
+clean.libs.all:	clean.libs clean.libs.3pty
 
 clean.test:			clean.test.unit clean.test.component clean.test.scratch clean.test.performance
 
@@ -16834,102 +16904,6 @@ $(TARG_TEST_UNIT_getversion_ST_R):	\
 $(OBJ_TEST_UNIT_getversion_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.getversion\test.unit.getversion.c $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CC) $(CC_TEST_UNIT_ARGS_ST_R) $(CC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.getversion\test.unit.getversion.c
 
-$(TARG_TEST_UNIT_ins_w_sc_MT_D):	\
-			$(OBJ_TEST_UNIT_ins_w_sc_MT_D)\
-			$(LIB_CORE_MT_D)\
-			$(LIB_UTIL_MT_D)\
-			$(LIB_FE_FAIL_MT_D)\
-			$(LIB_BE_FAIL_MT_D)\
-			$(LIB_BEC_FAIL_MT_D)\
-			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
-			$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_MT_D) -o $@ \
-		$(OBJ_TEST_UNIT_ins_w_sc_MT_D)\
-		$(LIB_CORE_MT_D)\
-		$(LIB_UTIL_MT_D)\
-		$(LIB_FE_FAIL_MT_D)\
-		$(LIB_BE_FAIL_MT_D)\
-		$(LIB_BEC_FAIL_MT_D)\
-		$(LIB_CORE_MT_D)\
-		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
-		$(LIBS_3PTY_TEST_UNIT)\
-		$(TARGET_LIB_MT_D)
-
-$(OBJ_TEST_UNIT_ins_w_sc_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
-
-$(TARG_TEST_UNIT_ins_w_sc_MT_R):	\
-			$(OBJ_TEST_UNIT_ins_w_sc_MT_R)\
-			$(LIB_CORE_MT_R)\
-			$(LIB_UTIL_MT_R)\
-			$(LIB_FE_FAIL_MT_R)\
-			$(LIB_BE_FAIL_MT_R)\
-			$(LIB_BEC_FAIL_MT_R)\
-			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
-			$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_MT_R) -o $@ \
-		$(OBJ_TEST_UNIT_ins_w_sc_MT_R)\
-		$(LIB_CORE_MT_R)\
-		$(LIB_UTIL_MT_R)\
-		$(LIB_FE_FAIL_MT_R)\
-		$(LIB_BE_FAIL_MT_R)\
-		$(LIB_BEC_FAIL_MT_R)\
-		$(LIB_CORE_MT_R)\
-		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
-		$(LIBS_3PTY_TEST_UNIT)\
-		$(TARGET_LIB_MT_R)
-
-$(OBJ_TEST_UNIT_ins_w_sc_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
-
-$(TARG_TEST_UNIT_ins_w_sc_ST_D):	\
-			$(OBJ_TEST_UNIT_ins_w_sc_ST_D)\
-			$(LIB_CORE_ST_D)\
-			$(LIB_UTIL_ST_D)\
-			$(LIB_FE_FAIL_ST_D)\
-			$(LIB_BE_FAIL_ST_D)\
-			$(LIB_BEC_FAIL_ST_D)\
-			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
-			$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_ST_D) -o $@ \
-		$(OBJ_TEST_UNIT_ins_w_sc_ST_D)\
-		$(LIB_CORE_ST_D)\
-		$(LIB_UTIL_ST_D)\
-		$(LIB_FE_FAIL_ST_D)\
-		$(LIB_BE_FAIL_ST_D)\
-		$(LIB_BEC_FAIL_ST_D)\
-		$(LIB_CORE_ST_D)\
-		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
-		$(LIBS_3PTY_TEST_UNIT)\
-		$(TARGET_LIB_ST_D)
-
-$(OBJ_TEST_UNIT_ins_w_sc_ST_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
-
-$(TARG_TEST_UNIT_ins_w_sc_ST_R):	\
-			$(OBJ_TEST_UNIT_ins_w_sc_ST_R)\
-			$(LIB_CORE_ST_R)\
-			$(LIB_UTIL_ST_R)\
-			$(LIB_FE_FAIL_ST_R)\
-			$(LIB_BE_FAIL_ST_R)\
-			$(LIB_BEC_FAIL_ST_R)\
-			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
-			$(PROJ_MAKEFILE_NAME)
-	$(LD) $(LD_ARGS_ST_R) -o $@ \
-		$(OBJ_TEST_UNIT_ins_w_sc_ST_R)\
-		$(LIB_CORE_ST_R)\
-		$(LIB_UTIL_ST_R)\
-		$(LIB_FE_FAIL_ST_R)\
-		$(LIB_BE_FAIL_ST_R)\
-		$(LIB_BEC_FAIL_ST_R)\
-		$(LIB_CORE_ST_R)\
-		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
-		$(LIBS_3PTY_TEST_UNIT)\
-		$(TARGET_LIB_ST_R)
-
-$(OBJ_TEST_UNIT_ins_w_sc_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
-
 $(TARG_TEST_UNIT_gethostname_MT_D):	\
 			$(OBJ_TEST_UNIT_gethostname_MT_D)\
 			$(LIB_UTIL_MT_D)\
@@ -18250,5 +18224,169 @@ $(TARG_TEST_UNIT_ins_w2m_ST_R):	\
 
 $(OBJ_TEST_UNIT_ins_w2m_ST_R):	$(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.w2m\test.unit.inserter.w2m.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.w2m\test.unit.inserter.w2m.cpp
+
+$(TARG_TEST_UNIT_ins_stmc_MT_D):	\
+			$(OBJ_TEST_UNIT_ins_stmc_MT_D)\
+			$(LIB_CORE_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -o $@ \
+		$(OBJ_TEST_UNIT_ins_stmc_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_UNIT_ins_stmc_MT_D):	$(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp
+
+$(TARG_TEST_UNIT_ins_stmc_MT_R):	\
+			$(OBJ_TEST_UNIT_ins_stmc_MT_R)\
+			$(LIB_CORE_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -o $@ \
+		$(OBJ_TEST_UNIT_ins_stmc_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_UNIT_ins_stmc_MT_R):	$(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp
+
+$(TARG_TEST_UNIT_ins_stmc_ST_D):	\
+			$(OBJ_TEST_UNIT_ins_stmc_ST_D)\
+			$(LIB_CORE_ST_D)\
+			$(LIB_UTIL_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -o $@ \
+		$(OBJ_TEST_UNIT_ins_stmc_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIB_UTIL_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_UNIT_ins_stmc_ST_D):	$(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp
+
+$(TARG_TEST_UNIT_ins_stmc_ST_R):	\
+			$(OBJ_TEST_UNIT_ins_stmc_ST_R)\
+			$(LIB_CORE_ST_R)\
+			$(LIB_UTIL_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -o $@ \
+		$(OBJ_TEST_UNIT_ins_stmc_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIB_UTIL_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_UNIT_ins_stmc_ST_R):	$(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\inserters\test.unit.inserter.stream_character\test.unit.inserter.stream_character.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_MT_D):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_MT_D)\
+			$(LIB_CORE_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIB_FE_FAIL_MT_D)\
+			$(LIB_BE_FAIL_MT_D)\
+			$(LIB_BEC_FAIL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -o $@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIB_FE_FAIL_MT_D)\
+		$(LIB_BE_FAIL_MT_D)\
+		$(LIB_BEC_FAIL_MT_D)\
+		$(LIB_CORE_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_UNIT_ins_w_sc_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_MT_R):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_MT_R)\
+			$(LIB_CORE_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIB_FE_FAIL_MT_R)\
+			$(LIB_BE_FAIL_MT_R)\
+			$(LIB_BEC_FAIL_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -o $@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIB_FE_FAIL_MT_R)\
+		$(LIB_BE_FAIL_MT_R)\
+		$(LIB_BEC_FAIL_MT_R)\
+		$(LIB_CORE_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_UNIT_ins_w_sc_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_ST_D):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_ST_D)\
+			$(LIB_CORE_ST_D)\
+			$(LIB_UTIL_ST_D)\
+			$(LIB_FE_FAIL_ST_D)\
+			$(LIB_BE_FAIL_ST_D)\
+			$(LIB_BEC_FAIL_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -o $@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIB_UTIL_ST_D)\
+		$(LIB_FE_FAIL_ST_D)\
+		$(LIB_BE_FAIL_ST_D)\
+		$(LIB_BEC_FAIL_ST_D)\
+		$(LIB_CORE_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_UNIT_ins_w_sc_ST_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
+
+$(TARG_TEST_UNIT_ins_w_sc_ST_R):	\
+			$(OBJ_TEST_UNIT_ins_w_sc_ST_R)\
+			$(LIB_CORE_ST_R)\
+			$(LIB_UTIL_ST_R)\
+			$(LIB_FE_FAIL_ST_R)\
+			$(LIB_BE_FAIL_ST_R)\
+			$(LIB_BEC_FAIL_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -o $@ \
+		$(OBJ_TEST_UNIT_ins_w_sc_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIB_UTIL_ST_R)\
+		$(LIB_FE_FAIL_ST_R)\
+		$(LIB_BE_FAIL_ST_R)\
+		$(LIB_BEC_FAIL_ST_R)\
+		$(LIB_CORE_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_UNIT_ins_w_sc_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)\test.unit.inserters.windows.sc\test.unit.inserters.windows.sc.cpp
 
 ############################### end of file ################################
