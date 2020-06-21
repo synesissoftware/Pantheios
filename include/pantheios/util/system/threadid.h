@@ -4,11 +4,11 @@
  * Purpose:     Functions for eliciting thread identifier
  *
  * Created:     4th January 2008
- * Updated:     29th June 2016
+ * Updated:     21st November 2019
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_MINOR    0
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_EDIT     9
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_EDIT     10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,8 +90,12 @@ namespace pantheios
  *   a given process. It is not guaranteed to be the same value as that
  *   known to/obtained from the operating system.
  */
-PANTHEIOS_CALL(stlsoft_ns_qual(ss_sint64_t)) pantheios_getCurrentThreadId(void);
+PANTHEIOS_CALL(stlsoft_ns_qual(ss_sint64_t))
+pantheios_getCurrentThreadId(void) STLSOFT_NOEXCEPT;
 
+/* /////////////////////////////////////////////////////////////////////////
+ * C++ API
+ */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 namespace util
@@ -101,7 +105,9 @@ namespace util
  *
  * \ingroup group__utility
  */
-inline stlsoft_ns_qual(ss_sint64_t) getCurrentThreadId()
+inline
+stlsoft_ns_qual(ss_sint64_t)
+getCurrentThreadId() STLSOFT_NOEXCEPT
 {
     return pantheios_getCurrentThreadId();
 }
@@ -117,8 +123,15 @@ inline stlsoft_ns_qual(ss_sint64_t) getCurrentThreadId()
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_THREADID */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
