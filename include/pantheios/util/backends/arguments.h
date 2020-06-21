@@ -4,11 +4,11 @@
  * Purpose:     Pantheios back end API
  *
  * Created:     21st June 2005
- * Updated:     17th December 2016
+ * Updated:     9th November 2019
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     25
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -164,6 +164,7 @@ pantheios_be_parseStringArg(
  * - "showTime"                 (Boolean)
  * - "highResolution"           (Boolean)
  * - "lowResolution"            (Boolean)
+ * - "numericSeverity"          (Boolean)
  *
  * \param numArgs Number of elements in the argument array. May be 0
  * \param args Pointer to the base of the argument array. May only be NULL
@@ -188,3 +189,4 @@ pantheios_be_parseStockArgs(
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
