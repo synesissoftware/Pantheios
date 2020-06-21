@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Implementation Files">
+      <UniqueIdentifier>{D235CB96-B7A2-46AC-B7DC-310587E1D366}</UniqueIdentifier>
+      <Extensions>c;cc;cpp;cxx;</Extensions>
+    </Filter>
+    <Filter Include="Include Files">
+      <UniqueIdentifier>{5298301A-C12D-4A4D-800E-B67F6D1996CE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include">
+      <UniqueIdentifier>{722C7F42-1B5E-4D2E-9F25-90D4A20E564A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include\fastformat">
+      <UniqueIdentifier>{03091693-0ce7-48f7-ae77-3093e7a4016e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include\fastformat\sinks">
+      <UniqueIdentifier>{12f8ca37-69bb-4215-b8d9-338b8371881e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\implicit_link.cpp">
+      <Filter>Implementation Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test.unit.util.snprintf.cpp">
+      <Filter>Implementation Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\fastformat.h">
+      <Filter>Include Files\include\fastformat</Filter>
+    </ClInclude>
+    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\fastformat.hpp">
+      <Filter>Include Files\include\fastformat</Filter>
+    </ClInclude>
+    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\ff.hpp">
+      <Filter>Include Files\include\fastformat</Filter>
+    </ClInclude>
+    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\sinks\iostream.hpp">
+      <Filter>Include Files\include\fastformat\sinks</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
