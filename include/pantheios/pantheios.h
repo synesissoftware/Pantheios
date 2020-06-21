@@ -4,7 +4,7 @@
  * Purpose:     Pantheios Core and Util APIs.
  *
  * Created:     21st June 2005
- * Updated:     16th June 2020
+ * Updated:     21st June 2020
  *
  * Home:        http://www.pantheios.org/
  *
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       376
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       377
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -126,25 +126,6 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
-# undef PANTHEIOS_STLSOFT_1_12_OR_LATER
-#endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
-#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-# undef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-#endif /* PANTHEIOS_STLSOFT_1_10_B01_OR_LATER */
-
-#if 0
-#elif defined(STLSOFT_VER) && \
-    STLSOFT_VER >= 0x010c0000
-# define PANTHEIOS_STLSOFT_1_12_OR_LATER
-#elif defined(_STLSOFT_VER) && \
-      _STLSOFT_VER >= 0x010a0181
-# define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-#elif !defined(_STLSOFT_VER) || \
-      _STLSOFT_VER < 0x010983ff
-# error This version Pantheios requires STLSoft 1.9.131, or later. (www.stlsoft.org)
-#endif /* STLSoft version */
-
 #ifndef PANTHEIOS_INCL_H_STDARG
 # define PANTHEIOS_INCL_H_STDARG
 # include <stdarg.h>     /* for va_list */
@@ -153,6 +134,68 @@
 # define PANTHEIOS_INCL_H_STDDEF
 # include <stddef.h>     /* for size_t */
 #endif /* !PANTHEIOS_INCL_H_STDDEF */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# undef PANTHEIOS_STLSOFT_1_12_OR_LATER
+#endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#ifdef PANTHEIOS_STLSOFT_1_11_OR_LATER
+# undef PANTHEIOS_STLSOFT_1_11_OR_LATER
+#endif /* PANTHEIOS_STLSOFT_1_11_OR_LATER */
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+# undef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+#endif /* PANTHEIOS_STLSOFT_1_10_B01_OR_LATER */
+
+#if 0
+#elif defined(STLSOFT_VER)
+
+# if STLSOFT_VER >= 0x010c0000
+
+#  define PANTHEIOS_STLSOFT_1_12_OR_LATER
+# endif
+
+# if STLSOFT_VER >= 0x010b0000
+
+#  define PANTHEIOS_STLSOFT_1_11_OR_LATER
+# endif
+
+# if STLSOFT_VER >= 0x010a0181
+
+#  define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+# endif
+
+# if STLSOFT_VER < 0x01098ff
+
+#  error This version Pantheios requires STLSoft 1.9.133, or later. (www.stlsoft.org)
+# endif
+#elif defined(_STLSOFT_VER)
+
+# if _STLSOFT_VER >= 0x010c0000
+
+#  define PANTHEIOS_STLSOFT_1_12_OR_LATER
+# endif
+
+# if _STLSOFT_VER >= 0x010b0000
+
+#  define PANTHEIOS_STLSOFT_1_11_OR_LATER
+# endif
+
+# if _STLSOFT_VER >= 0x010a0181
+
+#  define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+# endif
+
+# if _STLSOFT_VER < 0x010985ff
+
+#  error This version Pantheios requires STLSoft 1.9.133, or later. (www.stlsoft.org)
+# endif
+#else
+
+# error Invalid STLSoft library
+#endif
 
 /* /////////////////////////////////////////////////////////////////////////
  * feature detection
