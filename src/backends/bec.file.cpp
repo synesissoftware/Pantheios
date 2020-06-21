@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the file back-end.
  *
  * Created:     25th November 2006
- * Updated:     27th December 2019
+ * Updated:     19th June 2020
  *
  * Thanks to:   CookieRaver for filling in the (accidental) blanks in the
  *              UNIX implementation.
@@ -22,6 +22,7 @@
  *
  * Home:        http://www.pantheios.org/
  *
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -167,10 +168,12 @@
 #  define fsync     _commit
 
    /* write() */
-#  define write     _write
+#  define write(h, b, n)                _write((h), (b), stlsoft_static_cast(int, (n)))
+
+#  include <stdint.h>
 
    /* types and constants */
-#  define ssize_t   long
+#  define ssize_t   intptr_t
 #  define S_IRWXU   (0)
 #  define S_IRWXG   (0)
 
@@ -541,7 +544,7 @@ PANTHEIOS_CALL(void) pantheios_be_file_getDefaultAppInit(pan_be_file_init_t* ini
 
     init->version   =   PANTHEIOS_VER;
     init->flags     =   be_file_Context::defaultInitFlags;
-    init->fileName  =   NULL;
+    init->fileName  =   &init->buff[0];
     init->buff[0]   =   '\0';
 }
 
@@ -624,7 +627,8 @@ static int pantheios_be_file_init_(
     }
 #endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
 
-    if(NULL != init->fileName)
+    if( NULL != init->fileName &&
+        '\0' != init->fileName[0])
     {
         int const r = ctxt->SetFileName(init->fileName, ~static_cast<pantheios_uint32_t>(0), init->flags);
 
@@ -1045,7 +1049,8 @@ int be_file_Context::SetFileName(
 
     Close();
 
-    if(NULL == fileName)
+    if( NULL == fileName ||
+        '\0' == fileName[0])
     {
         return 0;
     }
@@ -1141,6 +1146,7 @@ int be_file_Context::Open(
     // Precondition testing
 
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != fileName, "the file name cannot be the null string");
+    PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API('\0' != fileName[0], "the file name cannot be the empty string");
     PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION((FileErrorValue == m_hFile) == (m_filePath.empty()));
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_INTERNAL(FileErrorValue == m_hFile, "the file cannot be already open");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_INTERNAL(m_filePath.empty(), "the file cannot be already open");
@@ -1192,9 +1198,11 @@ int be_file_Context::Open(
         PAN_CHAR_T const*   p1r =   NULL;
         PAN_CHAR_T const*   p1s =   NULL;
         size_t              n1  =   0;
+        size_t              o1  =   0;
         PAN_CHAR_T const*   p3r =   NULL;
         PAN_CHAR_T const*   p3s;
         size_t              n3  =   0;
+        size_t              o3  =   0;
 
         size_t              n2  =   0;
 
@@ -1203,6 +1211,7 @@ int be_file_Context::Open(
             p1r =   dateStr;
             p1s =   date;
             n1  =   8;
+            o1  =   2;
         }
 
         if(NULL != time)
@@ -1212,6 +1221,7 @@ int be_file_Context::Open(
                 p3r =   timeStr;
                 p3s =   time;
                 n3  =   6;
+                o3  =   2;
 
                 n2  =   static_cast<size_t>( (date < time) ? (time - (date + 2)) : (date - (time + 2)) );
 
@@ -1220,6 +1230,7 @@ int be_file_Context::Open(
                     std::swap(p1r, p3r);
                     std::swap(p1s, p3s);
                     std::swap(n1, n3);
+                    std::swap(o1, o3);
 
                     STLSOFT_SUPPRESS_UNUSED(p3s); // Borland warning suppression
                 }
@@ -1229,6 +1240,7 @@ int be_file_Context::Open(
                 p1r =   timeStr;
                 p1s =   time;
                 n1  =   6;
+                o1  =   2;
             }
         }
 
@@ -1244,7 +1256,7 @@ int be_file_Context::Open(
         // 1st replacement
         PANTHEIOS_char_copy(d, p1r, n1);
         d += n1;
-        s += 2;
+        s += o1;
         // between 1st and 2nd replacements
         PANTHEIOS_char_copy(d, s, n2);
         d += n2;
@@ -1252,7 +1264,7 @@ int be_file_Context::Open(
         // 2nd replacement
         PANTHEIOS_char_copy(d, p3r, n3);
         d += n3;
-        s += 2;
+        s += o3;
         // after 2nd replacement
         size_t const        n4  =   nameLen - (s - fileName);
 
@@ -1680,10 +1692,10 @@ int be_file_ContextMap::Flush(int backEndId)
                 ,   NULL
 #ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 
-                ,   stlsoft::integer_to_decimal_string(beid, STLSOFT_NUM_ELEMENTS(beid), (*b).first)
+                ,   stlsoft::integer_to_decimal_string(&beid[0], STLSOFT_NUM_ELEMENTS(beid), (*b).first)
 #else /* ? STLSoft version */
 
-                ,   stlsoft::integer_to_string(beid, STLSOFT_NUM_ELEMENTS(beid), (*b).first)
+                ,   stlsoft::integer_to_string(&beid[0], STLSOFT_NUM_ELEMENTS(beid), (*b).first)
 #endif /* STLSoft version */
                 );
 
@@ -1730,10 +1742,10 @@ int be_file_ContextMap::EmptyCache(int backEndId)
                 ,   NULL
 #ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 
-                ,   stlsoft::integer_to_decimal_string(beid, STLSOFT_NUM_ELEMENTS(beid), (*b).first)
+                ,   stlsoft::integer_to_decimal_string(&beid[0], STLSOFT_NUM_ELEMENTS(beid), (*b).first)
 #else /* ? STLSoft version */
 
-                ,   stlsoft::integer_to_string(beid, STLSOFT_NUM_ELEMENTS(beid), (*b).first)
+                ,   stlsoft::integer_to_string(&beid[0], STLSOFT_NUM_ELEMENTS(beid), (*b).first)
 #endif /* STLSoft version */
                 );
 
