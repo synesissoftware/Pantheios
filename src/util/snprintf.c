@@ -127,6 +127,19 @@ pantheios_util_vsnprintf_a(
 }
 
 PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf_w(
+    wchar_t*        dest
+,   size_t          cchDest
+,   wchar_t const*  fmt
+,   va_list         args
+)
+{
+    PANTHEIOS_COVER_MARK_ENTRY();
+
+    return pantheios_util_vsnprintf_w_(dest, cchDest, fmt, args);
+}
+
+PANTHEIOS_CALL(int)
 pantheios_util_snprintf_a(
     char*           dest
 ,   size_t          cchDest
@@ -142,6 +155,30 @@ pantheios_util_snprintf_a(
     va_start(args, fmt);
 
     ret = pantheios_util_vsnprintf_a(dest, cchDest, fmt, args);
+
+    va_end(args);
+
+    PANTHEIOS_COVER_MARK_ENTRY();
+
+    return ret;
+}
+
+PANTHEIOS_CALL(int)
+pantheios_util_snprintf_w(
+    wchar_t*        dest
+,   size_t          cchDest
+,   wchar_t const*  fmt
+,   ...
+)
+{
+    va_list args;
+    int     ret;
+
+    PANTHEIOS_COVER_MARK_ENTRY();
+
+    va_start(args, fmt);
+
+    ret = pantheios_util_vsnprintf_w(dest, cchDest, fmt, args);
 
     va_end(args);
 

@@ -5,7 +5,7 @@
 #			compiler, on Mac OS-X
 #
 # Created:	15th February 2005
-# Updated:	19th June 2020
+# Updated:	21st June 2020
 #
 ############################################################################
 
@@ -1447,6 +1447,7 @@ TARG_TEST_UNIT_dtel2s_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.
 TARG_TEST_UNIT_getcurrtm_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_gethostname_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_onbailout_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_UNIT_snprintf_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_strnlen_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_be_fail_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_UNIT_be_lrsplit_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt
@@ -1468,6 +1469,7 @@ TARG_TEST_UNIT_dtel2s_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.
 TARG_TEST_UNIT_getcurrtm_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_UNIT_gethostname_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_UNIT_onbailout_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_UNIT_snprintf_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_UNIT_strnlen_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_UNIT_be_fail_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_UNIT_be_lrsplit_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).debug
@@ -1489,6 +1491,7 @@ TARG_TEST_UNIT_dtel2s_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.
 TARG_TEST_UNIT_getcurrtm_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_UNIT_gethostname_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_UNIT_onbailout_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_UNIT_snprintf_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_UNIT_strnlen_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_UNIT_be_fail_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG)
 TARG_TEST_UNIT_be_lrsplit_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG)
@@ -1510,6 +1513,7 @@ TARG_TEST_UNIT_dtel2s_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.
 TARG_TEST_UNIT_getcurrtm_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG)
 TARG_TEST_UNIT_gethostname_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG)
 TARG_TEST_UNIT_onbailout_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG)
+TARG_TEST_UNIT_snprintf_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG)
 TARG_TEST_UNIT_strnlen_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG)
 
 TARG_TEST_UNIT_ins_int_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.debug
@@ -3254,6 +3258,7 @@ OBJ_TEST_UNIT_dtel2s_MT_D				=	./test.unit.util.dtel2s.mt.debug.o
 OBJ_TEST_UNIT_getcurrtm_MT_D		=	./test.unit.util.getcurrenttime.mt.debug.o
 OBJ_TEST_UNIT_gethostname_MT_D	=	./test.unit.util.gethostname.mt.debug.o
 OBJ_TEST_UNIT_onbailout_MT_D		=	./test.unit.util.onbailout.mt.debug.o
+OBJ_TEST_UNIT_snprintf_MT_D			=	./test.unit.util.snprintf.mt.debug.o
 OBJ_TEST_UNIT_strnlen_MT_D			=	./test.unit.util.strnlen.mt.debug.o
 
 OBJ_TEST_UNIT_be_fail_MT_R			=	./test.unit.be.fail.mt.o
@@ -3276,6 +3281,7 @@ OBJ_TEST_UNIT_dtel2s_MT_R				=	./test.unit.util.dtel2s.mt.o
 OBJ_TEST_UNIT_getcurrtm_MT_R		=	./test.unit.util.getcurrenttime.mt.o
 OBJ_TEST_UNIT_gethostname_MT_R	=	./test.unit.util.gethostname.mt.o
 OBJ_TEST_UNIT_onbailout_MT_R		=	./test.unit.util.onbailout.mt.o
+OBJ_TEST_UNIT_snprintf_MT_R			=	./test.unit.util.snprintf.mt.o
 OBJ_TEST_UNIT_strnlen_MT_R			=	./test.unit.util.strnlen.mt.o
 
 OBJ_TEST_UNIT_be_fail_ST_D			=	./test.unit.be.fail.debug.o
@@ -3298,6 +3304,7 @@ OBJ_TEST_UNIT_dtel2s_ST_D				=	./test.unit.util.dtel2s.debug.o
 OBJ_TEST_UNIT_getcurrtm_ST_D		=	./test.unit.util.getcurrenttime.debug.o
 OBJ_TEST_UNIT_gethostname_ST_D	=	./test.unit.util.gethostname.debug.o
 OBJ_TEST_UNIT_onbailout_ST_D		=	./test.unit.util.onbailout.debug.o
+OBJ_TEST_UNIT_snprintf_ST_D			=	./test.unit.util.snprintf.debug.o
 OBJ_TEST_UNIT_strnlen_ST_D			=	./test.unit.util.strnlen.debug.o
 
 OBJ_TEST_UNIT_be_fail_ST_R			=	./test.unit.be.fail.o
@@ -3320,6 +3327,7 @@ OBJ_TEST_UNIT_dtel2s_ST_R				=	./test.unit.util.dtel2s.o
 OBJ_TEST_UNIT_getcurrtm_ST_R		=	./test.unit.util.getcurrenttime.o
 OBJ_TEST_UNIT_gethostname_ST_R	=	./test.unit.util.gethostname.o
 OBJ_TEST_UNIT_onbailout_ST_R		=	./test.unit.util.onbailout.o
+OBJ_TEST_UNIT_snprintf_ST_R			=	./test.unit.util.snprintf.o
 OBJ_TEST_UNIT_strnlen_ST_R			=	./test.unit.util.strnlen.o
 
 OBJ_TEST_UNIT_ins_int_MT_D			=	./test.unit.inserter.integer.mt.debug.o
@@ -3905,6 +3913,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_MT_D)\
  $(OBJ_TEST_UNIT_gethostname_MT_D)\
  $(OBJ_TEST_UNIT_onbailout_MT_D)\
+ $(OBJ_TEST_UNIT_snprintf_MT_D)\
  $(OBJ_TEST_UNIT_strnlen_MT_D)\
  \
  $(OBJ_TEST_UNIT_ins_int_MT_D)\
@@ -3931,6 +3940,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_MT_R)\
  $(OBJ_TEST_UNIT_gethostname_MT_R)\
  $(OBJ_TEST_UNIT_onbailout_MT_R)\
+ $(OBJ_TEST_UNIT_snprintf_MT_R)\
  $(OBJ_TEST_UNIT_strnlen_MT_R)\
  \
  $(OBJ_TEST_UNIT_ins_int_MT_R)\
@@ -3957,6 +3967,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_ST_D)\
  $(OBJ_TEST_UNIT_gethostname_ST_D)\
  $(OBJ_TEST_UNIT_onbailout_ST_D)\
+ $(OBJ_TEST_UNIT_snprintf_ST_D)\
  $(OBJ_TEST_UNIT_strnlen_ST_D)\
  \
  $(OBJ_TEST_UNIT_ins_int_ST_D)\
@@ -3983,6 +3994,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_ST_R)\
  $(OBJ_TEST_UNIT_gethostname_ST_R)\
  $(OBJ_TEST_UNIT_onbailout_ST_R)\
+ $(OBJ_TEST_UNIT_snprintf_ST_R)\
  $(OBJ_TEST_UNIT_strnlen_ST_R)\
  \
  $(OBJ_TEST_UNIT_ins_int_ST_R)\
@@ -4673,6 +4685,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_MT_D)\
  $(TARG_TEST_UNIT_gethostname_MT_D)\
  $(TARG_TEST_UNIT_onbailout_MT_D)\
+ $(TARG_TEST_UNIT_snprintf_MT_D)\
  $(TARG_TEST_UNIT_strnlen_MT_D)\
  \
  $(TARG_TEST_UNIT_ins_int_MT_D)\
@@ -4698,6 +4711,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_MT_R)\
  $(TARG_TEST_UNIT_gethostname_MT_R)\
  $(TARG_TEST_UNIT_onbailout_MT_R)\
+ $(TARG_TEST_UNIT_snprintf_MT_R)\
  $(TARG_TEST_UNIT_strnlen_MT_R)\
  \
  $(TARG_TEST_UNIT_ins_int_MT_R)\
@@ -4723,6 +4737,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_ST_D)\
  $(TARG_TEST_UNIT_gethostname_ST_D)\
  $(TARG_TEST_UNIT_onbailout_ST_D)\
+ $(TARG_TEST_UNIT_snprintf_ST_D)\
  $(TARG_TEST_UNIT_strnlen_ST_D)\
  \
  $(TARG_TEST_UNIT_ins_int_ST_D)\
@@ -4748,6 +4763,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_ST_R)\
  $(TARG_TEST_UNIT_gethostname_ST_R)\
  $(TARG_TEST_UNIT_onbailout_ST_R)\
+ $(TARG_TEST_UNIT_snprintf_ST_R)\
  $(TARG_TEST_UNIT_strnlen_ST_R)\
  \
  $(TARG_TEST_UNIT_ins_int_ST_R)\
@@ -5177,6 +5193,10 @@ test.unit_:
 	$(TARG_TEST_UNIT_onbailout_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_onbailout_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_onbailout_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_strnlen_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_strnlen_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_strnlen_ST_D) --verbosity=$(TEST_VERBOSITY)
@@ -6232,6 +6252,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_getversion_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_gethostname_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_onbailout_MT_D)
+	@-$(RM) $(TARG_TEST_UNIT_snprintf_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_strnlen_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_bec_file_MT_D)
 	@-$(RM) $(TARG_TEST_UNIT_bec_fprintf_MT_D)
@@ -6255,6 +6276,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_getversion_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_gethostname_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_onbailout_MT_R)
+	@-$(RM) $(TARG_TEST_UNIT_snprintf_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_strnlen_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_bec_file_MT_R)
 	@-$(RM) $(TARG_TEST_UNIT_bec_fprintf_MT_R)
@@ -6278,6 +6300,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_getversion_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_gethostname_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_onbailout_ST_D)
+	@-$(RM) $(TARG_TEST_UNIT_snprintf_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_strnlen_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_bec_file_ST_D)
 	@-$(RM) $(TARG_TEST_UNIT_bec_fprintf_ST_D)
@@ -6301,6 +6324,7 @@ clean.test.unit:
 	@-$(RM) $(TARG_TEST_UNIT_getversion_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_gethostname_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_onbailout_ST_R)
+	@-$(RM) $(TARG_TEST_UNIT_snprintf_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_strnlen_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_bec_file_ST_R)
 	@-$(RM) $(TARG_TEST_UNIT_bec_fprintf_ST_R)
@@ -6324,6 +6348,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_getversion_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_gethostname_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_onbailout_MT_D)
+	@-$(RM) $(OBJ_TEST_UNIT_snprintf_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_strnlen_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_bec_file_MT_D)
 	@-$(RM) $(OBJ_TEST_UNIT_bec_fprintf_MT_D)
@@ -6347,6 +6372,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_getversion_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_gethostname_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_onbailout_MT_R)
+	@-$(RM) $(OBJ_TEST_UNIT_snprintf_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_strnlen_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_bec_file_MT_R)
 	@-$(RM) $(OBJ_TEST_UNIT_bec_fprintf_MT_R)
@@ -6370,6 +6396,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_getversion_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_gethostname_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_onbailout_ST_D)
+	@-$(RM) $(OBJ_TEST_UNIT_snprintf_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_strnlen_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_bec_file_ST_D)
 	@-$(RM) $(OBJ_TEST_UNIT_bec_fprintf_ST_D)
@@ -6393,6 +6420,7 @@ clean.test.unit:
 	@-$(RM) $(OBJ_TEST_UNIT_getversion_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_gethostname_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_onbailout_ST_R)
+	@-$(RM) $(OBJ_TEST_UNIT_snprintf_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_strnlen_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_bec_file_ST_R)
 	@-$(RM) $(OBJ_TEST_UNIT_bec_fprintf_ST_R)
@@ -15423,6 +15451,66 @@ $(TARG_TEST_UNIT_onbailout_ST_R):	\
 
 $(OBJ_TEST_UNIT_onbailout_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.onbailout/test.unit.util.onbailout.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.util.onbailout/test.unit.util.onbailout.cpp
+
+$(TARG_TEST_UNIT_snprintf_MT_D):	\
+			$(OBJ_TEST_UNIT_snprintf_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -o $@ \
+		$(OBJ_TEST_UNIT_snprintf_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_UNIT_snprintf_MT_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.snprintf/test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.util.snprintf/test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_MT_R):	\
+			$(OBJ_TEST_UNIT_snprintf_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -o $@ \
+		$(OBJ_TEST_UNIT_snprintf_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_UNIT_snprintf_MT_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.snprintf/test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.util.snprintf/test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_ST_D):	\
+			$(OBJ_TEST_UNIT_snprintf_ST_D)\
+			$(LIB_UTIL_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -o $@ \
+		$(OBJ_TEST_UNIT_snprintf_ST_D)\
+		$(LIB_UTIL_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_UNIT_snprintf_ST_D):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.snprintf/test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.util.snprintf/test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_ST_R):	\
+			$(OBJ_TEST_UNIT_snprintf_ST_R)\
+			$(LIB_UTIL_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -o $@ \
+		$(OBJ_TEST_UNIT_snprintf_ST_R)\
+		$(LIB_UTIL_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_UNIT_snprintf_ST_R):	$(PROJ_TEST_UNIT_DIR)/test.unit.util.snprintf/test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_UNIT_DIR)/test.unit.util.snprintf/test.unit.util.snprintf.cpp
 
 $(TARG_TEST_UNIT_strnlen_MT_D):	\
 			$(OBJ_TEST_UNIT_strnlen_MT_D)\

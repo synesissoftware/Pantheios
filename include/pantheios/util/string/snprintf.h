@@ -4,7 +4,7 @@
  * Purpose:     snprintf() utility functions.
  *
  * Created:     21st June 2005
- * Updated:     16th June 2020
+ * Updated:     21st June 2020
  *
  * Home:        http://www.pantheios.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MAJOR       2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        21
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MINOR       3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    1
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -143,7 +143,33 @@ pantheios_util_snprintf_a(
 __attribute__((format(printf,3,4)))
 #endif /* compiler */
 ;
-PANTHEIOS_CALL(int) pantheios_util_vsnprintf_a(char* dest, size_t cchDest, char const* fmt, va_list args);
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf_a(
+    char*               dest
+,   size_t              cchDest
+,   char const*         fmt
+,   va_list             args
+);
+
+PANTHEIOS_CALL(int)
+pantheios_util_snprintf_w(
+    wchar_t*            dest
+,   size_t              cchDest
+,   wchar_t const*      fmt
+,   ...
+)
+/* TODO: Change this to proper discriminated feature */
+#if defined(STLSOFT_COMPILER_IS_GCC)
+__attribute__((format(printf,3,4)))
+#endif /* compiler */
+;
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf_w(
+    wchar_t*            dest
+,   size_t              cchDest
+,   wchar_t const*      fmt
+,   va_list             args
+);
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

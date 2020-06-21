@@ -5,7 +5,7 @@
 #			compiler, on Win32
 #
 # Created:	15th February 2005
-# Updated:	19th June 2020
+# Updated:	21st June 2020
 #
 ############################################################################
 
@@ -836,24 +836,24 @@ LIBPATHS=\
 ########################################
 # Library names
 
-TARGET_LIB_MT_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_MT_D_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_DLL_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_DLL_D_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_DLL_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_DLL_R_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_MT_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_MT_R_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_ST_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_ST_D_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_ST_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_ST_R_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_W_MT_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_W_DLL_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_W_DLL_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_W_MT_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_W_ST_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
-TARGET_LIB_W_ST_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib
+TARGET_LIB_MT_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_MT_D_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_DLL_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_DLL_D_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_DLL_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_DLL_R_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_MT_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_MT_R_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_ST_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_ST_D_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_ST_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_ST_R_NOX	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_W_MT_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_W_DLL_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_W_DLL_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_W_MT_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_W_ST_D	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
+TARGET_LIB_W_ST_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.lib user32.lib uuid.lib wininet.lib ws2_32.lib
 
 ########################################
 # #defines
@@ -5250,7 +5250,6 @@ TARG_TEST_UNIT_be_fail_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.f
 TARG_TEST_UNIT_be_lrsplit_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_be_N_MT_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_be_N_filt_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_UNIT_be_WinSyslog_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_bec_CEO_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_bec_fail_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_bec_file_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.debug.exe
@@ -5269,6 +5268,7 @@ TARG_TEST_UNIT_dtel2s_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.
 TARG_TEST_UNIT_getcurrtm_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_gethostname_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_onbailout_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_UNIT_snprintf_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_strnlen_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_UNIT_be_fail_MT_D_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.nox.debug.exe
 TARG_TEST_UNIT_be_lrsplit_MT_D_NOX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.nox.debug.exe
@@ -5287,7 +5287,6 @@ TARG_TEST_UNIT_be_fail_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.
 TARG_TEST_UNIT_be_lrsplit_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_be_N_DLL_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_be_N_filt_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).dll.debug.exe
-TARG_TEST_UNIT_be_WinSyslog_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_bec_CEO_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_bec_fail_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_bec_file_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).dll.debug.exe
@@ -5306,6 +5305,7 @@ TARG_TEST_UNIT_dtel2s_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util
 TARG_TEST_UNIT_getcurrtm_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_gethostname_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_onbailout_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_UNIT_snprintf_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_strnlen_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_UNIT_be_fail_DLL_D_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).dll.nox.debug.exe
 TARG_TEST_UNIT_be_lrsplit_DLL_D_NOX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).dll.nox.debug.exe
@@ -5324,7 +5324,6 @@ TARG_TEST_UNIT_be_fail_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.
 TARG_TEST_UNIT_be_lrsplit_DLL_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_UNIT_be_N_DLL_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_UNIT_be_N_filt_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).dll.exe
-TARG_TEST_UNIT_be_WinSyslog_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_UNIT_bec_CEO_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_UNIT_bec_fail_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_UNIT_bec_file_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).dll.exe
@@ -5343,6 +5342,7 @@ TARG_TEST_UNIT_dtel2s_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util
 TARG_TEST_UNIT_getcurrtm_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_UNIT_gethostname_DLL_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_UNIT_onbailout_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_UNIT_snprintf_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_UNIT_strnlen_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_UNIT_be_fail_DLL_R_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).dll.nox.exe
 TARG_TEST_UNIT_be_lrsplit_DLL_R_NOX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).dll.nox.exe
@@ -5361,7 +5361,6 @@ TARG_TEST_UNIT_be_fail_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.f
 TARG_TEST_UNIT_be_lrsplit_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_be_N_MT_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_be_N_filt_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_UNIT_be_WinSyslog_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_bec_CEO_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_bec_fail_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_bec_file_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).mt.exe
@@ -5380,6 +5379,7 @@ TARG_TEST_UNIT_dtel2s_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.
 TARG_TEST_UNIT_getcurrtm_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_gethostname_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_onbailout_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_UNIT_snprintf_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_strnlen_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_UNIT_be_fail_MT_R_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.nox.exe
 TARG_TEST_UNIT_be_lrsplit_MT_R_NOX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.nox.exe
@@ -5398,7 +5398,6 @@ TARG_TEST_UNIT_be_fail_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.f
 TARG_TEST_UNIT_be_lrsplit_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_be_N_ST_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_be_N_filt_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_UNIT_be_WinSyslog_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_bec_CEO_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_bec_fail_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_bec_file_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).debug.exe
@@ -5417,6 +5416,7 @@ TARG_TEST_UNIT_dtel2s_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.
 TARG_TEST_UNIT_getcurrtm_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_gethostname_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_onbailout_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_UNIT_snprintf_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_strnlen_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_UNIT_be_fail_ST_D_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).nox.debug.exe
 TARG_TEST_UNIT_be_lrsplit_ST_D_NOX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).nox.debug.exe
@@ -5435,7 +5435,6 @@ TARG_TEST_UNIT_be_fail_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.f
 TARG_TEST_UNIT_be_lrsplit_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_be_N_ST_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_be_N_filt_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_UNIT_be_WinSyslog_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_bec_CEO_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_bec_fail_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_bec_file_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).exe
@@ -5454,6 +5453,7 @@ TARG_TEST_UNIT_dtel2s_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.
 TARG_TEST_UNIT_getcurrtm_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_gethostname_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_onbailout_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_UNIT_snprintf_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_strnlen_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_UNIT_be_fail_ST_R_NOX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).nox.exe
 TARG_TEST_UNIT_be_lrsplit_ST_R_NOX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).nox.exe
@@ -5472,7 +5472,6 @@ TARG_TEST_UNIT_be_fail_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be
 TARG_TEST_UNIT_be_lrsplit_W_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_UNIT_be_N_W_MT_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_UNIT_be_N_filt_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
-TARG_TEST_UNIT_be_WinSyslog_W_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_UNIT_bec_CEO_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_UNIT_bec_fail_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_UNIT_bec_file_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
@@ -5491,12 +5490,12 @@ TARG_TEST_UNIT_dtel2s_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.uti
 TARG_TEST_UNIT_getcurrtm_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_UNIT_gethostname_W_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_UNIT_onbailout_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_UNIT_snprintf_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_UNIT_strnlen_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_UNIT_be_fail_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_be_lrsplit_W_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_be_N_W_DLL_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_be_N_filt_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
-TARG_TEST_UNIT_be_WinSyslog_W_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_bec_CEO_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_bec_fail_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_bec_file_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
@@ -5515,12 +5514,12 @@ TARG_TEST_UNIT_dtel2s_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ut
 TARG_TEST_UNIT_getcurrtm_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_gethostname_W_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_onbailout_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_UNIT_snprintf_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_strnlen_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_UNIT_be_fail_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_be_lrsplit_W_DLL_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_be_N_W_DLL_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_be_N_filt_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.dll.exe
-TARG_TEST_UNIT_be_WinSyslog_W_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_bec_CEO_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_bec_fail_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_bec_file_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).widestring.dll.exe
@@ -5539,12 +5538,12 @@ TARG_TEST_UNIT_dtel2s_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ut
 TARG_TEST_UNIT_getcurrtm_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_gethostname_W_DLL_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_onbailout_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_UNIT_snprintf_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_strnlen_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_UNIT_be_fail_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_be_lrsplit_W_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_be_N_W_MT_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_be_N_filt_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.mt.exe
-TARG_TEST_UNIT_be_WinSyslog_W_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_bec_CEO_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_bec_fail_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_bec_file_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).widestring.mt.exe
@@ -5563,12 +5562,12 @@ TARG_TEST_UNIT_dtel2s_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.uti
 TARG_TEST_UNIT_getcurrtm_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_gethostname_W_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_onbailout_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_UNIT_snprintf_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_strnlen_W_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_UNIT_be_fail_W_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_be_lrsplit_W_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_be_N_W_ST_D						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_be_N_filt_W_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.debug.exe
-TARG_TEST_UNIT_be_WinSyslog_W_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_bec_CEO_W_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_bec_fail_W_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_bec_file_W_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).widestring.debug.exe
@@ -5587,12 +5586,12 @@ TARG_TEST_UNIT_dtel2s_W_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.uti
 TARG_TEST_UNIT_getcurrtm_W_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_gethostname_W_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_onbailout_W_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.debug.exe
+TARG_TEST_UNIT_snprintf_W_ST_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_strnlen_W_ST_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_UNIT_be_fail_W_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_UNIT_be_lrsplit_W_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_UNIT_be_N_W_ST_R						=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_UNIT_be_N_filt_W_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.N.filtering.$(COMP_ARCH_OS_TAG).widestring.exe
-TARG_TEST_UNIT_be_WinSyslog_W_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.be.WindowsSyslog.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_UNIT_bec_CEO_W_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.COMErrObj.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_UNIT_bec_fail_W_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.fail.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_UNIT_bec_file_W_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.bec.file.$(COMP_ARCH_OS_TAG).widestring.exe
@@ -5611,6 +5610,7 @@ TARG_TEST_UNIT_dtel2s_W_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.uti
 TARG_TEST_UNIT_getcurrtm_W_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.getcurrenttime.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_UNIT_gethostname_W_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.gethostname.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_UNIT_onbailout_W_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.onbailout.$(COMP_ARCH_OS_TAG).widestring.exe
+TARG_TEST_UNIT_snprintf_W_ST_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.snprintf.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_UNIT_strnlen_W_ST_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.util.strnlen.$(COMP_ARCH_OS_TAG).widestring.exe
 
 TARG_TEST_UNIT_ins_int_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.inserter.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
@@ -16657,7 +16657,6 @@ OBJ_TEST_UNIT_be_fail_MT_D			=	.\test.unit.be.fail.mt.debug.obj
 OBJ_TEST_UNIT_be_lrsplit_MT_D		=	.\test.unit.be.lrsplit.mt.debug.obj
 OBJ_TEST_UNIT_be_N_MT_D					=	.\test.unit.be.N.mt.debug.obj
 OBJ_TEST_UNIT_be_N_filt_MT_D		=	.\test.unit.be.N.filtering.mt.debug.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_MT_D			=	.\test.unit.bec.COMErrObj.mt.debug.obj
 OBJ_TEST_UNIT_bec_fail_MT_D			=	.\test.unit.bec.fail.mt.debug.obj
 OBJ_TEST_UNIT_bec_file_MT_D			=	.\test.unit.bec.file.mt.debug.obj
@@ -16676,6 +16675,7 @@ OBJ_TEST_UNIT_dtel2s_MT_D				=	.\test.unit.util.dtel2s.mt.debug.obj
 OBJ_TEST_UNIT_getcurrtm_MT_D		=	.\test.unit.util.getcurrenttime.mt.debug.obj
 OBJ_TEST_UNIT_gethostname_MT_D	=	.\test.unit.util.gethostname.mt.debug.obj
 OBJ_TEST_UNIT_onbailout_MT_D		=	.\test.unit.util.onbailout.mt.debug.obj
+OBJ_TEST_UNIT_snprintf_MT_D			=	.\test.unit.util.snprintf.mt.debug.obj
 OBJ_TEST_UNIT_strnlen_MT_D			=	.\test.unit.util.strnlen.mt.debug.obj
 
 OBJ_TEST_UNIT_be_fail_MT_D_NOX			=	.\test.unit.be.fail.mt.nox.debug.obj
@@ -16696,7 +16696,6 @@ OBJ_TEST_UNIT_be_fail_DLL_D			=	.\test.unit.be.fail.dll.debug.obj
 OBJ_TEST_UNIT_be_lrsplit_DLL_D		=	.\test.unit.be.lrsplit.dll.debug.obj
 OBJ_TEST_UNIT_be_N_DLL_D					=	.\test.unit.be.N.dll.debug.obj
 OBJ_TEST_UNIT_be_N_filt_DLL_D		=	.\test.unit.be.N.filtering.dll.debug.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_DLL_D			=	.\test.unit.bec.COMErrObj.dll.debug.obj
 OBJ_TEST_UNIT_bec_fail_DLL_D			=	.\test.unit.bec.fail.dll.debug.obj
 OBJ_TEST_UNIT_bec_file_DLL_D			=	.\test.unit.bec.file.dll.debug.obj
@@ -16715,6 +16714,7 @@ OBJ_TEST_UNIT_dtel2s_DLL_D				=	.\test.unit.util.dtel2s.dll.debug.obj
 OBJ_TEST_UNIT_getcurrtm_DLL_D		=	.\test.unit.util.getcurrenttime.dll.debug.obj
 OBJ_TEST_UNIT_gethostname_DLL_D	=	.\test.unit.util.gethostname.dll.debug.obj
 OBJ_TEST_UNIT_onbailout_DLL_D		=	.\test.unit.util.onbailout.dll.debug.obj
+OBJ_TEST_UNIT_snprintf_DLL_D			=	.\test.unit.util.snprintf.dll.debug.obj
 OBJ_TEST_UNIT_strnlen_DLL_D			=	.\test.unit.util.strnlen.dll.debug.obj
 
 OBJ_TEST_UNIT_be_fail_DLL_D_NOX			=	.\test.unit.be.fail.dll.nox.debug.obj
@@ -16735,7 +16735,6 @@ OBJ_TEST_UNIT_be_fail_DLL_R			=	.\test.unit.be.fail.dll.obj
 OBJ_TEST_UNIT_be_lrsplit_DLL_R		=	.\test.unit.be.lrsplit.dll.obj
 OBJ_TEST_UNIT_be_N_DLL_R					=	.\test.unit.be.N.dll.obj
 OBJ_TEST_UNIT_be_N_filt_DLL_R		=	.\test.unit.be.N.filtering.dll.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_DLL_R			=	.\test.unit.bec.COMErrObj.dll.obj
 OBJ_TEST_UNIT_bec_fail_DLL_R			=	.\test.unit.bec.fail.dll.obj
 OBJ_TEST_UNIT_bec_file_DLL_R			=	.\test.unit.bec.file.dll.obj
@@ -16754,6 +16753,7 @@ OBJ_TEST_UNIT_dtel2s_DLL_R				=	.\test.unit.util.dtel2s.dll.obj
 OBJ_TEST_UNIT_getcurrtm_DLL_R		=	.\test.unit.util.getcurrenttime.dll.obj
 OBJ_TEST_UNIT_gethostname_DLL_R	=	.\test.unit.util.gethostname.dll.obj
 OBJ_TEST_UNIT_onbailout_DLL_R		=	.\test.unit.util.onbailout.dll.obj
+OBJ_TEST_UNIT_snprintf_DLL_R			=	.\test.unit.util.snprintf.dll.obj
 OBJ_TEST_UNIT_strnlen_DLL_R			=	.\test.unit.util.strnlen.dll.obj
 
 OBJ_TEST_UNIT_be_fail_DLL_R_NOX			=	.\test.unit.be.fail.dll.nox.obj
@@ -16774,7 +16774,6 @@ OBJ_TEST_UNIT_be_fail_MT_R			=	.\test.unit.be.fail.mt.obj
 OBJ_TEST_UNIT_be_lrsplit_MT_R		=	.\test.unit.be.lrsplit.mt.obj
 OBJ_TEST_UNIT_be_N_MT_R					=	.\test.unit.be.N.mt.obj
 OBJ_TEST_UNIT_be_N_filt_MT_R		=	.\test.unit.be.N.filtering.mt.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_MT_R			=	.\test.unit.bec.COMErrObj.mt.obj
 OBJ_TEST_UNIT_bec_fail_MT_R			=	.\test.unit.bec.fail.mt.obj
 OBJ_TEST_UNIT_bec_file_MT_R			=	.\test.unit.bec.file.mt.obj
@@ -16793,6 +16792,7 @@ OBJ_TEST_UNIT_dtel2s_MT_R				=	.\test.unit.util.dtel2s.mt.obj
 OBJ_TEST_UNIT_getcurrtm_MT_R		=	.\test.unit.util.getcurrenttime.mt.obj
 OBJ_TEST_UNIT_gethostname_MT_R	=	.\test.unit.util.gethostname.mt.obj
 OBJ_TEST_UNIT_onbailout_MT_R		=	.\test.unit.util.onbailout.mt.obj
+OBJ_TEST_UNIT_snprintf_MT_R			=	.\test.unit.util.snprintf.mt.obj
 OBJ_TEST_UNIT_strnlen_MT_R			=	.\test.unit.util.strnlen.mt.obj
 
 OBJ_TEST_UNIT_be_fail_MT_R_NOX			=	.\test.unit.be.fail.mt.nox.obj
@@ -16813,7 +16813,6 @@ OBJ_TEST_UNIT_be_fail_ST_D			=	.\test.unit.be.fail.debug.obj
 OBJ_TEST_UNIT_be_lrsplit_ST_D		=	.\test.unit.be.lrsplit.debug.obj
 OBJ_TEST_UNIT_be_N_ST_D					=	.\test.unit.be.N.debug.obj
 OBJ_TEST_UNIT_be_N_filt_ST_D		=	.\test.unit.be.N.filtering.debug.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_ST_D			=	.\test.unit.bec.COMErrObj.debug.obj
 OBJ_TEST_UNIT_bec_fail_ST_D			=	.\test.unit.bec.fail.debug.obj
 OBJ_TEST_UNIT_bec_file_ST_D			=	.\test.unit.bec.file.debug.obj
@@ -16832,6 +16831,7 @@ OBJ_TEST_UNIT_dtel2s_ST_D				=	.\test.unit.util.dtel2s.debug.obj
 OBJ_TEST_UNIT_getcurrtm_ST_D		=	.\test.unit.util.getcurrenttime.debug.obj
 OBJ_TEST_UNIT_gethostname_ST_D	=	.\test.unit.util.gethostname.debug.obj
 OBJ_TEST_UNIT_onbailout_ST_D		=	.\test.unit.util.onbailout.debug.obj
+OBJ_TEST_UNIT_snprintf_ST_D			=	.\test.unit.util.snprintf.debug.obj
 OBJ_TEST_UNIT_strnlen_ST_D			=	.\test.unit.util.strnlen.debug.obj
 
 OBJ_TEST_UNIT_be_fail_ST_D_NOX			=	.\test.unit.be.fail.nox.debug.obj
@@ -16852,7 +16852,6 @@ OBJ_TEST_UNIT_be_fail_ST_R			=	.\test.unit.be.fail.obj
 OBJ_TEST_UNIT_be_lrsplit_ST_R		=	.\test.unit.be.lrsplit.obj
 OBJ_TEST_UNIT_be_N_ST_R					=	.\test.unit.be.N.obj
 OBJ_TEST_UNIT_be_N_filt_ST_R		=	.\test.unit.be.N.filtering.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_ST_R			=	.\test.unit.bec.COMErrObj.obj
 OBJ_TEST_UNIT_bec_fail_ST_R			=	.\test.unit.bec.fail.obj
 OBJ_TEST_UNIT_bec_file_ST_R			=	.\test.unit.bec.file.obj
@@ -16871,6 +16870,7 @@ OBJ_TEST_UNIT_dtel2s_ST_R				=	.\test.unit.util.dtel2s.obj
 OBJ_TEST_UNIT_getcurrtm_ST_R		=	.\test.unit.util.getcurrenttime.obj
 OBJ_TEST_UNIT_gethostname_ST_R	=	.\test.unit.util.gethostname.obj
 OBJ_TEST_UNIT_onbailout_ST_R		=	.\test.unit.util.onbailout.obj
+OBJ_TEST_UNIT_snprintf_ST_R			=	.\test.unit.util.snprintf.obj
 OBJ_TEST_UNIT_strnlen_ST_R			=	.\test.unit.util.strnlen.obj
 
 OBJ_TEST_UNIT_be_fail_ST_R_NOX			=	.\test.unit.be.fail.nox.obj
@@ -16891,7 +16891,6 @@ OBJ_TEST_UNIT_be_fail_W_MT_D			=	.\test.unit.be.fail.ws.mt.debug.obj
 OBJ_TEST_UNIT_be_lrsplit_W_MT_D		=	.\test.unit.be.lrsplit.ws.mt.debug.obj
 OBJ_TEST_UNIT_be_N_W_MT_D					=	.\test.unit.be.N.ws.mt.debug.obj
 OBJ_TEST_UNIT_be_N_filt_W_MT_D		=	.\test.unit.be.N.filtering.ws.mt.debug.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_W_MT_D			=	.\test.unit.bec.COMErrObj.ws.mt.debug.obj
 OBJ_TEST_UNIT_bec_fail_W_MT_D			=	.\test.unit.bec.fail.ws.mt.debug.obj
 OBJ_TEST_UNIT_bec_file_W_MT_D			=	.\test.unit.bec.file.ws.mt.debug.obj
@@ -16910,13 +16909,13 @@ OBJ_TEST_UNIT_dtel2s_W_MT_D				=	.\test.unit.util.dtel2s.ws.mt.debug.obj
 OBJ_TEST_UNIT_getcurrtm_W_MT_D		=	.\test.unit.util.getcurrenttime.ws.mt.debug.obj
 OBJ_TEST_UNIT_gethostname_W_MT_D	=	.\test.unit.util.gethostname.ws.mt.debug.obj
 OBJ_TEST_UNIT_onbailout_W_MT_D		=	.\test.unit.util.onbailout.ws.mt.debug.obj
+OBJ_TEST_UNIT_snprintf_W_MT_D			=	.\test.unit.util.snprintf.ws.mt.debug.obj
 OBJ_TEST_UNIT_strnlen_W_MT_D			=	.\test.unit.util.strnlen.ws.mt.debug.obj
 
 OBJ_TEST_UNIT_be_fail_W_DLL_D			=	.\test.unit.be.fail.ws.dll.debug.obj
 OBJ_TEST_UNIT_be_lrsplit_W_DLL_D		=	.\test.unit.be.lrsplit.ws.dll.debug.obj
 OBJ_TEST_UNIT_be_N_W_DLL_D					=	.\test.unit.be.N.ws.dll.debug.obj
 OBJ_TEST_UNIT_be_N_filt_W_DLL_D		=	.\test.unit.be.N.filtering.ws.dll.debug.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_W_DLL_D			=	.\test.unit.bec.COMErrObj.ws.dll.debug.obj
 OBJ_TEST_UNIT_bec_fail_W_DLL_D			=	.\test.unit.bec.fail.ws.dll.debug.obj
 OBJ_TEST_UNIT_bec_file_W_DLL_D			=	.\test.unit.bec.file.ws.dll.debug.obj
@@ -16935,13 +16934,13 @@ OBJ_TEST_UNIT_dtel2s_W_DLL_D				=	.\test.unit.util.dtel2s.ws.dll.debug.obj
 OBJ_TEST_UNIT_getcurrtm_W_DLL_D		=	.\test.unit.util.getcurrenttime.ws.dll.debug.obj
 OBJ_TEST_UNIT_gethostname_W_DLL_D	=	.\test.unit.util.gethostname.ws.dll.debug.obj
 OBJ_TEST_UNIT_onbailout_W_DLL_D		=	.\test.unit.util.onbailout.ws.dll.debug.obj
+OBJ_TEST_UNIT_snprintf_W_DLL_D			=	.\test.unit.util.snprintf.ws.dll.debug.obj
 OBJ_TEST_UNIT_strnlen_W_DLL_D			=	.\test.unit.util.strnlen.ws.dll.debug.obj
 
 OBJ_TEST_UNIT_be_fail_W_DLL_R			=	.\test.unit.be.fail.ws.dll.obj
 OBJ_TEST_UNIT_be_lrsplit_W_DLL_R		=	.\test.unit.be.lrsplit.ws.dll.obj
 OBJ_TEST_UNIT_be_N_W_DLL_R					=	.\test.unit.be.N.ws.dll.obj
 OBJ_TEST_UNIT_be_N_filt_W_DLL_R		=	.\test.unit.be.N.filtering.ws.dll.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_W_DLL_R			=	.\test.unit.bec.COMErrObj.ws.dll.obj
 OBJ_TEST_UNIT_bec_fail_W_DLL_R			=	.\test.unit.bec.fail.ws.dll.obj
 OBJ_TEST_UNIT_bec_file_W_DLL_R			=	.\test.unit.bec.file.ws.dll.obj
@@ -16960,13 +16959,13 @@ OBJ_TEST_UNIT_dtel2s_W_DLL_R				=	.\test.unit.util.dtel2s.ws.dll.obj
 OBJ_TEST_UNIT_getcurrtm_W_DLL_R		=	.\test.unit.util.getcurrenttime.ws.dll.obj
 OBJ_TEST_UNIT_gethostname_W_DLL_R	=	.\test.unit.util.gethostname.ws.dll.obj
 OBJ_TEST_UNIT_onbailout_W_DLL_R		=	.\test.unit.util.onbailout.ws.dll.obj
+OBJ_TEST_UNIT_snprintf_W_DLL_R			=	.\test.unit.util.snprintf.ws.dll.obj
 OBJ_TEST_UNIT_strnlen_W_DLL_R			=	.\test.unit.util.strnlen.ws.dll.obj
 
 OBJ_TEST_UNIT_be_fail_W_MT_R			=	.\test.unit.be.fail.ws.mt.obj
 OBJ_TEST_UNIT_be_lrsplit_W_MT_R		=	.\test.unit.be.lrsplit.ws.mt.obj
 OBJ_TEST_UNIT_be_N_W_MT_R					=	.\test.unit.be.N.ws.mt.obj
 OBJ_TEST_UNIT_be_N_filt_W_MT_R		=	.\test.unit.be.N.filtering.ws.mt.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_W_MT_R			=	.\test.unit.bec.COMErrObj.ws.mt.obj
 OBJ_TEST_UNIT_bec_fail_W_MT_R			=	.\test.unit.bec.fail.ws.mt.obj
 OBJ_TEST_UNIT_bec_file_W_MT_R			=	.\test.unit.bec.file.ws.mt.obj
@@ -16985,13 +16984,13 @@ OBJ_TEST_UNIT_dtel2s_W_MT_R				=	.\test.unit.util.dtel2s.ws.mt.obj
 OBJ_TEST_UNIT_getcurrtm_W_MT_R		=	.\test.unit.util.getcurrenttime.ws.mt.obj
 OBJ_TEST_UNIT_gethostname_W_MT_R	=	.\test.unit.util.gethostname.ws.mt.obj
 OBJ_TEST_UNIT_onbailout_W_MT_R		=	.\test.unit.util.onbailout.ws.mt.obj
+OBJ_TEST_UNIT_snprintf_W_MT_R			=	.\test.unit.util.snprintf.ws.mt.obj
 OBJ_TEST_UNIT_strnlen_W_MT_R			=	.\test.unit.util.strnlen.ws.mt.obj
 
 OBJ_TEST_UNIT_be_fail_W_ST_D			=	.\test.unit.be.fail.ws.debug.obj
 OBJ_TEST_UNIT_be_lrsplit_W_ST_D		=	.\test.unit.be.lrsplit.ws.debug.obj
 OBJ_TEST_UNIT_be_N_W_ST_D					=	.\test.unit.be.N.ws.debug.obj
 OBJ_TEST_UNIT_be_N_filt_W_ST_D		=	.\test.unit.be.N.filtering.ws.debug.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_W_ST_D			=	.\test.unit.bec.COMErrObj.ws.debug.obj
 OBJ_TEST_UNIT_bec_fail_W_ST_D			=	.\test.unit.bec.fail.ws.debug.obj
 OBJ_TEST_UNIT_bec_file_W_ST_D			=	.\test.unit.bec.file.ws.debug.obj
@@ -17010,13 +17009,13 @@ OBJ_TEST_UNIT_dtel2s_W_ST_D				=	.\test.unit.util.dtel2s.ws.debug.obj
 OBJ_TEST_UNIT_getcurrtm_W_ST_D		=	.\test.unit.util.getcurrenttime.ws.debug.obj
 OBJ_TEST_UNIT_gethostname_W_ST_D	=	.\test.unit.util.gethostname.ws.debug.obj
 OBJ_TEST_UNIT_onbailout_W_ST_D		=	.\test.unit.util.onbailout.ws.debug.obj
+OBJ_TEST_UNIT_snprintf_W_ST_D			=	.\test.unit.util.snprintf.ws.debug.obj
 OBJ_TEST_UNIT_strnlen_W_ST_D			=	.\test.unit.util.strnlen.ws.debug.obj
 
 OBJ_TEST_UNIT_be_fail_W_ST_R			=	.\test.unit.be.fail.ws.obj
 OBJ_TEST_UNIT_be_lrsplit_W_ST_R		=	.\test.unit.be.lrsplit.ws.obj
 OBJ_TEST_UNIT_be_N_W_ST_R					=	.\test.unit.be.N.ws.obj
 OBJ_TEST_UNIT_be_N_filt_W_ST_R		=	.\test.unit.be.N.filtering.ws.obj
-#### TODO: test.unit.be.WindowsSyslog
 OBJ_TEST_UNIT_bec_CEO_W_ST_R			=	.\test.unit.bec.COMErrObj.ws.obj
 OBJ_TEST_UNIT_bec_fail_W_ST_R			=	.\test.unit.bec.fail.ws.obj
 OBJ_TEST_UNIT_bec_file_W_ST_R			=	.\test.unit.bec.file.ws.obj
@@ -17035,6 +17034,7 @@ OBJ_TEST_UNIT_dtel2s_W_ST_R				=	.\test.unit.util.dtel2s.ws.obj
 OBJ_TEST_UNIT_getcurrtm_W_ST_R		=	.\test.unit.util.getcurrenttime.ws.obj
 OBJ_TEST_UNIT_gethostname_W_ST_R	=	.\test.unit.util.gethostname.ws.obj
 OBJ_TEST_UNIT_onbailout_W_ST_R		=	.\test.unit.util.onbailout.ws.obj
+OBJ_TEST_UNIT_snprintf_W_ST_R			=	.\test.unit.util.snprintf.ws.obj
 OBJ_TEST_UNIT_strnlen_W_ST_R			=	.\test.unit.util.strnlen.ws.obj
 
 OBJ_TEST_UNIT_ins_int_MT_D			=	.\test.unit.inserter.integer.mt.debug.obj
@@ -19592,7 +19592,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_D)\
  $(OBJ_TEST_UNIT_be_N_MT_D)\
  $(OBJ_TEST_UNIT_be_N_filt_MT_D)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_MT_D)\
  $(OBJ_TEST_UNIT_bec_fail_MT_D)\
  $(OBJ_TEST_UNIT_bec_file_MT_D)\
@@ -19611,6 +19610,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_MT_D)\
  $(OBJ_TEST_UNIT_gethostname_MT_D)\
  $(OBJ_TEST_UNIT_onbailout_MT_D)\
+ $(OBJ_TEST_UNIT_snprintf_MT_D)\
  $(OBJ_TEST_UNIT_strnlen_MT_D)\
  \
  $(OBJ_TEST_UNIT_ins_int_MT_D)\
@@ -19637,7 +19637,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_DLL_D)\
  $(OBJ_TEST_UNIT_be_N_DLL_D)\
  $(OBJ_TEST_UNIT_be_N_filt_DLL_D)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_DLL_D)\
  $(OBJ_TEST_UNIT_bec_fail_DLL_D)\
  $(OBJ_TEST_UNIT_bec_file_DLL_D)\
@@ -19656,6 +19655,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_DLL_D)\
  $(OBJ_TEST_UNIT_gethostname_DLL_D)\
  $(OBJ_TEST_UNIT_onbailout_DLL_D)\
+ $(OBJ_TEST_UNIT_snprintf_DLL_D)\
  $(OBJ_TEST_UNIT_strnlen_DLL_D)\
  \
  $(OBJ_TEST_UNIT_ins_int_DLL_D)\
@@ -19682,7 +19682,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_DLL_R)\
  $(OBJ_TEST_UNIT_be_N_DLL_R)\
  $(OBJ_TEST_UNIT_be_N_filt_DLL_R)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_DLL_R)\
  $(OBJ_TEST_UNIT_bec_fail_DLL_R)\
  $(OBJ_TEST_UNIT_bec_file_DLL_R)\
@@ -19701,6 +19700,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_DLL_R)\
  $(OBJ_TEST_UNIT_gethostname_DLL_R)\
  $(OBJ_TEST_UNIT_onbailout_DLL_R)\
+ $(OBJ_TEST_UNIT_snprintf_DLL_R)\
  $(OBJ_TEST_UNIT_strnlen_DLL_R)\
  \
  $(OBJ_TEST_UNIT_ins_int_DLL_R)\
@@ -19727,7 +19727,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_MT_R)\
  $(OBJ_TEST_UNIT_be_N_MT_R)\
  $(OBJ_TEST_UNIT_be_N_filt_MT_R)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_MT_R)\
  $(OBJ_TEST_UNIT_bec_fail_MT_R)\
  $(OBJ_TEST_UNIT_bec_file_MT_R)\
@@ -19746,6 +19745,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_MT_R)\
  $(OBJ_TEST_UNIT_gethostname_MT_R)\
  $(OBJ_TEST_UNIT_onbailout_MT_R)\
+ $(OBJ_TEST_UNIT_snprintf_MT_R)\
  $(OBJ_TEST_UNIT_strnlen_MT_R)\
  \
  $(OBJ_TEST_UNIT_ins_int_MT_R)\
@@ -19772,7 +19772,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_D)\
  $(OBJ_TEST_UNIT_be_N_ST_D)\
  $(OBJ_TEST_UNIT_be_N_filt_ST_D)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_ST_D)\
  $(OBJ_TEST_UNIT_bec_fail_ST_D)\
  $(OBJ_TEST_UNIT_bec_file_ST_D)\
@@ -19791,6 +19790,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_ST_D)\
  $(OBJ_TEST_UNIT_gethostname_ST_D)\
  $(OBJ_TEST_UNIT_onbailout_ST_D)\
+ $(OBJ_TEST_UNIT_snprintf_ST_D)\
  $(OBJ_TEST_UNIT_strnlen_ST_D)\
  \
  $(OBJ_TEST_UNIT_ins_int_ST_D)\
@@ -19817,7 +19817,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_ST_R)\
  $(OBJ_TEST_UNIT_be_N_ST_R)\
  $(OBJ_TEST_UNIT_be_N_filt_ST_R)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_ST_R)\
  $(OBJ_TEST_UNIT_bec_fail_ST_R)\
  $(OBJ_TEST_UNIT_bec_file_ST_R)\
@@ -19836,6 +19835,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_ST_R)\
  $(OBJ_TEST_UNIT_gethostname_ST_R)\
  $(OBJ_TEST_UNIT_onbailout_ST_R)\
+ $(OBJ_TEST_UNIT_snprintf_ST_R)\
  $(OBJ_TEST_UNIT_strnlen_ST_R)\
  \
  $(OBJ_TEST_UNIT_ins_int_ST_R)\
@@ -19862,7 +19862,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_W_MT_D)\
  $(OBJ_TEST_UNIT_be_N_W_MT_D)\
  $(OBJ_TEST_UNIT_be_N_filt_W_MT_D)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_W_MT_D)\
  $(OBJ_TEST_UNIT_bec_fail_W_MT_D)\
  $(OBJ_TEST_UNIT_bec_file_W_MT_D)\
@@ -19881,6 +19880,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_W_MT_D)\
  $(OBJ_TEST_UNIT_gethostname_W_MT_D)\
  $(OBJ_TEST_UNIT_onbailout_W_MT_D)\
+ $(OBJ_TEST_UNIT_snprintf_W_MT_D)\
  $(OBJ_TEST_UNIT_strnlen_W_MT_D)\
  \
  $(OBJ_TEST_UNIT_ins_int_W_MT_D)\
@@ -19892,7 +19892,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_W_DLL_D)\
  $(OBJ_TEST_UNIT_be_N_W_DLL_D)\
  $(OBJ_TEST_UNIT_be_N_filt_W_DLL_D)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_W_DLL_D)\
  $(OBJ_TEST_UNIT_bec_fail_W_DLL_D)\
  $(OBJ_TEST_UNIT_bec_file_W_DLL_D)\
@@ -19911,6 +19910,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_W_DLL_D)\
  $(OBJ_TEST_UNIT_gethostname_W_DLL_D)\
  $(OBJ_TEST_UNIT_onbailout_W_DLL_D)\
+ $(OBJ_TEST_UNIT_snprintf_W_DLL_D)\
  $(OBJ_TEST_UNIT_strnlen_W_DLL_D)\
  \
  $(OBJ_TEST_UNIT_ins_int_W_DLL_D)\
@@ -19922,7 +19922,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_W_DLL_R)\
  $(OBJ_TEST_UNIT_be_N_W_DLL_R)\
  $(OBJ_TEST_UNIT_be_N_filt_W_DLL_R)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_W_DLL_R)\
  $(OBJ_TEST_UNIT_bec_fail_W_DLL_R)\
  $(OBJ_TEST_UNIT_bec_file_W_DLL_R)\
@@ -19941,6 +19940,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_W_DLL_R)\
  $(OBJ_TEST_UNIT_gethostname_W_DLL_R)\
  $(OBJ_TEST_UNIT_onbailout_W_DLL_R)\
+ $(OBJ_TEST_UNIT_snprintf_W_DLL_R)\
  $(OBJ_TEST_UNIT_strnlen_W_DLL_R)\
  \
  $(OBJ_TEST_UNIT_ins_int_W_DLL_R)\
@@ -19952,7 +19952,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_W_MT_R)\
  $(OBJ_TEST_UNIT_be_N_W_MT_R)\
  $(OBJ_TEST_UNIT_be_N_filt_W_MT_R)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_W_MT_R)\
  $(OBJ_TEST_UNIT_bec_fail_W_MT_R)\
  $(OBJ_TEST_UNIT_bec_file_W_MT_R)\
@@ -19971,6 +19970,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_W_MT_R)\
  $(OBJ_TEST_UNIT_gethostname_W_MT_R)\
  $(OBJ_TEST_UNIT_onbailout_W_MT_R)\
+ $(OBJ_TEST_UNIT_snprintf_W_MT_R)\
  $(OBJ_TEST_UNIT_strnlen_W_MT_R)\
  \
  $(OBJ_TEST_UNIT_ins_int_W_MT_R)\
@@ -19982,7 +19982,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_W_ST_D)\
  $(OBJ_TEST_UNIT_be_N_W_ST_D)\
  $(OBJ_TEST_UNIT_be_N_filt_W_ST_D)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_W_ST_D)\
  $(OBJ_TEST_UNIT_bec_fail_W_ST_D)\
  $(OBJ_TEST_UNIT_bec_file_W_ST_D)\
@@ -20001,6 +20000,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_W_ST_D)\
  $(OBJ_TEST_UNIT_gethostname_W_ST_D)\
  $(OBJ_TEST_UNIT_onbailout_W_ST_D)\
+ $(OBJ_TEST_UNIT_snprintf_W_ST_D)\
  $(OBJ_TEST_UNIT_strnlen_W_ST_D)\
  \
  $(OBJ_TEST_UNIT_ins_int_W_ST_D)\
@@ -20012,7 +20012,6 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_be_lrsplit_W_ST_R)\
  $(OBJ_TEST_UNIT_be_N_W_ST_R)\
  $(OBJ_TEST_UNIT_be_N_filt_W_ST_R)\
- \
  $(OBJ_TEST_UNIT_bec_CEO_W_ST_R)\
  $(OBJ_TEST_UNIT_bec_fail_W_ST_R)\
  $(OBJ_TEST_UNIT_bec_file_W_ST_R)\
@@ -20031,6 +20030,7 @@ OBJS_TEST_UNIT=\
  $(OBJ_TEST_UNIT_getcurrtm_W_ST_R)\
  $(OBJ_TEST_UNIT_gethostname_W_ST_R)\
  $(OBJ_TEST_UNIT_onbailout_W_ST_R)\
+ $(OBJ_TEST_UNIT_snprintf_W_ST_R)\
  $(OBJ_TEST_UNIT_strnlen_W_ST_R)\
  \
  $(OBJ_TEST_UNIT_ins_int_W_ST_R)\
@@ -23070,7 +23070,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_MT_D)\
  $(TARG_TEST_UNIT_be_N_MT_D)\
  $(TARG_TEST_UNIT_be_N_filt_MT_D)\
- \
  $(TARG_TEST_UNIT_bec_CEO_MT_D)\
  $(TARG_TEST_UNIT_bec_file_MT_D)\
  $(TARG_TEST_UNIT_bec_fprintf_MT_D)\
@@ -23089,6 +23088,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_MT_D)\
  $(TARG_TEST_UNIT_gethostname_MT_D)\
  $(TARG_TEST_UNIT_onbailout_MT_D)\
+ $(TARG_TEST_UNIT_snprintf_MT_D)\
  $(TARG_TEST_UNIT_strnlen_MT_D)\
  \
  $(TARG_TEST_UNIT_ins_int_MT_D)\
@@ -23113,7 +23113,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_DLL_D)\
  $(TARG_TEST_UNIT_be_N_DLL_D)\
  $(TARG_TEST_UNIT_be_N_filt_DLL_D)\
- \
  $(TARG_TEST_UNIT_bec_CEO_DLL_D)\
  $(TARG_TEST_UNIT_bec_file_DLL_D)\
  $(TARG_TEST_UNIT_bec_fprintf_DLL_D)\
@@ -23132,6 +23131,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_DLL_D)\
  $(TARG_TEST_UNIT_gethostname_DLL_D)\
  $(TARG_TEST_UNIT_onbailout_DLL_D)\
+ $(TARG_TEST_UNIT_snprintf_DLL_D)\
  $(TARG_TEST_UNIT_strnlen_DLL_D)\
  \
  $(TARG_TEST_UNIT_ins_int_DLL_D)\
@@ -23156,7 +23156,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_DLL_R)\
  $(TARG_TEST_UNIT_be_N_DLL_R)\
  $(TARG_TEST_UNIT_be_N_filt_DLL_R)\
- \
  $(TARG_TEST_UNIT_bec_CEO_DLL_R)\
  $(TARG_TEST_UNIT_bec_file_DLL_R)\
  $(TARG_TEST_UNIT_bec_fprintf_DLL_R)\
@@ -23175,6 +23174,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_DLL_R)\
  $(TARG_TEST_UNIT_gethostname_DLL_R)\
  $(TARG_TEST_UNIT_onbailout_DLL_R)\
+ $(TARG_TEST_UNIT_snprintf_DLL_R)\
  $(TARG_TEST_UNIT_strnlen_DLL_R)\
  \
  $(TARG_TEST_UNIT_ins_int_DLL_R)\
@@ -23199,7 +23199,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_MT_R)\
  $(TARG_TEST_UNIT_be_N_MT_R)\
  $(TARG_TEST_UNIT_be_N_filt_MT_R)\
- \
  $(TARG_TEST_UNIT_bec_CEO_MT_R)\
  $(TARG_TEST_UNIT_bec_file_MT_R)\
  $(TARG_TEST_UNIT_bec_fprintf_MT_R)\
@@ -23218,6 +23217,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_MT_R)\
  $(TARG_TEST_UNIT_gethostname_MT_R)\
  $(TARG_TEST_UNIT_onbailout_MT_R)\
+ $(TARG_TEST_UNIT_snprintf_MT_R)\
  $(TARG_TEST_UNIT_strnlen_MT_R)\
  \
  $(TARG_TEST_UNIT_ins_int_MT_R)\
@@ -23242,7 +23242,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_ST_D)\
  $(TARG_TEST_UNIT_be_N_ST_D)\
  $(TARG_TEST_UNIT_be_N_filt_ST_D)\
- \
  $(TARG_TEST_UNIT_bec_CEO_ST_D)\
  $(TARG_TEST_UNIT_bec_file_ST_D)\
  $(TARG_TEST_UNIT_bec_fprintf_ST_D)\
@@ -23261,6 +23260,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_ST_D)\
  $(TARG_TEST_UNIT_gethostname_ST_D)\
  $(TARG_TEST_UNIT_onbailout_ST_D)\
+ $(TARG_TEST_UNIT_snprintf_ST_D)\
  $(TARG_TEST_UNIT_strnlen_ST_D)\
  \
  $(TARG_TEST_UNIT_ins_int_ST_D)\
@@ -23285,7 +23285,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_ST_R)\
  $(TARG_TEST_UNIT_be_N_ST_R)\
  $(TARG_TEST_UNIT_be_N_filt_ST_R)\
- \
  $(TARG_TEST_UNIT_bec_CEO_ST_R)\
  $(TARG_TEST_UNIT_bec_file_ST_R)\
  $(TARG_TEST_UNIT_bec_fprintf_ST_R)\
@@ -23304,6 +23303,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_ST_R)\
  $(TARG_TEST_UNIT_gethostname_ST_R)\
  $(TARG_TEST_UNIT_onbailout_ST_R)\
+ $(TARG_TEST_UNIT_snprintf_ST_R)\
  $(TARG_TEST_UNIT_strnlen_ST_R)\
  \
  $(TARG_TEST_UNIT_ins_int_ST_R)\
@@ -23328,7 +23328,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_W_MT_D)\
  $(TARG_TEST_UNIT_be_N_W_MT_D)\
  $(TARG_TEST_UNIT_be_N_filt_W_MT_D)\
- \
  $(TARG_TEST_UNIT_bec_CEO_W_MT_D)\
  $(TARG_TEST_UNIT_bec_file_W_MT_D)\
  $(TARG_TEST_UNIT_bec_fprintf_W_MT_D)\
@@ -23347,6 +23346,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_W_MT_D)\
  $(TARG_TEST_UNIT_gethostname_W_MT_D)\
  $(TARG_TEST_UNIT_onbailout_W_MT_D)\
+ $(TARG_TEST_UNIT_snprintf_W_MT_D)\
  $(TARG_TEST_UNIT_strnlen_W_MT_D)\
  \
  $(TARG_TEST_UNIT_ins_int_W_MT_D)\
@@ -23357,7 +23357,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_W_DLL_D)\
  $(TARG_TEST_UNIT_be_N_W_DLL_D)\
  $(TARG_TEST_UNIT_be_N_filt_W_DLL_D)\
- \
  $(TARG_TEST_UNIT_bec_CEO_W_DLL_D)\
  $(TARG_TEST_UNIT_bec_file_W_DLL_D)\
  $(TARG_TEST_UNIT_bec_fprintf_W_DLL_D)\
@@ -23376,6 +23375,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_W_DLL_D)\
  $(TARG_TEST_UNIT_gethostname_W_DLL_D)\
  $(TARG_TEST_UNIT_onbailout_W_DLL_D)\
+ $(TARG_TEST_UNIT_snprintf_W_DLL_D)\
  $(TARG_TEST_UNIT_strnlen_W_DLL_D)\
  \
  $(TARG_TEST_UNIT_ins_int_W_DLL_D)\
@@ -23386,7 +23386,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_W_DLL_R)\
  $(TARG_TEST_UNIT_be_N_W_DLL_R)\
  $(TARG_TEST_UNIT_be_N_filt_W_DLL_R)\
- \
  $(TARG_TEST_UNIT_bec_CEO_W_DLL_R)\
  $(TARG_TEST_UNIT_bec_file_W_DLL_R)\
  $(TARG_TEST_UNIT_bec_fprintf_W_DLL_R)\
@@ -23405,6 +23404,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_W_DLL_R)\
  $(TARG_TEST_UNIT_gethostname_W_DLL_R)\
  $(TARG_TEST_UNIT_onbailout_W_DLL_R)\
+ $(TARG_TEST_UNIT_snprintf_W_DLL_R)\
  $(TARG_TEST_UNIT_strnlen_W_DLL_R)\
  \
  $(TARG_TEST_UNIT_ins_int_W_DLL_R)\
@@ -23415,7 +23415,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_W_MT_R)\
  $(TARG_TEST_UNIT_be_N_W_MT_R)\
  $(TARG_TEST_UNIT_be_N_filt_W_MT_R)\
- \
  $(TARG_TEST_UNIT_bec_CEO_W_MT_R)\
  $(TARG_TEST_UNIT_bec_file_W_MT_R)\
  $(TARG_TEST_UNIT_bec_fprintf_W_MT_R)\
@@ -23434,6 +23433,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_W_MT_R)\
  $(TARG_TEST_UNIT_gethostname_W_MT_R)\
  $(TARG_TEST_UNIT_onbailout_W_MT_R)\
+ $(TARG_TEST_UNIT_snprintf_W_MT_R)\
  $(TARG_TEST_UNIT_strnlen_W_MT_R)\
  \
  $(TARG_TEST_UNIT_ins_int_W_MT_R)\
@@ -23444,7 +23444,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_W_ST_D)\
  $(TARG_TEST_UNIT_be_N_W_ST_D)\
  $(TARG_TEST_UNIT_be_N_filt_W_ST_D)\
- \
  $(TARG_TEST_UNIT_bec_CEO_W_ST_D)\
  $(TARG_TEST_UNIT_bec_file_W_ST_D)\
  $(TARG_TEST_UNIT_bec_fprintf_W_ST_D)\
@@ -23463,6 +23462,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_W_ST_D)\
  $(TARG_TEST_UNIT_gethostname_W_ST_D)\
  $(TARG_TEST_UNIT_onbailout_W_ST_D)\
+ $(TARG_TEST_UNIT_snprintf_W_ST_D)\
  $(TARG_TEST_UNIT_strnlen_W_ST_D)\
  \
  $(TARG_TEST_UNIT_ins_int_W_ST_D)\
@@ -23473,7 +23473,6 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_be_lrsplit_W_ST_R)\
  $(TARG_TEST_UNIT_be_N_W_ST_R)\
  $(TARG_TEST_UNIT_be_N_filt_W_ST_R)\
- \
  $(TARG_TEST_UNIT_bec_CEO_W_ST_R)\
  $(TARG_TEST_UNIT_bec_file_W_ST_R)\
  $(TARG_TEST_UNIT_bec_fprintf_W_ST_R)\
@@ -23492,6 +23491,7 @@ TARGETS_TEST_UNIT=\
  $(TARG_TEST_UNIT_getcurrtm_W_ST_R)\
  $(TARG_TEST_UNIT_gethostname_W_ST_R)\
  $(TARG_TEST_UNIT_onbailout_W_ST_R)\
+ $(TARG_TEST_UNIT_snprintf_W_ST_R)\
  $(TARG_TEST_UNIT_strnlen_W_ST_R)\
  \
  $(TARG_TEST_UNIT_ins_int_W_ST_R)\
@@ -24376,6 +24376,18 @@ test.unit_:
 	$(TARG_TEST_UNIT_onbailout_W_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_onbailout_W_ST_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_onbailout_W_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_ST_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_W_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_W_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_W_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_UNIT_snprintf_W_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_strnlen_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_strnlen_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_UNIT_strnlen_DLL_R) --verbosity=$(TEST_VERBOSITY)
@@ -62781,6 +62793,186 @@ $(TARG_TEST_UNIT_onbailout_W_ST_R):	\
 
 $(OBJ_TEST_UNIT_onbailout_W_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailout\test.unit.util.onbailout.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.onbailout\test.unit.util.onbailout.cpp
+
+$(TARG_TEST_UNIT_snprintf_MT_D):	\
+			$(OBJ_TEST_UNIT_snprintf_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_UNIT_snprintf_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_DLL_D):	\
+			$(OBJ_TEST_UNIT_snprintf_DLL_D)\
+			$(LIB_UTIL_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_DLL_D)\
+		$(LIB_UTIL_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_DLL_D)
+
+$(OBJ_TEST_UNIT_snprintf_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_DLL_R):	\
+			$(OBJ_TEST_UNIT_snprintf_DLL_R)\
+			$(LIB_UTIL_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_DLL_R)\
+		$(LIB_UTIL_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_DLL_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_DLL_R)
+
+$(OBJ_TEST_UNIT_snprintf_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_MT_R):	\
+			$(OBJ_TEST_UNIT_snprintf_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_UNIT_snprintf_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_ST_D):	\
+			$(OBJ_TEST_UNIT_snprintf_ST_D)\
+			$(LIB_UTIL_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_ST_D)\
+		$(LIB_UTIL_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_UNIT_snprintf_ST_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_ST_R):	\
+			$(OBJ_TEST_UNIT_snprintf_ST_R)\
+			$(LIB_UTIL_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_ST_R)\
+		$(LIB_UTIL_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_ST_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_UNIT_snprintf_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_W_MT_D):	\
+			$(OBJ_TEST_UNIT_snprintf_W_MT_D)\
+			$(LIB_UTIL_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_W_MT_D)\
+		$(LIB_UTIL_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_MT_D)
+
+$(OBJ_TEST_UNIT_snprintf_W_MT_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_W_DLL_D):	\
+			$(OBJ_TEST_UNIT_snprintf_W_DLL_D)\
+			$(LIB_UTIL_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_W_DLL_D)\
+		$(LIB_UTIL_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_DLL_D)
+
+$(OBJ_TEST_UNIT_snprintf_W_DLL_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_W_DLL_R):	\
+			$(OBJ_TEST_UNIT_snprintf_W_DLL_R)\
+			$(LIB_UTIL_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_W_DLL_R)\
+		$(LIB_UTIL_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_DLL_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_DLL_R)
+
+$(OBJ_TEST_UNIT_snprintf_W_DLL_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_W_MT_R):	\
+			$(OBJ_TEST_UNIT_snprintf_W_MT_R)\
+			$(LIB_UTIL_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_W_MT_R)\
+		$(LIB_UTIL_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_MT_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_MT_R)
+
+$(OBJ_TEST_UNIT_snprintf_W_MT_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_W_ST_D):	\
+			$(OBJ_TEST_UNIT_snprintf_W_ST_D)\
+			$(LIB_UTIL_W_ST_D)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_ST_D) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_W_ST_D)\
+		$(LIB_UTIL_W_ST_D)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_ST_D)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_ST_D)
+
+$(OBJ_TEST_UNIT_snprintf_W_ST_D):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
+
+$(TARG_TEST_UNIT_snprintf_W_ST_R):	\
+			$(OBJ_TEST_UNIT_snprintf_W_ST_R)\
+			$(LIB_UTIL_W_ST_R)\
+			$(LIBS_SYNSOFT_TEST_UNIT_W_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_ST_R) -out:$@ \
+		$(OBJ_TEST_UNIT_snprintf_W_ST_R)\
+		$(LIB_UTIL_W_ST_R)\
+		$(LIBS_SYNSOFT_TEST_UNIT_W_ST_R)\
+		$(LIBS_3PTY_TEST_UNIT)\
+		$(TARGET_LIB_W_ST_R)
+
+$(OBJ_TEST_UNIT_snprintf_W_ST_R):	$(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_UNIT_DIR)\test.unit.util.snprintf\test.unit.util.snprintf.cpp
 
 $(TARG_TEST_UNIT_strnlen_MT_D):	\
 			$(OBJ_TEST_UNIT_strnlen_MT_D)\
