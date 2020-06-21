@@ -5,11 +5,11 @@
  *              Back-end API.
  *
  * Created:     23rd September 2005
- * Updated:     8th December 2016
+ * Updated:     27th December 2019
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -746,7 +746,13 @@ pri_print_(
     s[0]        = '\0';
     s[cch - 1]  = '\0';
 
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+
+    char* r = const_cast<char*>(stlsoft::integer_to_decimal_string(s, cch - 1, static_cast<stlsoft::uint8_t>(i), &cchWritten));
+#else /* ? STLSoft version */
+
     char* r = const_cast<char*>(stlsoft::integer_to_string(s, cch - 1, static_cast<stlsoft::uint8_t>(i), &cchWritten));
+#endif /* STLSoft version */
 
     s[cch - 2]  = '>';  ++cchWritten;
     *--r        = '<';  ++cchWritten;

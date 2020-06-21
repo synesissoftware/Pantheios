@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the file back-end.
  *
  * Created:     25th November 2006
- * Updated:     27th January 2017
+ * Updated:     27th December 2019
  *
  * Thanks to:   CookieRaver for filling in the (accidental) blanks in the
  *              UNIX implementation.
@@ -22,7 +22,7 @@
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -938,7 +938,7 @@ pantheios_be_file_parseArgs(
             }
             else
             {
-				PANTHEIOS_char_copy(&init->buff[0], fileName.ptr, fileName.len);
+                PANTHEIOS_char_copy(&init->buff[0], fileName.ptr, fileName.len);
                 init->buff[fileName.len] = '\0';
                 init->fileName = &init->buff[0];
             }
@@ -1572,12 +1572,14 @@ int be_file_Context::OutputBytes(
 )
 {
 #if defined(PLATFORMSTL_OS_IS_UNIX)
+
     ssize_t numWritten = ::write(m_hFile, pv, cb);
     if(FileErrorValue == numWritten)
     {
         numWritten = 0;
     }
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
     DWORD       numWritten;
     OVERLAPPED  ol;
 
@@ -1590,6 +1592,7 @@ int be_file_Context::OutputBytes(
         numWritten = 0;
     }
 #else /* ? OS */
+
 # error Operating system not discriminated
 #endif /* OS */
 
@@ -1623,7 +1626,13 @@ int be_file_ContextMap::SetFileName(
                     PANTHEIOS_SEV_CRITICAL
                 ,   "failed to set file for back-end"
                 ,   NULL
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+
+                ,   stlsoft::integer_to_decimal_string(&beid[0], STLSOFT_NUM_ELEMENTS(beid), (*b).first)
+#else /* ? STLSoft version */
+
                 ,   stlsoft::integer_to_string(&beid[0], STLSOFT_NUM_ELEMENTS(beid), (*b).first)
+#endif /* STLSoft version */
                 );
 
                 r = r2;
@@ -1669,7 +1678,13 @@ int be_file_ContextMap::Flush(int backEndId)
                     PANTHEIOS_SEV_CRITICAL
                 ,   "failed to flush file for back-end"
                 ,   NULL
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+
+                ,   stlsoft::integer_to_decimal_string(beid, STLSOFT_NUM_ELEMENTS(beid), (*b).first)
+#else /* ? STLSoft version */
+
                 ,   stlsoft::integer_to_string(beid, STLSOFT_NUM_ELEMENTS(beid), (*b).first)
+#endif /* STLSoft version */
                 );
 
                 r = r2;
@@ -1713,7 +1728,13 @@ int be_file_ContextMap::EmptyCache(int backEndId)
                     PANTHEIOS_SEV_CRITICAL
                 ,   "failed to clear cache for back-end"
                 ,   NULL
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+
+                ,   stlsoft::integer_to_decimal_string(beid, STLSOFT_NUM_ELEMENTS(beid), (*b).first)
+#else /* ? STLSoft version */
+
                 ,   stlsoft::integer_to_string(beid, STLSOFT_NUM_ELEMENTS(beid), (*b).first)
+#endif /* STLSoft version */
                 );
 
                 r = r2;
