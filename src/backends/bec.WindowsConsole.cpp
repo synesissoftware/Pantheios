@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
  * Created:     17th July 2006
- * Updated:     13th January 2017
+ * Updated:     5th July 2019
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -295,7 +295,7 @@ namespace
     #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         HANDLE  lookupConsoleMx(HANDLE hBuffer);
     #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-        void    lookupSeverityCharacteristics(int severity, HANDLE &hOutput, WORD &attributes);
+        void    lookupSeverityCharacteristics(int severity, HANDLE &hOutput, WORD &attributes) const;
         WORD    lookupConsoleCharacteristics();
         void    write_reset(HANDLE hOutput);
     /// @}
@@ -827,7 +827,7 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
 
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-void WindowsConsole_Context::lookupSeverityCharacteristics(int severity, HANDLE &hOutput, WORD &attributes)
+void WindowsConsole_Context::lookupSeverityCharacteristics(int severity, HANDLE &hOutput, WORD &attributes) const
 {
 //    PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(0 == (severity & 0x08), "be.WindowsConsole can only be used with the stock severity levels in the range [0, 8). Levels in the range [8, 16) are not allowed");
 

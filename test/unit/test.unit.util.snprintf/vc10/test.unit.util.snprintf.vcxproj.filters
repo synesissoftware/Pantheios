@@ -11,11 +11,8 @@
     <Filter Include="Include Files\include">
       <UniqueIdentifier>{722C7F42-1B5E-4D2E-9F25-90D4A20E564A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Include Files\include\fastformat">
-      <UniqueIdentifier>{03091693-0ce7-48f7-ae77-3093e7a4016e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include Files\include\fastformat\sinks">
-      <UniqueIdentifier>{12f8ca37-69bb-4215-b8d9-338b8371881e}</UniqueIdentifier>
+    <Filter Include="Include Files\include\pantheios">
+      <UniqueIdentifier>{B9E55206-806A-4D89-B2CF-AFEB1A5806BD}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -27,17 +24,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\fastformat.h">
-      <Filter>Include Files\include\fastformat</Filter>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h">
+      <Filter>Include Files\include\pantheios</Filter>
     </ClInclude>
-    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\fastformat.hpp">
-      <Filter>Include Files\include\fastformat</Filter>
-    </ClInclude>
-    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\ff.hpp">
-      <Filter>Include Files\include\fastformat</Filter>
-    </ClInclude>
-    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\sinks\iostream.hpp">
-      <Filter>Include Files\include\fastformat\sinks</Filter>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.hpp">
+      <Filter>Include Files\include\pantheios</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

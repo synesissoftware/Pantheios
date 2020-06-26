@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for low-level Pantheios bail out.
  *
  * Created:     21st June 2005
- * Updated:     10th January 2017
+ * Updated:     18th October 2019
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -139,11 +139,11 @@
 # define pan_OutputDebugString_         OutputDebugStringW
 # define pan_ReportEvent_               ReportEventW
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_strlen_                    strlen
-# define pan_strncpy_                   strncpy
-# define pan_wsprintf_                  wsprintfA
-# define pan_OutputDebugString_         OutputDebugStringA
-# define pan_ReportEvent_               ReportEventA
+# define pan_strlen_m_                  strlen
+# define pan_strncpy_m_                 strncpy
+# define pan_wsprintf_m_                wsprintfA
+# define pan_OutputDebugString_m_       OutputDebugStringA
+# define pan_ReportEvent_m_             ReportEventA
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -224,9 +224,9 @@ PANTHEIOS_CALL(void) pantheios_onBailOut6(
     else
     {
         char            qualifier_[PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE] = { '\0' };
-        size_t const    cchQualifier    =   (NULL == qualifier) ? 0u : pan_strlen_(qualifier);
-        size_t const    cchFeName       =   (NULL == feName) ? 0u : pan_strlen_(feName);
-        size_t const    cchBeName       =   (NULL == beName) ? 0u : pan_strlen_(beName);
+        size_t const    cchQualifier    =   (NULL == qualifier) ? 0u : pan_strlen_m_(qualifier);
+        size_t const    cchFeName       =   (NULL == feName) ? 0u : pan_strlen_m_(feName);
+        size_t const    cchBeName       =   (NULL == beName) ? 0u : pan_strlen_m_(beName);
         char*           p1              =   &qualifier_[0];
         char* const     end             =   &qualifier_[0] + STLSOFT_NUM_ELEMENTS(qualifier_);
 
@@ -348,7 +348,7 @@ PANTHEIOS_CALL(void) pantheios_onBailOut4(
     }
     else
     {
-        size_t cchQualifier = pan_strlen_(qualifier);
+        size_t cchQualifier = pan_strlen_m_(qualifier);
 
         if(NULL == message)
         {
@@ -366,7 +366,7 @@ PANTHEIOS_CALL(void) pantheios_onBailOut4(
         {
             char            message_[PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE];
             const size_t    cchBuf      =   STLSOFT_NUM_ELEMENTS(message_) - 1;
-            size_t          cchMessage  =   pan_strlen_(message);
+            size_t          cchMessage  =   pan_strlen_m_(message);
             const char      sep[]       =   { ':', ' ', '\0' }; /* ": " */
 
             if(cchBuf < (cchMessage + 2 + cchQualifier))
@@ -478,14 +478,14 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
         message = "Unspecified failure";
     }
 
-    cchMessage = pan_strlen_(message);
+    cchMessage = pan_strlen_m_(message);
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 
     GetLocalTime(&st);
 
 # if defined(PANTHEIOS_MIN_CRT)
-    cchTime = (size_t)  pan_wsprintf_( &message_[0]
+    cchTime = (size_t)  pan_wsprintf_m_( &message_[0]
 # else /* ? min / safe CRT */
     cchTime = (size_t)  pantheios_util_snprintf_a(&message_[0], STLSOFT_NUM_ELEMENTS(message_)
 # endif /* min / safe CRT */
@@ -536,7 +536,7 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
 # ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
     strncpy_s(&message_[cchTime], STLSOFT_NUM_ELEMENTS(message_) - cchTime, message, cchTotal - cchTime);
 # else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-    pan_strncpy_(&message_[cchTime], message, cchTotal - cchTime);
+    pan_strncpy_m_(&message_[cchTime], message, cchTotal - cchTime);
 # endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
     message_[cchTotal    ] = '\r';
@@ -549,14 +549,14 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
      * 1. Debugger
      */
 
-    pan_OutputDebugString_(message_);
+    pan_OutputDebugString_m_(message_);
 
     /* /////////////////////////////////
      * 2. Console
      */
 
     /* NOTE: will not be valid if widestring */
-    WriteFile(GetStdHandle(STD_ERROR_HANDLE), &message_[0], (DWORD)(cchTotal + 2), &numWritten, NULL);
+    WriteFile(GetStdHandle(STD_ERROR_HANDLE), &message_[0], (DWORD)((cchTotal + 2) * sizeof(char)), &numWritten, NULL);
 
     /* /////////////////////////////////
      * 3. File
@@ -577,7 +577,7 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
         SetFilePointer(hFile, 0, NULL, FILE_END);
 
         /* NOTE: will not be valid if widestring */
-        WriteFile(hFile, &message_[0], (DWORD)(cchTotal + 2), &numWritten, NULL);
+        WriteFile(hFile, &message_[0], (DWORD)((cchTotal + 2) * sizeof(char)), &numWritten, NULL);
 
         CloseHandle(hFile);
     }
@@ -615,7 +615,7 @@ PANTHEIOS_CALL(void) pantheios_onBailOut3(
 
         type = pantheios_severity_to_WindowsEventLog_type(severity);
 
-        pan_ReportEvent_(
+        pan_ReportEvent_m_(
                 hEventSrc
             ,   type
             ,   0

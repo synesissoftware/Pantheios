@@ -4,11 +4,11 @@
  * Purpose: Implicit linking for the Pantheios libraries
  *
  * Created: 18th July 2005
- * Updated: 17th October 2019
+ * Updated: 21st June 2020
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2020, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__MAJOR      1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__MINOR      8
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__EDIT       22
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__MINOR      10
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__REVISION   1
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE__EDIT       24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -221,6 +221,15 @@
 #    define PANTHEIOS_IMPL_LINK_COMPILER_NAME           "vc12"
 #   elif _MSC_VER == 1900
 #    define PANTHEIOS_IMPL_LINK_COMPILER_NAME           "vc14"
+#   elif _MSC_VER >= 1910
+#    if 0
+#    elif _MSC_VER < 1920
+#     define PANTHEIOS_IMPL_LINK_COMPILER_NAME          "vc15"
+#    elif _MSC_VER <= 1926
+#     define PANTHEIOS_IMPL_LINK_COMPILER_NAME          "vc16"
+#    else
+#     error Visual C++ version that is >= vc16 is not recognised
+#    endif
 #   else /* ? _MSC_VER */
 #    error Visual C++ version not supported
 #   endif /* _MSC_VER */
@@ -336,3 +345,4 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE_ */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

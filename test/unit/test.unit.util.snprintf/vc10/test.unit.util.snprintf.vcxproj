@@ -279,7 +279,6 @@
       <AdditionalIncludeDirectories>../../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions>PANTHEIOS_NO_AUTO_INIT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -418,10 +417,8 @@
     <ClCompile Include="..\test.unit.util.snprintf.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\fastformat.h" />
-    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\fastformat.hpp" />
-    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\ff.hpp" />
-    <ClInclude Include="$(FASTFORMAT_ROOT)\include\fastformat\sinks\iostream.hpp" />
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h" />
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
