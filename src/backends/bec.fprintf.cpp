@@ -4,11 +4,12 @@
  * Purpose:     Implementation for the fprintf() back-end
  *
  * Created:     26th June 2005
- * Updated:     8th December 2016
+ * Updated:     25th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -112,6 +113,8 @@ public:
     ,   pan_be_fprintf_init_t const*    init
     );
     ~be_fprintf_Context() throw();
+private:
+    be_fprintf_Context(class_type const&);
 /// @}
 
 /// \name Overrides
@@ -130,6 +133,9 @@ private:
     ,   size_t              cchEntry
     );
 /// @}
+
+private: // fields
+    FILE* const         m_stm;
 };
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -138,20 +144,15 @@ private:
 
 namespace
 {
-    inline FILE* deduce_stm_(int severity)
+    inline FILE*
+    infer_stm_(pan_be_fprintf_init_t const* init)
     {
-        switch(severity)
+        if (NULL != init->stm)
         {
-            case    PANTHEIOS_SEV_EMERGENCY:
-            case    PANTHEIOS_SEV_ALERT:
-            case    PANTHEIOS_SEV_CRITICAL:
-            case    PANTHEIOS_SEV_ERROR:
-            case    PANTHEIOS_SEV_WARNING:
-            case    PANTHEIOS_SEV_NOTICE:
-                return stderr;
-            default:
-                return stdout;
+            return init->stm;
         }
+
+        return stderr;
     }
 
 } /* anonymous namespace */
@@ -166,6 +167,8 @@ PANTHEIOS_CALL(void) pantheios_be_fprintf_getDefaultAppInit(pan_be_fprintf_init_
 
     init->version   =   PANTHEIOS_VER;
     init->flags     =   0;
+
+    init->stm       =   NULL;
 }
 
 static int pantheios_be_fprintf_init_(
@@ -283,24 +286,26 @@ be_fprintf_Context::be_fprintf_Context(
 ,   pan_be_fprintf_init_t const*    init
 )
     : parent_class_type(processIdentity, backEndId, init->flags, be_fprintf_Context::severityMask)
+    , m_stm(infer_stm_(init))
 {}
 
 be_fprintf_Context::~be_fprintf_Context() throw()
 {}
 
 int be_fprintf_Context::rawLogEntry(
-    int                 severity4
-,   int                 /* severityX */
-,   const pan_slice_t   (&ar)[rawLogArrayDimension]
-,   size_t              /* cchTotal */
+    int                     severity4
+,   int                  /* severityX */
+,   const pan_slice_t (&ar)[rawLogArrayDimension]
+,   size_t               /* cchTotal */
 )
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(severity4 >= 0, "severity must be >= 0");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(severity4 < 16, "severity must be < 16");
 
+    STLSOFT_SUPPRESS_UNUSED(severity4);
+
     // select the stream: stdout for debug/info/notice; stderr for everything else
 
-    FILE* const         stm     =   deduce_stm_(severity4);
     const PAN_CHAR_T    fmt[]   =   PANTHEIOS_LITERAL_STRING("%.*s%.*s%.*s%.*s%.*s%.*s%.*s%.*s%.*s%.*s\n");
 
     STLSOFT_STATIC_ASSERT(4 * rawLogArrayDimension + 2 == STLSOFT_NUM_ELEMENTS(fmt));
@@ -309,7 +314,7 @@ int be_fprintf_Context::rawLogEntry(
 
 #define PAN_BE_GET_SLICE_4_PRINTF(x)    int(x.len), x.ptr
 
-    return pan_fprintf_(stm, fmt
+    return pan_fprintf_(m_stm, fmt
                     ,   PAN_BE_GET_SLICE_4_PRINTF(ar[0])
                     ,   PAN_BE_GET_SLICE_4_PRINTF(ar[1])
                     ,   PAN_BE_GET_SLICE_4_PRINTF(ar[2])
@@ -323,21 +328,21 @@ int be_fprintf_Context::rawLogEntry(
 }
 
 int be_fprintf_Context::rawLogEntry(
-    int                 severity4
-,   int                 /* severityX */
-,   PAN_CHAR_T const*   entry
-,   size_t              cchEntry
+    int                     severity4
+,   int                  /* severityX */
+,   PAN_CHAR_T const*       entry
+,   size_t                  cchEntry
 )
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(severity4 >= 0, "severity must be >= 0");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(severity4 < 16, "severity must be < 16");
 
-    // select the stream: stdout for debug/info/notice; stderr for everything else
+    STLSOFT_SUPPRESS_UNUSED(severity4);
 
-    FILE* const stm = deduce_stm_(severity4);
+    PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_INTERNAL(NULL != m_stm, "stream cannot be null");
 
-    // output
-    return pan_fprintf_(stm, PANTHEIOS_LITERAL_STRING("%.*s\n"), int(cchEntry), entry);
+    return pan_fprintf_(m_stm, PANTHEIOS_LITERAL_STRING("%.*s\n"), int(cchEntry), entry);
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

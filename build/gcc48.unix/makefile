@@ -5,7 +5,7 @@
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	24th June 2020
+# Updated:	26th June 2020
 #
 ############################################################################
 
@@ -1369,6 +1369,7 @@ TARG_EX_C_7_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).ex.c.7.$(COMP_ARCH_OS_TAG)
 # Component Tests
 
 TARG_TEST_COMP_filemt_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt.debug
+TARG_TEST_COMP_bec_fprtf_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_MT_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_COMP_pan_prtf_MT_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.debug
@@ -1391,6 +1392,7 @@ TARG_TEST_COMP_log_1_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.l
 #### TODO: test.component.no_namespace
 TARG_TEST_COMP_trace_1_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_COMP_filemt_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_bec_fprtf_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).mt
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_MT_R	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt
 TARG_TEST_COMP_pan_prtf_MT_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt
@@ -1412,6 +1414,7 @@ TARG_TEST_COMP_ins_w2m_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.
 TARG_TEST_COMP_log_1_MT_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt
 #### TODO: test.component.no_namespace
 TARG_TEST_COMP_trace_1_MT_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt
+TARG_TEST_COMP_bec_fprtf_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).debug
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_ST_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).debug
 TARG_TEST_COMP_pan_prtf_ST_D			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).debug
@@ -1433,6 +1436,7 @@ TARG_TEST_COMP_ins_w2m_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.
 TARG_TEST_COMP_log_1_ST_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).debug
 #### TODO: test.component.no_namespace
 TARG_TEST_COMP_trace_1_ST_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).debug
+TARG_TEST_COMP_bec_fprtf_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG)
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_ST_R	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG)
 TARG_TEST_COMP_pan_prtf_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG)
@@ -3281,6 +3285,10 @@ OBJ_TEST_COMP_custsev_ST_D	=	./test.component.custom_severity.debug.o
 OBJ_TEST_COMP_custsev_ST_R	=	./test.component.custom_severity.o
 OBJ_TEST_COMP_filemt_MT_D	=	./test.component.be.file.threading.mt.debug.o
 OBJ_TEST_COMP_filemt_MT_R	=	./test.component.be.file.threading.mt.o
+OBJ_TEST_COMP_bec_fprtf_MT_D	=	./test.component.bec.fprintf.mt.debug.o
+OBJ_TEST_COMP_bec_fprtf_MT_R	=	./test.component.bec.fprintf.mt.o
+OBJ_TEST_COMP_bec_fprtf_ST_D	=	./test.component.bec.fprintf.debug.o
+OBJ_TEST_COMP_bec_fprtf_ST_R	=	./test.component.bec.fprintf.o
 OBJ_TEST_COMP_ins_args_MT_D	=	./test.component.inserters.args.mt.debug.o
 OBJ_TEST_COMP_ins_args_MT_R	=	./test.component.inserters.args.mt.o
 OBJ_TEST_COMP_ins_args_ST_D	=	./test.component.inserters.args.debug.o
@@ -3955,6 +3963,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_MT_D)\
  $(OBJ_TEST_COMP_custsev_MT_D)\
  $(OBJ_TEST_COMP_filemt_MT_D)\
+ $(OBJ_TEST_COMP_bec_fprtf_MT_D)\
  $(OBJ_TEST_COMP_ins_args_MT_D)\
  $(OBJ_TEST_COMP_ins_b64_MT_D)\
  $(OBJ_TEST_COMP_ins_bool_MT_D)\
@@ -3975,6 +3984,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_MT_R)\
  $(OBJ_TEST_COMP_custsev_MT_R)\
  $(OBJ_TEST_COMP_filemt_MT_R)\
+ $(OBJ_TEST_COMP_bec_fprtf_MT_R)\
  $(OBJ_TEST_COMP_ins_args_MT_R)\
  $(OBJ_TEST_COMP_ins_b64_MT_R)\
  $(OBJ_TEST_COMP_ins_bool_MT_R)\
@@ -3994,6 +4004,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_trace_1_MT_R)\
  $(OBJ_TEST_COMP_core_initseq_ST_D)\
  $(OBJ_TEST_COMP_custsev_ST_D)\
+ $(OBJ_TEST_COMP_bec_fprtf_ST_D)\
  $(OBJ_TEST_COMP_ins_args_ST_D)\
  $(OBJ_TEST_COMP_ins_b64_ST_D)\
  $(OBJ_TEST_COMP_ins_bool_ST_D)\
@@ -4013,6 +4024,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_trace_1_ST_D)\
  $(OBJ_TEST_COMP_core_initseq_ST_R)\
  $(OBJ_TEST_COMP_custsev_ST_R)\
+ $(OBJ_TEST_COMP_bec_fprtf_ST_R)\
  $(OBJ_TEST_COMP_ins_args_ST_R)\
  $(OBJ_TEST_COMP_ins_b64_ST_R)\
  $(OBJ_TEST_COMP_ins_bool_ST_R)\
@@ -4746,6 +4758,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_MT_D)\
  $(TARG_TEST_COMP_custsev_MT_D)\
  $(TARG_TEST_COMP_filemt_MT_D)\
+ $(TARG_TEST_COMP_bec_fprtf_MT_D)\
  $(TARG_TEST_COMP_ins_args_MT_D)\
  $(TARG_TEST_COMP_ins_b64_MT_D)\
  $(TARG_TEST_COMP_ins_bool_MT_D)\
@@ -4766,6 +4779,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_MT_R)\
  $(TARG_TEST_COMP_custsev_MT_R)\
  $(TARG_TEST_COMP_filemt_MT_R)\
+ $(TARG_TEST_COMP_bec_fprtf_MT_R)\
  $(TARG_TEST_COMP_ins_args_MT_R)\
  $(TARG_TEST_COMP_ins_b64_MT_R)\
  $(TARG_TEST_COMP_ins_bool_MT_R)\
@@ -4785,6 +4799,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_trace_1_MT_R)\
  $(TARG_TEST_COMP_core_initseq_ST_D)\
  $(TARG_TEST_COMP_custsev_ST_D)\
+ $(TARG_TEST_COMP_bec_fprtf_ST_D)\
  $(TARG_TEST_COMP_ins_args_ST_D)\
  $(TARG_TEST_COMP_ins_b64_ST_D)\
  $(TARG_TEST_COMP_ins_bool_ST_D)\
@@ -4804,6 +4819,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_trace_1_ST_D)\
  $(TARG_TEST_COMP_core_initseq_ST_R)\
  $(TARG_TEST_COMP_custsev_ST_R)\
+ $(TARG_TEST_COMP_bec_fprtf_ST_R)\
  $(TARG_TEST_COMP_ins_args_ST_R)\
  $(TARG_TEST_COMP_ins_b64_ST_R)\
  $(TARG_TEST_COMP_ins_bool_ST_R)\
@@ -5279,6 +5295,10 @@ test.component_:
 	$(TARG_TEST_COMP_custsev_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_filemt_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_filemt_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_ST_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_ST_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_args_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_args_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_args_ST_D) --verbosity=$(TEST_VERBOSITY)
@@ -6688,6 +6708,7 @@ clean.test.component:
 	@-$(RM) $(TARG_TEST_COMP_core_initseq_MT_D)
 	@-$(RM) $(TARG_TEST_COMP_custsev_MT_D)
 	@-$(RM) $(TARG_TEST_COMP_filemt_MT_D)
+	@-$(RM) $(TARG_TEST_COMP_bec_fprtf_MT_D)
 	@-$(RM) $(TARG_TEST_COMP_ins_args_MT_D)
 	@-$(RM) $(TARG_TEST_COMP_ins_b64_MT_D)
 	@-$(RM) $(TARG_TEST_COMP_ins_bool_MT_D)
@@ -6708,6 +6729,7 @@ clean.test.component:
 	@-$(RM) $(TARG_TEST_COMP_core_initseq_MT_R)
 	@-$(RM) $(TARG_TEST_COMP_custsev_MT_R)
 	@-$(RM) $(TARG_TEST_COMP_filemt_MT_R)
+	@-$(RM) $(TARG_TEST_COMP_bec_fprtf_MT_R)
 	@-$(RM) $(TARG_TEST_COMP_ins_args_MT_R)
 	@-$(RM) $(TARG_TEST_COMP_ins_b64_MT_R)
 	@-$(RM) $(TARG_TEST_COMP_ins_bool_MT_R)
@@ -6727,6 +6749,7 @@ clean.test.component:
 	@-$(RM) $(TARG_TEST_COMP_trace_1_MT_R)
 	@-$(RM) $(TARG_TEST_COMP_core_initseq_ST_D)
 	@-$(RM) $(TARG_TEST_COMP_custsev_ST_D)
+	@-$(RM) $(TARG_TEST_COMP_bec_fprtf_ST_D)
 	@-$(RM) $(TARG_TEST_COMP_ins_args_ST_D)
 	@-$(RM) $(TARG_TEST_COMP_ins_b64_ST_D)
 	@-$(RM) $(TARG_TEST_COMP_ins_bool_ST_D)
@@ -6746,6 +6769,7 @@ clean.test.component:
 	@-$(RM) $(TARG_TEST_COMP_trace_1_ST_D)
 	@-$(RM) $(TARG_TEST_COMP_core_initseq_ST_R)
 	@-$(RM) $(TARG_TEST_COMP_custsev_ST_R)
+	@-$(RM) $(TARG_TEST_COMP_bec_fprtf_ST_R)
 	@-$(RM) $(TARG_TEST_COMP_ins_args_ST_R)
 	@-$(RM) $(TARG_TEST_COMP_ins_b64_ST_R)
 	@-$(RM) $(TARG_TEST_COMP_ins_bool_ST_R)
@@ -6766,6 +6790,7 @@ clean.test.component:
 	@-$(RM) $(OBJ_TEST_COMP_core_initseq_MT_D)
 	@-$(RM) $(OBJ_TEST_COMP_custsev_MT_D)
 	@-$(RM) $(OBJ_TEST_COMP_filemt_MT_D)
+	@-$(RM) $(OBJ_TEST_COMP_bec_fprtf_MT_D)
 	@-$(RM) $(OBJ_TEST_COMP_ins_args_MT_D)
 	@-$(RM) $(OBJ_TEST_COMP_ins_b64_MT_D)
 	@-$(RM) $(OBJ_TEST_COMP_ins_bool_MT_D)
@@ -6786,6 +6811,7 @@ clean.test.component:
 	@-$(RM) $(OBJ_TEST_COMP_core_initseq_MT_R)
 	@-$(RM) $(OBJ_TEST_COMP_custsev_MT_R)
 	@-$(RM) $(OBJ_TEST_COMP_filemt_MT_R)
+	@-$(RM) $(OBJ_TEST_COMP_bec_fprtf_MT_R)
 	@-$(RM) $(OBJ_TEST_COMP_ins_args_MT_R)
 	@-$(RM) $(OBJ_TEST_COMP_ins_b64_MT_R)
 	@-$(RM) $(OBJ_TEST_COMP_ins_bool_MT_R)
@@ -6805,6 +6831,7 @@ clean.test.component:
 	@-$(RM) $(OBJ_TEST_COMP_trace_1_MT_R)
 	@-$(RM) $(OBJ_TEST_COMP_core_initseq_ST_D)
 	@-$(RM) $(OBJ_TEST_COMP_custsev_ST_D)
+	@-$(RM) $(OBJ_TEST_COMP_bec_fprtf_ST_D)
 	@-$(RM) $(OBJ_TEST_COMP_ins_args_ST_D)
 	@-$(RM) $(OBJ_TEST_COMP_ins_b64_ST_D)
 	@-$(RM) $(OBJ_TEST_COMP_ins_bool_ST_D)
@@ -6824,6 +6851,7 @@ clean.test.component:
 	@-$(RM) $(OBJ_TEST_COMP_trace_1_ST_D)
 	@-$(RM) $(OBJ_TEST_COMP_core_initseq_ST_R)
 	@-$(RM) $(OBJ_TEST_COMP_custsev_ST_R)
+	@-$(RM) $(OBJ_TEST_COMP_bec_fprtf_ST_R)
 	@-$(RM) $(OBJ_TEST_COMP_ins_args_ST_R)
 	@-$(RM) $(OBJ_TEST_COMP_ins_b64_ST_R)
 	@-$(RM) $(OBJ_TEST_COMP_ins_bool_ST_R)
@@ -12861,6 +12889,74 @@ $(TARG_TEST_COMP_filemt_MT_R):	\
 
 $(OBJ_TEST_COMP_filemt_MT_R):	$(PROJ_TEST_COMPONENT_DIR)/test.component.be.file.threading/test.component.be.file.threading.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_COMPONENT_DIR)/test.component.be.file.threading/test.component.be.file.threading.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_MT_D):	\
+			$(OBJ_TEST_COMP_bec_fprtf_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIB_BEC_FPRINTF_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -o $@ \
+		$(OBJ_TEST_COMP_bec_fprtf_MT_D)\
+		$(LIB_BEC_FPRINTF_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_COMP_bec_fprtf_MT_D):	$(PROJ_TEST_COMPONENT_DIR)/test.component.bec.fprintf/test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_COMPONENT_DIR)/test.component.bec.fprintf/test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_MT_R):	\
+			$(OBJ_TEST_COMP_bec_fprtf_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIB_BEC_FPRINTF_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -o $@ \
+		$(OBJ_TEST_COMP_bec_fprtf_MT_R)\
+		$(LIB_BEC_FPRINTF_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_COMP_bec_fprtf_MT_R):	$(PROJ_TEST_COMPONENT_DIR)/test.component.bec.fprintf/test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_COMPONENT_DIR)/test.component.bec.fprintf/test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_ST_D):	\
+			$(OBJ_TEST_COMP_bec_fprtf_ST_D)\
+			$(LIB_UTIL_ST_D)\
+			$(LIB_BEC_FPRINTF_ST_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_D) -o $@ \
+		$(OBJ_TEST_COMP_bec_fprtf_ST_D)\
+		$(LIB_BEC_FPRINTF_ST_D)\
+		$(LIB_UTIL_ST_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_ST_D)
+
+$(OBJ_TEST_COMP_bec_fprtf_ST_D):	$(PROJ_TEST_COMPONENT_DIR)/test.component.bec.fprintf/test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_COMPONENT_DIR)/test.component.bec.fprintf/test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_ST_R):	\
+			$(OBJ_TEST_COMP_bec_fprtf_ST_R)\
+			$(LIB_UTIL_ST_R)\
+			$(LIB_BEC_FPRINTF_ST_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_ST_R) -o $@ \
+		$(OBJ_TEST_COMP_bec_fprtf_ST_R)\
+		$(LIB_BEC_FPRINTF_ST_R)\
+		$(LIB_UTIL_ST_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_ST_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_ST_R)
+
+$(OBJ_TEST_COMP_bec_fprtf_ST_R):	$(PROJ_TEST_COMPONENT_DIR)/test.component.bec.fprintf/test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_COMPONENT_DIR)/test.component.bec.fprintf/test.component.bec.fprintf.cpp
 
 $(TARG_TEST_COMP_ins_args_MT_D):	\
 			$(OBJ_TEST_COMP_ins_args_MT_D)\

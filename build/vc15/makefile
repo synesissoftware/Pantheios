@@ -5,7 +5,7 @@
 #			compiler, on Win32
 #
 # Created:	15th February 2005
-# Updated:	24th June 2020
+# Updated:	26th June 2020
 #
 ############################################################################
 
@@ -2606,6 +2606,7 @@ TARG_EX_C_7_W_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.c.7.$(COMP_ARCH_OS_TAG)
 # Component Tests
 
 TARG_TEST_COMP_filemt_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_bec_fprtf_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_pan_prtf_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
@@ -2630,6 +2631,7 @@ TARG_TEST_COMP_log_1_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.l
 #### TODO: test.component.no_namespace
 TARG_TEST_COMP_trace_1_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_filemt_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_COMP_bec_fprtf_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).dll.debug.exe
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_pan_prtf_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).dll.debug.exe
@@ -2654,6 +2656,7 @@ TARG_TEST_COMP_log_1_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.
 #### TODO: test.component.no_namespace
 TARG_TEST_COMP_trace_1_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_filemt_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_COMP_bec_fprtf_DLL_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).dll.exe
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_pan_prtf_DLL_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).dll.exe
@@ -2678,6 +2681,7 @@ TARG_TEST_COMP_log_1_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.
 #### TODO: test.component.no_namespace
 TARG_TEST_COMP_trace_1_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_filemt_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_bec_fprtf_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_pan_prtf_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.exe
@@ -2702,6 +2706,7 @@ TARG_TEST_COMP_log_1_MT_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.l
 #### TODO: test.component.no_namespace
 TARG_TEST_COMP_trace_1_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_filemt_W_MT_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_COMP_bec_fprtf_W_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_W_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_pan_prtf_W_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
@@ -2725,6 +2730,7 @@ TARG_TEST_COMP_ins_w_hive_W_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.in
 TARG_TEST_COMP_log_1_W_MT_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 #### TODO: test.component.no_namespace
 TARG_TEST_COMP_filemt_W_DLL_D				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_COMP_bec_fprtf_W_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_W_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_pan_prtf_W_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
@@ -2748,6 +2754,7 @@ TARG_TEST_COMP_ins_w_hive_W_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.i
 TARG_TEST_COMP_log_1_W_DLL_D					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 #### TODO: test.component.no_namespace
 TARG_TEST_COMP_filemt_W_DLL_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_COMP_bec_fprtf_W_DLL_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_W_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_pan_prtf_W_DLL_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).widestring.dll.exe
@@ -2771,6 +2778,7 @@ TARG_TEST_COMP_ins_w_hive_W_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.i
 TARG_TEST_COMP_log_1_W_DLL_R					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 #### TODO: test.component.no_namespace
 TARG_TEST_COMP_filemt_W_MT_R				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_COMP_bec_fprtf_W_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_W_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_pan_prtf_W_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).widestring.mt.exe
@@ -8620,6 +8628,14 @@ OBJ_TEST_COMP_filemt_W_MT_D	=	.\test.component.be.file.threading.ws.mt.debug.obj
 OBJ_TEST_COMP_filemt_W_DLL_D	=	.\test.component.be.file.threading.ws.dll.debug.obj
 OBJ_TEST_COMP_filemt_W_DLL_R	=	.\test.component.be.file.threading.ws.dll.obj
 OBJ_TEST_COMP_filemt_W_MT_R	=	.\test.component.be.file.threading.ws.mt.obj
+OBJ_TEST_COMP_bec_fprtf_MT_D	=	.\test.component.bec.fprintf.mt.debug.obj
+OBJ_TEST_COMP_bec_fprtf_DLL_D	=	.\test.component.bec.fprintf.dll.debug.obj
+OBJ_TEST_COMP_bec_fprtf_DLL_R	=	.\test.component.bec.fprintf.dll.obj
+OBJ_TEST_COMP_bec_fprtf_MT_R	=	.\test.component.bec.fprintf.mt.obj
+OBJ_TEST_COMP_bec_fprtf_W_MT_D	=	.\test.component.bec.fprintf.ws.mt.debug.obj
+OBJ_TEST_COMP_bec_fprtf_W_DLL_D	=	.\test.component.bec.fprintf.ws.dll.debug.obj
+OBJ_TEST_COMP_bec_fprtf_W_DLL_R	=	.\test.component.bec.fprintf.ws.dll.obj
+OBJ_TEST_COMP_bec_fprtf_W_MT_R	=	.\test.component.bec.fprintf.ws.mt.obj
 OBJ_TEST_COMP_ins_args_MT_D	=	.\test.component.inserters.args.mt.debug.obj
 OBJ_TEST_COMP_ins_args_DLL_D	=	.\test.component.inserters.args.dll.debug.obj
 OBJ_TEST_COMP_ins_args_DLL_R	=	.\test.component.inserters.args.dll.obj
@@ -10170,6 +10186,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_MT_D)\
  $(OBJ_TEST_COMP_custsev_MT_D)\
  $(OBJ_TEST_COMP_filemt_MT_D)\
+ $(OBJ_TEST_COMP_bec_fprtf_MT_D)\
  $(OBJ_TEST_COMP_ins_args_MT_D)\
  $(OBJ_TEST_COMP_ins_b64_MT_D)\
  $(OBJ_TEST_COMP_ins_bool_MT_D)\
@@ -10192,6 +10209,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_DLL_D)\
  $(OBJ_TEST_COMP_custsev_DLL_D)\
  $(OBJ_TEST_COMP_filemt_DLL_D)\
+ $(OBJ_TEST_COMP_bec_fprtf_DLL_D)\
  $(OBJ_TEST_COMP_ins_args_DLL_D)\
  $(OBJ_TEST_COMP_ins_b64_DLL_D)\
  $(OBJ_TEST_COMP_ins_bool_DLL_D)\
@@ -10214,6 +10232,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_DLL_R)\
  $(OBJ_TEST_COMP_custsev_DLL_R)\
  $(OBJ_TEST_COMP_filemt_DLL_R)\
+ $(OBJ_TEST_COMP_bec_fprtf_DLL_R)\
  $(OBJ_TEST_COMP_ins_args_DLL_R)\
  $(OBJ_TEST_COMP_ins_b64_DLL_R)\
  $(OBJ_TEST_COMP_ins_bool_DLL_R)\
@@ -10236,6 +10255,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_MT_R)\
  $(OBJ_TEST_COMP_custsev_MT_R)\
  $(OBJ_TEST_COMP_filemt_MT_R)\
+ $(OBJ_TEST_COMP_bec_fprtf_MT_R)\
  $(OBJ_TEST_COMP_ins_args_MT_R)\
  $(OBJ_TEST_COMP_ins_b64_MT_R)\
  $(OBJ_TEST_COMP_ins_bool_MT_R)\
@@ -10258,6 +10278,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_W_MT_D)\
  $(OBJ_TEST_COMP_custsev_W_MT_D)\
  $(OBJ_TEST_COMP_filemt_W_MT_D)\
+ $(OBJ_TEST_COMP_bec_fprtf_W_MT_D)\
  $(OBJ_TEST_COMP_ins_args_W_MT_D)\
  $(OBJ_TEST_COMP_ins_b64_W_MT_D)\
  $(OBJ_TEST_COMP_ins_bool_W_MT_D)\
@@ -10279,6 +10300,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_W_DLL_D)\
  $(OBJ_TEST_COMP_custsev_W_DLL_D)\
  $(OBJ_TEST_COMP_filemt_W_DLL_D)\
+ $(OBJ_TEST_COMP_bec_fprtf_W_DLL_D)\
  $(OBJ_TEST_COMP_ins_args_W_DLL_D)\
  $(OBJ_TEST_COMP_ins_b64_W_DLL_D)\
  $(OBJ_TEST_COMP_ins_bool_W_DLL_D)\
@@ -10300,6 +10322,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_W_DLL_R)\
  $(OBJ_TEST_COMP_custsev_W_DLL_R)\
  $(OBJ_TEST_COMP_filemt_W_DLL_R)\
+ $(OBJ_TEST_COMP_bec_fprtf_W_DLL_R)\
  $(OBJ_TEST_COMP_ins_args_W_DLL_R)\
  $(OBJ_TEST_COMP_ins_b64_W_DLL_R)\
  $(OBJ_TEST_COMP_ins_bool_W_DLL_R)\
@@ -10321,6 +10344,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_W_MT_R)\
  $(OBJ_TEST_COMP_custsev_W_MT_R)\
  $(OBJ_TEST_COMP_filemt_W_MT_R)\
+ $(OBJ_TEST_COMP_bec_fprtf_W_MT_R)\
  $(OBJ_TEST_COMP_ins_args_W_MT_R)\
  $(OBJ_TEST_COMP_ins_b64_W_MT_R)\
  $(OBJ_TEST_COMP_ins_bool_W_MT_R)\
@@ -11955,6 +11979,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_MT_D)\
  $(TARG_TEST_COMP_custsev_MT_D)\
  $(TARG_TEST_COMP_filemt_MT_D)\
+ $(TARG_TEST_COMP_bec_fprtf_MT_D)\
  $(TARG_TEST_COMP_ins_args_MT_D)\
  $(TARG_TEST_COMP_ins_b64_MT_D)\
  $(TARG_TEST_COMP_ins_bool_MT_D)\
@@ -11977,6 +12002,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_DLL_D)\
  $(TARG_TEST_COMP_custsev_DLL_D)\
  $(TARG_TEST_COMP_filemt_DLL_D)\
+ $(TARG_TEST_COMP_bec_fprtf_DLL_D)\
  $(TARG_TEST_COMP_ins_args_DLL_D)\
  $(TARG_TEST_COMP_ins_b64_DLL_D)\
  $(TARG_TEST_COMP_ins_bool_DLL_D)\
@@ -11999,6 +12025,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_DLL_R)\
  $(TARG_TEST_COMP_custsev_DLL_R)\
  $(TARG_TEST_COMP_filemt_DLL_R)\
+ $(TARG_TEST_COMP_bec_fprtf_DLL_R)\
  $(TARG_TEST_COMP_ins_args_DLL_R)\
  $(TARG_TEST_COMP_ins_b64_DLL_R)\
  $(TARG_TEST_COMP_ins_bool_DLL_R)\
@@ -12021,6 +12048,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_MT_R)\
  $(TARG_TEST_COMP_custsev_MT_R)\
  $(TARG_TEST_COMP_filemt_MT_R)\
+ $(TARG_TEST_COMP_bec_fprtf_MT_R)\
  $(TARG_TEST_COMP_ins_args_MT_R)\
  $(TARG_TEST_COMP_ins_b64_MT_R)\
  $(TARG_TEST_COMP_ins_bool_MT_R)\
@@ -12043,6 +12071,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_W_MT_D)\
  $(TARG_TEST_COMP_custsev_W_MT_D)\
  $(TARG_TEST_COMP_filemt_W_MT_D)\
+ $(TARG_TEST_COMP_bec_fprtf_W_MT_D)\
  $(TARG_TEST_COMP_ins_args_W_MT_D)\
  $(TARG_TEST_COMP_ins_b64_W_MT_D)\
  $(TARG_TEST_COMP_ins_bool_W_MT_D)\
@@ -12064,6 +12093,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_W_DLL_D)\
  $(TARG_TEST_COMP_custsev_W_DLL_D)\
  $(TARG_TEST_COMP_filemt_W_DLL_D)\
+ $(TARG_TEST_COMP_bec_fprtf_W_DLL_D)\
  $(TARG_TEST_COMP_ins_args_W_DLL_D)\
  $(TARG_TEST_COMP_ins_b64_W_DLL_D)\
  $(TARG_TEST_COMP_ins_bool_W_DLL_D)\
@@ -12085,6 +12115,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_W_DLL_R)\
  $(TARG_TEST_COMP_custsev_W_DLL_R)\
  $(TARG_TEST_COMP_filemt_W_DLL_R)\
+ $(TARG_TEST_COMP_bec_fprtf_W_DLL_R)\
  $(TARG_TEST_COMP_ins_args_W_DLL_R)\
  $(TARG_TEST_COMP_ins_b64_W_DLL_R)\
  $(TARG_TEST_COMP_ins_bool_W_DLL_R)\
@@ -12106,6 +12137,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_W_MT_R)\
  $(TARG_TEST_COMP_custsev_W_MT_R)\
  $(TARG_TEST_COMP_filemt_W_MT_R)\
+ $(TARG_TEST_COMP_bec_fprtf_W_MT_R)\
  $(TARG_TEST_COMP_ins_args_W_MT_R)\
  $(TARG_TEST_COMP_ins_b64_W_MT_R)\
  $(TARG_TEST_COMP_ins_bool_W_MT_R)\
@@ -12788,6 +12820,14 @@ test.component_:
 	$(TARG_TEST_COMP_filemt_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_filemt_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_filemt_W_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_MT_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_W_MT_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_W_DLL_D) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_W_DLL_R) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_W_MT_R) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_args_MT_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_args_DLL_D) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_args_DLL_R) --verbosity=$(TEST_VERBOSITY)
@@ -27168,6 +27208,142 @@ $(TARG_TEST_COMP_filemt_W_MT_R):	\
 
 $(OBJ_TEST_COMP_filemt_W_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.be.file.threading\test.component.be.file.threading.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.be.file.threading\test.component.be.file.threading.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_MT_D):	\
+			$(OBJ_TEST_COMP_bec_fprtf_MT_D)\
+			$(LIB_UTIL_MT_D)\
+			$(LIB_BEC_FPRINTF_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_D) -out:$@ \
+		$(OBJ_TEST_COMP_bec_fprtf_MT_D)\
+		$(LIB_BEC_FPRINTF_MT_D)\
+		$(LIB_UTIL_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_D)
+
+$(OBJ_TEST_COMP_bec_fprtf_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_DLL_D):	\
+			$(OBJ_TEST_COMP_bec_fprtf_DLL_D)\
+			$(LIB_UTIL_DLL_D)\
+			$(LIB_BEC_FPRINTF_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_D) -out:$@ \
+		$(OBJ_TEST_COMP_bec_fprtf_DLL_D)\
+		$(LIB_BEC_FPRINTF_DLL_D)\
+		$(LIB_UTIL_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_DLL_D)
+
+$(OBJ_TEST_COMP_bec_fprtf_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_DLL_R):	\
+			$(OBJ_TEST_COMP_bec_fprtf_DLL_R)\
+			$(LIB_UTIL_DLL_R)\
+			$(LIB_BEC_FPRINTF_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_DLL_R) -out:$@ \
+		$(OBJ_TEST_COMP_bec_fprtf_DLL_R)\
+		$(LIB_BEC_FPRINTF_DLL_R)\
+		$(LIB_UTIL_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_DLL_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_DLL_R)
+
+$(OBJ_TEST_COMP_bec_fprtf_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_MT_R):	\
+			$(OBJ_TEST_COMP_bec_fprtf_MT_R)\
+			$(LIB_UTIL_MT_R)\
+			$(LIB_BEC_FPRINTF_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_R) -out:$@ \
+		$(OBJ_TEST_COMP_bec_fprtf_MT_R)\
+		$(LIB_BEC_FPRINTF_MT_R)\
+		$(LIB_UTIL_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_R)
+
+$(OBJ_TEST_COMP_bec_fprtf_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_W_MT_D):	\
+			$(OBJ_TEST_COMP_bec_fprtf_W_MT_D)\
+			$(LIB_UTIL_W_MT_D)\
+			$(LIB_BEC_FPRINTF_W_MT_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_D) -out:$@ \
+		$(OBJ_TEST_COMP_bec_fprtf_W_MT_D)\
+		$(LIB_BEC_FPRINTF_W_MT_D)\
+		$(LIB_UTIL_W_MT_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_MT_D)
+
+$(OBJ_TEST_COMP_bec_fprtf_W_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_W_DLL_D):	\
+			$(OBJ_TEST_COMP_bec_fprtf_W_DLL_D)\
+			$(LIB_UTIL_W_DLL_D)\
+			$(LIB_BEC_FPRINTF_W_DLL_D)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_D) -out:$@ \
+		$(OBJ_TEST_COMP_bec_fprtf_W_DLL_D)\
+		$(LIB_BEC_FPRINTF_W_DLL_D)\
+		$(LIB_UTIL_W_DLL_D)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_D)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_DLL_D)
+
+$(OBJ_TEST_COMP_bec_fprtf_W_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_W_DLL_R):	\
+			$(OBJ_TEST_COMP_bec_fprtf_W_DLL_R)\
+			$(LIB_UTIL_W_DLL_R)\
+			$(LIB_BEC_FPRINTF_W_DLL_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_DLL_R) -out:$@ \
+		$(OBJ_TEST_COMP_bec_fprtf_W_DLL_R)\
+		$(LIB_BEC_FPRINTF_W_DLL_R)\
+		$(LIB_UTIL_W_DLL_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_DLL_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_DLL_R)
+
+$(OBJ_TEST_COMP_bec_fprtf_W_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_W_MT_R):	\
+			$(OBJ_TEST_COMP_bec_fprtf_W_MT_R)\
+			$(LIB_UTIL_W_MT_R)\
+			$(LIB_BEC_FPRINTF_W_MT_R)\
+			$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_W_MT_R) -out:$@ \
+		$(OBJ_TEST_COMP_bec_fprtf_W_MT_R)\
+		$(LIB_BEC_FPRINTF_W_MT_R)\
+		$(LIB_UTIL_W_MT_R)\
+		$(LIBS_SYNSOFT_TEST_COMP_W_MT_R)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_W_MT_R)
+
+$(OBJ_TEST_COMP_bec_fprtf_W_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_W_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp
 
 $(TARG_TEST_COMP_ins_args_MT_D):	\
 			$(OBJ_TEST_COMP_ins_args_MT_D)\

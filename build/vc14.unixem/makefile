@@ -5,7 +5,7 @@
 #			compiler, on UNIX
 #
 # Created:	15th February 2005
-# Updated:	24th June 2020
+# Updated:	26th June 2020
 #
 ############################################################################
 
@@ -1011,6 +1011,7 @@ TARG_EX_C_7_MT_UX_DEBUG		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.c.7.$(COMP_ARCH_OS
 ##############################
 # Component Tests
 
+TARG_TEST_COMP_bec_fprtf_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.exe
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_MT_UX	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_pan_prtf_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.exe
@@ -1031,6 +1032,7 @@ TARG_TEST_COMP_ins_thrid_MT_UX			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.componen
 TARG_TEST_COMP_ins_w2m_MT_UX				=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_log_1_MT_UX					=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.exe
 #### TODO: test.component.no_namespace
+TARG_TEST_COMP_bec_fprtf_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
 #### TODO: test.component.core.getProcessIdentity
 TARG_TEST_COMP_core_initseq_MT_UX_DEBUG	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.init_sequence.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_pan_prtf_MT_UX_DEBUG			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.core.pan_logprintf.$(COMP_ARCH_OS_TAG).mt.debug.exe
@@ -2186,6 +2188,8 @@ OBJ_TEST_COMP_core_initseq_MT_UX	=	.\test.component.core.init_sequence.mt.obj
 OBJ_TEST_COMP_core_initseq_MT_UX_DEBUG	=	.\test.component.core.init_sequence.mt.debug.obj
 OBJ_TEST_COMP_custsev_MT_UX	=	.\test.component.custom_severity.mt.obj
 OBJ_TEST_COMP_custsev_MT_UX_DEBUG	=	.\test.component.custom_severity.mt.debug.obj
+OBJ_TEST_COMP_bec_fprtf_MT_UX	=	.\test.component.bec.fprintf.mt.obj
+OBJ_TEST_COMP_bec_fprtf_MT_UX_DEBUG	=	.\test.component.bec.fprintf.mt.debug.obj
 OBJ_TEST_COMP_ins_args_MT_UX	=	.\test.component.inserters.args.mt.obj
 OBJ_TEST_COMP_ins_args_MT_UX_DEBUG	=	.\test.component.inserters.args.mt.debug.obj
 OBJ_TEST_COMP_ins_b64_MT_UX	=	.\test.component.inserters.b64.mt.obj
@@ -2553,6 +2557,7 @@ OBJS_EXAMPLE=\
 OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_core_initseq_MT_UX)\
  $(OBJ_TEST_COMP_custsev_MT_UX)\
+ $(OBJ_TEST_COMP_bec_fprtf_MT_UX)\
  $(OBJ_TEST_COMP_ins_args_MT_UX)\
  $(OBJ_TEST_COMP_ins_b64_MT_UX)\
  $(OBJ_TEST_COMP_ins_bool_MT_UX)\
@@ -2571,6 +2576,7 @@ OBJS_TEST_COMPONENT=\
  $(OBJ_TEST_COMP_pan_prtf_MT_UX)\
  $(OBJ_TEST_COMP_core_initseq_MT_UX_DEBUG)\
  $(OBJ_TEST_COMP_custsev_MT_UX_DEBUG)\
+ $(OBJ_TEST_COMP_bec_fprtf_MT_UX_DEBUG)\
  $(OBJ_TEST_COMP_ins_args_MT_UX_DEBUG)\
  $(OBJ_TEST_COMP_ins_b64_MT_UX_DEBUG)\
  $(OBJ_TEST_COMP_ins_bool_MT_UX_DEBUG)\
@@ -2981,6 +2987,7 @@ TARGETS_SAMPLE=\
 TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_core_initseq_MT_UX)\
  $(TARG_TEST_COMP_custsev_MT_UX)\
+ $(TARG_TEST_COMP_bec_fprtf_MT_UX)\
  $(TARG_TEST_COMP_ins_args_MT_UX)\
  $(TARG_TEST_COMP_ins_b64_MT_UX)\
  $(TARG_TEST_COMP_ins_bool_MT_UX)\
@@ -2999,6 +3006,7 @@ TARGETS_TEST_COMPONENT=\
  $(TARG_TEST_COMP_pan_prtf_MT_UX)\
  $(TARG_TEST_COMP_core_initseq_MT_UX_DEBUG)\
  $(TARG_TEST_COMP_custsev_MT_UX_DEBUG)\
+ $(TARG_TEST_COMP_bec_fprtf_MT_UX_DEBUG)\
  $(TARG_TEST_COMP_ins_args_MT_UX_DEBUG)\
  $(TARG_TEST_COMP_ins_b64_MT_UX_DEBUG)\
  $(TARG_TEST_COMP_ins_bool_MT_UX_DEBUG)\
@@ -3362,6 +3370,8 @@ test.component_:
 	$(TARG_TEST_COMP_core_initseq_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_custsev_MT_UX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_custsev_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_MT_UX) --verbosity=$(TEST_VERBOSITY)
+	$(TARG_TEST_COMP_bec_fprtf_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_args_MT_UX) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_args_MT_UX_DEBUG) --verbosity=$(TEST_VERBOSITY)
 	$(TARG_TEST_COMP_ins_b64_MT_UX) --verbosity=$(TEST_VERBOSITY)
@@ -4123,6 +4133,7 @@ clean.test.component:
 	@echo Cleaning component tests ...
 	@-$(RM) $(TARG_TEST_COMP_core_initseq_MT_UX)
 	@-$(RM) $(TARG_TEST_COMP_custsev_MT_UX)
+	@-$(RM) $(TARG_TEST_COMP_bec_fprtf_MT_UX)
 	@-$(RM) $(TARG_TEST_COMP_ins_args_MT_UX)
 	@-$(RM) $(TARG_TEST_COMP_ins_b64_MT_UX)
 	@-$(RM) $(TARG_TEST_COMP_ins_bool_MT_UX)
@@ -4141,6 +4152,7 @@ clean.test.component:
 	@-$(RM) $(TARG_TEST_COMP_pan_prtf_MT_UX)
 	@-$(RM) $(TARG_TEST_COMP_core_initseq_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_COMP_custsev_MT_UX_DEBUG)
+	@-$(RM) $(TARG_TEST_COMP_bec_fprtf_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_COMP_ins_args_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_COMP_ins_b64_MT_UX_DEBUG)
 	@-$(RM) $(TARG_TEST_COMP_ins_bool_MT_UX_DEBUG)
@@ -4159,6 +4171,7 @@ clean.test.component:
 	@-$(RM) $(TARG_TEST_COMP_pan_prtf_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_COMP_core_initseq_MT_UX)
 	@-$(RM) $(OBJ_TEST_COMP_custsev_MT_UX)
+	@-$(RM) $(OBJ_TEST_COMP_bec_fprtf_MT_UX)
 	@-$(RM) $(OBJ_TEST_COMP_ins_args_MT_UX)
 	@-$(RM) $(OBJ_TEST_COMP_ins_b64_MT_UX)
 	@-$(RM) $(OBJ_TEST_COMP_ins_bool_MT_UX)
@@ -4177,6 +4190,7 @@ clean.test.component:
 	@-$(RM) $(OBJ_TEST_COMP_pan_prtf_MT_UX)
 	@-$(RM) $(OBJ_TEST_COMP_core_initseq_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_COMP_custsev_MT_UX_DEBUG)
+	@-$(RM) $(OBJ_TEST_COMP_bec_fprtf_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_COMP_ins_args_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_COMP_ins_b64_MT_UX_DEBUG)
 	@-$(RM) $(OBJ_TEST_COMP_ins_bool_MT_UX_DEBUG)
@@ -7137,6 +7151,40 @@ $(TARG_TEST_COMP_custsev_MT_UX_DEBUG):	\
 
 $(OBJ_TEST_COMP_custsev_MT_UX_DEBUG):	$(PROJ_TEST_COMPONENT_DIR)\test.component.custom_severity\test.component.custom_severity.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.custom_severity\test.component.custom_severity.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_MT_UX):	\
+			$(OBJ_TEST_COMP_bec_fprtf_MT_UX)\
+			$(LIB_UTIL_MT_UX)\
+			$(LIB_BEC_FPRINTF_MT_UX)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_UX) -out:$@ \
+		$(OBJ_TEST_COMP_bec_fprtf_MT_UX)\
+		$(LIB_BEC_FPRINTF_MT_UX)\
+		$(LIB_UTIL_MT_UX)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_UX)
+
+$(OBJ_TEST_COMP_bec_fprtf_MT_UX):	$(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_UX) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp
+
+$(TARG_TEST_COMP_bec_fprtf_MT_UX_DEBUG):	\
+			$(OBJ_TEST_COMP_bec_fprtf_MT_UX_DEBUG)\
+			$(LIB_UTIL_MT_UX_DEBUG)\
+			$(LIB_BEC_FPRINTF_MT_UX_DEBUG)\
+			$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
+			$(PROJ_MAKEFILE_NAME)
+	$(LD) $(LD_ARGS_MT_UX_DEBUG) -out:$@ \
+		$(OBJ_TEST_COMP_bec_fprtf_MT_UX_DEBUG)\
+		$(LIB_BEC_FPRINTF_MT_UX_DEBUG)\
+		$(LIB_UTIL_MT_UX_DEBUG)\
+		$(LIBS_SYNSOFT_TEST_COMP_MT_UX_DEBUG)\
+		$(LIBS_3PTY_BE_N_FAIL)\
+		$(TARGET_LIB_MT_UX_DEBUG)
+
+$(OBJ_TEST_COMP_bec_fprtf_MT_UX_DEBUG):	$(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_UX_DEBUG) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.bec.fprintf\test.component.bec.fprintf.cpp
 
 $(TARG_TEST_COMP_ins_args_MT_UX):	\
 			$(OBJ_TEST_COMP_ins_args_MT_UX)\
