@@ -7,16 +7,16 @@
 CFG=example.cpp.backends.file.callback - Win32 Release
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "example.cpp.backends.file.callback.mak".
-!MESSAGE
+!MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "example.cpp.backends.file.callback.mak" CFG="example.cpp.backends.file.callback - Win32 Release"
-!MESSAGE
+!MESSAGE 
 !MESSAGE Possible choices for configuration are:
-!MESSAGE
+!MESSAGE 
 !MESSAGE "example.cpp.backends.file.callback - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "example.cpp.backends.file.callback - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE "example.cpp.backends.file.callback - Win32 Release Multithreaded" (based on "Win32 (x86) Application")
@@ -35,7 +35,7 @@ CFG=example.cpp.backends.file.callback - Win32 Release
 !MESSAGE "example.cpp.backends.file.callback - Win32 Debug Multithreaded pseudoUNIX" (based on "Win32 (x86) Application")
 !MESSAGE "example.cpp.backends.file.callback - Win32 Release Multithreaded DLL pseudoUNIX" (based on "Win32 (x86) Application")
 !MESSAGE "example.cpp.backends.file.callback - Win32 Debug Multithreaded DLL pseudoUNIX" (based on "Win32 (x86) Application")
-!MESSAGE
+!MESSAGE 
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -531,7 +531,7 @@ LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib advapi32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../../bin/example.cpp.backends.file.callback.vc6.unix.dll.debug.exe" /pdbtype:sept /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(UNIXEM)/lib"
 # ADD LINK32 kernel32.lib advapi32.lib ole32.lib oleaut32.lib /nologo /subsystem:console /debug /machine:I386 /out:"../../../../../bin/example.cpp.backends.file.callback.vc6.unix.dll.debug.exe" /pdbtype:sept /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(PANTHEIOS_ROOT)/lib" /libpath:"$(SHWILD_ROOT)/lib" /libpath:"$(UNIXEM)/lib"
 
-!ENDIF
+!ENDIF 
 
 # Begin Target
 
