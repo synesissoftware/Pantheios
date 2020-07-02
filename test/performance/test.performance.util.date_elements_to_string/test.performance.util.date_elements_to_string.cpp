@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.performance.util.date_elements_to_string project.
  *
  * Created:     13th November 2016
- * Updated:     27th January 2017
+ * Updated:     28th June 2020
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2016-2017, Synesis Software Pty Ltd.
+ *              Copyright (c) 2016-2020, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -25,6 +25,10 @@
 /* STLSoft header files */
 #include <platformstl/performance/performance_counter.hpp>
 #include <stlsoft/stlsoft.h>
+#ifdef _STLSOFT_VER_1_10_1_B18
+# include <stlsoft/time/fast_strftime.hpp>
+#endif
+#include <pantheios/internal/safestr.h>
 
 /* Standard C++ header files */
 #include <exception>
@@ -44,8 +48,8 @@
  */
 
 #ifdef _DEBUG
-const int       ITERATIONS  =   100;
-const int       NUM_WARMUPS =   1;
+const int       ITERATIONS  =   1000;
+const int       NUM_WARMUPS =   2;
 #else /* ? _DEBUG */
 const int       ITERATIONS  =   1000000;
 const int       NUM_WARMUPS =   2;
@@ -108,6 +112,16 @@ format_with_strftime_(
 ,   PAN_CHAR_T        (*ar)[20]
 );
 
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+
+static
+int
+format_with_fast_strftime_(
+    struct tm const&    tm
+,   PAN_CHAR_T        (*ar)[20]
+);
+#endif
+
 static
 struct tm
 iteration_to_tm_(
@@ -116,13 +130,16 @@ iteration_to_tm_(
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int argc, char** argv)
+static int main_(int /* argc */, char** /* argv */)
 {
     platformstl::performance_counter                counter;
-    platformstl::performance_counter::interval_type tm_date_elements;
-    platformstl::performance_counter::interval_type tm_sprintf;
-    platformstl::performance_counter::interval_type tm_strftime;
+    platformstl::performance_counter::interval_type tm_date_elements    =   0;
+    platformstl::performance_counter::interval_type tm_sprintf          =   0;
+    platformstl::performance_counter::interval_type tm_strftime         =   0;
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
+    platformstl::performance_counter::interval_type tm_fast_strftime    =   0;
+#endif
 
     // unit test
 
@@ -133,13 +150,27 @@ static int main_(int argc, char** argv)
         char    sz_de[20];
         char    sz_sprintf[20];
         char    sz_strftime[20];
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+
+        char    sz_fast_strftime[20];
+#endif
 
         format_with_date_elements_(tm, &sz_de);
         format_with_sprintf_(tm, &sz_sprintf);
         format_with_strftime_(tm, &sz_strftime);
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-        if( 0 != ::strcmp(sz_de, sz_sprintf) ||
-            0 != ::strcmp(sz_de, sz_strftime))
+        format_with_fast_strftime_(tm, &sz_fast_strftime);
+#endif
+
+        if( STLSOFT_ALWAYS_FALSE() ||
+            0 != ::strcmp(sz_de, sz_sprintf) ||
+            0 != ::strcmp(sz_de, sz_strftime) ||
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+
+            0 != ::strcmp(sz_de, sz_fast_strftime) ||
+#endif
+            STLSOFT_ALWAYS_FALSE())
         {
             fprintf(stderr, "equivalence failed for iteration %d\n" , i);
 
@@ -193,17 +224,48 @@ static int main_(int argc, char** argv)
         tm_strftime = counter.get_microseconds();
     }}
 
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+
+    { for(int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
+    {
+        counter.start();
+        { for(int i = 0; i != ITERATIONS; ++i)
+        {
+            struct tm const tm = iteration_to_tm_(i);
+            char            sz[20];
+
+            total += format_with_fast_strftime_(tm, &sz);
+        }}
+        counter.stop();
+        tm_fast_strftime = counter.get_microseconds();
+    }}
+#endif
+
     fprintf(stdout, "with date elements:\t%luus\n", static_cast<unsigned long>(tm_date_elements));
 
     fprintf(stdout, "with sprintf:      \t%luus\n", static_cast<unsigned long>(tm_sprintf));
 
     fprintf(stdout, "with strftime:     \t%luus\n", static_cast<unsigned long>(tm_strftime));
 
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+
+    fprintf(stdout, "with fast_strftime:\t%luus\n", static_cast<unsigned long>(tm_fast_strftime));
+#endif
+
 
     fprintf(stdout, "\n");
-    fprintf(stdout, "date elements : sprintf: \t%2.4g\n", (double)tm_date_elements/(double)tm_sprintf);
-    fprintf(stdout, "date elements : strftime:\t%2.4g\n", (double)tm_date_elements/(double)tm_strftime);
-    fprintf(stdout, "      sprintf : strftime:\t%2.4g\n", (double)tm_sprintf/(double)tm_strftime);
+    fprintf(stdout, "date elements : sprintf:      \t%2.4g\n", (double)tm_date_elements/(double)tm_sprintf);
+    fprintf(stdout, "date elements : strftime:     \t%2.4g\n", (double)tm_date_elements/(double)tm_strftime);
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+
+    fprintf(stdout, "date elements : fast_strftime:\t%2.4g\n", (double)tm_date_elements/(double)tm_fast_strftime);
+#endif
+    fprintf(stdout, "      sprintf : strftime:     \t%2.4g\n", (double)tm_sprintf/(double)tm_strftime);
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+
+    fprintf(stdout, "      sprintf : fast_strftime:\t%2.4g\n", (double)tm_sprintf/(double)tm_fast_strftime);
+    fprintf(stdout, "     strftime : fast_strftime:\t%2.4g\n", (double)tm_strftime/(double)tm_fast_strftime);
+#endif
 
     return EXIT_SUCCESS;
 }
@@ -309,6 +371,20 @@ format_with_sprintf_(
 ,   PAN_CHAR_T        (*ar)[20]
 )
 {
+#ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
+
+    return ::_snprintf_s(
+                    &(*ar)[0], 20, _TRUNCATE
+                ,   "%04d-%02d-%02d %02d:%02d:%02d"
+                ,   tm.tm_year
+                ,   tm.tm_mon + 1
+                ,   tm.tm_mday
+                ,   tm.tm_hour
+                ,   tm.tm_min
+                ,   tm.tm_sec
+                );
+#else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
     return ::sprintf(
                     &(*ar)[0]
                 ,   "%04d-%02d-%02d %02d:%02d:%02d"
@@ -319,8 +395,8 @@ format_with_sprintf_(
                 ,   tm.tm_min
                 ,   tm.tm_sec
                 );
+#endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 }
-
 
 static
 int
@@ -333,8 +409,41 @@ format_with_strftime_(
 
     tm2.tm_year -= 1900;
 
+#if 0
+
+    fprintf(stderr
+        ,   "sec=%d, min=%d, hr=%d, mday=%d, mon=%d, year=%d, wday=%d, yday=%d, isdst=%d\n"
+        ,   tm.tm_sec
+        ,   tm.tm_min
+        ,   tm.tm_hour
+        ,   tm.tm_mday
+        ,   tm.tm_mon
+        ,   tm.tm_year
+        ,   tm.tm_wday
+        ,   tm.tm_yday
+        ,   tm.tm_isdst
+        );
+#endif
+
     return static_cast<int>(::strftime(&(*ar)[0], sizeof(*ar), "%Y-%m-%d %H:%M:%S", &tm2));
 }
+
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+
+static
+int
+format_with_fast_strftime_(
+    struct tm const&    tm
+,   PAN_CHAR_T        (*ar)[20]
+)
+{
+    struct tm tm2 = tm;
+
+    tm2.tm_year -= 1900;
+
+    return static_cast<int>(stlsoft::fast_strftime(&(*ar)[0], sizeof(*ar), "%Y-%m-%d %H:%M:%S", &tm2));
+}
+#endif
 
 static
 struct tm
@@ -342,17 +451,18 @@ iteration_to_tm_(
     int iteration
 )
 {
-    struct tm   tm;
+    struct tm   tm = { 0 } ;
 
     tm.tm_sec   =      0 + (iteration /      1) % 60;
     tm.tm_min   =      0 + (iteration /     10) % 60;
     tm.tm_hour  =      0 + (iteration /    100) % 24;
 
     tm.tm_mday  =      1 + (iteration /   1000) % 28;
-    tm.tm_mon   =      1 + (iteration /  10000) % 12;
+    tm.tm_mon   =      0 + (iteration /  10000) % 12;
     tm.tm_year  =   2000 + (iteration / 100000) % 100;
 
     return tm;
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
