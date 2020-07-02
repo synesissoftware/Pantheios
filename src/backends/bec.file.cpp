@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the file back-end.
  *
  * Created:     25th November 2006
- * Updated:     19th June 2020
+ * Updated:     3rd July 2020
  *
  * Thanks to:   CookieRaver for filling in the (accidental) blanks in the
  *              UNIX implementation.
@@ -170,7 +170,14 @@
    /* write() */
 #  define write(h, b, n)                _write((h), (b), stlsoft_static_cast(int, (n)))
 
-#  include <stdint.h>
+#  if defined(_MSC_VER) && \
+      _MSC_VER < 1300
+
+#   define intptr_t                     long
+#  else
+
+#   include <stdint.h>
+#  endif
 
    /* types and constants */
 #  define ssize_t   intptr_t
