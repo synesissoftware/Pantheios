@@ -4,11 +4,11 @@
  * Purpose:     Main include file for all Pantheios standard inserters.
  *
  * Created:     21st June 2005
- * Updated:     29th June 2016
+ * Updated:     27th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2020, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -54,9 +54,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MAJOR    2
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MINOR    7
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     236
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MINOR    8
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     237
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,9 +76,11 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B
 # include <pantheios/inserters/b.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B */
-#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
-# include <pantheios/inserters/b64.hpp>
-#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64 */
+#ifndef PANTHEIOS_NO_B64
+# ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
+#  include <pantheios/inserters/b64.hpp>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64 */
+#endif /* !PANTHEIOS_NO_B64 */
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BLOB
 # include <pantheios/inserters/blob.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BLOB */

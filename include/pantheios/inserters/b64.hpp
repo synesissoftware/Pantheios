@@ -4,7 +4,7 @@
  * Purpose:     String inserter for binary regions in Base-64.
  *
  * Created:     31st July 2006
- * Updated:     16th June 2020
+ * Updated:     27th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
@@ -56,10 +56,18 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MAJOR    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MINOR    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 7
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     30
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MINOR    5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#ifdef PANTHEIOS_NO_B64
+# error this file cannot be included when PANTHEIOS_NO_B64 is defined
+#endif /* PANTHEIOS_NO_B64 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
