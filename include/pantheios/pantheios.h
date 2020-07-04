@@ -4,7 +4,7 @@
  * Purpose:     Pantheios Core and Util APIs.
  *
  * Created:     21st June 2005
- * Updated:     26th June 2020
+ * Updated:     4th July 2020
  *
  * Home:        http://www.pantheios.org/
  *
@@ -57,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       378
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   3
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       379
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -164,9 +164,9 @@
 
 # if STLSOFT_VER >= 0x010a0181
 
-#  if STLSOFT_VER < 0x010a0193
+#  if STLSOFT_VER < 0x010a0194
 
-#   error This version Pantheios requires STLSoft 1.10.1 beta 19, or later. (www.stlsoft.org)
+#   error This version Pantheios requires STLSoft 1.10.1 beta 20, or later. (www.stlsoft.org)
 #  else
 
 #   define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
@@ -191,9 +191,9 @@
 
 # if _STLSOFT_VER >= 0x010a0181
 
-#  if _STLSOFT_VER < 0x010a0193
+#  if _STLSOFT_VER < 0x010a0194
 
-#   error This version Pantheios requires STLSoft 1.10.1 beta 19, or later. (www.stlsoft.org)
+#   error This version Pantheios requires STLSoft 1.10.1 beta 20, or later. (www.stlsoft.org)
 #  else
 
 #   define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
