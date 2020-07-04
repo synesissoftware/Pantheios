@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for snprintf() utility functions.
  *
  * Created:     21st June 2005
- * Updated:     16th June 2020
+ * Updated:     4th July 2020
  *
  * Home:        http://www.pantheios.org/
  *
@@ -62,6 +62,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <wchar.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -91,21 +92,27 @@ namespace pantheios
             (   defined(STLSOFT_COMPILER_IS_COMO) && \
                 defined(_MSC_VER)))) || \
     defined(STLSOFT_COMPILER_IS_MSVC)
+
 # ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
+
 #  define pantheios_util_vsnprintf_a_(d, n, f, a)      _vsnprintf_s((d), (n), _TRUNCATE, (f), (a))
 #  define pantheios_util_vsnprintf_w_(d, n, f, a)      _vsnwprintf_s((d), (n), _TRUNCATE, (f), (a))
 # else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
 #  define pantheios_util_vsnprintf_a_(d, n, f, a)      _vsnprintf((d), (n), (f), (a))
 #  define pantheios_util_vsnprintf_w_(d, n, f, a)      _vsnwprintf((d), (n), (f), (a))
 # endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 #else /* ? compiler */
-#  define pantheios_util_vsnprintf_a_(d, n, f, a)      vsnprintf((d), (n), (f), (a))
-#  define pantheios_util_vsnprintf_w_(d, n, f, a)      vsnwprintf((d), (n), (f), (a))
+
+# define pantheios_util_vsnprintf_a_(d, n, f, a)       vsnprintf((d), (n), (f), (a))
+# define pantheios_util_vsnprintf_w_(d, n, f, a)       vsnwprintf((d), (n), (f), (a))
 #endif /* compiler */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
+
 # define pantheios_util_vsnprintf_(d, n, f, a)         pantheios_util_vsnprintf_w_(d, n, f, a)
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
 # define pantheios_util_vsnprintf_(d, n, f, a)         pantheios_util_vsnprintf_a_(d, n, f, a)
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -126,6 +133,8 @@ pantheios_util_vsnprintf_a(
     return pantheios_util_vsnprintf_a_(dest, cchDest, fmt, args);
 }
 
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
 PANTHEIOS_CALL(int)
 pantheios_util_vsnprintf_w(
     wchar_t*        dest
@@ -138,6 +147,7 @@ pantheios_util_vsnprintf_w(
 
     return pantheios_util_vsnprintf_w_(dest, cchDest, fmt, args);
 }
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 PANTHEIOS_CALL(int)
 pantheios_util_snprintf_a(
@@ -163,6 +173,8 @@ pantheios_util_snprintf_a(
     return ret;
 }
 
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
 PANTHEIOS_CALL(int)
 pantheios_util_snprintf_w(
     wchar_t*        dest
@@ -186,6 +198,7 @@ pantheios_util_snprintf_w(
 
     return ret;
 }
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

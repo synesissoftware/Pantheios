@@ -37,7 +37,10 @@ namespace
 {
 
 static void test_pantheios_util_snprintf_a();
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
 static void test_pantheios_util_snprintf_w();
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 static void test_pantheios_util_snprintf();
 static void test_1_08();
 static void test_1_09();
@@ -63,7 +66,10 @@ int main(int argc, char** argv)
     if(XTESTS_START_RUNNER("test.unit.util.snprintf", verbosity))
     {
         XTESTS_RUN_CASE(test_pantheios_util_snprintf_a);
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
         XTESTS_RUN_CASE(test_pantheios_util_snprintf_w);
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
         XTESTS_RUN_CASE(test_pantheios_util_snprintf);
         XTESTS_RUN_CASE(test_1_08);
         XTESTS_RUN_CASE(test_1_09);
@@ -85,7 +91,10 @@ namespace
 {
     using ::pantheios::pantheios_util_snprintf;
     using ::pantheios::pantheios_util_snprintf_a;
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
     using ::pantheios::pantheios_util_snprintf_w;
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #ifndef XTESTS_TEST_STRING_EQUAL
 # ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -189,6 +198,8 @@ static void test_pantheios_util_snprintf_a()
     }
 }
 
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
 static void test_pantheios_util_snprintf_w()
 {
     // ""
@@ -280,6 +291,7 @@ static void test_pantheios_util_snprintf_w()
         XTESTS_TEST_WIDE_STRING_EQUAL(L"-10", buff);
     }
 }
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 static void test_pantheios_util_snprintf()
 {

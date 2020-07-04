@@ -4,7 +4,7 @@
  * Purpose:     snprintf() utility functions.
  *
  * Created:     21st June 2005
- * Updated:     21st June 2020
+ * Updated:     4th July 2020
  *
  * Home:        http://www.pantheios.org/
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MINOR       3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        23
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -151,6 +151,8 @@ pantheios_util_vsnprintf_a(
 ,   va_list             args
 );
 
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
 PANTHEIOS_CALL(int)
 pantheios_util_snprintf_w(
     wchar_t*            dest
@@ -170,6 +172,7 @@ pantheios_util_vsnprintf_w(
 ,   wchar_t const*      fmt
 ,   va_list             args
 );
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
