@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.inserter.stream_character project.
  *
  * Created:     9th May 2014
- * Updated:     9th May 2014
+ * Updated:     27th January 2017
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2014, Synesis Software Pty Ltd.
+ *              Copyright (c) 2014-2017, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -29,7 +29,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -55,7 +55,7 @@ static void test_1_12();
 #define PSTR(x)                         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * character encoding
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -70,7 +70,7 @@ static void test_1_12();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.inserter.stream_character");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.inserter.stream_character");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
