@@ -1,7 +1,7 @@
 pantheios - TODO lists
 ======================
 
-Updated:    29th January 2017
+Updated:    5th July 2020
 
 
 Summaries:
@@ -19,7 +19,8 @@ Pantheios 1.0 TODOs:
  ~ rewrite Core in pure C (or NoX for VC++ 7.1+ and GCC)
  ~ rewrite Back-ends in pure C (or NoX for VC++ 7.1+ and GCC)
  ~ rewrite Front-ends in pure C (or NoX for VC++ 7.1+ and GCC)
- + auto-generate project files for VS'98, 2008, 2010
+ + auto-generate project files for VS'98
+ + auto-generate project files for 2010
  + auto-generate implicit-link files
  + auto-generate be l/r source files
  + auto-generate be l/r header files
@@ -31,12 +32,8 @@ Pantheios 1.0 TODOs:
 
 Pantheios 1.1 TODOs:
 --------------------
-	+ auto-generate project files for Xcode
 
-
-
-
-
+ + auto-generate project files for Xcode
 
 
  ** fix the TODO file first!! **

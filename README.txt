@@ -1,11 +1,11 @@
 pantheios - README
 ==================
 
-Updated:    29th January 2017
+Updated:    5th July 2020
 
 
 
-See the introduction in the accompanying doc/html/1.0.1-beta218/index.html
+See the introduction in the accompanying doc/html/1.0.1-beta219/index.html
 file.
 
 Please feel free to request, nay demand, improvements in any areas

@@ -1,7 +1,26 @@
 pantheios - History
 ===================
 
-Updated:    29th January 2017
+Updated:    5th July 2020
+
+
+5th July 2020 - 1.0.1 beta 219
+------------------------------
+
+ * added ::pantheios_char_t with all appropriate changes in library
+ * added support for PANTHEIOS_NO_B64 preprocessor symbol, which causes build and use of application layer inserters to be done without the b64 library (and the pantheios::b64 inserter)
+ * added support (including implicit-linking support) for Visual C++ 15.x and 16.x
+ * forward-compatibility support for STLSoft 1.10 and 1.11
+ * substantial reworking and fixes to makefiles
+ * added project files (auto-generated) for Visual C++ 10
+ * added bec.stock (and bec.stock.WithCallback) archive(s) and implicit-link file(s)
+ * bec.fprintf now always outputs to stderr by default; + can specify stream in initialiser
+ * numerous minor mods and fixes to bec.file
+ * added example.cpp.linking.N_with_stock
+ * added test.unit.inserter.stream_character
+ * added test.unit.util.snprintf
+ * added test.component.bec.fprintf
+ * added in test of stlsoft::fast_strftime in test.performance.util.date_elements_to_string
 
 
 29th January 2017 - 1.0.1 beta 218

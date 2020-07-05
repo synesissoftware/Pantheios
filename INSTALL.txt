@@ -1,7 +1,7 @@
 pantheios - Install
 ====================
 
-Updated:    29th January 2017
+Updated:    5th July 2020
 
 
 The following steps are required to install Pantheios:
@@ -17,10 +17,10 @@ The following steps are required to install Pantheios:
 
     4. Download the latest distribution of STLSoft, from http://stlsoft.org/
 
-    5. Unzip it to a directory of your choice, e.g c:\3pty\stlsoft-1.9.131
+    5. Unzip it to a directory of your choice, e.g c:\3pty\stlsoft-1.9.134
 
     6. Define an environment variable STLSOFT, whose value is the directory
-       in which you unzipped it, e.g. STLSOFT=c:\3pty\stlsoft-1.9.131
+       in which you unzipped it, e.g. STLSOFT=c:\3pty\stlsoft-1.9.134
 
     7. Open a command shell in the appropriate directory that matches your
        compiler:
@@ -38,6 +38,9 @@ The following steps are required to install Pantheios:
        * to build and run unit/component tests: "make test"
 
 NOTE: Pantheios depends on the (header-only) STLSoft libraries - version
-  1.9.131 or later - available from http://www.stlsoft.org/.
+  1.9.134 or later - available
+  from http://github.com/synesissoftware/stlsoft-1.9/. However, as of
+  this time, the beta version of STLSoft 1.10 is recommended - see
+  http://github.com/synesissoftware/stlsoft-1.10/
 
 =============================== End of file ================================

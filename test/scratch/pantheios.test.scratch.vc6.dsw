@@ -3,6 +3,39 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
+Project: "bec.file.WithCallback"=..\..\projects\backends\bec.file.WithCallback\vc6\bec.file.WithCallback.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "example.cpp.backends.file.callback"=..\..\examples\cpp\backends\example.cpp.backends.file.callback\vc6\example.cpp.backends.file.callback.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name bec.file.WithCallback
+    End Project Dependency
+}}}
+
+###############################################################################
+
 Project: "pantheios.core"=..\..\projects\core\vc6\pantheios.core.dsp - Package Owner=<4>
 
 Package=<5>
@@ -444,7 +477,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "test.scratch.util.onBailOut"=.\test.scratch.util.onbailout\vc6\test.scratch.util.onBailOut.dsp - Package Owner=<4>
+Project: "test.scratch.util.onbailout"=.\test.scratch.util.onbailout\vc6\test.scratch.util.onBailOut.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -452,12 +485,6 @@ Package=<5>
 
 Package=<4>
 {{{
-    Begin Project Dependency
-    Project_Dep_Name pantheios.core
-    End Project Dependency
-    Begin Project Dependency
-    Project_Dep_Name pantheios.util
-    End Project Dependency
 }}}
 
 ###############################################################################

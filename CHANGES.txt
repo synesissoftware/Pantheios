@@ -1,7 +1,8 @@
 pantheios - Changes
 ===================
 
-Updated:    29th January 2017
+Created:    2nd September 2006
+Updated:    5th July 2020
 
 
     ************************************
@@ -13,6 +14,384 @@ Updated:    29th January 2017
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+5th July 2020 - 1.0.1 beta 219
+==============================
+
+Summary:
+--------
+
+ * added ::pantheios_char_t with all appropriate changes in library
+ * added support for PANTHEIOS_NO_B64 preprocessor symbol, which causes build and use of application layer inserters to be done without the b64 library (and the pantheios::b64 inserter)
+ * added support (including implicit-linking support) for Visual C++ 15.x and 16.x
+ * forward-compatibility support for STLSoft 1.10 and 1.11
+ * substantial reworking and fixes to makefiles
+ * added project files (auto-generated) for Visual C++ 10
+ * added bec.stock (and bec.stock.WithCallback) archive(s) and implicit-link file(s)
+ * bec.fprintf now always outputs to stderr by default; + can specify stream in initialiser
+ * numerous minor mods and fixes to bec.file
+ * added example.cpp.linking.N_with_stock
+ * added test.unit.inserter.stream_character
+ * added test.unit.util.snprintf
+ * added test.component.bec.fprintf
+ * added in test of stlsoft::fast_strftime in test.performance.util.date_elements_to_string
+
+Details:
+--------
+
+General:
+
+ ~ include/pantheios/pantheios.h:
+    ~ STLSoft dependencies
+    + added ::pantheios_char_t with all appropriate changes in library
+    + added PANTHEIOS_STLSOFT_1_11_OR_LATER
+
+ ~ include/pantheios/implicit_link/implicit_link_base_.h:
+    + added implicit-link support for VC++ 15 and 16
+
+Core:
+
+ ~ src/core/api.cpp:
+ ~ src/core/api.deprecated.c:
+ ~ src/core/api.logputs.cpp:
+ ~ src/core/logprintf.c:
+    + added ::pantheios_char_t with all appropriate changes in library
+
+Application Layer:
+
+ ~ include/pantheios/inserters.hpp:
+    + PANTHEIOS_NO_B64
+
+ ~ include/pantheios/inserters/b64.hpp:
+    + PANTHEIOS_NO_B64
+    + added ::pantheios_char_t with all appropriate changes in library
+
+ ~ include/pantheios/inserters/adaptor.hpp:
+ ~ include/pantheios/inserters/args.hpp:
+ ~ include/pantheios/inserters/blob.hpp:
+ ~ include/pantheios/inserters/boolean.hpp:
+ ~ include/pantheios/inserters/character.hpp:
+ ~ include/pantheios/inserters/exception.hpp:
+ ~ include/pantheios/inserters/hostid.hpp:
+ ~ include/pantheios/inserters/integer.hpp:
+ ~ include/pantheios/inserters/interval.hpp:
+ ~ include/pantheios/inserters/m2w.hpp:
+ ~ include/pantheios/inserters/pad.hpp:
+ ~ include/pantheios/inserters/pointer.hpp:
+ ~ include/pantheios/inserters/processid.hpp:
+ ~ include/pantheios/inserters/real.hpp:
+ ~ include/pantheios/inserters/slice.hpp:
+ ~ include/pantheios/inserters/stream_character.hpp:
+ ~ include/pantheios/inserters/threadid.hpp:
+ ~ include/pantheios/inserters/w2m.hpp:
+ ~ include/pantheios/inserters/windows/hive.hpp:
+ ~ include/pantheios/internal/slice.hpp:
+ ~ include/pantheios/shims/access/string/core/pan_severity_t.hpp:
+ ~ include/pantheios/shims/access/string/core/pan_slice_t.hpp:
+ ~ include/pantheios/trace.h:
+ ~ include/pantheios/util/backends/context.hpp:
+    + added ::pantheios_char_t with all appropriate changes in library
+
+ ~ src/inserters/args.cpp:
+ ~ src/inserters/b64.cpp:
+ ~ src/inserters/blob.cpp:
+ ~ src/inserters/boolean.cpp:
+ ~ src/inserters/exception.cpp:
+ ~ src/inserters/hostid.cpp:
+ ~ src/inserters/integer.cpp:
+ ~ src/inserters/interval.cpp:
+ ~ src/inserters/pointer.cpp:
+ ~ src/inserters/processid.cpp:
+ ~ src/inserters/real.cpp:
+ ~ src/inserters/slice.cpp:
+ ~ src/inserters/stream_character.cpp:
+ ~ src/inserters/threadid.cpp:
+    + added ::pantheios_char_t with all appropriate changes in library
+
+ ~ include/pantheios/generated/log_dispatch_functions.h:
+ ~ include/pantheios/generated/log_dispatch_functions.hpp:
+ ~ include/pantheios/generated/log_functions.h:
+ ~ include/pantheios/generated/log_functions.hpp:
+ ~ include/pantheios/generated/log_sev_functions.hpp:
+    ~ updated generated files
+    + added ::pantheios_char_t with all appropriate changes in library
+
+ ~ include/pantheios/internal/generated/log_functions.inl:
+    ~ updated generated files
+    + added ::pantheios_char_t with all appropriate changes in library
+
+Tracing:
+
+Assertion:
+
+Util:
+
+ ~ include/pantheios/util/backends/arguments.h:
+    ~ documentation markup
+
+ ~ include/pantheios/util/string/snprintf.h:
+    ~ working around absence of vsnwprintf() for GCC (Linux) compatibility in a broad-brush way
+    + added pantheios_util_snprintf_w() / pantheios_util_vsnprintf_w()
+    + added ::pantheios_char_t with all appropriate changes in library
+    ~ preparatory layout changes
+
+ ~ include/pantheios/util/string/strdup.h:
+ ~ include/pantheios/util/string/strnlen.h:
+ ~ include/pantheios/util/system/hostname.h:
+ ~ include/pantheios/util/time/currenttime.h:
+    + added ::pantheios_char_t with all appropriate changes in library
+
+ ~ src/util/bailout.c:
+    ~ preparatory work
+
+ ~ src/util/be.context.cpp:
+ ~ src/util/hostname.c:
+ ~ src/util/severity_strings.c:
+ ~ src/util/strdup.c:
+ ~ src/util/time.cpp:
+ ~ src/util/util.strnlen.c:
+    + added ::pantheios_char_t with all appropriate changes in library
+
+ ~ src/util/snprintf.c:
+    ~ working around absence of vsnwprintf() for GCC (Linux) compatibility in a broad-brush way
+    + added pantheios_util_snprintf_w() / pantheios_util_vsnprintf_w()
+    + added ::pantheios_char_t with all appropriate changes in library
+    ~ preparatory layout changes
+
+ ~ src/util/threadid.c:
+    ~ PThreads-Win32 compatibility (64-bit)
+
+Extras:
+
+Front-ends:
+
+ ~ src/frontends/fe.WindowsRegistry.cpp:
+    + added ::pantheios_char_t with all appropriate changes in library
+
+Back-ends:
+
+ ~ include/pantheios/implicit_link/bec.console.WithCallback.h:
+    ~ fixed invalid includes
+
+ + include/pantheios/implicit_link/bec.stock.WithCallback.h:
+ + include/pantheios/implicit_link/bec.stock.h:
+    + added bec.stock (and bec.stock.WithCallback) archives
+    + added example.cpp.linking.N_with_stock
+
+ ~ include/pantheios/backends/bec.fprintf.h:
+    bec.fprintf : ~ now always outputs to stderr by default; + can specify stream in initialiser
+
+ ~ include/pantheios/backends/bec.test.h:
+    + added ::pantheios_char_t with all appropriate changes in library
+
+ ~ src/backends/bec.WindowsConsole.cpp:
+    ~ minor mods
+
+ ~ src/backends/bec.file.cpp:
+    ~ whitespace
+    ~ fixed defect introduced in revision 133
+    ~ compatibility with 64-bit (on Windows)
+    ~ compatibility with STLSoft versions
+    ~ fixed defect in processing of one, but not both, %D and %T
+    ~ changed app-init such that fileName points to &buff[0]
+
+ ~ src/backends/bec.fprintf.cpp:
+    bec.fprintf : ~ now always outputs to stderr by default; + can specify stream in initialiser
+
+Distribution:
+
+Documentation:
+
+Makefiles / Project-files:
+
+ ~ build/ar/makefile:
+ ~ build/bc551/makefile:
+ ~ build/bc56/makefile:
+ ~ build/bc564/makefile:
+ ~ build/bc582/makefile:
+ ~ build/bc59x/makefile:
+ ~ build/bc61x/makefile:
+ ~ build/bc62x/makefile:
+ ~ build/gcc32.win32/makefile:
+ ~ build/gcc33.win32/makefile:
+ ~ build/gcc34.win32/makefile:
+ ~ build/como433.unix/makefile:
+ ~ build/como433.win32/makefile:
+ ~ build/cw8.unix/makefile:
+ ~ build/cw8.win32/makefile:
+ ~ build/dm/makefile:
+ ~ build/gcc49.win32/makefile:
+ ~ build/icl10.win32/makefile:
+ ~ build/icl11.win32/makefile:
+ ~ build/icl12.win32/makefile:
+ ~ build/icl6.win32/makefile:
+ ~ build/icl7.win32/makefile:
+ ~ build/icl8.win32/makefile:
+ ~ build/icl9.win32/makefile:
+ ~ build/vc10.x64/makefile:
+ ~ build/vc10/makefile:
+ ~ build/vc11.x64/makefile:
+ ~ build/vc11/makefile:
+ ~ build/vc12.x64/makefile:
+ ~ build/vc12/makefile:
+ ~ build/vc14.x64/makefile:
+ ~ build/vc14/makefile:
+ + build/vc15.x64/makefile:
+ + build/vc15/makefile:
+ + build/vc16.x64/makefile:
+ + build/vc16/makefile:
+ ~ build/vc5/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc7/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8.x64/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9.x64/makefile:
+ ~ build/vc9/makefile:
+    ~ improved removal of files in clean on Windows
+    ~ tidying up of binary products (incl. .exe, .pdb, .ilk)
+    ~ preparatory refactoring
+    + added PANTHEIOS_NO_B64 (for those compilers whose tool-suites' make tool has preprocessor), allowing for removal of dependency on b64 library
+    + added test.performance.util.date_elements_to_string
+    ~ preparatory refactoring of makefile structure
+    + added test.component.bec.fprintf
+    + added bec.stock (and bec.stock.WithCallback) archives
+    ~ significantly refactored makefile structure
+    + added tes.unit.util.snprintf
+    + added ws2_32 references
+    - removed (temporarily?) test.unit.be.WindowsSyslog
+    ~ refactoring generated makefile(s)
+    ~ refactored makefile(s)
+    + adjusted 'clean' target
+
+ ~ build/gcc32.unix/makefile:
+ ~ build/gcc33.mac/makefile:
+ ~ build/gcc33.unix/makefile:
+ ~ build/gcc34.unix/makefile:
+ ~ build/gcc40.mac.x64/makefile:
+ ~ build/gcc40.mac/makefile:
+ ~ build/gcc40.unix/makefile:
+ ~ build/gcc41.unix/makefile:
+ ~ build/gcc42.unix/makefile:
+ ~ build/gcc43.unix/makefile:
+ ~ build/gcc44.unix.file64bit/makefile:
+ ~ build/gcc44.unix/makefile:
+ ~ build/gcc45.unix.file64bit/makefile:
+ ~ build/gcc45.unix/makefile:
+ ~ build/gcc46.unix.file64bit/makefile:
+ ~ build/gcc46.unix/makefile:
+ ~ build/gcc47.unix.file64bit/makefile:
+ ~ build/gcc47.unix/makefile:
+ ~ build/gcc48.unix.file64bit/makefile:
+ ~ build/gcc48.unix/makefile:
+ ~ build/sunpro59x.unix/makefile:
+ ~ build/vc10.unixem/makefile:
+ ~ build/vc11.unixem/makefile:
+ ~ build/vc12.unixem/makefile:
+ ~ build/vc14.unixem/makefile:
+ + build/vc15.unixem/makefile:
+ + build/vc16.unixem/makefile:
+ ~ build/vc6.unixem/makefile:
+ ~ build/vc8.unixem/makefile:
+ ~ build/vc9.unixem/makefile:
+    ~ preparatory refactoring
+    + added PANTHEIOS_NO_B64 (for those compilers whose tool-suites' make tool has preprocessor), allowing for removal of dependency on b64 library
+    + added test.performance.util.date_elements_to_string
+    ~ preparatory refactoring of makefile structure
+    + added test.component.bec.fprintf
+    + added bec.stock (and bec.stock.WithCallback) archives
+    ~ significantly refactored makefile structure
+    + added tes.unit.util.snprintf
+    + added ws2_32 references
+    - removed (temporarily?) test.unit.be.WindowsSyslog
+    ~ refactoring generated makefile(s)
+    ~ refactored makefile(s)
+    + adjusted 'clean' target
+
+
+ ~ projects/util/vc10/pantheios.util.vcxproj:
+    + added project name
+    + added post-build mechanism to copy to Synesis-named for in lib directory
+    ~ fixing dependency headers
+    ~ PCH
+    ~ auto-generated (by VcxParser : Test.Scratch.Project.FromScratch)
+
+ ~ projects/util/vc10/pantheios.util.vcxproj.filters:
+    ~ auto-generated (by VcxParser : Test.Scratch.Project.FromScratch)
+
+
+ ~ projects/core/vc10/pantheios.core.vcxproj:
+    + added post-build mechanism to copy to Synesis-named for in lib directory
+    ~ auto-generated (by VcxParser : Test.Scratch.Project.FromScratch)
+    ~ preparatory (manual) changes
+    ~ canonicalised Label attributes (via vcxprojLabelCanonicaliser.rb)
+
+ ~ projects/core/vc10/pantheios.core.vcxproj.filters:
+    - elided non-Pantheios files
+
+
+ ~ projects/frontends/fe.N/vc10/fe.N.vcxproj:
+    ~ canonicalising
+    ~ simplifying
+    - removed unnecessary configurations and (header) files
+
+ ~ projects/frontends/fe.N/vc10/fe.N.vcxproj.filters:
+    - removed unnecessary configurations and (header) files
+
+
+ + projects/backends/bec.stock/vc10/bec.stock.vcxproj:
+ + projects/backends/bec.stock/vc10/bec.stock.vcxproj.filters:
+    + added bec.stock VC++ 10 project
+
+Examples:
+
+ + examples/cpp/linking/example.cpp.linking.N_with_stock/example.cpp.linking.N_with_stock.cpp:
+    + added bec.stock (and bec.stock.WithCallback) archives
+    + added example.cpp.linking.N_with_stock
+
+Test:
+
+Test.Unit:
+
+ + test/unit/inserters/test.unit.inserter.stream_character/implicit_link.cpp:
+ + test/unit/inserters/test.unit.inserter.stream_character/test.unit.inserter.stream_character.cpp:
+    + added test.unit.inserter.stream_character
+
+ + test/unit/test.unit.util.snprintf/test.unit.util.snprintf.cpp:
+    ~ working around absence of vsnwprintf() for GCC (Linux) compatibility in a broad-brush way
+    + added pantheios_util_snprintf_w() / pantheios_util_vsnprintf_w()
+    + added test.unit.util.snprintf
+
+ + test/unit/test.unit.util.snprintf/implicit_link.cpp:
+ + test/unit/test.unit.util.snprintf/vc10/test.unit.util.snprintf.vcxproj:
+ + test/unit/test.unit.util.snprintf/vc10/test.unit.util.snprintf.vcxproj.filters:
+    + added test.unit.util.snprintf
+
+Test.Component:
+
+ + test/component/test.component.bec.fprintf/implicit_link.cpp:
+ + test/component/test.component.bec.fprintf/test.component.bec.fprintf.cpp:
+ + test/component/test.component.bec.fprintf/vc10/test.component.bec.fprintf.vcxproj:
+ + test/component/test.component.bec.fprintf/vc10/test.component.bec.fprintf.vcxproj.filters:
+    + added test.component.bec.fprintf
+
+Test.Performance:
+
+ ~ test/performance/test.performance.util.date_elements_to_string/test.performance.util.date_elements_to_string.cpp:
+    test.performance.util.date_elements_to_string : + added in test of stlsoft::fast_strftime
+
+Test.Scratch:
+
+Dependencies:
+
+ * STLSoft 1.9.134 or later, available from http://github.com/synesissoftware/STLSoft-1.9/, or STLSoft 1.10.1-beta20 available from http://github.com/synesissoftware/STLSoft-1.10/
+ * b64 1.4.5, bundled in this distribution
+ * shwild 0.10.4, bundled in this distribution (Required only for Unit and Component tests)
+ * xContract 0.3.11, bundled in this distribution (Only required if custom preprocessor object-like macro PANTHEIOS_QA_USE_XCONTRACT is specified)
+ * xCover 0.5.2, bundled in this distribution (Only required if custom preprocessor object-like macro PANTHEIOS_COVER_MARK_ENTRY is specified)
+ * xTests 0.19.2, bundled in this distribution (Required only for Unit and Component tests)
+
 
 
 29th January 2017 - 1.0.1 beta 218
@@ -508,7 +887,7 @@ Dependencies:
  * shwild 0.10.4, bundled in this distribution (Required only for Unit and Component tests)
  * xContract 0.3.11, bundled in this distribution (Only required if custom preprocessor object-like macro PANTHEIOS_QA_USE_XCONTRACT is specified)
  * xCover 0.5.2, bundled in this distribution (Only required if custom preprocessor object-like macro PANTHEIOS_COVER_MARK_ENTRY is specified)
- * xTests 0.18.10, bundled in this distribution (Required only for Unit and Component tests)
+ * xTests 0.19.2, bundled in this distribution (Required only for Unit and Component tests)
 
 
 
@@ -16118,3 +16497,4 @@ To all intents and purposes, this is the first public release of
 Pantheios. From here on in, it gets interesting ....
 
 =============================== End of file ================================
+
