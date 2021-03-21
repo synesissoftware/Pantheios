@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.inserters.threadId project.
  *
  * Created:     17th October 2006
- * Updated:     27th January 2017
+ * Updated:     2nd January 2021
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2017, Synesis Software Pty Ltd.
+ *              Copyright (c) 2006-2021, Synesis Software, Synesis Information Systems
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -112,14 +112,10 @@ static void test_1_01()
 
     PAN_CHAR_T const  prefix[]    =   PSTR("thread: ");
     PAN_CHAR_T        tid_[21 + STLSOFT_NUM_ELEMENTS(prefix)];
-    PAN_CHAR_T const*   tid         =   stlsoft::integer_to_string(&tid_[0], STLSOFT_NUM_ELEMENTS(tid_), pan_get_tid_());
+    PAN_CHAR_T const* tid         =   stlsoft::integer_to_string(&tid_[0], STLSOFT_NUM_ELEMENTS(tid_), pan_get_tid_());
     PAN_CHAR_T const* stmt        =   tid - (STLSOFT_NUM_ELEMENTS(prefix) - 1);
 
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-    ::wcsncpy(const_cast<PAN_CHAR_T*>(stmt), prefix, (STLSOFT_NUM_ELEMENTS(prefix) - 1));
-#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-    ::strncpy(const_cast<PAN_CHAR_T*>(stmt), prefix, (STLSOFT_NUM_ELEMENTS(prefix) - 1));
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+    ::memcpy(const_cast<PAN_CHAR_T*>(stmt), prefix, sizeof(PAN_CHAR_T) * (STLSOFT_NUM_ELEMENTS(prefix) - 1));
 
     pantheios::be::test::reset();
 
