@@ -485,6 +485,12 @@ Package=<5>
 
 Package=<4>
 {{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
 }}}
 
 ###############################################################################
