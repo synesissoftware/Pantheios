@@ -6,19 +6,19 @@
 #           on the UNIX platform
 #
 # Created:	15th February 2005
-# Updated:	2nd July 2020
+# Updated:	12th February 2021
 #
 ############################################################################
 
 
 ############################################################################
-# Instructions (in no particular order)
+# instructions (in no particular order)
 #
 # * to build without Base-64 support (which requires b64 source files),
 #   make with the symbol PANTHEIOS_NO_B64 defined
 
 ############################################################################
-# Environment check
+# environment check
 #
 
 ifndef STLSOFT
@@ -26,10 +26,10 @@ $(error STLSOFT must be defined)
 endif # !STLSOFT
 
 ############################################################################
-# Symbols
+# symbols
 
 ########################################
-# Project & compiler version
+# project & compiler version
 
 COMP_TAG			=	gcc40
 ARCH_TAG            =   
@@ -59,14 +59,14 @@ PROJ_MAKEFILE_NAME  =   makefile
 NOTHING				=
 
 ########################################
-# Testing verbosity
+# testing verbosity
 
 ifndef TEST_VERBOSITY
 TEST_VERBOSITY      =   2
 endif # !TEST_VERBOSITY
 
 ########################################
-# Directories
+# directories
 
 PROJ_BASE_DIR			=	../..
 PROJ_BIN_DIR			=	$(PROJ_BASE_DIR)/bin
@@ -141,7 +141,7 @@ CP		=	cp
 RC		=	
 
 ########################################
-# Include directory symbols
+# include directory symbols
 
 INCLUDES_LEADER	=	
 
@@ -383,7 +383,7 @@ CPPC_XTESTS_INCLUDES_ST_R =\
 
 
 ########################################
-# Library directory symbols
+# library directory symbols
 
 LIBS_LEADER		=	
 
@@ -402,7 +402,7 @@ LIBPATHS=\
 
 
 ########################################
-# Library names
+# library names
 
 TARGET_LIB_MT_D	= -lpthread
 TARGET_LIB_MT_R	= -lpthread
@@ -604,117 +604,117 @@ CPPC_ACE_ADDITIONAL_ARGS	=
 
 endif # ACE
 ########################################
-# Arguments (= flags + defines + includes)
+# arguments (= flags + defines + includes)
 
 # - Libs
-CC_LIB_ARGS_MT_D			=	$(CC_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
+CC_LIB_ARGS_MT_D			=	$(CC_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
 CC_LIB_ARGS_MT_R			=	$(CC_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
-CC_LIB_ARGS_ST_D			=	$(CC_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
-CC_LIB_ARGS_ST_R			=	$(CC_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
+CC_LIB_ARGS_ST_D			=	$(CC_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
+CC_LIB_ARGS_ST_R			=	$(CC_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
 
-CPPC_LIB_ARGS_MT_D		=	$(CPPC_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CPPC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
+CPPC_LIB_ARGS_MT_D		=	$(CPPC_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CPPC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
 CPPC_LIB_ARGS_MT_R		=	$(CPPC_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CPPC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
-CPPC_LIB_ARGS_ST_D		=	$(CPPC_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CPPC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
-CPPC_LIB_ARGS_ST_R		=	$(CPPC_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CPPC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
+CPPC_LIB_ARGS_ST_D		=	$(CPPC_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CPPC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
+CPPC_LIB_ARGS_ST_R		=	$(CPPC_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CPPC_DEFS) -DPANTHEIOS_NO_AUTO_INIT
 
 
 # - b64
 ifndef PANTHEIOS_NO_B64
 
-CC_B64_ARGS_MT_D			=	$(CC_B64_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CC_DEFS)
+CC_B64_ARGS_MT_D			=	$(CC_B64_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CC_DEFS)
 CC_B64_ARGS_MT_R			=	$(CC_B64_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CC_DEFS)
-CC_B64_ARGS_ST_D			=	$(CC_B64_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CC_DEFS)
-CC_B64_ARGS_ST_R			=	$(CC_B64_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CC_DEFS)
+CC_B64_ARGS_ST_D			=	$(CC_B64_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CC_DEFS)
+CC_B64_ARGS_ST_R			=	$(CC_B64_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CC_DEFS)
 
-CPPC_B64_ARGS_MT_D		=	$(CPPC_B64_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
+CPPC_B64_ARGS_MT_D		=	$(CPPC_B64_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
 CPPC_B64_ARGS_MT_R		=	$(CPPC_B64_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
-CPPC_B64_ARGS_ST_D		=	$(CPPC_B64_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
-CPPC_B64_ARGS_ST_R		=	$(CPPC_B64_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CPPC_DEFS)
+CPPC_B64_ARGS_ST_D		=	$(CPPC_B64_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
+CPPC_B64_ARGS_ST_R		=	$(CPPC_B64_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
 endif # !PANTHEIOS_NO_B64
 
 
 # - shwild
-CC_SHWILD_ARGS_MT_D		=	$(CC_SHWILD_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CC_DEFS)
+CC_SHWILD_ARGS_MT_D		=	$(CC_SHWILD_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CC_DEFS)
 CC_SHWILD_ARGS_MT_R		=	$(CC_SHWILD_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CC_DEFS)
-CC_SHWILD_ARGS_ST_D		=	$(CC_SHWILD_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CC_DEFS)
-CC_SHWILD_ARGS_ST_R		=	$(CC_SHWILD_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CC_DEFS)
+CC_SHWILD_ARGS_ST_D		=	$(CC_SHWILD_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CC_DEFS)
+CC_SHWILD_ARGS_ST_R		=	$(CC_SHWILD_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CC_DEFS)
 
-CPPC_SHWILD_ARGS_MT_D		=	$(CPPC_SHWILD_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
+CPPC_SHWILD_ARGS_MT_D		=	$(CPPC_SHWILD_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
 CPPC_SHWILD_ARGS_MT_R		=	$(CPPC_SHWILD_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
-CPPC_SHWILD_ARGS_ST_D		=	$(CPPC_SHWILD_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
-CPPC_SHWILD_ARGS_ST_R		=	$(CPPC_SHWILD_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CPPC_DEFS)
+CPPC_SHWILD_ARGS_ST_D		=	$(CPPC_SHWILD_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
+CPPC_SHWILD_ARGS_ST_R		=	$(CPPC_SHWILD_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
 
 
 # - xContract
-CC_XCONTRACT_ARGS_MT_D	=	$(CC_XCONTRACT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CC_DEFS)
+CC_XCONTRACT_ARGS_MT_D	=	$(CC_XCONTRACT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CC_DEFS)
 CC_XCONTRACT_ARGS_MT_R	=	$(CC_XCONTRACT_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CC_DEFS)
-CC_XCONTRACT_ARGS_ST_D	=	$(CC_XCONTRACT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CC_DEFS)
-CC_XCONTRACT_ARGS_ST_R	=	$(CC_XCONTRACT_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CC_DEFS)
+CC_XCONTRACT_ARGS_ST_D	=	$(CC_XCONTRACT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CC_DEFS)
+CC_XCONTRACT_ARGS_ST_R	=	$(CC_XCONTRACT_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CC_DEFS)
 
-CPPC_XCONTRACT_ARGS_MT_D  =	$(CPPC_XCONTRACT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
+CPPC_XCONTRACT_ARGS_MT_D  =	$(CPPC_XCONTRACT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
 CPPC_XCONTRACT_ARGS_MT_R  =	$(CPPC_XCONTRACT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
-CPPC_XCONTRACT_ARGS_ST_D  =	$(CPPC_XCONTRACT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
-CPPC_XCONTRACT_ARGS_ST_R  =	$(CPPC_XCONTRACT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CPPC_DEFS)
+CPPC_XCONTRACT_ARGS_ST_D  =	$(CPPC_XCONTRACT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
+CPPC_XCONTRACT_ARGS_ST_R  =	$(CPPC_XCONTRACT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
 
 
 # - xTests
-CC_XTESTS_ARGS_MT_D		=	$(CC_XTESTS_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CC_DEFS)
+CC_XTESTS_ARGS_MT_D		=	$(CC_XTESTS_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CC_DEFS)
 CC_XTESTS_ARGS_MT_R		=	$(CC_XTESTS_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CC_DEFS)
-CC_XTESTS_ARGS_ST_D		=	$(CC_XTESTS_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CC_DEFS)
-CC_XTESTS_ARGS_ST_R		=	$(CC_XTESTS_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CC_DEFS)
+CC_XTESTS_ARGS_ST_D		=	$(CC_XTESTS_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CC_DEFS)
+CC_XTESTS_ARGS_ST_R		=	$(CC_XTESTS_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CC_DEFS)
 
-CPPC_XTESTS_ARGS_MT_D		=	$(CPPC_XTESTS_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
+CPPC_XTESTS_ARGS_MT_D		=	$(CPPC_XTESTS_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
 CPPC_XTESTS_ARGS_MT_R		=	$(CPPC_XTESTS_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
-CPPC_XTESTS_ARGS_ST_D		=	$(CPPC_XTESTS_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
-CPPC_XTESTS_ARGS_ST_R		=	$(CPPC_XTESTS_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CPPC_DEFS)
+CPPC_XTESTS_ARGS_ST_D		=	$(CPPC_XTESTS_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
+CPPC_XTESTS_ARGS_ST_R		=	$(CPPC_XTESTS_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
 
 
 # - Examples
-CC_EXAMPLE_ARGS_MT_D		=	$(CC_EXAMPLE_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CC_DEFS)
+CC_EXAMPLE_ARGS_MT_D		=	$(CC_EXAMPLE_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CC_DEFS)
 CC_EXAMPLE_ARGS_MT_R		=	$(CC_EXAMPLE_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CC_DEFS)
-CC_EXAMPLE_ARGS_ST_D		=	$(CC_EXAMPLE_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CC_DEFS)
-CC_EXAMPLE_ARGS_ST_R		=	$(CC_EXAMPLE_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CC_DEFS)
+CC_EXAMPLE_ARGS_ST_D		=	$(CC_EXAMPLE_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CC_DEFS)
+CC_EXAMPLE_ARGS_ST_R		=	$(CC_EXAMPLE_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CC_DEFS)
 
-CPPC_EXAMPLE_ARGS_MT_D	=	$(CPPC_EXAMPLE_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
+CPPC_EXAMPLE_ARGS_MT_D	=	$(CPPC_EXAMPLE_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
 CPPC_EXAMPLE_ARGS_MT_R	=	$(CPPC_EXAMPLE_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
-CPPC_EXAMPLE_ARGS_ST_D	=	$(CPPC_EXAMPLE_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
-CPPC_EXAMPLE_ARGS_ST_R	=	$(CPPC_EXAMPLE_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CPPC_DEFS)
+CPPC_EXAMPLE_ARGS_ST_D	=	$(CPPC_EXAMPLE_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
+CPPC_EXAMPLE_ARGS_ST_R	=	$(CPPC_EXAMPLE_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
 
 
 # - Test (Component)
-CC_TEST_COMPONENT_ARGS_MT_D		=	$(CC_TEST_COMPONENT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CC_DEFS)
+CC_TEST_COMPONENT_ARGS_MT_D		=	$(CC_TEST_COMPONENT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CC_DEFS)
 CC_TEST_COMPONENT_ARGS_MT_R		=	$(CC_TEST_COMPONENT_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CC_DEFS)
-CC_TEST_COMPONENT_ARGS_ST_D		=	$(CC_TEST_COMPONENT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CC_DEFS)
-CC_TEST_COMPONENT_ARGS_ST_R		=	$(CC_TEST_COMPONENT_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CC_DEFS)
+CC_TEST_COMPONENT_ARGS_ST_D		=	$(CC_TEST_COMPONENT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CC_DEFS)
+CC_TEST_COMPONENT_ARGS_ST_R		=	$(CC_TEST_COMPONENT_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CC_DEFS)
 
-CPPC_TEST_COMPONENT_ARGS_MT_D		=	$(CPPC_TEST_COMPONENT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
+CPPC_TEST_COMPONENT_ARGS_MT_D		=	$(CPPC_TEST_COMPONENT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
 CPPC_TEST_COMPONENT_ARGS_MT_R		=	$(CPPC_TEST_COMPONENT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
-CPPC_TEST_COMPONENT_ARGS_ST_D		=	$(CPPC_TEST_COMPONENT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
-CPPC_TEST_COMPONENT_ARGS_ST_R		=	$(CPPC_TEST_COMPONENT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CPPC_DEFS)
+CPPC_TEST_COMPONENT_ARGS_ST_D		=	$(CPPC_TEST_COMPONENT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
+CPPC_TEST_COMPONENT_ARGS_ST_R		=	$(CPPC_TEST_COMPONENT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
 
 
 # - Test (Scratch)
-CC_TEST_SCRATCH_ARGS_MT_D			=	$(CC_TEST_SCRATCH_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CC_DEFS)
+CC_TEST_SCRATCH_ARGS_MT_D			=	$(CC_TEST_SCRATCH_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CC_DEFS)
 CC_TEST_SCRATCH_ARGS_MT_R			=	$(CC_TEST_SCRATCH_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CC_DEFS)
-CC_TEST_SCRATCH_ARGS_ST_D			=	$(CC_TEST_SCRATCH_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CC_DEFS)
-CC_TEST_SCRATCH_ARGS_ST_R			=	$(CC_TEST_SCRATCH_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CC_DEFS)
+CC_TEST_SCRATCH_ARGS_ST_D			=	$(CC_TEST_SCRATCH_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CC_DEFS)
+CC_TEST_SCRATCH_ARGS_ST_R			=	$(CC_TEST_SCRATCH_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CC_DEFS)
 
-CPPC_TEST_SCRATCH_ARGS_MT_D		=	$(CPPC_TEST_SCRATCH_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
+CPPC_TEST_SCRATCH_ARGS_MT_D		=	$(CPPC_TEST_SCRATCH_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
 CPPC_TEST_SCRATCH_ARGS_MT_R		=	$(CPPC_TEST_SCRATCH_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
-CPPC_TEST_SCRATCH_ARGS_ST_D		=	$(CPPC_TEST_SCRATCH_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
-CPPC_TEST_SCRATCH_ARGS_ST_R		=	$(CPPC_TEST_SCRATCH_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CPPC_DEFS)
+CPPC_TEST_SCRATCH_ARGS_ST_D		=	$(CPPC_TEST_SCRATCH_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
+CPPC_TEST_SCRATCH_ARGS_ST_R		=	$(CPPC_TEST_SCRATCH_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
 
 
 # - Test (Unit)
-CC_TEST_UNIT_ARGS_MT_D			=	$(CC_TEST_UNIT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CC_DEFS)
+CC_TEST_UNIT_ARGS_MT_D			=	$(CC_TEST_UNIT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CC_DEFS)
 CC_TEST_UNIT_ARGS_MT_R			=	$(CC_TEST_UNIT_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CC_DEFS)
-CC_TEST_UNIT_ARGS_ST_D			=	$(CC_TEST_UNIT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CC_DEFS)
-CC_TEST_UNIT_ARGS_ST_R			=	$(CC_TEST_UNIT_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CC_DEFS)
+CC_TEST_UNIT_ARGS_ST_D			=	$(CC_TEST_UNIT_FLAGS) $(CC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CC_DEFS)
+CC_TEST_UNIT_ARGS_ST_R			=	$(CC_TEST_UNIT_FLAGS) $(CC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CC_DEFS)
 
-CPPC_TEST_UNIT_ARGS_MT_D			=	$(CPPC_TEST_UNIT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
+CPPC_TEST_UNIT_ARGS_MT_D			=	$(CPPC_TEST_UNIT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_REENTRANT -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
 CPPC_TEST_UNIT_ARGS_MT_R			=	$(CPPC_TEST_UNIT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -D_REENTRANT -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
-CPPC_TEST_UNIT_ARGS_ST_D			=	$(CPPC_TEST_UNIT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -D_DEBUG -UNDEBUG  $(CPPC_DEFS)
-CPPC_TEST_UNIT_ARGS_ST_R			=	$(CPPC_TEST_UNIT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -DNDEBUG -U_DEBUG  $(CPPC_DEFS)
+CPPC_TEST_UNIT_ARGS_ST_D			=	$(CPPC_TEST_UNIT_FLAGS) $(CPPC_CUSTOM_DEFS_DEBUG) -UNDEBUG -D_DEBUG  $(CPPC_DEFS)
+CPPC_TEST_UNIT_ARGS_ST_R			=	$(CPPC_TEST_UNIT_FLAGS) $(CPPC_CUSTOM_DEFS_RELEASE) -U_DEBUG -DNDEBUG  $(CPPC_DEFS)
 
 
 # AR args
@@ -736,7 +736,7 @@ LD_ARGS_ST_D =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
 LD_ARGS_ST_R =  $(LD_ARGS) $(LD_F_NOLOGO) $(LIBPATHS) $(COMMON_LIB)
 
 ############################################################################
-# Headers
+# headers
 
 CORE_HEADERS=\
  \
@@ -875,13 +875,13 @@ XTESTS_HEADERS=\
  \
 
 ############################################################################
-# Names
+# names
 
 ############################################################
-# Targets
+# targets
 
 ########################################
-# Libraries
+# libraries
 
 #  util
 LIB_UTIL_MT_D				=   $(PROJ_LIB_DIR)/lib$(PROJ_TAG_VER).util.$(COMP_ARCH_OS_TAG).mt.debug.a
@@ -1137,7 +1137,7 @@ LIB_XTESTS_ST_D       =   $(PROJ_LIB_DIR)/lib$(XTESTS_TAG_VER).pan.$(COMP_ARCH_O
 LIB_XTESTS_ST_R       =   $(PROJ_LIB_DIR)/lib$(XTESTS_TAG_VER).pan.$(COMP_ARCH_OS_TAG).a
 
 ########################################
-# Examples
+# examples
 
 TARG_EX_P_be_01_MT_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).ex.cpp.be.01.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_EX_P_be_02_MT_D	=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).ex.cpp.be.02.$(COMP_ARCH_OS_TAG).mt.debug
@@ -1341,10 +1341,10 @@ TARG_EX_C_6_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).ex.c.6.$(COMP_ARCH_OS_TAG)
 TARG_EX_C_7_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).ex.c.7.$(COMP_ARCH_OS_TAG)
 
 ########################################
-# Tests
+# tests
 
 ##############################
-# Component Tests
+# component tests
 
 TARG_TEST_COMP_filemt_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.be.file.threading.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_COMP_bec_fprtf_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.bec.fprintf.$(COMP_ARCH_OS_TAG).mt.debug
@@ -1454,7 +1454,7 @@ TARG_TEST_COMP_log_1_ST_R			=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.log
 TARG_TEST_COMP_trace_1_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.trace.1.$(COMP_ARCH_OS_TAG)
 
 ##############################
-# Performance Tests
+# performance tests
 
 TARG_TEST_PERF_ins_w2m_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.inserter.w2m.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_PERF_dtel2s_MT_D		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.performance.util.date_elements_to_string.$(COMP_ARCH_OS_TAG).mt.debug
@@ -1466,7 +1466,7 @@ TARG_TEST_PERF_ins_w2m_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.component.in
 TARG_TEST_PERF_dtel2s_ST_R		=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.performance.util.date_elements_to_string.$(COMP_ARCH_OS_TAG)
 
 ##############################
-# Scratch Tests
+# scratch tests
 
 # test programs
 #
@@ -1514,7 +1514,7 @@ TARG_SCRT_BE_N_FAIL_ST_R						=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.be.
 TARG_SCRT_FE_SIMPLE_WC_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.scratch.fe.simple.WC.$(COMP_ARCH_OS_TAG)
 
 ##############################
-# Unit Tests
+# unit tests
 
 TARG_TEST_UNIT_be_fail_MT_D					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.fail.$(COMP_ARCH_OS_TAG).mt.debug
 TARG_TEST_UNIT_be_lrsplit_MT_D				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.be.lrsplit.$(COMP_ARCH_OS_TAG).mt.debug
@@ -1619,10 +1619,10 @@ TARG_TEST_UNIT_ins_w2m_ST_R					=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inse
 TARG_TEST_UNIT_ins_stmc_ST_R				=	$(PROJ_BIN_DIR)/$(PROJ_TAG_VER).test.unit.inserter.stream_character.$(COMP_ARCH_OS_TAG)
 
 ############################################################
-# Objects
+# objects
 
 ########################################
-# Libraries
+# libraries
 
 # util
 
@@ -3081,7 +3081,7 @@ OBJ_XTESTS_ST_R=\
 
 
 ########################################
-# Examples
+# examples
 
 OBJ_EX_P_be_01_MT_D	=	./ex.cpp.be.01.mt.debug.o
 OBJ_EX_P_be_02_MT_D	=	./ex.cpp.be.02.mt.debug.o
@@ -3269,10 +3269,10 @@ OBJ_EX_C_6_ST_R		=	./ex.c.6.o
 OBJ_EX_C_7_ST_R		=	./ex.c.7.o
 
 ########################################
-# Tests
+# tests
 
 ##############################
-# Component Tests
+# component tests
 
 OBJ_TEST_COMP_core_initseq_MT_D	=	./test.component.core.init_sequence.mt.debug.o
 OBJ_TEST_COMP_core_initseq_MT_R	=	./test.component.core.init_sequence.mt.o
@@ -3360,7 +3360,7 @@ OBJ_TEST_COMP_trace_1_ST_D		=	./test.component.trace.1.debug.o
 OBJ_TEST_COMP_trace_1_ST_R		=	./test.component.trace.1.o
 
 ##############################
-# Performance Tests
+# performance tests
 
 OBJ_TEST_PERF_ins_w2m_MT_D		=	./test.performance.inserters.w2m.mt.debug.o
 OBJ_TEST_PERF_dtel2s_MT_D			=	./test.performance.util.date_elements_to_string.mt.debug.o
@@ -3372,7 +3372,7 @@ OBJ_TEST_PERF_ins_w2m_ST_R		=	./test.performance.inserters.w2m.o
 OBJ_TEST_PERF_dtel2s_ST_R			=	./test.performance.util.date_elements_to_string.o
 
 ##############################
-# Scratch Tests
+# scratch tests
 
 ifdef ACE
 OBJ_SCRT_ACE_MT_D					=	./test.scratch.be.ACE.mt.debug.o
@@ -3412,7 +3412,7 @@ OBJ_SCRT_BE_SYSLOG_ST_R			=	./test.scratch.be.syslog.o
 OBJ_SCRT_BE_SYSLOGWC_ST_R			=	./test.scratch.be.syslog.WithCallback.o
 
 ##############################
-# Unit Tests
+# unit tests
 #
 # NOTE: some names are as names longer than 63 characters scare CodeWarrior's linker
 
@@ -3523,10 +3523,10 @@ OBJ_TEST_UNIT_ins_w2m_ST_R		=	./test.unit.inserter.w2m.o
 OBJ_TEST_UNIT_ins_stmc_ST_R		=	./test.unit.inserter.stream_character.o
 
 ##################################################
-# Target groups
+# target groups
 
 ########################################
-# Objects
+# objects
 
 # util
 
@@ -4211,7 +4211,7 @@ OBJS_TEST_UNIT=\
  \
 
 ########################################
-# Libraries
+# libraries
 
 # $(LIB_UTIL [ ` [ N a m e T a g ] ` ] )\
 
@@ -4568,7 +4568,7 @@ TARGETS_LIB_XTESTS=\
  \
 
 ########################################
-# Programs
+# programs
 
 TARGETS_EXAMPLE_C=\
  $(TARG_EX_C_0_MT_D)\
@@ -5026,7 +5026,7 @@ TARGETS_TEST_UNIT=\
  \
 
 ############################################################
-# Third-party libraries
+# third-party libraries
 
 ifdef ACE
 LIBS_3PTY_ACE					=	-libace.a
@@ -5037,7 +5037,7 @@ LIBS_3PTY_BE_N_FAIL				=
 LIBS_3PTY_TEST_UNIT				=
 
 ############################################################################
-# External Targets (invokable by make)
+# external targets (invokable by make)
 
 # primary
 
@@ -7089,7 +7089,7 @@ test-all:			test.all
 # build targets
 
 ##################################################
-# Libraries
+# libraries
 
 ########################################
 # Main library - 'pantheios.X.util.a'
@@ -7458,7 +7458,7 @@ $(LIB_APPL_ST_R): $(OBJ_APPL_ST_R) $(PROJ_MAKEFILE_NAME)
 	$(AR) $(AR_ARGS) rcs $@ $(OBJ_APPL_ST_R)
 
 ########################################
-# Backend util components
+# backend util components
 
 ########################################
 # Backend common stock library - 'pantheios.bec.stock.a'
@@ -8883,7 +8883,7 @@ $(OBJ_xts_core_ST_R): $(XTESTS_SRC_DIR)/xtests.core.cpp $(XTESTS_HEADERS) $(PROJ
 	$(CPPC) $(CPPC_XTESTS_ARGS_ST_R) $(CPPC_XTESTS_INCLUDES_ST_R) -o $@ $(XTESTS_SRC_DIR)/xtests.core.cpp
 
 ##################################################
-# Examples
+# examples
 
 #  object files
 
@@ -12680,10 +12680,10 @@ $(TARG_EX_C_7_ST_R): \
 
 
 ##################################################
-# Tests
+# tests
 
 ##############################
-# Component Tests
+# component tests
 
 LIBS_SYNSOFT_TEST_COMP_MT_D=\
 			$(LIB_SHWILD_MT_D)\
@@ -14643,7 +14643,7 @@ $(OBJ_TEST_COMP_pan_prtf_ST_R):	$(PROJ_TEST_COMPONENT_DIR)/test.component.core.p
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_COMPONENT_DIR)/test.component.core.pantheios_logprintf/test.component.core.pantheios_logprintf.cpp
 
 ##############################
-# Performance Tests
+# performance tests
 
 $(TARG_TEST_PERF_ins_w2m_MT_D):	\
 			$(OBJ_TEST_PERF_ins_w2m_MT_D)\
@@ -14822,7 +14822,7 @@ $(OBJ_TEST_PERF_dtel2s_ST_R):	$(PROJ_TEST_PERFORMANCE_DIR)/test.performance.util
 	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_PERFORMANCE_DIR)/test.performance.util.date_elements_to_string/test.performance.util.date_elements_to_string.cpp
 
 ##############################
-# Scratch Tests
+# scratch tests
 
 #  object files
 
@@ -15486,7 +15486,7 @@ $(OBJ_SCRT_FE_SIMPLE_WC_ST_R):	$(PROJ_TEST_SCRATCH_DIR)/test.scratch.fe.simple.W
 	$(CPPC) $(CPPC_TEST_SCRATCH_ARGS_ST_R) $(CPPC_INCLUDES) -o $@ $(PROJ_TEST_SCRATCH_DIR)/test.scratch.fe.simple.WithCallback/test.scratch.fe.simple.WithCallback.cpp
 
 ##############################
-# Unit Tests
+# unit tests
 
 LIBS_SYNSOFT_TEST_UNIT_MT_D=\
 			$(LIB_SHWILD_MT_D)\
