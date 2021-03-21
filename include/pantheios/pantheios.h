@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Core and Util APIs.
  *
  * Created:     21st June 2005
- * Updated:     4th July 2020
+ * Updated:     18th January 2021
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -22,9 +22,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -57,8 +58,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       379
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   4
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       381
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -520,12 +521,10 @@ typedef stlsoft_ns_qual(ss_sint32_t)    pantheios_sint32_t;
 /** 64-bit signed integer type. */
 typedef stlsoft_ns_qual(ss_sint64_t)    pantheios_sint64_t;
 
-
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
-
 
 typedef pantheios_uint8_t               pan_uint8_t;
 typedef pantheios_uint16_t              pan_uint16_t;
@@ -987,21 +986,46 @@ namespace util
  *
  * \see pantheios_onBailOut3
  */
-PANTHEIOS_CALL(void) pantheios_onBailOut4(
+PANTHEIOS_CALL(void)
+pantheios_onBailOut4(
     int           severity
 ,   char const*   message
 ,   char const*   processId
 ,   char const*   qualifier
 );
 
+/** Widestring form of pantheios_onBailOut4()
+ *
+ * \see pantheios_onBailOut4()
+ */
+PANTHEIOS_CALL(void)
+pantheios_onBailOut4_w(
+    int             severity
+,   wchar_t const*  message
+,   wchar_t const*  processId
+,   wchar_t const*  qualifier
+);
+
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL(void) pantheios_onBailOut6(
+
+PANTHEIOS_CALL(void)
+pantheios_onBailOut6(
     int           severity
 ,   char const*   message
 ,   char const*   processId
 ,   char const*   qualifier
 ,   char const*   frontEndName
 ,   char const*   backEndName
+);
+
+PANTHEIOS_CALL(void)
+pantheios_onBailOut6_w(
+    int             severity
+,   wchar_t const*  message
+,   wchar_t const*  processId
+,   wchar_t const*  qualifier
+,   wchar_t const*  frontEndName
+,   wchar_t const*  backEndName
 );
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -1032,12 +1056,23 @@ PANTHEIOS_CALL(void) pantheios_onBailOut6(
  * \note This is equivalent to calling pantheios_onBailOut4() specifying NULL
  *   for the <code>qualifier</code> parameter
  */
-PANTHEIOS_CALL(void) pantheios_onBailOut3(
+PANTHEIOS_CALL(void)
+pantheios_onBailOut3(
     int           severity
 ,   char const*   message
 ,   char const*   processId
 );
 
+/** Widestring form of pantheios_onBailOut3()
+ *
+ * \see pantheios_onBailOut3()
+ */
+PANTHEIOS_CALL(void)
+pantheios_onBailOut3_w(
+    int             severity
+,   wchar_t const*  message
+,   wchar_t const*  processId
+);
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace util */
 } /* namespace pantheios */

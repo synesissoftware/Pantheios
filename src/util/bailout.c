@@ -71,9 +71,12 @@
 #else /* ? PANTHEIOS_BAILOUT_NO_OPERATING_SYSTEM_SPECIFICS */
 # include <platformstl/platformstl.h>
 #endif /* PANTHEIOS_BAILOUT_NO_OPERATING_SYSTEM_SPECIFICS */
+#include <stlsoft/shims/access/string/std/c_string.h>
+#include <stlsoft/string/c_string/strnchr.h>
 
 /* Standard C header files */
 
+#include <errno.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
@@ -133,23 +136,19 @@
  * string encoding compatibility
  */
 
-/* TODO: decide finally whether bail-out supports widestring and, if not,
- * remove all the following discrimination abstractions
- */
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+# define pan_strlen_w_                  wcslen
+# define pan_strncpy_w_                 wcsncpy
+# define pan_wsprintf_w_                wsprintfW
+# define pan_OutputDebugString_w_       OutputDebugStringW
+# define pan_ReportEvent_w_             ReportEventW
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-#ifdef PANTHEIOS_USE_WIDE_STRINGS_not_any_more_
-# define pan_strlen_                    wcslen
-# define pan_strncpy_                   wcsncpy
-# define pan_wsprintf_                  wsprintfW
-# define pan_OutputDebugString_         OutputDebugStringW
-# define pan_ReportEvent_               ReportEventW
-#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 # define pan_strlen_m_                  strlen
 # define pan_strncpy_m_                 strncpy
 # define pan_wsprintf_m_                wsprintfA
 # define pan_OutputDebugString_m_       OutputDebugStringA
 # define pan_ReportEvent_m_             ReportEventA
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -174,6 +173,25 @@ namespace pantheios
 static int pantheios_util_onBailOut_canUseWarnMessage_(void);
 #endif /* PLATFORMSTL_OS_IS_WINDOWS && !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
 
+static
+int
+pantheios_util_onBailOut_fopen_m_(
+    char const*     path
+,   char const*     mode
+,   FILE**          phFile
+);
+
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+static
+int
+pantheios_util_onBailOut_fopen_w_(
+    wchar_t const*  path
+,   wchar_t const*  mode
+,   FILE**          phFile
+);
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -185,6 +203,14 @@ static int pantheios_util_onBailOut_canUseWarnMessage_(void);
 #ifndef PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME
 # define PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME                "logging-bailout.txt"
 #endif /* !PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME */
+
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+# ifndef PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME_w
+#  define PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME_w             PANTHEIOS_LITERAL_w_("logging-bailout.txt")
+# endif /* !PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME_w */
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) && \
     !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG)
@@ -207,6 +233,15 @@ static int pantheios_util_onBailOut_canUseWarnMessage_(void);
 
 /* /////////////////////////////////////////////////////////////////////////
  * util API
+ *
+ * bailout - outputs:
+ * ------------------
+ *
+ * 1. Debugger [Windows-only]
+ * 2. Console (i.e. fprintf(stderr, ...))
+ * 3. File (i.e. to "logging-bailout.txt")
+ * 4. Event Log [Windows-only]
+ * 5. Syslog [UNIX-only]
  */
 
 PANTHEIOS_CALL(void)
@@ -463,8 +498,6 @@ pantheios_onBailOut3(
     size_t          cchTotal;
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
     SYSTEMTIME      st;
-    HANDLE          hFile;
-    DWORD           numWritten;
 # ifndef PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG
     HANDLE          hEventSrc;
 # endif /* PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
@@ -475,8 +508,8 @@ pantheios_onBailOut3(
     struct tm       tm_;
 # endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
     struct tm*      tm;
-    FILE*           hFile;
 #endif /* OS */
+    FILE*           hFile;
 
     severity &= 0x7;    /* Bailout ignores any custom severity information. */
 
@@ -564,31 +597,17 @@ pantheios_onBailOut3(
      * 2. Console
      */
 
-    /* NOTE: will not be valid if widestring */
-    WriteFile(GetStdHandle(STD_ERROR_HANDLE), &message_[0], (DWORD)((cchTotal + 2) * sizeof(char)), &numWritten, NULL);
+    fprintf(stderr, "%.*s\n", (int)cchTotal, message_);
 
     /* /////////////////////////////////
      * 3. File
      */
 
-    hFile = CreateFileA(
-                PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME
-            ,   GENERIC_WRITE
-            ,   0
-            ,   NULL
-            ,   OPEN_ALWAYS
-            ,   0
-            ,   NULL
-            );
-
-    if(INVALID_HANDLE_VALUE != hFile)
+    if (0 == pantheios_util_onBailOut_fopen_m_(PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME, "a+", &hFile))
     {
-        SetFilePointer(hFile, 0, NULL, FILE_END);
+        fprintf(hFile, "%.*s\n", (int)cchTotal, message_);
 
-        /* NOTE: will not be valid if widestring */
-        WriteFile(hFile, &message_[0], (DWORD)((cchTotal + 2) * sizeof(char)), &numWritten, NULL);
-
-        CloseHandle(hFile);
+        fclose(hFile);
     }
 
     /* /////////////////////////////////
@@ -653,23 +672,298 @@ pantheios_onBailOut3(
      * 2. Console
      */
 
-    /* NOTE: will not be valid if widestring */
     fprintf(stderr, "%.*s\n", (int)cchTotal, message_);
 
     /* /////////////////////////////////
      * 3. File
      */
 
-# ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
-    if(0 == fopen_s(&hFile, PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME, "a+"))
-# else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-    hFile = fopen(PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME, "a+");
-
-    if(NULL != hFile)
-# endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+    if (0 == pantheios_util_onBailOut_fopen_m_(PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME, "a+", &hFile))
     {
-        /* NOTE: will not be valid if widestring */
         fprintf(hFile, "%.*s\n", (int)cchTotal, message_);
+
+        fclose(hFile);
+    }
+
+# if defined(PLATFORMSTL_OS_IS_UNIX)
+#  ifndef PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG
+    /* /////////////////////////////////
+     * 5. Syslog [UNIX-only]
+     */
+
+    /* NOTE: will not be valid if widestring */
+    syslog(LOG_EMERG | LOG_USER, "%s", message);
+#  endif /* !PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG */
+# endif /* OS */
+
+#endif /* OS */
+}
+
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+static
+void
+pantheios_onBailOut6_w_(
+    int             severity
+,   wchar_t const*  message
+,   size_t          messageLen
+,   wchar_t const*  processId
+,   size_t          processIdLen
+,   wchar_t const*  qualifier
+,   size_t          qualifierLen
+,   wchar_t const*  feName
+,   size_t          feNameLen
+,   wchar_t const*  beName
+,   size_t          beNameLen
+)
+{
+    static wchar_t const    colonSpace[]    =   L": ";
+
+#ifdef _WIN32
+    static size_t const     cchEolAndNull   =   2;
+#else
+    static size_t const     cchEolAndNull   =   1;
+#endif
+
+    wchar_t         fullMessage[PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE];
+    int             nfm;
+    wchar_t const*  fmt;
+    int             qualiferPrefixLen   =   (0 == qualifierLen) ? 0 : 2;
+    size_t          cchTime;
+    size_t          cchLimit;
+    size_t          cchTotal;
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+    SYSTEMTIME      st;
+# ifndef PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG
+    HANDLE          hEventSrc;
+# endif /* PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
+#else /* ? OS */
+    struct timeval  tv;
+    time_t          secs;
+# ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
+    struct tm       tm_;
+# endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+    struct tm*      tm;
+#endif /* OS */
+    FILE*           hFile;
+
+    STLSOFT_ASSERT(0 == messageLen || NULL != message);
+    STLSOFT_ASSERT(0 == processIdLen || NULL != processId);
+    STLSOFT_ASSERT(0 == qualifierLen || NULL != qualifier);
+    STLSOFT_ASSERT(0 == feNameLen || NULL != feName);
+    STLSOFT_ASSERT(0 == beNameLen || NULL != beName);
+
+    STLSOFT_SUPPRESS_UNUSED(processIdLen);
+
+#ifdef _DEBUG
+    memset(&fullMessage[0], '~', sizeof(fullMessage));
+#endif
+
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    GetLocalTime(&st);
+
+    cchTime = (size_t)pantheios_util_snprintf_w(
+        &fullMessage[0], STLSOFT_NUM_ELEMENTS(fullMessage)
+    ,   L"%04u%02u%02u-%02u%02u%02u.%03u: "
+    ,   st.wYear
+    ,   st.wMonth
+    ,   st.wDay
+    ,   st.wHour
+    ,   st.wMinute
+    ,   st.wSecond
+    ,   st.wMilliseconds
+    );
+#else /* ? OS */
+
+    gettimeofday(&tv, NULL);
+    secs = tv.tv_sec;
+# ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
+    tm = &tm_;
+    localtime_s(tm, &secs);
+# else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+    tm = localtime(&secs);
+# endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
+    cchTime = (size_t)pantheios_util_snprintf_w(
+        &fullMessage[0], STLSOFT_NUM_ELEMENTS(fullMessage)
+    ,   L"%04u%02u%02u-%02u%02u%02u.%03u: "
+    ,   tm->tm_year + 1900
+    ,   tm->tm_mon + 1
+    ,   tm->tm_mday
+    ,   tm->tm_hour
+    ,   tm->tm_min
+    ,   tm->tm_sec
+    ,   stlsoft_static_cast(int, tv.tv_usec / 1000)
+    );
+#endif /* OS */
+
+#ifdef _DEBUG
+    memset(&fullMessage[0] + cchTime, '!', sizeof(fullMessage) - (sizeof(wchar_t) * cchTime));
+#endif
+
+    if (0 == feNameLen)
+    {
+        if (0 == beNameLen)
+        {
+            fmt = L"%.*s%.*s%.*s%.*s%.*s";
+        }
+        else
+        {
+            fmt = L"%.*s: %.*sbe=%.*s%.*s%.*s";
+        }
+    }
+    else
+    {
+        if (0 == beNameLen)
+        {
+            fmt = L"%.*s: fe=%.*s%.*s%.*s%.*s";
+        }
+        else
+        {
+            fmt = L"%.*s: fe=%.*s, be=%.*s%.*s%.*s";
+        }
+    }
+
+    cchLimit = STLSOFT_NUM_ELEMENTS(fullMessage) - (1 + cchEolAndNull);
+
+    nfm = pantheios_util_snprintf_w(
+        /* the +1 to allow sprintf to write the NUL that we will overwrite */
+        &fullMessage[0] + cchTime, (cchLimit - cchTime) + 1
+    ,   fmt
+    ,   (int)messageLen, message
+    ,   (int)feNameLen, feName
+    ,   (int)beNameLen, beName
+    ,   qualiferPrefixLen, colonSpace
+    ,   (int)qualifierLen, qualifier
+    );
+
+    if (nfm < 0)
+    {
+        wchar_t const* const nul = stlsoft_C_wcsnchr(
+            &fullMessage[0]
+        ,   cchLimit
+        ,   L'\0'
+        );
+
+        if (NULL == nul)
+        {
+            cchTotal = cchLimit;
+        }
+        else
+        {
+            cchTotal = (size_t)(nul - &fullMessage[0]);
+        }
+    }
+    else
+    {
+        cchTotal = cchTime + (size_t)nfm;
+    }
+
+    STLSOFT_ASSERT(cchTotal < STLSOFT_NUM_ELEMENTS(fullMessage) - cchEolAndNull);
+
+#ifdef _WIN32
+    fullMessage[cchTotal++] = '\r';
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+    fullMessage[cchTotal++] = '\n';
+    fullMessage[cchTotal  ] = '\0';
+
+
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+    /* /////////////////////////////////
+     * 1. Debugger [Windows-only]
+     */
+
+    pan_OutputDebugString_w_(fullMessage);
+
+    /* /////////////////////////////////
+     * 2. Console
+     */
+
+    fwprintf(stderr, L"%.*s\n", (int)cchTotal - 2, fullMessage);
+
+    /* /////////////////////////////////
+     * 3. File
+     */
+
+    if (0 == pantheios_util_onBailOut_fopen_w_(PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME_w, L"a+", &hFile))
+    {
+        fwprintf(hFile, L"%.*s\n", (int)cchTotal - 2, fullMessage);
+
+        fclose(hFile);
+    }
+
+    /* /////////////////////////////////
+     * 4. Windows Event Log
+     *
+     * This uses a special event source registered by
+     * Pantheios.COM. If that's not been installed, it
+     * still works, but just not as neatly when viewing
+     * the event log.
+     */
+# ifndef PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG
+
+    hEventSrc = RegisterEventSourceW(NULL, L"logging-bailout");
+
+    if (NULL != hEventSrc)
+    {
+        wchar_t const*  strings[2];
+        WORD            type;
+        DWORD           eventId;
+
+        if (severity < PANTHEIOS_SEV_WARNING ||
+            !pantheios_util_onBailOut_canUseWarnMessage_())
+        {
+            eventId = (0 != processIdLen) ? BAILOUT_2PARAM_FAIL_MESSAGE_ID : BAILOUT_1PARAM_FAIL_MESSAGE_ID;
+        }
+        else
+        {
+            eventId = (0 != processIdLen) ? BAILOUT_2PARAM_WARN_MESSAGE_ID : BAILOUT_1PARAM_WARN_MESSAGE_ID;
+        }
+
+        strings[0] = processId;
+        strings[1] = message;
+
+        type = pantheios_severity_to_WindowsEventLog_type(severity);
+
+        pan_ReportEvent_w_(
+                hEventSrc
+            ,   type
+            ,   0
+            ,   eventId
+            ,   NULL
+            ,   STLSOFT_NUM_ELEMENTS(strings)
+            ,   0
+            ,   &strings[0]
+            ,   NULL
+            );
+
+        DeregisterEventSource(hEventSrc);
+
+        GetLastError();
+    }
+# else /* ? PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
+
+    STLSOFT_SUPPRESS_UNUSED(severity);
+    STLSOFT_SUPPRESS_UNUSED(processId);
+# endif /* PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
+#else /* ? OS */
+
+    /* /////////////////////////////////
+     * 1. Console
+     */
+
+    fwprintf(stderr, L"%.*s\n", (int)cchTotal - 2, fullMessage);
+
+    /* /////////////////////////////////
+     * 2. File
+     */
+
+    if (0 == pantheios_util_onBailOut_fopen_w_(PANTHEIOS_BAILOUT_BAILOUT_FILE_NAME_w, L"a+", &hFile))
+    {
+        fwprintf(hFile, L"%.*s\n", (int)cchTotal - 2, message_);
 
         fclose(hFile);
     }
@@ -687,6 +981,92 @@ pantheios_onBailOut3(
 
 #endif /* OS */
 }
+
+PANTHEIOS_CALL(void)
+pantheios_onBailOut6_w(
+    int             severity
+,   wchar_t const*  message
+,   wchar_t const*  processId
+,   wchar_t const*  qualifier
+,   wchar_t const*  feName
+,   wchar_t const*  beName
+)
+{
+#ifndef STLSOFT_NO_NAMESPACE
+    using ::stlsoft::c_str_len_w;
+    using ::stlsoft::c_str_ptr_w;
+#endif
+
+    pantheios_onBailOut6_w_(
+        severity
+    ,   c_str_ptr_w(message)
+    ,   c_str_len_w(message)
+    ,   c_str_ptr_w(processId)
+    ,   c_str_len_w(processId)
+    ,   c_str_ptr_w(qualifier)
+    ,   c_str_len_w(qualifier)
+    ,   c_str_ptr_w(feName)
+    ,   c_str_len_w(feName)
+    ,   c_str_ptr_w(beName)
+    ,   c_str_len_w(beName)
+    );
+}
+
+PANTHEIOS_CALL(void)
+pantheios_onBailOut4_w(
+    int             severity
+,   wchar_t const*  message
+,   wchar_t const*  processId
+,   wchar_t const*  qualifier
+)
+{
+#ifndef STLSOFT_NO_NAMESPACE
+    using ::stlsoft::c_str_len_w;
+    using ::stlsoft::c_str_ptr_w;
+#endif
+
+    pantheios_onBailOut6_w_(
+        severity
+    ,   c_str_ptr_w(message)
+    ,   c_str_len_w(message)
+    ,   c_str_ptr_w(processId)
+    ,   c_str_len_w(processId)
+    ,   c_str_ptr_w(qualifier)
+    ,   c_str_len_w(qualifier)
+    ,   L""
+    ,   0
+    ,   L""
+    ,   0
+    );
+}
+
+PANTHEIOS_CALL(void)
+pantheios_onBailOut3_w(
+    int             severity
+,   wchar_t const*  message
+,   wchar_t const*  processId
+)
+{
+#ifndef STLSOFT_NO_NAMESPACE
+    using ::stlsoft::c_str_len_w;
+    using ::stlsoft::c_str_ptr_w;
+#endif
+
+    pantheios_onBailOut6_w_(
+        severity
+    ,   c_str_ptr_w(message)
+    ,   c_str_len_w(message)
+    ,   c_str_ptr_w(processId)
+    ,   c_str_len_w(processId)
+    ,   L""
+    ,   0
+    ,   L""
+    ,   0
+    ,   L""
+    ,   0
+    );
+}
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -745,6 +1125,75 @@ static int pantheios_util_onBailOut_canUseWarnMessage_(void)
     return s_canUseWarnMessage;
 }
 #endif /* PLATFORMSTL_OS_IS_WINDOWS && !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
+
+static
+int
+pantheios_util_onBailOut_fopen_m_(
+    char const*     path
+,   char const*     mode
+,   FILE**          phFile
+)
+{
+    int r;
+
+    STLSOFT_ASSERT(NULL != path);
+    STLSOFT_ASSERT(NULL != mode);
+    STLSOFT_ASSERT(NULL != phFile);
+
+# ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
+
+    r = fopen_s(phFile, path, mode);
+# else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
+    r = 0;
+
+    *phFile = fopen(path, mode);
+
+
+    if (NULL == *phFile)
+    {
+        r = errno;
+    }
+# endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
+    return r;
+}
+
+# ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+static
+int
+pantheios_util_onBailOut_fopen_w_(
+    wchar_t const*  path
+,   wchar_t const*  mode
+,   FILE**          phFile
+)
+{
+    int r;
+
+    STLSOFT_ASSERT(NULL != path);
+    STLSOFT_ASSERT(NULL != mode);
+    STLSOFT_ASSERT(NULL != phFile);
+
+# ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
+
+    r = _wfopen_s(phFile, path, mode);
+# else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
+    r = 0;
+
+    *phFile = _wfopen(path, mode);
+
+
+    if (NULL == *phFile)
+    {
+        r = errno;
+    }
+# endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
+    return r;
+}
+# endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
