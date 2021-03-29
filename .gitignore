@@ -18,7 +18,9 @@ src/xcontract/
 src/xcover/
 src/xtests/
 
+/_build/
 /_internal/
+/.vs/
 
 /bin/
 /examples/bin
