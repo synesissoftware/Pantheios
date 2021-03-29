@@ -18,4 +18,6 @@ target_compile_options(pantheios_util PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>: /WX /W4>
     )
 
+install(TARGETS pantheios_util)
+
 

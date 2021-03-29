@@ -44,11 +44,9 @@ add_subdirectory(./projects/backends)
 
 
 
-#install(TARGETS pantheios)
-
-#install(
-#    DIRECTORY ${CMAKE_SOURCE_DIR}/include/
-#    DESTINATION include
-#    FILES_MATCHING PATTERN "*.h*"
-#	)
+install(
+    DIRECTORY ${CMAKE_SOURCE_DIR}/include/
+    DESTINATION include
+    FILES_MATCHING PATTERN "*.h*"
+	)
 

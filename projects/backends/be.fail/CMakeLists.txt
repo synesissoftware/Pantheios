@@ -20,4 +20,6 @@ target_compile_options(pantheios_be_fail PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>: /WX /W4>
     )
 
+install(TARGETS pantheios_be_fail)
+
 
