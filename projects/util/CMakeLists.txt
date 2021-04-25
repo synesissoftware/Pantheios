@@ -3,7 +3,7 @@ set(UTIL_SRC_DIR ../../src/util)
 
 file(GLOB UTIL_SRCS
 	${UTIL_SRC_DIR}/*.cpp
-    )
+)
 
 add_library(pantheios_util ${UTIL_SRCS})
 
@@ -16,7 +16,7 @@ target_compile_options(pantheios_util PRIVATE
     #-Wno-unused-value
     >
     $<$<CXX_COMPILER_ID:MSVC>: /WX /W4>
-    )
+)
 
 install(TARGETS pantheios_util)
 
