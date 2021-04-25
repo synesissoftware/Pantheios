@@ -4,7 +4,7 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     19th April 2014
- * Updated:     16th June 2020
+ * Updated:     25th April 2021
  *
  * Home:        http://www.pantheios.org/
  *
@@ -165,6 +165,7 @@ void interval::construct_()
                 {
                     interval /= 1000;
 
+                    /* fall through */
             case    milliseconds:
                     if(0 != (interval % 1000))
                     {
@@ -174,6 +175,7 @@ void interval::construct_()
                     {
                         interval /= 1000;
 
+                        /* fall through */
             case    seconds:
                         if(0 != (interval % 60))
                         {
@@ -183,6 +185,7 @@ void interval::construct_()
                         {
                             interval /= 60;
 
+                            /* fall through */
             case    minutes:
                             if(0 != (interval % 60))
                             {
@@ -192,6 +195,7 @@ void interval::construct_()
                             {
                                 interval /= 60;
 
+                                /* fall through */
             case    hours:
                                 if(0 != (interval % 24))
                                 {
@@ -201,6 +205,7 @@ void interval::construct_()
                                 {
                                     interval /= 24;
 
+                                    /* fall through */
             case    days:
                                     u = (1 == interval) ? PANTHEIOS_LITERAL_STRING("day") : PANTHEIOS_LITERAL_STRING("days");
                                 }
