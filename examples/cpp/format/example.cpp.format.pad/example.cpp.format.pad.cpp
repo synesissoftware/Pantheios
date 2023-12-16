@@ -54,11 +54,11 @@ int main()
   {
     std::basic_string<pantheios::pan_char_t>  name = PANTHEIOS_LITERAL_STRING("John Smith");
 
-    printf("Name: %40s.\n", name.c_str()); 
+    printf("Name: %40s.\n", name.c_str());
 
     pantheios::log_NOTICE(PSTR("Name: "), PANTHEIOS_LPAD(name, 40), PSTR("."));
 
-    printf("Name: %-40s.\n", name.c_str()); 
+    printf("Name: %-40s.\n", name.c_str());
 
     pantheios::log_NOTICE(PSTR("Name: "), PANTHEIOS_RPAD(name, 40), PSTR("."));
 

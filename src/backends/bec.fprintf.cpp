@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the fprintf() back-end
  *
  * Created:     26th June 2005
- * Updated:     25th June 2020
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -228,7 +228,7 @@ static int pantheios_be_fprintf_init_(
     return 0;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_fprintf_init(  
+PANTHEIOS_CALL(int) pantheios_be_fprintf_init(
     PAN_CHAR_T const*               processIdentity
 ,   int                             backEndId
 ,   pan_be_fprintf_init_t const*    init

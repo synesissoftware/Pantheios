@@ -4,16 +4,9 @@
  * Purpose:     Implementation file for the test.scratch.tstring project.
  *
  * Created:     23rd February 2010
- * Updated:     27th January 2017
+ * Updated:     16th January 2023
  *
  * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -90,7 +83,7 @@ static int main_(int /* argc */, char** /*argv*/)
     pan::log_DEBUG("var=", pan::w2m(var));
 #endif /* PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES */
 
-    
+
     return EXIT_SUCCESS;
 }
 
@@ -143,3 +136,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

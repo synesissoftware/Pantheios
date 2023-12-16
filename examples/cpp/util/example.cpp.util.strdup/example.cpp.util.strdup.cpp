@@ -3,7 +3,7 @@
  *
  * Purpose:     C++ example program for Pantheios. Demonstrates:
  *
- *                - use of pantheios::util::strdup_throw() and 
+ *                - use of pantheios::util::strdup_throw() and
  *                  pantheios::util::strdup_nothrow() for creating C-style
  *                  strings
  *

@@ -4,25 +4,16 @@
  * Purpose:     Implementation file for the test.unit.util.getcurrenttime project.
  *
  * Created:     10th November 2007
- * Updated:     27th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2007-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th January 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifdef __BORLANDC__
  /* Borland 6.1 is so unbelievably stupid that even when
-  * given '#pragma warn -8026' multiple places within the code 
+  * given '#pragma warn -8026' multiple places within the code
   * and '-winl' on the command it _still_ insists on reporting
-  * that "Functions with exception specifications are not expanded 
+  * that "Functions with exception specifications are not expanded
   * inline in function test_time(const char *,int,unsigned int,int,unsigned int,const char *)",
   * so I am forced to such extreme measures! What a peice of crap.
   *
@@ -439,3 +430,4 @@ static string_t translate_pattern(PAN_CHAR_T const* pattern)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

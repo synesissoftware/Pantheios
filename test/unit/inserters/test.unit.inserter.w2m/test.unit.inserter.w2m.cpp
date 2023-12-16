@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.unit.inserter.w2m project.
  *
  * Created:     21st December 2010
- * Updated:     27th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th January 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -99,7 +90,7 @@ int main(int argc, char** argv)
 
 namespace
 {
-    wchar_t const* strings[] = 
+    wchar_t const* strings[] =
     {
             L""
         ,   L"a"
@@ -171,4 +162,5 @@ static void test_1_12()
 
 } /* anonymous namespace */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
+
