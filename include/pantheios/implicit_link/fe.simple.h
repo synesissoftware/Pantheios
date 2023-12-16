@@ -4,11 +4,12 @@
  * Purpose: Implicitly links in the Pantheios Simple Front-end Library
  *
  * Created: 18th July 2005
- * Updated: 29th June 2016
+ * Updated: 16th December 2023
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_FE_SIMPLE_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_FE_SIMPLE_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_FE_SIMPLE_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_FE_SIMPLE_EDIT     9
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_FE_SIMPLE_EDIT     10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,3 +104,4 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_FE_SIMPLE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
