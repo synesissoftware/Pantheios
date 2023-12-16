@@ -4,11 +4,12 @@
  * Purpose:     Implementation for the speech back-end
  *
  * Created:     31st August 2006
- * Updated:     8th December 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -190,7 +191,7 @@ extern "C++" int pantheios_be_speech_init__cpp(
 ,   void*                       reserved
 ,   void**                      ptoken)
 ;
-    #endif /* _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS */
+#endif /* _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS */
 
 
 
@@ -514,3 +515,4 @@ int be_speech_context::speak(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

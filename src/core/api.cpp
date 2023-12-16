@@ -200,12 +200,12 @@ namespace
     ,   size_t          n
     )
     {
-    # pragma warning(push)
-    # pragma warning(disable : 4996)
+# pragma warning(push)
+# pragma warning(disable : 4996)
 
         return ::wcstombs(s1, s2, n);
 
-    # pragma warning(pop)
+# pragma warning(pop)
     }
 } /* anonymous namespace */
 
