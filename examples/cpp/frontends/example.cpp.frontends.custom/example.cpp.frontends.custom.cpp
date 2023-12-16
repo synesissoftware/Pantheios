@@ -7,7 +7,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     31st August 2006
- * Updated:     21st September 2015
+ * Updated:     16th December 2023
  *
  * www:         http://www.pantheios.org/
  *
@@ -126,3 +126,4 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(  void*   /* token */
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

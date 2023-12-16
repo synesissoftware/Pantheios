@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.component.inserters.windows.hive project.
  *
  * Created:     26th January 2017
- * Updated:     27th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -349,3 +340,4 @@ static void test_1_24()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -6,7 +6,7 @@
  *                - use of pantheios_logprintf() in C compilation units
  *
  * Created:     31st August 2006
- * Updated:     21st September 2015
+ * Updated:     16th December 2023
  *
  * www:         http://www.pantheios.org/
  *
@@ -69,3 +69,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

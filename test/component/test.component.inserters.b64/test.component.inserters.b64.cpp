@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.component.inserters.b64 project.
  *
  * Created:     31st July 2006
- * Updated:     27th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2006-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -434,3 +425,4 @@ static void test_1_20()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

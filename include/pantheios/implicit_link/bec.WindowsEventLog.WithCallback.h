@@ -4,7 +4,7 @@
  * Purpose: Implicitly links in the Pantheios Windows EventLog Back-End Common Library
  *
  * Created: 7th December 2016
- * Updated: 7th December 2016
+ * Updated: 16th December 2023
  *
  * Home:    http://pantheios.org/
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSEVENTLOG_WITHCALLBACK_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSEVENTLOG_WITHCALLBACK_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSEVENTLOG_WITHCALLBACK_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSEVENTLOG_WITHCALLBACK_EDIT      1
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSEVENTLOG_WITHCALLBACK_EDIT      2
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,3 +104,4 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSEVENTLOG_WITHCALLBACK */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

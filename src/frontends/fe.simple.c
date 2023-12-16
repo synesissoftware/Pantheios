@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the fe.simple front-end.
  *
  * Created:     26th June 2005
- * Updated:     23rd May 2011
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -132,3 +133,4 @@ PANTHEIOS_CALL(int) pantheios_fe_simple_setSeverityCeiling(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

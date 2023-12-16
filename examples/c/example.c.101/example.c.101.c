@@ -14,7 +14,7 @@
  *                  pantheios_logprintf()
  *
  * Created:     17th January 2008
- * Updated:     29th June 2016
+ * Updated:     16th December 2023
  *
  * www:         http://www.pantheios.org/
  *
@@ -138,3 +138,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

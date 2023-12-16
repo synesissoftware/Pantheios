@@ -4,11 +4,12 @@
  * Purpose:     Main include file for all Pantheios standard inserters.
  *
  * Created:     21st June 2005
- * Updated:     27th June 2020
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2020, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -56,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MINOR    8
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     237
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     238
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -184,3 +185,4 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_HPP_INSERTERS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

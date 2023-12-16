@@ -4,16 +4,7 @@
  * Purpose:     Implicit link file for the test.component.be.file.threading project.
  *
  * Created:     3rd July 2009
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2009-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,3 +25,4 @@
 #endif /* operating system */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

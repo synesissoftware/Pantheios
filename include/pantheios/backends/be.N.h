@@ -4,11 +4,12 @@
  * Purpose:     Declaration of the Pantheios be.N Stock Back-end API.
  *
  * Created:     18th October 2006
- * Updated:     27th January 2017
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -54,7 +55,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      9
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       26
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -356,3 +357,4 @@ pantheios_be_N_tokenFromId(
 #endif /* PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_BE_N */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     Functions for eliciting process identifier
  *
  * Created:     25th July 2008
- * Updated:     29th June 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_EDIT        5
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_EDIT        6
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,3 +119,4 @@ inline stlsoft_ns_qual(ss_sint64_t) getCurrentProcessId()
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_PROCESSID */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
