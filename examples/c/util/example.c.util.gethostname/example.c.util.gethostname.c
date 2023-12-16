@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the example.c.util.gethostname project.
  *
  * Created:     25th August 2008
- * Updated:     25th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -107,7 +98,7 @@ int main(int argc, char** argv)
         {
             err[STLSOFT_NUM_ELEMENTS(err) - 1] = '\0';
         }
- 
+
         fprintf(stderr, "could not elicit hostname: %s\n", err);
 
 # else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
@@ -139,3 +130,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

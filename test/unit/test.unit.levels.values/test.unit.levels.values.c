@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.unit.levels.values project.
  *
  * Created:     29th November 2007
- * Updated:     7th December 2010
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2007-2010, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -97,4 +88,5 @@ int main(int argc, char** argv)
     return retCode;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
+

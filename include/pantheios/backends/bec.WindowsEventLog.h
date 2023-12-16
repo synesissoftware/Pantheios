@@ -4,11 +4,12 @@
  * Purpose:     Declaration of the Pantheios WindowsEventLog Stock Back-end API.
  *
  * Created:     8th May 2006
- * Updated:     7th December 2016
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MINOR       4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        31
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        32
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -257,7 +258,7 @@ pantheios_be_WindowsEventLog_logEntry(
 /* TODO: Implement these in 1.0.1 beta 162+
  */
 
-/** This helper function can be used to defer 
+/** This helper function can be used to defer
  */
 PANTHEIOS_CALL(void)
 pantheios_be_WindowsEventLog_getPantheiosDotComCategoryAndEventId(
@@ -290,3 +291,4 @@ pantheios_be_WindowsEventLog_unregisterEventSourceUsingPantheiosDotCom(
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,13 +4,14 @@
  * Purpose:     Pantheios Assertion API.
  *
  * Created:     8th May 2009
- * Updated:     30th June 2016
+ * Updated:     16th December 2023
  *
  * Thanks to:   markitus82 for requesting this functionality
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2009-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MINOR     3
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      12
+# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      13
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -301,3 +302,4 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_ASSERT */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

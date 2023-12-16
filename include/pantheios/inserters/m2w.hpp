@@ -5,11 +5,11 @@
  *              wide string statement.
  *
  * Created:     22nd November 2010
- * Updated:     16th June 2020
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     7
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -147,9 +147,9 @@ public: // Construction
         // allow it to compile.
 
 #ifndef PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES
-        int unused = 
+        int unused =
 #endif /* !PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES */
-            
+
             init_(::stlsoft::c_str_data_a(ws), ::stlsoft::c_str_len_a(ws));
 
 #ifndef PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES
@@ -326,3 +326,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_M2W */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

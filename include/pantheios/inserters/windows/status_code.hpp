@@ -4,11 +4,12 @@
  * Purpose:     Selective format string inserter for Windows status codes.
  *
  * Created:     5th April 2014
- * Updated:     29th June 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2014-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -173,3 +174,4 @@ private:
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

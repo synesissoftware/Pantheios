@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.component.inserters.m2w project.
  *
  * Created:     22nd November 2010
- * Updated:     27th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -709,3 +700,4 @@ static void test_3_09()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

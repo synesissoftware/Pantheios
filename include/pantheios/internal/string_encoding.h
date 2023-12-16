@@ -5,11 +5,12 @@
  *              wide string
  *
  * Created:     14th November 2008
- * Updated:     29th June 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -88,3 +89,4 @@
 #endif /* PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_STRING_ENCODING */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

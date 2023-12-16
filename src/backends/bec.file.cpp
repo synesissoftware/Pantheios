@@ -4,7 +4,7 @@
  * Purpose:     Implementation for the file back-end.
  *
  * Created:     25th November 2006
- * Updated:     3rd July 2020
+ * Updated:     16th January 2023
  *
  * Thanks to:   CookieRaver for filling in the (accidental) blanks in the
  *              UNIX implementation.
@@ -22,7 +22,7 @@
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -239,15 +239,15 @@ namespace
         ,   2048
         ,   stlsoft::malloc_allocator<T>
         >::type                                         type;
-                                                        
-        typedef ss_typename_type_k                      
-            PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<                       
-            T                                           
-        ,   256                                         
-        ,   stlsoft::malloc_allocator<T>                
+
+        typedef ss_typename_type_k
+            PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
+            T
+        ,   256
+        ,   stlsoft::malloc_allocator<T>
         >::type                                         small_type;
-    };                                                  
-                                                        
+    };
+
     typedef buffer_selector_<char>::type                buffer_a_t;
     typedef buffer_selector_<wchar_t>::type             buffer_w_t;
     typedef buffer_selector_<PAN_CHAR_T>::type          buffer_t;
@@ -1790,3 +1790,4 @@ void be_file_ContextMap::Remove(int backEndId)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
