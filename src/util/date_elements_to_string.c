@@ -5,11 +5,12 @@
  *              Pantheios API
  *
  * Created:     12th November 2016
- * Updated:     10th January 2017
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Software
+ * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -227,7 +228,7 @@ pantheios_util_formatYearToString4(
 
     PAN_CHAR_T const* const src_c   =   PAN_DE2S_0299_[century & 0xff];
     PAN_CHAR_T const* const src_y   =   PAN_DE2S_0299_[year100];
-    
+
     (*ar)[0]    =   src_c[0];
     (*ar)[1]    =   src_c[1];
     (*ar)[2]    =   src_y[0];
@@ -241,7 +242,7 @@ pantheios_util_formatMonthToString2(
 ) STLSOFT_NOEXCEPT
 {
     PAN_CHAR_T const* const  src =   PAN_DE2S_0299_[month & 0x0f];
-    
+
     (*ar)[0]    =   src[0];
     (*ar)[1]    =   src[1];
 }
@@ -253,7 +254,7 @@ pantheios_util_formatDayToString2(
 ) STLSOFT_NOEXCEPT
 {
     PAN_CHAR_T const* const  src =   PAN_DE2S_0299_[day & 0x1f];
-    
+
     (*ar)[0]    =   src[0];
     (*ar)[1]    =   src[1];
 }
@@ -265,7 +266,7 @@ pantheios_util_formatHourToString2(
 ) STLSOFT_NOEXCEPT
 {
     PAN_CHAR_T const* const  src =   PAN_DE2S_0299_[hour & 0x1f];
-    
+
     (*ar)[0]    =   src[0];
     (*ar)[1]    =   src[1];
 }
@@ -277,7 +278,7 @@ pantheios_util_formatMinuteOrSecondToString2(
 ) STLSOFT_NOEXCEPT
 {
     PAN_CHAR_T const* const  src =   PAN_DE2S_0299_[minOrSecond & 0x3f];
-    
+
     (*ar)[0]    =   src[0];
     (*ar)[1]    =   src[1];
 }
@@ -297,7 +298,7 @@ pantheios_util_formatMillisecondToString3(
 
     PAN_CHAR_T const* const src_2_3     =   PAN_DE2S_0299_[digits_2_3];
     PAN_CHAR_T const* const src_1       =   PAN_DE2S_0299_[digit_1];
-    
+
     (*ar)[1]    =   src_2_3[0];
     (*ar)[2]    =   src_2_3[1];
     (*ar)[0]    =   src_1[1];
@@ -325,7 +326,7 @@ pantheios_util_formatMicrosecondToString6(
     PAN_CHAR_T const* const src_5_6     =   PAN_DE2S_0299_[digits_5_6];
     PAN_CHAR_T const* const src_3_4     =   PAN_DE2S_0299_[digits_3_4];
     PAN_CHAR_T const* const src_1_2     =   PAN_DE2S_0299_[digits_1_2];
-    
+
     (*ar)[4]    =   src_5_6[0];
     (*ar)[5]    =   src_5_6[1];
     (*ar)[2]    =   src_3_4[0];
@@ -361,3 +362,4 @@ namespace util
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

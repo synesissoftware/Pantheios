@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the fe.WindowsRegistry front-end.
  *
  * Created:     28th October 2007
- * Updated:     16th June 2020
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -307,7 +307,7 @@ namespace
                 processKey = reg_key(baseKey, PANTHEIOS_FE_PROCESS_IDENTITY);
             }
 
-            // 
+            //
 
             try
             {
@@ -344,7 +344,7 @@ namespace
                 }
             }
 
-            // 
+            //
 
             if(REG_NONE == value.type())
             {
@@ -417,3 +417,4 @@ namespace
 } /* anonymous namespace */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

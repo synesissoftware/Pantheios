@@ -4,11 +4,11 @@
  * Purpose:     String inserter for std::exception-derived types.
  *
  * Created:     22nd March 2010
- * Updated:     16th June 2020
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Software
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_EDIT       6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_EDIT       7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -145,7 +145,7 @@ exception_inserter exception(
     std::exception const& x
 )
 {
-    return 
+    return
 #  if !defined(PANTHEIOS_NO_NAMESPACE)
       inserters::
 #  endif /* !PANTHEIOS_NO_NAMESPACE */
@@ -294,3 +294,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_EXCEPTION */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

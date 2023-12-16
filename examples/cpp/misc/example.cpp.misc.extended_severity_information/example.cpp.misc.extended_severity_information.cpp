@@ -112,7 +112,7 @@ PANTHEIOS_CALL(void) pantheios_be_uninit(void *token)
   pantheios::util::strfree(static_cast<PAN_CHAR_T*>(token));
 }
 
-PANTHEIOS_CALL(int) pantheios_be_logEntry(  
+PANTHEIOS_CALL(int) pantheios_be_logEntry(
     void*               /* feToken */
 ,   void*               beToken
 ,   int                 severity

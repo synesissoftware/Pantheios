@@ -4,11 +4,12 @@
  * Purpose:     Primary header file for Pantheios
  *
  * Created:     21st June 2005
- * Updated:     18th December 2016
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -62,7 +63,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      11
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       106
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       107
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -312,13 +313,13 @@ namespace pantheios
 #  undef PANTHEIOS_INVOKE_SHIM_PAIR_
 # endif /* PANTHEIOS_INVOKE_SHIM_PAIR_ */
 
-# if defined(STLSOFT_COMPILER_IS_DMC)                   
+# if defined(STLSOFT_COMPILER_IS_DMC)
 #  define PANTHEIOS_DECLARE_SHIM_PAIR_()                ((void)0)
 #  define PANTHEIOS_INVOKE_SHIM_PAIR_(x)                stlsoft::PANTHEIOS_c_str_len_name_(x), stlsoft::PANTHEIOS_c_str_data_name_(x)
-# elif defined(STLSOFT_COMPILER_IS_GCC)                 
+# elif defined(STLSOFT_COMPILER_IS_GCC)
 #  define PANTHEIOS_DECLARE_SHIM_PAIR_()                using ::stlsoft::PANTHEIOS_c_str_data_name_; using ::stlsoft::PANTHEIOS_c_str_len_name_
 #  define PANTHEIOS_INVOKE_SHIM_PAIR_(x)                PANTHEIOS_c_str_len_name_(x), PANTHEIOS_c_str_data_name_(x)
-# else /* ? compiler */                                 
+# else /* ? compiler */
 #  define PANTHEIOS_DECLARE_SHIM_PAIR_()                using ::stlsoft::PANTHEIOS_c_str_data_name_; using ::stlsoft::PANTHEIOS_c_str_len_name_
 #  define PANTHEIOS_INVOKE_SHIM_PAIR_(x)                PANTHEIOS_c_str_len_name_(x), PANTHEIOS_c_str_data_name_(x)
 # endif /* compiler */
@@ -394,3 +395,4 @@ namespace
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

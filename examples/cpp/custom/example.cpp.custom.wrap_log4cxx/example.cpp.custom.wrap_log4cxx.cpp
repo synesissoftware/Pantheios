@@ -175,7 +175,7 @@ PANTHEIOS_CALL(int) pantheios_be_init(
   using namespace log4cxx::helpers;
 
   try
-  {  
+  {
     BasicConfigurator::configure();
   }
   catch(std::bad_alloc&)

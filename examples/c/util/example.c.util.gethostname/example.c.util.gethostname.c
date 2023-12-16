@@ -107,7 +107,7 @@ int main(int argc, char** argv)
         {
             err[STLSOFT_NUM_ELEMENTS(err) - 1] = '\0';
         }
- 
+
         fprintf(stderr, "could not elicit hostname: %s\n", err);
 
 # else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
