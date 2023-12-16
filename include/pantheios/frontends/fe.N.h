@@ -4,11 +4,12 @@
  * Purpose:     Declaration of the Pantheios fe.N Stock Front-end API.
  *
  * Created:     18th October 2006
- * Updated:     27th January 2017
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MINOR     3
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      19
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -177,3 +178,4 @@ PANTHEIOS_EXTERN pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[];
 #endif /* PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_N */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

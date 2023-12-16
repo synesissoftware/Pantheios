@@ -5,11 +5,12 @@
  *              multi-threaded.
  *
  * Created:     20th November 2007
- * Updated:     29th June 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -109,3 +110,4 @@
 #endif /* PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_THREADING */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

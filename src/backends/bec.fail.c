@@ -4,11 +4,12 @@
  * Purpose:     Implementation for the NULL back-end.
  *
  * Created:     9th January 2007
- * Updated:     8th December 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -96,3 +97,4 @@ PANTHEIOS_CALL(int) pantheios_be_fail_logEntry(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

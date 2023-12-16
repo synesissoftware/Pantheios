@@ -10,7 +10,7 @@
  *                  PANTHEIOS_MAKE_EXTENDED_SEVERITY()
  *
  * Created:     21st May 2009
- * Updated:     30th June 2016
+ * Updated:     16th December 2023
  *
  * www:         http://www.pantheios.org/
  *
@@ -72,3 +72,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

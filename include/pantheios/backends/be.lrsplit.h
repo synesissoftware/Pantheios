@@ -4,11 +4,12 @@
  * Purpose:     Pantheios Local/Remote Split Back-end library API
  *
  * Created:     26th June 2005
- * Updated:     29th June 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_EDIT     12
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_EDIT     13
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -171,3 +172,4 @@ PANTHEIOS_CALL(int) pantheios_be_remote_logEntry(
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BE_LRSPLIT */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

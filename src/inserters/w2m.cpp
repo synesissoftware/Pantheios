@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the pantheios::w2m inserter class.
  *
  * Created:     7th August 2008
- * Updated:     29th June 2016
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,10 +53,10 @@
 #include <pantheios/internal/safestr.h>
 
 /* Standard C header files */
+#include <stdio.h>
 #include <string.h>
 #include <wchar.h>
 
-    #include <stdio.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
@@ -206,3 +207,4 @@ size_t w2m::length() const
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

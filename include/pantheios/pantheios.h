@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Core and Util APIs.
  *
  * Created:     21st June 2005
- * Updated:     4th July 2020
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       379
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       380
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -267,9 +267,9 @@
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# define PANTHEIOS_STRINGIZE_(x)    #x
+# define PANTHEIOS_STRINGIZE_(x)                            #x
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
-#define PANTHEIOS_STRINGIZE(x)      PANTHEIOS_STRINGIZE_(x)
+#define PANTHEIOS_STRINGIZE(x)                              PANTHEIOS_STRINGIZE_(x)
 
 /** \def PANTHEIOS_MAKE_EXTENDED_SEVERITY(sev, xi)
  *
@@ -283,8 +283,7 @@
  *
  * \pre 0 == (xi28 & ~0xf0000000)
  */
-#define PANTHEIOS_MAKE_EXTENDED_SEVERITY(sev, xi28)     \
-                                                        \
+#define PANTHEIOS_MAKE_EXTENDED_SEVERITY(sev, xi28)         \
     (((sev) & 0x0f) | (((xi28) << 4) & ~0x0f))
 
 /** \def PANTHEIOS_CARG_STR(s)
@@ -292,9 +291,9 @@
  * \param s A (nul-terminated) C-style string pointer/array
  *
  * \note The length of this macro is necessary to disambiguate with respect to
- *   arbitrary codebases. For convenience, it is recommended that you 
+ *   arbitrary codebases. For convenience, it is recommended that you
  *   <code>#define</code> a shorter macro for use in your code, as in:
-\htmlonly 
+\htmlonly
 <pre>
 \#define PANARG_S(s)        PANTHEIOS_CARG_STR(s)
 </pre>
@@ -309,9 +308,9 @@
  * \param n The length of the string pointed to by the \c s parameter
  *
  * \note The length of this macro is necessary to disambiguate with respect to
- *   arbitrary codebases. For convenience, it is recommended that you 
+ *   arbitrary codebases. For convenience, it is recommended that you
  *   <code>#define</code> a shorter macro for use in your code, as in:
-\htmlonly 
+\htmlonly
 <pre>
 \#define PANARG_SN(s, n)    PANTHEIOS_CARG_STR_LEN(s, n)
 </pre>
@@ -393,37 +392,38 @@
 
 #if defined(__cplusplus) || \
     defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
-# define PANTHEIOS_EXTERN_C            extern "C"
-# define PANTHEIOS_EXTERN              extern "C"
+# define PANTHEIOS_EXTERN_C                                 extern "C"
+# define PANTHEIOS_EXTERN                                   extern "C"
 #else /* ? __cplusplus */
 # define PANTHEIOS_EXTERN_C
-# define PANTHEIOS_EXTERN              extern
+# define PANTHEIOS_EXTERN                                   extern
 #endif /* !__cplusplus */
 
 #if !defined(PANTHEIOS_CALLCONV)
 # define PANTHEIOS_CALLCONV
 #endif /* !PANTHEIOS_CALLCONV */
 
-#define PANTHEIOS_CALL(rt)             PANTHEIOS_DECLSPEC PANTHEIOS_EXTERN_C rt PANTHEIOS_CALLCONV
+#define PANTHEIOS_CALL(rt)                                  PANTHEIOS_DECLSPEC PANTHEIOS_EXTERN_C rt PANTHEIOS_CALLCONV
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# define PANTHEIOS_CPP_CALL(rt)        PANTHEIOS_DECLSPEC extern "C++" rt PANTHEIOS_CALLCONV
+# define PANTHEIOS_CPP_CALL(rt)                             PANTHEIOS_DECLSPEC extern "C++" rt PANTHEIOS_CALLCONV
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_DECLARE_DEPRECATION(symtype, oldfn, newfn)
-# define PANTHEIOS_CALL_DEPRECATED(rt, oldfn, newfn)            PANTHEIOS_CALL(rt)
+# define PANTHEIOS_CALL_DEPRECATED(rt, oldfn, newfn)        PANTHEIOS_CALL(rt)
 #else /* ? PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
     (   _MSC_VER >= 1500 || \
         (   _MSC_VER >= 1400 && \
             defined(_MSC_FULL_VER) && \
             _MSC_FULL_VER >= 140050320))
-#  define PANTHEIOS_DECLARE_DEPRECATION(symtype, oldfn, newfn)  __declspec(deprecated("The " symtype " " PANTHEIOS_STRINGIZE(oldfn) " is deprecated and will be removed from a future version of Pantheios; use " PANTHEIOS_STRINGIZE(newfn) " instead"))
-#  define PANTHEIOS_CALL_DEPRECATED(rt, oldfn, newfn)           PANTHEIOS_DECLARE_DEPRECATION("function", oldfn, newfn) PANTHEIOS_DECLSPEC PANTHEIOS_EXTERN_C rt PANTHEIOS_CALLCONV
+#  define PANTHEIOS_DECLARE_DEPRECATION(symtype, oldfn, newfn)  \
+    __declspec(deprecated("The " symtype " " PANTHEIOS_STRINGIZE(oldfn) " is deprecated and will be removed from a future version of Pantheios; use " PANTHEIOS_STRINGIZE(newfn) " instead"))
+#  define PANTHEIOS_CALL_DEPRECATED(rt, oldfn, newfn)       PANTHEIOS_DECLARE_DEPRECATION("function", oldfn, newfn) PANTHEIOS_DECLSPEC PANTHEIOS_EXTERN_C rt PANTHEIOS_CALLCONV
 # else /* ? compiler */
 #  define PANTHEIOS_DECLARE_DEPRECATION(symtype, oldfn, newfn)
-#  define PANTHEIOS_CALL_DEPRECATED(rt, oldfn, newfn)           PANTHEIOS_CALL(rt)
+#  define PANTHEIOS_CALL_DEPRECATED(rt, oldfn, newfn)       PANTHEIOS_CALL(rt)
 # endif /* compiler */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -470,13 +470,13 @@ namespace core
 {
 } /* namespace core */
 
-# define PANTHEIOS_NS_QUAL(x)           ::pantheios::x
-# define PANTHEIOS_SUBNS_QUAL(sns, x)   ::pantheios::sns::x
+# define PANTHEIOS_NS_QUAL(x)                               ::pantheios::x
+# define PANTHEIOS_SUBNS_QUAL(sns, x)                       ::pantheios::sns::x
 
 #else /* ? !PANTHEIOS_NO_NAMESPACE */
 
-# define PANTHEIOS_NS_QUAL(x)           x
-# define PANTHEIOS_SUBNS_QUAL(sns, x)   x
+# define PANTHEIOS_NS_QUAL(x)                               x
+# define PANTHEIOS_SUBNS_QUAL(sns, x)                       x
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
@@ -1115,7 +1115,7 @@ PANTHEIOS_CALL_DEPRECATED(void, pantheios_exit_process, pantheios_exitProcess) p
  *
  * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
- * 
+ *
  * \remarks Memory block is not release until Pantheios is uninitialised.
  *
  * \param cb The number of bytes to allocate
@@ -1317,7 +1317,7 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_remove(int backEndId);
   * which can be overridden by defining it to a number between 1 and 32 to
   * reduce compilation times where larger parameter lists are not required.
   */
-# define PANTHEIOS_APPL_PARAMS_LIMIT    PANTHEIOS_APPL_PARAMS_LIMIT_MAX_GENERATED
+# define PANTHEIOS_APPL_PARAMS_LIMIT                        PANTHEIOS_APPL_PARAMS_LIMIT_MAX_GENERATED
 #endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION || !PANTHEIOS_APPL_PARAMS_LIMIT */
 
 /* Sanity check on PANTHEIOS_APPL_PARAMS_LIMIT */
@@ -1858,14 +1858,14 @@ logvprintf(
  * Equivalent to pantheios::SEV_DEBUG
  */
 
-#  define PANTHEIOS_SEV_EMERGENCY       ::pantheios::SEV_EMERGENCY
-#  define PANTHEIOS_SEV_ALERT           ::pantheios::SEV_ALERT
-#  define PANTHEIOS_SEV_CRITICAL        ::pantheios::SEV_CRITICAL
-#  define PANTHEIOS_SEV_ERROR           ::pantheios::SEV_ERROR
-#  define PANTHEIOS_SEV_WARNING         ::pantheios::SEV_WARNING
-#  define PANTHEIOS_SEV_NOTICE          ::pantheios::SEV_NOTICE
-#  define PANTHEIOS_SEV_INFORMATIONAL   ::pantheios::SEV_INFORMATIONAL
-#  define PANTHEIOS_SEV_DEBUG           ::pantheios::SEV_DEBUG
+#  define PANTHEIOS_SEV_EMERGENCY                           ::pantheios::SEV_EMERGENCY
+#  define PANTHEIOS_SEV_ALERT                               ::pantheios::SEV_ALERT
+#  define PANTHEIOS_SEV_CRITICAL                            ::pantheios::SEV_CRITICAL
+#  define PANTHEIOS_SEV_ERROR                               ::pantheios::SEV_ERROR
+#  define PANTHEIOS_SEV_WARNING                             ::pantheios::SEV_WARNING
+#  define PANTHEIOS_SEV_NOTICE                              ::pantheios::SEV_NOTICE
+#  define PANTHEIOS_SEV_INFORMATIONAL                       ::pantheios::SEV_INFORMATIONAL
+#  define PANTHEIOS_SEV_DEBUG                               ::pantheios::SEV_DEBUG
 
 # endif /* !PANTHEIOS_NO_STOCK_LEVELS */
 
