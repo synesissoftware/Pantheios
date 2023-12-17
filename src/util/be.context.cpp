@@ -4,7 +4,7 @@
  * Purpose:     Implementation of pantheios::util::backends::Context.
  *
  * Created:     18th December 2006
- * Updated:     16th December 2023
+ * Updated:     17th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
@@ -157,7 +157,7 @@ inline int check_severity_mask_(int severityMask)
             }
             else
             {
-                m_slice0 = pan_slice_t(-1, PANTHEIOS_LITERAL_STRING(" [") + 1);
+                m_slice0 = pan_slice_t(-1, &PANTHEIOS_LITERAL_STRING(" [")[1]);
             }
 
             if(0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID))
