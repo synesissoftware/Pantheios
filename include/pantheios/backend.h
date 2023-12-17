@@ -4,11 +4,12 @@
  * Purpose:     Pantheios back end API
  *
  * Created:     21st June 2005
- * Updated:     8th December 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -56,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MINOR      12
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       34
+# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       35
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -447,3 +448,4 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

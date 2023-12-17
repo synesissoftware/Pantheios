@@ -5,10 +5,11 @@
  *              Back-end API.
  *
  * Created:     23rd September 2005
- * Updated:     27th December 2019
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -761,3 +762,4 @@ pri_print_(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

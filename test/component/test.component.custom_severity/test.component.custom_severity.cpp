@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.component.custom_severity project.
  *
  * Created:     31st October 2005
- * Updated:     27th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2005-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -200,3 +191,4 @@ static void test_1_09()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

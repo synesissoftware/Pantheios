@@ -5,11 +5,12 @@
  *              Pantheios core and APIs.
  *
  * Created:     26th June 2005
- * Updated:     29th June 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -58,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        18
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -667,3 +668,4 @@ PANTHEIOS_TYPECHECK_MSG_(...)
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

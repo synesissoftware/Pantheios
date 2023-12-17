@@ -5,11 +5,12 @@
  *              ends.
  *
  * Created:     3rd November 2007
- * Updated:     29th June 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     20
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -414,3 +415,4 @@ pantheios_call_be_logEntry(
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_CORE_HPP_APIDEFS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

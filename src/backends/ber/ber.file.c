@@ -4,11 +4,12 @@
  * Purpose:     Implementation of ber.file
  *
  * Created:     25th November 2006
- * Updated:     23rd December 2010
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,3 +51,4 @@
 PANTHEIOS_BE_DEFINE_BER_FUNCTIONS(file)
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

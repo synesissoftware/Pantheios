@@ -5,7 +5,7 @@
  *              Pantheios API
  *
  * Created:     12th November 2016
- * Updated:     17th December 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_EDIT     2
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_EDIT     3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -170,3 +170,4 @@ namespace util
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

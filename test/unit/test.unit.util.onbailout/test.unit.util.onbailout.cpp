@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.unit.util.onbailout project.
  *
  * Created:     29th April 2008
- * Updated:     27th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -628,5 +619,5 @@ FILE* bailout_test_fopen_(void)
 
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
+/* ///////////////////////////// end of file //////////////////////////// */
 
-/* ////////////////////////////////////////////////////////////////////// */

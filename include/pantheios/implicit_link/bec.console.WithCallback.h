@@ -4,10 +4,11 @@
  * Purpose: Implicitly links in the Pantheios Console Back-End Common Library
  *
  * Created: 7th December 2010
- * Updated: 25th February 2019
+ * Updated: 16th December 2023
  *
  * Home:    http://pantheios.org/
  *
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_EDIT      3
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_EDIT      4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,3 +88,4 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

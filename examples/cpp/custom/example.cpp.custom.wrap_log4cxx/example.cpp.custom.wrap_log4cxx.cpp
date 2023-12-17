@@ -9,7 +9,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     16th August 2006
- * Updated:     22nd October 2016
+ * Updated:     16th December 2023
  *
  * www:         http://www.pantheios.org/
  *
@@ -175,7 +175,7 @@ PANTHEIOS_CALL(int) pantheios_be_init(
   using namespace log4cxx::helpers;
 
   try
-  {  
+  {
     BasicConfigurator::configure();
   }
   catch(std::bad_alloc&)
@@ -238,3 +238,4 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     Declaration of the Pantheios Windows-SysLog Stock Back-end API.
  *
  * Created:     23rd September 2005
- * Updated:     8th December 2016
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MAJOR     4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      26
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -504,7 +505,7 @@ pantheios_be_WindowsSyslog_getDefaultAppInit(
  *   have network connectivity. Users should consider using with be.N
  *   and applying the
  *   \c PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE
- *   and 
+ *   and
  *   \c PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED
  *   flags, so that initialisation failure will not prevent the
  *   application from initialising.
@@ -592,3 +593,4 @@ pan_be_WindowsSyslog_init_t::pan_be_WindowsSyslog_init_t()
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

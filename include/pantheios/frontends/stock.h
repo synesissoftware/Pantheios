@@ -5,11 +5,12 @@
  *              Elements.
  *
  * Created:     23rd November 2007
- * Updated:     27th January 2017
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2017, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     16
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,7 +102,7 @@
  *
  * \ingroup group__frontend__stock_frontends
  *
- * The variable is an immutable array of <code>PAN_CHAR_T</code> (i.e. 
+ * The variable is an immutable array of <code>PAN_CHAR_T</code> (i.e.
  * <code>char</code> in multibyte string builds, <code>wchar_t</code> in
  * wide string builds) whose name is non-mangled and has external linkage.
  *
@@ -167,3 +168,4 @@ PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) /* th
 #endif /* PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

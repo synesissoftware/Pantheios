@@ -7,7 +7,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     9th November 2010
- * Updated:     27th January 2017
+ * Updated:     16th December 2023
  *
  * www:         http://www.pantheios.org/
  *
@@ -97,3 +97,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

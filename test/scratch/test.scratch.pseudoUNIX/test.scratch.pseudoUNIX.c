@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the pseudoUNIX.test project.
  *
  * Created:     23rd September 2006
- * Updated:     27th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2006-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -186,3 +177,4 @@ static void usage(int bExit, char const *reason, int invalidArg, int argc, char 
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

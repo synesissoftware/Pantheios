@@ -4,11 +4,11 @@
  * Purpose:     String inserter for std::exception-derived types.
  *
  * Created:     22nd March 2010
- * Updated:     16th June 2020
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -156,3 +156,4 @@ size_t exception_inserter::length() const
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

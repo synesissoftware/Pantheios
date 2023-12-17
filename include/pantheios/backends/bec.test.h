@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the be.test library.
  *
  * Created:     1st November 2006
- * Updated:     16th June 2020
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  3
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      27
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -243,3 +243,4 @@ namespace test
 #endif /* PANTHEIOS_INCL_BACKENDS_H_BEC_TEST */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
