@@ -4,11 +4,12 @@
  * Purpose:     Implementation for the ACE back-end
  *
  * Created:     26th June 2005
- * Updated:     21st September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -247,3 +248,4 @@ PANTHEIOS_CALL(int) pantheios_be_ACE_logEntry(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

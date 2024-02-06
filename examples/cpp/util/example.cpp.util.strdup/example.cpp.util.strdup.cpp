@@ -3,12 +3,12 @@
  *
  * Purpose:     C++ example program for Pantheios. Demonstrates:
  *
- *                - use of pantheios::util::strdup_throw() and 
+ *                - use of pantheios::util::strdup_throw() and
  *                  pantheios::util::strdup_nothrow() for creating C-style
  *                  strings
  *
  * Created:     27th December 2010
- * Updated:     21st September 2015
+ * Updated:     16th December 2023
  *
  * www:         http://www.pantheios.org/
  *
@@ -91,3 +91,4 @@ int main(int /* argc */, char** /* argv */)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

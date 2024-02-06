@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.unit.util.snprintf project.
  *
  * Created:     19th June 2020
- * Updated:     2nd January 2021
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2020-2021, Synesis Software, Synesis Information Systems
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -425,5 +416,5 @@ static void test_1_12()
 
 } /* anonymous namespace */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
 

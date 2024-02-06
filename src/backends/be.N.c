@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the Pantheios be.N Stock Back-end API.
  *
  * Created:     18th October 2006
- * Updated:     29th March 2021
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -373,3 +373,4 @@ pantheios_be_N_tokenFromId_(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

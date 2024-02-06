@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.unit.util.strnlen project.
  *
  * Created:     17th April 2009
- * Updated:     27th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th January 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -96,7 +87,7 @@ namespace
 {
     using ::pantheios::util::pantheios_util_strnlen;
 
-    PAN_CHAR_T const* strings[] = 
+    PAN_CHAR_T const* strings[] =
     {
             PANTHEIOS_LITERAL_STRING("")
         ,   PANTHEIOS_LITERAL_STRING("a")
@@ -328,4 +319,5 @@ static void test_1_12()
 
 } /* anonymous namespace */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
+

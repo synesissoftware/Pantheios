@@ -4,11 +4,12 @@
  * Purpose:     String duplication utilty functions.
  *
  * Created:     19th April 2008
- * Updated:     29th June 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_REVISION  4
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      9
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -205,3 +206,4 @@ inline void strfree(pantheios_char_t* s) STLSOFT_NOEXCEPT
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_STRDUP */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

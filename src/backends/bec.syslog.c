@@ -4,14 +4,15 @@
  * Purpose:     Implementation for the UNIX SysLog back-end
  *
  * Created:     29th June 2005
- * Updated:     8th December 2016
+ * Updated:     16th December 2023
  *
  * Thanks to:   Jonathan Wakely for detecting Solaris compilation defects &
  *              fixes.
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -271,3 +272,4 @@ pantheios_be_syslog_parseArgs(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

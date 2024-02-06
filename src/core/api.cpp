@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     16th June 2020
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -200,12 +200,12 @@ namespace
     ,   size_t          n
     )
     {
-    # pragma warning(push)
-    # pragma warning(disable : 4996)
+# pragma warning(push)
+# pragma warning(disable : 4996)
 
         return ::wcstombs(s1, s2, n);
 
-    # pragma warning(pop)
+# pragma warning(pop)
     }
 } /* anonymous namespace */
 
@@ -571,7 +571,7 @@ namespace
     // If this is NULL, then the front-end indicated has its dynamic nature
     // by returning NULL for the first call of
     // pantheios_fe_getProcessIdentity(), and will be called each time
-    // process identity is required; otherwise, it's (assumed to be) a 
+    // process identity is required; otherwise, it's (assumed to be) a
     // "classic" front-end, and the value has been cached by this
     // variable.
     pantheios_char_t*                           s_internalProcessIdentity   =   NULL;
@@ -1853,3 +1853,4 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_remove(int backEndId)
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

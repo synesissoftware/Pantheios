@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.component.inserters.threadId project.
  *
  * Created:     17th October 2006
- * Updated:     2nd January 2021
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2006-2021, Synesis Software, Synesis Information Systems
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -164,3 +155,4 @@ static pantheios::sint64_t pan_get_tid_()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

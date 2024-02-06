@@ -4,16 +4,7 @@
  * Purpose:     Implicit link file for the test.unit.util.snprintf project.
  *
  * Created:     19th June 2020
- * Updated:     19th June 2020
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2020, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th December 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -5,11 +5,12 @@
  *              class.
  *
  * Created:     12th March 2010
- * Updated:     29th June 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_EDIT       3
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_EDIT       4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,3 +109,4 @@ typedef pointer p;
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_P */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

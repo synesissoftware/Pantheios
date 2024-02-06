@@ -10,7 +10,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     31st August 2006
- * Updated:     27th January 2017
+ * Updated:     16th December 2023
  *
  * www:         http://www.pantheios.org/
  *
@@ -423,3 +423,4 @@ static void log_with_inserter_class(Person const& person)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

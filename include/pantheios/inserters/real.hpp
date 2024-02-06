@@ -4,11 +4,11 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     16th June 2020
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_MINOR       3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_REVISION    7
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_EDIT        31
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_EDIT        32
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -314,3 +314,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_REAL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

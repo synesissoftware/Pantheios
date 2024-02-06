@@ -4,11 +4,11 @@
  * Purpose:     Implementation of pantheios::util::backends::Context.
  *
  * Created:     18th December 2006
- * Updated:     16th June 2020
+ * Updated:     17th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -157,7 +157,7 @@ inline int check_severity_mask_(int severityMask)
             }
             else
             {
-                m_slice0 = pan_slice_t(-1, PANTHEIOS_LITERAL_STRING(" [") + 1);
+                m_slice0 = pan_slice_t(-1, &PANTHEIOS_LITERAL_STRING(" [")[1]);
             }
 
             if(0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID))
@@ -504,3 +504,4 @@ int Context::getBackEndId() const
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

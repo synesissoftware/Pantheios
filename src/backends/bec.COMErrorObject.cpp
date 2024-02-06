@@ -4,11 +4,12 @@
  * Purpose:     Implementation for the COMErrorObject back-end
  *
  * Created:     9th April 2006
- * Updated:     8th December 2016
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2016, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -444,3 +445,4 @@ void ErrorObject_Context::operator delete(void* pv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,18 +4,9 @@
  * Purpose:     Implementation file for the test.scratch.be.N.with.custom.fe project.
  *
  * Created:     23rd December 2010
- * Updated:     27th January 2017
+ * Updated:     16th January 2023
  *
  * Thanks:      To wassime, for submitting the original program definition.
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -134,14 +125,14 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(void*, int severity, int beid)
     {
         // Must handle PANTHEIOS_BEID_ALL, as that's the Application Layer's
         // (initial) enquiry as to whether anything should be logged at all
-        case    PANTHEIOS_BEID_ALL: 
+        case    PANTHEIOS_BEID_ALL:
 #if 0
             // The inefficient way to do this is to just 'return true'
             return true;
 #else /* ? 0 */
             // The efficient (but complicated) way to do this is to see if
             // *any* back-end wants output, in which case we say yes
-            return  severity <= iCeilingMain || 
+            return  severity <= iCeilingMain ||
                     severity <= iCeilingConsole ||
                     severity <= iCeilingError;
 #endif /* 0 */
@@ -164,3 +155,4 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(void*, int severity, int beid)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

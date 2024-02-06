@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
  * Created:     17th July 2006
- * Updated:     16th January 2021
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -294,9 +294,9 @@ namespace
     /// @{
     private:
         int     write_output(HANDLE hStream, PAN_CHAR_T const* entry, int cchEntry);
-    #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         HANDLE  lookupConsoleMx(HANDLE hBuffer);
-    #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         void    lookupSeverityCharacteristics(int severity, HANDLE &hOutput, WORD &attributes) const;
         WORD    lookupConsoleCharacteristics();
         void    write_reset(HANDLE hOutput);
@@ -880,3 +880,4 @@ WindowsConsole_Context::write_reset(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

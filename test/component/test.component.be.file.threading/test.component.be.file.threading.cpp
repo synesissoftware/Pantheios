@@ -4,16 +4,7 @@
  * Purpose:     Implementation file for the test.component.be.file.threading project.
  *
  * Created:     3rd July 2009
- * Updated:     27th January 2017
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2009-2017, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Updated:     16th January 2023
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -318,7 +309,7 @@ static int main_(int /*argc*/, char** /*argv*/)
 
         string_view_t               scratch1;
         string_view_t               scratch2;
-                                    
+
         string_view_t               prefix;
         string_view_t               left;
         string_view_t               middle;
@@ -484,3 +475,4 @@ extern "C" void syslog(char const* s)
 #endif
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
