@@ -70,6 +70,7 @@ if (WIN32)
     add_subdirectory(bec.speech.WithCallback)
 endif (WIN32)
 add_subdirectory(bec.stock)
+add_subdirectory(bec.stock.WithCallback)
 if (UNIX)
 
     add_subdirectory(bec.syslog)
