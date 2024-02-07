@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.threadId/test.component.inserters.threadId.cpp
+ * File:    test/component/test.component.inserters.threadId/test.component.inserters.threadId.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.threadId project.
+ * Purpose: Implementation file for the test.component.inserters.threadId project.
  *
- * Created:     17th October 2006
- * Updated:     16th December 2023
+ * Created: 17th October 2006
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -122,7 +122,7 @@ static void test_1_01()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(2 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(2, results.size());
     XTESTS_TEST_STRING_EQUAL(tid, results[0].statement);
     XTESTS_TEST_STRING_EQUAL(stmt, results[1].statement);
 }

@@ -1,0 +1,25 @@
+
+set(BE_TEST_SRC_DIR ../../../src/backends/be)
+
+file(GLOB BE_TEST_SRCS
+    ${BE_TEST_SRC_DIR}/be.test.c
+)
+
+add_library(Pantheios.be.test
+    ${BE_TEST_SRCS}
+)
+
+target_compile_options(Pantheios.be.test PRIVATE
+    $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+        -Werror -Wall -Wextra -pedantic
+    >
+    $<$<CXX_COMPILER_ID:MSVC>:
+        /WX /W4
+    >
+)
+
+install(TARGETS Pantheios.be.test)
+
+
+# ############################## end of file ############################# #
+

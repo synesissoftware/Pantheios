@@ -64,7 +64,7 @@ Details:
 
    The Pantheios architecture is split into four parts:
     - Application Layer - you use this to create diagnostic logging
-	   statements in your application code
+      statements in your application code
     - Core - this is what ties it all together. Apart from initialising the
        core (which happens automatically in C++ compilation units), you
        don't need to do anything with the core

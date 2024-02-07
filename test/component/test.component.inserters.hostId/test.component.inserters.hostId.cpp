@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.hostId/test.component.inserters.hostId.cpp
+ * File:    test/component/test.component.inserters.hostId/test.component.inserters.hostId.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.hostId project.
+ * Purpose: Implementation file for the test.component.inserters.hostId project.
  *
- * Created:     14th April 2008
- * Updated:     16th December 2023
+ * Created: 14th April 2008
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -128,7 +128,7 @@ static void test_1_01()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(2 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(2, results.size());
     XTESTS_TEST_STRING_EQUAL(hid, results[0].statement);
     XTESTS_TEST_STRING_EQUAL(stmt, results[1].statement);
 }

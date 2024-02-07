@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.core.pantheios_logputs/test.component.core.pantheios_logputs.cpp
+ * File:    test/component/test.component.core.pantheios_logputs/test.component.core.pantheios_logputs.cpp
  *
- * Purpose:     Implementation file for the test.component.core.pantheios_logputs project.
+ * Purpose: Implementation file for the test.component.core.pantheios_logputs project.
  *
- * Created:     19th November 2008
- * Updated:     16th December 2023
+ * Created: 19th November 2008
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -138,7 +138,7 @@ static void test_1_01()
 
         if(!results.empty()) // Do test here, so will work with any back-end
         {
-            XTESTS_TEST(1 == results.size());
+            XTESTS_TEST_INTEGER_EQUAL(1, results.size());
             PANTHEIOS_SEV_LEVELS_EQUAL(severity, results[0].severity);
             XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
         }
@@ -162,7 +162,7 @@ static void test_1_02()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_ERROR | (1 << 4), results[0].severity);
     XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
 }
@@ -184,7 +184,7 @@ static void test_1_03()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_ERROR | (0x01234567 << 4), results[0].severity);
     XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
 }
@@ -214,7 +214,7 @@ static void test_1_04()
 
         if(!results.empty()) // Do test here, so will work with any back-end
         {
-            XTESTS_TEST(4 == results.size());
+            XTESTS_TEST_INTEGER_EQUAL(4, results.size());
 
             PANTHEIOS_SEV_LEVELS_EQUAL(severity, results[0].severity);
             XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);

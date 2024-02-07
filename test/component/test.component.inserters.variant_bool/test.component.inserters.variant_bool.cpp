@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.variant_bool/test.component.inserters.variant_bool.cpp
+ * File:    test/component/test.component.inserters.variant_bool/test.component.inserters.variant_bool.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.variant_bool project.
+ * Purpose: Implementation file for the test.component.inserters.variant_bool project.
  *
- * Created:     18th June 2012
- * Updated:     16th December 2023
+ * Created: 18th June 2012
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

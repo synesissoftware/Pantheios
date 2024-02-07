@@ -102,7 +102,7 @@ namespace
 
 static void test_type_exists()
 {
-	typeid(pantheios::stream_character);
+	STLSOFT_SUPPRESS_UNUSED(typeid(pantheios::stream_character));
 
 	XTESTS_TEST_PASSED();
 }

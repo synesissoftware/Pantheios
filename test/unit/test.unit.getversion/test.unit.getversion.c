@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.getversion/test.unit.getversion.c
+ * File:    test/unit/test.unit.getversion/test.unit.getversion.c
  *
- * Purpose:     Implementation file for the test.unit.getversion project.
+ * Purpose: Implementation file for the test.unit.getversion project.
  *
- * Created:     28th August 2008
- * Updated:     16th December 2023
+ * Created: 28th August 2008
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,6 +28,7 @@
 /* Standard C header files */
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -38,6 +39,7 @@ static void test_version(void);
 static void test_major(void);
 static void test_minor(void);
 static void test_revision(void);
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -66,6 +68,7 @@ int main(int argc, char **argv)
 
     return retCode;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
@@ -112,6 +115,7 @@ static void test_revision()
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER_REVISION, verRevision);
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

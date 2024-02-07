@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.b64/test.component.inserters.b64.cpp
+ * File:    test/component/test.component.inserters.b64/test.component.inserters.b64.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.b64 project.
+ * Purpose: Implementation file for the test.component.inserters.b64 project.
  *
- * Created:     31st July 2006
- * Updated:     16th December 2023
+ * Created: 31st July 2006
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
