@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.N.with.custom.fe/test.scratch.be.N.with.custom.fe.cpp
+ * File:    test/scratch/test.scratch.be.N.with.custom.fe/test.scratch.be.N.with.custom.fe.cpp
  *
- * Purpose:     Implementation file for the test.scratch.be.N.with.custom.fe project.
+ * Purpose: Implementation file for the test.scratch.be.N.with.custom.fe project.
  *
- * Created:     23rd December 2010
- * Updated:     16th January 2023
+ * Created: 23rd December 2010
+ * Updated: 7th February 2024
  *
- * Thanks:      To wassime, for submitting the original program definition.
+ * Thanks:  To wassime, for submitting the original program definition.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -121,7 +121,7 @@ PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(void*)
 
 PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(void*, int severity, int beid)
 {
-    switch(beid)
+    switch (beid)
     {
         // Must handle PANTHEIOS_BEID_ALL, as that's the Application Layer's
         // (initial) enquiry as to whether anything should be logged at all
@@ -153,6 +153,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(void*, int severity, int beid)
             return false;
     }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

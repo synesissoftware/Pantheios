@@ -1,28 +1,27 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.file.cpp
+ * File:    src/backends/bec.file.cpp
  *
- * Purpose:     Implementation for the file back-end.
+ * Purpose: Implementation for the file back-end.
  *
- * Created:     25th November 2006
- * Updated:     16th January 2023
+ * Created: 25th November 2006
+ * Updated: 7th February 2024
  *
- * Thanks to:   CookieRaver for filling in the (accidental) blanks in the
- *              UNIX implementation.
+ * Thanks:  CookieRaver for filling in the (accidental) blanks in the UNIX
+ *          implementation.
  *
- *              S2027 for spotting the exclusivity, and providing the fix.
+ *          S2027 for spotting the exclusivity, and providing the fix.
  *
- *              sjdc (Daniel) for \r\n on Windows, and highlighting further
- *              problems with synchronisation.
+ *          sjdc (Daniel) for \r\n on Windows, and highlighting further
+ *          problems with synchronisation.
  *
- *              Jonathan Wakely for detecting Solaris compilation bugs &
- *              fixes.
+ *          Jonathan Wakely for detecting Solaris compilation bugs & fixes.
  *
- *              Skoobie Du for spotting the failure to add 1900/1 to
- *              year/mon in date/time format specifiers in file name.
+ *          Skoobie Du for spotting the failure to add 1900/1 to year/mon in
+ *          date/time format specifiers in file name.
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -196,6 +195,7 @@
 # include <crtdbg.h>
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
@@ -211,6 +211,7 @@
 # define pan_strstr_                ::strstr
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -255,6 +256,7 @@ namespace
     typedef platformstl::filesystem_traits<PAN_CHAR_T>  traits_t;
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -405,6 +407,7 @@ private:
     entries_type m_entries;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -416,6 +419,7 @@ private:
 #else /* ? OS */
 # error Operating system not discriminated
 #endif /* OS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -540,6 +544,7 @@ namespace
     }
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -1380,7 +1385,7 @@ int be_file_Context::Open(
         );
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-        switch(::GetLastError())
+        switch (::GetLastError())
         {
             default:
             case    ERROR_TOO_MANY_OPEN_FILES:
@@ -1396,7 +1401,7 @@ int be_file_Context::Open(
 #else /* ? OS */
         // TODO: sort out this errno translation
 # if 0
-        switch(errno)
+        switch (errno)
         {
             default:
         }
@@ -1618,6 +1623,7 @@ int be_file_Context::OutputBytes(
     return int(numWritten);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * be_file_ContextMap
  */
@@ -1788,6 +1794,7 @@ void be_file_ContextMap::Remove(int backEndId)
 {
     m_entries.erase(backEndId);
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

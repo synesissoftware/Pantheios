@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.file.rolling/test.scratch.be.file.rolling.cpp
+ * File:    test/scratch/test.scratch.be.file.rolling/test.scratch.be.file.rolling.cpp
  *
- * Purpose:     Implementation file for the test.scratch.be.file.rolling project.
+ * Purpose: Implementation file for the test.scratch.be.file.rolling project.
  *
- * Created:     24th October 2007
- * Updated:     16th December 2023
+ * Created: 24th October 2007
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,13 +36,13 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
 
-//static const char FILENAME_REMOTE[]   =   "rolling-log.test.remote";
-
 static const int ENTRY_QUANTUM = 10;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * function implementations
@@ -50,7 +50,7 @@ static const int ENTRY_QUANTUM = 10;
 
 PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(int backEndId, pan_be_file_init_t* init) /* throw() */
 {
-    switch(backEndId)
+    switch (backEndId)
     {
         case    PANTHEIOS_BEID_REMOTE:
             init->roll.entryCount = ENTRY_QUANTUM;
@@ -60,11 +60,13 @@ PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(int backEndId, pan_be_file_ini
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.file.rolling");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -74,11 +76,13 @@ typedef platformstl::filesystem_traits<char>    fs_traits_t;
 typedef platformstl::basic_path<char>           path_t;
 typedef platformstl::file_lines                 file_lines_t;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
 static void test_ROLL_ON_ENTRIES();
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -138,6 +142,7 @@ static void test_ROLL_ON_ENTRIES()
     }}
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 int main(int argc, char** argv)
@@ -178,6 +183,7 @@ int main(int argc, char** argv)
 
     return res;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

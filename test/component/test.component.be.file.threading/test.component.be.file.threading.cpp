@@ -67,9 +67,11 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
@@ -84,6 +86,7 @@
 # define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -108,6 +111,7 @@ const size_t    SET_PATH_DELAY      =   1000 * 1000 * 10;
 
 PAN_CHAR_T const LOG_FILE_NAME[]    =   PSTR("test.component.be.file.threading.log");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -121,6 +125,7 @@ static int              s_activeThreads =   0;
 static int              s_showNotices   =   true;
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PSTR("test.component.be.file.threading");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -144,6 +149,7 @@ typedef platformstl::filesystem_traits<PAN_CHAR_T>  fs_traits_t;
 typedef platformstl::basic_file_lines<PAN_CHAR_T>   lines_t;
 typedef stlsoft::basic_string_view<PAN_CHAR_T>          string_view_t;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -161,6 +167,7 @@ static DWORD WINAPI thread_proc(void*);
 # error Operating system not discriminated
 
 #endif /* OS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Pantheios configuration
@@ -196,6 +203,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 };
 
 } // extern "C"
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -380,7 +388,7 @@ int main(int argc, char** argv)
                 verbosity = 0;
             }
 
-            switch(verbosity)
+            switch (verbosity)
             {
                 case    0:
                 case    1:
@@ -427,6 +435,7 @@ int main(int argc, char** argv)
     return EXIT_FAILURE;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
@@ -462,6 +471,7 @@ static DWORD WINAPI thread_proc(void*)
     return 0;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
@@ -473,6 +483,7 @@ extern "C" void syslog(char const* s)
     OutputDebugStringA(s);
 }
 #endif
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

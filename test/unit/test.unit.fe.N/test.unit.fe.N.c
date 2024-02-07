@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.fe.N/test.unit.fe.N.c
+ * File:    test/unit/test.unit.fe.N/test.unit.fe.N.c
  *
- * Purpose:     Implementation file for the test.unit.fe.N project.
+ * Purpose: Implementation file for the test.unit.fe.N project.
  *
- * Created:     24th August 2008
- * Updated:     16th December 2023
+ * Created: 24th August 2008
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -282,7 +282,7 @@ static void test_array_with_one_specific_id()
 
             { int id; for(id = 1; id != 1000000; ++id)
             {
-                switch(id)
+                switch (id)
                 {
                     case    BACKEND_0_ID:
                         XTESTS_TEST_INTEGER_EQUAL(severityLevelResults_for_0[i], pantheios_fe_isSeverityLogged(token, s_severityLevels[i], id));
@@ -385,7 +385,7 @@ static void test_array_with_three_specific_ids()
 
             { int id; for(id = 1; id != 1000000; ++id)
             {
-                switch(id)
+                switch (id)
                 {
                     case    BACKEND_0_ID:
                         XTESTS_TEST_INTEGER_EQUAL(severityLevelResults_for_0[i], pantheios_fe_isSeverityLogged(token, s_severityLevels[i], id));

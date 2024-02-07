@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.WindowsSyslog.cpp
+ * File:    src/backends/bec.WindowsSyslog.cpp
  *
- * Purpose:     Implementation of the Pantheios Windows-SysLog Stock
- *              Back-end API.
+ * Purpose: Implementation of the Pantheios Windows-SysLog Stock Back-end
+ *          API.
  *
- * Created:     23rd September 2005
- * Updated:     16th December 2023
+ * Created: 23rd September 2005
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -73,6 +73,7 @@
 /* Windows header files */
 #include <winsock2.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
  */
@@ -81,6 +82,7 @@
         _MSC_VER < 1200)
 # define _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -116,6 +118,7 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -138,6 +141,7 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -154,6 +158,7 @@ pan_atoi_(
     return ::atoi(s);
 #endif
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -350,7 +355,7 @@ pantheios_be_WindowsSyslog_init_a_(
         }
         else
         {
-            switch(init->addrSize)
+            switch (init->addrSize)
             {
                 case    16:
                 default:
@@ -717,7 +722,7 @@ pan_make_hostIdentity_(void)
     PAN_CHAR_T  szHostName[1 + MAX_COMPUTERNAME_LENGTH];
     size_t      cch = pantheios_getHostName(&szHostName[0], STLSOFT_NUM_ELEMENTS(szHostName));
 
-    switch(cch)
+    switch (cch)
     {
         case    0:
         case    STLSOFT_NUM_ELEMENTS(szHostName):
@@ -760,6 +765,7 @@ pri_print_(
 
     return r;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
