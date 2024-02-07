@@ -1,13 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/performance/test.performance.inserters.w2m/test.performance.inserters.w2m.cpp
+ * File:    test/performance/test.performance.inserters.w2m/test.performance.inserters.w2m.cpp
  *
- * Purpose:     Implementation file for the test.performance.inserters.w2m project.
+ * Purpose: Implementation file for the test.performance.inserters.w2m project.
  *
- * Created:     2nd September 2008
- * Updated:     16th December 2023
+ * Created: 2nd September 2008
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
-
 
 
 /* Pantheios header files */
@@ -121,6 +120,7 @@ static int main_(int argc, char** argv)
         }
     }
 
+
     // Small (convert)
 
     { for(int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
@@ -155,7 +155,8 @@ static int main_(int argc, char** argv)
         tm_insrt_small = counter.get_microseconds();
     }}
 
-    fprintf(stderr, "small: winstl:pantheios: %2.4g\n", (double)tm_cvrt_small/(double)tm_insrt_small);
+    fprintf(stderr, "small: winstl : pantheios:\t% 9.04f\n", (double)tm_cvrt_small/(double)tm_insrt_small);
+
 
     // Large (inserter)
 
@@ -200,7 +201,7 @@ static int main_(int argc, char** argv)
         fprintf(stderr, "small lengths don't match!\n");
     }
 
-    fprintf(stderr, "large: winstl:pantheios: %2.4g\n", (double)tm_cvrt_large/(double)tm_insrt_large);
+    fprintf(stderr, "large: winstl : pantheios:\t% 9.04f\n", (double)tm_cvrt_large/(double)tm_insrt_large);
 
 #else /* ? !PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -208,6 +209,7 @@ static int main_(int argc, char** argv)
     STLSOFT_SUPPRESS_UNUSED(argv);
 
 #endif /* !PANTHEIOS_USE_WIDE_STRINGS */
+
 
     return EXIT_SUCCESS;
 }

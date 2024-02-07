@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/example.c.N/example.c.N.c
+ * File:    examples/c/example.c.N/example.c.N.c
  *
- * Purpose:     C example program for Pantheios. Demonstrates:
+ * Purpose: C example program for Pantheios. Demonstrates:
  *
- *                - use of be.N back-end library that multiplexes output to
- *                  various concrete back-ends
- *                - use of fe.N front-end library, that arbitrates output
- *                  for be.N
+ *            - use of be.N back-end library that multiplexes output to
+ *              various concrete back-ends
+ *            - use of fe.N front-end library, that arbitrates output
+ *              for be.N
  *
- * Created:     5th December 2006
- * Updated:     16th December 2023
+ * Created: 5th December 2006
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,6 +35,7 @@
 /* Standard C header files */
 #include <stdlib.h>                                 /* for exit codes */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -45,10 +46,10 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[]      =   PANTHEIOS_LITERAL_STRI
 
 pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[]  =
 {
-    { 1,  PANTHEIOS_SEV_NOTICE    } /* Filters out everything below 'notice' */
-  , { 2,  PANTHEIOS_SEV_DEBUG     } /* Allows all severities */
-  , { 3,  PANTHEIOS_SEV_ERROR     } /* Allows only 'error', 'critical', 'alert', 'emergency' */
-  , { 0,  PANTHEIOS_SEV_NOTICE    } /* Terminates the array; sets the default ceiling to 'notice' */
+    PANTHEIOS_FE_N_ENTRY2(1,    PANTHEIOS_SEV_NOTICE)   /* Filters out everything below 'notice' */
+  , PANTHEIOS_FE_N_ENTRY2(2,    PANTHEIOS_SEV_DEBUG)    /* Allows all severities */
+  , PANTHEIOS_FE_N_ENTRY2(3,    PANTHEIOS_SEV_ERROR)    /* Allows only 'error', 'critical', 'alert', 'emergency' */
+  , PANTHEIOS_FE_N_ENTRY2(0,    PANTHEIOS_SEV_NOTICE)   /* Terminates the array; sets the default ceiling to 'notice' */
 };
 
 pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
@@ -64,6 +65,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
   , PANTHEIOS_BE_N_STDFORM_ENTRY(5, pantheios_be_file, 0)
   , PANTHEIOS_BE_N_TERMINATOR_ENTRY
 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -104,6 +106,7 @@ int main()
     return EXIT_SUCCESS;
   }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.be.file.threading/test.component.be.file.threading.cpp
+ * File:    test/component/test.component.be.file.threading/test.component.be.file.threading.cpp
  *
- * Purpose:     Implementation file for the test.component.be.file.threading project.
+ * Purpose: Implementation file for the test.component.be.file.threading project.
  *
- * Created:     3rd July 2009
- * Updated:     16th January 2023
+ * Created: 3rd July 2009
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -178,11 +178,11 @@ extern "C"
 pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
 {
 #ifdef _DEBUG
-    { beid_console, PANTHEIOS_SEV_NOTICE },
+    PANTHEIOS_FE_N_ENTRY2(beid_console, PANTHEIOS_SEV_NOTICE),
 #else /* ? _DEBUG */
-    { beid_console, PANTHEIOS_SEV_NOTICE },
+    PANTHEIOS_FE_N_ENTRY2(beid_console, PANTHEIOS_SEV_NOTICE),
 #endif /* _DEBUG */
-    { beid_file, PANTHEIOS_SEV_INFORMATIONAL },
+    PANTHEIOS_FE_N_ENTRY2(beid_file,    PANTHEIOS_SEV_INFORMATIONAL),
 
     PANTHEIOS_FE_N_TERMINATOR_ENTRY(PANTHEIOS_SEV_INFORMATIONAL)
 };

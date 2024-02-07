@@ -1,12 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.tstring/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.scratch.tstring project.
- *
- * Created:     23rd February 2010
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
 
 /* Pantheios header files */
 #include <platformstl/platformstl.h>
@@ -22,6 +13,7 @@
 # include <unixem/implicit_link.h>
 #endif /* operating system */
 #endif /* 0 */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

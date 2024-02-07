@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/backends/example.cpp.backends.callback/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the example.cpp.backends.callback project.
- *
- * Created:     21st October 2008
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <pantheios/implicit_link/core.h>
@@ -27,6 +17,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif /* _WIN32 || _WIN64 */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

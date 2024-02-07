@@ -27,10 +27,6 @@ target_compile_options(Pantheios.core PRIVATE
         -Werror -Wall -Wextra -pedantic
 
         -Wno-deprecated-copy-with-user-provided-copy
-        #-Wno-missing-braces
-        #-Wno-missing-field-initializers
-        #-Wno-unused-parameter
-        #-Wno-unused-value
     >
     $<$<CXX_COMPILER_ID:MSVC>:
         /WX /W4
@@ -39,4 +35,6 @@ target_compile_options(Pantheios.core PRIVATE
 
 install(TARGETS Pantheios.core)
 
+
+# ############################## end of file ############################# #
 

@@ -26,8 +26,13 @@ add_subdirectory(test.unit.fe.fail)
 add_subdirectory(test.unit.fe.null)
 add_subdirectory(test.unit.fe.simple)
 add_subdirectory(test.unit.getversion)
-add_subdirectory(test.unit.inserters.windows.sc)
+if (WIN32)
+
+    add_subdirectory(test.unit.inserters.windows.sc)
+endif (WIN32)
+#[====[
 add_subdirectory(test.unit.levels.2)
+#]====]
 add_subdirectory(test.unit.levels.dynamic_initialisation)
 add_subdirectory(test.unit.levels.values)
 add_subdirectory(test.unit.util.date_elements_to_string)

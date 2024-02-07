@@ -26,7 +26,6 @@ target_compile_options(test.component.be.file.threading PRIVATE
     $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
         -Werror -Wall -Wextra -pedantic
 
-        -Wno-missing-field-initializers
         -Wno-null-pointer-arithmetic
     >
     $<$<CXX_COMPILER_ID:MSVC>:

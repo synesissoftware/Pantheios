@@ -12,11 +12,6 @@ add_library(Pantheios.be.fprintf
 target_compile_options(Pantheios.be.fprintf PRIVATE
     $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
         -Werror -Wall -Wextra -pedantic
-
-        #-Wno-missing-braces
-        #-Wno-missing-field-initializers
-        #-Wno-unused-parameter
-        #-Wno-unused-value
     >
     $<$<CXX_COMPILER_ID:MSVC>:
         /WX /W4

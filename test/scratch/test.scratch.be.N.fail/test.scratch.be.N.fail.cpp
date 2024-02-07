@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.N.fail/test.scratch.be.N.fail.cpp
+ * File:    test/scratch/test.scratch.be.N.fail/test.scratch.be.N.fail.cpp
  *
- * Purpose:     Implementation file for the be.N.fail.test project.
+ * Purpose: Implementation file for the be.N.fail.test project.
  *
- * Created:     9th January 2007
- * Updated:     16th December 2023
+ * Created: 9th January 2007
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,9 +39,11 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -53,7 +55,7 @@ extern "C"
 PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]      =   PANTHEIOS_LITERAL_STRING("be.N.fail.test");
 pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[]   =
 {
-    {   0,  PANTHEIOS_SEV_DEBUG  }
+    PANTHEIOS_FE_N_ENTRY2(0,  PANTHEIOS_SEV_DEBUG)
 };
 pan_be_N_t      PAN_BE_N_BACKEND_LIST[]         =
 {
@@ -65,6 +67,7 @@ pan_be_N_t      PAN_BE_N_BACKEND_LIST[]         =
 };
 
 } // extern "C"
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -119,6 +122,7 @@ int main(int argc, char *argv[])
 
     return res;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

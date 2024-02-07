@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.implicit_link/test.scratch.implicit_link.cpp
+ * File:    test/scratch/test.scratch.implicit_link/test.scratch.implicit_link.cpp
  *
- * Purpose:     Implicit link file for the test.scratch.implicit_link project.
+ * Purpose: Implicit link file for the test.scratch.implicit_link project.
  *
- * Created:     18th July 2007
- * Updated:     16th December 2023
+ * Created: 18th July 2007
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -17,12 +17,10 @@
 #include <pantheios/implicit_link/fe.simple.h>
 
 #include <pantheios/implicit_link/be.fprintf.h>
-//#include <pantheios/implicit_link/be.WindowsDebugger.h>
 
-//#include <pantheios/implicit_link/be.lrsplit.h>
-//#include <pantheios/implicit_link/bel.fprintf.h>
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.implicit_link");
+
 
 int main()
 {
@@ -32,6 +30,7 @@ int main()
 
     return 0;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

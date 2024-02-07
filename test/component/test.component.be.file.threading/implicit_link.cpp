@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.be.file.threading/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.component.be.file.threading project.
- *
- * Created:     3rd July 2009
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <platformstl/platformstl.h>
@@ -23,6 +13,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif /* operating system */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

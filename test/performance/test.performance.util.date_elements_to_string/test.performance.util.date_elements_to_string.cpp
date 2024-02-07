@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/performance/test.performance.util.date_elements_to_string/test.performance.util.date_elements_to_string.cpp
+ * File:    test/performance/test.performance.util.date_elements_to_string/test.performance.util.date_elements_to_string.cpp
  *
- * Purpose:     Implementation file for the test.performance.util.date_elements_to_string project.
+ * Purpose: Implementation file for the test.performance.util.date_elements_to_string project.
  *
- * Created:     13th November 2016
- * Updated:     16th December 2023
+ * Created: 13th November 2016
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,6 +34,7 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -46,15 +47,18 @@ const int       ITERATIONS  =   1000000;
 const int       NUM_WARMUPS =   2;
 #endif /* _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEIOS_LITERAL_STRING("test.performance.util.date_elements_to_string");
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
@@ -70,6 +74,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEI
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -77,6 +82,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEI
 #if 0
 typedef std::string     string_t;
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -118,6 +124,7 @@ struct tm
 iteration_to_tm_(
     int iteration
 );
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -232,30 +239,32 @@ static int main_(int /* argc */, char** /* argv */)
     }}
 #endif
 
-    fprintf(stdout, "with date elements:\t%luus\n", static_cast<unsigned long>(tm_date_elements));
-
-    fprintf(stdout, "with sprintf:      \t%luus\n", static_cast<unsigned long>(tm_sprintf));
-
-    fprintf(stdout, "with strftime:     \t%luus\n", static_cast<unsigned long>(tm_strftime));
-
+    fprintf(stdout, "with strftime:     \t%9luus\n", static_cast<unsigned long>(tm_strftime));
+    fprintf(stdout, "with sprintf:      \t%9luus\n", static_cast<unsigned long>(tm_sprintf));
 #ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
-
-    fprintf(stdout, "with fast_strftime:\t%luus\n", static_cast<unsigned long>(tm_fast_strftime));
+    fprintf(stdout, "with fast_strftime:\t%9.luus\n", static_cast<unsigned long>(tm_fast_strftime));
 #endif
-
+    fprintf(stdout, "with date elements:\t%9luus\n", static_cast<unsigned long>(tm_date_elements));
 
     fprintf(stdout, "\n");
-    fprintf(stdout, "date elements : sprintf:      \t%2.4g\n", (double)tm_date_elements/(double)tm_sprintf);
-    fprintf(stdout, "date elements : strftime:     \t%2.4g\n", (double)tm_date_elements/(double)tm_strftime);
-#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-    fprintf(stdout, "date elements : fast_strftime:\t%2.4g\n", (double)tm_date_elements/(double)tm_fast_strftime);
+    fprintf(stdout, "     strftime : sprintf:      \t% 9.04f\n", (double)tm_strftime/(double)tm_sprintf);
+    fprintf(stdout, "     strftime : date elements:\t% 9.04f\n", (double)tm_strftime/(double)tm_date_elements);
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+    fprintf(stdout, "     strftime : fast_strftime:\t% 9.04f\n", (double)tm_strftime/(double)tm_fast_strftime);
 #endif
-    fprintf(stdout, "      sprintf : strftime:     \t%2.4g\n", (double)tm_sprintf/(double)tm_strftime);
-#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-    fprintf(stdout, "      sprintf : fast_strftime:\t%2.4g\n", (double)tm_sprintf/(double)tm_fast_strftime);
-    fprintf(stdout, "     strftime : fast_strftime:\t%2.4g\n", (double)tm_strftime/(double)tm_fast_strftime);
+    fprintf(stdout, "\n");
+
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+    fprintf(stdout, "      sprintf : fast_strftime:\t% 9.04f\n", (double)tm_sprintf/(double)tm_fast_strftime);
+#endif
+    fprintf(stdout, "      sprintf : date elements:\t% 9.04f\n", (double)tm_sprintf/(double)tm_date_elements);
+
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+    fprintf(stdout, "\n");
+
+    fprintf(stdout, "fast_strftime : date elements:\t% 9.04f\n", (double)tm_fast_strftime/(double)tm_date_elements);
 #endif
 
     return EXIT_SUCCESS;
@@ -309,8 +318,9 @@ int main(int argc, char** argv)
     return res;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * forward declarations
+ * function implementations
  */
 
 static
@@ -454,6 +464,7 @@ iteration_to_tm_(
 
     return tm;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

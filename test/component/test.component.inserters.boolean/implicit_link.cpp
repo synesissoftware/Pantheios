@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.boolean/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.component.inserters.boolean project.
- *
- * Created:     21st October 2008
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <pantheios/implicit_link/core.h>
@@ -22,6 +12,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif /* PLATFORMSTL_OS_IS_UNIX && _WIN32 */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
