@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/frontends/fe.WindowsRegistry.cpp
+ * File:    src/frontends/fe.WindowsRegistry.cpp
  *
- * Purpose:     Implementation of the fe.WindowsRegistry front-end.
+ * Purpose: Implementation of the fe.WindowsRegistry front-end.
  *
- * Created:     28th October 2007
- * Updated:     16th January 2023
+ * Created: 28th October 2007
+ * Updated: 13th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -89,6 +89,16 @@ namespace
 #endif /* _DEBUG */
 
 } /* anonymous namespace */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if _STLSOFT_VER >= 0x010b0000
+# define windows_exception                                  winstl_exception
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers

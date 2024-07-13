@@ -20,6 +20,11 @@ target_link_libraries(test.scratch.util.onbailout
 		Pantheios.bec.null
 )
 
+target_link_libraries(test.scratch.util.onbailout
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(test.scratch.util.onbailout PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

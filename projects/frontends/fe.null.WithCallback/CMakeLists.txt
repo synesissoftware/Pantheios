@@ -9,6 +9,11 @@ add_library(Pantheios.fe.null.WithCallback
 	${FE_NULL_WC_SRCS}
 )
 
+target_link_libraries(Pantheios.fe.null.WithCallback
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(Pantheios.fe.null.WithCallback PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

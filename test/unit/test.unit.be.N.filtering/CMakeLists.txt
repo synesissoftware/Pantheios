@@ -20,6 +20,7 @@ target_link_libraries(test.unit.be.N.filtering
 
 target_link_libraries(test.unit.be.N.filtering
 	PRIVATE
+		STLSoft::STLSoft
 		xTests::xTests.core
 )
 

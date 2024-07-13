@@ -10,13 +10,17 @@ add_subdirectory(test.component.custom_severity)
 add_subdirectory(test.component.inserters.args)
 #[====[
 #]====]
-add_subdirectory(test.component.inserters.b64)
+if(b64_FOUND)
+
+	add_subdirectory(test.component.inserters.b64)
+endif(b64_FOUND)
 add_subdirectory(test.component.inserters.boolean)
 add_subdirectory(test.component.inserters.hostid)
 add_subdirectory(test.component.inserters.integer)
-#[====[
-add_subdirectory(test.component.inserters.m2w)
-#]====]
+if(PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_subdirectory(test.component.inserters.m2w)
+endif(PANTHEIOS_USE_WIDE_STRINGS)
 add_subdirectory(test.component.inserters.pad)
 add_subdirectory(test.component.inserters.pointer)
 add_subdirectory(test.component.inserters.processid)

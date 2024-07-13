@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.component.core.getProcessIdentity.c
+ * File:    test.component.core.getProcessIdentity.c
  *
- * Purpose:     Implementation file for the test.component.core.getProcessIdentity project.
+ * Purpose: Implementation file for the test.component.core.getProcessIdentity project.
  *
- * Created:     6th August 2012
- * Updated:     16th December 2023
+ * Created: 6th August 2012
+ * Updated: 13th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,6 +14,7 @@
  */
 
 #include <pantheios/pantheios.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -27,6 +28,7 @@
 
 /* Standard C header files */
 #include <stdlib.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -55,7 +57,8 @@ static void test_1_19(void);
 
 static int setup(void*);
 static int teardown(void*);
-static void* param;
+static void* s_param;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -68,7 +71,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.core.getProcessIdentity", verbosity, setup, teardown, param))
+    if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.core.getProcessIdentity", verbosity, setup, teardown, s_param))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -99,6 +102,7 @@ int main(int argc, char **argv)
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Pantheios front-end
  */
@@ -126,12 +130,14 @@ PANTHEIOS_CALL(int) pantheios_fe_init(
 }
 PANTHEIOS_CALL(void) pantheios_fe_uninit(void* token)
 {
-    ++s_numUninits;
-
     STLSOFT_SUPPRESS_UNUSED(token);
+
+    ++s_numUninits;
 }
 PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(void* token)
 {
+    STLSOFT_SUPPRESS_UNUSED(token);
+
     if(1 == ++s_numGPI)
     {
         return s_PI_0;
@@ -156,12 +162,15 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
     return 0;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
 
 static int setup(void* param)
 {
+    STLSOFT_SUPPRESS_UNUSED(param);
+
     s_numInits = 0;
     s_numUninits = 0;
     s_numGPI = 0;
@@ -174,6 +183,8 @@ static int setup(void* param)
 
 static int teardown(void* param)
 {
+    STLSOFT_SUPPRESS_UNUSED(param);
+
 #if 0
     STLSOFT_ASSERT(0 == s_numInits);
     STLSOFT_ASSERT(0 == s_numUninits);
@@ -184,8 +195,6 @@ static int teardown(void* param)
 
     return 0;
 }
-
-//static void* param;
 
 static void test_1_0()
 {

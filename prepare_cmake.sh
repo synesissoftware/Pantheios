@@ -12,6 +12,7 @@ CMakeVerboseMakefile=0
 Configuration=Release
 RunMake=0
 STLSoftDirGiven=
+WideStrings=0
 
 
 # ##########################################################
@@ -43,6 +44,10 @@ while [[ $# -gt 0 ]]; do
 
             shift
             STLSoftDirGiven=$1
+            ;;
+        -w|--wide-strings)
+
+            WideStrings=1
             ;;
         --help)
 
@@ -87,6 +92,10 @@ Flags/options:
         as the variable STLSOFT, and which will override the environment
         variable STLSOFT (if present)
 
+    -w
+    --wide-strings
+        builds for wide-strings. Default is multibyte strings
+
 
     standard flags:
 
@@ -119,12 +128,10 @@ cd $CMakePath
 echo "Executing CMake"
 
 if [ $CMakeExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
-
 if [ $CMakeTestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
-
 if [ $CMakeVerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
-
 if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
+if [ $WideStrings -eq 0 ]; then CMakeWideStringVariable="" ; else CMakeWideStringVariable="-DPANTHEIOS_USE_WIDE_STRINGS:BOOL=ON" ; fi
 
 cmake \
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
@@ -132,6 +139,7 @@ cmake \
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     $CMakeSTLSoftVariable \
+    $CMakeWideStringVariable \
     .. || (cd ->/dev/null ; exit 1)
 
 status=0

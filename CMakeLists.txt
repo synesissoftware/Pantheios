@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  7th February 2024
+# Updated:  13th July 2024
 #
 # ######################################################################## #
 
@@ -71,7 +71,7 @@ set(CMAKE_CXX_EXTENSIONS ON)
 # ##########################################################
 # dependencies
 
-set(STLSoft_REQUIRED_VERSION_ 0.10.8)
+set(STLSoft_REQUIRED_VERSION_ 1.11)
 
 find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 
@@ -93,7 +93,7 @@ if(BUILD_TESTING)
 
 	message("-- CMake package shwild found (version ${shwild_VERSION}; ${shwild_REQUIRED_VERSION_} requested)")
 
-	set(xTests_REQUIRED_VERSION_ 0.21.2)
+	set(xTests_REQUIRED_VERSION_ 0.22)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
@@ -111,7 +111,18 @@ include(GNUInstallDirs)
 
 
 # ##########################################################
-# STLSoft
+# features
+
+if(PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_definitions(-DPANTHEIOS_USE_WIDE_STRINGS)
+	add_definitions(-DUNICODE)
+	add_definitions(-D_UNICODE)
+else(PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_definitions(-DPANTHEIOS_NO_USE_WIDE_STRINGS)
+	add_definitions(-D_MBCS)
+endif(PANTHEIOS_USE_WIDE_STRINGS)
 
 
 # ##########################################################

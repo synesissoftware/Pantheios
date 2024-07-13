@@ -9,6 +9,11 @@ add_library(Pantheios.be.lrsplit
 	${BE_LRSPLIT_SRCS}
 )
 
+target_link_libraries(Pantheios.be.lrsplit
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(Pantheios.be.lrsplit PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

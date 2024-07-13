@@ -9,6 +9,11 @@ add_library(Pantheios.ber.syslog
 	${BER_SYSLOG_SRCS}
 )
 
+target_link_libraries(Pantheios.ber.syslog
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(Pantheios.ber.syslog PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

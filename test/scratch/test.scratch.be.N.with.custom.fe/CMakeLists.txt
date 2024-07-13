@@ -13,7 +13,12 @@ target_link_libraries(test.scratch.be.N.with.custom.fe
 	PRIVATE
 		Pantheios.be.N
 		Pantheios.bec.file
-		Pantheios.bec.fprintf
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+)
+
+target_link_libraries(test.scratch.be.N.with.custom.fe
+	PRIVATE
+		STLSoft::STLSoft
 )
 
 target_compile_options(test.scratch.be.N.with.custom.fe PRIVATE

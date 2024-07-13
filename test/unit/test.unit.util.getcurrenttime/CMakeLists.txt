@@ -10,6 +10,7 @@ target_link_libraries(test.unit.util.getcurrenttime
 
 target_link_libraries(test.unit.util.getcurrenttime
 	PRIVATE
+		STLSoft::STLSoft
 		shwild::core
 		xTests::xTests.core
 )

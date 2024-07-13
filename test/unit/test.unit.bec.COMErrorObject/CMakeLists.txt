@@ -15,6 +15,7 @@ target_link_libraries(test.unit.bec.COMErrorObject
 
 target_link_libraries(test.unit.bec.COMErrorObject
 	PRIVATE
+		STLSoft::STLSoft
 		xTests::xTests.core
 )
 

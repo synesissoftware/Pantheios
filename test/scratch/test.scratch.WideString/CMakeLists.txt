@@ -20,6 +20,12 @@ target_link_libraries(test.scratch.WideString
 		Pantheios.bec.fprintf
 )
 
+target_link_libraries(test.scratch.WideString
+	PRIVATE
+		STLSoft::STLSoft
+		b64::b64
+)
+
 target_compile_options(test.scratch.WideString PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

@@ -15,6 +15,7 @@ target_link_libraries(test.unit.bec.file
 
 target_link_libraries(test.unit.bec.file
 	PRIVATE
+		STLSoft::STLSoft
 		xTests::xTests.core
 )
 

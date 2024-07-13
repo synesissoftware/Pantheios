@@ -6,7 +6,14 @@ file(GLOB UTIL_SRCS
 	${UTIL_SRC_DIR}/*.cpp
 )
 
-add_library(Pantheios.util ${UTIL_SRCS})
+add_library(Pantheios.util
+	${UTIL_SRCS}
+)
+
+target_link_libraries(Pantheios.util
+	PRIVATE
+		STLSoft::STLSoft
+)
 
 target_compile_options(Pantheios.util PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:

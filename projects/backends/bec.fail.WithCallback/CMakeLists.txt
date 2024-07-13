@@ -9,6 +9,11 @@ add_library(Pantheios.bec.fail.WithCallback
 	${BEC_FAIL_SRCS}
 )
 
+target_link_libraries(Pantheios.bec.fail.WithCallback
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(Pantheios.bec.fail.WithCallback PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

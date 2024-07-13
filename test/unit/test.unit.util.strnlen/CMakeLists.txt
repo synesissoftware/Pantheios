@@ -10,7 +10,7 @@ target_link_libraries(test.unit.util.strnlen
 
 target_link_libraries(test.unit.util.strnlen
 	PRIVATE
-		PRIVATE
+		STLSoft::STLSoft
 		xTests::xTests.core
 )
 

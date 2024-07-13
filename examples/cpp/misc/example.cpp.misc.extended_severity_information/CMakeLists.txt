@@ -14,6 +14,11 @@ target_link_libraries(example.cpp.misc.extended_severity_information
 		Pantheios.fe.simple
 )
 
+target_link_libraries(example.cpp.misc.extended_severity_information
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(example.cpp.misc.extended_severity_information PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

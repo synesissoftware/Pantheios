@@ -36,7 +36,17 @@ if(WIN32)
 		PRIVATE
 			Pantheios.bec.WindowsSyslog
 	)
+
+	target_link_libraries(example.c.N
+		PRIVATE
+			ws2_32
+	)
 endif(WIN32)
+
+target_link_libraries(example.c.N
+	PRIVATE
+		STLSoft::STLSoft
+)
 
 target_compile_options(example.c.N PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:

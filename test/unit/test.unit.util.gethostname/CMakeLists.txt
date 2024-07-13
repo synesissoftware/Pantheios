@@ -10,6 +10,7 @@ target_link_libraries(test.unit.util.gethostname
 
 target_link_libraries(test.unit.util.gethostname
 	PRIVATE
+		STLSoft::STLSoft
 		xTests::xTests.core
 )
 

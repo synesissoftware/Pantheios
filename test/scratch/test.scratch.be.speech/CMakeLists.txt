@@ -20,6 +20,11 @@ target_link_libraries(test.scratch.be.speech
 		Pantheios.bec.speech
 )
 
+target_link_libraries(test.scratch.be.speech
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(test.scratch.be.speech PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

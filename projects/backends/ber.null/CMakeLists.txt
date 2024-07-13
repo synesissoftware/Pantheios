@@ -9,6 +9,11 @@ add_library(Pantheios.ber.null
 	${BER_NULL_SRCS}
 )
 
+target_link_libraries(Pantheios.ber.null
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(Pantheios.ber.null PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

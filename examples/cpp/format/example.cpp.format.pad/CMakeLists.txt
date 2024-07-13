@@ -27,10 +27,15 @@ if(WIN32)
 
 	target_link_libraries(example.cpp.format.pad
 		PRIVATE
-			pantheios_be_WindowsConsole
-			pantheios_bec_WindowsConsole
+			Pantheios.be.WindowsConsole
+			Pantheios.bec.WindowsConsole
 	)
 endif(WIN32)
+
+target_link_libraries(example.cpp.format.pad
+	PRIVATE
+		STLSoft::STLSoft
+)
 
 target_compile_options(example.cpp.format.pad PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:

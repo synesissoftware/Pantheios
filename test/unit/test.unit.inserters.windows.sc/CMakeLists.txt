@@ -22,6 +22,7 @@ target_link_libraries(test.unit.inserters.windows.sc
 
 target_link_libraries(test.unit.inserters.windows.sc
 	PRIVATE
+		STLSoft::STLSoft
 		xTests::xTests.core
 )
 

@@ -13,7 +13,17 @@ endif(APPLE)
 
 if(WIN32)
 
-	message(FATAL_ERROR "Use of CMake on Windows not currently supported")
+	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+
+		message (STATUS "Compiling for 64-bit Windows")
+
+		add_definitions(-DWIN64)
+	else()
+
+		message (STATUS "Compiling for 32-bit Windows")
+
+		add_definitions(-DWIN32)
+	endif()
 endif(WIN32)
 
 if(UNIX)

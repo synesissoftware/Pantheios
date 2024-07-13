@@ -32,6 +32,12 @@ if(WIN32)
 	)
 endif(WIN32)
 
+target_link_libraries(example.cpp.misc.101
+	PRIVATE
+		STLSoft::STLSoft
+		b64::b64
+)
+
 target_compile_options(example.cpp.misc.101 PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

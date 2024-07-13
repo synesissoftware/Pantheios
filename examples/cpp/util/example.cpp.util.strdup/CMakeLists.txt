@@ -8,6 +8,11 @@ target_link_libraries(example.cpp.util.strdup
 		Pantheios.util
 )
 
+target_link_libraries(example.cpp.util.strdup
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(example.cpp.util.strdup PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

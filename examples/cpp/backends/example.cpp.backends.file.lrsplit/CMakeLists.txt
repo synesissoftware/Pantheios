@@ -22,6 +22,11 @@ target_link_libraries(example.cpp.backends.file.lrsplit
 		Pantheios.ber.file
 )
 
+target_link_libraries(example.cpp.backends.file.lrsplit
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(example.cpp.backends.file.lrsplit PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

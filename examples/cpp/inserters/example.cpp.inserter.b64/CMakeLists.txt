@@ -35,6 +35,7 @@ endif(WIN32)
 target_link_libraries(example.cpp.inserter.b64
 	PRIVATE
 		b64::b64
+		STLSoft::STLSoft
 )
 
 target_compile_options(example.cpp.inserter.b64 PRIVATE

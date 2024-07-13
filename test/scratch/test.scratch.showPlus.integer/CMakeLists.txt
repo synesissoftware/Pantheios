@@ -20,6 +20,11 @@ target_link_libraries(test.scratch.showPlus.integer
 		Pantheios.bec.fprintf
 )
 
+target_link_libraries(test.scratch.showPlus.integer
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(test.scratch.showPlus.integer PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

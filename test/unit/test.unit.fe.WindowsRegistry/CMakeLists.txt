@@ -15,6 +15,7 @@ target_link_libraries(test.unit.fe.WindowsRegistry
 
 target_link_libraries(test.unit.fe.WindowsRegistry
 	PRIVATE
+		STLSoft::STLSoft
 		xTests::xTests.core
 )
 

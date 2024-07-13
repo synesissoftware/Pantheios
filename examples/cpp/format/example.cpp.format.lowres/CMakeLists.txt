@@ -20,6 +20,11 @@ target_link_libraries(example.cpp.format.lowres
 		Pantheios.bec.fprintf
 )
 
+target_link_libraries(example.cpp.format.lowres
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(example.cpp.format.lowres PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

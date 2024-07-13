@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.WindowsConsole.cpp
+ * File:    src/backends/bec.WindowsConsole.cpp
  *
- * Purpose:     Implementation of the Pantheios Windows-Console Stock Back-end API.
+ * Purpose: Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
- * Created:     17th July 2006
- * Updated:     16th December 2023
+ * Created: 17th July 2006
+ * Updated: 13th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -98,6 +98,16 @@
 # define pan_WriteConsole_              ::WriteConsoleA
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if _STLSOFT_VER >= 0x010b0000
+# define windows_exception                                  winstl_exception
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

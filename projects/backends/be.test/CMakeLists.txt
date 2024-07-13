@@ -9,6 +9,11 @@ add_library(Pantheios.be.test
 	${BE_TEST_SRCS}
 )
 
+target_link_libraries(Pantheios.be.test
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 target_compile_options(Pantheios.be.test PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic

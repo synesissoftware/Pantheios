@@ -9,6 +9,8 @@ add_subdirectory(fe.null)
 add_subdirectory(fe.null.WithCallback)
 add_subdirectory(fe.simple)
 add_subdirectory(fe.simple.WithCallback)
+add_subdirectory(fe.WindowsRegistry)
+add_subdirectory(fe.WindowsRegistry.WithCallback)
 
 
 # ############################## end of file ############################# #

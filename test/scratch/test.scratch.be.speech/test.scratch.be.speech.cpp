@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.speech/test.scratch.be.speech.cpp
+ * File:    test/scratch/test.scratch.be.speech/test.scratch.be.speech.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of custom severity level information for tabbing output
- *                - definition of a custom back-end that supports tabbed output
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of custom severity level information for tabbing output
+ *            - definition of a custom back-end that supports tabbed output
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     31st August 2006
- * Updated:     16th December 2023
+ * Created: 31st August 2006
+ * Updated: 17th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,11 +19,6 @@
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/backend.h>
-#include <pantheios/implicit_link/core.h>
-#include <pantheios/implicit_link/fe.simple.h>
-#include <pantheios/implicit_link/be.lrsplit.h>
-#include <pantheios/implicit_link/bel.WindowsConsole.h>
-#include <pantheios/implicit_link/bec.speech.WithCallback.h>
 #include <pantheios/backends/bec.speech.h>
 
 /* Standard C/C++ header files */
@@ -47,6 +42,9 @@ PANTHEIOS_BE_DEFINE_BER_FUNCTIONS(speech)
 
 PANTHEIOS_CALL(void) pantheios_be_speech_getAppInit(int backEndId, pan_be_speech_init_t* init) /* throw() */
 {
+    STLSOFT_SUPPRESS_UNUSED(backEndId);
+    STLSOFT_SUPPRESS_UNUSED(init);
+
 //  init->flags |= PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS;
 //  init->flags |= PANTHEIOS_BE_SPEECH_F_PURGE_BEFORE_SPEAK;
 //  init->flags |= PANTHEIOS_BE_SPEECH_F_SPEAK_PUNCTUATION;
@@ -73,6 +71,7 @@ int main()
 
 //      ::Sleep(shortPause);
 
+#if 0
         short           s   = SHRT_MIN;
         unsigned short  us  = USHRT_MAX;
         int             i   = INT_MIN;
@@ -80,7 +79,6 @@ int main()
         long            l   = LONG_MIN;
         unsigned long   ul  = ULONG_MAX;
 
-#if 0
         // Log a short in decimal; Output: "s: [-32768]"
 
         pantheios::log_NOTICE("s: [", pantheios::integer(s), "]");

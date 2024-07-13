@@ -39,11 +39,13 @@ if(WIN32)
 	add_subdirectory(test.scratch.bec.WindowsMessageBox)
 endif(WIN32)
 add_subdirectory(test.scratch.c_api)
+#[====[
 if(WIN32)
 
 	add_subdirectory(test.scratch.extras.com.invoke_nothrow_method)
 	add_subdirectory(test.scratch.extras.com_exception_helpers)
 endif(WIN32)
+#]====]
 add_subdirectory(test.scratch.fe)
 if(WIN32)
 

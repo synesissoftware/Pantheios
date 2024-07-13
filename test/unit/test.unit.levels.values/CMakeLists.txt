@@ -10,6 +10,7 @@ target_link_libraries(test.unit.levels.values
 
 target_link_libraries(test.unit.levels.values
 	PRIVATE
+		STLSoft::STLSoft
 		xTests::xTests.core
 )
 

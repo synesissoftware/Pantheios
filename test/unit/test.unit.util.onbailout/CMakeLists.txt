@@ -10,6 +10,7 @@ target_link_libraries(test.unit.util.onbailout
 
 target_link_libraries(test.unit.util.onbailout
 	PRIVATE
+		STLSoft::STLSoft
 		shwild::core
 		xTests::xTests.core
 )

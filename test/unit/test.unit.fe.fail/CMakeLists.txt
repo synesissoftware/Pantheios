@@ -15,6 +15,7 @@ target_link_libraries(test.unit.fe.fail
 
 target_link_libraries(test.unit.fe.fail
 	PRIVATE
+		STLSoft::STLSoft
 		xTests::xTests.core
 )
 

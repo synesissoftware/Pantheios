@@ -15,6 +15,7 @@ target_link_libraries(test.unit.fe.null
 
 target_link_libraries(test.unit.fe.null
 	PRIVATE
+		STLSoft::STLSoft
 		xTests::xTests.core
 )
 

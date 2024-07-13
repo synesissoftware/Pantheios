@@ -1,22 +1,22 @@
 
-add_executable(example.cpp.inserter.xi
-	example.cpp.inserter.xi.cpp
+add_executable(example.cpp.inserter.m2w
+	example.cpp.inserter.m2w.cpp
 )
 
-target_link_libraries(example.cpp.inserter.xi
+target_link_libraries(example.cpp.inserter.m2w
 	PRIVATE
 		Pantheios.util
 		Pantheios.core
 )
 
-target_link_libraries(example.cpp.inserter.xi
+target_link_libraries(example.cpp.inserter.m2w
 	PRIVATE
 		Pantheios.fe.simple
 )
 
 if(UNIX)
 
-	target_link_libraries(example.cpp.inserter.xi
+	target_link_libraries(example.cpp.inserter.m2w
 		PRIVATE
 			Pantheios.be.fprintf
 			Pantheios.bec.fprintf
@@ -25,14 +25,19 @@ endif(UNIX)
 
 if(WIN32)
 
-	target_link_libraries(example.cpp.inserter.xi
+	target_link_libraries(example.cpp.inserter.m2w
 		PRIVATE
 			Pantheios.be.WindowsConsole
 			Pantheios.bec.WindowsConsole
 	)
 endif(WIN32)
 
-target_compile_options(example.cpp.inserter.xi PRIVATE
+target_link_libraries(example.cpp.inserter.m2w
+	PRIVATE
+		STLSoft::STLSoft
+)
+
+target_compile_options(example.cpp.inserter.m2w PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic
 	>

@@ -2,8 +2,6 @@
 set(BEC_STOCK_SRC_DIR ../../../src/backends)
 
 file(GLOB BEC_STOCK_SRCS_common
-	${BEC_STOCK_SRC_DIR}/be.N.c
-	${BEC_STOCK_SRC_DIR}/be.lrsplit.c
 	${BEC_STOCK_SRC_DIR}/bec.fail.c
 	${BEC_STOCK_SRC_DIR}/bec.file.cpp
 	${BEC_STOCK_SRC_DIR}/bec.fprintf.cpp
@@ -48,6 +46,11 @@ endif(WIN32)
 
 add_library(Pantheios.bec.stock
 	${BEC_STOCK_SRCS}
+)
+
+target_link_libraries(Pantheios.bec.stock
+	PRIVATE
+		STLSoft::STLSoft
 )
 
 target_compile_options(Pantheios.bec.stock PRIVATE
