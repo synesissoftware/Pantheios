@@ -8,7 +8,7 @@ target_link_libraries(test.unit.util.getcurrenttime
 )
 
 target_link_libraries(test.unit.util.getcurrenttime
-	shwild::shwild.core
+	shwild::core
 	xTests::xTests.core
 )
 

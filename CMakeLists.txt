@@ -87,7 +87,7 @@ message("-- CMake package b64 found (version ${b64_VERSION}; ${b64_DESIRED_VERSI
 
 if(BUILD_TESTING)
 
-	set(shwild_REQUIRED_VERSION_ 0.11.6)
+	set(shwild_REQUIRED_VERSION_ 0.12)
 
 	find_package(shwild ${shwild_REQUIRED_VERSION_} REQUIRED)
 

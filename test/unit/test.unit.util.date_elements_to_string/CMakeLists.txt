@@ -8,7 +8,7 @@ target_link_libraries(test.unit.util.date_elements_to_string
 )
 
 target_link_libraries(test.unit.util.date_elements_to_string
-	shwild::shwild.core
+	shwild::core
 	xTests::xTests.core
 )
 

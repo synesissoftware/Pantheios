@@ -8,7 +8,7 @@ target_link_libraries(test.unit.util.onbailout
 )
 
 target_link_libraries(test.unit.util.onbailout
-	shwild::shwild.core
+	shwild::core
 	xTests::xTests.core
 )
 
