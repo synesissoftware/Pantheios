@@ -18,20 +18,20 @@ target_link_libraries(test.scratch.be.N
 	Pantheios.bec.fprintf
 )
 
-if (UNIX)
+if(UNIX)
 
 	target_link_libraries(test.scratch.be.N
 		Pantheios.bec.syslog
 	)
-endif (UNIX)
+endif(UNIX)
 
-if (WIN32)
+if(WIN32)
 
 	target_link_libraries(test.scratch.be.N
 		Pantheios.bec.WindowsDebugger.WithCallback
 		Pantheios.bec.WindowsSyslog
 	)
-endif (WIN32)
+endif(WIN32)
 
 target_compile_options(test.scratch.be.N PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:

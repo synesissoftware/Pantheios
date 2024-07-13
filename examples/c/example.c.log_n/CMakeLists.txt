@@ -12,21 +12,21 @@ target_link_libraries(example.c.log_n
 	Pantheios.fe.simple
 )
 
-if (UNIX)
+if(UNIX)
 
 	target_link_libraries(example.c.log_n
 		Pantheios.be.fprintf
 		Pantheios.bec.fprintf
 	)
-endif (UNIX)
+endif(UNIX)
 
-if (WIN32)
+if(WIN32)
 
 	target_link_libraries(example.c.log_n
 		Pantheios.be.WindowsConsole
 		Pantheios.bec.WindowsConsole
 	)
-endif (WIN32)
+endif(WIN32)
 
 target_compile_options(example.c.log_n PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:

@@ -13,25 +13,25 @@ file(GLOB BEC_STOCK_WC_SRCS_common
 
 set(BEC_STOCK_WC_SRCS ${BEC_STOCK_WC_SRCS_common})
 
-if (HAS_ACE)
+if(HAS_ACE)
 
 	file(GLOB BEC_STOCK_WC_SRCS_ace
 		${BEC_STOCK_WC_SRC_DIR}/bec.ACE.cpp
 	)
 
 	set(BEC_STOCK_WC_SRCS ${BEC_STOCK_WC_SRCS} ${BEC_STOCK_WC_SRCS_ace})
-endif (HAS_ACE)
+endif(HAS_ACE)
 
-if (UNIX)
+if(UNIX)
 
 	file(GLOB BEC_STOCK_WC_SRCS_unix
 		${BEC_STOCK_WC_SRC_DIR}/bec.syslog.c
 	)
 
 	set(BEC_STOCK_WC_SRCS ${BEC_STOCK_WC_SRCS} ${BEC_STOCK_WC_SRCS_unix})
-endif (UNIX)
+endif(UNIX)
 
-if (WIN32)
+if(WIN32)
 
 	file(GLOB BEC_STOCK_WC_SRCS_win32
 		${BEC_STOCK_WC_SRC_DIR}/bec.COMErrorObject.cpp
@@ -44,7 +44,7 @@ if (WIN32)
 	)
 
 	set(BEC_STOCK_WC_SRCS ${BEC_STOCK_WC_SRCS} ${BEC_STOCK_WC_SRCS_win32})
-endif (WIN32)
+endif(WIN32)
 
 add_library(Pantheios.bec.stock.WithCallback
 	${BEC_STOCK_WC_SRCS}

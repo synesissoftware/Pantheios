@@ -16,21 +16,21 @@ target_link_libraries(example.cpp.backends.mx.2
 	Pantheios.be.N
 )
 
-if (UNIX)
+if(UNIX)
 
 	target_link_libraries(example.cpp.backends.mx.2
 		Pantheios.bec.fprintf
 		Pantheios.bec.syslog
 	)
-endif (UNIX)
+endif(UNIX)
 
-if (WIN32)
+if(WIN32)
 
 	target_link_libraries(example.cpp.backends.mx.2
 		Pantheios.bec.WindowsConsole
 		Pantheios.bec.WindowsSyslog
 	)
-endif (WIN32)
+endif(WIN32)
 
 target_compile_options(example.cpp.backends.mx.2 PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:

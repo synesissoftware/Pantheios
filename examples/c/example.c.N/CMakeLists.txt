@@ -19,19 +19,19 @@ target_link_libraries(example.c.N
 	Pantheios.bec.null
 )
 
-if (UNIX)
+if(UNIX)
 
 	target_link_libraries(example.c.N
 		Pantheios.bec.syslog
 	)
-endif (UNIX)
+endif(UNIX)
 
-if (WIN32)
+if(WIN32)
 
 	target_link_libraries(example.c.N
 		Pantheios.bec.WindowsSyslog
 	)
-endif (WIN32)
+endif(WIN32)
 
 target_compile_options(example.c.N PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
