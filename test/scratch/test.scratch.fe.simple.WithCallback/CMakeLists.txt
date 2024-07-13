@@ -4,17 +4,20 @@ add_executable(test.scratch.fe.simple.WithCallback
 )
 
 target_link_libraries(test.scratch.fe.simple.WithCallback
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.scratch.fe.simple.WithCallback
-	Pantheios.fe.simple.WithCallback
+	PRIVATE
+		Pantheios.fe.simple.WithCallback
 )
 
 target_link_libraries(test.scratch.fe.simple.WithCallback
-	Pantheios.be.fprintf
-	Pantheios.bec.fprintf
+	PRIVATE
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf
 )
 
 target_compile_options(test.scratch.fe.simple.WithCallback PRIVATE

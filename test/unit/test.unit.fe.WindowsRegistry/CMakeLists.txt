@@ -4,15 +4,18 @@ add_executable(test.unit.fe.WindowsRegistry
 )
 
 target_link_libraries(test.unit.fe.WindowsRegistry
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.fe.WindowsRegistry
-	Pantheios.fe.WindowsRegistry
+	PRIVATE
+		Pantheios.fe.WindowsRegistry
 )
 
 target_link_libraries(test.unit.fe.WindowsRegistry
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.fe.WindowsRegistry PRIVATE

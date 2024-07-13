@@ -4,27 +4,31 @@ add_executable(example.cpp.backends.callback
 )
 
 target_link_libraries(example.cpp.backends.callback
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(example.cpp.backends.callback
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 if(UNIX)
 
 	target_link_libraries(example.cpp.backends.callback
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf
+		PRIVATE
+			Pantheios.be.fprintf
+			Pantheios.bec.fprintf
 	)
 endif(UNIX)
 
 if(WIN32)
 
 	target_link_libraries(example.cpp.backends.callback
-		Pantheios.be.WindowsConsole
-		Pantheios.bec.WindowsConsole
+		PRIVATE
+			Pantheios.be.WindowsConsole
+			Pantheios.bec.WindowsConsole
 	)
 endif(WIN32)
 

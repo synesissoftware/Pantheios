@@ -4,21 +4,25 @@ add_executable(test.component.inserters.variant_bool
 )
 
 target_link_libraries(test.component.inserters.variant_bool
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.component.inserters.variant_bool
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.component.inserters.variant_bool
-	Pantheios.be.test
-	Pantheios.bec.test
+	PRIVATE
+		Pantheios.be.test
+		Pantheios.bec.test
 )
 
 target_link_libraries(test.component.inserters.variant_bool
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.component.inserters.variant_bool PRIVATE

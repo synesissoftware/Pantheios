@@ -4,20 +4,23 @@ add_executable(test.scratch.be.N.fail
 )
 
 target_link_libraries(test.scratch.be.N.fail
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.scratch.be.N.fail
-	Pantheios.fe.N
+	PRIVATE
+		Pantheios.fe.N
 )
 
 target_link_libraries(test.scratch.be.N.fail
-	Pantheios.be.N
-	Pantheios.bec.fail
-	Pantheios.bec.file
-	Pantheios.bec.fprintf
-	Pantheios.bec.null
+	PRIVATE
+		Pantheios.be.N
+		Pantheios.bec.fail
+		Pantheios.bec.file
+		Pantheios.bec.fprintf
+		Pantheios.bec.null
 )
 
 target_compile_options(test.scratch.be.N.fail PRIVATE

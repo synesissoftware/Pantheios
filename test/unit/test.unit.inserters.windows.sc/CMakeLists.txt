@@ -4,21 +4,25 @@ add_executable(test.unit.inserters.windows.sc
 )
 
 target_link_libraries(test.unit.inserters.windows.sc
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.unit.inserters.windows.sc
-	Pantheios.fe.null
+	PRIVATE
+		Pantheios.fe.null
 )
 
 target_link_libraries(test.unit.inserters.windows.sc
-	Pantheios.be.null
-	Pantheios.bec.null
+	PRIVATE
+		Pantheios.be.null
+		Pantheios.bec.null
 )
 
 target_link_libraries(test.unit.inserters.windows.sc
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.inserters.windows.sc PRIVATE

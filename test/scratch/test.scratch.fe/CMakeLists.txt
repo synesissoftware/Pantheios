@@ -4,8 +4,9 @@ add_executable(test.scratch.fe
 )
 
 target_link_libraries(test.scratch.fe
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_compile_options(test.scratch.fe PRIVATE

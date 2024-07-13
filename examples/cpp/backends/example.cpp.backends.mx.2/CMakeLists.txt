@@ -4,31 +4,36 @@ add_executable(example.cpp.backends.mx.2
 )
 
 target_link_libraries(example.cpp.backends.mx.2
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(example.cpp.backends.mx.2
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(example.cpp.backends.mx.2
-	Pantheios.be.N
+	PRIVATE
+		Pantheios.be.N
 )
 
 if(UNIX)
 
 	target_link_libraries(example.cpp.backends.mx.2
-		Pantheios.bec.fprintf
-		Pantheios.bec.syslog
+		PRIVATE
+			Pantheios.bec.fprintf
+			Pantheios.bec.syslog
 	)
 endif(UNIX)
 
 if(WIN32)
 
 	target_link_libraries(example.cpp.backends.mx.2
-		Pantheios.bec.WindowsConsole
-		Pantheios.bec.WindowsSyslog
+		PRIVATE
+			Pantheios.bec.WindowsConsole
+			Pantheios.bec.WindowsSyslog
 	)
 endif(WIN32)
 

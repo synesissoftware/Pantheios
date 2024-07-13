@@ -4,12 +4,14 @@ add_executable(test.unit.util.getcurrenttime
 )
 
 target_link_libraries(test.unit.util.getcurrenttime
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.util.getcurrenttime
-	shwild::core
-	xTests::xTests.core
+	PRIVATE
+		shwild::core
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.util.getcurrenttime PRIVATE

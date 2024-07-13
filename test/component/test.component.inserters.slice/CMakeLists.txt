@@ -4,21 +4,25 @@ add_executable(test.component.inserters.slice
 )
 
 target_link_libraries(test.component.inserters.slice
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.component.inserters.slice
-	Pantheios.fe.all
+	PRIVATE
+		Pantheios.fe.all
 )
 
 target_link_libraries(test.component.inserters.slice
-	Pantheios.be.test
-	Pantheios.bec.test
+	PRIVATE
+		Pantheios.be.test
+		Pantheios.bec.test
 )
 
 target_link_libraries(test.component.inserters.slice
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.component.inserters.slice PRIVATE

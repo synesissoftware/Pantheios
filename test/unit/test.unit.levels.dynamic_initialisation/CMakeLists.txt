@@ -4,11 +4,13 @@ add_executable(test.unit.levels.dynamic_initialisation
 )
 
 target_link_libraries(test.unit.levels.dynamic_initialisation
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.levels.dynamic_initialisation
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.levels.dynamic_initialisation PRIVATE

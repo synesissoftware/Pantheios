@@ -4,11 +4,13 @@ add_executable(test.unit.util.snprintf
 )
 
 target_link_libraries(test.unit.util.snprintf
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.util.snprintf
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.util.snprintf PRIVATE

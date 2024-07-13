@@ -4,15 +4,18 @@ add_executable(test.unit.bec.COMErrorObject
 )
 
 target_link_libraries(test.unit.bec.COMErrorObject
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.bec.COMErrorObject
-	Pantheios.bec.COMErrorObject
+	PRIVATE
+		Pantheios.bec.COMErrorObject
 )
 
 target_link_libraries(test.unit.bec.COMErrorObject
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.bec.COMErrorObject PRIVATE

@@ -4,17 +4,20 @@ add_executable(test.scratch.util.onbailout
 )
 
 target_link_libraries(test.scratch.util.onbailout
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.scratch.util.onbailout
-	Pantheios.fe.all
+	PRIVATE
+		Pantheios.fe.all
 )
 
 target_link_libraries(test.scratch.util.onbailout
-	Pantheios.be.null
-	Pantheios.bec.null
+	PRIVATE
+		Pantheios.be.null
+		Pantheios.bec.null
 )
 
 target_compile_options(test.scratch.util.onbailout PRIVATE

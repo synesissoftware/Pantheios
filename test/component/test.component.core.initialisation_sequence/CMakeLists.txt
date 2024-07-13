@@ -4,21 +4,25 @@ add_executable(test.component.core.initialisation_sequence
 )
 
 target_link_libraries(test.component.core.initialisation_sequence
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.component.core.initialisation_sequence
-	Pantheios.fe.all
+	PRIVATE
+		Pantheios.fe.all
 )
 
 target_link_libraries(test.component.core.initialisation_sequence
-	Pantheios.be.test
-	Pantheios.bec.test
+	PRIVATE
+		Pantheios.be.test
+		Pantheios.bec.test
 )
 
 target_link_libraries(test.component.core.initialisation_sequence
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.component.core.initialisation_sequence PRIVATE

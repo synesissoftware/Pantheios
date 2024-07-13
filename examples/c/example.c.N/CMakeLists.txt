@@ -4,32 +4,37 @@ add_executable(example.c.N
 )
 
 target_link_libraries(example.c.N
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(example.c.N
-	Pantheios.fe.N
+	PRIVATE
+		Pantheios.fe.N
 )
 
 target_link_libraries(example.c.N
-	Pantheios.be.N
-	Pantheios.bec.file
-	Pantheios.bec.fprintf
-	Pantheios.bec.null
+	PRIVATE
+		Pantheios.be.N
+		Pantheios.bec.file
+		Pantheios.bec.fprintf
+		Pantheios.bec.null
 )
 
 if(UNIX)
 
 	target_link_libraries(example.c.N
-		Pantheios.bec.syslog
+		PRIVATE
+			Pantheios.bec.syslog
 	)
 endif(UNIX)
 
 if(WIN32)
 
 	target_link_libraries(example.c.N
-		Pantheios.bec.WindowsSyslog
+		PRIVATE
+			Pantheios.bec.WindowsSyslog
 	)
 endif(WIN32)
 

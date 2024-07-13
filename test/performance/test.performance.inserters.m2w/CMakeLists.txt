@@ -4,21 +4,25 @@ add_executable(test.performance.inserters.m2w
 )
 
 target_link_libraries(test.performance.inserters.m2w
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.performance.inserters.m2w
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.performance.inserters.m2w
-	Pantheios.be.null
-	Pantheios.bec.null
+	PRIVATE
+		Pantheios.be.null
+		Pantheios.bec.null
 )
 
 target_link_libraries(test.performance.inserters.m2w
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.performance.inserters.m2w PRIVATE

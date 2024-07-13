@@ -4,19 +4,23 @@ add_executable(test.component.bec.fprintf
 )
 
 target_link_libraries(test.component.bec.fprintf
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.component.bec.fprintf
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.component.bec.fprintf
-	Pantheios.bec.fprintf
+	PRIVATE
+		Pantheios.bec.fprintf
 )
 
 target_link_libraries(test.component.bec.fprintf
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.component.bec.fprintf PRIVATE

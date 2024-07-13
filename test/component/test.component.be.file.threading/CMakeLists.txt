@@ -4,22 +4,26 @@ add_executable(test.component.be.file.threading
 )
 
 target_link_libraries(test.component.be.file.threading
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.component.be.file.threading
-	Pantheios.fe.N
+	PRIVATE
+		Pantheios.fe.N
 )
 
 target_link_libraries(test.component.be.file.threading
-	Pantheios.be.N
-	Pantheios.bec.file
-	Pantheios.bec.fprintf
+	PRIVATE
+		Pantheios.be.N
+		Pantheios.bec.file
+		Pantheios.bec.fprintf
 )
 
 target_link_libraries(test.component.be.file.threading
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.component.be.file.threading PRIVATE

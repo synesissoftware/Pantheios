@@ -4,12 +4,14 @@ add_executable(test.unit.inserter.integer
 )
 
 target_link_libraries(test.unit.inserter.integer
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.unit.inserter.integer
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.inserter.integer PRIVATE

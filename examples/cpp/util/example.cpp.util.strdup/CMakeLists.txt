@@ -4,7 +4,8 @@ add_executable(example.cpp.util.strdup
 )
 
 target_link_libraries(example.cpp.util.strdup
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_compile_options(example.cpp.util.strdup PRIVATE

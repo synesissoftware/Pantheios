@@ -4,12 +4,14 @@ add_executable(test.unit.inserter.stream_character
 )
 
 target_link_libraries(test.unit.inserter.stream_character
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.unit.inserter.stream_character
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.inserter.stream_character PRIVATE

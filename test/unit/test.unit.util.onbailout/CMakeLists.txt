@@ -4,12 +4,14 @@ add_executable(test.unit.util.onbailout
 )
 
 target_link_libraries(test.unit.util.onbailout
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.util.onbailout
-	shwild::core
-	xTests::xTests.core
+	PRIVATE
+		shwild::core
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.util.onbailout PRIVATE

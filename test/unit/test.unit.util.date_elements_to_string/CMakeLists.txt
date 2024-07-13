@@ -4,12 +4,14 @@ add_executable(test.unit.util.date_elements_to_string
 )
 
 target_link_libraries(test.unit.util.date_elements_to_string
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.util.date_elements_to_string
-	shwild::core
-	xTests::xTests.core
+	PRIVATE
+		shwild::core
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.util.date_elements_to_string PRIVATE

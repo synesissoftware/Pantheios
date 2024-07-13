@@ -4,15 +4,18 @@ add_executable(test.unit.bec.fail
 )
 
 target_link_libraries(test.unit.bec.fail
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.bec.fail
-	Pantheios.bec.fail
+	PRIVATE
+		Pantheios.bec.fail
 )
 
 target_link_libraries(test.unit.bec.fail
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.bec.fail PRIVATE

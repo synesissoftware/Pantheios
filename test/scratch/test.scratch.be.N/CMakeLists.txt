@@ -4,32 +4,37 @@ add_executable(test.scratch.be.N
 )
 
 target_link_libraries(test.scratch.be.N
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.scratch.be.N
-	Pantheios.fe.N
+	PRIVATE
+		Pantheios.fe.N
 )
 
 target_link_libraries(test.scratch.be.N
-	Pantheios.be.N
-	Pantheios.bec.file
-	Pantheios.bec.fprintf
+	PRIVATE
+		Pantheios.be.N
+		Pantheios.bec.file
+		Pantheios.bec.fprintf
 )
 
 if(UNIX)
 
 	target_link_libraries(test.scratch.be.N
-		Pantheios.bec.syslog
+		PRIVATE
+			Pantheios.bec.syslog
 	)
 endif(UNIX)
 
 if(WIN32)
 
 	target_link_libraries(test.scratch.be.N
-		Pantheios.bec.WindowsDebugger.WithCallback
-		Pantheios.bec.WindowsSyslog
+		PRIVATE
+			Pantheios.bec.WindowsDebugger.WithCallback
+			Pantheios.bec.WindowsSyslog
 	)
 endif(WIN32)
 

@@ -4,27 +4,31 @@ add_executable(example.cpp.misc.strings
 )
 
 target_link_libraries(example.cpp.misc.strings
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(example.cpp.misc.strings
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 if(UNIX)
 
 	target_link_libraries(example.cpp.misc.strings
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf
+		PRIVATE
+			Pantheios.be.fprintf
+			Pantheios.bec.fprintf
 	)
 endif(UNIX)
 
 if(WIN32)
 
 	target_link_libraries(example.cpp.misc.strings
-		Pantheios.be.WindowsConsole
-		Pantheios.bec.WindowsConsole
+		PRIVATE
+			Pantheios.be.WindowsConsole
+			Pantheios.bec.WindowsConsole
 	)
 endif(WIN32)
 

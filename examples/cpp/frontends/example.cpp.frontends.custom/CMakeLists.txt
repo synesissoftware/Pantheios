@@ -4,13 +4,15 @@ add_executable(example.cpp.frontends.custom
 )
 
 target_link_libraries(example.cpp.frontends.custom
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(example.cpp.frontends.custom
-	Pantheios.be.fprintf
-	Pantheios.bec.fprintf
+	PRIVATE
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf
 )
 
 target_compile_options(example.cpp.frontends.custom PRIVATE

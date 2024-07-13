@@ -4,15 +4,18 @@ add_executable(test.unit.fe.all
 )
 
 target_link_libraries(test.unit.fe.all
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.fe.all
-	Pantheios.fe.all
+	PRIVATE
+		Pantheios.fe.all
 )
 
 target_link_libraries(test.unit.fe.all
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.fe.all PRIVATE

@@ -4,17 +4,20 @@ add_executable(test.scratch.be.speech
 )
 
 target_link_libraries(test.scratch.be.speech
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.scratch.be.speech
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.be.speech
-	Pantheios.be.speech
-	Pantheios.bec.speech
+	PRIVATE
+		Pantheios.be.speech
+		Pantheios.bec.speech
 )
 
 target_compile_options(test.scratch.be.speech PRIVATE

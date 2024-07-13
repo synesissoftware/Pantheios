@@ -4,19 +4,23 @@ add_executable(test.unit.be.lrsplit
 )
 
 target_link_libraries(test.unit.be.lrsplit
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.be.lrsplit
-	Pantheios.fe.null
+	PRIVATE
+		Pantheios.fe.null
 )
 
 target_link_libraries(test.unit.be.lrsplit
-	Pantheios.be.lrsplit
+	PRIVATE
+		Pantheios.be.lrsplit
 )
 
 target_link_libraries(test.unit.be.lrsplit
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.be.lrsplit PRIVATE

@@ -4,17 +4,20 @@ add_executable(test.scratch.showPlus.integer
 )
 
 target_link_libraries(test.scratch.showPlus.integer
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.scratch.showPlus.integer
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.showPlus.integer
-	Pantheios.be.fprintf
-	Pantheios.bec.fprintf
+	PRIVATE
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf
 )
 
 target_compile_options(test.scratch.showPlus.integer PRIVATE

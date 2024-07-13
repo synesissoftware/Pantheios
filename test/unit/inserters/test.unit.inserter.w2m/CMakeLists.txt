@@ -4,21 +4,25 @@ add_executable(test.unit.inserter.w2m
 )
 
 target_link_libraries(test.unit.inserter.w2m
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.unit.inserter.w2m
-	Pantheios.fe.null
+	PRIVATE
+		Pantheios.fe.null
 )
 
 target_link_libraries(test.unit.inserter.w2m
-	Pantheios.be.null
-	Pantheios.bec.null
+	PRIVATE
+		Pantheios.be.null
+		Pantheios.bec.null
 )
 
 target_link_libraries(test.unit.inserter.w2m
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.inserter.w2m PRIVATE

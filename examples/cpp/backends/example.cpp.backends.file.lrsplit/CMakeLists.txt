@@ -4,19 +4,22 @@ add_executable(example.cpp.backends.file.lrsplit
 )
 
 target_link_libraries(example.cpp.backends.file.lrsplit
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(example.cpp.backends.file.lrsplit
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(example.cpp.backends.file.lrsplit
-	Pantheios.be.file
-	Pantheios.bec.file
-	Pantheios.bel.file
-	Pantheios.ber.file
+	PRIVATE
+		Pantheios.be.file
+		Pantheios.bec.file
+		Pantheios.bel.file
+		Pantheios.ber.file
 )
 
 target_compile_options(example.cpp.backends.file.lrsplit PRIVATE

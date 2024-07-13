@@ -4,20 +4,23 @@ add_executable(test.scratch.api
 )
 
 target_link_libraries(test.scratch.api
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.scratch.api
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.api
-	Pantheios.be.lrsplit
-	Pantheios.bec.fprintf
-	Pantheios.bec.null
-	Pantheios.bel.fprintf
-	Pantheios.ber.null
+	PRIVATE
+		Pantheios.be.lrsplit
+		Pantheios.bec.fprintf
+		Pantheios.bec.null
+		Pantheios.bel.fprintf
+		Pantheios.ber.null
 )
 
 target_compile_options(test.scratch.api PRIVATE

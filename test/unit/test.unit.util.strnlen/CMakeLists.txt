@@ -4,11 +4,14 @@ add_executable(test.unit.util.strnlen
 )
 
 target_link_libraries(test.unit.util.strnlen
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.util.strnlen
-	xTests::xTests.core
+	PRIVATE
+		PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.util.strnlen PRIVATE

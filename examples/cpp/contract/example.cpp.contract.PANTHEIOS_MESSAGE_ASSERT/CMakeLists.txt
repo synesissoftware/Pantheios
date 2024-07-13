@@ -4,17 +4,20 @@ add_executable(example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT
 )
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT
-	Pantheios.be.fprintf
-	Pantheios.bec.fprintf
+	PRIVATE
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf
 )
 
 target_compile_options(example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT PRIVATE

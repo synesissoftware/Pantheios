@@ -4,17 +4,20 @@ add_executable(test.scratch.extras.com_exception_helpers
 )
 
 target_link_libraries(test.scratch.extras.com_exception_helpers
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.scratch.extras.com_exception_helpers
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.extras.com_exception_helpers
-	Pantheios.be.fprintf
-	Pantheios.bec.fprintf
+	PRIVATE
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf
 )
 
 target_compile_options(test.scratch.extras.com_exception_helpers PRIVATE

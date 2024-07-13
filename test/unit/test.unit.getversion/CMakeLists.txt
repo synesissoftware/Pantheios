@@ -4,22 +4,26 @@ add_executable(test.unit.getversion
 )
 
 target_link_libraries(test.unit.getversion
-	Pantheios.core
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.unit.getversion
-	Pantheios.fe.fail
-	# Pantheios.fe.null
+	PRIVATE
+		Pantheios.fe.fail
+		# Pantheios.fe.null
 )
 
 target_link_libraries(test.unit.getversion
-	Pantheios.be.null
-	Pantheios.bec.null
+	PRIVATE
+		Pantheios.be.null
+		Pantheios.bec.null
 )
 
 target_link_libraries(test.unit.getversion
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.getversion PRIVATE

@@ -4,17 +4,20 @@ add_executable(test.scratch.be.syslog
 )
 
 target_link_libraries(test.scratch.be.syslog
-	Pantheios.util
-	Pantheios.core
+	PRIVATE
+		Pantheios.util
+		Pantheios.core
 )
 
 target_link_libraries(test.scratch.be.syslog
-	Pantheios.fe.simple
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.be.syslog
-	Pantheios.be.syslog
-	Pantheios.bec.syslog
+	PRIVATE
+		Pantheios.be.syslog
+		Pantheios.bec.syslog
 )
 
 target_compile_options(test.scratch.be.syslog PRIVATE

@@ -4,15 +4,18 @@ add_executable(test.unit.be.WindowsSyslog
 )
 
 target_link_libraries(test.unit.be.WindowsSyslog
-	Pantheios.util
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.be.WindowsSyslog
-	Pantheios.be.WindowsSyslog
+	PRIVATE
+		Pantheios.be.WindowsSyslog
 )
 
 target_link_libraries(test.unit.be.WindowsSyslog
-	xTests::xTests.core
+	PRIVATE
+		xTests::xTests.core
 )
 
 target_compile_options(test.unit.be.WindowsSyslog PRIVATE
