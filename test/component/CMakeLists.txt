@@ -26,12 +26,12 @@ add_subdirectory(test.component.inserters.stream_character)
 add_subdirectory(test.component.inserters.threadid)
 if (WIN32)
 
-    add_subdirectory(test.component.inserters.variant_bool)
+	add_subdirectory(test.component.inserters.variant_bool)
 endif (WIN32)
 add_subdirectory(test.component.inserters.w2m)
 if (WIN32)
 
-    add_subdirectory(test.component.inserters.windows.hive)
+	add_subdirectory(test.component.inserters.windows.hive)
 endif (WIN32)
 
 add_subdirectory(test.component.log.1)

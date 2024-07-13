@@ -1,27 +1,27 @@
 
 add_executable(example.cpp.contract.PANTHEIOS_ASSERT
-    example.cpp.contract.PANTHEIOS_ASSERT.cpp
+	example.cpp.contract.PANTHEIOS_ASSERT.cpp
 )
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT
-    Pantheios.util
-    Pantheios.core
+	Pantheios.util
+	Pantheios.core
 )
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT
-    Pantheios.fe.simple
+	Pantheios.fe.simple
 )
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT
-    Pantheios.be.fprintf
-    Pantheios.bec.fprintf
+	Pantheios.be.fprintf
+	Pantheios.bec.fprintf
 )
 
 target_compile_options(example.cpp.contract.PANTHEIOS_ASSERT PRIVATE
-    $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-        -Werror -Wall -Wextra -pedantic
-    >
-    $<$<CXX_COMPILER_ID:MSVC>: /WX /W4>
+	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+		-Werror -Wall -Wextra -pedantic
+	>
+	$<$<CXX_COMPILER_ID:MSVC>: /WX /W4>
 )
 
 

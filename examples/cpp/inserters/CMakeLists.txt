@@ -12,7 +12,7 @@ add_subdirectory(example.cpp.inserter.i)
 add_subdirectory(example.cpp.inserter.integer)
 if (WIN32)
 
-    add_subdirectory(example.cpp.inserter.m2w)
+	add_subdirectory(example.cpp.inserter.m2w)
 endif (WIN32)
 add_subdirectory(example.cpp.inserter.p)
 add_subdirectory(example.cpp.inserter.pointer)

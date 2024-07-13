@@ -1,42 +1,42 @@
 
 add_executable(example.cpp.backends.mx.2
-    example.cpp.backends.mx.2.cpp
+	example.cpp.backends.mx.2.cpp
 )
 
 target_link_libraries(example.cpp.backends.mx.2
-    Pantheios.util
-    Pantheios.core
+	Pantheios.util
+	Pantheios.core
 )
 
 target_link_libraries(example.cpp.backends.mx.2
-    Pantheios.fe.simple
+	Pantheios.fe.simple
 )
 
 target_link_libraries(example.cpp.backends.mx.2
-    Pantheios.be.N
+	Pantheios.be.N
 )
 
 if (UNIX)
 
-    target_link_libraries(example.cpp.backends.mx.2
-        Pantheios.bec.fprintf
-        Pantheios.bec.syslog
-    )
+	target_link_libraries(example.cpp.backends.mx.2
+		Pantheios.bec.fprintf
+		Pantheios.bec.syslog
+	)
 endif (UNIX)
 
 if (WIN32)
 
-    target_link_libraries(example.cpp.backends.mx.2
-        Pantheios.bec.WindowsConsole
-        Pantheios.bec.WindowsSyslog
-    )
+	target_link_libraries(example.cpp.backends.mx.2
+		Pantheios.bec.WindowsConsole
+		Pantheios.bec.WindowsSyslog
+	)
 endif (WIN32)
 
 target_compile_options(example.cpp.backends.mx.2 PRIVATE
-    $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-        -Werror -Wall -Wextra -pedantic
-    >
-    $<$<CXX_COMPILER_ID:MSVC>: /WX /W4>
+	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+		-Werror -Wall -Wextra -pedantic
+	>
+	$<$<CXX_COMPILER_ID:MSVC>: /WX /W4>
 )
 
 
