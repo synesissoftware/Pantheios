@@ -23,7 +23,7 @@ target_link_libraries(test.scratch.WideString
 target_link_libraries(test.scratch.WideString
 	PRIVATE
 		STLSoft::STLSoft
-		b64::b64
+		b64::core
 )
 
 target_compile_options(test.scratch.WideString PRIVATE

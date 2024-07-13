@@ -22,7 +22,7 @@ target_link_libraries(test.component.inserters.b64
 
 target_link_libraries(test.component.inserters.b64
 	PRIVATE
-		b64::b64
+		b64::core
 )
 
 target_link_libraries(test.component.inserters.b64

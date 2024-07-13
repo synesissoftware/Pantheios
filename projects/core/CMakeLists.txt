@@ -31,7 +31,7 @@ add_library(Pantheios.core
 target_link_libraries(Pantheios.core
 	PRIVATE
 		STLSoft::STLSoft
-		$<$<BOOL:${b64_FOUND}>: b64::b64>
+		$<$<BOOL:${b64_FOUND}>: b64::core>
 )
 
 target_compile_options(Pantheios.core PRIVATE

@@ -35,7 +35,7 @@ endif(WIN32)
 target_link_libraries(example.cpp.misc.101
 	PRIVATE
 		STLSoft::STLSoft
-		b64::b64
+		b64::core
 )
 
 target_compile_options(example.cpp.misc.101 PRIVATE
