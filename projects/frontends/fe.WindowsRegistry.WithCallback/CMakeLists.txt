@@ -2,19 +2,19 @@
 set(FE_WINDOWSREGISTRY_WC_SRC_DIR ../../../src/frontends)
 
 file(GLOB FE_WINDOWSREGISTRY_WC_SRCS
-	${FE_WINDOWSREGISTRY_WC_SRC_DIR}/fe.simple.c
+	${FE_WINDOWSREGISTRY_WC_SRC_DIR}/fe.WindowsRegistry.cpp
 )
 
-add_library(Pantheios.fe.simple.WithCallback
+add_library(Pantheios.fe.WindowsRegistry.WithCallback
 	${FE_WINDOWSREGISTRY_WC_SRCS}
 )
 
-target_link_libraries(Pantheios.fe.simple.WithCallback
+target_link_libraries(Pantheios.fe.WindowsRegistry.WithCallback
 	PRIVATE
 		STLSoft::STLSoft
 )
 
-target_compile_options(Pantheios.fe.simple.WithCallback PRIVATE
+target_compile_options(Pantheios.fe.WindowsRegistry.WithCallback PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic
 
@@ -27,7 +27,7 @@ target_compile_options(Pantheios.fe.simple.WithCallback PRIVATE
 	>
 )
 
-install(TARGETS Pantheios.fe.simple.WithCallback)
+install(TARGETS Pantheios.fe.WindowsRegistry.WithCallback)
 
 
 # ############################## end of file ############################# #
