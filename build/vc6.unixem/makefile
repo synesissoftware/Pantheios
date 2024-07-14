@@ -40,7 +40,7 @@
 # project & compiler version
 
 COMP_TAG			=	vc6
-ARCH_TAG            =   
+ARCH_TAG            =
 OS_TAG				=   .unix
 PROJ_TAG			=	pantheios
 PROJ_VER_MAJOR		=	1
@@ -97,7 +97,7 @@ PROJ_TEST_UNIT_DIR		=	$(PROJ_TEST_ROOT_DIR)\unit
 
 !ifndef PANTHEIOS_NO_B64
 
-B64_PROJ_INCLUDE		=	
+B64_PROJ_INCLUDE		=
 !ifdef PANTHEIOS_B64_BASE_DIR
 B64_INCLUDE_DIR			=   $(PANTHEIOS_B64_BASE_DIR)\include
 B64_SRC_DIR				=   $(PANTHEIOS_B64_BASE_DIR)\src
@@ -108,7 +108,7 @@ B64_SRC_DIR				=   $(PROJ_SRC_DIR)\b64
 !endif # !PANTHEIOS_B64_BASE_DIR
 !endif # !PANTHEIOS_NO_B64
 
-SHWILD_PROJ_INCLUDE		=	
+SHWILD_PROJ_INCLUDE		=
 !ifdef PANTHEIOS_SHWILD_BASE_DIR
 SHWILD_INCLUDE_DIR		=   $(PANTHEIOS_SHWILD_BASE_DIR)\include
 SHWILD_SRC_DIR			=   $(PANTHEIOS_SHWILD_BASE_DIR)\src
@@ -118,7 +118,7 @@ SHWILD_INCLUDE_DIR		=   $(PROJ_BASE_DIR)\include
 SHWILD_SRC_DIR			=   $(PROJ_SRC_DIR)\shwild
 !endif # !PANTHEIOS_SHWILD_BASE_DIR
 
-XCONTRACT_PROJ_INCLUDE	=	
+XCONTRACT_PROJ_INCLUDE	=
 !ifdef PANTHEIOS_XCONTRACT_BASE_DIR
 XCONTRACT_INCLUDE_DIR	=   $(PANTHEIOS_XCONTRACT_BASE_DIR)\include
 XCONTRACT_SRC_DIR		=   $(PANTHEIOS_XCONTRACT_BASE_DIR)\src
@@ -128,7 +128,7 @@ XCONTRACT_INCLUDE_DIR	=   $(PROJ_BASE_DIR)\include
 XCONTRACT_SRC_DIR		=   $(PROJ_SRC_DIR)\xcontract
 !endif # !PANTHEIOS_XCONTRACT_BASE_DIR
 
-XTESTS_PROJ_INCLUDE		=	
+XTESTS_PROJ_INCLUDE		=
 !ifdef PANTHEIOS_XTESTS_BASE_DIR
 XTESTS_INCLUDE_DIR		=   $(PANTHEIOS_XTESTS_BASE_DIR)\include
 XTESTS_SRC_DIR			=   $(PANTHEIOS_XTESTS_BASE_DIR)\src
@@ -154,7 +154,7 @@ RC		=	rc
 ########################################
 # include directory symbols
 
-INCLUDES_LEADER	=	
+INCLUDES_LEADER	=
 
 PROJ_INCLUDE		=	-I$(PROJ_INCLUDE_DIR)
 
@@ -400,12 +400,12 @@ CPPC_XTESTS_INCLUDES_UX_ST_R =\
 ########################################
 # library directory symbols
 
-LIBS_LEADER		=	
+LIBS_LEADER		=
 
 # lib paths
 
 ENV_LIBPATHS		=
-COMMON_LIBPATHS			=	-libpath:$(SYNESIS_DEV)/lib 
+COMMON_LIBPATHS			=	-libpath:$(SYNESIS_DEV)/lib
 
 
 
@@ -430,7 +430,7 @@ TARGET_LIB_UX_ST_R	= pthreadVC.lib advapi32.lib kernel32.lib ole32.lib oleaut32.
 # #defines
 #
 # - OS
-# - 
+# -
 
 OS_DEFS				=	-DUNIX
 
@@ -479,12 +479,12 @@ CC_F_NOLOGO			=	-nologo
 CC_F_COMPILE_ONLY		=	-c
 CC_F_WARNING_MAX		=	-W3
 CC_F_WARNING_ERR		=	-WX
-CC_F_WARNINGS_LIMIT		=	
+CC_F_WARNINGS_LIMIT		=
 CC_F_MINIMUM_SIZE		=	-O1
 #CC_F_MAXIMUM_SPEED		=	-O2
 CC_APP_F_WARNING_MAX	=	$(CC_F_WARNING_MAX)
 CC_APP_F_WARNING_ERR	=	$(CC_F_WARNING_ERR)
-CC_F_ADDITIONAL			=	
+CC_F_ADDITIONAL			=
 
 # CPPC flags
 
@@ -494,17 +494,17 @@ CPPC_F_WARNING_MAX		=	-W3
 CPPC_F_WARNING_ERR		=	-WX
 CPPC_F_EXCEPTIONS_ON	=	-GX
 CPPC_F_EXCEPTIONS_OFF	=	-GX-
-CPPC_F_EXCEPTIONS		=	
+CPPC_F_EXCEPTIONS		=
 CPPC_F_RTTI_ON			=	-GR
 CPPC_F_RTTI_OFF		=	-GR-
-CPPC_F_RTTI				=	
-CPPC_F_WARNINGS_LIMIT	=	
+CPPC_F_RTTI				=
+CPPC_F_WARNINGS_LIMIT	=
 CPPC_F_MINIMUM_SIZE	=	-O1
 CPPC_F_MAXIMUM_SPEED	=	-O2
 CPPC_F_OPTIMISED		=	$(CPPC_F_MAXIMUM_SPEED)
 CPPC_APP_F_WARNING_MAX	=	$(CPPC_F_WARNING_MAX)
 CPPC_APP_F_WARNING_ERR	=	$(CPPC_F_WARNING_ERR)
-CPPC_F_ADDITIONAL		=	
+CPPC_F_ADDITIONAL		=
 
 
 
@@ -741,7 +741,7 @@ AR_ARGS			=	-nologo
 
 # LD flags
 
-LD_ARGS		=	
+LD_ARGS		=
 
 LD_F_NOLOGO = -nologo
 
@@ -1247,7 +1247,7 @@ TARG_EX_P_fe_01_UX_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_AR
 TARG_EX_P_in_01_UX_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_EX_P_in_02_UX_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).mt.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_UX_MT_D	=	
+TARG_EX_P_in_03_UX_MT_D	=
 !else
 TARG_EX_P_in_03_UX_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).mt.debug.exe
 !endif # PANTHEIOS_NO_B64
@@ -1296,7 +1296,7 @@ TARG_EX_P_fe_01_UX_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_AR
 TARG_EX_P_in_01_UX_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_EX_P_in_02_UX_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).mt.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_UX_MT_R	=	
+TARG_EX_P_in_03_UX_MT_R	=
 !else
 TARG_EX_P_in_03_UX_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).mt.exe
 !endif # PANTHEIOS_NO_B64
@@ -1345,7 +1345,7 @@ TARG_EX_P_fe_01_UX_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_AR
 TARG_EX_P_in_01_UX_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_EX_P_in_02_UX_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_UX_ST_D	=	
+TARG_EX_P_in_03_UX_ST_D	=
 !else
 TARG_EX_P_in_03_UX_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).debug.exe
 !endif # PANTHEIOS_NO_B64
@@ -1394,7 +1394,7 @@ TARG_EX_P_fe_01_UX_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_AR
 TARG_EX_P_in_01_UX_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).exe
 TARG_EX_P_in_02_UX_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_UX_ST_R	=	
+TARG_EX_P_in_03_UX_ST_R	=
 !else
 TARG_EX_P_in_03_UX_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).exe
 !endif # PANTHEIOS_NO_B64
@@ -1444,20 +1444,20 @@ TARG_TEST_COMP_pan_puts_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.componen
 TARG_TEST_COMP_custsev_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_args_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_UX_MT_D		=	
+TARG_TEST_COMP_ins_b64_UX_MT_D		=
 !else
 TARG_TEST_COMP_ins_b64_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.debug.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_hostid_UX_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_hostid_UX_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_int_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_pad_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_ptr_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_prid_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_prid_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_real_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_slice_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_stm_ch_UX_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_thrid_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_thrid_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_w2m_UX_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_log_1_UX_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.debug.exe
 #### TODO: test.component.no_namespace
@@ -1470,20 +1470,20 @@ TARG_TEST_COMP_pan_puts_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.componen
 TARG_TEST_COMP_custsev_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_args_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_UX_MT_R		=	
+TARG_TEST_COMP_ins_b64_UX_MT_R		=
 !else
 TARG_TEST_COMP_ins_b64_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_hostid_UX_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_hostid_UX_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_int_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_pad_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_ptr_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_prid_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_prid_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_real_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_slice_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_stm_ch_UX_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_thrid_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_thrid_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_w2m_UX_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_log_1_UX_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).mt.exe
 #### TODO: test.component.no_namespace
@@ -1495,20 +1495,20 @@ TARG_TEST_COMP_pan_puts_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.componen
 TARG_TEST_COMP_custsev_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_args_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_UX_ST_D		=	
+TARG_TEST_COMP_ins_b64_UX_ST_D		=
 !else
 TARG_TEST_COMP_ins_b64_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).debug.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_hostid_UX_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_hostid_UX_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_int_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_pad_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_ptr_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_prid_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_prid_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_real_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_slice_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_stm_ch_UX_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_thrid_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_thrid_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_w2m_UX_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_log_1_UX_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).debug.exe
 #### TODO: test.component.no_namespace
@@ -1520,20 +1520,20 @@ TARG_TEST_COMP_pan_puts_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.componen
 TARG_TEST_COMP_custsev_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_args_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_UX_ST_R		=	
+TARG_TEST_COMP_ins_b64_UX_ST_R		=
 !else
 TARG_TEST_COMP_ins_b64_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_hostid_UX_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_hostid_UX_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_int_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_pad_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_ptr_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_prid_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_prid_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_real_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_slice_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_stm_ch_UX_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_thrid_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_thrid_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_w2m_UX_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_log_1_UX_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).exe
 #### TODO: test.component.no_namespace
@@ -2005,18 +2005,18 @@ OBJ_UTIL_UX_ST_R_P=\
 
 !ifdef PANTHEIOS_NO_B64
 
-OBJ_APPL_b64_UX_MT_D						= 
-OBJ_APPL_b64_UX_MT_D_P					= 
-OBJ_APPL_b64_UX_MT_D_PM					= 
-OBJ_APPL_b64_UX_MT_R						= 
-OBJ_APPL_b64_UX_MT_R_P					= 
-OBJ_APPL_b64_UX_MT_R_PM					= 
-OBJ_APPL_b64_UX_ST_D						= 
-OBJ_APPL_b64_UX_ST_D_P					= 
-OBJ_APPL_b64_UX_ST_D_PM					= 
-OBJ_APPL_b64_UX_ST_R						= 
-OBJ_APPL_b64_UX_ST_R_P					= 
-OBJ_APPL_b64_UX_ST_R_PM					= 
+OBJ_APPL_b64_UX_MT_D						=
+OBJ_APPL_b64_UX_MT_D_P					=
+OBJ_APPL_b64_UX_MT_D_PM					=
+OBJ_APPL_b64_UX_MT_R						=
+OBJ_APPL_b64_UX_MT_R_P					=
+OBJ_APPL_b64_UX_MT_R_PM					=
+OBJ_APPL_b64_UX_ST_D						=
+OBJ_APPL_b64_UX_ST_D_P					=
+OBJ_APPL_b64_UX_ST_D_PM					=
+OBJ_APPL_b64_UX_ST_R						=
+OBJ_APPL_b64_UX_ST_R_P					=
+OBJ_APPL_b64_UX_ST_R_PM					=
 !else
 OBJ_ins_b64_UX_MT_D						= $(PROJ_OBJ_DIR)\inserters.b64.mt.debug.obj
 OBJ_APPL_b64_UX_MT_D						= $(OBJ_ins_b64_UX_MT_D)
@@ -3793,10 +3793,10 @@ OBJ_TEST_COMP_ins_bool_UX_MT_D		=	.\test.component.inserters.boolean.mt.debug.ob
 OBJ_TEST_COMP_ins_bool_UX_MT_R		=	.\test.component.inserters.boolean.mt.obj
 OBJ_TEST_COMP_ins_bool_UX_ST_D		=	.\test.component.inserters.boolean.debug.obj
 OBJ_TEST_COMP_ins_bool_UX_ST_R		=	.\test.component.inserters.boolean.obj
-OBJ_TEST_COMP_ins_hostid_UX_MT_D		=	.\test.component.inserters.hostId.mt.debug.obj
-OBJ_TEST_COMP_ins_hostid_UX_MT_R		=	.\test.component.inserters.hostId.mt.obj
-OBJ_TEST_COMP_ins_hostid_UX_ST_D		=	.\test.component.inserters.hostId.debug.obj
-OBJ_TEST_COMP_ins_hostid_UX_ST_R		=	.\test.component.inserters.hostId.obj
+OBJ_TEST_COMP_ins_hostid_UX_MT_D		=	.\test.component.inserters.hostid.mt.debug.obj
+OBJ_TEST_COMP_ins_hostid_UX_MT_R		=	.\test.component.inserters.hostid.mt.obj
+OBJ_TEST_COMP_ins_hostid_UX_ST_D		=	.\test.component.inserters.hostid.debug.obj
+OBJ_TEST_COMP_ins_hostid_UX_ST_R		=	.\test.component.inserters.hostid.obj
 OBJ_TEST_COMP_ins_int_UX_MT_D		=	.\test.component.inserters.integer.mt.debug.obj
 OBJ_TEST_COMP_ins_int_UX_MT_R		=	.\test.component.inserters.integer.mt.obj
 OBJ_TEST_COMP_ins_int_UX_ST_D		=	.\test.component.inserters.integer.debug.obj
@@ -3809,10 +3809,10 @@ OBJ_TEST_COMP_ins_ptr_UX_MT_D		=	.\test.component.inserters.pointer.mt.debug.obj
 OBJ_TEST_COMP_ins_ptr_UX_MT_R		=	.\test.component.inserters.pointer.mt.obj
 OBJ_TEST_COMP_ins_ptr_UX_ST_D		=	.\test.component.inserters.pointer.debug.obj
 OBJ_TEST_COMP_ins_ptr_UX_ST_R		=	.\test.component.inserters.pointer.obj
-OBJ_TEST_COMP_ins_prid_UX_MT_D		=	.\test.component.inserters.processId.mt.debug.obj
-OBJ_TEST_COMP_ins_prid_UX_MT_R		=	.\test.component.inserters.processId.mt.obj
-OBJ_TEST_COMP_ins_prid_UX_ST_D		=	.\test.component.inserters.processId.debug.obj
-OBJ_TEST_COMP_ins_prid_UX_ST_R		=	.\test.component.inserters.processId.obj
+OBJ_TEST_COMP_ins_prid_UX_MT_D		=	.\test.component.inserters.processid.mt.debug.obj
+OBJ_TEST_COMP_ins_prid_UX_MT_R		=	.\test.component.inserters.processid.mt.obj
+OBJ_TEST_COMP_ins_prid_UX_ST_D		=	.\test.component.inserters.processid.debug.obj
+OBJ_TEST_COMP_ins_prid_UX_ST_R		=	.\test.component.inserters.processid.obj
 OBJ_TEST_COMP_ins_real_UX_MT_D		=	.\test.component.inserters.real.mt.debug.obj
 OBJ_TEST_COMP_ins_real_UX_MT_R		=	.\test.component.inserters.real.mt.obj
 OBJ_TEST_COMP_ins_real_UX_ST_D		=	.\test.component.inserters.real.debug.obj
@@ -3825,10 +3825,10 @@ OBJ_TEST_COMP_ins_stm_ch_UX_MT_D		=	.\test.component.inserters.stream_character.
 OBJ_TEST_COMP_ins_stm_ch_UX_MT_R		=	.\test.component.inserters.stream_character.mt.obj
 OBJ_TEST_COMP_ins_stm_ch_UX_ST_D		=	.\test.component.inserters.stream_character.debug.obj
 OBJ_TEST_COMP_ins_stm_ch_UX_ST_R		=	.\test.component.inserters.stream_character.obj
-OBJ_TEST_COMP_ins_thrid_UX_MT_D		=	.\test.component.inserters.threadId.mt.debug.obj
-OBJ_TEST_COMP_ins_thrid_UX_MT_R		=	.\test.component.inserters.threadId.mt.obj
-OBJ_TEST_COMP_ins_thrid_UX_ST_D		=	.\test.component.inserters.threadId.debug.obj
-OBJ_TEST_COMP_ins_thrid_UX_ST_R		=	.\test.component.inserters.threadId.obj
+OBJ_TEST_COMP_ins_thrid_UX_MT_D		=	.\test.component.inserters.threadid.mt.debug.obj
+OBJ_TEST_COMP_ins_thrid_UX_MT_R		=	.\test.component.inserters.threadid.mt.obj
+OBJ_TEST_COMP_ins_thrid_UX_ST_D		=	.\test.component.inserters.threadid.debug.obj
+OBJ_TEST_COMP_ins_thrid_UX_ST_R		=	.\test.component.inserters.threadid.obj
 OBJ_TEST_COMP_ins_w2m_UX_MT_D		=	.\test.component.inserters.w2m.mt.debug.obj
 OBJ_TEST_COMP_ins_w2m_UX_MT_R		=	.\test.component.inserters.w2m.mt.obj
 OBJ_TEST_COMP_ins_w2m_UX_ST_D		=	.\test.component.inserters.w2m.debug.obj
@@ -13526,8 +13526,8 @@ $(TARG_TEST_COMP_ins_hostid_UX_MT_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_MT_D)
 
-$(OBJ_TEST_COMP_ins_hostid_UX_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_UX_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_UX_MT_R):	\
 			$(OBJ_TEST_COMP_ins_hostid_UX_MT_R)\
@@ -13549,8 +13549,8 @@ $(TARG_TEST_COMP_ins_hostid_UX_MT_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_MT_R)
 
-$(OBJ_TEST_COMP_ins_hostid_UX_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_UX_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_UX_ST_D):	\
 			$(OBJ_TEST_COMP_ins_hostid_UX_ST_D)\
@@ -13572,8 +13572,8 @@ $(TARG_TEST_COMP_ins_hostid_UX_ST_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_ST_D)
 
-$(OBJ_TEST_COMP_ins_hostid_UX_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_UX_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_UX_ST_R):	\
 			$(OBJ_TEST_COMP_ins_hostid_UX_ST_R)\
@@ -13595,8 +13595,8 @@ $(TARG_TEST_COMP_ins_hostid_UX_ST_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_ST_R)
 
-$(OBJ_TEST_COMP_ins_hostid_UX_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_UX_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_int_UX_MT_D):	\
 			$(OBJ_TEST_COMP_ins_int_UX_MT_D)\
@@ -13894,8 +13894,8 @@ $(TARG_TEST_COMP_ins_prid_UX_MT_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_MT_D)
 
-$(OBJ_TEST_COMP_ins_prid_UX_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_UX_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_UX_MT_R):	\
 			$(OBJ_TEST_COMP_ins_prid_UX_MT_R)\
@@ -13917,8 +13917,8 @@ $(TARG_TEST_COMP_ins_prid_UX_MT_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_MT_R)
 
-$(OBJ_TEST_COMP_ins_prid_UX_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_UX_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_UX_ST_D):	\
 			$(OBJ_TEST_COMP_ins_prid_UX_ST_D)\
@@ -13940,8 +13940,8 @@ $(TARG_TEST_COMP_ins_prid_UX_ST_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_ST_D)
 
-$(OBJ_TEST_COMP_ins_prid_UX_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_UX_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_UX_ST_R):	\
 			$(OBJ_TEST_COMP_ins_prid_UX_ST_R)\
@@ -13963,8 +13963,8 @@ $(TARG_TEST_COMP_ins_prid_UX_ST_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_ST_R)
 
-$(OBJ_TEST_COMP_ins_prid_UX_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_UX_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_real_UX_MT_D):	\
 			$(OBJ_TEST_COMP_ins_real_UX_MT_D)\
@@ -14270,8 +14270,8 @@ $(TARG_TEST_COMP_ins_thrid_UX_MT_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_MT_D)
 
-$(OBJ_TEST_COMP_ins_thrid_UX_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_UX_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_UX_MT_R):	\
 			$(OBJ_TEST_COMP_ins_thrid_UX_MT_R)\
@@ -14293,8 +14293,8 @@ $(TARG_TEST_COMP_ins_thrid_UX_MT_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_MT_R)
 
-$(OBJ_TEST_COMP_ins_thrid_UX_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_UX_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_UX_ST_D):	\
 			$(OBJ_TEST_COMP_ins_thrid_UX_ST_D)\
@@ -14316,8 +14316,8 @@ $(TARG_TEST_COMP_ins_thrid_UX_ST_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_ST_D)
 
-$(OBJ_TEST_COMP_ins_thrid_UX_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_UX_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_UX_ST_R):	\
 			$(OBJ_TEST_COMP_ins_thrid_UX_ST_R)\
@@ -14339,8 +14339,8 @@ $(TARG_TEST_COMP_ins_thrid_UX_ST_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_UX_ST_R)
 
-$(OBJ_TEST_COMP_ins_thrid_UX_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_UX_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_UX_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_w2m_UX_MT_D):	\
 			$(OBJ_TEST_COMP_ins_w2m_UX_MT_D)\

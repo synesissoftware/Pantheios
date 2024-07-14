@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.processId/test.component.inserters.processId.cpp
+ * File:    test/component/test.component.inserters.threadid/test.component.inserters.threadid.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.processId project.
+ * Purpose: Implementation file for the test.component.inserters.threadid project.
  *
- * Created:     17th October 2006
- * Updated:     16th December 2023
+ * Created: 17th October 2006
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -15,9 +15,10 @@
 #include <xtests/xtests.h>
 
 /* Pantheios header files */
-#include <pantheios/pantheios.hpp>      // Pantheios C++ main header
-#include <pantheios/inserters/ids.hpp>  // for pantheios::processId
+#include <pantheios/pantheios.hpp>          // Pantheios C++ main header
+#include <pantheios/inserters/threadid.hpp> // for pantheios::threadId
 #include <pantheios/backends/bec.test.h>
+#include <pantheios/internal/threading.h>
 
 /* STLSoft header files */
 #include <stlsoft/conversion/integer_to_string.hpp>
@@ -25,14 +26,19 @@
 
 /* Standard C header files */
 #include <stdlib.h>                     // for exit codes
-
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # include <unistd.h>
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-# include <windows.h>
-#else /* ? OS */
-# error Not discriminated for platforms other than UNIX and Windows
 #endif /* OS */
+
+#ifdef PANTHEIOS_MT
+# if defined(PLATFORMSTL_OS_IS_UNIX)
+#  include <pthread.h>
+# elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+#  include <windows.h>
+# else /* ? OS */
+#  error Not discriminated for platforms other than UNIX and Windows
+# endif /* OS */
+#endif /* PANTHEIOS_MT */
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
@@ -42,13 +48,13 @@
 
 static void test_1_01();
 
-static int pan_get_pid_();
+static pantheios::sint64_t pan_get_tid_();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.processId");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.threadid");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -77,7 +83,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.processId", verbosity))
+    if(XTESTS_START_RUNNER("test.component.inserters.threadid", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
 
@@ -95,10 +101,10 @@ static void test_1_01()
 {
     // 1. Setup
 
-    PAN_CHAR_T const  prefix[]    =   PSTR("process: ");
-    PAN_CHAR_T        pid_[21 + STLSOFT_NUM_ELEMENTS(prefix)];
-    PAN_CHAR_T const* pid         =   stlsoft::integer_to_string(&pid_[0], STLSOFT_NUM_ELEMENTS(pid_), pan_get_pid_());
-    PAN_CHAR_T const* stmt        =   pid - (STLSOFT_NUM_ELEMENTS(prefix) - 1);
+    PAN_CHAR_T const  prefix[]    =   PSTR("thread: ");
+    PAN_CHAR_T        tid_[21 + STLSOFT_NUM_ELEMENTS(prefix)];
+    PAN_CHAR_T const* tid         =   stlsoft::integer_to_string(&tid_[0], STLSOFT_NUM_ELEMENTS(tid_), pan_get_tid_());
+    PAN_CHAR_T const* stmt        =   tid - (STLSOFT_NUM_ELEMENTS(prefix) - 1);
 
     ::memcpy(const_cast<PAN_CHAR_T*>(stmt), prefix, sizeof(PAN_CHAR_T) * (STLSOFT_NUM_ELEMENTS(prefix) - 1));
 
@@ -107,26 +113,42 @@ static void test_1_01()
 
     // 2. Create test data
 
-    pantheios::log_NOTICE(pantheios::processId);
-    pantheios::log_NOTICE(prefix, pantheios::processId);
+    pantheios::log_NOTICE(pantheios::threadId);
+    pantheios::log_NOTICE(prefix, pantheios::threadId);
 
 
     // 3. Verification
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_BOOLEAN_FALSE(results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(2u, results.size()));
-    XTESTS_TEST_STRING_EQUAL(pid, results[0].statement);
+    XTESTS_TEST(!results.empty());
+    XTESTS_TEST_INTEGER_EQUAL(2, results.size());
+    XTESTS_TEST_STRING_EQUAL(tid, results[0].statement);
     XTESTS_TEST_STRING_EQUAL(stmt, results[1].statement);
 }
 
-static int pan_get_pid_()
+static pantheios::sint64_t pan_get_tid_()
 {
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-    return static_cast<int>(::getpid());
+# ifdef PANTHEIOS_MT
+    union
+    {
+        pantheios::sint64_t   u64;
+        pthread_t           self;
+
+    } u;
+
+    STLSOFT_STATIC_ASSERT(sizeof(::pthread_self()) <= sizeof(pantheios::sint64_t));
+
+    u.u64 = 0;
+    u.self = ::pthread_self();
+
+    return u.u64;
+# else /* ? PANTHEIOS_MT */
+    return 1;
+# endif /* PANTHEIOS_MT */
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-    return static_cast<int>(::GetCurrentProcessId());
+    return static_cast<pantheios::sint64_t>(::GetCurrentThreadId());
 #else /* ? OS */
 # error Not discriminated for platforms other than UNIX and Windows
 #endif /* OS */
