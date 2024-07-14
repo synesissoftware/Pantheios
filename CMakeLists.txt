@@ -78,7 +78,7 @@ find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 message("-- CMake package STLSoft found (version ${STLSoft_VERSION}; ${STLSoft_REQUIRED_VERSION_} requested)")
 
 
-set(b64_DESIRED_VERSION_ 1.4.7)
+set(b64_DESIRED_VERSION_ 1.5.2)
 
 find_package(b64 ${b64_DESIRED_VERSION_})
 
