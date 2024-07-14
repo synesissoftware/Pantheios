@@ -22,7 +22,7 @@ target_link_libraries(test.component.inserters.m2w
 
 target_link_libraries(test.component.inserters.m2w
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.m2w PRIVATE

@@ -11,7 +11,7 @@ target_link_libraries(test.unit.inserter.stream_character
 
 target_link_libraries(test.unit.inserter.stream_character
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.unit.inserter.stream_character PRIVATE

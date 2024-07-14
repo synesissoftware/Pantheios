@@ -22,7 +22,7 @@ target_link_libraries(test.component.inserters.threadid
 
 target_link_libraries(test.component.inserters.threadid
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.threadid PRIVATE

@@ -21,7 +21,7 @@ target_link_libraries(test.unit.be.lrsplit
 target_link_libraries(test.unit.be.lrsplit
 	PRIVATE
 		STLSoft::STLSoft
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.unit.be.lrsplit PRIVATE

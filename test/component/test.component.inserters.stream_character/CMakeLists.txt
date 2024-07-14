@@ -22,7 +22,7 @@ target_link_libraries(test.component.inserters.stream_character
 
 target_link_libraries(test.component.inserters.stream_character
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.stream_character PRIVATE

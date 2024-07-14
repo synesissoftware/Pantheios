@@ -23,7 +23,7 @@ target_link_libraries(test.component.be.file.threading
 
 target_link_libraries(test.component.be.file.threading
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.be.file.threading PRIVATE

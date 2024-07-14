@@ -17,7 +17,7 @@ target_link_libraries(test.component.core.getProcessIdentity
 
 target_link_libraries(test.component.core.getProcessIdentity
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.core.getProcessIdentity PRIVATE

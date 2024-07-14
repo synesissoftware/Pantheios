@@ -22,7 +22,7 @@ target_link_libraries(test.component.inserters.hostid
 
 target_link_libraries(test.component.inserters.hostid
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.hostid PRIVATE

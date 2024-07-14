@@ -17,7 +17,7 @@ target_link_libraries(test.unit.be.WindowsSyslog
 target_link_libraries(test.unit.be.WindowsSyslog
 	PRIVATE
 		STLSoft::STLSoft
-		xTests::xTests.core
+		xTests::core
 )
 
 target_link_libraries(test.unit.be.WindowsSyslog

@@ -21,7 +21,7 @@ target_link_libraries(test.performance.util.date_elements_to_string
 
 target_link_libraries(test.performance.util.date_elements_to_string
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.performance.util.date_elements_to_string PRIVATE

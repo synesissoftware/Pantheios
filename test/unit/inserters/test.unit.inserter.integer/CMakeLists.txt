@@ -11,7 +11,7 @@ target_link_libraries(test.unit.inserter.integer
 
 target_link_libraries(test.unit.inserter.integer
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.unit.inserter.integer PRIVATE

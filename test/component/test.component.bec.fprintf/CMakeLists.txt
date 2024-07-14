@@ -20,7 +20,7 @@ target_link_libraries(test.component.bec.fprintf
 
 target_link_libraries(test.component.bec.fprintf
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.bec.fprintf PRIVATE

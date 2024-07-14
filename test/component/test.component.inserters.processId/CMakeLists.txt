@@ -22,7 +22,7 @@ target_link_libraries(test.component.inserters.processid
 
 target_link_libraries(test.component.inserters.processid
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.processid PRIVATE

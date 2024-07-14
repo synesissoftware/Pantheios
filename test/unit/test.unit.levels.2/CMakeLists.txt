@@ -11,7 +11,7 @@ target_link_libraries(test.unit.levels.2
 target_link_libraries(test.unit.levels.2
 	PRIVATE
 		STLSoft::STLSoft
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.unit.levels.2 PRIVATE

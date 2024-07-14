@@ -22,7 +22,7 @@ target_link_libraries(test.component.log.1
 
 target_link_libraries(test.component.log.1
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.log.1 PRIVATE

@@ -22,7 +22,7 @@ target_link_libraries(test.component.core.initialisation_sequence
 
 target_link_libraries(test.component.core.initialisation_sequence
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.core.initialisation_sequence PRIVATE

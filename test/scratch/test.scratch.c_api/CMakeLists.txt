@@ -25,7 +25,7 @@ target_link_libraries(test.scratch.c_api
 
 target_link_libraries(test.scratch.c_api
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.scratch.c_api PRIVATE

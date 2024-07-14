@@ -21,7 +21,7 @@ target_link_libraries(test.unit.be.N.filtering
 target_link_libraries(test.unit.be.N.filtering
 	PRIVATE
 		STLSoft::STLSoft
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.unit.be.N.filtering PRIVATE

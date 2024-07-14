@@ -22,7 +22,7 @@ target_link_libraries(test.component.inserters.pad
 
 target_link_libraries(test.component.inserters.pad
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.pad PRIVATE

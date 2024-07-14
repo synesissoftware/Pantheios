@@ -27,7 +27,7 @@ target_link_libraries(test.component.inserters.b64
 
 target_link_libraries(test.component.inserters.b64
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.b64 PRIVATE

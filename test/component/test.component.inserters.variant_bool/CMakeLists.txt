@@ -22,7 +22,7 @@ target_link_libraries(test.component.inserters.variant_bool
 
 target_link_libraries(test.component.inserters.variant_bool
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.variant_bool PRIVATE

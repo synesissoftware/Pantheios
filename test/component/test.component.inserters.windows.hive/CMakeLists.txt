@@ -22,7 +22,7 @@ target_link_libraries(test.component.inserters.windows.hive
 
 target_link_libraries(test.component.inserters.windows.hive
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.windows.hive PRIVATE

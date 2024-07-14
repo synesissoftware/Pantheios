@@ -22,7 +22,7 @@ target_link_libraries(test.performance.inserters.w2m
 
 target_link_libraries(test.performance.inserters.w2m
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.performance.inserters.w2m PRIVATE

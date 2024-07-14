@@ -22,7 +22,7 @@ target_link_libraries(test.component.inserters.slice
 
 target_link_libraries(test.component.inserters.slice
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.slice PRIVATE

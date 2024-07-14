@@ -24,7 +24,7 @@ target_link_libraries(test.unit.getversion
 target_link_libraries(test.unit.getversion
 	PRIVATE
 		STLSoft::STLSoft
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.unit.getversion PRIVATE

@@ -22,7 +22,7 @@ target_link_libraries(test.component.custom_severity
 
 target_link_libraries(test.component.custom_severity
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.component.custom_severity PRIVATE

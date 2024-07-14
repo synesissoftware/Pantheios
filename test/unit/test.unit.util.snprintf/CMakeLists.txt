@@ -11,7 +11,7 @@ target_link_libraries(test.unit.util.snprintf
 target_link_libraries(test.unit.util.snprintf
 	PRIVATE
 		STLSoft::STLSoft
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.unit.util.snprintf PRIVATE
