@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.performance.util.date_elements_to_string project.
  *
  * Created: 13th November 2016
- * Updated: 7th February 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

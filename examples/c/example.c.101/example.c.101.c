@@ -14,7 +14,7 @@
  *              pantheios_logprintf()
  *
  * Created: 17th January 2008
- * Updated: 7th February 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,10 +40,13 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("exa
  * main
  */
 
-int main()
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int res;
+
+    STLSOFT_SUPPRESS_UNUSED(argc);
+    STLSOFT_SUPPRESS_UNUSED(argv);
 
     /* Initialise the Pantheios libraries. This will cause the Core to
      * initialise, which will itself initialise the front-end and back-end

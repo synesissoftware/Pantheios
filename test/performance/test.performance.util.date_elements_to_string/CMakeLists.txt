@@ -28,6 +28,7 @@ target_compile_options(test.performance.util.date_elements_to_string PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 		-Werror -Wall -Wextra -pedantic
 
+		-Wno-deprecated-declarations
 		-Wno-missing-field-initializers
 		-Wno-unused-but-set-variable
 	>

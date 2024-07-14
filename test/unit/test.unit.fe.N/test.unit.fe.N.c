@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.fe.N project.
  *
  * Created: 24th August 2008
- * Updated: 7th February 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -116,7 +116,7 @@ static void reinitialise_ceilings(void)
  * test function implementations
  */
 
-static void test_empty_array_with_negative_default_ceiling()
+static void test_empty_array_with_negative_default_ceiling(void)
 {
     static const int severityLevelResults[] =
     {
@@ -151,7 +151,7 @@ static void test_empty_array_with_negative_default_ceiling()
     }
 }
 
-static void test_empty_array_with_EMERGENCY_default_ceiling()
+static void test_empty_array_with_EMERGENCY_default_ceiling(void)
 {
     static const int severityLevelResults[] =
     {
@@ -187,7 +187,7 @@ static void test_empty_array_with_EMERGENCY_default_ceiling()
     }
 }
 
-static void test_empty_array_with_ALERT_default_ceiling()
+static void test_empty_array_with_ALERT_default_ceiling(void)
 {
     static const int severityLevelResults[] =
     {
@@ -223,7 +223,7 @@ static void test_empty_array_with_ALERT_default_ceiling()
     }
 }
 
-static void test_array_with_one_specific_id()
+static void test_array_with_one_specific_id(void)
 {
 #define BACKEND_0_ID    1001
 
@@ -298,7 +298,7 @@ static void test_array_with_one_specific_id()
     }
 }
 
-static void test_array_with_three_specific_ids()
+static void test_array_with_three_specific_ids(void)
 {
 #define BACKEND_0_ID    1001
 #define BACKEND_1_ID    3

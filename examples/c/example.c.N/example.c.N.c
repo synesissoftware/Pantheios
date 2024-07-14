@@ -9,7 +9,7 @@
  *              for be.N
  *
  * Created: 5th December 2006
- * Updated: 7th February 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -69,8 +69,11 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(int argc, char* argv[])
 {
+  STLSOFT_SUPPRESS_UNUSED(argc);
+  STLSOFT_SUPPRESS_UNUSED(argv);
+
   /* Must initialise Pantheios, when using from C (and there are no C++
    * compilation units in the link-unit).
    *

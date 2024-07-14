@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.getversion project.
  *
  * Created: 28th August 2008
- * Updated: 7th February 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -74,42 +74,42 @@ int main(int argc, char **argv)
  * test function implementations
  */
 
-static void test_signature()
+static void test_signature(void)
 {
     pan_uint32_t (PANTHEIOS_CALLCONV *pfn)(void) = pantheios_getVersion;
 
     XTESTS_TEST(((pan_uint32_t (PANTHEIOS_CALLCONV *)(void))0) != pfn);
 }
 
-static void test_call()
+static void test_call(void)
 {
     pantheios_getVersion();
 
     XTESTS_TEST_PASSED();
 }
 
-static void test_version()
+static void test_version(void)
 {
     pan_uint32_t const ver = pantheios_getVersion();
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER, ver);
 }
 
-static void test_major()
+static void test_major(void)
 {
     pan_uint32_t const verMajor = (pantheios_getVersion() & 0xff000000) >> 24;
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER_MAJOR, verMajor);
 }
 
-static void test_minor()
+static void test_minor(void)
 {
     pan_uint32_t const verMinor = (pantheios_getVersion() & 0x00ff0000) >> 16;
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER_MINOR, verMinor);
 }
 
-static void test_revision()
+static void test_revision(void)
 {
     pan_uint32_t const verRevision = (pantheios_getVersion() & 0x0000ff00) >> 8;
 
