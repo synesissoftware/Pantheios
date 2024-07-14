@@ -71,6 +71,10 @@ static int main_(int argc, char **argv)
 {
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
     pantheios::log_DEBUG("main_(", pantheios::args(argc, argv), ")");
+#else
+
+    STLSOFT_SUPPRESS_UNUSED(argc);
+    STLSOFT_SUPPRESS_UNUSED(argv);
 #endif
 
     {
