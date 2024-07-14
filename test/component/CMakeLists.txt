@@ -32,12 +32,18 @@ if(WIN32)
 
 	add_subdirectory(test.component.inserters.variant_bool)
 endif(WIN32)
-add_subdirectory(test.component.inserters.w2m)
+if(NOT PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_subdirectory(test.component.inserters.w2m)
+endif()
 if(WIN32)
 
 	add_subdirectory(test.component.inserters.windows.hive)
 endif(WIN32)
 
 add_subdirectory(test.component.log.1)
-add_subdirectory(test.component.trace.1)
+if(NOT PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_subdirectory(test.component.trace.1)
+endif()
 

@@ -24,6 +24,7 @@
 
 /* STLSoft header files */
 #include <stlsoft/smartptr/scoped_handle.hpp>
+#include <winstl/conversion/char_conversions.hpp>
 
 /* Standard C header files */
 #include <stdio.h>
@@ -162,7 +163,7 @@ static void test_initialisation()
 
     init.flags      |=  PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY;
     init.addrSize   =   0;
-    init.hostName   =   "localhost";
+    init.hostName   =   PANTHEIOS_LITERAL_STRING("localhost");
     init.port       =   50505;
 
     void*   token;
@@ -170,7 +171,7 @@ static void test_initialisation()
 
     if(r < 0)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", pantheios::getStockSeverityString(r));
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
     }
     else
     {
@@ -188,7 +189,7 @@ static void test_1_2()
 
     init.flags      |=  PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY;
     init.addrSize   =   0;
-    init.hostName   =   "localhost";
+    init.hostName   =   PANTHEIOS_LITERAL_STRING("localhost");
     init.port       =   50505;
 
     void*   token;
@@ -196,7 +197,7 @@ static void test_1_2()
 
     if(r < 0)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", pantheios::getStockSeverityString(r));
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
     }
     else
     {

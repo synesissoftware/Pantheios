@@ -115,12 +115,12 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
   try
   {
-    pantheios::util::auto_buffer_selector<char, 256>::type  prefixes(static_cast<size_t>(customInfo28));
-    PAN_CHAR_T const*                                       severity_s = pantheios::getStockSeverityString(severityLevel);
-    FILE*                                                   stm        = (severityLevel < pantheios::notice) ? stderr : stdout;
-    PAN_CHAR_T const*                                       processId  = static_cast<PAN_CHAR_T const*>(beToken);
+    pantheios::util::auto_buffer_selector<PAN_CHAR_T, 256>::type    prefixes(static_cast<size_t>(customInfo28));
+    PAN_CHAR_T const*                                               severity_s = pantheios::getStockSeverityString(severityLevel);
+    FILE*                                                           stm        = (severityLevel < pantheios::notice) ? stderr : stdout;
+    PAN_CHAR_T const*                                               processId  = static_cast<PAN_CHAR_T const*>(beToken);
 
-    platformstl::system_traits<char>::str_set(&prefixes[0], prefixes.size(), ' ');
+    platformstl::system_traits<PAN_CHAR_T>::str_set(&prefixes[0], prefixes.size(), ' ');
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     return ::fwprintf(stm

@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <wchar.h>
 
 #if defined(_MSC_VER) && \
     defined(_DEBUG)
@@ -69,9 +70,11 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEI
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
 # define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define P_strcmp                                           ::wcscmp
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 # define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define P_strcmp                                           ::strcmp
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -145,12 +148,12 @@ static int main_(int /* argc */, char** /* argv */)
     {
         struct tm const tm = iteration_to_tm_(i);
 
-        char    sz_de[20];
-        char    sz_sprintf[20];
-        char    sz_strftime[20];
+        PAN_CHAR_T  sz_de[20];
+        PAN_CHAR_T  sz_sprintf[20];
+        PAN_CHAR_T  sz_strftime[20];
 #ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-        char    sz_fast_strftime[20];
+        PAN_CHAR_T  sz_fast_strftime[20];
 #endif
 
         format_with_date_elements_(tm, &sz_de);
@@ -162,11 +165,11 @@ static int main_(int /* argc */, char** /* argv */)
 #endif
 
         if( STLSOFT_ALWAYS_FALSE() ||
-            0 != ::strcmp(sz_de, sz_sprintf) ||
-            0 != ::strcmp(sz_de, sz_strftime) ||
+            0 != P_strcmp(sz_de, sz_sprintf) ||
+            0 != P_strcmp(sz_de, sz_strftime) ||
 #ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-            0 != ::strcmp(sz_de, sz_fast_strftime) ||
+            0 != P_strcmp(sz_de, sz_fast_strftime) ||
 #endif
             STLSOFT_ALWAYS_FALSE())
         {
@@ -186,7 +189,7 @@ static int main_(int /* argc */, char** /* argv */)
         { for(int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
-            char            sz[20];
+            PAN_CHAR_T      sz[20];
 
             total += format_with_date_elements_(tm, &sz);
         }}
@@ -200,7 +203,7 @@ static int main_(int /* argc */, char** /* argv */)
         { for(int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
-            char            sz[20];
+            PAN_CHAR_T      sz[20];
 
             total += format_with_sprintf_(tm, &sz);
         }}
@@ -214,7 +217,7 @@ static int main_(int /* argc */, char** /* argv */)
         { for(int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
-            char            sz[20];
+            PAN_CHAR_T      sz[20];
 
             total += format_with_strftime_(tm, &sz);
         }}
@@ -230,7 +233,7 @@ static int main_(int /* argc */, char** /* argv */)
         { for(int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
-            char            sz[20];
+            PAN_CHAR_T      sz[20];
 
             total += format_with_fast_strftime_(tm, &sz);
         }}

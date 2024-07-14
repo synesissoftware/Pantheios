@@ -14,7 +14,8 @@
 
 /* Pantheios header files */
 #include <pantheios/pan.hpp>
-#include <pantheios/inserters/w2m.hpp>
+#include <pantheios/inserters/m2t.hpp>
+#include <pantheios/inserters/w2t.hpp>
 
 /* STLSoft header files */
 #include <stlsoft/string/simple_string.hpp>
@@ -44,6 +45,18 @@ namespace std
 #endif /* _MSC_VER) && _DEBUG */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * character encoding
+ */
+
+#define PSTR                                                PANTHEIOS_LITERAL_STRING
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
@@ -60,7 +73,7 @@ static int main_(int /* argc */, char** /*argv*/)
     std::wstring            ws1(L"wide string #1");
     stlsoft::simple_wstring ws2(L"wide string #2");
 
-    pan::log_NOTICE("mbs=", mbs, ", ws1=", pan::w2m(ws1), ", ws2=", pan::w2m(ws2));
+    pan::log_NOTICE(PSTR("mbs="), pan::m2t(mbs), PSTR(", ws1="), pan::w2t(ws1), PSTR(", ws2="), pan::w2t(ws2));
 
 #ifdef PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES
     VARIANT         var;
@@ -68,7 +81,7 @@ static int main_(int /* argc */, char** /*argv*/)
     var.vt = VT_I4;
     var.lVal = -10;
 
-    pan::log_DEBUG("var=", pan::w2m(var));
+    pan::log_DEBUG(PSTR("var="), pan::w2t(var));
 #endif /* PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES */
 
 
@@ -104,13 +117,13 @@ int main(int argc, char** argv)
     }
     catch(std::exception& x)
     {
-        pantheios::log_ALERT("Unexpected general error: ", x, ". Application terminating");
+        pantheios::log_ALERT(PSTR("Unexpected general error: "), x, PSTR(". Application terminating"));
 
         res = EXIT_FAILURE;
     }
     catch(...)
     {
-        pantheios::puts(pantheios::emergency, "Unhandled unknown error");
+        pantheios::puts(pantheios::emergency, PSTR("Unhandled unknown error"));
 
         res = EXIT_FAILURE;
     }
