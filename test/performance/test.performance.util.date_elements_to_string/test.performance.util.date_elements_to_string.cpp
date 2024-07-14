@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.performance.util.date_elements_to_string project.
  *
  * Created: 13th November 2016
- * Updated: 7th February 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,9 +40,11 @@
  */
 
 #ifdef _DEBUG
+
 const int       ITERATIONS  =   1000;
 const int       NUM_WARMUPS =   2;
 #else /* ? _DEBUG */
+
 const int       ITERATIONS  =   1000000;
 const int       NUM_WARMUPS =   2;
 #endif /* _DEBUG */
@@ -57,7 +59,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEI
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,12 +68,10 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEI
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -80,7 +80,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEI
  */
 
 #if 0
-typedef std::string     string_t;
+typedef std::string                                         string_t;
 #endif /* 0 */
 
 

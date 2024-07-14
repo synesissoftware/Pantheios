@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.be.WindowsSyslog/test.unit.be.WindowsSyslog.cpp
+ * File:    test/unit/test.unit.be.WindowsSyslog/test.unit.be.WindowsSyslog.cpp
  *
- * Purpose:     Implementation file for the test.unit.be.WindowsSyslog project.
+ * Purpose: Implementation file for the test.unit.be.WindowsSyslog project.
  *
- * Created:     17th October 2008
- * Updated:     16th December 2023
+ * Created: 17th October 2008
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,11 +31,13 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.WindowsSyslog");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -66,6 +68,7 @@ namespace
     static void test_1_19(void);
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -123,6 +126,7 @@ int main(int argc, char **argv)
 
     return retCode;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
@@ -272,8 +276,8 @@ static void test_1_19()
 {
 }
 
-
 } /* anonymous namespace */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

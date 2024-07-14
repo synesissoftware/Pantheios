@@ -8,7 +8,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 31st August 2006
- * Updated: 17th July 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

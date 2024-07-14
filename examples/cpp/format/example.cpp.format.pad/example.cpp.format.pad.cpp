@@ -1,23 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/format/example.cpp.format.pad/example.cpp.format.pad.cpp
+ * File:    examples/cpp/format/example.cpp.format.pad/example.cpp.format.pad.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of Pantheios inserters for padding
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of Pantheios inserters for padding
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     29th June 2009
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 29th June 2009
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,7 +34,7 @@ PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -79,6 +69,7 @@ int main()
 
   return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

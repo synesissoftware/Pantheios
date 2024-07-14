@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.be.file project.
  *
  * Created: 27th November 2006
- * Updated: 13th July 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,7 +33,11 @@
 #endif /* _MSC_VER) && _DEBUG */
 
 
-#define PSTR        PANTHEIOS_LITERAL_STRING
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+#define PSTR                                                PANTHEIOS_LITERAL_STRING
 
 
 /* /////////////////////////////////////////////////////////////////////////

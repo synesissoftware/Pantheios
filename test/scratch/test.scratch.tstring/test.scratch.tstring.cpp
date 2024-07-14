@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.tstring project.
  *
  * Created: 23rd February 2010
- * Updated: 17th July 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -20,21 +20,8 @@
 #include <stlsoft/string/simple_string.hpp>
 #include <platformstl/platformstl.hpp>
 
-/* UNIXem header files */
-#if defined(_WIN32) || \
-    defined(_WIN64)
-// # include <unixem/unixem.h>
-#endif /* Win32 || Win64 */
-
 /* Standard C++ header files */
 #include <exception>
-#if 0
-#include <algorithm>
-#include <iterator>
-#include <list>
-#include <string>
-#include <vector>
-#endif /* 0 */
 
 #if !defined(__WATCOMC__) && \
     (   !defined(_MSC_VER) || \
@@ -62,7 +49,10 @@ namespace std
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.tstring");
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int /* argc */, char** /*argv*/)
 {
