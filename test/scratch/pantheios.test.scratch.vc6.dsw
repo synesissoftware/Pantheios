@@ -477,7 +477,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "test.scratch.util.onbailout"=.\test.scratch.util.onbailout\vc6\test.scratch.util.onBailOut.dsp - Package Owner=<4>
+Project: "test.scratch.util.onbailout"=.\test.scratch.util.onbailout\vc6\test.scratch.util.onbailout.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

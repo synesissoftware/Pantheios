@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.hostid project.
  *
  * Created: 14th April 2008
- * Updated: 7th February 2024
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
