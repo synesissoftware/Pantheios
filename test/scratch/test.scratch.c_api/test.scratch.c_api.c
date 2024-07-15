@@ -91,6 +91,8 @@ int main(int argc, char *argv[])
 
 static void some_logging_1(void)
 {
+#if 0
+
     short       s       =   123;
     int         i       =   456;
     long        l       =   789;
@@ -100,7 +102,8 @@ static void some_logging_1(void)
     void*       p       =   &l;
     char const* lstr    =   "{a pointer to a C-style string}";
 
-#if 0
+# if 0
+
     log_INFORMATIONAL(  "This is a (hopefully) typical error string, containing: "
                     ,   "some integers (", integer(s), ", ", integer(i), ", ", integer(l), "); "
                     ,   "some real numbers (", real(f), ", ", real(d), ", ", real(ld), "); "
@@ -108,7 +111,11 @@ static void some_logging_1(void)
                     ,   "some strings (", lstr, ", ", str, ", ", sstr, "); "
                     ,   "and a converted time value (", tm, ")"
                     );
-#endif /* 0 */
+# endif /* 0 */
+
+    // TODO: sort out portable C format specifiers for long double
+    // TODO: enable full long double support in `pantheios::real`
+
     pantheios_logprintf(
         PANTHEIOS_SEV_INFORMATIONAL
     ,   "This is a (hopefully) typical error string, containing: "
@@ -121,6 +128,7 @@ static void some_logging_1(void)
     ,   p
     ,   lstr,   "some string"
     );
+#endif /* 0 */
 }
 
 static void some_logging_2(void)
