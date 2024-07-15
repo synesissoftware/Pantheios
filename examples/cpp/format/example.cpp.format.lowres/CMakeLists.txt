@@ -5,8 +5,13 @@ add_executable(example.cpp.format.lowres
 
 target_link_libraries(example.cpp.format.lowres
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
+)
+
+target_link_libraries(example.cpp.format.lowres
+	PRIVATE
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf
 )
 
 target_link_libraries(example.cpp.format.lowres
@@ -16,8 +21,7 @@ target_link_libraries(example.cpp.format.lowres
 
 target_link_libraries(example.cpp.format.lowres
 	PRIVATE
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf
+		Pantheios.util
 )
 
 target_link_libraries(example.cpp.format.lowres

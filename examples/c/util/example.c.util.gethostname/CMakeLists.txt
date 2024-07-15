@@ -5,8 +5,13 @@ add_executable(example.c.util.gethostname
 
 target_link_libraries(example.c.util.gethostname
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
+)
+
+target_link_libraries(example.c.util.gethostname
+	PRIVATE
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.be.WindowsConsole,Pantheios.be.fprintf>
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
 )
 
 target_link_libraries(example.c.util.gethostname
@@ -14,23 +19,10 @@ target_link_libraries(example.c.util.gethostname
 		Pantheios.fe.simple
 )
 
-if(UNIX)
-
-	target_link_libraries(example.c.util.gethostname
-		PRIVATE
-			Pantheios.be.fprintf
-			Pantheios.bec.fprintf
-	)
-endif(UNIX)
-
-if(WIN32)
-
-	target_link_libraries(example.c.util.gethostname
-		PRIVATE
-			Pantheios.be.WindowsConsole
-			Pantheios.bec.WindowsConsole
-	)
-endif(WIN32)
+target_link_libraries(example.c.util.gethostname
+	PRIVATE
+		Pantheios.util
+)
 
 target_link_libraries(example.c.util.gethostname
 	PRIVATE

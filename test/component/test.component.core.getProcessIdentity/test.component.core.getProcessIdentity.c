@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.core.getProcessIdentity project.
  *
  * Created: 6th August 2012
- * Updated: 13th July 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -104,6 +104,20 @@ int main(int argc, char **argv)
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * character encoding
+ */
+
+#define PSTR                                                PANTHEIOS_LITERAL_STRING
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * Pantheios front-end
  */
 
@@ -198,7 +212,7 @@ static int teardown(void* param)
 
 static void test_1_0(void)
 {
-    PAN_CHAR_T const pi[] = "test_1_0";
+    PAN_CHAR_T const pi[] = PSTR("test_1_0");
 
     int r;
 
@@ -218,7 +232,7 @@ static void test_1_0(void)
         XTESTS_TEST_INTEGER_EQUAL(0, s_numUninits);
         XTESTS_TEST_INTEGER_EQUAL(1, s_numGPI);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("test_1_0", pantheios_getProcessIdentity());
+        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("test_1_0"), pantheios_getProcessIdentity());
         XTESTS_TEST_POINTER_NOT_EQUAL(pi, pantheios_getProcessIdentity());
 
         pantheios_uninit();
@@ -231,7 +245,7 @@ static void test_1_0(void)
 
 static void test_1_1(void)
 {
-    PAN_CHAR_T const pi[] = "test_1_1";
+    PAN_CHAR_T const pi[] = PSTR("test_1_1");
 
     int r;
 
@@ -251,7 +265,7 @@ static void test_1_1(void)
         XTESTS_TEST_INTEGER_EQUAL(0, s_numUninits);
         XTESTS_TEST_INTEGER_EQUAL(2, s_numGPI);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("test_1_1", pantheios_getProcessIdentity());
+        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("test_1_1"), pantheios_getProcessIdentity());
         XTESTS_TEST_POINTER_EQUAL(pi, pantheios_getProcessIdentity());
 
         pantheios_uninit();

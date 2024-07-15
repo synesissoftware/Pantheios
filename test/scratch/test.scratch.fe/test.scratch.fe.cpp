@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.fe/test.scratch.fe.cpp
+ * File:    test/scratch/test.scratch.fe/test.scratch.fe.cpp
  *
- * Purpose:     Implementation file for the test.scratch.fe project.
+ * Purpose: Implementation file for the test.scratch.fe project.
  *
- * Created:     21st June 2005
- * Updated:     16th January 2023
+ * Created: 21st June 2005
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,6 +41,7 @@ using std::endl;
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -51,11 +52,13 @@ using std::endl;
 extern "C" void __stdcall Sleep(unsigned long);
 #endif /* WIN32 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 static int  severities[8] = { 1, 1, 1, 1, 1, 1, 1, 1 };
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -67,6 +70,7 @@ int main()
 }
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

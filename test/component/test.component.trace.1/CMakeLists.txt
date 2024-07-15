@@ -5,13 +5,7 @@ add_executable(test.component.trace.1
 
 target_link_libraries(test.component.trace.1
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
-)
-
-target_link_libraries(test.component.trace.1
-	PRIVATE
-		Pantheios.fe.all
 )
 
 target_link_libraries(test.component.trace.1
@@ -22,7 +16,17 @@ target_link_libraries(test.component.trace.1
 
 target_link_libraries(test.component.trace.1
 	PRIVATE
-		xTests::xTests.core
+		Pantheios.fe.all
+)
+
+target_link_libraries(test.component.trace.1
+	PRIVATE
+		Pantheios.util
+)
+
+target_link_libraries(test.component.trace.1
+	PRIVATE
+		xTests::core
 )
 
 target_compile_options(test.component.trace.1 PRIVATE

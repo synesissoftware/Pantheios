@@ -5,18 +5,18 @@ add_executable(test.unit.fe.N
 
 target_link_libraries(test.unit.fe.N
 	PRIVATE
-		Pantheios.util
-)
-
-target_link_libraries(test.unit.fe.N
-	PRIVATE
 		Pantheios.fe.N
 )
 
 target_link_libraries(test.unit.fe.N
 	PRIVATE
+		Pantheios.util
+)
+
+target_link_libraries(test.unit.fe.N
+	PRIVATE
 		STLSoft::STLSoft
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.unit.fe.N PRIVATE

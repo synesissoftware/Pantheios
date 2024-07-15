@@ -5,7 +5,7 @@ add_executable(test.unit.be.N.filtering
 
 target_link_libraries(test.unit.be.N.filtering
 	PRIVATE
-		Pantheios.util
+		Pantheios.be.N
 )
 
 target_link_libraries(test.unit.be.N.filtering
@@ -15,13 +15,13 @@ target_link_libraries(test.unit.be.N.filtering
 
 target_link_libraries(test.unit.be.N.filtering
 	PRIVATE
-		Pantheios.be.N
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.be.N.filtering
 	PRIVATE
 		STLSoft::STLSoft
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.unit.be.N.filtering PRIVATE

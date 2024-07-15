@@ -5,8 +5,13 @@ add_executable(test.scratch.I18N
 
 target_link_libraries(test.scratch.I18N
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
+)
+
+target_link_libraries(test.scratch.I18N
+	PRIVATE
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf
 )
 
 target_link_libraries(test.scratch.I18N
@@ -16,8 +21,7 @@ target_link_libraries(test.scratch.I18N
 
 target_link_libraries(test.scratch.I18N
 	PRIVATE
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf
+		Pantheios.util
 )
 
 target_link_libraries(test.scratch.I18N

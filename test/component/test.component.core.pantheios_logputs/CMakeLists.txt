@@ -5,13 +5,7 @@ add_executable(test.component.core.pantheios_logputs
 
 target_link_libraries(test.component.core.pantheios_logputs
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
-)
-
-target_link_libraries(test.component.core.pantheios_logputs
-	PRIVATE
-		Pantheios.fe.simple
 )
 
 target_link_libraries(test.component.core.pantheios_logputs
@@ -22,7 +16,17 @@ target_link_libraries(test.component.core.pantheios_logputs
 
 target_link_libraries(test.component.core.pantheios_logputs
 	PRIVATE
-		xTests::xTests.core
+		Pantheios.fe.simple
+)
+
+target_link_libraries(test.component.core.pantheios_logputs
+	PRIVATE
+		Pantheios.util
+)
+
+target_link_libraries(test.component.core.pantheios_logputs
+	PRIVATE
+		xTests::core
 )
 
 target_compile_options(test.component.core.pantheios_logputs PRIVATE

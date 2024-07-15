@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.processId/test.component.inserters.processId.cpp
+ * File:    test/component/test.component.inserters.hostid/test.component.inserters.hostid.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.processId project.
+ * Purpose: Implementation file for the test.component.inserters.hostid project.
  *
- * Created:     17th October 2006
- * Updated:     16th December 2023
+ * Created: 14th April 2008
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -15,17 +15,19 @@
 #include <xtests/xtests.h>
 
 /* Pantheios header files */
-#include <pantheios/pantheios.hpp>      // Pantheios C++ main header
-#include <pantheios/inserters/ids.hpp>  // for pantheios::processId
+#include <pantheios/pantheios.hpp>          // Pantheios C++ main header
+#include <pantheios/inserters/hostid.hpp>   // for pantheios::hostId
 #include <pantheios/backends/bec.test.h>
 
 /* STLSoft header files */
 #include <stlsoft/conversion/integer_to_string.hpp>
 #include <platformstl/platformstl.h>
 
-/* Standard C header files */
-#include <stdlib.h>                     // for exit codes
+/* Standard C++ header files */
+#include <string>
 
+/* Standard C header files */
+#include <stdlib.h>                         // for exit codes
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # include <unistd.h>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -34,7 +36,14 @@
 # error Not discriminated for platforms other than UNIX and Windows
 #endif /* OS */
 
+
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
+
+/* /////////////////////////////////////////////////////////////////////////
+ * typedefs
+ */
+
+typedef std::basic_string<PAN_CHAR_T>   string_t;
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -42,13 +51,13 @@
 
 static void test_1_01();
 
-static int pan_get_pid_();
+static string_t pan_get_hid_();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.processId");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.hostid");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -60,9 +69,13 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
+# define pantheios_GetComputerName_     ::GetComputerNameW
+
 # define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
+# define pantheios_GetComputerName_     ::GetComputerNameA
 
 # define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
@@ -77,7 +90,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.processId", verbosity))
+    if(XTESTS_START_RUNNER("test.component.inserters.hostid", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
 
@@ -95,40 +108,64 @@ static void test_1_01()
 {
     // 1. Setup
 
-    PAN_CHAR_T const  prefix[]    =   PSTR("process: ");
-    PAN_CHAR_T        pid_[21 + STLSOFT_NUM_ELEMENTS(prefix)];
-    PAN_CHAR_T const* pid         =   stlsoft::integer_to_string(&pid_[0], STLSOFT_NUM_ELEMENTS(pid_), pan_get_pid_());
-    PAN_CHAR_T const* stmt        =   pid - (STLSOFT_NUM_ELEMENTS(prefix) - 1);
+    PAN_CHAR_T const  prefix[]  = PSTR("host: ");
+    const string_t    hid       = pan_get_hid_();
+    const string_t    stmt      = prefix + hid;
 
-    ::memcpy(const_cast<PAN_CHAR_T*>(stmt), prefix, sizeof(PAN_CHAR_T) * (STLSOFT_NUM_ELEMENTS(prefix) - 1));
+
 
     pantheios::be::test::reset();
 
 
     // 2. Create test data
 
-    pantheios::log_NOTICE(pantheios::processId);
-    pantheios::log_NOTICE(prefix, pantheios::processId);
+    pantheios::log_NOTICE(pantheios::hostId);
+    pantheios::log_NOTICE(prefix, pantheios::hostId);
 
 
     // 3. Verification
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_BOOLEAN_FALSE(results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(2u, results.size()));
-    XTESTS_TEST_STRING_EQUAL(pid, results[0].statement);
+    XTESTS_TEST(!results.empty());
+    XTESTS_TEST_INTEGER_EQUAL(2, results.size());
+    XTESTS_TEST_STRING_EQUAL(hid, results[0].statement);
     XTESTS_TEST_STRING_EQUAL(stmt, results[1].statement);
 }
 
-static int pan_get_pid_()
+static string_t pan_get_hid_()
 {
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-    return static_cast<int>(::getpid());
+
+    PAN_CHAR_T  szHostName[1001];
+
+    if(0 != ::gethostname(&szHostName[0], STLSOFT_NUM_ELEMENTS(szHostName)))
+    {
+        return PANTHEIOS_LITERAL_STRING("localhost");
+    }
+    else
+    {
+        return szHostName;
+    }
+
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-    return static_cast<int>(::GetCurrentProcessId());
+
+    PAN_CHAR_T  szHostName[1001];
+    DWORD       cchHostName = STLSOFT_NUM_ELEMENTS(szHostName);
+
+    if(!pantheios_GetComputerName_(&szHostName[0], &cchHostName))
+    {
+        return PANTHEIOS_LITERAL_STRING("localhost");
+    }
+    else
+    {
+        return string_t(szHostName, static_cast<size_t>(cchHostName));
+    }
+
 #else /* ? OS */
+
 # error Not discriminated for platforms other than UNIX and Windows
+
 #endif /* OS */
 }
 

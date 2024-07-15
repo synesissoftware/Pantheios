@@ -5,8 +5,16 @@ add_executable(test.scratch.c_api
 
 target_link_libraries(test.scratch.c_api
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
+)
+
+target_link_libraries(test.scratch.c_api
+	PRIVATE
+		Pantheios.be.lrsplit
+		Pantheios.bel.fprintf
+		Pantheios.ber.null
+		Pantheios.bec.fprintf
+		Pantheios.bec.null
 )
 
 target_link_libraries(test.scratch.c_api
@@ -16,16 +24,12 @@ target_link_libraries(test.scratch.c_api
 
 target_link_libraries(test.scratch.c_api
 	PRIVATE
-		Pantheios.be.lrsplit
-		Pantheios.bec.fprintf
-		Pantheios.bec.null
-		Pantheios.bel.fprintf
-		Pantheios.ber.null
+		Pantheios.util
 )
 
 target_link_libraries(test.scratch.c_api
 	PRIVATE
-		xTests::xTests.core
+		xTests::core
 )
 
 target_compile_options(test.scratch.c_api PRIVATE

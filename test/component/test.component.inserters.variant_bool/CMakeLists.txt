@@ -5,13 +5,7 @@ add_executable(test.component.inserters.variant_bool
 
 target_link_libraries(test.component.inserters.variant_bool
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
-)
-
-target_link_libraries(test.component.inserters.variant_bool
-	PRIVATE
-		Pantheios.fe.simple
 )
 
 target_link_libraries(test.component.inserters.variant_bool
@@ -22,7 +16,17 @@ target_link_libraries(test.component.inserters.variant_bool
 
 target_link_libraries(test.component.inserters.variant_bool
 	PRIVATE
-		xTests::xTests.core
+		Pantheios.fe.simple
+)
+
+target_link_libraries(test.component.inserters.variant_bool
+	PRIVATE
+		Pantheios.util
+)
+
+target_link_libraries(test.component.inserters.variant_bool
+	PRIVATE
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.variant_bool PRIVATE

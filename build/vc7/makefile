@@ -32,8 +32,8 @@
 # project & compiler version
 
 COMP_TAG			=	vc7
-ARCH_TAG            =   
-OS_TAG				=   
+ARCH_TAG            =
+OS_TAG				=
 PROJ_TAG			=	pantheios
 PROJ_VER_MAJOR		=	1
 PROJ_TAG_VER		=	$(PROJ_TAG).$(PROJ_VER_MAJOR)
@@ -86,7 +86,7 @@ PROJ_TEST_UNIT_DIR		=	$(PROJ_TEST_ROOT_DIR)\unit
 
 !ifndef PANTHEIOS_NO_B64
 
-B64_PROJ_INCLUDE		=	
+B64_PROJ_INCLUDE		=
 !ifdef PANTHEIOS_B64_BASE_DIR
 B64_INCLUDE_DIR			=   $(PANTHEIOS_B64_BASE_DIR)\include
 B64_SRC_DIR				=   $(PANTHEIOS_B64_BASE_DIR)\src
@@ -97,7 +97,7 @@ B64_SRC_DIR				=   $(PROJ_SRC_DIR)\b64
 !endif # !PANTHEIOS_B64_BASE_DIR
 !endif # !PANTHEIOS_NO_B64
 
-SHWILD_PROJ_INCLUDE		=	
+SHWILD_PROJ_INCLUDE		=
 !ifdef PANTHEIOS_SHWILD_BASE_DIR
 SHWILD_INCLUDE_DIR		=   $(PANTHEIOS_SHWILD_BASE_DIR)\include
 SHWILD_SRC_DIR			=   $(PANTHEIOS_SHWILD_BASE_DIR)\src
@@ -107,7 +107,7 @@ SHWILD_INCLUDE_DIR		=   $(PROJ_BASE_DIR)\include
 SHWILD_SRC_DIR			=   $(PROJ_SRC_DIR)\shwild
 !endif # !PANTHEIOS_SHWILD_BASE_DIR
 
-XCONTRACT_PROJ_INCLUDE	=	
+XCONTRACT_PROJ_INCLUDE	=
 !ifdef PANTHEIOS_XCONTRACT_BASE_DIR
 XCONTRACT_INCLUDE_DIR	=   $(PANTHEIOS_XCONTRACT_BASE_DIR)\include
 XCONTRACT_SRC_DIR		=   $(PANTHEIOS_XCONTRACT_BASE_DIR)\src
@@ -117,7 +117,7 @@ XCONTRACT_INCLUDE_DIR	=   $(PROJ_BASE_DIR)\include
 XCONTRACT_SRC_DIR		=   $(PROJ_SRC_DIR)\xcontract
 !endif # !PANTHEIOS_XCONTRACT_BASE_DIR
 
-XTESTS_PROJ_INCLUDE		=	
+XTESTS_PROJ_INCLUDE		=
 !ifdef PANTHEIOS_XTESTS_BASE_DIR
 XTESTS_INCLUDE_DIR		=   $(PANTHEIOS_XTESTS_BASE_DIR)\include
 XTESTS_SRC_DIR			=   $(PANTHEIOS_XTESTS_BASE_DIR)\src
@@ -143,7 +143,7 @@ RC		=	rc
 ########################################
 # include directory symbols
 
-INCLUDES_LEADER	=	
+INCLUDES_LEADER	=
 
 PROJ_INCLUDE		=	-I$(PROJ_INCLUDE_DIR)
 
@@ -641,7 +641,7 @@ CPPC_XTESTS_INCLUDES_WS_ST_R =\
 ########################################
 # library directory symbols
 
-LIBS_LEADER		=	
+LIBS_LEADER		=
 
 # lib paths
 
@@ -677,7 +677,7 @@ TARGET_LIB_WS_ST_R	= advapi32.lib kernel32.lib ole32.lib oleaut32.lib shlwapi.li
 # #defines
 #
 # - OS
-# - 
+# -
 
 OS_DEFS				=	-DWIN32
 
@@ -726,12 +726,12 @@ CC_F_NOLOGO			=	-nologo
 CC_F_COMPILE_ONLY		=	-c
 CC_F_WARNING_MAX		=	-W4
 CC_F_WARNING_ERR		=	-WX
-CC_F_WARNINGS_LIMIT		=	
+CC_F_WARNINGS_LIMIT		=
 CC_F_MINIMUM_SIZE		=	-O1
 #CC_F_MAXIMUM_SPEED		=	-O2
 CC_APP_F_WARNING_MAX	=	$(CC_F_WARNING_MAX)
 CC_APP_F_WARNING_ERR	=	$(CC_F_WARNING_ERR)
-CC_F_ADDITIONAL			=	
+CC_F_ADDITIONAL			=
 
 # CPPC flags
 
@@ -740,18 +740,18 @@ CPPC_F_COMPILE_ONLY	=	-c
 CPPC_F_WARNING_MAX		=	-W4
 CPPC_F_WARNING_ERR		=	-WX
 CPPC_F_EXCEPTIONS_ON	=	-EHsc
-CPPC_F_EXCEPTIONS_OFF	=	
-CPPC_F_EXCEPTIONS		=	
+CPPC_F_EXCEPTIONS_OFF	=
+CPPC_F_EXCEPTIONS		=
 CPPC_F_RTTI_ON			=	-GR
 CPPC_F_RTTI_OFF		=	-GR-
-CPPC_F_RTTI				=	
-CPPC_F_WARNINGS_LIMIT	=	
+CPPC_F_RTTI				=
+CPPC_F_WARNINGS_LIMIT	=
 CPPC_F_MINIMUM_SIZE	=	-O1
 CPPC_F_MAXIMUM_SPEED	=	-O2
 CPPC_F_OPTIMISED		=	$(CPPC_F_MAXIMUM_SPEED)
 CPPC_APP_F_WARNING_MAX	=	$(CPPC_F_WARNING_MAX)
 CPPC_APP_F_WARNING_ERR	=	$(CPPC_F_WARNING_ERR)
-CPPC_F_ADDITIONAL		=	
+CPPC_F_ADDITIONAL		=
 
 
 
@@ -1132,7 +1132,7 @@ AR_ARGS			=	-nologo
 
 # LD flags
 
-LD_ARGS		=	
+LD_ARGS		=
 
 LD_F_NOLOGO = -nologo
 
@@ -2859,7 +2859,7 @@ TARG_EX_P_fe_01_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_ARCH
 TARG_EX_P_in_01_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_EX_P_in_02_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).dll.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_DLL_D	=	
+TARG_EX_P_in_03_DLL_D	=
 !else
 TARG_EX_P_in_03_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).dll.debug.exe
 !endif # PANTHEIOS_NO_B64
@@ -2908,7 +2908,7 @@ TARG_EX_P_fe_01_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_ARCH
 TARG_EX_P_in_01_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_EX_P_in_02_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).dll.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_DLL_R	=	
+TARG_EX_P_in_03_DLL_R	=
 !else
 TARG_EX_P_in_03_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).dll.exe
 !endif # PANTHEIOS_NO_B64
@@ -2957,7 +2957,7 @@ TARG_EX_P_fe_01_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_ARCH_
 TARG_EX_P_in_01_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_EX_P_in_02_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).mt.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_MT_D	=	
+TARG_EX_P_in_03_MT_D	=
 !else
 TARG_EX_P_in_03_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).mt.debug.exe
 !endif # PANTHEIOS_NO_B64
@@ -3006,7 +3006,7 @@ TARG_EX_P_fe_01_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_ARCH_
 TARG_EX_P_in_01_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_EX_P_in_02_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).mt.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_MT_R	=	
+TARG_EX_P_in_03_MT_R	=
 !else
 TARG_EX_P_in_03_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).mt.exe
 !endif # PANTHEIOS_NO_B64
@@ -3055,7 +3055,7 @@ TARG_EX_P_fe_01_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_ARCH_
 TARG_EX_P_in_01_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_EX_P_in_02_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_ST_D	=	
+TARG_EX_P_in_03_ST_D	=
 !else
 TARG_EX_P_in_03_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).debug.exe
 !endif # PANTHEIOS_NO_B64
@@ -3104,7 +3104,7 @@ TARG_EX_P_fe_01_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_ARCH_
 TARG_EX_P_in_01_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).exe
 TARG_EX_P_in_02_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_ST_R	=	
+TARG_EX_P_in_03_ST_R	=
 !else
 TARG_EX_P_in_03_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).exe
 !endif # PANTHEIOS_NO_B64
@@ -3153,7 +3153,7 @@ TARG_EX_P_fe_01_WS_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_A
 TARG_EX_P_in_01_WS_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_EX_P_in_02_WS_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_WS_DLL_D	=	
+TARG_EX_P_in_03_WS_DLL_D	=
 !else
 TARG_EX_P_in_03_WS_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 !endif # PANTHEIOS_NO_B64
@@ -3202,7 +3202,7 @@ TARG_EX_P_fe_01_WS_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_A
 TARG_EX_P_in_01_WS_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_EX_P_in_02_WS_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_WS_DLL_R	=	
+TARG_EX_P_in_03_WS_DLL_R	=
 !else
 TARG_EX_P_in_03_WS_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 !endif # PANTHEIOS_NO_B64
@@ -3251,7 +3251,7 @@ TARG_EX_P_fe_01_WS_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_AR
 TARG_EX_P_in_01_WS_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_EX_P_in_02_WS_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_WS_MT_D	=	
+TARG_EX_P_in_03_WS_MT_D	=
 !else
 TARG_EX_P_in_03_WS_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 !endif # PANTHEIOS_NO_B64
@@ -3300,7 +3300,7 @@ TARG_EX_P_fe_01_WS_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_AR
 TARG_EX_P_in_01_WS_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_EX_P_in_02_WS_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_WS_MT_R	=	
+TARG_EX_P_in_03_WS_MT_R	=
 !else
 TARG_EX_P_in_03_WS_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 !endif # PANTHEIOS_NO_B64
@@ -3349,7 +3349,7 @@ TARG_EX_P_fe_01_WS_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_AR
 TARG_EX_P_in_01_WS_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_EX_P_in_02_WS_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_WS_ST_D	=	
+TARG_EX_P_in_03_WS_ST_D	=
 !else
 TARG_EX_P_in_03_WS_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 !endif # PANTHEIOS_NO_B64
@@ -3398,7 +3398,7 @@ TARG_EX_P_fe_01_WS_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.fe.01.$(COMP_AR
 TARG_EX_P_in_01_WS_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.01.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_EX_P_in_02_WS_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.02.$(COMP_ARCH_OS_TAG).widestring.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_EX_P_in_03_WS_ST_R	=	
+TARG_EX_P_in_03_WS_ST_R	=
 !else
 TARG_EX_P_in_03_WS_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).ex.cpp.in.03.$(COMP_ARCH_OS_TAG).widestring.exe
 !endif # PANTHEIOS_NO_B64
@@ -3448,20 +3448,20 @@ TARG_TEST_COMP_pan_puts_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.
 TARG_TEST_COMP_custsev_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_ins_args_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).dll.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_DLL_D		=	
+TARG_TEST_COMP_ins_b64_DLL_D		=
 !else
 TARG_TEST_COMP_ins_b64_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).dll.debug.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).dll.debug.exe
-TARG_TEST_COMP_ins_hostid_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_COMP_ins_hostid_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_ins_int_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_ins_pad_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_ins_ptr_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).dll.debug.exe
-TARG_TEST_COMP_ins_prid_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_COMP_ins_prid_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_ins_real_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_ins_slice_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_ins_stm_ch_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).dll.debug.exe
-TARG_TEST_COMP_ins_thrid_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).dll.debug.exe
+TARG_TEST_COMP_ins_thrid_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_ins_vbool_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_ins_w2m_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).dll.debug.exe
 TARG_TEST_COMP_ins_w_hive_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).dll.debug.exe
@@ -3476,20 +3476,20 @@ TARG_TEST_COMP_pan_puts_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.
 TARG_TEST_COMP_custsev_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_ins_args_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).dll.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_DLL_R		=	
+TARG_TEST_COMP_ins_b64_DLL_R		=
 !else
 TARG_TEST_COMP_ins_b64_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).dll.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).dll.exe
-TARG_TEST_COMP_ins_hostid_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_COMP_ins_hostid_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_ins_int_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_ins_pad_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_ins_ptr_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).dll.exe
-TARG_TEST_COMP_ins_prid_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_COMP_ins_prid_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_ins_real_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_ins_slice_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_ins_stm_ch_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).dll.exe
-TARG_TEST_COMP_ins_thrid_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).dll.exe
+TARG_TEST_COMP_ins_thrid_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_ins_vbool_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_ins_w2m_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).dll.exe
 TARG_TEST_COMP_ins_w_hive_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).dll.exe
@@ -3504,20 +3504,20 @@ TARG_TEST_COMP_pan_puts_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.c
 TARG_TEST_COMP_custsev_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_args_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_MT_D		=	
+TARG_TEST_COMP_ins_b64_MT_D		=
 !else
 TARG_TEST_COMP_ins_b64_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.debug.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_hostid_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_hostid_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_int_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_pad_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_ptr_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_prid_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_prid_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_real_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_slice_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_stm_ch_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.debug.exe
-TARG_TEST_COMP_ins_thrid_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.debug.exe
+TARG_TEST_COMP_ins_thrid_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_vbool_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_w2m_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.debug.exe
 TARG_TEST_COMP_ins_w_hive_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).mt.debug.exe
@@ -3532,20 +3532,20 @@ TARG_TEST_COMP_pan_puts_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.c
 TARG_TEST_COMP_custsev_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_args_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).mt.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_MT_R		=	
+TARG_TEST_COMP_ins_b64_MT_R		=
 !else
 TARG_TEST_COMP_ins_b64_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).mt.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_hostid_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_hostid_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_int_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_pad_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_ptr_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_prid_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_prid_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_real_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_slice_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_stm_ch_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).mt.exe
-TARG_TEST_COMP_ins_thrid_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).mt.exe
+TARG_TEST_COMP_ins_thrid_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_vbool_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_w2m_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).mt.exe
 TARG_TEST_COMP_ins_w_hive_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).mt.exe
@@ -3559,20 +3559,20 @@ TARG_TEST_COMP_pan_puts_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.c
 TARG_TEST_COMP_custsev_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_args_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_ST_D		=	
+TARG_TEST_COMP_ins_b64_ST_D		=
 !else
 TARG_TEST_COMP_ins_b64_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).debug.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_hostid_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_hostid_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_int_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_pad_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_ptr_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_prid_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_prid_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_real_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_slice_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_stm_ch_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).debug.exe
-TARG_TEST_COMP_ins_thrid_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).debug.exe
+TARG_TEST_COMP_ins_thrid_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_vbool_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_w2m_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).debug.exe
 TARG_TEST_COMP_ins_w_hive_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).debug.exe
@@ -3586,20 +3586,20 @@ TARG_TEST_COMP_pan_puts_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.c
 TARG_TEST_COMP_custsev_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_args_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_ST_R		=	
+TARG_TEST_COMP_ins_b64_ST_R		=
 !else
 TARG_TEST_COMP_ins_b64_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_hostid_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_hostid_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_int_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_pad_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_ptr_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_prid_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_prid_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_real_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_slice_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_stm_ch_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).exe
-TARG_TEST_COMP_ins_thrid_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).exe
+TARG_TEST_COMP_ins_thrid_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_vbool_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_w2m_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.w2m.$(COMP_ARCH_OS_TAG).exe
 TARG_TEST_COMP_ins_w_hive_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).exe
@@ -3614,21 +3614,21 @@ TARG_TEST_COMP_pan_puts_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.compone
 TARG_TEST_COMP_custsev_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_args_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_WS_DLL_D		=	
+TARG_TEST_COMP_ins_b64_WS_DLL_D		=
 !else
 TARG_TEST_COMP_ins_b64_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
-TARG_TEST_COMP_ins_hostid_WS_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_COMP_ins_hostid_WS_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_int_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_m2w_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.m2w.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_pad_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_ptr_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
-TARG_TEST_COMP_ins_prid_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_COMP_ins_prid_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_real_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_slice_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_stm_ch_WS_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
-TARG_TEST_COMP_ins_thrid_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
+TARG_TEST_COMP_ins_thrid_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_vbool_WS_DLL_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_ins_w_hive_WS_DLL_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
 TARG_TEST_COMP_log_1_WS_DLL_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).widestring.dll.debug.exe
@@ -3642,21 +3642,21 @@ TARG_TEST_COMP_pan_puts_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.compone
 TARG_TEST_COMP_custsev_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_args_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_WS_DLL_R		=	
+TARG_TEST_COMP_ins_b64_WS_DLL_R		=
 !else
 TARG_TEST_COMP_ins_b64_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).widestring.dll.exe
-TARG_TEST_COMP_ins_hostid_WS_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_COMP_ins_hostid_WS_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_int_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_m2w_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.m2w.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_pad_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_ptr_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).widestring.dll.exe
-TARG_TEST_COMP_ins_prid_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_COMP_ins_prid_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_real_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_slice_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_stm_ch_WS_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.dll.exe
-TARG_TEST_COMP_ins_thrid_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).widestring.dll.exe
+TARG_TEST_COMP_ins_thrid_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_vbool_WS_DLL_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_ins_w_hive_WS_DLL_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).widestring.dll.exe
 TARG_TEST_COMP_log_1_WS_DLL_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).widestring.dll.exe
@@ -3670,21 +3670,21 @@ TARG_TEST_COMP_pan_puts_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.componen
 TARG_TEST_COMP_custsev_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_ins_args_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_WS_MT_D		=	
+TARG_TEST_COMP_ins_b64_WS_MT_D		=
 !else
 TARG_TEST_COMP_ins_b64_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
-TARG_TEST_COMP_ins_hostid_WS_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_COMP_ins_hostid_WS_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_ins_int_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_ins_m2w_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.m2w.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_ins_pad_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_ins_ptr_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
-TARG_TEST_COMP_ins_prid_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_COMP_ins_prid_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_ins_real_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_ins_slice_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_ins_stm_ch_WS_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
-TARG_TEST_COMP_ins_thrid_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
+TARG_TEST_COMP_ins_thrid_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_ins_vbool_WS_MT_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_ins_w_hive_WS_MT_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
 TARG_TEST_COMP_log_1_WS_MT_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).widestring.mt.debug.exe
@@ -3698,21 +3698,21 @@ TARG_TEST_COMP_pan_puts_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.componen
 TARG_TEST_COMP_custsev_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_args_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_WS_MT_R		=	
+TARG_TEST_COMP_ins_b64_WS_MT_R		=
 !else
 TARG_TEST_COMP_ins_b64_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).widestring.mt.exe
-TARG_TEST_COMP_ins_hostid_WS_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_COMP_ins_hostid_WS_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_int_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_m2w_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.m2w.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_pad_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_ptr_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).widestring.mt.exe
-TARG_TEST_COMP_ins_prid_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_COMP_ins_prid_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_real_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_slice_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_stm_ch_WS_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.mt.exe
-TARG_TEST_COMP_ins_thrid_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).widestring.mt.exe
+TARG_TEST_COMP_ins_thrid_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_vbool_WS_MT_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_ins_w_hive_WS_MT_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).widestring.mt.exe
 TARG_TEST_COMP_log_1_WS_MT_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).widestring.mt.exe
@@ -3725,21 +3725,21 @@ TARG_TEST_COMP_pan_puts_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.componen
 TARG_TEST_COMP_custsev_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_args_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_WS_ST_D		=	
+TARG_TEST_COMP_ins_b64_WS_ST_D		=
 !else
 TARG_TEST_COMP_ins_b64_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).widestring.debug.exe
-TARG_TEST_COMP_ins_hostid_WS_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).widestring.debug.exe
+TARG_TEST_COMP_ins_hostid_WS_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_int_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_m2w_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.m2w.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_pad_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_ptr_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).widestring.debug.exe
-TARG_TEST_COMP_ins_prid_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).widestring.debug.exe
+TARG_TEST_COMP_ins_prid_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_real_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_slice_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_stm_ch_WS_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.debug.exe
-TARG_TEST_COMP_ins_thrid_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).widestring.debug.exe
+TARG_TEST_COMP_ins_thrid_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_vbool_WS_ST_D		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_ins_w_hive_WS_ST_D	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).widestring.debug.exe
 TARG_TEST_COMP_log_1_WS_ST_D			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).widestring.debug.exe
@@ -3752,21 +3752,21 @@ TARG_TEST_COMP_pan_puts_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.componen
 TARG_TEST_COMP_custsev_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.custom_severity.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_args_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.args.$(COMP_ARCH_OS_TAG).widestring.exe
 !ifdef PANTHEIOS_NO_B64
-TARG_TEST_COMP_ins_b64_WS_ST_R		=	
+TARG_TEST_COMP_ins_b64_WS_ST_R		=
 !else
 TARG_TEST_COMP_ins_b64_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.b64.$(COMP_ARCH_OS_TAG).widestring.exe
 !endif # PANTHEIOS_NO_B64
 TARG_TEST_COMP_ins_bool_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.boolean.$(COMP_ARCH_OS_TAG).widestring.exe
-TARG_TEST_COMP_ins_hostid_WS_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostId.$(COMP_ARCH_OS_TAG).widestring.exe
+TARG_TEST_COMP_ins_hostid_WS_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.hostid.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_int_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.integer.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_m2w_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.m2w.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_pad_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pad.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_ptr_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.pointer.$(COMP_ARCH_OS_TAG).widestring.exe
-TARG_TEST_COMP_ins_prid_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processId.$(COMP_ARCH_OS_TAG).widestring.exe
+TARG_TEST_COMP_ins_prid_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.processid.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_real_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.real.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_slice_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.slice.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_stm_ch_WS_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.stream_character.$(COMP_ARCH_OS_TAG).widestring.exe
-TARG_TEST_COMP_ins_thrid_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadId.$(COMP_ARCH_OS_TAG).widestring.exe
+TARG_TEST_COMP_ins_thrid_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.threadid.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_vbool_WS_ST_R		=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.inserters.variant_bool.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_ins_w_hive_WS_ST_R	=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.unit.ins.windows.hive.$(COMP_ARCH_OS_TAG).widestring.exe
 TARG_TEST_COMP_log_1_WS_ST_R			=	$(PROJ_BIN_DIR)\$(PROJ_TAG_VER).test.component.log.1.$(COMP_ARCH_OS_TAG).widestring.exe
@@ -5195,42 +5195,42 @@ OBJ_UTIL_WS_ST_R_P=\
 
 !ifdef PANTHEIOS_NO_B64
 
-OBJ_APPL_b64_DLL_D						= 
-OBJ_APPL_b64_DLL_D_P					= 
-OBJ_APPL_b64_DLL_D_PM					= 
-OBJ_APPL_b64_DLL_R						= 
-OBJ_APPL_b64_DLL_R_P					= 
-OBJ_APPL_b64_DLL_R_PM					= 
-OBJ_APPL_b64_MT_D						= 
-OBJ_APPL_b64_MT_D_P					= 
-OBJ_APPL_b64_MT_D_PM					= 
-OBJ_APPL_b64_MT_R						= 
-OBJ_APPL_b64_MT_R_P					= 
-OBJ_APPL_b64_MT_R_PM					= 
-OBJ_APPL_b64_ST_D						= 
-OBJ_APPL_b64_ST_D_P					= 
-OBJ_APPL_b64_ST_D_PM					= 
-OBJ_APPL_b64_ST_R						= 
-OBJ_APPL_b64_ST_R_P					= 
-OBJ_APPL_b64_ST_R_PM					= 
-OBJ_APPL_b64_WS_DLL_D						= 
-OBJ_APPL_b64_WS_DLL_D_P					= 
-OBJ_APPL_b64_WS_DLL_D_PM					= 
-OBJ_APPL_b64_WS_DLL_R						= 
-OBJ_APPL_b64_WS_DLL_R_P					= 
-OBJ_APPL_b64_WS_DLL_R_PM					= 
-OBJ_APPL_b64_WS_MT_D						= 
-OBJ_APPL_b64_WS_MT_D_P					= 
-OBJ_APPL_b64_WS_MT_D_PM					= 
-OBJ_APPL_b64_WS_MT_R						= 
-OBJ_APPL_b64_WS_MT_R_P					= 
-OBJ_APPL_b64_WS_MT_R_PM					= 
-OBJ_APPL_b64_WS_ST_D						= 
-OBJ_APPL_b64_WS_ST_D_P					= 
-OBJ_APPL_b64_WS_ST_D_PM					= 
-OBJ_APPL_b64_WS_ST_R						= 
-OBJ_APPL_b64_WS_ST_R_P					= 
-OBJ_APPL_b64_WS_ST_R_PM					= 
+OBJ_APPL_b64_DLL_D						=
+OBJ_APPL_b64_DLL_D_P					=
+OBJ_APPL_b64_DLL_D_PM					=
+OBJ_APPL_b64_DLL_R						=
+OBJ_APPL_b64_DLL_R_P					=
+OBJ_APPL_b64_DLL_R_PM					=
+OBJ_APPL_b64_MT_D						=
+OBJ_APPL_b64_MT_D_P					=
+OBJ_APPL_b64_MT_D_PM					=
+OBJ_APPL_b64_MT_R						=
+OBJ_APPL_b64_MT_R_P					=
+OBJ_APPL_b64_MT_R_PM					=
+OBJ_APPL_b64_ST_D						=
+OBJ_APPL_b64_ST_D_P					=
+OBJ_APPL_b64_ST_D_PM					=
+OBJ_APPL_b64_ST_R						=
+OBJ_APPL_b64_ST_R_P					=
+OBJ_APPL_b64_ST_R_PM					=
+OBJ_APPL_b64_WS_DLL_D						=
+OBJ_APPL_b64_WS_DLL_D_P					=
+OBJ_APPL_b64_WS_DLL_D_PM					=
+OBJ_APPL_b64_WS_DLL_R						=
+OBJ_APPL_b64_WS_DLL_R_P					=
+OBJ_APPL_b64_WS_DLL_R_PM					=
+OBJ_APPL_b64_WS_MT_D						=
+OBJ_APPL_b64_WS_MT_D_P					=
+OBJ_APPL_b64_WS_MT_D_PM					=
+OBJ_APPL_b64_WS_MT_R						=
+OBJ_APPL_b64_WS_MT_R_P					=
+OBJ_APPL_b64_WS_MT_R_PM					=
+OBJ_APPL_b64_WS_ST_D						=
+OBJ_APPL_b64_WS_ST_D_P					=
+OBJ_APPL_b64_WS_ST_D_PM					=
+OBJ_APPL_b64_WS_ST_R						=
+OBJ_APPL_b64_WS_ST_R_P					=
+OBJ_APPL_b64_WS_ST_R_PM					=
 !else
 OBJ_ins_b64_DLL_D						= $(PROJ_OBJ_DIR)\inserters.b64.dll.debug.obj
 OBJ_APPL_b64_DLL_D						= $(OBJ_ins_b64_DLL_D)
@@ -12465,18 +12465,18 @@ OBJ_TEST_COMP_ins_bool_WS_MT_D		=	.\test.component.inserters.boolean.ws.mt.debug
 OBJ_TEST_COMP_ins_bool_WS_MT_R		=	.\test.component.inserters.boolean.ws.mt.obj
 OBJ_TEST_COMP_ins_bool_WS_ST_D		=	.\test.component.inserters.boolean.widestring.debug.obj
 OBJ_TEST_COMP_ins_bool_WS_ST_R		=	.\test.component.inserters.boolean.ws.obj
-OBJ_TEST_COMP_ins_hostid_DLL_D		=	.\test.component.inserters.hostId.dll.debug.obj
-OBJ_TEST_COMP_ins_hostid_DLL_R		=	.\test.component.inserters.hostId.dll.obj
-OBJ_TEST_COMP_ins_hostid_MT_D		=	.\test.component.inserters.hostId.mt.debug.obj
-OBJ_TEST_COMP_ins_hostid_MT_R		=	.\test.component.inserters.hostId.mt.obj
-OBJ_TEST_COMP_ins_hostid_ST_D		=	.\test.component.inserters.hostId.debug.obj
-OBJ_TEST_COMP_ins_hostid_ST_R		=	.\test.component.inserters.hostId.obj
-OBJ_TEST_COMP_ins_hostid_WS_DLL_D		=	.\test.component.inserters.hostId.ws.dll.debug.obj
-OBJ_TEST_COMP_ins_hostid_WS_DLL_R		=	.\test.component.inserters.hostId.ws.dll.obj
-OBJ_TEST_COMP_ins_hostid_WS_MT_D		=	.\test.component.inserters.hostId.ws.mt.debug.obj
-OBJ_TEST_COMP_ins_hostid_WS_MT_R		=	.\test.component.inserters.hostId.ws.mt.obj
-OBJ_TEST_COMP_ins_hostid_WS_ST_D		=	.\test.component.inserters.hostId.widestring.debug.obj
-OBJ_TEST_COMP_ins_hostid_WS_ST_R		=	.\test.component.inserters.hostId.ws.obj
+OBJ_TEST_COMP_ins_hostid_DLL_D		=	.\test.component.inserters.hostid.dll.debug.obj
+OBJ_TEST_COMP_ins_hostid_DLL_R		=	.\test.component.inserters.hostid.dll.obj
+OBJ_TEST_COMP_ins_hostid_MT_D		=	.\test.component.inserters.hostid.mt.debug.obj
+OBJ_TEST_COMP_ins_hostid_MT_R		=	.\test.component.inserters.hostid.mt.obj
+OBJ_TEST_COMP_ins_hostid_ST_D		=	.\test.component.inserters.hostid.debug.obj
+OBJ_TEST_COMP_ins_hostid_ST_R		=	.\test.component.inserters.hostid.obj
+OBJ_TEST_COMP_ins_hostid_WS_DLL_D		=	.\test.component.inserters.hostid.ws.dll.debug.obj
+OBJ_TEST_COMP_ins_hostid_WS_DLL_R		=	.\test.component.inserters.hostid.ws.dll.obj
+OBJ_TEST_COMP_ins_hostid_WS_MT_D		=	.\test.component.inserters.hostid.ws.mt.debug.obj
+OBJ_TEST_COMP_ins_hostid_WS_MT_R		=	.\test.component.inserters.hostid.ws.mt.obj
+OBJ_TEST_COMP_ins_hostid_WS_ST_D		=	.\test.component.inserters.hostid.widestring.debug.obj
+OBJ_TEST_COMP_ins_hostid_WS_ST_R		=	.\test.component.inserters.hostid.ws.obj
 OBJ_TEST_COMP_ins_int_DLL_D		=	.\test.component.inserters.integer.dll.debug.obj
 OBJ_TEST_COMP_ins_int_DLL_R		=	.\test.component.inserters.integer.dll.obj
 OBJ_TEST_COMP_ins_int_MT_D		=	.\test.component.inserters.integer.mt.debug.obj
@@ -12513,18 +12513,18 @@ OBJ_TEST_COMP_ins_ptr_WS_MT_D		=	.\test.component.inserters.pointer.ws.mt.debug.
 OBJ_TEST_COMP_ins_ptr_WS_MT_R		=	.\test.component.inserters.pointer.ws.mt.obj
 OBJ_TEST_COMP_ins_ptr_WS_ST_D		=	.\test.component.inserters.pointer.widestring.debug.obj
 OBJ_TEST_COMP_ins_ptr_WS_ST_R		=	.\test.component.inserters.pointer.ws.obj
-OBJ_TEST_COMP_ins_prid_DLL_D		=	.\test.component.inserters.processId.dll.debug.obj
-OBJ_TEST_COMP_ins_prid_DLL_R		=	.\test.component.inserters.processId.dll.obj
-OBJ_TEST_COMP_ins_prid_MT_D		=	.\test.component.inserters.processId.mt.debug.obj
-OBJ_TEST_COMP_ins_prid_MT_R		=	.\test.component.inserters.processId.mt.obj
-OBJ_TEST_COMP_ins_prid_ST_D		=	.\test.component.inserters.processId.debug.obj
-OBJ_TEST_COMP_ins_prid_ST_R		=	.\test.component.inserters.processId.obj
-OBJ_TEST_COMP_ins_prid_WS_DLL_D		=	.\test.component.inserters.processId.ws.dll.debug.obj
-OBJ_TEST_COMP_ins_prid_WS_DLL_R		=	.\test.component.inserters.processId.ws.dll.obj
-OBJ_TEST_COMP_ins_prid_WS_MT_D		=	.\test.component.inserters.processId.ws.mt.debug.obj
-OBJ_TEST_COMP_ins_prid_WS_MT_R		=	.\test.component.inserters.processId.ws.mt.obj
-OBJ_TEST_COMP_ins_prid_WS_ST_D		=	.\test.component.inserters.processId.widestring.debug.obj
-OBJ_TEST_COMP_ins_prid_WS_ST_R		=	.\test.component.inserters.processId.ws.obj
+OBJ_TEST_COMP_ins_prid_DLL_D		=	.\test.component.inserters.processid.dll.debug.obj
+OBJ_TEST_COMP_ins_prid_DLL_R		=	.\test.component.inserters.processid.dll.obj
+OBJ_TEST_COMP_ins_prid_MT_D		=	.\test.component.inserters.processid.mt.debug.obj
+OBJ_TEST_COMP_ins_prid_MT_R		=	.\test.component.inserters.processid.mt.obj
+OBJ_TEST_COMP_ins_prid_ST_D		=	.\test.component.inserters.processid.debug.obj
+OBJ_TEST_COMP_ins_prid_ST_R		=	.\test.component.inserters.processid.obj
+OBJ_TEST_COMP_ins_prid_WS_DLL_D		=	.\test.component.inserters.processid.ws.dll.debug.obj
+OBJ_TEST_COMP_ins_prid_WS_DLL_R		=	.\test.component.inserters.processid.ws.dll.obj
+OBJ_TEST_COMP_ins_prid_WS_MT_D		=	.\test.component.inserters.processid.ws.mt.debug.obj
+OBJ_TEST_COMP_ins_prid_WS_MT_R		=	.\test.component.inserters.processid.ws.mt.obj
+OBJ_TEST_COMP_ins_prid_WS_ST_D		=	.\test.component.inserters.processid.widestring.debug.obj
+OBJ_TEST_COMP_ins_prid_WS_ST_R		=	.\test.component.inserters.processid.ws.obj
 OBJ_TEST_COMP_ins_real_DLL_D		=	.\test.component.inserters.real.dll.debug.obj
 OBJ_TEST_COMP_ins_real_DLL_R		=	.\test.component.inserters.real.dll.obj
 OBJ_TEST_COMP_ins_real_MT_D		=	.\test.component.inserters.real.mt.debug.obj
@@ -12561,18 +12561,18 @@ OBJ_TEST_COMP_ins_stm_ch_WS_MT_D		=	.\test.component.inserters.stream_character.
 OBJ_TEST_COMP_ins_stm_ch_WS_MT_R		=	.\test.component.inserters.stream_character.ws.mt.obj
 OBJ_TEST_COMP_ins_stm_ch_WS_ST_D		=	.\test.component.inserters.stream_character.widestring.debug.obj
 OBJ_TEST_COMP_ins_stm_ch_WS_ST_R		=	.\test.component.inserters.stream_character.ws.obj
-OBJ_TEST_COMP_ins_thrid_DLL_D		=	.\test.component.inserters.threadId.dll.debug.obj
-OBJ_TEST_COMP_ins_thrid_DLL_R		=	.\test.component.inserters.threadId.dll.obj
-OBJ_TEST_COMP_ins_thrid_MT_D		=	.\test.component.inserters.threadId.mt.debug.obj
-OBJ_TEST_COMP_ins_thrid_MT_R		=	.\test.component.inserters.threadId.mt.obj
-OBJ_TEST_COMP_ins_thrid_ST_D		=	.\test.component.inserters.threadId.debug.obj
-OBJ_TEST_COMP_ins_thrid_ST_R		=	.\test.component.inserters.threadId.obj
-OBJ_TEST_COMP_ins_thrid_WS_DLL_D		=	.\test.component.inserters.threadId.ws.dll.debug.obj
-OBJ_TEST_COMP_ins_thrid_WS_DLL_R		=	.\test.component.inserters.threadId.ws.dll.obj
-OBJ_TEST_COMP_ins_thrid_WS_MT_D		=	.\test.component.inserters.threadId.ws.mt.debug.obj
-OBJ_TEST_COMP_ins_thrid_WS_MT_R		=	.\test.component.inserters.threadId.ws.mt.obj
-OBJ_TEST_COMP_ins_thrid_WS_ST_D		=	.\test.component.inserters.threadId.widestring.debug.obj
-OBJ_TEST_COMP_ins_thrid_WS_ST_R		=	.\test.component.inserters.threadId.ws.obj
+OBJ_TEST_COMP_ins_thrid_DLL_D		=	.\test.component.inserters.threadid.dll.debug.obj
+OBJ_TEST_COMP_ins_thrid_DLL_R		=	.\test.component.inserters.threadid.dll.obj
+OBJ_TEST_COMP_ins_thrid_MT_D		=	.\test.component.inserters.threadid.mt.debug.obj
+OBJ_TEST_COMP_ins_thrid_MT_R		=	.\test.component.inserters.threadid.mt.obj
+OBJ_TEST_COMP_ins_thrid_ST_D		=	.\test.component.inserters.threadid.debug.obj
+OBJ_TEST_COMP_ins_thrid_ST_R		=	.\test.component.inserters.threadid.obj
+OBJ_TEST_COMP_ins_thrid_WS_DLL_D		=	.\test.component.inserters.threadid.ws.dll.debug.obj
+OBJ_TEST_COMP_ins_thrid_WS_DLL_R		=	.\test.component.inserters.threadid.ws.dll.obj
+OBJ_TEST_COMP_ins_thrid_WS_MT_D		=	.\test.component.inserters.threadid.ws.mt.debug.obj
+OBJ_TEST_COMP_ins_thrid_WS_MT_R		=	.\test.component.inserters.threadid.ws.mt.obj
+OBJ_TEST_COMP_ins_thrid_WS_ST_D		=	.\test.component.inserters.threadid.widestring.debug.obj
+OBJ_TEST_COMP_ins_thrid_WS_ST_R		=	.\test.component.inserters.threadid.ws.obj
 OBJ_TEST_COMP_ins_vbool_DLL_D		=	.\test.component.inserters.variant_bool.dll.debug.obj
 OBJ_TEST_COMP_ins_vbool_DLL_R		=	.\test.component.inserters.variant_bool.dll.obj
 OBJ_TEST_COMP_ins_vbool_MT_D		=	.\test.component.inserters.variant_bool.mt.debug.obj
@@ -40284,8 +40284,8 @@ $(TARG_TEST_COMP_ins_hostid_DLL_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
 
-$(OBJ_TEST_COMP_ins_hostid_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_DLL_R):	\
 			$(OBJ_TEST_COMP_ins_hostid_DLL_R)\
@@ -40307,8 +40307,8 @@ $(TARG_TEST_COMP_ins_hostid_DLL_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
 
-$(OBJ_TEST_COMP_ins_hostid_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_MT_D):	\
 			$(OBJ_TEST_COMP_ins_hostid_MT_D)\
@@ -40330,8 +40330,8 @@ $(TARG_TEST_COMP_ins_hostid_MT_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_TEST_COMP_ins_hostid_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_MT_R):	\
 			$(OBJ_TEST_COMP_ins_hostid_MT_R)\
@@ -40353,8 +40353,8 @@ $(TARG_TEST_COMP_ins_hostid_MT_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_TEST_COMP_ins_hostid_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_ST_D):	\
 			$(OBJ_TEST_COMP_ins_hostid_ST_D)\
@@ -40376,8 +40376,8 @@ $(TARG_TEST_COMP_ins_hostid_ST_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_TEST_COMP_ins_hostid_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_ST_R):	\
 			$(OBJ_TEST_COMP_ins_hostid_ST_R)\
@@ -40399,8 +40399,8 @@ $(TARG_TEST_COMP_ins_hostid_ST_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_TEST_COMP_ins_hostid_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_WS_DLL_D):	\
 			$(OBJ_TEST_COMP_ins_hostid_WS_DLL_D)\
@@ -40422,8 +40422,8 @@ $(TARG_TEST_COMP_ins_hostid_WS_DLL_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_DLL_D)
 
-$(OBJ_TEST_COMP_ins_hostid_WS_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_WS_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_WS_DLL_R):	\
 			$(OBJ_TEST_COMP_ins_hostid_WS_DLL_R)\
@@ -40445,8 +40445,8 @@ $(TARG_TEST_COMP_ins_hostid_WS_DLL_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_DLL_R)
 
-$(OBJ_TEST_COMP_ins_hostid_WS_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_WS_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_WS_MT_D):	\
 			$(OBJ_TEST_COMP_ins_hostid_WS_MT_D)\
@@ -40468,8 +40468,8 @@ $(TARG_TEST_COMP_ins_hostid_WS_MT_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_MT_D)
 
-$(OBJ_TEST_COMP_ins_hostid_WS_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_WS_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_WS_MT_R):	\
 			$(OBJ_TEST_COMP_ins_hostid_WS_MT_R)\
@@ -40491,8 +40491,8 @@ $(TARG_TEST_COMP_ins_hostid_WS_MT_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_MT_R)
 
-$(OBJ_TEST_COMP_ins_hostid_WS_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_WS_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_WS_ST_D):	\
 			$(OBJ_TEST_COMP_ins_hostid_WS_ST_D)\
@@ -40514,8 +40514,8 @@ $(TARG_TEST_COMP_ins_hostid_WS_ST_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_ST_D)
 
-$(OBJ_TEST_COMP_ins_hostid_WS_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_WS_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_hostid_WS_ST_R):	\
 			$(OBJ_TEST_COMP_ins_hostid_WS_ST_R)\
@@ -40537,8 +40537,8 @@ $(TARG_TEST_COMP_ins_hostid_WS_ST_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_ST_R)
 
-$(OBJ_TEST_COMP_ins_hostid_WS_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostId\test.component.inserters.hostId.cpp
+$(OBJ_TEST_COMP_ins_hostid_WS_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.hostid\test.component.inserters.hostid.cpp
 
 $(TARG_TEST_COMP_ins_int_DLL_D):	\
 			$(OBJ_TEST_COMP_ins_int_DLL_D)\
@@ -41388,8 +41388,8 @@ $(TARG_TEST_COMP_ins_prid_DLL_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
 
-$(OBJ_TEST_COMP_ins_prid_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_DLL_R):	\
 			$(OBJ_TEST_COMP_ins_prid_DLL_R)\
@@ -41411,8 +41411,8 @@ $(TARG_TEST_COMP_ins_prid_DLL_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
 
-$(OBJ_TEST_COMP_ins_prid_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_MT_D):	\
 			$(OBJ_TEST_COMP_ins_prid_MT_D)\
@@ -41434,8 +41434,8 @@ $(TARG_TEST_COMP_ins_prid_MT_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_TEST_COMP_ins_prid_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_MT_R):	\
 			$(OBJ_TEST_COMP_ins_prid_MT_R)\
@@ -41457,8 +41457,8 @@ $(TARG_TEST_COMP_ins_prid_MT_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_TEST_COMP_ins_prid_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_ST_D):	\
 			$(OBJ_TEST_COMP_ins_prid_ST_D)\
@@ -41480,8 +41480,8 @@ $(TARG_TEST_COMP_ins_prid_ST_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_TEST_COMP_ins_prid_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_ST_R):	\
 			$(OBJ_TEST_COMP_ins_prid_ST_R)\
@@ -41503,8 +41503,8 @@ $(TARG_TEST_COMP_ins_prid_ST_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_TEST_COMP_ins_prid_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_WS_DLL_D):	\
 			$(OBJ_TEST_COMP_ins_prid_WS_DLL_D)\
@@ -41526,8 +41526,8 @@ $(TARG_TEST_COMP_ins_prid_WS_DLL_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_DLL_D)
 
-$(OBJ_TEST_COMP_ins_prid_WS_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_WS_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_WS_DLL_R):	\
 			$(OBJ_TEST_COMP_ins_prid_WS_DLL_R)\
@@ -41549,8 +41549,8 @@ $(TARG_TEST_COMP_ins_prid_WS_DLL_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_DLL_R)
 
-$(OBJ_TEST_COMP_ins_prid_WS_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_WS_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_WS_MT_D):	\
 			$(OBJ_TEST_COMP_ins_prid_WS_MT_D)\
@@ -41572,8 +41572,8 @@ $(TARG_TEST_COMP_ins_prid_WS_MT_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_MT_D)
 
-$(OBJ_TEST_COMP_ins_prid_WS_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_WS_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_WS_MT_R):	\
 			$(OBJ_TEST_COMP_ins_prid_WS_MT_R)\
@@ -41595,8 +41595,8 @@ $(TARG_TEST_COMP_ins_prid_WS_MT_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_MT_R)
 
-$(OBJ_TEST_COMP_ins_prid_WS_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_WS_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_WS_ST_D):	\
 			$(OBJ_TEST_COMP_ins_prid_WS_ST_D)\
@@ -41618,8 +41618,8 @@ $(TARG_TEST_COMP_ins_prid_WS_ST_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_ST_D)
 
-$(OBJ_TEST_COMP_ins_prid_WS_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_WS_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_prid_WS_ST_R):	\
 			$(OBJ_TEST_COMP_ins_prid_WS_ST_R)\
@@ -41641,8 +41641,8 @@ $(TARG_TEST_COMP_ins_prid_WS_ST_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_ST_R)
 
-$(OBJ_TEST_COMP_ins_prid_WS_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processId\test.component.inserters.processId.cpp
+$(OBJ_TEST_COMP_ins_prid_WS_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.processid\test.component.inserters.processid.cpp
 
 $(TARG_TEST_COMP_ins_real_DLL_D):	\
 			$(OBJ_TEST_COMP_ins_real_DLL_D)\
@@ -42516,8 +42516,8 @@ $(TARG_TEST_COMP_ins_thrid_DLL_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_D)
 
-$(OBJ_TEST_COMP_ins_thrid_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_DLL_R):	\
 			$(OBJ_TEST_COMP_ins_thrid_DLL_R)\
@@ -42539,8 +42539,8 @@ $(TARG_TEST_COMP_ins_thrid_DLL_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_DLL_R)
 
-$(OBJ_TEST_COMP_ins_thrid_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_MT_D):	\
 			$(OBJ_TEST_COMP_ins_thrid_MT_D)\
@@ -42562,8 +42562,8 @@ $(TARG_TEST_COMP_ins_thrid_MT_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_D)
 
-$(OBJ_TEST_COMP_ins_thrid_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_MT_R):	\
 			$(OBJ_TEST_COMP_ins_thrid_MT_R)\
@@ -42585,8 +42585,8 @@ $(TARG_TEST_COMP_ins_thrid_MT_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_MT_R)
 
-$(OBJ_TEST_COMP_ins_thrid_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_ST_D):	\
 			$(OBJ_TEST_COMP_ins_thrid_ST_D)\
@@ -42608,8 +42608,8 @@ $(TARG_TEST_COMP_ins_thrid_ST_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_ST_D)
 
-$(OBJ_TEST_COMP_ins_thrid_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_ST_R):	\
 			$(OBJ_TEST_COMP_ins_thrid_ST_R)\
@@ -42631,8 +42631,8 @@ $(TARG_TEST_COMP_ins_thrid_ST_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_ST_R)
 
-$(OBJ_TEST_COMP_ins_thrid_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_WS_DLL_D):	\
 			$(OBJ_TEST_COMP_ins_thrid_WS_DLL_D)\
@@ -42654,8 +42654,8 @@ $(TARG_TEST_COMP_ins_thrid_WS_DLL_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_DLL_D)
 
-$(OBJ_TEST_COMP_ins_thrid_WS_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_WS_DLL_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_WS_DLL_R):	\
 			$(OBJ_TEST_COMP_ins_thrid_WS_DLL_R)\
@@ -42677,8 +42677,8 @@ $(TARG_TEST_COMP_ins_thrid_WS_DLL_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_DLL_R)
 
-$(OBJ_TEST_COMP_ins_thrid_WS_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_WS_DLL_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_DLL_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_WS_MT_D):	\
 			$(OBJ_TEST_COMP_ins_thrid_WS_MT_D)\
@@ -42700,8 +42700,8 @@ $(TARG_TEST_COMP_ins_thrid_WS_MT_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_MT_D)
 
-$(OBJ_TEST_COMP_ins_thrid_WS_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_WS_MT_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_WS_MT_R):	\
 			$(OBJ_TEST_COMP_ins_thrid_WS_MT_R)\
@@ -42723,8 +42723,8 @@ $(TARG_TEST_COMP_ins_thrid_WS_MT_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_MT_R)
 
-$(OBJ_TEST_COMP_ins_thrid_WS_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_WS_MT_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_MT_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_WS_ST_D):	\
 			$(OBJ_TEST_COMP_ins_thrid_WS_ST_D)\
@@ -42746,8 +42746,8 @@ $(TARG_TEST_COMP_ins_thrid_WS_ST_D):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_ST_D)
 
-$(OBJ_TEST_COMP_ins_thrid_WS_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_WS_ST_D):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_D) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_thrid_WS_ST_R):	\
 			$(OBJ_TEST_COMP_ins_thrid_WS_ST_R)\
@@ -42769,8 +42769,8 @@ $(TARG_TEST_COMP_ins_thrid_WS_ST_R):	\
 		$(LIBS_3PTY_BE_N_FAIL)\
 		$(TARGET_LIB_WS_ST_R)
 
-$(OBJ_TEST_COMP_ins_thrid_WS_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
-	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadId\test.component.inserters.threadId.cpp
+$(OBJ_TEST_COMP_ins_thrid_WS_ST_R):	$(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp $(TEST_CPP_HEADERS) $(PROJ_MAKEFILE_NAME)
+	$(CPPC) $(CPPC_TEST_UNIT_ARGS_WS_ST_R) $(CPPC_INCLUDES) -Fo$@ $(PROJ_TEST_COMPONENT_DIR)\test.component.inserters.threadid\test.component.inserters.threadid.cpp
 
 $(TARG_TEST_COMP_ins_vbool_DLL_D):	\
 			$(OBJ_TEST_COMP_ins_vbool_DLL_D)\

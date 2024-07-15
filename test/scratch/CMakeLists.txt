@@ -11,9 +11,15 @@ add_subdirectory(test.scratch.api)
 #[====[
 add_subdirectory(test.scratch.be.ACE)
 #]====]
-add_subdirectory(test.scratch.be.N)
+if(NOT PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_subdirectory(test.scratch.be.N)
+endif()
 add_subdirectory(test.scratch.be.N.fail)
-add_subdirectory(test.scratch.be.N.with.custom.fe)
+if(NOT PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_subdirectory(test.scratch.be.N.with.custom.fe)
+endif()
 if(WIN32)
 
 	add_subdirectory(test.scratch.be.WindowsSyslog)
@@ -38,7 +44,10 @@ if(WIN32)
 	add_subdirectory(test.scratch.bec.WindowsConsoleCallback)
 	add_subdirectory(test.scratch.bec.WindowsMessageBox)
 endif(WIN32)
-add_subdirectory(test.scratch.c_api)
+if(NOT PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_subdirectory(test.scratch.c_api)
+endif()
 #[====[
 if(WIN32)
 
@@ -46,7 +55,10 @@ if(WIN32)
 	add_subdirectory(test.scratch.extras.com_exception_helpers)
 endif(WIN32)
 #]====]
-add_subdirectory(test.scratch.fe)
+if(NOT PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_subdirectory(test.scratch.fe)
+endif()
 if(WIN32)
 
 	add_subdirectory(test.scratch.fe.WindowsRegistry)
@@ -61,12 +73,18 @@ if(WIN32)
 	add_subdirectory(test.scratch.pseudoUNIX)
 endif(WIN32)
 add_subdirectory(test.scratch.showPlus.integer)
-add_subdirectory(test.scratch.trace)
+if(NOT PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_subdirectory(test.scratch.trace)
+endif()
 if(WIN32)
 
 	add_subdirectory(test.scratch.tstring)
 endif(WIN32)
-add_subdirectory(test.scratch.util.onbailout)
+if(NOT PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_subdirectory(test.scratch.util.onbailout)
+endif()
 
 
 # ############################## end of file ############################# #

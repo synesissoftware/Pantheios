@@ -5,13 +5,7 @@ add_executable(test.scratch.be.N
 
 target_link_libraries(test.scratch.be.N
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
-)
-
-target_link_libraries(test.scratch.be.N
-	PRIVATE
-		Pantheios.fe.N
 )
 
 target_link_libraries(test.scratch.be.N
@@ -37,6 +31,16 @@ if(WIN32)
 			Pantheios.bec.WindowsSyslog
 	)
 endif(WIN32)
+
+target_link_libraries(test.scratch.be.N
+	PRIVATE
+		Pantheios.fe.N
+)
+
+target_link_libraries(test.scratch.be.N
+	PRIVATE
+		Pantheios.util
+)
 
 target_link_libraries(test.scratch.be.N
 	PRIVATE

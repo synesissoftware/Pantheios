@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.threadId/test.component.inserters.threadId.cpp
+ * File:    test/component/test.component.inserters.threadid/test.component.inserters.threadid.cpp
  *
- * Purpose: Implementation file for the test.component.inserters.threadId project.
+ * Purpose: Implementation file for the test.component.inserters.threadid project.
  *
  * Created: 17th October 2006
- * Updated: 7th February 2024
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -54,7 +54,7 @@ static pantheios::sint64_t pan_get_tid_();
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.threadId");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.threadid");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -83,7 +83,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.threadId", verbosity))
+    if(XTESTS_START_RUNNER("test.component.inserters.threadid", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
 

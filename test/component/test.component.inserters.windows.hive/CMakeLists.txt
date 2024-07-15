@@ -5,13 +5,7 @@ add_executable(test.component.inserters.windows.hive
 
 target_link_libraries(test.component.inserters.windows.hive
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
-)
-
-target_link_libraries(test.component.inserters.windows.hive
-	PRIVATE
-		Pantheios.fe.simple
 )
 
 target_link_libraries(test.component.inserters.windows.hive
@@ -22,7 +16,17 @@ target_link_libraries(test.component.inserters.windows.hive
 
 target_link_libraries(test.component.inserters.windows.hive
 	PRIVATE
-		xTests::xTests.core
+		Pantheios.fe.simple
+)
+
+target_link_libraries(test.component.inserters.windows.hive
+	PRIVATE
+		Pantheios.util
+)
+
+target_link_libraries(test.component.inserters.windows.hive
+	PRIVATE
+		xTests::core
 )
 
 target_compile_options(test.component.inserters.windows.hive PRIVATE

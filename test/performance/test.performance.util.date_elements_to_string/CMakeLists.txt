@@ -5,13 +5,7 @@ add_executable(test.performance.util.date_elements_to_string
 
 target_link_libraries(test.performance.util.date_elements_to_string
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
-)
-
-target_link_libraries(test.performance.util.date_elements_to_string
-	PRIVATE
-		Pantheios.fe.simple
 )
 
 target_link_libraries(test.performance.util.date_elements_to_string
@@ -21,7 +15,17 @@ target_link_libraries(test.performance.util.date_elements_to_string
 
 target_link_libraries(test.performance.util.date_elements_to_string
 	PRIVATE
-		xTests::xTests.core
+		Pantheios.fe.simple
+)
+
+target_link_libraries(test.performance.util.date_elements_to_string
+	PRIVATE
+		Pantheios.util
+)
+
+target_link_libraries(test.performance.util.date_elements_to_string
+	PRIVATE
+		xTests::core
 )
 
 target_compile_options(test.performance.util.date_elements_to_string PRIVATE

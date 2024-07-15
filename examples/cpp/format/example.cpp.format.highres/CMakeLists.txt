@@ -5,8 +5,13 @@ add_executable(example.cpp.format.highres
 
 target_link_libraries(example.cpp.format.highres
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
+)
+
+target_link_libraries(example.cpp.format.highres
+	PRIVATE
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf.WithCallback
 )
 
 target_link_libraries(example.cpp.format.highres
@@ -16,8 +21,7 @@ target_link_libraries(example.cpp.format.highres
 
 target_link_libraries(example.cpp.format.highres
 	PRIVATE
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf.WithCallback
+		Pantheios.util
 )
 
 target_link_libraries(example.cpp.format.highres

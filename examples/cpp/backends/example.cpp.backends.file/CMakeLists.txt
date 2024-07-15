@@ -5,8 +5,13 @@ add_executable(example.cpp.backends.file
 
 target_link_libraries(example.cpp.backends.file
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
+)
+
+target_link_libraries(example.cpp.backends.file
+	PRIVATE
+		Pantheios.be.file
+		Pantheios.bec.file
 )
 
 target_link_libraries(example.cpp.backends.file
@@ -16,8 +21,7 @@ target_link_libraries(example.cpp.backends.file
 
 target_link_libraries(example.cpp.backends.file
 	PRIVATE
-		Pantheios.be.file
-		Pantheios.bec.file
+		Pantheios.util
 )
 
 target_link_libraries(example.cpp.backends.file

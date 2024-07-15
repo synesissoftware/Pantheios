@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.be.N project.
  *
  * Created: 18th October 2006
- * Updated: 7th February 2024
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,6 +35,7 @@
 /* Standard C header files */
 #include <stdio.h>
 #include <stdlib.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -75,6 +76,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(
   init->flags |= PANTHEIOS_BE_WINDOWSDEBUGGER_F_DETAILS_AT_START;
 }
 #endif /* PLATFORMSTL_OS_IS_WIN?? */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -129,6 +131,7 @@ int main(int argc, char *argv[])
 
   return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

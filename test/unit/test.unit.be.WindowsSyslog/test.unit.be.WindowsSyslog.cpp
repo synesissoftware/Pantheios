@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.be.WindowsSyslog/test.unit.be.WindowsSyslog.cpp
+ * File:    test/unit/test.unit.be.WindowsSyslog/test.unit.be.WindowsSyslog.cpp
  *
- * Purpose:     Implementation file for the test.unit.be.WindowsSyslog project.
+ * Purpose: Implementation file for the test.unit.be.WindowsSyslog project.
  *
- * Created:     17th October 2008
- * Updated:     16th December 2023
+ * Created: 17th October 2008
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,6 +24,7 @@
 
 /* STLSoft header files */
 #include <stlsoft/smartptr/scoped_handle.hpp>
+#include <winstl/conversion/char_conversions.hpp>
 
 /* Standard C header files */
 #include <stdio.h>
@@ -31,11 +32,13 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.WindowsSyslog");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -66,6 +69,7 @@ namespace
     static void test_1_19(void);
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -124,6 +128,7 @@ int main(int argc, char **argv)
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations
  */
@@ -158,7 +163,7 @@ static void test_initialisation()
 
     init.flags      |=  PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY;
     init.addrSize   =   0;
-    init.hostName   =   "localhost";
+    init.hostName   =   PANTHEIOS_LITERAL_STRING("localhost");
     init.port       =   50505;
 
     void*   token;
@@ -166,7 +171,7 @@ static void test_initialisation()
 
     if(r < 0)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", pantheios::getStockSeverityString(r));
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
     }
     else
     {
@@ -184,7 +189,7 @@ static void test_1_2()
 
     init.flags      |=  PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY;
     init.addrSize   =   0;
-    init.hostName   =   "localhost";
+    init.hostName   =   PANTHEIOS_LITERAL_STRING("localhost");
     init.port       =   50505;
 
     void*   token;
@@ -192,7 +197,7 @@ static void test_1_2()
 
     if(r < 0)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", pantheios::getStockSeverityString(r));
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
     }
     else
     {
@@ -272,8 +277,8 @@ static void test_1_19()
 {
 }
 
-
 } /* anonymous namespace */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

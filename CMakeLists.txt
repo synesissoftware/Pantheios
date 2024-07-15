@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  13th July 2024
+# Updated:  14th July 2024
 #
 # ######################################################################## #
 
@@ -78,7 +78,7 @@ find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 message("-- CMake package STLSoft found (version ${STLSoft_VERSION}; ${STLSoft_REQUIRED_VERSION_} requested)")
 
 
-set(b64_DESIRED_VERSION_ 1.4.7)
+set(b64_DESIRED_VERSION_ 1.5.2)
 
 find_package(b64 ${b64_DESIRED_VERSION_})
 
@@ -93,7 +93,7 @@ if(BUILD_TESTING)
 
 	message("-- CMake package shwild found (version ${shwild_VERSION}; ${shwild_REQUIRED_VERSION_} requested)")
 
-	set(xTests_REQUIRED_VERSION_ 0.22)
+	set(xTests_REQUIRED_VERSION_ 0.23)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
@@ -116,12 +116,18 @@ include(GNUInstallDirs)
 if(PANTHEIOS_USE_WIDE_STRINGS)
 
 	add_definitions(-DPANTHEIOS_USE_WIDE_STRINGS)
-	add_definitions(-DUNICODE)
-	add_definitions(-D_UNICODE)
+	if (WIN32)
+
+		add_definitions(-DUNICODE)
+		add_definitions(-D_UNICODE)
+	endif(WIN32)
 else(PANTHEIOS_USE_WIDE_STRINGS)
 
 	add_definitions(-DPANTHEIOS_NO_USE_WIDE_STRINGS)
-	add_definitions(-D_MBCS)
+	if (WIN32)
+
+		add_definitions(-D_MBCS)
+	endif(WIN32)
 endif(PANTHEIOS_USE_WIDE_STRINGS)
 
 

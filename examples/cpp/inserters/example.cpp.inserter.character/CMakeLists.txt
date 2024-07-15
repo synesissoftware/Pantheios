@@ -5,8 +5,13 @@ add_executable(example.cpp.inserter.character
 
 target_link_libraries(example.cpp.inserter.character
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
+)
+
+target_link_libraries(example.cpp.inserter.character
+	PRIVATE
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.be.WindowsConsole,Pantheios.be.fprintf>
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
 )
 
 target_link_libraries(example.cpp.inserter.character
@@ -14,23 +19,10 @@ target_link_libraries(example.cpp.inserter.character
 		Pantheios.fe.simple
 )
 
-if(UNIX)
-
-	target_link_libraries(example.cpp.inserter.character
-		PRIVATE
-			Pantheios.be.fprintf
-			Pantheios.bec.fprintf
-	)
-endif(UNIX)
-
-if(WIN32)
-
-	target_link_libraries(example.cpp.inserter.character
-		PRIVATE
-			Pantheios.be.WindowsConsole
-			Pantheios.bec.WindowsConsole
-	)
-endif(WIN32)
+target_link_libraries(example.cpp.inserter.character
+	PRIVATE
+		Pantheios.util
+)
 
 target_compile_options(example.cpp.inserter.character PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:

@@ -5,8 +5,15 @@ test.scratch.be.file.rolling.cpp
 
 target_link_libraries(test.scratch.be.file.rolling
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
+)
+
+target_link_libraries(test.scratch.be.file.rolling
+	PRIVATE
+		Pantheios.be.lrsplit
+		Pantheios.bec.file
+		Pantheios.bel.file
+		Pantheios.ber.file
 )
 
 target_link_libraries(test.scratch.be.file.rolling
@@ -16,10 +23,7 @@ target_link_libraries(test.scratch.be.file.rolling
 
 target_link_libraries(test.scratch.be.file.rolling
 	PRIVATE
-		Pantheios.be.lrsplit
-		Pantheios.bec.file
-		Pantheios.bel.file
-		Pantheios.ber.file
+		Pantheios.util
 )
 
 target_compile_options(test.scratch.be.file.rolling PRIVATE

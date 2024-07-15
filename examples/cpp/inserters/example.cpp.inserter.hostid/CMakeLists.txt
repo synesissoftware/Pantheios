@@ -5,8 +5,13 @@ add_executable(example.cpp.inserter.hostid
 
 target_link_libraries(example.cpp.inserter.hostid
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
+)
+
+target_link_libraries(example.cpp.inserter.hostid
+	PRIVATE
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.be.WindowsConsole,Pantheios.be.fprintf>
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
 )
 
 target_link_libraries(example.cpp.inserter.hostid
@@ -14,23 +19,10 @@ target_link_libraries(example.cpp.inserter.hostid
 		Pantheios.fe.simple
 )
 
-if(UNIX)
-
-	target_link_libraries(example.cpp.inserter.hostid
-		PRIVATE
-			Pantheios.be.fprintf
-			Pantheios.bec.fprintf
-	)
-endif(UNIX)
-
-if(WIN32)
-
-	target_link_libraries(example.cpp.inserter.hostid
-		PRIVATE
-			Pantheios.be.WindowsConsole
-			Pantheios.bec.WindowsConsole
-	)
-endif(WIN32)
+target_link_libraries(example.cpp.inserter.hostid
+	PRIVATE
+		Pantheios.util
+)
 
 target_link_libraries(example.cpp.inserter.hostid
 	PRIVATE

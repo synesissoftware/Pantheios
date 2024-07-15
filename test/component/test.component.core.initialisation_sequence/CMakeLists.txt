@@ -5,13 +5,7 @@ add_executable(test.component.core.initialisation_sequence
 
 target_link_libraries(test.component.core.initialisation_sequence
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
-)
-
-target_link_libraries(test.component.core.initialisation_sequence
-	PRIVATE
-		Pantheios.fe.all
 )
 
 target_link_libraries(test.component.core.initialisation_sequence
@@ -22,7 +16,17 @@ target_link_libraries(test.component.core.initialisation_sequence
 
 target_link_libraries(test.component.core.initialisation_sequence
 	PRIVATE
-		xTests::xTests.core
+		Pantheios.fe.all
+)
+
+target_link_libraries(test.component.core.initialisation_sequence
+	PRIVATE
+		Pantheios.util
+)
+
+target_link_libraries(test.component.core.initialisation_sequence
+	PRIVATE
+		xTests::core
 )
 
 target_compile_options(test.component.core.initialisation_sequence PRIVATE

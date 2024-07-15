@@ -5,13 +5,17 @@ add_executable(example.cpp.misc.extended_severity_information
 
 target_link_libraries(example.cpp.misc.extended_severity_information
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
 target_link_libraries(example.cpp.misc.extended_severity_information
 	PRIVATE
 		Pantheios.fe.simple
+)
+
+target_link_libraries(example.cpp.misc.extended_severity_information
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(example.cpp.misc.extended_severity_information

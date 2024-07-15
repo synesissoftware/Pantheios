@@ -110,6 +110,7 @@
     "utility": "cpp",
     "variant": "cpp",
     "vector": "cpp",
+    "xstring": "cpp",
     "xutility": "cpp",
   },
   "files.insertFinalNewline": true,
