@@ -55,6 +55,7 @@
 #include <ctype.h>
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -63,6 +64,7 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
@@ -74,6 +76,7 @@
 # define pan_strlen_                    ::strlen
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -82,6 +85,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -135,6 +139,7 @@ namespace ximpl_stream_character
 
 } /* namespace ximpl_stream_character */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * stream_character
  */
@@ -176,6 +181,7 @@ void stream_character::construct_()
         m_len = pantheios_util_snprintf(m_sz, STLSOFT_NUM_ELEMENTS(m_sz), PANTHEIOS_LITERAL_STRING("0x%04x"), m_ch);
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

@@ -54,6 +54,7 @@
 #include <stlsoft/conversion/integer_to_string.hpp>
 #include <stlsoft/shims/access/string/std/c_string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -63,6 +64,7 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -71,6 +73,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -82,6 +85,7 @@ struct processId_t const* processId =   0;
     _MSC_VER >= 1900
 # define processId  processId_another_symbol_
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -120,6 +124,7 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
@@ -153,6 +158,7 @@ PANTHEIOS_CALL(size_t) pantheios_getCurrentProcessIdStringLength(void)
 
     return processIdLen;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

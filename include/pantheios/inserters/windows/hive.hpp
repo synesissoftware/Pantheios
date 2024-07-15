@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_REVISION    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_EDIT        4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +77,7 @@
 
 #include <windows.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +88,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 namespace windows
 {
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -207,6 +211,7 @@ private:
     }
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
@@ -241,11 +246,13 @@ hive::length() const
     return (0u == r) ? parent_class_type::length() : r;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
 } /* namespace windows */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -333,6 +340,7 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -358,6 +366,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_PROCESSID
 #define PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_PROCESSID
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_REVISION    1
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_EDIT        6
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -78,6 +81,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -105,6 +109,7 @@ inline stlsoft_ns_qual(ss_sint64_t) getCurrentProcessId()
 
 } /* namespace util */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

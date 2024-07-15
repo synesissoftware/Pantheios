@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_TEST_H_COMPILER_WARNINGS_SUPPRESSION_LAST_INCLUDE
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_TEST_H_COMPILER_WARNINGS_SUPPRESSION_LAST_INCLUDE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -57,6 +58,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_TEST_H_COMPILER_WARNINGS_SUPPRESSION_FIRST_INCLUDE
 # error This file cannot be included unless pantheios/util/test/compiler_warnings_suppression.first_include.h has already been included
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_TEST_H_COMPILER_WARNINGS_SUPPRESSION_FIRST_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppressions

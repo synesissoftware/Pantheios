@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the be.N.fail.test project.
  *
  * Created: 9th January 2007
- * Updated: 7th February 2024
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,9 +40,11 @@
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * character encodings
+ */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,7 +71,9 @@ pan_be_N_t      PAN_BE_N_BACKEND_LIST[]         =
 } // extern "C"
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int /* argc */, char ** /*argv*/)
 {

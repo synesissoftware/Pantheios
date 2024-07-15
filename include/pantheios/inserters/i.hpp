@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_I
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_I
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_I_REVISION   1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_I_EDIT       5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +74,7 @@
 # include <pantheios/inserters/integer.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTEGER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,12 +84,14 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 /** Typedef for pantheios::integer inserter class. */
 typedef integer i;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -95,6 +100,7 @@ typedef integer i;
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

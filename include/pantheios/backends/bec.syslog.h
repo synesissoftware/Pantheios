@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.syslog.h
+ * File:    pantheios/backends/bec.syslog.h
  *
- * Purpose:     Declaration of the Pantheios syslog Stock Back-end API.
+ * Purpose: Declaration of the Pantheios syslog Stock Back-end API.
  *
- * Created:     23rd July 2005
- * Updated:     16th December 2023
+ * Created: 23rd July 2005
+ * Updated: 15th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_SYSLOG_SRC
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_SYSLOG_SRC
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     25
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -78,6 +81,7 @@
  * \ingroup group__backend__stock_backends
  *  Back-end library built on top of the UNIX <b>syslog</b> API.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -186,6 +190,7 @@ PANTHEIOS_CALL(void) pantheios_be_syslog_getAppInit(
 ,   pan_be_syslog_init_t*   init
 ) /* throw() */;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -269,7 +274,9 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_parseArgs(
 );
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifdef __cplusplus
 # ifndef PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT

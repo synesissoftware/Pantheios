@@ -60,6 +60,7 @@
 #include <string.h>
 #include <wchar.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -68,6 +69,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -146,6 +148,7 @@ pantheios_util_strfree(
     pantheios_util_strfree_m(s);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

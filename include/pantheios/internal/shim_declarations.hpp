@@ -51,6 +51,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * validation
  */
@@ -62,6 +63,7 @@
 #ifndef __cplusplus
 # error This file is valid only in C++ compilation units
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shim declarations
@@ -95,6 +97,7 @@
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.log.1 project.
  *
  * Created: 25th November 2007
- * Updated: 7th February 2024
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,29 +25,28 @@
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.log.1");
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
 
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
-typedef std::basic_string<PAN_CHAR_T>               string_t;
+typedef std::basic_string<PAN_CHAR_T>                       string_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -83,7 +82,10 @@ static void test_27();
 static void test_28();
 static void test_29();
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char** argv)
 {
@@ -135,6 +137,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -456,6 +459,7 @@ static void test_28()
 
 static void test_29()
 {}
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

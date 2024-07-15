@@ -4,7 +4,7 @@
  * Purpose: Implementation for the speech back-end
  *
  * Created: 31st August 2006
- * Updated: 7th February 2024
+ * Updated: 15th July 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -379,7 +379,9 @@ pantheios_be_speech_parseArgs(
 }
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 be_speech_context::be_speech_context(
     PAN_CHAR_T const*   processIdentity

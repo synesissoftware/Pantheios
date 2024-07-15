@@ -27,6 +27,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
@@ -50,11 +51,13 @@
 #endif
 #define PSTR                            PANTHEIOS_LITERAL_STRING
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.WindowsRegistry");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -85,6 +88,7 @@ namespace
     static void test_cleanup(void);
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -206,10 +210,7 @@ namespace stub
 } /* namespace stub */
 
 
-
 /* /////////////////////////////////////////////////////////////////////////
- * compatibility
- */
 
 #if _STLSOFT_VER >= 0x010b0000
 # define windows_exception                                  winstl_exception
@@ -239,6 +240,7 @@ get_exception_status_code(
 }
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations

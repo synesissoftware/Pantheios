@@ -127,6 +127,7 @@
 # include <syslog.h>
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * features
  */
@@ -134,6 +135,7 @@
 #ifdef PANTHEIOS_DEFINE_BACK_END_MAP
 # undef PANTHEIOS_DEFINE_BACK_END_MAP /* Not yet released */
 #endif /* PANTHEIOS_DEFINE_BACK_END_MAP */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
@@ -148,6 +150,7 @@
     _MSC_VER < 1310
 # define _PANTHEIOS_COMPILER_CANNOT_USE_ANONYMOUS_NAMESPACES
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
@@ -227,6 +230,7 @@ namespace std
 
 #endif /* STLSOFT_COMPILER_IS_MSVC && PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
@@ -240,6 +244,7 @@ namespace std
 # define pan_strlen_                    strlen
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -259,6 +264,7 @@ void pantheios_initPad_(void);
 } /* namespace ximpl_core */
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -316,6 +322,7 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_MT_HAS_ATOMIC_INTEGER_OPERATIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -324,6 +331,7 @@ namespace stlsoft
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -387,6 +395,7 @@ struct pantheios_logprintf_stack_size_constraint_
 #ifndef _PANTHEIOS_COMPILER_CANNOT_USE_ANONYMOUS_NAMESPACES
 } /* anonymous namespace */
 #endif /* !_PANTHEIOS_COMPILER_CANNOT_USE_ANONYMOUS_NAMESPACES */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * statics
@@ -584,6 +593,7 @@ namespace
 #ifndef _PANTHEIOS_COMPILER_CANNOT_USE_ANONYMOUS_NAMESPACES
 } /* anonymous namespace */
 #endif /* !_PANTHEIOS_COMPILER_CANNOT_USE_ANONYMOUS_NAMESPACES */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * core functions
@@ -1461,6 +1471,7 @@ pantheios_log_n__cpp(
 } /* namespace core */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * printf() functions
  */
@@ -1510,6 +1521,7 @@ pantheios_logvprintf(
 
     return 0;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * core functions
@@ -1629,6 +1641,7 @@ logassertfail_no_memory:
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * memory functions
  */
@@ -1669,6 +1682,7 @@ PANTHEIOS_CALL(void*) pantheios_malloc(size_t cb)
 } /* namespace core */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inserter memory functions
  */
@@ -1691,6 +1705,7 @@ PANTHEIOS_CALL(void) pantheios_inserterDeallocate(void* pv)
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace core */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * pad functions
@@ -1741,6 +1756,7 @@ pantheios_getPad(
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace core */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Back-end map functions
@@ -1843,6 +1859,7 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_remove(int backEndId)
     return -1;
 }
 #endif /* PANTHEIOS_DEFINE_BACK_END_MAP */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

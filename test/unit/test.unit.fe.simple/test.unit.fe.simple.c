@@ -19,6 +19,7 @@
 #include <stdio.h>                  /* for fprintf() */
 #include <stdlib.h>                 /* for EXIT_SUCCESS, EXIT_FAILURE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
@@ -33,11 +34,13 @@
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.simple");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * statics and constants

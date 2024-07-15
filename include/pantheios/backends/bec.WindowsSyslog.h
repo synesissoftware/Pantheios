@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_REVISION  2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -79,6 +82,7 @@
  * Back-end library that provides a custom implementation of the
  *   <b>SysLog</b>-protocol for Windows.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -427,6 +431,7 @@
 # define PANTHEIOS_SYSLOG_FAC_LAUNCHD                       (24)
 #endif /* LOG_LAUNCHD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -476,6 +481,7 @@ pantheios_be_WindowsSyslog_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsSyslog_init_t*    init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTERVAL
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTERVAL
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_REVISION    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +79,7 @@
 
 #include <string>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +88,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes
@@ -159,6 +163,7 @@ private:
     string_type_        m_result;
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -239,6 +244,7 @@ c_str_ptr(interval const& i)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -264,6 +270,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_REVISION 1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_EDIT     6
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +83,7 @@
 # include <string.h>
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -91,6 +94,7 @@ namespace pantheios
 namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions
@@ -187,6 +191,7 @@ pantheios_util_memory_copyChars_w(
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -205,6 +210,7 @@ pantheios_util_memory_copyChars_w(
 } /* namespace util */
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

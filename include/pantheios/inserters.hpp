@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_INSERTERS
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_INSERTERS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 1
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     238
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

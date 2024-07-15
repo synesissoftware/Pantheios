@@ -30,11 +30,13 @@
 #include <stdlib.h>
 #include <tchar.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.WideString");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()

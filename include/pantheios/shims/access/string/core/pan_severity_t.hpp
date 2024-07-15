@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T
 #define PANTHEIOS_INCL_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_REVISION   2
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_EDIT       357
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * validation
@@ -76,6 +78,7 @@
 # error This file cannot be included when stock levels are suppressed
 #endif /* PANTHEIOS_NO_STOCK_LEVELS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -83,6 +86,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS
 # include <pantheios/internal/shim_declarations.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -94,6 +98,7 @@ namespace pantheios
 namespace shims
 {
 # endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -181,6 +186,7 @@ c_str_ptr_null(
     return ('\0' != *s) ? s : NULL;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -189,6 +195,7 @@ c_str_ptr_null(
 } /* namespace shims */
 } /* namespace pantheios */
 # endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

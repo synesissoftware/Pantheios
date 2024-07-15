@@ -53,6 +53,7 @@
 # include <windows.h>
 #endif /* PLATFORMSTL_OS_IS_???? */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -61,6 +62,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -82,6 +84,7 @@ PANTHEIOS_CALL(stlsoft_ns_qual(ss_sint64_t)) pantheios_getCurrentProcessId(void)
 
 #endif /* OS */
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

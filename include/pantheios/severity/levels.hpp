@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SEVERITY_HPP_LEVELS
 #define PANTHEIOS_INCL_PANTHEIOS_SEVERITY_HPP_LEVELS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_REVISION   2
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_EDIT       25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +74,7 @@
 # include <pantheios/quality/contract.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -80,6 +83,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -145,6 +149,7 @@ private:
     class_type& operator =(class_type const&);
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

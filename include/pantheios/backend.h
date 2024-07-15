@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_BACKEND
 #define PANTHEIOS_INCL_PANTHEIOS_H_BACKEND
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       35
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -67,6 +69,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Back-end API
@@ -135,6 +138,7 @@
  */
 
 #define PANTHEIOS_BEID_REMOTE                   (2)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -342,6 +346,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 );
 
 /** @} group__backend */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * generation macros

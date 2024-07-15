@@ -39,11 +39,13 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 typedef std::basic_string<PAN_CHAR_T>   string_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
@@ -62,6 +64,7 @@ typedef std::basic_string<PAN_CHAR_T>   string_t;
 # define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations

@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_REVISION    4
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_EDIT        12
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -76,6 +78,7 @@
  *   and \link pantheios::SEV_NOTICE NOTICE\endlink and higher in
  *   release mode.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations

@@ -28,6 +28,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -57,6 +58,7 @@ namespace
     }
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations

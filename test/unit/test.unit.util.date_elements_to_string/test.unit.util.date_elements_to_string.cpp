@@ -34,6 +34,7 @@
 
 #define PSTR(x)                         PANTHEIOS_LITERAL_STRING(x)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
@@ -49,6 +50,7 @@
 # define XTESTS_TEST_STRING_EQUAL_N     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations

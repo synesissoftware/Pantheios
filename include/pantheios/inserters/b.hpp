@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B_REVISION   1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B_EDIT       3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +74,7 @@
 # include <pantheios/inserters/boolean.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BOOLEAN */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,12 +84,14 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 /** Typedef for pantheios::boolean inserter class. */
 typedef boolean b;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -95,6 +100,7 @@ typedef boolean b;
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

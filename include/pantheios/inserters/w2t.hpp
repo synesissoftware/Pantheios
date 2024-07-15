@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2T
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2T
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_REVISION 0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_EDIT     3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +77,7 @@
 # include <pantheios/inserters/w2m.hpp>
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -83,6 +86,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -116,6 +120,7 @@ public:
 typedef w2m         w2t;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -123,6 +128,7 @@ typedef w2m         w2t;
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

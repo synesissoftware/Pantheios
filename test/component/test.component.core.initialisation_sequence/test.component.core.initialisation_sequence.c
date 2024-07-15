@@ -25,12 +25,14 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 static int  s_feInitValue   =   0;
 static int  s_beInitValue   =   0;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Front-end functions
@@ -225,6 +227,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
         return (int)cchEntry;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main

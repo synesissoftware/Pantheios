@@ -8,7 +8,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 31st August 2006
- * Updated: 14th July 2024
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,15 +40,18 @@
 # endif /* compiler */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.misc.extended_severity_information");
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -141,6 +144,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
     return 0;
   }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -83,6 +83,7 @@
 #include <string.h>                             // for memcpy(), memset()
 #include <time.h>                               // for time(), strftime(), localtime(), gmtime()
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -155,6 +156,7 @@ namespace
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions

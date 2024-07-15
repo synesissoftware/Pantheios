@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FILE
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FILE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       37
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -78,6 +81,7 @@
  * \ingroup group__backend__stock_backends
  * Back-end library that outputs to a file.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -176,6 +180,7 @@
 #define PANTHEIOS_BE_FILE_F_ROLL_TO_SELF                (0x20000000)
 #endif /* 0 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations
  */
@@ -184,6 +189,7 @@
 struct Pantheios_be_file_no_longer_defines_the_function_pantheios_be_file_setFileName_and_Use_pantheios_be_file_setFilePath_instead_;
 # define Pantheios_be_file_setFileName (_pantheios_be_file_no_longer_defines_the_function_pantheios_be_file_setFileName_and_Use_pantheios_be_file_setFilePath_instead_)
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -232,6 +238,7 @@ public: /* Construction */
 typedef struct pan_be_file_init_t   pan_be_file_init_t;
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions
  */
@@ -268,6 +275,7 @@ PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(
     int                     backEndId
 ,   pan_be_file_init_t*     init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

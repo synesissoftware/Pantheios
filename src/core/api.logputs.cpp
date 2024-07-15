@@ -49,6 +49,7 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/lean.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +86,7 @@ PANTHEIOS_CALL(int) pantheios_dispatch(
 } /* namespace core */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * core functions
  */
@@ -106,6 +108,7 @@ pantheios_logputs(
         pantheios_dispatch(severity, slice.len, slice.ptr);
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

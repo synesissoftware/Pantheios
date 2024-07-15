@@ -15,6 +15,7 @@
 
 #include <pantheios/frontends/fe.N.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -29,6 +30,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -38,6 +40,7 @@ static void test_empty_array_with_EMERGENCY_default_ceiling(void);
 static void test_empty_array_with_ALERT_default_ceiling(void);
 static void test_array_with_one_specific_id(void);
 static void test_array_with_three_specific_ids(void);
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -66,6 +69,7 @@ int main(int argc, char **argv)
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -83,6 +87,7 @@ static const int s_severityLevels[] =
 };
 
 #define s_defaultCeiling    -1
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -111,6 +116,7 @@ static void reinitialise_ceilings(void)
     STLSOFT_STATIC_ASSERT(sizeof(PAN_FE_N_SEVERITY_CEILINGS_DEFAULT) == sizeof(PAN_FE_N_SEVERITY_CEILINGS));
     memcpy(&PAN_FE_N_SEVERITY_CEILINGS[0], &PAN_FE_N_SEVERITY_CEILINGS_DEFAULT[0], sizeof(PAN_FE_N_SEVERITY_CEILINGS_DEFAULT));
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * test function implementations

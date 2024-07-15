@@ -154,6 +154,7 @@
 # define pan_OutputDebugString_m_       OutputDebugStringA
 # define pan_ReportEvent_m_             ReportEventA
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -162,6 +163,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations

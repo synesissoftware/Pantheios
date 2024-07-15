@@ -51,6 +51,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT
 #define PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -61,6 +62,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    2
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +79,7 @@
 #else /* ? contract */
 # include <stlsoft/stlsoft.h>
 #endif /* contract */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper macros
@@ -150,6 +153,7 @@ PANTHEIOS_TYPECHECK_MSG_(...)
 # endif /* PANTHEIOS_QA_DO_MSG_TYPECHECK */
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * enforcements

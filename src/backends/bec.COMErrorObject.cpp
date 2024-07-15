@@ -48,6 +48,7 @@
 #define PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS
 #define PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -96,6 +97,7 @@ extern "C" const IID IID_IErrorInfo_;
 /* Standard C header files */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler features
  */
@@ -106,6 +108,7 @@ extern "C" const IID IID_IErrorInfo_;
         _MSC_VER < 1200)
 # define PANTHEIOS_NO_PLACEMENT_DELETE_
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -132,11 +135,13 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
 
 extern "C" const IID IID_IErrorInfo_ = { 0x1CF2B120, 0x547D, 0x101B, { 0x8E, 0x65, 0x08, 0x00, 0x2B, 0x2B, 0xD1, 0x19 } };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -175,6 +180,7 @@ namespace
     };
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions

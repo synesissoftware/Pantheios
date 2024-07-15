@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_FPRINTF
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_FPRINTF
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_REVISION    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +77,7 @@
 
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -85,6 +88,7 @@
  *   via <code>fprintf()</code>.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -94,6 +98,7 @@
  * \ingroup group__backend__stock_backends__fprintf
  *  Flags for the \ref group__backend__stock_backends__fprintf
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -120,6 +125,7 @@ public: /* Construction */
 #ifndef __cplusplus
 typedef struct pan_be_fprintf_init_t    pan_be_fprintf_init_t;
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions
@@ -157,6 +163,7 @@ PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(
     int                     backEndId
 ,   pan_be_fprintf_init_t*  init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -232,6 +239,7 @@ PANTHEIOS_CALL(int) pantheios_be_fprintf_logEntry(
  * are required, it will become a first-class function.
  */
 #define pantheios_be_fprintf_parseArgs(num, args, init)     pantheios_be_parseStockArgs((num), (args), (NULL == (init)) ? NULL : (&(init)->flags))
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation

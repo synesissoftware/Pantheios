@@ -1,24 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/util/example.cpp.util.strdup/example.cpp.util.strdup.cpp
+ * File:    examples/cpp/util/example.cpp.util.strdup/example.cpp.util.strdup.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of pantheios::util::strdup_throw() and
- *                  pantheios::util::strdup_nothrow() for creating C-style
- *                  strings
+ *            - use of pantheios::util::strdup_throw() and
+ *              pantheios::util::strdup_nothrow() for creating C-style
+ *              strings
  *
- * Created:     27th December 2010
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 27th December 2010
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,9 +27,11 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -89,6 +81,7 @@ int main(int /* argc */, char** /* argv */)
 
   return EXIT_SUCCESS;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

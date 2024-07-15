@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T
 #define PANTHEIOS_INCL_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_REVISION  2
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_EDIT      358
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * validation
@@ -72,6 +74,7 @@
 # error This file is valid only in C++ compilation units
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -79,6 +82,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS
 # include <pantheios/internal/shim_declarations.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -90,6 +94,7 @@ namespace pantheios
 namespace shims
 {
 # endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -257,6 +262,7 @@ c_str_len(
     return PANTHEIOS_c_str_len_name_(s);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -265,6 +271,7 @@ c_str_len(
 } /* namespace shims */
 } /* namespace pantheios */
 # endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_REVISION  2
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_EDIT      4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

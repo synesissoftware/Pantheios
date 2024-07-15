@@ -44,6 +44,7 @@ namespace std
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */

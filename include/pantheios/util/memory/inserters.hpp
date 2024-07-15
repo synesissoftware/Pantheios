@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_REVISION 1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_EDIT     10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

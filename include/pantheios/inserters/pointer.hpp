@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_POINTER
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_POINTER
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_REVISION 2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     36
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +81,7 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -87,6 +90,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes
@@ -180,6 +184,7 @@ private:
     class_type& operator =(class_type const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
  */
@@ -266,6 +271,7 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -291,6 +297,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_REVISION  1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_EDIT      3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +74,7 @@
 # include <pantheios/inserters/variant_bool.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,12 +84,14 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 /** Typedef for pantheios::variant_bool inserter class. */
 typedef variant_bool vb;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -95,6 +100,7 @@ typedef variant_bool vb;
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

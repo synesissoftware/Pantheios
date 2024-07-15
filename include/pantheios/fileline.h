@@ -51,6 +51,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_FILELINE
 #define PANTHEIOS_INCL_PANTHEIOS_H_FILELINE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -61,6 +62,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_REVISION    2
 # define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_EDIT        18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +75,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * tracing features
@@ -98,6 +101,7 @@
  /* Define the defaults here, in case we use them below. */
 # define PANTHEIOS_FILELINE_A                   __FILE__ "(" PANTHEIOS_STRINGIZE(__LINE__) "): "
 # define PANTHEIOS_FILELINE                     PANTHEIOS_FILELINE_A
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -56,6 +56,7 @@
 /* Standard C header files */
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
@@ -65,6 +66,7 @@
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 # define pan_fprintf_                   ::fprintf
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -80,6 +82,7 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -138,6 +141,7 @@ private: // fields
     FILE* const         m_stm;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -156,6 +160,7 @@ namespace
     }
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -275,6 +280,7 @@ PANTHEIOS_CALL(int) pantheios_be_fprintf_logEntry(
 {
     return pantheios_call_be_logEntry(pantheios_be_fprintf_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.fprintf");
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * be_fprintf_Context

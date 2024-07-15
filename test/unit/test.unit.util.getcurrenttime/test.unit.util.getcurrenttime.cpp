@@ -60,11 +60,13 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 typedef std::basic_string<PAN_CHAR_T>   string_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -72,11 +74,13 @@ typedef std::basic_string<PAN_CHAR_T>   string_t;
 
 #define PANTHEIOS_TEST_TIME(buffSize, flags, result, pattern)   test_time(__FILE__, __LINE__, buffSize, flags, result, pattern)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.util.getcurrenttime");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations

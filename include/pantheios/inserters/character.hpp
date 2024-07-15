@@ -74,6 +74,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CHARACTER
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CHARACTER
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -84,6 +85,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_REVISION   4
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_EDIT       30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -103,6 +105,7 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -112,6 +115,7 @@ namespace pantheios
 {
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes
@@ -182,6 +186,7 @@ private:
 #endif /* compiler */
     class_type& operator =(class_type const&);
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -260,6 +265,7 @@ c_str_ptr(character const& r)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
  */
@@ -309,6 +315,7 @@ character::length() const
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -334,6 +341,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BE_LRSPLIT
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BE_LRSPLIT
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_REVISION 1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_EDIT     13
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -80,6 +83,7 @@
  *   writing to <b>local</b> and/or <b>remote</b> back-ends that are
  *   independently filtered.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Pantheios Local/Remote Split backend library API

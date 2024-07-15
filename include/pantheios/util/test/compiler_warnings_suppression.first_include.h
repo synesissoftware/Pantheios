@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_TEST_H_COMPILER_WARNINGS_SUPPRESSION_FIRST_INCLUDE
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_TEST_H_COMPILER_WARNINGS_SUPPRESSION_FIRST_INCLUDE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -57,6 +58,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h> /* This will be reported not found if STLSoft version < 1.9 */
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppressions

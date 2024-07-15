@@ -78,6 +78,7 @@
 #endif /* compiler */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -86,6 +87,7 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -106,6 +108,7 @@ namespace std
 } /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -114,6 +117,7 @@ namespace std
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * pointer
@@ -292,6 +296,7 @@ void pointer::construct_()
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(m_len > 0, "failed to set length");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(m_len < 23, "pantheios::pointer string too long");
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

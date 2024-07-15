@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HEX_PTR
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HEX_PTR
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_REVISION 1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_EDIT     19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/inserters/pointer.hpp>  // for pantheios::pointer
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_POINTER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -79,6 +82,7 @@ namespace pantheios
 {
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -155,6 +159,7 @@ public: // Construction
     {}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -162,6 +167,7 @@ public: // Construction
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

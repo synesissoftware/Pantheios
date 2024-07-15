@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_WINDOWSDEBUGGER
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_WINDOWSDEBUGGER
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_WINDOWSDEBUGGER_REVISION   1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_WINDOWSDEBUGGER_EDIT       8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +75,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSDEBUGGER
 # include <pantheios/implicit_link/bec.WindowsDebugger.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSDEBUGGER */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit-linking directives

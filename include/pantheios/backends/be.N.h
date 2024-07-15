@@ -47,6 +47,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_BE_N
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_BE_N
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -57,6 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +73,7 @@
 
 #include <limits.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -80,9 +83,11 @@
  *  Back-end library that splits output to N back-ends.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -126,6 +131,7 @@
  */
 
 #define PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED   (0x00800000)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -322,6 +328,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
  */
 #define PANTHEIOS_BE_N_TERMINATOR_ENTRY                 { 0, 0, NULL, NULL, NULL, -1, NULL, 0, PANTHEIOS_VER, PANTHEIOS_BE_N_RESERVED_VALUES_ }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations
  */
@@ -335,6 +342,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
  * \ingroup group__backend__stock_backends__N
  */
 PANTHEIOS_EXTERN pan_be_N_t PAN_BE_N_BACKEND_LIST[];
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions

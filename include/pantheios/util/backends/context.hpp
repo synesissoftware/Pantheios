@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_REVISION 3
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     38
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 # error This file can only be used in C++ compilation units
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,6 +89,7 @@ namespace util
 namespace backends
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -288,6 +292,7 @@ private:
     class_type& operator =(class_type const&);
 /// @}
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

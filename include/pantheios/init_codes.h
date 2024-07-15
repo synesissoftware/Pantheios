@@ -51,6 +51,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_INIT_CODES
 #define PANTHEIOS_INCL_PANTHEIOS_H_INIT_CODES
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -62,6 +63,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -69,6 +71,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
@@ -102,6 +105,7 @@
  *
  * Status codes for use by the implementors of \ref group__frontend "front-ends".
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * status codes

@@ -49,6 +49,7 @@
 
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -60,6 +61,7 @@ struct pantheios_fe_N_init_t
 };
 typedef struct pantheios_fe_N_init_t pantheios_fe_N_init_t;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -69,6 +71,7 @@ typedef struct pantheios_fe_N_init_t pantheios_fe_N_init_t;
 #if 0
 #define PAN_FE_N_HAS_severityFloor()    (pantheios_fe_N_get_compiled_ver() >= 0x010001d7)
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions

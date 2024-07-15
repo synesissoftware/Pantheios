@@ -15,6 +15,7 @@
 
 //#define STLSOFT_TRACE_INCLUDE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -49,11 +50,13 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
 #define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
@@ -68,6 +71,7 @@
 # define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals

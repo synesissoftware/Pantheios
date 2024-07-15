@@ -68,23 +68,18 @@
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
-
-
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
 
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -205,7 +200,9 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 } // extern "C"
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int /*argc*/, char** /*argv*/)
 {
@@ -436,7 +433,9 @@ int main(int argc, char** argv)
 }
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 static void* thread_proc(void*)
@@ -472,12 +471,16 @@ static DWORD WINAPI thread_proc(void*)
 }
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * hack functions
+ */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
     defined(_WIN32) && \
     defined(_STLSOFT_FORCE_ANY_COMPILER)
+
 # include <windows.h>
+
 extern "C" void syslog(char const* s)
 {
     OutputDebugStringA(s);

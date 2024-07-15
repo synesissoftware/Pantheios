@@ -35,6 +35,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -46,11 +47,13 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
 #define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -58,6 +61,7 @@ namespace
 
 typedef std::basic_string<PAN_CHAR_T>           string_t;
 typedef platformstl::basic_file_lines<char>     lines_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
@@ -83,11 +87,13 @@ typedef platformstl::basic_file_lines<char>     lines_t;
 #define PSTR(x)                     PANTHEIOS_LITERAL_STRING(x)
 //#define PSTR(x)                         x
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.file");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations

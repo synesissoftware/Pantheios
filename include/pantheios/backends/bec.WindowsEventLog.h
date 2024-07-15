@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_REVISION    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        32
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -79,6 +82,7 @@
  *  Back-end library that writes to the Windows event log.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -87,6 +91,7 @@
  * \ingroup group__backend__stock_backends__WindowsEventLog
  *  Flags for the \ref group__backend__stock_backends__WindowsEventLog
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -116,6 +121,7 @@ public: /* Construction */
 #ifndef __cplusplus
 typedef struct pan_be_WindowsEventLog_init_t     pan_be_WindowsEventLog_init_t;
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined Functions
@@ -198,6 +204,7 @@ pantheios_be_WindowsEventLog_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsEventLog_init_t*  init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

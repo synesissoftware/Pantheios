@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_REVISION 2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -79,6 +82,7 @@
  *  Back-end library that outputs to the Windows console, colour-coding
  *   based on severity level.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -114,6 +118,7 @@
 
 #define PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES       (0x00400000)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -139,6 +144,7 @@ public: /* Construction */
 #ifndef __cplusplus
 typedef struct pan_be_WindowsConsole_init_t     pan_be_WindowsConsole_init_t;
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions
@@ -176,6 +182,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsConsole_init_t*   init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions

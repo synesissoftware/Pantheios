@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_TRACE
 #define PANTHEIOS_INCL_PANTHEIOS_H_TRACE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   3
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +79,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * tracing features
@@ -271,6 +274,7 @@
 #  endif /* !PANTHEIOS_NO_STOCK_LEVELS */
 # endif /* __cplusplus */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

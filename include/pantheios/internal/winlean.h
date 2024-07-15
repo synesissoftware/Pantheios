@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_WINLEAN
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_WINLEAN
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatility
  */
@@ -63,6 +64,7 @@
     defined(_WINDOWS_H)
 # error Cannot include after windows.h
 #endif /* _WINDOWS_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * feature suppression

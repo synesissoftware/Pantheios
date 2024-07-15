@@ -23,6 +23,7 @@
 
 PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.N.filtering");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * types
  */
@@ -32,6 +33,7 @@ struct results_t
     unsigned    counts[5 + 1][8];
 };
 typedef struct results_t    results_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -105,6 +107,7 @@ typedef struct results_t    results_t;
 #define LOG_ENTRY(token, severity, message)                                 \
                                                                             \
         pantheios_be_logEntry(NULL, (token), (severity), (message), pan_strlen_((message)))
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * backends

@@ -51,11 +51,13 @@ private:
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
 #define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals

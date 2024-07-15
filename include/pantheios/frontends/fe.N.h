@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_N
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_N
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  3
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,9 +77,11 @@
  *  Front-end library that can filter N back-ends.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -143,6 +147,7 @@ typedef struct pan_fe_N_t   pan_fe_N_t;
  * \see pan_fe_N_t
  */
 #define PANTHEIOS_FE_N_TERMINATOR_ENTRY(defaultCeiling)         { 0, defaultCeiling, PANTHEIOS_VER, PANTHEIOS_FE_N_RESERVED_VALUES_ }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations

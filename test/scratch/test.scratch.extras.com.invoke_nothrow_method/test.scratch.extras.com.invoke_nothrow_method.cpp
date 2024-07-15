@@ -29,6 +29,7 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -39,6 +40,7 @@
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.extras.com.invoke_nothrow_method");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -233,6 +235,7 @@ private:
         return E_NOTIMPL;
     }
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations

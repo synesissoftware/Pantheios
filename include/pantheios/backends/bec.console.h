@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_CONSOLE
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_CONSOLE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_REVISION    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -84,6 +86,7 @@
 # endif /* !PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FPRINTF */
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -99,6 +102,7 @@
  *   functions and constants are actually those of the underlying
  *   platform-specific back-end.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -121,6 +125,7 @@
 # define PANTHEIOS_BE_CONSOLE_F_NO_COLOURS          (0)
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -135,6 +140,7 @@ typedef pan_be_WindowsConsole_init_t        pan_be_console_init_t;
 #else /* ? OS */
 typedef pan_be_fprintf_init_t               pan_be_console_init_t;
 #endif /* OS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions
@@ -193,6 +199,7 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 #  define pantheios_be_console_getAppInit(backEndId, init)  pantheios_be_fprintf_getAppInit(backEndId, init)
 # endif /* OS */
 #endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions

@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BOOLEAN
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BOOLEAN
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_REVISION 6
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_EDIT     24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,6 +89,7 @@ namespace pantheios
 #  error pantheios::boolean may not be used with Windows when namespace is suspended. If you are including pantheios/inserters.hpp, try including only those specific inserter files that you need
 # endif /* rpcndr.h */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -185,9 +189,11 @@ protected:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -272,6 +278,7 @@ c_str_ptr(boolean const& b)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -298,6 +305,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

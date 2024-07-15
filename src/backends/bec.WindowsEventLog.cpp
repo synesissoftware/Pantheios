@@ -58,6 +58,7 @@
 #include <stdio.h>
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler features
  */
@@ -68,6 +69,7 @@
         _MSC_VER < 1200)
 # define PANTHEIOS_NO_PLACEMENT_DELETE_
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
@@ -81,6 +83,7 @@
 # define pan_ReportEvent_               ::ReportEventA
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -91,6 +94,7 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -104,6 +108,7 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -147,6 +152,7 @@ private:
     int const           id;
     pfnMapSev_t const   pfnMapSev;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -270,6 +276,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_logEntry(
 
     return elc->ReportEvent(severity, entry, cchEntry);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsEventLog_Context

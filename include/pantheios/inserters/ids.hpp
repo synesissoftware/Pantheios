@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_IDS
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_IDS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_REVISION 1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_EDIT     16
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +77,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID
 # include <pantheios/inserters/threadid.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

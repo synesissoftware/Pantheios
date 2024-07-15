@@ -33,6 +33,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -58,27 +59,32 @@ static void test_1_22();
 static void test_1_23();
 static void test_1_24();
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.windows.hive");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                              PANTHEIOS_LITERAL_STRING(x)
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char** argv)
 {
@@ -117,6 +123,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -338,6 +345,7 @@ static void test_1_23()
 static void test_1_24()
 {
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

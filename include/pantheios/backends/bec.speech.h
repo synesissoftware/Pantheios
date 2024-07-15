@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.speech.h
+ * File:    pantheios/backends/bec.speech.h
  *
- * Purpose:     Declaration of the Pantheios speech Stock Back-end API.
+ * Purpose: Declaration of the Pantheios speech Stock Back-end API.
  *
- * Created:     10th July 2006
- * Updated:     16th December 2023
+ * Created: 10th July 2006
+ * Updated: 15th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_SPEECH
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_SPEECH
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_EDIT     22
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_EDIT     23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -78,6 +81,7 @@
  * \ingroup group__backend__stock_backends
  *  Back-end library that outputs as speech.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -133,6 +137,7 @@
 #define PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS_ON_CRITICAL   (0x00800000)
 #define PANTHEIOS_BE_SPEECH_F_UNINIT_DISCARD_WORKAROUND (0x01000000)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -156,6 +161,7 @@ public: /* Construction */
 #ifndef __cplusplus
 typedef struct pan_be_speech_init_t   pan_be_speech_init_t;
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions
@@ -203,6 +209,7 @@ PANTHEIOS_CALL(void) pantheios_be_speech_getAppInit(
 ,   pan_be_speech_init_t*   init
 ) /* throw() */;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -249,7 +256,9 @@ PANTHEIOS_CALL(int) pantheios_be_speech_parseArgs(
 );
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifdef __cplusplus
 # ifndef PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT

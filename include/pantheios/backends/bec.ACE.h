@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_ACE_SRC
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_ACE_SRC
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_REVISION    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_EDIT        14
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -79,6 +82,7 @@
  *  Back-end library built on top of the diagnostic logging facilities of
  *   the <a href = "http://www.cs.wustl.edu/~schmidt/ACE.html">Adaptive Communications Environment (ACE)</a>.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

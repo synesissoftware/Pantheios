@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.core.pantheios_logputs project.
  *
  * Created: 19th November 2008
- * Updated: 7th February 2024
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -27,29 +27,28 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
-#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)                    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
 
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -64,6 +63,7 @@ static void test_1_06();
 static void test_1_07();
 static void test_1_08();
 static void test_1_09();
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -83,8 +83,9 @@ static const int    s_severities[] =
     ,   PANTHEIOS_SEV_EMERGENCY
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char** argv)
@@ -113,6 +114,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -250,6 +252,7 @@ static void test_1_08()
 static void test_1_09()
 {
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_SIMPLE
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_SIMPLE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_REVISION 5
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_EDIT     17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +79,7 @@
  *   release mode.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations
  */
@@ -85,6 +88,7 @@
 struct Pantheios_no_longer_uses_the_symbol_FE_SIMPLE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_;
 # define FE_SIMPLE_PROCESS_IDENTITY Pantheios_no_longer_uses_the_symbol_FE_SIMPLE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_()
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

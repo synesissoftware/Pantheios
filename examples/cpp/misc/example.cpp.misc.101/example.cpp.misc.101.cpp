@@ -1,26 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/misc/example.cpp.misc.101/example.cpp.misc.101.cpp
+ * File:    examples/cpp/misc/example.cpp.misc.101/example.cpp.misc.101.cpp
  *
- * Purpose:     C++ example program for introducing the basic essential
- *              features of Pantheios when using the C++ API.
- *              Demonstrates:
+ * Purpose: C++ example program for introducing the basic essential
+ *          features of Pantheios when using the C++ API.
  *
- *                - how the Pantheios libraries do not need to be explicitly
- *                  initialised in a C++ program
- *                - use of pantheios::log()
+ *          Demonstrates:
  *
- * Created:     17th January 2008
- * Updated:     16th December 2023
+ *            - how the Pantheios libraries do not need to be explicitly
+ *              initialised in a C++ program
+ *            - use of pantheios::log()
  *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 17th January 2008
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,7 +41,7 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("exa
  * macros
  */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,6 +112,7 @@ int main()
 
     return EXIT_SUCCESS;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

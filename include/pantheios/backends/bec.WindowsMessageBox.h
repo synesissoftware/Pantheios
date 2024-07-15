@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_WINDOWSMESSAGEBOX
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_WINDOWSMESSAGEBOX
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_REVISION  1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_EDIT      10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -78,6 +81,7 @@
  * \ingroup group__backend__stock_backends
  *  Back-end library that writes to the Windows event log.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

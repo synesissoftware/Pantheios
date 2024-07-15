@@ -1,26 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/misc/example.cpp.misc.custom_type_1/example.cpp.misc.custom_type_1.cpp
+ * File:    examples/cpp/misc/example.cpp.misc.custom_type_1/example.cpp.misc.custom_type_1.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of explicit conversion code for custom type
- *                - definition of specific conversion function for custom type
- *                - definition of string access shims for custom type
- *                - definition of inserter class for custom type
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of explicit conversion code for custom type
+ *            - definition of specific conversion function for custom type
+ *            - definition of string access shims for custom type
+ *            - definition of inserter class for custom type
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     31st August 2006
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 31st August 2006
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -106,11 +96,12 @@ namespace stlsoft
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
-typedef std::basic_string<char>         string_m_t;
-typedef std::basic_string<wchar_t>      string_w_t;
-typedef std::basic_string<PAN_CHAR_T>   string_t;
+typedef std::basic_string<char>                             string_m_t;
+typedef std::basic_string<wchar_t>                          string_w_t;
+typedef std::basic_string<PAN_CHAR_T>                       string_t;
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -149,11 +140,13 @@ private:
   Person &operator =(Person const&);
 };
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.misc.custom_type_1");
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -161,6 +154,7 @@ static void log_with_explicit_conversion_code(Person const& person);
 static void log_with_conversion_function(Person const& person);
 static void log_with_string_access_shims(Person const& person);
 static void log_with_inserter_class(Person const& person);
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -263,6 +257,7 @@ static void log_with_conversion_function(Person const& person)
   pantheios::log_NOTICE(PSTR("Person: "), Person_to_string(person));
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 namespace stlsoft
@@ -310,6 +305,7 @@ static void log_with_string_access_shims(Person const& person)
 {
   pantheios::log_NOTICE(PSTR("Person: "), person);
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

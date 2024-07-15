@@ -54,6 +54,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_INITIALISER
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_INITIALISER
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -61,6 +62,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types

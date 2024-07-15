@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_FRONTEND
 #define PANTHEIOS_INCL_PANTHEIOS_H_FRONTEND
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -67,6 +69,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Front-end API

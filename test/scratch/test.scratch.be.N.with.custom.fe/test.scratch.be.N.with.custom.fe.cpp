@@ -32,6 +32,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -47,11 +48,13 @@ static int iCeilingMain     = PANTHEIOS_SEV_NOTICE;
 static int iCeilingError    = PANTHEIOS_SEV_ERROR;
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.N.with.custom.fe");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -87,6 +90,7 @@ int main(int argc, char** argv)
     return EXIT_FAILURE;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Back-end configuration
  */
@@ -99,6 +103,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 
     PANTHEIOS_BE_N_TERMINATOR_ENTRY
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Custom front-end

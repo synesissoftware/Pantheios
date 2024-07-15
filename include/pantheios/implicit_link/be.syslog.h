@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BE_SYSLOG
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BE_SYSLOG
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_SYSLOG_REVISION    2
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_SYSLOG_EDIT        7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_SYSLOG
 # include <pantheios/implicit_link/bec.syslog.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_SYSLOG */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit-linking directives

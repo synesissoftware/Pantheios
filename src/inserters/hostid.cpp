@@ -57,6 +57,7 @@
 #endif /* compiler */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -65,6 +66,7 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -81,11 +83,13 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 struct hostId_t const* hostId   =   0;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -96,6 +100,7 @@ struct hostId_t const* hostId   =   0;
 namespace inserters
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE) && !STLSOFT_COMPILER_IS_BORLAND */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes
@@ -164,6 +169,7 @@ host_id_t::operator pantheios_char_t const* () const
 
     return m_value;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

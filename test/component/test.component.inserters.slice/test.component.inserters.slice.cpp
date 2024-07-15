@@ -32,6 +32,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -50,6 +51,7 @@ static void test_1_09();
 using pantheios::pan_char_t;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -57,6 +59,7 @@ using pantheios::pan_char_t;
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.slice");
 
 const pan_char_t alphabet[] = PANTHEIOS_LITERAL_STRING("abcdefghijklmnopqrstuvwxyz");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -67,6 +70,7 @@ const pan_char_t alphabet[] = PANTHEIOS_LITERAL_STRING("abcdefghijklmnopqrstuvwx
 #else
 # define XTESTS_TEST_STRINGS_EQUAL_     XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs

@@ -64,6 +64,7 @@
 #include <stdio.h>
 #include <wchar.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -115,6 +116,7 @@ namespace pantheios
 
 # define pantheios_util_vsnprintf_(d, n, f, a)         pantheios_util_vsnprintf_a_(d, n, f, a)
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * private API
@@ -200,6 +202,7 @@ pantheios_util_snprintf_w(
 }
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -240,6 +243,7 @@ pantheios_util_snprintf(
 
     return ret;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

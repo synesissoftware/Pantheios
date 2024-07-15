@@ -54,6 +54,7 @@
 #include <stlsoft/shims/access/string/std/c_string.h>
 #include <platformstl/platformstl.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -62,6 +63,7 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
@@ -75,6 +77,7 @@
 # define pan_strpbrk_                   ::strpbrk
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -83,6 +86,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * args
@@ -203,6 +207,7 @@ void args::construct_()
         }
     }}
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

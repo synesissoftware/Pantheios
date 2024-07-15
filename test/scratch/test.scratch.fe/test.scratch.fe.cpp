@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.fe project.
  *
  * Created: 21st June 2005
- * Updated: 14th July 2024
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -60,7 +60,9 @@ extern "C" void __stdcall Sleep(unsigned long);
 static int  severities[8] = { 1, 1, 1, 1, 1, 1, 1, 1 };
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * character encoding
+ */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
@@ -68,11 +70,12 @@ int main()
 {
         return 0;
 }
-
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 //static void call_all_severities();
 

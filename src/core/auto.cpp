@@ -43,6 +43,7 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/quality/contract.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -58,6 +59,7 @@ namespace core
 
 #include "pantheios/generated/log_dispatch_functions.h"
 #include "pantheios/internal/generated/log_functions.inl"
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

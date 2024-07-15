@@ -58,6 +58,7 @@
 /* Standard C header files */
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
@@ -67,6 +68,7 @@
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 # define pan_OutputDebugString_         ::OutputDebugStringA
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -89,6 +91,7 @@ namespace
     >::type                                     buffer_t;
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -146,6 +149,7 @@ namespace
     };
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -264,6 +268,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
 {
     return pantheios_call_be_logEntry(pantheios_be_WindowsDebugger_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.WindowsDebugger");
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsDebugger_Context

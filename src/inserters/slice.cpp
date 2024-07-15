@@ -79,6 +79,7 @@
 
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -87,6 +88,7 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -107,6 +109,7 @@ namespace std
 } /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -115,6 +118,7 @@ namespace std
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * slice
@@ -253,6 +257,7 @@ void slice_inserter::construct_()
 
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 != m_buffer[0], "failed to set value to non-empty");
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

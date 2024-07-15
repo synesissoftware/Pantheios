@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_THREADING
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_THREADING
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -64,6 +65,7 @@
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_UTIL_H_FEATURES
 # include <platformstl/synch/util/features.h>
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_UTIL_H_FEATURES */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * feature discrimination

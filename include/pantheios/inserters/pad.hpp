@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PAD
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PAD
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 4
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +74,7 @@
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -80,6 +83,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -107,6 +111,7 @@ namespace pantheios
  */
 #define PANTHEIOS_RPAD(var, minWidth)   (var), ( ::pantheios::pad(var, minWidth))
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * inserter functions
  */
@@ -131,6 +136,7 @@ inline const pan_slice_t pad(S const& arg, size_t minimumWidth)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -138,6 +144,7 @@ inline const pan_slice_t pad(S const& arg, size_t minimumWidth)
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.performance.inserters.w2m project.
  *
  * Created: 2nd September 2008
- * Updated: 7th February 2024
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,6 +37,7 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -47,37 +48,37 @@ const int       ITERATIONS  =   1;
 const int       ITERATIONS  =   10000;
 #endif /* _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEIOS_LITERAL_STRING("test.performance.inserters.w2m");
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
 
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 #if 0
-typedef std::string     string_t;
+typedef std::string                                         string_t;
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations

@@ -51,6 +51,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -61,6 +62,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_REVISION  4
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -99,6 +101,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR */
 #endif /* PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -109,6 +112,7 @@ namespace pantheios
 namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -147,6 +151,7 @@ struct auto_buffer_selector
 #endif /* STLSOFT_AUTO_BUFFER_NEW_FORM */
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -155,6 +160,7 @@ struct auto_buffer_selector
 } /* namespace util */
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

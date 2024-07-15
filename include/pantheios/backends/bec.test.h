@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_BACKENDS_H_BEC_TEST
 #define PANTHEIOS_INCL_BACKENDS_H_BEC_TEST
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  3
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +82,7 @@
 # include <pantheios/internal/threading.h>
 # include <string>
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -133,6 +136,7 @@ PANTHEIOS_CALL(int) pantheios_be_test_logEntry(
  * are required, it will become a first-class function.
  */
 #define pantheios_be_test_parseArgs         NULL
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -227,6 +231,7 @@ namespace test
 
     /** Obtain a copy of the current test results */
     Results results();
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

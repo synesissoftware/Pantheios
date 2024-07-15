@@ -67,6 +67,7 @@
 
 //#include <stlsoft/meta/yesno.hpp> // TODO: Use this to remove "runtime" constant tests in integer::init_()
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -75,6 +76,7 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -93,6 +95,7 @@ namespace
 } /* anonymous namespace */
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * blob
@@ -256,6 +259,7 @@ void blob::construct_()
         m_len   =   cch;
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

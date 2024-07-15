@@ -58,6 +58,7 @@
 #endif /* compiler */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -66,6 +67,7 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -76,6 +78,7 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -84,6 +87,7 @@ namespace pantheios
 namespace inserters
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes
@@ -144,6 +148,7 @@ size_t exception_inserter::length() const
 
     return m_len;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

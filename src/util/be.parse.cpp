@@ -60,6 +60,7 @@
 # include <wchar.h>
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
  */
@@ -68,6 +69,7 @@
             _MSC_VER >= 1300
 # pragma warning(disable : 4702)
 #endif /* _MSC_VER >= 1400 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
@@ -81,6 +83,7 @@ typedef stlsoft::wstring_view           string_view_t;
 typedef stlsoft::string_view            string_view_t;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -89,6 +92,7 @@ typedef stlsoft::string_view            string_view_t;
 using pantheios::util::pantheios_onBailOut3;
 using pantheios::util::pantheios_onBailOut4;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -119,6 +123,7 @@ pantheios_be_parseStockArgs_(
 ,   pantheios_uint32_t*     flags
 );
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -172,6 +177,7 @@ namespace
     }
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions

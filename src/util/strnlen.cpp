@@ -70,6 +70,7 @@
 # include <wchar.h>
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -77,6 +78,7 @@
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # pragma warn -8080
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
@@ -88,6 +90,7 @@
 # define pan_strlen_                    strlen
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -98,6 +101,7 @@ namespace pantheios
 namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * util API
@@ -131,6 +135,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_getSliceLazyLength(
 namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

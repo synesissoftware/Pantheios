@@ -62,7 +62,9 @@ const int       ITERATIONS  =   10000;
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   L"test.performance.inserters.m2w";
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int argc, char** argv)
 {

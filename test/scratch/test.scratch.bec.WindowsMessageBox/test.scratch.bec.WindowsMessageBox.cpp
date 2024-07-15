@@ -30,6 +30,7 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -41,6 +42,7 @@
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.bec.WindowsMessageBox");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -48,6 +50,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 #if 0
 typedef std::string     string_t;
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations

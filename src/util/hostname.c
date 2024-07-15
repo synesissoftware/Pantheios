@@ -59,6 +59,7 @@
 # error Platform not discriminated
 #endif /* PLATFORMSTL_OS_IS_???? */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * character string encoding support
  */
@@ -81,6 +82,7 @@
 # define pan_strlen_                strlen
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -214,6 +216,7 @@ static size_t pantheios_getHostName_body_(
 # error Platform not discriminated
 #endif /* PLATFORMSTL_OS_IS_???? */
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions

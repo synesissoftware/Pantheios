@@ -58,6 +58,7 @@
 #endif /* compiler */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -66,6 +67,7 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -76,11 +78,13 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 struct threadId_t const* threadId   =   0;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -90,6 +94,7 @@ struct threadId_t const* threadId   =   0;
 namespace inserters
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes
@@ -138,6 +143,7 @@ thread_id_t::operator pantheios_char_t const* () const
 
     return m_value;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

@@ -35,6 +35,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -72,6 +73,7 @@ static void test_3_08();
 static void test_3_09();
 
 #endif /* !PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals

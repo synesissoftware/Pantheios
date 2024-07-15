@@ -1,22 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/tracing/example.cpp.tracing.with_function/example.cpp.tracing.with_function.cpp
+ * File:    examples/cpp/tracing/example.cpp.tracing.with_function/example.cpp.tracing.with_function.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of Pantheios Tracing API
+ *            - use of Pantheios Tracing API
  *
- * Created:     15th March 2008
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2008
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 15th March 2008
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -49,15 +39,18 @@
 # endif /* compiler */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.tracing.with_function");
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -96,6 +89,7 @@ int main()
 
   return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

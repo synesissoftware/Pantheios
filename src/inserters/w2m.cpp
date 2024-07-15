@@ -67,6 +67,7 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -79,6 +80,7 @@ namespace pantheios
     using ::pantheios::core::pantheios_inserterDeallocate;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes
@@ -197,6 +199,7 @@ size_t w2m::length() const
 
     return m_length;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

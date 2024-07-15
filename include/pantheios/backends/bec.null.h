@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_NULL_SRC
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_NULL_SRC
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_REVISION   1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       14
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -80,6 +83,7 @@
  *
  * This library is useful for conducting performance tests.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -61,6 +62,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     32
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -68,6 +70,7 @@
 #ifdef PANTHEIOS_NO_B64
 # error this file cannot be included when PANTHEIOS_NO_B64 is defined
 #endif /* PANTHEIOS_NO_B64 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -141,6 +144,7 @@ namespace b64_api = ::b64;
 # include <stdio.h>
 #endif /* !PANTHEIOS_INCL_H_STDIO */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -150,6 +154,7 @@ namespace pantheios
 {
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes
@@ -282,6 +287,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
  */
@@ -362,6 +368,7 @@ c_str_ptr(b64 const& i)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -387,6 +394,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

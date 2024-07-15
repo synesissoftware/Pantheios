@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_STRLEN
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_STRLEN
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_REVISION  2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_EDIT      4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +75,7 @@
 
 /* Standard C & C++ header files */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -83,6 +86,7 @@ namespace pantheios
 namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API (C)
@@ -99,6 +103,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pantheios_char_t const* s, size_t 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_strnlen, pantheios_util_strnlen) pantheios_strnlen(pantheios_char_t const* s, size_t len);
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API (C++)
@@ -121,6 +126,7 @@ strnlen(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -129,6 +135,7 @@ strnlen(
 } /* namespace util */
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

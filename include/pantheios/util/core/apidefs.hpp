@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_CORE_HPP_APIDEFS
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_CORE_HPP_APIDEFS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_REVISION 1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +80,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -127,6 +130,7 @@ typedef int (PANTHEIOS_CALLCONV* pantheios_be_X_logEntry_pfn_t)(
 ,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 );
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Front-end Functions
@@ -262,6 +266,7 @@ pantheios_call_fe_isSeverityLogged(
     return pfn(token, severity, backEndId);
 }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Back-end Functions

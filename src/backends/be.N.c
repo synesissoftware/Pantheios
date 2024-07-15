@@ -49,6 +49,7 @@
 #include <pantheios/init_codes.h>
 #include <pantheios/quality/contract.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -63,6 +64,7 @@
 #if 0
 #define PAN_BE_N_HAS_severityFloor()    (pantheios_be_N_get_compiled_ver() >= 0x010001d7)
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -121,6 +123,7 @@ pantheios_be_N_countBackEnds_everytime_(void)
 
     return n;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -328,6 +331,7 @@ pantheios_be_logEntry(
 
     return res;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions

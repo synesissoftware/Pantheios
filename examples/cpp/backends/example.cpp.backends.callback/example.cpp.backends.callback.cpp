@@ -1,23 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/backends/example.cpp.backends.callback/example.cpp.backends.callback.cpp
+ * File:    examples/cpp/backends/example.cpp.backends.callback/example.cpp.backends.callback.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of a back-end library that uses callbacks.
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of a back-end library that uses callbacks.
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     25th August 2006
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 25th August 2006
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,11 +40,13 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.backends.callback");
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -81,12 +73,15 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
 }
 
 #else /* ? OS */
+
 # error Platform not discriminated
 #endif /* OS */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -120,6 +115,7 @@ int main()
 
   return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

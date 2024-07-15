@@ -55,6 +55,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_STOCK_LEVELS
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_STOCK_LEVELS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -62,6 +63,7 @@
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +73,7 @@
 # include <pantheios/severity/levels.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_SEVERITY_HPP_LEVELS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -79,6 +82,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants

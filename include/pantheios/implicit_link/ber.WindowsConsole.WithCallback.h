@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSCONSOLE_WITHCALLBACK
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSCONSOLE_WITHCALLBACK
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSCONSOLE_WITHCALLBACK_REVISION   1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSCONSOLE_WITHCALLBACK_EDIT       9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSCONSOLE_WITHCALLBACK
 # include <pantheios/implicit_link/bec.WindowsConsole.WithCallback.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSCONSOLE_WITHCALLBACK */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit-linking directives

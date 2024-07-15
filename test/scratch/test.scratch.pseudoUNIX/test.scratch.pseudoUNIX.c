@@ -36,6 +36,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -49,6 +50,7 @@
 #define true    (1)
 #define false   (0)
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -61,6 +63,7 @@ static int  s_bDebugging                =   false;
 #endif /* debug */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("pseudoUNIX.test");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs

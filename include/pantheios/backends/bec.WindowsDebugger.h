@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.WindowsDebugger.h
+ * File:    pantheios/backends/bec.WindowsDebugger.h
  *
- * Purpose:     Declaration of the Pantheios WindowsDebugger Stock Back-end API.
+ * Purpose: Declaration of the Pantheios WindowsDebugger Stock Back-end API.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 15th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        25
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +75,7 @@
 # include <pantheios/util/backends/arguments.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -82,6 +85,7 @@
  *  Back-end library that outputs to the Windows debugger.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -90,6 +94,7 @@
  * \ingroup group__backend__stock_backends__WindowsDebugger
  *  Flags for the \ref group__backend__stock_backends__WindowsDebugger
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -116,6 +121,7 @@ public: /* Construction */
 typedef struct pan_be_WindowsDebugger_init_t    pan_be_WindowsDebugger_init_t;
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions
  */
@@ -130,6 +136,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsDebugger_init_t*  init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -204,7 +211,9 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
 #define pantheios_be_WindowsDebugger_parseArgs(num, args, init)     pantheios_be_parseStockArgs((num), (args), (NULL == (init)) ? NULL : (&(init)->flags))
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifdef __cplusplus
 # ifndef PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT

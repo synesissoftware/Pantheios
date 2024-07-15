@@ -69,6 +69,7 @@ namespace std
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -80,6 +81,7 @@ namespace std
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.pantheios.COM");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -87,6 +89,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 #if 0
 typedef std::string     string_t;
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations

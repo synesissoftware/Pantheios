@@ -86,6 +86,7 @@
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * types
  */
@@ -353,6 +354,7 @@ namespace test
 } /* namespace be */
 } /* namespace pantheios */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -367,6 +369,7 @@ namespace
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Front-end & Back-end Implementations

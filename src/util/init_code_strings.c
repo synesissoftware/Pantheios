@@ -44,6 +44,7 @@
 #include <pantheios/init_codes.h>
 #include <pantheios/quality/contract.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -53,12 +54,14 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
 #define pan_init_char_t_                    char
 #define PANTHEIOS_INIT_CODE_STRING(x)       x
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -205,6 +208,7 @@ PANTHEIOS_CALL(size_t) pantheios_getInitErrorStringLength(int code)
 
     return (pantheios_LookupInitCodeStringA_((int)code, &len), len);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

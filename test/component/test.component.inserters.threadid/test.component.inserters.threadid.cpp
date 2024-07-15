@@ -52,21 +52,20 @@ static void test_1_01();
 static pantheios::sint64_t pan_get_tid_();
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.threadid");
 
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
-
-
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
+
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
@@ -77,7 +76,9 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char** argv)
 {
@@ -99,7 +100,9 @@ int main(int argc, char** argv)
 }
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 static void test_1_01()
 {

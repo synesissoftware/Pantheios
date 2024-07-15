@@ -47,6 +47,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_THREADID
 #define PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_THREADID
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -57,6 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_REVISION 2
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_EDIT     10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -69,6 +71,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -77,6 +80,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -92,6 +96,7 @@ namespace pantheios
  */
 PANTHEIOS_CALL(stlsoft_ns_qual(ss_sint64_t))
 pantheios_getCurrentThreadId(void) STLSOFT_NOEXCEPT;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * C++ API
@@ -115,6 +120,7 @@ getCurrentThreadId() STLSOFT_NOEXCEPT
 } /* namespace util */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -122,6 +128,7 @@ getCurrentThreadId() STLSOFT_NOEXCEPT
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

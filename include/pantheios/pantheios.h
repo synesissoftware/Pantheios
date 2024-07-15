@@ -51,6 +51,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 #define PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -117,6 +118,7 @@
 
 #define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B220
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes - 1
  */
@@ -136,6 +138,7 @@
 # define PANTHEIOS_INCL_H_STDDEF
 # include <stddef.h>     /* for size_t */
 #endif /* !PANTHEIOS_INCL_H_STDDEF */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -211,6 +214,7 @@
 # error Invalid STLSoft library
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * feature detection
  */
@@ -242,6 +246,7 @@
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
 #endif /* PANTHEIOS_NO_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes - 2
  */
@@ -254,6 +259,7 @@
 
 /* TODO: make this include relative */
 #include <pantheios/internal/string_encoding.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -429,6 +435,7 @@
 # endif /* compiler */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -493,6 +500,7 @@ namespace core
  * Puts \c x in the \c pantheios::sns namespace if namespace is supported
  * (and not suppressed), otherwise \c x is unqualified
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -701,6 +709,7 @@ typedef stlsoft_ns_qual(ss_sint32_t)    pan_sev_t;
 # undef PANTHEIOS_INCLUDING_STOCKLEVELS
 
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -951,6 +960,7 @@ PANTHEIOS_CALL(int) pantheios_logvprintf(
 ,   va_list                 args
 );
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * util API
  */
@@ -1079,6 +1089,7 @@ pantheios_onBailOut3_w(
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * util API
  */
@@ -1088,6 +1099,7 @@ pantheios_onBailOut3_w(
 #else /* ? PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 # include "./util/string/strnlen.h"
 #endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * core functions
@@ -1211,6 +1223,7 @@ pantheios_getPad(
 } /* namespace core */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * core functions
  */
@@ -1289,6 +1302,7 @@ PANTHEIOS_CALL(void) pantheios_logassertfail(
 );
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Back-end map functions
  */
@@ -1341,6 +1355,7 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_add(int backEndId, void* token);
 PANTHEIOS_CALL(int) pantheios_backEndMap_remove(int backEndId);
 #endif /* 0 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * generated function control
  */
@@ -1361,6 +1376,7 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_remove(int backEndId);
     PANTHEIOS_APPL_PARAMS_LIMIT > PANTHEIOS_APPL_PARAMS_LIMIT_MAX_GENERATED
 # error PANTHEIOS_APPL_PARAMS_LIMIT Must be defined to be a number between 1 and PANTHEIOS_APPL_PARAMS_LIMIT_MAX_GENERATED
 #endif /* PANTHEIOS_APPL_PARAMS_LIMIT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions for C++
@@ -1385,6 +1401,7 @@ typedef pan_sint16_t    sint16_t;
 typedef pan_sint32_t    sint32_t;
 /** 64-bit signed integer type. */
 typedef pan_sint64_t    sint64_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * util API
@@ -1435,6 +1452,7 @@ onBailOut(
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 } /* namespace util */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * core functions
@@ -1795,6 +1813,7 @@ logvprintf(
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1816,6 +1835,7 @@ logvprintf(
 
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
  */
@@ -1832,6 +1852,7 @@ logvprintf(
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * pan_slice_t
  */
@@ -1842,6 +1863,7 @@ logvprintf(
 # include <pantheios/internal/slice.hpp>
 
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -1958,6 +1980,7 @@ namespace stlsoft
 # endif /* __cplusplus */
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

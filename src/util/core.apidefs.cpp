@@ -55,6 +55,7 @@
 #include <exception>
 #include <new>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -69,11 +70,13 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
 
 /* /////////////////////////////////////
  * Front-end functions
@@ -208,6 +211,7 @@ PANTHEIOS_CALL(int) pantheios_call_fe_isSeverityLogged(
 # endif /* PANTHEIOS_USE_CATCHALL */
 }
 #endif /* 0 */
+
 
 /* /////////////////////////////////////
  * Back-end functions

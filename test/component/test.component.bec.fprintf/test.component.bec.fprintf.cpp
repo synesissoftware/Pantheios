@@ -46,6 +46,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
@@ -59,6 +60,7 @@
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #define FF_STR                              PANTHEIOS_LITERAL_STRING
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -104,6 +106,7 @@ int main(int argc, char** argv)
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * types
  */
@@ -137,6 +140,7 @@ char const                              write_mode[] = "w";
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 PAN_CHAR_T const                        PROCESS_IDENTITY[]  =   PANTHEIOS_LITERAL_STRING("test.component.bec.fprintf");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward implementations

@@ -97,6 +97,7 @@ int main()
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -106,11 +107,13 @@ static void some_logging_with_using_namespace_directive();
 static void some_logging_with_using_declarations();
 static void some_logging_with_explicit_qualification();
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
 #define P_STR   PANTHEIOS_LITERAL_STRING
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
@@ -127,6 +130,7 @@ static void some_logging_with_explicit_qualification();
 # define c_str_data_t_                  c_str_data_a
 # define c_str_len_t_                   c_str_len_a
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types

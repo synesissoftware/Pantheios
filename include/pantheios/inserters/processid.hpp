@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PROCESSID
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PROCESSID
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_REVISION   6
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_EDIT       25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +79,7 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,6 +89,7 @@ namespace pantheios
 {
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -108,6 +112,7 @@ namespace pantheios
  */
 extern struct processId_t const* processId;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * worker functions
  */
@@ -121,6 +126,7 @@ PANTHEIOS_CALL_DEPRECATED(pantheios_char_t const*, pantheios_processId, pantheio
 PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_processIdLength, pantheios_getCurrentProcessIdStringLength) pantheios_processIdLength(void);
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -208,6 +214,7 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -234,6 +241,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

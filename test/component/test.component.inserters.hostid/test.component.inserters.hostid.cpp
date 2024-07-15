@@ -39,11 +39,13 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 typedef std::basic_string<PAN_CHAR_T>   string_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -59,27 +61,23 @@ static string_t pan_get_hid_();
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.hostid");
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
 
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define pantheios_GetComputerName_     ::GetComputerNameW
-
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define pantheios_GetComputerName_                     ::GetComputerNameW
+# define XTESTS_TEST_STRING_EQUAL                       XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define pantheios_GetComputerName_     ::GetComputerNameA
-
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define pantheios_GetComputerName_                     ::GetComputerNameA
+# define XTESTS_TEST_STRING_EQUAL                       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -101,6 +99,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -168,6 +167,7 @@ static string_t pan_get_hid_()
 
 #endif /* OS */
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

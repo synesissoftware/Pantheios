@@ -58,14 +58,11 @@ const int       NUM_WARMUPS =   2;
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEIOS_LITERAL_STRING("test.performance.util.date_elements_to_string");
 
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
-
-
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
+
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
@@ -129,7 +126,9 @@ iteration_to_tm_(
 );
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int /* argc */, char** /* argv */)
 {

@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_EXCEPTION
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_EXCEPTION
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_REVISION   2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_EDIT       7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +75,7 @@
 
 #include <exception>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +84,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -127,6 +131,7 @@ private:
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -162,6 +167,7 @@ inline std::exception const& exception(
 }
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -251,6 +257,7 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -280,6 +287,7 @@ namespace stlsoft
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

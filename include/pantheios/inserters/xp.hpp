@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_XP
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_XP
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_REVISION  1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_EDIT      6
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +75,7 @@
 # include <pantheios/inserters/pointer.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_POINTER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,6 +84,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -116,6 +120,7 @@ public:
     {}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -123,6 +128,7 @@ public:
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SLICE
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SLICE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * validation
  */
@@ -61,6 +62,7 @@
 #ifndef __cplusplus
 # error This file is valid only in C++ compilation units
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -74,6 +76,7 @@ namespace pantheios
 /* ////////////////////////////////////////////////////////////////////// */
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * pan_slice_t
@@ -177,6 +180,7 @@ pan_slice_t::pan_slice_t(
 
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -184,6 +188,7 @@ pan_slice_t::pan_slice_t(
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion
