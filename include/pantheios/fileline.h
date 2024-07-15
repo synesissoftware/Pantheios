@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/fileline.h
+ * File:    pantheios/fileline.h
  *
- * Purpose:     Customisable definition of file+line, for the Pantheios
- *              Assertion and Tracing APIs.
+ * Purpose: Customisable definition of file+line, for the Pantheios
+ *          Assertion and Tracing APIs.
  *
- * Created:     11th November 2007
- * Updated:     16th December 2023
+ * Created: 11th November 2007
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_EDIT        18
+# define PANTHEIOS_VER_PANTHEIOS_H_FILELINE_EDIT        19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,8 +99,8 @@
  */
 
  /* Define the defaults here, in case we use them below. */
-# define PANTHEIOS_FILELINE_A                   __FILE__ "(" PANTHEIOS_STRINGIZE(__LINE__) "): "
-# define PANTHEIOS_FILELINE                     PANTHEIOS_FILELINE_A
+# define PANTHEIOS_FILELINE_A                               __FILE__ "(" PANTHEIOS_STRINGIZE(__LINE__) "): "
+# define PANTHEIOS_FILELINE                                 PANTHEIOS_FILELINE_A
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,6 +110,7 @@
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

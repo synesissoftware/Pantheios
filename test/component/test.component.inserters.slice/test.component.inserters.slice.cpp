@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.inserters.slice project.
  *
  * Created:     14th February 2010
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -66,9 +66,9 @@ const pan_char_t alphabet[] = PANTHEIOS_LITERAL_STRING("abcdefghijklmnopqrstuvwx
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define XTESTS_TEST_STRINGS_EQUAL_     XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRINGS_EQUAL_                         XTESTS_TEST_WIDE_STRING_EQUAL
 #else
-# define XTESTS_TEST_STRINGS_EQUAL_     XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRINGS_EQUAL_                         XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif
 
 

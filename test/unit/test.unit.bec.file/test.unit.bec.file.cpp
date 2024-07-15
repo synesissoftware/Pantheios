@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.be.file project.
  *
  * Created:     19th January 2008
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,7 +63,7 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 
 # define P_TO_M_(x)                     static_cast<char const*>(stlsoft::w2m((x)))
 # define P_TO_W_(x)                     (x)
@@ -72,7 +72,7 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 # define P_TO_M_(x)                     (x)
 # define P_TO_W_(x)                     static_cast<wchar_t const*>(stlsoft::m2w((x)))
@@ -84,7 +84,7 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
 #ifdef PSTR
 # undef PSTR
 #endif
-#define PSTR                            PANTHEIOS_LITERAL_STRING
+#define PSTR                                                PANTHEIOS_LITERAL_STRING
 
 
 /* /////////////////////////////////////////////////////////////////////////

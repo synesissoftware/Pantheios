@@ -4,7 +4,7 @@
  * Purpose: Pantheios Core and Util APIs.
  *
  * Created: 21st June 2005
- * Updated: 15th July 2024
+ * Updated: 16th July 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   5
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       383
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       384
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -575,7 +575,7 @@ typedef pantheios_char_t                pan_char_t;
  * shorthand for <code>::pantheios::pantheios_char_t</code> when in C++ (and
  * namespace not suppressed) or <code>pantheios_char_t</code> otherwise.
  */
-#define PAN_CHAR_T                      pantheios_char_t
+#define PAN_CHAR_T                                          pantheios_char_t
 
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)

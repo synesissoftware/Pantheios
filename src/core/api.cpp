@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     16th January 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -189,7 +189,7 @@ namespace std
     }
 } /* namespace std */
 
-# define copy       daft_msvc_copy_workaround_
+# define copy                                               daft_msvc_copy_workaround_
 
 /* Also pulling the same trick for wcstombs
  */
@@ -212,7 +212,7 @@ namespace
     }
 } /* anonymous namespace */
 
-# define wcstombs   daft_msvc_wcstombs_workaround_
+# define wcstombs                                           daft_msvc_wcstombs_workaround_
 
 
 # ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
@@ -224,7 +224,7 @@ namespace std
 {
     using stlsoft::std_fill_n;
 
-#  define fill_n std_fill_n
+#  define fill_n                                            std_fill_n
 
 } /* namespace std */
 
@@ -237,11 +237,11 @@ namespace std
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define pan_strlen_                    wcslen
+# define pan_strlen_                                        wcslen
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define pan_strlen_                    strlen
+# define pan_strlen_                                        strlen
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -338,15 +338,15 @@ namespace pantheios
  */
 
 #ifndef PANTHEIOS_CORE_LOG_N_INTERNAL_BUFFER_SIZE
-# define PANTHEIOS_CORE_LOG_N_INTERNAL_BUFFER_SIZE      (2048)
+# define PANTHEIOS_CORE_LOG_N_INTERNAL_BUFFER_SIZE          (2048)
 #endif /* !PANTHEIOS_CORE_LOG_N_INTERNAL_BUFFER_SIZE */
 
 #ifndef PANTHEIOS_CORE_LOGPRINTF_STACK_SIZE
-# define PANTHEIOS_CORE_LOGPRINTF_STACK_SIZE            (4096)
+# define PANTHEIOS_CORE_LOGPRINTF_STACK_SIZE                (4096)
 #endif /* !PANTHEIOS_CORE_LOG_BUFFER_SIZE */
 
 #ifndef PANTHEIOS_CORE_MINIMUM_PAD_CHARACTERS
-# define PANTHEIOS_CORE_MINIMUM_PAD_CHARACTERS          (1000)
+# define PANTHEIOS_CORE_MINIMUM_PAD_CHARACTERS              (1000)
 #else /* ? PANTHEIOS_CORE_MINIMUM_PAD_CHARACTERS */
 # if PANTHEIOS_CORE_MINIMUM_PAD_CHARACTERS < (1000)
 #  error Compile-time customisations of pad length must define at least 1000 characters
@@ -354,14 +354,14 @@ namespace pantheios
 #endif /* !PANTHEIOS_CORE_MINIMUM_PAD_CHARACTERS */
 
 #ifndef PANTHEIOS_CORE_BACKENDID_BASE
-# define PANTHEIOS_CORE_BACKENDID_BASE                  (1000)
+# define PANTHEIOS_CORE_BACKENDID_BASE                      (1000)
 #else /* ? PANTHEIOS_CORE_BACKENDID_BASE */
 # if PANTHEIOS_CORE_BACKENDID_BASE < (1)
 #  error Compile-time customisations of backEndId base must be a +ve integer
 # endif
 #endif /* PANTHEIOS_CORE_BACKENDID_BASE */
 
-#define PANTHEIOS_MAXIMUM_MAX_PROCESS_IDENTITY_LENGTH   (1000)
+#define PANTHEIOS_MAXIMUM_MAX_PROCESS_IDENTITY_LENGTH       (1000)
 
 #ifndef _PANTHEIOS_COMPILER_CANNOT_USE_ANONYMOUS_NAMESPACES
 namespace

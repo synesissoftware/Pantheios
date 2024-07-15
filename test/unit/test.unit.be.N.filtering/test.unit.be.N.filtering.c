@@ -4,7 +4,7 @@
  * Purpose: Tests **pantheios.be.N** filtering functionality.
  *
  * Created: 28th June 2016
- * Updated: 7th February 2024
+ * Updated: 16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -99,9 +99,9 @@ typedef struct results_t    results_t;
     }
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_strlen_            wcslen
+# define pan_strlen_                                        wcslen
 #else
-# define pan_strlen_            strlen
+# define pan_strlen_                                        strlen
 #endif
 
 #define LOG_ENTRY(token, severity, message)                                 \
@@ -113,7 +113,7 @@ typedef struct results_t    results_t;
  * backends
  */
 
-#define NUM_BACKENDS    (5)
+#define NUM_BACKENDS                                        (5)
 
 static results_t results;
 

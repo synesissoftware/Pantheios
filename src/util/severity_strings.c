@@ -4,7 +4,7 @@
  * Purpose: Severity strings for Pantheios API
  *
  * Created: 26th July 2005
- * Updated: 7th February 2024
+ * Updated: 16th July 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -61,7 +61,7 @@ namespace pantheios
 #ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 struct SeverityString
 #else /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
-# define SeverityString         pantheios_src_util_SeverityString
+# define SeverityString                                     pantheios_src_util_SeverityString
 typedef struct SeverityString  SeverityString;
 struct SeverityString
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */

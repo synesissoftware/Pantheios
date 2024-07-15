@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the COMErrorObject back-end
  *
  * Created:     9th April 2006
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -75,7 +75,7 @@
 
 extern "C" const IID IID_IErrorInfo_;
 
-#define IID_IErrorInfo  IID_IErrorInfo_
+#define IID_IErrorInfo                                      IID_IErrorInfo_
 
 #ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 # include <comstl/diagnostics/errorinfo_functions.h>

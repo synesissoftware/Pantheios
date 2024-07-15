@@ -4,11 +4,11 @@
  * Purpose:     String inserter for host identity.
  *
  * Created:     14th March 2008
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_MINOR     3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_REVISION  5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_EDIT      17
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_EDIT      18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -171,9 +171,9 @@ private:
 # if !defined(PANTHEIOS_NO_NAMESPACE) && \
      !defined(STLSOFT_COMPILER_IS_BORLAND)
 } /* namespace inserters */
-#  define PANTHEIOS_INSERTERS_DECLARE_host_id_t     ::pantheios::inserters::host_id_t
+#  define PANTHEIOS_INSERTERS_DECLARE_host_id_t             ::pantheios::inserters::host_id_t
 # else /* ? !PANTHEIOS_NO_NAMESPACE && !STLSOFT_COMPILER_IS_BORLAND */
-#  define PANTHEIOS_INSERTERS_DECLARE_host_id_t     host_id_t
+#  define PANTHEIOS_INSERTERS_DECLARE_host_id_t             host_id_t
 # endif /* !PANTHEIOS_NO_NAMESPACE && !STLSOFT_COMPILER_IS_BORLAND */
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)

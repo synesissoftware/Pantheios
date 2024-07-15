@@ -4,7 +4,7 @@
  * Purpose: Implementation of the `integer` inserter class.
  *
  * Created: 21st June 2005
- * Updated: 7th February 2024
+ * Updated: 16th July 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -115,7 +115,7 @@ namespace std
 {
     using stlsoft::std_fill_n;
 
-# define fill_n std_fill_n
+# define fill_n                                             std_fill_n
 
 } /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */

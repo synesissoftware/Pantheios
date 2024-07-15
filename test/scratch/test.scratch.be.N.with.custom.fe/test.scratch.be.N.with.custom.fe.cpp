@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.be.N.with.custom.fe project.
  *
  * Created: 23rd December 2010
- * Updated: 7th February 2024
+ * Updated: 16th July 2024
  *
  * Thanks:  To wassime, for submitting the original program definition.
  *
@@ -37,9 +37,9 @@
  * macros
  */
 
-#define WG_LOG_FILE_ID          1
-#define WG_LOG_CONSOLE_ID       2
-#define WG_LOG_FILE_ERROR_ID    3
+#define WG_LOG_FILE_ID                                      1
+#define WG_LOG_CONSOLE_ID                                   2
+#define WG_LOG_FILE_ERROR_ID                                3
 
 namespace
 {

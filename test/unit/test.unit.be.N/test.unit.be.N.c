@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.be.N project.
  *
  * Created:     29th January 2008
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -97,7 +97,7 @@ PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
  * backends
  */
 
-#define NUM_BACKENDS    (5)
+#define NUM_BACKENDS                                        (5)
 
 static int s_retVals[1 + NUM_BACKENDS];     /* 0th element is not used. */
 static int s_initCounts[1 + NUM_BACKENDS];  /* 0th element is not used. */

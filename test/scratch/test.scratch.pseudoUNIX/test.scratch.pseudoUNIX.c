@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the pseudoUNIX.test project.
  *
  * Created: 23rd September 2006
- * Updated: 7th February 2024
+ * Updated: 16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,8 +47,8 @@
 #ifdef false
 # undef false
 #endif /* false */
-#define true    (1)
-#define false   (0)
+#define true                                                (1)
+#define false                                               (0)
 
 
 /* /////////////////////////////////////////////////////////////////////////

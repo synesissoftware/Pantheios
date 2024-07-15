@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.be.file.threading project.
  *
  * Created: 3rd July 2009
- * Updated: 7th February 2024
+ * Updated: 16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -366,7 +366,7 @@ int main__(int argc, char** argv)
     return r;
 }
 #else /* ? USE_MSC_VER_CRT_MEM_CHECKS */
-# define main__     main_
+# define main__                                             main_
 #endif /* USE_MSC_VER_CRT_MEM_CHECKS */
 
 

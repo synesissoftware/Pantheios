@@ -4,7 +4,7 @@
  * Purpose: Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
  * Created: 17th July 2006
- * Updated: 15th July 2024
+ * Updated: 16th July 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -329,12 +329,12 @@ namespace
  * constants
  */
 
-#define FOREGROUND_WHITE    (FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED)
-#define FOREGROUND_YELLOW   (                  FOREGROUND_GREEN | FOREGROUND_RED)
-#define FOREGROUND_CYAN     (FOREGROUND_BLUE | FOREGROUND_GREEN)
+#define FOREGROUND_WHITE                                    (FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED)
+#define FOREGROUND_YELLOW                                   (                  FOREGROUND_GREEN | FOREGROUND_RED)
+#define FOREGROUND_CYAN                                     (FOREGROUND_BLUE | FOREGROUND_GREEN)
 
-#define BACKGROUND_WHITE    (BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED)
-#define BACKGROUND_YELLOW   (                  BACKGROUND_GREEN | BACKGROUND_RED)
+#define BACKGROUND_WHITE                                    (BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED)
+#define BACKGROUND_YELLOW                                   (                  BACKGROUND_GREEN | BACKGROUND_RED)
 
 namespace
 {

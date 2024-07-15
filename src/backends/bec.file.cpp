@@ -4,7 +4,7 @@
  * Purpose: Implementation for the file back-end.
  *
  * Created: 25th November 2006
- * Updated: 7th February 2024
+ * Updated: 16th July 2024
  *
  * Thanks:  CookieRaver for filling in the (accidental) blanks in the UNIX
  *          implementation.
@@ -140,7 +140,7 @@
 
    /* close() */
 #  include <io.h>
-#  define close     _close
+#  define close                                             _close
 
    /* open() */
 #  if defined(_WIN32) && \
@@ -156,15 +156,15 @@
         }
 #   pragma warning(pop)
     } /* anonymous namespace */
-#   define open     open_original_
+#   define open                                             open_original_
 #  else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-#   define open     _open
+#   define open                                             _open
 #  endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
    /* fsync() */
 #  include <io.h>
 #  define _POSIX_FSYNC
-#  define fsync     _commit
+#  define fsync                                             _commit
 
    /* write() */
 #  define write(h, b, n)                _write((h), (b), stlsoft_static_cast(int, (n)))
@@ -172,16 +172,16 @@
 #  if defined(_MSC_VER) && \
       _MSC_VER < 1300
 
-#   define intptr_t                     long
+#   define intptr_t                                         long
 #  else
 
 #   include <stdint.h>
 #  endif
 
    /* types and constants */
-#  define ssize_t   intptr_t
-#  define S_IRWXU   (0)
-#  define S_IRWXG   (0)
+#  define ssize_t                                           intptr_t
+#  define S_IRWXU                                           (0)
+#  define S_IRWXG                                           (0)
 
 # endif /* _WIN32 && _MSC_VER */
 #endif /* OS */
@@ -202,13 +202,13 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define pan_strlen_                ::wcslen
-# define pan_strstr_                ::wcsstr
+# define pan_strlen_                                        ::wcslen
+# define pan_strstr_                                        ::wcsstr
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define pan_strlen_                ::strlen
-# define pan_strstr_                ::strstr
+# define pan_strlen_                                        ::strlen
+# define pan_strstr_                                        ::strstr
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 

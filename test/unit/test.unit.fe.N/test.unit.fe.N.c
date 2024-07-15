@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.fe.N project.
  *
  * Created: 24th August 2008
- * Updated: 14th July 2024
+ * Updated: 16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -86,7 +86,7 @@ static const int s_severityLevels[] =
     ,   PANTHEIOS_SEV_DEBUG
 };
 
-#define s_defaultCeiling    -1
+#define s_defaultCeiling                                    -1
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -231,7 +231,7 @@ static void test_empty_array_with_ALERT_default_ceiling(void)
 
 static void test_array_with_one_specific_id(void)
 {
-#define BACKEND_0_ID    1001
+#define BACKEND_0_ID                                        1001
 
     static const int severityLevelResults_for_0[] =
     {
@@ -306,9 +306,9 @@ static void test_array_with_one_specific_id(void)
 
 static void test_array_with_three_specific_ids(void)
 {
-#define BACKEND_0_ID    1001
-#define BACKEND_1_ID    3
-#define BACKEND_2_ID    54321
+#define BACKEND_0_ID                                        1001
+#define BACKEND_1_ID                                        3
+#define BACKEND_2_ID                                        54321
 
     static const int severityLevelResults_for_0[] =
     {

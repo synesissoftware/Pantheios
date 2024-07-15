@@ -5,11 +5,11 @@
  *              Pantheios core and APIs.
  *
  * Created:     26th June 2005
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        19
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -284,19 +284,19 @@ PANTHEIOS_TYPECHECK_MSG_(...)
 #elif defined(PANTHEIOS_QA_USE_XCONTRACT)
 
 # ifndef PANTHEIOS_CONTRACT_LEVEL_INTERNAL
-#  define PANTHEIOS_CONTRACT_LEVEL_INTERNAL        (41)
+#  define PANTHEIOS_CONTRACT_LEVEL_INTERNAL                 (41)
 # endif /* !PANTHEIOS_CONTRACT_LEVEL_INTERNAL */
 
 # ifndef PANTHEIOS_CONTRACT_LEVEL_API
-#  define PANTHEIOS_CONTRACT_LEVEL_API             (43)
+#  define PANTHEIOS_CONTRACT_LEVEL_API                      (43)
 # endif /* !PANTHEIOS_CONTRACT_LEVEL_API */
 
 # ifndef PANTHEIOS_CONTRACT_LEVEL_APPL_LAYER
-#  define PANTHEIOS_CONTRACT_LEVEL_APPL_LAYER      (45)
+#  define PANTHEIOS_CONTRACT_LEVEL_APPL_LAYER               (45)
 # endif /* !PANTHEIOS_CONTRACT_LEVEL_APPL_LAYER */
 
 # ifndef PANTHEIOS_CONTRACT_LEVEL_APPL_DEF
-#  define PANTHEIOS_CONTRACT_LEVEL_APPL_DEF        (47)
+#  define PANTHEIOS_CONTRACT_LEVEL_APPL_DEF                 (47)
 # endif /* !PANTHEIOS_CONTRACT_LEVEL_APPL_DEF */
 
 # define PANTHEIOS_CONTRACT_ENFORCE_UNEXPECTED_CONDITION_INTERNAL(msg)              XCONTRACT_ENFORCE_CONDITION_TYPE_LEVEL_(XCONTRACT_NS_QUAL(xContract_unexpectedCondition), PANTHEIOS_CONTRACT_LEVEL_INTERNAL, NULL, PANTHEIOS_TYPECHECK_MSG_(msg))

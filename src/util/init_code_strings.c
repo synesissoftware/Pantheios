@@ -4,11 +4,11 @@
  * Purpose:     Initialisation code strings for Pantheios API
  *
  * Created:     27th September 2007
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@ namespace pantheios
  * macros
  */
 
-#define pan_init_char_t_                    char
+#define pan_init_char_t_                                    char
 #define PANTHEIOS_INIT_CODE_STRING(x)       x
 
 
@@ -70,7 +70,7 @@ namespace pantheios
 #ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 struct InitCodeString
 #else /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
-# define InitCodeString        pantheios_src_util_InitCodeString
+# define InitCodeString                                     pantheios_src_util_InitCodeString
 typedef struct InitCodeString  InitCodeString;
 struct InitCodeString
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */

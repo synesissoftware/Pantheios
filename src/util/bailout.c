@@ -4,7 +4,7 @@
  * Purpose: Implementation file for low-level Pantheios bail out.
  *
  * Created: 21st June 2005
- * Updated: 15th July 2024
+ * Updated: 16th July 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -141,18 +141,18 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define pan_strlen_w_                  wcslen
-# define pan_strncpy_w_                 wcsncpy
-# define pan_wsprintf_w_                wsprintfW
-# define pan_OutputDebugString_w_       OutputDebugStringW
-# define pan_ReportEvent_w_             ReportEventW
+# define pan_strlen_w_                                      wcslen
+# define pan_strncpy_w_                                     wcsncpy
+# define pan_wsprintf_w_                                    wsprintfW
+# define pan_OutputDebugString_w_                           OutputDebugStringW
+# define pan_ReportEvent_w_                                 ReportEventW
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-# define pan_strlen_m_                  strlen
-# define pan_strncpy_m_                 strncpy
-# define pan_wsprintf_m_                wsprintfA
-# define pan_OutputDebugString_m_       OutputDebugStringA
-# define pan_ReportEvent_m_             ReportEventA
+# define pan_strlen_m_                                      strlen
+# define pan_strncpy_m_                                     strncpy
+# define pan_wsprintf_m_                                    wsprintfA
+# define pan_OutputDebugString_m_                           OutputDebugStringA
+# define pan_ReportEvent_m_                                 ReportEventA
 
 
 /* /////////////////////////////////////////////////////////////////////////

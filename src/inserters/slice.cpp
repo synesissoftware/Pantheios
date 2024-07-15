@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     14th February 2010
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -104,7 +104,7 @@ namespace std
 {
     using stlsoft::std_copy;
 
-# define copy std_copy
+# define copy                                               std_copy
 
 } /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */

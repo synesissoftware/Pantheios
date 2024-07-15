@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.util.gethostname project.
  *
  * Created:     14th April 2008
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,15 +53,15 @@ typedef std::basic_string<PAN_CHAR_T>   string_t;
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define pantheios_GetComputerName_     ::GetComputerNameW
+# define pantheios_GetComputerName_                         ::GetComputerNameW
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define pantheios_GetComputerName_     ::GetComputerNameA
+# define pantheios_GetComputerName_                         ::GetComputerNameA
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 

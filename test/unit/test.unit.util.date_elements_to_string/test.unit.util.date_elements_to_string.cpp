@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.util.date_elements_to_string project.
  *
  * Created:     13th November 2016
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,13 +41,13 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-# define XTESTS_TEST_STRING_EQUAL_N     XTESTS_TEST_WIDE_STRING_EQUAL_N
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL_N                         XTESTS_TEST_WIDE_STRING_EQUAL_N
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-# define XTESTS_TEST_STRING_EQUAL_N     XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL_N                         XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 

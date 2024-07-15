@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.be.file project.
  *
  * Created:     3rd August 2008
- * Updated:     16th January 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -69,13 +69,13 @@ typedef platformstl::basic_file_lines<char>     lines_t;
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 
 # define PGET_(x)                       string_t(stlsoft::m2w(x).c_str())
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 # define PGET_(x)                       (x)
 

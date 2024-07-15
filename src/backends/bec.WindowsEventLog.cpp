@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the WindowsEventLog back-end
  *
  * Created:     8th May 2006
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -76,11 +76,11 @@
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_RegisterEventSource_       ::RegisterEventSourceW
-# define pan_ReportEvent_               ::ReportEventW
+# define pan_RegisterEventSource_                           ::RegisterEventSourceW
+# define pan_ReportEvent_                                   ::ReportEventW
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_RegisterEventSource_       ::RegisterEventSourceA
-# define pan_ReportEvent_               ::ReportEventA
+# define pan_RegisterEventSource_                           ::RegisterEventSourceA
+# define pan_ReportEvent_                                   ::ReportEventA
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 

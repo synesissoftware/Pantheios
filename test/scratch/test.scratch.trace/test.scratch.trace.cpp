@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the trace_test project.
  *
  * Created:     5th August 2007
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,7 +63,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(int /* backEndId */
 static int main_(int /* argc */, char** /*argv*/)
 {
 #ifndef __FUNCTION__
-# define __FUNCTION__   "main"
+# define __FUNCTION__                                       "main"
 #endif
 
     PANTHEIOS_TRACE_DEBUG("debug");

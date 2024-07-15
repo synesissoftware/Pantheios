@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios syslog Stock Back-end API.
  *
  * Created: 23rd July 2005
- * Updated: 15th July 2024
+ * Updated: 16th July 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     26
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -110,7 +110,7 @@
  *   distinct call to fprintf(stderr).
  */
 
-#define PANTHEIOS_BE_SYSLOG_F_PERROR    (0x00100000)
+#define PANTHEIOS_BE_SYSLOG_F_PERROR                        (0x00100000)
 
 /** \def PANTHEIOS_BE_SYSLOG_F_CONS
  *  Causes the \ref group__backend__stock_backends__syslog to
@@ -122,7 +122,7 @@
  * contain the SysLog <code>LOG_CONS</code> flag.
  */
 
-#define PANTHEIOS_BE_SYSLOG_F_CONS      (0x00200000)
+#define PANTHEIOS_BE_SYSLOG_F_CONS                          (0x00200000)
 
 /** \def PANTHEIOS_BE_SYSLOG_F_PID
  *  Causes the \ref group__backend__stock_backends__syslog to include
@@ -133,7 +133,7 @@
  * contain the SysLog <code>LOG_PID</code> flag.
  */
 
-#define PANTHEIOS_BE_SYSLOG_F_PID       (0x00400000)
+#define PANTHEIOS_BE_SYSLOG_F_PID                           (0x00400000)
 
 /** \def PANTHEIOS_BE_SYSLOG_F_NDELAY
  *  Causes the \ref group__backend__stock_backends__syslog to
@@ -145,7 +145,7 @@
  * contain the SysLog <code>LOG_NDELAY</code> flag.
  */
 
-#define PANTHEIOS_BE_SYSLOG_F_NDELAY    (0x00800000)
+#define PANTHEIOS_BE_SYSLOG_F_NDELAY                        (0x00800000)
 
 
 
@@ -287,6 +287,7 @@ pan_be_syslog_init_t::pan_be_syslog_init_t()
 }
 # endif /* !PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT */
 #endif /* __cplusplus */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.fe.WindowsRegistry project.
  *
  * Created: 14th May 2008
- * Updated: 13th July 2024
+ * Updated: 16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,11 +34,11 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -49,7 +49,7 @@
 #ifdef PSTR
 # undef PSTR
 #endif
-#define PSTR                            PANTHEIOS_LITERAL_STRING
+#define PSTR                                                PANTHEIOS_LITERAL_STRING
 
 
 /* /////////////////////////////////////////////////////////////////////////

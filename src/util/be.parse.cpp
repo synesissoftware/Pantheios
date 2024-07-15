@@ -4,11 +4,11 @@
  * Purpose:     Utility functions for use in Pantheios back-ends.
  *
  * Created:     19th August 2007
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -76,10 +76,10 @@
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_toupper_                   towupper
+# define pan_toupper_                                       towupper
 typedef stlsoft::wstring_view           string_view_t;
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_toupper_                   toupper
+# define pan_toupper_                                       toupper
 typedef stlsoft::string_view            string_view_t;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 

@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -70,11 +70,11 @@
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_strrchr_                   ::wcsrchr
-# define pan_strpbrk_                   ::wcspbrk
+# define pan_strrchr_                                       ::wcsrchr
+# define pan_strpbrk_                                       ::wcspbrk
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_strrchr_                   ::strrchr
-# define pan_strpbrk_                   ::strpbrk
+# define pan_strrchr_                                       ::strrchr
+# define pan_strpbrk_                                       ::strpbrk
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 

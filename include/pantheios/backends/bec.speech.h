@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios speech Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 15th July 2024
+ * Updated: 16th July 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_EDIT     23
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_EDIT     24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -131,11 +131,11 @@
  * \ingroup group__backend__stock_backends__speech__flags
  */
 
-#define PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS               (0x00100000)
-#define PANTHEIOS_BE_SPEECH_F_PURGE_BEFORE_SPEAK        (0x00200000)
-#define PANTHEIOS_BE_SPEECH_F_SPEAK_PUNCTUATION         (0x00400000)
-#define PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS_ON_CRITICAL   (0x00800000)
-#define PANTHEIOS_BE_SPEECH_F_UNINIT_DISCARD_WORKAROUND (0x01000000)
+#define PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS                   (0x00100000)
+#define PANTHEIOS_BE_SPEECH_F_PURGE_BEFORE_SPEAK            (0x00200000)
+#define PANTHEIOS_BE_SPEECH_F_SPEAK_PUNCTUATION             (0x00400000)
+#define PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS_ON_CRITICAL       (0x00800000)
+#define PANTHEIOS_BE_SPEECH_F_UNINIT_DISCARD_WORKAROUND     (0x01000000)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -269,6 +269,7 @@ pan_be_speech_init_t::pan_be_speech_init_t()
 }
 # endif /* !PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT */
 #endif /* __cplusplus */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

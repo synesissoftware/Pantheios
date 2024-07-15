@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the fprintf() back-end
  *
  * Created:     26th June 2005
- * Updated:     16th January 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -62,9 +62,9 @@
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_fprintf_                   ::fwprintf
+# define pan_fprintf_                                       ::fwprintf
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_fprintf_                   ::fprintf
+# define pan_fprintf_                                       ::fprintf
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 

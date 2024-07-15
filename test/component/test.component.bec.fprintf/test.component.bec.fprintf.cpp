@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.bec.fprintf project.
  *
  * Created:     25th June 2020
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,13 +53,13 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL           XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-#define FF_STR                              PANTHEIOS_LITERAL_STRING
+#define FF_STR                                              PANTHEIOS_LITERAL_STRING
 
 
 /* /////////////////////////////////////////////////////////////////////////

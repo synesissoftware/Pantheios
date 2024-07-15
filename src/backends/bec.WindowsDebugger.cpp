@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the WindowsDebugger back-end
  *
  * Created:     18th July 2005
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -64,9 +64,9 @@
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_OutputDebugString_         ::OutputDebugStringW
+# define pan_OutputDebugString_                             ::OutputDebugStringW
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_OutputDebugString_         ::OutputDebugStringA
+# define pan_OutputDebugString_                             ::OutputDebugStringA
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 

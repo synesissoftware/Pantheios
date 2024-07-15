@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.api project.
  *
  * Created:     26th June 2005
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -112,7 +112,7 @@ static void some_logging_with_explicit_qualification();
  * macros
  */
 
-#define P_STR   PANTHEIOS_LITERAL_STRING
+#define P_STR                                               PANTHEIOS_LITERAL_STRING
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,15 +120,15 @@ static void some_logging_with_explicit_qualification();
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_sprintf_s_                 swprintf_s
-# define pan_sprintf_                   swprintf
-# define c_str_data_t_                  c_str_data_w
-# define c_str_len_t_                   c_str_len_w
+# define pan_sprintf_s_                                     swprintf_s
+# define pan_sprintf_                                       swprintf
+# define c_str_data_t_                                      c_str_data_w
+# define c_str_len_t_                                       c_str_len_w
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_sprintf_s_                 sprintf_s
-# define pan_sprintf_                   sprintf
-# define c_str_data_t_                  c_str_data_a
-# define c_str_len_t_                   c_str_len_a
+# define pan_sprintf_s_                                     sprintf_s
+# define pan_sprintf_                                       sprintf
+# define c_str_data_t_                                      c_str_data_a
+# define c_str_len_t_                                       c_str_len_a
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 

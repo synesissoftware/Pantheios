@@ -4,11 +4,11 @@
  * Purpose:     Implementation
  *
  * Created:     26th June 2005
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
  * types
  */
 
-#define pan_lr_tokens_t         pantheios_src_util_pan_lr_tokens_t
+#define pan_lr_tokens_t                                     pantheios_src_util_pan_lr_tokens_t
 
 struct pan_lr_tokens_t
 {

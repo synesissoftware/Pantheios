@@ -4,11 +4,11 @@
  * Purpose:     Memory-copying functions.
  *
  * Created:     1st September 2015
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2015-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_EDIT     6
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_EDIT     7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -183,10 +183,10 @@ pantheios_util_memory_copyChars_w(
 
 #  if defined(PANTHEIOS_NO_NAMESPACE)
 
-#   define pantheios_util_memory_copyChars_     pantheios_util_memory_copyChars
+#   define pantheios_util_memory_copyChars_                 pantheios_util_memory_copyChars
 #  else /* PANTHEIOS_NO_NAMESPACE */
 
-#   define pantheios_util_memory_copyChars_     ::pantheios::util::pantheios_util_memory_copyChars
+#   define pantheios_util_memory_copyChars_                 ::pantheios::util::pantheios_util_memory_copyChars
 #  endif /* !PANTHEIOS_NO_NAMESPACE */
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 #endif /* __cplusplus */

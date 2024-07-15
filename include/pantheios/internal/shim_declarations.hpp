@@ -5,11 +5,11 @@
  *              constructs.
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -85,15 +85,15 @@
 # endif /* PANTHEIOS_c_str_ptr_null_name_ */
 
 # ifdef PANTHEIOS_USE_WIDE_STRINGS
-#  define PANTHEIOS_c_str_data_name_                    c_str_data_w
-#  define PANTHEIOS_c_str_len_name_                     c_str_len_w
-#  define PANTHEIOS_c_str_ptr_name_                     c_str_ptr_w
-#  define PANTHEIOS_c_str_ptr_null_name_                c_str_ptr_null_w
+#  define PANTHEIOS_c_str_data_name_                        c_str_data_w
+#  define PANTHEIOS_c_str_len_name_                         c_str_len_w
+#  define PANTHEIOS_c_str_ptr_name_                         c_str_ptr_w
+#  define PANTHEIOS_c_str_ptr_null_name_                    c_str_ptr_null_w
 # else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-#  define PANTHEIOS_c_str_data_name_                    c_str_data_a
-#  define PANTHEIOS_c_str_len_name_                     c_str_len_a
-#  define PANTHEIOS_c_str_ptr_name_                     c_str_ptr_a
-#  define PANTHEIOS_c_str_ptr_null_name_                c_str_ptr_null_a
+#  define PANTHEIOS_c_str_data_name_                        c_str_data_a
+#  define PANTHEIOS_c_str_len_name_                         c_str_len_a
+#  define PANTHEIOS_c_str_ptr_name_                         c_str_ptr_a
+#  define PANTHEIOS_c_str_ptr_null_name_                    c_str_ptr_null_a
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */

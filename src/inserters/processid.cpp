@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -83,7 +83,7 @@ struct processId_t const* processId =   0;
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER >= 1900
-# define processId  processId_another_symbol_
+# define processId                                          processId_another_symbol_
 #endif
 
 
