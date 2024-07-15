@@ -19,22 +19,13 @@ target_link_libraries(example.cpp.backends.mx.1
 		Pantheios.be.N
 )
 
-if(UNIX)
-
-	target_link_libraries(example.cpp.backends.mx.1
-		PRIVATE
-			Pantheios.bec.fprintf
-			Pantheios.bec.syslog
-	)
-endif(UNIX)
+target_link_libraries(example.cpp.backends.mx.1
+	PRIVATE
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsSyslog,Pantheios.bec.syslog>
+)
 
 if(WIN32)
-
-	target_link_libraries(example.cpp.backends.mx.1
-		PRIVATE
-			Pantheios.bec.WindowsConsole
-			Pantheios.bec.WindowsSyslog
-	)
 
 	target_link_libraries(example.cpp.backends.mx.1
 		PRIVATE

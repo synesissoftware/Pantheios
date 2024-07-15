@@ -14,23 +14,11 @@ target_link_libraries(example.cpp.backends.callback
 		Pantheios.fe.simple
 )
 
-if(UNIX)
-
-	target_link_libraries(example.cpp.backends.callback
-		PRIVATE
-			Pantheios.be.fprintf
-			Pantheios.bec.fprintf
-	)
-endif(UNIX)
-
-if(WIN32)
-
-	target_link_libraries(example.cpp.backends.callback
-		PRIVATE
-			Pantheios.be.WindowsConsole
-			Pantheios.bec.WindowsConsole
-	)
-endif(WIN32)
+target_link_libraries(example.cpp.backends.callback
+	PRIVATE
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.be.WindowsConsole,Pantheios.be.fprintf>
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+)
 
 target_link_libraries(example.cpp.backends.callback
 	PRIVATE
