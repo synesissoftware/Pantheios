@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/example.c.101/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the example.c.101 project.
- *
- * Created:     17th January 2008
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <pantheios/implicit_link/core.h>
@@ -27,6 +17,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif /* _WIN32 || _WIN64 */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

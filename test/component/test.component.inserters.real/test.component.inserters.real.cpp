@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.real/test.component.inserters.real.cpp
+ * File:    test/component/test.component.inserters.real/test.component.inserters.real.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.real project.
+ * Purpose: Implementation file for the test.component.inserters.real project.
  *
- * Created:     19th October 2006
- * Updated:     16th December 2023
+ * Created: 19th October 2006
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -116,7 +116,7 @@ static void test_1_01()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(3 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(3, results.size());
     XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[0].statement);
     XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[1].statement);
     XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[2].statement);
@@ -142,7 +142,7 @@ static void test_1_02()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(4 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(4, results.size());
     XTESTS_TEST_STRING_EQUAL(PSTR("1.1"), results[0].statement);
     XTESTS_TEST_STRING_EQUAL(PSTR("-1.1"), results[1].statement);
 //    XTESTS_TEST_STRING_EQUAL(PSTR("0.0000001"), results[2].statement);

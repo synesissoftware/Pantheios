@@ -4,14 +4,14 @@
  * Purpose:     Implementation for the UNIX SysLog back-end
  *
  * Created:     29th June 2005
- * Updated:     16th December 2023
+ * Updated:     7th February 2024
  *
  * Thanks to:   Jonathan Wakely for detecting Solaris compilation defects &
  *              fixes.
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,6 +57,7 @@
 #include <string.h>
 #include <syslog.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * platform compatibility
  */
@@ -71,6 +72,7 @@
 #ifndef LOG_PERROR
 # include <stdio.h>
 #endif /* !LOG_PERROR */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -209,6 +211,7 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_logEntry(
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL == beToken, "back-end token must be null");
 #endif /* LOG_PERROR */
     STLSOFT_SUPPRESS_UNUSED(feToken);
+    STLSOFT_SUPPRESS_UNUSED(beToken);
     STLSOFT_SUPPRESS_UNUSED(cchEntry);
 
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == (severity & 0x08), "be.syslog can only be used with the stock severity levels in the range [0, 8). Levels in the range [8, 16) are not allowed");
@@ -270,6 +273,7 @@ pantheios_be_syslog_parseArgs(
 
     return res;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

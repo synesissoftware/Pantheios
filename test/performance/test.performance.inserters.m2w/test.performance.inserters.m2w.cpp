@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/performance/test.performance.inserters.m2w/test.performance.inserters.m2w.cpp
+ * File:    test/performance/test.performance.inserters.m2w/test.performance.inserters.m2w.cpp
  *
- * Purpose:     Implementation file for the test.performance.inserters.m2w project.
+ * Purpose: Implementation file for the test.performance.inserters.m2w project.
  *
- * Created:     22nd November 2010
- * Updated:     16th December 2023
+ * Created: 22nd November 2010
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,6 +43,7 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -53,11 +54,13 @@ const int       ITERATIONS  =   1;
 const int       ITERATIONS  =   10000;
 #endif /* _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   L"test.performance.inserters.m2w";
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -94,6 +97,7 @@ static int main_(int argc, char** argv)
         }
     }
 
+
     // Small (convert)
 
     { for(int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
@@ -128,7 +132,8 @@ static int main_(int argc, char** argv)
         tm_insrt_small = counter.get_microseconds();
     }}
 
-    fprintf(stderr, "small: winstl:pantheios: %2.4g\n", (double)tm_cvrt_small/(double)tm_insrt_small);
+    fprintf(stderr, "small: winstl : pantheios:\t% 9.04f\n", (double)tm_cvrt_small/(double)tm_insrt_small);
+
 
     // Large (inserter)
 
@@ -173,7 +178,8 @@ static int main_(int argc, char** argv)
         fprintf(stderr, "small lengths don't match!\n");
     }
 
-    fprintf(stderr, "large: winstl:pantheios: %2.4g\n", (double)tm_cvrt_large/(double)tm_insrt_large);
+    fprintf(stderr, "large: winstl : pantheios:\t% 9.04f\n", (double)tm_cvrt_large/(double)tm_insrt_large);
+
 
     return EXIT_SUCCESS;
 }
@@ -220,6 +226,7 @@ int main(int argc, char** argv)
 
     return res;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

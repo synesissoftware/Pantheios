@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/performance/test.performance.util.date_elements_to_string/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.performance.util.date_elements_to_string project.
- *
- * Created:     13th November 2016
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <platformstl/platformstl.h>
@@ -21,6 +11,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif /* operating system */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

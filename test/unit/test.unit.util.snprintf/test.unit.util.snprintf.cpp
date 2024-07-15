@@ -101,6 +101,11 @@ static void test_pantheios_util_snprintf_a()
 {
     // ""
 
+#if defined(__GNUC__) && \
+    __GNUC__ >= 9
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wformat-zero-length"
+#endif
     {
         char            buff[100];
 
@@ -116,6 +121,10 @@ static void test_pantheios_util_snprintf_a()
 
         XTESTS_TEST_INTEGER_EQUAL(0u, n);
     }
+#if defined(__GNUC__) && \
+    __GNUC__ >= 9
+# pragma GCC diagnostic pop
+#endif
 
 
     // "a"
@@ -288,6 +297,11 @@ static void test_pantheios_util_snprintf()
 {
     // ""
 
+#if defined(__GNUC__) && \
+    __GNUC__ >= 9
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wformat-zero-length"
+#endif
     {
         pantheios_char_t    buff[100];
 
@@ -303,6 +317,10 @@ static void test_pantheios_util_snprintf()
 
         XTESTS_TEST_INTEGER_EQUAL(0u, n);
     }
+#if defined(__GNUC__) && \
+    __GNUC__ >= 9
+# pragma GCC diagnostic pop
+#endif
 
 
     // "a"

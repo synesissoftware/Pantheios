@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.fe.simple.WithCallback/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.scratch.fe.simple.WithCallback project.
- *
- * Created:     15th November 2010
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <platformstl/platformstl.h>
@@ -21,6 +11,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

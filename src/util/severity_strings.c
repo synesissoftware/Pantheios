@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/severity_strings.c
+ * File:    src/util/severity_strings.c
  *
- * Purpose:     Severity strings for Pantheios API
+ * Purpose: Severity strings for Pantheios API
  *
- * Created:     26th July 2005
- * Updated:     16th December 2023
+ * Created: 26th July 2005
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,6 +43,7 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/quality/contract.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -51,6 +52,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -222,7 +224,7 @@ pantheios_getInserterFormat(
     widthAndFormat &= ~(0xff);  /* We don't care about the width here */
 
 #if 0
-    switch(
+    switch (
             zeroXPrefix =   0x0100  /*!< Applies a \c 0x prefix to the output. */
         ,   zeroPadded  =   0x0200  /*!< Zero-pads the output. */
         ,   hex         =   0x0400  /*!< Represents the output in hexadecimal. */
@@ -234,6 +236,7 @@ pantheios_getInserterFormat(
 }
 #endif /* 0 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -241,6 +244,7 @@ pantheios_getInserterFormat(
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

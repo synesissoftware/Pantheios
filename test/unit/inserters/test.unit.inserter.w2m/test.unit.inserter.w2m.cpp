@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/inserters/test.unit.inserter.w2m/test.unit.inserter.w2m.cpp
+ * File:    test/unit/inserters/test.unit.inserter.w2m/test.unit.inserter.w2m.cpp
  *
- * Purpose:     Implementation file for the test.unit.inserter.w2m project.
+ * Purpose: Implementation file for the test.unit.inserter.w2m project.
  *
- * Created:     21st December 2010
- * Updated:     16th January 2023
+ * Created: 21st December 2010
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -103,10 +103,6 @@ namespace
         ,   L"abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"
     };
 
-    inline size_t get_min_max(size_t minLen, size_t maxLen)
-    {
-        return pantheios::pan_slice_t::get_lazy_length(minLen, maxLen);
-    }
 
 static void test_1_01()
 {

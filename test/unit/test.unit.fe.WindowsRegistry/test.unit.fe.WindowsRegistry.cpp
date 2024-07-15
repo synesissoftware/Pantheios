@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.fe.WindowsRegistry/test.unit.fe.WindowsRegistry.cpp
+ * File:    test/unit/test.unit.fe.WindowsRegistry/test.unit.fe.WindowsRegistry.cpp
  *
- * Purpose:     Implementation file for the test.unit.fe.WindowsRegistry project.
+ * Purpose: Implementation file for the test.unit.fe.WindowsRegistry project.
  *
- * Created:     14th May 2008
- * Updated:     16th December 2023
+ * Created: 14th May 2008
+ * Updated: 13th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -204,6 +204,17 @@ namespace stub
     }
 
 } /* namespace stub */
+
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if _STLSOFT_VER >= 0x010b0000
+# define windows_exception                                  winstl_exception
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helpers

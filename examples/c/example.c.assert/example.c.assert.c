@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/example.c.assert/example.c.assert.c
+ * File:    examples/c/example.c.assert/example.c.assert.c
  *
- * Purpose:     C example program for Pantheios. Demonstrates:
+ * Purpose: C example program for Pantheios. Demonstrates:
  *
- *                - how the Pantheios libraries must be explicitly
- *                  initialised in a C program; this is not the case in
- *                  C++ programs
- *                - use of PANTHEIOS_ASSERT()
+ *            - how the Pantheios libraries must be explicitly initialised
+ *              in a C program; this is not the case in C++ programs
+ *            - use of PANTHEIOS_ASSERT()
  *
- * Created:     8th May 2009
- * Updated:     16th December 2023
+ * Created: 8th May 2009
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,9 +36,12 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("exa
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(int argc, char* argv[])
 {
   int i = pantheios_init();
+
+  STLSOFT_SUPPRESS_UNUSED(argc);
+  STLSOFT_SUPPRESS_UNUSED(argv);
 
   if(i >= 0)
   {

@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.N/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.scratch.be.N.fail project.
- *
- * Created:     19th December 2008
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <pantheios/implicit_link/core.h>
@@ -29,6 +19,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

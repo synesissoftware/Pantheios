@@ -174,7 +174,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "test.component.inserters.hostId"=.\test.component.inserters.hostId\vc6\test.component.inserters.hostId.dsp - Package Owner=<4>
+Project: "test.component.inserters.hostid"=.\test.component.inserters.hostid\vc6\test.component.inserters.hostid.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -264,7 +264,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "test.component.inserters.processId"=.\test.component.inserters.processId\vc6\test.component.inserters.processId.dsp - Package Owner=<4>
+Project: "test.component.inserters.processid"=.\test.component.inserters.processid\vc6\test.component.inserters.processid.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -318,7 +318,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "test.component.inserters.threadId"=.\test.component.inserters.threadId\vc6\test.component.inserters.threadId.dsp - Package Owner=<4>
+Project: "test.component.inserters.threadid"=.\test.component.inserters.threadid\vc6\test.component.inserters.threadid.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

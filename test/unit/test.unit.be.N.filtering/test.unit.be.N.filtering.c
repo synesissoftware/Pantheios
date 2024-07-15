@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.be.N.filtering/test.unit.be.N.filtering.cpp
+ * File:    test/unit/test.unit.be.N.filtering/test.unit.be.N.filtering.cpp
  *
- * Purpose:     Implementation file for the test.unit.be.N.filtering project.
+ * Purpose: Tests **pantheios.be.N** filtering functionality.
  *
- * Created:     28th June 2016
- * Updated:     16th December 2023
+ * Created: 28th June 2016
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -126,11 +126,12 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
      * by the reset_state_() function (below) and the test setup code.
      */
 
-    PANTHEIOS_BE_N_STDFORM_ENTRY(       1,  pantheios_be_N_test_1,                                                              0),
-    PANTHEIOS_BE_N_FILTERED_ENTRY(      2,  pantheios_be_N_test_2,                              PANTHEIOS_SEV_NOTICE,           0),
-    PANTHEIOS_BE_N_FILTERED_ENTRY_FLOOR(3,  pantheios_be_N_test_3,  PANTHEIOS_SEV_CRITICAL,     PANTHEIOS_SEV_INFORMATIONAL,    0),
-    PANTHEIOS_BE_N_STDFORM_ENTRY(       4,  pantheios_be_N_test_4,                                                              0),
-    PANTHEIOS_BE_N_FILTERED_ENTRY_FLOOR(5,  pantheios_be_N_test_5,  PANTHEIOS_SEV_EMERGENCY,    PANTHEIOS_SEV_ERROR,            0),
+    /*                                      be-id   be-prefix               floor                       ceiling,                        flags   */
+    PANTHEIOS_BE_N_STDFORM_ENTRY(           1,      pantheios_be_N_test_1,                                                              0       ),
+    PANTHEIOS_BE_N_FILTERED_ENTRY(          2,      pantheios_be_N_test_2,                              PANTHEIOS_SEV_NOTICE,           0       ),
+    PANTHEIOS_BE_N_FILTERED_ENTRY_FLOOR(    3,      pantheios_be_N_test_3,  PANTHEIOS_SEV_CRITICAL,     PANTHEIOS_SEV_INFORMATIONAL,    0       ),
+    PANTHEIOS_BE_N_STDFORM_ENTRY(           4,      pantheios_be_N_test_4,                                                              0       ),
+    PANTHEIOS_BE_N_FILTERED_ENTRY_FLOOR(    5,      pantheios_be_N_test_5,  PANTHEIOS_SEV_EMERGENCY,    PANTHEIOS_SEV_ERROR,            0       ),
 
     PANTHEIOS_BE_N_TERMINATOR_ENTRY
 };
@@ -164,9 +165,7 @@ int main(int argc, char** argv)
 
             if(0 == res)
             {
-
-                int         i;
-                for(i = 0; i != 10; ++i)
+                { int i; for(i = 0; i != 10; ++i)
                 {
                     LOG_ENTRY(token, PANTHEIOS_SEV_DEBUG, PANTHEIOS_LITERAL_STRING("debug"));
                     LOG_ENTRY(token, PANTHEIOS_SEV_INFORMATIONAL, PANTHEIOS_LITERAL_STRING("informational"));
@@ -176,7 +175,7 @@ int main(int argc, char** argv)
                     LOG_ENTRY(token, PANTHEIOS_SEV_CRITICAL, PANTHEIOS_LITERAL_STRING("critical"));
                     LOG_ENTRY(token, PANTHEIOS_SEV_ALERT, PANTHEIOS_LITERAL_STRING("alert"));
                     LOG_ENTRY(token, PANTHEIOS_SEV_EMERGENCY, PANTHEIOS_LITERAL_STRING("emergency"));
-                }
+                }}
 
                 pantheios_be_uninit(token);
 
@@ -236,6 +235,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

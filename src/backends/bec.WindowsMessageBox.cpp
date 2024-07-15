@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.WindowsMessageBox.cpp
+ * File:    src/backends/bec.WindowsMessageBox.cpp
  *
- * Purpose:     Implementation for the WindowsMessageBox back-end
+ * Purpose: Implementation for the WindowsMessageBox back-end
  *
- * Created:     10th March 2008
- * Updated:     16th December 2023
+ * Created: 10th March 2008
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,6 +58,7 @@
 #include <string.h>
 #include <windows.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler features
  */
@@ -69,15 +70,17 @@
 # define    _PANTHEIOS_NO_PLACEMENT_DELETE
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_MessageBox_                ::MessageBoxW
+# define pan_MessageBox_                                    ::MessageBoxW
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_MessageBox_                ::MessageBoxA
+# define pan_MessageBox_                                    ::MessageBoxA
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -89,6 +92,7 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -128,6 +132,7 @@ private:
     WindowsMessageBox_Context(WindowsMessageBox_Context const&);
     WindowsMessageBox_Context &operator =(WindowsMessageBox_Context const&);
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -195,6 +200,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsMessageBox_logEntry(
     return elc->ReportEvent(severity, entry, cchEntry);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsMessageBox_Context
  */
@@ -226,6 +232,7 @@ void WindowsMessageBox_Context::operator delete(void* pv)
     ::operator delete(pv);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsMessageBox_Context
  */
@@ -241,7 +248,7 @@ int WindowsMessageBox_Context::ReportEvent(
 
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == (severity & 0x08), "be.WindowsMessageBox can only be used with the stock severity levels in the range [0, 8). Levels in the range [8, 16) are not allowed");
 
-    switch(severity & 0x0f)
+    switch (severity & 0x0f)
     {
         case    PANTHEIOS_SEV_EMERGENCY:
         case    PANTHEIOS_SEV_ALERT:
@@ -266,6 +273,7 @@ int WindowsMessageBox_Context::ReportEvent(
 
     return static_cast<int>(cchEntry);
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

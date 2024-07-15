@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.N/test.scratch.be.N.cpp
+ * File:    test/scratch/test.scratch.be.N/test.scratch.be.N.cpp
  *
- * Purpose:     Implementation file for the test.scratch.be.N project.
+ * Purpose: Implementation file for the test.scratch.be.N project.
  *
- * Created:     18th October 2006
- * Updated:     16th December 2023
+ * Created: 18th October 2006
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,6 +36,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -44,12 +45,12 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 PANTHEIOS_EXTERN pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
 {
-    { 1,  PANTHEIOS_SEV_NOTICE }            /* Filters out everything below 'notice' */
-  , { 2,  PANTHEIOS_SEV_INFORMATIONAL  }    /* Filters out everything below 'informational' */
-  , { 3,  PANTHEIOS_SEV_ERROR  }            /* Allows only 'error', 'critical', 'alert', 'emergency' */
-  , { 4,  PANTHEIOS_SEV_WARNING }           /* Allows only 'warning', 'error', 'critical', 'alert', 'emergency' */
-  , { 5,  PANTHEIOS_SEV_DEBUG  }            /* Allows all stock severities */
-  , { 0,  PANTHEIOS_SEV_NOTICE }            /* Terminates the array; sets the default ceiling to 'notice' */
+    PANTHEIOS_FE_N_ENTRY2(1,  PANTHEIOS_SEV_NOTICE)         /* Filters out everything below 'notice' */
+  , PANTHEIOS_FE_N_ENTRY2(2,  PANTHEIOS_SEV_INFORMATIONAL)  /* Filters out everything below 'informational' */
+  , PANTHEIOS_FE_N_ENTRY2(3,  PANTHEIOS_SEV_ERROR)          /* Allows only 'error', 'critical', 'alert', 'emergency' */
+  , PANTHEIOS_FE_N_ENTRY2(4,  PANTHEIOS_SEV_WARNING)        /* Allows only 'warning', 'error', 'critical', 'alert', 'emergency' */
+  , PANTHEIOS_FE_N_ENTRY2(5,  PANTHEIOS_SEV_DEBUG)          /* Allows all stock severities */
+  , PANTHEIOS_FE_N_ENTRY2(0,  PANTHEIOS_SEV_NOTICE)         /* Terminates the array; sets the default ceiling to 'notice' */
 };
 
 PANTHEIOS_EXTERN pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
@@ -75,6 +76,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(
   init->flags |= PANTHEIOS_BE_WINDOWSDEBUGGER_F_DETAILS_AT_START;
 }
 #endif /* PLATFORMSTL_OS_IS_WIN?? */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -129,6 +131,7 @@ int main(int argc, char *argv[])
 
   return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

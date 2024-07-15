@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.custom_severity/test.component.custom_severity.cpp
+ * File:    test/component/test.component.custom_severity/test.component.custom_severity.cpp
  *
- * Purpose:     Implementation file for the test.component.custom_severity project.
+ * Purpose: Implementation file for the test.component.custom_severity project.
  *
- * Created:     31st October 2005
- * Updated:     16th December 2023
+ * Created: 31st October 2005
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -117,7 +117,7 @@ static void test_1_01()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_NOTICE, results[0].severity);
 }
@@ -139,7 +139,7 @@ static void test_1_02()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_NOTICE | (1 << 4), results[0].severity);
 }
@@ -161,7 +161,7 @@ static void test_1_03()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_NOTICE | (0x01234567 << 4), results[0].severity);
 }

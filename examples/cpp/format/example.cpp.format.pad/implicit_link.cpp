@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/format/example.cpp.format.pad/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the example.cpp.format.pad project.
- *
- * Created:     29th June 2009
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <pantheios/implicit_link/core.h>
@@ -26,6 +16,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif /* _WIN32 || _WIN64 */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.pseudoUNIX/test.scratch.pseudoUNIX.c
+ * File:    test/scratch/test.scratch.pseudoUNIX/test.scratch.pseudoUNIX.c
  *
- * Purpose:     Implementation file for the pseudoUNIX.test project.
+ * Purpose: Implementation file for the pseudoUNIX.test project.
  *
- * Created:     23rd September 2006
- * Updated:     16th December 2023
+ * Created: 23rd September 2006
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
                 else
                 {
                     /* - arguments */
-                    switch(arg[1])
+                    switch (arg[1])
                     {
                         case    '?':
                             usage(1, NULL, -1, argc, argv);

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.pointer/test.component.inserters.pointer.cpp
+ * File:    test/component/test.component.inserters.pointer/test.component.inserters.pointer.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.pointer project.
+ * Purpose: Implementation file for the test.component.inserters.pointer project.
  *
- * Created:     19th October 2006
- * Updated:     16th December 2023
+ * Created: 19th October 2006
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

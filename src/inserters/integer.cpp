@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inserters/integer.cpp
+ * File:    inserters/integer.cpp
  *
- * Purpose:     Implementation of the inserter classes.
+ * Purpose: Implementation of the `integer` inserter class.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -86,6 +86,7 @@
 #endif /* compiler */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -98,6 +99,7 @@
 #if defined(STLSOFT_COMPILER_IS_MSVC)
 # pragma warning(disable : 4127)
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -117,6 +119,7 @@ namespace std
 
 } /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -331,6 +334,7 @@ namespace
     }
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * integer
@@ -815,7 +819,7 @@ void integer::construct_()
         // TODO: sort this in a better fashion in future, perhaps
         // with STLSoft 1.12+'s i2s functionality
 
-        switch(size)
+        switch (size)
         {
             case    typeIsU8:
             case    typeIsU16:
@@ -840,7 +844,7 @@ void integer::construct_()
         }
     }
 
-    switch(size)
+    switch (size)
     {
         case    typeIsS8:
         case    typeIsS16:
@@ -876,7 +880,7 @@ void integer::construct_()
                         intWidth    =   2 * sizeof(int);
         size_t          l           =   0;
 
-        switch(size)
+        switch (size)
         {
             case    typeIsS16:
                 l += 2;
@@ -955,6 +959,7 @@ void integer::construct_()
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(static_cast<int>(m_len) > 0, "failed to set length");
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -962,6 +967,7 @@ void integer::construct_()
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

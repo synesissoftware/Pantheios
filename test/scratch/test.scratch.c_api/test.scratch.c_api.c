@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.c_api/test.scratch.c_api.c
+ * File:    test/scratch/test.scratch.c_api/test.scratch.c_api.c
  *
- * Purpose:     Implementation file for the test.scratch.c_api project.
+ * Purpose: Implementation file for the test.scratch.c_api project.
  *
- * Created:     14th October 2005
- * Updated:     16th December 2023
+ * Created: 14th October 2005
+ * Updated: 13th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,14 +24,16 @@
 #include <stdio.h>
 #include <time.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
 static int main_(int /* argc */, char ** /*argv*/);
-static void some_logging_1();
-static void some_logging_2();
-static void some_logging_3();
+static void some_logging_1(void);
+static void some_logging_2(void);
+static void some_logging_3(void);
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * process identity
@@ -43,7 +45,10 @@ static void some_logging_3();
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.c_api");
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int argc, char **argv)
 {
@@ -79,18 +84,19 @@ int main(int argc, char *argv[])
     return res;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void some_logging_1()
+static void some_logging_1(void)
 {
-    short                   s       =   123;
-    int                     i       =   456;
-    long                    l       =   789;
-    float                   f       =   (float)(0.123);
-    double                  d       =   0.456;
-    long double             ld      =   0.789;
-    void                    *p      =   &l;
-    char const              *lstr   =   "{a pointer to a C-style string}";
+    short       s       =   123;
+    int         i       =   456;
+    long        l       =   789;
+    float       f       =   (float)(0.123);
+    double      d       =   0.456;
+    long double ld      =   0.789;
+    void*       p       =   &l;
+    char const* lstr    =   "{a pointer to a C-style string}";
 
 #if 0
     log_INFORMATIONAL(  "This is a (hopefully) typical error string, containing: "
@@ -101,9 +107,21 @@ static void some_logging_1()
                     ,   "and a converted time value (", tm, ")"
                     );
 #endif /* 0 */
+    pantheios_logprintf(
+        PANTHEIOS_SEV_INFORMATIONAL
+    ,   "This is a (hopefully) typical error string, containing: "
+        "some integers (%d, %d, %ld); "
+        "some real numbers (%f, %g, %lf); "
+        "a pointer (0x%08x); "
+        "some strings (%s, %s); "
+    ,   s,  i,  l
+    ,   f,  d,  ld
+    ,   p
+    ,   lstr,   "some string"
+    );
 }
 
-static void some_logging_2()
+static void some_logging_2(void)
 {
 #if 0
     try
@@ -117,8 +135,13 @@ static void some_logging_2()
 #endif /* 0 */
 }
 
-static void some_logging_3()
+static void some_logging_3(void)
 {
+#ifdef _WIN32
+# pragma warning(push)
+# pragma warning(disable : 4996)
+#endif
+
     int     numUsers    =   1000000;
     char    szNumUsers[101];
 
@@ -153,7 +176,12 @@ static void some_logging_3()
     ,   PARG_S(" satisfied users of ")
     ,   PARG_SN("Pantheios", 9)
     );
+
+#ifdef _WIN32
+# pragma warning(pop)
+#endif
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

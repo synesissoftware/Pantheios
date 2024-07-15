@@ -34,6 +34,7 @@
 #include <string>                             // for std::string
 #include <stdlib.h>                           // for exit codes
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(int /* backEndId */, pan_be_fprintf_init_t* init) /* throw() */
@@ -44,15 +45,18 @@ PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(int /* backEndId */, pan_be
     init->flags |= PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.format.highres");
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -84,6 +88,7 @@ int main()
 
   return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

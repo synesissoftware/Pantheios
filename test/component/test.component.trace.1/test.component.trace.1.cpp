@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.trace.1/test.component.trace.1.cpp
+ * File:    test/component/test.component.trace.1/test.component.trace.1.cpp
  *
- * Purpose:     Implementation file for the test.component.trace.1 project.
+ * Purpose: Implementation file for the test.component.trace.1 project.
  *
- * Created:     25th November 2007
- * Updated:     16th December 2023
+ * Created: 25th November 2007
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -162,7 +162,7 @@ static void test_01()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(results.empty());
-    XTESTS_TEST(0 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(0, results.size());
 }
 
 static void test_02()
@@ -182,7 +182,7 @@ static void test_02()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST(pantheios::notice == results[0].severity);
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("", LINE), results[0].statement);
 }
@@ -196,7 +196,7 @@ static void test_03()
 
     // 2. Create test data
 
-    PANTHEIOS_TRACE_NOTICE("abc");  int LINE = __LINE__;
+    PANTHEIOS_TRACE_NOTICE("abc"); int LINE = __LINE__;
 
 
     // 3. Verification
@@ -204,7 +204,7 @@ static void test_03()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST(pantheios::notice == results[0].severity);
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abc", LINE), results[0].statement);
 }
@@ -226,7 +226,7 @@ static void test_04()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST(pantheios::informational == results[0].severity);
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abcdef", LINE), results[0].statement);
 }
@@ -248,7 +248,7 @@ static void test_05()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST(pantheios::informational == results[0].severity);
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abcdefghi", LINE), results[0].statement);
 }
@@ -270,7 +270,7 @@ static void test_06()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST(pantheios::informational == results[0].severity);
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abcdefghijklmnopqrstuvwxyz", LINE), results[0].statement);
 }
@@ -292,7 +292,7 @@ static void test_07()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST(pantheios::informational == results[0].severity);
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abcdefghijklmnopqrstuvwxyz", LINE), results[0].statement);
 }
@@ -321,7 +321,7 @@ static void test_10()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(2 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(2, results.size());
     XTESTS_TEST(pantheios::informational == results[0].severity);
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abcdefghijklmnopqrstuvwxyz", LINE1), results[0].statement);
     XTESTS_TEST(pantheios::informational == results[1].severity);
@@ -358,7 +358,7 @@ static void test_11()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(numEntries == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(numEntries, results.size());
     { for(size_t i = 0; i < numEntries; ++i)
     {
         XTESTS_TEST(pantheios::informational == results[i].severity);
@@ -421,7 +421,7 @@ static void test_21()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST(pantheios::informational == results[0].severity);
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_((msgEl1 + msgEl2).c_str(), LINE), results[0].statement);
 }
@@ -445,7 +445,7 @@ static void test_22()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST(pantheios::informational == results[0].severity);
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_((msgEl1 + msgEl2).c_str(), LINE), results[0].statement);
 }

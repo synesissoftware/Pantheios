@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.speech.cpp
+ * File:    src/backends/bec.speech.cpp
  *
- * Purpose:     Implementation for the speech back-end
+ * Purpose: Implementation for the speech back-end
  *
- * Created:     31st August 2006
- * Updated:     16th December 2023
+ * Created: 31st August 2006
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -81,6 +81,7 @@
 /* Standard C header files */
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
  */
@@ -89,6 +90,7 @@
         _MSC_VER < 1200)
 # define _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -113,6 +115,7 @@ namespace
     >::type                                     buffer_t;
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -167,6 +170,7 @@ namespace
     };
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -374,6 +378,7 @@ pantheios_be_speech_parseArgs(
     return res;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 be_speech_context::be_speech_context(
@@ -471,7 +476,7 @@ int be_speech_context::speak(
 
     if(PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS_ON_CRITICAL & this->m_flags)
     {
-        switch(severityLevel)
+        switch (severityLevel)
         {
             case    PANTHEIOS_SEV_EMERGENCY:
             case    PANTHEIOS_SEV_ALERT:
@@ -513,6 +518,7 @@ int be_speech_context::speak(
         return 0;
     }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

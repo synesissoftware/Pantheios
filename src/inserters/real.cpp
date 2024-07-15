@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inserters/real.cpp
+ * File:    inserters/real.cpp
  *
- * Purpose:     Implementation of the inserter classes.
+ * Purpose: Implementation of the `real` inserter class.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -60,6 +60,7 @@
 
 #include <pantheios/quality/contract.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -69,6 +70,7 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -77,6 +79,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * real
@@ -144,7 +147,7 @@ void real::construct_()
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == m_sz[0], "cannot construct if value is non-empty");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(static_cast<int>(m_len) < 0, "cannot construct if length is not a type marker");
 
-    switch(static_cast<RealSize>(m_len))
+    switch (static_cast<RealSize>(m_len))
     {
         case    typeIsFloat:
             m_len = static_cast<size_t>(pantheios_util_snprintf(&m_sz[0]
@@ -173,6 +176,7 @@ void real::construct_()
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(static_cast<int>(m_len) > 0, "failed to set length");
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -180,6 +184,7 @@ void real::construct_()
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

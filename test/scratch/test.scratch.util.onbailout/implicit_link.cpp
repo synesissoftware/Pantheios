@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.util.onbailout/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.scratch.util.onbailout project.
- *
- * Created:     1st March 2008
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <platformstl/platformstl.h>
@@ -20,6 +10,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif /* Win32 || Win64 */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

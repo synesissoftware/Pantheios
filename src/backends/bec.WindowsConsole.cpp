@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.WindowsConsole.cpp
+ * File:    src/backends/bec.WindowsConsole.cpp
  *
- * Purpose:     Implementation of the Pantheios Windows-Console Stock Back-end API.
+ * Purpose: Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
- * Created:     17th July 2006
- * Updated:     16th December 2023
+ * Created: 17th July 2006
+ * Updated: 13th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -21,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -97,6 +98,16 @@
 # define pan_WriteConsole_              ::WriteConsoleA
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if _STLSOFT_VER >= 0x010b0000
+# define windows_exception                                  winstl_exception
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -726,17 +737,20 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
     // 1. console-hwnd
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
     try
     {
 # ifdef WINSTL_OS_IS_WIN64
+
         hwndConsole = winstl::dl_call<HWND>("KERNEL32", "GetConsoleWindow");
 # else /* ? WINSTL_OS_IS_WIN64 */
+
         hwndConsole = winstl::dl_call<HWND>("KERNEL32", "S:GetConsoleWindow");
 # endif /* WINSTL_OS_IS_WIN64 */
     }
     catch(winstl::invalid_calling_convention_exception&)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "invalid calling convension", NULL);
+        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "invalid calling convention", NULL);
 
         throw;
     }
@@ -754,7 +768,6 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
 
         throw;
     }
-
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
     // 2. console-title
@@ -814,11 +827,9 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
      _MSC_VER <= 1100
 
             m_map[mxName] == hMx;
-
 # else /* ? compiler */
 
             m_map.insert(std::make_pair(&mxName[0], hMx));
-
 # endif /* compiler */
         }
 
