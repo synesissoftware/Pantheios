@@ -5,17 +5,17 @@ add_executable(test.component.bec.fprintf
 
 target_link_libraries(test.component.bec.fprintf
 	PRIVATE
-		Pantheios.util
-)
-
-target_link_libraries(test.component.bec.fprintf
-	PRIVATE
 		Pantheios.fe.simple
 )
 
 target_link_libraries(test.component.bec.fprintf
 	PRIVATE
 		Pantheios.bec.fprintf
+)
+
+target_link_libraries(test.component.bec.fprintf
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.component.bec.fprintf

@@ -5,17 +5,17 @@ add_executable(test.unit.be.lrsplit
 
 target_link_libraries(test.unit.be.lrsplit
 	PRIVATE
-		Pantheios.util
-)
-
-target_link_libraries(test.unit.be.lrsplit
-	PRIVATE
 		Pantheios.fe.null
 )
 
 target_link_libraries(test.unit.be.lrsplit
 	PRIVATE
 		Pantheios.be.lrsplit
+)
+
+target_link_libraries(test.unit.be.lrsplit
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.be.lrsplit

@@ -5,12 +5,12 @@ add_executable(test.unit.fe.WindowsRegistry
 
 target_link_libraries(test.unit.fe.WindowsRegistry
 	PRIVATE
-		Pantheios.util
+		Pantheios.fe.WindowsRegistry
 )
 
 target_link_libraries(test.unit.fe.WindowsRegistry
 	PRIVATE
-		Pantheios.fe.WindowsRegistry
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.fe.WindowsRegistry

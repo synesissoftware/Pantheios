@@ -5,12 +5,12 @@ add_executable(test.unit.fe.N
 
 target_link_libraries(test.unit.fe.N
 	PRIVATE
-		Pantheios.util
+		Pantheios.fe.N
 )
 
 target_link_libraries(test.unit.fe.N
 	PRIVATE
-		Pantheios.fe.N
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.fe.N

@@ -5,13 +5,13 @@ add_executable(test.unit.be.WindowsSyslog
 
 target_link_libraries(test.unit.be.WindowsSyslog
 	PRIVATE
-		Pantheios.util
+		Pantheios.be.WindowsSyslog
+		Pantheios.bec.WindowsSyslog
 )
 
 target_link_libraries(test.unit.be.WindowsSyslog
 	PRIVATE
-		Pantheios.be.WindowsSyslog
-		Pantheios.bec.WindowsSyslog
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.be.WindowsSyslog
