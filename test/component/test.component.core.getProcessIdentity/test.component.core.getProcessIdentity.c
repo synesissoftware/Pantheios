@@ -210,7 +210,7 @@ static int teardown(void* param)
     return 0;
 }
 
-static void test_1_0()
+static void test_1_0(void)
 {
     PAN_CHAR_T const pi[] = PSTR("test_1_0");
 
@@ -243,7 +243,7 @@ static void test_1_0()
     }
 }
 
-static void test_1_1()
+static void test_1_1(void)
 {
     PAN_CHAR_T const pi[] = PSTR("test_1_1");
 

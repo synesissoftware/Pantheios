@@ -30,9 +30,9 @@
  */
 
 static int main_(int /* argc */, char ** /*argv*/);
-static void some_logging_1();
-static void some_logging_2();
-static void some_logging_3();
+static void some_logging_1(void);
+static void some_logging_2(void);
+static void some_logging_3(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void some_logging_1()
+static void some_logging_1(void)
 {
     short       s       =   123;
     int         i       =   456;
@@ -121,7 +121,7 @@ static void some_logging_1()
     );
 }
 
-static void some_logging_2()
+static void some_logging_2(void)
 {
 #if 0
     try
@@ -135,7 +135,7 @@ static void some_logging_2()
 #endif /* 0 */
 }
 
-static void some_logging_3()
+static void some_logging_3(void)
 {
 #ifdef _WIN32
 # pragma warning(push)

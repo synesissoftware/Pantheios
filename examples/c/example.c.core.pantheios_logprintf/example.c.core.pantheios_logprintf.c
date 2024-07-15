@@ -1,22 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/example.c.core.pantheios_logprintf/example.c.core.pantheios_logprintf.c
+ * File:    examples/c/example.c.core.pantheios_logprintf/example.c.core.pantheios_logprintf.c
  *
- * Purpose:     C example program for Pantheios. Demonstrates:
+ * Purpose: C example program for Pantheios. Demonstrates:
  *
- *                - use of pantheios_logprintf() in C compilation units
+ *            - use of pantheios_logprintf() in C compilation units
  *
- * Created:     31st August 2006
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 31st August 2006
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,8 +25,11 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("exa
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(int argc, char* argv[])
 {
+  STLSOFT_SUPPRESS_UNUSED(argc);
+  STLSOFT_SUPPRESS_UNUSED(argv);
+
   /* Must initialise Pantheios, when using from C (and there are no C++
    * compilation units in the link-unit).
    *
