@@ -55,6 +55,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * xTests extensions
  */
@@ -98,6 +99,7 @@ namespace {
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * feature selection
  */
@@ -123,6 +125,7 @@ namespace {
     !defined(PANTHEIOS_BAILOUT_NO_UNIX_SYSLOG)
 # define TEST_SYSLOG_
 #endif /* PLATFORMSTL_OS_IS_UNIX */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -150,6 +153,7 @@ static void test_1_11();
 static void test_1_12();
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -272,12 +276,13 @@ namespace
 
     OnBailoutReceiver   receiver;
     OnBailoutReceiver_w receiver_w;
-
 } /* anonymous namespace */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.util.onbailout");
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -315,6 +320,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -1063,8 +1069,8 @@ static void test_1_11()
 static void test_1_12()
 {
 }
-
 } /* anonymous namespace */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -1142,6 +1148,7 @@ void bailout_test_WriteFile_(HANDLE, wchar_t const*, DWORD, DWORD*, void*);
 
 #include <../src/util/bailout.c>
 #include <../src/util/snprintf.c>
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -1249,6 +1256,7 @@ void bailout_fclose_(FILE* hFile)
         fclose(hFile);
     }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

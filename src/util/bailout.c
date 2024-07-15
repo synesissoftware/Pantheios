@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/bailout.c
+ * File:    src/util/bailout.c
  *
- * Purpose:     Implementation file for low-level Pantheios bail out.
+ * Purpose: Implementation file for low-level Pantheios bail out.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 15th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -103,6 +103,7 @@
 # endif /* !PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
  */
@@ -124,6 +125,7 @@
 # define PANTHEIOS_BAILOUT_USE_SEH
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -132,11 +134,13 @@
 # pragma warn -8080
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
+
 # define pan_strlen_w_                  wcslen
 # define pan_strncpy_w_                 wcsncpy
 # define pan_wsprintf_w_                wsprintfW
@@ -192,6 +196,7 @@ pantheios_util_onBailOut_fopen_w_(
 );
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -228,8 +233,8 @@ pantheios_util_onBailOut_fopen_w_(
 
 # define BAILOUT_1PARAM_WARN_MESSAGE_ID                     ((DWORD)1005)
 # define BAILOUT_2PARAM_WARN_MESSAGE_ID                     ((DWORD)1006)
-
 #endif /* PLATFORMSTL_OS_IS_WINDOWS && !defined(PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * util API
@@ -1068,6 +1073,7 @@ pantheios_onBailOut3_w(
 }
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -1195,6 +1201,7 @@ pantheios_util_onBailOut_fopen_w_(
 }
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -1202,6 +1209,7 @@ pantheios_util_onBailOut_fopen_w_(
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

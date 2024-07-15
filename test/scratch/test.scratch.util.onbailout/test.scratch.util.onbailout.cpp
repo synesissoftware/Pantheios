@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.util.onbailout project.
  *
  * Created: 21st June 2005
- * Updated: 14th July 2024
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

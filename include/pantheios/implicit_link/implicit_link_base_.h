@@ -4,7 +4,7 @@
  * Purpose: Implicit linking for the Pantheios libraries
  *
  * Created: 18th July 2005
- * Updated: 13th July 2024
+ * Updated: 15th July 2024
  *
  * Home:    http://pantheios.org/
  *

@@ -42,6 +42,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -50,15 +51,18 @@ static void test_1_01();
 
 static pantheios::sint64_t pan_get_tid_();
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.threadid");
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
@@ -67,12 +71,11 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
 # define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 # define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -94,6 +97,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -130,7 +134,9 @@ static void test_1_01()
 static pantheios::sint64_t pan_get_tid_()
 {
 #if defined(PLATFORMSTL_OS_IS_UNIX)
+
 # ifdef PANTHEIOS_MT
+
     union
     {
         pantheios::sint64_t   u64;
@@ -145,14 +151,18 @@ static pantheios::sint64_t pan_get_tid_()
 
     return u.u64;
 # else /* ? PANTHEIOS_MT */
+
     return 1;
 # endif /* PANTHEIOS_MT */
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
     return static_cast<pantheios::sint64_t>(::GetCurrentThreadId());
 #else /* ? OS */
+
 # error Not discriminated for platforms other than UNIX and Windows
 #endif /* OS */
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

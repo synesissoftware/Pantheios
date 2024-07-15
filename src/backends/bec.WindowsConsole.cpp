@@ -4,7 +4,7 @@
  * Purpose: Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
  * Created: 17th July 2006
- * Updated: 13th July 2024
+ * Updated: 15th July 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -85,17 +85,18 @@
 #include <stdio.h>
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define pan_WriteConsole_              ::WriteConsoleW
+# define pan_WriteConsole_                                  ::WriteConsoleW
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define pan_WriteConsole_              ::WriteConsoleA
+# define pan_WriteConsole_                                  ::WriteConsoleA
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -216,8 +217,8 @@ namespace
                 ,   handleId
                 );
     }
-
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -323,6 +324,7 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -359,9 +361,8 @@ namespace
         ,   {   PANTHEIOS_SEV_DEBUG + 7,     STD_OUTPUT_HANDLE,  FOREGROUND_BLUE     |   0                      |   BACKGROUND_WHITE    |   BACKGROUND_INTENSITY    }
         ,   {   PANTHEIOS_SEV_DEBUG + 8,     STD_OUTPUT_HANDLE,  FOREGROUND_BLUE     |   0                      |   BACKGROUND_WHITE    |   BACKGROUND_INTENSITY    }
     };
-
-
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -535,6 +536,7 @@ pantheios_be_WindowsConsole_parseArgs(
 
     return res;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsConsole_Context
@@ -836,7 +838,6 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
         return hMx;
     }
 }
-
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 void WindowsConsole_Context::lookupSeverityCharacteristics(int severity, HANDLE &hOutput, WORD &attributes) const
@@ -888,6 +889,7 @@ WindowsConsole_Context::write_reset(
 
     ::WriteConsole(hOutput, &ch, 0, &dummy, NULL);
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

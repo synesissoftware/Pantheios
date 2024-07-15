@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/pantheios.h
+ * File:    pantheios/pantheios.h
  *
- * Purpose:     Pantheios Core and Util APIs.
+ * Purpose: Pantheios Core and Util APIs.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 15th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   5
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       382
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       383
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR

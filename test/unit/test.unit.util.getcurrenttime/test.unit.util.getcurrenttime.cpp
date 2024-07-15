@@ -4,7 +4,7 @@
  * Purpose: Unit-testing of `pantheios_util_getCurrentTime()`
  *
  * Created: 10th November 2007
- * Updated: 7th February 2024
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

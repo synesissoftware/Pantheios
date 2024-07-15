@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.util.snprintf/test.unit.util.snprintf.cpp
+ * File:    test/unit/test.unit.util.snprintf/test.unit.util.snprintf.cpp
  *
- * Purpose:     Implementation file for the test.unit.util.snprintf project.
+ * Purpose: Implementation file for the test.unit.util.snprintf project.
  *
- * Created:     19th June 2020
- * Updated:     16th December 2023
+ * Created: 19th June 2020
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,6 +19,7 @@
 #include <stlsoft/util/minmax.hpp>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -41,9 +42,11 @@ static void test_1_12();
 
 } /* anonymous namespace */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.util.snprintf");
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -75,6 +78,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -413,8 +417,8 @@ static void test_1_11()
 static void test_1_12()
 {
 }
-
 } /* anonymous namespace */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
