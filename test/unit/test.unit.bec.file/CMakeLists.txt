@@ -5,12 +5,12 @@ add_executable(test.unit.bec.file
 
 target_link_libraries(test.unit.bec.file
 	PRIVATE
-		Pantheios.util
+		Pantheios.bec.file
 )
 
 target_link_libraries(test.unit.bec.file
 	PRIVATE
-		Pantheios.bec.file
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.bec.file

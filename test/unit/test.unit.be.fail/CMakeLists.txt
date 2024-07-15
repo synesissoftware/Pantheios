@@ -5,13 +5,13 @@ add_executable(test.unit.be.fail
 
 target_link_libraries(test.unit.be.fail
 	PRIVATE
-		Pantheios.util
+		Pantheios.be.fail
+		Pantheios.bec.fail
 )
 
 target_link_libraries(test.unit.be.fail
 	PRIVATE
-		Pantheios.be.fail
-		Pantheios.bec.fail
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.be.fail

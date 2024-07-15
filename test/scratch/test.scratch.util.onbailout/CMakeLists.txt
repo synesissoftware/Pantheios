@@ -5,7 +5,6 @@ add_executable(test.scratch.util.onbailout
 
 target_link_libraries(test.scratch.util.onbailout
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(test.scratch.util.onbailout
 	PRIVATE
 		Pantheios.be.null
 		Pantheios.bec.null
+)
+
+target_link_libraries(test.scratch.util.onbailout
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.scratch.util.onbailout

@@ -5,7 +5,6 @@ add_executable(test.scratch.be.N.with.custom.fe
 
 target_link_libraries(test.scratch.be.N.with.custom.fe
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -14,6 +13,11 @@ target_link_libraries(test.scratch.be.N.with.custom.fe
 		Pantheios.be.N
 		Pantheios.bec.file
 		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+)
+
+target_link_libraries(test.scratch.be.N.with.custom.fe
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.scratch.be.N.with.custom.fe

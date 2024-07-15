@@ -5,7 +5,6 @@ add_executable(example.cpp.backends.mx.2
 
 target_link_libraries(example.cpp.backends.mx.2
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -25,6 +24,16 @@ target_link_libraries(example.cpp.backends.mx.2
 		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsSyslog,Pantheios.bec.syslog>
 )
 
+target_link_libraries(example.cpp.backends.mx.2
+	PRIVATE
+		Pantheios.util
+)
+
+target_link_libraries(example.cpp.backends.mx.2
+	PRIVATE
+		STLSoft::STLSoft
+)
+
 if(WIN32)
 
 	target_link_libraries(example.cpp.backends.mx.2
@@ -32,11 +41,6 @@ if(WIN32)
 			ws2_32
 	)
 endif(WIN32)
-
-target_link_libraries(example.cpp.backends.mx.2
-	PRIVATE
-		STLSoft::STLSoft
-)
 
 target_compile_options(example.cpp.backends.mx.2 PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:

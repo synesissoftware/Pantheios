@@ -5,7 +5,6 @@ add_executable(test.scratch.be.N.fail
 
 target_link_libraries(test.scratch.be.N.fail
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -21,6 +20,11 @@ target_link_libraries(test.scratch.be.N.fail
 		Pantheios.bec.file
 		Pantheios.bec.fprintf
 		Pantheios.bec.null
+)
+
+target_link_libraries(test.scratch.be.N.fail
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.scratch.be.N.fail

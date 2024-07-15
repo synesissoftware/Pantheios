@@ -5,7 +5,6 @@ add_executable(test.scratch.tstring
 
 target_link_libraries(test.scratch.tstring
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(test.scratch.tstring
 	PRIVATE
 		Pantheios.be.fprintf
 		Pantheios.bec.fprintf
+)
+
+target_link_libraries(test.scratch.tstring
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.scratch.tstring

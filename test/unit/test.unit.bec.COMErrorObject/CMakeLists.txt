@@ -5,12 +5,12 @@ add_executable(test.unit.bec.COMErrorObject
 
 target_link_libraries(test.unit.bec.COMErrorObject
 	PRIVATE
-		Pantheios.util
+		Pantheios.bec.COMErrorObject
 )
 
 target_link_libraries(test.unit.bec.COMErrorObject
 	PRIVATE
-		Pantheios.bec.COMErrorObject
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.bec.COMErrorObject

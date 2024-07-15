@@ -5,7 +5,6 @@ add_executable(test.unit.inserter.m2w
 
 target_link_libraries(test.unit.inserter.m2w
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(test.unit.inserter.m2w
 	PRIVATE
 		Pantheios.be.null
 		Pantheios.bec.null
+)
+
+target_link_libraries(test.unit.inserter.m2w
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.inserter.m2w

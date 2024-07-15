@@ -5,7 +5,6 @@ add_executable(example.c.log_n
 
 target_link_libraries(example.c.log_n
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(example.c.log_n
 	PRIVATE
 		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.be.WindowsConsole,Pantheios.be.fprintf>
 		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+)
+
+target_link_libraries(example.c.log_n
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(example.c.log_n

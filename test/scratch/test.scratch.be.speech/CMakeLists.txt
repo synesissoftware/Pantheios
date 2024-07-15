@@ -5,7 +5,6 @@ add_executable(test.scratch.be.speech
 
 target_link_libraries(test.scratch.be.speech
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(test.scratch.be.speech
 	PRIVATE
 		Pantheios.be.speech
 		Pantheios.bec.speech
+)
+
+target_link_libraries(test.scratch.be.speech
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.scratch.be.speech

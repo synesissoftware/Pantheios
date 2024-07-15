@@ -5,7 +5,6 @@ add_executable(example.cpp.contract.PANTHEIOS_ASSERT
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -22,7 +21,7 @@ target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT
 	PRIVATE
-		STLSoft::STLSoft
+		Pantheios.util
 )
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT

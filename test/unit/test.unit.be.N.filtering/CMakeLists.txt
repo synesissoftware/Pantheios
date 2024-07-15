@@ -5,17 +5,17 @@ add_executable(test.unit.be.N.filtering
 
 target_link_libraries(test.unit.be.N.filtering
 	PRIVATE
-		Pantheios.util
-)
-
-target_link_libraries(test.unit.be.N.filtering
-	PRIVATE
 		Pantheios.fe.all
 )
 
 target_link_libraries(test.unit.be.N.filtering
 	PRIVATE
 		Pantheios.be.N
+)
+
+target_link_libraries(test.unit.be.N.filtering
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.be.N.filtering

@@ -5,7 +5,6 @@ add_executable(test.component.core.getProcessIdentity
 
 target_link_libraries(test.component.core.getProcessIdentity
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -13,6 +12,11 @@ target_link_libraries(test.component.core.getProcessIdentity
 	PRIVATE
 		Pantheios.be.null
 		Pantheios.bec.null
+)
+
+target_link_libraries(test.component.core.getProcessIdentity
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.component.core.getProcessIdentity

@@ -5,7 +5,6 @@ add_executable(test.scratch.c_api
 
 target_link_libraries(test.scratch.c_api
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -21,6 +20,11 @@ target_link_libraries(test.scratch.c_api
 		Pantheios.bec.null
 		Pantheios.bel.fprintf
 		Pantheios.ber.null
+)
+
+target_link_libraries(test.scratch.c_api
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.scratch.c_api

@@ -5,7 +5,6 @@ add_executable(test.unit.inserters.windows.sc
 
 target_link_libraries(test.unit.inserters.windows.sc
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(test.unit.inserters.windows.sc
 	PRIVATE
 		Pantheios.be.null
 		Pantheios.bec.null
+)
+
+target_link_libraries(test.unit.inserters.windows.sc
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.inserters.windows.sc

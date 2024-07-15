@@ -5,7 +5,6 @@ add_executable(test.component.be.file.threading
 
 target_link_libraries(test.component.be.file.threading
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -19,6 +18,11 @@ target_link_libraries(test.component.be.file.threading
 		Pantheios.be.N
 		Pantheios.bec.file
 		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+)
+
+target_link_libraries(test.component.be.file.threading
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.component.be.file.threading

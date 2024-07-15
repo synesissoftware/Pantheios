@@ -5,7 +5,6 @@ add_executable(test.component.inserters.integer
 
 target_link_libraries(test.component.inserters.integer
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(test.component.inserters.integer
 	PRIVATE
 		Pantheios.be.test
 		Pantheios.bec.test
+)
+
+target_link_libraries(test.component.inserters.integer
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.component.inserters.integer

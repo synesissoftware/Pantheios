@@ -5,7 +5,6 @@ add_executable(test.unit.getversion
 
 target_link_libraries(test.unit.getversion
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -19,6 +18,11 @@ target_link_libraries(test.unit.getversion
 	PRIVATE
 		Pantheios.be.null
 		Pantheios.bec.null
+)
+
+target_link_libraries(test.unit.getversion
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.getversion

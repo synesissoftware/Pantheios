@@ -5,7 +5,6 @@ add_executable(test.scratch.extras.com_exception_helpers
 
 target_link_libraries(test.scratch.extras.com_exception_helpers
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(test.scratch.extras.com_exception_helpers
 	PRIVATE
 		Pantheios.be.fprintf
 		Pantheios.bec.fprintf
+)
+
+target_link_libraries(test.scratch.extras.com_exception_helpers
+	PRIVATE
+		Pantheios.util
 )
 
 target_compile_options(test.scratch.extras.com_exception_helpers PRIVATE

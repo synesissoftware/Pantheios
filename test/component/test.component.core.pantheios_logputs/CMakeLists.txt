@@ -5,7 +5,6 @@ add_executable(test.component.core.pantheios_logputs
 
 target_link_libraries(test.component.core.pantheios_logputs
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(test.component.core.pantheios_logputs
 	PRIVATE
 		Pantheios.be.test
 		Pantheios.bec.test
+)
+
+target_link_libraries(test.component.core.pantheios_logputs
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.component.core.pantheios_logputs

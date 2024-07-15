@@ -5,7 +5,6 @@ add_executable(test.performance.inserters.w2m
 
 target_link_libraries(test.performance.inserters.w2m
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(test.performance.inserters.w2m
 	PRIVATE
 		Pantheios.be.null
 		Pantheios.bec.null
+)
+
+target_link_libraries(test.performance.inserters.w2m
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.performance.inserters.w2m

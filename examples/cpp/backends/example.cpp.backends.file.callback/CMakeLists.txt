@@ -5,7 +5,6 @@ add_executable(example.cpp.backends.file.callback
 
 target_link_libraries(example.cpp.backends.file.callback
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
 )
 
@@ -18,6 +17,11 @@ target_link_libraries(example.cpp.backends.file.callback
 	PRIVATE
 		Pantheios.be.file
 		Pantheios.bec.file.WithCallback
+)
+
+target_link_libraries(example.cpp.backends.file.callback
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(example.cpp.backends.file.callback

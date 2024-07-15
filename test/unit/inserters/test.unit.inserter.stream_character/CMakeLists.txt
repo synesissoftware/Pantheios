@@ -5,8 +5,12 @@ add_executable(test.unit.inserter.stream_character
 
 target_link_libraries(test.unit.inserter.stream_character
 	PRIVATE
-		Pantheios.util
 		Pantheios.core
+)
+
+target_link_libraries(test.unit.inserter.stream_character
+	PRIVATE
+		Pantheios.util
 )
 
 target_link_libraries(test.unit.inserter.stream_character
