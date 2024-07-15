@@ -105,13 +105,13 @@ int main(int argc, char *argv[])
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
                 pantheios::log_ALERT(PSTR("Unexpected general error: "), pantheios::exception(x), PSTR(". Application terminating"));
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, PSTR("Unhandled unknown error"));
 

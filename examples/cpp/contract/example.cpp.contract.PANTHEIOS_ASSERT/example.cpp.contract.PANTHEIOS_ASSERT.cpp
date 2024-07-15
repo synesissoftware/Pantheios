@@ -52,7 +52,7 @@ int main()
 {
   int i = pantheios::init();
 
-  if(i >= 0)
+  if (i >= 0)
   {
     PANTHEIOS_ASSERT(true);
 

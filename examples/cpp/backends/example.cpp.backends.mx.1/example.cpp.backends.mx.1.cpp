@@ -101,15 +101,15 @@ int main(int argc, char** argv)
   {
     return main_(argc, argv);
   }
-    catch(std::bad_alloc&)
-    {
-        pantheios::log(pantheios::alert, PSTR("out of memory"));
-    }
-    catch(std::exception& x)
-    {
-        pantheios::log_CRITICAL(PSTR("Exception: "), x);
-    }
-  catch(...)
+  catch (std::bad_alloc&)
+  {
+    pantheios::log(pantheios::alert, PSTR("out of memory"));
+  }
+  catch (std::exception& x)
+  {
+    pantheios::log_CRITICAL(PSTR("Exception: "), x);
+  }
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unhandled unknown error"));
   }

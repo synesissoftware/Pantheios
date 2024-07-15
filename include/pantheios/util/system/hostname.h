@@ -163,13 +163,13 @@ inline size_t getHostName(stlsoft::auto_buffer<pantheios_char_t, A, N>& buffer)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 != buffer.size(), "buffer must not be empty");
 
-    for(;;)
+    for (;;)
     {
         size_t cch = pantheios_getHostName(&buffer[0], buffer.size());
 
-        if(buffer.size() == cch)
+        if (buffer.size() == cch)
         {
-            if(!buffer.resize(2 * buffer.size()))
+            if (!buffer.resize(2 * buffer.size()))
             {
                 return 0;
             }

@@ -119,7 +119,7 @@ public:
         using namespace pantheios::core;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-        if(pantheios_init() < 0)
+        if (pantheios_init() < 0)
         {
             pantheios_exitProcess(1);
         }

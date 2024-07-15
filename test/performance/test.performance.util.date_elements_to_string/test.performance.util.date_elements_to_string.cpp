@@ -143,7 +143,7 @@ static int main_(int /* argc */, char** /* argv */)
 
     // unit test
 
-    { for(int i = 0; i != ITERATIONS; ++i)
+    { for (int i = 0; i != ITERATIONS; ++i)
     {
         struct tm const tm = iteration_to_tm_(i);
 
@@ -163,7 +163,7 @@ static int main_(int /* argc */, char** /* argv */)
         format_with_fast_strftime_(tm, &sz_fast_strftime);
 #endif
 
-        if( STLSOFT_ALWAYS_FALSE() ||
+        if (STLSOFT_ALWAYS_FALSE() ||
             0 != P_strcmp(sz_de, sz_sprintf) ||
             0 != P_strcmp(sz_de, sz_strftime) ||
 #ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
@@ -182,10 +182,10 @@ static int main_(int /* argc */, char** /* argv */)
 
     // performance test
 
-    { for(int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
     {
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
             PAN_CHAR_T      sz[20];
@@ -196,10 +196,10 @@ static int main_(int /* argc */, char** /* argv */)
         tm_date_elements = counter.get_microseconds();
     }}
 
-    { for(int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
     {
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
             PAN_CHAR_T      sz[20];
@@ -210,10 +210,10 @@ static int main_(int /* argc */, char** /* argv */)
         tm_sprintf = counter.get_microseconds();
     }}
 
-    { for(int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
     {
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
             PAN_CHAR_T      sz[20];
@@ -226,10 +226,10 @@ static int main_(int /* argc */, char** /* argv */)
 
 #ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-    { for(int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
     {
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
             PAN_CHAR_T      sz[20];
@@ -287,7 +287,7 @@ int main(int argc, char** argv)
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try
@@ -299,13 +299,13 @@ int main(int argc, char** argv)
 
         res = main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios::util::onBailOut(PANTHEIOS_SEV_ALERT, "exception", PANTHEIOS_FE_PROCESS_IDENTITY, x.what(), NULL, NULL);
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::util::onBailOut(PANTHEIOS_SEV_EMERGENCY, "Unhandled unknown error", PANTHEIOS_FE_PROCESS_IDENTITY, NULL, NULL, NULL);
 

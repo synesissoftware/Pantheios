@@ -96,10 +96,10 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.levels.dynamic_initialisation", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.levels.dynamic_initialisation", verbosity))
     {
         /* Case 1 - verifying Pantheios levels instances */
-        if(!XTESTS_CASE_BEGIN("case-1", "verifying Pantheios levels instances"))
+        if (!XTESTS_CASE_BEGIN("case-1", "verifying Pantheios levels instances"))
         {
             retCode = EXIT_FAILURE;
         }
@@ -118,7 +118,7 @@ int main(int argc, char** argv)
         }
 
         /* Case 2 - verifying non-local constants */
-        if(!XTESTS_CASE_BEGIN("case-2", "verifying non-local constants"))
+        if (!XTESTS_CASE_BEGIN("case-2", "verifying non-local constants"))
         {
             retCode = EXIT_FAILURE;
         }
@@ -137,7 +137,7 @@ int main(int argc, char** argv)
         }
 
         /* Case 3 - verifying dynamic initialisation levels instances */
-        if(!XTESTS_CASE_BEGIN("case-3", "verifying dynamic initialisation levels instances"))
+        if (!XTESTS_CASE_BEGIN("case-3", "verifying dynamic initialisation levels instances"))
         {
             retCode = EXIT_FAILURE;
         }

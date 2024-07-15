@@ -123,7 +123,7 @@ inline const pan_slice_t pad(S const& arg, size_t minimumWidth)
 {
     const size_t len = stlsoft::c_str_len(arg);
 
-    if(len < minimumWidth)
+    if (len < minimumWidth)
     {
         size_t                          actualWidth;
         pantheios_char_t const* const   padding = pantheios::core::pantheios_getPad(minimumWidth - len, &actualWidth);

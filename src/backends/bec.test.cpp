@@ -221,7 +221,7 @@ namespace test
         }
         void    Release()
         {
-            if(0 == --m_refCount)
+            if (0 == --m_refCount)
             {
                 delete this;
             }
@@ -411,7 +411,7 @@ static int pantheios_be_test_init_(
 
     s_ctxt = new pantheios::be::test::ximpl_be_test::Context(processIdentity, id);
 
-    if(NULL == s_ctxt)
+    if (NULL == s_ctxt)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "failed to initiailse", NULL, "out of memory", NULL, "be.test");
 

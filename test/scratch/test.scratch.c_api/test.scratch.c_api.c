@@ -67,10 +67,10 @@ int main(int argc, char *argv[])
     int res;
 
 #if 0
-    { for(size_t i = 0;0 != ++i;) {} }
+    { for (size_t i = 0;0 != ++i;) {} }
 #endif /* 0 */
 
-    if(pantheios_init() < 0)
+    if (pantheios_init() < 0)
     {
         res = EXIT_FAILURE;
     }
@@ -130,7 +130,7 @@ static void some_logging_2(void)
     {
         throw std::out_of_range("Eeep!");
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         log_CRITICAL("Something really bad has happened! Details: \"", x, "\"");
     }

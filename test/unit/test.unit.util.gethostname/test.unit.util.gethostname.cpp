@@ -90,7 +90,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.util.gethostname", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.util.gethostname", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -110,13 +110,13 @@ static void test_1_01()
     PAN_CHAR_T      hostname[1000];
     const string_t  hid = pan_get_hid_();
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(hostname); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(hostname); ++i)
     {
         ::memset(&hostname[0], 0, sizeof(hostname));
 
         const size_t len = pantheios::getHostName(&hostname[0], i);
 
-        if(len == i)
+        if (len == i)
         {
             // The function did not have enough space to write in, so it
             // will return the length passed to it ...
@@ -139,7 +139,7 @@ static void test_1_02()
 {
     const string_t hid = pan_get_hid_();
 
-    { for(size_t i = 1; i != 1001; ++i)
+    { for (size_t i = 1; i != 1001; ++i)
     {
         pantheios::util::auto_buffer_selector<PAN_CHAR_T, 256>::type    hostname(i);
 
@@ -161,7 +161,7 @@ static string_t pan_get_hid_()
 
     PAN_CHAR_T  szHostName[1001];
 
-    if(0 != ::gethostname(&szHostName[0], STLSOFT_NUM_ELEMENTS(szHostName)))
+    if (0 != ::gethostname(&szHostName[0], STLSOFT_NUM_ELEMENTS(szHostName)))
     {
         return PANTHEIOS_LITERAL_STRING("localhost");
     }
@@ -175,7 +175,7 @@ static string_t pan_get_hid_()
     PAN_CHAR_T  szHostName[1001];
     DWORD       cchHostName = STLSOFT_NUM_ELEMENTS(szHostName);
 
-    if(!pantheios_GetComputerName_(&szHostName[0], &cchHostName))
+    if (!pantheios_GetComputerName_(&szHostName[0], &cchHostName))
     {
         return PANTHEIOS_LITERAL_STRING("localhost");
     }

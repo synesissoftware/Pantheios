@@ -52,7 +52,7 @@ int main()
 
     pantheios::uint8_t  bytes[20];
 
-    { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(bytes); ++i)
+    { for (size_t i = 0; i < STLSOFT_NUM_ELEMENTS(bytes); ++i)
     {
       //bytes[i] = static_cast<pantheios::uint8_t>((i << 8) | (i & 0x0f));
       bytes[i] = static_cast<pantheios::uint8_t>(i);
@@ -74,15 +74,15 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }

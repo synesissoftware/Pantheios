@@ -105,7 +105,7 @@ void exception_inserter::construct_()
     stlsoft::m2w t(m_x.what());
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-    if(0u != t.size())
+    if (0u != t.size())
     {
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -131,7 +131,7 @@ exception_inserter::c_str() const
 pantheios_char_t const*
 exception_inserter::data() const
 {
-    if('\0' == m_value[0])
+    if ('\0' == m_value[0])
     {
         construct_();
     }
@@ -141,7 +141,7 @@ exception_inserter::data() const
 
 size_t exception_inserter::length() const
 {
-    if('\0' == m_value[0])
+    if ('\0' == m_value[0])
     {
         construct_();
     }

@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
      */
     res = pantheios_init();
 
-    if(0 != res)
+    if (0 != res)
     {
         /* If initialisation failed, we report why using
          * pantheios_getInitCodeString()
@@ -108,7 +108,7 @@ int main(int argc, char* argv[])
          * statement size limit; nor does pantheios_logputs()
          */
 
-        for(n = 0; n != (sizeof(bigBuff) / sizeof(0[bigBuff])) - 1; ++n)
+        for (n = 0; n != (sizeof(bigBuff) / sizeof(0[bigBuff])) - 1; ++n)
         {
             bigBuff[n] = '-';
         }

@@ -102,11 +102,11 @@ pantheios_gethostname_with_errno_fix_(
 {
     int res = gethostname(&buffer[0], cchBuffer);
 
-    if(0 != cchBuffer)
+    if (0 != cchBuffer)
     {
         size_t n2 = pan_strlen_(buffer);
 
-        if(n2 + 1 < cchBuffer)
+        if (n2 + 1 < cchBuffer)
         {
             errno = 0;
         }
@@ -129,7 +129,7 @@ static size_t pantheios_getHostName_body_(
 {
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 
-    if(0 == cchBuffer)
+    if (0 == cchBuffer)
     {
         errno = ENAMETOOLONG;
 
@@ -153,7 +153,7 @@ static size_t pantheios_getHostName_body_(
         /* Test for ENAMETOOLONG, to avoid any implementation-dependent
          * behaviour wrt whether this it is set on a 0 or a -1 return
          */
-        if(ENAMETOOLONG == errno)
+        if (ENAMETOOLONG == errno)
         {
             /* To homogenise platform behaviour, we ensure that no fragment is filled out */
             buffer[0] = '\0';
@@ -162,12 +162,12 @@ static size_t pantheios_getHostName_body_(
         }
         else
         {
-            if(0 != res)
+            if (0 != res)
             {
                 /* Was a failure, so return 0 */
                 return 0;
             }
-            else if('\0' != buffer[cchBuffer - 1])
+            else if ('\0' != buffer[cchBuffer - 1])
             {
                 /* Was insufficient buffer, so we return the given size (which is the
                  * failure indicator for that condition
@@ -194,11 +194,11 @@ static size_t pantheios_getHostName_body_(
 
     DWORD cchSize = stlsoft_static_cast(DWORD, cchBuffer);
 
-    if(!pan_GetComputerName_(&buffer[0], &cchSize))
+    if (!pan_GetComputerName_(&buffer[0], &cchSize))
     {
         DWORD   err = GetLastError();
 
-        if(ERROR_BUFFER_OVERFLOW == err)
+        if (ERROR_BUFFER_OVERFLOW == err)
         {
             return cchBuffer;
         }

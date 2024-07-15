@@ -87,7 +87,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.slice", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.slice", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -118,7 +118,7 @@ static void test_1_01()
 
     // 2. Create test data
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pantheios::log_NOTICE(pantheios::slice(alphabet, i));
     }}
@@ -130,7 +130,7 @@ static void test_1_01()
 
     XTESTS_TEST(!results.empty());
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         XTESTS_TEST_STRINGS_EQUAL_(string_t(alphabet, i), results[i].statement);
     }}
@@ -145,7 +145,7 @@ static void test_1_02()
 
     // 2. Create test data
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pantheios::log_NOTICE(pantheios::slice(alphabet, i, PANTHEIOS_LITERAL_STRING("str")));
     }}
@@ -157,7 +157,7 @@ static void test_1_02()
 
     XTESTS_TEST(!results.empty());
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         XTESTS_TEST_STRINGS_EQUAL_(PANTHEIOS_LITERAL_STRING("str=") + string_t(alphabet, i), results[i].statement);
     }}
@@ -172,7 +172,7 @@ static void test_1_03()
 
     // 2. Create test data
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pantheios::log_NOTICE(pantheios::slice(alphabet, i, PANTHEIOS_LITERAL_STRING("str"), NULL, PANTHEIOS_LITERAL_STRING(":")));
     }}
@@ -184,7 +184,7 @@ static void test_1_03()
 
     XTESTS_TEST(!results.empty());
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         XTESTS_TEST_STRINGS_EQUAL_(PANTHEIOS_LITERAL_STRING("str:") + string_t(alphabet, i), results[i].statement);
     }}
@@ -199,7 +199,7 @@ static void test_1_04()
 
     // 2. Create test data
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pantheios::log_NOTICE(pantheios::slice(alphabet, i, PANTHEIOS_LITERAL_STRING("str"), PANTHEIOS_LITERAL_STRING("len")));
     }}
@@ -211,7 +211,7 @@ static void test_1_04()
 
     XTESTS_TEST(!results.empty());
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pan_char_t num[21];
 
@@ -228,7 +228,7 @@ static void test_1_05()
 
     // 2. Create test data
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pantheios::log_NOTICE(pantheios::slice(alphabet, i, PANTHEIOS_LITERAL_STRING("str"), PANTHEIOS_LITERAL_STRING("len"), PANTHEIOS_LITERAL_STRING(":")));
     }}
@@ -240,7 +240,7 @@ static void test_1_05()
 
     XTESTS_TEST(!results.empty());
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pan_char_t num[21];
 
@@ -257,7 +257,7 @@ static void test_1_06()
 
     // 2. Create test data
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pantheios::log_NOTICE(pantheios::slice(alphabet, i, PANTHEIOS_LITERAL_STRING("str"), PANTHEIOS_LITERAL_STRING("len"), PANTHEIOS_LITERAL_STRING(":"), PANTHEIOS_LITERAL_STRING("; ")));
     }}
@@ -269,7 +269,7 @@ static void test_1_06()
 
     XTESTS_TEST(!results.empty());
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pan_char_t num[21];
 
@@ -286,7 +286,7 @@ static void test_1_07()
 
     // 2. Create test data
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pantheios::log_NOTICE(pantheios::slice(alphabet, i, PANTHEIOS_LITERAL_STRING("str"), PANTHEIOS_LITERAL_STRING("len"), PANTHEIOS_LITERAL_STRING(":"), PANTHEIOS_LITERAL_STRING(";")));
     }}
@@ -298,7 +298,7 @@ static void test_1_07()
 
     XTESTS_TEST(!results.empty());
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pan_char_t num[21];
 
@@ -315,7 +315,7 @@ static void test_1_08()
 
     // 2. Create test data
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pantheios::log_NOTICE(pantheios::slice(alphabet, i, PANTHEIOS_LITERAL_STRING("str"), PANTHEIOS_LITERAL_STRING("len"), NULL, PANTHEIOS_LITERAL_STRING(";")));
     }}
@@ -327,7 +327,7 @@ static void test_1_08()
 
     XTESTS_TEST(!results.empty());
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pan_char_t num[21];
 

@@ -80,7 +80,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.processid", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.processid", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
 

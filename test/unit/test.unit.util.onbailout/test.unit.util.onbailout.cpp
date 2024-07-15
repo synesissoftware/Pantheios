@@ -297,7 +297,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.util.onbailout", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.util.onbailout", verbosity))
     {
         XTESTS_RUN_CASE(test_unused_receiver);
         XTESTS_RUN_CASE(test_pantheios_onBailOut3);

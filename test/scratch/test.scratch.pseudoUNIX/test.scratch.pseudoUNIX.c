@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 {
     int bVerbose    =   1;
 
-    if(pantheios_init() < 0)
+    if (pantheios_init() < 0)
     {
         return EXIT_FAILURE;
     }
@@ -99,13 +99,13 @@ int main(int argc, char *argv[])
 
         pantheios_getNextBackEndId();
 
-        { int i; for(i = 1; i < argc; ++i)
+        { int i; for (i = 1; i < argc; ++i)
         {
             char const  *const  arg =   argv[i];
 
-            if(arg[0] == '-')
+            if (arg[0] == '-')
             {
-                if(arg[1] == '-')
+                if (arg[1] == '-')
                 {
                     /* -- arguments */
                     usage(1, "Invalid argument(s) specified", i, argc, argv);
@@ -156,24 +156,24 @@ static void usage(int bExit, char const *reason, int invalidArg, int argc, char 
     fprintf(stm, "  pseudoUNIX.test\n\n");
     fprintf(stm, "\n");
 
-    if(NULL != reason)
+    if (NULL != reason)
     {
         fprintf(stm, "  Error: %s\n", reason);
         fprintf(stm, "\n");
     }
 
-    if(0 < invalidArg)
+    if (0 < invalidArg)
     {
         fprintf(stm, "  First invalid argument #%d: %s\n", invalidArg, argv[invalidArg]);
         fprintf(stm, "  Arguments were (first bad marked *):\n\n");
-        { int i; for(i = 1; i < argc; ++i)
+        { int i; for (i = 1; i < argc; ++i)
         {
             fprintf(stm, "  %s%s\n", (i == invalidArg) ? "* " : "  ", argv[i]);
         }}
         fprintf(stm, "\n");
     }
 
-    if(bExit)
+    if (bExit)
     {
         exit(EXIT_FAILURE);
     }

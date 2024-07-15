@@ -122,11 +122,11 @@ int main(int argc, char *argv[])
   {
     return main_(argc, argv);
   }
-  catch(std::exception &x)
+  catch (std::exception &x)
   {
     fprintf(stderr, "Unhandled error: %s\n", x.what());
   }
-  catch(...)
+  catch (...)
   {
     fprintf(stderr, "Unhandled unknown error\n");
   }

@@ -163,7 +163,7 @@ inline
 pantheios_char_t const*
 stream_character::c_str() const
 {
-    if(0 == m_len)
+    if (0 == m_len)
     {
         construct_();
     }
@@ -175,7 +175,7 @@ inline
 size_t
 stream_character::length() const
 {
-    if(0 == m_len)
+    if (0 == m_len)
     {
         construct_();
     }

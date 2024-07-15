@@ -155,7 +155,7 @@ void stream_character::construct_()
 
     STLSOFT_ASSERT(0 == m_len);
 
-    if(isgraph(m_ch))
+    if (isgraph(m_ch))
     {
         m_sz[0] = static_cast<pantheios_char_t>(m_ch);
         m_sz[1] = '\0';
@@ -164,9 +164,9 @@ void stream_character::construct_()
     }
     else
     {
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_entries); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_entries); ++i)
         {
-            if(m_ch == s_entries[i].ch)
+            if (m_ch == s_entries[i].ch)
             {
                 m_len = pan_strlen_(s_entries[i].name);
 

@@ -87,7 +87,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.bec.fprintf", verbosity))
+    if (XTESTS_START_RUNNER("test.component.bec.fprintf", verbosity))
     {
         XTESTS_RUN_CASE(test_1_1);
         XTESTS_RUN_CASE(test_1_2);
@@ -172,7 +172,7 @@ static void test_1_1()
                                     ,   &token
                                     );
 
-        if(0 != r)
+        if (0 != r)
         {
             XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise bec.fprintf", stlsoft::t2a(pantheios::getStockSeverityString(r)));
 

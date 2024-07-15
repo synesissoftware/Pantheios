@@ -109,7 +109,7 @@ int main(int argc, char** argv)
 
     }
 
-    if(XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
     {
 #if 1
         XTESTS_RUN_CASE(test_1_00);
@@ -220,7 +220,7 @@ static void test_1_00()
 
     XTESTS_TEST(!results.empty());
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(n, results.size()));
-    { for(size_t i = 0; i != n; ++i)
+    { for (size_t i = 0; i != n; ++i)
     {
         XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[i].statement);
     }}

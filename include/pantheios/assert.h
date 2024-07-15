@@ -219,7 +219,7 @@
                                             \
     do                                      \
     {                                       \
-        if(!(expr))                         \
+        if (!(expr))                         \
         {                                   \
             PANTHEIOS_NS_QUAL(pantheios_logassertfail)(PANTHEIOS_ASSERT_SEVERITY_LEVEL, PANTHEIOS_FILELINE_A, "assertion failed: " #expr); \
                                             \
@@ -282,7 +282,7 @@
                                             \
     do                                      \
     {                                       \
-        if(!(expr))                         \
+        if (!(expr))                         \
         {                                   \
             PANTHEIOS_NS_QUAL(pantheios_logassertfail)(PANTHEIOS_ASSERT_SEVERITY_LEVEL, PANTHEIOS_FILELINE_A, "assertion failed: " #expr "; message: " msg); \
                                             \

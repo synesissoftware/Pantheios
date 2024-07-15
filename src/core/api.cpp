@@ -180,7 +180,7 @@ namespace std
             >
     inline O daft_msvc_copy_workaround_(I first, I last, O out)
     {
-        for(; first != last; ++first, ++out)
+        for (; first != last; ++first, ++out)
         {
             *out = *first;
         }
@@ -529,7 +529,7 @@ namespace
             memory_pool_entry_t*  entry = static_cast<memory_pool_entry_t*>(::malloc(cbActual));
 #endif /* VC++ _DEBUG */
 
-            if(NULL != entry)
+            if (NULL != entry)
             {
                 entry->next     =   next;
                 entry->cbEntry  =   cb;
@@ -557,7 +557,7 @@ namespace
             memory_pool_entry_t*    head
         )
         {
-            { for(memory_pool_entry_t* entry = head; NULL != entry; )
+            { for (memory_pool_entry_t* entry = head; NULL != entry; )
             {
                 void* pv = entry;
 
@@ -652,27 +652,27 @@ namespace
 
             s_backEndMap = new BackEndMap();
 
-            if(NULL == s_backEndMap)
+            if (NULL == s_backEndMap)
             {
                 return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
             }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(std::bad_alloc&)
+        catch (std::bad_alloc&)
         {
             pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "could not initialise back-end map", NULL, "out of memory");
 
             return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
         }
-        catch(std::exception& x)
+        catch (std::exception& x)
         {
             pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "could not initialise back-end map", NULL, x.what());
 
             return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
         }
 # ifdef PANTHEIOS_USE_CATCHALL
-        catch(...)
+        catch (...)
         {
             pantheios_onBailOut4(PANTHEIOS_SEV_EMERGENCY, "could not initialise back-end map", NULL, "unknown failure");
 
@@ -720,7 +720,7 @@ namespace
 
         int r = pantheios_fe_init(0, &s_feToken);
 
-        if(r < 0)
+        if (r < 0)
         {
             pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "front-end did not initialise", NULL, pantheios_getInitCodeString(r));
         }
@@ -759,7 +759,7 @@ namespace
             bool                requirePICopy   =   false;
             PAN_CHAR_T const*   processIdentity =   pantheios_fe_getProcessIdentity(s_feToken);
 
-            if(NULL == processIdentity)
+            if (NULL == processIdentity)
             {
                 // Now, according to protocol, we call a second time, and
                 // expect to receive a non-NULL pointer to string.
@@ -779,11 +779,11 @@ namespace
             PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_RETURN_API(NULL != processIdentity, "returned string from pantheios_fe_getProcessIdentity() must not be null");
             PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_RETURN_API(pan_strlen_(processIdentity) <= PANTHEIOS_MAXIMUM_MAX_PROCESS_IDENTITY_LENGTH, "returned string from pantheios_fe_getProcessIdentity() must be no longer than 1000 characters");
 
-            if(requirePICopy)
+            if (requirePICopy)
             {
                 s_internalProcessIdentity = pantheios_util_strdup_nothrow(processIdentity);
 
-                if(NULL == s_internalProcessIdentity)
+                if (NULL == s_internalProcessIdentity)
                 {
                     r = PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
 
@@ -799,7 +799,7 @@ namespace
                 PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(NULL == s_internalProcessIdentity);
             }
 
-            if(r >= 0)
+            if (r >= 0)
             {
                 // Before we do the back-end initialisation, we need to get the
                 // process identity from the front-end and, if in widestring
@@ -814,7 +814,7 @@ namespace
                 size_t const    n = ::wcstombs(processIdentity_, processIdentity, STLSOFT_NUM_ELEMENTS(processIdentity_) - 1);
                 char const*     processIdentity_m;
 
-                if(n < STLSOFT_NUM_ELEMENTS(processIdentity_))
+                if (n < STLSOFT_NUM_ELEMENTS(processIdentity_))
                 {
                     processIdentity_[STLSOFT_NUM_ELEMENTS(processIdentity_) - 1] = '\0';
                     processIdentity_m = processIdentity_;
@@ -834,7 +834,7 @@ namespace
 
                 r = pantheios_init_backEndMap();
 
-                if(r < 0)
+                if (r < 0)
                 {
                     pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "back-end map creation failed", pantheios_core_impl_getProcessIdentity_a(), pantheios_getInitCodeString(r));
                 }
@@ -845,13 +845,13 @@ namespace
 
                     r = pantheios_be_init(processIdentity, 0, &s_beToken);
 
-                    if(r < 0)
+                    if (r < 0)
                     {
                         pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "back-end did not initialise", pantheios_core_impl_getProcessIdentity_a(), pantheios_getInitCodeString(r));
                     }
 
 #ifdef PANTHEIOS_DEFINE_BACK_END_MAP
-                    if(r < 0)
+                    if (r < 0)
                     {
                         pantheios_uninit_backEndMap();
                     }
@@ -859,7 +859,7 @@ namespace
                 }
             }
 
-            if(r < 0)
+            if (r < 0)
             {
                 pantheios_fe_uninit(s_feToken);
                 s_feToken = NULL;
@@ -913,7 +913,7 @@ namespace
         map_type_::const_iterator   it = m_map.find(backEndId);
 
         // Null Object (Variable) here, for ptoken;
-        if(NULL == ptoken)
+        if (NULL == ptoken)
         {
             ptoken = &token_;
         }
@@ -925,7 +925,7 @@ namespace
     {
         stlsoft::lock_scope<thread_mutex_t>  lock(m_mx);
 
-        if(m_map.find(backEndId) != m_map.end())
+        if (m_map.find(backEndId) != m_map.end())
         {
             return 1;
         }
@@ -1030,7 +1030,7 @@ int pantheios_init__cpp()
 
     PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(!s_isInitialising);
 
-    if(1 == ++s_apiInit)
+    if (1 == ++s_apiInit)
     {
         s_init = pantheios_init_onetime();
     }
@@ -1039,7 +1039,7 @@ int pantheios_init__cpp()
 
 #else /* ? PANTHEIOS_MT_HAS_ATOMIC_INTEGER_OPERATIONS */
 
-    if(NULL == s_pmxApi)
+    if (NULL == s_pmxApi)
     {
         PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_API(0 == s_apiInit, "api initialisation must be 0");
         PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_API(NULL == s_pmxBEI, "back-end id mutex must be uninitialised");
@@ -1053,7 +1053,7 @@ int pantheios_init__cpp()
 
             s_pmxApi = new(&s_mx1_.bytes[0]) thread_mutex_t(false);
 
-            if(NULL == s_pmxApi)
+            if (NULL == s_pmxApi)
             {
                 pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, "failed to create Pantheios core API mutex", NULL);
 
@@ -1063,7 +1063,7 @@ int pantheios_init__cpp()
             {
                 s_pmxBEI = new(&s_mx2_.bytes[0]) thread_mutex_t(false);
 
-                if(NULL == s_pmxBEI)
+                if (NULL == s_pmxBEI)
                 {
                     pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, "failed to create back-end Id mutex", NULL);
 
@@ -1076,7 +1076,7 @@ int pantheios_init__cpp()
                 {
                     s_pmxMem = new(&s_mx3_.bytes[0]) thread_mutex_t(false);
 
-                    if(NULL == s_pmxMem)
+                    if (NULL == s_pmxMem)
                     {
                         pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, "failed to create memory pool mutex", NULL);
 
@@ -1094,7 +1094,7 @@ int pantheios_init__cpp()
 
                         s_init = pantheios_init_onetime();
 
-                        if(s_init < 0)
+                        if (s_init < 0)
                         {
                             s_pmxApi->~thread_mutex_t();
                             s_pmxApi = NULL;
@@ -1119,23 +1119,23 @@ int pantheios_init__cpp()
 
 # ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(std::bad_alloc&)
+        catch (std::bad_alloc&)
         {
             pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "exception occurred when creating Pantheios mutexes", NULL, "out of memory");
 
-            if(NULL != s_pmxApi)
+            if (NULL != s_pmxApi)
             {
                 s_pmxApi->~thread_mutex_t();
                 s_pmxApi = NULL;
             }
 
-            if(NULL != s_pmxBEI)
+            if (NULL != s_pmxBEI)
             {
                 s_pmxBEI->~thread_mutex_t();
                 s_pmxBEI = NULL;
             }
 
-            if(NULL != s_pmxMem)
+            if (NULL != s_pmxMem)
             {
                 s_pmxMem->~thread_mutex_t();
                 s_pmxMem = NULL;
@@ -1143,23 +1143,23 @@ int pantheios_init__cpp()
 
             return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
         }
-        catch(std::exception& x)
+        catch (std::exception& x)
         {
             pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "exception occurred when creating Pantheios mutexes", NULL, x.what());
 
-            if(NULL != s_pmxApi)
+            if (NULL != s_pmxApi)
             {
                 s_pmxApi->~thread_mutex_t();
                 s_pmxApi = NULL;
             }
 
-            if(NULL != s_pmxBEI)
+            if (NULL != s_pmxBEI)
             {
                 s_pmxBEI->~thread_mutex_t();
                 s_pmxBEI = NULL;
             }
 
-            if(NULL != s_pmxMem)
+            if (NULL != s_pmxMem)
             {
                 s_pmxMem->~thread_mutex_t();
                 s_pmxMem = NULL;
@@ -1168,23 +1168,23 @@ int pantheios_init__cpp()
             return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
         }
 # ifdef PANTHEIOS_USE_CATCHALL
-        catch(...)
+        catch (...)
         {
             pantheios_onBailOut4(PANTHEIOS_SEV_EMERGENCY, "exception occurred when creating Pantheios mutexes", NULL, "unknown failure");
 
-            if(NULL != s_pmxApi)
+            if (NULL != s_pmxApi)
             {
                 s_pmxApi->~thread_mutex_t();
                 s_pmxApi = NULL;
             }
 
-            if(NULL != s_pmxBEI)
+            if (NULL != s_pmxBEI)
             {
                 s_pmxBEI->~thread_mutex_t();
                 s_pmxBEI = NULL;
             }
 
-            if(NULL != s_pmxMem)
+            if (NULL != s_pmxMem)
             {
                 s_pmxMem->~thread_mutex_t();
                 s_pmxMem = NULL;
@@ -1234,7 +1234,7 @@ void pantheios_uninit__cpp()
     platformstl::spin_mutex                         mx(&s_mx);
     stlsoft::lock_scope<platformstl::spin_mutex>    lock(mx);
 
-    if(0 == --s_apiInit)
+    if (0 == --s_apiInit)
     {
         pantheios_uninit_onetime();
     }
@@ -1248,13 +1248,13 @@ void pantheios_uninit__cpp()
 
     {   stlsoft::lock_scope<thread_mutex_t>  lock(*s_pmxApi);
 
-        if(0 == --s_apiInit)
+        if (0 == --s_apiInit)
         {
             bLast = true;
         }
     }
 
-    if(bLast)
+    if (bLast)
     {
         PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_API(0 == s_apiInit, "api initialisation must be 0");
 
@@ -1299,7 +1299,7 @@ PANTHEIOS_CALL(pantheios_char_t const*) pantheios_getProcessIdentity()
 int pantheios_getProcessIdentity__cpp()
 #endif /* _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS */
 {
-    if(NULL != s_internalProcessIdentity)
+    if (NULL != s_internalProcessIdentity)
     {
         // use cached
 
@@ -1395,7 +1395,7 @@ pantheios_log_n__cpp(
         // The crappy way, for less-than compilers
         size_t n = 0;
 
-        { for(size_t i = 0; i != numSlices; ++i)
+        { for (size_t i = 0; i != numSlices; ++i)
         {
             n += slices[i].len;
         }}
@@ -1407,7 +1407,7 @@ pantheios_log_n__cpp(
 
         // We do a check here, so as to cater for cases where the allocator does not
         // throw bad_alloc.
-        if(0 == buffer.size())
+        if (0 == buffer.size())
         {
             return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
         }
@@ -1425,20 +1425,20 @@ pantheios_log_n__cpp(
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "could not log", NULL, "out of memory");
 
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_ALERT, "could not log", NULL, x.what());
 
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_EMERGENCY, "could not log", NULL, "unknown failure");
 
@@ -1487,7 +1487,7 @@ pantheios_logvprintf(
     using pantheios::core::pantheios_dispatch;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-    if(pantheios_isSeverityLogged(severity))
+    if (pantheios_isSeverityLogged(severity))
     {
         /* The standard requires that the return value is either:
          *
@@ -1507,11 +1507,11 @@ pantheios_logvprintf(
 
         sz[STLSOFT_NUM_ELEMENTS(sz) - 1] = '\0';
 
-        if(cch < 0)
+        if (cch < 0)
         {
             cch = static_cast<int>(pan_strlen_(sz));
         }
-        else if(cch >= int(STLSOFT_NUM_ELEMENTS(sz) - 1))
+        else if (cch >= int(STLSOFT_NUM_ELEMENTS(sz) - 1))
         {
             cch = STLSOFT_NUM_ELEMENTS(sz) - 1;
         }
@@ -1576,7 +1576,7 @@ pantheios_logassertfail(
     using pantheios::core::pantheios_dispatch;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-    if(pantheios_isSeverityLogged(severity))
+    if (pantheios_isSeverityLogged(severity))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         try
@@ -1596,7 +1596,7 @@ pantheios_logassertfail(
             size_t const    cchMessage  =   stlsoft::c_str_len(message);
             buffer_t        buff(1 + cchFileLine + cchMessage);
 
-            if(buff.empty())
+            if (buff.empty())
             {
                 goto logassertfail_no_memory;
             }
@@ -1621,12 +1621,12 @@ pantheios_logassertfail(
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
-        catch(std::bad_alloc&)
+        catch (std::bad_alloc&)
         {
             goto logassertfail_no_memory;
         }
 # ifdef PANTHEIOS_USE_CATCHALL
-        catch(...)
+        catch (...)
         {
             pantheios_onBailOut4(PANTHEIOS_SEV_EMERGENCY, "assertion failed", NULL, NULL);
         }
@@ -1668,7 +1668,7 @@ PANTHEIOS_CALL(void*) pantheios_malloc(size_t cb)
 
     memory_pool_entry_t* entry = memory_pool_entry_t::alloc(cb, s_memPoolHead);
 
-    if(NULL != entry)
+    if (NULL != entry)
     {
         s_memPoolHead = entry;
 
@@ -1741,7 +1741,7 @@ pantheios_getPad(
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_API(NULL != actualWidth, "pointer cannot be null");
 
-    if(minimumWidth > (STLSOFT_NUM_ELEMENTS(s_padCharacters) - 1u))
+    if (minimumWidth > (STLSOFT_NUM_ELEMENTS(s_padCharacters) - 1u))
     {
         *actualWidth = (STLSOFT_NUM_ELEMENTS(s_padCharacters) - 1u);
     }
@@ -1784,20 +1784,20 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_add(int backEndId, void* token)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, "could not add to back-end map", NULL, "out of memory");
 
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, "could not add to back-end map", NULL, x.what());
 
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "could not add to back-end map", NULL, "unknown failure");
 
@@ -1828,20 +1828,20 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_remove(int backEndId)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, "could not remove from back-end map", NULL, "out of memory");
 
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, "could not remove from back-end map", NULL, x.what());
 
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "could not remove from back-end map", NULL, "unknown failure");
 

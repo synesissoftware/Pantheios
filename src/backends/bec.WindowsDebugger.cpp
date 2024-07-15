@@ -180,7 +180,7 @@ static int pantheios_be_WindowsDebugger_init_(
 
     pan_be_WindowsDebugger_init_t init_;
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_WindowsDebugger_getDefaultAppInit(&init_);
 
@@ -193,11 +193,11 @@ static int pantheios_be_WindowsDebugger_init_(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001b8)
+    if (init->version < 0x010001b8)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
@@ -207,7 +207,7 @@ static int pantheios_be_WindowsDebugger_init_(
     WindowsDebugger_Context* ctxt = new WindowsDebugger_Context(processIdentity, backEndId, init);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if( NULL == ctxt ||
+    if (NULL == ctxt ||
         NULL == ctxt->getProcessIdentity())
     {
         delete ctxt;
@@ -293,7 +293,7 @@ int WindowsDebugger_Context::rawLogEntry(int /* severity4 */, int /* severityX *
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     // When exception support is not enabled, failure to allocate will yield an empty instance
-    if(buff.empty())
+    if (buff.empty())
     {
         return 0;
     }

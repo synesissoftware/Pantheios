@@ -71,7 +71,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.core.getProcessIdentity", verbosity, setup, teardown, s_param))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.core.getProcessIdentity", verbosity, setup, teardown, s_param))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -152,7 +152,7 @@ PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(void* token)
 {
     STLSOFT_SUPPRESS_UNUSED(token);
 
-    if(1 == ++s_numGPI)
+    if (1 == ++s_numGPI)
     {
         return s_PI_0;
     }
@@ -222,7 +222,7 @@ static void test_1_0(void)
 
     XTESTS_TEST_INTEGER_EQUAL(1, s_numGPI);
 
-    if(r < 0)
+    if (r < 0)
     {
         XTESTS_FAIL("could not initialise libraries");
     }
@@ -255,7 +255,7 @@ static void test_1_1(void)
 
     XTESTS_TEST_INTEGER_EQUAL(2, s_numGPI);
 
-    if(r < 0)
+    if (r < 0)
     {
         XTESTS_FAIL("could not initialise libraries");
     }

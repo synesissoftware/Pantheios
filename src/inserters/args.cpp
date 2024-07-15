@@ -135,7 +135,7 @@ args::~args() STLSOFT_NOEXCEPT // This is defined so that the destructors for th
 pantheios_char_t const*
 args::data() const
 {
-    if(m_result.empty())
+    if (m_result.empty())
     {
         construct_();
     }
@@ -145,7 +145,7 @@ args::data() const
 
 size_t args::size() const
 {
-    if(m_result.empty())
+    if (m_result.empty())
     {
         construct_();
     }
@@ -157,32 +157,32 @@ void args::construct_()
 {
     m_result.reserve(20 * static_cast<size_t>(m_argc));
 
-    { for(int i = 0; i < m_argc; ++i)
+    { for (int i = 0; i < m_argc; ++i)
     {
         pantheios_char_t const* arg = ::stlsoft::c_str_ptr(m_argv[i]); // ensure arg is never NULL
 
-        if(0 == i)
+        if (0 == i)
         {
-            if(arg0FileOnly == (m_flags & arg0FileOnly))
+            if (arg0FileOnly == (m_flags & arg0FileOnly))
             {
                 pantheios_char_t const* slash   =   pan_strrchr_(arg, PANTHEIOS_LITERAL_CHAR('/'));
 #ifdef PLATFORMSTL_OS_IS_WINDOWS
                 pantheios_char_t const* bslash  =   pan_strrchr_(arg, PANTHEIOS_LITERAL_CHAR('\\'));
 
-                if(NULL == slash)
+                if (NULL == slash)
                 {
                     slash = bslash;
                 }
-                else if(NULL != bslash)
+                else if (NULL != bslash)
                 {
-                    if(slash < bslash)
+                    if (slash < bslash)
                     {
                         slash = bslash;
                     }
                 }
 #endif /* PLATFORMSTL_OS_IS_WINDOWS */
 
-                if(NULL != slash)
+                if (NULL != slash)
                 {
                     arg = slash + 1;
                 }
@@ -193,7 +193,7 @@ void args::construct_()
             m_result += m_separator;
         }
 
-        if( alwaysQuoteArgs == (m_flags & alwaysQuoteArgs) ||
+        if (alwaysQuoteArgs == (m_flags & alwaysQuoteArgs) ||
             (   quoteArgsWithSpaces == (m_flags & quoteArgsWithSpaces) &&
                 NULL != pan_strpbrk_(arg, PANTHEIOS_LITERAL_STRING(" \t"))))
         {

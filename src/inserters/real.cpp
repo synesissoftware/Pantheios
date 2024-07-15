@@ -113,7 +113,7 @@ namespace pantheios
 pantheios_char_t const*
 real::data() const
 {
-    if(0 == m_sz[0])
+    if (0 == m_sz[0])
     {
         construct_();
     }
@@ -129,7 +129,7 @@ real::c_str() const
 
 size_t real::length() const
 {
-    if(0 == m_sz[0])
+    if (0 == m_sz[0])
     {
         construct_();
     }

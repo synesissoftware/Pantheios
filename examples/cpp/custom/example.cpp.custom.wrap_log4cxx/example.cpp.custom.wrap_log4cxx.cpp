@@ -90,15 +90,15 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, "out of memory");
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL("Exception: ", x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, "Unexpected unknown error");
   }
@@ -183,13 +183,13 @@ PANTHEIOS_CALL(int) pantheios_be_init(
   {
     BasicConfigurator::configure();
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::util::onBailOut(PANTHEIOS_SEV_ALERT, "failed to initialise back-end", processIdentity, "out of memory");
 
     return PANTHEIOS_INIT_RC_OUT_OF_MEMORY
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::util::onBailOut(PANTHEIOS_SEV_ALERT, "failed to initialise back-end", processIdentity, x.what());
 

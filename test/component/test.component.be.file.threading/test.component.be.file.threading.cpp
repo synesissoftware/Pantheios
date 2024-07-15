@@ -210,7 +210,7 @@ static int main_(int /*argc*/, char** /*argv*/)
 
     pan::log_INFORMATIONAL(PSTR("main(): creating "), pan::integer(STLSOFT_NUM_ELEMENTS(threads)), PSTR(" threads"));
 
-    { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(threads); ++i)
+    { for (size_t i = 0; i < STLSOFT_NUM_ELEMENTS(threads); ++i)
     {
         void* arg = NULL;
 
@@ -218,7 +218,7 @@ static int main_(int /*argc*/, char** /*argv*/)
 
         pthread_mutex_lock(&s_mx);
 
-        if(0 != pthread_create(&threads[i], NULL, thread_proc, arg))
+        if (0 != pthread_create(&threads[i], NULL, thread_proc, arg))
         {
             pan::log_ALERT(PSTR("Failed to create thread "), pan::integer(i));
 
@@ -247,7 +247,7 @@ static int main_(int /*argc*/, char** /*argv*/)
 
         threads[i] = CreateThread(NULL, 0, thread_proc, arg, 0, &threadId);
 
-        if(NULL == threads[i])
+        if (NULL == threads[i])
         {
             winstl::error_desc  err;
 
@@ -276,10 +276,10 @@ static int main_(int /*argc*/, char** /*argv*/)
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 
-    for(;;)
+    for (;;)
     {
         pthread_mutex_lock(&s_mx);
-        if(0 == s_activeThreads)
+        if (0 == s_activeThreads)
         {
             pthread_mutex_unlock(&s_mx);
             break;
@@ -308,7 +308,7 @@ static int main_(int /*argc*/, char** /*argv*/)
 
     lines_t lines(LOG_FILE_NAME);
 
-    { for(size_t i = 0; i != lines.size(); ++i)
+    { for (size_t i = 0; i != lines.size(); ++i)
     {
         lines_t::value_type const&  line = lines[i];
 
@@ -320,7 +320,7 @@ static int main_(int /*argc*/, char** /*argv*/)
         string_view_t               middle;
         string_view_t               right;
 
-        if( !stlsoft::split(line, PSTR('|'), prefix, scratch1) ||
+        if (!stlsoft::split(line, PSTR('|'), prefix, scratch1) ||
             !stlsoft::split(scratch1, PSTR('|'), left, scratch2) ||
             !stlsoft::split(scratch2, PSTR('|'), middle, right))
         {
@@ -330,7 +330,7 @@ static int main_(int /*argc*/, char** /*argv*/)
         }
         else
         {
-            if(left != right)
+            if (left != right)
             {
                 pan::log_CRITICAL(PSTR("line prefix and suffix do not match: ["), pan::integer(i), PSTR(": "), line, PSTR("]"));
 
@@ -339,7 +339,7 @@ static int main_(int /*argc*/, char** /*argv*/)
         }
     }}
 
-    if(EXIT_SUCCESS == retVal)
+    if (EXIT_SUCCESS == retVal)
     {
         s_showNotices &&
         pan::log_NOTICE(PSTR("all lines logged to file correctly"));
@@ -372,15 +372,15 @@ int main__(int argc, char** argv)
 
 int main(int argc, char** argv)
 {
-    if(2 == argc)
+    if (2 == argc)
     {
         char const* arg = argv[1];
 
-        if(0 == ::strncmp(arg, "--verbosity=", 12))
+        if (0 == ::strncmp(arg, "--verbosity=", 12))
         {
             int verbosity = atoi(arg + 12);
 
-            if(verbosity < 0)
+            if (verbosity < 0)
             {
                 verbosity = 0;
             }
@@ -417,11 +417,11 @@ int main(int argc, char** argv)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pan::log_ALERT(PSTR("Unexpected general error: "), pantheios::exception(x), PSTR(". Application terminating"));
     }
-    catch(...)
+    catch (...)
     {
         pan::logputs(pan::emergency, PSTR("Unhandled unknown error"));
     }
@@ -453,7 +453,7 @@ static DWORD WINAPI thread_proc(void*)
 
     // TODO: Do some threading stuff
 
-    { for(size_t i = 0; i != LOG_ITERATIONS; ++i)
+    { for (size_t i = 0; i != LOG_ITERATIONS; ++i)
     {
         pan::log(pan::informational(beid_file), PSTR("|"), pan::integer(i), PSTR("|"), PSTR("this is"), PSTR(" "), PSTR("multipart log "), PSTR("statement"), PSTR("|"), pan::integer(i));
     }}

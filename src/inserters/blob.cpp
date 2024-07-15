@@ -165,7 +165,7 @@ inline void blob::construct_() const
 pantheios_char_t const*
 blob::data() const
 {
-    if(NULL == m_value)
+    if (NULL == m_value)
     {
         construct_();
     }
@@ -187,7 +187,7 @@ blob::c_str() const
 
 size_t blob::length() const
 {
-    if(NULL == m_value)
+    if (NULL == m_value)
     {
         construct_();
     }
@@ -214,7 +214,7 @@ void blob::construct_()
     size_t              cch     =   stlsoft::format_bytes(m_pv, m_cb, NULL, 0, m_byteGrouping, grpSep, m_groupsPerLine, lineSep);
     pantheios_char_t*   value   =   static_cast<pantheios_char_t*>(pantheios_inserterAllocate(sizeof(pantheios_char_t) * (1 + cch)));
 
-    if(NULL != value)
+    if (NULL != value)
     {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
@@ -223,7 +223,7 @@ void blob::construct_()
         ,   256
         >::type     buff(1 + cch);
 
-        if(buff.empty())
+        if (buff.empty())
         {
             pantheios_inserterDeallocate(const_cast<pantheios_char_t*>(m_value));
 

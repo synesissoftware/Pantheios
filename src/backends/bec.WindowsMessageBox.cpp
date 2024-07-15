@@ -154,7 +154,7 @@ static int pantheios_be_WindowsMessageBox_init_(
     WindowsMessageBox_Context* ctxt = new(processIdentity) WindowsMessageBox_Context(id);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(NULL == ctxt)
+    if (NULL == ctxt)
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -211,7 +211,7 @@ void* WindowsMessageBox_Context::operator new(size_t /* cb */, PAN_CHAR_T const*
     const size_t    cbActual    =   sizeof(WindowsMessageBox_Context) + (1 + len) * sizeof(PAN_CHAR_T);
     void*           pv          =   ::operator new(cbActual);
 
-    if(NULL != pv)
+    if (NULL != pv)
     {
         WindowsMessageBox_Context* ctxt = static_cast<WindowsMessageBox_Context*>(pv);
 

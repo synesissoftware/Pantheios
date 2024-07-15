@@ -159,7 +159,7 @@ inline void slice_inserter::construct_() const
 pantheios_char_t const*
 slice_inserter::data() const
 {
-    if(0u == m_buffer.size())
+    if (0u == m_buffer.size())
     {
         construct_();
     }
@@ -175,7 +175,7 @@ slice_inserter::c_str() const
 
 size_t slice_inserter::length() const
 {
-    if(0u == m_buffer.size())
+    if (0u == m_buffer.size())
     {
         construct_();
     }
@@ -195,11 +195,11 @@ void slice_inserter::construct_()
     slices[2] = pan_slice_t(m_str, m_len);          // 2: str
     slices[4] = pan_slice_t(-1, m_lenName);         // 4: len name
 
-    if(0u != slices[0].len)
+    if (0u != slices[0].len)
     {
         slices[1] = equals;                         // 1: equals (for str)
     }
-    if(0u != slices[4].len)
+    if (0u != slices[4].len)
     {
         pantheios_char_t const* separator = (NULL != m_separator) ? m_separator : PANTHEIOS_LITERAL_STRING(", ");
 
@@ -238,7 +238,7 @@ void slice_inserter::construct_()
     // The crappy way, for less-than compilers
     size_t n = 0;
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(slices); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(slices); ++i)
     {
         n += slices[i].len;
     }}

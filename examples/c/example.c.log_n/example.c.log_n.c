@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
    *
    * If this is not done, undefined behaviour will ensue ...
    */
-  if(pantheios_init() < 0)
+  if (pantheios_init() < 0)
   {
     return EXIT_FAILURE;
   }

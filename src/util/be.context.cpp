@@ -144,7 +144,7 @@ inline int check_severity_mask_(int severityMask)
         // 6: "]: "
         // 7: entry
 
-        if( (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) &&
+        if ((m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) &&
             (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) &&
             (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) &&
             (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY))
@@ -153,7 +153,7 @@ inline int check_severity_mask_(int severityMask)
         }
         else
         {
-            if(m_flags & PANTHEIOS_BE_INIT_F_DETAILS_AT_START)
+            if (m_flags & PANTHEIOS_BE_INIT_F_DETAILS_AT_START)
             {
                 m_slice0 = pan_slice_t(-1, PANTHEIOS_LITERAL_STRING(" ["));
             }
@@ -162,7 +162,7 @@ inline int check_severity_mask_(int severityMask)
                 m_slice0 = pan_slice_t(-1, &PANTHEIOS_LITERAL_STRING(" [")[1]);
             }
 
-            if(0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID))
+            if (0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID))
             {
                 m_slice1 = pan_slice_t(-1, m_processIdentity);
             }
@@ -170,7 +170,7 @@ inline int check_severity_mask_(int severityMask)
 #if 0
             // If we're not suspending processId and any following field
             // then we need to separate them
-            if( 0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) &&
+            if (0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) &&
                 (   0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) ||
                     0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) ||
                     0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY)))
@@ -180,7 +180,7 @@ inline int check_severity_mask_(int severityMask)
 
             // If we're not suspending threadId and any following field
             // we need to separate them
-            if( 0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) &&
+            if (0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) &&
                 (   0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) ||
                     0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY)))
             {
@@ -189,7 +189,7 @@ inline int check_severity_mask_(int severityMask)
 
             // If we're not suspending date/time and any following field
             // we need to separate them
-            if( 0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) &&
+            if (0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) &&
                 (   0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY)))
             {
                 m_slice6 = pan_slice_t(-1, ", ");
@@ -197,7 +197,7 @@ inline int check_severity_mask_(int severityMask)
 #else /* ? 0 */
             // If we're not suspending processId and any following field
             // then we need to separate them
-            if( 0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) &&
+            if (0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) &&
                 (   0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID)))
             {
                 m_slice2 = pan_slice_t(-1, PANTHEIOS_LITERAL_STRING("."));
@@ -205,7 +205,7 @@ inline int check_severity_mask_(int severityMask)
 
             // If we're not suspending date/time and any preceeding field
             // we need to separate them
-            if( 0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) &&
+            if (0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) &&
                 (   0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) ||
                     0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID)))
             {
@@ -214,7 +214,7 @@ inline int check_severity_mask_(int severityMask)
 
             // If we're not suspending severity and any preceeding field
             // we need to separate them
-            if( 0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY) &&
+            if (0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY) &&
                 (   0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) ||
                     0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) ||
                     0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME)))
@@ -223,7 +223,7 @@ inline int check_severity_mask_(int severityMask)
             }
 #endif /* 0 */
 
-            if(m_flags & PANTHEIOS_BE_INIT_F_DETAILS_AT_START)
+            if (m_flags & PANTHEIOS_BE_INIT_F_DETAILS_AT_START)
             {
                 m_slice8 = pan_slice_t(-1, PANTHEIOS_LITERAL_STRING("]"));
             }
@@ -233,7 +233,7 @@ inline int check_severity_mask_(int severityMask)
             }
         }
 //    }
-//    catch(...)
+//    catch (...)
 //    {
 //        pantheios::util::strfree(m_processIdentity);
 //
@@ -261,7 +261,7 @@ int Context::logEntry(
     int severity4   =   severity & m_severityMask;
     int severityX   =   (severity & ~m_severityMask) >> 4;
 
-    if( PANTHEIOS_BE_INIT_F_NO_PROCESS_ID == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) &&
+    if (PANTHEIOS_BE_INIT_F_NO_PROCESS_ID == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) &&
         PANTHEIOS_BE_INIT_F_NO_THREAD_ID == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) &&
         PANTHEIOS_BE_INIT_F_NO_DATETIME == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) &&
         PANTHEIOS_BE_INIT_F_NO_SEVERITY == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY))
@@ -288,7 +288,7 @@ int Context::logEntry(
     // 8: "]: "
     // 9: entry
 
-    if(m_flags & PANTHEIOS_BE_INIT_F_DETAILS_AT_START)
+    if (m_flags & PANTHEIOS_BE_INIT_F_DETAILS_AT_START)
     {
         ++slice;
     }
@@ -303,7 +303,7 @@ int Context::logEntry(
 
     // ThreadId
 
-    if(0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID))
+    if (0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID))
     {
         threadId.ptr = stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), pantheios_getCurrentThreadId(), &threadId.len);
     }
@@ -314,35 +314,35 @@ int Context::logEntry(
 
     // Date time
 
-    if(0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME))
+    if (0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME))
     {
         int timeFlags = 0;
 
-        if(PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME & m_flags)
+        if (PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME & m_flags)
         {
             timeFlags |= PANTHEIOS_GETCURRENTTIME_F_USE_SYSTEM_TIME;
         }
 
-        if(PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT & m_flags)
+        if (PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT & m_flags)
         {
             timeFlags |= PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT;
         }
 
-        if(PANTHEIOS_BE_INIT_F_HIDE_DATE & m_flags)
+        if (PANTHEIOS_BE_INIT_F_HIDE_DATE & m_flags)
         {
             timeFlags |= PANTHEIOS_GETCURRENTTIME_F_HIDE_DATE;
         }
 
-        if(PANTHEIOS_BE_INIT_F_HIDE_TIME & m_flags)
+        if (PANTHEIOS_BE_INIT_F_HIDE_TIME & m_flags)
         {
             timeFlags |= PANTHEIOS_GETCURRENTTIME_F_HIDE_TIME;
         }
 
-        if(PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION & m_flags)
+        if (PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION & m_flags)
         {
             timeFlags |= PANTHEIOS_GETCURRENTTIME_F_TIME_RES_MICROSECS;
         }
-        else if(PANTHEIOS_BE_INIT_F_LOW_RESOLUTION & m_flags)
+        else if (PANTHEIOS_BE_INIT_F_LOW_RESOLUTION & m_flags)
         {
             // CodeWarrior has a cow here, indicating that the |= expression
             // has no effect. So, it is commented out to avoid the compiler
@@ -369,9 +369,9 @@ int Context::logEntry(
 
     // Severity
 
-    if(0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY))
+    if (0 == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY))
     {
-        if(0 != (PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY & m_flags))
+        if (0 != (PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY & m_flags))
         {
 do_sev_as_integer:
             slice->ptr = stlsoft::integer_to_string(&numSev[0], STLSOFT_NUM_ELEMENTS(numSev), severity4, &slice->len);
@@ -380,7 +380,7 @@ do_sev_as_integer:
         {
             *slice = pan_slice_t(pantheios_getStockSeverityStringSlice(pan_sev_t(severity4)));
 
-            if(0 == slice->len)
+            if (0 == slice->len)
             {
                 goto do_sev_as_integer;
             }
@@ -390,7 +390,7 @@ do_sev_as_integer:
 
     *slice++ = m_slice8;
 
-    if(m_flags & PANTHEIOS_BE_INIT_F_DETAILS_AT_START)
+    if (m_flags & PANTHEIOS_BE_INIT_F_DETAILS_AT_START)
     {
         slices[0] = pan_slice_t(entry, cchEntry);
     }
@@ -425,7 +425,7 @@ do_sev_as_integer:
     // The crappy way, for less-than compilers
     size_t cchTotal = 0;
 
-    { for(size_t i = 0; i != rawLogArrayDimension; ++i)
+    { for (size_t i = 0; i != rawLogArrayDimension; ++i)
     {
         cchTotal += slices[i].len;
     }}

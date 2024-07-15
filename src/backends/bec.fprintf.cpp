@@ -192,7 +192,7 @@ static int pantheios_be_fprintf_init_(
 
     pan_be_fprintf_init_t init_;
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_fprintf_getDefaultAppInit(&init_);
 
@@ -205,11 +205,11 @@ static int pantheios_be_fprintf_init_(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001b8)
+    if (init->version < 0x010001b8)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
@@ -219,7 +219,7 @@ static int pantheios_be_fprintf_init_(
     be_fprintf_Context* ctxt = new be_fprintf_Context(processIdentity, backEndId, init);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if( NULL == ctxt ||
+    if (NULL == ctxt ||
         NULL == ctxt->getProcessIdentity())
     {
         delete ctxt;

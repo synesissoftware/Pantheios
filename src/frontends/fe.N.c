@@ -93,7 +93,7 @@ pantheios_fe_N_countBackEnds_(void)
     size_t              n = 0;
     pan_fe_N_t const*   frontEnd;
 
-    for(frontEnd = &PAN_FE_N_SEVERITY_CEILINGS[0]; 0 != frontEnd->backEndId; ++n, ++frontEnd)
+    for (frontEnd = &PAN_FE_N_SEVERITY_CEILINGS[0]; 0 != frontEnd->backEndId; ++n, ++frontEnd)
     {}
 
     return n;
@@ -106,11 +106,11 @@ pantheios_fe_N_calc0Level_(size_t numBackEnds)
     size_t  n;
     int     severityCeiling = PAN_FE_N_SEVERITY_CEILINGS[numBackEnds].severityCeiling;
 
-    for(n = 0; n != numBackEnds; ++n)
+    for (n = 0; n != numBackEnds; ++n)
     {
         pan_fe_N_t const* const frontEnd = &PAN_FE_N_SEVERITY_CEILINGS[n];
 
-        if(frontEnd->severityCeiling > severityCeiling)
+        if (frontEnd->severityCeiling > severityCeiling)
         {
             severityCeiling = frontEnd->severityCeiling;
         }
@@ -140,7 +140,7 @@ pantheios_fe_init(
 
     init = (pantheios_fe_N_init_t*)malloc(sizeof(pantheios_fe_N_init_t));
 
-    if(NULL == init)
+    if (NULL == init)
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -196,7 +196,7 @@ pantheios_fe_isSeverityLogged(
 
     init = (pantheios_fe_N_init_t*)token;
 
-    if(0 == backEndId)
+    if (0 == backEndId)
     {
         severityCeiling = init->netLevel;
     }
@@ -205,7 +205,7 @@ pantheios_fe_isSeverityLogged(
         size_t const numBackEnds = init->numBackEnds;
 
         /* Optimise the search, if its index matches the id. */
-        if( backEndId >= 1 &&
+        if (backEndId >= 1 &&
             (size_t)backEndId <= numBackEnds &&
             PAN_FE_N_SEVERITY_CEILINGS[backEndId - 1].backEndId == backEndId)
         {
@@ -220,11 +220,11 @@ pantheios_fe_isSeverityLogged(
 
             severityCeiling = PAN_FE_N_SEVERITY_CEILINGS[numBackEnds].severityCeiling;
 
-            for(n = 0; n != numBackEnds; ++n)
+            for (n = 0; n != numBackEnds; ++n)
             {
                 pan_fe_N_t const* const frontEnd = &PAN_FE_N_SEVERITY_CEILINGS[n];
 
-                if(frontEnd->backEndId == backEndId)
+                if (frontEnd->backEndId == backEndId)
                 {
                     severityCeiling = frontEnd->severityCeiling;
                     break;

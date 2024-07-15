@@ -183,15 +183,15 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }
@@ -203,7 +203,7 @@ int main()
 
 static void log_with_explicit_conversion_code(Person const& person)
 {
-  if(pantheios::isSeverityLogged(pantheios::notice))
+  if (pantheios::isSeverityLogged(pantheios::notice))
   {
     // Since Person's names are wide, we need to convert
 
@@ -335,7 +335,7 @@ private:
 public:
   PAN_CHAR_T const* data() const
   {
-    if(m_value.empty())
+    if (m_value.empty())
     {
       construct_();
     }
@@ -344,7 +344,7 @@ public:
   }
   size_t size() const
   {
-    if(m_value.empty())
+    if (m_value.empty())
     {
       construct_();
     }

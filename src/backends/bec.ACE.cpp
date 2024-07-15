@@ -88,7 +88,7 @@ PANTHEIOS_CALL(int) pantheios_be_ACE_init(
     STLSOFT_SUPPRESS_UNUSED(unused);
     STLSOFT_SUPPRESS_UNUSED(reserved);
 
-    if(NULL == (*ptoken = pantheios::util::strdup_nothrow(processIdentity)))
+    if (NULL == (*ptoken = pantheios::util::strdup_nothrow(processIdentity)))
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -128,7 +128,7 @@ PANTHEIOS_CALL(int) pantheios_be_ACE_logEntry(
     // - Pantheios is wide, ACE is narrow
     // - Pantheios is narrow, ACE is wide
 
-    if(severity < PANTHEIOS_SEV_NOTICE)
+    if (severity < PANTHEIOS_SEV_NOTICE)
     {
 #if (   defined(PANTHEIOS_USE_WIDE_STRINGS) && \
         defined(ACE_USES_WCHAR)) || \

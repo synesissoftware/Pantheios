@@ -100,15 +100,15 @@ static pan_init_char_t_ const* pantheios_LookupCodeA_(int code, InitCodeString c
      */
     size_t  len_;
 
-    if(NULL == len)
+    if (NULL == len)
     {
         len = &len_;
     }
 
     /* Linear search. */
-    { size_t i; for(i = 0; i < cMappings; ++i)
+    { size_t i; for (i = 0; i < cMappings; ++i)
     {
-        if(code == mappings[i]->code)
+        if (code == mappings[i]->code)
         {
             return (*len = mappings[i]->len, mappings[i]->str);
         }

@@ -31,7 +31,7 @@ inline int log(
 , T0 const& v0
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -63,7 +63,7 @@ inline int log(
 , T0 const& v0, T1 const& v1
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -97,7 +97,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -133,7 +133,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -171,7 +171,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -211,7 +211,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -253,7 +253,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -297,7 +297,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -343,7 +343,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -391,7 +391,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -441,7 +441,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -493,7 +493,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -547,7 +547,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -603,7 +603,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -661,7 +661,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -721,7 +721,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -783,7 +783,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -847,7 +847,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -913,7 +913,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -981,7 +981,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1051,7 +1051,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1123,7 +1123,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1197,7 +1197,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1273,7 +1273,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1351,7 +1351,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1431,7 +1431,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1513,7 +1513,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1597,7 +1597,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1683,7 +1683,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1771,7 +1771,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28, T29 const& v29
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1861,7 +1861,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28, T29 const& v29, T30 const& v30
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }
@@ -1953,7 +1953,7 @@ inline int log(
 , T0 const& v0, T1 const& v1, T2 const& v2, T3 const& v3, T4 const& v4, T5 const& v5, T6 const& v6, T7 const& v7, T8 const& v8, T9 const& v9, T10 const& v10, T11 const& v11, T12 const& v12, T13 const& v13, T14 const& v14, T15 const& v15, T16 const& v16, T17 const& v17, T18 const& v18, T19 const& v19, T20 const& v20, T21 const& v21, T22 const& v22, T23 const& v23, T24 const& v24, T25 const& v25, T26 const& v26, T27 const& v27, T28 const& v28, T29 const& v29, T30 const& v30, T31 const& v31
 )
 {
- if(!pantheios_isSeverityLogged(severity))
+ if (!pantheios_isSeverityLogged(severity))
  {
   return 0;
  }

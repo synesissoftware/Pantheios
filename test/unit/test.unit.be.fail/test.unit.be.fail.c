@@ -28,10 +28,10 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.be.fail", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.be.fail", verbosity))
     {
         /* Test-1 */
-        if(XTESTS_CASE_BEGIN("Test-1", "Verify that it fails"))
+        if (XTESTS_CASE_BEGIN("Test-1", "Verify that it fails"))
         {
             void*   token;
             int     res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);

@@ -211,7 +211,7 @@ static int pantheios_be_COMErrorObject_init_(
 
     pan_be_COMErrorObject_init_t init_;
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_COMErrorObject_getDefaultAppInit(&init_);
 
@@ -224,11 +224,11 @@ static int pantheios_be_COMErrorObject_init_(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001b8)
+    if (init->version < 0x010001b8)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
@@ -238,7 +238,7 @@ static int pantheios_be_COMErrorObject_init_(
     ErrorObject_Context* ctxt = new(processIdentity) ErrorObject_Context(init->flags);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(NULL == ctxt)
+    if (NULL == ctxt)
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -285,12 +285,12 @@ static int pantheios_be_COMErrorObject_logEntry_(
 
     ErrorObject_Context* ctxt = static_cast<ErrorObject_Context*>(beToken);
 
-    if(PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING & ctxt->flags)
+    if (PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING & ctxt->flags)
     {
         IErrorInfo* pei =   NULL;
         HRESULT     hr  =   ::GetErrorInfo(0, &pei);
 
-        if( SUCCEEDED(hr) &&
+        if (SUCCEEDED(hr) &&
             NULL != pei)
         {
             ::SetErrorInfo(0, pei);
@@ -303,7 +303,7 @@ static int pantheios_be_COMErrorObject_logEntry_(
 
     severity &= 0x7;    /* This stock back-end ignores any custom severity information. */
 
-    if(severity >= static_cast<int>(PANTHEIOS_SEV_INFORMATIONAL))
+    if (severity >= static_cast<int>(PANTHEIOS_SEV_INFORMATIONAL))
     {
         return static_cast<int>(cchEntry);
     }
@@ -323,7 +323,7 @@ static int pantheios_be_COMErrorObject_logEntry_(
     buffer_t            buff(1 + len);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(0 == buff.size())
+    if (0 == buff.size())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -332,7 +332,7 @@ static int pantheios_be_COMErrorObject_logEntry_(
     size_t          cchTotal    =   0;
     PAN_CHAR_T*     p           =   &buff[0];
 
-    if(bShowSev)
+    if (bShowSev)
     {
         // "[%s]: %s" + (bShowSev ? 0 : 6), bShowSev ? sevName : entry, entry
 
@@ -358,7 +358,7 @@ static int pantheios_be_COMErrorObject_logEntry_(
     buff[cchTotal] = '\0';
     p += cchEntry;
 
-    if(bShowSev)
+    if (bShowSev)
     {
         PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal + 1 == buff.size());
         PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal == size_t(p - buff.data()));
@@ -405,7 +405,7 @@ pantheios_be_COMErrorObject_parseArgs(
     // 1. Parse the stock arguments
     int res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2. Parse the custom argument: "overwriteExisting"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("overwriteExisting"), false, PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING, &init->flags);
@@ -424,7 +424,7 @@ void* ErrorObject_Context::operator new(size_t /* cb */, PAN_CHAR_T const* s)
     const size_t    cbActual    =   sizeof(ErrorObject_Context) + sizeof(OLECHAR) * (1 + len);
     void*           pv          =   ::operator new(cbActual);
 
-    if(NULL != pv)
+    if (NULL != pv)
     {
         ErrorObject_Context* ctxt = static_cast<ErrorObject_Context*>(pv);
 

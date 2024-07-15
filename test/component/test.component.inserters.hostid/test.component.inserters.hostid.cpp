@@ -88,7 +88,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.hostid", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.hostid", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
 
@@ -138,7 +138,7 @@ static string_t pan_get_hid_()
 
     PAN_CHAR_T  szHostName[1001];
 
-    if(0 != ::gethostname(&szHostName[0], STLSOFT_NUM_ELEMENTS(szHostName)))
+    if (0 != ::gethostname(&szHostName[0], STLSOFT_NUM_ELEMENTS(szHostName)))
     {
         return PANTHEIOS_LITERAL_STRING("localhost");
     }
@@ -152,7 +152,7 @@ static string_t pan_get_hid_()
     PAN_CHAR_T  szHostName[1001];
     DWORD       cchHostName = STLSOFT_NUM_ELEMENTS(szHostName);
 
-    if(!pantheios_GetComputerName_(&szHostName[0], &cchHostName))
+    if (!pantheios_GetComputerName_(&szHostName[0], &cchHostName))
     {
         return PANTHEIOS_LITERAL_STRING("localhost");
     }

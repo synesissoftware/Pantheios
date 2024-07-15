@@ -137,7 +137,7 @@ private:
     template <typename I>
     static int get_width_(I e)
     {
-        if(0 != (0x80000000 & e))
+        if (0 != (0x80000000 & e))
         {
             return 8;
         }
@@ -147,7 +147,7 @@ private:
     template <typename I>
     static int get_format_(I e)
     {
-        if(0 != (0x80000000 & e))
+        if (0 != (0x80000000 & e))
         {
             return fmt::fullHex;
         }

@@ -97,16 +97,16 @@ pantheios_LookupCodeA_(
      */
     size_t  len_;
 
-    if(NULL == len)
+    if (NULL == len)
     {
         len = &len_;
     }
 
     /* Checked, indexed search. */
-    if( severity >= 0 &&
+    if (severity >= 0 &&
         severity <= PANTHEIOS_SEV_DEBUG)
     {
-        if(severity == mappings[severity]->severity)
+        if (severity == mappings[severity]->severity)
         {
             return (*len = mappings[severity]->len, mappings[severity]->str);
         }
@@ -115,9 +115,9 @@ pantheios_LookupCodeA_(
     /* Linear search. Should only be needed if order in
      * pantheios_LookupSeverityStringA_() messed up.
      */
-    { size_t i; for(i = 0; i < cMappings; ++i)
+    { size_t i; for (i = 0; i < cMappings; ++i)
     {
-        if(severity == mappings[i]->severity)
+        if (severity == mappings[i]->severity)
         {
             return (*len = mappings[i]->len, mappings[i]->str);
         }

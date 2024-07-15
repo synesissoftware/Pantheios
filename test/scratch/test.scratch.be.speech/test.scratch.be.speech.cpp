@@ -168,15 +168,15 @@ int main()
 
         return EXIT_SUCCESS;
     }
-    catch(std::bad_alloc &)
+    catch (std::bad_alloc &)
     {
         pantheios::log_CRITICAL(PSTR("out of memory"));
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         pantheios::log_ALERT(PSTR("Exception: "), x);
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
     }

@@ -108,17 +108,17 @@ static int main_(int /* argc */, char ** /*argv*/)
 
     STLSOFT_STATIC_ASSERT(0 == (3000 % INCREMENT));
 
-    { for(size_t i = 0; i != 3000; i += INCREMENT)
+    { for (size_t i = 0; i != 3000; i += INCREMENT)
     {
-        { for(size_t j = 0; j != 3000; j += INCREMENT)
+        { for (size_t j = 0; j != 3000; j += INCREMENT)
         {
-            if(0 == i)
+            if (0 == i)
             {
                 std::string qualifier(j, 'q');
 
                 pantheios::util::onBailOut(PANTHEIOS_SEV_DEBUG, NULL, PANTHEIOS_FE_PROCESS_IDENTITY, qualifier.c_str());
             }
-            else if(0 == j)
+            else if (0 == j)
             {
                 std::string message(i, 'm');
 
@@ -142,7 +142,7 @@ static int main_(int /* argc */, char ** /*argv*/)
 int main(int argc, char *argv[])
 {
 #if 0
-    for(;;) {}
+    for (;;) {}
 #endif /* 0 */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -154,11 +154,11 @@ int main(int argc, char *argv[])
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
     }
-    catch(...)
+    catch (...)
     {
         pantheios::puts(pantheios::emergency, "Unhandled unknown error");
     }

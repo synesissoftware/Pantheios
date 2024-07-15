@@ -83,7 +83,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
     {
         XTESTS_RUN_CASE(test_plain_characters);
         XTESTS_RUN_CASE(test_special_characters_1);
@@ -118,7 +118,7 @@ static void test_plain_characters()
 
     // 2. Create test data
 
-    { for(size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
+    { for (size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
     {
         PAN_CHAR_T const ch = plain_characters[i];
 
@@ -133,7 +133,7 @@ static void test_plain_characters()
     XTESTS_TEST(!results.empty());
     XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(plain_characters) - 1, results.size());
 
-    { for(size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
+    { for (size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
     {
         PAN_CHAR_T const    ch      =   plain_characters[i];
         PAN_CHAR_T          sz[4]   =   { '{', ch, '}', '\0' };

@@ -156,7 +156,7 @@ pantheios_util_strnlen(
     static size_t const topBit     =   stlsoft_static_cast(size_t, 0x01) << (sizeof(size_t) * 8 - 1);
     static size_t const nextTopBit =   stlsoft_static_cast(size_t, 0x01) << (sizeof(size_t) * 8 - 2);
 
-    if(topBit & len)
+    if (topBit & len)
     {
         /* Top bit is set. This can mean one of two things:
          *
@@ -166,7 +166,7 @@ pantheios_util_strnlen(
          *    bit being not set.
          */
 
-        if(nextTopBit & len)
+        if (nextTopBit & len)
         {
             /* 1. strlen() is requested. */
             return (NULL != s) ? pan_strlen_(s) : 0;
@@ -187,18 +187,18 @@ pantheios_util_strnlen(
             pantheios_char_t const* to      =   s + toLen;
             pantheios_char_t const* nul;
 
-            if(fromLen < toLen)
+            if (fromLen < toLen)
             {
                 /* Search forwards */
-                for(nul = from; nul != to; ++nul)
+                for (nul = from; nul != to; ++nul)
                 {
-                    if('\0' == *nul)
+                    if ('\0' == *nul)
                     {
                         break;
                     }
                 }
             }
-            else if(fromLen == toLen)
+            else if (fromLen == toLen)
             {
                 nul = s + fromLen;
             }
@@ -209,7 +209,7 @@ pantheios_util_strnlen(
                 /* Search backwards */
                 do
                 {
-                    if('\0' == *from)
+                    if ('\0' == *from)
                     {
                         nul = from;
 

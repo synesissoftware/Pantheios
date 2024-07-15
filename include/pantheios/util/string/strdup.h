@@ -143,7 +143,7 @@ inline pantheios_char_t* pantheios_util_strdup_throw(pantheios_char_t const* s)
 {
     pantheios_char_t* const s2 = pantheios_util_strdup_nothrow(s);
 
-    if( NULL == s2 &&
+    if (NULL == s2 &&
         NULL != s)
     {
         throw std::bad_alloc();

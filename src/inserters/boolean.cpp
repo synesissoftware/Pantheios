@@ -151,7 +151,7 @@ typedef stlsoft::stlsoft_char_traits<pantheios_char_t> char_traits_t;
 
 /* static */ void boolean::set_value_strings(pantheios_char_t const* falseName, pantheios_char_t const* trueName) /* throw(std::bad_alloc) */
 {
-    if(NULL == falseName)
+    if (NULL == falseName)
     {
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
 no_falseName:
@@ -164,7 +164,7 @@ no_falseName:
         const size_t            cchFalseName    =   char_traits_t::length(falseName);
         pantheios_char_t* const falseNameCopy   =   static_cast<pantheios_char_t*>(pantheios_malloc((1 + cchFalseName) * sizeof(pantheios_char_t)));
 
-        if(NULL == falseNameCopy)
+        if (NULL == falseNameCopy)
         {
 #ifdef STLSOFT_CF_THROW_BAD_ALLOC
             throw std::bad_alloc();
@@ -186,7 +186,7 @@ no_falseName:
         }
     }
 
-    if(NULL == trueName)
+    if (NULL == trueName)
     {
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
 no_trueName:
@@ -199,7 +199,7 @@ no_trueName:
         const size_t            cchTrueName     =   char_traits_t::length(trueName);
         pantheios_char_t* const trueNameCopy    =   static_cast<pantheios_char_t*>(pantheios_malloc((1 + cchTrueName) * sizeof(pantheios_char_t)));
 
-        if(NULL == trueNameCopy)
+        if (NULL == trueNameCopy)
         {
 #ifdef STLSOFT_CF_THROW_BAD_ALLOC
             throw std::bad_alloc();

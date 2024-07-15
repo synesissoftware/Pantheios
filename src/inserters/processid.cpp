@@ -111,12 +111,12 @@ namespace
         static pantheios_char_t const*  s_processId = ::stlsoft::integer_to_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
 #endif /* STLSoft version */
 
-        if(NULL != processId)
+        if (NULL != processId)
         {
             *processId = s_processId;
         }
 
-        if(NULL != processIdLength)
+        if (NULL != processIdLength)
         {
             *processIdLength = s_processIdLength;
         }

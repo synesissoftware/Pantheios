@@ -112,7 +112,7 @@ pan_slice_t::pan_slice_t(
 {
     static size_t const topBit = size_t(0x01) << (sizeof(size_t) * 8 - 1);
 
-    if(topBit & l)
+    if (topBit & l)
     {
         this->len = calc_length_n_(p, l);
     }

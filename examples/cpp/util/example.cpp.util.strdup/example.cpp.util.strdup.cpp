@@ -41,7 +41,7 @@ int main(int /* argc */, char** /* argv */)
 
     PAN_CHAR_T* s = pantheios::util::strdup_nothrow(PSTR("abc"));
 
-    if(NULL == s)
+    if (NULL == s)
     {
       // ... failed to allocate
     }
@@ -71,7 +71,7 @@ int main(int /* argc */, char** /* argv */)
 
       pantheios::util::strfree(s);
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
       // ... failed to allocate
     }

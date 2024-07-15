@@ -120,14 +120,14 @@ static void test_ROLL_ON_ENTRIES()
 
     const int   NUM_ENTRIES = 104;
 
-    { for(size_t i = 0; i < NUM_ENTRIES; ++i)
+    { for (size_t i = 0; i < NUM_ENTRIES; ++i)
     {
         pantheios::log_NOTICE("stmt #", pantheios::integer(i));
     }}
 
     pantheios_be_file_setFilePath(NULL, PANTHEIOS_BEID_REMOTE);
 
-    { for(size_t i = 0; i < NUM_ENTRIES; i += ENTRY_QUANTUM)
+    { for (size_t i = 0; i < NUM_ENTRIES; i += ENTRY_QUANTUM)
     {
         size_t  index   =   i / ENTRY_QUANTUM;
 
@@ -169,13 +169,13 @@ int main(int argc, char** argv)
     {
         res = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         pantheios::log_ALERT("Unexpected general error: ", x, ". Application terminating");
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
 

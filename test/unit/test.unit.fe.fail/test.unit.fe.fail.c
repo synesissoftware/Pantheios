@@ -28,10 +28,10 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.fe.fail", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.fe.fail", verbosity))
     {
         /* Test-1 */
-        if(XTESTS_CASE_BEGIN("Test-1", "Verify that the initialisation fails"))
+        if (XTESTS_CASE_BEGIN("Test-1", "Verify that the initialisation fails"))
         {
             void*   token;
             int     res;

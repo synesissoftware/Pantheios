@@ -137,7 +137,7 @@ namespace
 
         size_t  n = value.size();
 
-        if(n < 6)
+        if (n < 6)
         {
             PAN_CHAR_T copy[6];
 
@@ -146,14 +146,14 @@ namespace
 
             PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL('\0' == copy[5], "the character at [5] must be the nul-terminator");
 
-            { for(size_t i = 0; '\0' != copy[i]; ++i)
+            { for (size_t i = 0; '\0' != copy[i]; ++i)
             {
                 copy[i] = static_cast<PAN_CHAR_T>(pan_toupper_(copy[i]));
             }}
 
             const string_view_t val2(&copy[0], n);
 
-            if( PANTHEIOS_LITERAL_STRING("1") == val2 ||
+            if (PANTHEIOS_LITERAL_STRING("1") == val2 ||
                 PANTHEIOS_LITERAL_STRING("ON") == val2 ||
                 PANTHEIOS_LITERAL_STRING("YES") == val2 ||
                 PANTHEIOS_LITERAL_STRING("TRUE") == val2)
@@ -162,7 +162,7 @@ namespace
 
                 return true;
             }
-            else if(PANTHEIOS_LITERAL_STRING("0") == val2 ||
+            else if (PANTHEIOS_LITERAL_STRING("0") == val2 ||
                     PANTHEIOS_LITERAL_STRING("OFF") == val2 ||
                     PANTHEIOS_LITERAL_STRING("NO") == val2 ||
                     PANTHEIOS_LITERAL_STRING("FALSE") == val2)
@@ -198,16 +198,16 @@ pantheios_be_parseBooleanArg(
     {
         return pantheios_be_parseBooleanArg_(numArgs, args, argName, flagSuppressesAction, flagValue, flags);
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when parsing boolean argument", NULL);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing boolean argument", NULL, x.what());
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when parsing boolean argument", NULL);
 
@@ -242,36 +242,36 @@ pantheios_be_parseBooleanArg_(
 
     int numProcessed = 0;
 
-    { for(size_t i = 0; i < numArgs; ++i)
+    { for (size_t i = 0; i < numArgs; ++i)
     {
         pantheios_slice_t& slice = *(args + i);
 
-        if(0 != slice.len)
+        if (0 != slice.len)
         {
             string_view_t   arg(slice.ptr, slice.len);
             string_view_t   name;
             string_view_t   value;
 
-            if(!stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value))
+            if (!stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value))
             {
                 value = PANTHEIOS_LITERAL_STRING("yes");
             }
 
-            if(name == argName)
+            if (name == argName)
             {
                 // Now read what is required, compare it with the
                 // default flag, and
 
                 bool    flagIsOn;
 
-                if(!has_boolean_flag_value(value, flagIsOn))
+                if (!has_boolean_flag_value(value, flagIsOn))
                 {
                     continue; // Invalid value. Mark to ignore
                 }
 
                 ++numProcessed;
 
-                if((!flagIsOn) != (!flagSuppressesAction))
+                if ((!flagIsOn) != (!flagSuppressesAction))
                 {
                     *flags |= flagValue;
                 }
@@ -299,16 +299,16 @@ pantheios_be_parseStringArg(
     {
         return pantheios_be_parseStringArg_(numArgs, args, argName, argValue);
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when parsing string argument", NULL);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing string argument", NULL, x.what());
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when parsing boolean argument", NULL);
 
@@ -341,11 +341,11 @@ pantheios_be_parseStringArg_(
 
     int numProcessed = 0;
 
-    { for(size_t i = 0; i < numArgs; ++i)
+    { for (size_t i = 0; i < numArgs; ++i)
     {
         pantheios_slice_t& slice = *(args + i);
 
-        if(0 != slice.len)
+        if (0 != slice.len)
         {
             string_view_t   arg(slice.ptr, slice.len);
             string_view_t   name;
@@ -353,7 +353,7 @@ pantheios_be_parseStringArg_(
 
             stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value);
 
-            if(name == argName)
+            if (name == argName)
             {
                 ++numProcessed;
 
@@ -382,16 +382,16 @@ pantheios_be_parseStockArgs(
     {
         return pantheios_be_parseStockArgs_(numArgs, args, flags);
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when parsing stock argument", NULL);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing stock argument", NULL, x.what());
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when parsing stock argument", NULL);
 
@@ -421,11 +421,11 @@ pantheios_be_parseStockArgs_(
 
     int numProcessed = 0;
 
-    { for(size_t i = 0; i < numArgs; ++i)
+    { for (size_t i = 0; i < numArgs; ++i)
     {
         pantheios_slice_t& slice = *(args + i);
 
-        if(0 != slice.len)
+        if (0 != slice.len)
         {
             string_view_t   arg(slice.ptr, slice.len);
             string_view_t   name;
@@ -433,82 +433,82 @@ pantheios_be_parseStockArgs_(
             bool            flagSuppresses;
             int             flagValue;
 
-            if(!stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value))
+            if (!stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value))
             {
                 value = PANTHEIOS_LITERAL_STRING("yes");
             }
 
-            if(!name.empty())
+            if (!name.empty())
             {
                 // PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
-                if(name == PANTHEIOS_LITERAL_STRING("showProcessId"))
+                if (name == PANTHEIOS_LITERAL_STRING("showProcessId"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
                 }
                 // PANTHEIOS_BE_INIT_F_NO_THREAD_ID
-                else if(name == PANTHEIOS_LITERAL_STRING("showThreadId"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showThreadId"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
                 }
                 // PANTHEIOS_BE_INIT_F_NO_DATETIME
-                else if(name == PANTHEIOS_LITERAL_STRING("showDateTime"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showDateTime"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_NO_DATETIME;
                 }
                 // PANTHEIOS_BE_INIT_F_NO_SEVERITY
-                else if(name == PANTHEIOS_LITERAL_STRING("showSeverity"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showSeverity"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_NO_SEVERITY;
                 }
                 // PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
-                else if(name == PANTHEIOS_LITERAL_STRING("useSystemTime"))
+                else if (name == PANTHEIOS_LITERAL_STRING("useSystemTime"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME;
                 }
                 // PANTHEIOS_BE_INIT_F_DETAILS_AT_START
-                else if(name == PANTHEIOS_LITERAL_STRING("showDetailsAtStart"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showDetailsAtStart"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_DETAILS_AT_START;
                 }
                 // PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
-                else if(name == PANTHEIOS_LITERAL_STRING("useUnixFormat") ||
+                else if (name == PANTHEIOS_LITERAL_STRING("useUnixFormat") ||
                         name == PANTHEIOS_LITERAL_STRING("useUNIXFormat"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT;
                 }
                 // PANTHEIOS_BE_INIT_F_HIDE_DATE
-                else if(name == PANTHEIOS_LITERAL_STRING("showDate"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showDate"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_HIDE_DATE;
                 }
                 // PANTHEIOS_BE_INIT_F_HIDE_TIME
-                else if(name == PANTHEIOS_LITERAL_STRING("showTime"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showTime"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_HIDE_TIME;
                 }
                 // PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
-                else if(name == PANTHEIOS_LITERAL_STRING("highResolution"))
+                else if (name == PANTHEIOS_LITERAL_STRING("highResolution"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION;
                 }
                 // PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
-                else if(name == PANTHEIOS_LITERAL_STRING("lowResolution"))
+                else if (name == PANTHEIOS_LITERAL_STRING("lowResolution"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION;
                 }
                 // PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
-                else if(name == PANTHEIOS_LITERAL_STRING("numericSeverity"))
+                else if (name == PANTHEIOS_LITERAL_STRING("numericSeverity"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY;
@@ -523,14 +523,14 @@ pantheios_be_parseStockArgs_(
 
                 bool flagIsOn;
 
-                if(!has_boolean_flag_value(value, flagIsOn))
+                if (!has_boolean_flag_value(value, flagIsOn))
                 {
                     continue; // Invalid value. Mark to ignore
                 }
 
                 ++numProcessed;
 
-                if((!flagIsOn) != (!flagSuppresses))
+                if ((!flagIsOn) != (!flagSuppresses))
                 {
                     *flags |= flagValue;
                 }

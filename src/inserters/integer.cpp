@@ -159,7 +159,7 @@ namespace
     ,   size_t              cchBuffer
     )
     {
-        if( 0 == minWidth &&
+        if (0 == minWidth &&
             0 == format)
         {
             // No special formatting here, so we can use STLSoft's hyper-fast
@@ -172,7 +172,7 @@ namespace
             pantheios_char_t*   s = const_cast<pantheios_char_t*>(stlsoft::integer_to_string(&buffer[0], cchBuffer, i, &n));
 #endif /* STLSoft version */
 
-            if(s != &buffer[0])
+            if (s != &buffer[0])
             {
                 ::memmove(&buffer[0], s, sizeof(pantheios_char_t) * (n + 1));
             }
@@ -209,7 +209,7 @@ namespace
             pantheios_char_t const* leadingPlus;
             pantheios_char_t const* zeroPad;
 
-            if(minWidth < 0)
+            if (minWidth < 0)
             {
                 width           =   -minWidth;
                 leadingMinus    =   PANTHEIOS_LITERAL_STRING("-");
@@ -220,7 +220,7 @@ namespace
                 leadingMinus    =   PANTHEIOS_LITERAL_STRING("");
             }
 
-            if(fmt::showPlus & format)
+            if (fmt::showPlus & format)
             {
                 leadingPlus     =   PANTHEIOS_LITERAL_STRING("+");
             }
@@ -235,7 +235,7 @@ namespace
             PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(width >= 0);
 
             // Detect the special case to avoid printing strings such as "0x   1"
-            if( 0 != width &&
+            if (0 != width &&
                 (fmt::hex | fmt::zeroXPrefix) == (format & (fmt::hex | fmt::zeroXPrefix | fmt::zeroPad)))
             {
                 // Special case
@@ -254,7 +254,7 @@ namespace
 
                 int n = pantheios_util_snprintf(&szTemp[0], STLSOFT_NUM_ELEMENTS(szTemp), szFmt, i);
 
-                if(n < 0)
+                if (n < 0)
                 {
                     return 0;
                 }
@@ -262,11 +262,11 @@ namespace
                 PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_RETURN_INTERNAL(static_cast<size_t>(n + 2) <= STLSOFT_NUM_ELEMENTS(szTemp), "snprintf() overwrote the local buffer capacity");
                 PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_RETURN_INTERNAL(static_cast<size_t>(n) + 2 <= cchBuffer, "snprintf() overwrote the destination buffer capacity");
 
-                if(width > n)
+                if (width > n)
                 {
                     PANTHEIOS_COVER_MARK_ENTRY();
 
-                    if(minWidth < 0)
+                    if (minWidth < 0)
                     {
                         PANTHEIOS_COVER_MARK_ENTRY();
 
@@ -323,7 +323,7 @@ namespace
 
     int evaluate_format_(int widthAndFormat)
     {
-        if(widthAndFormat < 0)
+        if (widthAndFormat < 0)
         {
             return 0;
         }
@@ -414,7 +414,7 @@ size_t integer::init_(int i)
 {
     m_sz[0]     = '\0';
 
-    if(sizeof(int) <= sizeof(::stlsoft::sint32_t))
+    if (sizeof(int) <= sizeof(::stlsoft::sint32_t))
     {
         return (m_value.s32 = i, static_cast<size_t>(typeIsS32));
     }
@@ -427,7 +427,7 @@ size_t integer::init_(unsigned int i)
 {
     m_sz[0]     = '\0';
 
-    if(sizeof(unsigned int) <= sizeof(::stlsoft::uint32_t))
+    if (sizeof(unsigned int) <= sizeof(::stlsoft::uint32_t))
     {
         return (m_value.u32 = i, static_cast<size_t>(typeIsU32));
     }
@@ -442,7 +442,7 @@ size_t integer::init_(long i)
 {
     m_sz[0]     = '\0';
 
-    if(sizeof(long) <= sizeof(::stlsoft::sint32_t))
+    if (sizeof(long) <= sizeof(::stlsoft::sint32_t))
     {
         return (m_value.s32 = i, static_cast<size_t>(typeIsS32));
     }
@@ -455,7 +455,7 @@ size_t integer::init_(unsigned long i)
 {
     m_sz[0]     = '\0';
 
-    if(sizeof(unsigned long) <= sizeof(::stlsoft::uint32_t))
+    if (sizeof(unsigned long) <= sizeof(::stlsoft::uint32_t))
     {
         return (m_value.u32 = i, static_cast<size_t>(typeIsU32));
     }
@@ -760,7 +760,7 @@ inline void integer::construct_() const
 pantheios_char_t const*
 integer::data() const
 {
-    if(0 == m_sz[0])
+    if (0 == m_sz[0])
     {
         construct_();
     }
@@ -776,7 +776,7 @@ integer::c_str() const
 
 size_t integer::length() const
 {
-    if(0 == m_sz[0])
+    if (0 == m_sz[0])
     {
         construct_();
     }
@@ -793,19 +793,19 @@ void integer::construct_()
 
     int minWidth = m_minWidth;
 
-    if(0 != minWidth)
+    if (0 != minWidth)
     {
-        if(fmt::hex & m_format)
+        if (fmt::hex & m_format)
         {
-            if(fmt::zeroXPrefix & m_format)
+            if (fmt::zeroXPrefix & m_format)
             {
-                if(fmt::zeroPad & m_format)
+                if (fmt::zeroPad & m_format)
                 {
-                    if(minWidth < -1)
+                    if (minWidth < -1)
                     {
                         minWidth += 2;
                     }
-                    else if(minWidth > 1)
+                    else if (minWidth > 1)
                     {
                         minWidth -= 2;
                     }
@@ -814,7 +814,7 @@ void integer::construct_()
         }
     }
 
-    if(m_format & fmt::showPlus)
+    if (m_format & fmt::showPlus)
     {
         // TODO: sort this in a better fashion in future, perhaps
         // with STLSoft 1.12+'s i2s functionality
@@ -827,7 +827,7 @@ void integer::construct_()
                 return;
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
             case    typeIsU64:
-                if(m_value.u64 > STLSOFT_LIMIT_TRAITS__SINT64_MAX)
+                if (m_value.u64 > STLSOFT_LIMIT_TRAITS__SINT64_MAX)
                 {
                     // Can't handle this at the moment. No + for you!
                     break;
@@ -871,7 +871,7 @@ void integer::construct_()
 
     // Deal with f-prefixed negative (signed) numbers in hex that are
     // smaller than int
-    if(fmt::hex & m_format)
+    if (fmt::hex & m_format)
     {
         size_t
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -887,7 +887,7 @@ void integer::construct_()
                 // Fall through
             case    typeIsS8:
                 l += 2;
-                if( m_value.s32 < 0 &&
+                if (m_value.s32 < 0 &&
                     1)
                 {
                     //pantheios_char_t*   p0  =   &m_sz[0];
@@ -895,16 +895,16 @@ void integer::construct_()
                     pantheios_char_t*   p1  =   p3 - intWidth;
                     pantheios_char_t*   p2  =   p3 - l;
 
-                    if(p1 != p2)
+                    if (p1 != p2)
                     {
-                        if(size_t(abs(m_minWidth)) < m_len)
+                        if (size_t(abs(m_minWidth)) < m_len)
                         {
                             ::memmove(p1, p2, sizeof(pantheios_char_t) * (1 + (p3 - p2)));
                             m_len -= intWidth - l;
                         }
                         else
                         {
-                            if(fmt::zeroPad & m_format)
+                            if (fmt::zeroPad & m_format)
                             {
                                 std::fill_n(p1, intWidth - l, '0');
                             }
@@ -922,16 +922,16 @@ void integer::construct_()
     }
 
 #if 0
-    if(fmt::hex & m_format)
+    if (fmt::hex & m_format)
     {
-        if(0 == m_minWidth)
+        if (0 == m_minWidth)
         {
-            if(0 == (fmt::zeroPad & m_format))
+            if (0 == (fmt::zeroPad & m_format))
             {
                 pantheios_char_t*   p0  =   &m_sz[0];
                 pantheios_char_t*   p2  =   &m_sz[0] + m_len;
 
-                if(fmt::zeroXPrefix & m_format)
+                if (fmt::zeroXPrefix & m_format)
                 {
                     PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION('0' == 0[p0]);
                     PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION('x' == 1[p0] || 'X' == 1[p0]);
@@ -941,12 +941,12 @@ void integer::construct_()
 
                 pantheios_char_t*   p1  =   p0;
 
-                for(; '0' == *p1 && p1 != p2 - 1; ++p1)
+                for (; '0' == *p1 && p1 != p2 - 1; ++p1)
                 {
                     --m_len;
                 }
 
-                if(p1 != p0)
+                if (p1 != p0)
                 {
                     ::memmove(p0, p1, sizeof(pantheios_char_t) * (1 + (p2 - p1)));
                 }

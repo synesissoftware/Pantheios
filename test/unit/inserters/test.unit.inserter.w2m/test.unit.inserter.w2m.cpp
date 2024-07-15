@@ -64,7 +64,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.inserter.w2m", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserter.w2m", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -107,7 +107,7 @@ namespace
 
 static void test_1_01()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
     {
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL(stlsoft::w2m(strings[i]), pantheios::w2m(strings[i]));
     }}

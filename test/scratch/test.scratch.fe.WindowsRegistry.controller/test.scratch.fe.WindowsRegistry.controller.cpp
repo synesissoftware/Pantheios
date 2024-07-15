@@ -73,11 +73,11 @@ static int main_(int argc, char** argv)
 {
     int bVerbose = true;
 
-    { for(int i = 1; i < argc; ++i)
+    { for (int i = 1; i < argc; ++i)
     {
         char const* const arg = argv[i];
 
-        if(arg[0] == '-')
+        if (arg[0] == '-')
         {
         }
         else
@@ -109,13 +109,13 @@ int main(int argc, char** argv)
     {
         res = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         fprintf(stderr, "Unhandled unknown error\n");
 

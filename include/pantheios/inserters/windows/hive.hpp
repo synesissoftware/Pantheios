@@ -137,7 +137,7 @@ private:
     )
     {
 #ifdef HKEY_CLASSES_ROOT
-        if(HKEY_CLASSES_ROOT == value)
+        if (HKEY_CLASSES_ROOT == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CLASSES_ROOT));
 
@@ -147,7 +147,7 @@ private:
         }
 #endif
 #ifdef HKEY_CURRENT_USER
-        if(HKEY_CURRENT_USER == value)
+        if (HKEY_CURRENT_USER == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CURRENT_USER));
 
@@ -157,7 +157,7 @@ private:
         }
 #endif
 #ifdef HKEY_LOCAL_MACHINE
-        if(HKEY_LOCAL_MACHINE == value)
+        if (HKEY_LOCAL_MACHINE == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_LOCAL_MACHINE));
 
@@ -167,7 +167,7 @@ private:
         }
 #endif
 #ifdef HKEY_USERS
-        if(HKEY_USERS == value)
+        if (HKEY_USERS == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_USERS));
 
@@ -177,7 +177,7 @@ private:
         }
 #endif
 #ifdef HKEY_PERFORMANCE_DATA
-        if(HKEY_PERFORMANCE_DATA == value)
+        if (HKEY_PERFORMANCE_DATA == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_PERFORMANCE_DATA));
 
@@ -187,7 +187,7 @@ private:
         }
 #endif
 #ifdef HKEY_CURRENT_CONFIG
-        if(HKEY_CURRENT_CONFIG == value)
+        if (HKEY_CURRENT_CONFIG == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CURRENT_CONFIG));
 
@@ -197,7 +197,7 @@ private:
         }
 #endif
 #ifdef HKEY_DYN_DATA
-        if(HKEY_DYN_DATA == value)
+        if (HKEY_DYN_DATA == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_DYN_DATA));
 

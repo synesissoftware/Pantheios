@@ -101,7 +101,7 @@ pantheios_logputs(
     using pantheios::core::pantheios_dispatch;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-    if(pantheios_isSeverityLogged(severity))
+    if (pantheios_isSeverityLogged(severity))
     {
         pan_slice_t slice(-1, s);
 

@@ -158,17 +158,17 @@ int main(int argc, char** argv)
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
 
-    if(XTESTS_START_RUNNER("test.unit.be.N.filtering", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.be.N.filtering", verbosity))
     {
         /* Test-SeverityCeiling */
-        if(XTESTS_CASE_BEGIN("Test-SeverityCeiling", "Verify that the severity floor works"))
+        if (XTESTS_CASE_BEGIN("Test-SeverityCeiling", "Verify that the severity floor works"))
         {
             void*       token;
             int const   res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, &results, &token);
 
-            if(0 == res)
+            if (0 == res)
             {
-                { int i; for(i = 0; i != 10; ++i)
+                { int i; for (i = 0; i != 10; ++i)
                 {
                     LOG_ENTRY(token, PANTHEIOS_SEV_DEBUG, PANTHEIOS_LITERAL_STRING("debug"));
                     LOG_ENTRY(token, PANTHEIOS_SEV_INFORMATIONAL, PANTHEIOS_LITERAL_STRING("informational"));

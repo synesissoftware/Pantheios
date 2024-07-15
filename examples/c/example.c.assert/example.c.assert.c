@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
   STLSOFT_SUPPRESS_UNUSED(argc);
   STLSOFT_SUPPRESS_UNUSED(argv);
 
-  if(i >= 0)
+  if (i >= 0)
   {
     PANTHEIOS_ASSERT(1);
 

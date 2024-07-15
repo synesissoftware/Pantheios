@@ -103,7 +103,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.trace.1", verbosity))
+    if (XTESTS_START_RUNNER("test.component.trace.1", verbosity))
     {
         XTESTS_RUN_CASE(test_01);
         XTESTS_RUN_CASE(test_02);
@@ -342,9 +342,9 @@ static void test_11()
     int             LINE1       =   -1;
     int             LINE2       =   -1;
 
-    { for(size_t i = 0; i < numEntries; ++i)
+    { for (size_t i = 0; i < numEntries; ++i)
     {
-        if(0 == (i % 2))
+        if (0 == (i % 2))
         {
             PANTHEIOS_TRACE_INFORMATIONAL("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"); LINE1 = __LINE__;
         }
@@ -361,10 +361,10 @@ static void test_11()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST_INTEGER_EQUAL(numEntries, results.size());
-    { for(size_t i = 0; i < numEntries; ++i)
+    { for (size_t i = 0; i < numEntries; ++i)
     {
         XTESTS_TEST(pantheios::informational == results[i].severity);
-        if(0 == (i % 2))
+        if (0 == (i % 2))
         {
             PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abcdefghijklmnopqrstuvwxyz", LINE1), results[i].statement);
         }

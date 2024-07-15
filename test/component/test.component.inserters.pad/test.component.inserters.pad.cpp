@@ -87,7 +87,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_FLAGS("test.component.inserters.pad", verbosity, XTESTS_NS_C_QUAL(xtestsReportOnlyNonEmptyCases)))
+    if (XTESTS_START_RUNNER_WITH_FLAGS("test.component.inserters.pad", verbosity, XTESTS_NS_C_QUAL(xtestsReportOnlyNonEmptyCases)))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -120,7 +120,7 @@ namespace
 
 static void test_1_01()
 {
-    { for(size_t i = 0; i != 1000; ++i)
+    { for (size_t i = 0; i != 1000; ++i)
     {
         // 1. Setup
 
@@ -145,7 +145,7 @@ static void test_1_01()
 
 static void test_1_02()
 {
-    { for(size_t i = 0; i != 1000; ++i)
+    { for (size_t i = 0; i != 1000; ++i)
     {
         // 1. Setup
 
@@ -170,7 +170,7 @@ static void test_1_02()
 
 static void test_1_03()
 {
-    { for(size_t i = 0; i != 1/* 000 */; ++i)
+    { for (size_t i = 0; i != 1/* 000 */; ++i)
     {
         // 1. Setup
 
@@ -188,7 +188,7 @@ static void test_1_03()
 
         XTESTS_TEST(!results.empty());
         XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-        if(i <= 1)
+        if (i <= 1)
         {
             XTESTS_TEST_INTEGER_EQUAL(0u, results[0].statement.size());
             XTESTS_TEST_STRING_EQUAL(PSTR(""), results[0].statement);
@@ -203,13 +203,13 @@ static void test_1_03()
 
 static void test_1_04()
 {
-    { for(size_t i = 0; i != 1000; ++i)
+    { for (size_t i = 0; i != 1000; ++i)
     {
         const string_t value(i, '~');
 
         STLSOFT_ASSERT(i == value.size());
 
-        { for(size_t j = 0; j != 1000; ++j)
+        { for (size_t j = 0; j != 1000; ++j)
         {
             // 1. Setup
 
@@ -227,7 +227,7 @@ static void test_1_04()
 
             XTESTS_TEST(!results.empty());
             XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-            if(i < j)
+            if (i < j)
             {
                 /* Some padding */
                 const string_t stmt = string_t(j - i, ' ') + value;

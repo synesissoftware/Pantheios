@@ -152,7 +152,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.util.date_elements_to_string", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.util.date_elements_to_string", verbosity))
     {
         XTESTS_RUN_CASE(test_formatYearToString2_01);
         XTESTS_RUN_CASE(test_formatYearToString2_02);
@@ -260,7 +260,7 @@ static void test_formatYearToString2_02()
 {
     PAN_CHAR_T  sz[4];
 
-    for(unsigned year = 1; year != 1000; ++year)
+    for (unsigned year = 1; year != 1000; ++year)
     {
         pantheios_util_formatYearToString4(year, &sz);
 
@@ -280,7 +280,7 @@ static void test_formatYearToString2_03()
 
     XTESTS_TEST_STRING_EQUAL_N(PSTR("??00"), sz, 4);
 
-    for(unsigned year = 10001; year != 12800; ++year)
+    for (unsigned year = 10001; year != 12800; ++year)
     {
         pantheios_util_formatYearToString4(year, &sz);
 
@@ -330,7 +330,7 @@ static void test_formatMonthToString2_02()
 {
     PAN_CHAR_T  sz[2];
 
-    for(unsigned month = 1; month != 13; ++month)
+    for (unsigned month = 1; month != 13; ++month)
     {
         pantheios_util_formatMonthToString2(month, &sz);
 
@@ -401,7 +401,7 @@ static void test_formatDayToString2_02()
 {
     PAN_CHAR_T  sz[2];
 
-    for(unsigned month = 1; month != 32; ++month)
+    for (unsigned month = 1; month != 32; ++month)
     {
         pantheios_util_formatDayToString2(month, &sz);
 
@@ -464,7 +464,7 @@ static void test_formatHourToString2_02()
 {
     PAN_CHAR_T  sz[2];
 
-    for(unsigned hour = 1; hour != 24; ++hour)
+    for (unsigned hour = 1; hour != 24; ++hour)
     {
         pantheios_util_formatHourToString2(hour, &sz);
 
@@ -555,7 +555,7 @@ static void test_formatMinuteOrSecondToString2_02()
 {
     PAN_CHAR_T  sz[2];
 
-    for(unsigned minuteOrSecond = 1; minuteOrSecond != 60; ++minuteOrSecond)
+    for (unsigned minuteOrSecond = 1; minuteOrSecond != 60; ++minuteOrSecond)
     {
         pantheios_util_formatMinuteOrSecondToString2(minuteOrSecond, &sz);
 
@@ -631,7 +631,7 @@ static void test_formatMillisecondToString3_02()
 {
     PAN_CHAR_T  sz[3];
 
-    for(unsigned microsecond = 1; microsecond != 1000; ++microsecond)
+    for (unsigned microsecond = 1; microsecond != 1000; ++microsecond)
     {
         pantheios_util_formatMillisecondToString3(microsecond, &sz);
 
@@ -715,7 +715,7 @@ static void test_formatMicrosecondToString6_02()
 {
     PAN_CHAR_T  sz[6];
 
-    for(unsigned microsecond = 1; microsecond != 1000000; ++microsecond)
+    for (unsigned microsecond = 1; microsecond != 1000000; ++microsecond)
     {
         pantheios_util_formatMicrosecondToString6(microsecond, &sz);
 

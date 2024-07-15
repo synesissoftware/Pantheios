@@ -63,24 +63,24 @@ int main()
 {
   try
   {
-    { for(size_t i = 0; i != 10; ++i)
+    { for (size_t i = 0; i != 10; ++i)
     {
-      { for(size_t j = 0; j != 0x7ffffff; ++j) {} }
+      { for (size_t j = 0; j != 0x7ffffff; ++j) {} }
 
       pantheios::log_NOTICE(PSTR("log ("), pantheios::integer(i), PSTR(")"));
     }}
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }

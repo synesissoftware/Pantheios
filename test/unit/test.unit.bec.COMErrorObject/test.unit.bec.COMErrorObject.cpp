@@ -108,10 +108,10 @@ static int main_(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.be.COMErrorObject", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.be.COMErrorObject", verbosity))
     {
         /* Case 1 - verifying be.COMErrorObject, with flags 0 */
-        if(!XTESTS_CASE_BEGIN("case-1", "verifying be.COMErrorObject, with flags 0"))
+        if (!XTESTS_CASE_BEGIN("case-1", "verifying be.COMErrorObject, with flags 0"))
         {
             retCode = EXIT_FAILURE;
         }
@@ -128,21 +128,21 @@ static int main_(int argc, char** argv)
             void*   token;
             int     res = pantheios_be_COMErrorObject_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-            if(PANTHEIOS_INIT_RC_SUCCESS != res)
+            if (PANTHEIOS_INIT_RC_SUCCESS != res)
             {
                 XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.COMErrorObject", pantheios::getInitErrorString(res));
             }
             else
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(severities); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(severities); ++i)
                 {
-                    { for(size_t j = 0; j != STLSOFT_NUM_ELEMENTS(strings); ++j)
+                    { for (size_t j = 0; j != STLSOFT_NUM_ELEMENTS(strings); ++j)
                     {
                         const int severity = severities[i];
 
                         pantheios_be_COMErrorObject_logEntry(NULL, token, severity, strings[j], stlsoft::c_str_len(strings[j]));
 
-                        if( PANTHEIOS_SEV_DEBUG == severity ||
+                        if (PANTHEIOS_SEV_DEBUG == severity ||
                             PANTHEIOS_SEV_INFORMATIONAL == severity)
                         {
                             ;   // be.COMErrorObject does not write out debug-level or informational-level messages
@@ -163,7 +163,7 @@ static int main_(int argc, char** argv)
         }
 
         /* Case 2 - verifying be.COMErrorObject, with PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING flag */
-        if(!XTESTS_CASE_BEGIN("case-2", "verifying be.COMErrorObject, with PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING flag"))
+        if (!XTESTS_CASE_BEGIN("case-2", "verifying be.COMErrorObject, with PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING flag"))
         {
             retCode = EXIT_FAILURE;
         }
@@ -181,15 +181,15 @@ static int main_(int argc, char** argv)
             void*   token;
             int     res = pantheios_be_COMErrorObject_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-            if(PANTHEIOS_INIT_RC_SUCCESS != res)
+            if (PANTHEIOS_INIT_RC_SUCCESS != res)
             {
                 XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.COMErrorObject", pantheios::getInitErrorString(res));
             }
             else
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(severities); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(severities); ++i)
                 {
-                    { for(size_t j = 0; j != STLSOFT_NUM_ELEMENTS(strings); ++j)
+                    { for (size_t j = 0; j != STLSOFT_NUM_ELEMENTS(strings); ++j)
                     {
                         const int severity = severities[i];
 
@@ -197,7 +197,7 @@ static int main_(int argc, char** argv)
 
                         pantheios_be_COMErrorObject_logEntry(NULL, token, severity, strings[j], stlsoft::c_str_len(strings[j]));
 
-                        if( PANTHEIOS_SEV_DEBUG == severity ||
+                        if (PANTHEIOS_SEV_DEBUG == severity ||
                             PANTHEIOS_SEV_INFORMATIONAL == severity)
                         {
                             ;   // be.COMErrorObject does not write out debug-level or informational-level messages
@@ -238,11 +238,11 @@ int main(int argc, char** argv)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         ::fprintf(stderr, "Unhandled error: %s\n", x.what());
     }
-    catch(...)
+    catch (...)
     {
         ::fprintf(stderr, "Unhandled unknown error\n");
     }

@@ -116,7 +116,7 @@ private:
 public: // accessors
     pantheios_char_t const* data() const
     {
-        if(!m_bInitialised)
+        if (!m_bInitialised)
         {
             convert_();
         }
@@ -125,7 +125,7 @@ public: // accessors
     }
     size_t      length() const
     {
-        if(!m_bInitialised)
+        if (!m_bInitialised)
         {
             convert_();
         }

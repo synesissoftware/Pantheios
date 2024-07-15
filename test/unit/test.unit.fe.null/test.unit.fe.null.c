@@ -81,10 +81,10 @@ int main(int argc, char** argv)
 
     STLSOFT_STATIC_ASSERT(STLSOFT_NUM_ELEMENTS(s_severityLevels) == STLSOFT_NUM_ELEMENTS(s_severityLevelResults));
 
-    if(XTESTS_START_RUNNER("test.unit.fe.null", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.fe.null", verbosity))
     {
         /* Test-1 */
-        if(XTESTS_CASE_BEGIN("Test-1", "Verify that the initialisation succeeds"))
+        if (XTESTS_CASE_BEGIN("Test-1", "Verify that the initialisation succeeds"))
         {
             void*   token;
             int     res;
@@ -93,7 +93,7 @@ int main(int argc, char** argv)
 
             XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
 
-            if(PANTHEIOS_INIT_RC_SUCCESS == res)
+            if (PANTHEIOS_INIT_RC_SUCCESS == res)
             {
                 pantheios_fe_uninit(token);
             }
@@ -103,14 +103,14 @@ int main(int argc, char** argv)
 
 
         /* Test-2 */
-        if(XTESTS_CASE_BEGIN("Test-2", "Verify the process identity"))
+        if (XTESTS_CASE_BEGIN("Test-2", "Verify the process identity"))
         {
             void*   token;
             int     res;
 
             res = pantheios_fe_init(NULL, &token);
 
-            if(PANTHEIOS_INIT_RC_SUCCESS == res)
+            if (PANTHEIOS_INIT_RC_SUCCESS == res)
             {
                 XTESTS_TEST_STRING_EQUAL(PANTHEIOS_FE_PROCESS_IDENTITY, pantheios_fe_getProcessIdentity(token));
 
@@ -122,17 +122,17 @@ int main(int argc, char** argv)
 
 
         /* Test-3 */
-        if(XTESTS_CASE_BEGIN("Test-3", "Verify that null levels are acceptable"))
+        if (XTESTS_CASE_BEGIN("Test-3", "Verify that null levels are acceptable"))
         {
             void*   token;
             int     res;
 
             res = pantheios_fe_init(NULL, &token);
 
-            if(PANTHEIOS_INIT_RC_SUCCESS == res)
+            if (PANTHEIOS_INIT_RC_SUCCESS == res)
             {
 
-                { size_t i; for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+                { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
                 {
                     XTESTS_TEST_INTEGER_EQUAL(s_severityLevelResults[i], pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0));
                 }}

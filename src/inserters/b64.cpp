@@ -133,7 +133,7 @@ inline void b64::construct_() const
 pantheios_char_t const*
 b64::data() const
 {
-    if(NULL == m_value)
+    if (NULL == m_value)
     {
         construct_();
     }
@@ -155,7 +155,7 @@ b64::c_str() const
 
 size_t b64::length() const
 {
-    if(NULL == m_value)
+    if (NULL == m_value)
     {
         construct_();
     }
@@ -171,7 +171,7 @@ void b64::construct_()
     size_t              cch     =   b64_api::b64_encode2(m_pv, m_cb, NULL, 0, m_flags, m_lineLen, m_rc);
     pantheios_char_t*   value   =   static_cast<pantheios_char_t*>(pantheios_inserterAllocate(sizeof(pantheios_char_t) * (1 + cch)));
 
-    if(NULL != value)
+    if (NULL != value)
     {
         // When invoked with a buffer, b64_encode2() may return less (but never
         // more) than when invoked without.
@@ -183,7 +183,7 @@ void b64::construct_()
         ,   256
         >::type     buff(1 + cch);
 
-        if(buff.empty())
+        if (buff.empty())
         {
             pantheios_inserterDeallocate(const_cast<pantheios_char_t*>(m_value));
 

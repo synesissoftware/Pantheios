@@ -90,7 +90,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.w2m", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.w2m", verbosity))
     {
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 

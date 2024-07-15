@@ -71,15 +71,15 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }
@@ -139,7 +139,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
                     , int(cchEntry), entry);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
   }
-  catch(std::exception &)
+  catch (std::exception &)
   {
     return 0;
   }

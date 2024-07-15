@@ -192,7 +192,7 @@ static int main_(int /* argc */, char ** /*argv*/)
 int main(int argc, char *argv[])
 {
 #if 0
-    for(;;) {}
+    for (;;) {}
 #endif /* 0 */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -204,11 +204,11 @@ int main(int argc, char *argv[])
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
     }

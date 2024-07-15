@@ -76,7 +76,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.inserter.stream_character", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserter.stream_character", verbosity))
     {
         XTESTS_RUN_CASE(test_type_exists);
         XTESTS_RUN_CASE(test_plain_characters);
@@ -118,7 +118,7 @@ static void test_plain_characters()
 {
     static char const plain_characters[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}|;:\",<.>/?";
 
-    { for(size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
+    { for (size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
     {
         PAN_CHAR_T  ch      =   plain_characters[i];
         PAN_CHAR_T  sz[2]   =   { ch, '\0' };

@@ -98,7 +98,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.core.pantheios_logprintf", verbosity))
+    if (XTESTS_START_RUNNER("test.component.core.pantheios_logprintf", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -123,7 +123,7 @@ int main(int argc, char** argv)
 
 static void test_1_01()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severities); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severities); ++i)
     {
         const int severity = s_severities[i];
 
@@ -141,7 +141,7 @@ static void test_1_01()
 
         pantheios::be::test::Results  results = pantheios::be::test::results();
 
-        if(!results.empty()) // Do test here, so will work with any back-end
+        if (!results.empty()) // Do test here, so will work with any back-end
         {
             XTESTS_TEST_INTEGER_EQUAL(1, results.size());
             PANTHEIOS_SEV_LEVELS_EQUAL(severity, results[0].severity);
@@ -196,7 +196,7 @@ static void test_1_03()
 
 static void test_1_04()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severities); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severities); ++i)
     {
         const int severity = s_severities[i];
 
@@ -217,7 +217,7 @@ static void test_1_04()
 
         pantheios::be::test::Results  results = pantheios::be::test::results();
 
-        if(!results.empty()) // Do test here, so will work with any back-end
+        if (!results.empty()) // Do test here, so will work with any back-end
         {
             XTESTS_TEST_INTEGER_EQUAL(4, results.size());
 

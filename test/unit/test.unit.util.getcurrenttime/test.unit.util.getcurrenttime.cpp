@@ -128,7 +128,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.util.getcurrenttime", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.util.getcurrenttime", verbosity))
     {
         XTESTS_RUN_CASE_WITH_DESC(test_unix_0, "testing UNIX format; flags=0");
         XTESTS_RUN_CASE_WITH_DESC(test_unix_F_USE_SYSTEM_TIME, "testing UNIX format; flags=F_USE_SYSTEM_TIME");
@@ -499,7 +499,7 @@ static void test_win_0()
     size_t              expected = pantheios_util_getCurrentTime(&tm, timeFlags);
 
         PANTHEIOS_TEST_TIME(            0, timeFlags, expected, PANTHEIOS_LITERAL_STRING(""));
-    { for(size_t i = 1; i < expected + 100; ++i)
+    { for (size_t i = 1; i < expected + 100; ++i)
     {
         PANTHEIOS_TEST_TIME( expected + i, timeFlags, expected, PANTHEIOS_LITERAL_STRING("*"));
     }}
@@ -517,7 +517,7 @@ static void test_win_F_USE_SYSTEM_TIME()
     size_t              expected = pantheios_util_getCurrentTime(&tm, timeFlags);
 
         PANTHEIOS_TEST_TIME(            0, timeFlags, expected, PANTHEIOS_LITERAL_STRING(""));
-    { for(size_t i = 1; i < expected + 100; ++i)
+    { for (size_t i = 1; i < expected + 100; ++i)
     {
         PANTHEIOS_TEST_TIME( expected + i, timeFlags, expected, PANTHEIOS_LITERAL_STRING("*"));
     }}
@@ -535,7 +535,7 @@ static void test_win_F_HIDE_DATE()
     size_t              expected = pantheios_util_getCurrentTime(&tm, timeFlags);
 
         PANTHEIOS_TEST_TIME(            0, timeFlags, expected, PANTHEIOS_LITERAL_STRING(""));
-    { for(size_t i = 1; i < expected + 100; ++i)
+    { for (size_t i = 1; i < expected + 100; ++i)
     {
         PANTHEIOS_TEST_TIME( expected + i, timeFlags, expected, PANTHEIOS_LITERAL_STRING("*"));
     }}
@@ -553,7 +553,7 @@ static void test_win_F_HIDE_TIME()
     size_t              expected = pantheios_util_getCurrentTime(&tm, timeFlags);
 
         PANTHEIOS_TEST_TIME(            0, timeFlags, expected, PANTHEIOS_LITERAL_STRING(""));
-    { for(size_t i = 1; i < expected + 100; ++i)
+    { for (size_t i = 1; i < expected + 100; ++i)
     {
         PANTHEIOS_TEST_TIME( expected + i, timeFlags, expected, PANTHEIOS_LITERAL_STRING("*"));
     }}
@@ -567,12 +567,12 @@ static string_t replace_all(string_t const& str, PAN_CHAR_T const* srch, PAN_CHA
     string_t    str2(str);
     size_t      srchLen = stlsoft::c_str_len(srch);
 
-    for(;;)
+    for (;;)
     {
         size_t  lpos = str2.find(srch);
         size_t  rpos = lpos + srchLen;
 
-        if(string_t::npos == lpos)
+        if (string_t::npos == lpos)
         {
             break;
         }
@@ -585,7 +585,7 @@ static string_t replace_all(string_t const& str, PAN_CHAR_T const* srch, PAN_CHA
 
 static int test_time(char const* file, int line, size_t cchBuff, int flags, size_t expectedResult, PAN_CHAR_T const* pattern)
 {
-    if('?' == 0[pattern])
+    if ('?' == 0[pattern])
     {
         string_t str = translate_pattern(pattern);
 
@@ -598,12 +598,12 @@ static int test_time(char const* file, int line, size_t cchBuff, int flags, size
     int                                                             matchRes = 0;
 
     buff[cchBuff] = '\0';
-    if(cchBuff > 0)
+    if (cchBuff > 0)
     {
         buff[actualResult] = '\0';
     }
 
-    if( expectedResult == actualResult &&
+    if (expectedResult == actualResult &&
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
         0 == (matchRes = shwild::match(stlsoft::w2m(pattern), stlsoft::w2m(buff.data()))))
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */

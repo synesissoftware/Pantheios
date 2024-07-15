@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try
@@ -133,13 +133,13 @@ int main(int argc, char *argv[])
 
         res = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         fprintf(stderr, "Unhandled unknown error\n");
 

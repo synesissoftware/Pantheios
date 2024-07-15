@@ -94,7 +94,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.log.1", verbosity))
+    if (XTESTS_START_RUNNER("test.component.log.1", verbosity))
     {
         XTESTS_RUN_CASE(test_01);
         XTESTS_RUN_CASE(test_02);
@@ -330,9 +330,9 @@ static void test_11()
     // 2. Create test data
     const size_t    numEntries  =   1000;
 
-    { for(size_t i = 0; i < numEntries; ++i)
+    { for (size_t i = 0; i < numEntries; ++i)
     {
-        if(0 == (i % 2))
+        if (0 == (i % 2))
         {
             pantheios::log(pantheios::informational, PSTR("a"), PSTR("b"), PSTR("c"), PSTR("d"), PSTR("e"), PSTR("f"), PSTR("g"), PSTR("h"), PSTR("i"), PSTR("j"), PSTR("k"), PSTR("l"), PSTR("m"), PSTR("n"), PSTR("o"), PSTR("p"), PSTR("q"), PSTR("r"), PSTR("s"), PSTR("t"), PSTR("u"), PSTR("v"), PSTR("w"), PSTR("x"), PSTR("y"), PSTR("z"));
         }
@@ -349,9 +349,9 @@ static void test_11()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST_INTEGER_EQUAL(numEntries, results.size());
-    { for(size_t i = 0; i < numEntries; ++i)
+    { for (size_t i = 0; i < numEntries; ++i)
     {
-        if(0 == (i % 2))
+        if (0 == (i % 2))
         {
             XTESTS_TEST_STRING_EQUAL(PSTR("abcdefghijklmnopqrstuvwxyz"), results[i].statement);
         }

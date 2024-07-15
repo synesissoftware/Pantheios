@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.fe.N", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.fe.N", verbosity))
     {
         XTESTS_RUN_CASE(test_empty_array_with_negative_default_ceiling);
         XTESTS_RUN_CASE(test_empty_array_with_EMERGENCY_default_ceiling);
@@ -142,13 +142,13 @@ static void test_empty_array_with_negative_default_ceiling(void)
     reinitialise_ceilings();
     res = pantheios_fe_init(NULL, &token);
 
-    if(0 != res)
+    if (0 != res)
     {
         XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", pantheios_getInitCodeString(res));
     }
     else
     {
-        { size_t i; for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+        { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             XTESTS_TEST_INTEGER_EQUAL(severityLevelResults[i], pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0));
         }}
@@ -178,13 +178,13 @@ static void test_empty_array_with_EMERGENCY_default_ceiling(void)
 
     res = pantheios_fe_init(NULL, &token);
 
-    if(0 != res)
+    if (0 != res)
     {
         XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", pantheios_getInitCodeString(res));
     }
     else
     {
-        { size_t i; for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+        { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             XTESTS_TEST_INTEGER_EQUAL(severityLevelResults[i], pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0));
         }}
@@ -214,13 +214,13 @@ static void test_empty_array_with_ALERT_default_ceiling(void)
 
     res = pantheios_fe_init(NULL, &token);
 
-    if(0 != res)
+    if (0 != res)
     {
         XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", pantheios_getInitCodeString(res));
     }
     else
     {
-        { size_t i; for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+        { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             XTESTS_TEST_INTEGER_EQUAL(severityLevelResults[i], pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0));
         }}
@@ -276,17 +276,17 @@ static void test_array_with_one_specific_id(void)
 
     res = pantheios_fe_init(NULL, &token);
 
-    if(0 != res)
+    if (0 != res)
     {
         XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", pantheios_getInitCodeString(res));
     }
     else
     {
-        { size_t i; for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+        { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             XTESTS_TEST_INTEGER_EQUAL(severityLevelResults_for_all[i], pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0));
 
-            { int id; for(id = 1; id != 1000000; ++id)
+            { int id; for (id = 1; id != 1000000; ++id)
             {
                 switch (id)
                 {
@@ -379,17 +379,17 @@ static void test_array_with_three_specific_ids(void)
 
     res = pantheios_fe_init(NULL, &token);
 
-    if(0 != res)
+    if (0 != res)
     {
         XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", pantheios_getInitCodeString(res));
     }
     else
     {
-        { size_t i; for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+        { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             XTESTS_TEST_INTEGER_EQUAL(severityLevelResults_for_all[i], pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0));
 
-            { int id; for(id = 1; id != 1000000; ++id)
+            { int id; for (id = 1; id != 1000000; ++id)
             {
                 switch (id)
                 {

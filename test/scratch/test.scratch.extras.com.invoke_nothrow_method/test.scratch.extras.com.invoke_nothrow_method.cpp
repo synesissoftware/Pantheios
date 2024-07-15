@@ -294,13 +294,13 @@ int main(int argc, char** argv)
     {
         res = main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios::log_ALERT("Unexpected general error: ", x, ". Application terminating");
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
 

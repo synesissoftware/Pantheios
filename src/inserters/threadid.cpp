@@ -127,7 +127,7 @@ thread_id_t::thread_id_t()
 
 thread_id_t::operator size_t () const
 {
-    if('\0' == m_value[0])
+    if ('\0' == m_value[0])
     {
         construct_();
     }
@@ -136,7 +136,7 @@ thread_id_t::operator size_t () const
 }
 thread_id_t::operator pantheios_char_t const* () const
 {
-    if('\0' == m_value[0])
+    if ('\0' == m_value[0])
     {
         construct_();
     }

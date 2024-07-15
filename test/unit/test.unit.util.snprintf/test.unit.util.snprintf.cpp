@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.util.snprintf", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.util.snprintf", verbosity))
     {
         XTESTS_RUN_CASE(test_pantheios_util_snprintf_a);
 #ifdef PANTHEIOS_USE_WIDE_STRINGS

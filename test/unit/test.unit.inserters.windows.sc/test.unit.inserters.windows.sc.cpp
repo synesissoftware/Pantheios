@@ -79,7 +79,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.inserters.windows.sc", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserters.windows.sc", verbosity))
     {
         XTESTS_RUN_CASE(test_regular_decimal_codes_DWORD);
         XTESTS_RUN_CASE(test_1_02);
@@ -2362,7 +2362,7 @@ namespace
 
 static void test_regular_decimal_codes_DWORD()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(regular_decimal_codes); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(regular_decimal_codes); ++i)
     {
         DWORD const code = static_cast<DWORD>(regular_decimal_codes[i]);
 
@@ -2380,7 +2380,7 @@ static void test_1_03()
 
 static void test_highbit_hexadecimal_codes_DWORD()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(highbit_hexadecimal_codes); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(highbit_hexadecimal_codes); ++i)
     {
         DWORD const code = static_cast<DWORD>(highbit_hexadecimal_codes[i]);
 
@@ -2398,7 +2398,7 @@ static void test_1_06()
 
 static void test_1_07()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(WSA_decimal_codes); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(WSA_decimal_codes); ++i)
     {
         DWORD const code = static_cast<DWORD>(WSA_decimal_codes[i]);
 

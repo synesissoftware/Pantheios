@@ -124,24 +124,24 @@ void w2m::construct_()
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_APPL_LAYER(NULL == m_result, "cannot already be initialised");
 
-    if(sentinelLength_() == m_sourceLen)
+    if (sentinelLength_() == m_sourceLen)
     {
         m_sourceLen = (NULL != m_source) ? ::wcslen(m_source) : 0;
     }
 
-    if(0 != m_sourceLen)
+    if (0 != m_sourceLen)
     {
         // TODO: Verify that no multibyte encoding can be longer than 4 x widestring length
         size_t cb = sizeof(char) * (m_sourceLen * 4);
 
         m_result = static_cast<char*>(pantheios_inserterAllocate(cb));
 
-        if(NULL != m_result)
+        if (NULL != m_result)
         {
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
             size_t len;
 
-            if(0 != ::wcstombs_s(&len, m_result, cb, m_source, m_sourceLen))
+            if (0 != ::wcstombs_s(&len, m_result, cb, m_source, m_sourceLen))
             {
                 pantheios_inserterDeallocate(m_result);
 
@@ -158,7 +158,7 @@ void w2m::construct_()
 
             PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL((size_t(-1) == len || len < cb), "insufficient buffer");
 
-            if(size_t(-1) == len)
+            if (size_t(-1) == len)
             {
                 pantheios_inserterDeallocate(m_result);
 
@@ -177,7 +177,7 @@ void w2m::construct_()
 
 char const* w2m::data() const
 {
-    if(NULL == m_result)
+    if (NULL == m_result)
     {
         construct_();
     }
@@ -192,7 +192,7 @@ char const* w2m::c_str() const
 
 size_t w2m::length() const
 {
-    if(NULL == m_result)
+    if (NULL == m_result)
     {
         construct_();
     }

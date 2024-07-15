@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.getversion", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.getversion", verbosity))
     {
         XTESTS_RUN_CASE(test_signature);
         XTESTS_RUN_CASE(test_call);

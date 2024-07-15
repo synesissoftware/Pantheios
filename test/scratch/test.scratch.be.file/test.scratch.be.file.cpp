@@ -154,13 +154,13 @@ int main(int argc, char *argv[])
     {
         res = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         fprintf(stderr, "Unhandled unknown error\n");
 

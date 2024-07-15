@@ -115,7 +115,7 @@ pantheios_be_N_countBackEnds_everytime_(void)
     size_t      n   =   0;
     pan_be_N_t* backEnd;
 
-    for(backEnd = &PAN_BE_N_BACKEND_LIST[0]; NULL != backEnd->pfnInit; ++n, ++backEnd)
+    for (backEnd = &PAN_BE_N_BACKEND_LIST[0]; NULL != backEnd->pfnInit; ++n, ++backEnd)
     {
         PANTHEIOS_CONTRACT_ENFORCE_STATIC_DATA_APPL_DEF(((NULL == backEnd->pfnInit) == (NULL == backEnd->pfnUninit)), "back-end descriptor must specify all functions or none");
         PANTHEIOS_CONTRACT_ENFORCE_STATIC_DATA_APPL_DEF(((NULL == backEnd->pfnInit) == (NULL == backEnd->pfnLogEntry)), "back-end descriptor must specify all functions or none");
@@ -148,7 +148,7 @@ pantheios_be_init(
 
     *ptoken = NULL;
 
-    if(0 == numBackEnds)
+    if (0 == numBackEnds)
     {
         res = PANTHEIOS_BE_INIT_RC_NO_BACKENDS_SPECIFIED;
     }
@@ -156,18 +156,18 @@ pantheios_be_init(
     {
         res = 0;
 
-        for(n = 0; n < numBackEnds; ++n)
+        for (n = 0; n < numBackEnds; ++n)
         {
             pan_be_N_t* backEnd = &PAN_BE_N_BACKEND_LIST[n];
 
             PANTHEIOS_CONTRACT_ENFORCE_STATIC_DATA_APPL_DEF(0 != backEnd->backEndId, "be.N requires non-0 backEndId for all back-ends");
 
-            if(-1 == backEnd->backEndId)
+            if (-1 == backEnd->backEndId)
             {
                 backEnd->backEndId = pantheios_getNextBackEndId();
             }
 
-            if( PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED == (PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED & backEnd->flags) &&
+            if (PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED == (PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED & backEnd->flags) &&
                 0 != numSucceeded)
             {
                 backEnd->flags |= PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE;
@@ -179,7 +179,7 @@ pantheios_be_init(
                 res = (*backEnd->pfnInit)(processIdentity, backEnd->backEndId, NULL, NULL, &backEnd->token);
             }
 
-            if(0 == res)
+            if (0 == res)
             {
                 /* Initialisation of the given back-end has succeeded, so
                  * remove PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE, if present.
@@ -188,14 +188,14 @@ pantheios_be_init(
 
                 ++numSucceeded;
 
-                if(terminalBackEnd->severityCeiling < backEnd->severityCeiling)
+                if (terminalBackEnd->severityCeiling < backEnd->severityCeiling)
                 {
                     terminalBackEnd->severityCeiling = backEnd->severityCeiling;
                 }
             }
             else
             {
-                if(PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE & backEnd->flags)
+                if (PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE & backEnd->flags)
                 {
                     /* Ignore failure. */
                     res = 0;
@@ -207,13 +207,13 @@ pantheios_be_init(
             }
         }
 
-        if(0 != res)
+        if (0 != res)
         {
-            for(; 0 != n; --n)
+            for (; 0 != n; --n)
             {
                 pan_be_N_t* backEnd = &PAN_BE_N_BACKEND_LIST[n - 1];
 
-                if(PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE & backEnd->flags)
+                if (PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE & backEnd->flags)
                 {
                     /* Was not initialised. */
                 }
@@ -223,7 +223,7 @@ pantheios_be_init(
                 }
             }
         }
-        else if(0 == numSucceeded)
+        else if (0 == numSucceeded)
         {
             res = PANTHEIOS_BE_INIT_RC_ALL_BACKEND_INITS_FAILED;
         }
@@ -242,11 +242,11 @@ pantheios_be_uninit(
 
     STLSOFT_SUPPRESS_UNUSED(token);
 
-    for(n = 0; n < numBackEnds; ++n)
+    for (n = 0; n < numBackEnds; ++n)
     {
         pan_be_N_t* backEnd = &PAN_BE_N_BACKEND_LIST[n];
 
-        if(PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE & backEnd->flags)
+        if (PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE & backEnd->flags)
         {
             /* Was not initialised. */
         }
@@ -273,17 +273,17 @@ pantheios_be_logEntry(
 
     STLSOFT_SUPPRESS_UNUSED(beToken);
 
-    for(backEnd = &PAN_BE_N_BACKEND_LIST[0]; NULL != backEnd->pfnInit; ++backEnd)
+    for (backEnd = &PAN_BE_N_BACKEND_LIST[0]; NULL != backEnd->pfnInit; ++backEnd)
     {
-        if(PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE & backEnd->flags)
+        if (PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE & backEnd->flags)
         {
             /* Was not initialised. */
         }
-        else if(severity4 < backEnd->severityFloor)
+        else if (severity4 < backEnd->severityFloor)
         {
             /* Statically filtered out */
         }
-        else if(severity4 > backEnd->severityCeiling)
+        else if (severity4 > backEnd->severityCeiling)
         {
             /* Statically filtered out */
         }
@@ -297,31 +297,31 @@ pantheios_be_logEntry(
               != id           skip              skip
 */
 
-            if(custom28 != backEnd->backEndId)
+            if (custom28 != backEnd->backEndId)
             {
                 /* If the custom28 does not match the back-end's id, we need to
                  * see if the back-end has special instructions.
                  */
 
                 /* Test for PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28: skip mismatch'd output if specified. */
-                if(PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28 & backEnd->flags)
+                if (PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28 & backEnd->flags)
                 {
                     continue;
                 }
 
                 /* Test for PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID: skip if mismatched, and custom != 0 */
-                if( PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID == (PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID & backEnd->flags) &&
+                if (PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID == (PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID & backEnd->flags) &&
                     0 != custom28)
                 {
                     continue;
                 }
             }
 
-            if(pantheios_fe_isSeverityLogged(feToken, severity, backEnd->backEndId))
+            if (pantheios_fe_isSeverityLogged(feToken, severity, backEnd->backEndId))
             {
                 int r2 = (*backEnd->pfnLogEntry)(feToken, backEnd->token, severity, entry, cchEntry);
 
-                if(0 != r2)
+                if (0 != r2)
                 {
                     res = r2;
                 }
@@ -365,9 +365,9 @@ pantheios_be_N_tokenFromId_(
 {
     pan_be_N_t const* backEnd;
 
-    for(backEnd = backEndList; NULL != backEnd->pfnInit; ++backEnd)
+    for (backEnd = backEndList; NULL != backEnd->pfnInit; ++backEnd)
     {
-        if(backEnd->backEndId == backEndId)
+        if (backEnd->backEndId == backEndId)
         {
             return backEnd->token;
         }

@@ -125,7 +125,7 @@ void host_id_t::construct_()
     size_t                  cch         =   getHostName(hostName_);
     pantheios_char_t const* hostName    =   hostName_.data();
 
-    if(0 == cch)
+    if (0 == cch)
     {
         cch         =   STLSOFT_NUM_ELEMENTS(s_localHost) - 1;
         hostName    =   s_localHost;
@@ -152,7 +152,7 @@ host_id_t::~host_id_t() STLSOFT_NOEXCEPT
 
 host_id_t::operator size_t () const
 {
-    if(NULL == m_value)
+    if (NULL == m_value)
     {
         construct_();
     }
@@ -162,7 +162,7 @@ host_id_t::operator size_t () const
 
 host_id_t::operator pantheios_char_t const* () const
 {
-    if(NULL == m_value)
+    if (NULL == m_value)
     {
         construct_();
     }

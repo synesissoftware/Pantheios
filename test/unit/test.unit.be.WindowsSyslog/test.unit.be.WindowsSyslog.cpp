@@ -81,7 +81,7 @@ int main(int argc, char **argv)
 
     int r = ::WSAStartup(version, &wsadata);
 
-    if(0 != r)
+    if (0 != r)
     {
         fprintf(stderr, "failed to initialise the WinSock2 library: %d\n", r);
 
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 
         XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-        if(XTESTS_START_RUNNER("test.unit.be.WindowsSyslog", verbosity))
+        if (XTESTS_START_RUNNER("test.unit.be.WindowsSyslog", verbosity))
         {
             XTESTS_RUN_CASE(test_getDefaultAppInit);
             XTESTS_RUN_CASE(test_initialisation);
@@ -166,7 +166,7 @@ static void test_initialisation()
     void*   token;
     int     r = pantheios_be_WindowsSyslog_init(PANTHEIOS_FE_PROCESS_IDENTITY, 1, &init, NULL, &token);
 
-    if(r < 0)
+    if (r < 0)
     {
         XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
     }
@@ -192,7 +192,7 @@ static void test_1_2()
     void*   token;
     int     r = pantheios_be_WindowsSyslog_init(PANTHEIOS_FE_PROCESS_IDENTITY, 1, &init, NULL, &token);
 
-    if(r < 0)
+    if (r < 0)
     {
         XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
     }

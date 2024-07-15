@@ -230,7 +230,7 @@ static int main_(int /* argc */, char ** /*argv*/)
 int main(int argc, char *argv[])
 {
 #if 0
-    { for(size_t i = 0;0 != ++i;) {} }
+    { for (size_t i = 0;0 != ++i;) {} }
 #endif /* 0 */
 
     pantheios::log_DEBUG(P_STR("debug"));
@@ -261,7 +261,7 @@ int main(int argc, char *argv[])
     pantheios::log(pantheios::emergency(10), P_STR("emergency"));
 
 #ifdef _DEBUGx
-    { for(size_t i = 0; i != 200; ++i)
+    { for (size_t i = 0; i != 200; ++i)
     {
         std::string s(i, '~');
 
@@ -383,11 +383,11 @@ int main(int argc, char *argv[])
         return main_(argc, argv);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         cerr << "Unhandled error: " << x.what() << endl;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::pantheios_puts(pantheios::emergency, P_STR("Unhandled unknown error"));
     }
@@ -466,7 +466,7 @@ static void some_logging_with_using_declarations()
     {
         throw std::out_of_range("Eeep!");
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         log_CRITICAL("Something really bad has happened! Details: \"", x, "\"");
     }
