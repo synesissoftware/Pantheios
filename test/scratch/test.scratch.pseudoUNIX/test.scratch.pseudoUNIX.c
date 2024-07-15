@@ -62,7 +62,7 @@ static int  s_bDebugging                =   true;
 static int  s_bDebugging                =   false;
 #endif /* debug */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("pseudoUNIX.test");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("pseudoUNIX.test");
 
 
 /* /////////////////////////////////////////////////////////////////////////
