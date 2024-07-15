@@ -10,13 +10,13 @@ target_link_libraries(test.component.inserters.variant_bool
 
 target_link_libraries(test.component.inserters.variant_bool
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.test
+		Pantheios.bec.test
 )
 
 target_link_libraries(test.component.inserters.variant_bool
 	PRIVATE
-		Pantheios.be.test
-		Pantheios.bec.test
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.component.inserters.variant_bool

@@ -10,13 +10,13 @@ target_link_libraries(test.performance.inserters.m2w
 
 target_link_libraries(test.performance.inserters.m2w
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.null
+		Pantheios.bec.null
 )
 
 target_link_libraries(test.performance.inserters.m2w
 	PRIVATE
-		Pantheios.be.null
-		Pantheios.bec.null
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.performance.inserters.m2w

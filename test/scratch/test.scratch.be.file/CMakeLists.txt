@@ -10,15 +10,15 @@ target_link_libraries(test.scratch.be.file
 
 target_link_libraries(test.scratch.be.file
 	PRIVATE
-		Pantheios.fe.simple
-)
-
-target_link_libraries(test.scratch.be.file
-	PRIVATE
 		Pantheios.be.lrsplit
 		Pantheios.bec.file
 		Pantheios.bel.file
 		Pantheios.ber.file
+)
+
+target_link_libraries(test.scratch.be.file
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.be.file

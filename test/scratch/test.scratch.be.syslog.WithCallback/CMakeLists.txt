@@ -10,13 +10,13 @@ target_link_libraries(test.scratch.be.syslog.WithCallback
 
 target_link_libraries(test.scratch.be.syslog.WithCallback
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.syslog
+		Pantheios.bec.syslog.WithCallback
 )
 
 target_link_libraries(test.scratch.be.syslog.WithCallback
 	PRIVATE
-		Pantheios.be.syslog
-		Pantheios.bec.syslog.WithCallback
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.be.syslog.WithCallback

@@ -10,11 +10,6 @@ target_link_libraries(test.scratch.be.N
 
 target_link_libraries(test.scratch.be.N
 	PRIVATE
-		Pantheios.fe.N
-)
-
-target_link_libraries(test.scratch.be.N
-	PRIVATE
 		Pantheios.be.N
 		Pantheios.bec.file
 		Pantheios.bec.fprintf
@@ -36,6 +31,11 @@ if(WIN32)
 			Pantheios.bec.WindowsSyslog
 	)
 endif(WIN32)
+
+target_link_libraries(test.scratch.be.N
+	PRIVATE
+		Pantheios.fe.N
+)
 
 target_link_libraries(test.scratch.be.N
 	PRIVATE

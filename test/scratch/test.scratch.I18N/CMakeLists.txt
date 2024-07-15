@@ -10,13 +10,13 @@ target_link_libraries(test.scratch.I18N
 
 target_link_libraries(test.scratch.I18N
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf
 )
 
 target_link_libraries(test.scratch.I18N
 	PRIVATE
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.I18N

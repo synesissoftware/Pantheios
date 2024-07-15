@@ -10,12 +10,12 @@ target_link_libraries(test.performance.util.date_elements_to_string
 
 target_link_libraries(test.performance.util.date_elements_to_string
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.null
 )
 
 target_link_libraries(test.performance.util.date_elements_to_string
 	PRIVATE
-		Pantheios.be.null
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.performance.util.date_elements_to_string

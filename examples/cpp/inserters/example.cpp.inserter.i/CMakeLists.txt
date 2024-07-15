@@ -10,13 +10,13 @@ target_link_libraries(example.cpp.inserter.i
 
 target_link_libraries(example.cpp.inserter.i
 	PRIVATE
-		Pantheios.fe.simple
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.be.WindowsConsole,Pantheios.be.fprintf>
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
 )
 
 target_link_libraries(example.cpp.inserter.i
 	PRIVATE
-		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.be.WindowsConsole,Pantheios.be.fprintf>
-		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+		Pantheios.fe.simple
 )
 
 target_link_libraries(example.cpp.inserter.i

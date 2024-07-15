@@ -10,13 +10,13 @@ target_link_libraries(example.cpp.backends.file
 
 target_link_libraries(example.cpp.backends.file
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.file
+		Pantheios.bec.file
 )
 
 target_link_libraries(example.cpp.backends.file
 	PRIVATE
-		Pantheios.be.file
-		Pantheios.bec.file
+		Pantheios.fe.simple
 )
 
 target_link_libraries(example.cpp.backends.file

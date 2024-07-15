@@ -10,15 +10,15 @@ target_link_libraries(example.c.N
 
 target_link_libraries(example.c.N
 	PRIVATE
-		Pantheios.fe.N
-)
-
-target_link_libraries(example.c.N
-	PRIVATE
 		Pantheios.be.N
 		Pantheios.bec.file
 		Pantheios.bec.fprintf
 		Pantheios.bec.null
+)
+
+target_link_libraries(example.c.N
+	PRIVATE
+		Pantheios.fe.N
 )
 
 target_link_libraries(example.c.N

@@ -10,13 +10,13 @@ target_link_libraries(test.unit.inserter.m2w
 
 target_link_libraries(test.unit.inserter.m2w
 	PRIVATE
-		Pantheios.fe.null
+		Pantheios.be.null
+		Pantheios.bec.null
 )
 
 target_link_libraries(test.unit.inserter.m2w
 	PRIVATE
-		Pantheios.be.null
-		Pantheios.bec.null
+		Pantheios.fe.null
 )
 
 target_link_libraries(test.unit.inserter.m2w

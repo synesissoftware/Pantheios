@@ -10,13 +10,13 @@ target_link_libraries(test.component.custom_severity
 
 target_link_libraries(test.component.custom_severity
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.test
+		Pantheios.bec.test
 )
 
 target_link_libraries(test.component.custom_severity
 	PRIVATE
-		Pantheios.be.test
-		Pantheios.bec.test
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.component.custom_severity

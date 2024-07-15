@@ -10,13 +10,13 @@ target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf
 )
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT
 	PRIVATE
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf
+		Pantheios.fe.simple
 )
 
 target_link_libraries(example.cpp.contract.PANTHEIOS_ASSERT

@@ -10,16 +10,16 @@ target_link_libraries(test.scratch.c_api
 
 target_link_libraries(test.scratch.c_api
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.lrsplit
+		Pantheios.bel.fprintf
+		Pantheios.ber.null
+		Pantheios.bec.fprintf
+		Pantheios.bec.null
 )
 
 target_link_libraries(test.scratch.c_api
 	PRIVATE
-		Pantheios.be.lrsplit
-		Pantheios.bec.fprintf
-		Pantheios.bec.null
-		Pantheios.bel.fprintf
-		Pantheios.ber.null
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.c_api

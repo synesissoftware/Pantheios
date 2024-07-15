@@ -10,13 +10,13 @@ target_link_libraries(test.component.inserters.windows.hive
 
 target_link_libraries(test.component.inserters.windows.hive
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.test
+		Pantheios.bec.test
 )
 
 target_link_libraries(test.component.inserters.windows.hive
 	PRIVATE
-		Pantheios.be.test
-		Pantheios.bec.test
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.component.inserters.windows.hive

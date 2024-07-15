@@ -10,14 +10,13 @@ target_link_libraries(test.unit.getversion
 
 target_link_libraries(test.unit.getversion
 	PRIVATE
-		Pantheios.fe.fail
-		# Pantheios.fe.null
+		Pantheios.be.null
+		Pantheios.bec.null
 )
 
 target_link_libraries(test.unit.getversion
 	PRIVATE
-		Pantheios.be.null
-		Pantheios.bec.null
+		Pantheios.fe.fail
 )
 
 target_link_libraries(test.unit.getversion

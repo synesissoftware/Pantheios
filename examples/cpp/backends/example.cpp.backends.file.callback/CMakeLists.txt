@@ -10,13 +10,13 @@ target_link_libraries(example.cpp.backends.file.callback
 
 target_link_libraries(example.cpp.backends.file.callback
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.file
+		Pantheios.bec.file.WithCallback
 )
 
 target_link_libraries(example.cpp.backends.file.callback
 	PRIVATE
-		Pantheios.be.file
-		Pantheios.bec.file.WithCallback
+		Pantheios.fe.simple
 )
 
 target_link_libraries(example.cpp.backends.file.callback

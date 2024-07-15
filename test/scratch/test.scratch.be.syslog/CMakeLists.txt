@@ -10,13 +10,13 @@ target_link_libraries(test.scratch.be.syslog
 
 target_link_libraries(test.scratch.be.syslog
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.syslog
+		Pantheios.bec.syslog
 )
 
 target_link_libraries(test.scratch.be.syslog
 	PRIVATE
-		Pantheios.be.syslog
-		Pantheios.bec.syslog
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.be.syslog

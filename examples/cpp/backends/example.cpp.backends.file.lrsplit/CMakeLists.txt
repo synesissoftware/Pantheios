@@ -10,15 +10,15 @@ target_link_libraries(example.cpp.backends.file.lrsplit
 
 target_link_libraries(example.cpp.backends.file.lrsplit
 	PRIVATE
-		Pantheios.fe.simple
-)
-
-target_link_libraries(example.cpp.backends.file.lrsplit
-	PRIVATE
 		Pantheios.be.file
 		Pantheios.bec.file
 		Pantheios.bel.file
 		Pantheios.ber.file
+)
+
+target_link_libraries(example.cpp.backends.file.lrsplit
+	PRIVATE
+		Pantheios.fe.simple
 )
 
 target_link_libraries(example.cpp.backends.file.lrsplit

@@ -10,13 +10,13 @@ target_link_libraries(test.scratch.extras.com_exception_helpers
 
 target_link_libraries(test.scratch.extras.com_exception_helpers
 	PRIVATE
-		Pantheios.fe.simple
+		Pantheios.be.fprintf
+		Pantheios.bec.fprintf
 )
 
 target_link_libraries(test.scratch.extras.com_exception_helpers
 	PRIVATE
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf
+		Pantheios.fe.simple
 )
 
 target_link_libraries(test.scratch.extras.com_exception_helpers
