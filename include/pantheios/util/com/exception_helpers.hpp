@@ -51,6 +51,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -61,6 +62,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_REVISION    1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_EDIT        24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

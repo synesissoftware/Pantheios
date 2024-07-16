@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_FILE
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_FILE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_FILE_REVISION   2
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_FILE_EDIT       7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FILE
 # include <pantheios/implicit_link/bec.file.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FILE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit-linking directives

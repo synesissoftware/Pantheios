@@ -60,6 +60,7 @@
 #include <string.h>
 #include <wchar.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -69,13 +70,14 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
 
 PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) STLSOFT_NOEXCEPT
 {
-    if(NULL == s)
+    if (NULL == s)
     {
         return NULL;
     }
@@ -84,7 +86,7 @@ PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) STLSOFT_NOE
         const size_t    len =   strlen(s);
         char*           s2  =   stlsoft_static_cast(char*, malloc(sizeof(char) * (1 + len)));
 
-        if(NULL != s2)
+        if (NULL != s2)
         {
             memcpy(s2, s, sizeof(char) * (1 + len));
         }
@@ -100,7 +102,7 @@ PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) STLSOFT_NOEXCEPT
 
 PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) STLSOFT_NOEXCEPT
 {
-    if(NULL == s)
+    if (NULL == s)
     {
         return NULL;
     }
@@ -109,7 +111,7 @@ PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) STLSO
         const size_t    len =   wcslen(s);
         wchar_t*        s2  =   stlsoft_static_cast(wchar_t*, malloc(sizeof(wchar_t) * (1 + len)));
 
-        if(NULL != s2)
+        if (NULL != s2)
         {
             memcpy(s2, s, sizeof(wchar_t) * (1 + len));
         }
@@ -146,6 +148,7 @@ pantheios_util_strfree(
     pantheios_util_strfree_m(s);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Tracing API.
  *
  * Created:     11th November 2007
- * Updated:     16th June 2020
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_TRACE
 #define PANTHEIOS_INCL_PANTHEIOS_H_TRACE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MINOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       19
+# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +79,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * tracing features
@@ -146,14 +149,14 @@
 
  /* Now define the prefix, if the user has not already done so. */
 # if !defined(PANTHEIOS_TRACE_PREFIX)
-#  define PANTHEIOS_TRACE_PREFIX                PANTHEIOS_FILELINE
+#  define PANTHEIOS_TRACE_PREFIX                            PANTHEIOS_FILELINE
 #  ifdef __cplusplus
-#   define PANTHEIOS_TRACE_LOG_PREFIX           ::pantheios::pan_slice_t(PANTHEIOS_FILELINE, STLSOFT_NUM_ELEMENTS(PANTHEIOS_FILELINE) - 1)
+#   define PANTHEIOS_TRACE_LOG_PREFIX                       ::pantheios::pan_slice_t(PANTHEIOS_FILELINE, STLSOFT_NUM_ELEMENTS(PANTHEIOS_FILELINE) - 1)
 #  else /* ? __cplusplus */
-#   define PANTHEIOS_TRACE_LOG_PREFIX           PANTHEIOS_FILELINE
+#   define PANTHEIOS_TRACE_LOG_PREFIX                       PANTHEIOS_FILELINE
 #  endif /* __cplusplus */
 # else /* ? PANTHEIOS_TRACE_PREFIX */
-#  define PANTHEIOS_TRACE_LOG_PREFIX            PANTHEIOS_TRACE_PREFIX
+#  define PANTHEIOS_TRACE_LOG_PREFIX                        PANTHEIOS_TRACE_PREFIX
 # endif /* !PANTHEIOS_TRACE_PREFIX */
 
  /* Now define the Pantheios Tracing API */
@@ -271,6 +274,7 @@
 #  endif /* !PANTHEIOS_NO_STOCK_LEVELS */
 # endif /* __cplusplus */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

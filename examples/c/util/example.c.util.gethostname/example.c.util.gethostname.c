@@ -51,7 +51,7 @@ int main(int argc, char** argv)
      * it is available via GetLastError(); otherwise use errno
      */
 
-    if(0 == cch)
+    if (0 == cch)
     {
         /* not available, or a problem retrieving it */
 
@@ -61,9 +61,9 @@ int main(int argc, char** argv)
         char*   message;
 
 # if _STLSOFT_VER >= 0x010a0181
-        if(NULL == (message = winstl_C_format_message_strerror_a(error)))
+        if (NULL == (message = winstl_C_format_message_strerror_a(error)))
 # else
-        if(0 == winstl_C_format_message_alloc_a(error, NULL, &message))
+        if (0 == winstl_C_format_message_alloc_a(error, NULL, &message))
 # endif
         {
             /* Could not retrieve a string-form of the error, so print
@@ -90,7 +90,7 @@ int main(int argc, char** argv)
         char    err[1001];
         int     r = strerror_s(err, STLSOFT_NUM_ELEMENTS(err) - 1, errno);
 
-        if(0 != r)
+        if (0 != r)
         {
             err[0] = '\0';
         }
@@ -108,7 +108,7 @@ int main(int argc, char** argv)
 
 #endif /* OS */
     }
-    else if(STLSOFT_NUM_ELEMENTS(name) == cch)
+    else if (STLSOFT_NUM_ELEMENTS(name) == cch)
     {
         /* buffer too short */
 

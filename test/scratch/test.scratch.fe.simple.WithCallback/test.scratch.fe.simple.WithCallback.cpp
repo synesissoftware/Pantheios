@@ -27,6 +27,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions
  */
@@ -58,11 +59,11 @@ int main(int argc, char** argv)
     {
         return main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         pan::log_ALERT(PANTHEIOS_LITERAL_STRING("Unexpected general error: "), x, PANTHEIOS_LITERAL_STRING(". Application terminating"));
     }
-    catch(...)
+    catch (...)
     {
         pan::logputs(pan::emergency, PANTHEIOS_LITERAL_STRING("Unhandled unknown error"));
     }

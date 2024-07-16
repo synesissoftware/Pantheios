@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INSERTER
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INSERTER
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    7
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/internal/shim_declarations.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -78,6 +81,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -112,7 +116,7 @@ private:
 public: // accessors
     pantheios_char_t const* data() const
     {
-        if(!m_bInitialised)
+        if (!m_bInitialised)
         {
             convert_();
         }
@@ -121,7 +125,7 @@ public: // accessors
     }
     size_t      length() const
     {
-        if(!m_bInitialised)
+        if (!m_bInitialised)
         {
             convert_();
         }
@@ -146,6 +150,7 @@ private: // fields
     S       (*m_pfn)(T);
     bool    m_bInitialised;
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter functions
@@ -196,6 +201,7 @@ insert(T *value, S (*pfn)(T*))
     return inserter<T*, S>(value, pfn);
 }
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * shim functions
@@ -248,6 +254,7 @@ PANTHEIOS_c_str_len_name_(
 
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -269,6 +276,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

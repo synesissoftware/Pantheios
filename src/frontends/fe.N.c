@@ -4,10 +4,11 @@
  * Purpose:     Implementation of the Pantheios fe.N Stock Front-end API.
  *
  * Created:     18th October 2006
- * Updated:     13th November 2019
+ * Updated:     29th March 2021
  *
  * Home:        http://www.pantheios.org/
  *
+ * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -20,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -47,6 +49,7 @@
 
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -58,26 +61,30 @@ struct pantheios_fe_N_init_t
 };
 typedef struct pantheios_fe_N_init_t pantheios_fe_N_init_t;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
 #define PAN_FE_N_HAS_backEndId()        (1)
 #define PAN_FE_N_HAS_severityCeiling()  (1)
-/*
+#if 0
 #define PAN_FE_N_HAS_severityFloor()    (pantheios_fe_N_get_compiled_ver() >= 0x010001d7)
-*/
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
 
+#if 0
 static
 pan_uint32_t
 pantheios_fe_N_get_compiled_ver(void)
 {
     return PAN_FE_N_SEVERITY_CEILINGS[0].pantheios_version_;
 }
+#endif
 
 static
 size_t
@@ -86,7 +93,7 @@ pantheios_fe_N_countBackEnds_(void)
     size_t              n = 0;
     pan_fe_N_t const*   frontEnd;
 
-    for(frontEnd = &PAN_FE_N_SEVERITY_CEILINGS[0]; 0 != frontEnd->backEndId; ++n, ++frontEnd)
+    for (frontEnd = &PAN_FE_N_SEVERITY_CEILINGS[0]; 0 != frontEnd->backEndId; ++n, ++frontEnd)
     {}
 
     return n;
@@ -99,11 +106,11 @@ pantheios_fe_N_calc0Level_(size_t numBackEnds)
     size_t  n;
     int     severityCeiling = PAN_FE_N_SEVERITY_CEILINGS[numBackEnds].severityCeiling;
 
-    for(n = 0; n != numBackEnds; ++n)
+    for (n = 0; n != numBackEnds; ++n)
     {
         pan_fe_N_t const* const frontEnd = &PAN_FE_N_SEVERITY_CEILINGS[n];
 
-        if(frontEnd->severityCeiling > severityCeiling)
+        if (frontEnd->severityCeiling > severityCeiling)
         {
             severityCeiling = frontEnd->severityCeiling;
         }
@@ -133,7 +140,7 @@ pantheios_fe_init(
 
     init = (pantheios_fe_N_init_t*)malloc(sizeof(pantheios_fe_N_init_t));
 
-    if(NULL == init)
+    if (NULL == init)
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -189,7 +196,7 @@ pantheios_fe_isSeverityLogged(
 
     init = (pantheios_fe_N_init_t*)token;
 
-    if(0 == backEndId)
+    if (0 == backEndId)
     {
         severityCeiling = init->netLevel;
     }
@@ -198,7 +205,7 @@ pantheios_fe_isSeverityLogged(
         size_t const numBackEnds = init->numBackEnds;
 
         /* Optimise the search, if its index matches the id. */
-        if( backEndId >= 1 &&
+        if (backEndId >= 1 &&
             (size_t)backEndId <= numBackEnds &&
             PAN_FE_N_SEVERITY_CEILINGS[backEndId - 1].backEndId == backEndId)
         {
@@ -213,11 +220,11 @@ pantheios_fe_isSeverityLogged(
 
             severityCeiling = PAN_FE_N_SEVERITY_CEILINGS[numBackEnds].severityCeiling;
 
-            for(n = 0; n != numBackEnds; ++n)
+            for (n = 0; n != numBackEnds; ++n)
             {
                 pan_fe_N_t const* const frontEnd = &PAN_FE_N_SEVERITY_CEILINGS[n];
 
-                if(frontEnd->backEndId == backEndId)
+                if (frontEnd->backEndId == backEndId)
                 {
                     severityCeiling = frontEnd->severityCeiling;
                     break;

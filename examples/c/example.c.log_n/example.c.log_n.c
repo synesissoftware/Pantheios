@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/example.c.log_n/example.c.log_n.c
+ * File:    examples/c/example.c.log_n/example.c.log_n.c
  *
- * Purpose:     C example program for Pantheios. Demonstrates:
+ * Purpose: C example program for Pantheios. Demonstrates:
  *
- *                - use of pantheios_log_?() in C compilation units
+ *            - use of pantheios_log_?() in C compilation units
  *
- * Created:     31st August 2006
- * Updated:     16th December 2023
+ * Created: 31st August 2006
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,14 +28,17 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("exa
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(int argc, char* argv[])
 {
+  STLSOFT_SUPPRESS_UNUSED(argc);
+  STLSOFT_SUPPRESS_UNUSED(argv);
+
   /* Must initialise Pantheios, when using from C (and there are no C++
    * compilation units in the link-unit).
    *
    * If this is not done, undefined behaviour will ensue ...
    */
-  if(pantheios_init() < 0)
+  if (pantheios_init() < 0)
   {
     return EXIT_FAILURE;
   }

@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the fprintf() back-end
  *
  * Created:     26th June 2005
- * Updated:     16th January 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,15 +56,17 @@
 /* Standard C header files */
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_fprintf_                   ::fwprintf
+# define pan_fprintf_                                       ::fwprintf
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_fprintf_                   ::fprintf
+# define pan_fprintf_                                       ::fprintf
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -80,6 +82,7 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -138,6 +141,7 @@ private: // fields
     FILE* const         m_stm;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -156,6 +160,7 @@ namespace
     }
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -187,7 +192,7 @@ static int pantheios_be_fprintf_init_(
 
     pan_be_fprintf_init_t init_;
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_fprintf_getDefaultAppInit(&init_);
 
@@ -200,11 +205,11 @@ static int pantheios_be_fprintf_init_(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001b8)
+    if (init->version < 0x010001b8)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
@@ -214,7 +219,7 @@ static int pantheios_be_fprintf_init_(
     be_fprintf_Context* ctxt = new be_fprintf_Context(processIdentity, backEndId, init);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if( NULL == ctxt ||
+    if (NULL == ctxt ||
         NULL == ctxt->getProcessIdentity())
     {
         delete ctxt;
@@ -275,6 +280,7 @@ PANTHEIOS_CALL(int) pantheios_be_fprintf_logEntry(
 {
     return pantheios_call_be_logEntry(pantheios_be_fprintf_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.fprintf");
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * be_fprintf_Context

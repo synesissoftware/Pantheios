@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        implicit_link.cpp
- *
- * Purpose:     Implicit link file for the I18N project.
- *
- * Created:     1st September 2015
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <platformstl/platformstl.h>
@@ -21,6 +11,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif /* operating system */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

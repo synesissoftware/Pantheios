@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_TIME_H_CURRENTTIME
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_TIME_H_CURRENTTIME
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_EDIT       21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -66,6 +68,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -105,6 +108,7 @@ struct pan_beutil_time_t
 #ifndef __cplusplus
 typedef struct pan_beutil_time_t pan_beutil_time_t;
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -225,6 +229,7 @@ typedef struct pan_beutil_time_t pan_beutil_time_t;
  * \ingroup group__utility__backend
  */
 #define PANTHEIOS_GETCURRENTTIME_F_FAVOUR_ACCURACY          (0x00002000)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * functions

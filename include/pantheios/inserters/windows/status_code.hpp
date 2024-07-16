@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_REVISION 1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 
 #include <windows.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -84,6 +87,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 namespace windows
 {
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -133,7 +137,7 @@ private:
     template <typename I>
     static int get_width_(I e)
     {
-        if(0 != (0x80000000 & e))
+        if (0 != (0x80000000 & e))
         {
             return 8;
         }
@@ -143,7 +147,7 @@ private:
     template <typename I>
     static int get_format_(I e)
     {
-        if(0 != (0x80000000 & e))
+        if (0 != (0x80000000 & e))
         {
             return fmt::fullHex;
         }
@@ -151,6 +155,7 @@ private:
         return 0;
     }
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -160,6 +165,7 @@ private:
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_REVISION    5
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -82,6 +85,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -143,6 +147,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
  */
@@ -158,7 +163,7 @@ inline
 pantheios_char_t const*
 stream_character::c_str() const
 {
-    if(0 == m_len)
+    if (0 == m_len)
     {
         construct_();
     }
@@ -170,13 +175,14 @@ inline
 size_t
 stream_character::length() const
 {
-    if(0 == m_len)
+    if (0 == m_len)
     {
         construct_();
     }
 
     return m_len;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -264,6 +270,7 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -290,6 +297,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

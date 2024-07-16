@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.util.snprintf/test.unit.util.snprintf.cpp
+ * File:    test/unit/test.unit.util.snprintf/test.unit.util.snprintf.cpp
  *
- * Purpose:     Implementation file for the test.unit.util.snprintf project.
+ * Purpose: Implementation file for the test.unit.util.snprintf project.
  *
- * Created:     19th June 2020
- * Updated:     16th December 2023
+ * Created: 19th June 2020
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,6 +19,7 @@
 #include <stlsoft/util/minmax.hpp>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -41,11 +42,17 @@ static void test_1_12();
 
 } /* anonymous namespace */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.util.snprintf");
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char** argv)
 {
@@ -54,7 +61,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.util.snprintf", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.util.snprintf", verbosity))
     {
         XTESTS_RUN_CASE(test_pantheios_util_snprintf_a);
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -76,7 +83,10 @@ int main(int argc, char** argv)
     return retCode;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 namespace
 {
@@ -101,6 +111,11 @@ static void test_pantheios_util_snprintf_a()
 {
     // ""
 
+#if defined(__GNUC__) && \
+    __GNUC__ >= 9
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wformat-zero-length"
+#endif
     {
         char            buff[100];
 
@@ -116,6 +131,10 @@ static void test_pantheios_util_snprintf_a()
 
         XTESTS_TEST_INTEGER_EQUAL(0u, n);
     }
+#if defined(__GNUC__) && \
+    __GNUC__ >= 9
+# pragma GCC diagnostic pop
+#endif
 
 
     // "a"
@@ -288,6 +307,11 @@ static void test_pantheios_util_snprintf()
 {
     // ""
 
+#if defined(__GNUC__) && \
+    __GNUC__ >= 9
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wformat-zero-length"
+#endif
     {
         pantheios_char_t    buff[100];
 
@@ -303,6 +327,10 @@ static void test_pantheios_util_snprintf()
 
         XTESTS_TEST_INTEGER_EQUAL(0u, n);
     }
+#if defined(__GNUC__) && \
+    __GNUC__ >= 9
+# pragma GCC diagnostic pop
+#endif
 
 
     // "a"
@@ -395,8 +423,8 @@ static void test_1_11()
 static void test_1_12()
 {
 }
-
 } /* anonymous namespace */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

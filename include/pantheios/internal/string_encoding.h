@@ -50,11 +50,13 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_STRING_ENCODING
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_STRING_ENCODING
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
 
 #include <pantheios/pantheios.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros

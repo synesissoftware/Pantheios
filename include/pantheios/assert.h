@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/assert.h
+ * File:    pantheios/assert.h
  *
- * Purpose:     Pantheios Assertion API.
+ * Purpose: Pantheios Assertion API.
  *
- * Created:     8th May 2009
- * Updated:     16th December 2023
+ * Created: 8th May 2009
+ * Updated: 7th February 2024
  *
- * Thanks to:   markitus82 for requesting this functionality
+ * Thanks:  markitus82 for requesting this functionality
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_ASSERT
 #define PANTHEIOS_INCL_PANTHEIOS_H_ASSERT
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,8 +59,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MINOR     3
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      13
+# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      14
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +80,7 @@
 
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper macros
  */
@@ -85,12 +88,13 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
 # ifdef PANTHEIOS_ASSERT_ABORT_ON_FAILURE
-#  define PANTHEIOS_ASSERT_CALL_EXIT_()     PANTHEIOS_NS_QUAL(pantheios_exitProcess)(EXIT_FAILURE)
+#  define PANTHEIOS_ASSERT_CALL_EXIT_()                     PANTHEIOS_NS_QUAL(pantheios_exitProcess)(EXIT_FAILURE)
 # else /* ? PANTHEIOS_ASSERT_ABORT_ON_FAILURE */
-#  define PANTHEIOS_ASSERT_CALL_EXIT_()     STLSOFT_STATIC_CAST(void, 0)
+#  define PANTHEIOS_ASSERT_CALL_EXIT_()                     STLSOFT_STATIC_CAST(void, 0)
 # endif /* PANTHEIOS_ASSERT_ABORT_ON_FAILURE */
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * assertion features
@@ -129,7 +133,7 @@
  */
 
 #ifndef PANTHEIOS_ASSERT_SEVERITY_LEVEL
-# define PANTHEIOS_ASSERT_SEVERITY_LEVEL            PANTHEIOS_SEV_EMERGENCY
+# define PANTHEIOS_ASSERT_SEVERITY_LEVEL                    PANTHEIOS_SEV_EMERGENCY
 #endif /* !PANTHEIOS_ASSERT_SEVERITY_LEVEL */
 
 
@@ -145,7 +149,7 @@
  */
 
 #ifndef PANTHEIOS_ASSERT_IMPL
-# define PANTHEIOS_ASSERT_IMPL(expr)                STLSOFT_ASSERT((expr))
+# define PANTHEIOS_ASSERT_IMPL(expr)                        STLSOFT_ASSERT((expr))
 #endif /* !PANTHEIOS_ASSERT_IMPL */
 
 
@@ -161,7 +165,7 @@
  */
 
 #ifndef PANTHEIOS_MESSAGE_ASSERT_IMPL
-# define PANTHEIOS_MESSAGE_ASSERT_IMPL(expr, msg)   STLSOFT_MESSAGE_ASSERT((msg), (expr))
+# define PANTHEIOS_MESSAGE_ASSERT_IMPL(expr, msg)           STLSOFT_MESSAGE_ASSERT((msg), (expr))
 #endif /* !PANTHEIOS_MESSAGE_ASSERT_IMPL */
 
 
@@ -215,7 +219,7 @@
                                             \
     do                                      \
     {                                       \
-        if(!(expr))                         \
+        if (!(expr))                         \
         {                                   \
             PANTHEIOS_NS_QUAL(pantheios_logassertfail)(PANTHEIOS_ASSERT_SEVERITY_LEVEL, PANTHEIOS_FILELINE_A, "assertion failed: " #expr); \
                                             \
@@ -223,7 +227,7 @@
         }                                   \
                                             \
         PANTHEIOS_ASSERT_IMPL(expr);        \
-    } while(0)
+    } while (0)
 #endif
 
 
@@ -278,7 +282,7 @@
                                             \
     do                                      \
     {                                       \
-        if(!(expr))                         \
+        if (!(expr))                         \
         {                                   \
             PANTHEIOS_NS_QUAL(pantheios_logassertfail)(PANTHEIOS_ASSERT_SEVERITY_LEVEL, PANTHEIOS_FILELINE_A, "assertion failed: " #expr "; message: " msg); \
                                             \
@@ -286,8 +290,9 @@
         }                                   \
                                             \
         PANTHEIOS_MESSAGE_ASSERT_IMPL(expr, msg);   \
-    } while(0)
+    } while (0)
 #endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion
@@ -297,9 +302,8 @@
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_ASSERT */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

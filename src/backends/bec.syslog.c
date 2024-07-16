@@ -4,14 +4,14 @@
  * Purpose:     Implementation for the UNIX SysLog back-end
  *
  * Created:     29th June 2005
- * Updated:     16th December 2023
+ * Updated:     7th February 2024
  *
  * Thanks to:   Jonathan Wakely for detecting Solaris compilation defects &
  *              fixes.
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,6 +57,7 @@
 #include <string.h>
 #include <syslog.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * platform compatibility
  */
@@ -71,6 +72,7 @@
 #ifndef LOG_PERROR
 # include <stdio.h>
 #endif /* !LOG_PERROR */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -121,7 +123,7 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_init(
 
     /* (i) apply Null Object (Variable) pattern */
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_syslog_getDefaultAppInit(&init_);
 
@@ -134,18 +136,18 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_init(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001b8)
+    if (init->version < 0x010001b8)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
 
     /* (iii) create the context */
 
-    if(init->options & PANTHEIOS_BE_SYSLOG_F_PERROR)
+    if (init->options & PANTHEIOS_BE_SYSLOG_F_PERROR)
     {
 #ifdef LOG_PERROR
         options |= LOG_PERROR;
@@ -154,17 +156,17 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_init(
 #endif /* LOG_PERROR */
     }
 
-    if(init->options & PANTHEIOS_BE_SYSLOG_F_CONS)
+    if (init->options & PANTHEIOS_BE_SYSLOG_F_CONS)
     {
         options |= LOG_CONS;
     }
 
-    if(init->options & PANTHEIOS_BE_SYSLOG_F_PID)
+    if (init->options & PANTHEIOS_BE_SYSLOG_F_PID)
     {
         options |= LOG_PID;
     }
 
-    if(init->options & PANTHEIOS_BE_SYSLOG_F_NDELAY)
+    if (init->options & PANTHEIOS_BE_SYSLOG_F_NDELAY)
     {
         options |= LOG_NDELAY;
     }
@@ -172,14 +174,14 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_init(
 
     /* Take account of use of Synesis Software's WinSysLog for testing */
 #ifdef WINSYSLOG_F_EVENTLOG
-    if(init->options & WINSYSLOG_F_EVENTLOG)
+    if (init->options & WINSYSLOG_F_EVENTLOG)
     {
         options |= WINSYSLOG_F_EVENTLOG;
     }
 #endif /* WINSYSLOG_F_EVENTLOG */
 
 #ifdef WINSYSLOG_F_UDP514
-    if(init->options & WINSYSLOG_F_UDP514)
+    if (init->options & WINSYSLOG_F_UDP514)
     {
         options |= WINSYSLOG_F_UDP514;
     }
@@ -209,6 +211,7 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_logEntry(
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL == beToken, "back-end token must be null");
 #endif /* LOG_PERROR */
     STLSOFT_SUPPRESS_UNUSED(feToken);
+    STLSOFT_SUPPRESS_UNUSED(beToken);
     STLSOFT_SUPPRESS_UNUSED(cchEntry);
 
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == (severity & 0x08), "be.syslog can only be used with the stock severity levels in the range [0, 8). Levels in the range [8, 16) are not allowed");
@@ -218,7 +221,7 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_logEntry(
     syslog(pantheios_severity_to_syslog_severity(severity), "%s", entry);
 
 #ifndef LOG_PERROR
-    if(NULL != beToken)
+    if (NULL != beToken)
     {
         fprintf(stderr, "%.*s\n", (int)cchEntry, entry);
     }
@@ -244,25 +247,25 @@ pantheios_be_syslog_parseArgs(
     /* 1. Parse the stock arguments */
     res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
 
-    if(res >= 0)
+    if (res >= 0)
     {
         /* 2.d Parse the custom argument: "useStderr" */
         res = pantheios_be_parseBooleanArg(numArgs, args, "useStderr", 0, PANTHEIOS_BE_SYSLOG_F_PERROR, &init->flags);
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         /* 2.e Parse the custom argument: "useConsole" */
         res = pantheios_be_parseBooleanArg(numArgs, args, "useConsole", 0, PANTHEIOS_BE_SYSLOG_F_CONS, &init->flags);
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         /* 2.f Parse the custom argument: "showPid" */
         res = pantheios_be_parseBooleanArg(numArgs, args, "showPid", 0, PANTHEIOS_BE_SYSLOG_F_PID, &init->flags);
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         /* 2.g Parse the custom argument: "connectImmediately" */
         res = pantheios_be_parseBooleanArg(numArgs, args, "connectImmediately", 0, PANTHEIOS_BE_SYSLOG_F_NDELAY, &init->flags);
@@ -270,6 +273,7 @@ pantheios_be_syslog_parseArgs(
 
     return res;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

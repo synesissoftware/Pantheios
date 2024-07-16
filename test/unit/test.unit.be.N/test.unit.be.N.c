@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.unit.be.N project.
  *
  * Created:     29th January 2008
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,6 +21,7 @@
 
 
 PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.N");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * macros
@@ -59,7 +60,7 @@ PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
                                                                             \
         *ptoken = (char*)(0) + n;                                           \
                                                                             \
-        if(s_retVals[n] >= 0)                                               \
+        if (s_retVals[n] >= 0)                                               \
         {                                                                   \
             ++s_initCounts[n];                                              \
         }                                                                   \
@@ -91,11 +92,12 @@ PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
         return 0;                                                           \
     }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * backends
  */
 
-#define NUM_BACKENDS    (5)
+#define NUM_BACKENDS                                        (5)
 
 static int s_retVals[1 + NUM_BACKENDS];     /* 0th element is not used. */
 static int s_initCounts[1 + NUM_BACKENDS];  /* 0th element is not used. */
@@ -133,7 +135,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 static void reset_state_(void)
 {
     int i;
-    for(i = 0; i != NUM_BACKENDS; ++i)
+    for (i = 0; i != NUM_BACKENDS; ++i)
     {
         PAN_BE_N_BACKEND_LIST[i].flags  =   s_flags[1 + i]; /* Replace the desired flags */
         s_retVals[i]                    =   0;              /* Mark to pass */
@@ -165,10 +167,10 @@ int main(int argc, char** argv)
     STLSOFT_STATIC_ASSERT(NUM_BACKENDS + 1 == STLSOFT_NUM_ELEMENTS(s_flags));
 
 
-    if(XTESTS_START_RUNNER("test.unit.be.N", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.be.N", verbosity))
     {
         /* Test-1 */
-        if(XTESTS_CASE_BEGIN("Test-1", "Verify that all five succeed"))
+        if (XTESTS_CASE_BEGIN("Test-1", "Verify that all five succeed"))
         {
             void*   token;
             int     res;
@@ -191,7 +193,7 @@ int main(int argc, char** argv)
 
 
         /* Test-2 */
-        if(XTESTS_CASE_BEGIN("Test-2", "Verify that #1 failure causes all to fail"))
+        if (XTESTS_CASE_BEGIN("Test-2", "Verify that #1 failure causes all to fail"))
         {
             void*   token;
             int     res;
@@ -216,7 +218,7 @@ int main(int argc, char** argv)
 
 
         /* Test-3 */
-        if(XTESTS_CASE_BEGIN("Test-3", "Verify that #2 failure is benign"))
+        if (XTESTS_CASE_BEGIN("Test-3", "Verify that #2 failure is benign"))
         {
             void*   token;
             int     res;
@@ -241,7 +243,7 @@ int main(int argc, char** argv)
 
 
         /* Test-4 */
-        if(XTESTS_CASE_BEGIN("Test-4", "Verify that failure of 4 out of five, where all ignore init-failure, does not cause failure"))
+        if (XTESTS_CASE_BEGIN("Test-4", "Verify that failure of 4 out of five, where all ignore init-failure, does not cause failure"))
         {
             void*   token;
             int     res;
@@ -276,7 +278,7 @@ int main(int argc, char** argv)
 
 
         /* Test-5 */
-        if(XTESTS_CASE_BEGIN("Test-5", "Verify that failure of 5 out of five, where all ignore init-failure, does cause failure"))
+        if (XTESTS_CASE_BEGIN("Test-5", "Verify that failure of 5 out of five, where all ignore init-failure, does cause failure"))
         {
             void*   token;
             int     res;
@@ -311,7 +313,7 @@ int main(int argc, char** argv)
 
 
         /* Test-6 */
-        if(XTESTS_CASE_BEGIN("Test-6", "Verify that can obtain contexts from ids"))
+        if (XTESTS_CASE_BEGIN("Test-6", "Verify that can obtain contexts from ids"))
         {
             void*   token;
             int     res;
@@ -331,15 +333,15 @@ int main(int argc, char** argv)
 
             XTESTS_TEST_POINTER_EQUAL(NULL, pantheios_be_N_tokenFromId(-1, NULL));
             XTESTS_TEST_POINTER_EQUAL(NULL, pantheios_be_N_tokenFromId( 0, NULL));
-            { size_t i; for(i = 0 ; i != STLSOFT_NUM_ELEMENTS(tokens); ++i)
+            { size_t i; for (i = 0 ; i != STLSOFT_NUM_ELEMENTS(tokens); ++i)
             {
                 tokens[i] = pantheios_be_N_tokenFromId((int)i, NULL);
 
-                if(i > 0)
+                if (i > 0)
                 {
                     XTESTS_TEST_POINTER_NOT_EQUAL(NULL, tokens[i]);
                 }
-                if(i > 1)
+                if (i > 1)
                 {
                     XTESTS_TEST_POINTER_LESS(tokens[i], tokens[i - 1]);
                 }

@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the WindowsDebugger back-end
  *
  * Created:     18th July 2005
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,15 +58,17 @@
 /* Standard C header files */
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_OutputDebugString_         ::OutputDebugStringW
+# define pan_OutputDebugString_                             ::OutputDebugStringW
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_OutputDebugString_         ::OutputDebugStringA
+# define pan_OutputDebugString_                             ::OutputDebugStringA
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -89,6 +91,7 @@ namespace
     >::type                                     buffer_t;
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -147,6 +150,7 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
@@ -176,7 +180,7 @@ static int pantheios_be_WindowsDebugger_init_(
 
     pan_be_WindowsDebugger_init_t init_;
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_WindowsDebugger_getDefaultAppInit(&init_);
 
@@ -189,11 +193,11 @@ static int pantheios_be_WindowsDebugger_init_(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001b8)
+    if (init->version < 0x010001b8)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
@@ -203,7 +207,7 @@ static int pantheios_be_WindowsDebugger_init_(
     WindowsDebugger_Context* ctxt = new WindowsDebugger_Context(processIdentity, backEndId, init);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if( NULL == ctxt ||
+    if (NULL == ctxt ||
         NULL == ctxt->getProcessIdentity())
     {
         delete ctxt;
@@ -265,6 +269,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
     return pantheios_call_be_logEntry(pantheios_be_WindowsDebugger_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.WindowsDebugger");
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsDebugger_Context
  */
@@ -288,7 +293,7 @@ int WindowsDebugger_Context::rawLogEntry(int /* severity4 */, int /* severityX *
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     // When exception support is not enabled, failure to allocate will yield an empty instance
-    if(buff.empty())
+    if (buff.empty())
     {
         return 0;
     }

@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_NULL
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_NULL
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_NULL_REVISION   3
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_NULL_EDIT       7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
  * \ingroup group__frontend__stock_frontends
  *  Front-end library that suppresses all severity levels in all modes.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

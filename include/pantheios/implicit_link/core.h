@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_CORE
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_CORE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_CORE_REVISION  1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_CORE_EDIT      8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +74,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_UTIL
 # include <pantheios/implicit_link/util.h> /* Core implies Util */
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_UTIL */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit-linking directives

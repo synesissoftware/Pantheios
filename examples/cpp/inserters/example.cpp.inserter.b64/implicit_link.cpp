@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/inserters/example.cpp.inserter.b64/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the example.cpp.inserter.b64 project.
- *
- * Created:     21st October 2008
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* b64 header files */
 #include <b64/implicit_link.h>
@@ -29,6 +19,7 @@
     defined(_WIN32)
 # include <unixem/implicit_link.h>
 #endif /* _WIN32 || _WIN64 */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

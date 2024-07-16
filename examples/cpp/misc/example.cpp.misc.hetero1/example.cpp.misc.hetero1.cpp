@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/misc/example.cpp.misc.hetero1/example.cpp.misc.hetero1.cpp
+ * File:    examples/cpp/misc/example.cpp.misc.hetero1/example.cpp.misc.hetero1.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of implicit support for heterogeneous non-string types
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of implicit support for heterogeneous non-string types
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     31st August 2006
- * Updated:     16th December 2023
+ * Created: 31st August 2006
+ * Updated: 15th July 2024
  *
  * www:         http://www.pantheios.org/
  *
@@ -39,15 +39,18 @@
 # include <dirent.h>
 #endif /* OS */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.misc.hetero1");
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -78,7 +81,7 @@ int main()
 
     pantheios::log_NOTICE("Heterogeneous values: tm=", tm, "; de=", de);
 
-    if(NULL != d)
+    if (NULL != d)
     {
       ::closedir(d);
     }
@@ -109,21 +112,22 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::logputs(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }
 
   return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

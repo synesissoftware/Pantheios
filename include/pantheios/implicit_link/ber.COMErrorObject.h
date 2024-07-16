@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_COMERROROBJECT
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_COMERROROBJECT
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_COMERROROBJECT_REVISION    2
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_COMERROROBJECT_EDIT        7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_COMERROROBJECT
 # include <pantheios/implicit_link/bec.COMErrorObject.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_COMERROROBJECT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit-linking directives

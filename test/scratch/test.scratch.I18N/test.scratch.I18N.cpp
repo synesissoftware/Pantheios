@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        I18N.cpp
+ * File:    test.scratch.I18N.cpp
  *
- * Purpose:     Implementation file for the m2w project.
+ * Purpose: Implementation file for the I18N project.
  *
- * Created:     1st September 2015
- * Updated:     16th December 2023
+ * Created: 1st September 2015
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -30,13 +30,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.I18N");
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int /* argc */, char** /*argv*/)
 {
@@ -65,17 +69,18 @@ int main(int argc, char** argv)
     {
         return main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pan::log_ALERT(PANTHEIOS_LITERAL_STRING("Unexpected general error: "), x, PANTHEIOS_LITERAL_STRING(". Application terminating"));
     }
-    catch(...)
+    catch (...)
     {
         pan::logputs(pan::emergency, PANTHEIOS_LITERAL_STRING("Unhandled unknown error"));
     }
 
     return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

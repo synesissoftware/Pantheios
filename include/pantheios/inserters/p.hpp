@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_P
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_P
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_REVISION   1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_EDIT       4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -72,6 +74,7 @@
 # include <pantheios/inserters/pointer.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_POINTER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -81,12 +84,14 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 /** Typedef for pantheios::pointer inserter class. */
 typedef pointer p;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -95,6 +100,7 @@ typedef pointer p;
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

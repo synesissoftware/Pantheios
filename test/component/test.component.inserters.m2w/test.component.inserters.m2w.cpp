@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.m2w/test.component.inserters.m2w.cpp
+ * File:    test/component/test.component.inserters.m2w/test.component.inserters.m2w.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.m2w project.
+ * Purpose: Implementation file for the test.component.inserters.m2w project.
  *
- * Created:     22nd November 2010
- * Updated:     16th December 2023
+ * Created: 22nd November 2010
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,6 +39,7 @@
 #include <stdlib.h>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -90,7 +91,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.m2w", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.m2w", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);

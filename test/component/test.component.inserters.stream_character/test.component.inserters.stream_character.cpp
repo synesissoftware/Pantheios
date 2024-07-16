@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.stream_character/test.component.inserters.stream_character.cpp
+ * File:    test/component/test.component.inserters.stream_character/test.component.inserters.stream_character.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.stream_character project.
+ * Purpose: Implementation file for the test.component.inserters.stream_character project.
  *
- * Created:     9th May 2014
- * Updated:     16th December 2023
+ * Created: 9th May 2014
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,6 +32,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -47,15 +48,18 @@ static void test_1_08();
 static void test_1_09();
 static void test_1_10();
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.stream_character");
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
@@ -63,13 +67,12 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -80,7 +83,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
     {
         XTESTS_RUN_CASE(test_plain_characters);
         XTESTS_RUN_CASE(test_special_characters_1);
@@ -101,6 +104,7 @@ int main(int argc, char** argv)
     return retCode;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 static void test_plain_characters()
@@ -114,7 +118,7 @@ static void test_plain_characters()
 
     // 2. Create test data
 
-    { for(size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
+    { for (size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
     {
         PAN_CHAR_T const ch = plain_characters[i];
 
@@ -129,7 +133,7 @@ static void test_plain_characters()
     XTESTS_TEST(!results.empty());
     XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(plain_characters) - 1, results.size());
 
-    { for(size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
+    { for (size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
     {
         PAN_CHAR_T const    ch      =   plain_characters[i];
         PAN_CHAR_T          sz[4]   =   { '{', ch, '}', '\0' };
@@ -257,6 +261,7 @@ static void test_1_09()
 static void test_1_10()
 {
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

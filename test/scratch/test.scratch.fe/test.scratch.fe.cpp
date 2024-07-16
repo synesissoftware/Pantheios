@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.fe/test.scratch.fe.cpp
+ * File:    test/scratch/test.scratch.fe/test.scratch.fe.cpp
  *
- * Purpose:     Implementation file for the test.scratch.fe project.
+ * Purpose: Implementation file for the test.scratch.fe project.
  *
- * Created:     21st June 2005
- * Updated:     16th January 2023
+ * Created: 21st June 2005
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,6 +41,7 @@ using std::endl;
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -51,13 +52,17 @@ using std::endl;
 extern "C" void __stdcall Sleep(unsigned long);
 #endif /* WIN32 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 static int  severities[8] = { 1, 1, 1, 1, 1, 1, 1, 1 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * character encoding
+ */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
@@ -65,10 +70,12 @@ int main()
 {
         return 0;
 }
-
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 //static void call_all_severities();
 
@@ -185,7 +192,7 @@ static int main_(int /* argc */, char ** /*argv*/)
 int main(int argc, char *argv[])
 {
 #if 0
-    for(;;) {}
+    for (;;) {}
 #endif /* 0 */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -197,11 +204,11 @@ int main(int argc, char *argv[])
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
     }

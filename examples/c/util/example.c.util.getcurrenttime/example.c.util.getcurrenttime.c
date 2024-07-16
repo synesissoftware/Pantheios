@@ -1,12 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/util/example.c.util.getcurrenttime/example.c.util.getcurrenttime.c
+ * File:    examples/c/util/example.c.util.getcurrenttime/example.c.util.getcurrenttime.c
  *
- * Purpose:     Implementation file for the example.c.util.getcurrenttime project.
+ * Purpose: Implementation file for the example.c.util.getcurrenttime project.
  *
- * Created:     30th August 2008
- * Updated:     16th December 2023
+ * Created: 30th August 2008
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 /* Pantheios header files */
 #include <pantheios/pantheios.h>
@@ -30,7 +31,10 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char** argv)
 {
@@ -173,6 +177,7 @@ int main(int argc, char** argv)
 
     return EXIT_SUCCESS;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.WindowsConsole.h
+ * File:    pantheios/backends/bec.WindowsConsole.h
  *
- * Purpose:     Declaration of the Pantheios WindowsConsole Stock Back-end API.
+ * Purpose: Declaration of the Pantheios WindowsConsole Stock Back-end API.
  *
- * Created:     17th July 2006
- * Updated:     16th December 2023
+ * Created: 17th July 2006
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MAJOR    5
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     28
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -79,6 +82,7 @@
  *  Back-end library that outputs to the Windows console, colour-coding
  *   based on severity level.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -95,7 +99,7 @@
  * \ingroup group__backend__stock_backends__WindowsConsole__flags
  */
 
-#define PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS                    (0x00100000)
+#define PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS            (0x00100000)
 
 /** \def PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT
  *  Causes the \ref group__backend__stock_backends__WindowsConsole to
@@ -113,6 +117,7 @@
  */
 
 #define PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES       (0x00400000)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -139,6 +144,7 @@ public: /* Construction */
 #ifndef __cplusplus
 typedef struct pan_be_WindowsConsole_init_t     pan_be_WindowsConsole_init_t;
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions
@@ -176,6 +182,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsConsole_init_t*   init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions

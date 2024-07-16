@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     14th February 2010
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -79,6 +79,7 @@
 
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -87,6 +88,7 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -102,10 +104,11 @@ namespace std
 {
     using stlsoft::std_copy;
 
-# define copy std_copy
+# define copy                                               std_copy
 
 } /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -115,6 +118,7 @@ namespace std
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * slice
@@ -155,7 +159,7 @@ inline void slice_inserter::construct_() const
 pantheios_char_t const*
 slice_inserter::data() const
 {
-    if(0u == m_buffer.size())
+    if (0u == m_buffer.size())
     {
         construct_();
     }
@@ -171,7 +175,7 @@ slice_inserter::c_str() const
 
 size_t slice_inserter::length() const
 {
-    if(0u == m_buffer.size())
+    if (0u == m_buffer.size())
     {
         construct_();
     }
@@ -191,11 +195,11 @@ void slice_inserter::construct_()
     slices[2] = pan_slice_t(m_str, m_len);          // 2: str
     slices[4] = pan_slice_t(-1, m_lenName);         // 4: len name
 
-    if(0u != slices[0].len)
+    if (0u != slices[0].len)
     {
         slices[1] = equals;                         // 1: equals (for str)
     }
-    if(0u != slices[4].len)
+    if (0u != slices[4].len)
     {
         pantheios_char_t const* separator = (NULL != m_separator) ? m_separator : PANTHEIOS_LITERAL_STRING(", ");
 
@@ -234,7 +238,7 @@ void slice_inserter::construct_()
     // The crappy way, for less-than compilers
     size_t n = 0;
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(slices); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(slices); ++i)
     {
         n += slices[i].len;
     }}
@@ -253,6 +257,7 @@ void slice_inserter::construct_()
 
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 != m_buffer[0], "failed to set value to non-empty");
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

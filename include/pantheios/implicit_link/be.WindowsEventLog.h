@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BE_WINDOWSEVENTLOG
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BE_WINDOWSEVENTLOG
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_WINDOWSEVENTLOG_REVISION    2
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_WINDOWSEVENTLOG_EDIT        8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSEVENTLOG
 # include <pantheios/implicit_link/bec.WindowsEventLog.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSEVENTLOG */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit-linking directives

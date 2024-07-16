@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/performance/test.performance.util.date_elements_to_string/test.performance.util.date_elements_to_string.cpp
+ * File:    test/performance/test.performance.util.date_elements_to_string/test.performance.util.date_elements_to_string.cpp
  *
- * Purpose:     Implementation file for the test.performance.util.date_elements_to_string project.
+ * Purpose: Implementation file for the test.performance.util.date_elements_to_string project.
  *
- * Created:     13th November 2016
- * Updated:     16th December 2023
+ * Created: 13th November 2016
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,23 +28,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <wchar.h>
 
 #if defined(_MSC_VER) && \
     defined(_DEBUG)
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
 #ifdef _DEBUG
+
 const int       ITERATIONS  =   1000;
 const int       NUM_WARMUPS =   2;
 #else /* ? _DEBUG */
+
 const int       ITERATIONS  =   1000000;
 const int       NUM_WARMUPS =   2;
 #endif /* _DEBUG */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -52,31 +57,32 @@ const int       NUM_WARMUPS =   2;
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEIOS_LITERAL_STRING("test.performance.util.date_elements_to_string");
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
 
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define P_strcmp                                           ::wcscmp
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define P_strcmp                                           ::strcmp
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 #if 0
-typedef std::string     string_t;
+typedef std::string                                         string_t;
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -119,7 +125,10 @@ iteration_to_tm_(
     int iteration
 );
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int /* argc */, char** /* argv */)
 {
@@ -134,16 +143,16 @@ static int main_(int /* argc */, char** /* argv */)
 
     // unit test
 
-    { for(int i = 0; i != ITERATIONS; ++i)
+    { for (int i = 0; i != ITERATIONS; ++i)
     {
         struct tm const tm = iteration_to_tm_(i);
 
-        char    sz_de[20];
-        char    sz_sprintf[20];
-        char    sz_strftime[20];
+        PAN_CHAR_T  sz_de[20];
+        PAN_CHAR_T  sz_sprintf[20];
+        PAN_CHAR_T  sz_strftime[20];
 #ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-        char    sz_fast_strftime[20];
+        PAN_CHAR_T  sz_fast_strftime[20];
 #endif
 
         format_with_date_elements_(tm, &sz_de);
@@ -154,12 +163,12 @@ static int main_(int /* argc */, char** /* argv */)
         format_with_fast_strftime_(tm, &sz_fast_strftime);
 #endif
 
-        if( STLSOFT_ALWAYS_FALSE() ||
-            0 != ::strcmp(sz_de, sz_sprintf) ||
-            0 != ::strcmp(sz_de, sz_strftime) ||
+        if (STLSOFT_ALWAYS_FALSE() ||
+            0 != P_strcmp(sz_de, sz_sprintf) ||
+            0 != P_strcmp(sz_de, sz_strftime) ||
 #ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-            0 != ::strcmp(sz_de, sz_fast_strftime) ||
+            0 != P_strcmp(sz_de, sz_fast_strftime) ||
 #endif
             STLSOFT_ALWAYS_FALSE())
         {
@@ -173,13 +182,13 @@ static int main_(int /* argc */, char** /* argv */)
 
     // performance test
 
-    { for(int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
     {
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
-            char            sz[20];
+            PAN_CHAR_T      sz[20];
 
             total += format_with_date_elements_(tm, &sz);
         }}
@@ -187,13 +196,13 @@ static int main_(int /* argc */, char** /* argv */)
         tm_date_elements = counter.get_microseconds();
     }}
 
-    { for(int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
     {
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
-            char            sz[20];
+            PAN_CHAR_T      sz[20];
 
             total += format_with_sprintf_(tm, &sz);
         }}
@@ -201,13 +210,13 @@ static int main_(int /* argc */, char** /* argv */)
         tm_sprintf = counter.get_microseconds();
     }}
 
-    { for(int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
     {
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
-            char            sz[20];
+            PAN_CHAR_T      sz[20];
 
             total += format_with_strftime_(tm, &sz);
         }}
@@ -217,13 +226,13 @@ static int main_(int /* argc */, char** /* argv */)
 
 #ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-    { for(int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = NUM_WARMUPS; 0 != WARMUPS; --WARMUPS)
     {
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             struct tm const tm = iteration_to_tm_(i);
-            char            sz[20];
+            PAN_CHAR_T      sz[20];
 
             total += format_with_fast_strftime_(tm, &sz);
         }}
@@ -232,30 +241,32 @@ static int main_(int /* argc */, char** /* argv */)
     }}
 #endif
 
-    fprintf(stdout, "with date elements:\t%luus\n", static_cast<unsigned long>(tm_date_elements));
-
-    fprintf(stdout, "with sprintf:      \t%luus\n", static_cast<unsigned long>(tm_sprintf));
-
-    fprintf(stdout, "with strftime:     \t%luus\n", static_cast<unsigned long>(tm_strftime));
-
+    fprintf(stdout, "with strftime:     \t%9luus\n", static_cast<unsigned long>(tm_strftime));
+    fprintf(stdout, "with sprintf:      \t%9luus\n", static_cast<unsigned long>(tm_sprintf));
 #ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
-
-    fprintf(stdout, "with fast_strftime:\t%luus\n", static_cast<unsigned long>(tm_fast_strftime));
+    fprintf(stdout, "with fast_strftime:\t%9.luus\n", static_cast<unsigned long>(tm_fast_strftime));
 #endif
-
+    fprintf(stdout, "with date elements:\t%9luus\n", static_cast<unsigned long>(tm_date_elements));
 
     fprintf(stdout, "\n");
-    fprintf(stdout, "date elements : sprintf:      \t%2.4g\n", (double)tm_date_elements/(double)tm_sprintf);
-    fprintf(stdout, "date elements : strftime:     \t%2.4g\n", (double)tm_date_elements/(double)tm_strftime);
-#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-    fprintf(stdout, "date elements : fast_strftime:\t%2.4g\n", (double)tm_date_elements/(double)tm_fast_strftime);
+    fprintf(stdout, "     strftime : sprintf:      \t% 9.04f\n", (double)tm_strftime/(double)tm_sprintf);
+    fprintf(stdout, "     strftime : date elements:\t% 9.04f\n", (double)tm_strftime/(double)tm_date_elements);
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+    fprintf(stdout, "     strftime : fast_strftime:\t% 9.04f\n", (double)tm_strftime/(double)tm_fast_strftime);
 #endif
-    fprintf(stdout, "      sprintf : strftime:     \t%2.4g\n", (double)tm_sprintf/(double)tm_strftime);
-#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
 
-    fprintf(stdout, "      sprintf : fast_strftime:\t%2.4g\n", (double)tm_sprintf/(double)tm_fast_strftime);
-    fprintf(stdout, "     strftime : fast_strftime:\t%2.4g\n", (double)tm_strftime/(double)tm_fast_strftime);
+    fprintf(stdout, "\n");
+
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+    fprintf(stdout, "      sprintf : fast_strftime:\t% 9.04f\n", (double)tm_sprintf/(double)tm_fast_strftime);
+#endif
+    fprintf(stdout, "      sprintf : date elements:\t% 9.04f\n", (double)tm_sprintf/(double)tm_date_elements);
+
+#ifdef STLSOFT_INCL_STLSOFT_TIME_HPP_FAST_STRFTIME
+    fprintf(stdout, "\n");
+
+    fprintf(stdout, "fast_strftime : date elements:\t% 9.04f\n", (double)tm_fast_strftime/(double)tm_date_elements);
 #endif
 
     return EXIT_SUCCESS;
@@ -276,7 +287,7 @@ int main(int argc, char** argv)
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try
@@ -288,13 +299,13 @@ int main(int argc, char** argv)
 
         res = main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios::util::onBailOut(PANTHEIOS_SEV_ALERT, "exception", PANTHEIOS_FE_PROCESS_IDENTITY, x.what(), NULL, NULL);
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::util::onBailOut(PANTHEIOS_SEV_EMERGENCY, "Unhandled unknown error", PANTHEIOS_FE_PROCESS_IDENTITY, NULL, NULL, NULL);
 
@@ -309,8 +320,9 @@ int main(int argc, char** argv)
     return res;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * forward declarations
+ * function implementations
  */
 
 static
@@ -454,6 +466,7 @@ iteration_to_tm_(
 
     return tm;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

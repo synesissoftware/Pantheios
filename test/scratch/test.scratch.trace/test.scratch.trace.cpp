@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the trace_test project.
  *
  * Created:     5th August 2007
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,6 +32,7 @@
     defined(_DEBUG)
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -62,7 +63,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(int /* backEndId */
 static int main_(int /* argc */, char** /*argv*/)
 {
 #ifndef __FUNCTION__
-# define __FUNCTION__   "main"
+# define __FUNCTION__                                       "main"
 #endif
 
     PANTHEIOS_TRACE_DEBUG("debug");
@@ -92,20 +93,20 @@ int main(int argc, char** argv)
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try
     {
         res = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         pantheios::log_ALERT("Unexpected general error: ", x, ". Application terminating");
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
 

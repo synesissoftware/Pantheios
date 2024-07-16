@@ -45,6 +45,7 @@
 #include <pantheios/frontends/fe.simple.h>
 #include <pantheios/quality/contract.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * (Internal) globals
  */
@@ -55,6 +56,7 @@ static int pantheios_fe_severity_ceiling_ =
 #else /* ? NDEBUG */
     PANTHEIOS_SEV_DEBUG;
 #endif /* NDEBUG */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

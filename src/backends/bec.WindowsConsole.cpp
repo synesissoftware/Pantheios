@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.WindowsConsole.cpp
+ * File:    src/backends/bec.WindowsConsole.cpp
  *
- * Purpose:     Implementation of the Pantheios Windows-Console Stock Back-end API.
+ * Purpose: Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
- * Created:     17th July 2006
- * Updated:     16th December 2023
+ * Created: 17th July 2006
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -21,9 +21,10 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name(s) of Matthew Wilson and Synesis Software nor the
- *   names of any contributors may be used to endorse or promote products
- *   derived from this software without specific prior written permission.
+ * - Neither the name(s) of Matthew Wilson and Synesis Information Systems
+ *   nor the names of any contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written
+ *   permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -84,19 +85,32 @@
 #include <stdio.h>
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define pan_WriteConsole_              ::WriteConsoleW
+# define pan_WriteConsole_                                  ::WriteConsoleW
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define pan_WriteConsole_              ::WriteConsoleA
+# define pan_WriteConsole_                                  ::WriteConsoleA
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if _STLSOFT_VER >= 0x010a0000 && \
+    _STLSOFT_VER < 0x010c0000
+
+# define windows_exception                                  winstl_exception
+#endif
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -205,8 +219,8 @@ namespace
                 ,   handleId
                 );
     }
-
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -312,16 +326,17 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
 
-#define FOREGROUND_WHITE    (FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED)
-#define FOREGROUND_YELLOW   (                  FOREGROUND_GREEN | FOREGROUND_RED)
-#define FOREGROUND_CYAN     (FOREGROUND_BLUE | FOREGROUND_GREEN)
+#define FOREGROUND_WHITE                                    (FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED)
+#define FOREGROUND_YELLOW                                   (                  FOREGROUND_GREEN | FOREGROUND_RED)
+#define FOREGROUND_CYAN                                     (FOREGROUND_BLUE | FOREGROUND_GREEN)
 
-#define BACKGROUND_WHITE    (BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED)
-#define BACKGROUND_YELLOW   (                  BACKGROUND_GREEN | BACKGROUND_RED)
+#define BACKGROUND_WHITE                                    (BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED)
+#define BACKGROUND_YELLOW                                   (                  BACKGROUND_GREEN | BACKGROUND_RED)
 
 namespace
 {
@@ -348,9 +363,8 @@ namespace
         ,   {   PANTHEIOS_SEV_DEBUG + 7,     STD_OUTPUT_HANDLE,  FOREGROUND_BLUE     |   0                      |   BACKGROUND_WHITE    |   BACKGROUND_INTENSITY    }
         ,   {   PANTHEIOS_SEV_DEBUG + 8,     STD_OUTPUT_HANDLE,  FOREGROUND_BLUE     |   0                      |   BACKGROUND_WHITE    |   BACKGROUND_INTENSITY    }
     };
-
-
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -363,7 +377,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getDefaultAppInit(pan_be_Window
     init->version   =   PANTHEIOS_VER;
     init->flags     =   0;
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(init->colours); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(init->colours); ++i)
     {
         size_t const    index_from  =   i;
         size_t const    index_to    =   i;
@@ -371,7 +385,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getDefaultAppInit(pan_be_Window
         init->colours[index_to] = s_infos[index_from].consoleAttributes;
     }}
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(init->colours2); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(init->colours2); ++i)
     {
         size_t const    index_from  =   i + STLSOFT_NUM_ELEMENTS(init->colours);
         size_t const    index_to    =   i;
@@ -395,7 +409,7 @@ static int pantheios_be_WindowsConsole_init_(
 
     pan_be_WindowsConsole_init_t init_;
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_WindowsConsole_getDefaultAppInit(&init_);
 
@@ -408,11 +422,11 @@ static int pantheios_be_WindowsConsole_init_(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001da)
+    if (init->version < 0x010001da)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
@@ -422,7 +436,7 @@ static int pantheios_be_WindowsConsole_init_(
     WindowsConsole_Context* ctxt = new WindowsConsole_Context(processIdentity, backEndId, init);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if( NULL == ctxt ||
+    if (NULL == ctxt ||
         NULL == ctxt->getProcessIdentity())
     {
         delete ctxt;
@@ -499,24 +513,24 @@ pantheios_be_WindowsConsole_parseArgs(
     // 1. Parse the stock arguments
     int res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2. Parse the custom argument: "showColours"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("showColours"), true, PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS, &init->flags);
 
-        if(0 == res)
+        if (0 == res)
         {
             res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("showColors"), true, PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS, &init->flags);
         }
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // Parse the custom argument: "clearAfterEachStatement"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("clearAfterEachStatement"), false, PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT, &init->flags);
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // Parse the custom argument: "recognise16Severities"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("recognise16Severities"), false, PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES, &init->flags);
@@ -524,6 +538,7 @@ pantheios_be_WindowsConsole_parseArgs(
 
     return res;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsConsole_Context
@@ -540,7 +555,7 @@ WindowsConsole_Context::WindowsConsole_Context(
 {
     STLSOFT_STATIC_ASSERT(STLSOFT_NUM_ELEMENTS(m_infos) == STLSOFT_NUM_ELEMENTS(s_infos));
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(m_infos); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(m_infos); ++i)
     {
         size_t const    index_from  =   i;
         size_t const    index_to    =   i;
@@ -548,7 +563,7 @@ WindowsConsole_Context::WindowsConsole_Context(
         m_infos[index_from] = s_infos[index_to];
     }}
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(init->colours); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(init->colours); ++i)
     {
         size_t const    index_from  =   i;
         size_t const    index_to    =   i;
@@ -556,9 +571,9 @@ WindowsConsole_Context::WindowsConsole_Context(
         m_infos[index_to].consoleAttributes = init->colours[index_from];
     }}
 
-    if(0 != (PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES & init->flags))
+    if (0 != (PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES & init->flags))
     {
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(init->colours2); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(init->colours2); ++i)
         {
             size_t const    index_from  =   i;
             size_t const    index_to    =   i + STLSOFT_NUM_ELEMENTS(init->colours);
@@ -570,7 +585,7 @@ WindowsConsole_Context::WindowsConsole_Context(
 
 WindowsConsole_Context::~WindowsConsole_Context() throw()
 {
-    for(map_type_::iterator b = m_map.begin(); b != m_map.end(); ++b)
+    for (map_type_::iterator b = m_map.begin(); b != m_map.end(); ++b)
     {
         ::CloseHandle((*b).second);
     }
@@ -594,7 +609,7 @@ WindowsConsole_Context::rawLogEntry(
     buffer_t    buff(cchTotal + 1);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(0 == buff.size())
+    if (0 == buff.size())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -627,7 +642,7 @@ int WindowsConsole_Context::rawLogEntry(
 
     this->lookupSeverityCharacteristics(severity4, hOutput, attributes);
 
-    if(0 != (m_flags & PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS))
+    if (0 != (m_flags & PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 uncoloured_write:
@@ -641,7 +656,7 @@ uncoloured_write:
 
         HANDLE  hMx = this->lookupConsoleMx(hOutput);
 
-        if(NULL == hMx)
+        if (NULL == hMx)
         {
             goto uncoloured_write;
         }
@@ -659,7 +674,7 @@ uncoloured_write:
 
                 int const r = write_output(hOutput, entry, static_cast<int>(cchEntry));
 
-                if(0 != (PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT & m_flags))
+                if (0 != (PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT & m_flags))
                 {
                     write_reset(hOutput);
                 }
@@ -668,7 +683,7 @@ uncoloured_write:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 
             }
-            catch(winstl::windows_exception&)
+            catch (winstl::windows_exception&)
             {
                 goto uncoloured_write;
             }
@@ -683,7 +698,7 @@ int WindowsConsole_Context::write_output(HANDLE hStream, PAN_CHAR_T const* entry
 {
     DWORD dummy;
 
-    if(pan_WriteConsole_(hStream, entry, static_cast<DWORD>(cchEntry), &dummy, NULL))
+    if (pan_WriteConsole_(hStream, entry, static_cast<DWORD>(cchEntry), &dummy, NULL))
     {
         return 0;
     }
@@ -726,21 +741,24 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
     // 1. console-hwnd
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
     try
     {
 # ifdef WINSTL_OS_IS_WIN64
+
         hwndConsole = winstl::dl_call<HWND>("KERNEL32", "GetConsoleWindow");
 # else /* ? WINSTL_OS_IS_WIN64 */
+
         hwndConsole = winstl::dl_call<HWND>("KERNEL32", "S:GetConsoleWindow");
 # endif /* WINSTL_OS_IS_WIN64 */
     }
-    catch(winstl::invalid_calling_convention_exception&)
+    catch (winstl::invalid_calling_convention_exception&)
     {
-        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "invalid calling convension", NULL);
+        pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "invalid calling convention", NULL);
 
         throw;
     }
-    catch(winstl::missing_entry_point_exception&)
+    catch (winstl::missing_entry_point_exception&)
     {
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -748,18 +766,17 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_EMERGENCY, "failed to lookup console", NULL, x.what());
 
         throw;
     }
-
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
     // 2. console-title
 
-    if(NULL == hwndConsole)
+    if (NULL == hwndConsole)
     {
         size_t const cch = ::GetConsoleTitle(&consoleTitle[0], STLSOFT_NUM_ELEMENTS(consoleTitle) - 1);
 
@@ -769,11 +786,11 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
     // 3. buffer-handle
     int handleId;
 
-    if(::GetStdHandle(STD_OUTPUT_HANDLE) == hBuffer)
+    if (::GetStdHandle(STD_OUTPUT_HANDLE) == hBuffer)
     {
         handleId = 1;
     }
-    else if(::GetStdHandle(STD_ERROR_HANDLE) == hBuffer)
+    else if (::GetStdHandle(STD_ERROR_HANDLE) == hBuffer)
     {
         handleId = 2;
     }
@@ -789,7 +806,7 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
                     ,   consoleTitle
                     ,   handleId);
 
-    if(cch < 0)
+    if (cch < 0)
     {
         return NULL;
     }
@@ -798,7 +815,7 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
 
     map_type_::iterator it = m_map.find(mxName);
 
-    if(m_map.end() != it)
+    if (m_map.end() != it)
     {
         return (*it).second;
     }
@@ -808,24 +825,21 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
 
         HANDLE  hMx = ::CreateMutex(NULL, false, mxName);
 
-        if(NULL != hMx)
+        if (NULL != hMx)
         {
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER <= 1100
 
             m_map[mxName] == hMx;
-
 # else /* ? compiler */
 
             m_map.insert(std::make_pair(&mxName[0], hMx));
-
 # endif /* compiler */
         }
 
         return hMx;
     }
 }
-
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 void WindowsConsole_Context::lookupSeverityCharacteristics(int severity, HANDLE &hOutput, WORD &attributes) const
@@ -834,9 +848,9 @@ void WindowsConsole_Context::lookupSeverityCharacteristics(int severity, HANDLE 
 
     int severityLevel = severity & 0x0f;
 
-    if(0 == (PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES & m_flags))
+    if (0 == (PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES & m_flags))
     {
-        if(severityLevel > 7)
+        if (severityLevel > 7)
         {
             severityLevel = 7;
         }
@@ -856,7 +870,7 @@ WindowsConsole_Context::lookupConsoleCharacteristics()
     HANDLE                      hOutput =   ::GetStdHandle(info->handleId);
     CONSOLE_SCREEN_BUFFER_INFO  bufferInfo;
 
-    if(::GetConsoleScreenBufferInfo(hBuffer, &bufferInfo))
+    if (::GetConsoleScreenBufferInfo(hBuffer, &bufferInfo))
     {
         return bufferInfo.wAttributes;
     }
@@ -877,6 +891,7 @@ WindowsConsole_Context::write_reset(
 
     ::WriteConsole(hOutput, &ch, 0, &dummy, NULL);
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

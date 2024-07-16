@@ -477,7 +477,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "test.scratch.util.onbailout"=.\test.scratch.util.onbailout\vc6\test.scratch.util.onBailOut.dsp - Package Owner=<4>
+Project: "test.scratch.util.onbailout"=.\test.scratch.util.onbailout\vc6\test.scratch.util.onbailout.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -485,6 +485,12 @@ Package=<5>
 
 Package=<4>
 {{{
+    Begin Project Dependency
+    Project_Dep_Name pantheios.util
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pantheios.core
+    End Project Dependency
 }}}
 
 ###############################################################################

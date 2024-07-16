@@ -55,6 +55,7 @@
 # include <windows.h>
 #endif /* PLATFORMSTL_OS_IS_???? */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -64,11 +65,13 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 typedef stlsoft_ns_qual(ss_sint64_t)    sint64_t_;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -115,6 +118,7 @@ PANTHEIOS_CALL(sint64_t_) pantheios_getCurrentThreadId(void)
 # error Not discriminated for platforms other than UNIX and Windows
 #endif /* OS */
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

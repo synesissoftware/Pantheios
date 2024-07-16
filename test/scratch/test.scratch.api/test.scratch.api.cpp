@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.api project.
  *
  * Created:     26th June 2005
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -97,6 +97,7 @@ int main()
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -106,27 +107,30 @@ static void some_logging_with_using_namespace_directive();
 static void some_logging_with_using_declarations();
 static void some_logging_with_explicit_qualification();
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
-#define P_STR   PANTHEIOS_LITERAL_STRING
+#define P_STR                                               PANTHEIOS_LITERAL_STRING
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_sprintf_s_                 swprintf_s
-# define pan_sprintf_                   swprintf
-# define c_str_data_t_                  c_str_data_w
-# define c_str_len_t_                   c_str_len_w
+# define pan_sprintf_s_                                     swprintf_s
+# define pan_sprintf_                                       swprintf
+# define c_str_data_t_                                      c_str_data_w
+# define c_str_len_t_                                       c_str_len_w
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_sprintf_s_                 sprintf_s
-# define pan_sprintf_                   sprintf
-# define c_str_data_t_                  c_str_data_a
-# define c_str_len_t_                   c_str_len_a
+# define pan_sprintf_s_                                     sprintf_s
+# define pan_sprintf_                                       sprintf
+# define c_str_data_t_                                      c_str_data_a
+# define c_str_len_t_                                       c_str_len_a
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -226,7 +230,7 @@ static int main_(int /* argc */, char ** /*argv*/)
 int main(int argc, char *argv[])
 {
 #if 0
-    { for(size_t i = 0;0 != ++i;) {} }
+    { for (size_t i = 0;0 != ++i;) {} }
 #endif /* 0 */
 
     pantheios::log_DEBUG(P_STR("debug"));
@@ -257,7 +261,7 @@ int main(int argc, char *argv[])
     pantheios::log(pantheios::emergency(10), P_STR("emergency"));
 
 #ifdef _DEBUGx
-    { for(size_t i = 0; i != 200; ++i)
+    { for (size_t i = 0; i != 200; ++i)
     {
         std::string s(i, '~');
 
@@ -379,11 +383,11 @@ int main(int argc, char *argv[])
         return main_(argc, argv);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         cerr << "Unhandled error: " << x.what() << endl;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::pantheios_puts(pantheios::emergency, P_STR("Unhandled unknown error"));
     }
@@ -462,7 +466,7 @@ static void some_logging_with_using_declarations()
     {
         throw std::out_of_range("Eeep!");
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         log_CRITICAL("Something really bad has happened! Details: \"", x, "\"");
     }

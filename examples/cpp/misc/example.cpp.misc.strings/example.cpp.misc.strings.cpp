@@ -1,23 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/misc/example.cpp.misc.strings/example.cpp.misc.strings.cpp
+ * File:    examples/cpp/misc/example.cpp.misc.strings/example.cpp.misc.strings.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of Pantheios logging statements for string types
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of Pantheios logging statements for string types
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     17th May 2006
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 17th May 2006
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,19 +22,23 @@
 #include <string>                           // for std::string
 #include <stdlib.h>                         // for exit codes
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.misc.strings");
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-typedef std::basic_string<PAN_CHAR_T>   string_t;
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+typedef std::basic_string<PAN_CHAR_T>                       string_t;
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -73,21 +67,22 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }
 
   return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

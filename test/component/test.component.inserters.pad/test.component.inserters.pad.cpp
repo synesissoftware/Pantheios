@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.pad/test.component.inserters.pad.cpp
+ * File:    test/component/test.component.inserters.pad/test.component.inserters.pad.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.pad project.
+ * Purpose: Implementation file for the test.component.inserters.pad project.
  *
- * Created:     29th June 2009
- * Updated:     16th December 2023
+ * Created: 29th June 2009
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,6 +29,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -52,31 +53,32 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.pad");
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
 
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char** argv)
 {
@@ -85,7 +87,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_FLAGS("test.component.inserters.pad", verbosity, XTESTS_NS_C_QUAL(xtestsReportOnlyNonEmptyCases)))
+    if (XTESTS_START_RUNNER_WITH_FLAGS("test.component.inserters.pad", verbosity, XTESTS_NS_C_QUAL(xtestsReportOnlyNonEmptyCases)))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -109,6 +111,7 @@ int main(int argc, char** argv)
     return retCode;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 namespace
@@ -117,7 +120,7 @@ namespace
 
 static void test_1_01()
 {
-    { for(size_t i = 0; i != 1000; ++i)
+    { for (size_t i = 0; i != 1000; ++i)
     {
         // 1. Setup
 
@@ -142,7 +145,7 @@ static void test_1_01()
 
 static void test_1_02()
 {
-    { for(size_t i = 0; i != 1000; ++i)
+    { for (size_t i = 0; i != 1000; ++i)
     {
         // 1. Setup
 
@@ -167,7 +170,7 @@ static void test_1_02()
 
 static void test_1_03()
 {
-    { for(size_t i = 0; i != 1/* 000 */; ++i)
+    { for (size_t i = 0; i != 1/* 000 */; ++i)
     {
         // 1. Setup
 
@@ -185,7 +188,7 @@ static void test_1_03()
 
         XTESTS_TEST(!results.empty());
         XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-        if(i <= 1)
+        if (i <= 1)
         {
             XTESTS_TEST_INTEGER_EQUAL(0u, results[0].statement.size());
             XTESTS_TEST_STRING_EQUAL(PSTR(""), results[0].statement);
@@ -200,13 +203,13 @@ static void test_1_03()
 
 static void test_1_04()
 {
-    { for(size_t i = 0; i != 1000; ++i)
+    { for (size_t i = 0; i != 1000; ++i)
     {
         const string_t value(i, '~');
 
         STLSOFT_ASSERT(i == value.size());
 
-        { for(size_t j = 0; j != 1000; ++j)
+        { for (size_t j = 0; j != 1000; ++j)
         {
             // 1. Setup
 
@@ -224,7 +227,7 @@ static void test_1_04()
 
             XTESTS_TEST(!results.empty());
             XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-            if(i < j)
+            if (i < j)
             {
                 /* Some padding */
                 const string_t stmt = string_t(j - i, ' ') + value;
@@ -280,6 +283,7 @@ static void test_1_13()
 }
 
 } /* anonymous namespace */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

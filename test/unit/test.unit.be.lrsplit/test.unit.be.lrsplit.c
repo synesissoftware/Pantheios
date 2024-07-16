@@ -134,10 +134,10 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.be.lrsplit", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.be.lrsplit", verbosity))
     {
         /* Test-1 */
-        if(XTESTS_CASE_BEGIN("Test-1", "Verify that both succeed"))
+        if (XTESTS_CASE_BEGIN("Test-1", "Verify that both succeed"))
         {
             void*   token;
             int     res;
@@ -156,7 +156,7 @@ int main(int argc, char** argv)
         }
 
         /* Test-2 */
-        if(XTESTS_CASE_BEGIN("Test-2", "Verify that only local can succeed"))
+        if (XTESTS_CASE_BEGIN("Test-2", "Verify that only local can succeed"))
         {
             void*   token;
             int     res;
@@ -176,7 +176,7 @@ int main(int argc, char** argv)
         }
 
         /* Test-3 */
-        if(XTESTS_CASE_BEGIN("Test-3", "Verify that only remote can succeed"))
+        if (XTESTS_CASE_BEGIN("Test-3", "Verify that only remote can succeed"))
         {
             void*   token;
             int     res;
@@ -196,7 +196,7 @@ int main(int argc, char** argv)
         }
 
         /* Test-4 */
-        if(XTESTS_CASE_BEGIN("Test-4", "Verify that neither can succeed"))
+        if (XTESTS_CASE_BEGIN("Test-4", "Verify that neither can succeed"))
         {
             void*   token;
             int     res;

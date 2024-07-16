@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.file/test.scratch.be.file.cpp
+ * File:    test/scratch/test.scratch.be.file/test.scratch.be.file.cpp
  *
- * Purpose:     Implementation file for the test.scratch.be.file project.
+ * Purpose: Implementation file for the test.scratch.be.file project.
  *
- * Created:     27th November 2006
- * Updated:     16th December 2023
+ * Created: 27th November 2006
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,13 +33,19 @@
 #endif /* _MSC_VER) && _DEBUG */
 
 
-#define PSTR        PANTHEIOS_LITERAL_STRING
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+#define PSTR                                                PANTHEIOS_LITERAL_STRING
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PSTR("test.scratch.be.file");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -48,6 +54,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PSTR("test.s
 static const char   FILENAME_LOCAL[]    =   "log.test.local";
 static const char   FILENAME_REMOTE[]   =   "log.test.remote";
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -55,12 +62,19 @@ static const char   FILENAME_REMOTE[]   =   "log.test.remote";
 typedef platformstl::filesystem_traits<char>    fs_traits_t;
 typedef platformstl::file_lines                 file_lines_t;
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int argc, char **argv)
 {
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
     pantheios::log_DEBUG("main_(", pantheios::args(argc, argv), ")");
+#else
+
+    STLSOFT_SUPPRESS_UNUSED(argc);
+    STLSOFT_SUPPRESS_UNUSED(argv);
 #endif
 
     {
@@ -71,6 +85,8 @@ static int main_(int argc, char **argv)
         pantheios_be_file_flush(PANTHEIOS_BEID_LOCAL);
 
         pantheios::log_NOTICE(PSTR("stmt 1"));
+
+        STLSOFT_SUPPRESS_UNUSED(res1);
     }
 
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
@@ -108,6 +124,8 @@ static int main_(int argc, char **argv)
         fs_traits_t::delete_file(FILENAME_REMOTE);
         fs_traits_t::get_last_error();
 
+        STLSOFT_SUPPRESS_UNUSED(numLocal);
+        STLSOFT_SUPPRESS_UNUSED(numRemote);
         STLSOFT_SUPPRESS_UNUSED(res1);
         STLSOFT_SUPPRESS_UNUSED(res2);
     }
@@ -136,13 +154,13 @@ int main(int argc, char *argv[])
     {
         res = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         fprintf(stderr, "Unhandled unknown error\n");
 
@@ -156,6 +174,7 @@ int main(int argc, char *argv[])
 
     return res;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

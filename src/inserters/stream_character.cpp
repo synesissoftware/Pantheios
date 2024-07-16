@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     4th July 2011
- * Updated:     16th January 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,6 +55,7 @@
 #include <ctype.h>
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -64,15 +65,17 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_strlen_                    ::wcslen
+# define pan_strlen_                                        ::wcslen
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_strlen_                    ::strlen
+# define pan_strlen_                                        ::strlen
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -82,6 +85,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implementation
@@ -135,6 +139,7 @@ namespace ximpl_stream_character
 
 } /* namespace ximpl_stream_character */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * stream_character
  */
@@ -150,7 +155,7 @@ void stream_character::construct_()
 
     STLSOFT_ASSERT(0 == m_len);
 
-    if(isgraph(m_ch))
+    if (isgraph(m_ch))
     {
         m_sz[0] = static_cast<pantheios_char_t>(m_ch);
         m_sz[1] = '\0';
@@ -159,9 +164,9 @@ void stream_character::construct_()
     }
     else
     {
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_entries); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_entries); ++i)
         {
-            if(m_ch == s_entries[i].ch)
+            if (m_ch == s_entries[i].ch)
             {
                 m_len = pan_strlen_(s_entries[i].name);
 
@@ -176,6 +181,7 @@ void stream_character::construct_()
         m_len = pantheios_util_snprintf(m_sz, STLSOFT_NUM_ELEMENTS(m_sz), PANTHEIOS_LITERAL_STRING("0x%04x"), m_ch);
     }
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

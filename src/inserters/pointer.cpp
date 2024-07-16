@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -78,6 +78,7 @@
 #endif /* compiler */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -86,6 +87,7 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -101,10 +103,11 @@ namespace std
 {
     using stlsoft::std_fill_n;
 
-# define fill_n std_fill_n
+# define fill_n                                             std_fill_n
 
 } /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -114,6 +117,7 @@ namespace std
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * pointer
@@ -154,7 +158,7 @@ inline void pointer::construct_() const
 pantheios_char_t const*
 pointer::data() const
 {
-    if(0 == m_sz[0])
+    if (0 == m_sz[0])
     {
         construct_();
     }
@@ -170,7 +174,7 @@ pointer::c_str() const
 
 size_t pointer::length() const
 {
-    if(0 == m_sz[0])
+    if (0 == m_sz[0])
     {
         construct_();
     }
@@ -183,7 +187,7 @@ void pointer::construct_()
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == m_sz[0], "cannot construct if value is non-empty");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == m_len, "cannot construct if length is non-0");
 
-    if(static_cast<void const*>(0) == m_value)
+    if (static_cast<void const*>(0) == m_value)
     {
         static const pantheios_char_t  s_null[] = PANTHEIOS_LITERAL_STRING("(null)");
 
@@ -201,7 +205,7 @@ void pointer::construct_()
         pantheios_char_t const* leadingMinus;
         pantheios_char_t const* zeroPad;
 
-        if(m_minWidth < 0)
+        if (m_minWidth < 0)
         {
             width           =   -m_minWidth;
             leadingMinus    =   PANTHEIOS_LITERAL_STRING("-");
@@ -215,7 +219,7 @@ void pointer::construct_()
         zeroX   =   (m_format & fmt::zeroXPrefix) ? PANTHEIOS_LITERAL_STRING("0x") : PANTHEIOS_LITERAL_STRING("");
         zeroPad =   (m_format & fmt::zeroPad) ? PANTHEIOS_LITERAL_STRING("0") : PANTHEIOS_LITERAL_STRING("");
 
-        if( 0 != width &&
+        if (0 != width &&
             fmt::zeroXPrefix == (m_format & (fmt::zeroXPrefix | fmt::zeroPad)))
         {
             // Special case
@@ -238,7 +242,7 @@ void pointer::construct_()
                     ,   static_cast<intptr_t_>(stlsoft::union_cast<intptr_t_>(m_value))
                     );
 
-            if(r < 0)
+            if (r < 0)
             {
                 return;
             }
@@ -250,9 +254,9 @@ void pointer::construct_()
 
                 width += 2;
 
-                if(static_cast<size_t>(width) > n)
+                if (static_cast<size_t>(width) > n)
                 {
-                    if(m_minWidth < 0)
+                    if (m_minWidth < 0)
                     {
                         PANTHEIOS_char_copy(&m_sz[0], szTemp, n);
                         std::fill_n(&m_sz[0] + n, size_t(width - n), ' ');
@@ -292,6 +296,7 @@ void pointer::construct_()
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(m_len > 0, "failed to set length");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(m_len < 23, "pantheios::pointer string too long");
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

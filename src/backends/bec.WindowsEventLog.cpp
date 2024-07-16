@@ -4,11 +4,11 @@
  * Purpose:     Implementation for the WindowsEventLog back-end
  *
  * Created:     8th May 2006
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,6 +58,7 @@
 #include <stdio.h>
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler features
  */
@@ -69,17 +70,19 @@
 # define PANTHEIOS_NO_PLACEMENT_DELETE_
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_RegisterEventSource_       ::RegisterEventSourceW
-# define pan_ReportEvent_               ::ReportEventW
+# define pan_RegisterEventSource_                           ::RegisterEventSourceW
+# define pan_ReportEvent_                                   ::ReportEventW
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_RegisterEventSource_       ::RegisterEventSourceA
-# define pan_ReportEvent_               ::ReportEventA
+# define pan_RegisterEventSource_                           ::RegisterEventSourceA
+# define pan_ReportEvent_                                   ::ReportEventA
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -91,6 +94,7 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -104,6 +108,7 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -148,6 +153,7 @@ private:
     pfnMapSev_t const   pfnMapSev;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
@@ -179,7 +185,7 @@ static int pantheios_be_WindowsEventLog_init_(
 
     pan_be_WindowsEventLog_init_t init_;
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_WindowsEventLog_getDefaultAppInit(&init_);
 
@@ -192,11 +198,11 @@ static int pantheios_be_WindowsEventLog_init_(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001b8)
+    if (init->version < 0x010001b8)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
@@ -212,7 +218,7 @@ static int pantheios_be_WindowsEventLog_init_(
     WindowsEventLog_Context* const          ctxt        =   new WindowsEventLog_Context(id, pfnMapSev);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(NULL == ctxt)
+    if (NULL == ctxt)
     {
         delete ctxt;
 
@@ -223,7 +229,7 @@ static int pantheios_be_WindowsEventLog_init_(
     {
         int res =   ctxt->Register(processIdentity);
 
-        if(0 != res)
+        if (0 != res)
         {
             delete ctxt;
 
@@ -271,6 +277,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsEventLog_logEntry(
     return elc->ReportEvent(severity, entry, cchEntry);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsEventLog_Context
  */
@@ -304,7 +311,7 @@ int WindowsEventLog_Context::ReportEvent(
 
     pantheios_be_WindowsEventLog_calcCategoryAndEventId(this->id, severity, &category, &eventId);
 
-    if( 0xFFFF == category &&
+    if (0xFFFF == category &&
         0xFFFFFFFF == eventId)
     {
         return 0;
@@ -314,7 +321,7 @@ int WindowsEventLog_Context::ReportEvent(
 
     wType = (*this->pfnMapSev)(severity);
 
-    if(!pan_ReportEvent_(
+    if (!pan_ReportEvent_(
             hEvLog
         ,   wType
         ,   category

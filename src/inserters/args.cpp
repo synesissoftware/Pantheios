@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -54,6 +54,7 @@
 #include <stlsoft/shims/access/string/std/c_string.h>
 #include <platformstl/platformstl.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -63,17 +64,19 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_strrchr_                   ::wcsrchr
-# define pan_strpbrk_                   ::wcspbrk
+# define pan_strrchr_                                       ::wcsrchr
+# define pan_strpbrk_                                       ::wcspbrk
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_strrchr_                   ::strrchr
-# define pan_strpbrk_                   ::strpbrk
+# define pan_strrchr_                                       ::strrchr
+# define pan_strpbrk_                                       ::strpbrk
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -83,6 +86,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * args
@@ -131,7 +135,7 @@ args::~args() STLSOFT_NOEXCEPT // This is defined so that the destructors for th
 pantheios_char_t const*
 args::data() const
 {
-    if(m_result.empty())
+    if (m_result.empty())
     {
         construct_();
     }
@@ -141,7 +145,7 @@ args::data() const
 
 size_t args::size() const
 {
-    if(m_result.empty())
+    if (m_result.empty())
     {
         construct_();
     }
@@ -153,32 +157,32 @@ void args::construct_()
 {
     m_result.reserve(20 * static_cast<size_t>(m_argc));
 
-    { for(int i = 0; i < m_argc; ++i)
+    { for (int i = 0; i < m_argc; ++i)
     {
         pantheios_char_t const* arg = ::stlsoft::c_str_ptr(m_argv[i]); // ensure arg is never NULL
 
-        if(0 == i)
+        if (0 == i)
         {
-            if(arg0FileOnly == (m_flags & arg0FileOnly))
+            if (arg0FileOnly == (m_flags & arg0FileOnly))
             {
                 pantheios_char_t const* slash   =   pan_strrchr_(arg, PANTHEIOS_LITERAL_CHAR('/'));
 #ifdef PLATFORMSTL_OS_IS_WINDOWS
                 pantheios_char_t const* bslash  =   pan_strrchr_(arg, PANTHEIOS_LITERAL_CHAR('\\'));
 
-                if(NULL == slash)
+                if (NULL == slash)
                 {
                     slash = bslash;
                 }
-                else if(NULL != bslash)
+                else if (NULL != bslash)
                 {
-                    if(slash < bslash)
+                    if (slash < bslash)
                     {
                         slash = bslash;
                     }
                 }
 #endif /* PLATFORMSTL_OS_IS_WINDOWS */
 
-                if(NULL != slash)
+                if (NULL != slash)
                 {
                     arg = slash + 1;
                 }
@@ -189,7 +193,7 @@ void args::construct_()
             m_result += m_separator;
         }
 
-        if( alwaysQuoteArgs == (m_flags & alwaysQuoteArgs) ||
+        if (alwaysQuoteArgs == (m_flags & alwaysQuoteArgs) ||
             (   quoteArgsWithSpaces == (m_flags & quoteArgsWithSpaces) &&
                 NULL != pan_strpbrk_(arg, PANTHEIOS_LITERAL_STRING(" \t"))))
         {
@@ -203,6 +207,7 @@ void args::construct_()
         }
     }}
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

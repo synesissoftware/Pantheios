@@ -4,11 +4,11 @@
  * Purpose:     Implementation
  *
  * Created:     26th June 2005
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,11 +51,12 @@
 #include <stdio.h>
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * types
  */
 
-#define pan_lr_tokens_t         pantheios_src_util_pan_lr_tokens_t
+#define pan_lr_tokens_t                                     pantheios_src_util_pan_lr_tokens_t
 
 struct pan_lr_tokens_t
 {
@@ -63,6 +64,7 @@ struct pan_lr_tokens_t
     void*   remoteToken;
 };
 typedef struct pan_lr_tokens_t  pan_lr_tokens_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -80,7 +82,7 @@ PANTHEIOS_CALL(int) pantheios_be_init(
     /* Initialise the local first */
     res = pantheios_be_local_init(processIdentity, reserved, &tokens.localToken);
 
-    if(0 != res)
+    if (0 != res)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, "local back-end did not initialise", NULL);
 
@@ -90,7 +92,7 @@ PANTHEIOS_CALL(int) pantheios_be_init(
     {
         res = pantheios_be_remote_init(processIdentity, reserved, &tokens.remoteToken);
 
-        if(0 != res)
+        if (0 != res)
         {
             pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, "remote back-end did not initialise", NULL);
 
@@ -102,7 +104,7 @@ PANTHEIOS_CALL(int) pantheios_be_init(
         {
             pan_lr_tokens_t* ptokens = (pan_lr_tokens_t*)malloc(sizeof(pan_lr_tokens_t));
 
-            if(NULL == ptokens)
+            if (NULL == ptokens)
             {
                 pantheios_be_remote_uninit(tokens.remoteToken);
                 pantheios_be_local_uninit(tokens.localToken);
@@ -156,11 +158,11 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
     /* Remote is given priority in failure stakes. It's probably of little significance,
      * but a choice was demanded.
      */
-    if(r2 < 0)
+    if (r2 < 0)
     {
         return r2;
     }
-    else if(r1 < 0)
+    else if (r1 < 0)
     {
         return r1;
     }

@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_REVISION 1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_EDIT     3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +73,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API (C)
@@ -129,6 +132,7 @@ pantheios_util_formatMicrosecondToString6(
 ,   PAN_CHAR_T   (*ar)[6]
 ) STLSOFT_NOEXCEPT;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -140,6 +144,7 @@ namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API (C++)
  */
@@ -147,6 +152,7 @@ namespace util
 #ifdef __cplusplus
 
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -156,6 +162,7 @@ namespace util
 } /* namespace util */
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

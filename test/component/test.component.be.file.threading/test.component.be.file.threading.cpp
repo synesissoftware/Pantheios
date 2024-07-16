@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.be.file.threading/test.component.be.file.threading.cpp
+ * File:    test/component/test.component.be.file.threading/test.component.be.file.threading.cpp
  *
- * Purpose:     Implementation file for the test.component.be.file.threading project.
+ * Purpose: Implementation file for the test.component.be.file.threading project.
  *
- * Created:     3rd July 2009
- * Updated:     16th January 2023
+ * Created: 3rd July 2009
+ * Updated: 16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -67,23 +67,21 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
 
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -108,6 +106,7 @@ const size_t    SET_PATH_DELAY      =   1000 * 1000 * 10;
 
 PAN_CHAR_T const LOG_FILE_NAME[]    =   PSTR("test.component.be.file.threading.log");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -121,6 +120,7 @@ static int              s_activeThreads =   0;
 static int              s_showNotices   =   true;
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PSTR("test.component.be.file.threading");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -144,6 +144,7 @@ typedef platformstl::filesystem_traits<PAN_CHAR_T>  fs_traits_t;
 typedef platformstl::basic_file_lines<PAN_CHAR_T>   lines_t;
 typedef stlsoft::basic_string_view<PAN_CHAR_T>          string_view_t;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -162,6 +163,7 @@ static DWORD WINAPI thread_proc(void*);
 
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Pantheios configuration
  */
@@ -178,11 +180,11 @@ extern "C"
 pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
 {
 #ifdef _DEBUG
-    { beid_console, PANTHEIOS_SEV_NOTICE },
+    PANTHEIOS_FE_N_ENTRY2(beid_console, PANTHEIOS_SEV_NOTICE),
 #else /* ? _DEBUG */
-    { beid_console, PANTHEIOS_SEV_NOTICE },
+    PANTHEIOS_FE_N_ENTRY2(beid_console, PANTHEIOS_SEV_NOTICE),
 #endif /* _DEBUG */
-    { beid_file, PANTHEIOS_SEV_INFORMATIONAL },
+    PANTHEIOS_FE_N_ENTRY2(beid_file,    PANTHEIOS_SEV_INFORMATIONAL),
 
     PANTHEIOS_FE_N_TERMINATOR_ENTRY(PANTHEIOS_SEV_INFORMATIONAL)
 };
@@ -197,7 +199,10 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 
 } // extern "C"
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int /*argc*/, char** /*argv*/)
 {
@@ -205,7 +210,7 @@ static int main_(int /*argc*/, char** /*argv*/)
 
     pan::log_INFORMATIONAL(PSTR("main(): creating "), pan::integer(STLSOFT_NUM_ELEMENTS(threads)), PSTR(" threads"));
 
-    { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(threads); ++i)
+    { for (size_t i = 0; i < STLSOFT_NUM_ELEMENTS(threads); ++i)
     {
         void* arg = NULL;
 
@@ -213,7 +218,7 @@ static int main_(int /*argc*/, char** /*argv*/)
 
         pthread_mutex_lock(&s_mx);
 
-        if(0 != pthread_create(&threads[i], NULL, thread_proc, arg))
+        if (0 != pthread_create(&threads[i], NULL, thread_proc, arg))
         {
             pan::log_ALERT(PSTR("Failed to create thread "), pan::integer(i));
 
@@ -242,7 +247,7 @@ static int main_(int /*argc*/, char** /*argv*/)
 
         threads[i] = CreateThread(NULL, 0, thread_proc, arg, 0, &threadId);
 
-        if(NULL == threads[i])
+        if (NULL == threads[i])
         {
             winstl::error_desc  err;
 
@@ -271,10 +276,10 @@ static int main_(int /*argc*/, char** /*argv*/)
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 
-    for(;;)
+    for (;;)
     {
         pthread_mutex_lock(&s_mx);
-        if(0 == s_activeThreads)
+        if (0 == s_activeThreads)
         {
             pthread_mutex_unlock(&s_mx);
             break;
@@ -303,7 +308,7 @@ static int main_(int /*argc*/, char** /*argv*/)
 
     lines_t lines(LOG_FILE_NAME);
 
-    { for(size_t i = 0; i != lines.size(); ++i)
+    { for (size_t i = 0; i != lines.size(); ++i)
     {
         lines_t::value_type const&  line = lines[i];
 
@@ -315,7 +320,7 @@ static int main_(int /*argc*/, char** /*argv*/)
         string_view_t               middle;
         string_view_t               right;
 
-        if( !stlsoft::split(line, PSTR('|'), prefix, scratch1) ||
+        if (!stlsoft::split(line, PSTR('|'), prefix, scratch1) ||
             !stlsoft::split(scratch1, PSTR('|'), left, scratch2) ||
             !stlsoft::split(scratch2, PSTR('|'), middle, right))
         {
@@ -325,7 +330,7 @@ static int main_(int /*argc*/, char** /*argv*/)
         }
         else
         {
-            if(left != right)
+            if (left != right)
             {
                 pan::log_CRITICAL(PSTR("line prefix and suffix do not match: ["), pan::integer(i), PSTR(": "), line, PSTR("]"));
 
@@ -334,7 +339,7 @@ static int main_(int /*argc*/, char** /*argv*/)
         }
     }}
 
-    if(EXIT_SUCCESS == retVal)
+    if (EXIT_SUCCESS == retVal)
     {
         s_showNotices &&
         pan::log_NOTICE(PSTR("all lines logged to file correctly"));
@@ -361,26 +366,26 @@ int main__(int argc, char** argv)
     return r;
 }
 #else /* ? USE_MSC_VER_CRT_MEM_CHECKS */
-# define main__     main_
+# define main__                                             main_
 #endif /* USE_MSC_VER_CRT_MEM_CHECKS */
 
 
 int main(int argc, char** argv)
 {
-    if(2 == argc)
+    if (2 == argc)
     {
         char const* arg = argv[1];
 
-        if(0 == ::strncmp(arg, "--verbosity=", 12))
+        if (0 == ::strncmp(arg, "--verbosity=", 12))
         {
             int verbosity = atoi(arg + 12);
 
-            if(verbosity < 0)
+            if (verbosity < 0)
             {
                 verbosity = 0;
             }
 
-            switch(verbosity)
+            switch (verbosity)
             {
                 case    0:
                 case    1:
@@ -412,11 +417,11 @@ int main(int argc, char** argv)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pan::log_ALERT(PSTR("Unexpected general error: "), pantheios::exception(x), PSTR(". Application terminating"));
     }
-    catch(...)
+    catch (...)
     {
         pan::logputs(pan::emergency, PSTR("Unhandled unknown error"));
     }
@@ -427,7 +432,10 @@ int main(int argc, char** argv)
     return EXIT_FAILURE;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 static void* thread_proc(void*)
@@ -445,7 +453,7 @@ static DWORD WINAPI thread_proc(void*)
 
     // TODO: Do some threading stuff
 
-    { for(size_t i = 0; i != LOG_ITERATIONS; ++i)
+    { for (size_t i = 0; i != LOG_ITERATIONS; ++i)
     {
         pan::log(pan::informational(beid_file), PSTR("|"), pan::integer(i), PSTR("|"), PSTR("this is"), PSTR(" "), PSTR("multipart log "), PSTR("statement"), PSTR("|"), pan::integer(i));
     }}
@@ -462,17 +470,23 @@ static DWORD WINAPI thread_proc(void*)
     return 0;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * hack functions
+ */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX) && \
     defined(_WIN32) && \
     defined(_STLSOFT_FORCE_ANY_COMPILER)
+
 # include <windows.h>
+
 extern "C" void syslog(char const* s)
 {
     OutputDebugStringA(s);
 }
 #endif
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

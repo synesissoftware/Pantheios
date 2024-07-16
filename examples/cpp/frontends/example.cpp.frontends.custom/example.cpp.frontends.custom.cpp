@@ -1,23 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/frontends/example.cpp.frontends.custom/example.cpp.frontends.custom.cpp
+ * File:    examples/cpp/frontends/example.cpp.frontends.custom/example.cpp.frontends.custom.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - definition of a custom front-end that supports tabbed output
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - definition of a custom front-end that supports tabbed output
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     31st August 2006
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 31st August 2006
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,6 +30,7 @@
 # endif /* compiler */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 namespace
@@ -51,9 +42,11 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -65,7 +58,7 @@ namespace
 
 int main(int argc, char **argv)
 {
-  if(argc > 1)
+  if (argc > 1)
   {
     s_severityCeiling = ::atoi(argv[1]);
   }
@@ -84,21 +77,22 @@ int main(int argc, char **argv)
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }
 
   return EXIT_FAILURE;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -124,6 +118,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(  void*   /* token */
 {
   return severity <= s_severityCeiling;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -55,6 +55,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -65,6 +66,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   2
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       107
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -209,6 +211,7 @@
 # endif /* !PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS */
 #endif /* PANTHEIOS_CUSTOM_SHIM_INCLUDE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * GCC bug
  */
@@ -222,6 +225,7 @@
     __GNUC__ < 4
 //# include <pantheios/inserters.hpp>
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -263,6 +267,7 @@ namespace pantheios
 #ifdef PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_
 # undef PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_
 #endif /* PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_ */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
@@ -346,6 +351,7 @@ namespace internal
 
 #undef PANTHEIOS_INVOKE_SHIM_PAIR_
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -381,6 +387,7 @@ namespace
 
 } /* anonymous namespace */
 #endif /* PANTHEIOS_FORCE_AUTO_INIT || !PANTHEIOS_NO_AUTO_INIT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

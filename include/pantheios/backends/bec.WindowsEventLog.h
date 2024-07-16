@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.WindowsEventLog.h
+ * File:    pantheios/backends/bec.WindowsEventLog.h
  *
- * Purpose:     Declaration of the Pantheios WindowsEventLog Stock Back-end API.
+ * Purpose: Declaration of the Pantheios WindowsEventLog Stock Back-end API.
  *
- * Created:     8th May 2006
- * Updated:     16th January 2023
+ * Created: 8th May 2006
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MINOR       4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        32
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        33
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -79,6 +82,7 @@
  *  Back-end library that writes to the Windows event log.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -87,6 +91,7 @@
  * \ingroup group__backend__stock_backends__WindowsEventLog
  *  Flags for the \ref group__backend__stock_backends__WindowsEventLog
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -117,6 +122,7 @@ public: /* Construction */
 typedef struct pan_be_WindowsEventLog_init_t     pan_be_WindowsEventLog_init_t;
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined Functions
  */
@@ -124,13 +130,13 @@ typedef struct pan_be_WindowsEventLog_init_t     pan_be_WindowsEventLog_init_t;
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
 struct Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_BE_WINDOWSEVENTLOG_EVENTID_it_now_uses_the_function_pantheios_be_WindowsEventLog_calcCategoryAndEventId_;
-# define BE_WINDOWSEVENTLOG_EVENTID Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_BE_WINDOWSEVENTLOG_EVENTID_it_now_uses_the_function_pantheios_be_WindowsEventLog_calcCategoryAndEventId_()
+# define BE_WINDOWSEVENTLOG_EVENTID                         Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_BE_WINDOWSEVENTLOG_EVENTID_it_now_uses_the_function_pantheios_be_WindowsEventLog_calcCategoryAndEventId_()
 
 struct Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_pantheios_be_WindowsEventLog_calcCategory_it_now_uses_the_function_pantheios_be_WindowsEventLog_calcCategoryAndEventId_;
-# define pantheios_be_WindowsEventLog_calcCategory  struct Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_pantheios_be_WindowsEventLog_calcCategory_it_now_uses_the_function_pantheios_be_WindowsEventLog_calcCategoryAndEventId_
+# define pantheios_be_WindowsEventLog_calcCategory          struct Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_pantheios_be_WindowsEventLog_calcCategory_it_now_uses_the_function_pantheios_be_WindowsEventLog_calcCategoryAndEventId_
 
 struct Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_pantheios_be_WindowsEventLog_calcEventId_it_now_uses_the_function_pantheios_be_WindowsEventLog_calcCategoryAndEventId_;
-# define pantheios_be_WindowsEventLog_calcEventId struct Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_pantheios_be_WindowsEventLog_calcEventId_it_now_uses_the_function_pantheios_be_WindowsEventLog_calcCategoryAndEventId_
+# define pantheios_be_WindowsEventLog_calcEventId           struct Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_pantheios_be_WindowsEventLog_calcEventId_it_now_uses_the_function_pantheios_be_WindowsEventLog_calcCategoryAndEventId_
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -198,6 +204,7 @@ pantheios_be_WindowsEventLog_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsEventLog_init_t*  init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

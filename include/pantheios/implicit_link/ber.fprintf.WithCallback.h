@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_FPRINTF_WITHCALLBACK
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_FPRINTF_WITHCALLBACK
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_FPRINTF_WITHCALLBACK_REVISION  2
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_FPRINTF_WITHCALLBACK_EDIT      9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK
 # include <pantheios/implicit_link/bec.fprintf.WithCallback.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit-linking directives

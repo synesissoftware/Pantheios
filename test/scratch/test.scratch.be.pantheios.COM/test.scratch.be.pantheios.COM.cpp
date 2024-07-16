@@ -69,6 +69,7 @@ namespace std
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -80,6 +81,7 @@ namespace std
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.pantheios.COM");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -87,6 +89,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 #if 0
 typedef std::string     string_t;
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -119,7 +122,7 @@ int main(int argc, char *argv[])
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try
@@ -130,13 +133,13 @@ int main(int argc, char *argv[])
 
         res = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         fprintf(stderr, "Unhandled unknown error\n");
 

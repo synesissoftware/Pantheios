@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_SNPRINTF
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_SNPRINTF
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +75,7 @@
 # include <stdarg.h>
 #endif /* !PANTHEIOS_INCL_H_STDARG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -81,6 +84,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -175,6 +179,7 @@ pantheios_util_vsnprintf_w(
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -182,6 +187,7 @@ pantheios_util_vsnprintf_w(
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

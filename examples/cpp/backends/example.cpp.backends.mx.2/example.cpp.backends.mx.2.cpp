@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/backends/example.cpp.backends.mx.2/example.cpp.backends.mx.2.cpp
+ * File:    examples/cpp/backends/example.cpp.backends.mx.2/example.cpp.backends.mx.2.cpp
  *
- * Purpose:     Implementation file for the example.cpp.backends.mx.2 project.
+ * Purpose: Implementation file for the example.cpp.backends.mx.2 project.
  *
- * Created:     19th September 2008
- * Updated:     16th December 2023
+ * Created: 19th September 2008
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,15 +38,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 extern "C" const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEIOS_LITERAL_STRING("example.cpp.backends.mx.2");
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * logging management
@@ -73,7 +76,10 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
     PANTHEIOS_BE_N_TERMINATOR_ENTRY
 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int argc, char** argv)
 {
@@ -97,21 +103,22 @@ int main(int argc, char** argv)
   {
     return main_(argc, argv);
   }
-    catch(std::bad_alloc&)
-    {
-        pantheios::log(pantheios::alert, PSTR("out of memory"));
-    }
-    catch(std::exception& x)
-    {
-        pantheios::log_CRITICAL(PSTR("Exception: "), x);
-    }
-  catch(...)
+  catch (std::bad_alloc&)
+  {
+    pantheios::log(pantheios::alert, PSTR("out of memory"));
+  }
+  catch (std::exception& x)
+  {
+    pantheios::log_CRITICAL(PSTR("Exception: "), x);
+  }
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unhandled unknown error"));
   }
 
   return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

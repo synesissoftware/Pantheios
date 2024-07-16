@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/frontends/fe.WindowsRegistry.h
+ * File:    pantheios/frontends/fe.WindowsRegistry.h
  *
- * Purpose:     Declaration of the Pantheios fe.WindowsRegistry Stock Front-end API.
+ * Purpose: Declaration of the Pantheios fe.WindowsRegistry Stock Front-end API.
  *
- * Created:     28th October 2007
- * Updated:     16th December 2023
+ * Created: 28th October 2007
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_EDIT        12
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_EDIT        13
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,14 +79,16 @@
  *   release mode.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 struct Pantheios_no_longer_uses_the_symbol_PAN_FE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_;
-# define PAN_FE_PROCESS_IDENTITY (Pantheios_no_longer_uses_the_symbol_PAN_FE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_)
+# define PAN_FE_PROCESS_IDENTITY                            (Pantheios_no_longer_uses_the_symbol_PAN_FE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_)
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

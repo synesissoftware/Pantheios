@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/severity_strings.c
+ * File:    src/util/severity_strings.c
  *
- * Purpose:     Severity strings for Pantheios API
+ * Purpose: Severity strings for Pantheios API
  *
- * Created:     26th July 2005
- * Updated:     16th December 2023
+ * Created: 26th July 2005
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,6 +43,7 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/quality/contract.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -52,6 +53,7 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -59,7 +61,7 @@ namespace pantheios
 #ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 struct SeverityString
 #else /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
-# define SeverityString         pantheios_src_util_SeverityString
+# define SeverityString                                     pantheios_src_util_SeverityString
 typedef struct SeverityString  SeverityString;
 struct SeverityString
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
@@ -95,16 +97,16 @@ pantheios_LookupCodeA_(
      */
     size_t  len_;
 
-    if(NULL == len)
+    if (NULL == len)
     {
         len = &len_;
     }
 
     /* Checked, indexed search. */
-    if( severity >= 0 &&
+    if (severity >= 0 &&
         severity <= PANTHEIOS_SEV_DEBUG)
     {
-        if(severity == mappings[severity]->severity)
+        if (severity == mappings[severity]->severity)
         {
             return (*len = mappings[severity]->len, mappings[severity]->str);
         }
@@ -113,9 +115,9 @@ pantheios_LookupCodeA_(
     /* Linear search. Should only be needed if order in
      * pantheios_LookupSeverityStringA_() messed up.
      */
-    { size_t i; for(i = 0; i < cMappings; ++i)
+    { size_t i; for (i = 0; i < cMappings; ++i)
     {
-        if(severity == mappings[i]->severity)
+        if (severity == mappings[i]->severity)
         {
             return (*len = mappings[i]->len, mappings[i]->str);
         }
@@ -222,7 +224,7 @@ pantheios_getInserterFormat(
     widthAndFormat &= ~(0xff);  /* We don't care about the width here */
 
 #if 0
-    switch(
+    switch (
             zeroXPrefix =   0x0100  /*!< Applies a \c 0x prefix to the output. */
         ,   zeroPadded  =   0x0200  /*!< Zero-pads the output. */
         ,   hex         =   0x0400  /*!< Represents the output in hexadecimal. */
@@ -234,6 +236,7 @@ pantheios_getInserterFormat(
 }
 #endif /* 0 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -241,6 +244,7 @@ pantheios_getInserterFormat(
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

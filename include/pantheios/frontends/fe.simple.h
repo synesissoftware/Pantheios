@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios fe.simple Stock Front-end API.
  *
  * Created:     8th May 2006
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_SIMPLE
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_SIMPLE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_REVISION 5
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_EDIT     17
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_EDIT     18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,14 +79,16 @@
  *   release mode.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 struct Pantheios_no_longer_uses_the_symbol_FE_SIMPLE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_;
-# define FE_SIMPLE_PROCESS_IDENTITY Pantheios_no_longer_uses_the_symbol_FE_SIMPLE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_()
+# define FE_SIMPLE_PROCESS_IDENTITY                         Pantheios_no_longer_uses_the_symbol_FE_SIMPLE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_()
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

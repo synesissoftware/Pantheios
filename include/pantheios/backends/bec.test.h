@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.test.h
+ * File:    pantheios/backends/bec.test.h
  *
- * Purpose:     Declaration of the be.test library.
+ * Purpose: Declaration of the be.test library.
  *
- * Created:     1st November 2006
- * Updated:     16th December 2023
+ * Created: 1st November 2006
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_BACKENDS_H_BEC_TEST
 #define PANTHEIOS_INCL_BACKENDS_H_BEC_TEST
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  3
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      28
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -80,6 +82,7 @@
 # include <pantheios/internal/threading.h>
 # include <string>
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -132,7 +135,8 @@ PANTHEIOS_CALL(int) pantheios_be_test_logEntry(
  * <code>NULL</code>. At such time as back-end specific arguments
  * are required, it will become a first-class function.
  */
-#define pantheios_be_test_parseArgs         NULL
+#define pantheios_be_test_parseArgs                         NULL
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -227,6 +231,7 @@ namespace test
 
     /** Obtain a copy of the current test results */
     Results results();
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

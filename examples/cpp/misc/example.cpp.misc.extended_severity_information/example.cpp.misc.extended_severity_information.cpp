@@ -1,24 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/misc/example.cpp.misc.extended_severity_information/example.cpp.misc.extended_severity_information.cpp
+ * File:    examples/cpp/misc/example.cpp.misc.extended_severity_information/example.cpp.misc.extended_severity_information.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of extended severity level information for tabbing output
- *                - definition of a custom back-end that supports tabbed output
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of extended severity level information for tabbing output
+ *            - definition of a custom back-end that supports tabbed output
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     31st August 2006
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 31st August 2006
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,15 +40,18 @@
 # endif /* compiler */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.misc.extended_severity_information");
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -78,15 +71,15 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }
@@ -125,32 +118,33 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
   try
   {
-    pantheios::util::auto_buffer_selector<char, 256>::type  prefixes(static_cast<size_t>(customInfo28));
-    PAN_CHAR_T const*                                       severity   = pantheios::getStockSeverityString(severityLevel);
-    FILE*                                                   stm        = (severityLevel < pantheios::notice) ? stderr : stdout;
-    PAN_CHAR_T const*                                       processId  = static_cast<PAN_CHAR_T const*>(beToken);
+    pantheios::util::auto_buffer_selector<PAN_CHAR_T, 256>::type    prefixes(static_cast<size_t>(customInfo28));
+    PAN_CHAR_T const*                                               severity_s = pantheios::getStockSeverityString(severityLevel);
+    FILE*                                                           stm        = (severityLevel < pantheios::notice) ? stderr : stdout;
+    PAN_CHAR_T const*                                               processId  = static_cast<PAN_CHAR_T const*>(beToken);
 
-    platformstl::system_traits<char>::str_set(&prefixes[0], prefixes.size(), ' ');
+    platformstl::system_traits<PAN_CHAR_T>::str_set(&prefixes[0], prefixes.size(), ' ');
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     return ::fwprintf(stm
                     , L"[%s; %s]:%.*s %.*s\n"
-                    , processId, severity
+                    , processId, severity_s
                     , int(prefixes.size()), prefixes.data()
                     , int(cchEntry), entry);
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
     return ::fprintf( stm
                     , "[%s; %s]:%.*s %.*s\n"
-                    , processId, severity
+                    , processId, severity_s
                     , int(prefixes.size()), prefixes.data()
                     , int(cchEntry), entry);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
   }
-  catch(std::exception &)
+  catch (std::exception &)
   {
     return 0;
   }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/inserters/test.unit.inserter.w2m/test.unit.inserter.w2m.cpp
+ * File:    test/unit/inserters/test.unit.inserter.w2m/test.unit.inserter.w2m.cpp
  *
- * Purpose:     Implementation file for the test.unit.inserter.w2m project.
+ * Purpose: Implementation file for the test.unit.inserter.w2m project.
  *
- * Created:     21st December 2010
- * Updated:     16th January 2023
+ * Created: 21st December 2010
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -27,6 +27,7 @@
 #include <stlsoft/util/minmax.hpp>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -63,7 +64,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.inserter.w2m", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserter.w2m", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -103,14 +104,10 @@ namespace
         ,   L"abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"
     };
 
-    inline size_t get_min_max(size_t minLen, size_t maxLen)
-    {
-        return pantheios::pan_slice_t::get_lazy_length(minLen, maxLen);
-    }
 
 static void test_1_01()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
     {
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL(stlsoft::w2m(strings[i]), pantheios::w2m(strings[i]));
     }}

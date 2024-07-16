@@ -1,28 +1,27 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.file.cpp
+ * File:    src/backends/bec.file.cpp
  *
- * Purpose:     Implementation for the file back-end.
+ * Purpose: Implementation for the file back-end.
  *
- * Created:     25th November 2006
- * Updated:     16th January 2023
+ * Created: 25th November 2006
+ * Updated: 16th July 2024
  *
- * Thanks to:   CookieRaver for filling in the (accidental) blanks in the
- *              UNIX implementation.
+ * Thanks:  CookieRaver for filling in the (accidental) blanks in the UNIX
+ *          implementation.
  *
- *              S2027 for spotting the exclusivity, and providing the fix.
+ *          S2027 for spotting the exclusivity, and providing the fix.
  *
- *              sjdc (Daniel) for \r\n on Windows, and highlighting further
- *              problems with synchronisation.
+ *          sjdc (Daniel) for \r\n on Windows, and highlighting further
+ *          problems with synchronisation.
  *
- *              Jonathan Wakely for detecting Solaris compilation bugs &
- *              fixes.
+ *          Jonathan Wakely for detecting Solaris compilation bugs & fixes.
  *
- *              Skoobie Du for spotting the failure to add 1900/1 to
- *              year/mon in date/time format specifiers in file name.
+ *          Skoobie Du for spotting the failure to add 1900/1 to year/mon in
+ *          date/time format specifiers in file name.
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -141,7 +140,7 @@
 
    /* close() */
 #  include <io.h>
-#  define close     _close
+#  define close                                             _close
 
    /* open() */
 #  if defined(_WIN32) && \
@@ -157,15 +156,15 @@
         }
 #   pragma warning(pop)
     } /* anonymous namespace */
-#   define open     open_original_
+#   define open                                             open_original_
 #  else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-#   define open     _open
+#   define open                                             _open
 #  endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
    /* fsync() */
 #  include <io.h>
 #  define _POSIX_FSYNC
-#  define fsync     _commit
+#  define fsync                                             _commit
 
    /* write() */
 #  define write(h, b, n)                _write((h), (b), stlsoft_static_cast(int, (n)))
@@ -173,16 +172,16 @@
 #  if defined(_MSC_VER) && \
       _MSC_VER < 1300
 
-#   define intptr_t                     long
+#   define intptr_t                                         long
 #  else
 
 #   include <stdint.h>
 #  endif
 
    /* types and constants */
-#  define ssize_t   intptr_t
-#  define S_IRWXU   (0)
-#  define S_IRWXG   (0)
+#  define ssize_t                                           intptr_t
+#  define S_IRWXU                                           (0)
+#  define S_IRWXG                                           (0)
 
 # endif /* _WIN32 && _MSC_VER */
 #endif /* OS */
@@ -196,21 +195,23 @@
 # include <crtdbg.h>
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define pan_strlen_                ::wcslen
-# define pan_strstr_                ::wcsstr
+# define pan_strlen_                                        ::wcslen
+# define pan_strstr_                                        ::wcsstr
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define pan_strlen_                ::strlen
-# define pan_strstr_                ::strstr
+# define pan_strlen_                                        ::strlen
+# define pan_strstr_                                        ::strstr
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -255,6 +256,7 @@ namespace
     typedef platformstl::filesystem_traits<PAN_CHAR_T>  traits_t;
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -405,6 +407,7 @@ private:
     entries_type m_entries;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * constants
  */
@@ -416,6 +419,7 @@ private:
 #else /* ? OS */
 # error Operating system not discriminated
 #endif /* OS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
@@ -509,14 +513,14 @@ namespace
 
     static int be_file_ContextMap_AddRef()
     {
-        if(1 == ++s_rc)
+        if (1 == ++s_rc)
         {
             PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(NULL == s_ctxtMap);
 
             s_ctxtMap = new be_file_ContextMap();
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-            if(NULL == s_ctxtMap)
+            if (NULL == s_ctxtMap)
             {
                 return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
             }
@@ -532,7 +536,7 @@ namespace
 
     static void be_file_ContextMap_Release()
     {
-        if(0 == --s_rc)
+        if (0 == --s_rc)
         {
             delete s_ctxtMap;
             s_ctxtMap = NULL;
@@ -540,6 +544,7 @@ namespace
     }
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -570,7 +575,7 @@ static int pantheios_be_file_init_(
 #ifndef PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS
     // Pre-initialise the mutex for platforms not supporting atomic
     // integer operations.
-    if(0 != be_file_get_mutex_instance().code)
+    if (0 != be_file_get_mutex_instance().code)
     {
 # ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
         pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, "Failed to initialise the API mutex for be.file", NULL);
@@ -580,7 +585,7 @@ static int pantheios_be_file_init_(
     }
     else
     {
-        if(NULL == s_pmx)
+        if (NULL == s_pmx)
         {
             s_pmx = be_file_get_mutex_instance().instance;
         }
@@ -595,7 +600,7 @@ static int pantheios_be_file_init_(
 
     pan_be_file_init_t init_;
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_file_getDefaultAppInit(&init_);
 
@@ -608,11 +613,11 @@ static int pantheios_be_file_init_(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001b8)
+    if (init->version < 0x010001b8)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
@@ -627,19 +632,19 @@ static int pantheios_be_file_init_(
     stlsoft::auto_destructor<be_file_Context>   ctxt(new be_file_Context(processIdentity, backEndId, *init));
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if( NULL == ctxt.get() ||
+    if (NULL == ctxt.get() ||
         NULL == ctxt->getProcessIdentity())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
 #endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
 
-    if( NULL != init->fileName &&
+    if (NULL != init->fileName &&
         '\0' != init->fileName[0])
     {
         int const r = ctxt->SetFileName(init->fileName, ~static_cast<pantheios_uint32_t>(0), init->flags);
 
-        if(0 != r)
+        if (0 != r)
         {
             return r;
         }
@@ -657,7 +662,7 @@ static int pantheios_be_file_init_(
 
         int r = be_file_ContextMap_AddRef();
 
-        if(0 != r)
+        if (0 != r)
         {
             return r;
         }
@@ -667,7 +672,7 @@ static int pantheios_be_file_init_(
             {
                 s_ctxtMap->Add(backEndId, ctxt.get());
             }
-            catch(...)
+            catch (...)
             {
                 be_file_ContextMap_Release();
 
@@ -769,7 +774,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_setFilePath(
 #endif /* PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
         stlsoft::lock_scope<api_mutex_t>    lock(mx);
 
-        if(0 == s_rc)
+        if (0 == s_rc)
         {
             return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
         }
@@ -780,20 +785,20 @@ PANTHEIOS_CALL(int) pantheios_be_file_setFilePath(
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "failed to set path", NULL, "out of memory", NULL, "be.file");
 
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_CRITICAL, "failed to set path", NULL, x.what(), NULL, "be.file");
 
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "failed to set path", NULL, "unknown failure", NULL, "be.file");
 
@@ -823,7 +828,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_flush(int backEndId)
 #endif /* PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
         stlsoft::lock_scope<api_mutex_t>    lock(mx);
 
-        if(0 == s_rc)
+        if (0 == s_rc)
         {
             return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
         }
@@ -834,20 +839,20 @@ PANTHEIOS_CALL(int) pantheios_be_file_flush(int backEndId)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "failed to flush file", NULL, "out of memory", NULL, "be.file");
 
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_CRITICAL, "failed to flush file", NULL, x.what(), NULL, "be.file");
 
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "failed to flush path", NULL, "unknown failure", NULL, "be.file");
 
@@ -877,7 +882,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_emptyCache(int backEndId)
 #endif /* PLATFORMSTL_HAS_ATOMIC_INTEGER_OPERATIONS */
         stlsoft::lock_scope<api_mutex_t>    lock(mx);
 
-        if(0 == s_rc)
+        if (0 == s_rc)
         {
             return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
         }
@@ -888,20 +893,20 @@ PANTHEIOS_CALL(int) pantheios_be_file_emptyCache(int backEndId)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "failed to empty cache", NULL, "out of memory", NULL, "be.file");
 
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_CRITICAL, "failed to empty cache", NULL, x.what(), NULL, "be.file");
 
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "failed to empty cache", NULL, "unknown failure", NULL, "be.file");
 
@@ -932,16 +937,16 @@ pantheios_be_file_parseArgs(
     // 1. Parse the stock arguments
     int res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2.a Parse the custom argument: "fileName"
         pan_slice_t fileName;
 
         res = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("fileName"), &fileName);
 
-        if(res >= 0)
+        if (res >= 0)
         {
-            if(fileName.len >= STLSOFT_NUM_ELEMENTS(init->buff))
+            if (fileName.len >= STLSOFT_NUM_ELEMENTS(init->buff))
             {
                 pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "be.file initialisation failed: 'fileName' argument value too long; must be <= " PANTHEIOS_STRINGIZE(PANTHEIOS_BE_FILE_MAX_FILE_LEN) " characters", NULL);
 
@@ -955,25 +960,25 @@ pantheios_be_file_parseArgs(
             }
         }
 
-        if(res >= 0)
+        if (res >= 0)
         {
             // 2.b Parse the custom argument: "truncate"
             res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("truncate"), false, PANTHEIOS_BE_FILE_F_TRUNCATE, &init->flags);
         }
 
-        if(res >= 0)
+        if (res >= 0)
         {
             // 2.c Parse the custom argument: "discardCachedContents"
             res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("discardCachedContents"), false, PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS, &init->flags);
         }
 
-        if(res >= 0)
+        if (res >= 0)
         {
             // 2.b Parse the custom argument: "writeWideContents"
             res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("writeWideContents"), false, PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS, &init->flags);
         }
 
-        if(res >= 0)
+        if (res >= 0)
         {
             // 2.b Parse the custom argument: "writeMultibyteContents"
             res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("writeMultibyteContents"), false, PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS, &init->flags);
@@ -982,6 +987,7 @@ pantheios_be_file_parseArgs(
 
     return res;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * be_file_Context
@@ -1008,15 +1014,15 @@ be_file_Context::~be_file_Context() throw()
 
 void be_file_Context::Close() throw()
 {
-    if(FileErrorValue != m_hFile)
+    if (FileErrorValue != m_hFile)
     {
         PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_INTERNAL(m_lines.empty(), "an open file cannot have any cached lines when it is closed");
 
         string_type deletePath;
 
-        if(PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY & m_flags)
+        if (PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY & m_flags)
         {
-            if(0u == traits_t::get_file_size(m_hFile))
+            if (0u == traits_t::get_file_size(m_hFile))
             {
                 deletePath = m_filePath;
             }
@@ -1027,9 +1033,9 @@ void be_file_Context::Close() throw()
         m_hFile = FileErrorValue;
         m_filePath.erase();
 
-        if(!deletePath.empty())
+        if (!deletePath.empty())
         {
-            if(!traits_t::unlink_file(deletePath.c_str()))
+            if (!traits_t::unlink_file(deletePath.c_str()))
             {
                 pantheios_onBailOut4(
                     PANTHEIOS_SEV_WARNING
@@ -1056,7 +1062,7 @@ int be_file_Context::SetFileName(
 
     Close();
 
-    if( NULL == fileName ||
+    if (NULL == fileName ||
         '\0' == fileName[0])
     {
         return 0;
@@ -1065,11 +1071,11 @@ int be_file_Context::SetFileName(
     {
         int r = Open(fileName, fileMask, fileFlags);
 
-        if(0 == r)
+        if (0 == r)
         {
             pantheios_uint32_t effectiveFlags = (m_flags & ~(fileMask)) | (fileFlags & fileMask);
 
-            if(0 == (PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS & effectiveFlags))
+            if (0 == (PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS & effectiveFlags))
             {
                 WriteAllPendingEntries();
             }
@@ -1100,9 +1106,9 @@ int be_file_Context::Flush()
 #   error error in pre-processor logic
 #  endif /* !_POSIX_FSYNC */
 
-    if(0 != ::fsync(m_hFile))
+    if (0 != ::fsync(m_hFile))
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-    if(!::FlushFileBuffers(m_hFile))
+    if (!::FlushFileBuffers(m_hFile))
 # else /* ? OS */
 #  error Operating system not discriminated
 # endif /* OS */
@@ -1133,7 +1139,7 @@ void be_file_Context::WriteAllPendingEntries()
     // TODO: Consider doing the writing in batches, so that other threads
     // are not impeded completely when the path name is set
 
-    { for(strings_type::const_iterator b = m_lines.begin(), e = m_lines.end(); b != e; ++b)
+    { for (strings_type::const_iterator b = m_lines.begin(), e = m_lines.end(); b != e; ++b)
     {
         OutputEntry((*b).data(), (*b).size());
     }}
@@ -1169,18 +1175,18 @@ int be_file_Context::Open(
 
     buffer_selector_<PAN_CHAR_T>::small_type buffer((NULL != date || NULL != time) ? (nameLen + 14 + 1) : 1);
 
-    if(buffer.empty())
+    if (buffer.empty())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
 
-    if( NULL != date ||
+    if (NULL != date ||
         NULL != time)
     {
         time_t      t;
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
         struct tm   tm_;
-        if(0 != (::time(&t), ::localtime_s(&tm_, &t)))
+        if (0 != (::time(&t), ::localtime_s(&tm_, &t)))
         {
             tm_.tm_hour     =   0;
             tm_.tm_isdst    =   0;
@@ -1213,7 +1219,7 @@ int be_file_Context::Open(
 
         size_t              n2  =   0;
 
-        if(NULL != date)
+        if (NULL != date)
         {
             p1r =   dateStr;
             p1s =   date;
@@ -1221,9 +1227,9 @@ int be_file_Context::Open(
             o1  =   2;
         }
 
-        if(NULL != time)
+        if (NULL != time)
         {
-            if(NULL != date)
+            if (NULL != date)
             {
                 p3r =   timeStr;
                 p3s =   time;
@@ -1232,7 +1238,7 @@ int be_file_Context::Open(
 
                 n2  =   static_cast<size_t>( (date < time) ? (time - (date + 2)) : (date - (time + 2)) );
 
-                if(time < date)
+                if (time < date)
                 {
                     std::swap(p1r, p3r);
                     std::swap(p1s, p3s);
@@ -1301,7 +1307,7 @@ int be_file_Context::Open(
 
     int flags   =   O_CREAT | O_WRONLY;
 
-    if(PANTHEIOS_BE_FILE_F_TRUNCATE == (effectiveFlags & PANTHEIOS_BE_FILE_F_TRUNCATE))
+    if (PANTHEIOS_BE_FILE_F_TRUNCATE == (effectiveFlags & PANTHEIOS_BE_FILE_F_TRUNCATE))
     {
         flags |= O_TRUNC;
     }
@@ -1318,12 +1324,12 @@ int be_file_Context::Open(
     DWORD   shareMode           =   FILE_SHARE_READ;
     DWORD   flagsAndAttributes  =   FILE_ATTRIBUTE_NORMAL;
 
-    if(PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS == (effectiveFlags & PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS))
+    if (PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS == (effectiveFlags & PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS))
     {
         shareMode |= FILE_SHARE_WRITE;
     }
 
-    if(PANTHEIOS_BE_FILE_F_TRUNCATE == (effectiveFlags & PANTHEIOS_BE_FILE_F_TRUNCATE))
+    if (PANTHEIOS_BE_FILE_F_TRUNCATE == (effectiveFlags & PANTHEIOS_BE_FILE_F_TRUNCATE))
     {
         creationDisposition = CREATE_ALWAYS;
     }
@@ -1334,7 +1340,7 @@ int be_file_Context::Open(
 
     m_hFile = ::CreateFile(fileName, GENERIC_WRITE, shareMode, NULL, creationDisposition, flagsAndAttributes, NULL);
 
-    if(FileErrorValue != m_hFile)
+    if (FileErrorValue != m_hFile)
     {
         ::SetFilePointer(m_hFile, 0, NULL, FILE_END);
     }
@@ -1342,7 +1348,7 @@ int be_file_Context::Open(
 # error Operating system not discriminated
 #endif /* OS */
 
-    if(FileErrorValue != m_hFile)
+    if (FileErrorValue != m_hFile)
     {
 #if defined(_DEBUG) && \
     defined(STLSOFT_COMPILER_IS_MSVC)
@@ -1380,7 +1386,7 @@ int be_file_Context::Open(
         );
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-        switch(::GetLastError())
+        switch (::GetLastError())
         {
             default:
             case    ERROR_TOO_MANY_OPEN_FILES:
@@ -1396,7 +1402,7 @@ int be_file_Context::Open(
 #else /* ? OS */
         // TODO: sort out this errno translation
 # if 0
-        switch(errno)
+        switch (errno)
         {
             default:
         }
@@ -1414,7 +1420,7 @@ int be_file_Context::rawLogEntry(int /* severity4 */, int /* severityX */, pan_s
     buffer_t buff(cchTotal + 2);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(0 == buff.size())
+    if (0 == buff.size())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -1452,7 +1458,7 @@ int be_file_Context::rawLogEntry(
     buffer_t buff(3 + cchEntry);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(0 == buff.size())
+    if (0 == buff.size())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -1481,7 +1487,7 @@ int be_file_Context::WriteEntry(
 
     PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION((FileErrorValue == m_hFile) == (m_filePath.empty()));
 
-    if(FileErrorValue == m_hFile)
+    if (FileErrorValue == m_hFile)
     {
 #if defined(_DEBUG) && \
     defined(STLSOFT_COMPILER_IS_MSVC)
@@ -1519,11 +1525,11 @@ int be_file_Context::OutputEntry(
 {
     PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION((FileErrorValue == m_hFile) == (m_filePath.empty()));
 
-    if(PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS & m_flags)
+    if (PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS & m_flags)
     {
         return OutputWideEntry(entry, cchEntry);
     }
-    else if(PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS & m_flags)
+    else if (PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS & m_flags)
     {
         return OutputMultibyteEntry(entry, cchEntry);
     }
@@ -1547,7 +1553,7 @@ int be_file_Context::OutputMultibyteEntry(
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     stlsoft::w2m converted(entry, cchEntry);
 
-    if(0u == converted.size())
+    if (0u == converted.size())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -1574,7 +1580,7 @@ int be_file_Context::OutputWideEntry(
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
     stlsoft::m2w converted(entry, cchEntry);
 
-    if(0u == converted.size())
+    if (0u == converted.size())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -1593,7 +1599,7 @@ int be_file_Context::OutputBytes(
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 
     ssize_t numWritten = ::write(m_hFile, pv, cb);
-    if(FileErrorValue == numWritten)
+    if (FileErrorValue == numWritten)
     {
         numWritten = 0;
     }
@@ -1606,7 +1612,7 @@ int be_file_Context::OutputBytes(
     ol.Offset       =   0xFFFFFFFF;
     ol.OffsetHigh   =   0xFFFFFFFF;
 
-    if(!::WriteFile(m_hFile, pv, static_cast<DWORD>(cb), &numWritten, &ol))
+    if (!::WriteFile(m_hFile, pv, static_cast<DWORD>(cb), &numWritten, &ol))
     {
         numWritten = 0;
     }
@@ -1617,6 +1623,7 @@ int be_file_Context::OutputBytes(
 
     return int(numWritten);
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * be_file_ContextMap
@@ -1629,15 +1636,15 @@ int be_file_ContextMap::SetFileName(
 ,   int                 backEndId
 )
 {
-    if(PANTHEIOS_BEID_ALL == backEndId)
+    if (PANTHEIOS_BEID_ALL == backEndId)
     {
         int r = 0;
 
-        { for(entries_type::iterator b = m_entries.begin(), e = m_entries.end(); b != e; ++b)
+        { for (entries_type::iterator b = m_entries.begin(), e = m_entries.end(); b != e; ++b)
         {
             int r2 = (*b).second->SetFileName(fileName, fileMask, fileFlags);
 
-            if(0 != r2)
+            if (0 != r2)
             {
                 char beid[21];
 
@@ -1666,7 +1673,7 @@ int be_file_ContextMap::SetFileName(
     {
         entries_type::iterator it = m_entries.find(backEndId);
 
-        if(it == m_entries.end())
+        if (it == m_entries.end())
         {
             return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
         }
@@ -1681,15 +1688,15 @@ int be_file_ContextMap::SetFileName(
 
 int be_file_ContextMap::Flush(int backEndId)
 {
-    if(PANTHEIOS_BEID_ALL == backEndId)
+    if (PANTHEIOS_BEID_ALL == backEndId)
     {
         int r = 0;
 
-        { for(entries_type::iterator b = m_entries.begin(), e = m_entries.end(); b != e; ++b)
+        { for (entries_type::iterator b = m_entries.begin(), e = m_entries.end(); b != e; ++b)
         {
             int r2 = (*b).second->Flush();
 
-            if(0 != r2)
+            if (0 != r2)
             {
                 char beid[21];
 
@@ -1716,7 +1723,7 @@ int be_file_ContextMap::Flush(int backEndId)
     {
         entries_type::iterator it = m_entries.find(backEndId);
 
-        if(it == m_entries.end())
+        if (it == m_entries.end())
         {
             return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
         }
@@ -1731,15 +1738,15 @@ int be_file_ContextMap::Flush(int backEndId)
 
 int be_file_ContextMap::EmptyCache(int backEndId)
 {
-    if(PANTHEIOS_BEID_ALL == backEndId)
+    if (PANTHEIOS_BEID_ALL == backEndId)
     {
         int r = 0;
 
-        { for(entries_type::iterator b = m_entries.begin(), e = m_entries.end(); b != e; ++b)
+        { for (entries_type::iterator b = m_entries.begin(), e = m_entries.end(); b != e; ++b)
         {
             int r2 = (*b).second->EmptyCache();
 
-            if(0 != r2)
+            if (0 != r2)
             {
                 char beid[21];
 
@@ -1766,7 +1773,7 @@ int be_file_ContextMap::EmptyCache(int backEndId)
     {
         entries_type::iterator it = m_entries.find(backEndId);
 
-        if(it == m_entries.end())
+        if (it == m_entries.end())
         {
             return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
         }
@@ -1788,6 +1795,7 @@ void be_file_ContextMap::Remove(int backEndId)
 {
     m_entries.erase(backEndId);
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

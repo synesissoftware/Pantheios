@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.w2m/test.component.inserters.w2m.cpp
+ * File:    test/component/test.component.inserters.w2m/test.component.inserters.w2m.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.w2m project.
+ * Purpose: Implementation file for the test.component.inserters.w2m project.
  *
- * Created:     19th October 2006
- * Updated:     16th December 2023
+ * Created: 19th October 2006
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,6 +34,7 @@
 #include <stdlib.h>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -73,6 +74,7 @@ static void test_3_09();
 
 #endif /* !PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -88,7 +90,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.w2m", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.w2m", verbosity))
     {
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 

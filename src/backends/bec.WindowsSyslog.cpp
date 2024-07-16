@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.WindowsSyslog.cpp
+ * File:    src/backends/bec.WindowsSyslog.cpp
  *
- * Purpose:     Implementation of the Pantheios Windows-SysLog Stock
- *              Back-end API.
+ * Purpose: Implementation of the Pantheios Windows-SysLog Stock Back-end
+ *          API.
  *
- * Created:     23rd September 2005
- * Updated:     16th December 2023
+ * Created: 23rd September 2005
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -73,6 +73,7 @@
 /* Windows header files */
 #include <winsock2.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
  */
@@ -81,6 +82,7 @@
         _MSC_VER < 1200)
 # define _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -116,6 +118,7 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
@@ -138,6 +141,7 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
  */
@@ -154,6 +158,7 @@ pan_atoi_(
     return ::atoi(s);
 #endif
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions
@@ -248,7 +253,7 @@ pantheios_be_WindowsSyslog_init_(
 ,   void**                              ptoken
 )
 {
-    if( NULL != init &&
+    if (NULL != init &&
         NULL != init->hostName)
     {
         return pantheios_be_WindowsSyslog_init_a_(
@@ -293,11 +298,11 @@ pantheios_be_WindowsSyslog_init_a_(
 
     *ptoken = NULL;
 
-    if(NULL == ctxt)
+    if (NULL == ctxt)
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    else if(NULL != ::strpbrk(processIdentity, " \t\r\n\b\v"))
+    else if (NULL != ::strpbrk(processIdentity, " \t\r\n\b\v"))
     {
         return PANTHEIOS_BE_INIT_RC_INVALID_PROCESSID;
     }
@@ -309,14 +314,14 @@ pantheios_be_WindowsSyslog_init_a_(
         const unsigned long         ADDR_BROADCAST  =   INADDR_BROADCAST;
         BOOL                        bBroadcast      =   TRUE;
 
-        if(0 != ::WSAStartup(0x0202, &wsadata))
+        if (0 != ::WSAStartup(0x0202, &wsadata))
         {
             goto error_startup;
         }
 
         /* (i) apply Null Object (Variable) pattern */
 
-        if(NULL == init)
+        if (NULL == init)
         {
             pantheios_be_WindowsSyslog_getDefaultAppInit(&init_);
 
@@ -331,13 +336,18 @@ pantheios_be_WindowsSyslog_init_a_(
         ctxt->flags =   init->flags;
 
         memset(&addr_in, 0, sizeof(addr_in));
-        if( 0 == init->addrSize &&
+        if (0 == init->addrSize &&
             NULL != hostName)
         {
+#ifdef _WIN32
+# pragma warning(push)
+# pragma warning(disable : 4996)
+#endif
+
             unsigned long   addr = ::inet_addr(hostName);
             struct hostent* he;
 
-            if( INADDR_BROADCAST == addr &&
+            if (INADDR_BROADCAST == addr &&
                 0 != ::strcmp(hostName, "255.255.255.255") &&
                 NULL != (he = ::gethostbyname(hostName)))
             {
@@ -347,10 +357,14 @@ pantheios_be_WindowsSyslog_init_a_(
             {
                 memcpy(&addr_in.sin_addr, &addr, sizeof(addr));
             }
+
+#ifdef _WIN32
+# pragma warning(pop)
+#endif
         }
         else
         {
-            switch(init->addrSize)
+            switch (init->addrSize)
             {
                 case    16:
                 default:
@@ -363,7 +377,7 @@ pantheios_be_WindowsSyslog_init_a_(
                     addr_in.sin_addr.S_un.S_un_b.s_b3   =   init->bytes[2];
                     addr_in.sin_addr.S_un.S_un_b.s_b4   =   init->bytes[3];
 
-                    if(addr_in.sin_addr.s_addr != 0xffffffff)
+                    if (addr_in.sin_addr.s_addr != 0xffffffff)
                     {
                         bBroadcast = FALSE;
                     }
@@ -374,31 +388,31 @@ pantheios_be_WindowsSyslog_init_a_(
         addr_in.sin_port    =   ::htons(init->port);
 
         ctxt->sk = ::socket(AF_INET, SOCK_DGRAM, 0);
-        if(stlsoft_static_cast(SOCKET, SOCKET_ERROR) == ctxt->sk)
+        if (stlsoft_static_cast(SOCKET, SOCKET_ERROR) == ctxt->sk)
         {
             goto error_sock;
         }
 
         ctxt->processIdentity       =   pantheios_util_strdup_nothrow_m(processIdentity);
-        if(NULL == ctxt->processIdentity)
+        if (NULL == ctxt->processIdentity)
         {
             goto error_procId;
         }
         ctxt->cchProcessIdentity    =   ::strlen(ctxt->processIdentity);
 
         ctxt->hostIdentity          =   pan_make_hostIdentity_();
-        if(NULL == ctxt->hostIdentity)
+        if (NULL == ctxt->hostIdentity)
         {
             goto error_hostId;
         }
         ctxt->cchHostIdentity       =   ::strlen(ctxt->hostIdentity);
 
-        if(bBroadcast)
+        if (bBroadcast)
         {
             ::setsockopt(ctxt->sk, SOL_SOCKET, SO_BROADCAST, (char const*)&bBroadcast, sizeof(bBroadcast));
         }
 
-        if(SOCKET_ERROR == ::connect(ctxt->sk, (struct sockaddr const*)&addr_in, sizeof(addr_in)))
+        if (SOCKET_ERROR == ::connect(ctxt->sk, (struct sockaddr const*)&addr_in, sizeof(addr_in)))
         {
             goto error_connect;
         }
@@ -494,11 +508,11 @@ pantheios_be_WindowsSyslog_logEntry_a_(
     struct tm*          tm          =   &tm_;
     errno_t             err         =   fns[0 != (ctxt->flags & PANTHEIOS_BE_WINDOWSSYSLOG_F_USE_SYSTEM_TIME)](tm, &t);
 
-    if(0 != err)
+    if (0 != err)
     {
         char    msg[1001];
 
-        if(0 != ::strerror_s(&msg[0], STLSOFT_NUM_ELEMENTS(msg), err))
+        if (0 != ::strerror_s(&msg[0], STLSOFT_NUM_ELEMENTS(msg), err))
         {
             msg[0] = '\0';
         }
@@ -524,7 +538,7 @@ pantheios_be_WindowsSyslog_logEntry_a_(
     buffer_a_t buffer(1 + cchTotal);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(0 == buffer.size())
+    if (0 == buffer.size())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -601,7 +615,7 @@ pantheios_be_WindowsSyslog_parseArgs(
     // 1. Parse the stock arguments
     int res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
 
-    if(res >= 0)
+    if (res >= 0)
     {
         pan_slice_t address;
         pan_slice_t port;
@@ -610,9 +624,9 @@ pantheios_be_WindowsSyslog_parseArgs(
         // 2.a Parse the custom argument: "address"
         res = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("address"), &address);
 
-        if(res > 0)
+        if (res > 0)
         {
-            if(address.len > sizeof(init->hostNameBuff) - 1)
+            if (address.len > sizeof(init->hostNameBuff) - 1)
             {
                 res = PANTHEIOS_BE_INIT_RC_ARGUMENT_TOO_LONG;
             }
@@ -625,12 +639,12 @@ pantheios_be_WindowsSyslog_parseArgs(
             }
         }
 
-        if(res >= 0)
+        if (res >= 0)
         {
             // 2.b Parse the custom argument: "port"
             res = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("port"), &port);
 
-            if(res > 0)
+            if (res > 0)
             {
                 PAN_CHAR_T  sz[21];
                 int         portNum;
@@ -640,7 +654,7 @@ pantheios_be_WindowsSyslog_parseArgs(
 
                 portNum = pan_atoi_(sz);
 
-                if( portNum > 0 &&
+                if (portNum > 0 &&
                     portNum < 65536)
                 {
                     init->port = static_cast<pantheios_uint16_t>(portNum);
@@ -652,12 +666,12 @@ pantheios_be_WindowsSyslog_parseArgs(
             }
         }
 
-        if(res >= 0)
+        if (res >= 0)
         {
             // 2.b Parse the custom argument: "facility"
             res = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("facility"), &facility);
 
-            if(res > 0)
+            if (res > 0)
             {
                 PAN_CHAR_T  sz[21];
                 int         facilityNum;
@@ -667,7 +681,7 @@ pantheios_be_WindowsSyslog_parseArgs(
 
                 facilityNum = pan_atoi_(sz);
 
-                if( facilityNum >= 0 &&
+                if (facilityNum >= 0 &&
                     facilityNum < 24)
                 {
                     init->facility = static_cast<pantheios_uint8_t>(facilityNum);
@@ -680,25 +694,25 @@ pantheios_be_WindowsSyslog_parseArgs(
         }
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2.d Parse the custom argument: "useStderr"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("useStderr"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_PERROR, &init->flags);
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2.e Parse the custom argument: "useConsole"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("useConsole"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_CONS, &init->flags);
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2.f Parse the custom argument: "showPid"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("showPid"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_PID, &init->flags);
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2.g Parse the custom argument: "connectImmediately"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("connectImmediately"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY, &init->flags);
@@ -717,7 +731,7 @@ pan_make_hostIdentity_(void)
     PAN_CHAR_T  szHostName[1 + MAX_COMPUTERNAME_LENGTH];
     size_t      cch = pantheios_getHostName(&szHostName[0], STLSOFT_NUM_ELEMENTS(szHostName));
 
-    switch(cch)
+    switch (cch)
     {
         case    0:
         case    STLSOFT_NUM_ELEMENTS(szHostName):
@@ -760,6 +774,7 @@ pri_print_(
 
     return r;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

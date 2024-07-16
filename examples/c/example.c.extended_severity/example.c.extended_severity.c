@@ -31,6 +31,7 @@
 /* Standard C header files */
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
  */
@@ -52,7 +53,7 @@ int main()
 {
   int i = pantheios_init();
 
-  if(i >= 0)
+  if (i >= 0)
   {
     /* 1. Using the Pantheios API macro PANTHEIOS_MAKE_EXTENDED_SEVERITY() */
     pantheios_logprintf(PANTHEIOS_MAKE_EXTENDED_SEVERITY(PANTHEIOS_SEV_NOTICE, 10), PANTHEIOS_LITERAL_STRING("hello"));

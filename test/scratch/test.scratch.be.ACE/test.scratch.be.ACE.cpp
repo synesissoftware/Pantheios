@@ -104,15 +104,15 @@ ACE_TMAIN(int /* argc */, ACE_TCHAR* /* argv */[])
 
         return EXIT_SUCCESS;
     }
-    catch(std::bad_alloc &)
+    catch (std::bad_alloc &)
     {
         pantheios::log_CRITICAL("out of memory");
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         pantheios::log_ALERT("Exception: ", x);
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unexpected unknown error");
     }

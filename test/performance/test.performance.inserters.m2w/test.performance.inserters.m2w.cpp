@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/performance/test.performance.inserters.m2w/test.performance.inserters.m2w.cpp
+ * File:    test/performance/test.performance.inserters.m2w/test.performance.inserters.m2w.cpp
  *
- * Purpose:     Implementation file for the test.performance.inserters.m2w project.
+ * Purpose: Implementation file for the test.performance.inserters.m2w project.
  *
- * Created:     22nd November 2010
- * Updated:     16th December 2023
+ * Created: 22nd November 2010
+ * Updated: 7th February 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,6 +43,7 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -53,13 +54,17 @@ const int       ITERATIONS  =   1;
 const int       ITERATIONS  =   10000;
 #endif /* _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   L"test.performance.inserters.m2w";
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int argc, char** argv)
 {
@@ -78,13 +83,13 @@ static int main_(int argc, char** argv)
     const char  mbstr3[]    =   "the third wide string, which is quite a bit bigger than the first and second put together, but still is massively smaller than the fourth";
     char        mbstr4[10001];  std::fill(&mbstr4[0], &mbstr4[0] + STLSOFT_NUM_ELEMENTS(mbstr4) - 1, '~'); mbstr4[STLSOFT_NUM_ELEMENTS(mbstr4) - 1] = L'\0';
 
-    if(1 != argc)
+    if (1 != argc)
     {
-        if(0 == ::strcmp("on", argv[1]))
+        if (0 == ::strcmp("on", argv[1]))
         {
             pantheios_fe_simple_setSeverityCeiling(PANTHEIOS_SEV_DEBUG);
         }
-        else if(0 == ::strcmp("off", argv[1]))
+        else if (0 == ::strcmp("off", argv[1]))
         {
             pantheios_fe_simple_setSeverityCeiling(PANTHEIOS_SEV_WARNING);
         }
@@ -94,9 +99,10 @@ static int main_(int argc, char** argv)
         }
     }
 
+
     // Small (convert)
 
-    { for(int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
 #if defined(STLSOFT_OS_IS_WINDOWS)
         using winstl::m2w;
@@ -105,7 +111,7 @@ static int main_(int argc, char** argv)
 #endif /* OS */
 
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             len_cvrt_small = pantheios::log_NOTICE(L"abc ", m2w(mbstr1).c_str(), L" - ", m2w(mbstr2).c_str(), L" - ", m2w(mbstr3).c_str(), L".");
         }}
@@ -115,12 +121,12 @@ static int main_(int argc, char** argv)
 
     // Small (inserter)
 
-    { for(int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
         using pantheios::m2w;
 
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             len_insrt_small = pantheios::log_NOTICE(L"abc ", m2w(mbstr1), L" - ", m2w(mbstr2), L" - ", m2w(mbstr3), L".");
         }}
@@ -128,11 +134,12 @@ static int main_(int argc, char** argv)
         tm_insrt_small = counter.get_microseconds();
     }}
 
-    fprintf(stderr, "small: winstl:pantheios: %2.4g\n", (double)tm_cvrt_small/(double)tm_insrt_small);
+    fprintf(stderr, "small: winstl : pantheios:\t% 9.04f\n", (double)tm_cvrt_small/(double)tm_insrt_small);
+
 
     // Large (inserter)
 
-    { for(int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
 #if defined(STLSOFT_OS_IS_WINDOWS)
         using winstl::m2w;
@@ -141,7 +148,7 @@ static int main_(int argc, char** argv)
 #endif /* OS */
 
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             len_cvrt_large = pantheios::log_NOTICE(L"abc ", m2w(mbstr1).c_str(), L" - ", m2w(mbstr2).c_str(), L" - ", m2w(mbstr3).c_str(), L" - ", m2w(mbstr4).c_str(), L".");
         }}
@@ -151,12 +158,12 @@ static int main_(int argc, char** argv)
 
     // Large (inserter)
 
-    { for(int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
         using pantheios::m2w;
 
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             len_insrt_large = pantheios::log_NOTICE(L"abc ", m2w(mbstr1), L" - ", m2w(mbstr2), L" - ", m2w(mbstr3), L" - ", m2w(mbstr4), L".");
         }}
@@ -164,16 +171,17 @@ static int main_(int argc, char** argv)
         tm_insrt_large = counter.get_microseconds();
     }}
 
-    if(len_cvrt_small != len_insrt_small)
+    if (len_cvrt_small != len_insrt_small)
     {
         fprintf(stderr, "small lengths don't match!\n");
     }
-    if(len_cvrt_large != len_insrt_large)
+    if (len_cvrt_large != len_insrt_large)
     {
         fprintf(stderr, "small lengths don't match!\n");
     }
 
-    fprintf(stderr, "large: winstl:pantheios: %2.4g\n", (double)tm_cvrt_large/(double)tm_insrt_large);
+    fprintf(stderr, "large: winstl : pantheios:\t% 9.04f\n", (double)tm_cvrt_large/(double)tm_insrt_large);
+
 
     return EXIT_SUCCESS;
 }
@@ -193,20 +201,20 @@ int main(int argc, char** argv)
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try
     {
         res = main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios::log_ALERT(L"Unexpected general error: ", x, L". Application terminating");
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, L"Unhandled unknown error");
 
@@ -220,6 +228,7 @@ int main(int argc, char** argv)
 
     return res;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

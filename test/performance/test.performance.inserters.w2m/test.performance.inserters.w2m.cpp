@@ -1,13 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/performance/test.performance.inserters.w2m/test.performance.inserters.w2m.cpp
+ * File:    test/performance/test.performance.inserters.w2m/test.performance.inserters.w2m.cpp
  *
- * Purpose:     Implementation file for the test.performance.inserters.w2m project.
+ * Purpose: Implementation file for the test.performance.inserters.w2m project.
  *
- * Created:     2nd September 2008
- * Updated:     16th December 2023
+ * Created: 2nd September 2008
+ * Updated: 15th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
-
 
 
 /* Pantheios header files */
@@ -38,6 +37,7 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
@@ -48,37 +48,37 @@ const int       ITERATIONS  =   1;
 const int       ITERATIONS  =   10000;
 #endif /* _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEIOS_LITERAL_STRING("test.performance.inserters.w2m");
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
  * character encoding
  */
 
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
+
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 #if 0
-typedef std::string     string_t;
+typedef std::string                                         string_t;
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -105,13 +105,13 @@ static int main_(int argc, char** argv)
     const wchar_t   wstr3[]     =   L"the third wide string, which is quite a bit bigger than the first and second put together, but still is massively smaller than the fourth";
     wchar_t         wstr4[10001];   std::fill(&wstr4[0], &wstr4[0] + STLSOFT_NUM_ELEMENTS(wstr4) - 1, L'~'); wstr4[STLSOFT_NUM_ELEMENTS(wstr4) - 1] = L'\0';
 
-    if(1 != argc)
+    if (1 != argc)
     {
-        if(0 == ::strcmp("on", argv[1]))
+        if (0 == ::strcmp("on", argv[1]))
         {
             pantheios_fe_simple_setSeverityCeiling(PANTHEIOS_SEV_DEBUG);
         }
-        else if(0 == ::strcmp("off", argv[1]))
+        else if (0 == ::strcmp("off", argv[1]))
         {
             pantheios_fe_simple_setSeverityCeiling(PANTHEIOS_SEV_WARNING);
         }
@@ -121,9 +121,10 @@ static int main_(int argc, char** argv)
         }
     }
 
+
     // Small (convert)
 
-    { for(int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
 #if defined(STLSOFT_OS_IS_WINDOWS)
         using winstl::w2m;
@@ -132,7 +133,7 @@ static int main_(int argc, char** argv)
 #endif /* OS */
 
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             len_cvrt_small = pantheios::log_NOTICE("abc ", w2m(wstr1).c_str(), " - ", w2m(wstr2).c_str(), " - ", w2m(wstr3).c_str(), ".");
         }}
@@ -142,12 +143,12 @@ static int main_(int argc, char** argv)
 
     // Small (inserter)
 
-    { for(int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
         using pantheios::w2m;
 
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             len_insrt_small = pantheios::log_NOTICE("abc ", w2m(wstr1), " - ", w2m(wstr2), " - ", w2m(wstr3), ".");
         }}
@@ -155,11 +156,12 @@ static int main_(int argc, char** argv)
         tm_insrt_small = counter.get_microseconds();
     }}
 
-    fprintf(stderr, "small: winstl:pantheios: %2.4g\n", (double)tm_cvrt_small/(double)tm_insrt_small);
+    fprintf(stderr, "small: winstl : pantheios:\t% 9.04f\n", (double)tm_cvrt_small/(double)tm_insrt_small);
+
 
     // Large (inserter)
 
-    { for(int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
 #if defined(STLSOFT_OS_IS_WINDOWS)
         using winstl::w2m;
@@ -168,7 +170,7 @@ static int main_(int argc, char** argv)
 #endif /* OS */
 
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             len_cvrt_large = pantheios::log_NOTICE("abc ", w2m(wstr1).c_str(), " - ", w2m(wstr2).c_str(), " - ", w2m(wstr3).c_str(), " - ", w2m(wstr4).c_str(), ".");
         }}
@@ -178,12 +180,12 @@ static int main_(int argc, char** argv)
 
     // Large (inserter)
 
-    { for(int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
+    { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
         using pantheios::w2m;
 
         counter.start();
-        { for(int i = 0; i != ITERATIONS; ++i)
+        { for (int i = 0; i != ITERATIONS; ++i)
         {
             len_insrt_large = pantheios::log_NOTICE("abc ", w2m(wstr1), " - ", w2m(wstr2), " - ", w2m(wstr3), " - ", w2m(wstr4), ".");
         }}
@@ -191,16 +193,16 @@ static int main_(int argc, char** argv)
         tm_insrt_large = counter.get_microseconds();
     }}
 
-    if(len_cvrt_small != len_insrt_small)
+    if (len_cvrt_small != len_insrt_small)
     {
         fprintf(stderr, "small lengths don't match!\n");
     }
-    if(len_cvrt_large != len_insrt_large)
+    if (len_cvrt_large != len_insrt_large)
     {
         fprintf(stderr, "small lengths don't match!\n");
     }
 
-    fprintf(stderr, "large: winstl:pantheios: %2.4g\n", (double)tm_cvrt_large/(double)tm_insrt_large);
+    fprintf(stderr, "large: winstl : pantheios:\t% 9.04f\n", (double)tm_cvrt_large/(double)tm_insrt_large);
 
 #else /* ? !PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -208,6 +210,7 @@ static int main_(int argc, char** argv)
     STLSOFT_SUPPRESS_UNUSED(argv);
 
 #endif /* !PANTHEIOS_USE_WIDE_STRINGS */
+
 
     return EXIT_SUCCESS;
 }
@@ -227,7 +230,7 @@ int main(int argc, char** argv)
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try
@@ -239,13 +242,13 @@ int main(int argc, char** argv)
 
         res = main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
                 pantheios::log_ALERT(PSTR("Unexpected general error: "), pantheios::exception(x), PSTR(". Application terminating"));
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, PSTR("Unhandled unknown error"));
 

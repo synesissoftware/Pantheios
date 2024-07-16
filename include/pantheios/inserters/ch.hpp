@@ -74,6 +74,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CH
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CH
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -84,6 +85,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_REVISION  1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_EDIT      3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -96,6 +98,7 @@
 # include <pantheios/inserters/character.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CHARACTER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -105,6 +108,7 @@ namespace pantheios
 {
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes
@@ -141,6 +145,7 @@ namespace pantheios
  */
 typedef character ch;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -148,6 +153,7 @@ typedef character ch;
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

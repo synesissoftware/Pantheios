@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inserters/interval.cpp
+ * File:    inserters/interval.cpp
  *
- * Purpose:     Implementation of the inserter classes.
+ * Purpose: Implementation of the `interval` inserter class.
  *
- * Created:     19th April 2014
- * Updated:     16th December 2023
+ * Created: 19th April 2014
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,6 +59,7 @@
 #include <stlsoft/shims/access/string/std/c_string.h>
 #include <platformstl/platformstl.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * warning suppression
  */
@@ -68,15 +69,17 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_strlen_                    ::wcslen
+# define pan_strlen_                                        ::wcslen
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_strlen_                    ::strlen
+# define pan_strlen_                                        ::strlen
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -86,6 +89,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * interval
@@ -107,7 +111,7 @@ interval::interval(int interval, interval::units units)
 pantheios_char_t const*
 interval::data() const
 {
-    if(m_result.empty())
+    if (m_result.empty())
     {
         construct_();
     }
@@ -117,7 +121,7 @@ interval::data() const
 
 size_t interval::size() const
 {
-    if(m_result.empty())
+    if (m_result.empty())
     {
         construct_();
     }
@@ -132,7 +136,7 @@ void interval::construct_()
     interval::units units       =   m_units;
     pan_sint64_t    interval    =   m_interval;
 
-    if(0 == interval)
+    if (0 == interval)
     {
         static pantheios_char_t const* const s_zeroes[] =
         {
@@ -154,10 +158,10 @@ void interval::construct_()
     {
         pantheios_char_t const* u = NULL;
 
-        switch(units)
+        switch (units)
         {
             case    microseconds:
-                if(0 != (interval % 1000))
+                if (0 != (interval % 1000))
                 {
                     u = PANTHEIOS_LITERAL_STRING("us");
                 }
@@ -165,8 +169,9 @@ void interval::construct_()
                 {
                     interval /= 1000;
 
+                    /* fall through */
             case    milliseconds:
-                    if(0 != (interval % 1000))
+                    if (0 != (interval % 1000))
                     {
                         u = PANTHEIOS_LITERAL_STRING("ms");
                     }
@@ -174,8 +179,9 @@ void interval::construct_()
                     {
                         interval /= 1000;
 
+                        /* fall through */
             case    seconds:
-                        if(0 != (interval % 60))
+                        if (0 != (interval % 60))
                         {
                             u = PANTHEIOS_LITERAL_STRING("s");
                         }
@@ -183,8 +189,9 @@ void interval::construct_()
                         {
                             interval /= 60;
 
+                            /* fall through */
             case    minutes:
-                            if(0 != (interval % 60))
+                            if (0 != (interval % 60))
                             {
                                 u = (1 == interval) ? PANTHEIOS_LITERAL_STRING("min") : PANTHEIOS_LITERAL_STRING("mins");
                             }
@@ -192,8 +199,9 @@ void interval::construct_()
                             {
                                 interval /= 60;
 
+                                /* fall through */
             case    hours:
-                                if(0 != (interval % 24))
+                                if (0 != (interval % 24))
                                 {
                                     u = (1 == interval) ? PANTHEIOS_LITERAL_STRING("hr") : PANTHEIOS_LITERAL_STRING("hrs");
                                 }
@@ -201,6 +209,7 @@ void interval::construct_()
                                 {
                                     interval /= 24;
 
+                                    /* fall through */
             case    days:
                                     u = (1 == interval) ? PANTHEIOS_LITERAL_STRING("day") : PANTHEIOS_LITERAL_STRING("days");
                                 }
@@ -227,6 +236,7 @@ void interval::construct_()
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -234,6 +244,7 @@ void interval::construct_()
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

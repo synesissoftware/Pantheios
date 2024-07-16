@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_SAFESTR
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_SAFESTR
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -55,6 +56,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility

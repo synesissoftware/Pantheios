@@ -47,6 +47,7 @@
  *   those compilers for which NoX builds are provided in the distribution.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -54,6 +55,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes

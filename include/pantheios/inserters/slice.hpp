@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PAD
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PAD
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -59,6 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 7
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     13
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +80,7 @@
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -86,6 +89,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -166,6 +170,7 @@ private:
 //namespace inserters
 //{
 #endif /* PANTHEIOS_CF_NAMESPACE_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter functions
@@ -257,6 +262,7 @@ inline slice_inserter slice(
     return slice_inserter(str, len, strName, lenName, equals, separator);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
  */
@@ -343,6 +349,7 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -368,6 +375,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.file.h
+ * File:    pantheios/backends/bec.file.h
  *
- * Purpose:     Declaration of the Pantheios file Stock Back-end API.
+ * Purpose: Declaration of the Pantheios file Stock Back-end API.
  *
- * Created:     10th July 2006
- * Updated:     16th December 2023
+ * Created: 10th July 2006
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FILE
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FILE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MAJOR      4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MINOR      4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       37
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       38
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -78,6 +81,7 @@
  * \ingroup group__backend__stock_backends
  * Back-end library that outputs to a file.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -157,33 +161,36 @@
  */
 
 
-#define PANTHEIOS_BE_FILE_F_TRUNCATE                    (0x00100000)
-#define PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS     (0x00200000)
-#define PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS            (0x00400000)
-#define PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS         (0x00800000)
-#define PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS    (0x00080000)
-#define PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY             (0x00040000)
+#define PANTHEIOS_BE_FILE_F_TRUNCATE                        (0x00100000)
+#define PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS         (0x00200000)
+#define PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS                (0x00400000)
+#define PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS             (0x00800000)
+#define PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS        (0x00080000)
+#define PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY                 (0x00040000)
 
 #if 0 /* None of the following are yet supported: */
-#define PANTHEIOS_BE_FILE_F_ROLL_ON_SIZE                (0x01000000)
-#define PANTHEIOS_BE_FILE_F_ROLL_ON_ENTRY_COUNT         (0x02000000)
-#define PANTHEIOS_BE_FILE_F_ROLL_ON_DATETIME            (0x04000000)
+#define PANTHEIOS_BE_FILE_F_ROLL_ON_SIZE                    (0x01000000)
+#define PANTHEIOS_BE_FILE_F_ROLL_ON_ENTRY_COUNT             (0x02000000)
+#define PANTHEIOS_BE_FILE_F_ROLL_ON_DATETIME                (0x04000000)
 
-#define PANTHEIOS_BE_FILE_F_ROLL_ON_1MB                 (0x10000000 | PANTHEIOS_BE_FILE_F_ROLL_ON_SIZE)
-#define PANTHEIOS_BE_FILE_F_ROLL_ON_8K_ENTRIES          (0x10000000 | PANTHEIOS_BE_FILE_F_ROLL_ON_ENTRY_COUNT)
-#define PANTHEIOS_BE_FILE_F_ROLL_ON_DAY                 (0x10000000 | PANTHEIOS_BE_FILE_F_ROLL_ON_DATETIME)
+#define PANTHEIOS_BE_FILE_F_ROLL_ON_1MB                     (0x10000000 | PANTHEIOS_BE_FILE_F_ROLL_ON_SIZE)
+#define PANTHEIOS_BE_FILE_F_ROLL_ON_8K_ENTRIES              (0x10000000 | PANTHEIOS_BE_FILE_F_ROLL_ON_ENTRY_COUNT)
+#define PANTHEIOS_BE_FILE_F_ROLL_ON_DAY                     (0x10000000 | PANTHEIOS_BE_FILE_F_ROLL_ON_DATETIME)
 
-#define PANTHEIOS_BE_FILE_F_ROLL_TO_SELF                (0x20000000)
+#define PANTHEIOS_BE_FILE_F_ROLL_TO_SELF                    (0x20000000)
 #endif /* 0 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+
 struct Pantheios_be_file_no_longer_defines_the_function_pantheios_be_file_setFileName_and_Use_pantheios_be_file_setFilePath_instead_;
-# define Pantheios_be_file_setFileName (_pantheios_be_file_no_longer_defines_the_function_pantheios_be_file_setFileName_and_Use_pantheios_be_file_setFilePath_instead_)
+# define Pantheios_be_file_setFileName                      (_pantheios_be_file_no_longer_defines_the_function_pantheios_be_file_setFileName_and_Use_pantheios_be_file_setFilePath_instead_)
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -197,7 +204,7 @@ struct Pantheios_be_file_no_longer_defines_the_function_pantheios_be_file_setFil
  * represented in caller-side memory (i.e.
  * <code>pan_be_file_init_t::fileName != &pan_be_file_init_t::buff[0]</code>).
  */
-#define PANTHEIOS_BE_FILE_MAX_FILE_LEN              (1000)
+#define PANTHEIOS_BE_FILE_MAX_FILE_LEN                      (1000)
 
 /** Structure used for specifying initialisation information to the
  *    be.file library.
@@ -231,6 +238,7 @@ public: /* Construction */
 #ifndef __cplusplus
 typedef struct pan_be_file_init_t   pan_be_file_init_t;
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions
@@ -268,6 +276,7 @@ PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(
     int                     backEndId
 ,   pan_be_file_init_t*     init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -448,6 +457,7 @@ pan_be_file_init_t::pan_be_file_init_t()
 #endif /* __cplusplus */
 
 /* ////////////////////////////////////////////////////////////////////// */
+
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FILE */
 

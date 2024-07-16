@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.N.with.custom.fe/test.scratch.be.N.with.custom.fe.cpp
+ * File:    test/scratch/test.scratch.be.N.with.custom.fe/test.scratch.be.N.with.custom.fe.cpp
  *
- * Purpose:     Implementation file for the test.scratch.be.N.with.custom.fe project.
+ * Purpose: Implementation file for the test.scratch.be.N.with.custom.fe project.
  *
- * Created:     23rd December 2010
- * Updated:     16th January 2023
+ * Created: 23rd December 2010
+ * Updated: 16th July 2024
  *
- * Thanks:      To wassime, for submitting the original program definition.
+ * Thanks:  To wassime, for submitting the original program definition.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,13 +32,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
-#define WG_LOG_FILE_ID          1
-#define WG_LOG_CONSOLE_ID       2
-#define WG_LOG_FILE_ERROR_ID    3
+#define WG_LOG_FILE_ID                                      1
+#define WG_LOG_CONSOLE_ID                                   2
+#define WG_LOG_FILE_ERROR_ID                                3
 
 namespace
 {
@@ -47,11 +48,13 @@ static int iCeilingMain     = PANTHEIOS_SEV_NOTICE;
 static int iCeilingError    = PANTHEIOS_SEV_ERROR;
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.N.with.custom.fe");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -75,17 +78,18 @@ int main(int argc, char** argv)
     {
         return main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios::log_ALERT("Unexpected general error: ", x, ". Application terminating");
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
     }
 
     return EXIT_FAILURE;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Back-end configuration
@@ -99,6 +103,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 
     PANTHEIOS_BE_N_TERMINATOR_ENTRY
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Custom front-end
@@ -121,7 +126,7 @@ PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(void*)
 
 PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(void*, int severity, int beid)
 {
-    switch(beid)
+    switch (beid)
     {
         // Must handle PANTHEIOS_BEID_ALL, as that's the Application Layer's
         // (initial) enquiry as to whether anything should be logged at all
@@ -153,6 +158,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(void*, int severity, int beid)
             return false;
     }
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

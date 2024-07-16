@@ -57,6 +57,7 @@
 # include <unistd.h>
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -65,6 +66,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * core functions
@@ -99,6 +101,7 @@ PANTHEIOS_CALL(void) pantheios_exitProcess(int code)
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace core */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

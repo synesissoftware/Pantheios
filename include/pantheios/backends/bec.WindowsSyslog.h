@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.WindowsSyslog.h
+ * File:    pantheios/backends/bec.WindowsSyslog.h
  *
- * Purpose:     Declaration of the Pantheios Windows-SysLog Stock Back-end API.
+ * Purpose: Declaration of the Pantheios Windows-SysLog Stock Back-end API.
  *
- * Created:     23rd September 2005
- * Updated:     16th January 2023
+ * Created: 23rd September 2005
+ * Updated: 13th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MAJOR     4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      27
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -70,6 +72,7 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -79,6 +82,7 @@
  * Back-end library that provides a custom implementation of the
  *   <b>SysLog</b>-protocol for Windows.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -95,7 +99,7 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__flags
  */
 
-#define PANTHEIOS_BE_WINDOWSSYSLOG_F_USE_SYSTEM_TIME  PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
+#define PANTHEIOS_BE_WINDOWSSYSLOG_F_USE_SYSTEM_TIME        PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
 
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_PERROR
@@ -108,7 +112,7 @@
  * contain the SysLog <code>LOG_PERROR</code> flag.
  */
 
-#define PANTHEIOS_BE_WINDOWSSYSLOG_F_PERROR    (0x00100000)
+#define PANTHEIOS_BE_WINDOWSSYSLOG_F_PERROR                 (0x00100000)
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_CONS
  * Causes the \ref group__backend__stock_backends__WindowsSyslog to
@@ -120,7 +124,7 @@
  * contain the SysLog <code>LOG_CONS</code> flag.
  */
 
-#define PANTHEIOS_BE_WINDOWSSYSLOG_F_CONS      (0x00200000)
+#define PANTHEIOS_BE_WINDOWSSYSLOG_F_CONS                   (0x00200000)
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_PID
  * Causes the \ref group__backend__stock_backends__WindowsSyslog to include
@@ -131,7 +135,7 @@
  * contain the SysLog <code>LOG_PID</code> flag.
  */
 
-#define PANTHEIOS_BE_WINDOWSSYSLOG_F_PID       (0x00400000)
+#define PANTHEIOS_BE_WINDOWSSYSLOG_F_PID                    (0x00400000)
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY
  * Causes the \ref group__backend__stock_backends__WindowsSyslog to
@@ -143,7 +147,7 @@
  * contain the SysLog <code>LOG_NDELAY</code> flag.
  */
 
-#define PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY    (0x00800000)
+#define PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY                 (0x00800000)
 
 
 
@@ -158,9 +162,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_KERN
-# define PANTHEIOS_SYSLOG_FAC_KERN          LOG_KERN
+# define PANTHEIOS_SYSLOG_FAC_KERN                          LOG_KERN
 #else /* ? LOG_KERN */
-# define PANTHEIOS_SYSLOG_FAC_KERN          (0)
+# define PANTHEIOS_SYSLOG_FAC_KERN                          (0)
 #endif /* LOG_KERN */
 
 /** \def PANTHEIOS_SYSLOG_FAC_USER
@@ -169,9 +173,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_USER
-# define PANTHEIOS_SYSLOG_FAC_USER          LOG_USER
+# define PANTHEIOS_SYSLOG_FAC_USER                          LOG_USER
 #else /* ? LOG_USER */
-# define PANTHEIOS_SYSLOG_FAC_USER          (1)
+# define PANTHEIOS_SYSLOG_FAC_USER                          (1)
 #endif /* LOG_USER */
 
 /** \def PANTHEIOS_SYSLOG_FAC_MAIL
@@ -180,9 +184,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_MAIL
-# define PANTHEIOS_SYSLOG_FAC_MAIL          LOG_MAIL
+# define PANTHEIOS_SYSLOG_FAC_MAIL                          LOG_MAIL
 #else /* ? LOG_MAIL */
-# define PANTHEIOS_SYSLOG_FAC_MAIL          (2)
+# define PANTHEIOS_SYSLOG_FAC_MAIL                          (2)
 #endif /* LOG_MAIL */
 
 /** \def PANTHEIOS_SYSLOG_FAC_DAEMON
@@ -191,9 +195,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_DAEMON
-# define PANTHEIOS_SYSLOG_FAC_DAEMON        LOG_DAEMON
+# define PANTHEIOS_SYSLOG_FAC_DAEMON                        LOG_DAEMON
 #else /* ? LOG_DAEMON */
-# define PANTHEIOS_SYSLOG_FAC_DAEMON        (3)
+# define PANTHEIOS_SYSLOG_FAC_DAEMON                        (3)
 #endif /* LOG_DAEMON */
 
 /** \def PANTHEIOS_SYSLOG_FAC_AUTH
@@ -202,9 +206,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_AUTH
-# define PANTHEIOS_SYSLOG_FAC_AUTH          LOG_AUTH
+# define PANTHEIOS_SYSLOG_FAC_AUTH                          LOG_AUTH
 #else /* ? LOG_AUTH */
-# define PANTHEIOS_SYSLOG_FAC_AUTH          (4)
+# define PANTHEIOS_SYSLOG_FAC_AUTH                          (4)
 #endif /* LOG_AUTH */
 
 /** \def PANTHEIOS_SYSLOG_FAC_SYSLOG
@@ -213,9 +217,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_SYSLOG
-# define PANTHEIOS_SYSLOG_FAC_SYSLOG        LOG_SYSLOG
+# define PANTHEIOS_SYSLOG_FAC_SYSLOG                        LOG_SYSLOG
 #else /* ? LOG_SYSLOG */
-# define PANTHEIOS_SYSLOG_FAC_SYSLOG        (5)
+# define PANTHEIOS_SYSLOG_FAC_SYSLOG                        (5)
 #endif /* LOG_SYSLOG */
 
 /** \def PANTHEIOS_SYSLOG_FAC_LPR
@@ -224,9 +228,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LPR
-# define PANTHEIOS_SYSLOG_FAC_LPR           LOG_LPR
+# define PANTHEIOS_SYSLOG_FAC_LPR                           LOG_LPR
 #else /* ? LOG_LPR */
-# define PANTHEIOS_SYSLOG_FAC_LPR           (6)
+# define PANTHEIOS_SYSLOG_FAC_LPR                           (6)
 #endif /* LOG_LPR */
 
 /** \def PANTHEIOS_SYSLOG_FAC_NEWS
@@ -235,9 +239,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_NEWS
-# define PANTHEIOS_SYSLOG_FAC_NEWS          LOG_NEWS
+# define PANTHEIOS_SYSLOG_FAC_NEWS                          LOG_NEWS
 #else /* ? LOG_NEWS */
-# define PANTHEIOS_SYSLOG_FAC_NEWS          (7)
+# define PANTHEIOS_SYSLOG_FAC_NEWS                          (7)
 #endif /* LOG_NEWS */
 
 /** \def PANTHEIOS_SYSLOG_FAC_UUCP
@@ -246,9 +250,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_UUCP
-# define PANTHEIOS_SYSLOG_FAC_UUCP          LOG_UUCP
+# define PANTHEIOS_SYSLOG_FAC_UUCP                          LOG_UUCP
 #else /* ? LOG_UUCP */
-# define PANTHEIOS_SYSLOG_FAC_UUCP          (8)
+# define PANTHEIOS_SYSLOG_FAC_UUCP                          (8)
 #endif /* LOG_UUCP */
 
 /** \def PANTHEIOS_SYSLOG_FAC_CRON
@@ -257,9 +261,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_CRON
-# define PANTHEIOS_SYSLOG_FAC_CRON      LOG_CRON
+# define PANTHEIOS_SYSLOG_FAC_CRON                          LOG_CRON
 #else /* ? LOG_CRON */
-# define PANTHEIOS_SYSLOG_FAC_CRON      (9)
+# define PANTHEIOS_SYSLOG_FAC_CRON                          (9)
 #endif /* LOG_CRON */
 
 /** \def PANTHEIOS_SYSLOG_FAC_AUTHPRIV
@@ -268,9 +272,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_AUTHPRIV
-# define PANTHEIOS_SYSLOG_FAC_AUTHPRIV      LOG_AUTHPRIV
+# define PANTHEIOS_SYSLOG_FAC_AUTHPRIV                      LOG_AUTHPRIV
 #else /* ? LOG_AUTHPRIV */
-# define PANTHEIOS_SYSLOG_FAC_AUTHPRIV      (10)
+# define PANTHEIOS_SYSLOG_FAC_AUTHPRIV                      (10)
 #endif /* LOG_AUTHPRIV */
 
 /** \def PANTHEIOS_SYSLOG_FAC_FTP
@@ -279,9 +283,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_FTP
-# define PANTHEIOS_SYSLOG_FAC_FTP           LOG_FTP
+# define PANTHEIOS_SYSLOG_FAC_FTP                           LOG_FTP
 #else /* ? LOG_FTP */
-# define PANTHEIOS_SYSLOG_FAC_FTP           (11)
+# define PANTHEIOS_SYSLOG_FAC_FTP                           (11)
 #endif /* LOG_FTP */
 
 /** \def PANTHEIOS_SYSLOG_FAC_NETINFO
@@ -290,9 +294,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_NETINFO
-# define PANTHEIOS_SYSLOG_FAC_NETINFO       LOG_NETINFO
+# define PANTHEIOS_SYSLOG_FAC_NETINFO                       LOG_NETINFO
 #else /* ? LOG_NETINFO */
-# define PANTHEIOS_SYSLOG_FAC_NETINFO       (12)
+# define PANTHEIOS_SYSLOG_FAC_NETINFO                       (12)
 #endif /* LOG_NETINFO */
 
 /** \def PANTHEIOS_SYSLOG_FAC_REMOTEAUTH
@@ -301,9 +305,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_REMOTEAUTH
-# define PANTHEIOS_SYSLOG_FAC_REMOTEAUTH    LOG_REMOTEAUTH
+# define PANTHEIOS_SYSLOG_FAC_REMOTEAUTH                    LOG_REMOTEAUTH
 #else /* ? LOG_REMOTEAUTH */
-# define PANTHEIOS_SYSLOG_FAC_REMOTEAUTH    (13)
+# define PANTHEIOS_SYSLOG_FAC_REMOTEAUTH                    (13)
 #endif /* LOG_REMOTEAUTH */
 
 /** \def PANTHEIOS_SYSLOG_FAC_INSTALL
@@ -312,9 +316,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_INSTALL
-# define PANTHEIOS_SYSLOG_FAC_INSTALL       LOG_INSTALL
+# define PANTHEIOS_SYSLOG_FAC_INSTALL                       LOG_INSTALL
 #else /* ? LOG_INSTALL */
-# define PANTHEIOS_SYSLOG_FAC_INSTALL       (14)
+# define PANTHEIOS_SYSLOG_FAC_INSTALL                       (14)
 #endif /* LOG_INSTALL */
 
 /** \def PANTHEIOS_SYSLOG_FAC_RAS
@@ -323,9 +327,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_RAS
-# define PANTHEIOS_SYSLOG_FAC_RAS           LOG_RAS
+# define PANTHEIOS_SYSLOG_FAC_RAS                           LOG_RAS
 #else /* ? LOG_RAS */
-# define PANTHEIOS_SYSLOG_FAC_RAS           (15)
+# define PANTHEIOS_SYSLOG_FAC_RAS                           (15)
 #endif /* LOG_RAS */
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL0
@@ -334,9 +338,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL0
-# define PANTHEIOS_SYSLOG_FAC_LOCAL0        LOG_LOCAL0
+# define PANTHEIOS_SYSLOG_FAC_LOCAL0                        LOG_LOCAL0
 #else /* ? LOG_LOCAL0 */
-# define PANTHEIOS_SYSLOG_FAC_LOCAL0        (16)
+# define PANTHEIOS_SYSLOG_FAC_LOCAL0                        (16)
 #endif /* LOG_LOCAL0 */
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL1
@@ -345,9 +349,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL1
-# define PANTHEIOS_SYSLOG_FAC_LOCAL1        LOG_LOCAL1
+# define PANTHEIOS_SYSLOG_FAC_LOCAL1                        LOG_LOCAL1
 #else /* ? LOG_LOCAL1 */
-# define PANTHEIOS_SYSLOG_FAC_LOCAL1        (17)
+# define PANTHEIOS_SYSLOG_FAC_LOCAL1                        (17)
 #endif /* LOG_LOCAL1 */
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL2
@@ -356,9 +360,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL2
-# define PANTHEIOS_SYSLOG_FAC_LOCAL2        LOG_LOCAL2
+# define PANTHEIOS_SYSLOG_FAC_LOCAL2                        LOG_LOCAL2
 #else /* ? LOG_LOCAL2 */
-# define PANTHEIOS_SYSLOG_FAC_LOCAL2        (18)
+# define PANTHEIOS_SYSLOG_FAC_LOCAL2                        (18)
 #endif /* LOG_LOCAL2 */
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL3
@@ -367,9 +371,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL3
-# define PANTHEIOS_SYSLOG_FAC_LOCAL3        LOG_LOCAL3
+# define PANTHEIOS_SYSLOG_FAC_LOCAL3                        LOG_LOCAL3
 #else /* ? LOG_LOCAL3 */
-# define PANTHEIOS_SYSLOG_FAC_LOCAL3        (19)
+# define PANTHEIOS_SYSLOG_FAC_LOCAL3                        (19)
 #endif /* LOG_LOCAL3 */
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL4
@@ -378,9 +382,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL4
-# define PANTHEIOS_SYSLOG_FAC_LOCAL4        LOG_LOCAL4
+# define PANTHEIOS_SYSLOG_FAC_LOCAL4                        LOG_LOCAL4
 #else /* ? LOG_LOCAL4 */
-# define PANTHEIOS_SYSLOG_FAC_LOCAL4        (20)
+# define PANTHEIOS_SYSLOG_FAC_LOCAL4                        (20)
 #endif /* LOG_LOCAL4 */
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL5
@@ -389,9 +393,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL5
-# define PANTHEIOS_SYSLOG_FAC_LOCAL5        LOG_LOCAL5
+# define PANTHEIOS_SYSLOG_FAC_LOCAL5                        LOG_LOCAL5
 #else /* ? LOG_LOCAL5 */
-# define PANTHEIOS_SYSLOG_FAC_LOCAL5        (21)
+# define PANTHEIOS_SYSLOG_FAC_LOCAL5                        (21)
 #endif /* LOG_LOCAL5 */
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL6
@@ -400,9 +404,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL6
-# define PANTHEIOS_SYSLOG_FAC_LOCAL6        LOG_LOCAL6
+# define PANTHEIOS_SYSLOG_FAC_LOCAL6                        LOG_LOCAL6
 #else /* ? LOG_LOCAL6 */
-# define PANTHEIOS_SYSLOG_FAC_LOCAL6        (22)
+# define PANTHEIOS_SYSLOG_FAC_LOCAL6                        (22)
 #endif /* LOG_LOCAL6 */
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL7
@@ -411,9 +415,9 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL7
-# define PANTHEIOS_SYSLOG_FAC_LOCAL7        LOG_LOCAL7
+# define PANTHEIOS_SYSLOG_FAC_LOCAL7                        LOG_LOCAL7
 #else /* ? LOG_LOCAL7 */
-# define PANTHEIOS_SYSLOG_FAC_LOCAL7        (23)
+# define PANTHEIOS_SYSLOG_FAC_LOCAL7                        (23)
 #endif /* LOG_LOCAL7 */
 
 /** \def PANTHEIOS_SYSLOG_FAC_LAUNCHD
@@ -422,10 +426,11 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LAUNCHD
-# define PANTHEIOS_SYSLOG_FAC_LAUNCHD       LOG_LAUNCHD
+# define PANTHEIOS_SYSLOG_FAC_LAUNCHD                       LOG_LAUNCHD
 #else /* ? LOG_LAUNCHD */
-# define PANTHEIOS_SYSLOG_FAC_LAUNCHD       (24)
+# define PANTHEIOS_SYSLOG_FAC_LAUNCHD                       (24)
 #endif /* LOG_LAUNCHD */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -454,7 +459,7 @@ public: /* Construction */
 #endif /* __cplusplus */
 };
 #if !defined(__cplusplus)
-typedef struct pan_be_WindowsSyslog_init_t    pan_be_WindowsSyslog_init_t;
+typedef struct pan_be_WindowsSyslog_init_t                  pan_be_WindowsSyslog_init_t;
 #endif /* !__cplusplus */
 
 
@@ -476,6 +481,7 @@ pantheios_be_WindowsSyslog_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsSyslog_init_t*    init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API

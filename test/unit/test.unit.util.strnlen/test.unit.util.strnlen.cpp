@@ -23,6 +23,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -58,7 +59,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.util.strnlen", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.util.strnlen", verbosity))
     {
         XTESTS_RUN_CASE(test_length_passed_through);
         XTESTS_RUN_CASE(test_length_via_strlen);
@@ -113,7 +114,7 @@ static void test_length_passed_through()
 
     size_t iterations = stlsoft::minimum(size_t(65536u * 16u), size_t(stlsoft::limit_traits<size_t>::maximum() / 4000));
 
-    { for(size_t i = 0; i < iterations; ++i)
+    { for (size_t i = 0; i < iterations; ++i)
     {
         XTESTS_TEST_INTEGER_EQUAL(i, pantheios_util_strnlen(PANTHEIOS_LITERAL_STRING(""), i));
     }}
@@ -124,7 +125,7 @@ static void test_length_via_strlen()
     /* Verify that when the size given is size_t(-1) that the string length
      * is calculated
      */
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
     {
         PAN_CHAR_T const* const string = strings[i];
 

@@ -1,0 +1,30 @@
+
+set(FE_FAIL_SRC_DIR ../../../src/frontends)
+
+file(GLOB FE_FAIL_SRCS
+	${FE_FAIL_SRC_DIR}/fe.fail.c
+)
+
+add_library(Pantheios.fe.fail
+	${FE_FAIL_SRCS}
+)
+
+target_link_libraries(Pantheios.fe.fail
+	PRIVATE
+		STLSoft::STLSoft
+)
+
+target_compile_options(Pantheios.fe.fail PRIVATE
+	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+		-Werror -Wall -Wextra -pedantic
+	>
+	$<$<CXX_COMPILER_ID:MSVC>:
+		/WX /W4
+	>
+)
+
+install(TARGETS Pantheios.fe.fail)
+
+
+# ############################## end of file ############################# #
+

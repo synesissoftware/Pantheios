@@ -1,25 +1,25 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/custom/example.cpp.custom.wrap_log4cxx/example.cpp.custom.wrap_log4cxx.cpp
+ * File:    examples/cpp/custom/example.cpp.custom.wrap_log4cxx/example.cpp.custom.wrap_log4cxx.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of a custom back-end to wrap the log4cxx library
- *                - interaction between log4cxx constructs and Pantheios log
- *                  statements
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of a custom back-end to wrap the log4cxx library
+ *            - interaction between log4cxx constructs and Pantheios log
+ *              statements
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     16th August 2006
- * Updated:     16th December 2023
+ * Created: 16th August 2006
+ * Updated: 7th February 2024
  *
- * www:         http://www.pantheios.org/
+ * www:     http://www.pantheios.org/
  *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
+ * License: This source code is placed into the public domain 2006
+ *          by Synesis Software Pty Ltd. There are no restrictions
+ *          whatsoever to your use of the software.
  *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ *          This software is provided "as is", and any warranties,
+ *          express or implied, of any kind and for any purpose, are
+ *          disclaimed.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,7 +50,10 @@
 # endif /* compiler */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main()
 {
@@ -87,21 +90,22 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, "out of memory");
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL("Exception: ", x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, "Unexpected unknown error");
   }
 
   return EXIT_FAILURE;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Front-end
@@ -134,7 +138,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
 
   LevelPtr  level;
 
-  switch(severity & 0x0f)
+  switch (severity & 0x0f)
   {
     case  PANTHEIOS_SEV_EMERGENCY:
     case  PANTHEIOS_SEV_ALERT:
@@ -161,6 +165,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
   return rootLogger->isEnabledFor(level);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Back-end
  */
@@ -178,13 +183,13 @@ PANTHEIOS_CALL(int) pantheios_be_init(
   {
     BasicConfigurator::configure();
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::util::onBailOut(PANTHEIOS_SEV_ALERT, "failed to initialise back-end", processIdentity, "out of memory");
 
     return PANTHEIOS_INIT_RC_OUT_OF_MEMORY
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::util::onBailOut(PANTHEIOS_SEV_ALERT, "failed to initialise back-end", processIdentity, x.what());
 
@@ -212,7 +217,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
   LoggerPtr rootLogger = Logger::getRootLogger();
 
-  switch(severity)
+  switch (severity)
   {
     case  PANTHEIOS_SEV_EMERGENCY:
     case  PANTHEIOS_SEV_ALERT:
@@ -236,6 +241,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
   return cchEntry;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_HOSTNAME
 #define PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_HOSTNAME
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_REVISION 2
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_EDIT     15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -82,6 +84,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -90,6 +93,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -159,13 +163,13 @@ inline size_t getHostName(stlsoft::auto_buffer<pantheios_char_t, A, N>& buffer)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 != buffer.size(), "buffer must not be empty");
 
-    for(;;)
+    for (;;)
     {
         size_t cch = pantheios_getHostName(&buffer[0], buffer.size());
 
-        if(buffer.size() == cch)
+        if (buffer.size() == cch)
         {
-            if(!buffer.resize(2 * buffer.size()))
+            if (!buffer.resize(2 * buffer.size()))
             {
                 return 0;
             }
@@ -182,6 +186,7 @@ inline size_t getHostName(stlsoft::auto_buffer<pantheios_char_t, A, N>& buffer)
 }
 
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace

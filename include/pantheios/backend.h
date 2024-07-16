@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backend.h
+ * File:    pantheios/backend.h
  *
- * Purpose:     Pantheios back end API
+ * Purpose: Pantheios back end API
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -49,6 +49,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_BACKEND
 #define PANTHEIOS_INCL_PANTHEIOS_H_BACKEND
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -57,8 +58,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MINOR      12
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       35
+# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       36
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -67,6 +69,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Back-end API
@@ -115,7 +118,7 @@
  *  Indicates that the operation/query applies to all back-ends
  */
 
-#define PANTHEIOS_BEID_ALL                      (0)
+#define PANTHEIOS_BEID_ALL                                  (0)
 
 /** \def PANTHEIOS_BEID_LOCAL
  *
@@ -124,7 +127,7 @@
  *  Identifies the local (or only) back-end in a link-unit
  */
 
-#define PANTHEIOS_BEID_LOCAL                    (1)
+#define PANTHEIOS_BEID_LOCAL                                (1)
 
 /** \def PANTHEIOS_BEID_REMOTE
  *
@@ -134,7 +137,8 @@
  *   splitting.
  */
 
-#define PANTHEIOS_BEID_REMOTE                   (2)
+#define PANTHEIOS_BEID_REMOTE                               (2)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -221,18 +225,18 @@
  */
 
 
-#define PANTHEIOS_BE_INIT_F_NO_PROCESS_ID       (0x00000001)
-#define PANTHEIOS_BE_INIT_F_NO_THREAD_ID        (0x00001000)
-#define PANTHEIOS_BE_INIT_F_NO_DATETIME         (0x00000002)
-#define PANTHEIOS_BE_INIT_F_NO_SEVERITY         (0x00000004)
-#define PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME     (0x00000008)
-#define PANTHEIOS_BE_INIT_F_DETAILS_AT_START    (0x00000010)
-#define PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT     (0x00000020)
-#define PANTHEIOS_BE_INIT_F_HIDE_DATE           (0x00000040)
-#define PANTHEIOS_BE_INIT_F_HIDE_TIME           (0x00000080)
-#define PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION     (0x00000100)
-#define PANTHEIOS_BE_INIT_F_LOW_RESOLUTION      (0x00000200)
-#define PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY    (0x00000400)
+#define PANTHEIOS_BE_INIT_F_NO_PROCESS_ID                   (0x00000001)
+#define PANTHEIOS_BE_INIT_F_NO_THREAD_ID                    (0x00001000)
+#define PANTHEIOS_BE_INIT_F_NO_DATETIME                     (0x00000002)
+#define PANTHEIOS_BE_INIT_F_NO_SEVERITY                     (0x00000004)
+#define PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME                 (0x00000008)
+#define PANTHEIOS_BE_INIT_F_DETAILS_AT_START                (0x00000010)
+#define PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT                 (0x00000020)
+#define PANTHEIOS_BE_INIT_F_HIDE_DATE                       (0x00000040)
+#define PANTHEIOS_BE_INIT_F_HIDE_TIME                       (0x00000080)
+#define PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION                 (0x00000100)
+#define PANTHEIOS_BE_INIT_F_LOW_RESOLUTION                  (0x00000200)
+#define PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY                (0x00000400)
 
 
 /** \def PANTHEIOS_BE_INIT_F_COMMON_MASK
@@ -246,11 +250,13 @@
  */
 
 
-#define PANTHEIOS_BE_INIT_F_COMMON_MASK         (0x000fffff)
+#define PANTHEIOS_BE_INIT_F_COMMON_MASK                     (0x000fffff)
 #ifdef __cplusplus
-# define PANTHEIOS_BE_INIT_F_CUSTOM_MASK        (~static_cast<int>(PANTHEIOS_BE_INIT_F_COMMON_MASK))
+
+# define PANTHEIOS_BE_INIT_F_CUSTOM_MASK                    (~static_cast<int>(PANTHEIOS_BE_INIT_F_COMMON_MASK))
 #else /* ? __cplusplus */
-# define PANTHEIOS_BE_INIT_F_CUSTOM_MASK        (~((int)PANTHEIOS_BE_INIT_F_COMMON_MASK))
+
+# define PANTHEIOS_BE_INIT_F_CUSTOM_MASK                    (~((int)PANTHEIOS_BE_INIT_F_COMMON_MASK))
 #endif /* __cplusplus */
 
 
@@ -343,6 +349,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
 /** @} group__backend */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * generation macros
  */
@@ -366,17 +373,17 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
  *   "be.loader" back-end.
  */
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# define PANTHEIOS_BE_DEFINE_BE_FUNCTIONS_(fullId)                                                                               \
-                                                                                                                                \
-    PANTHEIOS_CALL(int) pantheios_be_init(PAN_CHAR_T const* processIdentity, void* reserved, void** ptoken)                           \
-    { return fullId##_init(processIdentity, PANTHEIOS_BEID_LOCAL, NULL, reserved, ptoken); }                                    \
-    PANTHEIOS_CALL(void) pantheios_be_uninit(void* token)                                                                       \
-    { fullId##_uninit(token); }                                                                                                 \
-    PANTHEIOS_CALL(int) pantheios_be_logEntry(void* feToken, void* beToken, int severity, PAN_CHAR_T const* entry, size_t cchEntry)   \
+# define PANTHEIOS_BE_DEFINE_BE_FUNCTIONS_(fullId)                                                                                  \
+                                                                                                                                    \
+    PANTHEIOS_CALL(int) pantheios_be_init(PAN_CHAR_T const* processIdentity, void* reserved, void** ptoken)                         \
+    { return fullId##_init(processIdentity, PANTHEIOS_BEID_LOCAL, NULL, reserved, ptoken); }                                        \
+    PANTHEIOS_CALL(void) pantheios_be_uninit(void* token)                                                                           \
+    { fullId##_uninit(token); }                                                                                                     \
+    PANTHEIOS_CALL(int) pantheios_be_logEntry(void* feToken, void* beToken, int severity, PAN_CHAR_T const* entry, size_t cchEntry) \
     { STLSOFT_SUPPRESS_UNUSED(feToken); return fullId##_logEntry(feToken, beToken, severity, entry, cchEntry); }
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
-#define PANTHEIOS_BE_DEFINE_BE_FUNCTIONS(id)    PANTHEIOS_BE_DEFINE_BE_FUNCTIONS_(pantheios_be_##id)
+#define PANTHEIOS_BE_DEFINE_BE_FUNCTIONS(id)                PANTHEIOS_BE_DEFINE_BE_FUNCTIONS_(pantheios_be_##id)
 
 
 
@@ -400,17 +407,17 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
  *   "be.loader" back-end.
  */
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# define PANTHEIOS_BE_DEFINE_BEL_FUNCTIONS_(fullId)                                                                                  \
-                                                                                                                                    \
-    PANTHEIOS_CALL(int) pantheios_be_local_init(PAN_CHAR_T const* processIdentity, void* reserved, void** ptoken)                         \
-    { return fullId##_init(processIdentity, PANTHEIOS_BEID_LOCAL, NULL, reserved, ptoken); }                                        \
-    PANTHEIOS_CALL(void) pantheios_be_local_uninit(void* token)                                                                     \
-    { fullId##_uninit(token); }                                                                                                     \
-    PANTHEIOS_CALL(int) pantheios_be_local_logEntry(void* feToken, void* beToken, int severity, PAN_CHAR_T const* entry, size_t cchEntry) \
+# define PANTHEIOS_BE_DEFINE_BEL_FUNCTIONS_(fullId)                                                                                         \
+                                                                                                                                            \
+    PANTHEIOS_CALL(int) pantheios_be_local_init(PAN_CHAR_T const* processIdentity, void* reserved, void** ptoken)                           \
+    { return fullId##_init(processIdentity, PANTHEIOS_BEID_LOCAL, NULL, reserved, ptoken); }                                                \
+    PANTHEIOS_CALL(void) pantheios_be_local_uninit(void* token)                                                                             \
+    { fullId##_uninit(token); }                                                                                                             \
+    PANTHEIOS_CALL(int) pantheios_be_local_logEntry(void* feToken, void* beToken, int severity, PAN_CHAR_T const* entry, size_t cchEntry)   \
     { STLSOFT_SUPPRESS_UNUSED(feToken); return fullId##_logEntry(feToken, beToken, severity, entry, cchEntry); }
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
-#define PANTHEIOS_BE_DEFINE_BEL_FUNCTIONS(id)   PANTHEIOS_BE_DEFINE_BEL_FUNCTIONS_(pantheios_be_##id)
+#define PANTHEIOS_BE_DEFINE_BEL_FUNCTIONS(id)               PANTHEIOS_BE_DEFINE_BEL_FUNCTIONS_(pantheios_be_##id)
 
 /** \def PANTHEIOS_BE_DEFINE_BER_FUNCTIONS(expr)
  *
@@ -431,17 +438,18 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
  *   "be.loader" back-end.
  */
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# define PANTHEIOS_BE_DEFINE_BER_FUNCTIONS_(fullId)                                                                                      \
-                                                                                                                                        \
-    PANTHEIOS_CALL(int) pantheios_be_remote_init(PAN_CHAR_T const* processIdentity, void* reserved, void** ptoken)                            \
-    { return fullId##_init(processIdentity, PANTHEIOS_BEID_REMOTE, NULL, reserved, ptoken); }                                           \
-    PANTHEIOS_CALL(void) pantheios_be_remote_uninit(void* token)                                                                        \
-    { fullId##_uninit(token); }                                                                                                         \
-    PANTHEIOS_CALL(int) pantheios_be_remote_logEntry(void* feToken, void* beToken, int severity, PAN_CHAR_T const* entry, size_t cchEntry)    \
+# define PANTHEIOS_BE_DEFINE_BER_FUNCTIONS_(fullId)                                                                                         \
+                                                                                                                                            \
+    PANTHEIOS_CALL(int) pantheios_be_remote_init(PAN_CHAR_T const* processIdentity, void* reserved, void** ptoken)                          \
+    { return fullId##_init(processIdentity, PANTHEIOS_BEID_REMOTE, NULL, reserved, ptoken); }                                               \
+    PANTHEIOS_CALL(void) pantheios_be_remote_uninit(void* token)                                                                            \
+    { fullId##_uninit(token); }                                                                                                             \
+    PANTHEIOS_CALL(int) pantheios_be_remote_logEntry(void* feToken, void* beToken, int severity, PAN_CHAR_T const* entry, size_t cchEntry)  \
     { STLSOFT_SUPPRESS_UNUSED(feToken); return fullId##_logEntry(feToken, beToken, severity, entry, cchEntry); }
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
-#define PANTHEIOS_BE_DEFINE_BER_FUNCTIONS(id)   PANTHEIOS_BE_DEFINE_BER_FUNCTIONS_(pantheios_be_##id)
+#define PANTHEIOS_BE_DEFINE_BER_FUNCTIONS(id)               PANTHEIOS_BE_DEFINE_BER_FUNCTIONS_(pantheios_be_##id)
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 

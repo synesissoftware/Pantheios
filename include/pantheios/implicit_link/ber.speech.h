@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_SPEECH
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_SPEECH
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_SPEECH_REVISION    1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_SPEECH_EDIT        4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +76,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_SPEECH
 # include <pantheios/implicit_link/bec.speech.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_SPEECH */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * implicit-linking directives

@@ -22,6 +22,7 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -44,27 +45,32 @@ static void test_1_12();
 
 } // anonymous namespace
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.inserters.windows.sc");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * macros
  */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char** argv)
 {
@@ -73,7 +79,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.inserters.windows.sc", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserters.windows.sc", verbosity))
     {
         XTESTS_RUN_CASE(test_regular_decimal_codes_DWORD);
         XTESTS_RUN_CASE(test_1_02);
@@ -95,6 +101,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -2355,7 +2362,7 @@ namespace
 
 static void test_regular_decimal_codes_DWORD()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(regular_decimal_codes); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(regular_decimal_codes); ++i)
     {
         DWORD const code = static_cast<DWORD>(regular_decimal_codes[i]);
 
@@ -2373,7 +2380,7 @@ static void test_1_03()
 
 static void test_highbit_hexadecimal_codes_DWORD()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(highbit_hexadecimal_codes); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(highbit_hexadecimal_codes); ++i)
     {
         DWORD const code = static_cast<DWORD>(highbit_hexadecimal_codes[i]);
 
@@ -2391,7 +2398,7 @@ static void test_1_06()
 
 static void test_1_07()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(WSA_decimal_codes); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(WSA_decimal_codes); ++i)
     {
         DWORD const code = static_cast<DWORD>(WSA_decimal_codes[i]);
 
@@ -2420,6 +2427,7 @@ static void test_1_12()
 }
 
 } // anonymous namespace
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

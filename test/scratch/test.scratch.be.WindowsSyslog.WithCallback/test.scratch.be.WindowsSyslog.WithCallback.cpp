@@ -48,6 +48,7 @@
 // Define the fe.simple process identity, so that it links when using fe.simple
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.WindowsSyslog");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions
  */
@@ -116,15 +117,15 @@ int main()
 
         return EXIT_SUCCESS;
     }
-    catch(std::bad_alloc &)
+    catch (std::bad_alloc &)
     {
         pantheios::log_CRITICAL("out of memory");
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         pantheios::log_ALERT("Exception: ", x);
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unexpected unknown error");
     }

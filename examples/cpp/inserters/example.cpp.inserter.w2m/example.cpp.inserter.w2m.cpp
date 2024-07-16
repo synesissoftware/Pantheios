@@ -55,15 +55,15 @@ int main(int argc, char** argv)
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, "out of memory");
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL("Exception: ", x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, "Unexpected unknown error");
   }

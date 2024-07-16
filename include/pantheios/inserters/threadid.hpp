@@ -4,11 +4,11 @@
  * Purpose:     String inserter for thread identity.
  *
  * Created:     16th October 2006
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -56,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_REVISION    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_EDIT        25
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_EDIT        26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -77,6 +79,7 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +88,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -110,6 +114,7 @@ struct threadId_t;
 \endhtmlonly
  */
 extern struct threadId_t const* threadId;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes and string access shims
@@ -150,9 +155,9 @@ private:
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace inserters */
-#  define PANTHEIOS_INSERTERS_DECLARE_thread_id_t   ::pantheios::inserters::thread_id_t
+#  define PANTHEIOS_INSERTERS_DECLARE_thread_id_t           ::pantheios::inserters::thread_id_t
 # else /* ? !PANTHEIOS_NO_NAMESPACE */
-#  define PANTHEIOS_INSERTERS_DECLARE_thread_id_t   thread_id_t
+#  define PANTHEIOS_INSERTERS_DECLARE_thread_id_t           thread_id_t
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -236,6 +241,7 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -262,6 +268,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

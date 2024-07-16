@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 3
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -81,6 +83,7 @@
  * examples of how to write a custom front-end.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
  */
@@ -92,6 +95,7 @@
  */
 # error Not compatible with Digital Mars C/C++ prior to version 8.50. Download the latest free version at www.digitalmars.com
 #endif /* compiler */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations
@@ -142,6 +146,7 @@
  *   undefined.
  */
 PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Application-defined functions

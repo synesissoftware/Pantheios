@@ -54,6 +54,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_INITIALISER
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_INITIALISER
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * includes
  */
@@ -61,6 +62,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -117,7 +119,7 @@ public:
         using namespace pantheios::core;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-        if(pantheios_init() < 0)
+        if (pantheios_init() < 0)
         {
             pantheios_exitProcess(1);
         }

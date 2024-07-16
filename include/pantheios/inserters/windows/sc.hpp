@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_REVISION  1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_EDIT      4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -73,6 +75,7 @@
 # include <pantheios/inserters/windows/status_code.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -84,12 +87,14 @@ namespace pantheios
 namespace windows
 {
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
  */
 
 /** Typedef for pantheios::windows::status_code inserter class. */
 typedef status_code sc;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
@@ -99,6 +104,7 @@ typedef status_code sc;
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

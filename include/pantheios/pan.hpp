@@ -51,6 +51,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PAN
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_PAN
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -62,6 +63,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_EDIT       7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * language
  */
@@ -69,6 +71,7 @@
 #ifndef __cplusplus
 # error This file can only be included in C++ compilation units
 #endif /* !__cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -78,6 +81,7 @@
 # include <pantheios/pantheios.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +89,7 @@
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 namespace pan = ::pantheios;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

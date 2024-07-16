@@ -52,14 +52,14 @@ int main(int argc, char** argv)
 
     STLSOFT_STATIC_ASSERT(STLSOFT_NUM_ELEMENTS(s_severityLevels) == STLSOFT_NUM_ELEMENTS(s_severityLevelValues));
 
-    if(XTESTS_START_RUNNER("test.unit.levels.values", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.levels.values", verbosity))
     {
         /* Test-1 */
-        if(XTESTS_CASE_BEGIN("Test-1", "Severity-level enumerator values"))
+        if (XTESTS_CASE_BEGIN("Test-1", "Severity-level enumerator values"))
         {
             size_t  i;
 
-            for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+            for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
             {
                 XTESTS_TEST_INTEGER_EQUAL(s_severityLevels[i], s_severityLevelValues[i]);
             }
@@ -68,11 +68,11 @@ int main(int argc, char** argv)
         }
 
         /* Test-2 */
-        if(XTESTS_CASE_BEGIN("Test-2", "Severity-level enumerator values"))
+        if (XTESTS_CASE_BEGIN("Test-2", "Severity-level enumerator values"))
         {
             size_t  i;
 
-            for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+            for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
             {
                 XTESTS_TEST_INTEGER_EQUAL(s_severityLevels[i], s_severityLevelValues[i]);
             }

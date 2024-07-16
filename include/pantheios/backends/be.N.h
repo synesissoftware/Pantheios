@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/be.N.h
+ * File:    pantheios/backends/be.N.h
  *
- * Purpose:     Declaration of the Pantheios be.N Stock Back-end API.
+ * Purpose: Declaration of the Pantheios be.N Stock Back-end API.
  *
- * Created:     18th October 2006
- * Updated:     16th December 2023
+ * Created: 18th October 2006
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,6 +47,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_BE_N
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_BE_N
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -55,8 +56,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      9
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       27
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -71,6 +73,7 @@
 
 #include <limits.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * documentation
  */
@@ -80,9 +83,11 @@
  *  Back-end library that splits output to N back-ends.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * constants
@@ -99,7 +104,7 @@
  * \ingroup group__backend__stock_backends__N__flags
  */
 
-#define PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE            (0x00100000)
+#define PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE                (0x00100000)
 
 /** \def PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28
 ` *  Cause the \ref group__backend__stock_backends__N to
@@ -108,7 +113,7 @@
  * \ingroup group__backend__stock_backends__N__flags
  */
 
-#define PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28         (0x00200000)
+#define PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28             (0x00200000)
 
 /** \def PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID
  *  Cause the \ref group__backend__stock_backends__N to
@@ -117,7 +122,7 @@
  * \ingroup group__backend__stock_backends__N__flags
  */
 
-#define PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID  (0x00400000)
+#define PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID      (0x00400000)
 
 /** \def PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED
  *  Cause the \ref group__backend__stock_backends__N to
@@ -125,7 +130,8 @@
  * \ingroup group__backend__stock_backends__N__flags
  */
 
-#define PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED   (0x00800000)
+#define PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED       (0x00800000)
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * typedefs
@@ -184,7 +190,7 @@ struct pan_be_N_t
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# define PANTHEIOS_BE_N_RESERVED_VALUES_            0, 0, { 0 }
+# define PANTHEIOS_BE_N_RESERVED_VALUES_                    0, 0, { 0 }
     /* The following fields are reserved for future use */
     PANTHEIOS_NS_QUAL(pan_uint32_t) reserved0;
     PANTHEIOS_NS_QUAL(pan_uint32_t) reserved1;
@@ -320,7 +326,8 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
  *
  * \see PANTHEIOS_BE_N_STDFORM_ENTRY
  */
-#define PANTHEIOS_BE_N_TERMINATOR_ENTRY                 { 0, 0, NULL, NULL, NULL, -1, NULL, 0, PANTHEIOS_VER, PANTHEIOS_BE_N_RESERVED_VALUES_ }
+#define PANTHEIOS_BE_N_TERMINATOR_ENTRY                     { 0, 0, NULL, NULL, NULL, -1, NULL, 0, PANTHEIOS_VER, PANTHEIOS_BE_N_RESERVED_VALUES_ }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * external declarations
@@ -335,6 +342,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
  * \ingroup group__backend__stock_backends__N
  */
 PANTHEIOS_EXTERN pan_be_N_t PAN_BE_N_BACKEND_LIST[];
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * helper functions

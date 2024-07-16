@@ -48,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_STRDUP
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_STRDUP
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,6 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_REVISION  4
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -79,6 +81,7 @@
 # endif /* compiler */
 #endif /* STLSOFT_CF_THROW_BAD_ALLOC */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -87,6 +90,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -118,6 +122,7 @@ PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) STLSO
 PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) STLSOFT_NOEXCEPT;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API (C++)
  */
@@ -138,7 +143,7 @@ inline pantheios_char_t* pantheios_util_strdup_throw(pantheios_char_t const* s)
 {
     pantheios_char_t* const s2 = pantheios_util_strdup_nothrow(s);
 
-    if( NULL == s2 &&
+    if (NULL == s2 &&
         NULL != s)
     {
         throw std::bad_alloc();
@@ -185,6 +190,7 @@ inline void strfree(pantheios_char_t* s) STLSOFT_NOEXCEPT
 } /* namespace util */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -192,6 +198,7 @@ inline void strfree(pantheios_char_t* s) STLSOFT_NOEXCEPT
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

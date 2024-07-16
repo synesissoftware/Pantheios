@@ -1,13 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.pad/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.component.inserters.pad project.
- *
- * Created:     29th June 2009
- * Updated:     16th December 2023
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <platformstl/platformstl.h>
@@ -22,6 +12,7 @@
 
 /* xTests header files */
 #include <xtests/implicit_link.h>
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

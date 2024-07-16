@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.bec.fprintf project.
  *
  * Created:     25th June 2020
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -46,19 +46,21 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL           XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-#define FF_STR                              PANTHEIOS_LITERAL_STRING
+#define FF_STR                                              PANTHEIOS_LITERAL_STRING
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
@@ -85,7 +87,7 @@ int main(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.bec.fprintf", verbosity))
+    if (XTESTS_START_RUNNER("test.component.bec.fprintf", verbosity))
     {
         XTESTS_RUN_CASE(test_1_1);
         XTESTS_RUN_CASE(test_1_2);
@@ -103,6 +105,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -138,6 +141,7 @@ char const                              write_mode[] = "w";
 
 PAN_CHAR_T const                        PROCESS_IDENTITY[]  =   PANTHEIOS_LITERAL_STRING("test.component.bec.fprintf");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward implementations
  */
@@ -168,7 +172,7 @@ static void test_1_1()
                                     ,   &token
                                     );
 
-        if(0 != r)
+        if (0 != r)
         {
             XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise bec.fprintf", stlsoft::t2a(pantheios::getStockSeverityString(r)));
 

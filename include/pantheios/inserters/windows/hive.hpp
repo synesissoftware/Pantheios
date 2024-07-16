@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -60,6 +61,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_REVISION    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_EDIT        4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -75,6 +77,7 @@
 
 #include <windows.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -85,6 +88,7 @@ namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 namespace windows
 {
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * types
@@ -133,7 +137,7 @@ private:
     )
     {
 #ifdef HKEY_CLASSES_ROOT
-        if(HKEY_CLASSES_ROOT == value)
+        if (HKEY_CLASSES_ROOT == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CLASSES_ROOT));
 
@@ -143,7 +147,7 @@ private:
         }
 #endif
 #ifdef HKEY_CURRENT_USER
-        if(HKEY_CURRENT_USER == value)
+        if (HKEY_CURRENT_USER == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CURRENT_USER));
 
@@ -153,7 +157,7 @@ private:
         }
 #endif
 #ifdef HKEY_LOCAL_MACHINE
-        if(HKEY_LOCAL_MACHINE == value)
+        if (HKEY_LOCAL_MACHINE == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_LOCAL_MACHINE));
 
@@ -163,7 +167,7 @@ private:
         }
 #endif
 #ifdef HKEY_USERS
-        if(HKEY_USERS == value)
+        if (HKEY_USERS == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_USERS));
 
@@ -173,7 +177,7 @@ private:
         }
 #endif
 #ifdef HKEY_PERFORMANCE_DATA
-        if(HKEY_PERFORMANCE_DATA == value)
+        if (HKEY_PERFORMANCE_DATA == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_PERFORMANCE_DATA));
 
@@ -183,7 +187,7 @@ private:
         }
 #endif
 #ifdef HKEY_CURRENT_CONFIG
-        if(HKEY_CURRENT_CONFIG == value)
+        if (HKEY_CURRENT_CONFIG == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_CURRENT_CONFIG));
 
@@ -193,7 +197,7 @@ private:
         }
 #endif
 #ifdef HKEY_DYN_DATA
-        if(HKEY_DYN_DATA == value)
+        if (HKEY_DYN_DATA == value)
         {
             static pantheios_char_t const s_name[] = PANTHEIOS_LITERAL_STRING(STLSOFT_STRINGIZE_DIRECT(HKEY_DYN_DATA));
 
@@ -206,6 +210,7 @@ private:
         return 0;
     }
 };
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Implementation
@@ -241,11 +246,13 @@ hive::length() const
     return (0u == r) ? parent_class_type::length() : r;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
 } /* namespace windows */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
@@ -333,6 +340,7 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -358,6 +366,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

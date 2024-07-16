@@ -4,11 +4,11 @@
  * Purpose:     String inserter for binary regions in Base-64.
  *
  * Created:     31st July 2006
- * Updated:     16th December 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,6 +50,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -58,8 +59,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MINOR    5
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     32
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     33
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -68,6 +70,7 @@
 #ifdef PANTHEIOS_NO_B64
 # error this file cannot be included when PANTHEIOS_NO_B64 is defined
 #endif /* PANTHEIOS_NO_B64 */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -101,7 +104,7 @@
 #  error Cannot include b64/b64.h before pantheios/inserters/b64.hpp
 # endif /* B64_INCL_B64_H_B64 */
 
-# define B64_CUSTOM_NAMESPACE      b64_api
+# define B64_CUSTOM_NAMESPACE                               b64_api
 
 #endif /* PANTHEIOS_NO_NAMESPACE */
 
@@ -141,6 +144,7 @@ namespace b64_api = ::b64;
 # include <stdio.h>
 #endif /* !PANTHEIOS_INCL_H_STDIO */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -150,6 +154,7 @@ namespace pantheios
 {
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inserter classes
@@ -282,6 +287,7 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * string access shims
  */
@@ -362,6 +368,7 @@ c_str_ptr(b64 const& i)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -387,6 +394,7 @@ namespace stlsoft
 }
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion

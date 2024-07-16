@@ -1,30 +1,20 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/example.c.101/example.c.101.c
+ * File:    examples/c/example.c.101/example.c.101.c
  *
- * Purpose:     C example program for introducing the basic essential
- *              features of Pantheios when using only the C API.
- *              Demonstrates:
+ * Purpose: C example program for introducing the basic essential features
+ *          of Pantheios when using only the C API.
+ *          Demonstrates:
  *
- *                - how the Pantheios libraries must be explicitly
- *                  initialised in a C program; this is not the case in
- *                  C++ programs
- *                - use of pantheios_logputs()
- *                - use of pantheios_logprintf()
- *                - the statement size limitation imposed by
- *                  pantheios_logprintf()
+ *            - how the Pantheios libraries must be explicitly
+ *              initialised in a C program; this is not the case in
+ *              C++ programs
+ *            - use of pantheios_logputs()
+ *            - use of pantheios_logprintf()
+ *            - the statement size limitation imposed by
+ *              pantheios_logprintf()
  *
- * Created:     17th January 2008
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 17th January 2008
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -38,20 +28,25 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
 const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.c.101");
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * main
  */
 
-int main()
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int res;
+
+    STLSOFT_SUPPRESS_UNUSED(argc);
+    STLSOFT_SUPPRESS_UNUSED(argv);
 
     /* Initialise the Pantheios libraries. This will cause the Core to
      * initialise, which will itself initialise the front-end and back-end
@@ -66,7 +61,7 @@ int main()
      */
     res = pantheios_init();
 
-    if(0 != res)
+    if (0 != res)
     {
         /* If initialisation failed, we report why using
          * pantheios_getInitCodeString()
@@ -113,7 +108,7 @@ int main()
          * statement size limit; nor does pantheios_logputs()
          */
 
-        for(n = 0; n != (sizeof(bigBuff) / sizeof(0[bigBuff])) - 1; ++n)
+        for (n = 0; n != (sizeof(bigBuff) / sizeof(0[bigBuff])) - 1; ++n)
         {
             bigBuff[n] = '-';
         }
@@ -136,6 +131,7 @@ int main()
 
     return retCode;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

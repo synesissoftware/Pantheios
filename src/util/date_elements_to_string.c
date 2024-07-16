@@ -5,11 +5,11 @@
  *              Pantheios API
  *
  * Created:     12th November 2016
- * Updated:     16th January 2023
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,6 +50,7 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/util/string/strnlen.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * data
  */
@@ -58,7 +59,7 @@
 namespace {
 #endif /* __cplusplus */
 
-#define PAN_DE2S_0299_  s_pantheios_util_date_elements_to_string_0_to_99
+#define PAN_DE2S_0299_                                      s_pantheios_util_date_elements_to_string_0_to_99
 static PAN_CHAR_T const
 s_pantheios_util_date_elements_to_string_0_to_99[][2] =
 {
@@ -213,6 +214,7 @@ s_pantheios_util_date_elements_to_string_0_to_99[][2] =
 } /* anonymous namespace */
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * util API
  */
@@ -337,6 +339,7 @@ pantheios_util_formatMicrosecondToString6(
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -348,9 +351,11 @@ namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * util API
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
