@@ -43,6 +43,7 @@ static void some_logging_3(void);
  * externally defined array
  */
 
+/* Declared in include:pantheios/frontend.h */
 PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.c_api");
 
 
