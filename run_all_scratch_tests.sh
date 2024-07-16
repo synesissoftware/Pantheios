@@ -4,6 +4,7 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=$Dir/_build
+RunMake=1
 
 
 # ##########################################################
@@ -12,19 +13,27 @@ CMakeDir=$Dir/_build
 while [[ $# -gt 0 ]]; do
 
   case $1 in
+    -M|--no-make)
+
+      RunMake=0
+      ;;
     --help)
 
       cat << EOF
 Pantheios is an efficient, flexible, and robust C/C++ diagnostic logging library
 Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
-Executes CMake-generated artefacts to clean project
+Runs all (matching) scratch-test programs
 
 $ScriptPath [ ... flags/options ... ]
 
 Flags/options:
 
     behaviour:
+
+    -M
+    --no-make
+        does not execute CMake and make before running tests
 
 
     standard flags:
@@ -51,32 +60,47 @@ done
 # ##########################################################
 # main()
 
-if [ ! -d "$CMakeDir" ]; then
+status=0
 
-  >&2 echo "$ScriptPath: CMake build directory '$CMakeDir' not found so nothing to do; use script 'prepare_cmake.sh' if you wish to prepare CMake artefacts"
+if [ $RunMake -ne 0 ]; then
 
-  exit 1
-else
+  echo "Executing make and then running all test programs"
+
+  mkdir -p $CMakeDir || exit 1
 
   cd $CMakeDir
 
-  if [ ! -f "$CMakeDir/Makefile" ]; then
+  make
+  status=$?
+else
 
-    >&2 echo "$ScriptPath: CMake build directory '$CMakeDir' does not contain expected file 'Makefile', so a clean cannot be performed. It is recommended that you remove all CMake artefacts using script 'remove_cmake_artefacts.sh' followed by regeneration via 'prepare_cmake.sh'"
+  if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ] || [ ! -d "$CMakeDir/CMakeFiles" ]; then
 
-    exit 1
+    >&2 echo "$ScriptPath: cannot run in '--no-make' mode without a previous successful build step"
   else
 
-    echo "Cleaning build (via command \`make clean\`)"
-
-    make clean
-    status=$?
-
-    cd ->/dev/null
-
-    exit $status
+    echo "Running all test programs"
   fi
+
+  cd $CMakeDir
 fi
+
+if [ $status -eq 0 ]; then
+
+  for f in $(find $Dir -type f '(' -name 'test_scratch*' -o -name 'test.scratch.*' -o -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print)
+  do
+
+    echo
+    echo "executing $f:"
+
+    # NOTE: we do not break on fail because these tests are not always intended to succeed
+    $f
+  done
+fi
+
+cd ->/dev/null
+
+exit $status
 
 
 # ############################## end of file ############################# #

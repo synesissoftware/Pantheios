@@ -3,7 +3,7 @@
 ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
-CMakePath=$Dir/_build
+CMakeDir=$Dir/_build
 
 
 CMakeExamplesDisabled=0
@@ -19,39 +19,40 @@ WideStrings=0
 # command-line handling
 
 while [[ $# -gt 0 ]]; do
-    case $1 in
-        -v|--cmake-verbose-makefile)
 
-            CMakeVerboseMakefile=1
-            ;;
-        -d|--debug-configuration)
+  case $1 in
+    -v|--cmake-verbose-makefile)
 
-            Configuration=Debug
-            ;;
-        -E|--disable-examples)
+      CMakeVerboseMakefile=1
+      ;;
+    -d|--debug-configuration)
 
-            CMakeExamplesDisabled=1
-            ;;
-        -T|--disable-testing)
+      Configuration=Debug
+      ;;
+    -E|--disable-examples)
 
-            CMakeTestingDisabled=1
-            ;;
-        -m|--run-make)
+      CMakeExamplesDisabled=1
+      ;;
+    -T|--disable-testing)
 
-            RunMake=1
-            ;;
-        -s|--stlsoft-root-dir)
+      CMakeTestingDisabled=1
+      ;;
+    -m|--run-make)
 
-            shift
-            STLSoftDirGiven=$1
-            ;;
-        -w|--wide-strings)
+      RunMake=1
+      ;;
+    -s|--stlsoft-root-dir)
 
-            WideStrings=1
-            ;;
-        --help)
+      shift
+      STLSoftDirGiven=$1
+      ;;
+    -w|--wide-strings)
 
-            cat << EOF
+      WideStrings=1
+      ;;
+    --help)
+
+      cat << EOF
 Pantheios is an efficient, flexible, and robust C/C++ diagnostic logging library
 Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -121,9 +122,9 @@ done
 # ##########################################################
 # main()
 
-mkdir -p $CMakePath || exit 1
+mkdir -p $CMakeDir || exit 1
 
-cd $CMakePath
+cd $CMakeDir
 
 echo "Executing CMake"
 
@@ -146,19 +147,18 @@ status=0
 
 if [ $RunMake -ne 0 ]; then
 
-    echo "Executing make"
+  echo "Executing make"
 
-    make
-
-    status=$?
+  make
+  status=$?
 fi
 
 cd ->/dev/null
 
 if [ $CMakeVerboseMakefile -ne 0 ]; then
 
-    echo -e "contents of $CMakePath:"
-    ls -al $CMakePath
+  echo -e "contents of $CMakeDir:"
+  ls -al $CMakeDir
 fi
 
 exit $status
