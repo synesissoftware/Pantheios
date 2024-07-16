@@ -1,4 +1,4 @@
-q
+
 add_executable(test.scratch.be.N
 	test.scratch.be.N.cpp
 )
