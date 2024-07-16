@@ -51,7 +51,8 @@
 
 PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.N");
 
-PANTHEIOS_EXTERN_C pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
+/* Declared in include:pantheios/frontends/fe.N.h */
+pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
 {
     { 1,  PANTHEIOS_SEV_NOTICE }            /* Filters out everything below 'notice' */
   , { 2,  PANTHEIOS_SEV_INFORMATIONAL  }    /* Filters out everything below 'informational' */
@@ -61,7 +62,8 @@ PANTHEIOS_EXTERN_C pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
   , { 0,  PANTHEIOS_SEV_NOTICE }            /* Terminates the array; sets the default ceiling to 'notice' */
 };
 
-PANTHEIOS_EXTERN_C pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
+/* Declared in include:pantheios/backends/be.N.h */
+pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
     PANTHEIOS_BE_N_STDFORM_ENTRY(1, pantheios_be_file, 0)
   , PANTHEIOS_BE_N_STDFORM_ENTRY(2, pantheios_be_fprintf, PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28)

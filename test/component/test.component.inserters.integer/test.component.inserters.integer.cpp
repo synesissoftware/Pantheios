@@ -111,7 +111,14 @@ int main(int argc, char** argv)
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%d", 11);
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%+d", 11);
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%u", 11);
+# if defined(STLSOFT_COMPILER_IS_GCC) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6))
+/* Disable warning: '+' flag used with ‘%u’ gnu_printf format [-Wformat=] */
+#pragma GCC diagnostic ignored "-Wformat="
+# endif /* compiler */
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%+u", 11);
+# if defined(STLSOFT_COMPILER_IS_GCC) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6))
+#pragma GCC diagnostic pop
+# endif /* compiler */
 #endif /* 0 */
 
     }
