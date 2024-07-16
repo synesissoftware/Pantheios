@@ -1,7 +1,19 @@
 pantheios - History
 ===================
 
-Updated:    5th July 2020
+Updated:    16th July 2024
+
+
+16th July 2024 - 1.0.1 beta 220
+-------------------------------
+
+ * C++14, C++17
+ * CMake compatibility (Linux, macOS, Windows)
+ * New widestring bail-out API functions
+ * Full widestring compatibility on Windows
+ * Forwards/backwards compatibility with STLSoft (1.9, ..., 1.11)
+ * GCC compatibility
+ * Visual C++17 compatibility
 
 
 5th July 2020 - 1.0.1 beta 219

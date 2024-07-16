@@ -4,7 +4,7 @@
  * Purpose: Implementation of the fe.WindowsRegistry front-end.
  *
  * Created: 28th October 2007
- * Updated: 13th July 2024
+ * Updated: 16th July 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -97,7 +97,9 @@ namespace
  * compatibility
  */
 
-#if _STLSOFT_VER >= 0x010b0000
+#if _STLSOFT_VER >= 0x010a0000 && \
+    _STLSOFT_VER < 0x010c0000
+
 # define windows_exception                                  winstl_exception
 #endif
 

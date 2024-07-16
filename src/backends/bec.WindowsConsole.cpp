@@ -105,7 +105,9 @@
  * compatibility
  */
 
-#if _STLSOFT_VER >= 0x010b0000
+#if _STLSOFT_VER >= 0x010a0000 && \
+    _STLSOFT_VER < 0x010c0000
+
 # define windows_exception                                  winstl_exception
 #endif
 
