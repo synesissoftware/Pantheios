@@ -1,6 +1,23 @@
 
 # directories (by name)
 
+/.git-old/
+/.vs/
+
+/_build/
+/_internal/
+
+/bin/
+/ipch/
+/lib/
+
+/doc/
+/dox/
+/ideas/
+/releases/
+/scratch/
+/temp/
+
 /--include
 /--src
 /-include
@@ -18,22 +35,12 @@ src/xcontract/
 src/xcover/
 src/xtests/
 
-/_build/
-/_internal/
-/.vs/
+.svn/
 
-/bin/
 /examples/bin
 /examples/c/bin
 /examples/cpp/bin
 
-/doc/
-
-ideas/
-
-ipch/
-
-/lib/
 /examples/lib
 /examples/c/lib
 /examples/cpp/lib
@@ -42,32 +49,35 @@ projects/util/vc10-generated/
 
 perf_test/
 
-releases/
 
 scripts/internal/
 
-Debug/
-DebugMt/
-DebugDll/
-DebugDLLUNIX/
-Debug Multithreaded/
 Debug Multithreaded DLL/
-Unicode Debug/
-Unicode Debug Multithreaded/
-Unicode Debug Multithreaded DLL/
-Release/
-ReleaseMt/
-ReleaseDll/
-ReleaseDLLUNIX/
-Release Multithreaded/
+Debug Multithreaded/
+Debug/
+DebugDLLUNIX/
+DebugDll/
+DebugMt/
 Release Multithreaded DLL/
-Unicode Release/
-Unicode Release Multithreaded/
+Release Multithreaded/
+Release/
+ReleaseDLLUNIX/
+ReleaseDll/
+ReleaseMt/
+Unicode Debug Multithreaded DLL/
+Unicode Debug Multithreaded/
+Unicode Debug/
 Unicode Release Multithreaded DLL/
+Unicode Release Multithreaded/
+Unicode Release/
 
 vc71/
 vc8/
 vc9/
+
+Win32/
+x64/
+
 
 # directories (by pattern)
 
@@ -78,6 +88,7 @@ vc9/
 /build/icl*
 /build/vc5*
 /build/*.zip
+
 
 # files (by name)
 
@@ -104,17 +115,32 @@ src/backends/bec.loader.cpp
 src/backends/bel/bel.loader.c
 src/backends/ber/ber.loader.c
 
+
 # files (by pattern)
 
 *~
+*.???_obj
 *.a
 *.app
+*.aps
+*.b64
+*.bak
+*.chm
+*.d
 *.dll
+*.dsp
 *.dylib
 *.exe
 *.gch
+*.idb
 *.ilk
+*.iobj
+*.ipch
+*.ipdb
+*.la
+*.lai
 *.lib
+*.lo
 *.log
 *.ncb
 *.o
@@ -125,16 +151,30 @@ src/backends/ber/ber.loader.c
 *.out
 *.pch
 *.pdb
-*.sdf
+*.rar
+*.res
 *.sbr
 *.scc
+*.sdf
+*.slo
 *.so
 *.suo
 *.swp
+*.tlog
+*.tmp
+*.unsuccessfulbuild
 *.vcproj*.user
 *.vcxproj*.user
+*.xcuserstate
+*.zip
+
+RCa0*
+RCb0*
 
 *.vc71.sln
 *.vc8.sln
 *.vc9.sln
 
+build/*.tmplgen
+build/*.tmpl
+build/*.tools.xml
