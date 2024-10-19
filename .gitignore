@@ -97,6 +97,7 @@ x64/
 .update_deps
 
 list_changes.cmd
+logging-bailout.txt
 prepare.cmd
 tidydir.cmd
 update_deps.cmd
