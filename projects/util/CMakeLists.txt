@@ -12,17 +12,7 @@ add_library(Pantheios.util
 
 target_link_STLSoft(Pantheios.util)
 
-target_compile_options(Pantheios.util
-	PRIVATE
-		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-			-Werror -Wall -Wextra -pedantic
-
-			-Wno-deprecated-copy-with-user-provided-copy
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
-		>
-)
+define_target_compile_options(Pantheios.util)
 
 install(TARGETS Pantheios.util)
 

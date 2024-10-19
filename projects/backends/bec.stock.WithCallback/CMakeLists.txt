@@ -55,7 +55,7 @@ target_compile_options(Pantheios.bec.stock.WithCallback
 		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 			-Werror -Wall -Wextra -pedantic
 
-			-Wno-deprecated-copy-with-user-provided-copy
+			#-Wno-deprecated-copy-with-user-provided-copy
 
 			-DPANTHEIOS_BE_USE_CALLBACK
 		>

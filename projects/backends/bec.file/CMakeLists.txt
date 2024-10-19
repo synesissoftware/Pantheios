@@ -11,17 +11,7 @@ add_library(Pantheios.bec.file
 
 target_link_STLSoft(Pantheios.bec.file)
 
-target_compile_options(Pantheios.bec.file
-	PRIVATE
-		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-			-Werror -Wall -Wextra -pedantic
-
-			-Wno-deprecated-copy-with-user-provided-copy
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
-		>
-)
+define_target_compile_options(Pantheios.bec.file)
 
 install(TARGETS Pantheios.bec.file)
 

@@ -22,17 +22,7 @@ target_link_Pantheios_util(test.scratch.be.file)
 
 target_link_STLSoft(test.scratch.be.file)
 
-target_compile_options(test.scratch.be.file
-	PRIVATE
-		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-			-Werror -Wall -Wextra -pedantic
-
-			-Wno-deprecated-copy-with-user-provided-copy
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
-		>
-)
+define_target_compile_options(test.scratch.be.file)
 
 
 # ############################## end of file ############################# #
