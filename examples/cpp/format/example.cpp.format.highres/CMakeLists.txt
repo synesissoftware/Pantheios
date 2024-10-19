@@ -3,10 +3,7 @@ add_executable(example.cpp.format.highres
 	example.cpp.format.highres.cpp
 )
 
-target_link_libraries(example.cpp.format.highres
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(example.cpp.format.highres)
 
 target_link_libraries(example.cpp.format.highres
 	PRIVATE
@@ -19,24 +16,11 @@ target_link_libraries(example.cpp.format.highres
 		Pantheios.fe.simple
 )
 
-target_link_libraries(example.cpp.format.highres
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(example.cpp.format.highres)
 
-target_link_libraries(example.cpp.format.highres
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(example.cpp.format.highres)
 
-target_compile_options(example.cpp.format.highres PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(example.cpp.format.highres)
 
 
 # ############################## end of file ############################# #

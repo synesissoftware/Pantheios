@@ -10,21 +10,19 @@ add_library(Pantheios.util
 	${UTIL_SRCS}
 )
 
-target_link_libraries(Pantheios.util
+target_link_STLSoft(Pantheios.util)
+
+target_compile_options(Pantheios.util
 	PRIVATE
-		STLSoft::STLSoft
-)
+		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			-Werror -Wall -Wextra -pedantic
 
-target_compile_options(Pantheios.util PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-
-		-Wno-deprecated-copy-with-user-provided-copy
-		-Wno-unused-but-set-parameter
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
+			-Wno-deprecated-copy-with-user-provided-copy
+			-Wno-unused-but-set-parameter
+		>
+		$<$<CXX_COMPILER_ID:MSVC>:
+			/WX /W4
+		>
 )
 
 install(TARGETS Pantheios.util)

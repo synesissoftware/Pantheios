@@ -9,19 +9,9 @@ add_library(Pantheios.be.WindowsConsole
 	${BE_WINDOWSCONSOLE_SRCS}
 )
 
-target_link_libraries(Pantheios.be.WindowsConsole
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.be.WindowsConsole)
 
-target_compile_options(Pantheios.be.WindowsConsole PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.be.WindowsConsole)
 
 install(TARGETS Pantheios.be.WindowsConsole)
 

@@ -13,26 +13,22 @@ target_link_libraries(test.unit.be.N
 		Pantheios.fe.simple
 )
 
-target_link_libraries(test.unit.be.N
+target_link_Pantheios_util(test.unit.be.N)
+
+target_link_STLSoft(test.unit.be.N)
+
+target_link_xTests(test.unit.be.N)
+
+target_compile_options(test.unit.be.N
 	PRIVATE
-		Pantheios.util
-)
+		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			-Werror -Wall -Wextra -pedantic
 
-target_link_libraries(test.unit.be.N
-	PRIVATE
-		STLSoft::STLSoft
-		xTests::core
-)
-
-target_compile_options(test.unit.be.N PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-
-		-Wno-null-pointer-arithmetic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
+			-Wno-null-pointer-arithmetic
+		>
+		$<$<CXX_COMPILER_ID:MSVC>:
+			/WX /W4
+		>
 )
 
 

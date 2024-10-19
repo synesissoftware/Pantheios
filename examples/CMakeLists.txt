@@ -1,15 +1,11 @@
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-if(APPLE)
+if(UNIX)
 
-	message("-- -- adding '/usr/local/include' to include-directories for 'examples'")
-
-	include_directories("/usr/local/include")
-
-	include_directories("/usr/local/lib")
-endif(APPLE)
-
+	add_definitions(-DUNIX)
+	add_definitions(-Dunix)
+endif(UNIX)
 
 if(WIN32)
 
@@ -26,11 +22,12 @@ if(WIN32)
 	endif()
 endif(WIN32)
 
-if(UNIX)
+if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 
-	add_definitions(-DUNIX)
-	add_definitions(-Dunix)
-endif(UNIX)
+	add_compile_options("/Zc:__cplusplus")
+
+	add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
+endif()
 
 
 add_subdirectory(c)

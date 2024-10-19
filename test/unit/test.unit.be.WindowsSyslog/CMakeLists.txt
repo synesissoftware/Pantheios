@@ -9,30 +9,18 @@ target_link_libraries(test.unit.be.WindowsSyslog
 		Pantheios.bec.WindowsSyslog
 )
 
-target_link_libraries(test.unit.be.WindowsSyslog
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.unit.be.WindowsSyslog)
 
-target_link_libraries(test.unit.be.WindowsSyslog
-	PRIVATE
-		STLSoft::STLSoft
-		xTests::core
-)
+target_link_STLSoft(test.unit.be.WindowsSyslog)
+
+target_link_xTests(test.unit.be.WindowsSyslog)
 
 target_link_libraries(test.unit.be.WindowsSyslog
 	PRIVATE
 		ws2_32
 )
 
-target_compile_options(test.unit.be.WindowsSyslog PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(test.unit.be.WindowsSyslog)
 
 
 # ############################## end of file ############################# #

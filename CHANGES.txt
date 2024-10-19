@@ -2,7 +2,7 @@ pantheios - Changes
 ===================
 
 Created:    2nd September 2006
-Updated:    16th July 2024
+Updated:    19th October 2024
 
 
     ************************************
@@ -14,6 +14,22 @@ Updated:    16th July 2024
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+19th October 2024 - 1.0.1 beta 221
+===============================
+
+Summary:
+--------
+
+ * MinGW compatibility;
+ * Now optionally dependent on **b64** library (for `pantheios::b64' inserter class);
+ * Very extensive refactoring of CMake support;
+
+Details:
+--------
+
+Too many to mention. Note that there are no functionality changes.
 
 
 16th July 2024 - 1.0.1 beta 220

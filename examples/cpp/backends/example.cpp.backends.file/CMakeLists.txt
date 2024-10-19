@@ -3,10 +3,7 @@ add_executable(example.cpp.backends.file
 	example.cpp.backends.file.cpp
 )
 
-target_link_libraries(example.cpp.backends.file
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(example.cpp.backends.file)
 
 target_link_libraries(example.cpp.backends.file
 	PRIVATE
@@ -19,24 +16,11 @@ target_link_libraries(example.cpp.backends.file
 		Pantheios.fe.simple
 )
 
-target_link_libraries(example.cpp.backends.file
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(example.cpp.backends.file)
 
-target_link_libraries(example.cpp.backends.file
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(example.cpp.backends.file)
 
-target_compile_options(example.cpp.backends.file PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(example.cpp.backends.file)
 
 
 # ############################## end of file ############################# #

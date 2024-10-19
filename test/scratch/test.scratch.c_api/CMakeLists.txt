@@ -3,10 +3,7 @@ add_executable(test.scratch.c_api
 	test.scratch.c_api.c
 )
 
-target_link_libraries(test.scratch.c_api
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(test.scratch.c_api)
 
 target_link_libraries(test.scratch.c_api
 	PRIVATE
@@ -22,27 +19,22 @@ target_link_libraries(test.scratch.c_api
 		Pantheios.fe.simple
 )
 
-target_link_libraries(test.scratch.c_api
+target_link_Pantheios_util(test.scratch.c_api)
+
+target_link_xTests(test.scratch.c_api)
+
+target_compile_options(test.scratch.c_api
 	PRIVATE
-		Pantheios.util
-)
+		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			-Werror -Wall -Wextra -pedantic
 
-target_link_libraries(test.scratch.c_api
-	PRIVATE
-		xTests::core
-)
-
-target_compile_options(test.scratch.c_api PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-
-		-Wno-extern-initializer
-		-Wno-null-pointer-arithmetic
-		-Wno-unused-variable
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
+			-Wno-extern-initializer
+			-Wno-null-pointer-arithmetic
+			-Wno-unused-variable
+		>
+		$<$<CXX_COMPILER_ID:MSVC>:
+			/WX /W4
+		>
 )
 
 

@@ -8,25 +8,13 @@ target_link_libraries(test.unit.fe.null
 		Pantheios.fe.null
 )
 
-target_link_libraries(test.unit.fe.null
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.unit.fe.null)
 
-target_link_libraries(test.unit.fe.null
-	PRIVATE
-		STLSoft::STLSoft
-		xTests::core
-)
+target_link_STLSoft(test.unit.fe.null)
 
-target_compile_options(test.unit.fe.null PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+target_link_xTests(test.unit.fe.null)
+
+define_target_compile_options(test.unit.fe.null)
 
 
 # ############################## end of file ############################# #

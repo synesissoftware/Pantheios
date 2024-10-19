@@ -3,25 +3,13 @@ add_executable(test.unit.util.snprintf
 	test.unit.util.snprintf.cpp
 )
 
-target_link_libraries(test.unit.util.snprintf
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.unit.util.snprintf)
 
-target_link_libraries(test.unit.util.snprintf
-	PRIVATE
-		STLSoft::STLSoft
-		xTests::core
-)
+target_link_STLSoft(test.unit.util.snprintf)
 
-target_compile_options(test.unit.util.snprintf PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+target_link_xTests(test.unit.util.snprintf)
+
+define_target_compile_options(test.unit.util.snprintf)
 
 
 # ############################## end of file ############################# #
