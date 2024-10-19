@@ -26,7 +26,6 @@ target_compile_options(test.performance.util.date_elements_to_string
 
 			-Wno-deprecated-declarations
 			-Wno-missing-field-initializers
-			-Wno-unused-but-set-variable
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4

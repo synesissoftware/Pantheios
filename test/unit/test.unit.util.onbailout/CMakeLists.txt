@@ -11,16 +11,7 @@ target_link_shwild(test.unit.util.onbailout)
 
 target_link_xTests(test.unit.util.onbailout)
 
-target_compile_options(test.unit.util.onbailout
-	PRIVATE
-		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-			-Werror -Wall -Wextra -pedantic
-
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
-		>
-)
+define_target_compile_options(test.unit.util.onbailout)
 
 
 # ############################## end of file ############################# #

@@ -36,7 +36,7 @@ while [[ $# -gt 0 ]]; do
 Pantheios is an efficient, flexible, and robust C/C++ diagnostic logging library
 Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
-Runs all (matching) scratch-test programs
+Runs all (matching) scratch and performance test programs
 
 $ScriptPath [ ... flags/options ... ]
 

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.performance.util.date_elements_to_string project.
  *
  * Created: 13th November 2016
- * Updated: 14th July 2024
+ * Updated: 19th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -269,7 +269,7 @@ static int main_(int /* argc */, char** /* argv */)
     fprintf(stdout, "fast_strftime : date elements:\t% 9.04f\n", (double)tm_fast_strftime/(double)tm_date_elements);
 #endif
 
-    return EXIT_SUCCESS;
+    return (total == INT_MAX) ? 100 : EXIT_SUCCESS;
 }
 
 int main(int argc, char** argv)
