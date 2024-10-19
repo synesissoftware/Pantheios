@@ -25,6 +25,7 @@
 #include <exception>
 
 /* Standard C header files */
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
