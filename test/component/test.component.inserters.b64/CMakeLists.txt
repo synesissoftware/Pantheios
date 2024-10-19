@@ -23,7 +23,7 @@ target_link_libraries(test.component.inserters.b64
 		b64::core
 )
 
-target_link_xTests(test.component.inserters.args)
+target_link_xTests(test.component.inserters.b64)
 
 target_compile_options(test.component.inserters.b64 PRIVATE
 	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
