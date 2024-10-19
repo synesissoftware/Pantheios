@@ -455,7 +455,7 @@ iteration_to_tm_(
     int iteration
 )
 {
-    struct tm   tm = { 0 } ;
+    struct tm   tm = {};
 
     tm.tm_sec   =      0 + (iteration /      1) % 60;
     tm.tm_min   =      0 + (iteration /     10) % 60;

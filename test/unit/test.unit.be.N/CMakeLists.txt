@@ -20,8 +20,8 @@ target_link_STLSoft(test.unit.be.N)
 target_link_xTests(test.unit.be.N)
 
 list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED null-pointer-arithmetic)
-
 define_target_compile_options(test.unit.be.N)
+
 
 # ############################## end of file ############################# #
 

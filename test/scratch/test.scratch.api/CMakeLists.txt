@@ -21,17 +21,7 @@ target_link_libraries(test.scratch.api
 
 target_link_Pantheios_util(test.scratch.api)
 
-target_compile_options(test.scratch.api
-	PRIVATE
-		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-			-Werror -Wall -Wextra -pedantic
-
-			-Wno-extern-initializer
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
-		>
-)
+define_target_compile_options(test.scratch.api)
 
 
 # ############################## end of file ############################# #
