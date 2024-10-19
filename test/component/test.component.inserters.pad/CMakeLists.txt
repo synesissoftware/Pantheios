@@ -20,7 +20,7 @@ target_link_Pantheios_util(test.component.inserters.pad)
 
 target_link_xTests(test.component.inserters.pad)
 
-target_compile_options(test.component.inserters.pad)
+define_target_compile_options(test.component.inserters.pad)
 
 
 # ############################## end of file ############################# #

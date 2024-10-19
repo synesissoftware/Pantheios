@@ -18,7 +18,6 @@ target_compile_options(Pantheios.util
 			-Werror -Wall -Wextra -pedantic
 
 			-Wno-deprecated-copy-with-user-provided-copy
-			-Wno-unused-but-set-parameter
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4
