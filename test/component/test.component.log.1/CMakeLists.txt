@@ -20,17 +20,7 @@ target_link_Pantheios_util(test.component.log.1)
 
 target_link_xTests(test.component.log.1)
 
-target_compile_options(test.component.log.1
-	PRIVATE
-		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-			-Werror -Wall -Wextra -pedantic
-
-			-Wno-null-pointer-arithmetic
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
-		>
-)
+define_target_compile_options(test.component.log.1)
 
 
 # ############################## end of file ############################# #

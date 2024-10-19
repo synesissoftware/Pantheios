@@ -20,17 +20,7 @@ target_link_Pantheios_util(test.scratch.util.onbailout)
 
 target_link_STLSoft(test.scratch.util.onbailout)
 
-target_compile_options(test.scratch.util.onbailout
-	PRIVATE
-		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-			-Werror -Wall -Wextra -pedantic
-
-			-Wno-null-pointer-arithmetic
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
-		>
-)
+define_target_compile_options(test.scratch.util.onbailout)
 
 
 # ############################## end of file ############################# #

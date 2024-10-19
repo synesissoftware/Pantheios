@@ -17,7 +17,6 @@ target_compile_options(test.unit.util.onbailout
 			-Werror -Wall -Wextra -pedantic
 
 			-Wno-unused-but-set-parameter
-			-Wno-unused-parameter
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4

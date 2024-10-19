@@ -24,8 +24,6 @@ target_compile_options(test.scratch.tstring
 	PRIVATE
 		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 			-Werror -Wall -Wextra -pedantic
-
-			-Wno-null-pointer-arithmetic
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4

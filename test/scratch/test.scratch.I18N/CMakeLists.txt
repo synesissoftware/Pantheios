@@ -20,17 +20,7 @@ target_link_Pantheios_util(test.scratch.I18N)
 
 target_link_STLSoft(test.scratch.I18N)
 
-target_compile_options(test.scratch.I18N
-	PRIVATE
-		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-			-Werror -Wall -Wextra -pedantic
-
-			-Wno-null-pointer-arithmetic
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
-		>
-)
+define_target_compile_options(test.scratch.I18N)
 
 
 # ############################## end of file ############################# #

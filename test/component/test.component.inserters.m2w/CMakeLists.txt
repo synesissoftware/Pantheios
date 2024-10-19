@@ -20,17 +20,7 @@ target_link_Pantheios_util(test.component.inserters.m2w)
 
 target_link_xTests(test.component.inserters.m2w)
 
-target_compile_options(test.component.inserters.m2w
-	PRIVATE
-		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-			-Werror -Wall -Wextra -pedantic
-
-			-Wno-null-pointer-arithmetic
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
-		>
-)
+define_target_compile_options(test.component.inserters.m2w)
 
 
 # ############################## end of file ############################# #

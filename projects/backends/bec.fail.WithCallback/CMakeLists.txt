@@ -16,8 +16,6 @@ target_compile_options(Pantheios.bec.fail.WithCallback
 		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 			-Werror -Wall -Wextra -pedantic
 
-			-Wno-unused-parameter
-
 			-DPANTHEIOS_BE_USE_CALLBACK
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:

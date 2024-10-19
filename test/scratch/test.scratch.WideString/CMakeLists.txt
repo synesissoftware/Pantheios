@@ -25,17 +25,7 @@ target_link_libraries(test.scratch.WideString
 		b64::core
 )
 
-target_compile_options(test.scratch.WideString
-	PRIVATE
-		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-			-Werror -Wall -Wextra -pedantic
-
-			-Wno-null-pointer-arithmetic
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
-		>
-)
+define_target_compile_options(test.scratch.WideString)
 
 
 # ############################## end of file ############################# #
