@@ -29,7 +29,6 @@ target_compile_options(test.scratch.c_api
 			-Werror -Wall -Wextra -pedantic
 
 			-Wno-extern-initializer
-			-Wno-unused-variable
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4

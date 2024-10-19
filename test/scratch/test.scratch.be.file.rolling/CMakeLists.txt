@@ -26,7 +26,6 @@ target_compile_options(test.scratch.be.file.rolling
 			-Werror -Wall -Wextra -pedantic
 
 			-Wno-deprecated-copy-with-user-provided-copy
-			-Wno-unused-variable
 		>
 		$<$<CXX_COMPILER_ID:MSVC>:
 			/WX /W4
