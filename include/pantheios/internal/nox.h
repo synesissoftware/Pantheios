@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/internal/nox.h
+ * File:    pantheios/internal/nox.h
  *
- * Purpose:     Handles compiler warning suppression for those compilers
- *              for which NoX builds are provided in the distribution.
+ * Purpose: Handles compiler warning suppression for those compilers for
+ *          which NoX builds are provided in the distribution.
  *
- * Created:     7th February 2008
- * Updated:     16th December 2023
+ * Created: 7th February 2008
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -52,13 +52,13 @@
  * includes
  */
 
-#ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
-# include <pantheios/pantheios.h>
-#endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * includes
+ * compatibility
  */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -67,8 +67,12 @@
 # ifndef STLSOFT_CF_EXCEPTION_SUPPORT
 #  pragma warning(disable : 4530)
 # endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
-
 #endif /* compiler */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

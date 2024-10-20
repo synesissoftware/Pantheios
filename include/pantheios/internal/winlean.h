@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/internal/winlean.h
+ * File:    pantheios/internal/winlean.h
  *
- * Purpose:     Suppresses as much as possible of the Windows headers, to
- *              decrease compilation times.
+ * Purpose: Suppresses as much as possible of the Windows headers, to
+ *          decrease compilation times.
  *
- * Created:     22nd April 2008
- * Updated:     16th July 2024
+ * Created: 22nd April 2008
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -89,15 +89,15 @@
 #define NOCOLOR                                             /* Screen colors */
 #define NOCTLMGR                                            /* Control and Dialog routines */
 #define NODRAWTEXT                                          /* DrawText() and DT_* */
-/* #define NOGDI */               /* All GDI defines and routines */
+/* #define NOGDI */                                               /* All GDI defines and routines */
 #define NOKERNEL                                            /* All KERNEL defines and routines */
-/* #define NOUSER */              /* All USER defines and routines */
-/* #define NONLS */               /* All NLS defines and routines */
-/* #define NOMB */                /* MB_* and MessageBox() */
+/* #define NOUSER */                                              /* All USER defines and routines */
+/* #define NONLS */                                               /* All NLS defines and routines */
+/* #define NOMB */                                                /* MB_* and MessageBox() */
 #define NOMEMMGR                                            /* GMEM_*, LMEM_*, GHND, LHND, associated routines */
 #define NOMETAFILE                                          /* typedef METAFILEPICT */
 #define NOMINMAX                                            /* Macros min(a,b) and max(a,b) */
-/* #define NOMSG */               /* typedef MSG and associated routines */
+/* #define NOMSG */                                               /* typedef MSG and associated routines */
 #define NOOPENFILE                                          /* OpenFile(), OemToAnsi, AnsiToOem, and OF_* */
 #define NOSCROLL                                            /* SB_* and scrolling routines */
 #define NOSERVICE                                           /* All Service Controller routines, SERVICE_ equates, etc. */
@@ -113,7 +113,10 @@
 #define NOMCX                                               /* Modem Configuration Extensions */
 #endif /* 0 */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_WINLEAN */
 

@@ -5,7 +5,7 @@
  *          API.
  *
  * Created: 23rd September 2005
- * Updated: 7th February 2024
+ * Updated: 20th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -80,6 +80,7 @@
 
 #if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1200)
+
 # define _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 #endif /* compiler */
 
@@ -109,13 +110,12 @@ namespace
             PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
             T
         ,   1024
-        >::type                                 type;
+        >::type                                             type;
     };
 
-    typedef buffer_selector_<char>::type        buffer_a_t;
-    typedef buffer_selector_<wchar_t>::type     buffer_w_t;
-    typedef buffer_selector_<PAN_CHAR_T>::type  buffer_t;
-
+    typedef buffer_selector_<char>::type                    buffer_a_t;
+    typedef buffer_selector_<wchar_t>::type                 buffer_w_t;
+    typedef buffer_selector_<PAN_CHAR_T>::type              buffer_t;
 } /* anonymous namespace */
 
 
@@ -137,8 +137,7 @@ namespace
         size_t          cchHostIdentity;
         unsigned char   facility;
     };
-    typedef struct WindowsSysLog_Context   WindowsSysLog_Context;
-
+    typedef struct WindowsSysLog_Context                    WindowsSysLog_Context;
 } /* anonymous namespace */
 
 
@@ -153,8 +152,10 @@ pan_atoi_(
 )
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
+
     return ::_wtoi(s);
 #else
+
     return ::atoi(s);
 #endif
 }
@@ -203,6 +204,7 @@ pantheios_be_WindowsSyslog_init_a_(
 ,   void**                              ptoken
 ,   char const*                         hostName
 );
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
