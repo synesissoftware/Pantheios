@@ -70,6 +70,9 @@
 /* Standard C++ header files */
 
 #include <algorithm>
+#if __cplusplus >= 201103L
+# include <cstdint>
+#endif
 
 /* Standard C header files */
 
@@ -118,6 +121,35 @@ namespace std
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * types
+ */
+
+// Determine ptr-sized integer type
+#if 0
+#elif __cplusplus >= 201103L
+
+typedef std::intptr_t                                       intptr_t_;
+#else
+# if 0
+# elif defined(STLSOFT_COMPILER_IS_GCC)
+
+#  ifdef _WIN64
+
+typedef STLSOFT_NS_QUAL(ss_int64_t)                         intptr_t_;
+#  else
+
+typedef STLSOFT_NS_QUAL(ss_int32_t)                         intptr_t_;
+#  endif
+# else /* ? compiler */
+
+typedef stlsoft::int_size_traits<
+    sizeof(void*)
+>::unsigned_type                                            intptr_t_;
+# endif /* compiler */
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -233,13 +265,6 @@ void pointer::construct_()
             char_type szTemp[23]; // 23 is always big enough, since the width is 21
 
             PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(0 == (m_format & fmt::zeroPad));
-
-            // Determine ptr-sized integer type
-#if defined(STLSOFT_COMPILER_IS_GCC)
-            typedef unsigned long                                             intptr_t_;
-#else /* ? compiler */
-            typedef stlsoft::int_size_traits<sizeof(void*)>::unsigned_type    intptr_t_;
-#endif /* compiler */
 
             int r = pantheios_util_snprintf(
                         &szTemp[0]
