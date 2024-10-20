@@ -15,7 +15,7 @@
 
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/args.hpp>
-#ifdef HAS_b64
+#ifndef PANTHEIOS_NO_B64
 # include <pantheios/inserters/b64.hpp>
 #endif
 #include <pantheios/inserters/blob.hpp>
@@ -48,7 +48,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
     pantheios::log(pantheios::debug, PANTHEIOS_LITERAL_STRING("main(argc/v={"), pantheios::args(argc, argv), PANTHEIOS_LITERAL_STRING("})"));
 
-#ifdef HAS_b64
+#ifndef PANTHEIOS_NO_B64
     pantheios::log(pantheios::debug, PANTHEIOS_LITERAL_STRING("b64: {"), pantheios::b64("abcd", 5), PANTHEIOS_LITERAL_STRING("}"));
 #endif
 

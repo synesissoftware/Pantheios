@@ -170,6 +170,9 @@ if(b64_FOUND)
 	message("-- CMake package b64 found (version ${b64_VERSION}")
 
 	add_compile_definitions(HAS_b64)
+else(b64_FOUND)
+
+	add_compile_definitions(PANTHEIOS_NO_B64)
 endif(b64_FOUND)
 
 
