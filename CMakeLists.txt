@@ -168,6 +168,8 @@ find_package(b64 QUIET)
 if(b64_FOUND)
 
 	message("-- CMake package b64 found (version ${b64_VERSION}")
+
+	add_compile_definitions(HAS_b64)
 endif(b64_FOUND)
 
 
