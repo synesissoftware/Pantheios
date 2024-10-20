@@ -341,10 +341,13 @@ pantheios_be_WindowsSyslog_init_a_(
         if (0 == init->addrSize &&
             NULL != hostName)
         {
-#ifdef _WIN32
-# pragma warning(push)
-# pragma warning(disable : 4996)
-#endif
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER >= 1400
+
+#  pragma warning(push)
+#  pragma warning(disable : 4996)
+# endif
 
             unsigned long   addr = ::inet_addr(hostName);
             struct hostent* he;
@@ -360,9 +363,11 @@ pantheios_be_WindowsSyslog_init_a_(
                 memcpy(&addr_in.sin_addr, &addr, sizeof(addr));
             }
 
-#ifdef _WIN32
-# pragma warning(pop)
-#endif
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER >= 1400
+
+#  pragma warning(pop)
+# endif
         }
         else
         {
