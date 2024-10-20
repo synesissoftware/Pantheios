@@ -45,6 +45,7 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/nox.h>
 #include <pantheios/internal/winlean.h>
+#include <winsock2.h> // has to be _before_ any inclusion of Windows.h
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
 #include <pantheios/backends/bec.WindowsSyslog.h>
 #include <pantheios/internal/safestr.h>
@@ -69,9 +70,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-
-/* Windows header files */
-#include <winsock2.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
