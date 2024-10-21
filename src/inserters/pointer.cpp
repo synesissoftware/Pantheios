@@ -311,13 +311,15 @@ void pointer::construct_()
         }
         else
         {
-            pantheios_util_snprintf(&szFmt[0]
-                                ,   STLSOFT_NUM_ELEMENTS(szFmt)
-                                ,   PANTHEIOS_LITERAL_STRING("%s%%%s%s%dx")
-                                ,   zeroX
-                                ,   leadingMinus
-                                ,   zeroPad
-                                ,   width);
+            pantheios_util_snprintf(
+                &szFmt[0]
+            ,   STLSOFT_NUM_ELEMENTS(szFmt)
+            ,   PANTHEIOS_LITERAL_STRING("%s%%%s%s%dx")
+            ,   zeroX
+            ,   leadingMinus
+            ,   zeroPad
+            ,   width
+            );
 
             m_len = static_cast<size_t>(pantheios_util_snprintf(&m_sz[0], STLSOFT_NUM_ELEMENTS(m_sz), szFmt, m_value));
         }
