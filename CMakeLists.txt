@@ -195,7 +195,7 @@ endif(BUILD_TESTING)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.24)
+	set(xTests_REQUIRED_VERSION_ 0.25.1)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
