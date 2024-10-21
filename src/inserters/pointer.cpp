@@ -266,10 +266,15 @@ void pointer::construct_()
 
             PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(0 == (m_format & fmt::zeroPad));
 
+            PAN_CHAR_T const* const fmts[] = {
+                    PANTHEIOS_LITERAL_STRING("0x%lx")
+                ,   PANTHEIOS_LITERAL_STRING("0x%llx")
+            };
+
             int r = pantheios_util_snprintf(
                         &szTemp[0]
                     ,   STLSOFT_NUM_ELEMENTS(szTemp)
-                    ,   PANTHEIOS_LITERAL_STRING("0x%lx")
+                    ,   fmts[sizeof(void*) > 4]
                     ,   static_cast<intptr_t_>(stlsoft::union_cast<intptr_t_>(m_value))
                     );
 
