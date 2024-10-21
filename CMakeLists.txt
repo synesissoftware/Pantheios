@@ -1,11 +1,11 @@
 
 # ######################################################################## #
-# File:     /CMakeLists.txt
+# File:     CMakeLists.txt
 #
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  20th October 2024
+# Updated:  22nd October 2024
 #
 # ######################################################################## #
 
@@ -155,6 +155,18 @@ else()
 endif()
 
 if(DEFINED STLSOFT_INCLUDE_DIR)
+
+	if(BUILD_TESTING)
+		find_package(STLSoft REQUIRED)
+
+		if(NOT STLSoft_FOUND)
+
+			message(FATAL_ERROR "When specifying STLSOFT explicitly it it still required to have an existing CMake installation of STLSoft in testing to satisfy xTest's dependency requirements. The specified STLSoft will be used for all compilation")
+		else()
+
+			message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) - required only to enable xTests package; the current project's header files will be used for all compilation")
+		endif()
+	endif(BUILD_TESTING)
 
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
