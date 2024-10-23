@@ -25,7 +25,9 @@ target_compile_options(Pantheios.bec.null.WithCallback
 		>
 )
 
-install(TARGETS Pantheios.bec.null.WithCallback)
+install(TARGETS Pantheios.bec.null.WithCallback
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

@@ -13,7 +13,9 @@ target_link_STLSoft(Pantheios.bec.syslog)
 
 define_target_compile_options(Pantheios.bec.syslog)
 
-install(TARGETS Pantheios.bec.syslog)
+install(TARGETS Pantheios.bec.syslog
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

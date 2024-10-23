@@ -13,6 +13,10 @@ target_link_STLSoft(Pantheios.be.fprintf)
 
 define_target_compile_options(Pantheios.be.fprintf)
 
-install(TARGETS Pantheios.be.fprintf)
+install(TARGETS Pantheios.be.fprintf
+	EXPORT project-targets
+)
 
+
+# ############################## end of file ############################# #
 

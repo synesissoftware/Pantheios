@@ -66,7 +66,9 @@ target_compile_options(Pantheios.bec.stock.WithCallback
 		>
 )
 
-install(TARGETS Pantheios.bec.stock.WithCallback)
+install(TARGETS Pantheios.bec.stock.WithCallback
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

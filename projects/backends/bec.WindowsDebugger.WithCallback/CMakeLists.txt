@@ -25,7 +25,9 @@ target_compile_options(Pantheios.bec.WindowsDebugger.WithCallback
 		>
 )
 
-install(TARGETS Pantheios.bec.WindowsDebugger.WithCallback)
+install(TARGETS Pantheios.bec.WindowsDebugger.WithCallback
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

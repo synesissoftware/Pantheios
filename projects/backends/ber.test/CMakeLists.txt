@@ -13,7 +13,9 @@ target_link_STLSoft(Pantheios.ber.test)
 
 define_target_compile_options(Pantheios.ber.test)
 
-install(TARGETS Pantheios.ber.test)
+install(TARGETS Pantheios.ber.test
+	EXPORT project-targets
+)
 
 
 # ############################## end of test ############################# #

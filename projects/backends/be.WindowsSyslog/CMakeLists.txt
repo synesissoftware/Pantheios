@@ -13,7 +13,9 @@ target_link_STLSoft(Pantheios.be.WindowsSyslog)
 
 define_target_compile_options(Pantheios.be.WindowsSyslog)
 
-install(TARGETS Pantheios.be.WindowsSyslog)
+install(TARGETS Pantheios.be.WindowsSyslog
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

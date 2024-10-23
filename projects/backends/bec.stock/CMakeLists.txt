@@ -53,7 +53,9 @@ target_link_STLSoft(Pantheios.bec.stock)
 list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED unused-function)
 define_target_compile_options(Pantheios.bec.stock)
 
-install(TARGETS Pantheios.bec.stock)
+install(TARGETS Pantheios.bec.stock
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

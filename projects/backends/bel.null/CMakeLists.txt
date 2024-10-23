@@ -13,7 +13,9 @@ target_link_STLSoft(Pantheios.bel.null)
 
 define_target_compile_options(Pantheios.bel.null)
 
-install(TARGETS Pantheios.bel.null)
+install(TARGETS Pantheios.bel.null
+	EXPORT project-targets
+)
 
 
 # ############################## end of null ############################# #

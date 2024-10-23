@@ -25,7 +25,9 @@ target_compile_options(Pantheios.bec.WindowsSyslog.WithCallback
 		>
 )
 
-install(TARGETS Pantheios.bec.WindowsSyslog.WithCallback)
+install(TARGETS Pantheios.bec.WindowsSyslog.WithCallback
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

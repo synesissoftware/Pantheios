@@ -37,7 +37,9 @@ target_link_libraries(Pantheios.core
 
 define_target_compile_options(Pantheios.core)
 
-install(TARGETS Pantheios.core)
+install(TARGETS Pantheios.core
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #
