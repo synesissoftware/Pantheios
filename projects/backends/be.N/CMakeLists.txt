@@ -9,21 +9,13 @@ add_library(Pantheios.be.N
 	${BE_N_SRCS}
 )
 
-target_link_libraries(Pantheios.be.N
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.be.N)
 
-target_compile_options(Pantheios.be.N PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.be.N)
 
-install(TARGETS Pantheios.be.N)
+install(TARGETS Pantheios.be.N
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

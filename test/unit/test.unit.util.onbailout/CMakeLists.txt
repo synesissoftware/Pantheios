@@ -3,29 +3,15 @@ add_executable(test.unit.util.onbailout
 	test.unit.util.onbailout.cpp
 )
 
-target_link_libraries(test.unit.util.onbailout
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.unit.util.onbailout)
 
-target_link_libraries(test.unit.util.onbailout
-	PRIVATE
-		STLSoft::STLSoft
-		shwild::core
-		xTests::core
-)
+target_link_STLSoft(test.unit.util.onbailout)
 
-target_compile_options(test.unit.util.onbailout PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
+target_link_shwild(test.unit.util.onbailout)
 
-		-Wno-unused-but-set-parameter
-		-Wno-unused-parameter
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+target_link_xTests(test.unit.util.onbailout)
+
+define_target_compile_options(test.unit.util.onbailout)
 
 
 # ############################## end of file ############################# #

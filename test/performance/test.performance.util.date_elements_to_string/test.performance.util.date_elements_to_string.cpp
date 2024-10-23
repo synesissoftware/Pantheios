@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.performance.util.date_elements_to_string project.
  *
  * Created: 13th November 2016
- * Updated: 14th July 2024
+ * Updated: 19th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -25,6 +25,7 @@
 #include <exception>
 
 /* Standard C header files */
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -269,7 +270,7 @@ static int main_(int /* argc */, char** /* argv */)
     fprintf(stdout, "fast_strftime : date elements:\t% 9.04f\n", (double)tm_fast_strftime/(double)tm_date_elements);
 #endif
 
-    return EXIT_SUCCESS;
+    return (total == INT_MAX) ? 100 : EXIT_SUCCESS;
 }
 
 int main(int argc, char** argv)
@@ -454,7 +455,7 @@ iteration_to_tm_(
     int iteration
 )
 {
-    struct tm   tm = { 0 } ;
+    struct tm   tm = {};
 
     tm.tm_sec   =      0 + (iteration /      1) % 60;
     tm.tm_min   =      0 + (iteration /     10) % 60;

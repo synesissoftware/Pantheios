@@ -48,23 +48,14 @@ add_library(Pantheios.bec.stock
 	${BEC_STOCK_SRCS}
 )
 
-target_link_libraries(Pantheios.bec.stock
-	PRIVATE
-		STLSoft::STLSoft
+target_link_STLSoft(Pantheios.bec.stock)
+
+list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED unused-function)
+define_target_compile_options(Pantheios.bec.stock)
+
+install(TARGETS Pantheios.bec.stock
+	EXPORT project-targets
 )
-
-target_compile_options(Pantheios.bec.stock PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-
-		-Wno-deprecated-copy-with-user-provided-copy
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
-
-install(TARGETS Pantheios.bec.stock)
 
 
 # ############################## end of file ############################# #

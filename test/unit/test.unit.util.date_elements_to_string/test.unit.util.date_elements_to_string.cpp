@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp
+ * File:    test/unit/test.unit.util.date_elements_to_string/test.unit.util.date_elements_to_string.cpp
  *
- * Purpose:     Implementation file for the test.unit.util.date_elements_to_string project.
+ * Purpose: Unit-tests for date component formatting functions.
  *
- * Created:     13th November 2016
- * Updated:     16th July 2024
+ * Created: 13th November 2016
+ * Updated: 20th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -16,23 +16,15 @@
 #include <pantheios/util/string/snprintf.h>
 
 #include <pantheios/pantheios.h>
-#if 0
-#include <pantheios/init_codes.h>
-#endif /* 0 */
 
 #include <xtests/xtests.h>
 
-#if 0
-#include <stlsoft/shims/access/string.hpp>
-#include <stlsoft/util/limit_traits.h>
-#include <stlsoft/util/minmax.hpp>
-#endif /* 0 */
-
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)                         PANTHEIOS_LITERAL_STRING(x)
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -43,12 +35,10 @@
 
 # define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 # define XTESTS_TEST_STRING_EQUAL_N                         XTESTS_TEST_WIDE_STRING_EQUAL_N
-
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 # define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 # define XTESTS_TEST_STRING_EQUAL_N                         XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N
-
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -136,14 +126,18 @@ static void test_1_09();
 static void test_1_10();
 static void test_1_11();
 static void test_1_12();
-
 } /* anonymous namespace */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.util.date_elements_to_string");
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char** argv)
 {
@@ -240,7 +234,10 @@ int main(int argc, char** argv)
     return retCode;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * function implementations
+ */
 
 namespace
 {
@@ -829,8 +826,8 @@ static void test_1_11()
 static void test_1_12()
 {
 }
-
 } /* anonymous namespace */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.fprintf.cpp
+ * File:    src/backends/bec.fprintf.cpp
  *
- * Purpose:     Implementation for the fprintf() back-end
+ * Purpose: Implementation for the fprintf() back-end
  *
- * Created:     26th June 2005
- * Updated:     16th July 2024
+ * Created: 26th June 2005
+ * Updated: 23rd October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -62,8 +62,10 @@
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
+
 # define pan_fprintf_                                       ::fwprintf
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
 # define pan_fprintf_                                       ::fprintf
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -79,7 +81,6 @@ namespace
     using ::pantheios::pan_slice_t;
     using ::pantheios::util::backends::Context;
     using ::pantheios::util::pantheios_onBailOut3;
-
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 } /* anonymous namespace */
 
@@ -94,8 +95,8 @@ class be_fprintf_Context
 /// \name Member Types
 /// @{
 public:
-    typedef Context             parent_class_type;
-    typedef be_fprintf_Context  class_type;
+    typedef Context                                         parent_class_type;
+    typedef be_fprintf_Context                              class_type;
 /// @}
 
 /// \name Member Constants
@@ -148,6 +149,7 @@ private: // fields
 
 namespace
 {
+
     inline FILE*
     infer_stm_(pan_be_fprintf_init_t const* init)
     {
@@ -158,7 +160,6 @@ namespace
 
         return stderr;
     }
-
 } /* anonymous namespace */
 
 
@@ -219,6 +220,7 @@ static int pantheios_be_fprintf_init_(
     be_fprintf_Context* ctxt = new be_fprintf_Context(processIdentity, backEndId, init);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
+
     if (NULL == ctxt ||
         NULL == ctxt->getProcessIdentity())
     {
@@ -349,6 +351,7 @@ int be_fprintf_Context::rawLogEntry(
 
     return pan_fprintf_(m_stm, PANTHEIOS_LITERAL_STRING("%.*s\n"), int(cchEntry), entry);
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.tstring project.
  *
  * Created: 23rd February 2010
- * Updated: 14th July 2024
+ * Updated: 20th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,11 +50,6 @@ namespace std
  */
 
 #define PSTR                                                PANTHEIOS_LITERAL_STRING
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-
-#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,12 +72,15 @@ static int main_(int /* argc */, char** /*argv*/)
     pan::log_NOTICE(PSTR("mbs="), pan::m2t(mbs), PSTR(", ws1="), pan::w2t(ws1), PSTR(", ws2="), pan::w2t(ws2));
 
 #ifdef PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES
-    VARIANT         var;
 
-    var.vt = VT_I4;
-    var.lVal = -10;
+    {
+        VARIANT var;
 
-    pan::log_DEBUG(PSTR("var="), pan::w2t(var));
+        var.vt = VT_I4;
+        var.lVal = -10;
+
+        pan::log_DEBUG(PSTR("var="), pan::w2t(var));
+    }
 #endif /* PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES */
 
 
@@ -136,6 +134,7 @@ int main(int argc, char** argv)
 
     return res;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

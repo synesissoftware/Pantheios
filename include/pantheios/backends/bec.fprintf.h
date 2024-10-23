@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.fprintf.h
+ * File:    pantheios/backends/bec.fprintf.h
  *
- * Purpose:     Declaration of the Pantheios fprintf Stock Back-end API.
+ * Purpose: Declaration of the Pantheios fprintf Stock Back-end API.
  *
- * Created:     21st June 2005
- * Updated:     25th June 2020
+ * Created: 21st June 2005
+ * Updated: 24th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        24
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -123,7 +123,7 @@ public: /* Construction */
 #endif /* __cplusplus */
 };
 #ifndef __cplusplus
-typedef struct pan_be_fprintf_init_t    pan_be_fprintf_init_t;
+typedef struct pan_be_fprintf_init_t                        pan_be_fprintf_init_t;
 #endif /* !__cplusplus */
 
 
@@ -255,7 +255,14 @@ pan_be_fprintf_init_t::pan_be_fprintf_init_t()
 # endif /* !PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT */
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_FPRINTF */
 

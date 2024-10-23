@@ -9,21 +9,13 @@ add_library(Pantheios.bel.fprintf
 	${BEL_FPRINTF_SRCS}
 )
 
-target_link_libraries(Pantheios.bel.fprintf
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.bel.fprintf)
 
-target_compile_options(Pantheios.bel.fprintf PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.bel.fprintf)
 
-install(TARGETS Pantheios.bel.fprintf)
+install(TARGETS Pantheios.bel.fprintf
+	EXPORT project-targets
+)
 
 
 # ############################## end of fprintf ############################# #

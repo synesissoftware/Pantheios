@@ -28,31 +28,18 @@ add_library(Pantheios.core
 	${INSERTER_SRCS}
 )
 
+target_link_STLSoft(Pantheios.core)
+
 target_link_libraries(Pantheios.core
 	PRIVATE
-		STLSoft::STLSoft
 		$<$<BOOL:${b64_FOUND}>: b64::core >
 )
 
-target_compile_options(Pantheios.core PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
+define_target_compile_options(Pantheios.core)
 
-		-Wno-deprecated-copy-with-user-provided-copy
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
+install(TARGETS Pantheios.core
+	EXPORT project-targets
 )
-
-install(TARGETS Pantheios.core)
 
 
 # ############################## end of file ############################# #
-
-# INSERTER_SRCS=C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/args.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/b64.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/blob.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/boolean.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/exception.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/hostid.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/integer.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/interval.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/m2w.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/pointer.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/processid.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/real.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/slice.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/stream_character.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/threadid.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/w2m.cpp
-
-
-# CMake Warning at projects/core/CMakeLists.txt:22 (message):
-
-#   INSERTER_SRCS=C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/args.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/b64.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/blob.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/boolean.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/exception.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/hostid.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/integer.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/interval.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/pointer.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/processid.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/real.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/slice.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/stream_character.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/threadid.cpp;C:/Users/mwsis/dev/forks/synesissoftware/Pantheios/Pantheios/projects/core/../../src/inserters/w2m.cpp

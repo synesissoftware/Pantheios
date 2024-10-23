@@ -3,10 +3,7 @@ add_executable(test.component.inserters.slice
 	test.component.inserters.slice.cpp
 )
 
-target_link_libraries(test.component.inserters.slice
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(test.component.inserters.slice)
 
 target_link_libraries(test.component.inserters.slice
 	PRIVATE
@@ -19,26 +16,11 @@ target_link_libraries(test.component.inserters.slice
 		Pantheios.fe.all
 )
 
-target_link_libraries(test.component.inserters.slice
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.component.inserters.slice)
 
-target_link_libraries(test.component.inserters.slice
-	PRIVATE
-		xTests::core
-)
+target_link_xTests(test.component.inserters.slice)
 
-target_compile_options(test.component.inserters.slice PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-
-		-Wno-null-pointer-arithmetic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(test.component.inserters.slice)
 
 
 # ############################## end of file ############################# #

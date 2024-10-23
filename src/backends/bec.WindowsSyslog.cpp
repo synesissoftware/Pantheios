@@ -5,7 +5,7 @@
  *          API.
  *
  * Created: 23rd September 2005
- * Updated: 7th February 2024
+ * Updated: 20th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -45,6 +45,7 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/nox.h>
 #include <pantheios/internal/winlean.h>
+#include <winsock2.h> // has to be _before_ any inclusion of Windows.h
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
 #include <pantheios/backends/bec.WindowsSyslog.h>
 #include <pantheios/internal/safestr.h>
@@ -70,9 +71,6 @@
 #include <string.h>
 #include <time.h>
 
-/* Windows header files */
-#include <winsock2.h>
-
 
 /* /////////////////////////////////////////////////////////////////////////
  * compiler compatibility
@@ -80,6 +78,7 @@
 
 #if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
         _MSC_VER < 1200)
+
 # define _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 #endif /* compiler */
 
@@ -109,13 +108,12 @@ namespace
             PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
             T
         ,   1024
-        >::type                                 type;
+        >::type                                             type;
     };
 
-    typedef buffer_selector_<char>::type        buffer_a_t;
-    typedef buffer_selector_<wchar_t>::type     buffer_w_t;
-    typedef buffer_selector_<PAN_CHAR_T>::type  buffer_t;
-
+    typedef buffer_selector_<char>::type                    buffer_a_t;
+    typedef buffer_selector_<wchar_t>::type                 buffer_w_t;
+    typedef buffer_selector_<PAN_CHAR_T>::type              buffer_t;
 } /* anonymous namespace */
 
 
@@ -137,8 +135,7 @@ namespace
         size_t          cchHostIdentity;
         unsigned char   facility;
     };
-    typedef struct WindowsSysLog_Context   WindowsSysLog_Context;
-
+    typedef struct WindowsSysLog_Context                    WindowsSysLog_Context;
 } /* anonymous namespace */
 
 
@@ -153,8 +150,10 @@ pan_atoi_(
 )
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
+
     return ::_wtoi(s);
 #else
+
     return ::atoi(s);
 #endif
 }
@@ -203,6 +202,7 @@ pantheios_be_WindowsSyslog_init_a_(
 ,   void**                              ptoken
 ,   char const*                         hostName
 );
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -339,10 +339,13 @@ pantheios_be_WindowsSyslog_init_a_(
         if (0 == init->addrSize &&
             NULL != hostName)
         {
-#ifdef _WIN32
-# pragma warning(push)
-# pragma warning(disable : 4996)
-#endif
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER >= 1400
+
+#  pragma warning(push)
+#  pragma warning(disable : 4996)
+# endif
 
             unsigned long   addr = ::inet_addr(hostName);
             struct hostent* he;
@@ -358,9 +361,11 @@ pantheios_be_WindowsSyslog_init_a_(
                 memcpy(&addr_in.sin_addr, &addr, sizeof(addr));
             }
 
-#ifdef _WIN32
-# pragma warning(pop)
-#endif
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER >= 1400
+
+#  pragma warning(pop)
+# endif
         }
         else
         {

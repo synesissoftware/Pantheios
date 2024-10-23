@@ -4,7 +4,7 @@
  * Purpose: Implementation of the fe.WindowsRegistry front-end.
  *
  * Created: 28th October 2007
- * Updated: 16th July 2024
+ * Updated: 20th October 2024
  *
  * Home:    http://www.pantheios.org/
  *

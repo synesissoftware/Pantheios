@@ -9,21 +9,13 @@ add_library(Pantheios.ber.syslog
 	${BER_SYSLOG_SRCS}
 )
 
-target_link_libraries(Pantheios.ber.syslog
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.ber.syslog)
 
-target_compile_options(Pantheios.ber.syslog PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.ber.syslog)
 
-install(TARGETS Pantheios.ber.syslog)
+install(TARGETS Pantheios.ber.syslog
+	EXPORT project-targets
+)
 
 
 # ############################## end of syslog ############################# #

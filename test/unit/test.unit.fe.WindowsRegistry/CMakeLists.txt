@@ -8,25 +8,13 @@ target_link_libraries(test.unit.fe.WindowsRegistry
 		Pantheios.fe.WindowsRegistry
 )
 
-target_link_libraries(test.unit.fe.WindowsRegistry
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.unit.fe.WindowsRegistry)
 
-target_link_libraries(test.unit.fe.WindowsRegistry
-	PRIVATE
-		STLSoft::STLSoft
-		xTests::core
-)
+target_link_STLSoft(test.unit.fe.WindowsRegistry)
 
-target_compile_options(test.unit.fe.WindowsRegistry PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+target_link_xTests(test.unit.fe.WindowsRegistry)
+
+define_target_compile_options(test.unit.fe.WindowsRegistry)
 
 
 # ############################## end of file ############################# #

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.c_api project.
  *
  * Created: 14th October 2005
- * Updated: 16th July 2024
+ * Updated: 20th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -148,10 +148,12 @@ static void some_logging_2(void)
 
 static void some_logging_3(void)
 {
-#ifdef _WIN32
-# pragma warning(push)
-# pragma warning(disable : 4996)
-#endif
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER >= 1400
+
+#  pragma warning(push)
+#  pragma warning(disable : 4996)
+# endif
 
     int     numUsers    =   1000000;
     char    szNumUsers[101];
@@ -188,9 +190,11 @@ static void some_logging_3(void)
     ,   PARG_SN("Pantheios", 9)
     );
 
-#ifdef _WIN32
-# pragma warning(pop)
-#endif
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER >= 1400
+
+#  pragma warning(pop)
+# endif
 }
 
 

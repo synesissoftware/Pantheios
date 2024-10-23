@@ -2,7 +2,7 @@ pantheios - Changes
 ===================
 
 Created:    2nd September 2006
-Updated:    16th July 2024
+Updated:    24th October 2024
 
 
     ************************************
@@ -14,6 +14,42 @@ Updated:    16th July 2024
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+24th October 2024 - 1.0.1 beta 221
+==================================
+
+Summary:
+--------
+
+ * Major CMake configuration enhancements;
+ * Now optionally dependent on **b64** library (for `pantheios::b64' inserter class);
+ * Removed large number of warning suppressions;
+ * Defect fixes;
+ * MinGW compatibility;
+ * VC++17 compatibility;
+
+Details:
+--------
+
+Major CMake configuration enhancements:
+ * standardised and enhanced main script;
+ * added and applied several macros and functions for simplifying target configurations;
+ * added `EXPORT project-targets` to all targets' `install()` entries;
+ * adds `PANTHEIOS_NO_B64` to general defines when **b64** project not found;
+ * CMake build scripts enhancements
+
+Removed large number of warning suppressions:
+ * removed suppression of GCC 'deprecated-copy-with-user-provided-copy' warning;
+ * removed suppression of GCC 'unused-but-set-parameter' warning;
+ * removed suppression of GCC 'unused-but-set-variable' warning;
+ * removed suppression of GCC 'unused-parameter' warning;
+ * removed suppression of GCC 'unused-variable' warning;
+ * removed suppression of misc GCC warnings;
+
+Defect fixes:
+ * **bec.WindowsConsole** : ~ fixed error in `map_type_` specification;
+ * `pantheios::pointer` : ~ full compatibility with different architectures and compilers; ~ inserter formatting and layout;
 
 
 16th July 2024 - 1.0.1 beta 220

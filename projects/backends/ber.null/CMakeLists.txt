@@ -9,21 +9,13 @@ add_library(Pantheios.ber.null
 	${BER_NULL_SRCS}
 )
 
-target_link_libraries(Pantheios.ber.null
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.ber.null)
 
-target_compile_options(Pantheios.ber.null PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.ber.null)
 
-install(TARGETS Pantheios.ber.null)
+install(TARGETS Pantheios.ber.null
+	EXPORT project-targets
+)
 
 
 # ############################## end of null ############################# #

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/inserters/b64.cpp
+ * File:    src/inserters/b64.cpp
  *
- * Purpose:     Implementation of the b64 inserter class.
+ * Purpose: Implementation of the b64 inserter class.
  *
- * Created:     31st July 2006
- * Updated:     16th December 2023
+ * Created: 31st July 2006
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -70,9 +70,7 @@ namespace
 
     using ::pantheios::core::pantheios_inserterAllocate;
     using ::pantheios::core::pantheios_inserterDeallocate;
-
 } /* anonymous namespace */
-
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -80,8 +78,10 @@ namespace
  * b64
  */
 
-b64::b64(   void const* pv
-        ,   size_t      cb)
+b64::b64(
+    void const* pv
+,   size_type   cb
+)
     : m_value(NULL)
     , m_len(0)
     , m_pv(pv)
@@ -91,9 +91,11 @@ b64::b64(   void const* pv
     , m_rc(NULL)
 {}
 
-b64::b64(   void const* pv
-        ,   size_t      cb
-        ,   unsigned    flags)
+b64::b64(
+    void const* pv
+,   size_type   cb
+,   unsigned    flags
+)
     : m_value(NULL)
     , m_len(0)
     , m_pv(pv)
@@ -103,11 +105,13 @@ b64::b64(   void const* pv
     , m_rc(NULL)
 {}
 
-b64::b64(   void const*     pv
-        ,   size_t          cb
-        ,   unsigned        flags
-        ,   int             lineLen
-        ,   b64::B64_RC*    rc)
+b64::b64(
+    void const*     pv
+,   size_type       cb
+,   unsigned        flags
+,   int             lineLen
+,   b64::B64_RC*    rc
+)
     : m_value(NULL)
     , m_len(0)
     , m_pv(pv)
@@ -121,7 +125,7 @@ b64::b64(   void const*     pv
 
 b64::~b64() STLSOFT_NOEXCEPT
 {
-    pantheios_inserterDeallocate(const_cast<pantheios_char_t*>(m_value));
+    pantheios_inserterDeallocate(const_cast<char_type*>(m_value));
 }
 
 
@@ -130,7 +134,7 @@ inline void b64::construct_() const
     const_cast<class_type*>(this)->construct_();
 }
 
-pantheios_char_t const*
+b64::char_type const*
 b64::data() const
 {
     if (NULL == m_value)
@@ -139,21 +143,24 @@ b64::data() const
     }
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
     PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(NULL != m_value);
 
     return m_value;
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+
     return (NULL != m_value) ? m_value : "";
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-pantheios_char_t const*
+b64::char_type const*
 b64::c_str() const
 {
     return data();
 }
 
-size_t b64::length() const
+b64::size_type
+b64::length() const
 {
     if (NULL == m_value)
     {
@@ -168,8 +175,8 @@ void b64::construct_()
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL == m_value, "cannot construct if value is non-null");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == m_len, "cannot construct if length is non-0");
 
-    size_t              cch     =   b64_api::b64_encode2(m_pv, m_cb, NULL, 0, m_flags, m_lineLen, m_rc);
-    pantheios_char_t*   value   =   static_cast<pantheios_char_t*>(pantheios_inserterAllocate(sizeof(pantheios_char_t) * (1 + cch)));
+    size_type   cch     =   b64_api::b64_encode2(m_pv, m_cb, NULL, 0, m_flags, m_lineLen, m_rc);
+    char_type*  value   =   static_cast<char_type*>(pantheios_inserterAllocate(sizeof(char_type) * (1 + cch)));
 
     if (NULL != value)
     {
@@ -185,7 +192,7 @@ void b64::construct_()
 
         if (buff.empty())
         {
-            pantheios_inserterDeallocate(const_cast<pantheios_char_t*>(m_value));
+            pantheios_inserterDeallocate(const_cast<char_type*>(m_value));
 
             value   =   NULL;
             cch     =   0;
@@ -197,22 +204,22 @@ void b64::construct_()
 
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER >= 1400
+
 #  pragma warning(push)
 #  pragma warning(disable : 4996)
 # endif
             ::mbstowcs(value, buff.data(), cch);
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER >= 1400
+
 #  pragma warning(pop)
 # endif
             value[cch] = '\0';
         }
-
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
         cch = b64_api::b64_encode2(m_pv, m_cb, value, cch, m_flags, m_lineLen, m_rc);
         value[cch] = '\0';
-
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
         m_value =   value;

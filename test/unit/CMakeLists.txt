@@ -36,9 +36,15 @@ add_subdirectory(test.unit.levels.2)
 add_subdirectory(test.unit.levels.dynamic_initialisation)
 add_subdirectory(test.unit.levels.values)
 add_subdirectory(test.unit.util.date_elements_to_string)
-add_subdirectory(test.unit.util.getcurrenttime)
+if(shwild_FOUND)
+
+	add_subdirectory(test.unit.util.getcurrenttime)
+endif(shwild_FOUND)
 add_subdirectory(test.unit.util.gethostname)
-add_subdirectory(test.unit.util.onbailout)
+if(shwild_FOUND)
+
+	add_subdirectory(test.unit.util.onbailout)
+endif(shwild_FOUND)
 add_subdirectory(test.unit.util.snprintf)
 add_subdirectory(test.unit.util.strnlen)
 

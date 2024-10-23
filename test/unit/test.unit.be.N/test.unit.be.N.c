@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.be.N/test.unit.be.N.c
+ * File:    test/unit/test.unit.be.N/test.unit.be.N.c
  *
- * Purpose:     Implementation file for the test.unit.be.N project.
+ * Purpose: Unit test of be.N backend.
  *
- * Created:     29th January 2008
- * Updated:     16th July 2024
+ * Created: 29th January 2008
+ * Updated: 19th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -60,7 +60,7 @@ PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
                                                                             \
         *ptoken = (char*)(0) + n;                                           \
                                                                             \
-        if (s_retVals[n] >= 0)                                               \
+        if (s_retVals[n] >= 0)                                              \
         {                                                                   \
             ++s_initCounts[n];                                              \
         }                                                                   \

@@ -4,7 +4,7 @@
  * Purpose: Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
  * Created: 17th July 2006
- * Updated: 16th July 2024
+ * Updated: 20th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -62,6 +62,7 @@
  */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER >= 1300 && _MSC_VER < 1400
+
 # pragma warning(disable : 4702)
 #endif /* compiler */
 
@@ -93,11 +94,9 @@
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
 # define pan_WriteConsole_                                  ::WriteConsoleW
-
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 # define pan_WriteConsole_                                  ::WriteConsoleA
-
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -126,7 +125,6 @@ namespace
     using ::pantheios::util::backends::Context;
     using ::pantheios::util::pantheios_onBailOut3;
     using ::pantheios::util::pantheios_onBailOut4;
-
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
     using ::winstl::ws_uint32_t;
@@ -141,12 +139,12 @@ namespace
             T
         ,   2048
         ,   winstl::processheap_allocator<T>
-        >::type                                 type;
+        >::type                                             type;
     };
 
-    typedef buffer_selector_<char>::type        buffer_a_t;
-    typedef buffer_selector_<wchar_t>::type     buffer_w_t;
-    typedef buffer_selector_<PAN_CHAR_T>::type  buffer_t;
+    typedef buffer_selector_<char>::type                    buffer_a_t;
+    typedef buffer_selector_<wchar_t>::type                 buffer_w_t;
+    typedef buffer_selector_<PAN_CHAR_T>::type              buffer_t;
 
 
 
@@ -242,9 +240,9 @@ namespace
     /// \name Member Types
     /// @{
     public:
-        typedef Context                         parent_class_type;
-        typedef WindowsConsole_Context          class_type;
-        typedef winstl::process_mutex           mutex_type;
+        typedef Context                                     parent_class_type;
+        typedef WindowsConsole_Context                      class_type;
+        typedef winstl::process_mutex                       mutex_type;
     private:
         typedef std::basic_string<
             PAN_CHAR_T
@@ -252,15 +250,20 @@ namespace
         ,   std::char_traits<PAN_CHAR_T>
         ,   winstl::processheap_allocator<PAN_CHAR_T>
 #endif /* compiler */
-        >                                       string_type_;
+        >                                                   string_type_;
         typedef std::map<
-            string_type_
+            const string_type_
         ,   HANDLE
 #if !defined(STLSOFT_COMPILER_IS_MWERKS)
-        ,   std::less<string_type_>
-        ,   winstl::processheap_allocator<string_type_>
+        ,   std::less<const string_type_>
+        ,   winstl::processheap_allocator<
+                std::pair<
+                    const string_type_
+                ,   HANDLE
+                >
+            >
 #endif /* compiler */
-        >                                       map_type_;
+        >                                                   map_type_;
     /// @}
 
     /// \name Member Constants
@@ -436,6 +439,7 @@ static int pantheios_be_WindowsConsole_init_(
     WindowsConsole_Context* ctxt = new WindowsConsole_Context(processIdentity, backEndId, init);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
+
     if (NULL == ctxt ||
         NULL == ctxt->getProcessIdentity())
     {
@@ -609,6 +613,7 @@ WindowsConsole_Context::rawLogEntry(
     buffer_t    buff(cchTotal + 1);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
+
     if (0 == buff.size())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
@@ -645,6 +650,7 @@ int WindowsConsole_Context::rawLogEntry(
     if (0 != (m_flags & PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
 uncoloured_write:
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -667,7 +673,6 @@ uncoloured_write:
 
             try
             {
-
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
                 winstl::console_colour_scope  scope(hOutput, attributes); // Scope the console colour
@@ -689,7 +694,6 @@ uncoloured_write:
             }
 
         }
-
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 }
@@ -763,8 +767,8 @@ HANDLE WindowsConsole_Context::lookupConsoleMx(HANDLE hBuffer)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
         hwndConsole = NULL;
-
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
     }
     catch (std::exception& x)
     {
@@ -867,6 +871,7 @@ WORD
 WindowsConsole_Context::lookupConsoleCharacteristics()
 {
 #if 0
+
     HANDLE                      hOutput =   ::GetStdHandle(info->handleId);
     CONSOLE_SCREEN_BUFFER_INFO  bufferInfo;
 

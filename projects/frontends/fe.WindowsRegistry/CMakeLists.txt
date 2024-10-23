@@ -9,21 +9,13 @@ add_library(Pantheios.fe.WindowsRegistry
 	${FE_WINDOWSREGISTRY_SRCS}
 )
 
-target_link_libraries(Pantheios.fe.WindowsRegistry
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.fe.WindowsRegistry)
 
-target_compile_options(Pantheios.fe.WindowsRegistry PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.fe.WindowsRegistry)
 
-install(TARGETS Pantheios.fe.WindowsRegistry)
+install(TARGETS Pantheios.fe.WindowsRegistry
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

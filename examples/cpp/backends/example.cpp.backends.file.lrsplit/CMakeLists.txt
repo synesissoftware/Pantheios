@@ -3,10 +3,7 @@ add_executable(example.cpp.backends.file.lrsplit
 	example.cpp.backends.file.lrsplit.cpp
 )
 
-target_link_libraries(example.cpp.backends.file.lrsplit
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(example.cpp.backends.file.lrsplit)
 
 target_link_libraries(example.cpp.backends.file.lrsplit
 	PRIVATE
@@ -21,24 +18,11 @@ target_link_libraries(example.cpp.backends.file.lrsplit
 		Pantheios.fe.simple
 )
 
-target_link_libraries(example.cpp.backends.file.lrsplit
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(example.cpp.backends.file.lrsplit)
 
-target_link_libraries(example.cpp.backends.file.lrsplit
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(example.cpp.backends.file.lrsplit)
 
-target_compile_options(example.cpp.backends.file.lrsplit PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(example.cpp.backends.file.lrsplit)
 
 
 # ############################## end of file ############################# #

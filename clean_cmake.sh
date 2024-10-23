@@ -3,7 +3,8 @@
 ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
-CMakeDir=$Dir/_build
+CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
+MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
 
 # ##########################################################
@@ -64,12 +65,14 @@ else
 
     >&2 echo "$ScriptPath: CMake build directory '$CMakeDir' does not contain expected file 'Makefile', so a clean cannot be performed. It is recommended that you remove all CMake artefacts using script 'remove_cmake_artefacts.sh' followed by regeneration via 'prepare_cmake.sh'"
 
+    cd ->/dev/null
+
     exit 1
   else
 
-    echo "Cleaning build (via command \`make clean\`)"
+    echo "Cleaning build (via command \`$MakeCmd clean\`)"
 
-    make clean
+    $MakeCmd clean
     status=$?
 
     cd ->/dev/null

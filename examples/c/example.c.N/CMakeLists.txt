@@ -3,10 +3,7 @@ add_executable(example.c.N
 	example.c.N.c
 )
 
-target_link_libraries(example.c.N
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(example.c.N)
 
 target_link_libraries(example.c.N
 	PRIVATE
@@ -26,15 +23,9 @@ target_link_libraries(example.c.N
 		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsSyslog,Pantheios.bec.syslog>
 )
 
-target_link_libraries(example.c.N
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(example.c.N)
 
-target_link_libraries(example.c.N
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(example.c.N)
 
 if(WIN32)
 
@@ -44,14 +35,7 @@ if(WIN32)
 	)
 endif(WIN32)
 
-target_compile_options(example.c.N PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(example.c.N)
 
 
 # ############################## end of file ############################# #

@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/internal/lean.h
+ * File:    pantheios/internal/lean.h
  *
- * Purpose:     Suppresses as much as possible of operating-system headers,
- *              to decrease compilation times.
+ * Purpose: Suppresses as much as possible of operating-system headers, to
+ *          decrease compilation times.
  *
- * Created:     22nd April 2008
- * Updated:     16th December 2023
+ * Created: 22nd April 2008
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -103,7 +103,10 @@
 # include <pantheios/internal/winlean.h>
 #endif /* _WIN32 && _WIN64 */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_LEAN */
 

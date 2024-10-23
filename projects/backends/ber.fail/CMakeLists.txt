@@ -9,21 +9,13 @@ add_library(Pantheios.ber.fail
 	${BER_FAIL_SRCS}
 )
 
-target_link_libraries(Pantheios.ber.fail
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.ber.fail)
 
-target_compile_options(Pantheios.ber.fail PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.ber.fail)
 
-install(TARGETS Pantheios.ber.fail)
+install(TARGETS Pantheios.ber.fail
+	EXPORT project-targets
+)
 
 
 # ############################## end of fail ############################# #
