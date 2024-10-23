@@ -4,7 +4,7 @@
  * Purpose: Implementation file for low-level Pantheios bail out.
  *
  * Created: 21st June 2005
- * Updated: 16th July 2024
+ * Updated: 19th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -673,6 +673,7 @@ pantheios_onBailOut3(
 # endif /* PANTHEIOS_BAILOUT_NO_WINDOWS_EVENTLOG */
 #else /* ? OS */
 
+    STLSOFT_SUPPRESS_UNUSED(severity);
     STLSOFT_SUPPRESS_UNUSED(processId);
 
     /* /////////////////////////////////

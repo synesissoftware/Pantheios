@@ -9,19 +9,10 @@ add_library(Pantheios.bec.WindowsConsole
 	${BEC_WINDOWSCONSOLE_SRCS}
 )
 
-target_link_libraries(Pantheios.bec.WindowsConsole
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.bec.WindowsConsole)
 
-target_compile_options(Pantheios.bec.WindowsConsole PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED unused-function)
+define_target_compile_options(Pantheios.bec.WindowsConsole)
 
 install(TARGETS Pantheios.bec.WindowsConsole)
 

@@ -9,24 +9,20 @@ add_library(Pantheios.bec.file.WithCallback
 	${BEC_FILE_WC_SRCS}
 )
 
-target_link_libraries(Pantheios.bec.file.WithCallback
+target_link_STLSoft(Pantheios.bec.file.WithCallback)
+
+target_compile_options(Pantheios.bec.file.WithCallback
 	PRIVATE
-		STLSoft::STLSoft
-)
+		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			-Werror -Wall -Wextra -pedantic
 
-target_compile_options(Pantheios.bec.file.WithCallback PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
+			-DPANTHEIOS_BE_USE_CALLBACK
+		>
+		$<$<CXX_COMPILER_ID:MSVC>:
+			/WX /W4
 
-		-Wno-deprecated-copy-with-user-provided-copy
-
-		-DPANTHEIOS_BE_USE_CALLBACK
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-
-		-DPANTHEIOS_BE_USE_CALLBACK
-	>
+			-DPANTHEIOS_BE_USE_CALLBACK
+		>
 )
 
 install(TARGETS Pantheios.bec.file.WithCallback)

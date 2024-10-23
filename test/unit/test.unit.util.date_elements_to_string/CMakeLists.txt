@@ -3,26 +3,15 @@ add_executable(test.unit.util.date_elements_to_string
 	test.unit.util.date_elements_to_string.cpp
 )
 
-target_link_libraries(test.unit.util.date_elements_to_string
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.unit.util.date_elements_to_string)
 
-target_link_libraries(test.unit.util.date_elements_to_string
-	PRIVATE
-		STLSoft::STLSoft
-		shwild::core
-		xTests::core
-)
+target_link_STLSoft(test.unit.util.date_elements_to_string)
 
-target_compile_options(test.unit.util.date_elements_to_string PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+# target_link_shwild(test.unit.util.date_elements_to_string)
+
+target_link_xTests(test.unit.util.date_elements_to_string)
+
+define_target_compile_options(test.unit.util.date_elements_to_string)
 
 
 # ############################## end of file ############################# #

@@ -3,25 +3,13 @@ add_executable(test.unit.levels.dynamic_initialisation
 	test.unit.levels.dynamic_initialisation.cpp
 )
 
-target_link_libraries(test.unit.levels.dynamic_initialisation
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.unit.levels.dynamic_initialisation)
 
-target_link_libraries(test.unit.levels.dynamic_initialisation
-	PRIVATE
-		STLSoft::STLSoft
-		xTests::core
-)
+target_link_STLSoft(test.unit.levels.dynamic_initialisation)
 
-target_compile_options(test.unit.levels.dynamic_initialisation PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+target_link_xTests(test.unit.levels.dynamic_initialisation)
+
+define_target_compile_options(test.unit.levels.dynamic_initialisation)
 
 
 # ############################## end of file ############################# #

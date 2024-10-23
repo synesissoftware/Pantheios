@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/b64.hpp
+ * File:    pantheios/inserters/b64.hpp
  *
- * Purpose:     String inserter for binary regions in Base-64.
+ * Purpose: String inserter for binary regions in Base-64.
  *
- * Created:     31st July 2006
- * Updated:     16th July 2024
+ * Created: 31st July 2006
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -58,8 +58,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MINOR    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     33
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -105,12 +105,11 @@
 # endif /* B64_INCL_B64_H_B64 */
 
 # define B64_CUSTOM_NAMESPACE                               b64_api
-
 #endif /* PANTHEIOS_NO_NAMESPACE */
 
 #include <b64/b64.h>    // If your compiler can't see this, you may be
                         // missing the b64 library. Download from
-                        // http://www.synesis.com.au/software/b64.html
+                        // http://www.github.com/synesissoftware/b64
 
 
 
@@ -120,7 +119,6 @@
      B64_VER < 0x010301ff
 #  error Version 1.3.1 (or later) of b64 is required
 # endif /* B64_VER */
-
 #else /* ? PANTHEIOS_NO_NAMESPACE */
 
  /* If we're not customising the b64 namespace, then we use a namespace
@@ -129,7 +127,6 @@
   */
 
 namespace b64_api = ::b64;
-
 #endif /* PANTHEIOS_NO_NAMESPACE */
 
 
@@ -152,7 +149,6 @@ namespace b64_api = ::b64;
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 namespace pantheios
 {
-
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -221,38 +217,64 @@ class b64
 /// \name Member Types
 /// @{
 public:
-    typedef b64             class_type;
-    typedef b64_api::B64_RC B64_RC;
+    /// This type
+    typedef b64                                             class_type;
+    /// The b64 status code type
+    typedef b64_api::B64_RC                                 B64_RC;
+    /// The character type
+    typedef pantheios_char_t                                char_type;
+    /// The size type
+    typedef STLSOFT_NS_QUAL(ss_size_t)                      size_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
-    b64(    void const* pv
-        ,   size_t      cb);
+    /// Constructs an instance from the given memory designator
+    b64(
+        void const* pv
+    ,   size_type   cb
+    );
 
-    b64(    void const* pv
-        ,   size_t      cb
-        ,   unsigned    flags);
+    /// Constructs an instance from the given memory designator and flags
+    b64(
+        void const* pv
+    ,   size_type   cb
+    ,   unsigned    flags
+    );
 
-    b64(    void const* pv
-        ,   size_t      cb
-        ,   unsigned    flags
-        ,   int         lineLen
-        ,   B64_RC*     rc = NULL);
-
+    /// Constructs an instance from the given memory designator, flags, and
+    /// line-length
+    b64(
+        void const* pv
+    ,   size_type   cb
+    ,   unsigned    flags
+    ,   int         lineLen
+    ,   B64_RC*     rc = NULL
+    );
+    /// Releases resources associated with the instance
     ~b64() STLSOFT_NOEXCEPT;
+private:
+#if 1 && \
+    !defined(STLSOFT_COMPILER_IS_CLANG) && \
+    !defined(STLSOFT_COMPILER_IS_GCC) && \
+    1
+    b64(class_type const&);
+#endif /* compiler */
+    void operator =(class_type const&);
 /// @}
 
 /// \name Accessors
 /// @{
 public:
-    ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pantheios_char_t const* data() const;
-    ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pantheios_char_t const* c_str() const;
-    ///  The length of the c-style string representation of the integer
-    size_t                  length() const;
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    /// representation of the integer
+    char_type const*    data() const;
+    /// A nul-terminated non-null pointer to the c-style string
+    /// representation of the integer
+    char_type const*    c_str() const;
+    /// The length of the c-style string representation of the integer
+    size_type           length() const;
 /// @}
 
 /// \name Implementation
@@ -265,25 +287,13 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    pantheios_char_t const* m_value;
-    size_t                  m_len;
-    void const*             m_pv;
-    size_t                  m_cb;
-    unsigned                m_flags;
-    int                     m_lineLen;
-    B64_RC*                 m_rc;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-#if 1 && \
-    !defined(STLSOFT_COMPILER_IS_CLANG) && \
-    !defined(STLSOFT_COMPILER_IS_GCC) && \
-    1
-    b64(class_type const&);
-#endif /* compiler */
-    class_type& operator =(class_type const&);
+    char_type const*    m_value;
+    size_t              m_len;
+    void const*         m_pv;
+    size_t              m_cb;
+    unsigned            m_flags;
+    int                 m_lineLen;
+    B64_RC*             m_rc;
 /// @}
 };
 
@@ -308,7 +318,7 @@ PANTHEIOS_c_str_data_name_(
     return i.data();
 }
 inline
-pantheios_char_t const*
+b64::char_type const*
 c_str_data(b64 const& i)
 {
     return i.data();
@@ -338,7 +348,7 @@ PANTHEIOS_c_str_ptr_name_(
     return i.c_str();
 }
 inline
-pantheios_char_t const*
+b64::char_type const*
 c_str_ptr(b64 const& i)
 {
     return i.c_str();
@@ -363,9 +373,7 @@ c_str_ptr(b64 const& i)
     using ::pantheios::shims::c_str_len;
     using ::pantheios::shims::c_str_ptr;
 #  endif /* compiler */
-
 # endif /* !PANTHEIOS_NO_NAMESPACE */
-
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -392,7 +400,6 @@ namespace stlsoft
     using ::pantheios::shims::c_str_len;
     using ::pantheios::shims::c_str_ptr;
 }
-
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -403,8 +410,6 @@ namespace stlsoft
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64 */
 

@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/date_elements_to_string.c
+ * File:    src/util/date_elements_to_string.c
  *
- * Purpose:     Date element to string fragment conversion utilities for
- *              Pantheios API
+ * Purpose: Date element to string fragment conversion utilities for
+ *          Pantheios API
  *
- * Created:     12th November 2016
- * Updated:     16th July 2024
+ * Created: 12th November 2016
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -225,8 +225,8 @@ pantheios_util_formatYearToString4(
 ,   PAN_CHAR_T    (*ar)[4]
 ) STLSOFT_NOEXCEPT
 {
-    unsigned const          century =   year / 100;
-    unsigned const          year100 =   year % 100;
+    unsigned const  century =   year / 100;
+    unsigned const  year100 =   year % 100;
 
     PAN_CHAR_T const* const src_c   =   PAN_DE2S_0299_[century & 0xff];
     PAN_CHAR_T const* const src_y   =   PAN_DE2S_0299_[year100];
@@ -353,11 +353,6 @@ namespace util
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * util API
- */
-
-
-/* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
@@ -365,6 +360,7 @@ namespace util
 } /* namespace util */
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

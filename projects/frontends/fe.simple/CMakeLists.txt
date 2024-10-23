@@ -9,19 +9,9 @@ add_library(Pantheios.fe.simple
 	${FE_SIMPLE_SRCS}
 )
 
-target_link_libraries(Pantheios.fe.simple
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.fe.simple)
 
-target_compile_options(Pantheios.fe.simple PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.fe.simple)
 
 install(TARGETS Pantheios.fe.simple)
 

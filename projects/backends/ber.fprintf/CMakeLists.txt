@@ -9,19 +9,9 @@ add_library(Pantheios.ber.fprintf
 	${BER_FPRINTF_SRCS}
 )
 
-target_link_libraries(Pantheios.ber.fprintf
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.ber.fprintf)
 
-target_compile_options(Pantheios.ber.fprintf PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.ber.fprintf)
 
 install(TARGETS Pantheios.ber.fprintf)
 

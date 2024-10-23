@@ -1,11 +1,11 @@
 
 # ######################################################################## #
-# File:     /CMakeLists.txt
+# File:     CMakeLists.txt
 #
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  14th July 2024
+# Updated:  22nd October 2024
 #
 # ######################################################################## #
 
@@ -55,9 +55,6 @@ set(PROJECT_VERSION_MINOR ${_VERSION_MINOR})
 set(PROJECT_VERSION_PATCH ${_VERSION_PATCH})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
-message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}")
-
-
 # adhere strictly to C and C++ standards plus extensions. These are actually
 # useless since we do not compile anything; they merely state our intention.
 set(CMAKE_C_STANDARD 17)
@@ -67,50 +64,34 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
+if(MSVC)
 
-# ##########################################################
-# dependencies
+	if(MSVC_VERSION LESS 1930)
 
-set(STLSoft_REQUIRED_VERSION_ 1.11)
-
-find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
-
-message("-- CMake package STLSoft found (version ${STLSoft_VERSION}; ${STLSoft_REQUIRED_VERSION_} requested)")
-
-
-set(b64_DESIRED_VERSION_ 1.5.2)
-
-find_package(b64 ${b64_DESIRED_VERSION_})
-
-message("-- CMake package b64 found (version ${b64_VERSION}; ${b64_DESIRED_VERSION_} requested)")
-
-
-if(BUILD_TESTING)
-
-	set(shwild_REQUIRED_VERSION_ 0.12)
-
-	find_package(shwild ${shwild_REQUIRED_VERSION_} REQUIRED)
-
-	message("-- CMake package shwild found (version ${shwild_VERSION}; ${shwild_REQUIRED_VERSION_} requested)")
-
-	set(xTests_REQUIRED_VERSION_ 0.23)
-
-	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
-
-	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
-endif(BUILD_TESTING)
-
-
+		set(CMAKE_C_STANDARD 90)
+		set(CMAKE_CXX_STANDARD 98)
+	endif()
+endif(MSVC)
 
 
 # ##########################################################
-# install
+# dependencies, includes, options
 
-# provides install directory variables as defined by the GNU Coding Standards.
-include(GNUInstallDirs)
+# ################################################
+# includes - 1
+
+include(BuildType)
+include(LanguageFullVersion)
+include(TargetMacros)
 
 
-# ##########################################################
+# ################################################
+# dependencies, features, and options
+
+option(BUILD_EXAMPLES "Build examples" ON)
+
+
+# ######################################
 # features
 
 if(PANTHEIOS_USE_WIDE_STRINGS)
@@ -131,38 +112,156 @@ else(PANTHEIOS_USE_WIDE_STRINGS)
 endif(PANTHEIOS_USE_WIDE_STRINGS)
 
 
-# ##########################################################
-# build
+# ######################################
+# dependencies
+#
+# required:
+# - STLSoft;
+# - xTests - required for testing;
+#
+# optional:
+# - b64;
+# - shwild - required for testing;
 
-# load/default `CMAKE_BUILD_TYPE`
-include(BuildType)
+
+# ############################
+# STLSoft
+#
+# We provide flexibility here, as in:
+# 1. if a CMake variable STLSOFT is provided then it is used; otherwise
+# 2. if an environment variable STLSOFT is provided then it then it is
+#    used; otherwise
+# 3. if the package STLSoft (via find_package()) is found then it is
+#    used; otherwise
+# 4. we abort
+
+if(DEFINED STLSOFT)
+
+	message("-- STLSOFT provided as CMake variable with value '${STLSOFT}'")
+
+	set(STLSOFT_INCLUDE_DIR ${STLSOFT}/include)
+elseif(DEFINED ENV{STLSOFT})
+
+	message("-- STLSOFT provided as environment variable with value '$ENV{STLSOFT}'")
+
+	set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
+else()
+
+	set(STLSoft_REQUIRED_VERSION_ 1.11)
+
+	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
+
+	message("-- CMake package STLSoft found (version ${STLSoft_VERSION}; ${STLSoft_REQUIRED_VERSION_} requested)")
+endif()
+
+if(DEFINED STLSOFT_INCLUDE_DIR)
+
+	if(BUILD_TESTING)
+		find_package(STLSoft REQUIRED)
+
+		if(NOT STLSoft_FOUND)
+
+			message(FATAL_ERROR "When specifying STLSOFT explicitly it it still required to have an existing CMake installation of STLSoft in testing to satisfy xTest's dependency requirements. The specified STLSoft will be used for all compilation")
+		else()
+
+			message("-- CMake package STLSoft found (version ${STLSoft_VERSION}) - required only to enable xTests package; the current project's header files will be used for all compilation")
+		endif()
+	endif(BUILD_TESTING)
+
+	include_directories(${STLSOFT_INCLUDE_DIR})
+endif()
+
+
+# ############################
+# b64
+
+find_package(b64 QUIET)
+
+if(b64_FOUND)
+
+	message("-- CMake package b64 found (version ${b64_VERSION}")
+
+	add_compile_definitions(HAS_b64)
+else(b64_FOUND)
+
+	add_compile_definitions(PANTHEIOS_NO_B64)
+endif(b64_FOUND)
+
+
+# ############################
+# shwild
+
+if(BUILD_TESTING)
+
+	find_package(shwild QUIET)
+
+	if(shwild_FOUND)
+
+		message("-- CMake package shwild found (version ${shwild_VERSION})")
+	endif(shwild_FOUND)
+endif(BUILD_TESTING)
+
+
+# ############################
+# xTests
+
+if(BUILD_TESTING)
+
+	set(xTests_REQUIRED_VERSION_ 0.25.1)
+
+	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
+
+	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+endif(BUILD_TESTING)
+
+
+
+# ################################################
+# includes - 2
+
+include(CMakePackageConfigHelpers)
+if(BUILD_TESTING)
+
+	include(CTest)
+endif(BUILD_TESTING)
+include(GNUInstallDirs)
+
+
+# ##########################################################
+# targets
+
+# ################################################
+# main libraries
 
 add_subdirectory(projects)
 
 
-# ##########################################################
-# test
+# ################################################
+# examples
 
-include(CTest)
+if(BUILD_EXAMPLES)
+
+	message("-- enabled building of examples ...")
+
+	add_subdirectory(examples)
+else(BUILD_EXAMPLES)
+
+	message("-- disabled building of examples - define BUILD_EXAMPLES to enable")
+endif(BUILD_EXAMPLES)
+
+
+# ################################################
+# tests
 
 if(BUILD_TESTING)
 
 	message("-- enabled building of tests ...")
 
 	add_subdirectory(test)
-endif()
+else(BUILD_TESTING)
 
-
-# ##########################################################
-# examples
-
-option(BUILD_EXAMPLES "Build examples" ON)
-if(BUILD_EXAMPLES)
-
-	message("-- enabled building of examples ...")
-
-	add_subdirectory(examples)
-endif()
+	message("-- disabled building of tests - define BUILD_TESTING to enable")
+endif(BUILD_TESTING)
 
 
 # ##########################################################
@@ -171,8 +270,6 @@ endif()
 
 # ##########################################################
 # export
-
-include(CMakePackageConfigHelpers)
 
 set(EXPORT_NAME ${PROJECT_NAME_LOWER})
 
@@ -206,6 +303,12 @@ install( FILES
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 #]====]
+
+
+# ##########################################################
+# completion
+
+message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}, for C${CMAKE_C_STANDARD} C++${CMAKE_CXX_STANDARD}")
 
 
 # ############################## end of file ############################# #

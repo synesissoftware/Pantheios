@@ -9,19 +9,9 @@ add_library(Pantheios.bec.WindowsSyslog
 	${BEC_WINDOWSSYSLOG_SRCS}
 )
 
-target_link_libraries(Pantheios.bec.WindowsSyslog
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(Pantheios.bec.WindowsSyslog)
 
-target_compile_options(Pantheios.bec.WindowsSyslog PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.bec.WindowsSyslog)
 
 install(TARGETS Pantheios.bec.WindowsSyslog)
 

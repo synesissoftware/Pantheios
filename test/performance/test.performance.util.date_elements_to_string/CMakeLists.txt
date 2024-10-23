@@ -3,10 +3,7 @@ add_executable(test.performance.util.date_elements_to_string
 	test.performance.util.date_elements_to_string.cpp
 )
 
-target_link_libraries(test.performance.util.date_elements_to_string
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(test.performance.util.date_elements_to_string)
 
 target_link_libraries(test.performance.util.date_elements_to_string
 	PRIVATE
@@ -18,28 +15,12 @@ target_link_libraries(test.performance.util.date_elements_to_string
 		Pantheios.fe.simple
 )
 
-target_link_libraries(test.performance.util.date_elements_to_string
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.performance.util.date_elements_to_string)
 
-target_link_libraries(test.performance.util.date_elements_to_string
-	PRIVATE
-		xTests::core
-)
+target_link_xTests(test.performance.util.date_elements_to_string)
 
-target_compile_options(test.performance.util.date_elements_to_string PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-
-		-Wno-deprecated-declarations
-		-Wno-missing-field-initializers
-		-Wno-unused-but-set-variable
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED deprecated-declarations)
+define_target_compile_options(test.performance.util.date_elements_to_string)
 
 
 # ############################## end of file ############################# #

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.inserter.stream_character project.
  *
  * Created: 9th May 2014
- * Updated: 7th February 2024
+ * Updated: 19th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -27,19 +27,9 @@
 namespace
 {
 
-static void test_type_exists();
-static void test_plain_characters();
-static void test_special_characters_1();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_10();
-static void test_1_11();
-static void test_1_12();
-
+    static void test_type_exists();
+    static void test_plain_characters();
+    static void test_special_characters_1();
 } /* anonymous namespace */
 
 
@@ -81,15 +71,6 @@ int main(int argc, char** argv)
         XTESTS_RUN_CASE(test_type_exists);
         XTESTS_RUN_CASE(test_plain_characters);
         XTESTS_RUN_CASE(test_special_characters_1);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
 
         XTESTS_PRINT_RESULTS();
 
@@ -163,42 +144,6 @@ static void test_special_characters_1()
     XTESTS_TEST_STRING_EQUAL(PSTR("US"), pantheios::stream_character(31));
 
     XTESTS_TEST_STRING_EQUAL(PSTR("DEL"), pantheios::stream_character(127));
-}
-
-static void test_1_04()
-{
-}
-
-static void test_1_05()
-{
-}
-
-static void test_1_06()
-{
-}
-
-static void test_1_07()
-{
-}
-
-static void test_1_08()
-{
-}
-
-static void test_1_09()
-{
-}
-
-static void test_1_10()
-{
-}
-
-static void test_1_11()
-{
-}
-
-static void test_1_12()
-{
 }
 
 } /* anonymous namespace */

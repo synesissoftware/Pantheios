@@ -3,29 +3,13 @@ add_executable(test.unit.inserter.stream_character
 	test.unit.inserter.stream_character.cpp
 )
 
-target_link_libraries(test.unit.inserter.stream_character
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(test.unit.inserter.stream_character)
 
-target_link_libraries(test.unit.inserter.stream_character
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.unit.inserter.stream_character)
 
-target_link_libraries(test.unit.inserter.stream_character
-	PRIVATE
-		xTests::core
-)
+target_link_xTests(test.unit.inserter.stream_character)
 
-target_compile_options(test.unit.inserter.stream_character PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(test.unit.inserter.stream_character)
 
 
 # ############################## end of file ############################# #

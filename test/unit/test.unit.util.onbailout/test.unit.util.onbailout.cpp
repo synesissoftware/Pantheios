@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.util.onbailout project.
  *
  * Created: 29th April 2008
- * Updated: 15th July 2024
+ * Updated: 19th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -1092,8 +1092,8 @@ static void test_1_12()
 #define fprintf                                             bailout_test_fprintf_
 void bailout_test_fprintf_(FILE*, char const*, int, char const*);
 
-#define fopen(fileName, mode)                               bailout_test_fopen_()
-FILE* bailout_test_fopen_(void);
+#define fopen(fileName, mode)                               bailout_test_fopen_(fileName, mode)
+FILE* bailout_test_fopen_(char const* filename, char const* mode);
 
 #define fclose                                              bailout_fclose_
 void bailout_fclose_(FILE* hFile);
@@ -1103,7 +1103,7 @@ void bailout_fclose_(FILE* hFile);
 #define fwprintf                                            bailout_test_fwprintf_
 void bailout_test_fwprintf_(FILE* f, wchar_t const*, int cchMsg, wchar_t const* msg);
 
-# define _wfopen(fileName, mode)                            bailout_test_fopen_()
+# define _wfopen(fileName, mode)                            bailout_test_fopen_(fileName, mode)
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -1245,8 +1245,11 @@ void bailout_test_fwprintf_(FILE* f, wchar_t const*, int cchMsg, wchar_t const* 
 }
 #endif /* PLATFORMSTL_OS_IS_WINDOWS */
 
-FILE* bailout_test_fopen_(void)
+FILE* bailout_test_fopen_(char const* filename, char const* mode)
 {
+    STLSOFT_SUPPRESS_UNUSED(filename);
+    STLSOFT_SUPPRESS_UNUSED(mode);
+
     return NULL;
 }
 

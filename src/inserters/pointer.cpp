@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inserters/pointer.cpp
+ * File:    inserters/pointer.cpp
  *
- * Purpose:     Implementation of the inserter classes.
+ * Purpose: Implementation of the inserter classes.
  *
- * Created:     21st June 2005
- * Updated:     16th July 2024
+ * Created: 21st June 2005
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -70,6 +70,9 @@
 /* Standard C++ header files */
 
 #include <algorithm>
+#if __cplusplus >= 201103L
+# include <cstdint>
+#endif
 
 /* Standard C header files */
 
@@ -94,6 +97,7 @@
  */
 
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
+
 # ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 #  include <stlsoft/algorithm/std/alt.hpp>
 # else /* ? STLSoft version */
@@ -120,10 +124,42 @@ namespace pantheios
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * types
+ */
+
+// Determine ptr-sized integer type
+#if 0
+#elif __cplusplus >= 201103L
+
+typedef std::intptr_t                                       intptr_t_;
+#else
+# if 0
+# elif defined(STLSOFT_COMPILER_IS_GCC)
+
+#  ifdef _WIN64
+
+typedef STLSOFT_NS_QUAL(ss_int64_t)                         intptr_t_;
+#  else
+
+typedef STLSOFT_NS_QUAL(ss_int32_t)                         intptr_t_;
+#  endif
+# else /* ? compiler */
+
+typedef stlsoft::int_size_traits<
+    sizeof(void*)
+>::unsigned_type                                            intptr_t_;
+# endif /* compiler */
+#endif
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * pointer
  */
 
-inline /* static */ int pointer::validate_width_(int minWidth)
+inline
+/* static */
+int
+pointer::validate_width_(int minWidth)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_APPL_LAYER((minWidth >= -20 && minWidth <= 20), "pantheios::pointer width must be in range [-20, 20]");
 
@@ -150,12 +186,14 @@ inline /* static */ int pointer::validate_width_(int minWidth)
     m_sz[0] = '\0';
 }
 
-inline void pointer::construct_() const
+inline
+void
+pointer::construct_() const
 {
     const_cast<class_type*>(this)->construct_();
 }
 
-pantheios_char_t const*
+pointer::char_type const*
 pointer::data() const
 {
     if (0 == m_sz[0])
@@ -166,7 +204,7 @@ pointer::data() const
     return m_sz;
 }
 
-pantheios_char_t const*
+pointer::char_type const*
 pointer::c_str() const
 {
     return data();
@@ -189,7 +227,7 @@ void pointer::construct_()
 
     if (static_cast<void const*>(0) == m_value)
     {
-        static const pantheios_char_t  s_null[] = PANTHEIOS_LITERAL_STRING("(null)");
+        static const char_type s_null[] = PANTHEIOS_LITERAL_STRING("(null)");
 
         STLSOFT_STATIC_ASSERT(sizeof(m_sz) >= sizeof(s_null));
 
@@ -199,11 +237,11 @@ void pointer::construct_()
     }
     else
     {
-        pantheios_char_t        szFmt[101];
-        int                     width;
-        pantheios_char_t const* zeroX;
-        pantheios_char_t const* leadingMinus;
-        pantheios_char_t const* zeroPad;
+        char_type           szFmt[101];
+        int                 width;
+        char_type const*    zeroX;
+        char_type const*    leadingMinus;
+        char_type const*    zeroPad;
 
         if (m_minWidth < 0)
         {
@@ -224,21 +262,19 @@ void pointer::construct_()
         {
             // Special case
 
-            pantheios_char_t szTemp[23]; // 23 is always big enough, since the width is 21
+            char_type szTemp[23]; // 23 is always big enough, since the width is 21
 
             PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(0 == (m_format & fmt::zeroPad));
 
-            // Determine ptr-sized integer type
-#if defined(STLSOFT_COMPILER_IS_GCC)
-            typedef unsigned long                                             intptr_t_;
-#else /* ? compiler */
-            typedef stlsoft::int_size_traits<sizeof(void*)>::unsigned_type    intptr_t_;
-#endif /* compiler */
+            PAN_CHAR_T const* const fmts[] = {
+                    PANTHEIOS_LITERAL_STRING("0x%lx")
+                ,   PANTHEIOS_LITERAL_STRING("0x%llx")
+            };
 
             int r = pantheios_util_snprintf(
                         &szTemp[0]
                     ,   STLSOFT_NUM_ELEMENTS(szTemp)
-                    ,   PANTHEIOS_LITERAL_STRING("0x%lx")
+                    ,   fmts[sizeof(void*) > 4]
                     ,   static_cast<intptr_t_>(stlsoft::union_cast<intptr_t_>(m_value))
                     );
 
@@ -280,13 +316,15 @@ void pointer::construct_()
         }
         else
         {
-            pantheios_util_snprintf(&szFmt[0]
-                                ,   STLSOFT_NUM_ELEMENTS(szFmt)
-                                ,   PANTHEIOS_LITERAL_STRING("%s%%%s%s%dx")
-                                ,   zeroX
-                                ,   leadingMinus
-                                ,   zeroPad
-                                ,   width);
+            pantheios_util_snprintf(
+                &szFmt[0]
+            ,   STLSOFT_NUM_ELEMENTS(szFmt)
+            ,   PANTHEIOS_LITERAL_STRING("%s%%%s%s%dx")
+            ,   zeroX
+            ,   leadingMinus
+            ,   zeroPad
+            ,   width
+            );
 
             m_len = static_cast<size_t>(pantheios_util_snprintf(&m_sz[0], STLSOFT_NUM_ELEMENTS(m_sz), szFmt, m_value));
         }

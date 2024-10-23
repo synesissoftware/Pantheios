@@ -3,10 +3,7 @@ add_executable(test.scratch.api
 	test.scratch.api.cpp
 )
 
-target_link_libraries(test.scratch.api
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(test.scratch.api)
 
 target_link_libraries(test.scratch.api
 	PRIVATE
@@ -22,23 +19,9 @@ target_link_libraries(test.scratch.api
 		Pantheios.fe.simple
 )
 
-target_link_libraries(test.scratch.api
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.scratch.api)
 
-target_compile_options(test.scratch.api PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-
-		-Wno-extern-initializer
-		-Wno-null-pointer-arithmetic
-		-Wno-unused-variable
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(test.scratch.api)
 
 
 # ############################## end of file ############################# #

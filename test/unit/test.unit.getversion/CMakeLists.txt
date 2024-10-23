@@ -3,10 +3,7 @@ add_executable(test.unit.getversion
 	test.unit.getversion.c
 )
 
-target_link_libraries(test.unit.getversion
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(test.unit.getversion)
 
 target_link_libraries(test.unit.getversion
 	PRIVATE
@@ -19,25 +16,13 @@ target_link_libraries(test.unit.getversion
 		Pantheios.fe.fail
 )
 
-target_link_libraries(test.unit.getversion
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.unit.getversion)
 
-target_link_libraries(test.unit.getversion
-	PRIVATE
-		STLSoft::STLSoft
-		xTests::core
-)
+target_link_STLSoft(test.unit.getversion)
 
-target_compile_options(test.unit.getversion PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+target_link_xTests(test.unit.getversion)
+
+define_target_compile_options(test.unit.getversion)
 
 
 # ############################## end of file ############################# #

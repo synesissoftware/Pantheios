@@ -3,10 +3,7 @@ add_executable(example.cpp.inserter.b64
 	example.cpp.inserter.b64.cpp
 )
 
-target_link_libraries(example.cpp.inserter.b64
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(example.cpp.inserter.b64)
 
 target_link_libraries(example.cpp.inserter.b64
 	PRIVATE

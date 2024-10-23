@@ -3,24 +3,11 @@ add_executable(example.cpp.util.strdup
 	example.cpp.util.strdup.cpp
 )
 
-target_link_libraries(example.cpp.util.strdup
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(example.cpp.util.strdup)
 
-target_link_libraries(example.cpp.util.strdup
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(example.cpp.util.strdup)
 
-target_compile_options(example.cpp.util.strdup PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(example.cpp.util.strdup)
 
 
 # ############################## end of file ############################# #

@@ -3,10 +3,7 @@ add_executable(test.scratch.showPlus.integer
 	test.scratch.showPlus.integer.cpp
 )
 
-target_link_libraries(test.scratch.showPlus.integer
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(test.scratch.showPlus.integer)
 
 target_link_libraries(test.scratch.showPlus.integer
 	PRIVATE
@@ -19,26 +16,11 @@ target_link_libraries(test.scratch.showPlus.integer
 		Pantheios.fe.simple
 )
 
-target_link_libraries(test.scratch.showPlus.integer
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.scratch.showPlus.integer)
 
-target_link_libraries(test.scratch.showPlus.integer
-	PRIVATE
-		STLSoft::STLSoft
-)
+target_link_STLSoft(test.scratch.showPlus.integer)
 
-target_compile_options(test.scratch.showPlus.integer PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-
-		-Wno-null-pointer-arithmetic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(test.scratch.showPlus.integer)
 
 
 # ############################## end of file ############################# #

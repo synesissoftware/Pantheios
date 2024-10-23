@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/pointer.hpp
+ * File:    pantheios/inserters/pointer.hpp
  *
- * Purpose:     String inserters for fundamental types
+ * Purpose: String inserters for fundamental types
  *
- * Created:     21st June 2005
- * Updated:     16th January 2023
+ * Created: 21st June 2005
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MINOR    5
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     36
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     37
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,7 +120,9 @@ class pointer
 {
 public:
     /// This type
-    typedef pointer     class_type;
+    typedef pointer                                         class_type;
+    /// The character type
+    typedef pantheios_char_t                                char_type;
 
 public:
     /// [DEPRECATED] Construct from a pointer, with width/format specifier
@@ -149,11 +151,11 @@ public:
 
 public:
     /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the pointer
-    pantheios_char_t const* data() const;
+    char_type const*    data() const;
     /// A nul-terminated non-null pointer to the c-style string representation of the pointer
-    pantheios_char_t const* c_str() const;
+    char_type const*    c_str() const;
     /// The length of the c-style string representation of the pointer
-    size_t                  length() const;
+    size_t              length() const;
 
 private:
     void construct_() const;
@@ -172,7 +174,7 @@ private:
     size_t                  m_len;
     const int               m_minWidth;
     const int               m_format;
-    pantheios_char_t        m_sz[23];
+    char_type               m_sz[23];
 
 private:
 #if 1 && \
@@ -205,7 +207,7 @@ PANTHEIOS_c_str_data_name_(
     return p.data();
 }
 inline
-pantheios_char_t const*
+pointer::char_type const*
 c_str_data(
     pointer const& p
 )
@@ -239,7 +241,7 @@ PANTHEIOS_c_str_ptr_name_(
     return p.c_str();
 }
 inline
-pantheios_char_t const*
+pointer::char_type const*
 c_str_ptr(
     pointer const& p
 )

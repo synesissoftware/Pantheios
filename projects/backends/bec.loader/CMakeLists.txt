@@ -9,14 +9,7 @@ add_library(Pantheios.bec.loader
 	${BEC_LOADER_SRCS}
 )
 
-target_compile_options(Pantheios.bec.loader PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(Pantheios.bec.loader)
 
 install(TARGETS Pantheios.bec.loader)
 

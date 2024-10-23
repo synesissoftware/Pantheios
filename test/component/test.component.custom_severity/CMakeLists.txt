@@ -3,10 +3,7 @@ add_executable(test.component.custom_severity
 	test.component.custom_severity.cpp
 )
 
-target_link_libraries(test.component.custom_severity
-	PRIVATE
-		Pantheios.core
-)
+target_link_Pantheios_core(test.component.custom_severity)
 
 target_link_libraries(test.component.custom_severity
 	PRIVATE
@@ -19,26 +16,11 @@ target_link_libraries(test.component.custom_severity
 		Pantheios.fe.simple
 )
 
-target_link_libraries(test.component.custom_severity
-	PRIVATE
-		Pantheios.util
-)
+target_link_Pantheios_util(test.component.custom_severity)
 
-target_link_libraries(test.component.custom_severity
-	PRIVATE
-		xTests::core
-)
+target_link_xTests(test.component.custom_severity)
 
-target_compile_options(test.component.custom_severity PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
-
-		-Wno-null-pointer-arithmetic
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-	>
-)
+define_target_compile_options(test.component.custom_severity)
 
 
 # ############################## end of file ############################# #

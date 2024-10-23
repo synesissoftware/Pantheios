@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters.hpp
+ * File:    pantheios/inserters.hpp
  *
- * Purpose:     Main include file for all Pantheios standard inserters.
+ * Purpose: Main include file for all Pantheios standard inserters.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -57,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MINOR    8
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     238
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     239
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -182,7 +182,14 @@
 # endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE */
 #endif
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_HPP_INSERTERS */
 

@@ -1,14 +1,6 @@
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-if(APPLE)
-
-	message("-- -- adding '/usr/local/include' to include-directories for 'projects'")
-
-	include_directories("/usr/local/include")
-endif()
-
-
 if(UNIX)
 
 	add_definitions(-DUNIX)
@@ -29,6 +21,13 @@ if(WIN32)
 		add_definitions(-DWIN32)
 	endif()
 endif(WIN32)
+
+if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
+
+	add_compile_options("/Zc:__cplusplus")
+
+	add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING)
+endif()
 
 
 add_subdirectory(backends)

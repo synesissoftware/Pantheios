@@ -3,7 +3,7 @@
 ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
-CMakeDir=$Dir/_build
+CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 
 Directories=(
   CMakeFiles
@@ -23,8 +23,6 @@ Files=(
   install_manifest.txt
 )
 
-OsIsWindows=0
-
 
 # ##########################################################
 # operating environment detection
@@ -34,6 +32,7 @@ case "${OsName}" in
   CYGWIN*|MINGW*|MSYS_NT*)
 
     Directories+=(
+      ARM64
       Win32
       x64
     )

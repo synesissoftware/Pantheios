@@ -9,24 +9,20 @@ add_library(Pantheios.bec.syslog.WithCallback
 	${BEC_SYSLOG_SRCS}
 )
 
-target_link_libraries(Pantheios.bec.syslog.WithCallback
+target_link_STLSoft(Pantheios.bec.syslog.WithCallback)
+
+target_compile_options(Pantheios.bec.syslog.WithCallback
 	PRIVATE
-		STLSoft::STLSoft
-)
+		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			-Werror -Wall -Wextra -pedantic
 
-target_compile_options(Pantheios.bec.syslog.WithCallback PRIVATE
-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-		-Werror -Wall -Wextra -pedantic
+			-DPANTHEIOS_BE_USE_CALLBACK
+		>
+		$<$<CXX_COMPILER_ID:MSVC>:
+			/WX /W4
 
-		-Wno-unused-parameter
-
-		-DPANTHEIOS_BE_USE_CALLBACK
-	>
-	$<$<CXX_COMPILER_ID:MSVC>:
-		/WX /W4
-
-		-DPANTHEIOS_BE_USE_CALLBACK
-	>
+			-DPANTHEIOS_BE_USE_CALLBACK
+		>
 )
 
 install(TARGETS Pantheios.bec.syslog.WithCallback)
