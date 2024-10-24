@@ -25,7 +25,9 @@ target_compile_options(Pantheios.bec.fprintf.WithCallback
 		>
 )
 
-install(TARGETS Pantheios.bec.fprintf.WithCallback)
+install(TARGETS Pantheios.bec.fprintf.WithCallback
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

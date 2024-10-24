@@ -13,7 +13,9 @@ target_link_STLSoft(Pantheios.bec.test)
 
 define_target_compile_options(Pantheios.bec.test)
 
-install(TARGETS Pantheios.bec.test)
+install(TARGETS Pantheios.bec.test
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

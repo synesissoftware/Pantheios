@@ -13,7 +13,9 @@ target_link_STLSoft(Pantheios.be.lrsplit)
 
 define_target_compile_options(Pantheios.be.lrsplit)
 
-install(TARGETS Pantheios.be.lrsplit)
+install(TARGETS Pantheios.be.lrsplit
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

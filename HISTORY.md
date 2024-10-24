@@ -1,7 +1,18 @@
 pantheios - History
 ===================
 
-Updated:    16th July 2024
+Updated:    24th October 2024
+
+
+24th October 2024 - 1.0.1 beta 221
+----------------------------------
+
+ * Major CMake configuration enhancements;
+ * Now optionally dependent on **b64** library (for `pantheios::b64' inserter class);
+ * Removed large number of warning suppressions;
+ * MinGW compatibility;
+ * VC++17 compatibility;
+ * Defect fixes;
 
 
 16th July 2024 - 1.0.1 beta 220

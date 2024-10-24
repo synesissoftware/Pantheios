@@ -13,7 +13,9 @@ target_link_STLSoft(Pantheios.be.COMErrorObject)
 
 define_target_compile_options(Pantheios.be.COMErrorObject)
 
-install(TARGETS Pantheios.be.COMErrorObject)
+install(TARGETS Pantheios.be.COMErrorObject
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

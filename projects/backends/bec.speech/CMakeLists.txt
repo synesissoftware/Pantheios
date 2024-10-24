@@ -13,7 +13,9 @@ target_link_STLSoft(Pantheios.bec.speech)
 
 define_target_compile_options(Pantheios.bec.speech)
 
-install(TARGETS Pantheios.bec.speech)
+install(TARGETS Pantheios.bec.speech
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #

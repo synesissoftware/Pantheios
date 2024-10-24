@@ -13,7 +13,9 @@ target_link_STLSoft(Pantheios.be.WindowsConsole)
 
 define_target_compile_options(Pantheios.be.WindowsConsole)
 
-install(TARGETS Pantheios.be.WindowsConsole)
+install(TARGETS Pantheios.be.WindowsConsole
+	EXPORT project-targets
+)
 
 
 # ############################## end of file ############################# #
