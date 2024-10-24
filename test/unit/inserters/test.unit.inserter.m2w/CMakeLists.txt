@@ -18,6 +18,8 @@ target_link_libraries(test.unit.inserter.m2w
 
 target_link_Pantheios_util(test.unit.inserter.m2w)
 
+target_link_STLSoft(test.unit.inserter.m2w)
+
 target_link_xTests(test.unit.inserter.m2w)
 
 define_target_compile_options(test.unit.inserter.m2w)

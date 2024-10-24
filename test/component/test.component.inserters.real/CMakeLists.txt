@@ -18,6 +18,8 @@ target_link_libraries(test.component.inserters.real
 
 target_link_Pantheios_util(test.component.inserters.real)
 
+target_link_STLSoft(test.component.inserters.real)
+
 target_link_xTests(test.component.inserters.real)
 
 define_target_compile_options(test.component.inserters.real)
