@@ -28,6 +28,12 @@ add_library(Pantheios.core
 	${INSERTER_SRCS}
 )
 
+target_include_directories(Pantheios.core
+	PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+		$<INSTALL_INTERFACE:include>
+)
+
 target_link_STLSoft(Pantheios.core)
 
 target_link_libraries(Pantheios.core

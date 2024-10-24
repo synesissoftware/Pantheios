@@ -10,6 +10,12 @@ add_library(Pantheios.util
 	${UTIL_SRCS}
 )
 
+target_include_directories(Pantheios.util
+	PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+		$<INSTALL_INTERFACE:include>
+)
+
 target_link_STLSoft(Pantheios.util)
 
 define_target_compile_options(Pantheios.util)
