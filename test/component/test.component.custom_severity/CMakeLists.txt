@@ -18,6 +18,8 @@ target_link_libraries(test.component.custom_severity
 
 target_link_Pantheios_util(test.component.custom_severity)
 
+target_link_STLSoft(test.component.custom_severity)
+
 target_link_xTests(test.component.custom_severity)
 
 define_target_compile_options(test.component.custom_severity)

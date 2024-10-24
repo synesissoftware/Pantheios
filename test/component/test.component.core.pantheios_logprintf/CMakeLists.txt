@@ -18,6 +18,8 @@ target_link_libraries(test.component.core.pantheios_logprintf
 
 target_link_Pantheios_util(test.component.core.pantheios_logprintf)
 
+target_link_STLSoft(test.component.core.pantheios_logprintf)
+
 target_link_xTests(test.component.core.pantheios_logprintf)
 
 define_target_compile_options(test.component.core.pantheios_logprintf)

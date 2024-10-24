@@ -18,6 +18,8 @@ target_link_libraries(test.performance.inserters.m2w
 
 target_link_Pantheios_util(test.performance.inserters.m2w)
 
+target_link_STLSoft(test.performance.inserters.m2w)
+
 target_link_xTests(test.performance.inserters.m2w)
 
 define_target_compile_options(test.performance.inserters.m2w)
