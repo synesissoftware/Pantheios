@@ -29,6 +29,8 @@ install(TARGETS Pantheios.bec.file.WithCallback
 	EXPORT project-targets
 )
 
+install_file(backends bec.file.h)
+
 
 # ############################## end of file ############################# #
 

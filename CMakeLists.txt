@@ -304,6 +304,72 @@ install( FILES
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 
+install(
+	FILES
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.hpp
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/assert.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/backend.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/fileline.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/frontend.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/init_codes.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/pan.hpp
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/trace.h
+	DESTINATION include/${PROJECT_NAME_LOWER}
+)
+
+install_file("frontends" "stock.h")
+
+install_file(backends bec.console.h)
+
+foreach(ITEM
+	internal
+	quality
+	severity
+	shims
+)
+
+	install(
+		DIRECTORY ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${ITEM}/
+		DESTINATION include/${PROJECT_NAME_LOWER}/${ITEM}/
+		FILES_MATCHING
+		PATTERN "*.h*"
+	)
+endforeach()
+
+install(
+	FILES
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.hpp
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/assert.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/backend.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/fileline.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/frontend.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/init_codes.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/pan.hpp
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/trace.h
+	DESTINATION include/${PROJECT_NAME_LOWER}
+)
+
+install_file("frontends" "stock.h")
+
+install_file(backends bec.console.h)
+
+foreach(ITEM
+	internal
+	quality
+	severity
+	shims
+)
+
+	install(
+		DIRECTORY ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${ITEM}/
+		DESTINATION include/${PROJECT_NAME_LOWER}/${ITEM}/
+		FILES_MATCHING
+		PATTERN "*.h*"
+	)
+endforeach()
+
 
 # ##########################################################
 # completion

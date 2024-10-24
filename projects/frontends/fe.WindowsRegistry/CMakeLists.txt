@@ -17,6 +17,8 @@ install(TARGETS Pantheios.fe.WindowsRegistry
 	EXPORT project-targets
 )
 
+install_file(frontends fe.WindowsRegistry.h)
+
 
 # ############################## end of file ############################# #
 
