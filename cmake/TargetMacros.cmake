@@ -192,6 +192,14 @@ function(define_simple_console_example_cpp program_and_main_source_stem)
 	)
 endfunction(define_simple_console_example_cpp)
 
+macro(install_file subdir file_list)
+
+	install(
+		FILES
+			${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${subdir}/${file_list}
+		DESTINATION include/${PROJECT_NAME_LOWER}/${subdir}/
+	)
+endmacro(install_file)
 
 # ############################## end of file ############################# #
 

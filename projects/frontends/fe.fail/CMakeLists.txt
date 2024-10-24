@@ -17,6 +17,8 @@ install(TARGETS Pantheios.fe.fail
 	EXPORT project-targets
 )
 
+install_file(frontends fe.fail.h)
+
 
 # ############################## end of file ############################# #
 

@@ -17,6 +17,8 @@ install(TARGETS Pantheios.bec.speech
 	EXPORT project-targets
 )
 
+install_file(backends bec.speech.h)
+
 
 # ############################## end of file ############################# #
 

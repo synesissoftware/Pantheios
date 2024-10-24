@@ -17,6 +17,8 @@ install(TARGETS Pantheios.be.N
 	EXPORT project-targets
 )
 
+install_file("backends" "be.N.h")
+
 
 # ############################## end of file ############################# #
 

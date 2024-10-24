@@ -19,5 +19,21 @@ install(TARGETS Pantheios.util
 )
 
 
+install(
+	DIRECTORY ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/util/
+	DESTINATION include/${PROJECT_NAME_LOWER}/util/
+	FILES_MATCHING
+	PATTERN "*.h*"
+)
+
+
+install(
+	DIRECTORY ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/util/
+	DESTINATION include/${PROJECT_NAME_LOWER}/util/
+	FILES_MATCHING
+	PATTERN "*.h*"
+)
+
+
 # ############################## end of file ############################# #
 

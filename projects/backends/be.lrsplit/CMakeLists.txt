@@ -17,6 +17,8 @@ install(TARGETS Pantheios.be.lrsplit
 	EXPORT project-targets
 )
 
+install_file("backends" "be.lrsplit.h")
+
 
 # ############################## end of file ############################# #
 
