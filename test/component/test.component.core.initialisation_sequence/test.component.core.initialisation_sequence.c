@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.component.core.initialisation_sequence project.
  *
  * Created:     8th February 2008
- * Updated:     16th December 2023
+ * Updated:     24th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -230,7 +230,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char** argv)
