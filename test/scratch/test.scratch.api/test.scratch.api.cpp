@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.api/test.scratch.api.cpp
+ * File:    test/scratch/test.scratch.api/test.scratch.api.cpp
  *
- * Purpose:     Implementation file for the test.scratch.api project.
+ * Purpose: Implementation file for the test.scratch.api project.
  *
- * Created:     26th June 2005
- * Updated:     16th July 2024
+ * Created: 26th June 2005
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -90,7 +90,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_calcCategoryAndEventId(
     *category   =   0;
 }
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
         return 0;
 }

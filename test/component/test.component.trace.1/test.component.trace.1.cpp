@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.trace.1 project.
  *
  * Created: 25th November 2007
- * Updated: 7th February 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -96,7 +96,7 @@ static void test_29();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

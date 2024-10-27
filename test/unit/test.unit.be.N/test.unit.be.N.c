@@ -4,7 +4,7 @@
  * Purpose: Unit test of be.N backend.
  *
  * Created: 29th January 2008
- * Updated: 19th October 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -154,7 +154,7 @@ PANTHEIOS_CALL(int) pantheios_getNextBackEndId(void)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

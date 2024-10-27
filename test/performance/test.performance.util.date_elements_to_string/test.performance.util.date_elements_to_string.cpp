@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.performance.util.date_elements_to_string project.
  *
  * Created: 13th November 2016
- * Updated: 19th October 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -273,7 +273,7 @@ static int main_(int /* argc */, char** /* argv */)
     return (total == INT_MAX) ? 100 : EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

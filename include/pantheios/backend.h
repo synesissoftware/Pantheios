@@ -4,7 +4,7 @@
  * Purpose: Pantheios back end API
  *
  * Created: 21st June 2005
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -72,7 +72,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Back-end API
+ * back-end API
  */
 
 /** \defgroup group__backend Pantheios Back-end API

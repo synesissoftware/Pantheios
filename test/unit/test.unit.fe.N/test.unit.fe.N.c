@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.fe.N project.
  *
  * Created: 24th August 2008
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,7 +43,7 @@ static void test_array_with_three_specific_ids(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char **argv)

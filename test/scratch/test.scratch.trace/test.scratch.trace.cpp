@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.trace/test.scratch.trace.cpp
+ * File:    test/scratch/test.scratch.trace/test.scratch.trace.cpp
  *
- * Purpose:     Implementation file for the trace_test project.
+ * Purpose: Implementation file for the trace_test project.
  *
- * Created:     5th August 2007
- * Updated:     16th July 2024
+ * Created: 5th August 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -78,7 +78,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.stream_character project.
  *
  * Created: 9th May 2014
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -76,7 +76,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

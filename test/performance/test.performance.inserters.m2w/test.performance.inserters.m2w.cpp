@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.performance.inserters.m2w project.
  *
  * Created: 22nd November 2010
- * Updated: 7th February 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -66,7 +66,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   L"test.
  * main()
  */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
     platformstl::performance_counter                counter;
     platformstl::performance_counter::interval_type tm_cvrt_small   =   1;
@@ -186,7 +186,7 @@ static int main_(int argc, char** argv)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

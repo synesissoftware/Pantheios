@@ -9,17 +9,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 16th August 2006
- * Updated: 7th February 2024
- *
- * www:     http://www.pantheios.org/
- *
- * License: This source code is placed into the public domain 2006
- *          by Synesis Software Pty Ltd. There are no restrictions
- *          whatsoever to your use of the software.
- *
- *          This software is provided "as is", and any warranties,
- *          express or implied, of any kind and for any purpose, are
- *          disclaimed.
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -54,7 +44,7 @@
  * main()
  */
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
   try
   {
@@ -108,7 +98,7 @@ int main()
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Front-end
+ * front-end
  */
 
 PANTHEIOS_CALL(int) pantheios_fe_init(
@@ -168,7 +158,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Back-end
+ * back-end
  */
 
 PANTHEIOS_CALL(int) pantheios_be_init(

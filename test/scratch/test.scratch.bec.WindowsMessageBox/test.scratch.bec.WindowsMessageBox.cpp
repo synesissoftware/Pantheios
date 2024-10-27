@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.bec.WindowsMessageBox/test.scratch.bec.WindowsMessageBox.cpp
+ * File:    test/scratch/test.scratch.bec.WindowsMessageBox/test.scratch.bec.WindowsMessageBox.cpp
  *
- * Purpose:     Implementation file for the test.scratch.bec.WindowsMessageBox project.
+ * Purpose: Implementation file for the test.scratch.bec.WindowsMessageBox project.
  *
- * Created:     14th March 2008
- * Updated:     16th December 2023
+ * Created: 14th March 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -72,7 +72,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

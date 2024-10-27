@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.extras.com_exception_helpers/test.scratch.extras.com_exception_helpers.cpp
+ * File:    test/scratch/test.scratch.extras.com_exception_helpers/test.scratch.extras.com_exception_helpers.cpp
  *
- * Purpose:     Implementation file for the test.scratch.extras.com_exception_helpers project.
+ * Purpose: Implementation file for the test.scratch.extras.com_exception_helpers project.
  *
- * Created:     19th December 2008
- * Updated:     16th December 2023
+ * Created: 19th December 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -154,7 +154,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

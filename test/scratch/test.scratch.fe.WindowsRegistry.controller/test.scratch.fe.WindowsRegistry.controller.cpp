@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.fe.WindowsRegistry.controller/test.scratch.fe.WindowsRegistry.controller.cpp
+ * File:    test/scratch/test.scratch.fe.WindowsRegistry.controller/test.scratch.fe.WindowsRegistry.controller.cpp
  *
- * Purpose:     Implementation file for the test.scratch.fe.WindowsRegistry.controller project.
+ * Purpose: Implementation file for the test.scratch.fe.WindowsRegistry.controller project.
  *
- * Created:     2nd December 2007
- * Updated:     16th December 2023
+ * Created: 2nd December 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -69,7 +69,7 @@ namespace control
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
     int bVerbose = true;
 
@@ -91,7 +91,7 @@ static int main_(int argc, char** argv)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

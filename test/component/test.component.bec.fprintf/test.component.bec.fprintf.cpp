@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.bec.fprintf/test.component.bec.fprintf.cpp
+ * File:    test/component/test.component.bec.fprintf/test.component.bec.fprintf.cpp
  *
- * Purpose:     Implementation file for the test.component.bec.fprintf project.
+ * Purpose: Implementation file for the test.component.bec.fprintf project.
  *
- * Created:     25th June 2020
- * Updated:     16th July 2024
+ * Created: 25th June 2020
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -33,6 +33,7 @@
 /* Standard C++ header files */
 #include <exception>
 #include <string>
+#include <iostream>
 
 /* Standard C header files */
 #include <errno.h>
@@ -67,19 +68,13 @@
  */
 
 static void test_1_1();
-static void test_1_2();
-static void test_1_3();
-static void test_1_4();
-static void test_1_5();
-static void test_1_6();
-static void test_1_7();
-static void test_1_8();
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-#include <iostream>
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity;
@@ -90,13 +85,6 @@ int main(int argc, char** argv)
     if (XTESTS_START_RUNNER("test.component.bec.fprintf", verbosity))
     {
         XTESTS_RUN_CASE(test_1_1);
-        XTESTS_RUN_CASE(test_1_2);
-        XTESTS_RUN_CASE(test_1_3);
-        XTESTS_RUN_CASE(test_1_4);
-        XTESTS_RUN_CASE(test_1_5);
-        XTESTS_RUN_CASE(test_1_6);
-        XTESTS_RUN_CASE(test_1_7);
-        XTESTS_RUN_CASE(test_1_8);
 
         XTESTS_PRINT_RESULTS();
 
@@ -209,29 +197,6 @@ static void test_1_1()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; Notice]: some message"), lines[0].c_str());
 }
 
-static void test_1_2()
-{
-}
-
-static void test_1_3()
-{
-}
-
-static void test_1_4()
-{
-}
-
-static void test_1_5()
-{}
-
-static void test_1_6()
-{}
-
-static void test_1_7()
-{}
-
-static void test_1_8()
-{}
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

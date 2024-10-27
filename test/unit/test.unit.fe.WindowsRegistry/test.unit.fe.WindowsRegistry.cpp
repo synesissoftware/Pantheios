@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.fe.WindowsRegistry project.
  *
  * Created: 14th May 2008
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -91,10 +91,10 @@ namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
     // Lock out other test program instances, otherwise they'll interfere
     // with each other
@@ -138,7 +138,7 @@ static int main_(int argc, char** argv)
     return retCode;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     try

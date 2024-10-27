@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.levels.dynamic_initialisation/test.unit.levels.dynamic_initialisation.cpp
+ * File:    test/unit/test.unit.levels.dynamic_initialisation/test.unit.levels.dynamic_initialisation.cpp
  *
- * Purpose:     Implementation file for the test.unit.levels.dynamic_initialisation project.
+ * Purpose: Implementation file for the test.unit.levels.dynamic_initialisation project.
  *
- * Created:     20th October 2007
- * Updated:     16th December 2023
+ * Created: 20th October 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -89,7 +89,7 @@ DynamicInit::DynamicInit()
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

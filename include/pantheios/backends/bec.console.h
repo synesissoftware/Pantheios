@@ -4,7 +4,7 @@
  * Purpose: Platform-specific console back-end
  *
  * Created: 3rd July 2009
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -147,7 +147,7 @@ typedef pan_be_fprintf_init_t                               pan_be_console_init_
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 #if defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)

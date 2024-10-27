@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios WindowsEventLog Stock Back-end API.
  *
  * Created: 8th May 2006
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -124,7 +124,7 @@ typedef struct pan_be_WindowsEventLog_init_t     pan_be_WindowsEventLog_init_t;
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined Functions
+ * application-defined functions
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION

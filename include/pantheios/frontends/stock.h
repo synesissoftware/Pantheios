@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/frontends/stock.h
+ * File:    pantheios/frontends/stock.h
  *
- * Purpose:     Declaration of the Pantheios Stock Front-end API Common
- *              Elements.
+ * Purpose: Declaration of the Pantheios Stock Front-end API Common
+ *          Elements.
  *
- * Created:     23rd November 2007
- * Updated:     16th January 2023
+ * Created: 23rd November 2007
+ * Updated: 28th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     17
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -149,7 +149,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 /** \ref page__frontend__callbacks "Callback" function defined by the
@@ -168,7 +168,14 @@ PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
  */
 PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) /* throw() */;
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK */
 

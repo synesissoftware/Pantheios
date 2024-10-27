@@ -1,27 +1,20 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/inserters/example.cpp.inserter.m2w/example.cpp.inserter.m2w.cpp
+ * File:    examples/cpp/inserters/example.cpp.inserter.m2w/example.cpp.inserter.m2w.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of Pantheios inserters for m2w types
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of Pantheios inserters for m2w types
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     25th September 2010
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 25th September 2010
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 // The following four lines are used only to verify that we're compiling for
 // wide-strings, and would not be necessary in your program.
@@ -35,13 +28,19 @@
 #include <pantheios/inserters/args.hpp>
 #include <pantheios/inserters/m2w.hpp>
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = L"example.cpp.inserter.m2w";
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, wchar_t** argv)
 {

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.core.initialisation_sequence/test.component.core.initialisation_sequence.c
+ * File:    test/component/test.component.core.initialisation_sequence/test.component.core.initialisation_sequence.c
  *
- * Purpose:     Implementation file for the test.component.core.initialisation_sequence project.
+ * Purpose: Implementation file for the test.component.core.initialisation_sequence project.
  *
- * Created:     8th February 2008
- * Updated:     16th December 2023
+ * Created: 8th February 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -35,7 +35,7 @@ static int  s_beInitValue   =   0;
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Front-end functions
+ * front-end functions
  */
 
 PANTHEIOS_CALL(int) pantheios_fe_init(  void*   reserved
@@ -138,7 +138,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(  void*   token
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Back-end functions
+ * back-end functions
  */
 
 PANTHEIOS_CALL(int) pantheios_be_init(
@@ -230,10 +230,10 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

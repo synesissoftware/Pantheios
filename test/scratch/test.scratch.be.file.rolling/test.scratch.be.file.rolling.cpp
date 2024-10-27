@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.be.file.rolling project.
  *
  * Created: 24th October 2007
- * Updated: 7th February 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -88,7 +88,7 @@ static void test_ROLL_ON_ENTRIES();
  * main()
  */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
 
     /* . */
@@ -151,7 +151,7 @@ static void test_ROLL_ON_ENTRIES()
  * main()
  */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

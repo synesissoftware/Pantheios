@@ -14,7 +14,7 @@
  *              pantheios_logprintf()
  *
  * Created: 17th January 2008
- * Updated: 19th October 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,7 +37,7 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("exa
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char* argv[])

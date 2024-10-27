@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios fprintf Stock Back-end API.
  *
  * Created: 21st June 2005
- * Updated: 27th October 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -128,7 +128,7 @@ typedef struct pan_be_fprintf_init_t                        pan_be_fprintf_init_
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 /** \ref page__backend__callbacks "Callback" function defined by

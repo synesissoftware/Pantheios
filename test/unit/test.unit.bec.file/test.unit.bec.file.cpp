@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.bec.file/test.unit.bec.file.cpp
+ * File:    test/unit/test.unit.bec.file/test.unit.bec.file.cpp
  *
- * Purpose:     Implementation file for the test.unit.be.file project.
+ * Purpose: Implementation file for the test.unit.be.file project.
  *
- * Created:     19th January 2008
- * Updated:     16th July 2024
+ * Created: 19th January 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -159,7 +159,7 @@ static void test_4_01();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

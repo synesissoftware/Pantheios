@@ -4,7 +4,7 @@
  * Purpose: Pantheios Core and Util APIs.
  *
  * Created: 21st June 2005
- * Updated: 24th October 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -1319,7 +1319,7 @@ PANTHEIOS_CALL(void) pantheios_logassertfail(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Back-end map functions
+ * back-end map functions
  */
 
 #if 0 /* Not yet released */

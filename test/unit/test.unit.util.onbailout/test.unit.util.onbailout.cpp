@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.util.onbailout project.
  *
  * Created: 29th April 2008
- * Updated: 19th October 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -290,7 +290,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
  * main()
  */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
