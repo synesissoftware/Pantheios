@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.test.cpp
+ * File:    src/backends/bec.test.cpp
  *
- * Purpose:     Implementation for the be.test back-end
+ * Purpose: Implementation for the be.test back-end
  *
- * Created:     1st November 2006
- * Updated:     16th December 2023
+ * Created: 1st November 2006
+ * Updated: 27th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -39,6 +39,10 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* warning suppressions */
 #include <stlsoft/stlsoft.h>
@@ -117,14 +121,14 @@ namespace test
         class Context
         {
         public:
-            typedef Context                     class_type;
-            typedef Entry                       value_type;
-            typedef std::vector<value_type>     entries_type;
+            typedef Context                                     class_type;
+            typedef Entry                                       value_type;
+            typedef std::vector<value_type>                     entries_type;
         private:
 #ifdef PANTHEIOS_MT
-            typedef platformstl::thread_mutex   mutex_type_;
+            typedef platformstl::thread_mutex                   mutex_type_;
 #else /* ? PANTHEIOS_MT */
-            typedef stlsoft::null_mutex         mutex_type_;
+            typedef stlsoft::null_mutex                         mutex_type_;
 #endif /* PANTHEIOS_MT */
         public:
             Context(PAN_CHAR_T const* processIdentity, int backEndId)
@@ -177,22 +181,7 @@ namespace test
                 return m_entries;
             }
 
-/*
-            size_t  size() const
-            {
-                stlsoft::lock_scope<mutex_type_> lock(m_mx);
-
-                return m_entries.size();
-            }
-            value_type const&   operator [](size_t index) const
-            {
-                stlsoft::lock_scope<mutex_type_> lock(m_mx);
-
-                return m_entries[index];
-            }
-*/
-
-        private: // Member Variables
+        private: // member Variables
             const Entry::string_type    m_processIdentity;
             const int                   m_backEndId;
             entries_type                m_entries;
@@ -204,9 +193,9 @@ namespace test
     struct Results::ResultsImpl
     {
     public:
-        typedef ResultsImpl                 class_type;
-        typedef Results::value_type         value_type;
-        typedef std::vector<value_type>     entries_type;
+        typedef ResultsImpl                                     class_type;
+        typedef Results::value_type                             value_type;
+        typedef std::vector<value_type>                         entries_type;
 
     public:
         ResultsImpl(entries_type const& entries)
@@ -214,7 +203,10 @@ namespace test
             , m_entries(entries)
         {}
 
-    public: // Reference-counting
+    private: // not to be implemented
+        void operator =(class_type const&)STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
+
+    public: // reference-counting
         void    AddRef()
         {
             ++m_refCount;
@@ -227,7 +219,7 @@ namespace test
             }
         }
 
-    public: // Accessors
+    public: // accessors
         bool empty() const
         {
             return m_entries.empty();
@@ -243,9 +235,6 @@ namespace test
     private:
         stlsoft::int32_t    m_refCount;
         const entries_type  m_entries;
-
-    private: // Not to be implemented
-        class_type& operator =(class_type const&);
     };
 
     Results::Results(ResultsImpl* impl)
@@ -325,7 +314,6 @@ namespace
 {
 
     ::pantheios::be::test::ximpl_be_test::Context* s_ctxt;
-
 } /* anonymous namespace */
 
 
@@ -349,7 +337,6 @@ namespace test
     {
         return CreatableResults(s_ctxt->entries());
     }
-
 } /* namespace test */
 } /* namespace be */
 } /* namespace pantheios */
@@ -365,9 +352,7 @@ namespace
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
     using ::pantheios::util::pantheios_onBailOut6;
-
 #endif /* !PANTHEIOS_NO_NAMESPACE */
-
 } /* anonymous namespace */
 
 
@@ -462,6 +447,7 @@ static int pantheios_be_test_logEntry_(
 
     return 0;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
