@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios fprintf Stock Back-end API.
  *
  * Created: 21st June 2005
- * Updated: 24th October 2024
+ * Updated: 27th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        25
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -189,7 +189,7 @@ PANTHEIOS_CALL(void) pantheios_be_fprintf_getDefaultAppInit(pan_be_fprintf_init_
 PANTHEIOS_CALL(int) pantheios_be_fprintf_init(
     PAN_CHAR_T const*               processIdentity
 ,   int                             id
-,   pan_be_fprintf_init_t const*    unused
+,   pan_be_fprintf_init_t const*    init
 ,   void*                           reserved
 ,   void**                          ptoken
 );
