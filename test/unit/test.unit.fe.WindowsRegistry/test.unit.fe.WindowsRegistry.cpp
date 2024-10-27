@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.fe.WindowsRegistry project.
  *
  * Created: 14th May 2008
- * Updated: 16th July 2024
+ * Updated: 24th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -91,7 +91,7 @@ namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 static int main_(int argc, char** argv)

@@ -18,6 +18,8 @@ install(TARGETS Pantheios.bec.WindowsConsole
 	EXPORT project-targets
 )
 
+install_file(backends bec.WindowsConsole.h)
+
 
 # ############################## end of file ############################# #
 

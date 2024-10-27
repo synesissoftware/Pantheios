@@ -13,6 +13,8 @@ target_link_libraries(test.component.core.getProcessIdentity
 
 target_link_Pantheios_util(test.component.core.getProcessIdentity)
 
+target_link_STLSoft(test.component.core.getProcessIdentity)
+
 target_link_xTests(test.component.core.getProcessIdentity)
 
 define_target_compile_options(test.component.core.getProcessIdentity)

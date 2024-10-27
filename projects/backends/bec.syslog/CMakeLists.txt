@@ -17,6 +17,8 @@ install(TARGETS Pantheios.bec.syslog
 	EXPORT project-targets
 )
 
+install_file(backends bec.syslog.h)
+
 
 # ############################## end of file ############################# #
 

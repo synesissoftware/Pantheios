@@ -7,6 +7,8 @@ target_link_Pantheios_core(test.unit.inserter.stream_character)
 
 target_link_Pantheios_util(test.unit.inserter.stream_character)
 
+target_link_STLSoft(test.unit.inserter.stream_character)
+
 target_link_xTests(test.unit.inserter.stream_character)
 
 define_target_compile_options(test.unit.inserter.stream_character)

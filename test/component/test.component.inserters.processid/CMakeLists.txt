@@ -18,6 +18,8 @@ target_link_libraries(test.component.inserters.processid
 
 target_link_Pantheios_util(test.component.inserters.processid)
 
+target_link_STLSoft(test.component.inserters.processid)
+
 target_link_xTests(test.component.inserters.processid)
 
 define_target_compile_options(test.component.inserters.processid)

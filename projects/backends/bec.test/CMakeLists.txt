@@ -17,6 +17,8 @@ install(TARGETS Pantheios.bec.test
 	EXPORT project-targets
 )
 
+install_file(backends bec.test.h)
+
 
 # ############################## end of file ############################# #
 

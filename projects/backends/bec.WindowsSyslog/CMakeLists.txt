@@ -17,6 +17,8 @@ install(TARGETS Pantheios.bec.WindowsSyslog
 	EXPORT project-targets
 )
 
+install_file(backends bec.WindowsSyslog.h)
+
 
 # ############################## end of file ############################# #
 

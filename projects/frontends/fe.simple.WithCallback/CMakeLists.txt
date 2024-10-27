@@ -29,6 +29,8 @@ install(TARGETS Pantheios.fe.simple.WithCallback
 	EXPORT project-targets
 )
 
+install_file(frontends fe.simple.h)
+
 
 # ############################## end of file ############################# #
 
