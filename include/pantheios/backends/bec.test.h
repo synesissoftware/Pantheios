@@ -4,7 +4,7 @@
  * Purpose: Declaration of the be.test library.
  *
  * Created: 1st November 2006
- * Updated: 27th October 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  3
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      30
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  4
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -206,6 +206,8 @@ namespace test
         typedef Results                                         class_type;
         /** The value type */
         typedef Entry                                           value_type;
+        /** The size type */
+        typedef size_t                                          size_type;
     protected:
 # if defined(STLSOFT_COMPILER_IS_DMC)
     public:
@@ -227,17 +229,17 @@ namespace test
 
     public: /* Accessors */
         /** Indicates whether the container is empty */
-        bool                empty() const;
+        bool                empty() const STLSOFT_NOEXCEPT;
         /** Indicates the number of results in the container */
-        size_t              size() const;
+        size_type           size() const STLSOFT_NOEXCEPT;
         /** Requests an element from the container
          *
          * \param index The index of the element. Must be less than the value returned by size()
          */
-        value_type const&   operator [](size_t index) const;
+        value_type const&   operator [](size_type index) const STLSOFT_NOEXCEPT;
 
     private: /* Implementation */
-        ResultsImpl* const  m_impl;
+        ResultsImpl*  m_impl;
     };
 #endif /* __cplusplus */
 
