@@ -7,6 +7,8 @@ add_subdirectory(test.component.core.pantheios_logprintf)
 add_subdirectory(test.component.core.pantheios_logputs)
 add_subdirectory(test.component.custom_severity)
 
+add_subdirectory(test.component.details)
+
 add_subdirectory(test.component.inserters.args)
 #[====[
 #]====]
