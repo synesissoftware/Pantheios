@@ -17,6 +17,8 @@ install(TARGETS Pantheios.bec.fprintf
 	EXPORT project-targets
 )
 
+install_file(backends bec.fprintf.h)
+
 
 # ############################## end of file ############################# #
 

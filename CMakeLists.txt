@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  24th October 2024
+# Updated:  28th October 2024
 #
 # ######################################################################## #
 
@@ -309,11 +309,44 @@ install(EXPORT project-targets
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 
-install( FILES
+install(FILES
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
+
+install(
+	FILES
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.hpp
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/assert.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/backend.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/fileline.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/frontend.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/init_codes.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/pan.hpp
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/trace.h
+	DESTINATION include/${PROJECT_NAME_LOWER}
+)
+
+install_file("frontends" "stock.h")
+
+install_file(backends bec.console.h)
+
+foreach(ITEM
+	internal
+	quality
+	severity
+	shims
+)
+
+	install(
+		DIRECTORY ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${ITEM}/
+		DESTINATION include/${PROJECT_NAME_LOWER}/${ITEM}/
+		FILES_MATCHING
+		PATTERN "*.h*"
+	)
+endforeach()
 
 
 # ##########################################################

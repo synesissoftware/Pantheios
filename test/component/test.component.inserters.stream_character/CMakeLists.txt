@@ -18,6 +18,8 @@ target_link_libraries(test.component.inserters.stream_character
 
 target_link_Pantheios_util(test.component.inserters.stream_character)
 
+target_link_STLSoft(test.component.inserters.stream_character)
+
 target_link_xTests(test.component.inserters.stream_character)
 
 define_target_compile_options(test.component.inserters.stream_character)

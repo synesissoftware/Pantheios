@@ -109,7 +109,8 @@
 # define PANTHEIOS_VER_1_0_1_B218               0x010001da
 # define PANTHEIOS_VER_1_0_1_B219               0x010001db
 # define PANTHEIOS_VER_1_0_1_B220               0x010001dc
-# define PANTHEIOS_VER_1_0_1_B221               0x010001dd
+# define PANTHEIOS_VER_1_0_1_B221               0x010001de
+# define PANTHEIOS_VER_1_0_1_B222               0x010001df
 # define PANTHEIOS_VER_1_0_1                    0x010001ff
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -117,7 +118,7 @@
 #define PANTHEIOS_VER_MINOR                     0
 #define PANTHEIOS_VER_REVISION                  1
 
-#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B221
+#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B222
 
 
 /* /////////////////////////////////////////////////////////////////////////
