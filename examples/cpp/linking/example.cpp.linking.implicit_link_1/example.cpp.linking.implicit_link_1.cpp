@@ -1,27 +1,26 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/linking/example.cpp.linking.implicit_link_1/example.cpp.linking.implicit_link_1.cpp
+ * File:    examples/cpp/linking/example.cpp.linking.implicit_link_1/example.cpp.linking.implicit_link_1.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of implicit linking to bind in front-end and back-end
+ *            - use of implicit linking to bind in front-end and back-end
  *
- * Created:     31st August 2006
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 31st August 2006
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * feature control
+ */
+
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS // Faster compilation
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>              // Pantheios C++ main header
@@ -33,20 +32,27 @@
 #include <string>                               // for std::string
 #include <stdlib.h>                             // for exit codes
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.linking.implicit_link_1");
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int /* argc */, char* /* argv */[])
 {
   pantheios::log_INFORMATIONAL(PANTHEIOS_LITERAL_STRING("Hello!"));
 
   return EXIT_SUCCESS;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -10,7 +10,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 31st August 2006
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -156,9 +156,11 @@ static void log_with_string_access_shims(Person const& person);
 static void log_with_inserter_class(Person const& person);
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
   try
   {
@@ -417,6 +419,7 @@ static void log_with_inserter_class(Person const& person)
 {
   pantheios::log_NOTICE(PSTR("Person: "), Person_inserter(person));
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

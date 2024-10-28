@@ -6,10 +6,14 @@
  *            - use of Pantheios Tracing API
  *
  * Created: 18th August 2007
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* Pantheios header files */
 #include <pantheios/pantheios.h>                // Pantheios C main header
@@ -29,21 +33,27 @@
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.tracing.standard");
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
 
 #define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
   try
   {

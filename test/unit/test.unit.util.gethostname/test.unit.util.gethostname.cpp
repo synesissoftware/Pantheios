@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.util.gethostname/test.unit.util.gethostname.cpp
+ * File:    test/unit/test.unit.util.gethostname/test.unit.util.gethostname.cpp
  *
- * Purpose:     Implementation file for the test.unit.util.gethostname project.
+ * Purpose: Implementation file for the test.unit.util.gethostname project.
  *
- * Created:     14th April 2008
- * Updated:     16th July 2024
+ * Created: 14th April 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -83,7 +83,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.windows.hive/test.component.inserters.windows.hive.cpp
+ * File:    test/component/test.component.inserters.windows.hive/test.component.inserters.windows.hive.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.windows.hive project.
+ * Purpose: Implementation file for the test.component.inserters.windows.hive project.
  *
- * Created:     26th January 2017
- * Updated:     16th December 2023
+ * Created: 26th January 2017
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -86,7 +86,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
  * main()
  */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

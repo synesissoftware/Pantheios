@@ -7,7 +7,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 29th November 2006
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,7 +48,7 @@ PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 /** Cause the file to be opened when the application is starting up.

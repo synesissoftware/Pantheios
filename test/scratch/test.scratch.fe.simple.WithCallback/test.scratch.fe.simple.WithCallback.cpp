@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.fe.simple.WithCallback/test.scratch.fe.simple.WithCallback.cpp
+ * File:    test/scratch/test.scratch.fe.simple.WithCallback/test.scratch.fe.simple.WithCallback.cpp
  *
- * Purpose:     Implementation file for the test.scratch.fe.simple.WithCallback project.
+ * Purpose: Implementation file for the test.scratch.fe.simple.WithCallback project.
  *
- * Created:     15th November 2010
- * Updated:     16th December 2023
+ * Created: 15th November 2010
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,7 +29,7 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) /* throw() */
@@ -53,7 +53,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     try
     {

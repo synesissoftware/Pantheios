@@ -4,7 +4,7 @@
  * Purpose: Declaration of the be.test library.
  *
  * Created: 1st November 2006
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  3
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      29
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  4
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -150,6 +150,19 @@ namespace be
 {
 namespace test
 {
+#endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * API types
+ */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * C++ API types
+ */
+
+#ifdef __cplusplus
 
     /** Represents a date/time epoch.
      *
@@ -163,13 +176,14 @@ namespace test
         static Time now();
     };
 
+
     /** Represents an entry in the statement history
      */
     struct Entry
     {
     public: /* Member Types */
         /** The string type */
-        typedef std::basic_string<pantheios_char_t>   string_type;
+        typedef std::basic_string<pantheios_char_t>             string_type;
 
     public: /* Member Variables */
         /* const */ Time            time;       /*!< The time the entry was logged. */
@@ -181,6 +195,7 @@ namespace test
         Entry(int severity, pantheios_char_t const* entry, size_t cchEntry);
     };
 
+
     /** Represents the collection of entries since the last call
      * to reset()
      */
@@ -188,9 +203,11 @@ namespace test
     {
     public: /* Member Types */
         /** The type of this class */
-        typedef Results     class_type;
+        typedef Results                                         class_type;
         /** The value type */
-        typedef Entry       value_type;
+        typedef Entry                                           value_type;
+        /** The size type */
+        typedef size_t                                          size_type;
     protected:
 # if defined(STLSOFT_COMPILER_IS_DMC)
     public:
@@ -207,43 +224,59 @@ namespace test
         Results(class_type const& rhs);
         /** Destroys the instance */
         ~Results()  STLSOFT_NOEXCEPT;
+    private:
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public: /* Accessors */
         /** Indicates whether the container is empty */
-        bool                empty() const;
+        bool                empty() const STLSOFT_NOEXCEPT;
         /** Indicates the number of results in the container */
-        size_t              size() const;
+        size_type           size() const STLSOFT_NOEXCEPT;
         /** Requests an element from the container
          *
          * \param index The index of the element. Must be less than the value returned by size()
          */
-        value_type const&   operator [](size_t index) const;
+        value_type const&   operator [](size_type index) const STLSOFT_NOEXCEPT;
 
     private: /* Implementation */
-        ResultsImpl* const  m_impl;
-
-    private: /* Not to be implemented */
-        class_type& operator= (class_type const& rhs);
+        ResultsImpl*  m_impl;
     };
+#endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * C++ API functions
+ */
+
+#ifdef __cplusplus
 
     /** Resets all results */
     void reset();
 
     /** Obtain a copy of the current test results */
     Results results();
+#endif /* __cplusplus */
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
+#ifdef __cplusplus
+
 } /* namespace test */
 } /* namespace be */
 } /* namespace pantheios */
-
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* PANTHEIOS_INCL_BACKENDS_H_BEC_TEST */
 

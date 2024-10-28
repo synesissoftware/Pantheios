@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.fe project.
  *
  * Created: 21st June 2005
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -66,7 +66,7 @@ static int  severities[8] = { 1, 1, 1, 1, 1, 1, 1, 1 };
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
         return 0;
 }
@@ -315,6 +315,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(void *token, int severity, int
 
     return severities[severity];
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

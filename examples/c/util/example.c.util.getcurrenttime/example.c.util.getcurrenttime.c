@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the example.c.util.getcurrenttime project.
  *
  * Created: 30th August 2008
- * Updated: 14th July 2024
+ * Updated: 27th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,7 +36,7 @@
  * main()
  */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     STLSOFT_SUPPRESS_UNUSED(argc);
     STLSOFT_SUPPRESS_UNUSED(argv);

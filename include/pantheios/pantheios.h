@@ -4,7 +4,7 @@
  * Purpose: Pantheios Core and Util APIs.
  *
  * Created: 21st June 2005
- * Updated: 24th October 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -198,18 +198,12 @@
 
 # if _STLSOFT_VER >= 0x010a0181
 
-#  if _STLSOFT_VER < 0x010a0194
-
-#   error This version Pantheios requires STLSoft 1.10.1 beta 20, or later. (www.stlsoft.org)
-#  else
-
-#   define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-#  endif
+#  define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 # endif
 
-# if _STLSOFT_VER < 0x010986ff
+# if _STLSOFT_VER < 0x010b0157
 
-#  error This version Pantheios requires STLSoft 1.9.134, or later. (www.stlsoft.org)
+#  error This version Pantheios requires STLSoft 1.11.1 alpha 23, or later. (www.stlsoft.org)
 # endif
 #else
 
@@ -1320,7 +1314,7 @@ PANTHEIOS_CALL(void) pantheios_logassertfail(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Back-end map functions
+ * back-end map functions
  */
 
 #if 0 /* Not yet released */

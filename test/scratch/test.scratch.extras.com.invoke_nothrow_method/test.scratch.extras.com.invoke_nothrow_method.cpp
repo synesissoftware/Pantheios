@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.extras.com.invoke_nothrow_method/test.scratch.extras.com.invoke_nothrow_method.cpp
+ * File:    test/scratch/test.scratch.extras.com.invoke_nothrow_method/test.scratch.extras.com.invoke_nothrow_method.cpp
  *
- * Purpose:     Implementation file for the test.scratch.extras.com.invoke_nothrow_method project.
+ * Purpose: Implementation file for the test.scratch.extras.com.invoke_nothrow_method project.
  *
- * Created:     3rd November 2008
- * Updated:     16th December 2023
+ * Created: 3rd November 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -276,7 +276,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

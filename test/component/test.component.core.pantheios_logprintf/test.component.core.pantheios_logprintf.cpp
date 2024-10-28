@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.core.pantheios_logprintf project.
  *
  * Created: 31st October 2005
- * Updated: 24th October 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -91,7 +91,7 @@ static const int    s_severities[] =
  * main()
  */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

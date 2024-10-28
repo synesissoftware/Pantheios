@@ -1,23 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/contract/example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT/example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT.cpp
+ * File:    examples/cpp/contract/example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT/example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of Pantheios inserter for thread ids
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of Pantheios inserter for thread ids
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     8th May 2009
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 8th May 2009
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,15 +30,21 @@
 # pragma warn -8066
 #endif
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT");
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int /* argc */, char* /* argv */[])
 {
   int i = pantheios::init();
 

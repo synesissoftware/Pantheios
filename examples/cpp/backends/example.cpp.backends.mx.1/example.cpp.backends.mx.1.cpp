@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the example.cpp.backends.mx.1 project.
  *
  * Created: 19th September 2008
- * Updated: 15th July 2024
+ * Updated: 27th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -77,9 +77,11 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
 };
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
   // This goes only to debugger
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
@@ -95,7 +97,7 @@ static int main_(int argc, char** argv)
   return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
   try
   {

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.fe.all/test.unit.fe.all.c
+ * File:    test/unit/test.unit.fe.all/test.unit.fe.all.c
  *
- * Purpose:     Implementation file for the test.unit.fe.all project.
+ * Purpose: Implementation file for the test.unit.fe.all project.
  *
- * Created:     14th May 2008
- * Updated:     16th July 2024
+ * Created: 14th May 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -72,7 +72,7 @@ static const int s_severityLevelResults[] =
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

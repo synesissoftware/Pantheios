@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.test.cpp
+ * File:    src/backends/bec.test.cpp
  *
- * Purpose:     Implementation for the be.test back-end
+ * Purpose: Implementation for the be.test back-end
  *
- * Created:     1st November 2006
- * Updated:     16th December 2023
+ * Created: 1st November 2006
+ * Updated: 28th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -39,6 +39,10 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* warning suppressions */
 #include <stlsoft/stlsoft.h>
@@ -117,23 +121,26 @@ namespace test
         class Context
         {
         public:
-            typedef Context                     class_type;
-            typedef Entry                       value_type;
-            typedef std::vector<value_type>     entries_type;
+            typedef Context                                     class_type;
+            typedef Entry                                       value_type;
+            typedef std::vector<value_type>                     entries_type;
         private:
 #ifdef PANTHEIOS_MT
-            typedef platformstl::thread_mutex   mutex_type_;
+            typedef platformstl::thread_mutex                   mutex_type_;
 #else /* ? PANTHEIOS_MT */
-            typedef stlsoft::null_mutex         mutex_type_;
+            typedef stlsoft::null_mutex                         mutex_type_;
 #endif /* PANTHEIOS_MT */
         public:
-            Context(PAN_CHAR_T const* processIdentity, int backEndId)
+            Context(
+                PAN_CHAR_T const*   processIdentity
+            ,   int                 backEndId
+            )
                 : m_processIdentity(processIdentity)
                 , m_backEndId(backEndId)
             {}
         private:
-            Context(class_type const&);                 // copy-construction proscribed
-            class_type& operator =(class_type const&);  // copy-assignment proscribed
+            Context(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+            void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
         public:
             void logEntry(
@@ -172,29 +179,14 @@ namespace test
             }
 
         public:
-            entries_type const& entries() const
+            entries_type const& entries() const STLSOFT_NOEXCEPT
             {
                 return m_entries;
             }
 
-/*
-            size_t  size() const
-            {
-                stlsoft::lock_scope<mutex_type_> lock(m_mx);
-
-                return m_entries.size();
-            }
-            value_type const&   operator [](size_t index) const
-            {
-                stlsoft::lock_scope<mutex_type_> lock(m_mx);
-
-                return m_entries[index];
-            }
-*/
-
-        private: // Member Variables
-            const Entry::string_type    m_processIdentity;
-            const int                   m_backEndId;
+        private: // member Variables
+            Entry::string_type const    m_processIdentity;
+            int const                   m_backEndId;
             entries_type                m_entries;
             mutex_type_                 m_mx;
         };
@@ -203,23 +195,26 @@ namespace test
 
     struct Results::ResultsImpl
     {
-    public:
-        typedef ResultsImpl                 class_type;
-        typedef Results::value_type         value_type;
-        typedef std::vector<value_type>     entries_type;
+    public: // types
+        typedef ResultsImpl                                     class_type;
+        typedef Results::value_type                             value_type;
+        typedef std::vector<value_type>                         entries_type;
 
-    public:
+    public: // construction
         ResultsImpl(entries_type const& entries)
             : m_refCount(1)
             , m_entries(entries)
         {}
+    private:
+        ResultsImpl(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-    public: // Reference-counting
-        void    AddRef()
+    public: // reference-counting
+        void AddRef()
         {
             ++m_refCount;
         }
-        void    Release()
+        void Release()
         {
             if (0 == --m_refCount)
             {
@@ -227,25 +222,25 @@ namespace test
             }
         }
 
-    public: // Accessors
-        bool empty() const
+    public: // accessors
+        bool
+        empty() const STLSOFT_NOEXCEPT
         {
             return m_entries.empty();
         }
-        size_t size() const
+        size_t
+        size() const STLSOFT_NOEXCEPT
         {
             return m_entries.size();
         }
-        value_type const&   operator [](size_t index) const
+        value_type const&
+        operator [](size_t index) const STLSOFT_NOEXCEPT
         {
             return m_entries[index];
         }
     private:
         stlsoft::int32_t    m_refCount;
-        const entries_type  m_entries;
-
-    private: // Not to be implemented
-        class_type& operator =(class_type const&);
+        entries_type const  m_entries;
     };
 
     Results::Results(ResultsImpl* impl)
@@ -267,55 +262,22 @@ namespace test
 
         m_impl->Release();
     }
-    //Results::class_type& Results::operator= (Results::class_type const& rhs)
-    //{
-    //  PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(NULL != rhs.m_impl, "implementation class pointer of rhs may not be null");
-    //  PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(NULL != m_impl, "implementation class pointer may not be null");
 
-    //  ResultsImpl*    old = m_impl;
-
-    //  m_impl = rhs.m_impl;
-    //  m_impl->AddRef();
-
-    //  old->Release();
-
-    //  return *this;
-    //}
-
-
-    bool Results::empty() const
+    bool
+    Results::empty() const STLSOFT_NOEXCEPT
     {
         return m_impl->empty();
     }
-    size_t Results::size() const
+    size_t
+    Results::size() const STLSOFT_NOEXCEPT
     {
         return m_impl->size();
     }
-    Results::value_type const& Results::operator [](size_t index) const
+    Results::value_type const&
+    Results::operator [](size_t index) const STLSOFT_NOEXCEPT
     {
         return (*m_impl)[index];
     }
-
-    class CreatableResults
-        : public Results
-    {
-    public:
-        typedef Results                             parent_class_type;
-        typedef CreatableResults                    class_type;
-        typedef Results::ResultsImpl::entries_type  entries_type;
-
-    public:
-        CreatableResults(entries_type const& entries)
-            : parent_class_type(create_impl_(entries))
-        {}
-
-    private:
-        static Results::ResultsImpl* create_impl_(entries_type const& entries)
-        {
-            return new Results::ResultsImpl(entries);
-        }
-    };
-
 } /* namespace test */
 } /* namespace be */
 } /* namespace pantheios */
@@ -325,7 +287,6 @@ namespace
 {
 
     ::pantheios::be::test::ximpl_be_test::Context* s_ctxt;
-
 } /* anonymous namespace */
 
 
@@ -347,9 +308,40 @@ namespace test
 
     Results results()
     {
-        return CreatableResults(s_ctxt->entries());
-    }
+        // This `CreateResults` stuff is horrible as all get-out, but does
+        // work, so long as we copy-construct `Results` from an instance,
+        // and do not slice.
 
+        class CreatableResults
+            : public Results
+        {
+        public:
+            typedef Results                             parent_class_type;
+            typedef CreatableResults                    class_type;
+            typedef Results::ResultsImpl::entries_type  entries_type;
+
+        public:
+            CreatableResults(entries_type const& entries)
+                : parent_class_type(create_impl_(entries))
+            {
+            }
+        private:
+            CreatableResults(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+            void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
+
+        private:
+            static Results::ResultsImpl* create_impl_(entries_type const& entries)
+            {
+                return new Results::ResultsImpl(entries);
+            }
+        };
+
+        CreatableResults cr = CreatableResults(s_ctxt->entries());
+
+        Results r = cr;
+
+        return r;
+    }
 } /* namespace test */
 } /* namespace be */
 } /* namespace pantheios */
@@ -365,9 +357,7 @@ namespace
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
     using ::pantheios::util::pantheios_onBailOut6;
-
 #endif /* !PANTHEIOS_NO_NAMESPACE */
-
 } /* anonymous namespace */
 
 
@@ -462,6 +452,7 @@ static int pantheios_be_test_logEntry_(
 
     return 0;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

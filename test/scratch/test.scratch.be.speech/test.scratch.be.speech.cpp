@@ -8,10 +8,14 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 31st August 2006
- * Updated: 14th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* This inclusion required for suppressing warnings during NoX (No eXception-support) configurations. */
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
@@ -30,16 +34,24 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR                                                PANTHEIOS_LITERAL_STRING
-
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 // Define the fe.simple process identity, so that it links when using fe.simple
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.speech");
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+#define PSTR                                                PANTHEIOS_LITERAL_STRING
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * application-defined functions
+ */
 
 //PANTHEIOS_BE_DEFINE_BE_FUNCTIONS(speech)
 PANTHEIOS_BE_DEFINE_BER_FUNCTIONS(speech)
@@ -55,9 +67,11 @@ PANTHEIOS_CALL(void) pantheios_be_speech_getAppInit(int backEndId, pan_be_speech
 //  init->flags |= PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS_ON_CRITICAL;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
     DWORD   shortPause = 1250;
 
@@ -183,6 +197,7 @@ int main()
 
     return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

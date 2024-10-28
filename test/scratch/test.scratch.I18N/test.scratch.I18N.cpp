@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the I18N project.
  *
  * Created: 1st September 2015
- * Updated: 7th February 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,7 +63,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     try
     {

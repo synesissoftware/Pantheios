@@ -4,7 +4,7 @@
  * Purpose: Unit-testing of `pantheios_util_getCurrentTime()`
  *
  * Created: 10th November 2007
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -121,7 +121,7 @@ static void     test_win_F_HIDE_TIME();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

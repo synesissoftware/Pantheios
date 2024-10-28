@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.be.file.threading project.
  *
  * Created: 3rd July 2009
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -353,7 +353,7 @@ static int main_(int /*argc*/, char** /*argv*/)
 }
 
 #ifdef USE_MSC_VER_CRT_MEM_CHECKS
-int main__(int argc, char** argv)
+int main__(int argc, char* argv[])
 {
     _CrtMemState memState;
 
@@ -370,7 +370,7 @@ int main__(int argc, char** argv)
 #endif /* USE_MSC_VER_CRT_MEM_CHECKS */
 
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     if (2 == argc)
     {

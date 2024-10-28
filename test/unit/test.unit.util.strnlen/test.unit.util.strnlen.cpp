@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.util.strnlen/test.unit.util.strnlen.cpp
+ * File:    test/unit/test.unit.util.strnlen/test.unit.util.strnlen.cpp
  *
- * Purpose:     Implementation file for the test.unit.util.strnlen project.
+ * Purpose: Implementation file for the test.unit.util.strnlen project.
  *
- * Created:     17th April 2009
- * Updated:     16th January 2023
+ * Created: 17th April 2009
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -52,7 +52,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

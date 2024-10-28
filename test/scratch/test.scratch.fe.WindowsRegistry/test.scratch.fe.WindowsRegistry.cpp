@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.fe.WindowsRegistry/test.scratch.fe.WindowsRegistry.cpp
+ * File:    test/scratch/test.scratch.fe.WindowsRegistry/test.scratch.fe.WindowsRegistry.cpp
  *
- * Purpose:     Implementation file for the test.scratch.fe.WindowsRegistry project.
+ * Purpose: Implementation file for the test.scratch.fe.WindowsRegistry project.
  *
- * Created:     28th October 2007
- * Updated:     16th December 2023
+ * Created: 28th October 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,7 +53,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  25th October 2024
+# Updated:  28th October 2024
 #
 # ######################################################################## #
 
@@ -198,7 +198,18 @@ if(BUILD_TESTING)
 	if(shwild_FOUND)
 
 		message("-- CMake package shwild found (version ${shwild_VERSION})")
+
+
+		add_compile_definitions(HAS_shwild)
+		add_compile_definitions(PANTHEIOS_HAS_SHWILD)
+		add_compile_definitions(XTESTS_HAS_SHWILD)
+	else(shwild_FOUND)
+
+		add_compile_definitions(PANTHEIOS_NO_SHWILD)
 	endif(shwild_FOUND)
+else(BUILD_TESTING)
+
+	add_compile_definitions(PANTHEIOS_NO_SHWILD)
 endif(BUILD_TESTING)
 
 

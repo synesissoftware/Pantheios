@@ -7,12 +7,21 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 29th June 2009
- * Updated: 14th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * feature control
+ */
+
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS // Faster compilation
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>              // Pantheios C++ main header
@@ -26,19 +35,28 @@
 #include <stdio.h>                              // for printf()
 #include <stdlib.h>                             // for exit codes
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.format.pad");
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
 
 #define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int /* argc */, char* /* argv */[])
 {
   try
   {

@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios Windows-SysLog Stock Back-end API.
  *
  * Created: 23rd September 2005
- * Updated: 13th July 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -464,7 +464,7 @@ typedef struct pan_be_WindowsSyslog_init_t                  pan_be_WindowsSyslog
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 /** \ref page__backend__callbacks "Callback" function defined by

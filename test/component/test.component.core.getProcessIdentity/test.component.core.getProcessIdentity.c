@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.core.getProcessIdentity project.
  *
  * Created: 6th August 2012
- * Updated: 24th October 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 

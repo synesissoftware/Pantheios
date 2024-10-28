@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.slice/test.component.inserters.slice.cpp
+ * File:    test/component/test.component.inserters.slice/test.component.inserters.slice.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.slice project.
+ * Purpose: Implementation file for the test.component.inserters.slice project.
  *
- * Created:     14th February 2010
- * Updated:     16th July 2024
+ * Created: 14th February 2010
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -80,7 +80,7 @@ typedef std::basic_string<pan_char_t>   string_t;
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
