@@ -195,11 +195,15 @@
 #  define PANTHEIOS_STLSOFT_1_11_OR_LATER
 # endif
 
-# if _STLSOFT_VER < 0x010b0158
+# if _STLSOFT_VER >= 0x010a0181
 
-#  error This version Pantheios requires STLSoft 1.11.1 beta 28, or later. (www.stlsoft.org)
+#  define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 # endif
 
+# if _STLSOFT_VER < 0x010b0157
+
+#  error This version Pantheios requires STLSoft 1.11.1 alpha 23, or later. (www.stlsoft.org)
+# endif
 #else
 
 # error Invalid STLSoft library
