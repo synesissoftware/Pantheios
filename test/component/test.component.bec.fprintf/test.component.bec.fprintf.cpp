@@ -68,6 +68,9 @@
  */
 
 static void test_NO_THREAD_ID_and_NO_DATETIME();
+static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID();
+static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY();
+static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY();
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -85,6 +88,9 @@ int main(int argc, char* argv[])
     if (XTESTS_START_RUNNER("test.component.bec.fprintf", verbosity))
     {
         XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME);
+        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID);
+        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY);
+        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY);
 
         XTESTS_PRINT_RESULTS();
 
@@ -131,70 +137,162 @@ PAN_CHAR_T const                        PROCESS_IDENTITY[]  =   PANTHEIOS_LITERA
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
+
+namespace {
+
+    // Rust `Result<>`-like hack
+    typedef     std::pair<
+        bool            // has_succeeded
+    ,   file_lines_t    // lines
+    >                                                       run_case_result_t;
+
+    run_case_result_t
+    run_case(
+        char const*      /* test_case_name */
+    ,   pantheios_uint32_t  flags
+    )
+    {
+        temp_file t(temp_file::EmptyOnOpen | temp_file::CloseOnOpen | temp_file::DeleteOnClose);
+
+        {
+            FILE_stream             f(t.c_str(), write_mode);
+
+            pan_be_fprintf_init_t   init;
+
+            pantheios_be_fprintf_getDefaultAppInit(&init);
+
+            init.flags  =   0
+                        |   flags
+                        ;
+            init.stm    =   stlsoft::get_FILE_ptr(*f.get());
+
+            void*                   token;
+            int const               r = pantheios_be_fprintf_init(
+                                            PROCESS_IDENTITY
+                                        ,   1
+                                        ,   &init
+                                        ,   NULL
+                                        ,   &token
+                                        );
+
+            if (0 != r)
+            {
+                XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise bec.fprintf", stlsoft::t2a(pantheios::getStockSeverityString(r)));
+
+                return std::make_pair(false, file_lines_t());
+            }
+            else
+            {
+                stlsoft::scoped_handle<void*> scoper(token, pantheios_be_fprintf_uninit);
+
+                // Now do some writing
+
+                int const r2 = pantheios_be_fprintf_logEntry(
+                                    NULL
+                                ,   token
+                                ,   PANTHEIOS_SEV_NOTICE
+                                ,   PANTHEIOS_LITERAL_STRING("some message")
+                                ,   12
+                                );
+
+                if (r2 < 1)
+                {
+                    char buffer[21];
+
+                    XTESTS_TEST_FAIL_WITH_QUALIFIER("could not write to bec.fprintf", stlsoft::integer_to_decimal_string(&buffer[0], STLSOFT_NUM_ELEMENTS(buffer), r2));
+
+                    return std::make_pair(false, file_lines_t());
+                }
+            }
+        }
+
+        file_lines_t lines(t);
+
+        return std::make_pair(true, std::move(lines));
+    }
+
+} /* anonymous namespace */
+
+
+/* /////////////////////////////////////////////////////////////////////////
  * forward implementations
  */
 
 static void test_NO_THREAD_ID_and_NO_DATETIME()
 {
-    temp_file       t(temp_file::EmptyOnOpen | temp_file::CloseOnOpen | temp_file::DeleteOnClose);
+    pantheios_uint32_t  flags   =   0
+                                |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                ;
 
+    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags);
+
+    if (r.first)
     {
-        FILE_stream             f(t.c_str(), write_mode);
+        file_lines_t const& lines = r.second;
 
-        pan_be_fprintf_init_t   init;
-
-        pantheios_be_fprintf_getDefaultAppInit(&init);
-
-        init.flags  =   0
-                    |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
-                    |   PANTHEIOS_BE_INIT_F_NO_DATETIME
-                    ;
-        init.stm    =   stlsoft::get_FILE_ptr(*f.get());
-
-        void*                   token;
-        int const               r = pantheios_be_fprintf_init(
-                                        PROCESS_IDENTITY
-                                    ,   1
-                                    ,   &init
-                                    ,   NULL
-                                    ,   &token
-                                    );
-
-        if (0 != r)
-        {
-            XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise bec.fprintf", stlsoft::t2a(pantheios::getStockSeverityString(r)));
-
-            return;
-        }
-        else
-        {
-            stlsoft::scoped_handle<void*> scoper(token, pantheios_be_fprintf_uninit);
-
-            // Now do some writing
-
-            int const r2 = pantheios_be_fprintf_logEntry(
-                                NULL
-                            ,   token
-                            ,   PANTHEIOS_SEV_NOTICE
-                            ,   PANTHEIOS_LITERAL_STRING("some message")
-                            ,   12
-                            );
-
-            if (r2 < 1)
-            {
-                char buffer[21];
-
-                XTESTS_TEST_FAIL_WITH_QUALIFIER("could not write to bec.fprintf", stlsoft::integer_to_decimal_string(&buffer[0], STLSOFT_NUM_ELEMENTS(buffer), r2));
-
-                return;
-            }
-        }
+        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; Notice]: some message"), lines[0].c_str());
     }
+}
 
-    file_lines_t    lines(t);
+static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID()
+{
+    pantheios_uint32_t  flags   =   0
+                                |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
+                                ;
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; Notice]: some message"), lines[0].c_str());
+    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags);
+
+    if (r.first)
+    {
+        file_lines_t const& lines = r.second;
+
+        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[Notice]: some message"), lines[0].c_str());
+    }
+}
+
+static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY()
+{
+    pantheios_uint32_t  flags   =   0
+                                |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                |   PANTHEIOS_BE_INIT_F_NO_SEVERITY
+                                ;
+
+    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags);
+
+    if (r.first)
+    {
+        file_lines_t const& lines = r.second;
+
+        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf]: some message"), lines[0].c_str());
+    }
+}
+
+static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY()
+{
+    pantheios_uint32_t  flags   =   0
+                                |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                                ;
+
+    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags);
+
+    if (r.first)
+    {
+        file_lines_t const& lines = r.second;
+
+        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; 5]: some message"), lines[0].c_str());
+    }
 }
 
 
