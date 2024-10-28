@@ -67,7 +67,7 @@
  * forward declarations
  */
 
-static void test_1_1();
+static void test_NO_THREAD_ID_and_NO_DATETIME();
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.bec.fprintf", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_1);
+        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME);
 
         XTESTS_PRINT_RESULTS();
 
@@ -134,7 +134,7 @@ PAN_CHAR_T const                        PROCESS_IDENTITY[]  =   PANTHEIOS_LITERA
  * forward implementations
  */
 
-static void test_1_1()
+static void test_NO_THREAD_ID_and_NO_DATETIME()
 {
     temp_file       t(temp_file::EmptyOnOpen | temp_file::CloseOnOpen | temp_file::DeleteOnClose);
 
