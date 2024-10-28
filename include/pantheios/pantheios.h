@@ -59,8 +59,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   6
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       386
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   7
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       387
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -195,21 +195,11 @@
 #  define PANTHEIOS_STLSOFT_1_11_OR_LATER
 # endif
 
-# if _STLSOFT_VER >= 0x010a0181
+# if _STLSOFT_VER < 0x010b0158
 
-#  if _STLSOFT_VER < 0x010a0194
-
-#   error This version Pantheios requires STLSoft 1.10.1 beta 20, or later. (www.stlsoft.org)
-#  else
-
-#   define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-#  endif
+#  error This version Pantheios requires STLSoft 1.11.1 beta 28, or later. (www.stlsoft.org)
 # endif
 
-# if _STLSOFT_VER < 0x010986ff
-
-#  error This version Pantheios requires STLSoft 1.9.134, or later. (www.stlsoft.org)
-# endif
 #else
 
 # error Invalid STLSoft library

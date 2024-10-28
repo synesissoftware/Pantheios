@@ -60,7 +60,18 @@
 # define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-#define FF_STR                                              PANTHEIOS_LITERAL_STRING
+#define PAN_STR                                             PANTHEIOS_LITERAL_STRING
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+#ifdef PANTHEIOS_HAS_SHWILD
+
+# define PATTERN_DATE_TIMEms                                PAN_STR("[JFAMSOND]?? [ 0123][0-9] [ 0-9][0-9]:[ 0-9][0-9]:[ 0-9][0-9].[ 0-9][0-9][ 0-9]")
+# define PATTERN_DATE_TIMEus                                PAN_STR("[JFAMSOND]?? [ 0123][0-9] [ 0-9][0-9]:[ 0-9][0-9]:[ 0-9][0-9].[ 0-9][0-9][ 0-9][ 0-9][0-9][ 0-9]")
+#endif /* PANTHEIOS_HAS_SHWILD */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,6 +82,11 @@ static void test_NO_THREAD_ID_and_NO_DATETIME();
 static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID();
 static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY();
 static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY();
+#ifdef PANTHEIOS_HAS_SHWILD
+
+static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID();
+static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION();
+#endif /* PANTHEIOS_HAS_SHWILD */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,6 +107,11 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID);
         XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY);
         XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY);
+#ifdef PANTHEIOS_HAS_SHWILD
+
+        XTESTS_RUN_CASE(test_USE_UNIX_FORMAT_and_NO_THREAD_ID);
+        XTESTS_RUN_CASE(test_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION);
+#endif /* PANTHEIOS_HAS_SHWILD */
 
         XTESTS_PRINT_RESULTS();
 
@@ -152,6 +173,7 @@ namespace {
     run_case(
         char const*      /* test_case_name */
     ,   pantheios_uint32_t  flags
+    ,   char const*         entry
     )
     {
         temp_file t(temp_file::EmptyOnOpen | temp_file::CloseOnOpen | temp_file::DeleteOnClose);
@@ -189,12 +211,14 @@ namespace {
 
                 // Now do some writing
 
+                size_t const cchEntry = stlsoft::c_str_len_a(entry);
+
                 int const r2 = pantheios_be_fprintf_logEntry(
                                     NULL
                                 ,   token
                                 ,   PANTHEIOS_SEV_NOTICE
-                                ,   PANTHEIOS_LITERAL_STRING("some message")
-                                ,   12
+                                ,   entry
+                                ,   cchEntry
                                 );
 
                 if (r2 < 1)
@@ -227,7 +251,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME()
                                 |   PANTHEIOS_BE_INIT_F_NO_DATETIME
                                 ;
 
-    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags);
+    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags, "some message");
 
     if (r.first)
     {
@@ -246,7 +270,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID()
                                 |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
                                 ;
 
-    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags);
+    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags, "some message");
 
     if (r.first)
     {
@@ -265,7 +289,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY()
                                 |   PANTHEIOS_BE_INIT_F_NO_SEVERITY
                                 ;
 
-    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags);
+    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags, "some message");
 
     if (r.first)
     {
@@ -284,7 +308,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY()
                                 |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
                                 ;
 
-    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags);
+    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags, "some message");
 
     if (r.first)
     {
@@ -294,6 +318,57 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY()
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; 5]: some message"), lines[0].c_str());
     }
 }
+#ifdef PANTHEIOS_HAS_SHWILD
+
+static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID()
+{
+    pantheios_uint32_t  flags   =   0
+                                |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
+                                |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                ;
+
+    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags, "some message");
+
+    if (r.first)
+    {
+        file_lines_t const& lines = r.second;
+
+        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[*\\]: *", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*test.component.bec.fprintf,*", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*" PATTERN_DATE_TIMEms "*", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*Notice*", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*test.component.bec.fprintf, " PATTERN_DATE_TIMEms "; Notice*", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEms "; Notice\\]: *", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEms "; Notice\\]: some message", lines[0]);
+    }
+}
+
+static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION()
+{
+    pantheios_uint32_t  flags   =   0
+                                |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
+                                |   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
+                                |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                ;
+
+    run_case_result_t   r       =   run_case(STLSOFT_FUNCTION_SYMBOL, flags, "some message");
+
+    if (r.first)
+    {
+        file_lines_t const& lines = r.second;
+
+        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[*\\]: *", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*test.component.bec.fprintf,*", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*" PATTERN_DATE_TIMEus "*", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*Notice*", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*test.component.bec.fprintf, " PATTERN_DATE_TIMEus "; Notice*", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEus "; Notice\\]: *", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEus "; Notice\\]: some message", lines[0]);
+    }
+}
+#endif /* PANTHEIOS_HAS_SHWILD */
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
