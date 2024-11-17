@@ -100,6 +100,14 @@ function(define_simple_console_example_c program_and_main_source_stem)
 
 	target_link_STLSoft(${program_and_main_source_stem})
 
+	if(b64_FOUND)
+
+		target_link_libraries(${program_and_main_source_stem}
+			PRIVATE
+				b64::core
+		)
+	endif(b64_FOUND)
+
 	set(X_GCC_CUSTOM_WARNINGS_ "")
 
 	if(X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED)
@@ -156,6 +164,14 @@ function(define_simple_console_example_cpp program_and_main_source_stem)
 		PRIVATE
 			Pantheios.util
 	)
+
+	if(b64_FOUND)
+
+		target_link_libraries(${program_and_main_source_stem}
+			PRIVATE
+				b64::core
+		)
+	endif(b64_FOUND)
 
 	target_link_STLSoft(${program_and_main_source_stem})
 
