@@ -2,7 +2,7 @@ pantheios - Changes
 ===================
 
 Created:    2nd September 2006
-Updated:    24th October 2024
+Updated:    18th November 2024
 
 
     ************************************
@@ -14,6 +14,27 @@ Updated:    24th October 2024
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+18th November 2024 - 1.0.1 beta 222
+===================================
+
+Summary:
+--------
+
+ * full CMake support for optional dependencies (**b64** and **shwild**; **ACE** not yet done);
+ * Visual C++/CMake static library (MT) support;
+ * full CMake headers installation;
+ * full CMake dependencies for all targets;
+ * application of `noexcept` in various components' methods;
+ * wholesale file structure canonicalisation;
+ * wholesale example/test file content simplification;
+ * now required STLSoft 1.11.1-alpha25 (or later);
+
+Details:
+--------
+
+Legion
 
 
 24th October 2024 - 1.0.1 beta 221
