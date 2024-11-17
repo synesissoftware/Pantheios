@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  17th November 2024
+# Updated:  18th November 2024
 #
 # ######################################################################## #
 
@@ -222,7 +222,7 @@ endif(BUILD_TESTING)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.25.2)
+	set(xTests_REQUIRED_VERSION_ 0.25.4)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
