@@ -204,7 +204,6 @@ if(BUILD_TESTING)
 
 		message("-- CMake package shwild found (version ${shwild_VERSION})")
 
-
 		add_compile_definitions(HAS_shwild)
 		add_compile_definitions(PANTHEIOS_HAS_SHWILD)
 		add_compile_definitions(XTESTS_HAS_SHWILD)

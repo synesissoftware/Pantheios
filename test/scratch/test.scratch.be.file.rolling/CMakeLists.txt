@@ -20,6 +20,8 @@ target_link_libraries(test.scratch.be.file.rolling
 
 target_link_Pantheios_util(test.scratch.be.file.rolling)
 
+target_link_STLSoft(test.scratch.be.file.rolling)
+
 define_target_compile_options(test.scratch.be.file.rolling)
 
 
