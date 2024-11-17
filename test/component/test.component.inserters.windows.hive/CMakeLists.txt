@@ -20,6 +20,11 @@ target_link_Pantheios_util(test.component.inserters.windows.hive)
 
 target_link_STLSoft(test.component.inserters.windows.hive)
 
+if(shwild_FOUND)
+
+	target_link_shwild(test.component.inserters.windows.hive)
+endif(shwild_FOUND)
+
 target_link_xTests(test.component.inserters.windows.hive)
 
 define_target_compile_options(test.component.inserters.windows.hive)

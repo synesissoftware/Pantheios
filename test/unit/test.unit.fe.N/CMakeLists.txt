@@ -12,6 +12,11 @@ target_link_Pantheios_util(test.unit.fe.N)
 
 target_link_STLSoft(test.unit.fe.N)
 
+if(shwild_FOUND)
+
+	target_link_shwild(test.unit.fe.N)
+endif(shwild_FOUND)
+
 target_link_xTests(test.unit.fe.N)
 
 define_target_compile_options(test.unit.fe.N)

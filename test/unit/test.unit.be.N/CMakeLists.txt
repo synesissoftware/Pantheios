@@ -17,6 +17,11 @@ target_link_Pantheios_util(test.unit.be.N)
 
 target_link_STLSoft(test.unit.be.N)
 
+if(shwild_FOUND)
+
+	target_link_shwild(test.unit.be.N)
+endif(shwild_FOUND)
+
 target_link_xTests(test.unit.be.N)
 
 list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED null-pointer-arithmetic)

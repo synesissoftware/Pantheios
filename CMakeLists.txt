@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  28th October 2024
+# Updated:  18th November 2024
 #
 # ######################################################################## #
 
@@ -60,7 +60,7 @@ set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON) # GNU extensions and POSIX standard
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
@@ -71,6 +71,11 @@ if(MSVC)
 		set(CMAKE_C_STANDARD 90)
 		set(CMAKE_CXX_STANDARD 98)
 	endif()
+
+	if(MSVC_USE_MT)
+
+		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+	endif(MSVC_USE_MT)
 endif(MSVC)
 
 
@@ -199,7 +204,6 @@ if(BUILD_TESTING)
 
 		message("-- CMake package shwild found (version ${shwild_VERSION})")
 
-
 		add_compile_definitions(HAS_shwild)
 		add_compile_definitions(PANTHEIOS_HAS_SHWILD)
 		add_compile_definitions(XTESTS_HAS_SHWILD)
@@ -218,7 +222,7 @@ endif(BUILD_TESTING)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.25.2)
+	set(xTests_REQUIRED_VERSION_ 0.25.4)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

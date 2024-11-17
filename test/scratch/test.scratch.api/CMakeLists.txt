@@ -21,6 +21,8 @@ target_link_libraries(test.scratch.api
 
 target_link_Pantheios_util(test.scratch.api)
 
+target_link_STLSoft(test.scratch.api)
+
 define_target_compile_options(test.scratch.api)
 
 

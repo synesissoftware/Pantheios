@@ -20,6 +20,11 @@ target_link_Pantheios_util(test.unit.inserter.m2w)
 
 target_link_STLSoft(test.unit.inserter.m2w)
 
+if(shwild_FOUND)
+
+	target_link_shwild(test.unit.inserter.m2w)
+endif(shwild_FOUND)
+
 target_link_xTests(test.unit.inserter.m2w)
 
 define_target_compile_options(test.unit.inserter.m2w)

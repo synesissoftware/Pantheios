@@ -20,6 +20,11 @@ target_link_Pantheios_util(test.performance.inserters.w2m)
 
 target_link_STLSoft(test.performance.inserters.w2m)
 
+if(shwild_FOUND)
+
+	target_link_shwild(test.performance.inserters.w2m)
+endif(shwild_FOUND)
+
 target_link_xTests(test.performance.inserters.w2m)
 
 define_target_compile_options(test.performance.inserters.w2m)

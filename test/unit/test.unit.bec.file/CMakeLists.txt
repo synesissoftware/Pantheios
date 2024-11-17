@@ -12,6 +12,11 @@ target_link_Pantheios_util(test.unit.bec.file)
 
 target_link_STLSoft(test.unit.bec.file)
 
+if(shwild_FOUND)
+
+	target_link_shwild(test.unit.bec.file)
+endif(shwild_FOUND)
+
 target_link_xTests(test.unit.bec.file)
 
 define_target_compile_options(test.unit.bec.file)

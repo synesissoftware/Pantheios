@@ -1,11 +1,12 @@
 pantheios - News
 ================
 
-Updated:    24th October 2024
+Updated:    18th November 2024
 
 
 | Date           | News Item                                                                        |
 | -------------- | -------------------------------------------------------------------------------- |
+| 18th Nov 2024  | Pantheios 1.0.1 beta 222 released                                                |
 | 24th Oct 2024  | Pantheios 1.0.1 beta 221 released                                                |
 | 16th Jul 2024  | Pantheios 1.0.1 beta 220 released                                                |
 | 5th Jul 2020   | Pantheios 1.0.1 beta 219 released                                                |
