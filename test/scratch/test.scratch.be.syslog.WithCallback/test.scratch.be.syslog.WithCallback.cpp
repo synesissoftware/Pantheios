@@ -1,27 +1,21 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.syslog.WithCallback/test.scratch.be.syslog.WithCallback.cpp
+ * File:    test/scratch/test.scratch.be.syslog.WithCallback/test.scratch.be.syslog.WithCallback.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of custom severity level information for tabbing output
- *                - definition of a custom back-end that supports tabbed output
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of custom severity level information for tabbing output
+ *            - definition of a custom back-end that supports tabbed output
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     10th November 2010
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2010
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 10th November 2010
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* This inclusion required for suppressing warnings during NoX (No eXception-support) configurations. */
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
@@ -46,12 +40,18 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 // Define the fe.simple process identity, so that it links when using fe.simple
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.speech");
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * application-defined functions
+ */
 
 PANTHEIOS_CALL(void) pantheios_be_syslog_getAppInit(
     int                     /* backEndId */
@@ -65,9 +65,12 @@ PANTHEIOS_CALL(void) pantheios_be_syslog_getAppInit(
     init->facility  =   LOG_LOCAL1;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int /* argc */, char* /* argv */[])
 {
     unsigned shortPause = 1250;
 
@@ -135,6 +138,11 @@ int main()
 
     return EXIT_FAILURE;
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

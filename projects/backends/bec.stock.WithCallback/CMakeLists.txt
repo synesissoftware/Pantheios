@@ -56,6 +56,7 @@ target_compile_options(Pantheios.bec.stock.WithCallback
 			-Werror -Wall -Wextra -pedantic
 
 			-Wno-unused-function
+			-Wno-unused-private-field # this (temporarily) for bec.test.cpp
 
 			-DPANTHEIOS_BE_USE_CALLBACK
 		>

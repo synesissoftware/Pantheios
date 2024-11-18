@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.be.lrsplit/test.unit.be.lrsplit.c
+ * File:    test/unit/test.unit.be.lrsplit/test.unit.be.lrsplit.c
  *
- * Purpose:     Implementation file for the test.unit.be.lrsplit project.
+ * Purpose: Implementation file for the test.unit.be.lrsplit project.
  *
- * Created:     27th January 2008
- * Updated:     16th December 2023
+ * Created: 27th January 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -127,7 +127,11 @@ PANTHEIOS_CALL(int) pantheios_isInitialised(void)
 
 
 
-int main(int argc, char** argv)
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

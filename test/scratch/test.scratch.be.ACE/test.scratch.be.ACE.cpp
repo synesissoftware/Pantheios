@@ -1,23 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.ACE/test.scratch.be.ACE.cpp
+ * File:    test/scratch/test.scratch.be.ACE/test.scratch.be.ACE.cpp
  *
- * Purpose:     C++ example program for Pantheios with ACE.
+ * Purpose: C++ example program for Pantheios with ACE.
  *
- * Created:     26th January 2017
- * Updated:     16th December 2023
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2017
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 26th January 2017
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* This inclusion required for suppressing warnings during NoX (No eXception-support) configurations. */
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
@@ -43,12 +37,18 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 // Define the fe.simple process identity, so that it links when using fe.simple
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.ACE");
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int
 ACE_TMAIN(int /* argc */, ACE_TCHAR* /* argv */[])
@@ -119,6 +119,7 @@ ACE_TMAIN(int /* argc */, ACE_TCHAR* /* argv */[])
 
     return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

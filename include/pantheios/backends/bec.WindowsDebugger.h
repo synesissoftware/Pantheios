@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios WindowsDebugger Stock Back-end API.
  *
  * Created: 21st June 2005
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -123,7 +123,7 @@ typedef struct pan_be_WindowsDebugger_init_t    pan_be_WindowsDebugger_init_t;
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 /** Callback function defined by the application, invoked when the

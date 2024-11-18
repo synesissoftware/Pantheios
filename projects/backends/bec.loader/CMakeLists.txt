@@ -15,6 +15,8 @@ install(TARGETS Pantheios.bec.loader
 	EXPORT project-targets
 )
 
+install_file(backends bec.loader.h)
+
 
 # ############################## end of file ############################# #
 

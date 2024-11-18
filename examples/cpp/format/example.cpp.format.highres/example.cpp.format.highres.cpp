@@ -6,7 +6,7 @@
  *            - high-resolution date/time fields in statements
  *
  * Created: 12th November 2007
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  *
  * ////////////////////////////////////////////////////////////////////// */
@@ -59,7 +59,7 @@ PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
  * main()
  */
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
   try
   {

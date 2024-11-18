@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/util/example.c.util.gethostname/example.c.util.gethostname.c
+ * File:    examples/c/util/example.c.util.gethostname/example.c.util.gethostname.c
  *
- * Purpose:     Implementation file for the example.c.util.gethostname project.
+ * Purpose: Implementation file for the example.c.util.gethostname project.
  *
- * Created:     25th August 2008
- * Updated:     16th December 2023
+ * Created: 25th August 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,9 +32,12 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     PAN_CHAR_T  name[101];
     size_t      cch = pantheios_getHostName(&name[0], STLSOFT_NUM_ELEMENTS(name));
@@ -128,6 +131,7 @@ int main(int argc, char** argv)
 
     return EXIT_FAILURE;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

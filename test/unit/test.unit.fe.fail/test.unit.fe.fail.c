@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.fe.fail/test.unit.fe.fail.c
+ * File:    test/unit/test.unit.fe.fail/test.unit.fe.fail.c
  *
- * Purpose:     Implementation file for the test.unit.fe.fail project.
+ * Purpose: Implementation file for the test.unit.fe.fail project.
  *
- * Created:     14th May 2008
- * Updated:     16th December 2023
+ * Created: 14th May 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,7 +21,7 @@
 
 PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.fail");
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

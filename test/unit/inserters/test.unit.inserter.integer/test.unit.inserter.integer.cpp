@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/inserters/test.unit.inserter.integer/test.unit.inserter.integer.cpp
+ * File:    test/unit/inserters/test.unit.inserter.integer/test.unit.inserter.integer.cpp
  *
- * Purpose:     Implementation file for the test.unit.inserter.integer project.
+ * Purpose: Implementation file for the test.unit.inserter.integer project.
  *
- * Created:     21st December 2010
- * Updated:     16th July 2024
+ * Created: 21st December 2010
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -67,7 +67,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios syslog Stock Back-end API.
  *
  * Created: 23rd July 2005
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -173,7 +173,7 @@ typedef struct pan_be_syslog_init_t     pan_be_syslog_init_t;
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 /** \ref page__backend__callbacks "Callback" function defined by

@@ -17,6 +17,8 @@ install(TARGETS Pantheios.fe.all
 	EXPORT project-targets
 )
 
+install_file(frontends fe.all.h)
+
 
 # ############################## end of file ############################# #
 

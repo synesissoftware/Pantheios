@@ -6,10 +6,14 @@
  *            - use of Pantheios with the namespace suppressed
  *
  * Created: 15th March 2008
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* Pantheios header files */
 #define PANTHEIOS_NO_NAMESPACE                            // Suppress the namespace
@@ -23,21 +27,27 @@
 #include <stdlib.h>                         // for exit codes
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 extern "C" const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEIOS_LITERAL_STRING("example.cpp.misc.no_namespace");
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
 
 #define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
   log_DEBUG(PSTR("debug"));
   log_INFORMATIONAL(PSTR("informational"));

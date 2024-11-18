@@ -3,7 +3,7 @@
  *
  * Purpose: Implementation file for the test.scratch.showPlus.integer project.
  *
- * Updated: 14th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,7 +34,7 @@ PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_
  * main()
  */
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
     pan::log_INFORMATIONAL(PSTR("log -10:"));
     pan::log_INFORMATIONAL(PSTR("without showPlus: '"), pan::i(-10), PSTR("'"));

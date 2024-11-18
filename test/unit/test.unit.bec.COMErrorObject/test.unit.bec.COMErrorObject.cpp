@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.bec.COMErrorObject/test.unit.bec.COMErrorObject.cpp
+ * File:    test/unit/test.unit.bec.COMErrorObject/test.unit.bec.COMErrorObject.cpp
  *
- * Purpose:     Implementation file for the test.unit.be.COMErrorObject project.
+ * Purpose: Implementation file for the test.unit.be.COMErrorObject project.
  *
- * Created:     1st January 2008
- * Updated:     16th July 2024
+ * Created: 1st January 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -81,7 +81,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -225,7 +225,7 @@ static int main_(int argc, char** argv)
     return retCode;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     try

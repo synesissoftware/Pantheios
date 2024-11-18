@@ -4,7 +4,7 @@
  * Purpose: Tests **pantheios.be.N** filtering functionality.
  *
  * Created: 28th June 2016
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -150,7 +150,7 @@ PANTHEIOS_CALL(int) pantheios_getNextBackEndId(void)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

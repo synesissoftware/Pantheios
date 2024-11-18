@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.bec.WindowsConsoleCallback/test.scratch.bec.WindowsConsoleCallback.cpp
+ * File:     test/scratch/test.scratch.bec.WindowsConsoleCallback/test.scratch.bec.WindowsConsoleCallback.cpp
  *
- * Purpose:     Implementation file for the test.scratch.bec.WindowsConsoleCallback project.
+ * Purpose:  Implementation file for the test.scratch.bec.WindowsConsoleCallback project.
  *
- * Created:     31st July 2007
- * Updated:     16th December 2023
+ * Created:  31st July 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -65,7 +65,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.performance.inserters.w2m project.
  *
  * Created: 2nd September 2008
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -86,7 +86,7 @@ typedef std::string                                         string_t;
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 
@@ -215,7 +215,7 @@ static int main_(int argc, char** argv)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 

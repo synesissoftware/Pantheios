@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.core.getProcessIdentity project.
  *
  * Created: 6th August 2012
- * Updated: 14th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,7 +61,7 @@ static void* s_param;
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char **argv)

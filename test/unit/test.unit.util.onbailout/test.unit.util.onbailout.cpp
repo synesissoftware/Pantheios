@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.util.onbailout project.
  *
  * Created: 29th April 2008
- * Updated: 19th October 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -60,11 +60,14 @@
  * xTests extensions
  */
 
-#define XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern, value)        \
+#if _XTESTS_VER < 0x00150000
+
+# define XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern, value)       \
                                                                     \
     ((0 == shwild::match(pattern, stlsoft::c_str_ptr(value), 0))    \
         ?   XTESTS_TEST_PASSED()                                    \
         :   XTESTS_TEST_FAIL_WITH_QUALIFIER(std::string("the actual value did not match the pattern '") + pattern + "'", value))
+#endif
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
@@ -290,7 +293,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
  * main()
  */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

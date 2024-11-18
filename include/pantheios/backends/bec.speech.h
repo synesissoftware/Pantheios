@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios speech Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -164,7 +164,7 @@ typedef struct pan_be_speech_init_t   pan_be_speech_init_t;
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 /** Fills out a copy of the initialisation structure with default

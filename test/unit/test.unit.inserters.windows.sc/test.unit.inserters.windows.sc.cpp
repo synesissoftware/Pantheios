@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.inserters.windows.sc/test.unit.inserters.windows.sc.cpp
+ * File:    test/unit/test.unit.inserters.windows.sc/test.unit.inserters.windows.sc.cpp
  *
- * Purpose:     Implementation file for the test.unit.inserters.windows.sc project.
+ * Purpose: Implementation file for the test.unit.inserters.windows.sc project.
  *
- * Created:     5th April 2014
- * Updated:     16th December 2023
+ * Created: 5th April 2014
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -72,7 +72,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
  * main()
  */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

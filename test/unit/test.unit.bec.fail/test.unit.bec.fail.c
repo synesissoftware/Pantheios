@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.bec.fail/test.unit.bec.fail.c
+ * File:    test/unit/test.unit.bec.fail/test.unit.bec.fail.c
  *
- * Purpose:     Implementation file for the test.unit.bec.fail project.
+ * Purpose: Implementation file for the test.unit.bec.fail project.
  *
- * Created:     27th January 2008
- * Updated:     16th December 2023
+ * Created: 27th January 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,9 +19,19 @@
 #include <stdio.h>                  /* for fprintf() */
 #include <stdlib.h>                 /* for EXIT_SUCCESS, EXIT_FAILURE */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
+
 PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.bec.fail");
 
-int main(int argc, char** argv)
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

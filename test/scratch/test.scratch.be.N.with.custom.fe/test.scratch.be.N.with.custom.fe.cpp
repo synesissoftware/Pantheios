@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.be.N.with.custom.fe project.
  *
  * Created: 23rd December 2010
- * Updated: 16th July 2024
+ * Updated: 28th October 2024
  *
  * Thanks:  To wassime, for submitting the original program definition.
  *
@@ -72,7 +72,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     try
     {

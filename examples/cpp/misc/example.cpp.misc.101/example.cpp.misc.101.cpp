@@ -11,10 +11,14 @@
  *            - use of pantheios::log()
  *
  * Created: 17th January 2008
- * Updated: 15th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>      /* The root header for Panthieos when using the C++-API. */
@@ -45,10 +49,10 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("exa
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
     /* Note: there is no need to explicitly initialise the Pantheios
      * libraries when the program contains 1 or more C++ compilation units

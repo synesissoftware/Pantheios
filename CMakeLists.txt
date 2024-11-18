@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  24th October 2024
+# Updated:  18th November 2024
 #
 # ######################################################################## #
 
@@ -60,7 +60,7 @@ set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON) # GNU extensions and POSIX standard
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
@@ -71,6 +71,11 @@ if(MSVC)
 		set(CMAKE_C_STANDARD 90)
 		set(CMAKE_CXX_STANDARD 98)
 	endif()
+
+	if(MSVC_USE_MT)
+
+		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+	endif(MSVC_USE_MT)
 endif(MSVC)
 
 
@@ -179,7 +184,7 @@ find_package(b64 QUIET)
 
 if(b64_FOUND)
 
-	message("-- CMake package b64 found (version ${b64_VERSION}")
+	message("-- CMake package b64 found (version ${b64_VERSION})")
 
 	add_compile_definitions(HAS_b64)
 else(b64_FOUND)
@@ -198,7 +203,17 @@ if(BUILD_TESTING)
 	if(shwild_FOUND)
 
 		message("-- CMake package shwild found (version ${shwild_VERSION})")
+
+		add_compile_definitions(HAS_shwild)
+		add_compile_definitions(PANTHEIOS_HAS_SHWILD)
+		add_compile_definitions(XTESTS_HAS_SHWILD)
+	else(shwild_FOUND)
+
+		add_compile_definitions(PANTHEIOS_NO_SHWILD)
 	endif(shwild_FOUND)
+else(BUILD_TESTING)
+
+	add_compile_definitions(PANTHEIOS_NO_SHWILD)
 endif(BUILD_TESTING)
 
 
@@ -207,7 +222,7 @@ endif(BUILD_TESTING)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.25.2)
+	set(xTests_REQUIRED_VERSION_ 0.25.4)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
@@ -298,11 +313,44 @@ install(EXPORT project-targets
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
 
-install( FILES
+install(FILES
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config.cmake"
 	"${CMAKE_CURRENT_BINARY_DIR}/cmake/${EXPORT_NAME}-config-version.cmake"
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${EXPORT_NAME}
 )
+
+install(
+	FILES
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.hpp
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/assert.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/backend.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/fileline.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/frontend.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/init_codes.h
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/pan.hpp
+		${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/trace.h
+	DESTINATION include/${PROJECT_NAME_LOWER}
+)
+
+install_file("frontends" "stock.h")
+
+install_file(backends bec.console.h)
+
+foreach(ITEM
+	internal
+	quality
+	severity
+	shims
+)
+
+	install(
+		DIRECTORY ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${ITEM}/
+		DESTINATION include/${PROJECT_NAME_LOWER}/${ITEM}/
+		FILES_MATCHING
+		PATTERN "*.h*"
+	)
+endforeach()
 
 
 # ##########################################################

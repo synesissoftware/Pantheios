@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.levels.values/test.unit.levels.values.c
+ * File:    test/unit/test.unit.levels.values/test.unit.levels.values.c
  *
- * Purpose:     Implementation file for the test.unit.levels.values project.
+ * Purpose: Implementation file for the test.unit.levels.values project.
  *
- * Created:     29th November 2007
- * Updated:     16th December 2023
+ * Created: 29th November 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,7 +43,7 @@ static const int s_severityLevelValues[] =
     ,   7
 };
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

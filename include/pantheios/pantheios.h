@@ -4,7 +4,7 @@
  * Purpose: Pantheios Core and Util APIs.
  *
  * Created: 21st June 2005
- * Updated: 24th October 2024
+ * Updated: 18th November 2024
  *
  * Home:    http://www.pantheios.org/
  *
@@ -59,8 +59,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   6
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       386
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   8
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       388
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -109,7 +109,8 @@
 # define PANTHEIOS_VER_1_0_1_B218               0x010001da
 # define PANTHEIOS_VER_1_0_1_B219               0x010001db
 # define PANTHEIOS_VER_1_0_1_B220               0x010001dc
-# define PANTHEIOS_VER_1_0_1_B221               0x010001dd
+# define PANTHEIOS_VER_1_0_1_B221               0x010001de
+# define PANTHEIOS_VER_1_0_1_B222               0x010001df
 # define PANTHEIOS_VER_1_0_1                    0x010001ff
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -117,7 +118,7 @@
 #define PANTHEIOS_VER_MINOR                     0
 #define PANTHEIOS_VER_REVISION                  1
 
-#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B221
+#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B222
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -197,18 +198,12 @@
 
 # if _STLSOFT_VER >= 0x010a0181
 
-#  if _STLSOFT_VER < 0x010a0194
-
-#   error This version Pantheios requires STLSoft 1.10.1 beta 20, or later. (www.stlsoft.org)
-#  else
-
-#   define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
-#  endif
+#  define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 # endif
 
-# if _STLSOFT_VER < 0x010986ff
+# if _STLSOFT_VER < 0x010b0159
 
-#  error This version Pantheios requires STLSoft 1.9.134, or later. (www.stlsoft.org)
+#  error This version Pantheios requires STLSoft 1.11.1 alpha 25, or later. (www.stlsoft.org)
 # endif
 #else
 
@@ -1319,7 +1314,7 @@ PANTHEIOS_CALL(void) pantheios_logassertfail(
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Back-end map functions
+ * back-end map functions
  */
 
 #if 0 /* Not yet released */

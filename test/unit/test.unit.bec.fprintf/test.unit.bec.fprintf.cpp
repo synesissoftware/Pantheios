@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.bec.fprintf/test.unit.bec.fprintf.cpp
+ * File:    test/unit/test.unit.bec.fprintf/test.unit.bec.fprintf.cpp
  *
- * Purpose:     Implementation file for the test.unit.be.file project.
+ * Purpose: Implementation file for the test.unit.be.file project.
  *
- * Created:     3rd August 2008
- * Updated:     16th July 2024
+ * Created: 3rd August 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -123,7 +123,7 @@ static void test_1_0f();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;

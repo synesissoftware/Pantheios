@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.be.WindowsSyslog project.
  *
  * Created: 17th October 2008
- * Updated: 14th July 2024
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -71,7 +71,7 @@ namespace
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
 int main(int argc, char **argv)
