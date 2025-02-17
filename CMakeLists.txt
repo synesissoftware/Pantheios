@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  30th January 2025
+# Updated:  17th February 2025
 #
 # ######################################################################## #
 
@@ -296,7 +296,7 @@ endif(BUILD_TESTING)
 # ##########################################################
 # export
 
-set(EXPORT_NAME ${PROJECT_NAME})
+set(EXPORT_NAME ${PROJECT_NAME_LOWER})
 
 #[====[
 #]====]
