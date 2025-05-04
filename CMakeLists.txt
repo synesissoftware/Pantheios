@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  17th February 2025
+# Updated:  30th April 2025
 #
 # ######################################################################## #
 
@@ -190,17 +190,20 @@ endif()
 # ############################
 # b64
 
-find_package(b64 QUIET)
+if(NOT (CMAKE_NO_B64))
 
-if(b64_FOUND)
+	find_package(b64 QUIET)
 
-	message("-- CMake package b64 found (version ${b64_VERSION})")
+	if(b64_FOUND)
 
-	add_compile_definitions(HAS_b64)
-else(b64_FOUND)
+		message("-- CMake package b64 found (version ${b64_VERSION})")
 
-	add_compile_definitions(PANTHEIOS_NO_B64)
-endif(b64_FOUND)
+		add_compile_definitions(HAS_b64)
+	else(b64_FOUND)
+
+		add_compile_definitions(PANTHEIOS_NO_B64)
+	endif(b64_FOUND)
+endif()
 
 
 # ############################
