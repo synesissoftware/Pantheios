@@ -108,7 +108,7 @@ Flags/options:
         selected; the default is the dynamic runtime library
 
     --no-b64
-        prevents recognising b64 library
+        suppresses discovery of b64 package
 
     -m
     --run-make
@@ -171,7 +171,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
-    -DCMAKE_NO_B64:BOOL=$CMakeNoB64 \
+    -DNO_B64=$CMakeNoB64 \
     -G "MinGW Makefiles" \
     -S $Dir \
     -B $CMakeDir \
@@ -184,9 +184,9 @@ else
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
-    -DCMAKE_NO_B64:BOOL=$CMakeNoB64 \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
+    -DNO_B64=$CMakeNoB64 \
     -S $Dir \
     -B $CMakeDir \
     || (cd ->/dev/null ; exit 1)
