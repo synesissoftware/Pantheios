@@ -237,6 +237,12 @@ endif(BUILD_TESTING)
 # ############################
 # Threads
 
+if(UNIX)
+
+	set(CMAKE_USE_PTHREADS_INIT TRUE)
+	set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+endif(UNIX)
+
 find_package(Threads QUIET)
 
 if(Threads_FOUND)
