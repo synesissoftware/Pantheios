@@ -18,7 +18,6 @@
 #include <pantheios/backends/bec.file.h>
 #include <pantheios/frontends/fe.N.h>
 #include <pantheios/inserters/args.hpp>
-#include <pantheios/inserters/blob.hpp>
 #include <pantheios/inserters/exception.hpp>
 #include <pantheios/inserters/integer.hpp>
 
@@ -452,13 +451,11 @@ static DWORD WINAPI thread_proc(void*)
 #if 0
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
-    thread_handle_t self = pthread_self();
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
-    thread_handle_t self = GetCurrentThread();
 #endif /* OS */
 
-    pan::log_INFORMATIONAL(PSTR("thread_proc("), pan::blob(&self, sizeof(self)), PSTR("): entering"));
+    pan::log_INFORMATIONAL(PSTR("thread_proc(): entering"));
 
     // TODO: Do some threading stuff
 
@@ -475,7 +472,7 @@ static DWORD WINAPI thread_proc(void*)
     pthread_mutex_unlock(&s_mx);
 #endif /* OS */
 
-    pan::log_INFORMATIONAL(PSTR("thread_proc("), pan::blob(&self, sizeof(self)), PSTR("): exiting"));
+    pan::log_INFORMATIONAL(PSTR("thread_proc(): exiting"));
 
     return 0;
 }
