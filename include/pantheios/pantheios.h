@@ -59,8 +59,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   8
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       390
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   9
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       391
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_VER_MAJOR
@@ -111,6 +111,10 @@
 # define PANTHEIOS_VER_1_0_1_B220               0x010001dc
 # define PANTHEIOS_VER_1_0_1_B221               0x010001de /* should be 0x010001dd */
 # define PANTHEIOS_VER_1_0_1_B222               0x010001df /* should be 0x010001de */
+# if 0
+# define PANTHEIOS_VER_1_0_1_B223               0x010001df /* should be 0x010001df */
+# endif
+# define PANTHEIOS_VER_1_0_1_B224               0x010001e0
 # define PANTHEIOS_VER_1_0_1                    0x010001ff
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -118,7 +122,7 @@
 #define PANTHEIOS_VER_MINOR                     0
 #define PANTHEIOS_VER_REVISION                  1
 
-#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B222
+#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_B224
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/internal/threading.h
+ * File:    pantheios/internal/threading.h
  *
- * Purpose:     Detects whether the library is being built single- or
- *              multi-threaded.
+ * Purpose: Detects whether the library is being built single- or
+ *          multi-threaded.
  *
- * Created:     20th November 2007
- * Updated:     16th December 2023
+ * Created: 20th November 2007
+ * Updated: 9th May 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

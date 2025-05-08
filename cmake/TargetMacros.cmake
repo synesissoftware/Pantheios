@@ -167,6 +167,14 @@ function(define_simple_console_example_cpp program_and_main_source_stem)
 		)
 	endif(b64_FOUND)
 
+	if(Threads_FOUND)
+
+		target_link_libraries(${program_and_main_source_stem}
+			PRIVATE
+				Threads::Threads
+		)
+	endif(Threads_FOUND)
+
 	target_link_STLSoft(${program_and_main_source_stem})
 
 	set(X_GCC_CUSTOM_WARNINGS_ "")

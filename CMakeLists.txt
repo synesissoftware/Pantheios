@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  3rd May 2025
+# Updated:  9th May 2025
 #
 # ######################################################################## #
 
@@ -137,6 +137,8 @@ endif(PANTHEIOS_USE_WIDE_STRINGS)
 # optional:
 # - b64;
 # - shwild - required for testing;
+#
+# - Threads;
 
 
 # ############################
@@ -230,6 +232,20 @@ else(BUILD_TESTING)
 
 	add_compile_definitions(PANTHEIOS_NO_SHWILD)
 endif(BUILD_TESTING)
+
+
+# ############################
+# Threads
+
+find_package(Threads QUIET)
+
+if(Threads_FOUND)
+
+	message("-- Threads package found")
+
+	add_compile_definitions(_REENTRANT) # TODO: determine whether to further refine _which_ threads package is provided, and potentially change this definition and/or UNIXSTL and Pantheios::util functionality
+	add_compile_definitions(PANTHEIOS_FORCE_MT)
+endif(Threads_FOUND)
 
 
 # ############################
