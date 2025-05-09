@@ -31,6 +31,9 @@
 /* Standard C++ header files */
 #include <exception>
 #if 0
+#elif __cplusplus >= 201402L
+
+# include <thread>
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
  /* PThreads header files */
@@ -112,6 +115,8 @@ PAN_CHAR_T const LOG_FILE_NAME[]    =   PSTR("test.component.be.file.threading.l
  */
 
 #if 0
+#elif __cplusplus >= 201402L
+
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 static pthread_mutex_t  s_mx            =   PTHREAD_MUTEX_INITIALIZER;
 static pthread_cond_t   s_cv            =   PTHREAD_COND_INITIALIZER;
@@ -128,6 +133,9 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PSTR("t
  */
 
 #if 0
+#elif __cplusplus >= 201402L
+
+typedef std::thread                                         thread_handle_t;
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 typedef pthread_t                                           thread_handle_t;
@@ -150,6 +158,9 @@ typedef stlsoft::basic_string_view<PAN_CHAR_T>              string_view_t;
  */
 
 #if 0
+#elif __cplusplus >= 201402L
+
+static void* thread_proc();
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 static void* thread_proc(void*);
@@ -213,6 +224,11 @@ static int main_(int /*argc*/, char** /*argv*/)
         void* arg = NULL;
 
 #if 0
+#elif __cplusplus >= 201402L
+
+        threads[i] = std::thread(thread_proc);
+
+        STLSOFT_SUPPRESS_UNUSED(arg);
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
         pthread_mutex_lock(&s_mx);
@@ -275,6 +291,12 @@ static int main_(int /*argc*/, char** /*argv*/)
     pan::log_NOTICE(PSTR("main(): waiting for threads to complete; this could take several minutes"));
 
 #if 0
+#elif __cplusplus >= 201402L
+
+    for (auto& th : threads)
+    {
+        th.join();
+    }
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 
     for (;;)
@@ -438,6 +460,9 @@ int main(int argc, char* argv[])
  */
 
 #if 0
+#elif __cplusplus >= 201402L
+
+static void* thread_proc()
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 static void* thread_proc(void*)
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -454,6 +479,8 @@ static DWORD WINAPI thread_proc(void*)
     }}
 
 #if 0
+#elif __cplusplus >= 201402L
+
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
     pthread_mutex_lock(&s_mx);
     --s_activeThreads;
