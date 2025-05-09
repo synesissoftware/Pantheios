@@ -42,14 +42,12 @@
      defined(_WIN64)
 #  include <unixem/unixem.h>
 # endif /* Win32 || Win64 */
-
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # define WINSTL_ERROR_DESC_NO_IMPLICIT_CONVERSION
 # include <winstl/error/error_desc.hpp>
 
 # include <windows.h>
-
 #else /* ? OS */
 
 # error Operating system not discriminated
@@ -293,11 +291,9 @@ static int main_(int /*argc*/, char** /*argv*/)
         }
         pthread_mutex_unlock(&s_mx);
     }
-
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
     ::WaitForMultipleObjects(STLSOFT_NUM_ELEMENTS(threads), &threads[0], true, INFINITE);
-
 #else /* ? OS */
 
 # error Operating system not discriminated
@@ -448,13 +444,6 @@ static void* thread_proc(void*)
 static DWORD WINAPI thread_proc(void*)
 #endif /* OS */
 {
-#if 0
-#elif defined(PLATFORMSTL_OS_IS_UNIX)
-
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-
-#endif /* OS */
-
     pan::log_INFORMATIONAL(PSTR("thread_proc(): entering"));
 
     // TODO: Do some threading stuff
