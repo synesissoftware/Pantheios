@@ -14,7 +14,7 @@
 /* Pantheios header files */
 #include <pantheios/pan.hpp>
 #include <pantheios/backends/be.N.h>
-#include <pantheios/backends/bec.console.h>
+#include <pantheios/backends/bec.AnsiConsole.h>
 #include <pantheios/backends/bec.file.h>
 #include <pantheios/frontends/fe.N.h>
 #include <pantheios/inserters/args.hpp>
@@ -191,7 +191,7 @@ pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
 
 pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_console, pantheios_be_console, PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID),
+    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_console, pantheios_be_AnsiConsole, PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID),
     PANTHEIOS_BE_N_STDFORM_ENTRY(beid_file, pantheios_be_file, PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28),
 
     PANTHEIOS_BE_N_TERMINATOR_ENTRY
