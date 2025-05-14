@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.threadid project.
  *
  * Created: 17th October 2006
- * Updated: 28th October 2024
+ * Updated: 9th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,12 +26,14 @@
 
 /* Standard C header files */
 #include <stdlib.h>                     // for exit codes
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 # include <unistd.h>
 #endif /* OS */
 
 #ifdef PANTHEIOS_MT
-# if defined(PLATFORMSTL_OS_IS_UNIX)
+# if 0
+# elif defined(PLATFORMSTL_OS_IS_UNIX)
 #  include <pthread.h>
 # elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 #  include <windows.h>
@@ -136,7 +138,8 @@ static void test_1_01()
 
 static pantheios::sint64_t pan_get_tid_()
 {
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 # ifdef PANTHEIOS_MT
 
