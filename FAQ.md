@@ -1,4 +1,4 @@
-pantheios - FAQ
+pantheios - FAQ <!-- omit in toc -->
 ===============
 
 Updated:    29th January 2017

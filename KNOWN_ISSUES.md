@@ -1,4 +1,4 @@
-pantheios - Known Issues
+pantheios - Known Issues <!-- omit in toc -->
 ========================
 
 Updated:    5th July 2020

@@ -1,4 +1,4 @@
-Pantheios - How You Can Help
+Pantheios - How You Can Help <!-- omit in toc -->
 ============================
 
 Updated:    26th November 2010

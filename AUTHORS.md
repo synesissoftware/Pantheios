@@ -1,4 +1,4 @@
-# Pantheios - Authors
+# Pantheios - Authors <!-- omit in toc -->
 
 ## Major Contributors:
 

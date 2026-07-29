@@ -1,4 +1,4 @@
-pantheios - History
+pantheios - History <!-- omit in toc -->
 ===================
 
 Updated:    18th November 2024

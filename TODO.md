@@ -1,4 +1,4 @@
-pantheios - TODO lists
+pantheios - TODO lists <!-- omit in toc -->
 ======================
 
 Updated:    5th July 2020
