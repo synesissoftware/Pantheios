@@ -8,7 +8,7 @@ MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
 ListOnly=0
 RunMake=1
-Verbosity=${TEST_VERBOSITY:-3}
+Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
 
 
 # ##########################################################
@@ -17,11 +17,11 @@ Verbosity=${TEST_VERBOSITY:-3}
 while [[ $# -gt 0 ]]; do
 
   case $1 in
-    -l|--list-only)
+    --list-only|-l)
 
       ListOnly=1
       ;;
-    -M|--no-make)
+    --no-make|-M)
 
       RunMake=0
       ;;
@@ -34,7 +34,7 @@ while [[ $# -gt 0 ]]; do
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Runs all (matching) unit-test programs
+Runs all (matching) component-test and unit-test programs
 
 $ScriptPath [ ... flags/options ... ]
 
