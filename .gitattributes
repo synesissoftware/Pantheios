@@ -1,7 +1,17 @@
 *.c linguist-language=C
-*.h linguist-language=C
+*.cmake linguist-language=CMake
+*.cmd linguist-detectable=false
 *.cpp linguist-language=C++
+*.cxx linguist-language=C++
+*.dsp linguist-detectable=false
+*.dsw linguist-detectable=false
+*.h linguist-language=C
 *.hpp linguist-language=C++
 *.html linguist-detectable=false
+*.hxx linguist-language=C++
+*.sh linguist-detectable=false
+*.sln linguist-detectable=false
+*.vcxproj linguist-detectable=false
+*.vimrc linguist-detectable=false
+CMakeLists.txt linguist-language=CMake
 makefile linguist-detectable=false
-
