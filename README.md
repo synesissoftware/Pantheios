@@ -14,6 +14,7 @@ The C/C++ Diagnostic Logging Sweetspot
 ## Table of Contents <!-- omit in toc -->
 
 - [Introduction](#introduction)
+- [Ten important things to know about Pantheios](#ten-important-things-to-know-about-pantheios)
 - [Installation](#installation)
 - [Components](#components)
   - [Architecture](#architecture)
@@ -33,16 +34,54 @@ The C/C++ Diagnostic Logging Sweetspot
 
 **Pantheios** is an efficient, flexible, and robust C/C++ diagnostic logging **API** library. It is designed to give application code a type-safe, high-performance way to emit diagnostic statements, while leaving *where* and *whether* those statements are emitted to link-time **front-end** and **back-end** choices.
 
-In particular:
-
-* It separates **what** you log (application code) from **how** output is filtered and transported (front-ends and back-ends);
-* Statement arguments are converted lazily — inserters do work only if the front-end accepts the severity;
-* Stock front-ends and back-ends are provided for common cases, and custom back-ends can wrap richer logging libraries (examples include **log4cxx** and **log4cplus**);
-* C and C++ APIs are both supported.
-
 **Pure Pantheios** is the Application Layer plus the Core. Stock front-ends and back-ends are convenient, but not required for that core contract.
 
+Please feel free to request — nay, demand — improvements in any areas that you feel are deficient. Criticism will be gratefully received.
+
 Further reading: [http://pantheios.org/](http://pantheios.org/), [FAQ.md](./FAQ.md).
+
+
+## Ten important things to know about Pantheios
+
+1. **It's a diagnostic logging *API* library, not a diagnostic logging library.**
+
+	The architecture is split into four parts — Application Layer, Core, Front-end, and Back-end (see [Architecture](#architecture)). A common first reaction is *"the performance is brilliant, but you don't have all the features of log4cxx"*. That is intentional. **Pantheios** is designed to sit *above* feature-rich logging libraries: write a simple back-end that wraps, say, **log4cxx** or **log4cplus**, plug it in at link-time, and keep Pantheios' performance and type-safety with the richer feature set underneath.
+
+2. **It's open-source, and free.**
+
+	It is released under the 3-clause BSD license. See [LICENSE](./LICENSE).
+
+3. **It depends on other libraries, which are also open-source and free.**
+
+	**STLSoft** is required. **b64** is optional (for the `pantheios::b64` inserter). **shwild** and **xTests** are used for testing. See [Dependencies](#dependencies).
+
+4. **It's designed for efficiency.**
+
+	**Pantheios** aims to be substantially faster than other serious C++ diagnostic logging libraries (historically claimed up to two orders of magnitude in favourable cases). See the [performance notes](http://pantheios.sourceforge.net/performance.html#sweet-spot) for the original measurements and discussion of the "sweet spot".
+
+5. **It is type-safe.**
+
+	Unlike diagnostic logging built on C's Streams or C++'s IOStreams libraries, the Application Layer is designed for 100% type-safety of statement arguments.
+
+6. **Selection of logging transport (back-end(s)) is done at link-time, for good reason.**
+
+	A diagnostic logging library must be available whenever *any* part of the application needs it. In C++, a significant amount of work can run during dynamic initialisation, so setup cannot wait for `main()`. The consequence is Pantheios' main hard-to-use aspect: arranging the link of Core, front-end, and back-end. Tutorials and examples (including implicit-link headers) cover that; see [Getting started](#getting-started).
+
+7. **It's highly extensible.**
+
+	Stock back-ends cover common transports (console / `fprintf`, file, Syslog, COM Error Object, speech, Windows Debugger, Windows Event Log, and others). A custom back-end is a small C API. The Application Layer already understands a wide range of string-like and convertible types (including types such as `struct tm`, `FILETIME`, `struct in_addr`, and so on), and you can extend the set of types usable in logging statements; see the documentation and inserter / shim examples.
+
+8. **It's used in serious commercial systems, including high-throughput financial environments.**
+
+	**Pantheios** has been deployed by organisations in Australia, the US, and elsewhere. At least one notable high-throughput user commissioned custom front-/back-ends for extreme performance; NDA prevents naming the client or the customisations. They described the result as operating with "clock-cycle speed".
+
+9. **It's highly portable.**
+
+	**Pantheios** targets a wide range of C++ compilers and UNIX, Linux, macOS, and Windows. On UNIX-like platforms it avoids unnecessary platform-specific constructs. New compiler/platform combinations typically need only modest **STLSoft** configuration work; the maintainers are happy to help.
+
+10. **It remains under active development, and feedback is welcome.**
+
+	The aim is that **Pantheios** be the diagnostic logging API of choice for C++ programmers who want performance without sacrificing robustness or flexibility. Suggestions on how better to achieve that are welcome via [GitHub Issues](https://github.com/synesissoftware/Pantheios/issues).
 
 
 ## Installation
