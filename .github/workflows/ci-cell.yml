@@ -242,6 +242,37 @@ jobs:
           path: build
           retention-days: 1
 
+  run-examples:
+    name: Examples (${{ inputs.cell-id }})
+    needs: build
+    runs-on: ${{ inputs.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup MSYS2 MinGW
+        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-x86_64-toolchain
+
+      - name: Download build tree
+        uses: actions/download-artifact@v4
+        with:
+          name: sis-build-${{ inputs.cell-id }}
+          path: build
+
+      - name: Run examples
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+          fi
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
+
   test-unit:
     name: Unit tests (${{ inputs.cell-id }})
     needs: build
