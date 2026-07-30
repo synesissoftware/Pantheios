@@ -9,7 +9,7 @@ target_link_libraries(test.component.be.file.threading
 	PRIVATE
 		Pantheios.be.N
 		Pantheios.bec.file
-		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+		Pantheios.bec.AnsiConsole
 )
 
 target_link_libraries(test.component.be.file.threading

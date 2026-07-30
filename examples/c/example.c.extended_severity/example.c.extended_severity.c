@@ -3,14 +3,13 @@
  *
  * Purpose: C example program for Pantheios. Demonstrates:
  *
- *            - how the Pantheios libraries must be explicitly
- *              initialised in a C program; this is not the case in
- *              C++ programs
+ *            - how the Pantheios libraries must be explicitly initialised
+ *              in a C program; this is not the case in C++ programs
  *            - use of extended severity information, via
  *              PANTHEIOS_MAKE_EXTENDED_SEVERITY()
  *
  * Created: 21st May 2009
- * Updated: 28th October 2024
+ * Updated: 29th January 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

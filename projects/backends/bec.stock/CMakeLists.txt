@@ -2,6 +2,7 @@
 set(BEC_STOCK_SRC_DIR ../../../src/backends)
 
 file(GLOB BEC_STOCK_SRCS_common
+	${BEC_STOCK_SRC_DIR}/bec.AnsiConsole.cpp
 	${BEC_STOCK_SRC_DIR}/bec.fail.c
 	${BEC_STOCK_SRC_DIR}/bec.file.cpp
 	${BEC_STOCK_SRC_DIR}/bec.fprintf.cpp

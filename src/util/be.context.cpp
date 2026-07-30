@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/be.context.cpp
+ * File:    src/util/be.context.cpp
  *
- * Purpose:     Implementation of pantheios::util::backends::Context.
+ * Purpose: Implementation of pantheios::util::backends::Context.
  *
- * Created:     18th December 2006
- * Updated:     17th December 2023
+ * Created: 18th December 2006
+ * Updated: 29th January 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -115,14 +115,16 @@ make_process_identity_(
 #endif /* STLSOFT_CF_THROW_BAD_ALLOC */
 }
 
-inline int check_severity_mask_(int severityMask)
+inline int
+check_severity_mask_(int severityMask)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == (severityMask & ~int(0x0f)), "severity mask must be in the range [0, 16)");
 
     return severityMask;
 }
 
-/* explicit */ Context::Context(
+/* explicit */
+Context::Context(
     pantheios_char_t const* processIdentity
 ,   int                     id
 ,   pan_uint32_t            flags
@@ -144,10 +146,7 @@ inline int check_severity_mask_(int severityMask)
         // 6: "]: "
         // 7: entry
 
-        if ((m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) &&
-            (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) &&
-            (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) &&
-            (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY))
+        if (!show_prefix())
         {
             // Nothing to do
         }
@@ -250,7 +249,8 @@ inline int check_severity_mask_(int severityMask)
     pantheios_util_strfree(m_processIdentity);
 }
 
-int Context::logEntry(
+int
+Context::logEntry(
     int                     severity
 ,   pantheios_char_t const* entry
 ,   size_t                  cchEntry
@@ -261,10 +261,7 @@ int Context::logEntry(
     int severity4   =   severity & m_severityMask;
     int severityX   =   (severity & ~m_severityMask) >> 4;
 
-    if (PANTHEIOS_BE_INIT_F_NO_PROCESS_ID == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) &&
-        PANTHEIOS_BE_INIT_F_NO_THREAD_ID == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) &&
-        PANTHEIOS_BE_INIT_F_NO_DATETIME == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) &&
-        PANTHEIOS_BE_INIT_F_NO_SEVERITY == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY))
+    if (!show_prefix())
     {
         return this->rawLogEntry(severity4, severityX, entry, cchEntry);
     }
@@ -374,6 +371,7 @@ int Context::logEntry(
         if (0 != (PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY & m_flags))
         {
 do_sev_as_integer:
+
             slice->ptr = stlsoft::integer_to_string(&numSev[0], STLSOFT_NUM_ELEMENTS(numSev), severity4, &slice->len);
         }
         else
@@ -419,7 +417,6 @@ do_sev_as_integer:
     const size_t cchTotal = std::accumulate(stlsoft::member_selector(&slices[0], &pan_slice_t::len)
                                         ,   stlsoft::member_selector(&slices[0] + rawLogArrayDimension, &pan_slice_t::len)
                                         ,   size_t(0));
-
 #else /* ? compiler */
 
     // The crappy way, for less-than compilers
@@ -429,7 +426,6 @@ do_sev_as_integer:
     {
         cchTotal += slices[i].len;
     }}
-
 #endif /* compiler */
 
 
@@ -440,7 +436,8 @@ do_sev_as_integer:
 #endif /* compiler */
 }
 
-/* virtual */ int Context::rawLogEntry(
+/* virtual */ int
+Context::rawLogEntry(
     int                     severity4
 ,   int                     severityX
 ,   pantheios_char_t const* entry
@@ -458,13 +455,14 @@ do_sev_as_integer:
     slices[0] = pan_slice_t(entry, cchEntry);
 
 #if defined(STLSOFT_COMPILER_IS_DMC)
-    return this->rawLogEntry(severity4, severityX, static_cast<const pan_slice_t (&)[rawLogArrayDimension]>(slices), cchEntry);
+    return this->rawLogEntry(severity4, severityX, static_cast<pan_slice_t const (&)[rawLogArrayDimension]>(slices), cchEntry);
 #else /* ? compiler */
     return this->rawLogEntry(severity4, severityX, slices, cchEntry);
 #endif /* compiler */
 }
 
-/* static */ size_t Context::concatenateSlices(
+/* static */ size_t
+Context::concatenateSlices(
     pantheios_char_t*   dest
 ,   size_t              cchDest
 ,   size_t              numSlices
@@ -475,7 +473,8 @@ do_sev_as_integer:
 
     std::copy(  slices
             ,   slices + numSlices
-            ,   stlsoft::cstring_concatenator(&dest[0], &numWritten));
+            ,   stlsoft::cstring_concatenator(&dest[0], &numWritten)
+            );
 
     PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL(numWritten <= cchDest, "the wrong number of characters were written");
     STLSOFT_SUPPRESS_UNUSED(cchDest);
@@ -483,6 +482,19 @@ do_sev_as_integer:
     return numWritten;
 }
 
+bool
+Context::show_prefix() const STLSOFT_NOEXCEPT
+{
+    if (PANTHEIOS_BE_INIT_F_NO_PROCESS_ID == (m_flags & PANTHEIOS_BE_INIT_F_NO_PROCESS_ID) &&
+        PANTHEIOS_BE_INIT_F_NO_THREAD_ID == (m_flags & PANTHEIOS_BE_INIT_F_NO_THREAD_ID) &&
+        PANTHEIOS_BE_INIT_F_NO_DATETIME == (m_flags & PANTHEIOS_BE_INIT_F_NO_DATETIME) &&
+        PANTHEIOS_BE_INIT_F_NO_SEVERITY == (m_flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY))
+    {
+        return false;
+    }
+
+    return true;
+}
 
 pantheios_char_t const*
 Context::getProcessIdentity() const
@@ -490,7 +502,8 @@ Context::getProcessIdentity() const
     return m_processIdentity;
 }
 
-int Context::getBackEndId() const
+int
+Context::getBackEndId() const
 {
     return m_id;
 }

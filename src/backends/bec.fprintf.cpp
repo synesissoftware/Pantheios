@@ -4,11 +4,11 @@
  * Purpose: Implementation for the fprintf() back-end
  *
  * Created: 26th June 2005
- * Updated: 23rd October 2024
+ * Updated: 29th January 2025
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -124,13 +124,15 @@ private:
 /// \name Overrides
 /// @{
 private:
-    virtual int rawLogEntry(
+    virtual int
+    rawLogEntry(
         int                 severity4
     ,   int                 severityX
-    ,   const pan_slice_t (&ar)[rawLogArrayDimension]
+    ,   pan_slice_t const (&ar)[rawLogArrayDimension]
     ,   size_t              cchTotal
     );
-    virtual int rawLogEntry(
+    virtual int
+    rawLogEntry(
         int                 severity4
     ,   int                 severityX
     ,   PAN_CHAR_T const*   entry
@@ -167,7 +169,8 @@ namespace
  * API functions
  */
 
-PANTHEIOS_CALL(void) pantheios_be_fprintf_getDefaultAppInit(pan_be_fprintf_init_t* init)
+PANTHEIOS_CALL(void)
+pantheios_be_fprintf_getDefaultAppInit(pan_be_fprintf_init_t* init)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
 
@@ -235,7 +238,8 @@ static int pantheios_be_fprintf_init_(
     return 0;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_fprintf_init(
+PANTHEIOS_CALL(int)
+pantheios_be_fprintf_init(
     PAN_CHAR_T const*               processIdentity
 ,   int                             backEndId
 ,   pan_be_fprintf_init_t const*    init
@@ -246,7 +250,8 @@ PANTHEIOS_CALL(int) pantheios_be_fprintf_init(
     return pantheios_call_be_X_init<pan_be_fprintf_init_t>(pantheios_be_fprintf_init_, processIdentity, backEndId, init, reserved, ptoken, "be.fprintf");
 }
 
-PANTHEIOS_CALL(void) pantheios_be_fprintf_uninit(void* token)
+PANTHEIOS_CALL(void)
+pantheios_be_fprintf_uninit(void* token)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != token, "token must be non-null");
 
@@ -272,7 +277,8 @@ static int pantheios_be_fprintf_logEntry_(
     return ctxt->logEntry(severity, entry, cchEntry);
 }
 
-PANTHEIOS_CALL(int) pantheios_be_fprintf_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_fprintf_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -293,17 +299,18 @@ be_fprintf_Context::be_fprintf_Context(
 ,   int                             backEndId
 ,   pan_be_fprintf_init_t const*    init
 )
-    : parent_class_type(processIdentity, backEndId, init->flags, be_fprintf_Context::severityMask)
+    : parent_class_type(processIdentity, backEndId, init->flags, class_type::severityMask)
     , m_stm(infer_stm_(init))
 {}
 
 be_fprintf_Context::~be_fprintf_Context() throw()
 {}
 
-int be_fprintf_Context::rawLogEntry(
+int
+be_fprintf_Context::rawLogEntry(
     int                     severity4
 ,   int                  /* severityX */
-,   const pan_slice_t (&ar)[rawLogArrayDimension]
+,   pan_slice_t const (&ar)[rawLogArrayDimension]
 ,   size_t               /* cchTotal */
 )
 {
@@ -311,8 +318,6 @@ int be_fprintf_Context::rawLogEntry(
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(severity4 < 16, "severity must be < 16");
 
     STLSOFT_SUPPRESS_UNUSED(severity4);
-
-    // select the stream: stdout for debug/info/notice; stderr for everything else
 
     const PAN_CHAR_T    fmt[]   =   PANTHEIOS_LITERAL_STRING("%.*s%.*s%.*s%.*s%.*s%.*s%.*s%.*s%.*s%.*s\n");
 
@@ -335,7 +340,8 @@ int be_fprintf_Context::rawLogEntry(
                     ,   PAN_BE_GET_SLICE_4_PRINTF(ar[9]));
 }
 
-int be_fprintf_Context::rawLogEntry(
+int
+be_fprintf_Context::rawLogEntry(
     int                     severity4
 ,   int                  /* severityX */
 ,   PAN_CHAR_T const*       entry

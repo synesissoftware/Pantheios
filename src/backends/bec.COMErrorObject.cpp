@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.COMErrorObject.cpp
+ * File:    src/backends/bec.COMErrorObject.cpp
  *
- * Purpose:     Implementation for the COMErrorObject back-end
+ * Purpose: Implementation for the COMErrorObject back-end
  *
- * Created:     9th April 2006
- * Updated:     16th July 2024
+ * Created: 9th April 2006
+ * Updated: 25th January 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -186,7 +186,8 @@ namespace
  * API functions
  */
 
-PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_getDefaultAppInit(pan_be_COMErrorObject_init_t* init) /* throw() */
+PANTHEIOS_CALL(void)
+pantheios_be_COMErrorObject_getDefaultAppInit(pan_be_COMErrorObject_init_t* init) /* throw() */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
 
@@ -249,7 +250,8 @@ static int pantheios_be_COMErrorObject_init_(
     return 0;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_init(
+PANTHEIOS_CALL(int)
+pantheios_be_COMErrorObject_init(
     PAN_CHAR_T const*                   processIdentity
 ,   int                                 backEndId
 ,   pan_be_COMErrorObject_init_t const* init
@@ -262,7 +264,8 @@ PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_init(
     return pantheios_call_be_X_init<pan_be_COMErrorObject_init_t>(pantheios_be_COMErrorObject_init_, processIdentity, backEndId, init, reserved, ptoken, "be.COMErrorObject");
 }
 
-PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_uninit(void* token)
+PANTHEIOS_CALL(void)
+pantheios_be_COMErrorObject_uninit(void* token)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != token, "token may not be null");
 
@@ -379,7 +382,8 @@ static int pantheios_be_COMErrorObject_logEntry_(
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 }
 
-PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_COMErrorObject_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -404,11 +408,21 @@ pantheios_be_COMErrorObject_parseArgs(
 
     // 1. Parse the stock arguments
     int res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
+    int r;
 
     if (res >= 0)
     {
         // 2. Parse the custom argument: "overwriteExisting"
-        res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("overwriteExisting"), false, PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("overwriteExisting"), true, PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     return res;
@@ -449,6 +463,7 @@ void ErrorObject_Context::operator delete(void* pv)
 {
     ::operator delete(pv);
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

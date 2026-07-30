@@ -15,11 +15,6 @@ target_link_libraries(test.component.bec.fprintf
 
 target_link_Pantheios_util(test.component.bec.fprintf)
 
-if(shwild_FOUND)
-
-	target_link_shwild(test.component.bec.fprintf)
-endif(shwild_FOUND)
-
 target_link_STLSoft(test.component.bec.fprintf)
 
 if(shwild_FOUND)

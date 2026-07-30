@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.be.COMErrorObject project.
  *
  * Created: 1st January 2008
- * Updated: 28th October 2024
+ * Updated: 25th January 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -27,7 +27,7 @@
 #include <pantheios/init_codes.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/shims/access/string.hpp>
@@ -65,11 +65,9 @@
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
 # define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
-
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 # define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -79,7 +77,21 @@
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.COMErrorObject");
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * function declarations
+ */
+
+namespace {
+
+    static void TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_true();
+    static void TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_false();
+} /* anonymous namespace */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 static int main_(int argc, char* argv[])
 {
@@ -217,6 +229,9 @@ static int main_(int argc, char* argv[])
             XTESTS_CASE_END("");
         }
 
+        XTESTS_RUN_CASE(TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_true);
+        XTESTS_RUN_CASE(TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_false);
+
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -250,6 +265,153 @@ int main(int argc, char* argv[])
     return EXIT_FAILURE;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * function implementations
+ */
+
+namespace {
+
+static void TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_true()
+{
+    pantheios_slice_t args[] =
+    {
+        { 0, "" }
+    /* stock */
+    ,   { 18, "showProcessId=true" }
+    ,   { 17, "showThreadId=true" }
+    ,   { 17, "showDateTime=true" }
+    ,   { 17, "showSeverity=true" }
+    ,   { 18, "useSystemTime=true" }
+    ,   { 23, "showDetailsAtStart=true" }
+    ,   { 18, "useUnixFormat=true" }
+    ,   { 13, "showDate=true" }
+    ,   { 13, "showTime=true" }
+    ,   { 19, "highResolution=true" }
+    ,   { 18, "lowResolution=true" }
+    ,   { 20, "numericSeverity=true" }
+    /* custom */
+    ,   { 22, "overwriteExisting=true" }
+    };
+
+    pan_be_COMErrorObject_init_t init;
+
+    init.flags                      =   0
+                                    /* stock */
+                                    |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
+                                    |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                    |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                    |   PANTHEIOS_BE_INIT_F_NO_SEVERITY
+                                    // |   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
+                                    // |   PANTHEIOS_BE_INIT_F_DETAILS_AT_START
+                                    // |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
+                                    |   PANTHEIOS_BE_INIT_F_HIDE_DATE
+                                    |   PANTHEIOS_BE_INIT_F_HIDE_TIME
+                                    // |   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
+                                    // |   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
+                                    // |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                                    /* custom */
+                                    |   PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING
+                                    ;
+
+
+
+    int const r = pantheios_be_COMErrorObject_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
+
+    TEST_INTEGER_EQUAL(13, r);
+
+    pantheios_uint32_t  expected    =   0
+                                    /* stock */
+                                    // |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
+                                    // |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                    // |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                    // |   PANTHEIOS_BE_INIT_F_NO_SEVERITY
+                                    |   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
+                                    |   PANTHEIOS_BE_INIT_F_DETAILS_AT_START
+                                    |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
+                                    // |   PANTHEIOS_BE_INIT_F_HIDE_DATE
+                                    // |   PANTHEIOS_BE_INIT_F_HIDE_TIME
+                                    |   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
+                                    |   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
+                                    |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                                    /* custom */
+                                    // |   PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING
+                                    ;
+
+    TEST_INTEGER_EQUAL(expected, init.flags);
+}
+
+static void TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_false()
+{
+    pantheios_slice_t args[] =
+    {
+        { 0, "" }
+    /* stock */
+    ,   { 19, "showProcessId=false" }
+    ,   { 18, "showThreadId=false" }
+    ,   { 18, "showDateTime=false" }
+    ,   { 18, "showSeverity=false" }
+    ,   { 19, "useSystemTime=false" }
+    ,   { 24, "showDetailsAtStart=false" }
+    ,   { 19, "useUnixFormat=false" }
+    ,   { 14, "showDate=false" }
+    ,   { 14, "showTime=false" }
+    ,   { 20, "highResolution=false" }
+    ,   { 19, "lowResolution=false" }
+    ,   { 21, "numericSeverity=false" }
+    /* custom */
+    ,   { 23, "overwriteExisting=false" }
+    };
+
+    pan_be_COMErrorObject_init_t init;
+
+    init.flags                      =   0
+                                    /* stock */
+                                    // |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
+                                    // |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                    // |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                    // |   PANTHEIOS_BE_INIT_F_NO_SEVERITY
+                                    |   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
+                                    |   PANTHEIOS_BE_INIT_F_DETAILS_AT_START
+                                    |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
+                                    // |   PANTHEIOS_BE_INIT_F_HIDE_DATE
+                                    // |   PANTHEIOS_BE_INIT_F_HIDE_TIME
+                                    |   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
+                                    |   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
+                                    |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                                    /* custom */
+                                    // |   PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING
+                                    ;
+
+
+
+    int const r = pantheios_be_COMErrorObject_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
+
+    TEST_INTEGER_EQUAL(13, r);
+
+    pantheios_uint32_t  expected    =   0
+                                    /* stock */
+                                    |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
+                                    |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                    |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                    |   PANTHEIOS_BE_INIT_F_NO_SEVERITY
+                                    // |   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
+                                    // |   PANTHEIOS_BE_INIT_F_DETAILS_AT_START
+                                    // |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
+                                    |   PANTHEIOS_BE_INIT_F_HIDE_DATE
+                                    |   PANTHEIOS_BE_INIT_F_HIDE_TIME
+                                    // |   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
+                                    // |   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
+                                    // |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                                    /* custom */
+                                    |   PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING
+                                    ;
+
+    TEST_INTEGER_EQUAL(expected, init.flags);
+}
+} /* anonymous namespace */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

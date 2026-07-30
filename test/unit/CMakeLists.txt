@@ -3,12 +3,9 @@ add_subdirectory(inserters)
 
 add_subdirectory(test.unit.be.N)
 add_subdirectory(test.unit.be.N.filtering)
-if(WIN32)
-
-	add_subdirectory(test.unit.be.WindowsSyslog)
-endif(WIN32)
 add_subdirectory(test.unit.be.fail)
 add_subdirectory(test.unit.be.lrsplit)
+add_subdirectory(test.unit.bec.AnsiConsole)
 if(WIN32)
 
 	add_subdirectory(test.unit.bec.COMErrorObject)
@@ -16,6 +13,19 @@ endif(WIN32)
 add_subdirectory(test.unit.bec.fail)
 add_subdirectory(test.unit.bec.file)
 add_subdirectory(test.unit.bec.fprintf)
+if(WIN32)
+
+	add_subdirectory(test.unit.bec.speech)
+endif(WIN32)
+if(UNIX)
+
+	add_subdirectory(test.unit.bec.syslog)
+endif(UNIX)
+if(WIN32)
+
+	add_subdirectory(test.unit.bec.WindowsConsole)
+	add_subdirectory(test.unit.bec.WindowsSyslog)
+endif(WIN32)
 add_subdirectory(test.unit.fe.N)
 if(WIN32)
 
@@ -45,6 +55,7 @@ if(shwild_FOUND)
 
 	add_subdirectory(test.unit.util.onbailout)
 endif(shwild_FOUND)
+add_subdirectory(test.unit.util.parse_args)
 add_subdirectory(test.unit.util.snprintf)
 add_subdirectory(test.unit.util.strnlen)
 

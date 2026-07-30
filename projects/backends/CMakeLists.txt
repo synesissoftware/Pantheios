@@ -2,6 +2,7 @@
 #[====[
 add_subdirectory(be.ACE)
 #]====]
+add_subdirectory(be.AnsiConsole)
 if(WIN32)
 
 	add_subdirectory(be.COMErrorObject)
@@ -37,6 +38,8 @@ add_subdirectory(be.test)
 add_subdirectory(bec.ACE)
 add_subdirectory(bec.ACE.WithCallback)
 #]====]
+add_subdirectory(bec.AnsiConsole)
+add_subdirectory(bec.AnsiConsole.WithCallback)
 if(WIN32)
 
 	add_subdirectory(bec.COMErrorObject)
@@ -82,6 +85,7 @@ add_subdirectory(bec.test.WithCallback)
 #[====[
 add_subdirectory(bel.ACE)
 #]====]
+add_subdirectory(bel.AnsiConsole)
 if(WIN32)
 
 	add_subdirectory(bel.COMErrorObject)
@@ -111,6 +115,7 @@ add_subdirectory(bel.test)
 #[====[
 add_subdirectory(ber.ACE)
 #]====]
+add_subdirectory(ber.AnsiConsole)
 if(WIN32)
 
 	add_subdirectory(ber.COMErrorObject)

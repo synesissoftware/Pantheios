@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    test/unit/test.unit.bec.file/test.unit.bec.file.cpp
  *
- * Purpose: Implementation file for the test.unit.be.file project.
+ * Purpose: Unit-tests for bec.file.
  *
  * Created: 19th January 2008
- * Updated: 28th October 2024
+ * Updated: 24th January 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -155,6 +155,8 @@ static void test_3_0f();
 static void test_4_00();
 static void test_4_01();
 
+static void TEST_pantheios_be_file_WITH_ALL_STOCK_true();
+static void TEST_pantheios_be_file_WITH_ALL_STOCK_false();
 } /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -221,6 +223,10 @@ int main(int argc, char* argv[])
 
         XTESTS_RUN_CASE(test_4_00);
         XTESTS_RUN_CASE(test_4_01);
+
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_WITH_ALL_STOCK_true);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_WITH_ALL_STOCK_false);
+
 
         XTESTS_PRINT_RESULTS();
 
@@ -3033,7 +3039,171 @@ static void test_4_01()
 }
 
 
+static void TEST_pantheios_be_file_WITH_ALL_STOCK_true()
+{
+    pantheios_slice_t args[] =
+    {
+        { 0, "" }
+    /* stock */
+    ,   { 18, "showProcessId=true" }
+    ,   { 17, "showThreadId=true" }
+    ,   { 17, "showDateTime=true" }
+    ,   { 17, "showSeverity=true" }
+    ,   { 18, "useSystemTime=true" }
+    ,   { 23, "showDetailsAtStart=true" }
+    ,   { 18, "useUnixFormat=true" }
+    ,   { 13, "showDate=true" }
+    ,   { 13, "showTime=true" }
+    ,   { 19, "highResolution=true" }
+    ,   { 18, "lowResolution=true" }
+    ,   { 20, "numericSeverity=true" }
+    /* custom */
+    ,   { 13, "truncate=true" }
+    ,   { 26, "discardCachedContents=true" }
+    ,   { 19, "shareOnWindows=true" }
+    ,   { 27, "writeMultibyteContents=true" }
+    ,   { 22, "writeWideContents=true" }
+    ,   { 18, "deleteIfEmpty=true" }
+    };
+
+    pan_be_file_init_t  init;
+
+    init.flags                      =   0
+                                    /* stock */
+                                    |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
+                                    |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                    |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                    |   PANTHEIOS_BE_INIT_F_NO_SEVERITY
+                                    // |   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
+                                    // |   PANTHEIOS_BE_INIT_F_DETAILS_AT_START
+                                    // |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
+                                    |   PANTHEIOS_BE_INIT_F_HIDE_DATE
+                                    |   PANTHEIOS_BE_INIT_F_HIDE_TIME
+                                    // |   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
+                                    // |   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
+                                    // |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                                    /* custom */
+                                    // |   PANTHEIOS_BE_FILE_F_TRUNCATE
+                                    // |   PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS
+                                    // |   PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS
+                                    // |   PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS
+                                    // |   PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS
+                                    // |   PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY
+                                    ;
+
+    int const r = pantheios_be_file_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
+
+    XTESTS_TEST_INTEGER_EQUAL(18, r);
+
+    pantheios_uint32_t  expected    =   0
+                                    /* stock */
+                                    // |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
+                                    // |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                    // |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                    // |   PANTHEIOS_BE_INIT_F_NO_SEVERITY
+                                    |   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
+                                    |   PANTHEIOS_BE_INIT_F_DETAILS_AT_START
+                                    |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
+                                    // |   PANTHEIOS_BE_INIT_F_HIDE_DATE
+                                    // |   PANTHEIOS_BE_INIT_F_HIDE_TIME
+                                    |   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
+                                    |   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
+                                    |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                                    /* custom */
+                                    |   PANTHEIOS_BE_FILE_F_TRUNCATE
+                                    |   PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS
+                                    |   PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS
+                                    |   PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS
+                                    |   PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS
+                                    |   PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY
+                                    ;
+
+    XTESTS_TEST_INTEGER_EQUAL(expected, init.flags);
+}
+
+static void TEST_pantheios_be_file_WITH_ALL_STOCK_false()
+{
+    pantheios_slice_t args[] =
+    {
+        { 0, "" }
+    /* stock */
+    ,   { 19, "showProcessId=false" }
+    ,   { 18, "showThreadId=false" }
+    ,   { 18, "showDateTime=false" }
+    ,   { 18, "showSeverity=false" }
+    ,   { 19, "useSystemTime=false" }
+    ,   { 24, "showDetailsAtStart=false" }
+    ,   { 19, "useUnixFormat=false" }
+    ,   { 14, "showDate=false" }
+    ,   { 14, "showTime=false" }
+    ,   { 20, "highResolution=false" }
+    ,   { 19, "lowResolution=false" }
+    ,   { 21, "numericSeverity=false" }
+    /* custom */
+    ,   { 14, "truncate=false" }
+    ,   { 27, "discardCachedContents=false" }
+    ,   { 20, "shareOnWindows=false" }
+    ,   { 28, "writeMultibyteContents=false" }
+    ,   { 23, "writeWideContents=false" }
+    ,   { 19, "deleteIfEmpty=false" }
+    };
+
+    pan_be_file_init_t  init;
+
+    init.flags                      =   0
+                                    /* stock */
+                                    // |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
+                                    // |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                    // |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                    // |   PANTHEIOS_BE_INIT_F_NO_SEVERITY
+                                    |   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
+                                    |   PANTHEIOS_BE_INIT_F_DETAILS_AT_START
+                                    |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
+                                    // |   PANTHEIOS_BE_INIT_F_HIDE_DATE
+                                    // |   PANTHEIOS_BE_INIT_F_HIDE_TIME
+                                    |   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
+                                    |   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
+                                    |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                                    /* custom */
+                                    |   PANTHEIOS_BE_FILE_F_TRUNCATE
+                                    |   PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS
+                                    |   PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS
+                                    |   PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS
+                                    |   PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS
+                                    |   PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY
+                                    ;
+
+    int const r = pantheios_be_file_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
+
+    XTESTS_TEST_INTEGER_EQUAL(18, r);
+
+    pantheios_uint32_t  expected    =   0
+                                    /* stock */
+                                    |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
+                                    |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
+                                    |   PANTHEIOS_BE_INIT_F_NO_DATETIME
+                                    |   PANTHEIOS_BE_INIT_F_NO_SEVERITY
+                                    // |   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
+                                    // |   PANTHEIOS_BE_INIT_F_DETAILS_AT_START
+                                    // |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
+                                    |   PANTHEIOS_BE_INIT_F_HIDE_DATE
+                                    |   PANTHEIOS_BE_INIT_F_HIDE_TIME
+                                    // |   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
+                                    // |   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
+                                    // |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                                    /* custom */
+                                    // |   PANTHEIOS_BE_FILE_F_TRUNCATE
+                                    // |   PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS
+                                    // |   PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS
+                                    // |   PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS
+                                    // |   PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS
+                                    // |   PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY
+                                    ;
+
+    XTESTS_TEST_INTEGER_EQUAL(expected, init.flags);
+}
 } /* anonymous namespace */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

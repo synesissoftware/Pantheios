@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.be.file.threading project.
  *
  * Created: 3rd July 2009
- * Updated: 28th October 2024
+ * Updated: 9th May 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,11 +14,10 @@
 /* Pantheios header files */
 #include <pantheios/pan.hpp>
 #include <pantheios/backends/be.N.h>
-#include <pantheios/backends/bec.console.h>
+#include <pantheios/backends/bec.AnsiConsole.h>
 #include <pantheios/backends/bec.file.h>
 #include <pantheios/frontends/fe.N.h>
 #include <pantheios/inserters/args.hpp>
-#include <pantheios/inserters/blob.hpp>
 #include <pantheios/inserters/exception.hpp>
 #include <pantheios/inserters/integer.hpp>
 
@@ -31,8 +30,11 @@
 
 /* Standard C++ header files */
 #include <exception>
+#if 0
+#elif __cplusplus >= 201402L
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+# include <thread>
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
  /* PThreads header files */
 # include <pthread.h>
@@ -43,15 +45,14 @@
      defined(_WIN64)
 #  include <unixem/unixem.h>
 # endif /* Win32 || Win64 */
-
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 # define WINSTL_ERROR_DESC_NO_IMPLICIT_CONVERSION
 # include <winstl/error/error_desc.hpp>
 
 # include <windows.h>
-
 #else /* ? OS */
+
 # error Operating system not discriminated
 #endif /* OS */
 
@@ -87,6 +88,8 @@
  * constants
  */
 
+const size_t    NUM_THREADS         =   32;
+
 #ifdef _DEBUG
 const size_t    LOG_ITERATIONS      =   10;
 const size_t    SET_PATH_DELAY      =   1000 * 100;
@@ -111,7 +114,10 @@ PAN_CHAR_T const LOG_FILE_NAME[]    =   PSTR("test.component.be.file.threading.l
  * globals
  */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif __cplusplus >= 201402L
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 static pthread_mutex_t  s_mx            =   PTHREAD_MUTEX_INITIALIZER;
 static pthread_cond_t   s_cv            =   PTHREAD_COND_INITIALIZER;
 static int              s_activeThreads =   0;
@@ -126,41 +132,44 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PSTR("t
  * typedefs
  */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif __cplusplus >= 201402L
 
-typedef pthread_t   thread_handle_t;
+typedef std::thread                                         thread_handle_t;
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
+typedef pthread_t                                           thread_handle_t;
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
-typedef HANDLE      thread_handle_t;
+typedef HANDLE                                              thread_handle_t;
 
 #else /* ? OS */
 
 # error Operating system not discriminated
-
 #endif /* OS */
 
-typedef platformstl::filesystem_traits<PAN_CHAR_T>  fs_traits_t;
-typedef platformstl::basic_file_lines<PAN_CHAR_T>   lines_t;
-typedef stlsoft::basic_string_view<PAN_CHAR_T>          string_view_t;
+typedef platformstl::filesystem_traits<PAN_CHAR_T>          fs_traits_t;
+typedef platformstl::basic_file_lines<PAN_CHAR_T>           lines_t;
+typedef stlsoft::basic_string_view<PAN_CHAR_T>              string_view_t;
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif __cplusplus >= 201402L
+
+static void* thread_proc();
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 static void* thread_proc(void*);
-
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
 static DWORD WINAPI thread_proc(void*);
-
 #else /* ? OS */
 
 # error Operating system not discriminated
-
 #endif /* OS */
 
 
@@ -191,7 +200,7 @@ pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
 
 pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_console, pantheios_be_console, PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID),
+    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_console, pantheios_be_AnsiConsole, PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID),
     PANTHEIOS_BE_N_STDFORM_ENTRY(beid_file, pantheios_be_file, PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28),
 
     PANTHEIOS_BE_N_TERMINATOR_ENTRY
@@ -206,7 +215,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 
 static int main_(int /*argc*/, char** /*argv*/)
 {
-    thread_handle_t   threads[32];
+    thread_handle_t threads[NUM_THREADS];
 
     pan::log_INFORMATIONAL(PSTR("main(): creating "), pan::integer(STLSOFT_NUM_ELEMENTS(threads)), PSTR(" threads"));
 
@@ -214,7 +223,13 @@ static int main_(int /*argc*/, char** /*argv*/)
     {
         void* arg = NULL;
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif __cplusplus >= 201402L
+
+        threads[i] = std::thread(thread_proc);
+
+        STLSOFT_SUPPRESS_UNUSED(arg);
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
         pthread_mutex_lock(&s_mx);
 
@@ -257,6 +272,7 @@ static int main_(int /*argc*/, char** /*argv*/)
         }
 
 #else /* ? OS */
+
 # error Operating system not discriminated
 #endif /* 0 */
     }}
@@ -274,7 +290,14 @@ static int main_(int /*argc*/, char** /*argv*/)
     s_showNotices &&
     pan::log_NOTICE(PSTR("main(): waiting for threads to complete; this could take several minutes"));
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif __cplusplus >= 201402L
+
+    for (auto& th : threads)
+    {
+        th.join();
+    }
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
     for (;;)
     {
@@ -290,12 +313,11 @@ static int main_(int /*argc*/, char** /*argv*/)
         }
         pthread_mutex_unlock(&s_mx);
     }
-
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 
     ::WaitForMultipleObjects(STLSOFT_NUM_ELEMENTS(threads), &threads[0], true, INFINITE);
-
 #else /* ? OS */
+
 # error Operating system not discriminated
 #endif /* 0 */
 
@@ -437,19 +459,17 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif __cplusplus >= 201402L
+
+static void* thread_proc()
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 static void* thread_proc(void*)
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 static DWORD WINAPI thread_proc(void*)
 #endif /* OS */
 {
-#if defined(PLATFORMSTL_OS_IS_UNIX)
-    thread_handle_t self = pthread_self();
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-    thread_handle_t self = GetCurrentThread();
-#endif /* OS */
-
-    pan::log_INFORMATIONAL(PSTR("thread_proc("), pan::blob(&self, sizeof(self)), PSTR("): entering"));
+    pan::log_INFORMATIONAL(PSTR("thread_proc(): entering"));
 
     // TODO: Do some threading stuff
 
@@ -458,14 +478,17 @@ static DWORD WINAPI thread_proc(void*)
         pan::log(pan::informational(beid_file), PSTR("|"), pan::integer(i), PSTR("|"), PSTR("this is"), PSTR(" "), PSTR("multipart log "), PSTR("statement"), PSTR("|"), pan::integer(i));
     }}
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif __cplusplus >= 201402L
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
     pthread_mutex_lock(&s_mx);
     --s_activeThreads;
     pthread_cond_signal(&s_cv);
     pthread_mutex_unlock(&s_mx);
 #endif /* OS */
 
-    pan::log_INFORMATIONAL(PSTR("thread_proc("), pan::blob(&self, sizeof(self)), PSTR("): exiting"));
+    pan::log_INFORMATIONAL(PSTR("thread_proc(): exiting"));
 
     return 0;
 }
@@ -475,9 +498,11 @@ static DWORD WINAPI thread_proc(void*)
  * hack functions
  */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX) && \
-    defined(_WIN32) && \
-    defined(_STLSOFT_FORCE_ANY_COMPILER)
+#if 1 &&\
+    defined(PLATFORMSTL_OS_IS_UNIX) &&\
+    defined(_WIN32) &&\
+    defined(_STLSOFT_FORCE_ANY_COMPILER) &&\
+    1
 
 # include <windows.h>
 
