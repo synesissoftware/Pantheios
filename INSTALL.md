@@ -16,7 +16,7 @@ There are three options for installing **Pantheios**, depending on how you obtai
 
 ### Cloning project, installing via CMake
 
-0. First, ensure that [**STLSoft-1.11**](https://github.com/synesissoftware/STLSoft-1.11) and, optionally, [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild), have been cloned and then built and installed via CMake, as per the instructions in those projects.
+0. First, ensure that [**STLSoft**](https://github.com/synesissoftware/STLSoft) and, optionally, [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild), have been cloned and then built and installed via CMake, as per the instructions in those projects.
 
 
 1. Clone **Pantheios** from GitHub, as in;
@@ -127,8 +127,8 @@ $ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 1. Download the latest distributions;
 
 Obtain the latest releases of **Pantheios** and **STLSoft** from:
-* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-beta222.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-beta222.zip);
-* [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft-1.11/tags), e.g. [**STLSoft-1.11-1.11.1-alpha25.zip**](https://github.com/synesissoftware/STLSoft-1.11/archive/refs/tags/1.11.1-alpha25.zip);
+* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-rc1.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-rc1.zip);
+* [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft/tags), e.g. [**STLSoft-1.11.1-rc4**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/STLSoft-1.11.1-rc4);
 
 
 2. Unzip to directories of your choice, as in:
@@ -136,16 +136,16 @@ Obtain the latest releases of **Pantheios** and **STLSoft** from:
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
-$ unzip Pantheios-1.0.1-beta222.zip
-$ unzip STLSoft-1.11-1.11.1-alpha25.zip
+$ unzip Pantheios-1.0.1-rc1.zip
+$ unzip STLSoft-1.11.1-rc4
 ```
 
-3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11-1.11.1-alpha25`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft.1-alpha25`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
 
 4. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make
 
 ```bash
-$ cd Pantheios-1.0.1-beta222
+$ cd Pantheios-1.0.1-rc1
 $ cd build/gcc48.unix
 $ make
 ```
