@@ -1443,7 +1443,7 @@
 * Fixes for 64-bit UNIX;
 
 
-## 1.0.1 beta 31 - 17th August 2007
+## 1.0.1 beta 31 - 18th August 2007
 
 * Fix to Pantheios Tracing API;
 * Fix to GCC 3.x makefiles;
@@ -1462,16 +1462,18 @@
 
 ## 1.0.1 beta 28 - 2nd August 2007
 
+* compatible with STLSoft 1.9.4;
 * added the Pantheios Tracing API;
 * fixes for some back-end project files;
 
 
 ## 1.0.1 beta 27 - 29th July 2007
 
+* compatible with STLSoft 1.9.3;
 * bug fixes in be.file;
 
 
-## 1.0.1 beta 26 - 11th April 2007
+## 1.0.1 beta 26 - 30th April 2007
 
 * Compatible with STLSoft 1.9.1 (version released with Extended STL, vol 1: CD);
 * bug fix in be.file;
@@ -1500,6 +1502,7 @@
 ## 1.0.1 beta 22 - 15th January 2007
 
 * fixes for 64-bit Linux compatibility;
+* NOTE: requires STLSoft 1.9.1 beta 42, or later;
 
 
 ## 1.0.1 beta 21 - 9th January 2007
@@ -1511,11 +1514,13 @@
 ## 1.0.1 beta 20 - 5th January 2007
 
 * addition of missing implicit link file (be.file);
+* time formatting bug fix;
 
 
 ## 1.0.1 beta 19 - 2nd January 2007
 
 * dynamic control of severity ceiling for fe.N;
+* minor bug fix;
 
 
 ## 1.0.1 beta 18 - 23rd December 2006
