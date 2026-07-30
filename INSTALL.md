@@ -153,7 +153,28 @@ $ make
 
 ### Cloning project, using environment variables
 
-T.B.C.
+If you clone the project from https://github.com/synesissoftware/Pantheios and prefer the legacy makefile-based workflow (rather than [CMake](#cloning-project-installing-via-cmake)):
+
+1. Clone **STLSoft** and **Pantheios**, as in;
+
+```bash
+$ mkdir -p ~/open-source
+$ cd ~/open-source
+$ git clone -b master https://github.com/synesissoftware/STLSoft
+$ git clone -b master https://github.com/synesissoftware/Pantheios
+```
+
+2. Define an environment variable `STLSOFT`, whose value is the directory in which you cloned **STLSoft**, e.g. `STLSOFT=~/open-source/STLSoft`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+
+3. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make:
+
+```bash
+$ cd ~/open-source/Pantheios
+$ cd build/gcc48.unix
+$ make
+```
+
+(**NOTE**: The recommended installation path remains [Cloning project, installing via CMake](#cloning-project-installing-via-cmake).)
 
 
 ----
@@ -167,6 +188,7 @@ This project comes with a number of scripts useful for building with **CMake**, 
 | **prepare_cmake.sh**          | Creates/reinitialises the **CMake** build script(s).<br/><br/>This is the primary script, and is used to generate all the **CMake** build artefacts. We recommend that you use the command  as follows:</br></br>&nbsp;&nbsp;&nbsp;&nbsp;`./prepare_cmake.sh -m -v`.<br/><br/>The flag `-m` executes a build upon successful generation completes, and the flag `-v` generates verbose makefile(s). Use `./prepare_cmake.sh --help` for further information. |
 | **build_cmake.sh**            | Executes **CMake**-generated artefacts to (re)build project.<br/><br/>Performs a (re)build, meaningful only once `prepare_cmake.sh` has been run once to generate all the **CMake** build artefacts.<br/><br/>Use `./build_cmake.sh --help` for further information. |
 | **clean_cmake.sh**            | Executes **CMake**-generated artefacts to clean project.<br/><br/>Performs a (re)build, meaningful only once `prepare_cmake.sh` has been run once to generate all the **CMake** build artefacts and a build has been run.<br/><br/>Use `./clean_cmake.sh --help` for further information. |
+| **run_all_examples.sh**       | Runs all (matching) example programs.<br/><br/>Performs a build and then recursively runs all executable programs matching the shell patterns `example.c.*` and `example.cpp.*`.<br/><br/>Use `./run_all_examples.sh --help` for further information. |
 | **run_all_unit_tests.sh**     | Runs all (matching) unit-test programs.<br/><br/>Performs a build and then recursively runs and executes all (excutable programs) matching the shell patterns `test_*` and `test.*`.<br/><br/>Use `./run_all_unit_tests.sh --help` for further information. |
 | **remove_cmake_artefacts.sh** | Removes all known **CMake** artefacts.<br/><br/>Removes all known **CMake** build artefacts from the build directory (currently hard-coded to `./_build`) to prepare for complete regeneration using `prepare_cmake.sh`.<br/><br/>Use `./remove_cmake_artefacts.sh --help` for further information. |
 

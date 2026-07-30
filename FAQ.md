@@ -1,12 +1,7 @@
-pantheios - FAQ <!-- omit in toc -->
-===============
+# Pantheios - FAQ <!-- omit in toc -->
 
-Updated:    29th January 2017
-
-
-
-The FAQ list is under (constant) development. If you post a question on the
-Tutorials forum (https://sourceforge.net/forum/forum.php?forum_id=647484)
+The FAQ list is under (constant) development. If you post a question on
+[GitHub Issues](https://github.com/synesissoftware/Pantheios/issues)
 it will be used to create one.
 
 FAQs:
@@ -583,4 +578,6 @@ A19:
   that was not compiled with -Zc:wchar_t- will see another, uncustomised,
   version, otherwise you'll have the same linking problem, but in reverse.
 
-=============================== End of file ================================
+
+
+<!-- ########################### end of file ########################### -->
