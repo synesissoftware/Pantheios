@@ -4,10 +4,13 @@ ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
-MakeCmd=${SIS_CMAKE_COMMAND:-make}
+[[ -n "$MSYSTEM" ]] && DefaultMakeCmd=mingw32-make.exe || DefaultMakeCmd=make
+MakeCmd=${SIS_CMAKE_MAKE_COMMAND:-${SIS_CMAKE_COMMAND:-$DefaultMakeCmd}}
 
 ListOnly=0
 RunMake=1
+UnitOnly=0
+ComponentOnly=0
 Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
 
 
@@ -25,6 +28,14 @@ while [[ $# -gt 0 ]]; do
 
       RunMake=0
       ;;
+    --unit-only)
+
+      UnitOnly=1
+      ;;
+    --component-only)
+
+      ComponentOnly=1
+      ;;
     --verbosity)
 
       shift
@@ -34,7 +45,7 @@ while [[ $# -gt 0 ]]; do
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Runs all (matching) component-test and unit-test programs
+Runs all (matching) unit-test and/or component-test programs
 
 $ScriptPath [ ... flags/options ... ]
 
@@ -49,6 +60,12 @@ Flags/options:
     -M
     --no-make
         does not execute CMake and make before running tests
+
+    --unit-only
+        runs only unit-test programs (test.unit.* / test_unit*)
+
+    --component-only
+        runs only component-test programs (test.component.* / test_component*)
 
     --verbosity <verbosity>
         specifies an explicit verbosity for the unit-test(s)
@@ -74,17 +91,35 @@ EOF
   shift
 done
 
+if [ $UnitOnly -ne 0 ] && [ $ComponentOnly -ne 0 ]; then
+
+  >&2 echo "$ScriptPath: --unit-only and --component-only are mutually exclusive"
+
+  exit 1
+fi
+
 
 # ##########################################################
 # main()
 
 status=0
 
+if [ $UnitOnly -ne 0 ]; then
+
+  TestKindDescription='unit test'
+elif [ $ComponentOnly -ne 0 ]; then
+
+  TestKindDescription='component test'
+else
+
+  TestKindDescription='component and unit test'
+fi
+
 if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
 
-    echo "Executing build (via command \`$MakeCmd\`) and then running all component and unit test programs"
+    echo "Executing build (via command \`$MakeCmd\`) and then running all ${TestKindDescription} programs"
 
     mkdir -p $CMakeDir || exit 1
 
@@ -100,6 +135,8 @@ else
   if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ] || [ ! -d "$CMakeDir/CMakeFiles" ]; then
 
     >&2 echo "$ScriptPath: cannot run in '--no-make' mode without a previous successful build step"
+
+    exit 1
   fi
 fi
 
@@ -107,13 +144,24 @@ if [ $status -eq 0 ]; then
 
   if [ $ListOnly -ne 0 ]; then
 
-    echo "Listing all component and unit test programs"
+    echo "Listing all ${TestKindDescription} programs"
   else
 
-    echo "Running all component and unit test programs"
+    echo "Running all ${TestKindDescription} programs"
   fi
 
-  for f in $(find $CMakeDir -type f '(' -name 'test_unit*' -o -name 'test.unit.*' -o -name 'test_component*' -o -name 'test.component.*' ')' -exec test -x {} \; -print)
+  if [ $UnitOnly -ne 0 ]; then
+
+    find_name_expr=( \( -name 'test_unit*' -o -name 'test.unit.*' \) )
+  elif [ $ComponentOnly -ne 0 ]; then
+
+    find_name_expr=( \( -name 'test_component*' -o -name 'test.component.*' \) )
+  else
+
+    find_name_expr=( \( -name 'test_unit*' -o -name 'test.unit.*' -o -name 'test_component*' -o -name 'test.component.*' \) )
+  fi
+
+  for f in $(find "$CMakeDir" -type f "${find_name_expr[@]}" -exec test -x {} \; -print | sort)
   do
 
     if [ $ListOnly -ne 0 ]; then
@@ -148,4 +196,3 @@ exit $status
 
 
 # ############################## end of file ############################# #
-
