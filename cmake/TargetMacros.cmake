@@ -53,9 +53,19 @@ endmacro(target_link_Pantheios_util)
 macro(target_link_STLSoft target_name)
 
 	target_link_libraries(${target_name}
-		PRIVATE
+		PUBLIC
 			$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 	)
+
+		if(DEFINED STLSOFT_INCLUDE_DIR)
+
+			get_filename_component(STLSOFT_INCLUDE_DIR "${STLSOFT_INCLUDE_DIR}" ABSOLUTE)
+
+			target_include_directories(${target_name}
+				PUBLIC
+					${STLSOFT_INCLUDE_DIR}
+			)
+		endif()
 endmacro(target_link_STLSoft)
 
 macro(target_link_shwild target_name)
