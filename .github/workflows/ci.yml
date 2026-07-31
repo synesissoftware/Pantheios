@@ -214,14 +214,16 @@ jobs:
           find_package(Pantheios REQUIRED)
           add_executable(consumer consumer.cpp)
           target_link_libraries(consumer PRIVATE
+            Pantheios::Pantheios.bec.fprintf
+            Pantheios::Pantheios.be.fprintf
             Pantheios::Pantheios.core
             Pantheios::Pantheios.fe.simple
-            Pantheios::Pantheios.be.fprintf
+            Pantheios::Pantheios.util
           )
           EOF
           cat > "$CONSUMER/consumer.cpp" <<'EOF'
           #include <pantheios/pantheios.hpp>
-          const char PANTHEIOS_FE_PROCESS_IDENTITY[] = "install_smoke_consumer";
+          PANTHEIOS_EXTERN const char PANTHEIOS_FE_PROCESS_IDENTITY[] = "install_smoke_consumer";
           int main() { return 0; }
           EOF
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
