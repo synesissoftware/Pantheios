@@ -140,7 +140,7 @@ $ unzip Pantheios-1.0.1-rc1.zip
 $ unzip STLSoft-1.11.1-rc4
 ```
 
-3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft.1-alpha25`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11.1-rc4`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
 
 4. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make
 

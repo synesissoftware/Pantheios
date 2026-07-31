@@ -3,6 +3,7 @@
 
 | Date           | News Item                                                                        |
 | -------------- | -------------------------------------------------------------------------------- |
+| 2nd Aug 2026   | [Pantheios 1.0.1 rc1 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc1) |
 | 18th Nov 2024  | Pantheios 1.0.1 beta 222 released                                                |
 | 24th Oct 2024  | Pantheios 1.0.1 beta 221 released                                                |
 | 16th Jul 2024  | Pantheios 1.0.1 beta 220 released                                                |

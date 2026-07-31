@@ -1,6 +1,18 @@
 # **Pantheios** Changes <!-- omit in toc -->
 
 
+## 1.0.1 rc1 - 2nd August 2026
+
+* modular GitHub Actions CI via **`.github/workflows/ci.yml`** and **`ci-cell.yml`** (Linux **Clang**/**GCC**, macOS **Clang**/**GCC**, Windows **cl**/**MinGW**; install-smoke consumer);
+* documentation modernisation: **CHANGES.md** (from **CHANGES.txt**), removal of **HISTORY.md**, and updates to **README.md**, **FAQ.md**, **INSTALL.md**, **TODO.md**, **KNOWN_ISSUES.md**, **AUTHORS.md**, and **HOW_YOU_CAN_HELP.md**;
+* new stock back-end **bec.AnsiConsole** / **be.AnsiConsole** (bel/ber, colouring flags, argument parsing, unit and scratch tests);
+* **CMake** enhancements: **Threads** / `PANTHEIOS_FORCE_MT`, `BUILD_TESTING`, optional **b64** via `NO_B64` / **`--no-b64`**, CMP0177, lowercase export package (**`pantheios-config.cmake`**), improved **STLSoft** include handling;
+* helper scripts: **run_all_examples.sh**; **run_all_unit_tests.sh** gains **`--unit-only`** / **`--component-only`**;
+* back-end argument parsing: stock/custom boolean matches accumulate correctly; stock recognition of **`showThreadId`** / **`showDateTime`**; **test.unit.util.parse_args** and expanded **bec.*.parseArgs** unit coverage;
+* test layout: **test.unit.be.WindowsSyslog** renamed to **test.unit.bec.WindowsSyslog**; added unit tests for **bec.speech**, **bec.syslog**, **bec.WindowsConsole**, and **bec.AnsiConsole**; **test.unit.bec.COMErrorObject** skipped on **MinGW** pending **xTests** multibyte equality fix;
+* tooling and packaging: **`.gitattributes`**, **`.vimrc`**, **`.vscode/settings.json`**, **`.sis/script_info_lines.txt`**; copyright years through 2026;
+
+
 ## 1.0.1 beta 222 - 18th November 2024
 
 * full CMake support for optional dependencies (**b64** and **shwild**; **ACE** not yet done);
@@ -16,7 +28,7 @@
 ## 1.0.1 beta 221 - 24th October 2024
 
 * Major CMake configuration enhancements;
-* Now optionally dependent on **b64** library (for `pantheios::b64' inserter class);
+* Now optionally dependent on **b64** library (for `pantheios::b64` inserter class);
 * Removed large number of warning suppressions;
 * Defect fixes;
 * MinGW compatibility;
@@ -37,7 +49,7 @@
 ## 1.0.1 beta 219 - 5th July 2020
 
 * added ::pantheios_char_t with all appropriate changes in library;
-* added support for PANTHEIOS_NO_B64 preprocessor symbol, which causes build and use of application layer inserters to be done without the b64 library (and the pantheios::b64 inserter);
+* added support for `PANTHEIOS_NO_B64` preprocessor symbol, which causes build and use of application layer inserters to be done without the b64 library (and the pantheios::b64 inserter);
 * added support (including implicit-linking support) for Visual C++ 15.x and 16.x;
 * forward-compatibility support for STLSoft 1.10 and 1.11;
 * substantial reworking and fixes to makefiles;
