@@ -6,10 +6,13 @@ add_subdirectory(test.unit.be.N.filtering)
 add_subdirectory(test.unit.be.fail)
 add_subdirectory(test.unit.be.lrsplit)
 add_subdirectory(test.unit.bec.AnsiConsole)
-if(WIN32)
+# Skipped on MinGW until xTests string-equality helpers honour post-include
+# c_str_data_a shims under GCC two-phase lookup (see TODO.md in Pantheios
+# and xTests).
+if(WIN32 AND NOT MINGW)
 
 	add_subdirectory(test.unit.bec.COMErrorObject)
-endif(WIN32)
+endif()
 add_subdirectory(test.unit.bec.fail)
 add_subdirectory(test.unit.bec.file)
 add_subdirectory(test.unit.bec.fprintf)
