@@ -1,7 +1,4 @@
-pantheios - News <!-- omit in toc -->
-================
-
-Updated:    18th November 2024
+# Pantheios - News <!-- omit in toc -->
 
 
 | Date           | News Item                                                                        |
