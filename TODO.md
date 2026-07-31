@@ -3,6 +3,18 @@
 
 ## Functional improvements
 
+### Misc (esp. new transports)
+
+* [ ] **gRPC** back-end;
+* [ ] **Kafka** back-end;
+* [ ] **libev** back-end;
+* [ ] **NATS** back-end;
+* [ ] **NNG** (Nanomsq Next Generation) back-end;
+* [ ] **zeromq** (aka **0MQ) back-end;
+
+* [ ] JSON inserter;
+
+
 
 ### CI / tooling
 

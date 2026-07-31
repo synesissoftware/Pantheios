@@ -1,6 +1,11 @@
 # **Pantheios** Changes <!-- omit in toc -->
 
 
+## 1.1.0 alpha 1 - 9th August 2026
+
+* added **be.zmq**, a backend that uses **zeromq** (aka **0MQ**);
+
+
 ## 1.0.1 rc1 - 2nd August 2026
 
 * modular GitHub Actions CI via **`.github/workflows/ci.yml`** and **`ci-cell.yml`** (Linux **Clang**/**GCC**, macOS **Clang**/**GCC**, Windows **cl**/**MinGW**; install-smoke consumer);

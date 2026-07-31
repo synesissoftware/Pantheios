@@ -147,6 +147,7 @@ endif(PANTHEIOS_USE_WIDE_STRINGS)
 # optional:
 # - b64;
 # - shwild - required for testing;
+# - zeromq (aka 0MQ);
 #
 # - Threads;
 
