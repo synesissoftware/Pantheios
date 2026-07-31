@@ -1,23 +1,15 @@
-pantheios - Known Issues <!-- omit in toc -->
-========================
-
-Updated:    5th July 2020
+# Pantheios - Known Issues <!-- omit in toc -->
 
 
+## Pantheios 1.0.1 rc1 Known Issues
 
-Pantheios 1.0.1 Beta 219 Known Issues:
---------------------------------------
-
- * still a few build artefacts not cleaned up for some makefiles
- * not all VC++ 10 projects are generated and included
- * distribution contains makefiles and project files for obsolete compilers (such as VC++ 5, Comeau, ...)
+* still a few build artefacts not cleaned up for some makefiles;
+* distribution contains makefiles and project files for obsolete compilers (such as VC++ 5, Comeau, …);
 
 
+## Pantheios 1.0.1 rc1 Suspected Issues
 
-Pantheios 1.0.1 Beta 219 Suspected Issues:
-------------------------------------------
-
- <none>
+* \<none>
 
 
-=============================== End of file ================================
+<!-- ########################### end of file ########################### -->
