@@ -4,11 +4,12 @@
  * Purpose:     String inserter for host identity.
  *
  * Created:     14th March 2008
- * Updated:     22nd September 2015
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HOSTID
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HOSTID
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_MINOR     3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_EDIT      13
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_REVISION  5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HOSTID_EDIT      18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -76,8 +79,9 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -85,8 +89,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -110,8 +115,9 @@ struct hostId_t;
  */
 extern struct hostId_t const* hostId;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -122,8 +128,9 @@ namespace inserters
 {
 # endif /* !PANTHEIOS_NO_NAMESPACE) && !STLSOFT_COMPILER_IS_BORLAND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes and String Access Shims
+ * inserter classes and string access shims
  */
 
 class host_id_t
@@ -138,7 +145,7 @@ public:
 
 public:
     host_id_t();
-    ~host_id_t() stlsoft_throw_0();
+    ~host_id_t() STLSOFT_NOEXCEPT;
 private:
 #if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
     !defined(STLSOFT_COMPILER_IS_CLANG) && \
@@ -150,23 +157,23 @@ private:
 
 public:
     operator size_t () const;
-    operator pan_char_t const* () const;
+    operator pantheios_char_t const* () const;
 
 private:
     void construct_();
     void construct_() const;
 
 private:
-    pan_char_t const*   m_value;
-    size_t              m_len;
+    pantheios_char_t const* m_value;
+    size_t                  m_len;
 };
 
 # if !defined(PANTHEIOS_NO_NAMESPACE) && \
      !defined(STLSOFT_COMPILER_IS_BORLAND)
 } /* namespace inserters */
-#  define PANTHEIOS_INSERTERS_DECLARE_host_id_t     ::pantheios::inserters::host_id_t
+#  define PANTHEIOS_INSERTERS_DECLARE_host_id_t             ::pantheios::inserters::host_id_t
 # else /* ? !PANTHEIOS_NO_NAMESPACE && !STLSOFT_COMPILER_IS_BORLAND */
-#  define PANTHEIOS_INSERTERS_DECLARE_host_id_t     host_id_t
+#  define PANTHEIOS_INSERTERS_DECLARE_host_id_t             host_id_t
 # endif /* !PANTHEIOS_NO_NAMESPACE && !STLSOFT_COMPILER_IS_BORLAND */
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -245,8 +252,9 @@ c_str_ptr(PANTHEIOS_INSERTERS_DECLARE_host_id_t::id_type const*)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -273,8 +281,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -286,3 +295,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HOSTID */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

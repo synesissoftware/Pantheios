@@ -4,11 +4,11 @@
  * Purpose:     Implementation file for Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     8th August 2012
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -57,8 +57,9 @@
 # include <unistd.h>
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -66,8 +67,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Core functions
+ * core functions
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -100,8 +102,9 @@ PANTHEIOS_CALL(void) pantheios_exitProcess(int code)
 } /* namespace core */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -109,3 +112,4 @@ PANTHEIOS_CALL(void) pantheios_exitProcess(int code)
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

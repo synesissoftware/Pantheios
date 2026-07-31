@@ -5,11 +5,12 @@
  *              multibyte string statement.
  *
  * Created:     2nd September 2008
- * Updated:     22nd September 2015
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2M
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2M
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MINOR    3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     16
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_REVISION 4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -78,8 +81,9 @@
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -87,8 +91,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /** Class for inserting wide strings into Pantheios diagnostic logging
@@ -145,9 +150,9 @@ public: // Construction
         // allow it to compile.
 
 #ifndef PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES
-        int unused = 
+        int unused =
 #endif /* !PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES */
-            
+
             init_(::stlsoft::c_str_data_w(ws), ::stlsoft::c_str_len_w(ws));
 
 #ifndef PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES
@@ -155,7 +160,7 @@ public: // Construction
 #endif /* !PANTHEIOS_SAFE_ALLOW_SHIM_INTERMEDIATES */
     }
     /// Releases any resources allocated for the conversion
-    ~w2m() stlsoft_throw_0();
+    ~w2m() STLSOFT_NOEXCEPT;
 
 private:
 #if 1 && \
@@ -201,8 +206,9 @@ private: // Member Variables
     size_t          m_length;
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -224,7 +230,7 @@ c_str_data_a(
 }
 /** \overload c_str_data(w2m const&) */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     w2m const& r
 )
@@ -262,7 +268,7 @@ c_str_ptr_a(
 }
 /** \overload c_str_ptr(w2m const&) */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     w2m const& r
 )
@@ -296,8 +302,9 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -324,8 +331,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -337,3 +345,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2M */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

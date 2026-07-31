@@ -4,11 +4,12 @@
  * Purpose:     Implementation file for snprintf() utility functions.
  *
  * Created:     21st June 2005
- * Updated:     16th April 2009
+ * Updated:     4th July 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -40,7 +41,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files
+/* Pantheios header files
  *
  * NOTE: We do _not_ include pantheios/pantheios.hpp here, since we are
  *  not using any of the Application Layer.
@@ -61,9 +62,11 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <wchar.h>
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -75,7 +78,7 @@ namespace pantheios
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler / feature discrimination
+ * compiler / feature discrimination
  *
  * pantheios_util_vsnprintf_a_(d, n, f, a)
  * pantheios_util_vsnprintf_w_(d, n, f, a)
@@ -90,33 +93,41 @@ namespace pantheios
             (   defined(STLSOFT_COMPILER_IS_COMO) && \
                 defined(_MSC_VER)))) || \
     defined(STLSOFT_COMPILER_IS_MSVC)
+
 # ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
+
 #  define pantheios_util_vsnprintf_a_(d, n, f, a)      _vsnprintf_s((d), (n), _TRUNCATE, (f), (a))
 #  define pantheios_util_vsnprintf_w_(d, n, f, a)      _vsnwprintf_s((d), (n), _TRUNCATE, (f), (a))
 # else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
+
 #  define pantheios_util_vsnprintf_a_(d, n, f, a)      _vsnprintf((d), (n), (f), (a))
 #  define pantheios_util_vsnprintf_w_(d, n, f, a)      _vsnwprintf((d), (n), (f), (a))
 # endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 #else /* ? compiler */
-#  define pantheios_util_vsnprintf_a_(d, n, f, a)      vsnprintf((d), (n), (f), (a))
-#  define pantheios_util_vsnprintf_w_(d, n, f, a)      vsnwprintf((d), (n), (f), (a))
+
+# define pantheios_util_vsnprintf_a_(d, n, f, a)       vsnprintf((d), (n), (f), (a))
+# define pantheios_util_vsnprintf_w_(d, n, f, a)       vsnwprintf((d), (n), (f), (a))
 #endif /* compiler */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
+
 # define pantheios_util_vsnprintf_(d, n, f, a)         pantheios_util_vsnprintf_w_(d, n, f, a)
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
 # define pantheios_util_vsnprintf_(d, n, f, a)         pantheios_util_vsnprintf_a_(d, n, f, a)
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Private API
+ * private API
  */
 
-PANTHEIOS_CALL(int) pantheios_util_vsnprintf_a(
-    char*       dest
-,   size_t      cchDest
-,   char const* fmt
-,   va_list     args
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf_a(
+    char*           dest
+,   size_t          cchDest
+,   char const*     fmt
+,   va_list         args
 )
 {
     PANTHEIOS_COVER_MARK_ENTRY();
@@ -124,10 +135,27 @@ PANTHEIOS_CALL(int) pantheios_util_vsnprintf_a(
     return pantheios_util_vsnprintf_a_(dest, cchDest, fmt, args);
 }
 
-PANTHEIOS_CALL(int) pantheios_util_snprintf_a(
-    char*       dest
-,   size_t      cchDest
-,   const char* fmt
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf_w(
+    wchar_t*        dest
+,   size_t          cchDest
+,   wchar_t const*  fmt
+,   va_list         args
+)
+{
+    PANTHEIOS_COVER_MARK_ENTRY();
+
+    return pantheios_util_vsnprintf_w_(dest, cchDest, fmt, args);
+}
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+PANTHEIOS_CALL(int)
+pantheios_util_snprintf_a(
+    char*           dest
+,   size_t          cchDest
+,   char const*     fmt
 ,   ...
 )
 {
@@ -147,15 +175,44 @@ PANTHEIOS_CALL(int) pantheios_util_snprintf_a(
     return ret;
 }
 
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+PANTHEIOS_CALL(int)
+pantheios_util_snprintf_w(
+    wchar_t*        dest
+,   size_t          cchDest
+,   wchar_t const*  fmt
+,   ...
+)
+{
+    va_list args;
+    int     ret;
+
+    PANTHEIOS_COVER_MARK_ENTRY();
+
+    va_start(args, fmt);
+
+    ret = pantheios_util_vsnprintf_w(dest, cchDest, fmt, args);
+
+    va_end(args);
+
+    PANTHEIOS_COVER_MARK_ENTRY();
+
+    return ret;
+}
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
 
-PANTHEIOS_CALL(int) pantheios_util_vsnprintf(
-    pan_char_t*         dest
-,   size_t              cchDest
-,   pan_char_t const*   fmt
-,   va_list             args
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf(
+    pantheios_char_t*       dest
+,   size_t                  cchDest
+,   pantheios_char_t const* fmt
+,   va_list                 args
 )
 {
     PANTHEIOS_COVER_MARK_ENTRY();
@@ -163,10 +220,11 @@ PANTHEIOS_CALL(int) pantheios_util_vsnprintf(
     return pantheios_util_vsnprintf_(dest, cchDest, fmt, args);
 }
 
-PANTHEIOS_CALL(int) pantheios_util_snprintf(
-    pan_char_t*         dest
-,   size_t              cchDest
-,   const pan_char_t*   fmt
+PANTHEIOS_CALL(int)
+pantheios_util_snprintf(
+    pantheios_char_t*       dest
+,   size_t                  cchDest
+,   pantheios_char_t const* fmt
 ,   ...
 )
 {
@@ -186,8 +244,9 @@ PANTHEIOS_CALL(int) pantheios_util_snprintf(
     return ret;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -195,3 +254,4 @@ PANTHEIOS_CALL(int) pantheios_util_snprintf(
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

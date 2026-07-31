@@ -5,11 +5,12 @@
  *              be used to generate levels pseudo-constants.
  *
  * Created:     22nd July 2006
- * Updated:     23rd July 2010
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,19 +50,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SEVERITY_HPP_LEVELS
 #define PANTHEIOS_INCL_PANTHEIOS_SEVERITY_HPP_LEVELS
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_EDIT       23
+# define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_EDIT       25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -71,8 +74,9 @@
 # include <pantheios/quality/contract.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -80,8 +84,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * types
  */
 
 /** Class that acts as an integer value - indicating a severity
@@ -145,8 +150,9 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -158,3 +164,4 @@ private:
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_SEVERITY_HPP_LEVELS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

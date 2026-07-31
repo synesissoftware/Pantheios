@@ -1,31 +1,23 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.getversion/test.unit.getversion.c
+ * File:    test/unit/test.unit.getversion/test.unit.getversion.c
  *
- * Purpose:     Implementation file for the test.unit.getversion project.
+ * Purpose: Implementation file for the test.unit.getversion project.
  *
- * Created:     28th August 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 28th August 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <pantheios/pantheios.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* xTests header files */
@@ -37,8 +29,9 @@
 /* Standard C header files */
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_signature(void);
@@ -48,8 +41,9 @@ static void test_major(void);
 static void test_minor(void);
 static void test_revision(void);
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main()
  */
 
 int main(int argc, char **argv)
@@ -59,7 +53,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.getversion", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.getversion", verbosity))
     {
         XTESTS_RUN_CASE(test_signature);
         XTESTS_RUN_CASE(test_call);
@@ -76,50 +70,53 @@ int main(int argc, char **argv)
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
-static void test_signature()
+static void test_signature(void)
 {
     pan_uint32_t (PANTHEIOS_CALLCONV *pfn)(void) = pantheios_getVersion;
 
     XTESTS_TEST(((pan_uint32_t (PANTHEIOS_CALLCONV *)(void))0) != pfn);
 }
 
-static void test_call()
+static void test_call(void)
 {
     pantheios_getVersion();
 
     XTESTS_TEST_PASSED();
 }
 
-static void test_version()
+static void test_version(void)
 {
     pan_uint32_t const ver = pantheios_getVersion();
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER, ver);
 }
 
-static void test_major()
+static void test_major(void)
 {
     pan_uint32_t const verMajor = (pantheios_getVersion() & 0xff000000) >> 24;
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER_MAJOR, verMajor);
 }
 
-static void test_minor()
+static void test_minor(void)
 {
     pan_uint32_t const verMinor = (pantheios_getVersion() & 0x00ff0000) >> 16;
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER_MINOR, verMinor);
 }
 
-static void test_revision()
+static void test_revision(void)
 {
     pan_uint32_t const verRevision = (pantheios_getVersion() & 0x0000ff00) >> 8;
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_VER_REVISION, verRevision);
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

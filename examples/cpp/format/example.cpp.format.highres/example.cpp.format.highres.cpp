@@ -1,22 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/format/example.cpp.format.highres/example.cpp.format.highres.cpp
+ * File:    examples/cpp/format/example.cpp.format.highres/example.cpp.format.highres.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - high-resolution date/time fields in statements
+ *            - high-resolution date/time fields in statements
  *
- * Created:     12th November 2007
- * Updated:     21st September 2015
+ * Created: 12th November 2007
+ * Updated: 28th October 2024
  *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,7 +25,10 @@
 #include <string>                             // for std::string
 #include <stdlib.h>                           // for exit codes
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * application-defined callbacks
+ */
 
 PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(int /* backEndId */, pan_be_fprintf_init_t* init) /* throw() */
 {
@@ -44,40 +38,49 @@ PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(int /* backEndId */, pan_be
     init->flags |= PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.format.highres");
+PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.format.highres");
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+/* /////////////////////////////////////////////////////////////////////////
+ * character encoding
+ */
 
-/* ////////////////////////////////////////////////////////////////////// */
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
-int main()
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int /* argc */, char* /* argv */[])
 {
   try
   {
-    { for(size_t i = 0; i != 10; ++i)
+    { for (size_t i = 0; i != 10; ++i)
     {
-      { for(size_t j = 0; j != 0x7ffffff; ++j) {} }
+      { for (size_t j = 0; j != 0x7ffffff; ++j) {} }
 
       pantheios::log_NOTICE(PSTR("log ("), pantheios::integer(i), PSTR(")"));
     }}
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }
@@ -85,4 +88,6 @@ int main()
   return EXIT_FAILURE;
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

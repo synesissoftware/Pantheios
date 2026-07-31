@@ -1,22 +1,3 @@
-/* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.core.pantheios_logputs/implicit_link.cpp
- *
- * Purpose:     Implicit link file for the test.component.core.pantheios_logputs project.
- *
- * Created:     19th November 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
- *
- * ////////////////////////////////////////////////////////////////////// */
-
 
 /* Pantheios header files */
 #include <pantheios/implicit_link/core.h>
@@ -32,4 +13,6 @@
 # include <unixem/implicit_link.h>
 #endif /* PLATFORMSTL_OS_IS_UNIX && _WIN32 */
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

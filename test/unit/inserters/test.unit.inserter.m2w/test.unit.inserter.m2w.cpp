@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/inserters/test.unit.inserter.m2w/test.unit.inserter.m2w.cpp
+ * File:    test/unit/inserters/test.unit.inserter.m2w/test.unit.inserter.m2w.cpp
  *
- * Purpose:     Implementation file for the test.unit.inserter.m2w project.
+ * Purpose: Implementation file for the test.unit.inserter.m2w project.
  *
- * Created:     22nd November 2010
- * Updated:     9th December 2013
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2013, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 22nd November 2010
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,8 +28,9 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -61,18 +53,18 @@ static void test_1_12();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-extern "C" PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = L"test.unit.inserter.m2w";
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = L"test.unit.inserter.m2w";
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.inserter.m2w", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserter.m2w", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -99,7 +91,7 @@ int main(int argc, char** argv)
 
 namespace
 {
-    char const* strings[] = 
+    char const* strings[] =
     {
             ""
         ,   "a"
@@ -112,14 +104,11 @@ namespace
         ,   "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"
     };
 
-    inline size_t get_min_max(size_t minLen, size_t maxLen)
-    {
-        return pantheios::pan_slice_t::get_lazy_length(minLen, maxLen);
-    }
+
 
 static void test_1_01()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
     {
         XTESTS_TEST_WIDE_STRING_EQUAL(stlsoft::m2w(strings[i]), pantheios::m2w(strings[i]));
     }}
@@ -171,4 +160,5 @@ static void test_1_12()
 
 } /* anonymous namespace */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
+

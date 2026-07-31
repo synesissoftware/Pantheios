@@ -4,11 +4,12 @@
  * Purpose:     Implementation for the WindowsDebugger back-end
  *
  * Created:     18th July 2005
- * Updated:     9th December 2013
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +40,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/winlean.h>
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
@@ -50,25 +51,27 @@
 #include <pantheios/util/core/apidefs.hpp>
 #include <pantheios/util/backends/context.hpp>
 
-/* STLSoft Header files */
+/* STLSoft header files */
 #include <pantheios/util/memory/auto_buffer_selector.hpp>
 #include <winstl/memory/processheap_allocator.hpp>
 
-/* Standard C Header files */
+/* Standard C header files */
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String encoding compatibility
+ * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_OutputDebugString_         ::OutputDebugStringW
+# define pan_OutputDebugString_                             ::OutputDebugStringW
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_OutputDebugString_         ::OutputDebugStringA
+# define pan_OutputDebugString_                             ::OutputDebugStringA
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 namespace
@@ -76,24 +79,22 @@ namespace
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_char_t;
-    using ::pantheios::pan_uint16_t;
-    using ::pantheios::pan_uint32_t;
     using ::pantheios::pan_slice_t;
     using ::pantheios::util::backends::Context;
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
     typedef PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
-        pan_char_t
+        PAN_CHAR_T
     ,   2048
-    ,   winstl_ns_qual(processheap_allocator)<pan_char_t>
+    ,   winstl_ns_qual(processheap_allocator)<PAN_CHAR_T>
     >::type                                     buffer_t;
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Structures
+ * types
  */
 
 namespace
@@ -122,7 +123,7 @@ namespace
     /// @{
     public:
         WindowsDebugger_Context(
-            pan_char_t const*                       processIdentity
+            PAN_CHAR_T const*                       processIdentity
         ,   int                                     backEndId
         ,   pan_be_WindowsDebugger_init_t const*    init
         );
@@ -141,13 +142,14 @@ namespace
         virtual int rawLogEntry(
             int                 severity4
         ,   int                 severityX
-        ,   pan_char_t const*   entry
+        ,   PAN_CHAR_T const*   entry
         ,   size_t              cchEntry
         );
     /// @}
     };
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -162,7 +164,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getDefaultAppInit(pan_be_Windo
 }
 
 static int pantheios_be_WindowsDebugger_init_(
-    pan_char_t const*                       processIdentity
+    PAN_CHAR_T const*                       processIdentity
 ,   int                                     backEndId
 ,   pan_be_WindowsDebugger_init_t const*    init
 ,   void*                                   reserved
@@ -178,7 +180,7 @@ static int pantheios_be_WindowsDebugger_init_(
 
     pan_be_WindowsDebugger_init_t init_;
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_WindowsDebugger_getDefaultAppInit(&init_);
 
@@ -191,11 +193,11 @@ static int pantheios_be_WindowsDebugger_init_(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001b8)
+    if (init->version < 0x010001b8)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
@@ -205,7 +207,7 @@ static int pantheios_be_WindowsDebugger_init_(
     WindowsDebugger_Context* ctxt = new WindowsDebugger_Context(processIdentity, backEndId, init);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if( NULL == ctxt ||
+    if (NULL == ctxt ||
         NULL == ctxt->getProcessIdentity())
     {
         delete ctxt;
@@ -220,7 +222,7 @@ static int pantheios_be_WindowsDebugger_init_(
 }
 
 PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_init(
-    pan_char_t const*                       processIdentity
+    PAN_CHAR_T const*                       processIdentity
 ,   int                                     backEndId
 ,   pan_be_WindowsDebugger_init_t const*    init
 ,   void*                                   reserved
@@ -243,7 +245,7 @@ static int pantheios_be_WindowsDebugger_logEntry_(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -260,19 +262,20 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
     return pantheios_call_be_logEntry(pantheios_be_WindowsDebugger_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.WindowsDebugger");
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsDebugger_Context
  */
 
 WindowsDebugger_Context::WindowsDebugger_Context(
-    pan_char_t const*                       processIdentity
+    PAN_CHAR_T const*                       processIdentity
 ,   int                                     backEndId
 ,   pan_be_WindowsDebugger_init_t const*    init
 )
@@ -290,7 +293,7 @@ int WindowsDebugger_Context::rawLogEntry(int /* severity4 */, int /* severityX *
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     // When exception support is not enabled, failure to allocate will yield an empty instance
-    if(buff.empty())
+    if (buff.empty())
     {
         return 0;
     }
@@ -317,7 +320,7 @@ int WindowsDebugger_Context::rawLogEntry(int /* severity4 */, int /* severityX *
 int WindowsDebugger_Context::rawLogEntry(
     int                 /* severity4 */
 ,   int                 /* severityX */
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -331,3 +334,4 @@ int WindowsDebugger_Context::rawLogEntry(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

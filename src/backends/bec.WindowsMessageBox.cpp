@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.WindowsMessageBox.cpp
+ * File:    src/backends/bec.WindowsMessageBox.cpp
  *
- * Purpose:     Implementation for the WindowsMessageBox back-end
+ * Purpose: Implementation for the WindowsMessageBox back-end
  *
- * Created:     10th March 2008
- * Updated:     21st September 2015
+ * Created: 10th March 2008
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,8 +58,9 @@
 #include <string.h>
 #include <windows.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler features
+ * compiler features
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
@@ -68,31 +70,32 @@
 # define    _PANTHEIOS_NO_PLACEMENT_DELETE
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String encoding compatibility
+ * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_MessageBox_                ::MessageBoxW
+# define pan_MessageBox_                                    ::MessageBoxW
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_MessageBox_                ::MessageBoxA
+# define pan_MessageBox_                                    ::MessageBoxA
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 namespace
 {
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_char_t;
-
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Structures
+ * types
  */
 
 class WindowsMessageBox_Context
@@ -103,16 +106,16 @@ public:
     {}
 
 public:
-    void* operator new(size_t cb, pan_char_t const* s);
+    void* operator new(size_t cb, PAN_CHAR_T const* s);
 #if !defined(_PANTHEIOS_NO_PLACEMENT_DELETE)
-    void operator delete(void* pv, pan_char_t const*);
+    void operator delete(void* pv, PAN_CHAR_T const*);
 #endif /* !_PANTHEIOS_NO_PLACEMENT_DELETE */
     void operator delete(void* pv);
 
 public:
     int ReportEvent(
         int                 severity
-    ,   pan_char_t const*   entry
+    ,   PAN_CHAR_T const*   entry
     ,   size_t              cchEntry
     );
 
@@ -123,19 +126,20 @@ private:
         size_t  len;
         double  dummy;
     } u;
-    pan_char_t  m_processIdentity[1];
+    PAN_CHAR_T  m_processIdentity[1];
 
 private:
     WindowsMessageBox_Context(WindowsMessageBox_Context const&);
     WindowsMessageBox_Context &operator =(WindowsMessageBox_Context const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
 
 static int pantheios_be_WindowsMessageBox_init_(
-    pan_char_t const*   processIdentity
+    PAN_CHAR_T const*   processIdentity
 ,   int                 id
 ,   void const*         unused
 ,   void*               reserved
@@ -150,7 +154,7 @@ static int pantheios_be_WindowsMessageBox_init_(
     WindowsMessageBox_Context* ctxt = new(processIdentity) WindowsMessageBox_Context(id);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(NULL == ctxt)
+    if (NULL == ctxt)
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -162,7 +166,7 @@ static int pantheios_be_WindowsMessageBox_init_(
 }
 
 PANTHEIOS_CALL(int) pantheios_be_WindowsMessageBox_init(
-    pan_char_t const*   processIdentity
+    PAN_CHAR_T const*   processIdentity
 ,   int                 id
 ,   void*               unused
 ,   void*               reserved
@@ -185,7 +189,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsMessageBox_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -196,17 +200,18 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsMessageBox_logEntry(
     return elc->ReportEvent(severity, entry, cchEntry);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsMessageBox_Context
  */
 
-void* WindowsMessageBox_Context::operator new(size_t /* cb */, pan_char_t const* s)
+void* WindowsMessageBox_Context::operator new(size_t /* cb */, PAN_CHAR_T const* s)
 {
     const size_t    len         =   static_cast<size_t>(::lstrlen(s));
-    const size_t    cbActual    =   sizeof(WindowsMessageBox_Context) + (1 + len) * sizeof(pan_char_t);
+    const size_t    cbActual    =   sizeof(WindowsMessageBox_Context) + (1 + len) * sizeof(PAN_CHAR_T);
     void*           pv          =   ::operator new(cbActual);
 
-    if(NULL != pv)
+    if (NULL != pv)
     {
         WindowsMessageBox_Context* ctxt = static_cast<WindowsMessageBox_Context*>(pv);
 
@@ -218,7 +223,7 @@ void* WindowsMessageBox_Context::operator new(size_t /* cb */, pan_char_t const*
 }
 
 #if !defined(_PANTHEIOS_NO_PLACEMENT_DELETE)
-void WindowsMessageBox_Context::operator delete(void*, pan_char_t const*)
+void WindowsMessageBox_Context::operator delete(void*, PAN_CHAR_T const*)
 {}
 #endif /* !_PANTHEIOS_NO_PLACEMENT_DELETE */
 
@@ -227,13 +232,14 @@ void WindowsMessageBox_Context::operator delete(void* pv)
     ::operator delete(pv);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * WindowsMessageBox_Context
  */
 
 int WindowsMessageBox_Context::ReportEvent(
     int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -242,7 +248,7 @@ int WindowsMessageBox_Context::ReportEvent(
 
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 == (severity & 0x08), "be.WindowsMessageBox can only be used with the stock severity levels in the range [0, 8). Levels in the range [8, 16) are not allowed");
 
-    switch(severity & 0x0f)
+    switch (severity & 0x0f)
     {
         case    PANTHEIOS_SEV_EMERGENCY:
         case    PANTHEIOS_SEV_ALERT:
@@ -268,4 +274,6 @@ int WindowsMessageBox_Context::ReportEvent(
     return static_cast<int>(cchEntry);
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

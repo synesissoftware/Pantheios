@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.levels.values/test.unit.levels.values.c
+ * File:    test/unit/test.unit.levels.values/test.unit.levels.values.c
  *
- * Purpose:     Implementation file for the test.unit.levels.values project.
+ * Purpose: Implementation file for the test.unit.levels.values project.
  *
- * Created:     29th November 2007
- * Updated:     7th December 2010
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2007-2010, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 29th November 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -52,7 +43,7 @@ static const int s_severityLevelValues[] =
     ,   7
 };
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -61,14 +52,14 @@ int main(int argc, char** argv)
 
     STLSOFT_STATIC_ASSERT(STLSOFT_NUM_ELEMENTS(s_severityLevels) == STLSOFT_NUM_ELEMENTS(s_severityLevelValues));
 
-    if(XTESTS_START_RUNNER("test.unit.levels.values", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.levels.values", verbosity))
     {
         /* Test-1 */
-        if(XTESTS_CASE_BEGIN("Test-1", "Severity-level enumerator values"))
+        if (XTESTS_CASE_BEGIN("Test-1", "Severity-level enumerator values"))
         {
             size_t  i;
 
-            for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+            for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
             {
                 XTESTS_TEST_INTEGER_EQUAL(s_severityLevels[i], s_severityLevelValues[i]);
             }
@@ -77,11 +68,11 @@ int main(int argc, char** argv)
         }
 
         /* Test-2 */
-        if(XTESTS_CASE_BEGIN("Test-2", "Severity-level enumerator values"))
+        if (XTESTS_CASE_BEGIN("Test-2", "Severity-level enumerator values"))
         {
             size_t  i;
 
-            for(i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+            for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
             {
                 XTESTS_TEST_INTEGER_EQUAL(s_severityLevels[i], s_severityLevelValues[i]);
             }
@@ -97,4 +88,5 @@ int main(int argc, char** argv)
     return retCode;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose: Implicitly links in the Pantheios Core library
  *
  * Created: 18th July 2005
- * Updated: 10th August 2009
+ * Updated: 16th December 2023
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_CORE
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_CORE
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_CORE_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_CORE_MINOR     1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_CORE_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_CORE_EDIT      6
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_CORE_EDIT      8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -72,8 +75,9 @@
 # include <pantheios/implicit_link/util.h> /* Core implies Util */
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_UTIL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Implicit-linking directives
+ * implicit-linking directives
  */
 
 #ifdef PANTHEIOS_IMPLICIT_LINK_SUPPORT
@@ -105,3 +109,4 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_CORE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

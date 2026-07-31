@@ -1,30 +1,29 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/inserters/example.cpp.inserter.xi/example.cpp.inserter.xi.cpp
+ * File:    examples/cpp/inserters/example.cpp.inserter.xi/example.cpp.inserter.xi.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of Pantheios inserters for hex integral types
- *                - use of pantheios::logputs() in bail-out conditions
- *                - use of shorthand pan for namespace qualification
- *                - use of shorthand xi for hex integer inserter
+ *            - use of Pantheios inserters for hex integral types
+ *            - use of pantheios::logputs() in bail-out conditions
+ *            - use of shorthand pan for namespace qualification
+ *            - use of shorthand xi for hex integer inserter
  *
- * Created:     30th October 2010
- * Updated:     21st September 2015
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 30th October 2010
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * feature control
+ */
+
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS // Faster compilation
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* Pantheios header files */
 #include <pantheios/pan.hpp>                  // Pantheios C++ main header
@@ -41,15 +40,21 @@
 #include <stdlib.h>                         // for exit codes
 #include <limits.h>                         // SHRT_MIN, etc.
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.inserter.xi");
+PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.inserter.xi");
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 /* We define PANTHEIOS_OBSOLETE here, while still in beta, but it will be
  * defined properly, and removed from here, in release candidate phase.
@@ -58,9 +63,12 @@ PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_
 # define PANTHEIOS_OBSOLETE
 #endif /* !PANTHEIOS_OBSOLETE */
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int /* argc */, char* /* argv */[])
 {
   try
   {
@@ -127,15 +135,15 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }
@@ -143,4 +151,6 @@ int main()
   return EXIT_FAILURE;
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

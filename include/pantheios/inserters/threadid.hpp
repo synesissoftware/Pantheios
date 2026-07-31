@@ -4,11 +4,12 @@
  * Purpose:     String inserter for thread identity.
  *
  * Created:     16th October 2006
- * Updated:     22nd September 2015
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_EDIT        22
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_REVISION    5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_EDIT        26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -76,8 +79,9 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -85,8 +89,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -110,8 +115,9 @@ struct threadId_t;
  */
 extern struct threadId_t const* threadId;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes and String Access Shims
+ * inserter classes and string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -136,22 +142,22 @@ public:
 
 public:
     operator size_t () const;
-    operator pan_char_t const* () const;
+    operator pantheios_char_t const* () const;
 
 private:
     void construct_();
     void construct_() const;
 
 private:
-    pan_char_t  m_value[21];
-    size_t      m_len;
+    pantheios_char_t    m_value[21];
+    size_t              m_len;
 };
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace inserters */
-#  define PANTHEIOS_INSERTERS_DECLARE_thread_id_t   ::pantheios::inserters::thread_id_t
+#  define PANTHEIOS_INSERTERS_DECLARE_thread_id_t           ::pantheios::inserters::thread_id_t
 # else /* ? !PANTHEIOS_NO_NAMESPACE */
-#  define PANTHEIOS_INSERTERS_DECLARE_thread_id_t   thread_id_t
+#  define PANTHEIOS_INSERTERS_DECLARE_thread_id_t           thread_id_t
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -235,8 +241,9 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -262,8 +269,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -275,3 +283,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_THREADID */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

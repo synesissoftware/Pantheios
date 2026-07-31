@@ -4,11 +4,12 @@
  * Purpose:     Automatic initialisation of Pantheios Core API
  *
  * Created:     21st June 2005
- * Updated:     2nd August 2010
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -53,16 +54,18 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_INITIALISER
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_INITIALISER
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * types
  */
 
 /** Schwarz Counter initialiser for the Pantheios library
@@ -116,7 +119,7 @@ public:
         using namespace pantheios::core;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-        if(pantheios_init() < 0)
+        if (pantheios_init() < 0)
         {
             pantheios_exitProcess(1);
         }
@@ -142,16 +145,9 @@ private:
 /// @}
 };
 
-namespace
-{
-    /// The per-compilation unit instance of pantheios_initialiser, which
-    /// ensures that the Pantheios library is initialised prior to use.
-    static pantheios_initialiser    s_pantheios_initialiser;
-
-} /* anonymous namespace */
-
 /* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_HPP_INITIALISER */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

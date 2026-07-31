@@ -5,11 +5,12 @@
  *              inserter class.
  *
  * Created:     5th April 2014
- * Updated:     7th April 2014
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,19 +50,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_EDIT      2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_EDIT      4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -72,8 +75,9 @@
 # include <pantheios/inserters/windows/status_code.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -83,15 +87,17 @@ namespace pantheios
 namespace windows
 {
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Typedef for pantheios::windows::status_code inserter class. */
 typedef status_code sc;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 } /* namespace windows */
@@ -99,8 +105,9 @@ typedef status_code sc;
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -112,3 +119,4 @@ typedef status_code sc;
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     String inserter for booleans.
  *
  * Created:     3rd August 2008
- * Updated:     22nd September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BOOLEAN
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BOOLEAN
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_MINOR    3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_REVISION 5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_EDIT     21
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_REVISION 6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_EDIT     24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -73,8 +76,9 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -86,8 +90,9 @@ namespace pantheios
 # endif /* rpcndr.h */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * types
  */
 
 /** Class for inserting Boolean types into Pantheios diagnostic logging
@@ -136,19 +141,22 @@ private:
 /// \name Control
 /// @{
 public:
-    static void set_value_strings(pan_char_t const* falseName, pan_char_t const* trueName) /* throw(std::bad_alloc) */;
+    static void set_value_strings(
+        pantheios_char_t const* falseName
+    ,   pantheios_char_t const* trueName
+    ) /* throw(std::bad_alloc) */;
 /// @}
 
 /// \name Accessors
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const* data() const
+    pantheios_char_t const* data() const
     {
         return get_slice_(m_value)->ptr;
     }
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const* c_str() const
+    pantheios_char_t const* c_str() const
     {
         return get_slice_(m_value)->ptr;
     }
@@ -181,12 +189,14 @@ protected:
 /// @}
 };
 
-/* /////////////////////////////////////////////////////////////////////////
- * Implementation
- */
 
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * implementation
+ */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -206,7 +216,7 @@ PANTHEIOS_c_str_data_name_(
 }
 /** \overload c_str_data(boolean const&) */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(boolean const& b)
 {
     return b.data();
@@ -238,7 +248,7 @@ PANTHEIOS_c_str_ptr_name_(
 }
 /** \overload c_str_ptr(boolean const&) */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(boolean const& b)
 {
     return b.c_str();
@@ -268,8 +278,9 @@ c_str_ptr(boolean const& b)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -295,8 +306,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -308,3 +320,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BOOLEAN */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

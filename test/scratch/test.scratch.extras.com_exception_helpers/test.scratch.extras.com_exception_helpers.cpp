@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.extras.com_exception_helpers/test.scratch.extras.com_exception_helpers.cpp
+ * File:    test/scratch/test.scratch.extras.com_exception_helpers/test.scratch.extras.com_exception_helpers.cpp
  *
- * Purpose:     Implementation file for the test.scratch.extras.com_exception_helpers project.
+ * Purpose: Implementation file for the test.scratch.extras.com_exception_helpers project.
  *
- * Created:     19th December 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 19th December 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,14 +41,16 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.extras.com_exception_helpers");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.extras.com_exception_helpers");
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 class TestClass
@@ -100,7 +93,7 @@ public:
 private:
     HRESULT f1_()
     {
-        if(E_UNEXPECTED == ReturnCode)
+        if (E_UNEXPECTED == ReturnCode)
         {
             throw std::runtime_error("Houston, we have a problem");
         }
@@ -109,7 +102,7 @@ private:
     }
     HRESULT f2_(int i)
     {
-        if(E_UNEXPECTED == ReturnCode)
+        if (E_UNEXPECTED == ReturnCode)
         {
             throw std::runtime_error("Meh!");
         }
@@ -119,7 +112,7 @@ private:
 
     static HRESULT STDAPICALLTYPE f3_(int i, char const* s, HRESULT hr)
     {
-        if(E_UNEXPECTED == hr)
+        if (E_UNEXPECTED == hr)
         {
             throw std::runtime_error("Boiing!");
         }
@@ -161,7 +154,7 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 
@@ -176,7 +169,7 @@ int main(int argc, char** argv)
 #endif /* _MSC_VER && _MSC_VER */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+    { for (size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
     try
@@ -190,13 +183,13 @@ int main(int argc, char** argv)
 
         res = main_(argc, argv);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios::log_ALERT("Unexpected general error: ", x, ". Application terminating");
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
 
@@ -212,3 +205,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.m2w/test.component.inserters.m2w.cpp
+ * File:    test/component/test.component.inserters.m2w/test.component.inserters.m2w.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.m2w project.
+ * Purpose: Implementation file for the test.component.inserters.m2w project.
  *
- * Created:     22nd November 2010
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 22nd November 2010
+ * Updated: 27th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -49,8 +40,9 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_1_01();
@@ -85,21 +77,21 @@ static void test_3_09();
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = L"test.component.inserters.m2w";
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = L"test.component.inserters.m2w";
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.m2w", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.m2w", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -709,3 +701,4 @@ static void test_3_09()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

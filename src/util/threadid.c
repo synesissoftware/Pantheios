@@ -4,11 +4,11 @@
  * Purpose:     Threading utility functions
  *
  * Created:     4th January 2008
- * Updated:     10th August 2009
+ * Updated:     21st November 2019
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,9 @@
 # include <windows.h>
 #endif /* PLATFORMSTL_OS_IS_???? */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -64,11 +65,13 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 typedef stlsoft_ns_qual(ss_sint64_t)    sint64_t_;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -77,11 +80,16 @@ typedef stlsoft_ns_qual(ss_sint64_t)    sint64_t_;
 PANTHEIOS_CALL(sint64_t_) pantheios_getCurrentThreadId(void)
 {
 #if defined(PLATFORMSTL_OS_IS_UNIX)
+
 # ifndef PANTHEIOS_MT
+
     return 1;
 # else /* ? PANTHEIOS_MT */
+
 #  if 0
-    return stlsoft_reinterpret_cast(sint64_t_, STLSOFT_NS_GLOBAL(pthread_self)());
+#  elif defined(PTW32_VERSION)
+
+    return stlsoft_reinterpret_cast(sint64_t_, STLSOFT_NS_GLOBAL(pthread_self)().p);
 #  else /* ? 0 */
 
     /* Mac OS-X (Leopard) whinges about this cast, so we do a union cast
@@ -103,14 +111,17 @@ PANTHEIOS_CALL(sint64_t_) pantheios_getCurrentThreadId(void)
 #  endif /* 0 */
 # endif /* !PANTHEIOS_MT */
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
     return stlsoft_static_cast(sint64_t_, STLSOFT_NS_GLOBAL(GetCurrentThreadId)());
 #else /* ? OS */
+
 # error Not discriminated for platforms other than UNIX and Windows
 #endif /* OS */
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -118,3 +129,4 @@ PANTHEIOS_CALL(sint64_t_) pantheios_getCurrentThreadId(void)
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

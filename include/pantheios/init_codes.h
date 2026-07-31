@@ -4,11 +4,12 @@
  * Purpose:     Back-/Front-end initialisation codes.
  *
  * Created:     27th September 2007
- * Updated:     27th December 2010
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,27 +51,30 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_INIT_CODES
 #define PANTHEIOS_INCL_PANTHEIOS_H_INIT_CODES
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_MINOR     5
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      17
+# define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__init_codes Pantheios Low-level Initialisation Codes
@@ -102,8 +106,9 @@
  * Status codes for use by the implementors of \ref group__frontend "front-ends".
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Status codes
+ * status codes
  */
 
 /** \def PANTHEIOS_INIT_RC_SUCCESS
@@ -112,7 +117,7 @@
  *
  * \ingroup group__init_codes
  */
-#define PANTHEIOS_INIT_RC_SUCCESS                       (0)
+#define PANTHEIOS_INIT_RC_SUCCESS                           (0)
 
 /** \def PANTHEIOS_INIT_RC_OUT_OF_MEMORY
  *
@@ -120,7 +125,7 @@
  *
  * \ingroup group__init_codes
  */
-#define PANTHEIOS_INIT_RC_OUT_OF_MEMORY                 (-1)
+#define PANTHEIOS_INIT_RC_OUT_OF_MEMORY                     (-1)
 
 /** \def PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION
  *
@@ -128,7 +133,7 @@
  *
  * \ingroup group__init_codes
  */
-#define PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION         (-2)
+#define PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION             (-2)
 
 /** \def PANTHEIOS_INIT_RC_UNKNOWN_FAILURE
  *
@@ -136,7 +141,7 @@
  *
  * \ingroup group__init_codes
  */
-#define PANTHEIOS_INIT_RC_UNKNOWN_FAILURE               (-3)
+#define PANTHEIOS_INIT_RC_UNKNOWN_FAILURE                   (-3)
 
 /** \def PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE
  *
@@ -144,7 +149,7 @@
  *
  * \ingroup group__init_codes
  */
-#define PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE           (-4)
+#define PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE               (-4)
 
 /** \def PANTHEIOS_INIT_RC_NOT_IMPLEMENTED
  *
@@ -152,7 +157,7 @@
  *
  * \ingroup group__init_codes
  */
-#define PANTHEIOS_INIT_RC_NOT_IMPLEMENTED               (-5)
+#define PANTHEIOS_INIT_RC_NOT_IMPLEMENTED                   (-5)
 
 /** \def PANTHEIOS_INIT_RC_CANNOT_CREATE_TSS_INDEX
  *
@@ -161,7 +166,7 @@
  *
  * \ingroup group__init_codes
  */
-#define PANTHEIOS_INIT_RC_CANNOT_CREATE_TSS_INDEX       (-6)
+#define PANTHEIOS_INIT_RC_CANNOT_CREATE_TSS_INDEX           (-6)
 
 /** \def PANTHEIOS_INIT_RC_CANNOT_CREATE_THREAD
  *
@@ -170,7 +175,7 @@
  *
  * \ingroup group__init_codes
  */
-#define PANTHEIOS_INIT_RC_CANNOT_CREATE_THREAD          (-7)
+#define PANTHEIOS_INIT_RC_CANNOT_CREATE_THREAD              (-7)
 
 
 
@@ -180,7 +185,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_NO_BACKENDS_SPECIFIED      (-10001)
+#define PANTHEIOS_BE_INIT_RC_NO_BACKENDS_SPECIFIED          (-10001)
 
 /** \def PANTHEIOS_BE_INIT_RC_ALL_BACKEND_INITS_FAILED
  *
@@ -188,7 +193,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_ALL_BACKEND_INITS_FAILED   (-10002)
+#define PANTHEIOS_BE_INIT_RC_ALL_BACKEND_INITS_FAILED       (-10002)
 
 /** \def PANTHEIOS_BE_INIT_RC_INVALID_PROCESSID
  *
@@ -196,7 +201,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_INVALID_PROCESSID          (-10003)
+#define PANTHEIOS_BE_INIT_RC_INVALID_PROCESSID              (-10003)
 
 /** \def PANTHEIOS_BE_INIT_RC_API_MUTEX_INIT_FAILED
  *
@@ -204,7 +209,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_API_MUTEX_INIT_FAILED      (-10004)
+#define PANTHEIOS_BE_INIT_RC_API_MUTEX_INIT_FAILED          (-10004)
 
 /** \def PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE
  *
@@ -212,7 +217,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE           (-10005)
+#define PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE               (-10005)
 
 /** \def PANTHEIOS_BE_INIT_RC_INIT_PARAM_REQUIRED
  *
@@ -220,7 +225,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_INIT_PARAM_REQUIRED        (-10006)
+#define PANTHEIOS_BE_INIT_RC_INIT_PARAM_REQUIRED            (-10006)
 
 /** \def PANTHEIOS_BE_INIT_RC_INVALID_ARGUMENT
  *
@@ -228,7 +233,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_INVALID_ARGUMENT           (-10007)
+#define PANTHEIOS_BE_INIT_RC_INVALID_ARGUMENT               (-10007)
 
 /** \def PANTHEIOS_BE_INIT_RC_ARGUMENT_TOO_LONG
  *
@@ -236,7 +241,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_ARGUMENT_TOO_LONG          (-10008)
+#define PANTHEIOS_BE_INIT_RC_ARGUMENT_TOO_LONG              (-10008)
 
 /** \def PANTHEIOS_BE_INIT_RC_ARGUMENT_OUT_OF_RANGE
  *
@@ -244,7 +249,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_ARGUMENT_OUT_OF_RANGE      (-10009)
+#define PANTHEIOS_BE_INIT_RC_ARGUMENT_OUT_OF_RANGE          (-10009)
 
 /** \def PANTHEIOS_BE_INIT_RC_INIT_CONFIG_REQUIRED
  *
@@ -252,7 +257,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_INIT_CONFIG_REQUIRED       (-10010)
+#define PANTHEIOS_BE_INIT_RC_INIT_CONFIG_REQUIRED           (-10010)
 
 /** \def PANTHEIOS_BE_INIT_RC_PERMISSION_DENIED
  *
@@ -260,7 +265,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_PERMISSION_DENIED          (-10011)
+#define PANTHEIOS_BE_INIT_RC_PERMISSION_DENIED              (-10011)
 
 /** \def PANTHEIOS_BE_INIT_RC_RESOURCE_BUSY
  *
@@ -268,7 +273,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_RESOURCE_BUSY              (-10012)
+#define PANTHEIOS_BE_INIT_RC_RESOURCE_BUSY                  (-10012)
 
 /** \def PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED
  *
@@ -276,7 +281,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED   (-10013)
+#define PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED       (-10013)
 
 /** \def PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED
  *
@@ -284,7 +289,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED  (-10014)
+#define PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED      (-10014)
 
 /** \def PANTHEIOS_BE_LOGENTRY_FAILED
  *
@@ -292,7 +297,7 @@
  *
  * \ingroup group__init_codes__backend
  */
-#define PANTHEIOS_BE_LOGENTRY_FAILED                    (-10015)
+#define PANTHEIOS_BE_LOGENTRY_FAILED                        (-10015)
 
 
 /** \def PANTHEIOS_FE_INIT_RC_INTENDED_FAILURE
@@ -301,7 +306,7 @@
  *
  * \ingroup group__init_codes__frontend
  */
-#define PANTHEIOS_FE_INIT_RC_INTENDED_FAILURE           (-20001)
+#define PANTHEIOS_FE_INIT_RC_INTENDED_FAILURE               (-20001)
 
 /** \def PANTHEIOS_FE_INIT_RC_SYSTEM_NOT_CONFIGURED
  *
@@ -309,7 +314,7 @@
  *
  * \ingroup group__init_codes__frontend
  */
-#define PANTHEIOS_FE_INIT_RC_SYSTEM_NOT_CONFIGURED      (-20002)
+#define PANTHEIOS_FE_INIT_RC_SYSTEM_NOT_CONFIGURED          (-20002)
 
 /** \def PANTHEIOS_FE_INIT_RC_INIT_CONFIG_REQUIRED
  *
@@ -317,10 +322,11 @@
  *
  * \ingroup group__init_codes__frontend
  */
-#define PANTHEIOS_FE_INIT_RC_INIT_CONFIG_REQUIRED       (-20003)
+#define PANTHEIOS_FE_INIT_RC_INIT_CONFIG_REQUIRED           (-20003)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_INIT_CODES */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

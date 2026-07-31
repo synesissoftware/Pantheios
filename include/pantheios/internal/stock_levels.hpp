@@ -4,11 +4,12 @@
  * Purpose:     Custom level class.
  *
  * Created:     22nd July 2006
- * Updated:     9th December 2013
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,24 +55,27 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_STOCK_LEVELS
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_STOCK_LEVELS
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SEVERITY_HPP_LEVELS
 # include <pantheios/severity/levels.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_SEVERITY_HPP_LEVELS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -79,8 +83,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -114,3 +119,4 @@ namespace
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_STOCK_LEVELS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

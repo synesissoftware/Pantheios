@@ -4,11 +4,12 @@
  * Purpose: Implicitly links in the Pantheios fprintf() Back-End Common Library
  *
  * Created: 18th July 2005
- * Updated: 10th August 2009
+ * Updated: 16th December 2023
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,19 +50,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK_EDIT      6
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK_EDIT      8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -71,8 +74,9 @@
 # include <pantheios/implicit_link/implicit_link_base_.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE_ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Implicit-linking directives
+ * implicit-linking directives
  */
 
 #ifdef PANTHEIOS_IMPLICIT_LINK_SUPPORT
@@ -104,3 +108,4 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

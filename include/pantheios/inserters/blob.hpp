@@ -4,11 +4,12 @@
  * Purpose:     String inserter for binary regions.
  *
  * Created:     21st June 2005
- * Updated:     22nd September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -49,19 +50,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BLOB
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BLOB
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MINOR       4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_REVISION    6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        30
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_REVISION    8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -83,8 +86,9 @@
 # include <stdio.h>
 #endif /* !PANTHEIOS_INCL_H_STDIO */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -93,8 +97,9 @@ namespace pantheios
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /** Class for inserting binary regions types into Pantheios diagnostic
@@ -181,10 +186,12 @@ public:
     /// \param cb Number of bytes in the sequence.
     /// \param bytesPerGroup Number of bytes per group. Must be a power of 2.
     /// \param groupSeparator The string used to separate the byte groups.
-    blob(   void const*         pv
-        ,   size_t              cb
-        ,   unsigned            bytesPerGroup
-        ,   pan_char_t const*   groupSeparator);
+    blob(
+        void const*             pv
+    ,   size_t                  cb
+    ,   unsigned                bytesPerGroup
+    ,   pantheios_char_t const* groupSeparator
+    );
 
     ///  Constructs a \link pantheios::blob blob\endlink inserter
     ///   that will break the sequence of hexadecimal digits into groups
@@ -198,27 +205,28 @@ public:
     /// \param groupSeparator The string used to separate the byte groups.
     /// \param groupsPerLine Number of groups per line.
     /// \param lineSeparator The string used to separate the lines.
-    blob(   void const*         pv
-        ,   size_t              cb
-        ,   unsigned            bytesPerGroup
-        ,   pan_char_t const*   groupSeparator
-        ,   int                 groupsPerLine
-        ,   pan_char_t const*   lineSeparator  =   PANTHEIOS_LITERAL_STRING("\n")
+    blob(
+        void const*             pv
+    ,   size_t                  cb
+    ,   unsigned                bytesPerGroup
+    ,   pantheios_char_t const* groupSeparator
+    ,   int                     groupsPerLine
+    ,   pantheios_char_t const* lineSeparator  =   PANTHEIOS_LITERAL_STRING("\n")
     );
 
     ///  Releases any storage associated with the instance.
-    ~blob() stlsoft_throw_0();
+    ~blob() STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name Accessors
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The length of the c-style string representation of the integer
-    size_t              length() const;
+    size_t                  length() const;
 /// @}
 
 /// \name Implementation
@@ -231,14 +239,14 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    pan_char_t const*   m_value;
-    size_t              m_len;
-    void const* const   m_pv;
-    size_t              m_cb;
-    unsigned            m_byteGrouping;
-    pan_char_t const*   m_groupSeparator;
-    int                 m_groupsPerLine;
-    pan_char_t const*   m_lineSeparator;
+    pantheios_char_t const* m_value;
+    size_t                  m_len;
+    void const* const       m_pv;
+    size_t                  m_cb;
+    unsigned                m_byteGrouping;
+    pantheios_char_t const* m_groupSeparator;
+    int                     m_groupsPerLine;
+    pantheios_char_t const* m_lineSeparator;
 /// @}
 
 /// \name Not to be implemented
@@ -254,8 +262,9 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -274,7 +283,7 @@ PANTHEIOS_c_str_data_name_(
     return b.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(blob const& b)
 {
     return b.data();
@@ -307,7 +316,7 @@ PANTHEIOS_c_str_ptr_name_(
     return b.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(blob const& b)
 {
     return b.c_str();
@@ -337,8 +346,9 @@ c_str_ptr(blob const& b)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -363,8 +373,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -376,3 +387,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BLOB */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -1,15 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/util.strnlen.c
+ * File:    src/util/util.strnlen.c
  *
- * Purpose:     Implementation file for pantheios_strnlen() and related
- *              functions.
+ * Purpose: Implementation file for pantheios_strnlen() and related
+ *          functions.
  *
- * Created:     21st June 2005
- * Updated:     9th December 2013
+ * Created: 21st June 2005
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2005-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -41,13 +42,14 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files
+/* Pantheios header files
  *
  * NOTE: We do _not_ include pantheios/pantheios.hpp here, since we are
  *  not using any of the Application Layer.
  */
 
 #include <pantheios/pantheios.h>
+#include <pantheios/util/string/strnlen.h>
 
 #if defined(STLSOFT_COMPILER_IS_MWERKS)
 # include <string.h>
@@ -69,8 +71,9 @@
 # include <wchar.h>
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppression
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -79,18 +82,20 @@
 # pragma warning(disable : 4127)
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String encoding compatibility
+ * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_strlen_                    wcslen
+# define pan_strlen_                                        wcslen
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_strlen_                    strlen
+# define pan_strlen_                                        strlen
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -100,8 +105,9 @@ namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Util API
+ * util API
  */
 
 /* TODO: put this declaration into pantheios/pantheios.h */
@@ -132,17 +138,25 @@ PANTHEIOS_CALL(size_t) pantheios_util_getSliceLazyLength(size_t fromLen, size_t 
 }
 
 /* deprecated */
-PANTHEIOS_CALL(size_t) pantheios_strnlen(pan_char_t const* s, size_t len)
+PANTHEIOS_CALL(size_t)
+pantheios_strnlen(
+    pantheios_char_t const* s
+,   size_t                  len
+)
 {
     return pantheios_util_strnlen(s, len);
 }
 
-PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pan_char_t const* s, size_t len)
+PANTHEIOS_CALL(size_t)
+pantheios_util_strnlen(
+    pantheios_char_t const* s
+,   size_t                  len
+)
 {
     static size_t const topBit     =   stlsoft_static_cast(size_t, 0x01) << (sizeof(size_t) * 8 - 1);
     static size_t const nextTopBit =   stlsoft_static_cast(size_t, 0x01) << (sizeof(size_t) * 8 - 2);
 
-    if(topBit & len)
+    if (topBit & len)
     {
         /* Top bit is set. This can mean one of two things:
          *
@@ -152,7 +166,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pan_char_t const* s, size_t len)
          *    bit being not set.
          */
 
-        if(nextTopBit & len)
+        if (nextTopBit & len)
         {
             /* 1. strlen() is requested. */
             return (NULL != s) ? pan_strlen_(s) : 0;
@@ -169,22 +183,22 @@ PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pan_char_t const* s, size_t len)
             /* toLen is bit16-bit30 */
             size_t const        toLen   =   (len >> 15)  & 0x7fff;
 
-            pan_char_t const*   from    =   s + fromLen;
-            pan_char_t const*   to      =   s + toLen;
-            pan_char_t const*   nul;
+            pantheios_char_t const* from    =   s + fromLen;
+            pantheios_char_t const* to      =   s + toLen;
+            pantheios_char_t const* nul;
 
-            if(fromLen < toLen)
+            if (fromLen < toLen)
             {
                 /* Search forwards */
-                for(nul = from; nul != to; ++nul)
+                for (nul = from; nul != to; ++nul)
                 {
-                    if('\0' == *nul)
+                    if ('\0' == *nul)
                     {
                         break;
                     }
                 }
             }
-            else if(fromLen == toLen)
+            else if (fromLen == toLen)
             {
                 nul = s + fromLen;
             }
@@ -195,14 +209,14 @@ PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pan_char_t const* s, size_t len)
                 /* Search backwards */
                 do
                 {
-                    if('\0' == *from)
+                    if ('\0' == *from)
                     {
                         nul = from;
 
                         break;
                     }
                 }
-                while(--from != to);
+                while (--from != to);
             }
 
             return stlsoft_static_cast(size_t, nul - s);
@@ -218,8 +232,9 @@ PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pan_char_t const* s, size_t len)
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -227,4 +242,6 @@ PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pan_char_t const* s, size_t len)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

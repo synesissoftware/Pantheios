@@ -5,11 +5,12 @@
  *              Pantheios core and APIs.
  *
  * Created:     26th June 2005
- * Updated:     2nd August 2010
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -50,19 +51,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT
 #define PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        16
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -77,8 +80,9 @@
 # include <stlsoft/stlsoft.h>
 #endif /* contract */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Helper macros
+ * helper macros
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -109,7 +113,8 @@
 #   if defined(STLSOFT_COMPILER_IS_BORLAND) || \
        defined(STLSOFT_COMPILER_IS_MWERKS) || \
        defined(STLSOFT_COMPILER_IS_DMC) || \
-       defined(STLSOFT_COMPILER_IS_MSVC)
+       (    defined(STLSOFT_COMPILER_IS_MSVC) && \
+            _MSC_VER > 1200)
 #    define PANTHEIOS_QA_DO_MSG_TYPECHECK
 #   endif /* compiler */
 #  endif /* C99 or custom inline */
@@ -117,7 +122,11 @@
 # endif /* !PANTHEIOS_QA_DO_MSG_TYPECHECK */
 
 # if defined(PANTHEIOS_QA_DO_MSG_TYPECHECK)
-STLSOFT_INLINE char const* PANTHEIOS_TYPECHECK_MSG_(char const* msg)
+STLSOFT_INLINE
+char const*
+PANTHEIOS_TYPECHECK_MSG_(
+    char const* msg
+)
 {
     return msg;
 }
@@ -125,12 +134,17 @@ STLSOFT_INLINE char const* PANTHEIOS_TYPECHECK_MSG_(char const* msg)
 #  if defined(__cplusplus)
 #   ifdef STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
 template <size_t N>
-inline char const* PANTHEIOS_TYPECHECK_MSG_(char (&ar)[N])
+char const*
+PANTHEIOS_TYPECHECK_MSG_(
+    char (&ar)[N]
+)
 {
     return &ar[0];
 }
 #   endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
-inline void PANTHEIOS_TYPECHECK_MSG_(...)
+inline
+void
+PANTHEIOS_TYPECHECK_MSG_(...)
 {}
 #  endif /* __cplusplus */
 
@@ -140,8 +154,9 @@ inline void PANTHEIOS_TYPECHECK_MSG_(...)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Enforcements
+ * enforcements
  */
 
 #if defined(PANTHEIOS_QA_USE_CUSTOM_CONTRACT)
@@ -269,19 +284,19 @@ inline void PANTHEIOS_TYPECHECK_MSG_(...)
 #elif defined(PANTHEIOS_QA_USE_XCONTRACT)
 
 # ifndef PANTHEIOS_CONTRACT_LEVEL_INTERNAL
-#  define PANTHEIOS_CONTRACT_LEVEL_INTERNAL        (41)
+#  define PANTHEIOS_CONTRACT_LEVEL_INTERNAL                 (41)
 # endif /* !PANTHEIOS_CONTRACT_LEVEL_INTERNAL */
 
 # ifndef PANTHEIOS_CONTRACT_LEVEL_API
-#  define PANTHEIOS_CONTRACT_LEVEL_API             (43)
+#  define PANTHEIOS_CONTRACT_LEVEL_API                      (43)
 # endif /* !PANTHEIOS_CONTRACT_LEVEL_API */
 
 # ifndef PANTHEIOS_CONTRACT_LEVEL_APPL_LAYER
-#  define PANTHEIOS_CONTRACT_LEVEL_APPL_LAYER      (45)
+#  define PANTHEIOS_CONTRACT_LEVEL_APPL_LAYER               (45)
 # endif /* !PANTHEIOS_CONTRACT_LEVEL_APPL_LAYER */
 
 # ifndef PANTHEIOS_CONTRACT_LEVEL_APPL_DEF
-#  define PANTHEIOS_CONTRACT_LEVEL_APPL_DEF        (47)
+#  define PANTHEIOS_CONTRACT_LEVEL_APPL_DEF                 (47)
 # endif /* !PANTHEIOS_CONTRACT_LEVEL_APPL_DEF */
 
 # define PANTHEIOS_CONTRACT_ENFORCE_UNEXPECTED_CONDITION_INTERNAL(msg)              XCONTRACT_ENFORCE_CONDITION_TYPE_LEVEL_(XCONTRACT_NS_QUAL(xContract_unexpectedCondition), PANTHEIOS_CONTRACT_LEVEL_INTERNAL, NULL, PANTHEIOS_TYPECHECK_MSG_(msg))
@@ -657,3 +672,4 @@ inline void PANTHEIOS_TYPECHECK_MSG_(...)
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

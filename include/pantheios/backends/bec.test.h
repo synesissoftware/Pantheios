@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.test.h
+ * File:    pantheios/backends/bec.test.h
  *
- * Purpose:     Declaration of the be.test library.
+ * Purpose: Declaration of the be.test library.
  *
- * Created:     1st November 2006
- * Updated:     22nd March 2010
+ * Created: 1st November 2006
+ * Updated: 28th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_BACKENDS_H_BEC_TEST
 #define PANTHEIOS_INCL_BACKENDS_H_BEC_TEST
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  1
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      24
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  4
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -79,6 +82,7 @@
 # include <pantheios/internal/threading.h>
 # include <string>
 #endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -131,10 +135,11 @@ PANTHEIOS_CALL(int) pantheios_be_test_logEntry(
  * <code>NULL</code>. At such time as back-end specific arguments
  * are required, it will become a first-class function.
  */
-#define pantheios_be_test_parseArgs         NULL
+#define pantheios_be_test_parseArgs                         NULL
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifdef __cplusplus
@@ -145,6 +150,19 @@ namespace be
 {
 namespace test
 {
+#endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * API types
+ */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * C++ API types
+ */
+
+#ifdef __cplusplus
 
     /** Represents a date/time epoch.
      *
@@ -158,13 +176,14 @@ namespace test
         static Time now();
     };
 
+
     /** Represents an entry in the statement history
      */
     struct Entry
     {
     public: /* Member Types */
         /** The string type */
-        typedef std::basic_string<pan_char_t>   string_type;
+        typedef std::basic_string<pantheios_char_t>             string_type;
 
     public: /* Member Variables */
         /* const */ Time            time;       /*!< The time the entry was logged. */
@@ -173,8 +192,9 @@ namespace test
 
     public: /* Construction */
         /** Creates an instance with the given characteristics */
-        Entry(int severity, pan_char_t const* entry, size_t cchEntry);
+        Entry(int severity, pantheios_char_t const* entry, size_t cchEntry);
     };
+
 
     /** Represents the collection of entries since the last call
      * to reset()
@@ -183,9 +203,11 @@ namespace test
     {
     public: /* Member Types */
         /** The type of this class */
-        typedef Results     class_type;
+        typedef Results                                         class_type;
         /** The value type */
-        typedef Entry       value_type;
+        typedef Entry                                           value_type;
+        /** The size type */
+        typedef size_t                                          size_type;
     protected:
 # if defined(STLSOFT_COMPILER_IS_DMC)
     public:
@@ -201,44 +223,62 @@ namespace test
         /** Copies the contents */
         Results(class_type const& rhs);
         /** Destroys the instance */
-        ~Results()  stlsoft_throw_0();
+        ~Results()  STLSOFT_NOEXCEPT;
+    private:
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
     public: /* Accessors */
         /** Indicates whether the container is empty */
-        bool                empty() const;
+        bool                empty() const STLSOFT_NOEXCEPT;
         /** Indicates the number of results in the container */
-        size_t              size() const;
+        size_type           size() const STLSOFT_NOEXCEPT;
         /** Requests an element from the container
          *
          * \param index The index of the element. Must be less than the value returned by size()
          */
-        value_type const&   operator [](size_t index) const;
+        value_type const&   operator [](size_type index) const STLSOFT_NOEXCEPT;
 
     private: /* Implementation */
-        ResultsImpl* const  m_impl;
-
-    private: /* Not to be implemented */
-        class_type& operator= (class_type const& rhs);
+        ResultsImpl*  m_impl;
     };
+#endif /* __cplusplus */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * C++ API functions
+ */
+
+#ifdef __cplusplus
 
     /** Resets all results */
     void reset();
 
     /** Obtain a copy of the current test results */
     Results results();
+#endif /* __cplusplus */
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
+
+#ifdef __cplusplus
 
 } /* namespace test */
 } /* namespace be */
 } /* namespace pantheios */
-
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* PANTHEIOS_INCL_BACKENDS_H_BEC_TEST */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

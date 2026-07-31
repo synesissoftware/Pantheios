@@ -4,11 +4,12 @@
  * Purpose:     Implementation of bel.WindowsSyslog
  *
  * Created:     30th September 2005
- * Updated:     10th January 2011
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,6 +44,7 @@
 #include <pantheios/backends/be.lrsplit.h>
 #include <pantheios/backends/bec.WindowsSyslog.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -50,3 +52,4 @@
 PANTHEIOS_BE_DEFINE_BEL_FUNCTIONS(WindowsSyslog)
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

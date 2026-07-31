@@ -4,11 +4,12 @@
  * Purpose:     Functions for retrieving and formatting the current time.
  *
  * Created:     22nd August 2006
- * Updated:     10th August 2009
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,27 +48,30 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_TIME_H_CURRENTTIME
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_TIME_H_CURRENTTIME
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_MINOR      1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_EDIT       18
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_EDIT       21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Structure for use with the pantheios_util_getCurrentTime()
@@ -77,15 +81,10 @@
  */
 struct pan_beutil_time_t
 {
-#if !defined(PANTHEIOS_NO_NAMESPACE) && \
-    !defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
-    typedef ::pantheios::pan_char_t pan_char_t;
-#endif /* !PANTHEIOS_NO_NAMESPACE */
-
-    size_t              capacity;       /*!< The capacity of the buffer in <code>str</code>. */
-    size_t              len;            /*!< The length of the string written into <code>str</code>. */
-    pan_char_t*         str;            /*!< The buffer into which the results are written. Its maximum length is <code>capacity</code>. */
-    pan_char_t const*   strftimeFmt;    /*!< The time string format. Ignored on Windows, which uses the user/system locale time picture. May be NULL. */
+    size_t                  capacity;       /*!< The capacity of the buffer in <code>str</code>. */
+    size_t                  len;            /*!< The length of the string written into <code>str</code>. */
+    pantheios_char_t*       str;            /*!< The buffer into which the results are written. Its maximum length is <code>capacity</code>. */
+    pantheios_char_t const* strftimeFmt;    /*!< The time string format. Ignored on Windows, which uses the user/system locale time picture. May be NULL. */
 
 #ifdef __cplusplus
     /** Initialises all structure members
@@ -94,7 +93,11 @@ struct pan_beutil_time_t
      * \param s The pointer to the buffer
      * \param f The time string format
      */
-    pan_beutil_time_t(size_t cap, pan_char_t* s, pan_char_t const* f = NULL)
+    pan_beutil_time_t(
+        size_t                  cap
+    ,   pantheios_char_t*       s
+    ,   pantheios_char_t const* f = NULL
+    )
         : capacity(cap)
         , len(0)
         , str(s)
@@ -106,8 +109,9 @@ struct pan_beutil_time_t
 typedef struct pan_beutil_time_t pan_beutil_time_t;
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Constants & definitions
+ * constants
  */
 
 /** \def PANTHEIOS_GETCURRENTTIME_F_USE_SYSTEM_TIME
@@ -226,8 +230,9 @@ typedef struct pan_beutil_time_t pan_beutil_time_t;
  */
 #define PANTHEIOS_GETCURRENTTIME_F_FAVOUR_ACCURACY          (0x00002000)
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 /** Gets the current time in a suitable format.
@@ -260,3 +265,4 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_TIME_H_CURRENTTIME */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     Initialisation code strings for Pantheios API
  *
  * Created:     27th September 2007
- * Updated:     1st February 2011
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,8 +44,9 @@
 #include <pantheios/init_codes.h>
 #include <pantheios/quality/contract.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -52,12 +54,14 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
-#define pan_init_char_t_                    char
+#define pan_init_char_t_                                    char
 #define PANTHEIOS_INIT_CODE_STRING(x)       x
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -66,7 +70,7 @@ namespace pantheios
 #ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 struct InitCodeString
 #else /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
-# define InitCodeString        pantheios_src_util_InitCodeString
+# define InitCodeString                                     pantheios_src_util_InitCodeString
 typedef struct InitCodeString  InitCodeString;
 struct InitCodeString
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
@@ -96,15 +100,15 @@ static pan_init_char_t_ const* pantheios_LookupCodeA_(int code, InitCodeString c
      */
     size_t  len_;
 
-    if(NULL == len)
+    if (NULL == len)
     {
         len = &len_;
     }
 
     /* Linear search. */
-    { size_t i; for(i = 0; i < cMappings; ++i)
+    { size_t i; for (i = 0; i < cMappings; ++i)
     {
-        if(code == mappings[i]->code)
+        if (code == mappings[i]->code)
         {
             return (*len = mappings[i]->len, mappings[i]->str);
         }
@@ -205,8 +209,9 @@ PANTHEIOS_CALL(size_t) pantheios_getInitErrorStringLength(int code)
     return (pantheios_LookupInitCodeStringA_((int)code, &len), len);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -214,3 +219,4 @@ PANTHEIOS_CALL(size_t) pantheios_getInitErrorStringLength(int code)
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

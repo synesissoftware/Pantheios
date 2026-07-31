@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.fe.fail/test.unit.fe.fail.c
+ * File:    test/unit/test.unit.fe.fail/test.unit.fe.fail.c
  *
- * Purpose:     Implementation file for the test.unit.fe.fail project.
+ * Purpose: Implementation file for the test.unit.fe.fail project.
  *
- * Created:     14th May 2008
- * Updated:     22nd March 2010
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 14th May 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,19 +19,19 @@
 #include <stdio.h>                  /* for fprintf() */
 #include <stdlib.h>                 /* for EXIT_SUCCESS, EXIT_FAILURE */
 
-const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.fail");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.fail");
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.fe.fail", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.fe.fail", verbosity))
     {
         /* Test-1 */
-        if(XTESTS_CASE_BEGIN("Test-1", "Verify that the initialisation fails"))
+        if (XTESTS_CASE_BEGIN("Test-1", "Verify that the initialisation fails"))
         {
             void*   token;
             int     res;
@@ -63,3 +54,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

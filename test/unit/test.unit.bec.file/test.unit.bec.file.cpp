@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.bec.file/test.unit.bec.file.cpp
+ * File:    test/unit/test.unit.bec.file/test.unit.bec.file.cpp
  *
- * Purpose:     Implementation file for the test.unit.be.file project.
+ * Purpose: Implementation file for the test.unit.be.file project.
  *
- * Created:     19th January 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 19th January 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,10 +17,11 @@
 #include <pantheios/util/system/threadid.h>
 
 /* STLSoft header files */
-#include <stlsoft/conversion/char_conversions.hpp>
-#include <stlsoft/conversion/integer_to_string.hpp>
 #include <platformstl/filesystem/file_lines.hpp>
 #include <platformstl/filesystem/filesystem_traits.hpp>
+#include <stlsoft/conversion/char_conversions.hpp>
+#include <stlsoft/conversion/integer_to_string.hpp>
+#include <stlsoft/smartptr/scoped_handle.hpp>
 
 /* xTests header files */
 #include <xtests/xtests.h>
@@ -44,14 +36,16 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 typedef platformstl::filesystem_traits<PAN_CHAR_T>  fs_traits_t;
@@ -62,13 +56,14 @@ typedef std::basic_string<char>                     string_m_t;
 typedef std::basic_string<wchar_t>                  string_w_t;
 typedef std::basic_string<PAN_CHAR_T>               string_t;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * character encoding
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 
 # define P_TO_M_(x)                     static_cast<char const*>(stlsoft::w2m((x)))
 # define P_TO_W_(x)                     (x)
@@ -77,7 +72,7 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 # define P_TO_M_(x)                     (x)
 # define P_TO_W_(x)                     static_cast<wchar_t const*>(stlsoft::m2w((x)))
@@ -89,16 +84,18 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
 #ifdef PSTR
 # undef PSTR
 #endif
-#define PSTR                            PANTHEIOS_LITERAL_STRING
+#define PSTR                                                PANTHEIOS_LITERAL_STRING
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.file");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.file");
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -162,14 +159,14 @@ static void test_4_01();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.be.file", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.be.file", verbosity))
     {
         XTESTS_RUN_CASE(test_1_00);
         XTESTS_RUN_CASE(test_1_01);
@@ -289,7 +286,7 @@ static void test_1_00()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -297,12 +294,12 @@ static void test_1_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -317,7 +314,7 @@ static void test_1_00()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
@@ -343,7 +340,7 @@ static void test_1_01()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -351,12 +348,12 @@ static void test_1_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -371,7 +368,7 @@ static void test_1_01()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
@@ -397,7 +394,7 @@ static void test_1_02()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -405,12 +402,12 @@ static void test_1_02()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -425,7 +422,7 @@ static void test_1_02()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
@@ -451,7 +448,7 @@ static void test_1_03()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -459,12 +456,12 @@ static void test_1_03()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -479,7 +476,7 @@ static void test_1_03()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
@@ -505,7 +502,7 @@ static void test_1_04()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -513,12 +510,12 @@ static void test_1_04()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -533,7 +530,7 @@ static void test_1_04()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
@@ -561,7 +558,7 @@ static void test_1_05()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -569,12 +566,12 @@ static void test_1_05()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -589,7 +586,7 @@ static void test_1_05()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
@@ -617,7 +614,7 @@ static void test_1_06()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -625,12 +622,12 @@ static void test_1_06()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -645,7 +642,7 @@ static void test_1_06()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
@@ -673,7 +670,7 @@ static void test_1_07()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -681,12 +678,12 @@ static void test_1_07()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -701,7 +698,7 @@ static void test_1_07()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
@@ -729,7 +726,7 @@ static void test_1_08()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -737,12 +734,12 @@ static void test_1_08()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -757,7 +754,7 @@ static void test_1_08()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
@@ -783,7 +780,7 @@ static void test_1_09()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -791,12 +788,12 @@ static void test_1_09()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -811,7 +808,7 @@ static void test_1_09()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
@@ -837,7 +834,7 @@ static void test_1_0a()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -845,12 +842,12 @@ static void test_1_0a()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -865,7 +862,7 @@ static void test_1_0a()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
@@ -891,7 +888,7 @@ static void test_1_0b()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -899,12 +896,12 @@ static void test_1_0b()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -919,7 +916,7 @@ static void test_1_0b()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
@@ -945,7 +942,7 @@ static void test_1_0c()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -953,12 +950,12 @@ static void test_1_0c()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -973,7 +970,7 @@ static void test_1_0c()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
@@ -1001,7 +998,7 @@ static void test_1_0d()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1009,12 +1006,12 @@ static void test_1_0d()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1029,7 +1026,7 @@ static void test_1_0d()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
@@ -1057,7 +1054,7 @@ static void test_1_0e()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1065,12 +1062,12 @@ static void test_1_0e()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1085,7 +1082,7 @@ static void test_1_0e()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
@@ -1113,7 +1110,7 @@ static void test_1_0f()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1121,12 +1118,12 @@ static void test_1_0f()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1141,7 +1138,7 @@ static void test_1_0f()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
@@ -1171,7 +1168,7 @@ static void test_2_00()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1179,12 +1176,12 @@ static void test_2_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1199,7 +1196,7 @@ static void test_2_00()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
@@ -1225,7 +1222,7 @@ static void test_2_01()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1233,12 +1230,12 @@ static void test_2_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1253,7 +1250,7 @@ static void test_2_01()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
@@ -1279,7 +1276,7 @@ static void test_2_02()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1287,12 +1284,12 @@ static void test_2_02()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1307,7 +1304,7 @@ static void test_2_02()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
@@ -1333,7 +1330,7 @@ static void test_2_03()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1341,12 +1338,12 @@ static void test_2_03()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1361,7 +1358,7 @@ static void test_2_03()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
@@ -1387,7 +1384,7 @@ static void test_2_04()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1395,12 +1392,12 @@ static void test_2_04()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1415,7 +1412,7 @@ static void test_2_04()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
@@ -1443,7 +1440,7 @@ static void test_2_05()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1451,12 +1448,12 @@ static void test_2_05()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1471,7 +1468,7 @@ static void test_2_05()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
@@ -1499,7 +1496,7 @@ static void test_2_06()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1507,12 +1504,12 @@ static void test_2_06()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1527,7 +1524,7 @@ static void test_2_06()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
@@ -1555,7 +1552,7 @@ static void test_2_07()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1563,12 +1560,12 @@ static void test_2_07()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1583,7 +1580,7 @@ static void test_2_07()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
@@ -1611,7 +1608,7 @@ static void test_2_08()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1619,12 +1616,12 @@ static void test_2_08()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1639,7 +1636,7 @@ static void test_2_08()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
@@ -1665,7 +1662,7 @@ static void test_2_09()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1673,12 +1670,12 @@ static void test_2_09()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1693,7 +1690,7 @@ static void test_2_09()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
@@ -1719,7 +1716,7 @@ static void test_2_0a()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1727,12 +1724,12 @@ static void test_2_0a()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1747,7 +1744,7 @@ static void test_2_0a()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
@@ -1773,7 +1770,7 @@ static void test_2_0b()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1781,12 +1778,12 @@ static void test_2_0b()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1801,7 +1798,7 @@ static void test_2_0b()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
@@ -1827,7 +1824,7 @@ static void test_2_0c()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1835,12 +1832,12 @@ static void test_2_0c()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1855,7 +1852,7 @@ static void test_2_0c()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
@@ -1883,7 +1880,7 @@ static void test_2_0d()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1891,12 +1888,12 @@ static void test_2_0d()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1911,7 +1908,7 @@ static void test_2_0d()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
@@ -1939,7 +1936,7 @@ static void test_2_0e()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -1947,12 +1944,12 @@ static void test_2_0e()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -1967,7 +1964,7 @@ static void test_2_0e()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
@@ -1995,7 +1992,7 @@ static void test_2_0f()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2003,12 +2000,12 @@ static void test_2_0f()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2023,7 +2020,7 @@ static void test_2_0f()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
@@ -2052,7 +2049,7 @@ static void test_3_00()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2060,12 +2057,12 @@ static void test_3_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2080,7 +2077,7 @@ static void test_3_00()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
         }}
@@ -2105,7 +2102,7 @@ static void test_3_01()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2113,12 +2110,12 @@ static void test_3_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2133,7 +2130,7 @@ static void test_3_01()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
         }}
@@ -2158,7 +2155,7 @@ static void test_3_02()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2166,12 +2163,12 @@ static void test_3_02()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2186,7 +2183,7 @@ static void test_3_02()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_STRING_EQUAL(resultPrefix + strings[i], lines[i]);
         }}
@@ -2211,7 +2208,7 @@ static void test_3_03()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2219,12 +2216,12 @@ static void test_3_03()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2239,7 +2236,7 @@ static void test_3_03()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
         }}
@@ -2264,7 +2261,7 @@ static void test_3_04()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2272,12 +2269,12 @@ static void test_3_04()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2292,7 +2289,7 @@ static void test_3_04()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
@@ -2319,7 +2316,7 @@ static void test_3_05()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2327,12 +2324,12 @@ static void test_3_05()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2347,7 +2344,7 @@ static void test_3_05()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
@@ -2374,7 +2371,7 @@ static void test_3_06()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2382,12 +2379,12 @@ static void test_3_06()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2402,7 +2399,7 @@ static void test_3_06()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
@@ -2429,7 +2426,7 @@ static void test_3_07()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2437,12 +2434,12 @@ static void test_3_07()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2457,7 +2454,7 @@ static void test_3_07()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
@@ -2484,7 +2481,7 @@ static void test_3_08()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2492,12 +2489,12 @@ static void test_3_08()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_04.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2512,7 +2509,7 @@ static void test_3_08()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
         }}
@@ -2537,7 +2534,7 @@ static void test_3_09()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2545,12 +2542,12 @@ static void test_3_09()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2565,7 +2562,7 @@ static void test_3_09()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
         }}
@@ -2590,7 +2587,7 @@ static void test_3_0a()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2598,12 +2595,12 @@ static void test_3_0a()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0a.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0a.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2618,7 +2615,7 @@ static void test_3_0a()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
         }}
@@ -2643,7 +2640,7 @@ static void test_3_0b()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2651,12 +2648,12 @@ static void test_3_0b()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0b.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0b.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2671,7 +2668,7 @@ static void test_3_0b()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
         }}
@@ -2696,7 +2693,7 @@ static void test_3_0c()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2704,12 +2701,12 @@ static void test_3_0c()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0c.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0c.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2724,7 +2721,7 @@ static void test_3_0c()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
@@ -2751,7 +2748,7 @@ static void test_3_0d()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2759,12 +2756,12 @@ static void test_3_0d()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0d.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0d.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2779,7 +2776,7 @@ static void test_3_0d()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
@@ -2806,7 +2803,7 @@ static void test_3_0e()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2814,12 +2811,12 @@ static void test_3_0e()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0e.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0e.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2834,7 +2831,7 @@ static void test_3_0e()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
@@ -2861,7 +2858,7 @@ static void test_3_0f()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2869,12 +2866,12 @@ static void test_3_0f()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0f.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0f.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
 
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, strings[i], stlsoft::c_str_len(strings[i]));
         }}
@@ -2889,7 +2886,7 @@ static void test_3_0f()
 
         // Start the tests
         XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
             XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
@@ -2914,7 +2911,7 @@ static void test_4_00()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2922,7 +2919,7 @@ static void test_4_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
 
 
         { // (i) Writing something (none-0 length)
@@ -2984,7 +2981,7 @@ static void test_4_01()
     void*   token;
     int     res = pantheios_be_file_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
@@ -2992,7 +2989,7 @@ static void test_4_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static const PAN_CHAR_T FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
 
 
         { // (i) Writing something (none-0 length)
@@ -3039,3 +3036,4 @@ static void test_4_01()
 } /* anonymous namespace */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

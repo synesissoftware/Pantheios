@@ -1,50 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Include Files">
+      <UniqueIdentifier>{5298301A-C12D-4A4D-800E-B67F6D1996CE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include">
+      <UniqueIdentifier>{722C7F42-1B5E-4D2E-9F25-90D4A20E564A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include\pantheios">
+      <UniqueIdentifier>{B9E55206-806A-4D89-B2CF-AFEB1A5806BD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include\pantheios\frontends">
+      <UniqueIdentifier>{81E1712C-E4EC-4C56-9DBA-91BB6972BC65}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{bd0c2867-08f6-4736-b799-f67a23d4e092}</UniqueIdentifier>
-      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>asm;asmx;bat;cpp;c;cc;cxx;def;hpj;idl;odl;r</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{b1a8e20b-fdf7-4be4-b14f-bfef57465c36}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl</Extensions>
-    </Filter>
-    <Filter Include="Header Files\STLSoft Header Files">
-      <UniqueIdentifier>{59f1c1da-bd37-4edb-8e38-1afa6a5e6007}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\STLSoft Header Files\STLSoft">
-      <UniqueIdentifier>{b8f3c090-7de1-4bfb-ae58-1a27077c753e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Pantheios Header Files">
-      <UniqueIdentifier>{6b8ff1fc-12ee-440a-9538-fa0787c9bb01}</UniqueIdentifier>
+    <Filter Include="Source Files\frontends">
+      <UniqueIdentifier>{BC0CAF89-E24D-4906-9675-4890AB98EC93}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\frontends\fe.N.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\frontends</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\internal\cccap\intel.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\internal\cccap\msvc.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
-    <ClInclude Include="$(STLSOFT)\include\stlsoft\stlsoft.h">
-      <Filter>Header Files\STLSoft Header Files\STLSoft</Filter>
-    </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\frontends\fe.N.WithCallback.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios\frontends</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\frontend.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\internal\generated\log_functions.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios</Filter>
     </ClInclude>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h">
-      <Filter>Header Files\Pantheios Header Files</Filter>
+      <Filter>Include Files\include\pantheios</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

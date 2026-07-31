@@ -4,11 +4,12 @@
  * Purpose:     Pantheios front end API
  *
  * Created:     21st June 2005
- * Updated:     7th August 2012
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -48,24 +49,27 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_FRONTEND
 #define PANTHEIOS_INCL_PANTHEIOS_H_FRONTEND
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        20
+# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Front-end API
@@ -117,7 +121,8 @@
  * \retval <0 Initialisation failed.
  * \retval >=0 Initialisation succeeded
  */
-PANTHEIOS_CALL(int) pantheios_fe_init(
+PANTHEIOS_CALL(int)
+pantheios_fe_init(
     void*   reserved
 ,   void**  ptoken
 );
@@ -132,7 +137,10 @@ PANTHEIOS_CALL(int) pantheios_fe_init(
  *
  * \note This function is called at most once per process.
  */
-PANTHEIOS_CALL(void) pantheios_fe_uninit(void* token);
+PANTHEIOS_CALL(void)
+pantheios_fe_uninit(
+    void* token
+);
 
 /** Defines the process identity
  *
@@ -169,7 +177,10 @@ PANTHEIOS_CALL(void) pantheios_fe_uninit(void* token);
  *   It may also be called if the application, or the front-end or
  *   back-end(s) invoke the bail out handler at any other time.
  */
-PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(void* token);
+PANTHEIOS_CALL(PAN_CHAR_T const*)
+pantheios_fe_getProcessIdentity(
+    void* token
+);
 
 /** Determines whether a given severity is being logged
  *
@@ -200,7 +211,8 @@ PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(void* token);
  * \note This may be called from any thread in a multi-threaded process, and
  *   so it must be safely callable by multiple threads concurrently.
  */
-PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
+PANTHEIOS_CALL(int)
+pantheios_fe_isSeverityLogged(
     void*   token
 ,   int     severity
 ,   int     backEndId
@@ -213,3 +225,4 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_FRONTEND */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.fe.WindowsRegistry.controller/test.scratch.fe.WindowsRegistry.controller.cpp
+ * File:    test/scratch/test.scratch.fe.WindowsRegistry.controller/test.scratch.fe.WindowsRegistry.controller.cpp
  *
- * Purpose:     Implementation file for the test.scratch.fe.WindowsRegistry.controller project.
+ * Purpose: Implementation file for the test.scratch.fe.WindowsRegistry.controller project.
  *
- * Created:     2nd December 2007
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 2nd December 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -47,8 +38,9 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 namespace pantheios
@@ -77,15 +69,15 @@ namespace control
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
     int bVerbose = true;
 
-    { for(int i = 1; i < argc; ++i)
+    { for (int i = 1; i < argc; ++i)
     {
         char const* const arg = argv[i];
 
-        if(arg[0] == '-')
+        if (arg[0] == '-')
         {
         }
         else
@@ -99,7 +91,7 @@ static int main_(int argc, char** argv)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int             res;
 
@@ -117,13 +109,13 @@ int main(int argc, char** argv)
     {
         res = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         fprintf(stderr, "Unhandled unknown error\n");
 
@@ -138,4 +130,5 @@ int main(int argc, char** argv)
     return res;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
+

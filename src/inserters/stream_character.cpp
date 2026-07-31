@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     4th July 2011
- * Updated:     21st September 2015
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2011-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +55,9 @@
 #include <ctype.h>
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppression
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -63,18 +65,20 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String encoding compatibility
+ * string encoding compatibility
  */
 
-#ifdef PANTHEIOS_USE_WIDE_STRINGS 
-# define pan_strlen_                    ::wcslen
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+# define pan_strlen_                                        ::wcslen
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_strlen_                    ::strlen
+# define pan_strlen_                                        ::strlen
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -82,16 +86,17 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Implementation
+ * implementation
  */
 
 namespace ximpl_stream_character
 {
     struct known_map_entry_t
     {
-        pan_char_t          ch;
-        pan_char_t const*   name;
+        pantheios_char_t        ch;
+        pantheios_char_t const* name;
     };
 
     static known_map_entry_t s_entries[] =
@@ -134,6 +139,7 @@ namespace ximpl_stream_character
 
 } /* namespace ximpl_stream_character */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * stream_character
  */
@@ -149,18 +155,18 @@ void stream_character::construct_()
 
     STLSOFT_ASSERT(0 == m_len);
 
-    if(isgraph(m_ch))
+    if (isgraph(m_ch))
     {
-        m_sz[0] = static_cast<pan_char_t>(m_ch);
+        m_sz[0] = static_cast<pantheios_char_t>(m_ch);
         m_sz[1] = '\0';
 
         m_len = 1;
     }
     else
     {
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_entries); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_entries); ++i)
         {
-            if(m_ch == s_entries[i].ch)
+            if (m_ch == s_entries[i].ch)
             {
                 m_len = pan_strlen_(s_entries[i].name);
 
@@ -176,8 +182,9 @@ void stream_character::construct_()
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -185,3 +192,4 @@ void stream_character::construct_()
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

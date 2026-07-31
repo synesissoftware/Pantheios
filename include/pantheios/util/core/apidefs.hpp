@@ -5,11 +5,12 @@
  *              ends.
  *
  * Created:     3rd November 2007
- * Updated:     9th May 2014
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,19 +50,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_CORE_HPP_APIDEFS
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_CORE_HPP_APIDEFS
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     18
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -78,8 +81,9 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Generic function pointer typedef for front-end initialisation */
@@ -126,6 +130,7 @@ typedef int (PANTHEIOS_CALLCONV* pantheios_be_X_logEntry_pfn_t)(
 ,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 );
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Front-end Functions
@@ -261,6 +266,7 @@ pantheios_call_fe_isSeverityLogged(
     return pfn(token, severity, backEndId);
 }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * Back-end Functions
@@ -414,3 +420,4 @@ pantheios_call_be_logEntry(
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_CORE_HPP_APIDEFS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

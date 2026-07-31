@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.null.h
+ * File:    pantheios/backends/bec.null.h
  *
- * Purpose:     Declaration of the Pantheios NULL Stock Back-end API.
+ * Purpose: Declaration of the Pantheios NULL Stock Back-end API.
  *
- * Created:     10th July 2006
- * Updated:     27th December 2010
+ * Created: 10th July 2006
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_NULL_SRC
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_NULL_SRC
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MINOR      2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       12
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -69,8 +72,9 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__backend__stock_backends__null Pantheios NULL Stock Back-end
@@ -79,6 +83,7 @@
  *
  * This library is useful for conducting performance tests.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -124,10 +129,12 @@ PANTHEIOS_CALL(int) pantheios_be_null_logEntry(
  * <code>NULL</code>. At such time as back-end specific arguments
  * are required, it will become a first-class function.
  */
-#define pantheios_be_null_parseArgs         NULL
+#define pantheios_be_null_parseArgs                         NULL
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_NULL_SRC */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -1,23 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/inserters/example.cpp.inserter.blob/example.cpp.inserter.blob.cpp
+ * File:    examples/cpp/inserters/example.cpp.inserter.blob/example.cpp.inserter.blob.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of Pantheios inserters for blob types
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of Pantheios inserters for blob types
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     25th August 2006
- * Updated:     21st September 2015
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 25th August 2006
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,19 +22,28 @@
 #include <string>                           // for std::string
 #include <stdlib.h>                         // for exit codes
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.inserter.blob");
+PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.inserter.blob");
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
 
-/* ////////////////////////////////////////////////////////////////////// */
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
-int main()
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int /* argc */, char* /* argv */[])
 {
   try
   {
@@ -52,7 +51,7 @@ int main()
 
     pantheios::uint8_t  bytes[20];
 
-    { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(bytes); ++i)
+    { for (size_t i = 0; i < STLSOFT_NUM_ELEMENTS(bytes); ++i)
     {
       //bytes[i] = static_cast<pantheios::uint8_t>((i << 8) | (i & 0x0f));
       bytes[i] = static_cast<pantheios::uint8_t>(i);
@@ -105,15 +104,15 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }
@@ -121,4 +120,6 @@ int main()
   return EXIT_FAILURE;
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     String inserter for std::exception-derived types.
  *
  * Created:     22nd March 2010
- * Updated:     11th October 2012
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_EXCEPTION
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_EXCEPTION
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_MINOR      0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_EDIT       4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_EDIT       7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -72,8 +75,9 @@
 
 #include <exception>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -81,8 +85,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -106,16 +111,16 @@ private:
     class_type& operator =(class_type const&);
 
 public:
-    pan_char_t const*   c_str() const;
-    pan_char_t const*   data() const;
-    size_t              length() const;
+    pantheios_char_t const* c_str() const;
+    pantheios_char_t const* data() const;
+    size_t                  length() const;
 
 private:
     void construct_() const;
     void construct_();
 
 private:
-    pan_char_t*             m_value;
+    pantheios_char_t*       m_value;
     size_t                  m_len;
     std::exception const&   m_x;
 };
@@ -126,8 +131,9 @@ private:
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Converts a reference to an exception to an instance of a type that
@@ -144,7 +150,7 @@ exception_inserter exception(
     std::exception const& x
 )
 {
-    return 
+    return
 #  if !defined(PANTHEIOS_NO_NAMESPACE)
       inserters::
 #  endif /* !PANTHEIOS_NO_NAMESPACE */
@@ -162,8 +168,9 @@ inline std::exception const& exception(
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -185,7 +192,7 @@ c_str_data_w(
     return i.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     exception_inserter const& i
 )
@@ -219,7 +226,7 @@ c_str_ptr_w(
     return i.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     exception_inserter const& i
 )
@@ -250,8 +257,9 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -280,8 +288,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -293,3 +302,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_EXCEPTION */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

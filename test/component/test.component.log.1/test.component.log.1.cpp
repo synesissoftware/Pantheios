@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.log.1/test.component.log.1.cpp
+ * File:    test/component/test.component.log.1/test.component.log.1.cpp
  *
- * Purpose:     Implementation file for the test.component.log.1 project.
+ * Purpose: Implementation file for the test.component.log.1 project.
  *
- * Created:     25th November 2007
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 25th November 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,34 +23,33 @@
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.log.1");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.log.1");
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * character encoding
  */
+
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
-typedef std::basic_string<PAN_CHAR_T>               string_t;
+typedef std::basic_string<PAN_CHAR_T>                       string_t;
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward Declarations
+ * forward declarations
  */
 
 static void test_01();
@@ -92,16 +82,19 @@ static void test_27();
 static void test_28();
 static void test_29();
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.log.1", verbosity))
+    if (XTESTS_START_RUNNER("test.component.log.1", verbosity))
     {
         XTESTS_RUN_CASE(test_01);
         XTESTS_RUN_CASE(test_02);
@@ -144,6 +137,7 @@ int main(int argc, char** argv)
 
     return retCode;
 }
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -336,9 +330,9 @@ static void test_11()
     // 2. Create test data
     const size_t    numEntries  =   1000;
 
-    { for(size_t i = 0; i < numEntries; ++i)
+    { for (size_t i = 0; i < numEntries; ++i)
     {
-        if(0 == (i % 2))
+        if (0 == (i % 2))
         {
             pantheios::log(pantheios::informational, PSTR("a"), PSTR("b"), PSTR("c"), PSTR("d"), PSTR("e"), PSTR("f"), PSTR("g"), PSTR("h"), PSTR("i"), PSTR("j"), PSTR("k"), PSTR("l"), PSTR("m"), PSTR("n"), PSTR("o"), PSTR("p"), PSTR("q"), PSTR("r"), PSTR("s"), PSTR("t"), PSTR("u"), PSTR("v"), PSTR("w"), PSTR("x"), PSTR("y"), PSTR("z"));
         }
@@ -355,9 +349,9 @@ static void test_11()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST_INTEGER_EQUAL(numEntries, results.size());
-    { for(size_t i = 0; i < numEntries; ++i)
+    { for (size_t i = 0; i < numEntries; ++i)
     {
-        if(0 == (i % 2))
+        if (0 == (i % 2))
         {
             XTESTS_TEST_STRING_EQUAL(PSTR("abcdefghijklmnopqrstuvwxyz"), results[i].statement);
         }
@@ -466,4 +460,6 @@ static void test_28()
 static void test_29()
 {}
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

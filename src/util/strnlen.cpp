@@ -5,11 +5,12 @@
  *              functions.
  *
  * Created:     21st June 2005
- * Updated:     31st July 2012
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -41,7 +42,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header Files
+/* Pantheios header files
  *
  * NOTE: We do _not_ include pantheios/pantheios.hpp here, since we are
  *  not using any of the Application Layer.
@@ -69,26 +70,29 @@
 # include <wchar.h>
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppression
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # pragma warn -8080
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String encoding compatibility
+ * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_strlen_                    wcslen
+# define pan_strlen_                                        wcslen
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_strlen_                    strlen
+# define pan_strlen_                                        strlen
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -98,8 +102,9 @@ namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Util API
+ * util API
  */
 
 /* TODO: put this declaration into pantheios/pantheios.h */
@@ -131,8 +136,9 @@ namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -141,3 +147,4 @@ namespace util
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

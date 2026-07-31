@@ -1,25 +1,19 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/misc/example.cpp.misc.no_namespace/example.cpp.misc.no_namespace.cpp
+ * File:    examples/cpp/misc/example.cpp.misc.no_namespace/example.cpp.misc.no_namespace.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of Pantheios with the namespace suppressed
+ *            - use of Pantheios with the namespace suppressed
  *
- * Created:     15th March 2008
- * Updated:     21st September 2015
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 15th March 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
 
 /* Pantheios header files */
 #define PANTHEIOS_NO_NAMESPACE                            // Suppress the namespace
@@ -32,19 +26,28 @@
 /* Standard C header files */
 #include <stdlib.h>                         // for exit codes
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
 extern "C" const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEIOS_LITERAL_STRING("example.cpp.misc.no_namespace");
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
 
-/* ////////////////////////////////////////////////////////////////////// */
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
-int main()
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int /* argc */, char* /* argv */[])
 {
   log_DEBUG(PSTR("debug"));
   log_INFORMATIONAL(PSTR("informational"));
@@ -58,4 +61,6 @@ int main()
   return EXIT_SUCCESS;
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

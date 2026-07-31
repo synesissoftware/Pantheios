@@ -4,11 +4,12 @@
  * Purpose:     String inserter for characters as read from streams.
  *
  * Created:     3rd July 2011
- * Updated:     25th October 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2011-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_MINOR       0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_REVISION    5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -73,8 +76,9 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -82,8 +86,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * types
  */
 
 /** Class for inserting stream characters into Pantheios diagnostic logging
@@ -119,11 +124,11 @@ private:
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const* data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const* c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The length of the c-style string representation of the integer
-    size_t            length() const;
+    size_t                  length() const;
 /// @}
 
 /// \name Implementation
@@ -136,28 +141,29 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    pan_char_t  m_sz[21];
-    const int   m_ch;
-    size_t      m_len;
+    pantheios_char_t    m_sz[21];
+    const int           m_ch;
+    size_t              m_len;
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Implementation
+ * implementation
  */
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 stream_character::data() const
 {
     return c_str();
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 stream_character::c_str() const
 {
-    if(0 == m_len)
+    if (0 == m_len)
     {
         construct_();
     }
@@ -169,7 +175,7 @@ inline
 size_t
 stream_character::length() const
 {
-    if(0 == m_len)
+    if (0 == m_len)
     {
         construct_();
     }
@@ -177,8 +183,9 @@ stream_character::length() const
     return m_len;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -189,7 +196,7 @@ namespace shims
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_data_name_(
     stream_character const& sc
 )
@@ -197,7 +204,7 @@ PANTHEIOS_c_str_data_name_(
     return sc.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     stream_character const& sc
 )
@@ -223,7 +230,7 @@ c_str_len(
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_ptr_name_(
     stream_character const& sc
 )
@@ -231,7 +238,7 @@ PANTHEIOS_c_str_ptr_name_(
     return sc.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     stream_character const& sc
 )
@@ -263,8 +270,9 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -290,8 +298,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -303,3 +312,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

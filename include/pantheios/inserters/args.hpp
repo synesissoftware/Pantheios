@@ -4,11 +4,12 @@
  * Purpose:     String inserter for argc+argv pairs.
  *
  * Created:     19th October 2006
- * Updated:     22nd September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_ARGS
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_ARGS
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_MINOR       6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_REVISION    6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_EDIT        31
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_REVISION    8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_EDIT        35
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -76,8 +79,9 @@
 
 #include <string>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -85,8 +89,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /** Class for inserting <code>argc+argv</code> arguments into Pantheios
@@ -174,14 +179,24 @@ public:
     /// \param flags \link pantheios::args::format_flags Flags\endlink that
     ///   control the formatting of the shim.
     /// \param separator String used to separate multiple arguments; defaults to ", "
-    args(int argc, pan_char_t const* const* argv, int flags = quoteArgsWithSpaces, pan_char_t const* separator = PANTHEIOS_LITERAL_STRING(", "));
+    args(
+        int                             argc
+    ,   pantheios_char_t const* const*  argv
+    ,   int                             flags       =   quoteArgsWithSpaces
+    ,   pantheios_char_t const*         separator   =   PANTHEIOS_LITERAL_STRING(", ")
+    );
 
 #ifdef STLSOFT_COMPILER_IS_BORLAND
-    args(int argc, pan_char_t** argv, int flags = quoteArgsWithSpaces, pan_char_t const* separator = PANTHEIOS_LITERAL_STRING(", "));
+    args(
+        int                             argc
+    ,   pantheios_char_t**              argv
+    ,   int                             flags       =   quoteArgsWithSpaces
+    ,   pantheios_char_t const*         separator   =   PANTHEIOS_LITERAL_STRING(", ")
+    );
 #endif /* STLSOFT_COMPILER_IS_BORLAND */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-    ~args() stlsoft_throw_0();
+    ~args() STLSOFT_NOEXCEPT;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 /// @}
 
@@ -189,11 +204,11 @@ public:
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The size of the c-style string representation of the integer
-    size_t              size() const;
+    size_t                  size() const;
 /// @}
 
 /// \name Implementation
@@ -206,13 +221,13 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    typedef std::basic_string<pan_char_t> string_type_;
+    typedef std::basic_string<pantheios_char_t> string_type_;
 
-    const int                   m_flags;
-    const int                   m_argc;
-    pan_char_t const* const*    m_argv;
-    const string_type_          m_separator;
-    string_type_                m_result;
+    const int                       m_flags;
+    const int                       m_argc;
+    pantheios_char_t const* const*  m_argv;
+    const string_type_              m_separator;
+    string_type_                    m_result;
 /// @}
 
 /// \name Not to be implemented
@@ -228,8 +243,9 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -249,7 +265,7 @@ PANTHEIOS_c_str_data_name_(
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(args const& a)
 {
     return a.data();
@@ -280,7 +296,7 @@ PANTHEIOS_c_str_ptr_name_(
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(args const& a)
 {
     return a.c_str();
@@ -310,8 +326,9 @@ c_str_ptr(args const& a)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -336,8 +353,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -349,3 +367,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_ARGS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

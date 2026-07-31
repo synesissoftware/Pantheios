@@ -4,11 +4,12 @@
  * Purpose:     Implementation for the ACE back-end
  *
  * Created:     26th June 2005
- * Updated:     21st September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -65,6 +66,7 @@
 /* Standard C header files */
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -86,7 +88,7 @@ PANTHEIOS_CALL(int) pantheios_be_ACE_init(
     STLSOFT_SUPPRESS_UNUSED(unused);
     STLSOFT_SUPPRESS_UNUSED(reserved);
 
-    if(NULL == (*ptoken = pantheios::util::strdup_nothrow(processIdentity)))
+    if (NULL == (*ptoken = pantheios::util::strdup_nothrow(processIdentity)))
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -126,7 +128,7 @@ PANTHEIOS_CALL(int) pantheios_be_ACE_logEntry(
     // - Pantheios is wide, ACE is narrow
     // - Pantheios is narrow, ACE is wide
 
-    if(severity < PANTHEIOS_SEV_NOTICE)
+    if (severity < PANTHEIOS_SEV_NOTICE)
     {
 #if (   defined(PANTHEIOS_USE_WIDE_STRINGS) && \
         defined(ACE_USES_WCHAR)) || \
@@ -247,3 +249,4 @@ PANTHEIOS_CALL(int) pantheios_be_ACE_logEntry(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

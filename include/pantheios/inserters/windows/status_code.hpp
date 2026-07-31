@@ -4,11 +4,12 @@
  * Purpose:     Selective format string inserter for Windows status codes.
  *
  * Created:     5th April 2014
- * Updated:     25th October 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2014-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -73,8 +76,9 @@
 
 #include <windows.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -84,10 +88,19 @@ namespace pantheios
 namespace windows
 {
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * types
  */
 
+/** Class for inserting Windows status codes, either Windows API
+ * <code>DWORD</code> values (from <code>GetLastError()</code>), which will
+ * be rendered as plain integers, or COM <code>HRESULT</code> values, which
+ * will be rendered as 0xYYYYYYYY.
+ *
+ * \ingroup group__application_layer_interface__inserters
+ *
+ */
 class status_code
     : public PANTHEIOS_NS_QUAL(integer)
 {
@@ -124,7 +137,7 @@ private:
     template <typename I>
     static int get_width_(I e)
     {
-        if(0 != (0x80000000 & e))
+        if (0 != (0x80000000 & e))
         {
             return 8;
         }
@@ -134,7 +147,7 @@ private:
     template <typename I>
     static int get_format_(I e)
     {
-        if(0 != (0x80000000 & e))
+        if (0 != (0x80000000 & e))
         {
             return fmt::fullHex;
         }
@@ -143,8 +156,9 @@ private:
     }
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 } /* namespace windows */
@@ -152,8 +166,9 @@ private:
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -165,3 +180,4 @@ private:
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

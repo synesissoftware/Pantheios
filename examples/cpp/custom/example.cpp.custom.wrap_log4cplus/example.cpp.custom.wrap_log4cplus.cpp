@@ -1,25 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/custom/example.cpp.custom.wrap_log4cplus/example.cpp.custom.wrap_log4cplus.cpp
+ * File:    examples/cpp/custom/example.cpp.custom.wrap_log4cplus/example.cpp.custom.wrap_log4cplus.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of a custom back-end to wrap the log4cxx library
- *                - interaction between log4cxx constructs and Pantheios log
- *                  statements
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of a custom back-end to wrap the log4cxx library
+ *            - interaction between log4cxx constructs and Pantheios log
+ *              statements
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     16th August 2006
- * Updated:     21st September 2015
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 16th August 2006
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -49,9 +39,12 @@
 # endif /* compiler */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int /* argc */, char* /* argv */[])
 {
   try
   {
@@ -87,15 +80,15 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, "out of memory");
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL("Exception: ", x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, "Unexpected unknown error");
   }
@@ -103,8 +96,9 @@ int main()
   return EXIT_FAILURE;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Front-end
+ * front-end
  */
 
 PANTHEIOS_CALL(int) pantheios_fe_init(
@@ -135,7 +129,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
 
   LogLevel  level;
 
-  switch(severity & 0x0f)
+  switch (severity & 0x0f)
   {
     case  PANTHEIOS_SEV_EMERGENCY:
     case  PANTHEIOS_SEV_ALERT:
@@ -162,8 +156,9 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
   return root.isEnabledFor(level);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Back-end
+ * back-end
  */
 
 PANTHEIOS_CALL(int) pantheios_be_init(
@@ -180,15 +175,15 @@ PANTHEIOS_CALL(int) pantheios_be_init(
   {
     BasicConfigurator::doConfigure();
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
-    pantheios::util::onBailOut(PANTHEIOS_LOG_ALERT, "failed to initialise back-end", processIdentity, "out of memory");
+    pantheios::util::onBailOut(PANTHEIOS_SEV_ALERT, "failed to initialise back-end", processIdentity, "out of memory");
 
     return PANTHEIOS_INIT_RC_OUT_OF_MEMORY
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
-    pantheios::util::onBailOut(PANTHEIOS_LOG_ALERT, "failed to initialise back-end", processIdentity, x.what());
+    pantheios::util::onBailOut(PANTHEIOS_SEV_ALERT, "failed to initialise back-end", processIdentity, x.what());
 
     return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
   }
@@ -215,7 +210,7 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
   Logger root = Logger::getRoot();
 
-  switch(severity)
+  switch (severity)
   {
     case  PANTHEIOS_SEV_EMERGENCY:
     case  PANTHEIOS_SEV_ALERT:
@@ -240,4 +235,6 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
   return cchEntry;
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

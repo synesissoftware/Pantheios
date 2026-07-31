@@ -4,11 +4,12 @@
  * Purpose:     Pantheios Core entity string access shims : pan_severity_t.
  *
  * Created:     21st June 2005
- * Updated:     11th October 2012
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T
 #define PANTHEIOS_INCL_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_MAJOR      4
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_MINOR      0
-# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_EDIT       354
+# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_EDIT       357
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Validation
+ * validation
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -75,16 +78,18 @@
 # error This file cannot be included when stock levels are suppressed
 #endif /* PANTHEIOS_NO_STOCK_LEVELS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS
 # include <pantheios/internal/shim_declarations.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -94,15 +99,16 @@ namespace shims
 {
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String access shims
+ * string access shims
  */
 
 /* Shims for (pan_severity_t severity) */
 
 /** Returns a possibly non-nul-terminated non-NULL C-style string representing the severity */
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_data_name_(
     pan_severity_t severity
 )
@@ -111,7 +117,7 @@ PANTHEIOS_c_str_data_name_(
 }
 /** Returns a possibly non-nul-terminated non-NULL C-style string representing the severity */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     pan_severity_t severity
 )
@@ -140,7 +146,7 @@ c_str_len(
 
 /** Returns a nul-terminated non-NULL C-style string representing the severity */
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_ptr_name_(
     pan_severity_t severity
 )
@@ -149,7 +155,7 @@ PANTHEIOS_c_str_ptr_name_(
 }
 /** Returns a nul-terminated non-NULL C-style string representing the severity */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     pan_severity_t severity
 )
@@ -159,29 +165,30 @@ c_str_ptr(
 
 /** Returns a nul-terminated potentially null C-style string representing the severity */
 inline
-pan_char_t const*
+pantheios_char_t const*
 PANTHEIOS_c_str_ptr_null_name_(
     pan_severity_t severity
 )
 {
-    pan_char_t const* s = pantheios_getStockSeverityString(severity);
+    pantheios_char_t const* const s = pantheios_getStockSeverityString(severity);
 
     return ('\0' != *s) ? s : NULL;
 }
 /** Returns a nul-terminated potentially null C-style string representing the severity */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr_null(
     pan_severity_t severity
 )
 {
-    pan_char_t const* s = pantheios_getStockSeverityString(severity);
+    pantheios_char_t const* const s = pantheios_getStockSeverityString(severity);
 
     return ('\0' != *s) ? s : NULL;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -189,8 +196,9 @@ c_str_ptr_null(
 } /* namespace pantheios */
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -202,3 +210,4 @@ c_str_ptr_null(
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

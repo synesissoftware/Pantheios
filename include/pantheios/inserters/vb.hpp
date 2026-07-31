@@ -5,11 +5,12 @@
  *              class.
  *
  * Created:     18th June 2012
- * Updated:     18th June 2012
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_EDIT      1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_EDIT      3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -71,8 +74,9 @@
 # include <pantheios/inserters/variant_bool.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -80,23 +84,26 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Typedef for pantheios::variant_bool inserter class. */
 typedef variant_bool vb;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -108,3 +115,4 @@ typedef variant_bool vb;
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

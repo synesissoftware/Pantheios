@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/pantheios.hpp
+ * File:    pantheios/pantheios.hpp
  *
- * Purpose:     Primary header file for Pantheios
+ * Purpose: Primary header file for Pantheios
  *
- * Created:     21st June 2005
- * Updated:     11th October 2012
+ * Created: 21st June 2005
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -54,19 +55,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MAJOR      3
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      10
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       103
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      11
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       108
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* Main Pantheios Header */
@@ -92,6 +95,7 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # if defined(PANTHEIOS_NO_INCLUDE_STLSOFT_SHIM_ACCESS_SHIMS) && \
      !defined(PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS)
+
 #  ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 #   pragma messsage("The symbol PANTHEIOS_NO_INCLUDE_STLSOFT_SHIM_ACCESS_SHIMS is deprecated, and support for it will be removed before 1.0.1. Please use PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS instead.")
 #  endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
@@ -102,8 +106,10 @@
 
 
 #ifdef PANTHEIOS_CUSTOM_SHIM_INCLUDE
+
 # include PANTHEIOS_CUSTOM_SHIM_INCLUDE
 #else /* ? PANTHEIOS_CUSTOM_SHIM_INCLUDE */
+
 # if !defined(PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS)
 #  ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 #   include <stlsoft/shims/access/string.hpp>
@@ -114,6 +120,7 @@
 
 
 #  ifdef PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
+
 #   define PANTHEIOS_NO_INCLUDE_ACESTL_STRING_ACCESS
 #   define PANTHEIOS_NO_INCLUDE_ATLSTL_STRING_ACCESS
 #   define PANTHEIOS_NO_INCLUDE_COMSTL_STRING_ACCESS
@@ -135,6 +142,7 @@
           defined(_AFXDLL) || \
           (   defined(_AFX) && \
               defined(_MFC_VER)))
+
 #   ifndef MFCSTL_INCL_MFCSTL_SHIMS_ACCESS_HPP_STRING
 #    include <mfcstl/shims/access/string.hpp>
 #   endif /* !MFCSTL_INCL_MFCSTL_SHIMS_ACCESS_HPP_STRING */
@@ -150,6 +158,7 @@
       (   defined(PANTHEIOS_FORCE_INCLUDE_ATLSTL_STRING_ACCESS) || \
           (   defined(_ATL) && \
               defined(_ATL_VER)))
+
 #   ifndef ATLSTL_INCL_ATLSTL_SHIMS_ACCESS_HPP_STRING
 #    include <atlstl/shims/access/string.hpp>
 #   endif /* !ATLSTL_INCL_ATLSTL_SHIMS_ACCESS_HPP_STRING */
@@ -165,6 +174,7 @@
       (   defined(PANTHEIOS_FORCE_INCLUDE_COMSTL_STRING_ACCESS) || \
           defined(WIN32) || \
           defined(WIN64))
+
 #   ifndef COMSTL_INCL_COMSTL_SHIMS_ACCESS_HPP_STRING
 #    include <comstl/shims/access/string.hpp>
 #   endif /* !COMSTL_INCL_COMSTL_SHIMS_ACCESS_HPP_STRING */
@@ -182,6 +192,7 @@
              defined(__unix) || \
              defined(__unix__) || \
              defined(UNIX)))
+
 #   ifndef UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING
 #    include <unixstl/shims/access/string.hpp>
 #   endif /* !UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING */
@@ -197,6 +208,7 @@
       (   defined(PANTHEIOS_FORCE_INCLUDE_WINSTL_STRING_ACCESS) || \
           defined(WIN32) || \
           defined(WIN64))
+
 #   ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
 #    include <winstl/shims/access/string.hpp>
 #   endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
@@ -204,9 +216,9 @@
 #    include <winstl/shims/access/string/time.hpp>
 #   endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME */
 #  endif /* Win */
-
 # endif /* !PANTHEIOS_NO_INCLUDE_STLSOFT_STRING_ACCESS */
 #endif /* PANTHEIOS_CUSTOM_SHIM_INCLUDE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * GCC bug
@@ -222,8 +234,9 @@
 //# include <pantheios/inserters.hpp>
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -263,8 +276,9 @@ namespace pantheios
 # undef PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_
 #endif /* PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 /* The Digital Mars and GCC compilers both exhibit strange behaviour (bugs?)
@@ -312,41 +326,46 @@ namespace pantheios
 #  undef PANTHEIOS_INVOKE_SHIM_PAIR_
 # endif /* PANTHEIOS_INVOKE_SHIM_PAIR_ */
 
-# if defined(STLSOFT_COMPILER_IS_DMC)                   
-#  define PANTHEIOS_DECLARE_SHIM_PAIR_()                ((void)0)
-#  define PANTHEIOS_INVOKE_SHIM_PAIR_(x)                stlsoft::PANTHEIOS_c_str_len_name_(x), stlsoft::PANTHEIOS_c_str_data_name_(x)
-# elif defined(STLSOFT_COMPILER_IS_GCC)                 
-#  define PANTHEIOS_DECLARE_SHIM_PAIR_()                using ::stlsoft::PANTHEIOS_c_str_data_name_; using ::stlsoft::PANTHEIOS_c_str_len_name_
-#  define PANTHEIOS_INVOKE_SHIM_PAIR_(x)                PANTHEIOS_c_str_len_name_(x), PANTHEIOS_c_str_data_name_(x)
-# else /* ? compiler */                                 
-#  define PANTHEIOS_DECLARE_SHIM_PAIR_()                using ::stlsoft::PANTHEIOS_c_str_data_name_; using ::stlsoft::PANTHEIOS_c_str_len_name_
-#  define PANTHEIOS_INVOKE_SHIM_PAIR_(x)                PANTHEIOS_c_str_len_name_(x), PANTHEIOS_c_str_data_name_(x)
+# if 0
+# elif defined(STLSOFT_COMPILER_IS_DMC)
+
+#  define PANTHEIOS_DECLARE_SHIM_PAIR_()                    ((void)0)
+#  define PANTHEIOS_INVOKE_SHIM_PAIR_(x)                    stlsoft::PANTHEIOS_c_str_len_name_(x), stlsoft::PANTHEIOS_c_str_data_name_(x)
+# elif defined(STLSOFT_COMPILER_IS_GCC)
+
+#  define PANTHEIOS_DECLARE_SHIM_PAIR_()                    using ::stlsoft::PANTHEIOS_c_str_data_name_; using ::stlsoft::PANTHEIOS_c_str_len_name_
+#  define PANTHEIOS_INVOKE_SHIM_PAIR_(x)                    PANTHEIOS_c_str_len_name_(x), PANTHEIOS_c_str_data_name_(x)
+# else /* ? compiler */
+
+#  define PANTHEIOS_DECLARE_SHIM_PAIR_()                    using ::stlsoft::PANTHEIOS_c_str_data_name_; using ::stlsoft::PANTHEIOS_c_str_len_name_
+#  define PANTHEIOS_INVOKE_SHIM_PAIR_(x)                    PANTHEIOS_c_str_len_name_(x), PANTHEIOS_c_str_data_name_(x)
 # endif /* compiler */
 
-# define PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_(t)    STLSOFT_STATIC_ASSERT(0 == stlsoft::is_fundamental_type<t>::value)
-
+# define PANTHEIOS_VALIDATE_TYPE_NOT_FUNDAMENTAL_(t)        STLSOFT_STATIC_ASSERT(0 == stlsoft::is_fundamental_type<t>::value)
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef PANTHEIOS_NO_GENERATED_FUNCTIONS
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+
 namespace internal
 {
-#  include "./internal/generated/log_dispatch_functions.h"
-#  include "./internal/generated/log_dispatch_functions.hpp"
+#  include "./generated/log_dispatch_functions.h"
+#  include "./generated/log_dispatch_functions.hpp"
 } /* namespace internal */
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 # if !defined(PANTHEIOS_NO_LOG_FUNCTIONS)
-#  include "./internal/generated/log_functions.hpp"     // log(s), log(s, s) etc etc
+#  include "./generated/log_functions.hpp"     // log(s), log(s, s) etc etc
 # endif /* !PANTHEIOS_NO_LOG_FUNCTIONS */
 # if !defined(PANTHEIOS_NO_LOG_SEV_FUNCTIONS)
-#  include "./internal/generated/log_sev_functions.hpp" // log_ALERT() overloads, log_ERROR() overloads, etc.
+#  include "./generated/log_sev_functions.hpp" // log_ALERT() overloads, log_ERROR() overloads, etc.
 # endif /* !PANTHEIOS_NO_LOG_SEV_FUNCTIONS */
 #endif /* !PANTHEIOS_NO_GENERATED_FUNCTIONS */
 
 #undef PANTHEIOS_INVOKE_SHIM_PAIR_
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -354,7 +373,7 @@ namespace internal
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Auto-initialisation
+ * auto-initialisation
  *
  * Except when making a DLL, this is automatic, unless PANTHEIOS_NO_AUTO_INIT
  * is defined.
@@ -371,18 +390,26 @@ namespace internal
 #if defined(PANTHEIOS_FORCE_AUTO_INIT) || \
     !defined(PANTHEIOS_NO_AUTO_INIT)
 # include "./internal/initialiser.hpp"    // Schwarz counter initialisation
+
+namespace
+{
+    /// The per-compilation unit instance of pantheios_initialiser, which
+    /// ensures that the Pantheios library is initialised prior to use.
+    static pantheios_initialiser    s_pantheios_initialiser;
+
+} /* anonymous namespace */
 #endif /* PANTHEIOS_FORCE_AUTO_INIT || !PANTHEIOS_NO_AUTO_INIT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

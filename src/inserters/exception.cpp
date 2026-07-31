@@ -4,11 +4,12 @@
  * Purpose:     String inserter for std::exception-derived types.
  *
  * Created:     22nd March 2010
- * Updated:     21st September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,8 +58,9 @@
 #endif /* compiler */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppression
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -66,8 +68,9 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -75,8 +78,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -84,8 +88,9 @@ namespace inserters
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 // exception_inserter
@@ -100,7 +105,7 @@ void exception_inserter::construct_()
     stlsoft::m2w t(m_x.what());
 
 #ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-    if(0u != t.size())
+    if (0u != t.size())
     {
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -117,14 +122,16 @@ void exception_inserter::construct_()
     , m_x(x)
 {}
 
-pan_char_t const* exception_inserter::c_str() const
+pantheios_char_t const*
+exception_inserter::c_str() const
 {
     return data();
 }
 
-pan_char_t const* exception_inserter::data() const
+pantheios_char_t const*
+exception_inserter::data() const
 {
-    if('\0' == m_value[0])
+    if ('\0' == m_value[0])
     {
         construct_();
     }
@@ -134,7 +141,7 @@ pan_char_t const* exception_inserter::data() const
 
 size_t exception_inserter::length() const
 {
-    if('\0' == m_value[0])
+    if ('\0' == m_value[0])
     {
         construct_();
     }
@@ -142,8 +149,9 @@ size_t exception_inserter::length() const
     return m_len;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -153,3 +161,4 @@ size_t exception_inserter::length() const
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

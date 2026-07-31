@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.be.N/test.unit.be.N.c
+ * File:    test/unit/test.unit.be.N/test.unit.be.N.c
  *
- * Purpose:     Implementation file for the test.unit.be.N project.
+ * Purpose: Unit test of be.N backend.
  *
- * Created:     29th January 2008
- * Updated:     22nd March 2010
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 29th January 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,10 +19,15 @@
 #include <stdio.h>                  /* for fprintf() */
 #include <stdlib.h>                 /* for EXIT_SUCCESS, EXIT_FAILURE */
 
-const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.N");
+
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.N");
 
 
-#define DECLARE_BACK_END_IMPL_N(n)                                          \
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+#define DECLARE_BACK_END_IMPL_N_(n)                                         \
                                                                             \
     PANTHEIOS_CALL(int) pantheios_be_N_test_ ## n ## _init(                 \
         PAN_CHAR_T const*   processIdentity                                 \
@@ -61,9 +57,10 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
         STLSOFT_SUPPRESS_UNUSED(backEndId);                                 \
         STLSOFT_SUPPRESS_UNUSED(init);                                      \
         STLSOFT_SUPPRESS_UNUSED(reserved);                                  \
-        STLSOFT_SUPPRESS_UNUSED(ptoken);                                    \
                                                                             \
-        if(s_retVals[n] >= 0)                                               \
+        *ptoken = (char*)(0) + n;                                           \
+                                                                            \
+        if (s_retVals[n] >= 0)                                              \
         {                                                                   \
             ++s_initCounts[n];                                              \
         }                                                                   \
@@ -95,7 +92,12 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
         return 0;                                                           \
     }
 
-#define NUM_BACKENDS    (5)
+
+/* /////////////////////////////////////////////////////////////////////////
+ * backends
+ */
+
+#define NUM_BACKENDS                                        (5)
 
 static int s_retVals[1 + NUM_BACKENDS];     /* 0th element is not used. */
 static int s_initCounts[1 + NUM_BACKENDS];  /* 0th element is not used. */
@@ -109,11 +111,11 @@ static int s_flags[1 + NUM_BACKENDS] =
     PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED
 };
 
-DECLARE_BACK_END_IMPL_N(1)
-DECLARE_BACK_END_IMPL_N(2)
-DECLARE_BACK_END_IMPL_N(3)
-DECLARE_BACK_END_IMPL_N(4)
-DECLARE_BACK_END_IMPL_N(5)
+DECLARE_BACK_END_IMPL_N_(1)
+DECLARE_BACK_END_IMPL_N_(2)
+DECLARE_BACK_END_IMPL_N_(3)
+DECLARE_BACK_END_IMPL_N_(4)
+DECLARE_BACK_END_IMPL_N_(5)
 
 pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
@@ -126,14 +128,14 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
     PANTHEIOS_BE_N_STDFORM_ENTRY(3, pantheios_be_N_test_3, 0),
     PANTHEIOS_BE_N_STDFORM_ENTRY(4, pantheios_be_N_test_4, 0),
     PANTHEIOS_BE_N_STDFORM_ENTRY(5, pantheios_be_N_test_5, 0),
+
     PANTHEIOS_BE_N_TERMINATOR_ENTRY
 };
-
 
 static void reset_state_(void)
 {
     int i;
-    for(i = 0; i != NUM_BACKENDS; ++i)
+    for (i = 0; i != NUM_BACKENDS; ++i)
     {
         PAN_BE_N_BACKEND_LIST[i].flags  =   s_flags[1 + i]; /* Replace the desired flags */
         s_retVals[i]                    =   0;              /* Mark to pass */
@@ -143,7 +145,16 @@ static void reset_state_(void)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+PANTHEIOS_CALL(int) pantheios_getNextBackEndId(void)
+{
+    static int s_nextId = 1000;
+
+    return ++s_nextId;
+}
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -156,10 +167,10 @@ int main(int argc, char** argv)
     STLSOFT_STATIC_ASSERT(NUM_BACKENDS + 1 == STLSOFT_NUM_ELEMENTS(s_flags));
 
 
-    if(XTESTS_START_RUNNER("test.unit.be.N", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.be.N", verbosity))
     {
         /* Test-1 */
-        if(XTESTS_CASE_BEGIN("Test-1", "Verify that all five succeed"))
+        if (XTESTS_CASE_BEGIN("Test-1", "Verify that all five succeed"))
         {
             void*   token;
             int     res;
@@ -182,7 +193,7 @@ int main(int argc, char** argv)
 
 
         /* Test-2 */
-        if(XTESTS_CASE_BEGIN("Test-2", "Verify that #1 failure causes all to fail"))
+        if (XTESTS_CASE_BEGIN("Test-2", "Verify that #1 failure causes all to fail"))
         {
             void*   token;
             int     res;
@@ -207,7 +218,7 @@ int main(int argc, char** argv)
 
 
         /* Test-3 */
-        if(XTESTS_CASE_BEGIN("Test-3", "Verify that #2 failure is benign"))
+        if (XTESTS_CASE_BEGIN("Test-3", "Verify that #2 failure is benign"))
         {
             void*   token;
             int     res;
@@ -232,7 +243,7 @@ int main(int argc, char** argv)
 
 
         /* Test-4 */
-        if(XTESTS_CASE_BEGIN("Test-4", "Verify that failure of 4 out of five, where all ignore init-failure, does not cause failure"))
+        if (XTESTS_CASE_BEGIN("Test-4", "Verify that failure of 4 out of five, where all ignore init-failure, does not cause failure"))
         {
             void*   token;
             int     res;
@@ -267,7 +278,7 @@ int main(int argc, char** argv)
 
 
         /* Test-5 */
-        if(XTESTS_CASE_BEGIN("Test-5", "Verify that failure of 5 out of five, where all ignore init-failure, does cause failure"))
+        if (XTESTS_CASE_BEGIN("Test-5", "Verify that failure of 5 out of five, where all ignore init-failure, does cause failure"))
         {
             void*   token;
             int     res;
@@ -295,9 +306,51 @@ int main(int argc, char** argv)
             XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[4]);
             XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[5]);
 
-            /* pantheios_be_uninit(token); */
+            pantheios_be_uninit(token);
 
             XTESTS_CASE_END("Test-5");
+        }
+
+
+        /* Test-6 */
+        if (XTESTS_CASE_BEGIN("Test-6", "Verify that can obtain contexts from ids"))
+        {
+            void*   token;
+            int     res;
+            void*   tokens[1 + NUM_BACKENDS];
+
+            reset_state_();
+
+            res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
+
+            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
+            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[1]);
+            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[2]);
+            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[3]);
+            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[4]);
+            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[5]);
+
+
+            XTESTS_TEST_POINTER_EQUAL(NULL, pantheios_be_N_tokenFromId(-1, NULL));
+            XTESTS_TEST_POINTER_EQUAL(NULL, pantheios_be_N_tokenFromId( 0, NULL));
+            { size_t i; for (i = 0 ; i != STLSOFT_NUM_ELEMENTS(tokens); ++i)
+            {
+                tokens[i] = pantheios_be_N_tokenFromId((int)i, NULL);
+
+                if (i > 0)
+                {
+                    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, tokens[i]);
+                }
+                if (i > 1)
+                {
+                    XTESTS_TEST_POINTER_LESS(tokens[i], tokens[i - 1]);
+                }
+            }}
+
+
+            pantheios_be_uninit(token);
+
+            XTESTS_CASE_END("Test-1");
         }
 
 
@@ -310,3 +363,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

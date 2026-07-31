@@ -4,11 +4,12 @@
  * Purpose:     Handles detection of safe string library.
  *
  * Created:     7th February 2008
- * Updated:     1st September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,13 +48,15 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_SAFESTR
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_SAFESTR
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * compatibility
@@ -71,3 +74,4 @@
 #endif /* PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_SAFESTR */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

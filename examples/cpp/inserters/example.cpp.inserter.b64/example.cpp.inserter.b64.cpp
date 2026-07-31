@@ -7,7 +7,7 @@
  *                - use of pantheios::logputs() in bail-out conditions
  *
  * Created:     25th August 2006
- * Updated:     21st September 2015
+ * Updated:     16th December 2023
  *
  * www:         http://www.pantheios.org/
  *
@@ -36,7 +36,7 @@
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.inserter.b64");
+PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.inserter.b64");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -52,7 +52,7 @@ int main()
 
     pantheios::uint8_t  bytes[20];
 
-    { for(size_t i = 0; i < STLSOFT_NUM_ELEMENTS(bytes); ++i)
+    { for (size_t i = 0; i < STLSOFT_NUM_ELEMENTS(bytes); ++i)
     {
       //bytes[i] = static_cast<pantheios::uint8_t>((i << 8) | (i & 0x0f));
       bytes[i] = static_cast<pantheios::uint8_t>(i);
@@ -74,15 +74,15 @@ int main()
 
     return EXIT_SUCCESS;
   }
-  catch(std::bad_alloc&)
+  catch (std::bad_alloc&)
   {
     pantheios::log(pantheios::alert, PSTR("out of memory"));
   }
-  catch(std::exception& x)
+  catch (std::exception& x)
   {
     pantheios::log_CRITICAL(PSTR("Exception: "), x);
   }
-  catch(...)
+  catch (...)
   {
     pantheios::logputs(pantheios::emergency, PSTR("Unexpected unknown error"));
   }
@@ -91,3 +91,4 @@ int main()
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

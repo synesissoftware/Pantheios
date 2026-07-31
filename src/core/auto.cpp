@@ -4,11 +4,12 @@
  * Purpose:     Implementation file for Pantheios Application Layer API.
  *
  * Created:     27th August 2006
- * Updated:     10th August 2009
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,8 +43,9 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/quality/contract.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -55,11 +57,12 @@ namespace core
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#include "pantheios/internal/generated/log_dispatch_functions.h"
-#include "pantheios/internal/generated/log_functions.c"
+#include "pantheios/generated/log_dispatch_functions.h"
+#include "pantheios/internal/generated/log_functions.inl"
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -68,3 +71,4 @@ namespace core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

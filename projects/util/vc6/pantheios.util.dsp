@@ -702,6 +702,10 @@ SOURCE=..\..\..\src\util\core.apidefs.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\..\src\util\date_elements_to_string.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\..\src\util\hostname.c
 # End Source File
 # Begin Source File

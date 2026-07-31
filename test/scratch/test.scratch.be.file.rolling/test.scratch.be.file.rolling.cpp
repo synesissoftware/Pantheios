@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.file.rolling/test.scratch.be.file.rolling.cpp
+ * File:    test/scratch/test.scratch.be.file.rolling/test.scratch.be.file.rolling.cpp
  *
- * Purpose:     Implementation file for the test.scratch.be.file.rolling project.
+ * Purpose: Implementation file for the test.scratch.be.file.rolling project.
  *
- * Created:     24th October 2007
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 24th October 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -45,21 +36,21 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
-/* /////////////////////////////////////////////////////////////////////////
- * Constants & definitions
- */
 
-//static const char FILENAME_REMOTE[]   =   "rolling-log.test.remote";
+/* /////////////////////////////////////////////////////////////////////////
+ * constants
+ */
 
 static const int ENTRY_QUANTUM = 10;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Function implementations
+ * function implementations
  */
 
 PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(int backEndId, pan_be_file_init_t* init) /* throw() */
 {
-    switch(backEndId)
+    switch (backEndId)
     {
         case    PANTHEIOS_BEID_REMOTE:
             init->roll.entryCount = ENTRY_QUANTUM;
@@ -69,29 +60,35 @@ PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(int backEndId, pan_be_file_ini
     }
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.file.rolling");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.file.rolling");
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 typedef platformstl::filesystem_traits<char>    fs_traits_t;
 typedef platformstl::basic_path<char>           path_t;
 typedef platformstl::file_lines                 file_lines_t;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_ROLL_ON_ENTRIES();
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int argc, char** argv)
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+static int main_(int argc, char* argv[])
 {
 
     /* . */
@@ -105,7 +102,9 @@ static int main_(int argc, char** argv)
 }
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
 
 static void test_ROLL_ON_ENTRIES()
 {
@@ -121,14 +120,14 @@ static void test_ROLL_ON_ENTRIES()
 
     const int   NUM_ENTRIES = 104;
 
-    { for(size_t i = 0; i < NUM_ENTRIES; ++i)
+    { for (size_t i = 0; i < NUM_ENTRIES; ++i)
     {
         pantheios::log_NOTICE("stmt #", pantheios::integer(i));
     }}
 
     pantheios_be_file_setFilePath(NULL, PANTHEIOS_BEID_REMOTE);
 
-    { for(size_t i = 0; i < NUM_ENTRIES; i += ENTRY_QUANTUM)
+    { for (size_t i = 0; i < NUM_ENTRIES; i += ENTRY_QUANTUM)
     {
         size_t  index   =   i / ENTRY_QUANTUM;
 
@@ -147,9 +146,12 @@ static void test_ROLL_ON_ENTRIES()
     }}
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     int             res;
 
@@ -167,13 +169,13 @@ int main(int argc, char** argv)
     {
         res = main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         pantheios::log_ALERT("Unexpected general error: ", x, ". Application terminating");
 
         res = EXIT_FAILURE;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
 
@@ -188,4 +190,6 @@ int main(int argc, char** argv)
     return res;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* ///////////////////////////// end of file //////////////////////////// */
+

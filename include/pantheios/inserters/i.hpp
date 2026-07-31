@@ -5,11 +5,12 @@
  *              class.
  *
  * Created:     12th March 2010
- * Updated:     9th November 2010
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_I
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_I
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_I_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_I_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_I_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_I_EDIT       3
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_I_EDIT       5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -71,8 +74,9 @@
 # include <pantheios/inserters/integer.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTEGER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -80,23 +84,26 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Typedef for pantheios::integer inserter class. */
 typedef integer i;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -108,3 +115,4 @@ typedef integer i;
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_I */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

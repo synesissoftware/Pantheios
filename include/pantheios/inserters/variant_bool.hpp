@@ -4,11 +4,12 @@
  * Purpose:     String inserter for booleans.
  *
  * Created:     18th June 2012
- * Updated:     18th June 2012
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_EDIT        1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_EDIT        3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -70,8 +73,9 @@
 # include <pantheios/inserters/boolean.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BOOLEAN */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -83,8 +87,9 @@ namespace pantheios
 # endif /* rpcndr.h */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * types
  */
 
 /** Class for inserting VARIANT_BOOL variables into Pantheios diagnostic
@@ -143,16 +148,18 @@ public:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -164,3 +171,4 @@ public:
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.COMErrorObject.h
+ * File:    pantheios/backends/bec.COMErrorObject.h
  *
- * Purpose:     Declaration of the Pantheios COMErrorObject Stock Back-end API.
+ * Purpose: Declaration of the Pantheios COMErrorObject Stock Back-end API.
  *
- * Created:     21st June 2005
- * Updated:     30th April 2010
+ * Created: 21st June 2005
+ * Updated: 28th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_COMERROROBJECT
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_COMERROROBJECT
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_EDIT     22
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_EDIT     26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -69,8 +72,9 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__backend__stock_backends__COMErrorObject Pantheios COM Error Object Stock Back-end
@@ -78,8 +82,9 @@
  *  Back-end library that sets the calling threads's COM error object.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 /** \defgroup group__backend__stock_backends__COMErrorObject__flags Pantheios COM Error Object Stock Back-end Flags
@@ -98,8 +103,9 @@
 
 #define PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING       (0x00100000)
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Structure used for specifying initialisation information to the
@@ -108,14 +114,8 @@
  */
 struct pan_be_COMErrorObject_init_t
 {
-#if !defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) && \
-    !defined(PANTHEIOS_NO_NAMESPACE)
-    typedef pantheios::pan_uint16_t pan_uint16_t;
-    typedef pantheios::pan_uint32_t pan_uint32_t;
-#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION && !PANTHEIOS_NO_NAMESPACE */
-
-    pan_uint32_t    version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
-    pan_uint32_t    flags;      /*!< \ref group__backend__stock_backends__COMErrorObject__flags "Flags" that control the information displayed. */
+    pantheios_uint32_t      version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
+    pantheios_uint32_t      flags;      /*!< \ref group__backend__stock_backends__COMErrorObject__flags "Flags" that control the information displayed. */
 
 #ifdef __cplusplus
 public: /* Construction */
@@ -128,8 +128,9 @@ public: /* Construction */
 typedef struct pan_be_COMErrorObject_init_t pan_be_COMErrorObject_init_t;
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 /** Callback function defined by the application, invoked when the
@@ -142,6 +143,7 @@ PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_getAppInit(
     int                             backEndId
 ,   pan_be_COMErrorObject_init_t*   init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -210,22 +212,24 @@ PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_logEntry(
  * - "overwriteExisting"        (Boolean)
  */
 
-PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_parseArgs(
+PANTHEIOS_CALL(int)
+pantheios_be_COMErrorObject_parseArgs(
     size_t                          numArgs
-#ifdef PANTHEIOS_NO_NAMESPACE
-,   struct pan_slice_t* const       args
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-,   pantheios::pan_slice_t* const   args
-#endif /* PANTHEIOS_NO_NAMESPACE */
+,   pantheios_slice_t               args[]
 ,   pan_be_COMErrorObject_init_t*   init
 );
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifdef __cplusplus
+
 # ifndef PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
-inline pan_be_COMErrorObject_init_t::pan_be_COMErrorObject_init_t()
+
+inline
+pan_be_COMErrorObject_init_t::pan_be_COMErrorObject_init_t()
 {
     pantheios_be_COMErrorObject_getDefaultAppInit(this);
 }
@@ -237,3 +241,4 @@ inline pan_be_COMErrorObject_init_t::pan_be_COMErrorObject_init_t()
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_COMERROROBJECT */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

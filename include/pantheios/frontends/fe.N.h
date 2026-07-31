@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/frontends/fe.N.h
+ * File:    pantheios/frontends/fe.N.h
  *
- * Purpose:     Declaration of the Pantheios fe.N Stock Front-end API.
+ * Purpose: Declaration of the Pantheios fe.N Stock Front-end API.
  *
- * Created:     18th October 2006
- * Updated:     20th September 2015
+ * Created: 18th October 2006
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_N
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_N
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MINOR     3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      17
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  3
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -74,12 +77,14 @@
  *  Front-end library that can filter N back-ends.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Structure that describes a filter entry.
@@ -89,7 +94,7 @@
  *
 \htmlonly
 <pre>
-  PANTHEIOS_EXTERN_C pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
+  PANTHEIOS_EXTERN pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[] =
   {
     { 1, PANTHEIOS_SEV_WARNING }, // Back-end 1 has a ceiling of WARNING (so will log WARNING, ERROR, CRITICAL, ALERT, and EMERGENCY)
     { 2, PANTHEIOS_SEV_ERROR   }, // Back-end 2 has a ceiling of ERROR (so will log ERROR, CRITICAL, ALERT, and EMERGENCY)
@@ -112,7 +117,7 @@ struct pan_fe_N_t
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# define PANTHEIOS_FE_N_RESERVED_VALUES_            0, 0, { 0 }
+# define PANTHEIOS_FE_N_RESERVED_VALUES_                    0, 0, { 0 }
     /* The following fields are reserved for future use */
     PANTHEIOS_NS_QUAL(pan_uint32_t) reserved0;
     PANTHEIOS_NS_QUAL(pan_uint32_t) reserved1;
@@ -143,13 +148,14 @@ typedef struct pan_fe_N_t   pan_fe_N_t;
  */
 #define PANTHEIOS_FE_N_TERMINATOR_ENTRY(defaultCeiling)         { 0, defaultCeiling, PANTHEIOS_VER, PANTHEIOS_FE_N_RESERVED_VALUES_ }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * External Declarations
+ * external declarations
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 struct Pantheios_no_longer_uses_the_symbol_PAN_FE_N_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_;
-# define PAN_FE_N_PROCESS_IDENTITY (Pantheios_no_longer_uses_the_symbol_PAN_FE_N_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_)
+# define PAN_FE_N_PROCESS_IDENTITY                          (Pantheios_no_longer_uses_the_symbol_PAN_FE_N_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_)
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** The application must define this variable, to contain an array
@@ -170,10 +176,12 @@ struct Pantheios_no_longer_uses_the_symbol_PAN_FE_N_PROCESS_IDENTITY_all_front_e
  *
  * \ingroup group__frontend__stock_frontends__N
  */
-PANTHEIOS_EXTERN_C pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[];
+PANTHEIOS_EXTERN pan_fe_N_t PAN_FE_N_SEVERITY_CEILINGS[];
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_N */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

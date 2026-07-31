@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     21st September 2015
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +54,9 @@
 #include <stlsoft/conversion/integer_to_string.hpp>
 #include <stlsoft/shims/access/string/std/c_string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppression
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -62,8 +64,9 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -71,19 +74,21 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 struct processId_t const* processId =   0;
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER >= 1900
-# define processId  processId_another_symbol_
+# define processId                                          processId_another_symbol_
 #endif
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 namespace
@@ -91,27 +96,27 @@ namespace
 
     void
     pantheios_getProcessId_(
-        pan_char_t const**  processId
-    ,   size_t*             processIdLength
+        pantheios_char_t const**    processId
+    ,   size_t*                     processIdLength
     )
     {
         // NOTE: This function is _not_ threadsafe. However, this does not matter
         // because any overwrite, should it occur, will be entirely benign
 
-        static pan_char_t           s_processIdBuff[21];    // Large enough for 64-bit signed/unsigned integer
-        static size_t               s_processIdLength;
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
-        static pan_char_t const*    s_processId = ::stlsoft::integer_to_decimal_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
-#else /* ? STLSoft 1.12+ */
-        static pan_char_t const*    s_processId = ::stlsoft::integer_to_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
-#endif /* STLSoft 1.12+ */
+        static pantheios_char_t         s_processIdBuff[21];    // Large enough for 64-bit signed/unsigned integer
+        static size_t                   s_processIdLength;
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+        static pantheios_char_t const*  s_processId = ::stlsoft::integer_to_decimal_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
+#else /* ? STLSoft version */
+        static pantheios_char_t const*  s_processId = ::stlsoft::integer_to_string(&s_processIdBuff[0], STLSOFT_NUM_ELEMENTS(s_processIdBuff), pantheios_getCurrentProcessId(), &s_processIdLength);
+#endif /* STLSoft version */
 
-        if(NULL != processId)
+        if (NULL != processId)
         {
             *processId = s_processId;
         }
 
-        if(NULL != processIdLength)
+        if (NULL != processIdLength)
         {
             *processIdLength = s_processIdLength;
         }
@@ -119,18 +124,21 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
 
-PANTHEIOS_CALL(pan_char_t const*) pantheios_processId(void)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_processId(void)
 {
     return pantheios_getCurrentProcessIdString();
 }
 
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getCurrentProcessIdString(void)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getCurrentProcessIdString(void)
 {
-    pan_char_t const* processId;
+    pantheios_char_t const* processId;
 
     pantheios_getProcessId_(&processId, NULL);
 
@@ -151,8 +159,9 @@ PANTHEIOS_CALL(size_t) pantheios_getCurrentProcessIdStringLength(void)
     return processIdLen;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -160,3 +169,4 @@ PANTHEIOS_CALL(size_t) pantheios_getCurrentProcessIdStringLength(void)
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

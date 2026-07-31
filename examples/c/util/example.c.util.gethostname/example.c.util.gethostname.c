@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/util/example.c.util.gethostname/example.c.util.gethostname.c
+ * File:    examples/c/util/example.c.util.gethostname/example.c.util.gethostname.c
  *
- * Purpose:     Implementation file for the example.c.util.gethostname project.
+ * Purpose: Implementation file for the example.c.util.gethostname project.
  *
- * Created:     25th August 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 25th August 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -41,9 +32,12 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     PAN_CHAR_T  name[101];
     size_t      cch = pantheios_getHostName(&name[0], STLSOFT_NUM_ELEMENTS(name));
@@ -60,7 +54,7 @@ int main(int argc, char** argv)
      * it is available via GetLastError(); otherwise use errno
      */
 
-    if(0 == cch)
+    if (0 == cch)
     {
         /* not available, or a problem retrieving it */
 
@@ -69,7 +63,11 @@ int main(int argc, char** argv)
         DWORD   error = GetLastError();
         char*   message;
 
-        if(0 == winstl_C_format_message_alloc_a(error, NULL, &message))
+# if _STLSOFT_VER >= 0x010a0181
+        if (NULL == (message = winstl_C_format_message_strerror_a(error)))
+# else
+        if (0 == winstl_C_format_message_alloc_a(error, NULL, &message))
+# endif
         {
             /* Could not retrieve a string-form of the error, so print
              * out the error code (in case that might help)
@@ -95,7 +93,7 @@ int main(int argc, char** argv)
         char    err[1001];
         int     r = strerror_s(err, STLSOFT_NUM_ELEMENTS(err) - 1, errno);
 
-        if(0 != r)
+        if (0 != r)
         {
             err[0] = '\0';
         }
@@ -103,7 +101,7 @@ int main(int argc, char** argv)
         {
             err[STLSOFT_NUM_ELEMENTS(err) - 1] = '\0';
         }
- 
+
         fprintf(stderr, "could not elicit hostname: %s\n", err);
 
 # else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
@@ -113,7 +111,7 @@ int main(int argc, char** argv)
 
 #endif /* OS */
     }
-    else if(STLSOFT_NUM_ELEMENTS(name) == cch)
+    else if (STLSOFT_NUM_ELEMENTS(name) == cch)
     {
         /* buffer too short */
 
@@ -134,4 +132,6 @@ int main(int argc, char** argv)
     return EXIT_FAILURE;
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

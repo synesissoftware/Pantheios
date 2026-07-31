@@ -4,11 +4,12 @@
  * Purpose:     Declaration of the Pantheios Fail Stock Back-end API.
  *
  * Created:     9th January 2007
- * Updated:     11th September 2009
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_FAIL
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_FAIL
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MINOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_EDIT       11
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_EDIT       13
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -69,8 +72,9 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__backend__stock_backends__fail Pantheios Fail Stock Back-end
@@ -79,6 +83,7 @@
  *
  * This library is useful for testing \ref group__backend__stock_backends__N.
  */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -118,3 +123,4 @@ PANTHEIOS_CALL(int) pantheios_be_fail_logEntry(
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_FAIL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.fe.WindowsRegistry/test.unit.fe.WindowsRegistry.cpp
+ * File:    test/unit/test.unit.fe.WindowsRegistry/test.unit.fe.WindowsRegistry.cpp
  *
- * Purpose:     Implementation file for the test.unit.fe.WindowsRegistry project.
+ * Purpose: Implementation file for the test.unit.fe.WindowsRegistry project.
  *
- * Created:     14th May 2008
- * Updated:     27th May 2014
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2014, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 14th May 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,17 +27,18 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * character encoding
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -57,16 +49,18 @@
 #ifdef PSTR
 # undef PSTR
 #endif
-#define PSTR                            PANTHEIOS_LITERAL_STRING
+#define PSTR                                                PANTHEIOS_LITERAL_STRING
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.WindowsRegistry");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.WindowsRegistry");
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -93,13 +87,14 @@ namespace
     static void test_1_18(void);
     static void test_cleanup(void);
 
-} // anonymous namespace
+} /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main()
  */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
     // Lock out other test program instances, otherwise they'll interfere
     // with each other
@@ -112,7 +107,7 @@ static int main_(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.fe.WindowsRegistry", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.fe.WindowsRegistry", verbosity))
     {
         XTESTS_RUN_CASE(test_can_init);
         XTESTS_RUN_CASE(test_cannot_init);
@@ -143,7 +138,7 @@ static int main_(int argc, char** argv)
     return retCode;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     try
@@ -154,15 +149,15 @@ int main(int argc, char** argv)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         fprintf(stderr, "out of memory\n");
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         fprintf(stderr, "exception: %s\n", x.what());
     }
-    catch(...)
+    catch (...)
     {
         fprintf(stderr, "unexpected condition\n");
     }
@@ -212,16 +207,52 @@ namespace stub
         STLSOFT_SUPPRESS_UNUSED(backEndName);
     }
 
-
 } /* namespace stub */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * compatibility
+ */
+
+#if _STLSOFT_VER >= 0x010a0000 && \
+    _STLSOFT_VER < 0x010c0000
+
+# define windows_exception                                  winstl_exception
+#endif
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helpers
  */
 
 namespace
 {
-    static const PAN_CHAR_T ROOT_KEY_PATH[] = PANTHEIOS_LITERAL_STRING("SOFTWARE\\Synesis Software\\Logging Tools\\Pantheios\\fe.WindowsRegistry");
+
+inline
+DWORD
+get_exception_status_code(
+    winstl::windows_exception& x
+)
+{
+#if _STLSOFT_VER >= 0x010a0181
+
+    return x.status_code();
+#else
+
+    return x.get_error_code();
+#endif
+}
+
+} /* anonymous namespace */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * test function implementations
+ */
+
+namespace
+{
+    static PAN_CHAR_T const ROOT_KEY_PATH[] = PANTHEIOS_LITERAL_STRING("SOFTWARE\\Synesis Software\\Logging Tools\\Pantheios\\fe.WindowsRegistry");
 
     static const int s_severityLevels[] =
     {
@@ -241,15 +272,15 @@ namespace
         winstl::reg_key     key0 = winstl::reg_key::create_key(HKEY_CURRENT_USER, ROOT_KEY_PATH);
         winstl::reg_key     key = key0.create_sub_key(PANTHEIOS_FE_PROCESS_IDENTITY);
 
-        if(debugLevel >= 0)
+        if (debugLevel >= 0)
         {
             key.set_value(PSTR("Debug"), DWORD(debugLevel));
         }
-        if(releaseLevel >= 0)
+        if (releaseLevel >= 0)
         {
             key.set_value(PSTR("Release"), DWORD(releaseLevel));
         }
-        if(starLevel >= 0)
+        if (starLevel >= 0)
         {
             key.set_value(PSTR("*"), DWORD(starLevel));
         }
@@ -262,24 +293,24 @@ namespace
             winstl::reg_key     key0 = winstl::reg_key::create_key(HKEY_LOCAL_MACHINE, ROOT_KEY_PATH);
             winstl::reg_key     key = key0.create_sub_key(PANTHEIOS_FE_PROCESS_IDENTITY);
 
-            if(debugLevel >= 0)
+            if (debugLevel >= 0)
             {
                 key.set_value(PSTR("Debug"), DWORD(debugLevel));
             }
-            if(releaseLevel >= 0)
+            if (releaseLevel >= 0)
             {
                 key.set_value(PSTR("Release"), DWORD(releaseLevel));
             }
-            if(starLevel >= 0)
+            if (starLevel >= 0)
             {
                 key.set_value(PSTR("*"), DWORD(starLevel));
             }
 
             return true;
         }
-        catch(winstl::windows_exception& x)
+        catch (winstl::windows_exception& x)
         {
-            if(ERROR_ACCESS_DENIED == x.get_error_code())
+            if (ERROR_ACCESS_DENIED == get_exception_status_code(x))
             {
                 return false;
             }
@@ -307,9 +338,9 @@ namespace
 
             return true;
         }
-        catch(winstl::windows_exception& x)
+        catch (winstl::windows_exception& x)
         {
-            if(ERROR_ACCESS_DENIED == x.get_error_code())
+            if (ERROR_ACCESS_DENIED == get_exception_status_code(x))
             {
                 return false;
             }
@@ -324,7 +355,7 @@ static void test_can_init()
 {
     // Ensure that the HKCU key exists
     ensure_HKCU(0, 0, 0);
-    if(!delete_HKLM())
+    if (!delete_HKLM())
     {
         XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
@@ -338,7 +369,7 @@ static void test_can_init()
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         char    num[21];
 
@@ -356,7 +387,7 @@ static void test_cannot_init()
 {
     // Ensure that neither the HKCU key nor the HKLM key exist
     delete_HKCU();
-    if(!delete_HKLM())
+    if (!delete_HKLM())
     {
         XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
@@ -370,7 +401,7 @@ static void test_cannot_init()
 
     XTESTS_TEST_INTEGER_NOT_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_TEST_PASSED();
     }
@@ -386,7 +417,7 @@ static void test_levels_in_HKCU()
 {
     // Ensure that the HKCU key exists, and has the right levels
     ensure_HKCU(0xff, 0x3f, -1);
-    if(!delete_HKLM())
+    if (!delete_HKLM())
     {
         XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
@@ -419,7 +450,7 @@ static void test_levels_in_HKCU()
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         char    num[21];
 
@@ -430,7 +461,7 @@ static void test_levels_in_HKCU()
         XTESTS_TEST_PASSED();
 
         // Now verify the levels
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             int b = pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0);
 
@@ -445,7 +476,7 @@ static void test_levels_in_HKLM()
 {
     // Ensure that the HKCU key exists, and has the right levels
     delete_HKCU();
-    if(!ensure_HKLM(0xff, 0x3f, -1))
+    if (!ensure_HKLM(0xff, 0x3f, -1))
     {
         XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
@@ -478,7 +509,7 @@ static void test_levels_in_HKLM()
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         char    num[21];
 
@@ -489,7 +520,7 @@ static void test_levels_in_HKLM()
         XTESTS_TEST_PASSED();
 
         // Now verify the levels
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             int b = pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0);
 
@@ -504,7 +535,7 @@ static void test_HKCU_overrides_HKLM()
 {
     // Ensure that the HKCU key exists, and has the right levels
     ensure_HKCU(0xff, 0x3f, -1);
-    if(!ensure_HKLM(0, 0, 0))
+    if (!ensure_HKLM(0, 0, 0))
     {
         XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
@@ -537,7 +568,7 @@ static void test_HKCU_overrides_HKLM()
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         char    num[21];
 
@@ -548,7 +579,7 @@ static void test_HKCU_overrides_HKLM()
         XTESTS_TEST_PASSED();
 
         // Now verify the levels
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             int b = pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0);
 
@@ -564,7 +595,7 @@ static void test_star()
     // Ensure that the HKCU key exists, and has the right levels
     delete_HKCU();
     ensure_HKCU(-1, -1, 0x0f);
-    if(!delete_HKLM())
+    if (!delete_HKLM())
     {
         XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
@@ -592,7 +623,7 @@ static void test_star()
 
     XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         char    num[21];
 
@@ -603,7 +634,7 @@ static void test_star()
         XTESTS_TEST_PASSED();
 
         // Now verify the levels
-        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
+        { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             int b = pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0);
 
@@ -675,6 +706,7 @@ static void test_cleanup()
 }
 
 
-} // anonymous namespace
+} /* anonymous namespace */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

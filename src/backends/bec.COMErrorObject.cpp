@@ -4,11 +4,12 @@
  * Purpose:     Implementation for the COMErrorObject back-end
  *
  * Created:     9th April 2006
- * Updated:     1st September 2015
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,15 +41,16 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Preprocessor feature control
+ * preprocessor feature control
  */
 
 #define PANTHEIOS_USE_CATCHALL
 #define PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS
 #define PANTHEIOS_CATCHALL_TRANSLATE_UNKNOWN_EXCEPTIONS_TO_FAILURE_CODE
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* Pantheios header files */
@@ -73,13 +75,13 @@
 
 extern "C" const IID IID_IErrorInfo_;
 
-#define IID_IErrorInfo  IID_IErrorInfo_
+#define IID_IErrorInfo                                      IID_IErrorInfo_
 
 #ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 # include <comstl/diagnostics/errorinfo_functions.h>
-#else /* ? PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#else /* ? STLSoft version */
 # include <comstl/error/errorinfo_functions.h>
-#endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
+#endif /* STLSoft version */
 
 #include <winstl/memory/processheap_allocator.hpp>
 
@@ -87,16 +89,17 @@ extern "C" const IID IID_IErrorInfo_;
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 //# ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 //#  include <winstl/conversion/a2w.hpp>
-//# else /* ? PANTHEIOS_STLSOFT_1_12_OR_LATER */
+//# else /* ? STLSoft version */
 #  include <winstl/conversion/char_conversions.hpp>
-//# endif /* PANTHEIOS_STLSOFT_1_12_OR_LATER */
+//# endif /* STLSoft version */
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* Standard C header files */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler features
+ * compiler features
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
@@ -106,8 +109,9 @@ extern "C" const IID IID_IErrorInfo_;
 # define PANTHEIOS_NO_PLACEMENT_DELETE_
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 namespace
@@ -115,9 +119,6 @@ namespace
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_char_t;
-    using ::pantheios::pan_uint32_t;
-    using ::pantheios::pan_slice_t;
     using ::pantheios::pan_sev_t;
     using ::pantheios::pantheios_getStockSeverityString;
     using ::pantheios::pantheios_getStockSeverityStringLength;
@@ -127,21 +128,23 @@ namespace
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
     typedef PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
-        pan_char_t
+        PAN_CHAR_T
     ,   2048
-    ,   winstl::processheap_allocator<pan_char_t>
+    ,   winstl::processheap_allocator<PAN_CHAR_T>
     >::type                                             buffer_t;
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Structures
+ * constants
  */
 
 extern "C" const IID IID_IErrorInfo_ = { 0x1CF2B120, 0x547D, 0x101B, { 0x8E, 0x65, 0x08, 0x00, 0x2B, 0x2B, 0xD1, 0x19 } };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Structures
+ * types
  */
 
 namespace
@@ -150,7 +153,7 @@ namespace
     struct ErrorObject_Context
     {
     public:
-        typedef pan_uint32_t uint32_t;
+        typedef pantheios_uint32_t uint32_t;
 
     public:
         union
@@ -166,9 +169,9 @@ namespace
             : flags(flags)
         {}
 
-        void* operator new(size_t cb, pan_char_t const* s);
+        void* operator new(size_t cb, PAN_CHAR_T const* s);
 #if !defined(PANTHEIOS_NO_PLACEMENT_DELETE_)
-        void operator delete(void* pv, pan_char_t const*);
+        void operator delete(void* pv, PAN_CHAR_T const*);
 #endif /* !PANTHEIOS_NO_PLACEMENT_DELETE_ */
         void operator delete(void* pv);
 
@@ -177,6 +180,7 @@ namespace
     };
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -191,7 +195,7 @@ PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_getDefaultAppInit(pan_be_COMErr
 }
 
 static int pantheios_be_COMErrorObject_init_(
-    pan_char_t const*                   processIdentity
+    PAN_CHAR_T const*                   processIdentity
 ,   int                                 backEndId
 ,   pan_be_COMErrorObject_init_t const* init
 ,   void*                               reserved
@@ -207,7 +211,7 @@ static int pantheios_be_COMErrorObject_init_(
 
     pan_be_COMErrorObject_init_t init_;
 
-    if(NULL == init)
+    if (NULL == init)
     {
         pantheios_be_COMErrorObject_getDefaultAppInit(&init_);
 
@@ -220,11 +224,11 @@ static int pantheios_be_COMErrorObject_init_(
 
     /* (ii) verify the version */
 
-    if(init->version < 0x010001b8)
+    if (init->version < 0x010001b8)
     {
         return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
     }
-    else if(init->version > PANTHEIOS_VER)
+    else if (init->version > PANTHEIOS_VER)
     {
         return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
     }
@@ -234,7 +238,7 @@ static int pantheios_be_COMErrorObject_init_(
     ErrorObject_Context* ctxt = new(processIdentity) ErrorObject_Context(init->flags);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(NULL == ctxt)
+    if (NULL == ctxt)
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
@@ -246,7 +250,7 @@ static int pantheios_be_COMErrorObject_init_(
 }
 
 PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_init(
-    pan_char_t const*                   processIdentity
+    PAN_CHAR_T const*                   processIdentity
 ,   int                                 backEndId
 ,   pan_be_COMErrorObject_init_t const* init
 ,   void*                               reserved
@@ -271,7 +275,7 @@ static int pantheios_be_COMErrorObject_logEntry_(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -281,12 +285,12 @@ static int pantheios_be_COMErrorObject_logEntry_(
 
     ErrorObject_Context* ctxt = static_cast<ErrorObject_Context*>(beToken);
 
-    if(PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING & ctxt->flags)
+    if (PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING & ctxt->flags)
     {
         IErrorInfo* pei =   NULL;
         HRESULT     hr  =   ::GetErrorInfo(0, &pei);
 
-        if( SUCCEEDED(hr) &&
+        if (SUCCEEDED(hr) &&
             NULL != pei)
         {
             ::SetErrorInfo(0, pei);
@@ -299,7 +303,7 @@ static int pantheios_be_COMErrorObject_logEntry_(
 
     severity &= 0x7;    /* This stock back-end ignores any custom severity information. */
 
-    if(severity >= static_cast<int>(PANTHEIOS_SEV_INFORMATIONAL))
+    if (severity >= static_cast<int>(PANTHEIOS_SEV_INFORMATIONAL))
     {
         return static_cast<int>(cchEntry);
     }
@@ -313,22 +317,22 @@ static int pantheios_be_COMErrorObject_logEntry_(
     //  "<entry>"
 
     int                 bShowSev    =   (0 == (ctxt->flags & PANTHEIOS_BE_INIT_F_NO_SEVERITY));
-    pan_char_t const*   sevName     =   pantheios_getStockSeverityString(pan_sev_t(severity));
+    PAN_CHAR_T const*   sevName     =   pantheios_getStockSeverityString(pan_sev_t(severity));
     const size_t        lenSeverity =   pantheios_getStockSeverityStringLength(pan_sev_t(severity));
     const size_t        len         =   (bShowSev ? (1 + lenSeverity + 3) : 0) + cchEntry;
     buffer_t            buff(1 + len);
 
 #ifndef STLSOFT_CF_THROW_BAD_ALLOC
-    if(0 == buff.size())
+    if (0 == buff.size())
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
 #endif /* !STLSOFT_CF_THROW_BAD_ALLOC */
 
     size_t          cchTotal    =   0;
-    pan_char_t*     p           =   &buff[0];
+    PAN_CHAR_T*     p           =   &buff[0];
 
-    if(bShowSev)
+    if (bShowSev)
     {
         // "[%s]: %s" + (bShowSev ? 0 : 6), bShowSev ? sevName : entry, entry
 
@@ -354,7 +358,7 @@ static int pantheios_be_COMErrorObject_logEntry_(
     buff[cchTotal] = '\0';
     p += cchEntry;
 
-    if(bShowSev)
+    if (bShowSev)
     {
         PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal + 1 == buff.size());
         PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(cchTotal == size_t(p - buff.data()));
@@ -379,16 +383,17 @@ PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
     return pantheios_call_be_logEntry(pantheios_be_COMErrorObject_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.COMErrorObject");
 }
 
-PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_parseArgs(
+PANTHEIOS_CALL(int)
+pantheios_be_COMErrorObject_parseArgs(
     size_t                          numArgs
-,   pan_slice_t* const              args
+,   pantheios_slice_t               args[]
 ,   pan_be_COMErrorObject_init_t*   init
 )
 {
@@ -400,7 +405,7 @@ PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_parseArgs(
     // 1. Parse the stock arguments
     int res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2. Parse the custom argument: "overwriteExisting"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("overwriteExisting"), false, PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING, &init->flags);
@@ -413,13 +418,13 @@ PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_parseArgs(
  *
  */
 
-void* ErrorObject_Context::operator new(size_t /* cb */, pan_char_t const* s)
+void* ErrorObject_Context::operator new(size_t /* cb */, PAN_CHAR_T const* s)
 {
     const size_t    len         =   static_cast<size_t>(stlsoft::c_str_len(s));
     const size_t    cbActual    =   sizeof(ErrorObject_Context) + sizeof(OLECHAR) * (1 + len);
     void*           pv          =   ::operator new(cbActual);
 
-    if(NULL != pv)
+    if (NULL != pv)
     {
         ErrorObject_Context* ctxt = static_cast<ErrorObject_Context*>(pv);
 
@@ -436,7 +441,7 @@ void* ErrorObject_Context::operator new(size_t /* cb */, pan_char_t const* s)
 }
 
 #if !defined(PANTHEIOS_NO_PLACEMENT_DELETE_)
-void ErrorObject_Context::operator delete(void*, pan_char_t const*)
+void ErrorObject_Context::operator delete(void*, PAN_CHAR_T const*)
 {}
 #endif /* !PANTHEIOS_NO_PLACEMENT_DELETE_ */
 
@@ -446,3 +451,4 @@ void ErrorObject_Context::operator delete(void* pv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

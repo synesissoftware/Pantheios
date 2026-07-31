@@ -4,11 +4,12 @@
  * Purpose:     Implementation file for string duplication utility functions.
  *
  * Created:     21st June 2005
- * Updated:     21st September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -59,8 +60,9 @@
 #include <string.h>
 #include <wchar.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -68,13 +70,14 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
 
-PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) STLSOFT_NOEXCEPT
 {
-    if(NULL == s)
+    if (NULL == s)
     {
         return NULL;
     }
@@ -83,7 +86,7 @@ PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) /* stlsoft_
         const size_t    len =   strlen(s);
         char*           s2  =   stlsoft_static_cast(char*, malloc(sizeof(char) * (1 + len)));
 
-        if(NULL != s2)
+        if (NULL != s2)
         {
             memcpy(s2, s, sizeof(char) * (1 + len));
         }
@@ -92,14 +95,14 @@ PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) /* stlsoft_
     }
 }
 
-PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) STLSOFT_NOEXCEPT
 {
     free(s);
 }
 
-PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) STLSOFT_NOEXCEPT
 {
-    if(NULL == s)
+    if (NULL == s)
     {
         return NULL;
     }
@@ -108,7 +111,7 @@ PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) /* st
         const size_t    len =   wcslen(s);
         wchar_t*        s2  =   stlsoft_static_cast(wchar_t*, malloc(sizeof(wchar_t) * (1 + len)));
 
-        if(NULL != s2)
+        if (NULL != s2)
         {
             memcpy(s2, s, sizeof(wchar_t) * (1 + len));
         }
@@ -117,12 +120,15 @@ PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) /* st
     }
 }
 
-PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) STLSOFT_NOEXCEPT
 {
     free(s);
 }
 
-PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(pantheios_char_t*)
+pantheios_util_strdup_nothrow(
+    pantheios_char_t const* s
+) STLSOFT_NOEXCEPT
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     return pantheios_util_strdup_nothrow_w(s);
@@ -131,7 +137,10 @@ PANTHEIOS_CALL(pan_char_t*) pantheios_util_strdup_nothrow(pan_char_t const* s) /
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 }
 
-PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) /* stlsoft_throw_0() */
+PANTHEIOS_CALL(void)
+pantheios_util_strfree(
+    pantheios_char_t* s
+) STLSOFT_NOEXCEPT
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     pantheios_util_strfree_w(s);
@@ -140,8 +149,9 @@ PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) /* stlsoft_throw_0() 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -149,3 +159,4 @@ PANTHEIOS_CALL(void) pantheios_util_strfree(pan_char_t* s) /* stlsoft_throw_0() 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

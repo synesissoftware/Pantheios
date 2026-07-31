@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.be.lrsplit/test.unit.be.lrsplit.c
+ * File:    test/unit/test.unit.be.lrsplit/test.unit.be.lrsplit.c
  *
- * Purpose:     Implementation file for the test.unit.be.lrsplit project.
+ * Purpose: Implementation file for the test.unit.be.lrsplit project.
  *
- * Created:     27th January 2008
- * Updated:     22nd March 2010
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 27th January 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,7 +19,7 @@
 #include <stdio.h>                  /* for fprintf() */
 #include <stdlib.h>                 /* for EXIT_SUCCESS, EXIT_FAILURE */
 
-const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.lrsplit");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.lrsplit");
 
 
 
@@ -136,17 +127,21 @@ PANTHEIOS_CALL(int) pantheios_isInitialised(void)
 
 
 
-int main(int argc, char** argv)
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.be.lrsplit", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.be.lrsplit", verbosity))
     {
         /* Test-1 */
-        if(XTESTS_CASE_BEGIN("Test-1", "Verify that both succeed"))
+        if (XTESTS_CASE_BEGIN("Test-1", "Verify that both succeed"))
         {
             void*   token;
             int     res;
@@ -165,7 +160,7 @@ int main(int argc, char** argv)
         }
 
         /* Test-2 */
-        if(XTESTS_CASE_BEGIN("Test-2", "Verify that only local can succeed"))
+        if (XTESTS_CASE_BEGIN("Test-2", "Verify that only local can succeed"))
         {
             void*   token;
             int     res;
@@ -185,7 +180,7 @@ int main(int argc, char** argv)
         }
 
         /* Test-3 */
-        if(XTESTS_CASE_BEGIN("Test-3", "Verify that only remote can succeed"))
+        if (XTESTS_CASE_BEGIN("Test-3", "Verify that only remote can succeed"))
         {
             void*   token;
             int     res;
@@ -205,7 +200,7 @@ int main(int argc, char** argv)
         }
 
         /* Test-4 */
-        if(XTESTS_CASE_BEGIN("Test-4", "Verify that neither can succeed"))
+        if (XTESTS_CASE_BEGIN("Test-4", "Verify that neither can succeed"))
         {
             void*   token;
             int     res;
@@ -233,3 +228,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

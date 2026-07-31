@@ -1,45 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.api/test.scratch.api.cpp
+ * File:    test/scratch/test.scratch.api/test.scratch.api.cpp
  *
- * Purpose:     Implementation file for the test.scratch.api project.
+ * Purpose: Implementation file for the test.scratch.api project.
  *
- * Created:     26th June 2005
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              www:        http://www.synesis.com.au/software
- *
- *              This source code is placed into the public domain 2005
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This source code is provided by Synesis Software Pty Ltd "as is"
- *              and any warranties, whether expressed or implied, including, but
- *              not limited to, the implied warranties of merchantability and
- *              fitness for a particular purpose are disclaimed. In no event
- *              shall the Synesis Software Pty Ltd be liable for any direct,
- *              indirect, incidental, special, exemplary, or consequential
- *              damages (including, but not limited to, procurement of
- *              substitute goods or services; loss of use, data, or profits; or
- *              business interruption) however caused and on any theory of
- *              liability, whether in contract, strict liability, or tort
- *              (including negligence or otherwise) arising in any way out of
- *              the use of this software, even if advised of the possibility of
- *              such damage.
- *
- *              Neither the name of Synesis Software Pty Ltd nor the names of
- *              any subdivisions, employees or agents of Synesis Software Pty
- *              Ltd, nor the names of any other contributors to this software
- *              may be used to endorse or promote products derived from this
- *              software without specific prior written permission.
+ * Created: 26th June 2005
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
+#ifndef __GNUC__
+# define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
+#endif
 
 /* This inclusion required for suppressing warnings during NoX (No eXception-support) configurations. */
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
@@ -91,7 +63,7 @@ using std::endl;
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.api");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.api");
 
 /* The following allows this to be used with the Windows
  * EventLog back-end.
@@ -118,15 +90,16 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_calcCategoryAndEventId(
     *category   =   0;
 }
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
         return 0;
 }
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static int main_(int /* argc */, char ** /*argv*/);
@@ -134,30 +107,33 @@ static void some_logging_with_using_namespace_directive();
 static void some_logging_with_using_declarations();
 static void some_logging_with_explicit_qualification();
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
-#define P_STR   PANTHEIOS_LITERAL_STRING
+#define P_STR                                               PANTHEIOS_LITERAL_STRING
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * String encoding compatibility
+ * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_sprintf_s_                 swprintf_s
-# define pan_sprintf_                   swprintf
-# define c_str_data_t_                  c_str_data_w
-# define c_str_len_t_                   c_str_len_w
+# define pan_sprintf_s_                                     swprintf_s
+# define pan_sprintf_                                       swprintf
+# define c_str_data_t_                                      c_str_data_w
+# define c_str_len_t_                                       c_str_len_w
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_sprintf_s_                 sprintf_s
-# define pan_sprintf_                   sprintf
-# define c_str_data_t_                  c_str_data_a
-# define c_str_len_t_                   c_str_len_a
+# define pan_sprintf_s_                                     sprintf_s
+# define pan_sprintf_                                       sprintf
+# define c_str_data_t_                                      c_str_data_a
+# define c_str_len_t_                                       c_str_len_a
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * types
  */
 
 class Thingy
@@ -201,14 +177,14 @@ std::string Thingy_to_string(Thingy const *thingy)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Process Identity
+ * process identity
  *
  * This is defined for when we link with the pantheios.fe.simple front-end
  * library, which implements pantheios_fe_getProcessIdentity() in terms of this
  * externally defined array
  */
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.api");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.api");
 
 /* The following allows this to be used with the Windows
  * EventLog back-end.
@@ -254,7 +230,7 @@ static int main_(int /* argc */, char ** /*argv*/)
 int main(int argc, char *argv[])
 {
 #if 0
-    { for(size_t i = 0;0 != ++i;) {} }
+    { for (size_t i = 0;0 != ++i;) {} }
 #endif /* 0 */
 
     pantheios::log_DEBUG(P_STR("debug"));
@@ -285,7 +261,7 @@ int main(int argc, char *argv[])
     pantheios::log(pantheios::emergency(10), P_STR("emergency"));
 
 #ifdef _DEBUGx
-    { for(size_t i = 0; i != 200; ++i)
+    { for (size_t i = 0; i != 200; ++i)
     {
         std::string s(i, '~');
 
@@ -308,7 +284,6 @@ int main(int argc, char *argv[])
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 #if !defined(STLSOFT_COMPILER_IS_GCC)
-        if(1)
         {
             Thingy  thingy;
 
@@ -317,7 +292,6 @@ int main(int argc, char *argv[])
 #endif /* compiler */
 
 #if 0
-        if(1)
         {
             Thingy      thingy;
 
@@ -325,7 +299,6 @@ int main(int argc, char *argv[])
         }
 #endif /* 0 */
 
-        if(1)
         {
   short         s     = 123;
   int           i     = 456;
@@ -343,7 +316,6 @@ int main(int argc, char *argv[])
                               , P_STR("and a blob ("), pantheios::blob(ar, sizeof(ar), 2, P_STR("-"), 3, P_STR("\n\t")), P_STR("); "));
         }
 
-        if(1)
         {
   using namespace pantheios;
 
@@ -362,7 +334,6 @@ int main(int argc, char *argv[])
                    );
         }
 
-        if(1)
         {
   using pantheios::log_INFORMATIONAL;
   using pantheios::integer;
@@ -385,11 +356,6 @@ int main(int argc, char *argv[])
                    );
         }
 
-        if(1)
-        {
-        }
-
-        if(1)
         {
   void        *p  = reinterpret_cast<void*>(0x01234567);
   char        s[] = "abc";
@@ -398,7 +364,6 @@ int main(int argc, char *argv[])
   pantheios::log(pantheios::notice, "s=", s, ", p=", pantheios::pointer(p, 8 | pantheios::fmt::fullHex), ", str=", str);
         }
 
-        if(1)
         {
   double      d   = 123.456;
   char        s[] = "abc";
@@ -407,7 +372,6 @@ int main(int argc, char *argv[])
   pantheios::log(pantheios::notice, "s=", s, ", d=", pantheios::real(d), ", str=", str);
         }
 
-        if(1)
         {
   int         i   = 123;
   char        s[] = "abc";
@@ -419,11 +383,11 @@ int main(int argc, char *argv[])
         return main_(argc, argv);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         cerr << "Unhandled error: " << x.what() << endl;
     }
-    catch(...)
+    catch (...)
     {
         pantheios::pantheios_puts(pantheios::emergency, P_STR("Unhandled unknown error"));
     }
@@ -502,7 +466,7 @@ static void some_logging_with_using_declarations()
     {
         throw std::out_of_range("Eeep!");
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         log_CRITICAL("Something really bad has happened! Details: \"", x, "\"");
     }
@@ -567,3 +531,4 @@ BOOL WINAPI FindVolumeClose(
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

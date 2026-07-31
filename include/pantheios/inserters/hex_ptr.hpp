@@ -4,11 +4,12 @@
  * Purpose:     String inserters for pointers in Hexadecimal notation.
  *
  * Created:     11th October 2006
- * Updated:     20th December 2012
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HEX_PTR
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HEX_PTR
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_MINOR    3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_EDIT     17
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_EDIT     19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -69,8 +72,9 @@
 # include <pantheios/inserters/pointer.hpp>  // for pantheios::pointer
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_POINTER */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -79,8 +83,9 @@ namespace pantheios
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * types
  */
 
 /** [DEPRECATED] Class for inserting pointers into Pantheios diagnostic
@@ -154,16 +159,18 @@ public: // Construction
     {}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -175,3 +182,4 @@ public: // Construction
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_HEX_PTR */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

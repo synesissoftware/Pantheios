@@ -5,11 +5,12 @@
  *              specialisations.
  *
  * Created:     9th November 2007
- * Updated:     17th November 2013
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,19 +51,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MINOR     2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      11
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_REVISION  4
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -79,7 +82,7 @@
 #endif /* compiler */
 
 #ifndef PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_
-# ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
+# ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 #  ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
 #   include <stlsoft/memory/util/allocator_selector.hpp>
 #  endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */
@@ -98,8 +101,9 @@
 # endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR */
 #endif /* PANTHEIOS_COMPILER_CF_STD_ALLOCATOR_SYMBOLS_MULTIPLY_DEFINED_ */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -109,8 +113,9 @@ namespace util
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * types
  */
 
 /** <a href = "http://extendedstl.com/glossary.html#type_generator">Type-generator template</a>
@@ -146,8 +151,9 @@ struct auto_buffer_selector
 #endif /* STLSOFT_AUTO_BUFFER_NEW_FORM */
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -155,8 +161,9 @@ struct auto_buffer_selector
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -168,3 +175,4 @@ struct auto_buffer_selector
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

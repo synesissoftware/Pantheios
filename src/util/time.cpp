@@ -4,11 +4,12 @@
  * Purpose:     Time functions for use in Pantheios back-ends.
  *
  * Created:     22nd August 2006
- * Updated:     1st September 2015
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -82,16 +83,13 @@
 #include <string.h>                             // for memcpy(), memset()
 #include <time.h>                               // for time(), strftime(), localtime(), gmtime()
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 namespace
 {
-#if !defined(PANTHEIOS_NO_NAMESPACE)
-    using pantheios::pan_char_t;
-#endif /* !PANTHEIOS_NO_NAMESPACE */
-
     int calcDecPlaces_(int flags)
     {
         int decPlaces = (PANTHEIOS_GETCURRENTTIME_F_TIME_RES_MASK & flags) >> 8;
@@ -110,7 +108,7 @@ namespace
 
         STLSOFT_SUPPRESS_UNUSED(favoursAccuracy); // We assume accuracy, unless specified otherwise
 
-        if( favoursSpeed ||
+        if (favoursSpeed ||
             (0 == (PANTHEIOS_GETCURRENTTIME_F_TIME_RES_MASK & flags)))
         {
             *microseconds = 0;
@@ -149,15 +147,16 @@ namespace
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define pan_strftime_          wcsftime
+# define pan_strftime_                                      wcsftime
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define pan_strftime_          strftime
+# define pan_strftime_                                      strftime
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -188,12 +187,12 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
         PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((!hidesDate || !hidesTime), "Should not call with flags to hide both date and time");
 
 # if !defined(PLATFORMSTL_OS_IS_UNIX)
-        if(usesUnixFormat)
+        if (usesUnixFormat)
         {
 # endif /* !PLATFORMSTL_OS_IS_UNIX */
 
-            pan_char_t                  szTime[101]                     =   { '\0' };
-            static pan_char_t const*    tm_fmts[]                       =
+            pantheios_char_t                szTime[101]                     =   { '\0' };
+            static pantheios_char_t const*  tm_fmts[]                       =
             {
                 PANTHEIOS_LITERAL_STRING("%b %d %H:%M:%S"),
                 PANTHEIOS_LITERAL_STRING("%H:%M:%S"),
@@ -213,11 +212,11 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
             struct tm*  tm_         =   &tm__;
             errno_t     err         =   fns[0 != bUseSystemTime](tm_, &secs);
 
-            if(0 != err)
+            if (0 != err)
             {
                 char msg[1001];
 
-                if(0 != ::strerror_s(&msg[0], STLSOFT_NUM_ELEMENTS(msg), err))
+                if (0 != ::strerror_s(&msg[0], STLSOFT_NUM_ELEMENTS(msg), err))
                 {
                     msg[0] = '\0';
                 }
@@ -227,12 +226,12 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                 return 0;
             }
 # else /* ? PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-            struct tm*          tm_         =   fns[0 != bUseSystemTime](&secs);
+            struct tm*              tm_         =   fns[0 != bUseSystemTime](&secs);
 # endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-            pan_char_t const*   strftimeFmt =   (NULL != tm->strftimeFmt) ? tm->strftimeFmt : tm_fmts[hidesDate + 2 * hidesTime];
-            size_t              cchTime     =   pan_strftime_(szTime, STLSOFT_NUM_ELEMENTS(szTime), strftimeFmt, tm_);
+            pantheios_char_t const* strftimeFmt =   (NULL != tm->strftimeFmt) ? tm->strftimeFmt : tm_fmts[hidesDate + 2 * hidesTime];
+            size_t                  cchTime     =   pan_strftime_(szTime, STLSOFT_NUM_ELEMENTS(szTime), strftimeFmt, tm_);
 
-            if( 0 != numDecPlaces &&
+            if (0 != numDecPlaces &&
                 !hidesTime)
             {
                 // Algorithm:
@@ -260,17 +259,17 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                     0,      // Should never be used; divide-by-0 will trap such a case
                     0,      // Should never be used; divide-by-0 will trap such a case
                 };
-                pan_char_t*         e       =   &szTime[0] + cchTime;
-                long                divisor =   s_divisors[numDecPlaces];
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
-                pan_char_t const*   r       =   stlsoft::integer_to_decimal_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
-#else /* ? STLSoft 1.12+ */
-                pan_char_t const*   r       =   stlsoft::integer_to_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
-#endif /* STLSoft 1.12+ */
+                pantheios_char_t*       e       =   &szTime[0] + cchTime;
+                long                    divisor =   s_divisors[numDecPlaces];
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+                pantheios_char_t const* r       =   stlsoft::integer_to_decimal_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
+#else /* ? STLSoft version */
+                pantheios_char_t const* r       =   stlsoft::integer_to_string(e + 1, static_cast<size_t>(1 + numDecPlaces), usecs / divisor);
+#endif /* STLSoft version */
 
                 0[e] = '.';
                 stlsoft::std_fill_n(e + 1, static_cast<size_t>(r - (e + 1)), '0');
-                { for(int i = 0; i < numDecPlaces; ++i)
+                { for (int i = 0; i < numDecPlaces; ++i)
                 {
                     PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(isdigit(i[e + 1]));
                 }}
@@ -278,7 +277,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                 cchTime += 1 + numDecPlaces;
             }
 
-            if(0 == tm->capacity)
+            if (0 == tm->capacity)
             {
                 tm->len = cchTime;
             }
@@ -287,7 +286,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                 tm->len = stlsoft::minimum(tm->capacity, cchTime);
 
                 PANTHEIOS_char_copy(tm->str, szTime, tm->len);
-                if(tm->len < tm->capacity)
+                if (tm->len < tm->capacity)
                 {
                     tm->str[tm->len] = '\0';
                 }
@@ -315,15 +314,15 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
 
             ::GetLocalTime(&st);
 
-            if(0 == capacity)
+            if (0 == capacity)
             {
                 int total = 0;
 
-                if(!hidesDate)
+                if (!hidesDate)
                 {
                     int lenDate =   ::GetDateFormat(locale, 0, &st, NULL, NULL, 0);
 
-                    if(lenDate > 0)
+                    if (lenDate > 0)
                     {
                         --lenDate;
                     }
@@ -331,16 +330,16 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                     total += lenDate;
                 }
 
-                if(!hidesTime)
+                if (!hidesTime)
                 {
-                    if(!hidesDate)
+                    if (!hidesDate)
                     {
                         ++total; // For the space
                     }
 
                     int lenTime = fns[(numDecPlaces >= 3)](locale, 0, &st, NULL, NULL, 0);
 
-                    if(lenTime > 0)
+                    if (lenTime > 0)
                     {
                         --lenTime;
                     }
@@ -352,7 +351,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
             }
             else
             {
-                if(!hidesDate)
+                if (!hidesDate)
                 {
                     // Always try and write something, because the function works
                     // if capacity is 0 and returns the number required
@@ -364,7 +363,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                                                                         ,   tm->str + len
                                                                         ,   static_cast<int>(capacity)));
 
-                    if(lenDate > 0)
+                    if (lenDate > 0)
                     {
                         --lenDate;
                     }
@@ -372,9 +371,9 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                     len += lenDate;
                 }
 
-                if(!hidesTime)
+                if (!hidesTime)
                 {
-                    if( len > 0 &&
+                    if (len > 0 &&
                         len < capacity)
                     {
                         // capacity was !0, and we had some space, so write as much
@@ -384,13 +383,13 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
 
                         ++len;
                     }
-                    else if(len > 0)
+                    else if (len > 0)
                     {
                         len = 0;
                         capacity = 0;
                     }
 
-                    if(len < capacity)
+                    if (len < capacity)
                     {
                         size_t lenTime = static_cast<size_t>(fns[(numDecPlaces >= 3)](  locale
                                                                                     ,   0
@@ -399,7 +398,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
                                                                                     ,   tm->str + len
                                                                                     ,   static_cast<int>(capacity - len)));
 
-                        if(0 == lenTime)
+                        if (0 == lenTime)
                         {
                             len = 0; //  Insufficient space, so make sure we don't emit any date info either.
                         }
@@ -420,7 +419,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
 
                 PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(tm->len <= capacity);
 
-                if(tm->len < capacity)
+                if (tm->len < capacity)
                 {
                     tm->str[tm->len] = '\0';
                 }
@@ -434,16 +433,16 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when eliciting timestamp", NULL);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when eliciting timestamp", NULL, x.what());
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when eliciting timestamp", NULL);
 
@@ -462,3 +461,4 @@ PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int 
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     11th October 2012
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -57,7 +58,7 @@
  pantheios::log_DEBUG("c=", pantheios::character(c));
 </pre>
  *
- * The short alias \c ch is available, via inclusion of 
+ * The short alias \c ch is available, via inclusion of
  * pantheios/inserters/ch.hpp
  *
 <pre>
@@ -73,19 +74,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CHARACTER
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CHARACTER
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_MINOR      5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_EDIT       27
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_REVISION   4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_EDIT       30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -102,8 +105,9 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -112,8 +116,9 @@ namespace pantheios
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /** Class for inserting characters into Pantheios diagnostic logging
@@ -153,7 +158,7 @@ public:
 
 public:
     /// Construct from a <code>char</code> value
-    explicit character(pan_char_t value);
+    explicit character(pantheios_char_t value);
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -166,14 +171,14 @@ private:
 
 public:
     /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the character
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     /// A nul-terminated non-null pointer to the c-style string representation of the character
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     /// The length of the c-style string representation of the character
-    size_t              length() const;
+    size_t                  length() const;
 
 private:
-    pan_char_t  m_value[2];
+    pantheios_char_t m_value[2];
 
 private:
 #if !defined(STLSOFT_COMPILER_IS_GCC)
@@ -182,8 +187,9 @@ private:
     class_type& operator =(class_type const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -202,7 +208,7 @@ PANTHEIOS_c_str_data_name_(
     return r.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(character const& r)
 {
     return r.data();
@@ -232,7 +238,7 @@ PANTHEIOS_c_str_ptr_name_(
     return r.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(character const& r)
 {
     return r.c_str();
@@ -259,15 +265,16 @@ c_str_ptr(character const& r)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Implementation
+ * implementation
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
 inline
 /* explicit */ character::character(
-    pan_char_t value
+    pantheios_char_t value
 )
 {
     m_value[0]  =   value;
@@ -286,14 +293,14 @@ inline
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 character::data() const
 {
     return m_value;
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 character::c_str() const
 {
     return m_value;
@@ -308,8 +315,9 @@ character::length() const
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -334,8 +342,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -347,3 +356,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_CHARACTER */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     String inserter for time intervals pairs.
  *
  * Created:     19th April 2014
- * Updated:     19th April 2014
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTERVAL
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTERVAL
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_MINOR       0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -76,8 +79,9 @@
 
 #include <string>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -85,8 +89,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /** Class for inserting time interval arguments into Pantheios
@@ -134,11 +139,11 @@ private:
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The size of the c-style string representation of the integer
-    size_t              size() const;
+    size_t                  size() const;
 /// @}
 
 /// \name Implementation
@@ -151,7 +156,7 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    typedef std::basic_string<pan_char_t> string_type_;
+    typedef std::basic_string<pantheios_char_t> string_type_;
 
     pan_sint64_t const  m_interval;
     units const         m_units;
@@ -159,8 +164,9 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -180,7 +186,7 @@ PANTHEIOS_c_str_data_name_(
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(interval const& i)
 {
     return i.data();
@@ -211,7 +217,7 @@ PANTHEIOS_c_str_ptr_name_(
 }
 
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(interval const& i)
 {
     return i.c_str();
@@ -238,8 +244,9 @@ c_str_ptr(interval const& i)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -264,8 +271,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -277,3 +285,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTERVAL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.w2m/test.component.inserters.w2m.cpp
+ * File:    test/component/test.component.inserters.w2m/test.component.inserters.w2m.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.w2m project.
+ * Purpose: Implementation file for the test.component.inserters.w2m project.
  *
- * Created:     19th October 2006
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 19th October 2006
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -44,8 +35,9 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
@@ -82,22 +74,23 @@ static void test_3_09();
 
 #endif /* !PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.w2m");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.w2m");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.inserters.w2m", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.w2m", verbosity))
     {
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 
@@ -715,3 +708,4 @@ static void test_3_09()
 #endif /* !PANTHEIOS_USE_WIDE_STRINGS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

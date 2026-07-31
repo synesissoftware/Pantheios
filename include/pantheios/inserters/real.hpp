@@ -4,11 +4,12 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     22nd September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -49,19 +50,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_REAL
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_REAL
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_MINOR       3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_REVISION    6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_EDIT        29
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_REVISION    7
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_EDIT        32
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -78,8 +81,9 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -88,8 +92,9 @@ namespace pantheios
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /** Class for inserting floating-point types into Pantheios diagnostic
@@ -148,11 +153,11 @@ private:
 
 public:
     /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the floating-point number
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     /// A nul-terminated non-null pointer to the c-style string representation of the floating-point number
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     /// The length of the c-style string representation of the floating-point number
-    size_t              length() const;
+    size_t                  length() const;
 
 private:
     void construct_() const;
@@ -173,10 +178,10 @@ private:
         long double ldValue;
     };
 
-    u           m_value;            // The value, copied for lazy conversion
-    size_t      m_len;              // Length, and marker for type: 1 == float; 2 == double; 3 == long double
-    pan_char_t  m_sz[256];          // Marker for converted, if m_sz[0] == '\0'
-    const int   m_widthAndFormat;
+    u                   m_value;            // The value, copied for lazy conversion
+    size_t              m_len;              // Length, and marker for type: 1 == float; 2 == double; 3 == long double
+    pantheios_char_t    m_sz[256];          // Marker for converted, if m_sz[0] == '\0'
+    const int           m_widthAndFormat;
 
 private:
 #if 1 && \
@@ -188,8 +193,9 @@ private:
     class_type& operator =(class_type const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -208,7 +214,7 @@ PANTHEIOS_c_str_data_name_(
     return r.data();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(
     real const& r
 )
@@ -242,7 +248,7 @@ PANTHEIOS_c_str_ptr_name_(
     return r.c_str();
 }
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(
     real const& r
 )
@@ -274,8 +280,9 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -300,8 +307,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -313,3 +321,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_REAL */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

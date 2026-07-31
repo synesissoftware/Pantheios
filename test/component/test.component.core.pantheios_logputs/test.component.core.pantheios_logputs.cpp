@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.core.pantheios_logputs/test.component.core.pantheios_logputs.cpp
+ * File:    test/component/test.component.core.pantheios_logputs/test.component.core.pantheios_logputs.cpp
  *
- * Purpose:     Implementation file for the test.component.core.pantheios_logputs project.
+ * Purpose: Implementation file for the test.component.core.pantheios_logputs project.
  *
- * Created:     19th November 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 19th November 2008
+ * Updated: 27th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,32 +27,31 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
-/* /////////////////////////////////////////////////////////////////////////
- * Macros
- */
-
-#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
-
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * macros
  */
+
+#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)                    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * character encoding
+ */
+
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_1_01();
@@ -74,11 +64,12 @@ static void test_1_07();
 static void test_1_08();
 static void test_1_09();
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.core.pantheios_logputs");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.core.pantheios_logputs");
 
 static const int    s_severities[] =
 {
@@ -92,18 +83,19 @@ static const int    s_severities[] =
     ,   PANTHEIOS_SEV_EMERGENCY
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.core.pantheios_logputs", verbosity))
+    if (XTESTS_START_RUNNER("test.component.core.pantheios_logputs", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -123,11 +115,12 @@ int main(int argc, char** argv)
     return retCode;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 static void test_1_01()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severities); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severities); ++i)
     {
         const int severity = s_severities[i];
 
@@ -145,9 +138,9 @@ static void test_1_01()
 
         pantheios::be::test::Results  results = pantheios::be::test::results();
 
-        if(!results.empty()) // Do test here, so will work with any back-end
+        if (!results.empty()) // Do test here, so will work with any back-end
         {
-            XTESTS_TEST(1 == results.size());
+            XTESTS_TEST_INTEGER_EQUAL(1, results.size());
             PANTHEIOS_SEV_LEVELS_EQUAL(severity, results[0].severity);
             XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
         }
@@ -171,7 +164,7 @@ static void test_1_02()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_ERROR | (1 << 4), results[0].severity);
     XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
 }
@@ -193,14 +186,14 @@ static void test_1_03()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST(1 == results.size());
+    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_ERROR | (0x01234567 << 4), results[0].severity);
     XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
 }
 
 static void test_1_04()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severities); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severities); ++i)
     {
         const int severity = s_severities[i];
 
@@ -221,9 +214,9 @@ static void test_1_04()
 
         pantheios::be::test::Results  results = pantheios::be::test::results();
 
-        if(!results.empty()) // Do test here, so will work with any back-end
+        if (!results.empty()) // Do test here, so will work with any back-end
         {
-            XTESTS_TEST(4 == results.size());
+            XTESTS_TEST_INTEGER_EQUAL(4, results.size());
 
             PANTHEIOS_SEV_LEVELS_EQUAL(severity, results[0].severity);
             XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
@@ -260,4 +253,6 @@ static void test_1_09()
 {
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* ///////////////////////////// end of file //////////////////////////// */
+

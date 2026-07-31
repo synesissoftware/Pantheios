@@ -5,11 +5,12 @@
  *              multi-threaded.
  *
  * Created:     20th November 2007
- * Updated:     18th March 2012
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +50,9 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_THREADING
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_THREADING
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -64,8 +66,9 @@
 # include <platformstl/synch/util/features.h>
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_UTIL_H_FEATURES */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Feature discrimination
+ * feature discrimination
  */
 
 #ifdef PANTHEIOS_MT
@@ -109,3 +112,4 @@
 #endif /* PANTHEIOS_INCL_PANTHEIOS_INTERNAL_H_THREADING */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

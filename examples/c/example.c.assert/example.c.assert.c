@@ -1,25 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/example.c.assert/example.c.assert.c
+ * File:    examples/c/example.c.assert/example.c.assert.c
  *
- * Purpose:     C example program for Pantheios. Demonstrates:
+ * Purpose: C example program for Pantheios. Demonstrates:
  *
- *                - how the Pantheios libraries must be explicitly
- *                  initialised in a C program; this is not the case in
- *                  C++ programs
- *                - use of PANTHEIOS_ASSERT()
+ *            - how the Pantheios libraries must be explicitly initialised
+ *              in a C program; this is not the case in C++ programs
+ *            - use of PANTHEIOS_ASSERT()
  *
- * Created:     8th May 2009
- * Updated:     21st September 2015
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 8th May 2009
+ * Updated: 14th July 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -30,8 +19,9 @@
 /* Standard C header files */
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 #ifdef STLSOFT_COMPILER_IS_BORLAND
@@ -47,11 +37,14 @@ const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("exa
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+int main(int argc, char* argv[])
 {
   int i = pantheios_init();
 
-  if(i >= 0)
+  STLSOFT_SUPPRESS_UNUSED(argc);
+  STLSOFT_SUPPRESS_UNUSED(argv);
+
+  if (i >= 0)
   {
     PANTHEIOS_ASSERT(1);
 
@@ -68,4 +61,5 @@ int main()
   return EXIT_SUCCESS;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
+

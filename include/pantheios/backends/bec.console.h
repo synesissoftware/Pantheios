@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.console.h
+ * File:    pantheios/backends/bec.console.h
  *
- * Purpose:     Platform-specific console back-end
+ * Purpose: Platform-specific console back-end
  *
- * Created:     3rd July 2009
- * Updated:     26th November 2010
+ * Created: 3rd July 2009
+ * Updated: 28th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2009-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_CONSOLE
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_CONSOLE
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -83,8 +86,9 @@
 # endif /* !PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FPRINTF */
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__backend__stock_backends__console Pantheios Console Stock Back-end
@@ -99,8 +103,9 @@
  *   platform-specific back-end.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 /** \defgroup group__backend__stock_backends__console__flags Pantheios Console Stock Back-end Flags
@@ -115,13 +120,16 @@
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-# define PANTHEIOS_BE_CONSOLE_F_NO_COLOURS          PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS
+
+# define PANTHEIOS_BE_CONSOLE_F_NO_COLOURS                  PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS
 #else /* ? OS */
-# define PANTHEIOS_BE_CONSOLE_F_NO_COLOURS          (0)
+
+# define PANTHEIOS_BE_CONSOLE_F_NO_COLOURS                  (0)
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Structure used for specifying initialisation information to the
@@ -130,13 +138,16 @@
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-typedef pan_be_WindowsConsole_init_t        pan_be_console_init_t;
+
+typedef pan_be_WindowsConsole_init_t                        pan_be_console_init_t;
 #else /* ? OS */
-typedef pan_be_fprintf_init_t               pan_be_console_init_t;
+
+typedef pan_be_fprintf_init_t                               pan_be_console_init_t;
 #endif /* OS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 #if defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
@@ -187,11 +198,14 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 
 #else /* ? PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 # if defined(PLATFORMSTL_OS_IS_WINDOWS)
+
 #  define pantheios_be_console_getAppInit(backEndId, init)  pantheios_be_WindowsConsole_getAppInit(backEndId, init)
 # else /* ? OS */
+
 #  define pantheios_be_console_getAppInit(backEndId, init)  pantheios_be_fprintf_getAppInit(backEndId, init)
 # endif /* OS */
 #endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
@@ -211,9 +225,11 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-# define pantheios_be_console_getDefaultAppInit(init)   pantheios_be_WindowsConsole_getAppInit(init)
+
+# define pantheios_be_console_getDefaultAppInit(init)       pantheios_be_WindowsConsole_getAppInit(init)
 #else /* ? OS */
-# define pantheios_be_console_getDefaultAppInit(init)   pantheios_be_fprintf_getAppInit(init)
+
+# define pantheios_be_console_getDefaultAppInit(init)       pantheios_be_fprintf_getAppInit(init)
 #endif /* OS */
 
 
@@ -224,9 +240,11 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-# define pantheios_be_console_init      pantheios_be_WindowsConsole_init
+
+# define pantheios_be_console_init                          pantheios_be_WindowsConsole_init
 #else /* ? OS */
-# define pantheios_be_console_init      pantheios_be_fprintf_init
+
+# define pantheios_be_console_init                          pantheios_be_fprintf_init
 #endif /* OS */
 
 
@@ -237,9 +255,11 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-# define pantheios_be_console_uninit    pantheios_be_WindowsConsole_uninit
+
+# define pantheios_be_console_uninit                        pantheios_be_WindowsConsole_uninit
 #else /* ? OS */
-# define pantheios_be_console_uninit    pantheios_be_fprintf_uninit
+
+# define pantheios_be_console_uninit                        pantheios_be_fprintf_uninit
 #endif /* OS */
 
 
@@ -250,9 +270,11 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-# define pantheios_be_console_logEntry  pantheios_be_WindowsConsole_logEntry
+
+# define pantheios_be_console_logEntry                      pantheios_be_WindowsConsole_logEntry
 #else /* ? OS */
-# define pantheios_be_console_logEntry  pantheios_be_fprintf_logEntry
+
+# define pantheios_be_console_logEntry                      pantheios_be_fprintf_logEntry
 #endif /* OS */
 
 
@@ -285,13 +307,17 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
+
 # define pantheios_be_console_parseArgs(numArgs, args, init)        pantheios_be_WindowsConsole_parseArgs(numArgs, args, init)
 #else /* ? OS */
+
 # define pantheios_be_console_parseArgs(numArgs, args, init)        pantheios_be_fprintf_parseArgs(numArgs, args, init)
 #endif /* OS */
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_CONSOLE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

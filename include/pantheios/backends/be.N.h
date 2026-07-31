@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/be.N.h
+ * File:    pantheios/backends/be.N.h
  *
- * Purpose:     Declaration of the Pantheios be.N Stock Back-end API.
+ * Purpose: Declaration of the Pantheios be.N Stock Back-end API.
  *
- * Created:     18th October 2006
- * Updated:     26th August 2014
+ * Created: 18th October 2006
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -46,19 +47,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_BE_N
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_BE_N
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MAJOR      1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      7
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       22
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      9
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -70,8 +73,9 @@
 
 #include <limits.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__backend__stock_backends__N Pantheios N Stock Back-end
@@ -79,12 +83,14 @@
  *  Back-end library that splits output to N back-ends.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 /** \defgroup group__backend__stock_backends__N__flags Pantheios be.N Stock Back-end Flags
@@ -98,7 +104,7 @@
  * \ingroup group__backend__stock_backends__N__flags
  */
 
-#define PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE            (0x00100000)
+#define PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE                (0x00100000)
 
 /** \def PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28
 ` *  Cause the \ref group__backend__stock_backends__N to
@@ -107,7 +113,7 @@
  * \ingroup group__backend__stock_backends__N__flags
  */
 
-#define PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28         (0x00200000)
+#define PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28             (0x00200000)
 
 /** \def PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID
  *  Cause the \ref group__backend__stock_backends__N to
@@ -116,7 +122,7 @@
  * \ingroup group__backend__stock_backends__N__flags
  */
 
-#define PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID  (0x00400000)
+#define PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID      (0x00400000)
 
 /** \def PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED
  *  Cause the \ref group__backend__stock_backends__N to
@@ -124,10 +130,11 @@
  * \ingroup group__backend__stock_backends__N__flags
  */
 
-#define PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED   (0x00800000)
+#define PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED       (0x00800000)
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Structure that describes a back-end to be used by the \ref group__backend__stock_backends__N.
@@ -173,6 +180,9 @@ struct pan_be_N_t
     /* INTERNAL USE ONLY */
     void*   token;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+    /** A per-back-end static severity floor
+     */
+    int     severityFloor;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
     /* INTERNAL USE ONLY */
@@ -180,7 +190,7 @@ struct pan_be_N_t
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# define PANTHEIOS_BE_N_RESERVED_VALUES_            0, 0, { 0 }
+# define PANTHEIOS_BE_N_RESERVED_VALUES_                    0, 0, { 0 }
     /* The following fields are reserved for future use */
     PANTHEIOS_NS_QUAL(pan_uint32_t) reserved0;
     PANTHEIOS_NS_QUAL(pan_uint32_t) reserved1;
@@ -208,7 +218,7 @@ typedef struct pan_be_N_t   pan_be_N_t;
  * This is used in combination with PANTHEIOS_BE_N_TERMINATOR_ENTRY to
  * define the set of concrete back-ends are to be attached to the program:
 <pre>
-pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
+pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
     PANTHEIOS_BE_N_STDFORM_ENTRY(1, pantheios_be_file, 0)
   , PANTHEIOS_BE_N_STDFORM_ENTRY(2, pantheios_be_fprintf, 0)
@@ -237,6 +247,7 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
         ,   be_prefix ## _logEntry                                                                          \
         ,   INT_MAX                                                                                         \
         ,   NULL                                                                                            \
+        ,   INT_MIN                                                                                         \
         ,   PANTHEIOS_VER                                                                                   \
         ,   PANTHEIOS_BE_N_RESERVED_VALUES_                                                                 \
     }
@@ -257,7 +268,7 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
  * This is used in combination with PANTHEIOS_BE_N_TERMINATOR_ENTRY to
  * define the set of concrete back-ends are to be attached to the program:
 <pre>
-pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
+pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 {
     PANTHEIOS_BE_N_STDFORM_ENTRY(1, pantheios_be_file, 0)
   , PANTHEIOS_BE_N_STDFORM_ENTRY(2, pantheios_be_fprintf, 0)
@@ -288,6 +299,21 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
         ,   be_prefix ## _logEntry                                                                          \
         ,   severityCeiling                                                                                 \
         ,   NULL                                                                                            \
+        ,   INT_MIN                                                                                         \
+        ,   PANTHEIOS_VER                                                                                   \
+        ,   PANTHEIOS_BE_N_RESERVED_VALUES_                                                                 \
+    }
+
+#define PANTHEIOS_BE_N_FILTERED_ENTRY_FLOOR(backEndId, be_prefix, severityFloor, severityCeiling, flags)    \
+    {                                                                                                       \
+            flags                                                                                           \
+        ,   backEndId                                                                                       \
+        ,   (int(PANTHEIOS_CALLCONV*)(PAN_CHAR_T const*,int,void const*,void*,void**))be_prefix ## _init    \
+        ,   be_prefix ## _uninit                                                                            \
+        ,   be_prefix ## _logEntry                                                                          \
+        ,   severityCeiling                                                                                 \
+        ,   NULL                                                                                            \
+        ,   severityFloor                                                                                   \
         ,   PANTHEIOS_VER                                                                                   \
         ,   PANTHEIOS_BE_N_RESERVED_VALUES_                                                                 \
     }
@@ -300,10 +326,11 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
  *
  * \see PANTHEIOS_BE_N_STDFORM_ENTRY
  */
-#define PANTHEIOS_BE_N_TERMINATOR_ENTRY                 { 0, 0, NULL, NULL, NULL, -1, NULL, PANTHEIOS_VER, PANTHEIOS_BE_N_RESERVED_VALUES_ }
+#define PANTHEIOS_BE_N_TERMINATOR_ENTRY                     { 0, 0, NULL, NULL, NULL, -1, NULL, 0, PANTHEIOS_VER, PANTHEIOS_BE_N_RESERVED_VALUES_ }
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * External Declarations
+ * external declarations
  */
 
 /** The application-defined array of back-end descriptors that specify what
@@ -314,10 +341,28 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
  *
  * \ingroup group__backend__stock_backends__N
  */
-PANTHEIOS_EXTERN_C pan_be_N_t       PAN_BE_N_BACKEND_LIST[];
+PANTHEIOS_EXTERN pan_be_N_t PAN_BE_N_BACKEND_LIST[];
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helper functions
+ */
+
+/** Obtains the (internal) initialisation token for the given back-end
+ *
+ * \retval NULL \c backEndId is not recognised
+ *
+ * \pre NULL == reserved
+ */
+PANTHEIOS_CALL(void*)
+pantheios_be_N_tokenFromId(
+    int     backEndId
+,   void*   reserved
+);
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_BE_N */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     14th February 2010
- * Updated:     21st September 2015
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -64,10 +65,10 @@
 #ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 # include <stlsoft/iterator/cstring_concatenator_iterator.hpp>
 # include <stlsoft/iterator/member_selector_iterator.hpp>
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
 # include <stlsoft/iterators/cstring_concatenator_iterator.hpp>
 # include <stlsoft/iterators/member_selector_iterator.hpp>
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 
 /* Standard C++ header files */
 
@@ -78,8 +79,9 @@
 
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppression
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -87,27 +89,29 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Compatibility
+ * compatibility
  */
 
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
 # ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 #  include <stlsoft/algorithm/std/alt.hpp>
-# else /* ? STLSoft 1.12+ */
+# else /* ? STLSoft version */
 #  include <stlsoft/algorithms/std/alt.hpp>
-# endif /* STLSoft 1.12+ */
+# endif /* STLSoft version */
 namespace std
 {
     using stlsoft::std_copy;
 
-# define copy std_copy
+# define copy                                               std_copy
 
 } /* namespace std */
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -115,17 +119,18 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * slice
  */
 
 slice_inserter::slice_inserter(
-    pan_char_t const*   str
-,   size_t              len
-,   pan_char_t const*   strName
-,   pan_char_t const*   lenName
-,   pan_char_t const*   equals
-,   pan_char_t const*   separator
+    pantheios_char_t const* str
+,   size_t                  len
+,   pantheios_char_t const* strName
+,   pantheios_char_t const* lenName
+,   pantheios_char_t const* equals
+,   pantheios_char_t const* separator
 )
     : m_str(str)
     , m_len(len)
@@ -151,9 +156,10 @@ inline void slice_inserter::construct_() const
     const_cast<class_type*>(this)->construct_();
 }
 
-pan_char_t const* slice_inserter::data() const
+pantheios_char_t const*
+slice_inserter::data() const
 {
-    if(0u == m_buffer.size())
+    if (0u == m_buffer.size())
     {
         construct_();
     }
@@ -161,14 +167,15 @@ pan_char_t const* slice_inserter::data() const
     return m_buffer.data();
 }
 
-pan_char_t const* slice_inserter::c_str() const
+pantheios_char_t const*
+slice_inserter::c_str() const
 {
     return data();
 }
 
 size_t slice_inserter::length() const
 {
-    if(0u == m_buffer.size())
+    if (0u == m_buffer.size())
     {
         construct_();
     }
@@ -182,36 +189,45 @@ void slice_inserter::construct_()
 
     pan_slice_t         slices[7];
     pan_slice_t const   equals(-1, (NULL != m_equals) ? m_equals : PANTHEIOS_LITERAL_STRING("="));
-    pan_char_t          num[21];
+    pantheios_char_t    num[21];
 
     slices[0] = pan_slice_t(-1, m_strName);         // 0: str name
     slices[2] = pan_slice_t(m_str, m_len);          // 2: str
     slices[4] = pan_slice_t(-1, m_lenName);         // 4: len name
 
-    if(0u != slices[0].len)
+    if (0u != slices[0].len)
     {
         slices[1] = equals;                         // 1: equals (for str)
     }
-    if(0u != slices[4].len)
+    if (0u != slices[4].len)
     {
-        pan_char_t const* separator = (NULL != m_separator) ? m_separator : PANTHEIOS_LITERAL_STRING(", ");
+        pantheios_char_t const* separator = (NULL != m_separator) ? m_separator : PANTHEIOS_LITERAL_STRING(", ");
 
         slices[3] = pan_slice_t(-1, separator);     // 3: separator
         slices[5] = equals;                         // 5: equals (for len)
 
-        size_t              lenLen;
-#ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
-        pan_char_t const*   lenPtr = stlsoft::integer_to_decimal_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
-#else /* ? STLSoft 1.12+ */
-        pan_char_t const*   lenPtr = stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
-#endif /* STLSoft 1.12+ */
+        size_t                  lenLen;
+#ifdef PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
+        pantheios_char_t const* lenPtr = stlsoft::integer_to_decimal_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
+#else /* ? STLSoft version */
+        pantheios_char_t const* lenPtr = stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), m_len, &lenLen);
+#endif /* STLSoft version */
 
         slices[6] = pan_slice_t(lenPtr, lenLen);
     }
 
     // calc buffer size, resize, and write all slices into buffer
 
-#if !defined(STLSOFT_COMPILER_IS_BORLAND)
+#if 0 || \
+    defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    (   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1310) || \
+    0
+# define PANTHEIOS_CANNOT_USE_STLSOFT_MSI_
+#endif
+
+
+#ifndef PANTHEIOS_CANNOT_USE_STLSOFT_MSI_
 
     const size_t n = std::accumulate(   stlsoft::member_selector(slices, &pan_slice_t::len)
                                     ,   stlsoft::member_selector(slices + STLSOFT_NUM_ELEMENTS(slices), &pan_slice_t::len)
@@ -222,7 +238,7 @@ void slice_inserter::construct_()
     // The crappy way, for less-than compilers
     size_t n = 0;
 
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(slices); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(slices); ++i)
     {
         n += slices[i].len;
     }}
@@ -242,8 +258,9 @@ void slice_inserter::construct_()
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 != m_buffer[0], "failed to set value to non-empty");
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -251,3 +268,4 @@ void slice_inserter::construct_()
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

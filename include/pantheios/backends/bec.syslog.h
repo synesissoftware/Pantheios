@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.syslog.h
+ * File:    pantheios/backends/bec.syslog.h
  *
- * Purpose:     Declaration of the Pantheios syslog Stock Back-end API.
+ * Purpose: Declaration of the Pantheios syslog Stock Back-end API.
  *
- * Created:     23rd July 2005
- * Updated:     30th April 2010
+ * Created: 23rd July 2005
+ * Updated: 28th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_SYSLOG_SRC
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_SYSLOG_SRC
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     22
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -69,8 +72,9 @@
 # include <pantheios/backend.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_BACKEND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__backend__stock_backends__syslog Pantheios UNIX SysLog Stock Back-end
@@ -78,8 +82,9 @@
  *  Back-end library built on top of the UNIX <b>syslog</b> API.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** \defgroup group__backend__stock_backends__syslog__flags Pantheios UNIX syslog Stock Back-end Flags
@@ -105,7 +110,7 @@
  *   distinct call to fprintf(stderr).
  */
 
-#define PANTHEIOS_BE_SYSLOG_F_PERROR    (0x00100000)
+#define PANTHEIOS_BE_SYSLOG_F_PERROR                        (0x00100000)
 
 /** \def PANTHEIOS_BE_SYSLOG_F_CONS
  *  Causes the \ref group__backend__stock_backends__syslog to
@@ -117,7 +122,7 @@
  * contain the SysLog <code>LOG_CONS</code> flag.
  */
 
-#define PANTHEIOS_BE_SYSLOG_F_CONS      (0x00200000)
+#define PANTHEIOS_BE_SYSLOG_F_CONS                          (0x00200000)
 
 /** \def PANTHEIOS_BE_SYSLOG_F_PID
  *  Causes the \ref group__backend__stock_backends__syslog to include
@@ -128,7 +133,7 @@
  * contain the SysLog <code>LOG_PID</code> flag.
  */
 
-#define PANTHEIOS_BE_SYSLOG_F_PID       (0x00400000)
+#define PANTHEIOS_BE_SYSLOG_F_PID                           (0x00400000)
 
 /** \def PANTHEIOS_BE_SYSLOG_F_NDELAY
  *  Causes the \ref group__backend__stock_backends__syslog to
@@ -140,7 +145,7 @@
  * contain the SysLog <code>LOG_NDELAY</code> flag.
  */
 
-#define PANTHEIOS_BE_SYSLOG_F_NDELAY    (0x00800000)
+#define PANTHEIOS_BE_SYSLOG_F_NDELAY                        (0x00800000)
 
 
 
@@ -150,17 +155,10 @@
  */
 struct pan_be_syslog_init_t
 {
-#if !defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) && \
-    !defined(PANTHEIOS_NO_NAMESPACE)
-    typedef pantheios::pan_uint8_t  pan_uint8_t;
-    typedef pantheios::pan_uint16_t pan_uint16_t;
-    typedef pantheios::pan_uint32_t pan_uint32_t;
-#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION && !PANTHEIOS_NO_NAMESPACE */
-
-    pan_uint32_t    version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
-    pan_uint32_t    flags;      /*!<  \ref group__backend__stock_backends__syslog__flags "Flags" that control the information displayed. */
-    pan_uint32_t    options;    /*!<  Options passed to <code>openlog()</code>. Will be overridden by \link pan_be_syslog_init_t::flags flags\endlink. */
-    pan_uint8_t     facility;   /*!<  The facility used by the process. Must be <= 124. Defaults to LOG_USER */
+    pantheios_uint32_t    version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
+    pantheios_uint32_t    flags;      /*!<  \ref group__backend__stock_backends__syslog__flags "Flags" that control the information displayed. */
+    pantheios_uint32_t    options;    /*!<  Options passed to <code>openlog()</code>. Will be overridden by \link pan_be_syslog_init_t::flags flags\endlink. */
+    pantheios_uint8_t     facility;   /*!<  The facility used by the process. Must be <= 124. Defaults to LOG_USER */
 
 #ifdef __cplusplus
 public: /* Construction */
@@ -175,7 +173,7 @@ typedef struct pan_be_syslog_init_t     pan_be_syslog_init_t;
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 /** \ref page__backend__callbacks "Callback" function defined by
@@ -191,6 +189,7 @@ PANTHEIOS_CALL(void) pantheios_be_syslog_getAppInit(
     int                     backEndId
 ,   pan_be_syslog_init_t*   init
 ) /* throw() */;
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -270,28 +269,29 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_logEntry(
  */
 PANTHEIOS_CALL(int) pantheios_be_syslog_parseArgs(
     size_t                          numArgs
-#ifdef PANTHEIOS_NO_NAMESPACE
-,   struct pan_slice_t* const       args
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-,   pantheios::pan_slice_t* const   args
-#endif /* PANTHEIOS_NO_NAMESPACE */
+,   pantheios_slice_t               args[]
 ,   pan_be_syslog_init_t*           init
 );
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifdef __cplusplus
 # ifndef PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
-inline pan_be_syslog_init_t::pan_be_syslog_init_t()
+inline
+pan_be_syslog_init_t::pan_be_syslog_init_t()
 {
     pantheios_be_syslog_getDefaultAppInit(this);
 }
 # endif /* !PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT */
 #endif /* __cplusplus */
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_SYSLOG_SRC */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

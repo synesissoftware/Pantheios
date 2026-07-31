@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.core.initialisation_sequence/test.component.core.initialisation_sequence.c
+ * File:    test/component/test.component.core.initialisation_sequence/test.component.core.initialisation_sequence.c
  *
- * Purpose:     Implementation file for the test.component.core.initialisation_sequence project.
+ * Purpose: Implementation file for the test.component.core.initialisation_sequence project.
  *
- * Created:     8th February 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 8th February 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -34,15 +25,17 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 static int  s_feInitValue   =   0;
 static int  s_beInitValue   =   0;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Front-end functions
+ * front-end functions
  */
 
 PANTHEIOS_CALL(int) pantheios_fe_init(  void*   reserved
@@ -51,11 +44,11 @@ PANTHEIOS_CALL(int) pantheios_fe_init(  void*   reserved
     STLSOFT_SUPPRESS_UNUSED(reserved);
     STLSOFT_SUPPRESS_UNUSED(ptoken);
 
-    if(0 != s_feInitValue)
+    if (0 != s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end initialisation failed", "front-end has already been initialised");
     }
-    else if(0 != s_beInitValue)
+    else if (0 != s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end initialisation failed", "back-end has already been initialised");
     }
@@ -73,19 +66,19 @@ PANTHEIOS_CALL(void) pantheios_fe_uninit(void* token)
 {
     STLSOFT_SUPPRESS_UNUSED(token);
 
-    if(0 == s_feInitValue)
+    if (0 == s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end uninitialisation failed", "front-end has not yet been initialised");
     }
-    else if(0 == s_beInitValue)
+    else if (0 == s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end uninitialisation failed", "back-end has not yet been initialised");
     }
-    else if(1 == s_beInitValue)
+    else if (1 == s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end uninitialisation failed", "back-end has not yet been uninitialised");
     }
-    else if(2 != s_beInitValue)
+    else if (2 != s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end uninitialisation failed", "back-end initialisation count suggests multiple initialisations");
     }
@@ -99,15 +92,15 @@ PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(void* token)
 {
     STLSOFT_SUPPRESS_UNUSED(token);
 
-    if(0 == s_feInitValue)
+    if (0 == s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end process identity interrogation", "front-end has not yet been initialised");
     }
-    else if(1 != s_feInitValue)
+    else if (1 != s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end process identity interrogation", "front-end has been uninitialised");
     }
-    else if(0 != s_beInitValue)
+    else if (0 != s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end process identity interrogation", "back-end has already been initialised");
     }
@@ -123,19 +116,19 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(  void*   token
     STLSOFT_SUPPRESS_UNUSED(severity);
     STLSOFT_SUPPRESS_UNUSED(backEndId);
 
-    if(0 == s_feInitValue)
+    if (0 == s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end severity test", "front-end has not yet been initialised");
     }
-    else if(1 != s_feInitValue)
+    else if (1 != s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end severity test", "front-end has been uninitialised");
     }
-    else if(0 == s_beInitValue)
+    else if (0 == s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end severity test", "back-end has not yet been initialised");
     }
-    else if(1 != s_beInitValue)
+    else if (1 != s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("front-end severity test", "back-end has been uninitialised");
     }
@@ -145,7 +138,7 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(  void*   token
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Back-end functions
+ * back-end functions
  */
 
 PANTHEIOS_CALL(int) pantheios_be_init(
@@ -158,15 +151,15 @@ PANTHEIOS_CALL(int) pantheios_be_init(
     STLSOFT_SUPPRESS_UNUSED(reserved);
     STLSOFT_SUPPRESS_UNUSED(ptoken);
 
-    if(0 == s_feInitValue)
+    if (0 == s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("back-end initialisation", "front-end has not yet been initialised");
     }
-    else if(1 != s_feInitValue)
+    else if (1 != s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("back-end initialisation", "front-end has been uninitialised");
     }
-    else if(0 != s_beInitValue)
+    else if (0 != s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("back-end initialisation", "back-end has already been initialised");
     }
@@ -184,15 +177,15 @@ PANTHEIOS_CALL(void) pantheios_be_uninit(void* token)
 {
     STLSOFT_SUPPRESS_UNUSED(token);
 
-    if(0 == s_feInitValue)
+    if (0 == s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("back-end uninitialisation failed", "front-end has not yet been initialised");
     }
-    else if(0 == s_beInitValue)
+    else if (0 == s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("back-end uninitialisation failed", "back-end has not yet been initialised");
     }
-    else if(1 != s_beInitValue)
+    else if (1 != s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("back-end uninitialisation failed", "back-end has already been uninitialised");
     }
@@ -215,19 +208,19 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
     STLSOFT_SUPPRESS_UNUSED(severity);
     STLSOFT_SUPPRESS_UNUSED(entry);
 
-    if(0 == s_feInitValue)
+    if (0 == s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("back-end entry logging", "front-end has not yet been initialised");
     }
-    else if(1 != s_feInitValue)
+    else if (1 != s_feInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("back-end entry logging", "front-end has been uninitialised");
     }
-    else if(0 == s_beInitValue)
+    else if (0 == s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("back-end entry logging", "back-end has not been initialised");
     }
-    else if(1 != s_beInitValue)
+    else if (1 != s_beInitValue)
     {
         XTESTS_FAIL_WITH_QUALIFIER("back-end entry logging", "back-end has been uninitialised");
     }
@@ -235,20 +228,21 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
         return (int)cchEntry;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * main
+ * main()
  */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.component.core.initialisation_sequence", verbosity))
+    if (XTESTS_START_RUNNER("test.component.core.initialisation_sequence", verbosity))
     {
-        if(XTESTS_CASE_BEGIN("Pantheios initialisation sequence", ""))
+        if (XTESTS_CASE_BEGIN("Pantheios initialisation sequence", ""))
         {
             int r;
 
@@ -257,7 +251,7 @@ int main(int argc, char** argv)
 
             r = pantheios_init();
 
-            if(r < 0)
+            if (r < 0)
             {
                 XTESTS_FAIL_WITH_QUALIFIER("failed to initialise Pantheios", pantheios_getInitCodeString(r));
             }
@@ -284,3 +278,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

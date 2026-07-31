@@ -5,11 +5,12 @@
  *              list.
  *
  * Created:     8th December 2007
- * Updated:     10th August 2009
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,16 +50,18 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_TEST_H_COMPILER_WARNINGS_SUPPRESSION_FIRST_INCLUDE
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_TEST_H_COMPILER_WARNINGS_SUPPRESSION_FIRST_INCLUDE
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h> /* This will be reported not found if STLSoft version < 1.9 */
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppressions
+ * warning suppressions
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -82,3 +85,4 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_TEST_H_COMPILER_WARNINGS_SUPPRESSION_FIRST_INCLUDE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.levels.dynamic_initialisation/test.unit.levels.dynamic_initialisation.cpp
+ * File:    test/unit/test.unit.levels.dynamic_initialisation/test.unit.levels.dynamic_initialisation.cpp
  *
- * Purpose:     Implementation file for the test.unit.levels.dynamic_initialisation project.
+ * Purpose: Implementation file for the test.unit.levels.dynamic_initialisation project.
  *
- * Created:     20th October 2007
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2007-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 20th October 2007
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -60,17 +51,19 @@ private:
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.levels.dynamic_initialisation");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.levels.dynamic_initialisation");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -96,17 +89,17 @@ DynamicInit::DynamicInit()
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.levels.dynamic_initialisation", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.levels.dynamic_initialisation", verbosity))
     {
         /* Case 1 - verifying Pantheios levels instances */
-        if(!XTESTS_CASE_BEGIN("case-1", "verifying Pantheios levels instances"))
+        if (!XTESTS_CASE_BEGIN("case-1", "verifying Pantheios levels instances"))
         {
             retCode = EXIT_FAILURE;
         }
@@ -125,7 +118,7 @@ int main(int argc, char** argv)
         }
 
         /* Case 2 - verifying non-local constants */
-        if(!XTESTS_CASE_BEGIN("case-2", "verifying non-local constants"))
+        if (!XTESTS_CASE_BEGIN("case-2", "verifying non-local constants"))
         {
             retCode = EXIT_FAILURE;
         }
@@ -144,7 +137,7 @@ int main(int argc, char** argv)
         }
 
         /* Case 3 - verifying dynamic initialisation levels instances */
-        if(!XTESTS_CASE_BEGIN("case-3", "verifying dynamic initialisation levels instances"))
+        if (!XTESTS_CASE_BEGIN("case-3", "verifying dynamic initialisation levels instances"))
         {
             retCode = EXIT_FAILURE;
         }
@@ -171,3 +164,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

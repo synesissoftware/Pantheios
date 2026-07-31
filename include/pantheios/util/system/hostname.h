@@ -4,11 +4,12 @@
  * Purpose:     Functions for eliciting host name
  *
  * Created:     14th April 2008
- * Updated:     10th August 2009
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_HOSTNAME
 #define PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_HOSTNAME
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_MINOR    2
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_EDIT     12
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_EDIT     15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -81,14 +84,16 @@
 # endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -119,14 +124,14 @@ namespace pantheios
  * mostly used, via the C++ wrapper, from the pantheios::hostId inserter
  * class, the inconvenience is deemed acceptable.
  */
-PANTHEIOS_CALL(size_t) pantheios_getHostName(pan_char_t* buffer, size_t cchBuffer);
+PANTHEIOS_CALL(size_t) pantheios_getHostName(pantheios_char_t* buffer, size_t cchBuffer);
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 /** Equivalent to \ref pantheios::pantheios_getHostName "pantheios_getHostName()"
  *
  * \ingroup group__utility
  */
-inline size_t getHostName(pan_char_t* buffer, size_t cchBuffer)
+inline size_t getHostName(pantheios_char_t* buffer, size_t cchBuffer)
 {
     return pantheios_getHostName(buffer, cchBuffer);
 }
@@ -150,21 +155,21 @@ inline size_t getHostName(B& buffer)
 #else /* ? compiler */
 template <size_t N, typename A>
 #  ifdef STLSOFT_AUTO_BUFFER_NEW_FORM
-inline size_t getHostName(stlsoft::auto_buffer<pan_char_t, N, A>& buffer)
+inline size_t getHostName(stlsoft::auto_buffer<pantheios_char_t, N, A>& buffer)
 #  else /* ? STLSOFT_AUTO_BUFFER_NEW_FORM */
-inline size_t getHostName(stlsoft::auto_buffer<pan_char_t, A, N>& buffer)
+inline size_t getHostName(stlsoft::auto_buffer<pantheios_char_t, A, N>& buffer)
 #  endif /* STLSOFT_AUTO_BUFFER_NEW_FORM */
 #endif /* compiler */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(0 != buffer.size(), "buffer must not be empty");
 
-    for(;;)
+    for (;;)
     {
         size_t cch = pantheios_getHostName(&buffer[0], buffer.size());
 
-        if(buffer.size() == cch)
+        if (buffer.size() == cch)
         {
-            if(!buffer.resize(2 * buffer.size()))
+            if (!buffer.resize(2 * buffer.size()))
             {
                 return 0;
             }
@@ -182,8 +187,9 @@ inline size_t getHostName(stlsoft::auto_buffer<pan_char_t, A, N>& buffer)
 
 #endif /* __cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -195,3 +201,4 @@ inline size_t getHostName(stlsoft::auto_buffer<pan_char_t, A, N>& buffer)
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_SYSTEM_H_HOSTNAME */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

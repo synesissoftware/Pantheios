@@ -4,11 +4,12 @@
  * Purpose:     pan_slice_t implementation.
  *
  * Created:     21st June 2005
- * Updated:     11th October 2012
+ * Updated:     16th June 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -42,15 +43,16 @@
 
 /** \file pantheios/internal/slice.hpp
  *
- * [C, C++] Primary include file for the \ref group__core_library and
- *  \ref group__util_library.
+ * [C, C++] INTERNAL FILE (AND SUBJECT TO CHANGE): pan_slice_t
+ *  implementation.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SLICE
 #define PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SLICE
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Validation
+ * validation
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -61,8 +63,9 @@
 # error This file is valid only in C++ compilation units
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -74,6 +77,7 @@ namespace pantheios
 
 # ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * pan_slice_t
  */
@@ -82,8 +86,8 @@ inline
 /* static */
 size_t
 pan_slice_t::calc_length_n_(
-    pan_char_t const*   s
-,   size_t              len
+    pantheios_char_t const* s
+,   size_t                  len
 )
 {
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -95,33 +99,48 @@ pan_slice_t::calc_length_n_(
 
 inline
 pan_slice_t::pan_slice_t()
-    : len(0)
-    , ptr(NULL)
-{}
+{
+    this->len   =   0;
+    this->ptr   =   NULL;
+}
 
 inline
 pan_slice_t::pan_slice_t(
-    pan_char_t const*   p
-,   size_t              l
+    pantheios_char_t const* p
+,   size_t                  l
 )
-    : len(l)
-    , ptr(p)
 {
     static size_t const topBit = size_t(0x01) << (sizeof(size_t) * 8 - 1);
 
-    if(topBit & len)
+    if (topBit & l)
     {
-        this->len = calc_length_n_(p, len);
+        this->len = calc_length_n_(p, l);
     }
+    else
+    {
+        this->len = l;
+    }
+
+    this->ptr = p;
 }
 
 inline
 pan_slice_t::pan_slice_t(
     pan_slice_t const& rhs
 )
-    : len(rhs.len)
-    , ptr(rhs.ptr)
-{}
+{
+    this->len = rhs.len;
+    this->ptr = rhs.ptr;
+}
+
+inline
+pan_slice_t::pan_slice_t(
+    pantheios_slice_t const& rhs
+)
+{
+    this->len = rhs.len;
+    this->ptr = rhs.ptr;
+}
 
 inline
 pan_slice_t&
@@ -129,35 +148,50 @@ pan_slice_t::operator =(
     pan_slice_t const& rhs
 )
 {
-    len = rhs.len;
-    ptr = rhs.ptr;
+    this->len = rhs.len;
+    this->ptr = rhs.ptr;
+
+    return *this;
+}
+
+inline
+pan_slice_t&
+pan_slice_t::operator =(
+    pantheios_slice_t const& rhs
+)
+{
+    this->len = rhs.len;
+    this->ptr = rhs.ptr;
 
     return *this;
 }
 
 inline
 pan_slice_t::pan_slice_t(
-    int                 l
-,   pan_char_t const*   p
+    int                     l
+,   pantheios_char_t const* p
 )
-    : len(calc_length_n_(p, static_cast<size_t>(l)))
-    , ptr(p)
-{}
+{
+    this->len   =   calc_length_n_(p, static_cast<size_t>(l));
+    this->ptr   =   p;
+}
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -169,3 +203,4 @@ pan_slice_t::pan_slice_t(
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SLICE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

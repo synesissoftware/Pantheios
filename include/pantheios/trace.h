@@ -4,11 +4,12 @@
  * Purpose:     Pantheios Tracing API.
  *
  * Created:     11th November 2007
- * Updated:     11th October 2012
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_TRACE
 #define PANTHEIOS_INCL_PANTHEIOS_H_TRACE
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MINOR      3
-# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       17
+# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   3
+# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -77,8 +80,9 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Tracing features
+ * tracing features
  */
 
 /** \defgroup group__tracing Pantheios Tracing API
@@ -145,14 +149,14 @@
 
  /* Now define the prefix, if the user has not already done so. */
 # if !defined(PANTHEIOS_TRACE_PREFIX)
-#  define PANTHEIOS_TRACE_PREFIX                PANTHEIOS_FILELINE
+#  define PANTHEIOS_TRACE_PREFIX                            PANTHEIOS_FILELINE
 #  ifdef __cplusplus
-#   define PANTHEIOS_TRACE_LOG_PREFIX           ::pantheios::pan_slice_t(PANTHEIOS_FILELINE, STLSOFT_NUM_ELEMENTS(PANTHEIOS_FILELINE) - 1)
+#   define PANTHEIOS_TRACE_LOG_PREFIX                       ::pantheios::pan_slice_t(PANTHEIOS_FILELINE, STLSOFT_NUM_ELEMENTS(PANTHEIOS_FILELINE) - 1)
 #  else /* ? __cplusplus */
-#   define PANTHEIOS_TRACE_LOG_PREFIX           PANTHEIOS_FILELINE
+#   define PANTHEIOS_TRACE_LOG_PREFIX                       PANTHEIOS_FILELINE
 #  endif /* __cplusplus */
 # else /* ? PANTHEIOS_TRACE_PREFIX */
-#  define PANTHEIOS_TRACE_LOG_PREFIX            PANTHEIOS_TRACE_PREFIX
+#  define PANTHEIOS_TRACE_LOG_PREFIX                        PANTHEIOS_TRACE_PREFIX
 # endif /* !PANTHEIOS_TRACE_PREFIX */
 
  /* Now define the Pantheios Tracing API */
@@ -171,12 +175,14 @@
  * \param fmt The format string
  */
 
-# if !defined(PANTHEIOS_NO_NAMESPACE) || \
-     defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
-#  define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...) ::pantheios::pantheios_logprintf((sev), "%s" fmt, stlsoft_static_cast(PANTHEIOS_NS_QUAL(pan_char_t) const*, PANTHEIOS_TRACE_PREFIX), __VA_ARGS__)
-# else /* ? __cplusplus */
-#  define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...)              pantheios_logprintf((sev), "%s" fmt, stlsoft_static_cast(PANTHEIOS_NS_QUAL(pan_char_t) const*, PANTHEIOS_TRACE_PREFIX), __VA_ARGS__)
-# endif /* __cplusplus */
+# define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...)                                  \
+                                                                                \
+    PANTHEIOS_NS_QUAL(pantheios_logprintf)(                                     \
+        (sev)                                                                   \
+    ,   "%s" fmt                                                                \
+    ,   stlsoft_static_cast(pantheios_char_t const*, PANTHEIOS_TRACE_PREFIX)    \
+    ,   __VA_ARGS__                                                             \
+    )
 
 # if !defined(PANTHEIOS_NO_NAMESPACE) || \
      defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
@@ -267,19 +273,18 @@
 #   define PANTHEIOS_TRACE_DEBUG(...)           ::pantheios::log(PANTHEIOS_SEV_DEBUG, PANTHEIOS_TRACE_LOG_PREFIX, __VA_ARGS__)
 #  endif /* !PANTHEIOS_NO_STOCK_LEVELS */
 # endif /* __cplusplus */
+#endif /* !PANTHEIOS_NO_NAMESPACE */
 
-#endif /* PANTHEIOS_USES_VARIADIC_MACROS */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_TRACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

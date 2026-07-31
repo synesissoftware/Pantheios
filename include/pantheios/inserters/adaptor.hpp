@@ -4,11 +4,12 @@
  * Purpose:     Inserter adaptors for the Pantheios application layer.
  *
  * Created:     29th July 2006
- * Updated:     11th October 2012
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INSERTER
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INSERTER
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        20
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    7
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -69,8 +72,9 @@
 # include <pantheios/internal/shim_declarations.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_SHIM_DECLARATIONS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -78,8 +82,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Classes
+ * types
  */
 
 /**
@@ -87,28 +92,31 @@ namespace pantheios
  * \ingroup group__application_layer_interface__inserters
  *
  */
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
 class inserter
 {
-public:
+public: // types
     typedef T                   value_type;
     typedef S                   string_type;
     typedef inserter<T, S>      class_type;
 
-public:
+public: // construction
     inserter(T value, S (*pfn)(T))
         : m_sourceValue(value)
         , m_convertedValue()
         , m_pfn(pfn)
         , m_bInitialised(false)
     {}
+private:
+    class_type& operator =(class_type const&); // proscribed
 
-public:
-    pan_char_t const* data() const
+public: // accessors
+    pantheios_char_t const* data() const
     {
-        if(!m_bInitialised)
+        if (!m_bInitialised)
         {
             convert_();
         }
@@ -117,7 +125,7 @@ public:
     }
     size_t      length() const
     {
-        if(!m_bInitialised)
+        if (!m_bInitialised)
         {
             convert_();
         }
@@ -125,7 +133,7 @@ public:
         return m_convertedValue.length();
     }
 
-private:
+private: // implementation
     void convert_() const
     {
         const_cast<class_type*>(this)->convert_();
@@ -136,56 +144,67 @@ private:
         m_bInitialised      =   true;
     }
 
-private:
+private: // fields
     T       m_sourceValue;
     S       m_convertedValue;
     S       (*m_pfn)(T);
     bool    m_bInitialised;
-
-private:
-    class_type& operator =(class_type const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter functions
+ * inserter functions
  */
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
-inline inserter<T, S> insert(T &value, S (*pfn)(T))
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
+inline
+inserter<T, S>
+insert(T& value, S (*pfn)(T))
 {
     return inserter<T, S>(value, pfn);
 }
 
 #if 0
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
-inline inserter<T const&, S> insert(T const& value, S (*pfn)(T const&))
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
+inline
+inserter<T const&, S>
+insert(T const& value, S (*pfn)(T const&))
 {
     return inserter<T const&, S>(value, pfn);
 }
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
-inline inserter<T const*, S> insert(T const* value, S (*pfn)(T const*))
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
+inline
+inserter<T const*, S>
+insert(T const* value, S (*pfn)(T const*))
 {
     return inserter<T const*, S>(value, pfn);
 }
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
-inline inserter<T*, S> insert(T *value, S (*pfn)(T*))
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
+inline
+inserter<T*, S>
+insert(T *value, S (*pfn)(T*))
 {
     return inserter<T*, S>(value, pfn);
 }
 #endif /* 0 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Shim functions
+ * shim functions
  */
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -193,9 +212,10 @@ namespace shims
 {
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
 inline
 PAN_CHAR_T const*
 PANTHEIOS_c_str_data_name_(
@@ -205,9 +225,10 @@ PANTHEIOS_c_str_data_name_(
     return i.data();
 }
 
-template<   ss_typename_param_k T
-        ,   ss_typename_param_k S
-        >
+template<
+    ss_typename_param_k T
+,   ss_typename_param_k S
+>
 inline
 size_t
 PANTHEIOS_c_str_len_name_(
@@ -233,8 +254,9 @@ PANTHEIOS_c_str_len_name_(
 
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -255,8 +277,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -268,3 +291,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INSERTER */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

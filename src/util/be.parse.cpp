@@ -4,11 +4,12 @@
  * Purpose:     Utility functions for use in Pantheios back-ends.
  *
  * Created:     19th August 2007
- * Updated:     1st September 2015
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,8 +60,9 @@
 # include <wchar.h>
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -68,53 +70,63 @@
 # pragma warning(disable : 4702)
 #endif /* _MSC_VER >= 1400 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String encoding compatibility
+ * string encoding compatibility
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define pan_toupper_                   towupper
+# define pan_toupper_                                       towupper
 typedef stlsoft::wstring_view           string_view_t;
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pan_toupper_                   toupper
+# define pan_toupper_                                       toupper
 typedef stlsoft::string_view            string_view_t;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifndef PANTHEIOS_NO_NAMESPACE
-using pantheios::pan_uint32_t;
-using pantheios::pan_char_t;
-using pantheios::pan_slice_t;
 using pantheios::util::pantheios_onBailOut3;
 using pantheios::util::pantheios_onBailOut4;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-static int pantheios_be_parseBooleanArg_(   size_t              numArgs
-                                        ,   pan_slice_t* const  args
-                                        ,   pan_char_t const*   argName
-                                        ,   int                 flagSuppressesAction
-                                        ,   pan_uint32_t        flagValue
-                                        ,   pan_uint32_t*       flags);
+static int
+pantheios_be_parseBooleanArg_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   PAN_CHAR_T const*       argName
+,   int                     flagSuppressesAction
+,   pantheios_uint32_t      flagValue
+,   pantheios_uint32_t*     flags
+);
 
-static int pantheios_be_parseStringArg_(    size_t              numArgs
-                                        ,   pan_slice_t* const  args
-                                        ,   pan_char_t const*   argName
-                                        ,   pan_slice_t*        argValue);
-static int pantheios_be_parseStockArgs_(    size_t              numArgs
-                                        ,   pan_slice_t* const  args
-                                        ,   pan_uint32_t*       flags);
+static int
+pantheios_be_parseStringArg_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   PAN_CHAR_T const*       argName
+,   pantheios_slice_t*      argValue
+);
+static int
+pantheios_be_parseStockArgs_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   pantheios_uint32_t*     flags
+);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Helper functions
+ * helper functions
  */
 
 namespace
@@ -125,23 +137,23 @@ namespace
 
         size_t  n = value.size();
 
-        if(n < 6)
+        if (n < 6)
         {
-            pan_char_t copy[6];
+            PAN_CHAR_T copy[6];
 
             PANTHEIOS_char_copy(&copy[0], value.data(), n);
-            ::memset(&copy[0] + n, '\0', (6 - n) * sizeof(pan_char_t));
+            ::memset(&copy[0] + n, '\0', (6 - n) * sizeof(PAN_CHAR_T));
 
             PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL('\0' == copy[5], "the character at [5] must be the nul-terminator");
 
-            { for(size_t i = 0; '\0' != copy[i]; ++i)
+            { for (size_t i = 0; '\0' != copy[i]; ++i)
             {
-                copy[i] = static_cast<pan_char_t>(pan_toupper_(copy[i]));
+                copy[i] = static_cast<PAN_CHAR_T>(pan_toupper_(copy[i]));
             }}
 
             const string_view_t val2(&copy[0], n);
 
-            if( PANTHEIOS_LITERAL_STRING("1") == val2 ||
+            if (PANTHEIOS_LITERAL_STRING("1") == val2 ||
                 PANTHEIOS_LITERAL_STRING("ON") == val2 ||
                 PANTHEIOS_LITERAL_STRING("YES") == val2 ||
                 PANTHEIOS_LITERAL_STRING("TRUE") == val2)
@@ -150,7 +162,7 @@ namespace
 
                 return true;
             }
-            else if(PANTHEIOS_LITERAL_STRING("0") == val2 ||
+            else if (PANTHEIOS_LITERAL_STRING("0") == val2 ||
                     PANTHEIOS_LITERAL_STRING("OFF") == val2 ||
                     PANTHEIOS_LITERAL_STRING("NO") == val2 ||
                     PANTHEIOS_LITERAL_STRING("FALSE") == val2)
@@ -166,32 +178,36 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
 
-PANTHEIOS_CALL(int) pantheios_be_parseBooleanArg(   size_t              numArgs
-                                                ,   pan_slice_t* const  args
-                                                ,   pan_char_t const*   argName
-                                                ,   int                 flagSuppressesAction
-                                                ,   pan_uint32_t        flagValue
-                                                ,   pan_uint32_t*       flags)
+PANTHEIOS_CALL(int)
+pantheios_be_parseBooleanArg(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   PAN_CHAR_T const*       argName
+,   int                     flagSuppressesAction
+,   pantheios_uint32_t      flagValue
+,   pantheios_uint32_t*     flags
+)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 {
     try
     {
         return pantheios_be_parseBooleanArg_(numArgs, args, argName, flagSuppressesAction, flagValue, flags);
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when parsing boolean argument", NULL);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing boolean argument", NULL, x.what());
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when parsing boolean argument", NULL);
 
@@ -208,12 +224,15 @@ PANTHEIOS_CALL(int) pantheios_be_parseBooleanArg(   size_t              numArgs
     return 0;
 }
 
-static int pantheios_be_parseBooleanArg_(   size_t              numArgs
-                                        ,   pan_slice_t* const  args
-                                        ,   pan_char_t const*   argName
-                                        ,   int                 flagSuppressesAction
-                                        ,   pan_uint32_t        flagValue
-                                        ,   pan_uint32_t*       flags)
+static int
+pantheios_be_parseBooleanArg_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   PAN_CHAR_T const*       argName
+,   int                     flagSuppressesAction
+,   pantheios_uint32_t      flagValue
+,   pantheios_uint32_t*     flags
+)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((NULL != args || 0 == numArgs), "arguments pointer may only be null if the number of arguments is 0");
@@ -223,36 +242,36 @@ static int pantheios_be_parseBooleanArg_(   size_t              numArgs
 
     int numProcessed = 0;
 
-    { for(size_t i = 0; i < numArgs; ++i)
+    { for (size_t i = 0; i < numArgs; ++i)
     {
-        pan_slice_t& slice = *(args + i);
+        pantheios_slice_t& slice = *(args + i);
 
-        if(0 != slice.len)
+        if (0 != slice.len)
         {
             string_view_t   arg(slice.ptr, slice.len);
             string_view_t   name;
             string_view_t   value;
 
-            if(!stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value))
+            if (!stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value))
             {
                 value = PANTHEIOS_LITERAL_STRING("yes");
             }
 
-            if(name == argName)
+            if (name == argName)
             {
                 // Now read what is required, compare it with the
                 // default flag, and
 
                 bool    flagIsOn;
 
-                if(!has_boolean_flag_value(value, flagIsOn))
+                if (!has_boolean_flag_value(value, flagIsOn))
                 {
                     continue; // Invalid value. Mark to ignore
                 }
 
                 ++numProcessed;
 
-                if((!flagIsOn) != (!flagSuppressesAction))
+                if ((!flagIsOn) != (!flagSuppressesAction))
                 {
                     *flags |= flagValue;
                 }
@@ -267,26 +286,29 @@ static int pantheios_be_parseBooleanArg_(   size_t              numArgs
     return numProcessed;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_parseStringArg(size_t              numArgs
-                                            ,   pan_slice_t* const  args
-                                            ,   pan_char_t const*   argName
-                                            ,   pan_slice_t*        argValue)
+PANTHEIOS_CALL(int)
+pantheios_be_parseStringArg(
+    size_t              numArgs
+,   pantheios_slice_t   args[]
+,   PAN_CHAR_T const*   argName
+,   pantheios_slice_t*  argValue
+)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 {
     try
     {
         return pantheios_be_parseStringArg_(numArgs, args, argName, argValue);
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when parsing string argument", NULL);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing string argument", NULL, x.what());
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when parsing boolean argument", NULL);
 
@@ -303,10 +325,13 @@ PANTHEIOS_CALL(int) pantheios_be_parseStringArg(size_t              numArgs
     return 0;
 }
 
-static int pantheios_be_parseStringArg_(    size_t              numArgs
-                                        ,   pan_slice_t* const  args
-                                        ,   pan_char_t const*   argName
-                                        ,   pan_slice_t*        argValue)
+static int
+pantheios_be_parseStringArg_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   PAN_CHAR_T const*       argName
+,   pantheios_slice_t*      argValue
+)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((NULL != args || 0 == numArgs), "arguments pointer may only be null if the number of arguments is 0");
@@ -316,11 +341,11 @@ static int pantheios_be_parseStringArg_(    size_t              numArgs
 
     int numProcessed = 0;
 
-    { for(size_t i = 0; i < numArgs; ++i)
+    { for (size_t i = 0; i < numArgs; ++i)
     {
-        pan_slice_t& slice = *(args + i);
+        pantheios_slice_t& slice = *(args + i);
 
-        if(0 != slice.len)
+        if (0 != slice.len)
         {
             string_view_t   arg(slice.ptr, slice.len);
             string_view_t   name;
@@ -328,7 +353,7 @@ static int pantheios_be_parseStringArg_(    size_t              numArgs
 
             stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value);
 
-            if(name == argName)
+            if (name == argName)
             {
                 ++numProcessed;
 
@@ -345,25 +370,28 @@ static int pantheios_be_parseStringArg_(    size_t              numArgs
     return numProcessed;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_parseStockArgs(size_t              numArgs
-                                            ,   pan_slice_t* const  args
-                                            ,   pan_uint32_t*       flags)
+PANTHEIOS_CALL(int)
+pantheios_be_parseStockArgs(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   pantheios_uint32_t*     flags
+)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 {
     try
     {
         return pantheios_be_parseStockArgs_(numArgs, args, flags);
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "Out of memory when parsing stock argument", NULL);
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut4(PANTHEIOS_SEV_CRITICAL, "Unspecified exception when parsing stock argument", NULL, x.what());
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_EMERGENCY, "Unknown failure when parsing stock argument", NULL);
 
@@ -380,9 +408,12 @@ PANTHEIOS_CALL(int) pantheios_be_parseStockArgs(size_t              numArgs
     return 0;
 }
 
-static int pantheios_be_parseStockArgs_(size_t              numArgs
-                                    ,   pan_slice_t* const  args
-                                    ,   pan_uint32_t*       flags)
+static int
+pantheios_be_parseStockArgs_(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   pantheios_uint32_t*     flags
+)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((NULL != args || 0 == numArgs), "arguments pointer may only be null if the number of arguments is 0");
@@ -390,11 +421,11 @@ static int pantheios_be_parseStockArgs_(size_t              numArgs
 
     int numProcessed = 0;
 
-    { for(size_t i = 0; i < numArgs; ++i)
+    { for (size_t i = 0; i < numArgs; ++i)
     {
-        pan_slice_t& slice = *(args + i);
+        pantheios_slice_t& slice = *(args + i);
 
-        if(0 != slice.len)
+        if (0 != slice.len)
         {
             string_view_t   arg(slice.ptr, slice.len);
             string_view_t   name;
@@ -402,79 +433,85 @@ static int pantheios_be_parseStockArgs_(size_t              numArgs
             bool            flagSuppresses;
             int             flagValue;
 
-            if(!stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value))
+            if (!stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value))
             {
                 value = PANTHEIOS_LITERAL_STRING("yes");
             }
 
-            if(!name.empty())
+            if (!name.empty())
             {
                 // PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
-                if(name == PANTHEIOS_LITERAL_STRING("showProcessId"))
+                if (name == PANTHEIOS_LITERAL_STRING("showProcessId"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
                 }
                 // PANTHEIOS_BE_INIT_F_NO_THREAD_ID
-                else if(name == PANTHEIOS_LITERAL_STRING("showThreadId"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showThreadId"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
                 }
                 // PANTHEIOS_BE_INIT_F_NO_DATETIME
-                else if(name == PANTHEIOS_LITERAL_STRING("showDateTime"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showDateTime"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_NO_DATETIME;
                 }
                 // PANTHEIOS_BE_INIT_F_NO_SEVERITY
-                else if(name == PANTHEIOS_LITERAL_STRING("showSeverity"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showSeverity"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_NO_SEVERITY;
                 }
                 // PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
-                else if(name == PANTHEIOS_LITERAL_STRING("useSystemTime"))
+                else if (name == PANTHEIOS_LITERAL_STRING("useSystemTime"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME;
                 }
                 // PANTHEIOS_BE_INIT_F_DETAILS_AT_START
-                else if(name == PANTHEIOS_LITERAL_STRING("showDetailsAtStart"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showDetailsAtStart"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_DETAILS_AT_START;
                 }
                 // PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
-                else if(name == PANTHEIOS_LITERAL_STRING("useUnixFormat") ||
+                else if (name == PANTHEIOS_LITERAL_STRING("useUnixFormat") ||
                         name == PANTHEIOS_LITERAL_STRING("useUNIXFormat"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT;
                 }
                 // PANTHEIOS_BE_INIT_F_HIDE_DATE
-                else if(name == PANTHEIOS_LITERAL_STRING("showDate"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showDate"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_HIDE_DATE;
                 }
                 // PANTHEIOS_BE_INIT_F_HIDE_TIME
-                else if(name == PANTHEIOS_LITERAL_STRING("showTime"))
+                else if (name == PANTHEIOS_LITERAL_STRING("showTime"))
                 {
                     flagSuppresses  =   true;
                     flagValue       =   PANTHEIOS_BE_INIT_F_HIDE_TIME;
                 }
                 // PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
-                else if(name == PANTHEIOS_LITERAL_STRING("highResolution"))
+                else if (name == PANTHEIOS_LITERAL_STRING("highResolution"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION;
                 }
                 // PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
-                else if(name == PANTHEIOS_LITERAL_STRING("lowResolution"))
+                else if (name == PANTHEIOS_LITERAL_STRING("lowResolution"))
                 {
                     flagSuppresses  =   false;
                     flagValue       =   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION;
+                }
+                // PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
+                else if (name == PANTHEIOS_LITERAL_STRING("numericSeverity"))
+                {
+                    flagSuppresses  =   false;
+                    flagValue       =   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY;
                 }
                 else
                 {
@@ -486,14 +523,14 @@ static int pantheios_be_parseStockArgs_(size_t              numArgs
 
                 bool flagIsOn;
 
-                if(!has_boolean_flag_value(value, flagIsOn))
+                if (!has_boolean_flag_value(value, flagIsOn))
                 {
                     continue; // Invalid value. Mark to ignore
                 }
 
                 ++numProcessed;
 
-                if((!flagIsOn) != (!flagSuppresses))
+                if ((!flagIsOn) != (!flagSuppresses))
                 {
                     *flags |= flagValue;
                 }
@@ -507,3 +544,4 @@ static int pantheios_be_parseStockArgs_(size_t              numArgs
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

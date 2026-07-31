@@ -4,11 +4,12 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     22nd September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -49,19 +50,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTEGER
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTEGER
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_MINOR    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_REVISION 7
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_EDIT     40
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_REVISION 8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_EDIT     43
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -78,8 +81,9 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -88,8 +92,9 @@ namespace pantheios
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /** Class for inserting integral types into Pantheios diagnostic logging
@@ -353,11 +358,11 @@ public:
 /// @{
 public:
     ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   data() const;
+    pantheios_char_t const* data() const;
     ///  A nul-terminated non-null pointer to the c-style string representation of the integer
-    pan_char_t const*   c_str() const;
+    pantheios_char_t const* c_str() const;
     ///  The length of the c-style string representation of the integer
-    size_t              length() const;
+    size_t                  length() const;
 /// @}
 
 /// \name Implementation
@@ -382,11 +387,11 @@ private:
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
     };
 
-    u           m_value;    // The value, copied for lazy conversion
-    size_t      m_len;      // Length, and marker for type: 1 == float; 2 == double; 3 == long double
-    const int   m_minWidth; // The minimum width
-    const int   m_format;   // The format
-    pan_char_t  m_sz[129];  // Marker for converted, if m_sz[0] == '\0'
+    u                   m_value;    // The value, copied for lazy conversion
+    size_t              m_len;      // Length, and marker for type: 1 == float; 2 == double; 3 == long double
+    const int           m_minWidth; // The minimum width
+    const int           m_format;   // The format
+    pantheios_char_t    m_sz[129];  // Marker for converted, if m_sz[0] == '\0'
 /// @}
 
 /// \name Not to be implemented
@@ -402,8 +407,9 @@ private:
 /// @}
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -423,7 +429,7 @@ PANTHEIOS_c_str_data_name_(
 }
 /** \overload c_str_data(integer const&) */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_data(integer const& i)
 {
     return i.data();
@@ -457,7 +463,7 @@ PANTHEIOS_c_str_ptr_name_(
 }
 /** \overload c_str_ptr(integer const&) */
 inline
-pan_char_t const*
+pantheios_char_t const*
 c_str_ptr(integer const& i)
 {
     return i.c_str();
@@ -487,8 +493,9 @@ c_str_ptr(integer const& i)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -513,8 +520,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -526,3 +534,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTEGER */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

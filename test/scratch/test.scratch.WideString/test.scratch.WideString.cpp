@@ -1,30 +1,23 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.WideString/test.scratch.WideString.cpp
+ * File:    test/scratch/test.scratch.WideString/test.scratch.WideString.cpp
  *
- * Purpose:     Implementation file for the test.scratch.WideString project.
+ * Purpose: Scratch test for widestring application layer.
  *
- * Created:     22nd March 2010
- * Updated:     10th January 2011
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2011, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 22nd March 2010
+ * Updated: 20th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/args.hpp>
-#include <pantheios/inserters/b64.hpp>
+#ifndef PANTHEIOS_NO_B64
+# include <pantheios/inserters/b64.hpp>
+#endif
 #include <pantheios/inserters/blob.hpp>
 #include <pantheios/inserters/hex_ptr.hpp>
 #include <pantheios/inserters/integer.hpp>
@@ -39,11 +32,13 @@
 #include <stdlib.h>
 #include <tchar.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-extern "C" PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.WideString");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.WideString");
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
@@ -53,7 +48,9 @@ int _tmain(int argc, _TCHAR* argv[])
 {
     pantheios::log(pantheios::debug, PANTHEIOS_LITERAL_STRING("main(argc/v={"), pantheios::args(argc, argv), PANTHEIOS_LITERAL_STRING("})"));
 
+#ifndef PANTHEIOS_NO_B64
     pantheios::log(pantheios::debug, PANTHEIOS_LITERAL_STRING("b64: {"), pantheios::b64("abcd", 5), PANTHEIOS_LITERAL_STRING("}"));
+#endif
 
     pantheios::log(pantheios::debug, PANTHEIOS_LITERAL_STRING("i: {"), pantheios::integer(-10101, 4, pantheios::fmt::fullHex), PANTHEIOS_LITERAL_STRING("}"));
 
@@ -74,4 +71,6 @@ int _tmain(int argc, _TCHAR* argv[])
     return 0;
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

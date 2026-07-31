@@ -1,26 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.be.WindowsSyslog/test.unit.be.WindowsSyslog.cpp
+ * File:    test/unit/test.unit.be.WindowsSyslog/test.unit.be.WindowsSyslog.cpp
  *
- * Purpose:     Implementation file for the test.unit.be.WindowsSyslog project.
+ * Purpose: Implementation file for the test.unit.be.WindowsSyslog project.
  *
- * Created:     17th October 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 17th October 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
@@ -33,6 +23,7 @@
 
 /* STLSoft header files */
 #include <stlsoft/smartptr/scoped_handle.hpp>
+#include <winstl/conversion/char_conversions.hpp>
 
 /* Standard C header files */
 #include <stdio.h>
@@ -40,14 +31,16 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-extern "C" const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.WindowsSyslog");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.WindowsSyslog");
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -76,8 +69,9 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main()
  */
 
 int main(int argc, char **argv)
@@ -89,7 +83,7 @@ int main(int argc, char **argv)
 
     int r = ::WSAStartup(version, &wsadata);
 
-    if(0 != r)
+    if (0 != r)
     {
         fprintf(stderr, "failed to initialise the WinSock2 library: %d\n", r);
 
@@ -101,7 +95,7 @@ int main(int argc, char **argv)
 
         XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-        if(XTESTS_START_RUNNER("test.unit.be.WindowsSyslog", verbosity))
+        if (XTESTS_START_RUNNER("test.unit.be.WindowsSyslog", verbosity))
         {
             XTESTS_RUN_CASE(test_getDefaultAppInit);
             XTESTS_RUN_CASE(test_initialisation);
@@ -133,8 +127,9 @@ int main(int argc, char **argv)
     return retCode;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
 namespace
@@ -167,15 +162,15 @@ static void test_initialisation()
 
     init.flags      |=  PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY;
     init.addrSize   =   0;
-    init.hostName   =   "localhost";
+    init.hostName   =   PANTHEIOS_LITERAL_STRING("localhost");
     init.port       =   50505;
 
     void*   token;
     int     r = pantheios_be_WindowsSyslog_init(PANTHEIOS_FE_PROCESS_IDENTITY, 1, &init, NULL, &token);
 
-    if(r < 0)
+    if (r < 0)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", pantheios::getStockSeverityString(r));
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
     }
     else
     {
@@ -193,15 +188,15 @@ static void test_1_2()
 
     init.flags      |=  PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY;
     init.addrSize   =   0;
-    init.hostName   =   "localhost";
+    init.hostName   =   PANTHEIOS_LITERAL_STRING("localhost");
     init.port       =   50505;
 
     void*   token;
     int     r = pantheios_be_WindowsSyslog_init(PANTHEIOS_FE_PROCESS_IDENTITY, 1, &init, NULL, &token);
 
-    if(r < 0)
+    if (r < 0)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", pantheios::getStockSeverityString(r));
+        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise be.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
     }
     else
     {
@@ -281,7 +276,8 @@ static void test_1_19()
 {
 }
 
-
 } /* anonymous namespace */
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose: Implicitly links in the Pantheios syslog Local Back-End Library
  *
  * Created: 30th May 2006
- * Updated: 10th August 2009
+ * Updated: 16th December 2023
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,19 +50,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG
 #define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG_EDIT     5
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG_EDIT     7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -74,8 +77,9 @@
 # include <pantheios/implicit_link/bec.syslog.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_SYSLOG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Implicit-linking directives
+ * implicit-linking directives
  */
 
 #ifdef PANTHEIOS_IMPLICIT_LINK_SUPPORT
@@ -107,3 +111,4 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

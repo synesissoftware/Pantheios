@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/severity_strings.c
+ * File:    src/util/severity_strings.c
  *
- * Purpose:     Severity strings for Pantheios API
+ * Purpose: Severity strings for Pantheios API
  *
- * Created:     26th July 2005
- * Updated:     9th December 2013
+ * Created: 26th July 2005
+ * Updated: 16th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2005-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,14 +43,16 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/quality/contract.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -58,22 +61,22 @@ namespace pantheios
 #ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 struct SeverityString
 #else /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
-# define SeverityString         pantheios_src_util_SeverityString
+# define SeverityString                                     pantheios_src_util_SeverityString
 typedef struct SeverityString  SeverityString;
 struct SeverityString
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 {
-    int                 severity;   /*!< The severity code. */
-    pan_char_t const*   str;        /*!< The string.        */
-    size_t              len;        /*!< The string length. */
+    int                     severity;   /*!< The severity code. */
+    pantheios_char_t const* str;        /*!< The string.        */
+    size_t                  len;        /*!< The string length. */
 };
 
 
 
 #define SEVERITY_STR_DECL(rc, desc)                                                     \
                                                                                         \
-    static const pan_char_t     s_str##rc[] =   desc;                                   \
-    static const SeverityString s_rct##rc = { rc, s_str##rc, STLSOFT_NUM_ELEMENTS(s_str##rc) - 1 }
+    static const pantheios_char_t   s_str##rc[] =   desc;                                   \
+    static const SeverityString     s_rct##rc = { rc, s_str##rc, STLSOFT_NUM_ELEMENTS(s_str##rc) - 1 }
 
 
 #define SEVERITY_STR_ENTRY(rc)                                                          \
@@ -81,23 +84,29 @@ struct SeverityString
     &s_rct##rc
 
 
-static pan_char_t const* pantheios_LookupCodeA_(int severity, SeverityString const** mappings, size_t cMappings, size_t* len)
+static pantheios_char_t const*
+pantheios_LookupCodeA_(
+    int                     severity
+,   SeverityString const**  mappings
+,   size_t                  cMappings
+,   size_t*                 len
+)
 {
     /* Use Null Object (Variable) here for len, so do not need to check
      * elsewhere.
      */
     size_t  len_;
 
-    if(NULL == len)
+    if (NULL == len)
     {
         len = &len_;
     }
 
     /* Checked, indexed search. */
-    if( severity >= 0 &&
+    if (severity >= 0 &&
         severity <= PANTHEIOS_SEV_DEBUG)
     {
-        if(severity == mappings[severity]->severity)
+        if (severity == mappings[severity]->severity)
         {
             return (*len = mappings[severity]->len, mappings[severity]->str);
         }
@@ -106,9 +115,9 @@ static pan_char_t const* pantheios_LookupCodeA_(int severity, SeverityString con
     /* Linear search. Should only be needed if order in
      * pantheios_LookupSeverityStringA_() messed up.
      */
-    { size_t i; for(i = 0; i < cMappings; ++i)
+    { size_t i; for (i = 0; i < cMappings; ++i)
     {
-        if(severity == mappings[i]->severity)
+        if (severity == mappings[i]->severity)
         {
             return (*len = mappings[i]->len, mappings[i]->str);
         }
@@ -117,7 +126,8 @@ static pan_char_t const* pantheios_LookupCodeA_(int severity, SeverityString con
     return (*len = 0, PANTHEIOS_LITERAL_STRING(""));
 }
 
-static pan_char_t const* pantheios_LookupSeverityStringA_(int code, size_t* len)
+static pantheios_char_t const*
+pantheios_LookupSeverityStringA_(int code, size_t* len)
 {
     SEVERITY_STR_DECL(PANTHEIOS_SEV_EMERGENCY        ,   PANTHEIOS_LITERAL_STRING("Emergency")      );
     SEVERITY_STR_DECL(PANTHEIOS_SEV_ALERT            ,   PANTHEIOS_LITERAL_STRING("Alert")          );
@@ -144,12 +154,14 @@ static pan_char_t const* pantheios_LookupSeverityStringA_(int code, size_t* len)
 }
 
 /* deprecated */
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getSeverityString(pan_sev_t severity)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getSeverityString(pan_sev_t severity)
 {
     return pantheios_getStockSeverityString(severity);
 }
 
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getStockSeverityString(pan_sev_t severity)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getStockSeverityString(pan_sev_t severity)
 {
     return pantheios_LookupSeverityStringA_((int)severity, NULL);
 }
@@ -167,8 +179,28 @@ PANTHEIOS_CALL(size_t) pantheios_getStockSeverityStringLength(pan_sev_t severity
     return (pantheios_LookupSeverityStringA_((int)severity, &len), len);
 }
 
+PANTHEIOS_CALL(pantheios_slice_t)
+pantheios_getStockSeverityStringSlice(
+    pan_sev_t severity
+)
+{
+    pantheios_slice_t r;
+
+    r.ptr = pantheios_LookupSeverityStringA_((int)severity, &r.len);
+
+    return r;
+}
+
+
+
 #if 0
-PANTHEIOS_CALL(pan_char_t const*) pantheios_getInserterFormat(pan_char_t buff[200], int widthAndFormat, int bUnsigned, int intSize)
+PANTHEIOS_CALL(pantheios_char_t const*)
+pantheios_getInserterFormat(
+    pantheios_char_t    buff[200]
+,   int                 widthAndFormat
+,   int                 bUnsigned
+,   int                 intSize
+)
 {
     /* Possible formats:
      *
@@ -192,7 +224,7 @@ PANTHEIOS_CALL(pan_char_t const*) pantheios_getInserterFormat(pan_char_t buff[20
     widthAndFormat &= ~(0xff);  /* We don't care about the width here */
 
 #if 0
-    switch(
+    switch (
             zeroXPrefix =   0x0100  /*!< Applies a \c 0x prefix to the output. */
         ,   zeroPadded  =   0x0200  /*!< Zero-pads the output. */
         ,   hex         =   0x0400  /*!< Represents the output in hexadecimal. */
@@ -204,12 +236,15 @@ PANTHEIOS_CALL(pan_char_t const*) pantheios_getInserterFormat(pan_char_t buff[20
 }
 #endif /* 0 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

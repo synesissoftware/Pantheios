@@ -6,11 +6,12 @@
  *              namespace to pan.
  *
  * Created:     13th January 2008
- * Updated:     24th June 2011
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,43 +51,48 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PAN
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_PAN
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_EDIT       5
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_EDIT       7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Language
+ * language
  */
 
 #ifndef __cplusplus
 # error This file can only be included in C++ compilation units
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS
 # include <pantheios/pantheios.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 namespace pan = ::pantheios;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -98,3 +104,4 @@ namespace pan = ::pantheios;
 #endif /* PANTHEIOS_INCL_PANTHEIOS_HPP_PAN */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

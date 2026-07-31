@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the pantheios::hostId inserter class.
  *
  * Created:     14th April 2008
- * Updated:     21st September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +57,9 @@
 #endif /* compiler */
 #include <string.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppression
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -65,8 +67,9 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -80,14 +83,16 @@ namespace
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 struct hostId_t const* hostId   =   0;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE) && \
@@ -96,8 +101,9 @@ namespace inserters
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE) && !STLSOFT_COMPILER_IS_BORLAND */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 // host_id_t
@@ -109,17 +115,17 @@ inline void host_id_t::construct_() const
 
 void host_id_t::construct_()
 {
-    static const pan_char_t s_localHost[] = PANTHEIOS_LITERAL_STRING("localhost");
+    static const pantheios_char_t s_localHost[] = PANTHEIOS_LITERAL_STRING("localhost");
 
     PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
-        pan_char_t
+        pantheios_char_t
     ,   256
     >::type             hostName_(256);
 
-    size_t              cch         =   getHostName(hostName_);
-    pan_char_t const*   hostName    =   hostName_.data();
+    size_t                  cch         =   getHostName(hostName_);
+    pantheios_char_t const* hostName    =   hostName_.data();
 
-    if(0 == cch)
+    if (0 == cch)
     {
         cch         =   STLSOFT_NUM_ELEMENTS(s_localHost) - 1;
         hostName    =   s_localHost;
@@ -139,14 +145,14 @@ host_id_t::host_id_t()
     , m_len(0)
 {}
 
-host_id_t::~host_id_t() stlsoft_throw_0()
+host_id_t::~host_id_t() STLSOFT_NOEXCEPT
 {
-    pantheios_util_strfree(const_cast<pan_char_t*>(m_value));
+    pantheios_util_strfree(const_cast<pantheios_char_t*>(m_value));
 }
 
 host_id_t::operator size_t () const
 {
-    if(NULL == m_value)
+    if (NULL == m_value)
     {
         construct_();
     }
@@ -154,9 +160,9 @@ host_id_t::operator size_t () const
     return m_len;
 }
 
-host_id_t::operator pan_char_t const* () const
+host_id_t::operator pantheios_char_t const* () const
 {
-    if(NULL == m_value)
+    if (NULL == m_value)
     {
         construct_();
     }
@@ -164,8 +170,9 @@ host_id_t::operator pan_char_t const* () const
     return m_value;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -177,3 +184,4 @@ host_id_t::operator pan_char_t const* () const
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Include Files">
+      <UniqueIdentifier>{5298301A-C12D-4A4D-800E-B67F6D1996CE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include">
+      <UniqueIdentifier>{722C7F42-1B5E-4D2E-9F25-90D4A20E564A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include\pantheios">
+      <UniqueIdentifier>{B9E55206-806A-4D89-B2CF-AFEB1A5806BD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include Files\include\pantheios\frontends">
+      <UniqueIdentifier>{81E1712C-E4EC-4C56-9DBA-91BB6972BC65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>asm;asmx;bat;cpp;c;cc;cxx;def;hpj;idl;odl;r</Extensions>
+    </Filter>
+    <Filter Include="Source Files\backends">
+      <UniqueIdentifier>{2328C5BC-A920-4043-B79D-D3934B5AFAE7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\backends\be\be.loader.c">
+      <Filter>Source Files\backends</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\frontends\be.loader.h">
+      <Filter>Include Files\include\pantheios\frontends</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\frontend.h">
+      <Filter>Include Files\include\pantheios</Filter>
+    </ClInclude>
+    <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h">
+      <Filter>Include Files\include\pantheios</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

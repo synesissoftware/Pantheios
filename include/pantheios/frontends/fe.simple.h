@@ -4,11 +4,12 @@
  * Purpose:     Declaration of the Pantheios fe.simple Stock Front-end API.
  *
  * Created:     8th May 2006
- * Updated:     26th December 2010
+ * Updated:     16th July 2024
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_SIMPLE
 #define PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_SIMPLE
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_REVISION 5
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_EDIT     15
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_EDIT     18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -76,14 +79,16 @@
  *   release mode.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * External Declarations
+ * external declarations
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 struct Pantheios_no_longer_uses_the_symbol_FE_SIMPLE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_;
-# define FE_SIMPLE_PROCESS_IDENTITY Pantheios_no_longer_uses_the_symbol_FE_SIMPLE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_()
+# define FE_SIMPLE_PROCESS_IDENTITY                         Pantheios_no_longer_uses_the_symbol_FE_SIMPLE_PROCESS_IDENTITY_all_front_ends_now_recognise_PANTHEIOS_FE_PROCESS_IDENTITY_()
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -111,3 +116,4 @@ PANTHEIOS_CALL(int) pantheios_fe_simple_setSeverityCeiling(int ceiling);
 #endif /* PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_FE_SIMPLE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

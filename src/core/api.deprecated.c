@@ -4,11 +4,12 @@
  * Purpose:     Deprecated parts of the Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     18th March 2012
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -51,8 +52,9 @@
 #include <pantheios/backend.h>
 #include <pantheios/frontend.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -60,8 +62,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Core functions
+ * core functions
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -78,13 +81,18 @@ PANTHEIOS_CALL(void) pantheios_exit_process(int code)
 } /* namespace core */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-PANTHEIOS_CALL(void) pantheios_puts(pan_sev_t severity, pan_char_t const* s)
+PANTHEIOS_CALL(void)
+pantheios_puts(
+    pan_sev_t               severity
+,   pantheios_char_t const* s
+)
 {
     pantheios_logputs(severity, s);
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -92,3 +100,4 @@ PANTHEIOS_CALL(void) pantheios_puts(pan_sev_t severity, pan_char_t const* s)
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -4,11 +4,12 @@
  * Purpose:     Implementation of the pantheios::w2m inserter class.
  *
  * Created:     7th August 2008
- * Updated:     21st September 2015
+ * Updated:     16th January 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2008-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,13 +53,13 @@
 #include <pantheios/internal/safestr.h>
 
 /* Standard C header files */
+#include <stdio.h>
 #include <string.h>
 #include <wchar.h>
 
-    #include <stdio.h>
 
 /* /////////////////////////////////////////////////////////////////////////
- * Warning suppression
+ * warning suppression
  */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -66,8 +67,9 @@
 # pragma warn -8066
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -79,8 +81,9 @@ namespace pantheios
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 w2m::w2m(wchar_t const* s)
@@ -107,7 +110,7 @@ int w2m::init_(wchar_t const* s, size_t n)
     return 0;
 }
 
-w2m::~w2m() stlsoft_throw_0()
+w2m::~w2m() STLSOFT_NOEXCEPT
 {
     pantheios_inserterDeallocate(m_result);
 }
@@ -121,24 +124,24 @@ void w2m::construct_()
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_APPL_LAYER(NULL == m_result, "cannot already be initialised");
 
-    if(sentinelLength_() == m_sourceLen)
+    if (sentinelLength_() == m_sourceLen)
     {
         m_sourceLen = (NULL != m_source) ? ::wcslen(m_source) : 0;
     }
 
-    if(0 != m_sourceLen)
+    if (0 != m_sourceLen)
     {
         // TODO: Verify that no multibyte encoding can be longer than 4 x widestring length
         size_t cb = sizeof(char) * (m_sourceLen * 4);
 
         m_result = static_cast<char*>(pantheios_inserterAllocate(cb));
 
-        if(NULL != m_result)
+        if (NULL != m_result)
         {
 #ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
             size_t len;
 
-            if(0 != ::wcstombs_s(&len, m_result, cb, m_source, m_sourceLen))
+            if (0 != ::wcstombs_s(&len, m_result, cb, m_source, m_sourceLen))
             {
                 pantheios_inserterDeallocate(m_result);
 
@@ -155,7 +158,7 @@ void w2m::construct_()
 
             PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL((size_t(-1) == len || len < cb), "insufficient buffer");
 
-            if(size_t(-1) == len)
+            if (size_t(-1) == len)
             {
                 pantheios_inserterDeallocate(m_result);
 
@@ -174,7 +177,7 @@ void w2m::construct_()
 
 char const* w2m::data() const
 {
-    if(NULL == m_result)
+    if (NULL == m_result)
     {
         construct_();
     }
@@ -189,7 +192,7 @@ char const* w2m::c_str() const
 
 size_t w2m::length() const
 {
-    if(NULL == m_result)
+    if (NULL == m_result)
     {
         construct_();
     }
@@ -197,8 +200,9 @@ size_t w2m::length() const
     return m_length;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -206,3 +210,4 @@ size_t w2m::length() const
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/frontends/fe.WindowsRegistry.cpp
+ * File:    src/frontends/fe.WindowsRegistry.cpp
  *
- * Purpose:     Implementation of the fe.WindowsRegistry front-end.
+ * Purpose: Implementation of the fe.WindowsRegistry front-end.
  *
- * Created:     28th October 2007
- * Updated:     21st September 2015
+ * Created: 28th October 2007
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2007-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,23 +58,24 @@
 
 #include <new>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Constants & definitions
+ * namespace
  */
 
 #ifndef PANTHEIOS_NO_NAMESPACE
 namespace
 {
 
-    using ::pantheios::pan_char_t;
     using ::pantheios::util::pantheios_onBailOut3;
     using ::pantheios::util::pantheios_onBailOut6;
 
 } /* anonymous namespace */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Constants & definitions
+ * constants
  */
 
 namespace
@@ -90,8 +92,45 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Context
+ * compatibility
+ */
+
+#if _STLSOFT_VER >= 0x010a0000 && \
+    _STLSOFT_VER < 0x010c0000
+
+# define windows_exception                                  winstl_exception
+#endif
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * helpers
+ */
+
+namespace
+{
+
+inline
+DWORD
+get_exception_status_code(
+    winstl::windows_exception& x
+)
+{
+#if _STLSOFT_VER >= 0x010a0181
+
+    return x.status_code();
+#else
+
+    return x.get_error_code();
+#endif
+}
+
+} /* anonymous namespace */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * types
  */
 
 namespace
@@ -123,6 +162,7 @@ namespace
     };
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -156,34 +196,34 @@ PANTHEIOS_CALL(int) pantheios_fe_init(
     {
         return pantheios_fe_WindowsRegistry_init_(reserved, ptoken);
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "could not initialise front-end", NULL, "out of memory", "fe.WindowsRegistry", NULL);
 
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
 #if 0
-    catch(pantheios::init_exception& x)
+    catch (pantheios::init_exception& x)
     {
         pantheios_onBailOut6(x.get_severity(), "could not initialise front-end", NULL, x.what(), "fe.WindowsRegistry", NULL);
 
         return x.get_return_code();
     }
 #endif /* 0 */
-    catch(winstl::windows_exception& x)
+    catch (winstl::windows_exception& x)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_ALERT, "could not initialise front-end", NULL, x.what(), "fe.WindowsRegistry", NULL);
 
-        return (ERROR_FILE_NOT_FOUND == x.get_error_code()) ? PANTHEIOS_FE_INIT_RC_INIT_CONFIG_REQUIRED : PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
+        return (ERROR_FILE_NOT_FOUND == get_exception_status_code(x)) ? PANTHEIOS_FE_INIT_RC_INIT_CONFIG_REQUIRED : PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
-    catch(std::exception& x)
+    catch (std::exception& x)
     {
         pantheios_onBailOut3(PANTHEIOS_SEV_ALERT, x.what(), NULL);
 
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
 # ifdef PANTHEIOS_USE_CATCHALL
-    catch(...)
+    catch (...)
     {
         pantheios_onBailOut6(PANTHEIOS_SEV_EMERGENCY, "could not initialise front-end", NULL, "unknown failure", "fe.WindowsRegistry", NULL);
 
@@ -271,9 +311,9 @@ namespace
 
                 processKey = reg_key(baseKey, PANTHEIOS_FE_PROCESS_IDENTITY);
             }
-            catch(winstl::registry_exception& x)
+            catch (winstl::registry_exception& x)
             {
-                if(ERROR_FILE_NOT_FOUND != x.get_error_code())
+                if (ERROR_FILE_NOT_FOUND != get_exception_status_code(x))
                 {
                     throw;
                 }
@@ -283,7 +323,7 @@ namespace
                 processKey = reg_key(baseKey, PANTHEIOS_FE_PROCESS_IDENTITY);
             }
 
-            // 
+            //
 
             try
             {
@@ -296,33 +336,33 @@ namespace
 
                 reg_value_sequence  values(processKey);
 
-                { for(reg_value_sequence::const_iterator b = values.begin(); b != values.end(); ++b)
+                { for (reg_value_sequence::const_iterator b = values.begin(); b != values.end(); ++b)
                 {
                     reg_value const v(*b);
 
-                    if( REG_NONE == value.type() &&
+                    if (REG_NONE == value.type() &&
                         PANTHEIOS_LITERAL_STRING("*") == v.name())
                     {
                         value = v;
                     }
-                    else if(PANTHEIOS_FE_WINDOWSREGISTRY_BUILD_LABEL == v.name())
+                    else if (PANTHEIOS_FE_WINDOWSREGISTRY_BUILD_LABEL == v.name())
                     {
                         value = v;
                         break;
                     }
                 }}
             }
-            catch(winstl::registry_exception& x)
+            catch (winstl::registry_exception& x)
             {
-                if(ERROR_FILE_NOT_FOUND != x.get_error_code())
+                if (ERROR_FILE_NOT_FOUND != get_exception_status_code(x))
                 {
                     throw;
                 }
             }
 
-            // 
+            //
 
-            if(REG_NONE == value.type())
+            if (REG_NONE == value.type())
             {
                 reg_string_t    message;
 
@@ -352,9 +392,9 @@ namespace
                 levels_ = value.value_dword();
             }
         }
-        catch(winstl::windows_exception& x)
+        catch (winstl::windows_exception& x)
         {
-            if(ERROR_FILE_NOT_FOUND == x.get_error_code())
+            if (ERROR_FILE_NOT_FOUND == get_exception_status_code(x))
             {
                 reg_string_t message2;
 
@@ -369,9 +409,11 @@ namespace
                 message2 += PANTHEIOS_LITERAL_STRING("' in either user hive or machine hive");
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-                throw winstl::windows_exception(stlsoft::w2m(message2), x.get_error_code());
+
+                throw winstl::windows_exception(stlsoft::w2m(message2), get_exception_status_code(x));
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-                throw winstl::windows_exception(message2.c_str(), x.get_error_code());
+
+                throw winstl::windows_exception(message2.c_str(), get_exception_status_code(x));
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
             }
 
@@ -391,3 +433,4 @@ namespace
 } /* anonymous namespace */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

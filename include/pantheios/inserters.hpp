@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters.hpp
+ * File:    pantheios/inserters.hpp
  *
- * Purpose:     Main include file for all Pantheios standard inserters.
+ * Purpose: Main include file for all Pantheios standard inserters.
  *
- * Created:     21st June 2005
- * Updated:     24th October 2015
+ * Created: 21st June 2005
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_INSERTERS
 #define PANTHEIOS_INCL_PANTHEIOS_HPP_INSERTERS
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MAJOR    2
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MINOR    7
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     235
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_MINOR    8
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_HPP_INSERTERS_EDIT     239
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS
@@ -76,9 +79,11 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B
 # include <pantheios/inserters/b.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B */
-#ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
-# include <pantheios/inserters/b64.hpp>
-#endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64 */
+#ifndef PANTHEIOS_NO_B64
+# ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
+#  include <pantheios/inserters/b64.hpp>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64 */
+#endif /* !PANTHEIOS_NO_B64 */
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BLOB
 # include <pantheios/inserters/blob.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BLOB */
@@ -177,8 +182,16 @@
 # endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE */
 #endif
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_HPP_INSERTERS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

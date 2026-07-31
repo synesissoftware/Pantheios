@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/severity/ACE.h
+ * File:    pantheios/util/severity/ACE.h
  *
- * Purpose:     Translations from Pantheios stock severity to ACE priority.
+ * Purpose: Translations from Pantheios stock severity to ACE priority.
  *
- * Created:     13th November 2007
- * Updated:     14th February 2010
+ * Created: 13th November 2007
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_SEVERITY_H_ACE
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_SEVERITY_H_ACE
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_MINOR      2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_EDIT       14
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_EDIT       17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -74,8 +77,9 @@
 # include <ace/Log_Priority.h>
 #endif /* !PANTHEIOS_INCL_ACE_H_LOG_PRIORITY */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -84,8 +88,9 @@ namespace pantheios
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 /** Converts a Pantheios severity level to an ACE priority level
@@ -105,7 +110,7 @@ static
 
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((severity >= 0 && severity < 16), "invalid severity");
 
-    switch(severity)
+    switch (severity)
     {
         case    PANTHEIOS_SEV_EMERGENCY:        priority = LM_EMERGENCY;    break;
         case    PANTHEIOS_SEV_ALERT:            priority = LM_ALERT;        break;
@@ -121,24 +126,26 @@ static
     return priority;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_SEVERITY_H_ACE */
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

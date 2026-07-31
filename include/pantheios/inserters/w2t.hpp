@@ -4,11 +4,12 @@
  * Purpose:     Inserter class for inserting wide strings.
  *
  * Created:     1st September 2015
- * Updated:     1st September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2015-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,6 +48,7 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2T
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2T
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * version information
  */
@@ -55,8 +57,9 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_REVISION 0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_EDIT     1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_EDIT     3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * includes
@@ -74,6 +77,7 @@
 # include <pantheios/inserters/w2m.hpp>
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -83,8 +87,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * classes
+ * types
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -115,6 +120,7 @@ public:
 typedef w2m         w2t;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
@@ -122,6 +128,7 @@ typedef w2m         w2t;
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * inclusion
@@ -136,3 +143,4 @@ typedef w2m         w2t;
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_W2T */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

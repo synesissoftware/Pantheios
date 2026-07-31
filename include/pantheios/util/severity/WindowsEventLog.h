@@ -1,15 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/severity/WindowsEventLog.h
+ * File:    pantheios/util/severity/WindowsEventLog.h
  *
- * Purpose:     Translations from Pantheios stock severity to Windows Event
- *              Log type.
+ * Purpose: Translations from Pantheios stock severity to Windows Event Log
+ *          type.
  *
- * Created:     13th November 2007
- * Updated:     14th February 2010
+ * Created: 13th November 2007
+ * Updated: 7th February 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,19 +50,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_MINOR      2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_EDIT       15
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_REVISION   3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_EDIT       19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -75,8 +78,9 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -85,8 +89,9 @@ namespace pantheios
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 /** Converts a Pantheios severity level to a Windows Event Log event type
@@ -94,19 +99,19 @@ namespace pantheios
  * \param severity The Pantheios \link pantheios::pan_severity_t severity level\endlink
  *
  * \return The Windows Event Log event type
+ *
+ * \pre (severity >= 0) && (severity < 16)
  */
-#ifdef __cplusplus
-inline
-#else /* ? __cplusplus */
-static
-#endif /* __cplusplus */
-       WORD pantheios_severity_to_WindowsEventLog_type(int severity)
+pantheios_uint16_t
+pantheios_severity_to_WindowsEventLog_type(
+    int severity
+)
 {
     WORD type;
 
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((severity >= 0 && severity < 16), "invalid severity");
 
-    switch(severity)
+    switch (severity)
     {
         case    PANTHEIOS_SEV_EMERGENCY:     type = EVENTLOG_ERROR_TYPE;        break;
         case    PANTHEIOS_SEV_ALERT:         type = EVENTLOG_ERROR_TYPE;        break;
@@ -122,24 +127,26 @@ static
     return type;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG */
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

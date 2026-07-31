@@ -1,31 +1,23 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.bec.COMErrorObject/test.unit.bec.COMErrorObject.cpp
+ * File:    test/unit/test.unit.bec.COMErrorObject/test.unit.bec.COMErrorObject.cpp
  *
- * Purpose:     Implementation file for the test.unit.be.COMErrorObject project.
+ * Purpose: Implementation file for the test.unit.be.COMErrorObject project.
  *
- * Created:     1st January 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 1st January 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Preprocessor feature control
+ * preprocessor feature control
  */
 
 //#define STLSOFT_TRACE_INCLUDE
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
@@ -58,35 +50,38 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * character encoding
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.COMErrorObject");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.COMErrorObject");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int argc, char** argv)
+static int main_(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -113,10 +108,10 @@ static int main_(int argc, char** argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.be.COMErrorObject", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.be.COMErrorObject", verbosity))
     {
         /* Case 1 - verifying be.COMErrorObject, with flags 0 */
-        if(!XTESTS_CASE_BEGIN("case-1", "verifying be.COMErrorObject, with flags 0"))
+        if (!XTESTS_CASE_BEGIN("case-1", "verifying be.COMErrorObject, with flags 0"))
         {
             retCode = EXIT_FAILURE;
         }
@@ -133,21 +128,21 @@ static int main_(int argc, char** argv)
             void*   token;
             int     res = pantheios_be_COMErrorObject_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-            if(PANTHEIOS_INIT_RC_SUCCESS != res)
+            if (PANTHEIOS_INIT_RC_SUCCESS != res)
             {
                 XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.COMErrorObject", pantheios::getInitErrorString(res));
             }
             else
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(severities); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(severities); ++i)
                 {
-                    { for(size_t j = 0; j != STLSOFT_NUM_ELEMENTS(strings); ++j)
+                    { for (size_t j = 0; j != STLSOFT_NUM_ELEMENTS(strings); ++j)
                     {
                         const int severity = severities[i];
 
                         pantheios_be_COMErrorObject_logEntry(NULL, token, severity, strings[j], stlsoft::c_str_len(strings[j]));
 
-                        if( PANTHEIOS_SEV_DEBUG == severity ||
+                        if (PANTHEIOS_SEV_DEBUG == severity ||
                             PANTHEIOS_SEV_INFORMATIONAL == severity)
                         {
                             ;   // be.COMErrorObject does not write out debug-level or informational-level messages
@@ -168,7 +163,7 @@ static int main_(int argc, char** argv)
         }
 
         /* Case 2 - verifying be.COMErrorObject, with PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING flag */
-        if(!XTESTS_CASE_BEGIN("case-2", "verifying be.COMErrorObject, with PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING flag"))
+        if (!XTESTS_CASE_BEGIN("case-2", "verifying be.COMErrorObject, with PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING flag"))
         {
             retCode = EXIT_FAILURE;
         }
@@ -186,15 +181,15 @@ static int main_(int argc, char** argv)
             void*   token;
             int     res = pantheios_be_COMErrorObject_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-            if(PANTHEIOS_INIT_RC_SUCCESS != res)
+            if (PANTHEIOS_INIT_RC_SUCCESS != res)
             {
                 XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.COMErrorObject", pantheios::getInitErrorString(res));
             }
             else
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(severities); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(severities); ++i)
                 {
-                    { for(size_t j = 0; j != STLSOFT_NUM_ELEMENTS(strings); ++j)
+                    { for (size_t j = 0; j != STLSOFT_NUM_ELEMENTS(strings); ++j)
                     {
                         const int severity = severities[i];
 
@@ -202,7 +197,7 @@ static int main_(int argc, char** argv)
 
                         pantheios_be_COMErrorObject_logEntry(NULL, token, severity, strings[j], stlsoft::c_str_len(strings[j]));
 
-                        if( PANTHEIOS_SEV_DEBUG == severity ||
+                        if (PANTHEIOS_SEV_DEBUG == severity ||
                             PANTHEIOS_SEV_INFORMATIONAL == severity)
                         {
                             ;   // be.COMErrorObject does not write out debug-level or informational-level messages
@@ -230,7 +225,7 @@ static int main_(int argc, char** argv)
     return retCode;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     try
@@ -243,11 +238,11 @@ int main(int argc, char** argv)
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         ::fprintf(stderr, "Unhandled error: %s\n", x.what());
     }
-    catch(...)
+    catch (...)
     {
         ::fprintf(stderr, "Unhandled unknown error\n");
     }
@@ -256,4 +251,5 @@ int main(int argc, char** argv)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
+

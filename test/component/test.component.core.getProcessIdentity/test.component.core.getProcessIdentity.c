@@ -1,31 +1,23 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test.component.core.getProcessIdentity.c
+ * File:    test.component.core.getProcessIdentity.c
  *
- * Purpose:     Implementation file for the test.component.core.getProcessIdentity project.
+ * Purpose: Implementation file for the test.component.core.getProcessIdentity project.
  *
- * Created:     6th August 2012
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2012-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 6th August 2012
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * Test component header file include(s)
+ * test component header file include(s)
  */
 
 #include <pantheios/pantheios.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 /* xTests header files */
@@ -37,8 +29,9 @@
 /* Standard C header files */
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_1_0(void);
@@ -64,10 +57,11 @@ static void test_1_19(void);
 
 static int setup(void*);
 static int teardown(void*);
-static void* param;
+static void* s_param;
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Main
+ * main()
  */
 
 int main(int argc, char **argv)
@@ -77,7 +71,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.core.getProcessIdentity", verbosity, setup, teardown, param))
+    if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.core.getProcessIdentity", verbosity, setup, teardown, s_param))
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
@@ -108,6 +102,21 @@ int main(int argc, char **argv)
     return retCode;
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * character encoding
+ */
+
+#define PSTR                                                PANTHEIOS_LITERAL_STRING
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+
 /* /////////////////////////////////////////////////////////////////////////
  * Pantheios front-end
  */
@@ -135,13 +144,15 @@ PANTHEIOS_CALL(int) pantheios_fe_init(
 }
 PANTHEIOS_CALL(void) pantheios_fe_uninit(void* token)
 {
-    ++s_numUninits;
-
     STLSOFT_SUPPRESS_UNUSED(token);
+
+    ++s_numUninits;
 }
 PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getProcessIdentity(void* token)
 {
-    if(1 == ++s_numGPI)
+    STLSOFT_SUPPRESS_UNUSED(token);
+
+    if (1 == ++s_numGPI)
     {
         return s_PI_0;
     }
@@ -165,12 +176,15 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
     return 0;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Test function implementations
+ * test function implementations
  */
 
 static int setup(void* param)
 {
+    STLSOFT_SUPPRESS_UNUSED(param);
+
     s_numInits = 0;
     s_numUninits = 0;
     s_numGPI = 0;
@@ -183,6 +197,8 @@ static int setup(void* param)
 
 static int teardown(void* param)
 {
+    STLSOFT_SUPPRESS_UNUSED(param);
+
 #if 0
     STLSOFT_ASSERT(0 == s_numInits);
     STLSOFT_ASSERT(0 == s_numUninits);
@@ -194,11 +210,9 @@ static int teardown(void* param)
     return 0;
 }
 
-//static void* param;
-
-static void test_1_0()
+static void test_1_0(void)
 {
-    PAN_CHAR_T const pi[] = "test_1_0";
+    PAN_CHAR_T const pi[] = PSTR("test_1_0");
 
     int r;
 
@@ -208,7 +222,7 @@ static void test_1_0()
 
     XTESTS_TEST_INTEGER_EQUAL(1, s_numGPI);
 
-    if(r < 0)
+    if (r < 0)
     {
         XTESTS_FAIL("could not initialise libraries");
     }
@@ -218,7 +232,7 @@ static void test_1_0()
         XTESTS_TEST_INTEGER_EQUAL(0, s_numUninits);
         XTESTS_TEST_INTEGER_EQUAL(1, s_numGPI);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("test_1_0", pantheios_getProcessIdentity());
+        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("test_1_0"), pantheios_getProcessIdentity());
         XTESTS_TEST_POINTER_NOT_EQUAL(pi, pantheios_getProcessIdentity());
 
         pantheios_uninit();
@@ -229,9 +243,9 @@ static void test_1_0()
     }
 }
 
-static void test_1_1()
+static void test_1_1(void)
 {
-    PAN_CHAR_T const pi[] = "test_1_1";
+    PAN_CHAR_T const pi[] = PSTR("test_1_1");
 
     int r;
 
@@ -241,7 +255,7 @@ static void test_1_1()
 
     XTESTS_TEST_INTEGER_EQUAL(2, s_numGPI);
 
-    if(r < 0)
+    if (r < 0)
     {
         XTESTS_FAIL("could not initialise libraries");
     }
@@ -251,7 +265,7 @@ static void test_1_1()
         XTESTS_TEST_INTEGER_EQUAL(0, s_numUninits);
         XTESTS_TEST_INTEGER_EQUAL(2, s_numGPI);
 
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("test_1_1", pantheios_getProcessIdentity());
+        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("test_1_1"), pantheios_getProcessIdentity());
         XTESTS_TEST_POINTER_EQUAL(pi, pantheios_getProcessIdentity());
 
         pantheios_uninit();
@@ -262,77 +276,78 @@ static void test_1_1()
     }
 }
 
-static void test_1_2()
+static void test_1_2(void)
 {
 }
 
-static void test_1_3()
+static void test_1_3(void)
 {
 }
 
-static void test_1_4()
+static void test_1_4(void)
 {
 }
 
-static void test_1_5()
+static void test_1_5(void)
 {
 }
 
-static void test_1_6()
+static void test_1_6(void)
 {
 }
 
-static void test_1_7()
+static void test_1_7(void)
 {
 }
 
-static void test_1_8()
+static void test_1_8(void)
 {
 }
 
-static void test_1_9()
+static void test_1_9(void)
 {
 }
 
-static void test_1_10()
+static void test_1_10(void)
 {
 }
 
-static void test_1_11()
+static void test_1_11(void)
 {
 }
 
-static void test_1_12()
+static void test_1_12(void)
 {
 }
 
-static void test_1_13()
+static void test_1_13(void)
 {
 }
 
-static void test_1_14()
+static void test_1_14(void)
 {
 }
 
-static void test_1_15()
+static void test_1_15(void)
 {
 }
 
-static void test_1_16()
+static void test_1_16(void)
 {
 }
 
-static void test_1_17()
+static void test_1_17(void)
 {
 }
 
-static void test_1_18()
+static void test_1_18(void)
 {
 }
 
-static void test_1_19()
+static void test_1_19(void)
 {
 }
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

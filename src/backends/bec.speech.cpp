@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.speech.cpp
+ * File:    src/backends/bec.speech.cpp
  *
- * Purpose:     Implementation for the speech back-end
+ * Purpose: Implementation for the speech back-end
  *
- * Created:     31st August 2006
- * Updated:     19th August 2014
+ * Created: 31st August 2006
+ * Updated: 15th July 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +40,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/* Pantheios Header files */
+/* Pantheios header files */
 #include <pantheios/pantheios.h>
 #include <pantheios/internal/winlean.h>
 #define PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
@@ -51,7 +52,7 @@
 #include <pantheios/util/backends/arguments.h>
 #include <pantheios/util/backends/context.hpp>
 
-/* STLSoft Header files */
+/* STLSoft header files */
 #include <pantheios/util/memory/auto_buffer_selector.hpp>
 #include <stlsoft/smartptr/ref_ptr.hpp>
 
@@ -69,19 +70,20 @@
 #if defined(STLSOFT_VER) && \
     STLSOFT_VER >= 0x010c0000
 # include <winstl/diagnostics/error_desc.hpp>
-#else /* ? STLSoft 1.12+ */
+#else /* ? STLSoft version */
 # include <winstl/error/error_desc.hpp>
-#endif /* STLSoft 1.12+ */
+#endif /* STLSoft version */
 #include <winstl/memory/processheap_allocator.hpp>
 
-/* Standard C++ Header files */
+/* Standard C++ header files */
 #include <string>
 
-/* Standard C Header files */
+/* Standard C header files */
 #include <stdio.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 #if (   defined(STLSOFT_COMPILER_IS_MSVC) && \
@@ -89,8 +91,9 @@
 # define _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 #endif /* compiler */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 namespace
@@ -98,8 +101,6 @@ namespace
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-    using ::pantheios::pan_char_t;
-    using ::pantheios::pan_uint32_t;
     using ::pantheios::pan_slice_t;
     using ::pantheios::util::backends::Context;
     using ::pantheios::util::pantheios_onBailOut3;
@@ -108,15 +109,16 @@ namespace
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
     typedef PANTHEIOS_NS_QUAL_(util, auto_buffer_selector)<
-        pan_char_t
+        PAN_CHAR_T
     ,   2048
-    ,   winstl::processheap_allocator<pan_char_t>
+    ,   winstl::processheap_allocator<PAN_CHAR_T>
     >::type                                     buffer_t;
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 namespace
@@ -133,9 +135,9 @@ namespace
 
     public:
         be_speech_context(
-            pan_char_t const*   processIdentity
+            PAN_CHAR_T const*   processIdentity
         ,   int                 id
-        ,   pan_uint32_t        flags
+        ,   pantheios_uint32_t  flags
         ,   voice_type          voice
         );
         ~be_speech_context() throw();
@@ -151,14 +153,14 @@ namespace
         virtual int rawLogEntry(
             int                 severity4
         ,   int                 severityX
-        ,   pan_char_t const*   entry
+        ,   PAN_CHAR_T const*   entry
         ,   size_t              cchEntry
         );
 
     private:
         int speak(
             int                 severity
-        ,   pan_char_t const*   entry
+        ,   PAN_CHAR_T const*   entry
         ,   size_t              cchEntry
         );
 
@@ -168,6 +170,7 @@ namespace
     };
 
 } /* anonymous namespace */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -186,18 +189,18 @@ PANTHEIOS_CALL(void) pantheios_be_speech_getDefaultAppInit(pan_be_speech_init_t*
 
 #ifdef _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 extern "C++" int pantheios_be_speech_init__cpp(
-    pan_char_t const*           processIdentity
+    PAN_CHAR_T const*           processIdentity
 ,   int                         backEndId
 ,   pan_be_speech_init_t const* init
 ,   void*                       reserved
 ,   void**                      ptoken)
 ;
-    #endif /* _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS */
+#endif /* _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS */
 
 
 
 PANTHEIOS_CALL(int) pantheios_be_speech_init(
-    pan_char_t const*           processIdentity
+    PAN_CHAR_T const*           processIdentity
 ,   int                         backEndId
 ,   pan_be_speech_init_t const* init
 ,   void*                       reserved
@@ -208,7 +211,7 @@ PANTHEIOS_CALL(int) pantheios_be_speech_init(
     return pantheios_be_speech_init__cpp(processIdentity, backEndId, init, reserved, ptoken);
 }
 int pantheios_be_speech_init__cpp(
-    pan_char_t const*           processIdentity
+    PAN_CHAR_T const*           processIdentity
 ,   int                         backEndId
 ,   pan_be_speech_init_t const* init
 ,   void*                       reserved
@@ -229,7 +232,7 @@ int pantheios_be_speech_init__cpp(
 
         pan_be_speech_init_t init_;
 
-        if(NULL == init)
+        if (NULL == init)
         {
             pantheios_be_speech_getDefaultAppInit(&init_);
 
@@ -242,11 +245,11 @@ int pantheios_be_speech_init__cpp(
 
         /* (ii) verify the version */
 
-        if(init->version < 0x010001b8)
+        if (init->version < 0x010001b8)
         {
             return PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED;
         }
-        else if(init->version > PANTHEIOS_VER)
+        else if (init->version > PANTHEIOS_VER)
         {
             return PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED;
         }
@@ -259,11 +262,11 @@ int pantheios_be_speech_init__cpp(
         be_speech_context::voice_type   voice;
         HRESULT                         hr = comstl::co_create_instance(CLSID_SpVoice, voice);
 
-        if(E_OUTOFMEMORY == hr)
+        if (E_OUTOFMEMORY == hr)
         {
             return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
         }
-        else if(FAILED(hr))
+        else if (FAILED(hr))
         {
             std::string msg("Failed to create the speech server component: ");
 
@@ -277,7 +280,7 @@ int pantheios_be_speech_init__cpp(
         {
             be_speech_context* ctxt = new be_speech_context(processIdentity, backEndId, init->flags, voice);
 
-            if(NULL == ctxt)
+            if (NULL == ctxt)
             {
                 return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
             }
@@ -289,11 +292,11 @@ int pantheios_be_speech_init__cpp(
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::bad_alloc&)
+    catch (std::bad_alloc&)
     {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
     }
-    catch(std::exception&)
+    catch (std::exception&)
     {
         return PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION;
     }
@@ -311,7 +314,7 @@ static int pantheios_be_speech_logEntry_(
     void*               /* feToken */
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -326,16 +329,17 @@ PANTHEIOS_CALL(int) pantheios_be_speech_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
     return pantheios_call_be_logEntry(pantheios_be_speech_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.speech");
 }
 
-PANTHEIOS_CALL(int) pantheios_be_speech_parseArgs(
+PANTHEIOS_CALL(int)
+pantheios_be_speech_parseArgs(
     size_t                  numArgs
-,   pan_slice_t* const      args
+,   pantheios_slice_t       args[]
 ,   pan_be_speech_init_t*   init
 )
 {
@@ -347,25 +351,25 @@ PANTHEIOS_CALL(int) pantheios_be_speech_parseArgs(
     // 1. Parse the stock arguments
     int res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2.a Parse the custom argument: "synchronous"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("synchronous"), true, PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS, &init->flags);
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2.b Parse the custom argument: "purgeBeforeSpeak"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("purgeBeforeSpeak"), true, PANTHEIOS_BE_SPEECH_F_PURGE_BEFORE_SPEAK, &init->flags);
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2.c Parse the custom argument: "speakPunctuation"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("speakPunctuation"), true, PANTHEIOS_BE_SPEECH_F_SPEAK_PUNCTUATION, &init->flags);
     }
 
-    if(res >= 0)
+    if (res >= 0)
     {
         // 2.d Parse the custom argument: "synchronousOnCritical"
         res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("synchronousOnCritical"), true, PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS_ON_CRITICAL, &init->flags);
@@ -374,12 +378,15 @@ PANTHEIOS_CALL(int) pantheios_be_speech_parseArgs(
     return res;
 }
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 be_speech_context::be_speech_context(
-    pan_char_t const*   processIdentity
+    PAN_CHAR_T const*   processIdentity
 ,   int                 id
-,   pan_uint32_t        flags
+,   pantheios_uint32_t  flags
 ,   voice_type          voice
 )
     : parent_class_type(processIdentity, id, flags, 0x0f)
@@ -388,7 +395,7 @@ be_speech_context::be_speech_context(
 
 be_speech_context::~be_speech_context() throw()
 {
-    if(PANTHEIOS_BE_SPEECH_F_UNINIT_DISCARD_WORKAROUND & m_flags)
+    if (PANTHEIOS_BE_SPEECH_F_UNINIT_DISCARD_WORKAROUND & m_flags)
     {
         voice.detach();
     }
@@ -408,7 +415,7 @@ int be_speech_context::rawLogEntry(int severity4, int /* severityX */, const pan
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     // When exception support is not enabled, failure to allocate will yield an empty instance
-    if(buff.empty())
+    if (buff.empty())
     {
         return 0;
     }
@@ -433,7 +440,7 @@ int be_speech_context::rawLogEntry(int severity4, int /* severityX */, const pan
 int be_speech_context::rawLogEntry(
     int                 severity4
 ,   int                 /* severityX */
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -442,7 +449,7 @@ int be_speech_context::rawLogEntry(
 
 int be_speech_context::speak(
     int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -454,24 +461,24 @@ int be_speech_context::speak(
                                 |   SPF_ASYNC
                                 ;
 
-    if(PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS & this->m_flags)
+    if (PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS & this->m_flags)
     {
         flags &= ~SPF_ASYNC;
     }
 
-    if(PANTHEIOS_BE_SPEECH_F_PURGE_BEFORE_SPEAK & this->m_flags)
+    if (PANTHEIOS_BE_SPEECH_F_PURGE_BEFORE_SPEAK & this->m_flags)
     {
         flags |= SPF_PURGEBEFORESPEAK;
     }
 
-    if(PANTHEIOS_BE_SPEECH_F_SPEAK_PUNCTUATION & this->m_flags)
+    if (PANTHEIOS_BE_SPEECH_F_SPEAK_PUNCTUATION & this->m_flags)
     {
         flags |= SPF_NLP_SPEAK_PUNC;
     }
 
-    if(PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS_ON_CRITICAL & this->m_flags)
+    if (PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS_ON_CRITICAL & this->m_flags)
     {
-        switch(severityLevel)
+        switch (severityLevel)
         {
             case    PANTHEIOS_SEV_EMERGENCY:
             case    PANTHEIOS_SEV_ALERT:
@@ -494,7 +501,7 @@ int be_speech_context::speak(
         hr = voice->Speak(winstl::a2w(entry, cchEntry), flags, 0);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-        if(FAILED(hr))
+        if (FAILED(hr))
         {
             pantheios_onBailOut6(
                 PANTHEIOS_SEV_ERROR
@@ -508,10 +515,12 @@ int be_speech_context::speak(
 
         return static_cast<int>(cchEntry);
     }
-    catch(std::exception &)
+    catch (std::exception &)
     {
         return 0;
     }
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

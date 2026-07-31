@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/inserters/test.unit.inserter.w2m/test.unit.inserter.w2m.cpp
+ * File:    test/unit/inserters/test.unit.inserter.w2m/test.unit.inserter.w2m.cpp
  *
- * Purpose:     Implementation file for the test.unit.inserter.w2m project.
+ * Purpose: Implementation file for the test.unit.inserter.w2m project.
  *
- * Created:     21st December 2010
- * Updated:     9th December 2013
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2013, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 21st December 2010
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,8 +28,9 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -61,18 +53,18 @@ static void test_1_12();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.inserter.w2m");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.inserter.w2m");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER("test.unit.inserter.w2m", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserter.w2m", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -99,7 +91,7 @@ int main(int argc, char** argv)
 
 namespace
 {
-    wchar_t const* strings[] = 
+    wchar_t const* strings[] =
     {
             L""
         ,   L"a"
@@ -112,14 +104,10 @@ namespace
         ,   L"abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"
     };
 
-    inline size_t get_min_max(size_t minLen, size_t maxLen)
-    {
-        return pantheios::pan_slice_t::get_lazy_length(minLen, maxLen);
-    }
 
 static void test_1_01()
 {
-    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
     {
         XTESTS_TEST_MULTIBYTE_STRING_EQUAL(stlsoft::w2m(strings[i]), pantheios::w2m(strings[i]));
     }}
@@ -171,4 +159,5 @@ static void test_1_12()
 
 } /* anonymous namespace */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
+

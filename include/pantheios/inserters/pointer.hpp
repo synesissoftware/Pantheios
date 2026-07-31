@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/pointer.hpp
+ * File:    pantheios/inserters/pointer.hpp
  *
- * Purpose:     String inserters for fundamental types
+ * Purpose: String inserters for fundamental types
  *
- * Created:     21st June 2005
- * Updated:     25th September 2015
+ * Created: 21st June 2005
+ * Updated: 20th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -49,19 +50,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_POINTER
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_POINTER
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MAJOR    2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MINOR    4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_REVISION 6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     32
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MINOR    5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     37
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -78,8 +81,9 @@
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -87,8 +91,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter classes
+ * inserter classes
  */
 
 /** Class for inserting pointers into Pantheios diagnostic logging
@@ -115,7 +120,9 @@ class pointer
 {
 public:
     /// This type
-    typedef pointer     class_type;
+    typedef pointer                                         class_type;
+    /// The character type
+    typedef pantheios_char_t                                char_type;
 
 public:
     /// [DEPRECATED] Construct from a pointer, with width/format specifier
@@ -123,7 +130,7 @@ public:
     /// \param pv The pointer whose value will be inserted
     /// \param widthAndFormat A bitwise combination of width and format. The
     ///   width must be in the range [0, 20]
-    /// 
+    ///
     /// \deprecated This constructor form is deprecated, and will be removed
     ///   in a forthcoming release; instead use
     ///   the \link pantheios::pointer::pointer(void const volatile*, int, int) 3-parameter\endlink
@@ -144,9 +151,9 @@ public:
 
 public:
     /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the pointer
-    pan_char_t const*   data() const;
+    char_type const*    data() const;
     /// A nul-terminated non-null pointer to the c-style string representation of the pointer
-    pan_char_t const*   c_str() const;
+    char_type const*    c_str() const;
     /// The length of the c-style string representation of the pointer
     size_t              length() const;
 
@@ -156,12 +163,18 @@ private:
 
     static int validate_width_(int minWidth);
 
+protected:
+    void const volatile* get_value() const
+    {
+        return m_value;
+    }
+
 private:
     void const volatile*    m_value;
     size_t                  m_len;
     const int               m_minWidth;
     const int               m_format;
-    pan_char_t              m_sz[23];
+    char_type               m_sz[23];
 
 private:
 #if 1 && \
@@ -173,8 +186,9 @@ private:
     class_type& operator =(class_type const&);
 };
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * String Access Shims
+ * string access shims
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -193,7 +207,7 @@ PANTHEIOS_c_str_data_name_(
     return p.data();
 }
 inline
-pan_char_t const*
+pointer::char_type const*
 c_str_data(
     pointer const& p
 )
@@ -227,7 +241,7 @@ PANTHEIOS_c_str_ptr_name_(
     return p.c_str();
 }
 inline
-pan_char_t const*
+pointer::char_type const*
 c_str_ptr(
     pointer const& p
 )
@@ -259,8 +273,9 @@ c_str_ptr(
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -285,8 +300,9 @@ namespace stlsoft
 
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -298,3 +314,4 @@ namespace stlsoft
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_POINTER */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

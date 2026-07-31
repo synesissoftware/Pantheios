@@ -1,40 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.fe/test.scratch.fe.cpp
+ * File:    test/scratch/test.scratch.fe/test.scratch.fe.cpp
  *
- * Purpose:     Implementation file for the test.scratch.fe project.
+ * Purpose: Implementation file for the test.scratch.fe project.
  *
- * Created:     21st June 2005
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              www:        http://www.synesis.com.au/software
- *
- *              This source code is placed into the public domain 2005
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This source code is provided by Synesis Software Pty Ltd "as is"
- *              and any warranties, whether expressed or implied, including, but
- *              not limited to, the implied warranties of merchantability and
- *              fitness for a particular purpose are disclaimed. In no event
- *              shall the Synesis Software Pty Ltd be liable for any direct,
- *              indirect, incidental, special, exemplary, or consequential
- *              damages (including, but not limited to, procurement of
- *              substitute goods or services; loss of use, data, or profits; or
- *              business interruption) however caused and on any theory of
- *              liability, whether in contract, strict liability, or tort
- *              (including negligence or otherwise) arising in any way out of
- *              the use of this software, even if advised of the possibility of
- *              such damage.
- *
- *              Neither the name of Synesis Software Pty Ltd nor the names of
- *              any subdivisions, employees or agents of Synesis Software Pty
- *              Ltd, nor the names of any other contributors to this software
- *              may be used to endorse or promote products derived from this
- *              software without specific prior written permission.
+ * Created: 21st June 2005
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -71,8 +41,9 @@ using std::endl;
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 #if (   defined(_WIN32) || \
@@ -81,24 +52,30 @@ using std::endl;
 extern "C" void __stdcall Sleep(unsigned long);
 #endif /* WIN32 */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
 static int  severities[8] = { 1, 1, 1, 1, 1, 1, 1, 1 };
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * character encoding
+ */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-int main()
+int main(int /* argc */, char* /* argv */[])
 {
         return 0;
 }
-
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 //static void call_all_severities();
 
@@ -127,18 +104,18 @@ static int main_(int /* argc */, char ** /*argv*/)
         double                  d     = 0.456;
         long double             ld    = 0.789;
         void                    *p    = &l;
-#if 0
+# if 0
         char const              *lstr = "{a pointer to a C-style string}";
         std::string             str   = "{an instance of std::string}";
         stlsoft::simple_string  sstr  = "{an instance of stlsoft::simple_string}";
-        #if defined(PLATFORMSTL_OS_IS_WINDOWS)
+#  if defined(PLATFORMSTL_OS_IS_WINDOWS)
         SYSTEMTIME              tm    = GetCurrentTime_SYSTEMTIME();
-        #else /* ? PLATFORMSTL_OS_IS_???? */
+#  else /* ? PLATFORMSTL_OS_IS_???? */
         struct tm const         *tm   = GetCurrentTime_tm();
-        #endif /* PLATFORMSTL_OS_IS_???? */
-#endif /* 0 */
+#  endif /* PLATFORMSTL_OS_IS_???? */
+# endif /* 0 */
 
-#if 0
+# if 0
         log_INFORMATIONAL("This is a (hopefully) typical error string, containing: "
                         , "some integers (", integer(s), ", ", integer(i), ", ", integer(l), "); "
                         , "some real numbers (", real(f), ", ", real(d), ", ", real(ld), "); "
@@ -146,13 +123,13 @@ static int main_(int /* argc */, char ** /*argv*/)
                         , "some strings (", lstr, ", ", str, ", ", sstr, "); "
                         , "and a converted time value (", tm, ")"
                         );
-#else /* ? 0 */
+# else /* ? 0 */
         log_INFORMATIONAL(
                           "Integers (", integer(s, 4 | fmt::zeroPad), ", ", integer(i), ", ", integer(l), "); "
                         , "floating points (", real(f), ", ", real(d), ", ", real(ld), "); "
                         , "and a pointer (", pointer(p, fmt::hex | fmt::zeroXPrefix), ")");
 
-#endif /* 0 */
+# endif /* 0 */
     }
 
 # if defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -215,7 +192,7 @@ static int main_(int /* argc */, char ** /*argv*/)
 int main(int argc, char *argv[])
 {
 #if 0
-    for(;;) {}
+    for (;;) {}
 #endif /* 0 */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -227,11 +204,11 @@ int main(int argc, char *argv[])
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         fprintf(stderr, "Unhandled error: %s\n", x.what());
     }
-    catch(...)
+    catch (...)
     {
         pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
     }
@@ -339,4 +316,6 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(void *token, int severity, int
     return severities[severity];
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

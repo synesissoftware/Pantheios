@@ -1,21 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/c/util/example.c.util.getcurrenttime/example.c.util.getcurrenttime.c
+ * File:    examples/c/util/example.c.util.getcurrenttime/example.c.util.getcurrenttime.c
  *
- * Purpose:     Implementation file for the example.c.util.getcurrenttime project.
+ * Purpose: Implementation file for the example.c.util.getcurrenttime project.
  *
- * Created:     30th August 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 30th August 2008
+ * Updated: 27th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 /* Pantheios header files */
 #include <pantheios/pantheios.h>
@@ -39,9 +31,12 @@
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int argc, char* argv[])
 {
     STLSOFT_SUPPRESS_UNUSED(argc);
     STLSOFT_SUPPRESS_UNUSED(argv);
@@ -183,4 +178,6 @@ int main(int argc, char** argv)
     return EXIT_SUCCESS;
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

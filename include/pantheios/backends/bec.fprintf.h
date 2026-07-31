@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.fprintf.h
+ * File:    pantheios/backends/bec.fprintf.h
  *
- * Purpose:     Declaration of the Pantheios fprintf Stock Back-end API.
+ * Purpose: Declaration of the Pantheios fprintf Stock Back-end API.
  *
- * Created:     21st June 2005
- * Updated:     30th April 2010
+ * Created: 21st June 2005
+ * Updated: 28th October 2024
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,19 +48,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_FPRINTF
 #define PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_FPRINTF
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MAJOR       2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MINOR       1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        21
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -72,8 +75,11 @@
 # include <pantheios/util/backends/arguments.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS */
 
+#include <stdio.h>
+
+
 /* /////////////////////////////////////////////////////////////////////////
- * Documentation
+ * documentation
  */
 
 /** \defgroup group__backend__stock_backends__fprintf Pantheios fprintf() Stock Back-end
@@ -82,8 +88,9 @@
  *   via <code>fprintf()</code>.
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Constants
+ * constants
  */
 
 /** \defgroup group__backend__stock_backends__fprintf__flags Pantheios fprintf() Stock Back-end Flags
@@ -92,8 +99,9 @@
  *  Flags for the \ref group__backend__stock_backends__fprintf
  */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Structure used for specifying initialisation information to the
@@ -102,14 +110,10 @@
  */
 struct pan_be_fprintf_init_t
 {
-#if !defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION) && \
-    !defined(PANTHEIOS_NO_NAMESPACE)
-    typedef pantheios::pan_uint16_t pan_uint16_t;
-    typedef pantheios::pan_uint32_t pan_uint32_t;
-#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION && !PANTHEIOS_NO_NAMESPACE */
+    pantheios_uint32_t      version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
+    pantheios_uint32_t      flags;      /*!<  \ref group__backend__stock_backends__fprintf__flags "Flags" that control the information displayed. */
 
-    pan_uint32_t    version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
-    pan_uint32_t    flags;      /*!<  \ref group__backend__stock_backends__fprintf__flags "Flags" that control the information displayed. */
+    FILE*                   stm;        /*!< Stream to be used. If \c nullptr then \c stderr is used */
 
 #ifdef __cplusplus
 public: /* Construction */
@@ -119,11 +123,12 @@ public: /* Construction */
 #endif /* __cplusplus */
 };
 #ifndef __cplusplus
-typedef struct pan_be_fprintf_init_t    pan_be_fprintf_init_t;
+typedef struct pan_be_fprintf_init_t                        pan_be_fprintf_init_t;
 #endif /* !__cplusplus */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 /** \ref page__backend__callbacks "Callback" function defined by
@@ -159,6 +164,7 @@ PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(
 ,   pan_be_fprintf_init_t*  init
 ) /* throw() */;
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -183,7 +189,7 @@ PANTHEIOS_CALL(void) pantheios_be_fprintf_getDefaultAppInit(pan_be_fprintf_init_
 PANTHEIOS_CALL(int) pantheios_be_fprintf_init(
     PAN_CHAR_T const*               processIdentity
 ,   int                             id
-,   pan_be_fprintf_init_t const*    unused
+,   pan_be_fprintf_init_t const*    init
 ,   void*                           reserved
 ,   void**                          ptoken
 );
@@ -235,19 +241,30 @@ PANTHEIOS_CALL(int) pantheios_be_fprintf_logEntry(
 #define pantheios_be_fprintf_parseArgs(num, args, init)     pantheios_be_parseStockArgs((num), (args), (NULL == (init)) ? NULL : (&(init)->flags))
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * implementation
+ */
 
 #ifdef __cplusplus
 # ifndef PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT
-inline pan_be_fprintf_init_t::pan_be_fprintf_init_t()
+inline
+pan_be_fprintf_init_t::pan_be_fprintf_init_t()
 {
     pantheios_be_fprintf_getDefaultAppInit(this);
 }
 # endif /* !PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT */
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion control
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_FPRINTF */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

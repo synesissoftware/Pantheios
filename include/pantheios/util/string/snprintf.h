@@ -4,11 +4,12 @@
  * Purpose:     snprintf() utility functions.
  *
  * Created:     21st June 2005
- * Updated:     15th March 2011
+ * Updated:     4th July 2020
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_SNPRINTF
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_SNPRINTF
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MAJOR       2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        20
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MINOR       3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -72,6 +75,7 @@
 # include <stdarg.h>
 #endif /* !PANTHEIOS_INCL_H_STDARG */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
@@ -80,6 +84,7 @@
 namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * API
@@ -97,9 +102,9 @@ namespace pantheios
  * \return The usual return values defined for <code>snprinf()</code>
  */
 PANTHEIOS_CALL(int) pantheios_util_snprintf(
-    pan_char_t*         dest
-,   size_t              cchDest
-,   const pan_char_t*   fmt
+    pantheios_char_t*       dest
+,   size_t                  cchDest
+,   const pantheios_char_t* fmt
 ,   ...
 )
 /* TODO: Change this to proper discriminated feature */
@@ -120,13 +125,21 @@ __attribute__((format(printf,3,4)))
  *
  * \return The usual return values defined for <code>vsnprinf()</code>
  */
-PANTHEIOS_CALL(int) pantheios_util_vsnprintf(pan_char_t* dest, size_t cchDest, pan_char_t const* fmt, va_list args);
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf(
+    pantheios_char_t*       dest
+,   size_t                  cchDest
+,   pantheios_char_t const* fmt
+,   va_list                 args
+);
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL(int) pantheios_util_snprintf_a(
-    char*       dest
-,   size_t      cchDest
-,   const char* fmt
+
+PANTHEIOS_CALL(int)
+pantheios_util_snprintf_a(
+    char*               dest
+,   size_t              cchDest
+,   char const*         fmt
 ,   ...
 )
 /* TODO: Change this to proper discriminated feature */
@@ -134,27 +147,57 @@ PANTHEIOS_CALL(int) pantheios_util_snprintf_a(
 __attribute__((format(printf,3,4)))
 #endif /* compiler */
 ;
-PANTHEIOS_CALL(int) pantheios_util_vsnprintf_a(char* dest, size_t cchDest, char const* fmt, va_list args);
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf_a(
+    char*               dest
+,   size_t              cchDest
+,   char const*         fmt
+,   va_list             args
+);
+
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+PANTHEIOS_CALL(int)
+pantheios_util_snprintf_w(
+    wchar_t*            dest
+,   size_t              cchDest
+,   wchar_t const*      fmt
+,   ...
+)
+/* TODO: Change this to proper discriminated feature */
+#if defined(STLSOFT_COMPILER_IS_GCC)
+__attribute__((format(printf,3,4)))
+#endif /* compiler */
+;
+PANTHEIOS_CALL(int)
+pantheios_util_vsnprintf_w(
+    wchar_t*            dest
+,   size_t              cchDest
+,   wchar_t const*      fmt
+,   va_list             args
+);
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_STRING_H_SNPRINTF */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

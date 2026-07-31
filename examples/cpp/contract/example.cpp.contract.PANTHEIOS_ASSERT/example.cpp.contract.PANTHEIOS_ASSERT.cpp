@@ -1,23 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/contract/example.cpp.contract.PANTHEIOS_ASSERT/example.cpp.contract.PANTHEIOS_ASSERT.cpp
+ * File:    examples/cpp/contract/example.cpp.contract.PANTHEIOS_ASSERT/example.cpp.contract.PANTHEIOS_ASSERT.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *                - use of Pantheios inserter for thread ids
- *                - use of pantheios::logputs() in bail-out conditions
+ *            - use of Pantheios inserter for thread ids
+ *            - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     8th May 2009
- * Updated:     21st September 2015
- *
- * www:         http://www.pantheios.org/
- *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
- *
- *              This software is provided "as is", and any warranties,
- *              express or implied, of any kind and for any purpose, are
- *              disclaimed.
+ * Created: 8th May 2009
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -30,8 +20,9 @@
 /* Standard C header files */
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Compiler compatibility
+ * compiler compatibility
  */
 
 #ifdef STLSOFT_COMPILER_IS_BORLAND
@@ -39,19 +30,25 @@
 # pragma warn -8066
 #endif
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * globals
+ */
 
 /* Define the stock front-end process identity, so that it links when using
  * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.contract.PANTHEIOS_ASSERT");
+PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.contract.PANTHEIOS_ASSERT");
 
-/* ////////////////////////////////////////////////////////////////////// */
 
-int main()
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
+
+int main(int /* argc */, char* /* argv */[])
 {
   int i = pantheios::init();
 
-  if(i >= 0)
+  if (i >= 0)
   {
     PANTHEIOS_ASSERT(true);
 
@@ -63,4 +60,6 @@ int main()
   return EXIT_SUCCESS;
 }
 
+
 /* ///////////////////////////// end of file //////////////////////////// */
+

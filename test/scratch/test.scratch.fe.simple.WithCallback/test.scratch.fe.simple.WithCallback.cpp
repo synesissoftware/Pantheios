@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.fe.simple.WithCallback/test.scratch.fe.simple.WithCallback.cpp
+ * File:    test/scratch/test.scratch.fe.simple.WithCallback/test.scratch.fe.simple.WithCallback.cpp
  *
- * Purpose:     Implementation file for the test.scratch.fe.simple.WithCallback project.
+ * Purpose: Implementation file for the test.scratch.fe.simple.WithCallback project.
  *
- * Created:     15th November 2010
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2010-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 15th November 2010
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -36,8 +27,9 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Application-defined functions
+ * application-defined functions
  */
 
 PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) /* throw() */
@@ -61,17 +53,17 @@ static int main_(int /* argc */, char** /*argv*/)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     try
     {
         return main_(argc, argv);
     }
-    catch(std::exception &x)
+    catch (std::exception &x)
     {
         pan::log_ALERT(PANTHEIOS_LITERAL_STRING("Unexpected general error: "), x, PANTHEIOS_LITERAL_STRING(". Application terminating"));
     }
-    catch(...)
+    catch (...)
     {
         pan::logputs(pan::emergency, PANTHEIOS_LITERAL_STRING("Unhandled unknown error"));
     }
@@ -80,3 +72,4 @@ int main(int argc, char** argv)
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

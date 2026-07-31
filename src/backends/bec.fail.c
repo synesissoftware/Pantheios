@@ -4,11 +4,12 @@
  * Purpose:     Implementation for the NULL back-end.
  *
  * Created:     9th January 2007
- * Updated:     21st September 2015
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2007-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,12 +51,13 @@
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * API
  */
 
 PANTHEIOS_CALL(int) pantheios_be_fail_init(
-    pan_char_t const*   processIdentity
+    PAN_CHAR_T const*   processIdentity
 ,   int                 id
 ,   void*               unused
 ,   void*               reserved
@@ -82,7 +84,7 @@ PANTHEIOS_CALL(int) pantheios_be_fail_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
-,   pan_char_t const*   entry
+,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
 )
 {
@@ -96,3 +98,4 @@ PANTHEIOS_CALL(int) pantheios_be_fail_logEntry(
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

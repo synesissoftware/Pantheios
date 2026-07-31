@@ -5,11 +5,12 @@
  *              class.
  *
  * Created:     12th November 2010
- * Updated:     12th November 2010
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B_EDIT       1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B_EDIT       3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -71,8 +74,9 @@
 # include <pantheios/inserters/boolean.hpp>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BOOLEAN */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -80,23 +84,26 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 /** Typedef for pantheios::boolean inserter class. */
 typedef boolean b;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -108,3 +115,4 @@ typedef boolean b;
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

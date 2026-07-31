@@ -4,11 +4,12 @@
  * Purpose:     printf()-family functions for Pantheios core API.
  *
  * Created:     21st June 2005
- * Updated:     10th August 2009
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -53,8 +54,9 @@
 
 #include <stdarg.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -62,13 +64,14 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * printf() functions
  */
 
 PANTHEIOS_CALL(int) pantheios_logprintf(
-    pan_sev_t           severity
-,   pan_char_t const*   format
+    pan_sev_t               severity
+,   pantheios_char_t const* format
 ,   ...
 )
 {
@@ -86,8 +89,9 @@ PANTHEIOS_CALL(int) pantheios_logprintf(
     return ret;
 }
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -95,3 +99,4 @@ PANTHEIOS_CALL(int) pantheios_logprintf(
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

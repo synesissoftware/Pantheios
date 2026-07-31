@@ -4,11 +4,12 @@
  * Purpose:     padding of arguments of arbitrary type.
  *
  * Created:     29th June 2009
- * Updated:     11th October 2012
+ * Updated:     16th December 2023
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2009-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,19 +49,21 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PAD
 #define PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PAD
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MINOR    0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
@@ -71,8 +74,9 @@
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -80,8 +84,9 @@ namespace pantheios
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 /** \def PANTHEIOS_LPAD(var, minWidth)
@@ -106,8 +111,9 @@ namespace pantheios
  */
 #define PANTHEIOS_RPAD(var, minWidth)   (var), ( ::pantheios::pad(var, minWidth))
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inserter functions
+ * inserter functions
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -117,10 +123,10 @@ inline const pan_slice_t pad(S const& arg, size_t minimumWidth)
 {
     const size_t len = stlsoft::c_str_len(arg);
 
-    if(len < minimumWidth)
+    if (len < minimumWidth)
     {
-        size_t              actualWidth;
-        pan_char_t const*   padding = pantheios::core::pantheios_getPad(minimumWidth - len, &actualWidth);
+        size_t                          actualWidth;
+        pantheios_char_t const* const   padding = pantheios::core::pantheios_getPad(minimumWidth - len, &actualWidth);
 
         return pan_slice_t(padding, actualWidth);
     }
@@ -130,16 +136,18 @@ inline const pan_slice_t pad(S const& arg, size_t minimumWidth)
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Inclusion
+ * inclusion
  */
 
 #ifdef STLSOFT_PPF_pragma_once_SUPPORT
@@ -151,3 +159,4 @@ inline const pan_slice_t pad(S const& arg, size_t minimumWidth)
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PAD */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

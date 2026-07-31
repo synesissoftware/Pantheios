@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/unit/test.unit.bec.fprintf/test.unit.bec.fprintf.cpp
+ * File:    test/unit/test.unit.bec.fprintf/test.unit.bec.fprintf.cpp
  *
- * Purpose:     Implementation file for the test.unit.be.file project.
+ * Purpose: Implementation file for the test.unit.be.file project.
  *
- * Created:     3rd August 2008
- * Updated:     21st September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2008-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www:        http://www.synesis.com.au/software
+ * Created: 3rd August 2008
+ * Updated: 28th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -26,9 +17,10 @@
 #include <pantheios/util/system/threadid.h>
 
 /* STLSoft header files */
+#include <platformstl/filesystem/file_lines.hpp>
 #include <stlsoft/conversion/char_conversions.hpp>
 #include <stlsoft/conversion/integer_to_string.hpp>
-#include <platformstl/filesystem/file_lines.hpp>
+#include <stlsoft/smartptr/scoped_handle.hpp>
 
 /* xTests header files */
 #include <xtests/xtests.h>
@@ -43,8 +35,9 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Constants and definitions
+ * constants
  */
 
 namespace
@@ -54,32 +47,35 @@ namespace
 
 } /* anonymous namespace */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Macros
+ * macros
  */
 
 #define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Typedefs
+ * typedefs
  */
 
 typedef std::basic_string<PAN_CHAR_T>           string_t;
 typedef platformstl::basic_file_lines<char>     lines_t;
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * character encoding
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 
 # define PGET_(x)                       string_t(stlsoft::m2w(x).c_str())
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 
 # define PGET_(x)                       (x)
 
@@ -89,16 +85,18 @@ typedef platformstl::basic_file_lines<char>     lines_t;
 # undef PSTR
 #endif
 #define PSTR(x)                     PANTHEIOS_LITERAL_STRING(x)
-//#define PSTR(x)                         x   
+//#define PSTR(x)                         x
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Globals
+ * globals
  */
 
-PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.file");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.file");
+
 
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 namespace
@@ -125,14 +123,14 @@ static void test_1_0f();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if(XTESTS_START_RUNNER_WITH_STREAM("test.unit.be.file", verbosity, stdout))
+    if (XTESTS_START_RUNNER_WITH_STREAM("test.unit.be.file", verbosity, stdout))
     {
         XTESTS_RUN_CASE(test_1_00);
         XTESTS_RUN_CASE(test_1_01);
@@ -169,7 +167,7 @@ static FILE* reopen_file(char const* fileName, char const* mode, FILE* stm)
 #ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
     FILE*   f;
 
-    if(0 != ::freopen_s(&f, fileName, mode, stm))
+    if (0 != ::freopen_s(&f, fileName, mode, stm))
     {
         f = NULL;
     }
@@ -216,7 +214,7 @@ static void test_1_00()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -227,13 +225,13 @@ static void test_1_00()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -249,9 +247,9 @@ static void test_1_00()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
@@ -276,7 +274,7 @@ static void test_1_01()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -287,13 +285,13 @@ static void test_1_01()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -309,9 +307,9 @@ static void test_1_01()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
@@ -336,7 +334,7 @@ static void test_1_02()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -347,13 +345,13 @@ static void test_1_02()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -369,9 +367,9 @@ static void test_1_02()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
                     XTESTS_TEST_STRING_EQUAL(resultPrefix + strings[i], PGET_(lines[i]));
                 }}
@@ -396,7 +394,7 @@ static void test_1_03()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -407,13 +405,13 @@ static void test_1_03()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -429,9 +427,9 @@ static void test_1_03()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
@@ -456,7 +454,7 @@ static void test_1_04()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -467,13 +465,13 @@ static void test_1_04()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -489,9 +487,9 @@ static void test_1_04()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
@@ -518,7 +516,7 @@ static void test_1_05()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -529,13 +527,13 @@ static void test_1_05()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -551,9 +549,9 @@ static void test_1_05()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
@@ -580,7 +578,7 @@ static void test_1_06()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -591,13 +589,13 @@ static void test_1_06()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -613,9 +611,9 @@ static void test_1_06()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
@@ -642,7 +640,7 @@ static void test_1_07()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -653,13 +651,13 @@ static void test_1_07()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -675,9 +673,9 @@ static void test_1_07()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
@@ -704,7 +702,7 @@ static void test_1_08()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -715,13 +713,13 @@ static void test_1_08()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -737,9 +735,9 @@ static void test_1_08()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
@@ -764,7 +762,7 @@ static void test_1_09()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -775,13 +773,13 @@ static void test_1_09()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -797,9 +795,9 @@ static void test_1_09()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
@@ -824,7 +822,7 @@ static void test_1_0a()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -835,13 +833,13 @@ static void test_1_0a()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -857,9 +855,9 @@ static void test_1_0a()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
@@ -884,7 +882,7 @@ static void test_1_0b()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -895,13 +893,13 @@ static void test_1_0b()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -917,9 +915,9 @@ static void test_1_0b()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
@@ -944,7 +942,7 @@ static void test_1_0c()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -955,13 +953,13 @@ static void test_1_0c()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -977,9 +975,9 @@ static void test_1_0c()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
@@ -1006,7 +1004,7 @@ static void test_1_0d()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -1017,13 +1015,13 @@ static void test_1_0d()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -1039,9 +1037,9 @@ static void test_1_0d()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
@@ -1068,7 +1066,7 @@ static void test_1_0e()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -1079,13 +1077,13 @@ static void test_1_0e()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -1101,9 +1099,9 @@ static void test_1_0e()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
@@ -1130,7 +1128,7 @@ static void test_1_0f()
     void*   token;
     int     res = pantheios_be_fprintf_init(PANTHEIOS_FE_PROCESS_IDENTITY, PANTHEIOS_BEID_ALL, &init, NULL, &token);
 
-    if(PANTHEIOS_INIT_RC_SUCCESS != res)
+    if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
@@ -1141,13 +1139,13 @@ static void test_1_0f()
         // create the output file
         FILE* f = reopen_file(STDERR_FILE_NAME, "w", stderr);
 
-        if(NULL == f)
+        if (NULL == f)
         {
             XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
-            { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+            { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
             {
                 pantheios_be_fprintf_logEntry(NULL, token, PANTHEIOS_SEV_ERROR, strings[i], stlsoft::c_str_len(strings[i]));
             }}
@@ -1163,9 +1161,9 @@ static void test_1_0f()
             // Start the tests
             XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
-            if(STLSOFT_NUM_ELEMENTS(strings) == lines.size())
+            if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
-                { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
+                { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
                     XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
@@ -1179,3 +1177,4 @@ static void test_1_0f()
 } /* anonymous namespace */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

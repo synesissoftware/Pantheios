@@ -4,11 +4,11 @@
  * Purpose:     Pantheios back end API
  *
  * Created:     21st June 2005
- * Updated:     10th August 2009
+ * Updated:     9th November 2019
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -48,27 +48,30 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS
 #define PANTHEIOS_INCL_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Version information
+ * version information
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     22
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_REVISION 2
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Parsing functions
+ * parsing functions
  */
 
 /** Parses a single boolean back-end argument
@@ -102,20 +105,15 @@
  * \pre NULL != argName
  * \pre NULL != flags
  */
-PANTHEIOS_CALL(int) pantheios_be_parseBooleanArg(size_t                         numArgs
-#ifdef PANTHEIOS_NO_NAMESPACE
-                                            ,   pan_slice_t* const              args
-                                            ,   pan_char_t const*               argName
-                                            ,   int                             flagSuppressesAction
-                                            ,   pan_uint32_t                    flagValue
-                                            ,   pan_uint32_t*                   flags);
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-                                            ,   pantheios::pan_slice_t* const   args
-                                            ,   pantheios::pan_char_t const*    argName
-                                            ,   int                             flagSuppressesAction
-                                            ,   pantheios::pan_uint32_t         flagValue
-                                            ,   pantheios::uint32_t*            flags);
-#endif /* PANTHEIOS_NO_NAMESPACE */
+PANTHEIOS_CALL(int)
+pantheios_be_parseBooleanArg(
+    size_t                      numArgs
+,   pantheios_slice_t           args[]
+,   PAN_CHAR_T const*           argName
+,   int                         flagSuppressesAction
+,   pantheios_uint32_t          flagValue
+,   pantheios_uint32_t*         flags
+);
 
 
 /** Parses a single string back-end argument
@@ -137,16 +135,13 @@ PANTHEIOS_CALL(int) pantheios_be_parseBooleanArg(size_t                         
  * \pre NULL != argName
  * \pre NULL != argValue
  */
-PANTHEIOS_CALL(int) pantheios_be_parseStringArg(size_t                          numArgs
-#ifdef PANTHEIOS_NO_NAMESPACE
-                                            ,   pan_slice_t* const              args
-                                            ,   pan_char_t const*               argName
-                                            ,   pan_slice_t*                    argValue);
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-                                            ,   pantheios::pan_slice_t* const   args
-                                            ,   pantheios::pan_char_t const*    argName
-                                            ,   pantheios::pan_slice_t*         argValue);
-#endif /* PANTHEIOS_NO_NAMESPACE */
+PANTHEIOS_CALL(int)
+pantheios_be_parseStringArg(
+    size_t              numArgs
+,   pantheios_slice_t   args[]
+,   PAN_CHAR_T const*   argName
+,   pantheios_slice_t*  argValue
+);
 
 
 /** Parses the stock back-end arguments
@@ -172,6 +167,7 @@ PANTHEIOS_CALL(int) pantheios_be_parseStringArg(size_t                          
  * - "showTime"                 (Boolean)
  * - "highResolution"           (Boolean)
  * - "lowResolution"            (Boolean)
+ * - "numericSeverity"          (Boolean)
  *
  * \param numArgs Number of elements in the argument array. May be 0
  * \param args Pointer to the base of the argument array. May only be NULL
@@ -184,18 +180,16 @@ PANTHEIOS_CALL(int) pantheios_be_parseStringArg(size_t                          
  * \pre NULL != args || 0 == numArgs
  * \pre NULL != flags
  */
-PANTHEIOS_CALL(int) pantheios_be_parseStockArgs(size_t                          numArgs
-#ifdef PANTHEIOS_NO_NAMESPACE
-                                            ,   pan_slice_t* const              args
-                                            ,   pan_uint32_t*                   flags);
-#else /* ? PANTHEIOS_NO_NAMESPACE */
-                                            ,   pantheios::pan_slice_t* const   args
-                                            ,   pantheios::uint32_t*            flags);
-#endif /* PANTHEIOS_NO_NAMESPACE */
-
+PANTHEIOS_CALL(int)
+pantheios_be_parseStockArgs(
+    size_t                  numArgs
+,   pantheios_slice_t       args[]
+,   pantheios_uint32_t*     flags
+);
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

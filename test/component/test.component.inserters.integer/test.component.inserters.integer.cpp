@@ -1,19 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/component/test.component.inserters.integer/test.component.inserters.integer.cpp
+ * File:    test/component/test.component.inserters.integer/test.component.inserters.integer.cpp
  *
- * Purpose:     Implementation file for the test.component.inserters.integer project.
+ * Purpose: Implementation file for the test.component.inserters.integer project.
  *
- * Created:     19th October 2006
- * Updated:     24th September 2015
- *
- * Status:      Wizard-generated
- *
- * License:     (Licensed under the Synesis Software Open License)
- *
- *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
- *
- *              www: http://www.synesis.com.au/software
+ * Created: 19th October 2006
+ * Updated: 27th October 2024
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -43,8 +34,9 @@
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
- * Forward declarations
+ * forward declarations
  */
 
 static void test_1_00();
@@ -69,35 +61,36 @@ static void test_1_22();
 static void test_1_23();
 static void test_1_24();
 
-/* /////////////////////////////////////////////////////////////////////////
- * Globals
- */
-
-PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.integer");
-
-/* ////////////////////////////////////////////////////////////////////// */
-
-#define PSTR(x)         PANTHEIOS_LITERAL_STRING(x)
 
 /* /////////////////////////////////////////////////////////////////////////
- * Character encoding
+ * globals
  */
+
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.integer");
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * macros
+ */
+
+#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_WIDE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL       XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-
+# define XTESTS_TEST_STRING_EQUAL                          	XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 #include <pantheios/util/string/snprintf.h>
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -111,12 +104,19 @@ int main(int argc, char** argv)
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%d", 11);
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%+d", 11);
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%u", 11);
+# if defined(STLSOFT_COMPILER_IS_GCC) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6))
+/* Disable warning: '+' flag used with ‘%u’ gnu_printf format [-Wformat=] */
+#pragma GCC diagnostic ignored "-Wformat="
+# endif /* compiler */
         pantheios::pantheios_util_snprintf_a(&sz[0], STLSOFT_NUM_ELEMENTS(sz), "%+u", 11);
+# if defined(STLSOFT_COMPILER_IS_GCC) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6))
+#pragma GCC diagnostic pop
+# endif /* compiler */
 #endif /* 0 */
 
     }
 
-    if(XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
     {
 #if 1
         XTESTS_RUN_CASE(test_1_00);
@@ -172,6 +172,7 @@ int main(int argc, char** argv)
     return retCode;
 }
 
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 static void test_1_00()
@@ -226,7 +227,7 @@ static void test_1_00()
 
     XTESTS_TEST(!results.empty());
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(n, results.size()));
-    { for(size_t i = 0; i != n; ++i)
+    { for (size_t i = 0; i != n; ++i)
     {
         XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[i].statement);
     }}
@@ -3474,3 +3475,4 @@ static void test_1_24()
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
