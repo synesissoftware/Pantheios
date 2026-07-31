@@ -5,11 +5,11 @@
  *          API.
  *
  * Created: 23rd September 2005
- * Updated: 20th October 2024
+ * Updated: 25th January 2025
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -619,21 +619,20 @@ pantheios_be_WindowsSyslog_parseArgs(
 
     // 1. Parse the stock arguments
     int res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
+    int r;
 
     if (res >= 0)
     {
         pan_slice_t address;
-        pan_slice_t port;
-        pan_slice_t facility;
 
         // 2.a Parse the custom argument: "address"
-        res = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("address"), &address);
+        r = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("address"), &address);
 
-        if (res > 0)
+        if (r > 0)
         {
             if (address.len > sizeof(init->hostNameBuff) - 1)
             {
-                res = PANTHEIOS_BE_INIT_RC_ARGUMENT_TOO_LONG;
+                r = PANTHEIOS_BE_INIT_RC_ARGUMENT_TOO_LONG;
             }
             else
             {
@@ -644,83 +643,150 @@ pantheios_be_WindowsSyslog_parseArgs(
             }
         }
 
-        if (res >= 0)
+        if (r < 0)
         {
-            // 2.b Parse the custom argument: "port"
-            res = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("port"), &port);
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
+    }
 
-            if (res > 0)
+    if (res >= 0)
+    {
+        pan_slice_t port;
+
+        // 2.b Parse the custom argument: "port"
+        r = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("port"), &port);
+
+        if (r > 0)
+        {
+            PAN_CHAR_T  sz[21];
+            int         portNum;
+
+            PANTHEIOS_char_copy(&sz[0], port.ptr, stlsoft::minimum(port.len, STLSOFT_NUM_ELEMENTS(sz) - 1));
+            sz[stlsoft::minimum(port.len, STLSOFT_NUM_ELEMENTS(sz) - 1)] = '\0';
+
+            portNum = pan_atoi_(sz);
+
+            if (portNum > 0 &&
+                portNum < 65536)
             {
-                PAN_CHAR_T  sz[21];
-                int         portNum;
-
-                PANTHEIOS_char_copy(&sz[0], port.ptr, stlsoft::minimum(port.len, STLSOFT_NUM_ELEMENTS(sz) - 1));
-                sz[stlsoft::minimum(port.len, STLSOFT_NUM_ELEMENTS(sz) - 1)] = '\0';
-
-                portNum = pan_atoi_(sz);
-
-                if (portNum > 0 &&
-                    portNum < 65536)
-                {
-                    init->port = static_cast<pantheios_uint16_t>(portNum);
-                }
-                else
-                {
-                    res = PANTHEIOS_BE_INIT_RC_ARGUMENT_OUT_OF_RANGE;
-                }
+                init->port = static_cast<pantheios_uint16_t>(portNum);
+            }
+            else
+            {
+                r = PANTHEIOS_BE_INIT_RC_ARGUMENT_OUT_OF_RANGE;
             }
         }
 
-        if (res >= 0)
+        if (r < 0)
         {
-            // 2.b Parse the custom argument: "facility"
-            res = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("facility"), &facility);
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
+    }
 
-            if (res > 0)
+    if (res >= 0)
+    {
+        pan_slice_t facility;
+
+        // 2.b Parse the custom argument: "facility"
+        r = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("facility"), &facility);
+
+        if (r > 0)
+        {
+            PAN_CHAR_T  sz[21];
+            int         facilityNum;
+
+            PANTHEIOS_char_copy(&sz[0], facility.ptr, stlsoft::minimum(facility.len, STLSOFT_NUM_ELEMENTS(sz) - 1));
+            sz[stlsoft::minimum(facility.len, STLSOFT_NUM_ELEMENTS(sz) - 1)] = '\0';
+
+            facilityNum = pan_atoi_(sz);
+
+            if (facilityNum >= 0 &&
+                facilityNum < 24)
             {
-                PAN_CHAR_T  sz[21];
-                int         facilityNum;
-
-                PANTHEIOS_char_copy(&sz[0], facility.ptr, stlsoft::minimum(facility.len, STLSOFT_NUM_ELEMENTS(sz) - 1));
-                sz[stlsoft::minimum(facility.len, STLSOFT_NUM_ELEMENTS(sz) - 1)] = '\0';
-
-                facilityNum = pan_atoi_(sz);
-
-                if (facilityNum >= 0 &&
-                    facilityNum < 24)
-                {
-                    init->facility = static_cast<pantheios_uint8_t>(facilityNum);
-                }
-                else
-                {
-                    res = PANTHEIOS_BE_INIT_RC_ARGUMENT_OUT_OF_RANGE;
-                }
+                init->facility = static_cast<pantheios_uint8_t>(facilityNum);
             }
+            else
+            {
+                r = PANTHEIOS_BE_INIT_RC_ARGUMENT_OUT_OF_RANGE;
+            }
+        }
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
         }
     }
 
     if (res >= 0)
     {
         // 2.d Parse the custom argument: "useStderr"
-        res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("useStderr"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_PERROR, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("useStderr"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_PERROR, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     if (res >= 0)
     {
         // 2.e Parse the custom argument: "useConsole"
-        res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("useConsole"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_CONS, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("useConsole"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_CONS, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     if (res >= 0)
     {
         // 2.f Parse the custom argument: "showPid"
-        res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("showPid"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_PID, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("showPid"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_PID, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     if (res >= 0)
     {
         // 2.g Parse the custom argument: "connectImmediately"
-        res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("connectImmediately"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("connectImmediately"), false, PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     return res;

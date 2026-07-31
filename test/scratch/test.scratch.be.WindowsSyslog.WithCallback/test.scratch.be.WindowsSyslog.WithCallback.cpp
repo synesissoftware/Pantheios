@@ -3,12 +3,12 @@
  *
  * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *            - use of custom severity level information for tabbing output
- *            - definition of a custom back-end that supports tabbed output
+ *            - use of Pantheios logging statements for C-style strings
+ *            - use of callback to customise back-end initialisation
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 3rd August 2012
- * Updated: 28th October 2024
+ * Updated: 29th January 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -46,7 +46,8 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
  * application-defined functions
  */
 
-PANTHEIOS_CALL(void) pantheios_be_WindowsSyslog_getAppInit(
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsSyslog_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsSyslog_init_t*    init
 ) throw()

@@ -8,7 +8,7 @@ MakeCmd=${SIS_CMAKE_COMMAND:-make}
 
 ListOnly=0
 RunMake=1
-Verbosity=${TEST_VERBOSITY:-3}
+Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
 
 
 # ##########################################################

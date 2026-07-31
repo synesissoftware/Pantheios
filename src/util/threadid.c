@@ -1,13 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/threadid.c
+ * File:    src/util/threadid.c
  *
- * Purpose:     Threading utility functions
+ * Purpose: Threading utility functions
  *
- * Created:     4th January 2008
- * Updated:     21st November 2019
+ * Created: 4th January 2008
+ * Updated: 9th May 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -79,9 +80,12 @@ typedef stlsoft_ns_qual(ss_sint64_t)    sint64_t_;
 
 PANTHEIOS_CALL(sint64_t_) pantheios_getCurrentThreadId(void)
 {
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if 0
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 # ifndef PANTHEIOS_MT
+
+    /* TODO: consider changing to 0 */
 
     return 1;
 # else /* ? PANTHEIOS_MT */

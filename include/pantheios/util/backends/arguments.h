@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/backends/arguments.h
+ * File:    pantheios/util/backends/arguments.h
  *
- * Purpose:     Pantheios back end API
+ * Purpose: Pantheios back end API
  *
- * Created:     21st June 2005
- * Updated:     9th November 2019
+ * Created: 21st June 2005
+ * Updated: 24th January 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2025, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     26
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_REVISION 3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,22 +84,22 @@
  * directed by the flagSuppressesAction parameter, and the argument is
  * marked as having been processed by setting its length to 0.
  *
- * \param numArgs Number of elements in the argument array. May be 0
+ * \param numArgs Number of elements in the argument array. May be 0;
  * \param args Pointer to the base of the argument array. May only be NULL
- *   if numArgs is 0
- * \param argName The name of the value to look for. May not be NULL
+ *   if numArgs is 0;
+ * \param argName The name of the value to look for. May not be NULL;
  * \param flagSuppressesAction Indicates whether the flagValue is a
  *   suppression flag, such as PANTHEIOS_BE_INIT_F_NO_SEVERITY, rather than
- *   an activation flag, such as PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME.
+ *   an activation flag, such as PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME;
  * \param flagValue A flag value, such as PANTHEIOS_BE_INIT_F_NO_SEVERITY
  * \param flags A pointer to a flags variable whose value may be modified
- *   upon a successful match. May not be NULL.
+ *   upon a successful match. May not be NULL;
  *
- * \return An indication of whether a valid argument was found
+ * \return An indication of whether a valid argument was found;
  * \retval 0 No matching arguments were found, or the argument was found but
- *   did not have boolean values
+ *   did not have boolean values;
  * \retval 1 An argument with the given name, and with values interpretable as
- *   boolean, was found.
+ *   boolean, was found;
  *
  * \pre NULL != args || 0 == numArgs
  * \pre NULL != argName
@@ -124,16 +124,23 @@ pantheios_be_parseBooleanArg(
  * found, it transfers the slice (i.e. copies the pointers) to the given
  * argument value parameter.
  *
- * \param numArgs Number of elements in the argument array. May be 0
+ * \param numArgs Number of elements in the argument array. May be 0;
  * \param args Pointer to the base of the argument array. May only be NULL
- *   if numArgs is 0
- * \param argName The name of the value to look for. May not be NULL
+ *   if numArgs is 0;
+ * \param argName The name of the value to look for. May not be NULL;
  * \param argValue A pointer to a slice that will receive the value part of
- *   an argument if successfully matched. May not be NULL.
+ *   an argument if successfully matched. May not be NULL;
+ *
+ * \return An indication of whether a valid argument was found;
+ * \retval 0 No matching arguments were found;
+ * \retval 1 An argument with the given name was found;
  *
  * \pre NULL != args || 0 == numArgs
  * \pre NULL != argName
  * \pre NULL != argValue
+ *
+ * \note The contents of \c argValue are unchanged if \c argName is not
+ *  matched.
  */
 PANTHEIOS_CALL(int)
 pantheios_be_parseStringArg(
@@ -158,7 +165,8 @@ pantheios_be_parseStringArg(
  *
  * Recognises the following argument names:
  * - "showProcessId"            (Boolean)
- * - "showTime"                 (Boolean)
+ * - "showThreadId"             (Boolean)
+ * - "showDateTime"             (Boolean)
  * - "showSeverity"             (Boolean)
  * - "useSystemTime"            (Boolean)
  * - "showDetailsAtStart"       (Boolean)
@@ -169,11 +177,11 @@ pantheios_be_parseStringArg(
  * - "lowResolution"            (Boolean)
  * - "numericSeverity"          (Boolean)
  *
- * \param numArgs Number of elements in the argument array. May be 0
+ * \param numArgs Number of elements in the argument array. May be 0;
  * \param args Pointer to the base of the argument array. May only be NULL
- *   if numArgs is 0
+ *   if numArgs is 0;
  * \param flags A pointer to a flags variable whose value may be modified
- *   upon a successful matches. May not be NULL.
+ *   upon a successful matches. May not be NULL;
  *
  * \return The number of arguments successfully matched
  *
@@ -187,7 +195,14 @@ pantheios_be_parseStockArgs(
 ,   pantheios_uint32_t*     flags
 );
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS */
 

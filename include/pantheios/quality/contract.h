@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/quality/contract.h (formerly pantheios/contract/assert.h)
+ * File:    pantheios/quality/contract.h (formerly pantheios/contract/assert.h)
  *
- * Purpose:     Defines the contract enforcement constructs used in the
- *              Pantheios core and APIs.
+ * Purpose: Defines the contract enforcement constructs used in the
+ *          Pantheios core and APIs.
  *
- * Created:     26th June 2005
- * Updated:     16th July 2024
+ * Created: 26th June 2005
+ * Updated: 27th January 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        20
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -151,7 +151,6 @@ PANTHEIOS_TYPECHECK_MSG_(...)
 # else /* ? PANTHEIOS_QA_DO_MSG_TYPECHECK */
 #  define PANTHEIOS_TYPECHECK_MSG_(msg)             (msg)
 # endif /* PANTHEIOS_QA_DO_MSG_TYPECHECK */
-
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -280,7 +279,6 @@ PANTHEIOS_TYPECHECK_MSG_(...)
 # ifndef PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION
 #  define PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION is not defined by the custom contract library
 # endif /* !PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION */
-
 #elif defined(PANTHEIOS_QA_USE_XCONTRACT)
 
 # ifndef PANTHEIOS_CONTRACT_LEVEL_INTERNAL
@@ -337,7 +335,6 @@ PANTHEIOS_TYPECHECK_MSG_(...)
 # define PANTHEIOS_CONTRACT_ENFORCE_STATIC_DATA_APPL_DEF(expr, msg)                 XCONTRACT_ENFORCE_CONDITION_TYPE_LEVEL_(XCONTRACT_NS_QUAL(xContract_staticData), PANTHEIOS_CONTRACT_LEVEL_APPL_DEF, expr, PANTHEIOS_TYPECHECK_MSG_(msg))
 
 # define PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(expr)                                XCONTRACT_ENFORCE_CONDITION_TYPE_LEVEL_(XCONTRACT_NS_QUAL(xContract_intermediateAssumption), PANTHEIOS_CONTRACT_LEVEL_INTERNAL, expr, PANTHEIOS_TYPECHECK_MSG_(msg))
-
 #else /* ? PANTHEIOS_QA_USE_XCONTRACT */
 
 /** \def PANTHEIOS_CONTRACT_ENFORCE_UNEXPECTED_CONDITION_INTERNAL(msg)
@@ -663,11 +660,16 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  * \param expr The expression that must evaluate to \c true
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(expr)                                STLSOFT_ASSERT(expr)
-
-
 #endif /* PANTHEIOS_QA_USE_XCONTRACT */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT */
 

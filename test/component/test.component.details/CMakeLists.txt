@@ -23,6 +23,8 @@ if(shwild_FOUND)
 	target_link_shwild(test.component.details)
 endif(shwild_FOUND)
 
+target_link_STLSoft(test.component.details)
+
 target_link_xTests(test.component.details)
 
 define_target_compile_options(test.component.details)

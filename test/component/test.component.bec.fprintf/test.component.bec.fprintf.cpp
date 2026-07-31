@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.bec.fprintf project.
  *
  * Created: 25th June 2020
- * Updated: 28th October 2024
+ * Updated: 23rd April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -258,7 +258,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME()
         file_lines_t const& lines = r.second;
 
         XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; Notice]: some message"), lines[0].c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; Notice]: some message"), lines[0]);
     }
 }
 
@@ -277,7 +277,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID()
         file_lines_t const& lines = r.second;
 
         XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[Notice]: some message"), lines[0].c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[Notice]: some message"), lines[0]);
     }
 }
 
@@ -296,7 +296,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY()
         file_lines_t const& lines = r.second;
 
         XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf]: some message"), lines[0].c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf]: some message"), lines[0]);
     }
 }
 
@@ -315,7 +315,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY()
         file_lines_t const& lines = r.second;
 
         XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; 5]: some message"), lines[0].c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; 5]: some message"), lines[0]);
     }
 }
 #ifdef PANTHEIOS_HAS_SHWILD

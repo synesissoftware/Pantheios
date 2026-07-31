@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/severity/levels.hpp
+ * File:    pantheios/severity/levels.hpp
  *
- * Purpose:     Definition of the pantheios::level class template, which may
- *              be used to generate levels pseudo-constants.
+ * Purpose: Definition of the pantheios::level class template, which may be
+ *          used to generate levels pseudo-constants.
  *
- * Created:     22nd July 2006
- * Updated:     16th December 2023
+ * Created: 22nd July 2006
+ * Updated: 24th January 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,8 +58,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_MINOR      0
-# define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_EDIT       25
+# define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_REVISION   3
+# define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_EDIT       26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,22 +106,23 @@ namespace pantheios
 template <int Level>
 class level
 {
-/// \name Member Types
-/// @{
-public:
-    typedef level<Level>    class_type;
-/// @}
+public: // types
+    typedef level<Level>                                    class_type;
 
-/// \name Construction
-/// @{
-public:
+public: // construction
     level()
     {}
-/// @}
+#if __cplusplus >= 201103L
+    level(class_type const&) = default;
+#endif
+private:
+#ifdef STLSOFT_CF_RVALUE_REFERENCES_SUPPORT
 
-/// \name Operators
-/// @{
-public:
+    void operator =(class_type&&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
+#endif /* STLSOFT_CF_RVALUE_REFERENCES_SUPPORT */
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
+
+public: // operators
     /// Implicit conversion to the underlying level value
     operator pan_sev_t () const
     {
@@ -141,13 +142,6 @@ public:
 
         return (Level & 0x0f) | ((extendedSeverityInformation28 << 4) & ~0x0f);
     }
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    class_type& operator =(class_type const&);
-/// @}
 };
 
 
@@ -159,7 +153,14 @@ private:
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_SEVERITY_HPP_LEVELS */
 

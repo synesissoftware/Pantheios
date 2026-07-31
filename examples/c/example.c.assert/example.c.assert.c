@@ -8,7 +8,7 @@
  *            - use of PANTHEIOS_ASSERT()
  *
  * Created: 8th May 2009
- * Updated: 14th July 2024
+ * Updated: 29th January 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -54,6 +54,7 @@ int main(int argc, char* argv[])
     PANTHEIOS_MESSAGE_ASSERT(1, "it was true");
 
     PANTHEIOS_MESSAGE_ASSERT(0, "it was false");
+
 
     pantheios_uninit();
   }

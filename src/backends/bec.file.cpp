@@ -4,7 +4,7 @@
  * Purpose: Implementation for the file back-end.
  *
  * Created: 25th November 2006
- * Updated: 28th October 2024
+ * Updated: 29th January 2025
  *
  * Thanks:  CookieRaver for filling in the (accidental) blanks in the UNIX
  *          implementation.
@@ -21,7 +21,7 @@
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -254,7 +254,6 @@ namespace
     typedef buffer_selector_<PAN_CHAR_T>::type          buffer_t;
 
     typedef platformstl::filesystem_traits<PAN_CHAR_T>  traits_t;
-
 } /* anonymous namespace */
 
 
@@ -268,25 +267,26 @@ class be_file_Context
 /// \name Member Types
 /// @{
 private:
-    typedef Context                             parent_class_type;
+    typedef Context                                         parent_class_type;
+    typedef be_file_Context                                 class_type;
 #ifdef PANTHEIOS_MT
-    typedef platformstl::thread_mutex           mutex_type;
+    typedef platformstl::thread_mutex                       mutex_type;
 #else /* ? PANTHEIOS_MT */
-    typedef stlsoft::null_mutex                 mutex_type;
+    typedef stlsoft::null_mutex                             mutex_type;
 #endif /* PANTHEIOS_MT */
-    typedef traits_t                            traits_type;
+    typedef traits_t                                        traits_type;
 public:
     /// The native operating system file-handle type
-    typedef traits_type::file_handle_type       file_handle_type;
+    typedef traits_type::file_handle_type                   file_handle_type;
 private:
-    typedef std::basic_string<PAN_CHAR_T>       string_type;
-    typedef std::list<string_type>              strings_type;
+    typedef std::basic_string<PAN_CHAR_T>                   string_type;
+    typedef std::list<string_type>                          strings_type;
 /// @}
 
 /// \name Member constants
 /// @{
 public:
-    static file_handle_type const               FileErrorValue;
+    static file_handle_type const                           FileErrorValue;
 
     enum
     {
@@ -324,13 +324,15 @@ public:
 /// \name Overrides
 /// @{
 private:
-    virtual int rawLogEntry(
+    virtual int
+    rawLogEntry(
         int                 severity4
     ,   int                 severityX
-    ,   const pan_slice_t (&ar)[rawLogArrayDimension]
+    ,   pan_slice_t const (&ar)[rawLogArrayDimension]
     ,   size_t              cchTotal
     );
-    virtual int rawLogEntry(
+    virtual int
+    rawLogEntry(
         int                 severity4
     ,   int                 severityX
     ,   PAN_CHAR_T const*   entry
@@ -550,7 +552,8 @@ namespace
  * API
  */
 
-PANTHEIOS_CALL(void) pantheios_be_file_getDefaultAppInit(pan_be_file_init_t* init) /* throw() */
+PANTHEIOS_CALL(void)
+pantheios_be_file_getDefaultAppInit(pan_be_file_init_t* init) /* throw() */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
 
@@ -686,7 +689,8 @@ static int pantheios_be_file_init_(
     return 0;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_file_init(
+PANTHEIOS_CALL(int)
+pantheios_be_file_init(
     PAN_CHAR_T const*           processIdentity
 ,   int                         backEndId
 ,   pan_be_file_init_t const*   init
@@ -697,7 +701,8 @@ PANTHEIOS_CALL(int) pantheios_be_file_init(
     return pantheios_call_be_X_init<pan_be_file_init_t>(pantheios_be_file_init_, processIdentity, backEndId, init, reserved, ptoken, "be.file");
 }
 
-PANTHEIOS_CALL(void) pantheios_be_file_uninit(void* token)
+PANTHEIOS_CALL(void)
+pantheios_be_file_uninit(void* token)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != token, "token must be non-null");
 
@@ -744,7 +749,8 @@ static int pantheios_be_file_logEntry_(
     return ctxt->logEntry(severity, entry, cchEntry);
 }
 
-PANTHEIOS_CALL(int) pantheios_be_file_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_file_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -755,7 +761,8 @@ PANTHEIOS_CALL(int) pantheios_be_file_logEntry(
     return pantheios_call_be_logEntry(pantheios_be_file_logEntry_, feToken, beToken, severity, entry, cchEntry, "be.file");
 }
 
-PANTHEIOS_CALL(int) pantheios_be_file_setFilePath(
+PANTHEIOS_CALL(int)
+pantheios_be_file_setFilePath(
     PAN_CHAR_T const*   fileName
 ,   pantheios_uint32_t  fileMask
 ,   pantheios_uint32_t  fileFlags
@@ -814,7 +821,8 @@ PANTHEIOS_CALL(int) pantheios_be_file_setFilePath(
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-PANTHEIOS_CALL(int) pantheios_be_file_flush(int backEndId)
+PANTHEIOS_CALL(int)
+pantheios_be_file_flush(int backEndId)
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     try
@@ -868,7 +876,8 @@ PANTHEIOS_CALL(int) pantheios_be_file_flush(int backEndId)
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-PANTHEIOS_CALL(int) pantheios_be_file_emptyCache(int backEndId)
+PANTHEIOS_CALL(int)
+pantheios_be_file_emptyCache(int backEndId)
 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     try
@@ -936,21 +945,22 @@ pantheios_be_file_parseArgs(
 
     // 1. Parse the stock arguments
     int res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
+    int r;
 
     if (res >= 0)
     {
         // 2.a Parse the custom argument: "fileName"
         pan_slice_t fileName;
 
-        res = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("fileName"), &fileName);
+        r = pantheios_be_parseStringArg(numArgs, args, PANTHEIOS_LITERAL_STRING("fileName"), &fileName);
 
-        if (res >= 0)
+        if (r >= 0)
         {
             if (fileName.len >= STLSOFT_NUM_ELEMENTS(init->buff))
             {
                 pantheios_onBailOut3(PANTHEIOS_SEV_CRITICAL, "be.file initialisation failed: 'fileName' argument value too long; must be <= " PANTHEIOS_STRINGIZE(PANTHEIOS_BE_FILE_MAX_FILE_LEN) " characters", NULL);
 
-                res = PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
+                r = PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
             }
             else
             {
@@ -960,28 +970,103 @@ pantheios_be_file_parseArgs(
             }
         }
 
-        if (res >= 0)
+        if (r < 0)
         {
-            // 2.b Parse the custom argument: "truncate"
-            res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("truncate"), false, PANTHEIOS_BE_FILE_F_TRUNCATE, &init->flags);
+            res = r;
         }
-
-        if (res >= 0)
+        else
         {
-            // 2.c Parse the custom argument: "discardCachedContents"
-            res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("discardCachedContents"), false, PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS, &init->flags);
+            res += r;
         }
+    }
 
-        if (res >= 0)
+    if (res >= 0)
+    {
+        // 2.b Parse the custom argument: "truncate"
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("truncate"), false, PANTHEIOS_BE_FILE_F_TRUNCATE, &init->flags);
+
+        if (r < 0)
         {
-            // 2.b Parse the custom argument: "writeWideContents"
-            res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("writeWideContents"), false, PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS, &init->flags);
+            res = r;
         }
-
-        if (res >= 0)
+        else
         {
-            // 2.b Parse the custom argument: "writeMultibyteContents"
-            res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("writeMultibyteContents"), false, PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS, &init->flags);
+            res += r;
+        }
+    }
+
+    if (res >= 0)
+    {
+        // 2.c Parse the custom argument: "discardCachedContents"
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("discardCachedContents"), false, PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
+    }
+
+    if (res >= 0)
+    {
+        // 2.b Parse the custom argument: "shareOnWindows"
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("shareOnWindows"), false, PANTHEIOS_BE_FILE_F_SHARE_ON_WINDOWS, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
+    }
+
+    if (res >= 0)
+    {
+        // 2.b Parse the custom argument: "writeWideContents"
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("writeWideContents"), false, PANTHEIOS_BE_FILE_F_WRITE_WIDE_CONTENTS, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
+    }
+
+    if (res >= 0)
+    {
+        // 2.b Parse the custom argument: "writeMultibyteContents"
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("writeMultibyteContents"), false, PANTHEIOS_BE_FILE_F_WRITE_MULTIBYTE_CONTENTS, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
+    }
+
+    if (res >= 0)
+    {
+        // 2.b Parse the custom argument: "deleteIfEmpty"
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("deleteIfEmpty"), false, PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
         }
     }
 
@@ -998,7 +1083,7 @@ be_file_Context::be_file_Context(
 ,   int                         backEndId
 ,   pan_be_file_init_t const&   init
 )
-    : parent_class_type(processIdentity, backEndId, init.flags, be_file_Context::severityMask)
+    : parent_class_type(processIdentity, backEndId, init.flags, class_type::severityMask)
     , m_hFile(FileErrorValue)
     , m_filePath()
     , m_flags(init.flags)
@@ -1388,16 +1473,20 @@ int be_file_Context::Open(
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
         switch (::GetLastError())
         {
-            default:
-            case    ERROR_TOO_MANY_OPEN_FILES:
-                return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
-            case    ERROR_FILE_NOT_FOUND:
-            case    ERROR_PATH_NOT_FOUND:
-                return PANTHEIOS_BE_INIT_RC_INVALID_ARGUMENT;
-            case    ERROR_ACCESS_DENIED:
-                return PANTHEIOS_BE_INIT_RC_PERMISSION_DENIED;
-            case    ERROR_SHARING_VIOLATION:
-                return PANTHEIOS_BE_INIT_RC_RESOURCE_BUSY;
+        default:
+        case    ERROR_TOO_MANY_OPEN_FILES:
+
+            return PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE;
+        case    ERROR_FILE_NOT_FOUND:
+        case    ERROR_PATH_NOT_FOUND:
+
+            return PANTHEIOS_BE_INIT_RC_INVALID_ARGUMENT;
+        case    ERROR_ACCESS_DENIED:
+
+            return PANTHEIOS_BE_INIT_RC_PERMISSION_DENIED;
+        case    ERROR_SHARING_VIOLATION:
+
+            return PANTHEIOS_BE_INIT_RC_RESOURCE_BUSY;
         }
 #else /* ? OS */
         // TODO: sort out this errno translation
@@ -1413,7 +1502,13 @@ int be_file_Context::Open(
     }
 }
 
-int be_file_Context::rawLogEntry(int /* severity4 */, int /* severityX */, pan_slice_t const (&ar)[be_file_Context::rawLogArrayDimension], size_t cchTotal)
+int
+be_file_Context::rawLogEntry(
+    int             /* severity4 */
+,   int             /* severityX */
+,   pan_slice_t const (&ar)[rawLogArrayDimension]
+,   size_t              cchTotal
+)
 {
     // Allocate the buffer
 

@@ -22,7 +22,7 @@ target_link_STLSoft(test.scratch.WideString)
 
 target_link_libraries(test.scratch.WideString
 	PRIVATE
-		$<$<BOOL:${b64_FOUND}>: b64::core >
+		$<$<BOOL:${b64_FOUND}>:b64::core>
 )
 
 define_target_compile_options(test.scratch.WideString)

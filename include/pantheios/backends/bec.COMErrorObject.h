@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios COMErrorObject Stock Back-end API.
  *
  * Created: 21st June 2005
- * Updated: 28th October 2024
+ * Updated: 25th January 2025
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_EDIT     26
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_REVISION 3
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_EDIT     27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,7 +139,8 @@ typedef struct pan_be_COMErrorObject_init_t pan_be_COMErrorObject_init_t;
  * \note When using explicit initialisation, this function must be defined,
  *   but will not be invoked.
  */
-PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_getAppInit(
+PANTHEIOS_CALL(void)
+pantheios_be_COMErrorObject_getAppInit(
     int                             backEndId
 ,   pan_be_COMErrorObject_init_t*   init
 ) /* throw() */;
@@ -154,14 +155,16 @@ PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_getAppInit(
  *    ready to be customised and passed to the API initialiser function
  *    pantheios_be_COMErrorObject_init().
  */
-PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_getDefaultAppInit(
+PANTHEIOS_CALL(void)
+pantheios_be_COMErrorObject_getDefaultAppInit(
     pan_be_COMErrorObject_init_t* init
 ) /* throw() */;
 
 /** Implements the functionality for pantheios_be_init() over the COM Error Object API.
  * \ingroup group__backend__stock_backends__COMErrorObject
  */
-PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_init(
+PANTHEIOS_CALL(int)
+pantheios_be_COMErrorObject_init(
     PAN_CHAR_T const*                   processIdentity
 ,   int                                 id
 ,   pan_be_COMErrorObject_init_t const* init
@@ -172,14 +175,16 @@ PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_init(
 /** Implements the functionality for pantheios_be_uninit() over the COM Error Object API.
  * \ingroup group__backend__stock_backends__COMErrorObject
  */
-PANTHEIOS_CALL(void) pantheios_be_COMErrorObject_uninit(
+PANTHEIOS_CALL(void)
+pantheios_be_COMErrorObject_uninit(
     void* token
 );
 
 /** Implements the functionality for pantheios_be_logEntry() over the COM Error Object API.
  * \ingroup group__backend__stock_backends__COMErrorObject
  */
-PANTHEIOS_CALL(int) pantheios_be_COMErrorObject_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_COMErrorObject_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -236,7 +241,14 @@ pan_be_COMErrorObject_init_t::pan_be_COMErrorObject_init_t()
 # endif /* !PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT */
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_COMERROROBJECT */
 

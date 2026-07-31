@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/backends/context.hpp
+ * File:    pantheios/util/backends/context.hpp
  *
- * Purpose:     Implementation class to assist in the creation of back-ends.
+ * Purpose: Implementation class to assist in the creation of back-ends.
  *
- * Created:     16th December 2006
- * Updated:     16th December 2023
+ * Created: 16th December 2006
+ * Updated: 29th January 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MAJOR    3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MINOR    3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     38
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MINOR    4
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     39
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -156,21 +156,15 @@ pantheios_be_speech_logEntry(
  */
 class Context
 {
-/// \name Member Types
-/// @{
-public:
-    typedef Context     class_type;
-/// @}
+public: // types
+    typedef Context                                         class_type;
 
-/// \name Member Constants
-/// @{
-protected:
+
+protected: // constants
     enum { rawLogArrayDimension = 10 };
-/// @}
 
-/// \name Construction
-/// @{
-protected:
+
+protected: // construction
     /// Constructs an instance
     ///
     /// \param processIdentity The process identity. May not be NULL or
@@ -187,11 +181,12 @@ protected:
     ,   int                     severityMask
     );
     virtual ~Context() throw();
-/// @}
+private:
+    Context(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+    void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
 
-/// \name Operations
-/// @{
-public:
+
+public: // operations
     ///
     ///
     /// \note This method does not mutate any member data. It is not marked
@@ -203,22 +198,22 @@ public:
     ///   backends using the class may only need to lock if the underlying
     ///   transmission medium requires it, and this may only need to be
     ///   inside the call to rawLogEntry(), on a back-end-specific basis.
-    int logEntry(
+    int
+    logEntry(
         int                     severity
     ,   pantheios_char_t const* entry
     ,   size_t                  cchEntry
     );
-/// @}
 
-/// \name Overrides
-/// @{
-private:
+
+private: // overrides
     /// \param severity The severity at which the statement will be logged
     /// \param ar A reference to an array of 'rawLogArrayDimension' slices
-    virtual int rawLogEntry(
+    virtual int
+    rawLogEntry(
         int                     severity4
     ,   int                     severityX
-    ,   const pan_slice_t (&ar)[rawLogArrayDimension]
+    ,   pan_slice_t const     (&ar)[rawLogArrayDimension]
     ,   size_t                  cchTotal
     ) = 0;
 
@@ -226,29 +221,31 @@ private:
     /// \param entry Pointer to the C-style string containing the entry
     /// \param cchEntry Number of characters in the entry, not including the
     ///   nul-terminator
-    virtual int rawLogEntry(
+    virtual int
+    rawLogEntry(
         int                     severity4
     ,   int                     severityX
     ,   pantheios_char_t const* entry
     ,   size_t                  cchEntry
     );
-/// @}
 
-/// \name Utilities
-/// @{
-protected:
+
+protected: // utilities
     /// Concatenates the slices into the given destination
-    static size_t concatenateSlices(
+    static size_t
+    concatenateSlices(
         pantheios_char_t*       dest
     ,   size_t                  cchDest
     ,   size_t                  numSlices
     ,   pan_slice_t const*      slices
     );
-/// @}
 
-/// \name Accessors
-/// @{
-public:
+    /// Indicates whether any part of the prefix is required.
+    bool
+    show_prefix() const STLSOFT_NOEXCEPT;
+
+
+public: // accessors
     /// The process identity
     ///
     /// \note In builds where exceptions are not enabled, or with compilers
@@ -256,11 +253,9 @@ public:
     ///   return NULL to indicate that construction has failed
     pantheios_char_t const* getProcessIdentity() const;
     int                     getBackEndId() const;
-/// @}
 
-/// \name Member Variables
-/// @{
-protected:
+
+protected: // fields
     pantheios_char_t* const m_processIdentity;
     int const               m_id;
     pan_uint32_t const      m_flags;
@@ -277,20 +272,12 @@ private:
     // 8: "]: "
     // 9: entry
 
-    pan_slice_t     m_slice0;
-    pan_slice_t     m_slice1;
-    pan_slice_t     m_slice2;
-    pan_slice_t     m_slice4;
-    pan_slice_t     m_slice6;
-    pan_slice_t     m_slice8;
-/// @}
-
-/// \name Not to be implemented
-/// @{
-private:
-    Context(class_type const&);
-    class_type& operator =(class_type const&);
-/// @}
+    pan_slice_t             m_slice0;
+    pan_slice_t             m_slice1;
+    pan_slice_t             m_slice2;
+    pan_slice_t             m_slice4;
+    pan_slice_t             m_slice6;
+    pan_slice_t             m_slice8;
 };
 
 
@@ -304,7 +291,14 @@ private:
 } /* namespace pantheios */
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT */
 

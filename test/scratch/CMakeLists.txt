@@ -39,6 +39,8 @@ if(UNIX)
 	add_subdirectory(test.scratch.be.syslog)
 	add_subdirectory(test.scratch.be.syslog.WithCallback)
 endif(UNIX)
+
+add_subdirectory(test.scratch.bec.AnsiConsole)
 if(WIN32)
 
 	add_subdirectory(test.scratch.bec.WindowsConsoleCallback)

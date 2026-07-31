@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.util.onbailout project.
  *
  * Created: 29th April 2008
- * Updated: 28th October 2024
+ * Updated: 24th April 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -1253,12 +1253,12 @@ FILE* bailout_test_fopen_(char const* filename, char const* mode)
     STLSOFT_SUPPRESS_UNUSED(filename);
     STLSOFT_SUPPRESS_UNUSED(mode);
 
-    return NULL;
+    return stdin;
 }
 
 int bailout_test_fopen_s_(FILE** phFile, void const*, void const*)
 {
-    *phFile = NULL;
+    *phFile = stdin;
 
     return 0;
 }
@@ -1267,6 +1267,11 @@ int bailout_test_fopen_s_(FILE** phFile, void const*, void const*)
 
 void bailout_fclose_(FILE* hFile)
 {
+    if (stdin == hFile)
+    {
+        return;
+    }
+
     if (NULL != hFile)
     {
         fclose(hFile);
