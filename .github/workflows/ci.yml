@@ -213,10 +213,12 @@ jobs:
           find_package(STLSoft REQUIRED)
           find_package(Pantheios REQUIRED)
           add_executable(consumer consumer.cpp)
+          # Link order matters for GNU ld (static archives are single-pass):
+          # dependents before providers — matches in-tree example link order.
           target_link_libraries(consumer PRIVATE
-            Pantheios::Pantheios.bec.fprintf
-            Pantheios::Pantheios.be.fprintf
             Pantheios::Pantheios.core
+            Pantheios::Pantheios.be.fprintf
+            Pantheios::Pantheios.bec.fprintf
             Pantheios::Pantheios.fe.simple
             Pantheios::Pantheios.util
           )
