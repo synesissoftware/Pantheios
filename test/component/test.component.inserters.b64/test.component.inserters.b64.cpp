@@ -5,10 +5,14 @@
  *
  * Created: 31st July 2006
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Updated: 16th July 2024
 =======
  * Updated: 3rd May 2025
 >>>>>>> ss/dev
+=======
+ * Updated: 3rd May 2025
+>>>>>>> update
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -100,10 +104,14 @@ int main(int argc, char** argv)
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
 =======
     if (XTESTS_START_RUNNER("test.component.inserters.b64", verbosity))
 >>>>>>> ss/dev
+=======
+    if (XTESTS_START_RUNNER("test.component.inserters.b64", verbosity))
+>>>>>>> update
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);

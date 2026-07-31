@@ -153,7 +153,6 @@ typedef platformstl::basic_file_lines<PAN_CHAR_T>           lines_t;
 typedef stlsoft::basic_string_view<PAN_CHAR_T>              string_view_t;
 
 
-
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */

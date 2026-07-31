@@ -29,10 +29,15 @@ if(shwild_FOUND)
 endif(shwild_FOUND)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 target_link_STLSoft(test.component.inserters.b64)
 
 >>>>>>> ss/dev
+=======
+target_link_STLSoft(test.component.inserters.b64)
+
+>>>>>>> update
 target_link_xTests(test.component.inserters.b64)
 
 target_compile_options(test.component.inserters.b64 PRIVATE

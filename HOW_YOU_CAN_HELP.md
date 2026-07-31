@@ -1,22 +1,19 @@
-Pantheios - How You Can Help
-============================
-
-Updated:    26th November 2010
+# Pantheios - How You Can Help <!-- omit in toc -->
 
 
+## Table of Contents <!-- omit in toc -->
 
-There are several ways in which you can help the Pantheios project:
+There are several ways in which you can help the **Pantheios** project:
 
- 1. Defect reports
- 2. Feature requests
- 3. Submit your own extensions: inserters, back-ends, front-ends
- 4. Sponsor development
- 5. Write articles, blog-posts about your experiences
- 6. Help flesh out the Wikipedia page for Pantheios
+- [Defect reports](#defect-reports)
+- [Feature requests](#feature-requests)
+- [Submit your own extensions](#submit-your-own-extensions)
+- [Sponsor development](#sponsor-development)
+- [Write articles, blog-posts about your experiences](#write-articles-blog-posts-about-your-experiences)
+- [Help flesh out the Wikipedia page for Pantheios](#help-flesh-out-the-wikipedia-page-for-pantheios)
 
 
-1. Defect reports
------------------
+## Defect reports
 
 A diagnostic logging library exists to help locate and identify defects in
 applications/components. An obvious consequence of this principle is that a
@@ -25,93 +22,78 @@ diagnostic logging library should not itself be the source of faults.
 Consequently, we're very keen to hear of any problems you have in building
 and, especially, in using the library.
 
-If you're unsure whether your issue is a genuine defect in the library, we
-ask that you post a description of your problem on the project Help Forum,
-located at:
+Please submit an issue at:
 
-  http://sourceforge.net/projects/pantheios/forums/forum/475314
+  https://github.com/synesissoftware/Pantheios/issues
 
-If you're sure that your issue is a genuine defect, please feel free to
-submit an item in the project Bug Tracker, located at:
+Please help us to help you by submitting as much information about the
+problem as you think is relevant, including:
 
-  http://sourceforge.net/tracker/?group_id=141831&atid=750757
-
-In either case, please help us to help you by submitting as much information
-about the problem as you think is relevant, including:
-
- * the compiler you're using
- * the architecture and operating system you're targeting
- * the version of Pantheios
- * the version of STLSoft
- * the version of other 3rd-party libraries, such as Boost, Loki, ...
- * whether you're building using the makefiles or via an IDE
- * a section of the build output, including the warnings/errors involved
+* the compiler you're using
+* the architecture and operating system you're targeting
+* the version of **Pantheios**
+* the version of **STLSoft**
+* the version of other 3rd-party libraries, such as Boost, Loki, …
+* whether you're building using **CMake**, the provided makefiles, or via an IDE
+* a section of the build output, including the warnings/errors involved
 
 
-2. Feature requests
--------------------
+## Feature requests
 
-Pantheios is a living library, and we are not so foolish as to think that
+**Pantheios** is a living library, and we are not so foolish as to think that
 we've thought of all the ways in which C++ diagnostic logging can be
 improved.
 
-If there are features that you think would enhance the library, please feel
-free to share your ideas.
+If there are features that you think would enhance the library, please
+feel free to share your ideas.
 
-If you're precisely sure what you need, please feel free to start a
-conversation on the Open Discussion Forum, located at:
+You can either submit an issue:
 
-  http://sourceforge.net/projects/pantheios/forums/forum/475313
+  https://github.com/synesissoftware/Pantheios/issues
 
-If you're clear of what you need, please feel free to submit an item in the
-project Feature Request Tracker, located at:
+Or provide your suggested work via a pull-request:
 
-  http://sourceforge.net/tracker/?group_id=141831&atid=750760
+  https://github.com/synesissoftware/Pantheios/pulls
 
-NOTE: Synesis Software provides commercial customisations of Pantheios,
- including custom front-ends and back-ends, custom severity levels, and much
- more. For such advanced uses, contact Synesis Software via their website
- at http://www.synesis.com.au/contact.html
+NOTE: Synesis Information Systems provides commercial customisations of
+**Pantheios**, including custom front-ends and back-ends, custom severity
+levels, and much more. For such advanced uses, contact Synesis via
+https://www.synesis.com.au/contact.html
 
 
-3. Submit your own extensions: inserters, back-ends, front-ends
----------------------------------------------------------------
+## Submit your own extensions
 
-If you have developed your own inserters, back-ends, front-ends, and wish to
-contribute them back to the project so others can benefit from your work,
-please get in contact at via the Open Discussion Forum, located at:
+If you have developed your own inserters, back-ends, or front-ends, and wish
+to contribute them back to the project so others can benefit from your work,
+please open an issue or pull request at:
 
-  http://sourceforge.net/projects/pantheios/forums/forum/475313
+  https://github.com/synesissoftware/Pantheios
 
 
-4. Sponsor development
-----------------------
+## Sponsor development
 
 If you value the diligence and effort that's gone into bringing you this
-production-quality software, please make a donation to the project, via:
+production-quality software, please get in contact via
+https://www.synesis.com.au/contact.html
 
-  http://sourceforge.net/project/project_donations.php?group_id=141831
 
+## Write articles, blog-posts about your experiences
 
-5. Write articles, blog-posts about your experiences
-----------------------------------------------------
-
-If you've written articles or blogged about Pantheios, let us know and we'll
-list them on the website, at:
+If you've written articles or blogged about **Pantheios**, let us know and
+we'll list them on the website, at:
 
   http://www.pantheios.org/tutorials.html
 
 If you haven't, please consider doing so.
 
 
-6. Help flesh out the Wikipedia page for Pantheios
---------------------------------------------------
+## Help flesh out the Wikipedia page for Pantheios
 
-Pantheios is a very popular logging library. Despite that, the powers that
+**Pantheios** is a very popular logging library. Despite that, the powers that
 be at Wikipedia have deemed that it is not notable. If you disagree with
 that, please update the Pantheios Wikipedia page at:
 
   http://en.wikipedia.org/wiki/Pantheios
 
 
-=============================== End of file ================================
+<!-- ########################### end of file ########################### -->
