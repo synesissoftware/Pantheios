@@ -8,7 +8,7 @@ The C/C++ Diagnostic Logging Sweetspot
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub release](https://img.shields.io/github/v/release/synesissoftware/Pantheios.svg)](https://github.com/synesissoftware/Pantheios/releases/latest)
 [![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/Pantheios)](https://github.com/synesissoftware/Pantheios/commits/master)
-[![CMake on multiple platforms](https://github.com/synesissoftware/Pantheios/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/Pantheios/actions/workflows/ci.yml)
+[![CI](https://github.com/synesissoftware/Pantheios/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/Pantheios/actions/workflows/ci.yml)
 
 
 ## Table of Contents <!-- omit in toc -->
@@ -57,7 +57,7 @@ Further reading: [http://pantheios.org/](http://pantheios.org/), [FAQ.md](./FAQ.
 
 4. **It's designed for efficiency.**
 
-	**Pantheios** aims to be substantially faster than other serious C++ diagnostic logging libraries (historically claimed up to two orders of magnitude in favourable cases). See the [performance notes](http://pantheios.sourceforge.net/performance.html#sweet-spot) for the original measurements and discussion of the "sweet spot".
+	**Pantheios** aims to be substantially faster than other serious C++ diagnostic logging libraries (historically claimed up to two orders of magnitude in favourable cases). See the original [performance notes](http://pantheios.org/performance.html) (also mirrored historically on [SourceForge](http://pantheios.sourceforge.net/performance.html#sweet-spot)) for measurements and discussion of the "sweet spot".
 
 5. **It is type-safe.**
 
