@@ -5,6 +5,8 @@ Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 MakeCmd=${SIS_CMAKE_COMMAND:-make}
+ProjectNameFile="$Dir/.sis/project_name.txt"
+ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 
 IgnoreRemainingFlagsAndOptions=0
 Targets=()
@@ -47,10 +49,8 @@ while [[ $# -gt 0 ]]; do
       ;;
     --help)
 
+      [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Pantheios is an efficient, flexible, and robust C/C++ diagnostic logging library
-Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
-Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
 Executes CMake-generated artefacts to (re)build project
 
 $ScriptPath [ ... flags/options ... ]
@@ -104,10 +104,10 @@ else
 
     if [ -z "$Targets" ]; then
 
-      echo "Executing build (via command \`$MakeCmd\`)"
+      echo "Executing build for ${ProjectName} (via command \`$MakeCmd\`)"
     else
 
-      echo "Executing build (via command \`$MakeCmd\`) with specific target(s) $(join_by , "${Targets[@]}")"
+      echo "Executing build for ${ProjectName} (via command \`$MakeCmd\`) with specific target(s) $(join_by , "${Targets[@]}")"
     fi
 
     $MakeCmd ${Targets[*]}

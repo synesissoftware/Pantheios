@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/internal/stock_levels.hpp
+ * File:    pantheios/internal/stock_levels.hpp
  *
- * Purpose:     Custom level class.
+ * Purpose: Custom level class.
  *
- * Created:     22nd July 2006
- * Updated:     16th December 2023
+ * Created: 22nd July 2006
+ * Updated: 29th January 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -94,27 +94,33 @@ namespace
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
     /** Instance of \link pantheios::level level\endlink that holds the SEV_DEBUG value. */
-    static /* const */ level<SEV_DEBUG>           debug;
+    static /* const */ level<SEV_DEBUG>                         debug;
     /** Instance of \link pantheios::level level\endlink that holds the SEV_INFORMATIONAL value. */
-    static /* const */ level<SEV_INFORMATIONAL>   informational;
+    static /* const */ level<SEV_INFORMATIONAL>                 informational;
     /** Instance of \link pantheios::level level\endlink that holds the SEV_NOTICE value. */
-    static /* const */ level<SEV_NOTICE>          notice;
+    static /* const */ level<SEV_NOTICE>                        notice;
     /** Instance of \link pantheios::level level\endlink that holds the SEV_WARNING value. */
-    static /* const */ level<SEV_WARNING>         warning;
+    static /* const */ level<SEV_WARNING>                       warning;
     /** Instance of \link pantheios::level level\endlink that holds the SEV_ERROR value. */
-    static /* const */ level<SEV_ERROR>           error;
+    static /* const */ level<SEV_ERROR>                         error;
     /** Instance of \link pantheios::level level\endlink that holds the SEV_CRITICAL value. */
-    static /* const */ level<SEV_CRITICAL>        critical;
+    static /* const */ level<SEV_CRITICAL>                      critical;
     /** Instance of \link pantheios::level level\endlink that holds the SEV_ALERT value. */
-    static /* const */ level<SEV_ALERT>           alert;
+    static /* const */ level<SEV_ALERT>                         alert;
     /** Instance of \link pantheios::level level\endlink that holds the SEV_EMERGENCY value. */
-    static /* const */ level<SEV_EMERGENCY>       emergency;
-
+    static /* const */ level<SEV_EMERGENCY>                     emergency;
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 } /* anonymous namespace */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_INTERNAL_HPP_STOCK_LEVELS */
 

@@ -4,11 +4,11 @@
  * Purpose: Implementation of the Pantheios Windows-Console Stock Back-end API.
  *
  * Created: 17th July 2006
- * Updated: 20th October 2024
+ * Updated: 29th January 2025
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -240,9 +240,9 @@ namespace
     /// \name Member Types
     /// @{
     public:
-        typedef Context                                     parent_class_type;
-        typedef WindowsConsole_Context                      class_type;
-        typedef winstl::process_mutex                       mutex_type;
+        typedef Context                                         parent_class_type;
+        typedef WindowsConsole_Context                          class_type;
+        typedef winstl::process_mutex                           mutex_type;
     private:
         typedef std::basic_string<
             PAN_CHAR_T
@@ -250,7 +250,7 @@ namespace
         ,   std::char_traits<PAN_CHAR_T>
         ,   winstl::processheap_allocator<PAN_CHAR_T>
 #endif /* compiler */
-        >                                                   string_type_;
+        >                                                       string_type_;
         typedef std::map<
             const string_type_
         ,   HANDLE
@@ -263,7 +263,7 @@ namespace
                 >
             >
 #endif /* compiler */
-        >                                                   map_type_;
+        >                                                       map_type_;
     /// @}
 
     /// \name Member Constants
@@ -285,20 +285,22 @@ namespace
         );
         ~WindowsConsole_Context() throw();
     private:
-        WindowsConsole_Context(class_type const&);  // copy-construction proscribed
-        class_type &operator =(class_type const&);  // copy-assignment proscribed
+        WindowsConsole_Context(class_type const&) STLSOFT_COPY_CONSTRUCTION_PROSCRIBED;
+        void operator =(class_type const&) STLSOFT_COPY_ASSIGNMENT_PROSCRIBED;
     /// @}
 
     /// \name Overrides
     /// @{
     private:
-        virtual int rawLogEntry(
+        virtual int
+        rawLogEntry(
             int                 severity4
         ,   int                 severityX
-        ,   const pan_slice_t (&ar)[rawLogArrayDimension]
+        ,   pan_slice_t const (&ar)[rawLogArrayDimension]
         ,   size_t              cchTotal
         );
-        virtual int rawLogEntry(
+        virtual int
+        rawLogEntry(
             int                 severity4
         ,   int                 severityX
         ,   PAN_CHAR_T const*   entry
@@ -309,13 +311,28 @@ namespace
     /// \name Implementation
     /// @{
     private:
-        int     write_output(HANDLE hStream, PAN_CHAR_T const* entry, int cchEntry);
+        int
+        write_output(
+            HANDLE              hStream
+        ,   PAN_CHAR_T const*   entry
+        ,   int                 cchEntry
+        );
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        HANDLE  lookupConsoleMx(HANDLE hBuffer);
+        HANDLE
+        lookupConsoleMx(HANDLE hBuffer);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-        void    lookupSeverityCharacteristics(int severity, HANDLE &hOutput, WORD &attributes) const;
-        WORD    lookupConsoleCharacteristics();
-        void    write_reset(HANDLE hOutput);
+        void
+        lookupSeverityCharacteristics(
+            int     severity
+        ,   HANDLE& hOutput
+        ,   WORD&   attributes
+        ) const;
+        WORD
+        lookupConsoleCharacteristics();
+        void
+        write_reset(
+            HANDLE hOutput
+        );
     /// @}
 
     /// \name Members
@@ -373,7 +390,8 @@ namespace
  * API functions
  */
 
-PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getDefaultAppInit(pan_be_WindowsConsole_init_t* init)
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsConsole_getDefaultAppInit(pan_be_WindowsConsole_init_t* init)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
 
@@ -454,7 +472,8 @@ static int pantheios_be_WindowsConsole_init_(
     return 0;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_WindowsConsole_init(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsConsole_init(
     PAN_CHAR_T const*                   processIdentity
 ,   int                                 backEndId
 ,   pan_be_WindowsConsole_init_t const* init
@@ -465,7 +484,8 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsConsole_init(
     return pantheios_call_be_X_init<pan_be_WindowsConsole_init_t>(pantheios_be_WindowsConsole_init_, processIdentity, backEndId, init, reserved, ptoken, "be.WindowsConsole");
 }
 
-PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_uninit(void* token)
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsConsole_uninit(void* token)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != token, "token must be non-null");
 
@@ -486,12 +506,13 @@ static int pantheios_be_WindowsConsole_logEntry_(
 
     STLSOFT_SUPPRESS_UNUSED(feToken);
 
-    Context* ctxt = static_cast<Context*>(beToken);
+    Context* const ctxt = static_cast<Context*>(beToken);
 
     return ctxt->logEntry(severity, entry, cchEntry);
 }
 
-PANTHEIOS_CALL(int) pantheios_be_WindowsConsole_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsConsole_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -516,28 +537,56 @@ pantheios_be_WindowsConsole_parseArgs(
 
     // 1. Parse the stock arguments
     int res = pantheios_be_parseStockArgs(numArgs, args, &init->flags);
+    int r;
 
     if (res >= 0)
     {
         // 2. Parse the custom argument: "showColours"
-        res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("showColours"), true, PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("showColours"), true, PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS, &init->flags);
 
-        if (0 == res)
+        if (0 == r)
         {
-            res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("showColors"), true, PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS, &init->flags);
+            r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("showColors"), true, PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS, &init->flags);
+        }
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
         }
     }
 
     if (res >= 0)
     {
         // Parse the custom argument: "clearAfterEachStatement"
-        res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("clearAfterEachStatement"), false, PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("clearAfterEachStatement"), false, PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     if (res >= 0)
     {
         // Parse the custom argument: "recognise16Severities"
-        res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("recognise16Severities"), false, PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("recognise16Severities"), false, PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     return res;
@@ -553,7 +602,7 @@ WindowsConsole_Context::WindowsConsole_Context(
 ,   int                                 backEndId
 ,   pan_be_WindowsConsole_init_t const* init
 )
-    : parent_class_type(processIdentity, backEndId, init->flags, WindowsConsole_Context::severityMask)
+    : parent_class_type(processIdentity, backEndId, init->flags, class_type::severityMask)
     , m_map()
     , m_defaultColours(lookupConsoleCharacteristics())
 {
@@ -599,7 +648,7 @@ int
 WindowsConsole_Context::rawLogEntry(
     int                 severity4
 ,   int                 severityX
-,   const pan_slice_t (&ar)[rawLogArrayDimension]
+,   pan_slice_t const (&ar)[rawLogArrayDimension]
 ,   size_t              cchTotal
 )
 {
@@ -635,7 +684,8 @@ WindowsConsole_Context::rawLogEntry(
     }
 }
 
-int WindowsConsole_Context::rawLogEntry(
+int
+WindowsConsole_Context::rawLogEntry(
     int                 severity4
 ,   int              /* severityX */
 ,   PAN_CHAR_T const*   entry

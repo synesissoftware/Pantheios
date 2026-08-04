@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.WindowsDebugger.cpp
+ * File:    src/backends/bec.WindowsDebugger.cpp
  *
- * Purpose:     Implementation for the WindowsDebugger back-end
+ * Purpose: Implementation for the WindowsDebugger back-end
  *
- * Created:     18th July 2005
- * Updated:     16th July 2024
+ * Created: 18th July 2005
+ * Updated: 29th January 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -103,51 +103,43 @@ namespace
     struct WindowsDebugger_Context
         : public Context
     {
-    /// \name Member Types
-    /// @{
-    public:
-        typedef Context                     parent_class_type;
-        typedef WindowsDebugger_Context     class_type;
-    /// @}
+    public: // types
+        typedef Context                                         parent_class_type;
+        typedef WindowsDebugger_Context                         class_type;
 
-    /// \name Member Constants
-    /// @{
-    public:
+
+    public: // constants
         enum
         {
             severityMask    =   0x0f
         };
-    /// @}
 
-    /// \name Construction
-    /// @{
-    public:
+
+    public: // construction
         WindowsDebugger_Context(
             PAN_CHAR_T const*                       processIdentity
         ,   int                                     backEndId
         ,   pan_be_WindowsDebugger_init_t const*    init
         );
         ~WindowsDebugger_Context() throw();
-    /// @}
 
-    /// \name Overrides
-    /// @{
-    private:
-        virtual int rawLogEntry(
+
+    private: // overrides
+        virtual int
+        rawLogEntry(
             int                 severity4
         ,   int                 severityX
-        ,   const pan_slice_t (&ar)[rawLogArrayDimension]
+        ,   pan_slice_t const (&ar)[rawLogArrayDimension]
         ,   size_t              cchTotal
         );
-        virtual int rawLogEntry(
+        virtual int
+        rawLogEntry(
             int                 severity4
         ,   int                 severityX
         ,   PAN_CHAR_T const*   entry
         ,   size_t              cchEntry
         );
-    /// @}
     };
-
 } /* anonymous namespace */
 
 
@@ -155,7 +147,8 @@ namespace
  * API functions
  */
 
-PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getDefaultAppInit(pan_be_WindowsDebugger_init_t* init) /* throw() */
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsDebugger_getDefaultAppInit(pan_be_WindowsDebugger_init_t* init) /* throw() */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
 
@@ -221,7 +214,8 @@ static int pantheios_be_WindowsDebugger_init_(
     return 0;
 }
 
-PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_init(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsDebugger_init(
     PAN_CHAR_T const*                       processIdentity
 ,   int                                     backEndId
 ,   pan_be_WindowsDebugger_init_t const*    init
@@ -232,7 +226,8 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_init(
     return pantheios_call_be_X_init<pan_be_WindowsDebugger_init_t>(pantheios_be_WindowsDebugger_init_, processIdentity, backEndId, init, reserved, ptoken, "be.WindowsDebugger");
 }
 
-PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_uninit(void* token)
+PANTHEIOS_CALL(void)
+pantheios_be_WindowsDebugger_uninit(void* token)
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != token, "token must be non-null");
 
@@ -258,7 +253,8 @@ static int pantheios_be_WindowsDebugger_logEntry_(
     return ctxt->logEntry(severity, entry, cchEntry);
 }
 
-PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_WindowsDebugger_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -279,13 +275,19 @@ WindowsDebugger_Context::WindowsDebugger_Context(
 ,   int                                     backEndId
 ,   pan_be_WindowsDebugger_init_t const*    init
 )
-    : parent_class_type(processIdentity, backEndId, init->flags, WindowsDebugger_Context::severityMask)
+    : parent_class_type(processIdentity, backEndId, init->flags, class_type::severityMask)
 {}
 
 WindowsDebugger_Context::~WindowsDebugger_Context() throw()
 {}
 
-int WindowsDebugger_Context::rawLogEntry(int /* severity4 */, int /* severityX */, const pan_slice_t (&ar)[rawLogArrayDimension], size_t cchTotal)
+int
+WindowsDebugger_Context::rawLogEntry(
+    int             /* severity4 */
+,   int             /* severityX */
+,   pan_slice_t const (&ar)[rawLogArrayDimension]
+,   size_t              cchTotal
+)
 {
     // Allocate the buffer
 

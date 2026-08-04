@@ -2,6 +2,7 @@
 set(BEC_STOCK_WC_SRC_DIR ../../../src/backends)
 
 file(GLOB BEC_STOCK_WC_SRCS_common
+	${BEC_STOCK_SRC_DIR}/bec.AnsiConsole.cpp
 	${BEC_STOCK_WC_SRC_DIR}/bec.fail.c
 	${BEC_STOCK_WC_SRC_DIR}/bec.file.cpp
 	${BEC_STOCK_WC_SRC_DIR}/bec.fprintf.cpp
@@ -20,16 +21,16 @@ if(HAS_ACE)
 	set(BEC_STOCK_WC_SRCS ${BEC_STOCK_WC_SRCS} ${BEC_STOCK_WC_SRCS_ace})
 endif(HAS_ACE)
 
-if(UNIX)
+if(_BUILD_AS_UNIX)
 
 	file(GLOB BEC_STOCK_WC_SRCS_unix
 		${BEC_STOCK_WC_SRC_DIR}/bec.syslog.c
 	)
 
 	set(BEC_STOCK_WC_SRCS ${BEC_STOCK_WC_SRCS} ${BEC_STOCK_WC_SRCS_unix})
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	file(GLOB BEC_STOCK_WC_SRCS_win32
 		${BEC_STOCK_WC_SRC_DIR}/bec.COMErrorObject.cpp
@@ -42,7 +43,7 @@ if(WIN32)
 	)
 
 	set(BEC_STOCK_WC_SRCS ${BEC_STOCK_WC_SRCS} ${BEC_STOCK_WC_SRCS_win32})
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 add_library(Pantheios.bec.stock.WithCallback
 	${BEC_STOCK_WC_SRCS}

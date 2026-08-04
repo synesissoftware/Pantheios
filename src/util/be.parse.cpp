@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/be.parse.cpp
+ * File:    src/util/be.parse.cpp
  *
- * Purpose:     Utility functions for use in Pantheios back-ends.
+ * Purpose: Utility functions for use in Pantheios back-ends.
  *
- * Created:     19th August 2007
- * Updated:     16th July 2024
+ * Created: 19th August 2007
+ * Updated: 24th January 2025
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -76,11 +76,13 @@
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
+
 # define pan_toupper_                                       towupper
-typedef stlsoft::wstring_view           string_view_t;
+typedef stlsoft::wstring_view                               string_view_t;
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
 # define pan_toupper_                                       toupper
-typedef stlsoft::string_view            string_view_t;
+typedef stlsoft::string_view                                string_view_t;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -89,6 +91,8 @@ typedef stlsoft::string_view            string_view_t;
  */
 
 #ifndef PANTHEIOS_NO_NAMESPACE
+using pantheios::pan_char_t;
+using pantheios::pan_uint32_t;
 using pantheios::util::pantheios_onBailOut3;
 using pantheios::util::pantheios_onBailOut4;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
@@ -131,7 +135,11 @@ pantheios_be_parseStockArgs_(
 
 namespace
 {
-    bool has_boolean_flag_value(string_view_t const& value, bool &flagIsOn)
+    bool
+    has_boolean_flag_value(
+        string_view_t const&    value
+    ,   bool&                   flagIsOn
+    )
     {
         // Can be one of:   yes, true, on, 1, no, false, off, 0 (in any case)
 
@@ -240,9 +248,9 @@ pantheios_be_parseBooleanArg_(
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API('\0' != 0[argName], "argument name may not be the empty string");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != flags, "flags pointer may not be null");
 
-    int numProcessed = 0;
+    int numMatched = 0;
 
-    { for (size_t i = 0; i < numArgs; ++i)
+    { for (size_t i = 0; i != numArgs; ++i)
     {
         pantheios_slice_t& slice = *(args + i);
 
@@ -269,7 +277,7 @@ pantheios_be_parseBooleanArg_(
                     continue; // Invalid value. Mark to ignore
                 }
 
-                ++numProcessed;
+                ++numMatched;
 
                 if ((!flagIsOn) != (!flagSuppressesAction))
                 {
@@ -283,7 +291,7 @@ pantheios_be_parseBooleanArg_(
         }
     }}
 
-    return numProcessed;
+    return numMatched;
 }
 
 PANTHEIOS_CALL(int)
@@ -339,9 +347,9 @@ pantheios_be_parseStringArg_(
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API('\0' != 0[argName], "argument name may not be the empty string");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != argValue, "argument value pointer may not be null");
 
-    int numProcessed = 0;
+    int numMatched = 0;
 
-    { for (size_t i = 0; i < numArgs; ++i)
+    { for (size_t i = 0; i != numArgs; ++i)
     {
         pantheios_slice_t& slice = *(args + i);
 
@@ -355,7 +363,7 @@ pantheios_be_parseStringArg_(
 
             if (name == argName)
             {
-                ++numProcessed;
+                ++numMatched;
 
                 argValue->len   =   value.size();
                 argValue->ptr   =   value.data();
@@ -367,7 +375,7 @@ pantheios_be_parseStringArg_(
         }
     }}
 
-    return numProcessed;
+    return numMatched;
 }
 
 PANTHEIOS_CALL(int)
@@ -419,9 +427,34 @@ pantheios_be_parseStockArgs_(
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((NULL != args || 0 == numArgs), "arguments pointer may only be null if the number of arguments is 0");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != flags, "flags pointer may not be null");
 
-    int numProcessed = 0;
+    struct option_mapping_t
+    {
+        pan_char_t const*   name;
+        pan_uint32_t        flag;
+        bool                is_suppressed;
+    };
 
-    { for (size_t i = 0; i < numArgs; ++i)
+    static const option_mapping_t s_mappings[] =
+    {
+        {   PANTHEIOS_LITERAL_STRING("highResolution"),     PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION,    false   },
+        {   PANTHEIOS_LITERAL_STRING("lowResolution"),      PANTHEIOS_BE_INIT_F_LOW_RESOLUTION,     false   },
+        {   PANTHEIOS_LITERAL_STRING("numericSeverity"),    PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY,   false   },
+        {   PANTHEIOS_LITERAL_STRING("showDate"),           PANTHEIOS_BE_INIT_F_HIDE_DATE,          true    },
+        {   PANTHEIOS_LITERAL_STRING("showDateTime"),       PANTHEIOS_BE_INIT_F_NO_DATETIME,        true    },
+        {   PANTHEIOS_LITERAL_STRING("showDetailsAtStart"), PANTHEIOS_BE_INIT_F_DETAILS_AT_START,   false   },
+        {   PANTHEIOS_LITERAL_STRING("showProcessId"),      PANTHEIOS_BE_INIT_F_NO_PROCESS_ID,      true    },
+        {   PANTHEIOS_LITERAL_STRING("showSeverity"),       PANTHEIOS_BE_INIT_F_NO_SEVERITY,        true    },
+        {   PANTHEIOS_LITERAL_STRING("showThreadId"),       PANTHEIOS_BE_INIT_F_NO_THREAD_ID,       true    },
+        {   PANTHEIOS_LITERAL_STRING("showTime"),           PANTHEIOS_BE_INIT_F_HIDE_TIME,          true    },
+        {   PANTHEIOS_LITERAL_STRING("useSystemTime"),      PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME,    false   },
+        {   PANTHEIOS_LITERAL_STRING("useUnixFormat"),      PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT,    false   },
+        {   PANTHEIOS_LITERAL_STRING("useUNIXFormat"),      PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT,    false   },
+    };
+
+
+    int numMatched = 0;
+
+    { for (size_t i = 0; i != numArgs; ++i)
     {
         pantheios_slice_t& slice = *(args + i);
 
@@ -430,8 +463,6 @@ pantheios_be_parseStockArgs_(
             string_view_t   arg(slice.ptr, slice.len);
             string_view_t   name;
             string_view_t   value;
-            bool            flagSuppresses;
-            int             flagValue;
 
             if (!stlsoft::split(arg, PANTHEIOS_LITERAL_CHAR('='), name, value))
             {
@@ -440,80 +471,35 @@ pantheios_be_parseStockArgs_(
 
             if (!name.empty())
             {
-                // PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
-                if (name == PANTHEIOS_LITERAL_STRING("showProcessId"))
+                bool    flagSuppresses  =   false;
+                int     flagValue       =   0;
+                bool    found           =   false;
+
+                { for (size_t j = 0; STLSOFT_NUM_ELEMENTS(s_mappings) != j; ++j)
                 {
-                    flagSuppresses  =   true;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
-                }
-                // PANTHEIOS_BE_INIT_F_NO_THREAD_ID
-                else if (name == PANTHEIOS_LITERAL_STRING("showThreadId"))
-                {
-                    flagSuppresses  =   true;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
-                }
-                // PANTHEIOS_BE_INIT_F_NO_DATETIME
-                else if (name == PANTHEIOS_LITERAL_STRING("showDateTime"))
-                {
-                    flagSuppresses  =   true;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_NO_DATETIME;
-                }
-                // PANTHEIOS_BE_INIT_F_NO_SEVERITY
-                else if (name == PANTHEIOS_LITERAL_STRING("showSeverity"))
-                {
-                    flagSuppresses  =   true;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_NO_SEVERITY;
-                }
-                // PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
-                else if (name == PANTHEIOS_LITERAL_STRING("useSystemTime"))
-                {
-                    flagSuppresses  =   false;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME;
-                }
-                // PANTHEIOS_BE_INIT_F_DETAILS_AT_START
-                else if (name == PANTHEIOS_LITERAL_STRING("showDetailsAtStart"))
-                {
-                    flagSuppresses  =   false;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_DETAILS_AT_START;
-                }
-                // PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
-                else if (name == PANTHEIOS_LITERAL_STRING("useUnixFormat") ||
-                        name == PANTHEIOS_LITERAL_STRING("useUNIXFormat"))
-                {
-                    flagSuppresses  =   false;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT;
-                }
-                // PANTHEIOS_BE_INIT_F_HIDE_DATE
-                else if (name == PANTHEIOS_LITERAL_STRING("showDate"))
-                {
-                    flagSuppresses  =   true;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_HIDE_DATE;
-                }
-                // PANTHEIOS_BE_INIT_F_HIDE_TIME
-                else if (name == PANTHEIOS_LITERAL_STRING("showTime"))
-                {
-                    flagSuppresses  =   true;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_HIDE_TIME;
-                }
-                // PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
-                else if (name == PANTHEIOS_LITERAL_STRING("highResolution"))
-                {
-                    flagSuppresses  =   false;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION;
-                }
-                // PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
-                else if (name == PANTHEIOS_LITERAL_STRING("lowResolution"))
-                {
-                    flagSuppresses  =   false;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_LOW_RESOLUTION;
-                }
-                // PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
-                else if (name == PANTHEIOS_LITERAL_STRING("numericSeverity"))
-                {
-                    flagSuppresses  =   false;
-                    flagValue       =   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY;
-                }
-                else
+                    option_mapping_t const& mapping = s_mappings[j];
+
+                    if (0 != mapping.flag)
+                    {
+                        if (name == mapping.name)
+                        {
+                            flagSuppresses  =   mapping.is_suppressed;
+                            flagValue       =   mapping.flag;
+
+                            found           =   true;
+                            break;
+                        }
+
+                        // NOTE: this is a half-optimisation, based on `s_mappings` being
+                        // ordered. If this was performance sensitive then we might b-chop
+                        if (name < mapping.name)
+                        {
+                            break;
+                        }
+                    }
+                }}
+
+                if (!found)
                 {
                     continue; // We ignore any non-stock flags
                 }
@@ -528,11 +514,29 @@ pantheios_be_parseStockArgs_(
                     continue; // Invalid value. Mark to ignore
                 }
 
-                ++numProcessed;
+                ++numMatched;
 
-                if ((!flagIsOn) != (!flagSuppresses))
+                if (flagSuppresses)
                 {
-                    *flags |= flagValue;
+                    if (flagIsOn)
+                    {
+                        *flags &= ~flagValue;
+                    }
+                    else
+                    {
+                        *flags |= flagValue;
+                    }
+                }
+                else
+                {
+                    if (flagIsOn)
+                    {
+                        *flags |= flagValue;
+                    }
+                    else
+                    {
+                        *flags &= ~flagValue;
+                    }
                 }
 
                 slice.len = 0; // Mark this slice as having been processed successfully
@@ -540,8 +544,9 @@ pantheios_be_parseStockArgs_(
         }
     }}
 
-    return numProcessed;
+    return numMatched;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -5,16 +5,15 @@
  *          of Pantheios when using only the C API.
  *          Demonstrates:
  *
- *            - how the Pantheios libraries must be explicitly
- *              initialised in a C program; this is not the case in
- *              C++ programs
+ *            - how the Pantheios libraries must be explicitly initialised
+ *              in a C program; this is not the case in C++ programs
  *            - use of pantheios_logputs()
  *            - use of pantheios_logprintf()
  *            - the statement size limitation imposed by
  *              pantheios_logprintf()
  *
  * Created: 17th January 2008
- * Updated: 28th October 2024
+ * Updated: 29th January 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -24,13 +24,13 @@ macro(define_target_compile_options target_name)
 			$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 				-Werror -Wall -Wextra -pedantic
 
-			${X_GCC_CUSTOM_WARNINGS_}
-		>
-		$<$<CXX_COMPILER_ID:MSVC>:
-			/WX /W4
+				${X_GCC_CUSTOM_WARNINGS_}
+			>
+			$<$<CXX_COMPILER_ID:MSVC>:
+				/WX /W4
 
-			${X_MSVC_CUSTOM_WARNINGS_}
-		>
+				${X_MSVC_CUSTOM_WARNINGS_}
+			>
 	)
 endmacro(define_target_compile_options)
 
@@ -53,9 +53,19 @@ endmacro(target_link_Pantheios_util)
 macro(target_link_STLSoft target_name)
 
 	target_link_libraries(${target_name}
-		PRIVATE
+		PUBLIC
 			$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 	)
+
+		if(DEFINED STLSOFT_INCLUDE_DIR)
+
+			get_filename_component(STLSOFT_INCLUDE_DIR "${STLSOFT_INCLUDE_DIR}" ABSOLUTE)
+
+			target_include_directories(${target_name}
+				PUBLIC
+					${STLSOFT_INCLUDE_DIR}
+			)
+		endif()
 endmacro(target_link_STLSoft)
 
 macro(target_link_shwild target_name)
@@ -93,10 +103,7 @@ function(define_simple_console_example_c program_and_main_source_stem)
 			Pantheios.fe.simple
 	)
 
-	target_link_libraries(${program_and_main_source_stem}
-		PRIVATE
-			Pantheios.util
-	)
+	target_link_Pantheios_util(${program_and_main_source_stem})
 
 	target_link_STLSoft(${program_and_main_source_stem})
 
@@ -160,10 +167,7 @@ function(define_simple_console_example_cpp program_and_main_source_stem)
 			Pantheios.fe.simple
 	)
 
-	target_link_libraries(${program_and_main_source_stem}
-		PRIVATE
-			Pantheios.util
-	)
+	target_link_Pantheios_util(${program_and_main_source_stem})
 
 	if(b64_FOUND)
 
@@ -172,6 +176,14 @@ function(define_simple_console_example_cpp program_and_main_source_stem)
 				b64::core
 		)
 	endif(b64_FOUND)
+
+	if(Threads_FOUND)
+
+		target_link_libraries(${program_and_main_source_stem}
+			PRIVATE
+				Threads::Threads
+		)
+	endif(Threads_FOUND)
 
 	target_link_STLSoft(${program_and_main_source_stem})
 

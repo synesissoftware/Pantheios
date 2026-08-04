@@ -5,12 +5,15 @@ Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 MakeCmd=${SIS_CMAKE_COMMAND:-make}
+ProjectNameFile="$Dir/.sis/project_name.txt"
+ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 
 
 Configuration=Release
 ExamplesDisabled=0
 MSVC_MT=0
 MinGW=0
+NO_b64=0
 RunMake=0
 STLSoftDirGiven=
 TestingDisabled=0
@@ -48,6 +51,10 @@ while [[ $# -gt 0 ]]; do
 
       MSVC_MT=1
       ;;
+    --no-b64)
+
+      NO_b64=1
+      ;;
     -m|--run-make)
 
       RunMake=1
@@ -63,10 +70,8 @@ while [[ $# -gt 0 ]]; do
       ;;
     --help)
 
+      [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Pantheios is an efficient, flexible, and robust C/C++ diagnostic logging library
-Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
-Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
 Creates/reinitialises the CMake build script(s)
 
 $ScriptPath [ ... flags/options ... ]
@@ -101,6 +106,9 @@ Flags/options:
     --msvc-mt
         when using Visual C++ (MSVC), the static runtime library will be
         selected; the default is the dynamic runtime library
+
+    --no-b64
+        suppresses discovery of b64 package
 
     -m
     --run-make
@@ -145,10 +153,11 @@ mkdir -p $CMakeDir || exit 1
 
 cd $CMakeDir
 
-echo "Executing CMake (in ${CMakeDir})"
+echo "Executing CMake for ${ProjectName} (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
+if [ $NO_b64 -eq 0 ]; then CMakeNoB64="OFF" ; else CMakeNoB64="ON" ; fi
 if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
@@ -162,6 +171,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
+    -DNO_B64=$CMakeNoB64 \
     -G "MinGW Makefiles" \
     -S $Dir \
     -B $CMakeDir \
@@ -176,6 +186,7 @@ else
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
+    -DNO_B64=$CMakeNoB64 \
     -S $Dir \
     -B $CMakeDir \
     || (cd ->/dev/null ; exit 1)
@@ -186,7 +197,7 @@ status=0
 
 if [ $RunMake -ne 0 ]; then
 
-  echo "Executing build (via command \`$MakeCmd\`)"
+  echo "Executing build for ${ProjectName} (via command \`$MakeCmd\`)"
 
   $MakeCmd
   status=$?

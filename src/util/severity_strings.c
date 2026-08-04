@@ -4,11 +4,11 @@
  * Purpose: Severity strings for Pantheios API
  *
  * Created: 26th July 2005
- * Updated: 16th July 2024
+ * Updated: 27th January 2025
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -55,7 +55,7 @@ namespace pantheios
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * API
+ * implementation
  */
 
 #ifdef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -73,14 +73,14 @@ struct SeverityString
 
 
 
-#define SEVERITY_STR_DECL(rc, desc)                                                     \
-                                                                                        \
-    static const pantheios_char_t   s_str##rc[] =   desc;                                   \
+#define SEVERITY_STR_DECL(rc, desc)                                         \
+                                                                            \
+    static const pantheios_char_t   s_str##rc[] =   desc;                   \
     static const SeverityString     s_rct##rc = { rc, s_str##rc, STLSOFT_NUM_ELEMENTS(s_str##rc) - 1 }
 
 
-#define SEVERITY_STR_ENTRY(rc)                                                          \
-                                                                                        \
+#define SEVERITY_STR_ENTRY(rc)                                              \
+                                                                            \
     &s_rct##rc
 
 
@@ -153,6 +153,11 @@ pantheios_LookupSeverityStringA_(int code, size_t* len)
     return pantheios_LookupCodeA_(code, s_strings, STLSOFT_NUM_ELEMENTS(s_strings), len);
 }
 
+
+/* /////////////////////////////////////////////////////////////////////////
+ * API functions
+ */
+
 /* deprecated */
 PANTHEIOS_CALL(pantheios_char_t const*)
 pantheios_getSeverityString(pan_sev_t severity)
@@ -167,12 +172,14 @@ pantheios_getStockSeverityString(pan_sev_t severity)
 }
 
 /* deprecated */
-PANTHEIOS_CALL(size_t) pantheios_getSeverityStringLength(pan_sev_t severity)
+PANTHEIOS_CALL(size_t)
+pantheios_getSeverityStringLength(pan_sev_t severity)
 {
     return pantheios_getStockSeverityStringLength(severity);
 }
 
-PANTHEIOS_CALL(size_t) pantheios_getStockSeverityStringLength(pan_sev_t severity)
+PANTHEIOS_CALL(size_t)
+pantheios_getStockSeverityStringLength(pan_sev_t severity)
 {
     size_t  len;
 

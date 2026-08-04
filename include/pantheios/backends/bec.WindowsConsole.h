@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios WindowsConsole Stock Back-end API.
  *
  * Created: 17th July 2006
- * Updated: 28th October 2024
+ * Updated: 25th January 2025
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MAJOR    5
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MINOR    2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     29
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_REVISION 3
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -276,7 +276,14 @@ pan_be_WindowsConsole_init_t::pan_be_WindowsConsole_init_t()
 # endif /* !PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT */
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE */
 

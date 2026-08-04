@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios file Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 28th October 2024
+ * Updated: 24th January 2025
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MAJOR      4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MINOR      4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       38
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   3
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       39
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -435,14 +435,18 @@ PANTHEIOS_CALL(int) pantheios_be_file_emptyCache(int backEndId);
  * - "fileName"                 (String)
  * - "truncate"                 (Boolean)
  * - "discardCachedContents"    (Boolean)
+ * - "shareOnWindows"           (Boolean)
  * - "writeMultibyteContents"   (Boolean)
  * - "writeWideContents"        (Boolean)
+ * - "deleteIfEmpty"            (Boolean)
  */
-PANTHEIOS_CALL(int) pantheios_be_file_parseArgs(
+PANTHEIOS_CALL(int)
+pantheios_be_file_parseArgs(
     size_t                          numArgs
 ,   pantheios_slice_t               args[]
 ,   pan_be_file_init_t*             init
 );
+
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -456,8 +460,14 @@ pan_be_file_init_t::pan_be_file_init_t()
 # endif /* !PANTHEIOS_BE_INIT_NO_CPP_STRUCT_INIT */
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////// */
 
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FILE */
 

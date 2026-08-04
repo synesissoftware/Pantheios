@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios syslog Stock Back-end API.
  *
  * Created: 23rd July 2005
- * Updated: 28th October 2024
+ * Updated: 24th January 2025
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     27
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 4
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -185,7 +185,8 @@ typedef struct pan_be_syslog_init_t     pan_be_syslog_init_t;
  *   \ref page__backend__callbacks "callback" version of the library is
  *   used.
  */
-PANTHEIOS_CALL(void) pantheios_be_syslog_getAppInit(
+PANTHEIOS_CALL(void)
+pantheios_be_syslog_getAppInit(
     int                     backEndId
 ,   pan_be_syslog_init_t*   init
 ) /* throw() */;
@@ -207,14 +208,16 @@ PANTHEIOS_CALL(void) pantheios_be_syslog_getAppInit(
  *   already have been called by pantheios_be_syslog_init() prior
  *   to the callback.
  */
-PANTHEIOS_CALL(void) pantheios_be_syslog_getDefaultAppInit(
+PANTHEIOS_CALL(void)
+pantheios_be_syslog_getDefaultAppInit(
     pan_be_syslog_init_t* init
 ) /* throw() */;
 
 /** Implements the functionality for pantheios_be_init() over the UNIX SysLog API.
  * \ingroup group__backend__stock_backends__syslog
  */
-PANTHEIOS_CALL(int) pantheios_be_syslog_init(
+PANTHEIOS_CALL(int)
+pantheios_be_syslog_init(
     PAN_CHAR_T const*           processIdentity
 ,   int                         id
 ,   pan_be_syslog_init_t const* init
@@ -225,14 +228,16 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_init(
 /** Implements the functionality for pantheios_be_uninit() over the UNIX SysLog API.
  * \ingroup group__backend__stock_backends__syslog
  */
-PANTHEIOS_CALL(void) pantheios_be_syslog_uninit(
+PANTHEIOS_CALL(void)
+pantheios_be_syslog_uninit(
     void* token
 );
 
 /** Implements the functionality for pantheios_be_logEntry() over the UNIX SysLog API.
  * \ingroup group__backend__stock_backends__syslog
  */
-PANTHEIOS_CALL(int) pantheios_be_syslog_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_syslog_logEntry(
     void*               feToken
 ,   void*               beToken
 ,   int                 severity
@@ -267,7 +272,8 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_logEntry(
  * - "showPid"                  (Boolean)
  * - "connectImmediately"       (Boolean)
  */
-PANTHEIOS_CALL(int) pantheios_be_syslog_parseArgs(
+PANTHEIOS_CALL(int)
+pantheios_be_syslog_parseArgs(
     size_t                          numArgs
 ,   pantheios_slice_t               args[]
 ,   pan_be_syslog_init_t*           init
@@ -289,7 +295,13 @@ pan_be_syslog_init_t::pan_be_syslog_init_t()
 #endif /* __cplusplus */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_SYSLOG_SRC */
 

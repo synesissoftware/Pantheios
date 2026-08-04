@@ -1,17 +1,17 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.syslog.c
+ * File:    src/backends/bec.syslog.c
  *
- * Purpose:     Implementation for the UNIX SysLog back-end
+ * Purpose: Implementation for the UNIX SysLog back-end
  *
- * Created:     29th June 2005
- * Updated:     7th February 2024
+ * Created: 29th June 2005
+ * Updated: 24th January 2025
  *
- * Thanks to:   Jonathan Wakely for detecting Solaris compilation defects &
- *              fixes.
+ * Thanks:  Jonathan Wakely for detecting Solaris compilation defects &
+ *          fixes.
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -82,7 +82,8 @@
  * - the processIdentity is
  */
 
-PANTHEIOS_CALL(void) pantheios_be_syslog_getDefaultAppInit(pan_be_syslog_init_t* init) /* throw() */
+PANTHEIOS_CALL(void)
+pantheios_be_syslog_getDefaultAppInit(pan_be_syslog_init_t* init) /* throw() */
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
 
@@ -102,7 +103,8 @@ PANTHEIOS_CALL(void) pantheios_be_syslog_getDefaultAppInit(pan_be_syslog_init_t*
 #endif /* WINSYSLOG_F_UDP514 */
 }
 
-PANTHEIOS_CALL(int) pantheios_be_syslog_init(
+PANTHEIOS_CALL(int)
+pantheios_be_syslog_init(
     char const*                 processIdentity
 ,   int                         id
 ,   pan_be_syslog_init_t const* init
@@ -192,14 +194,16 @@ PANTHEIOS_CALL(int) pantheios_be_syslog_init(
     return 0;
 }
 
-PANTHEIOS_CALL(void) pantheios_be_syslog_uninit(void* token)
+PANTHEIOS_CALL(void)
+pantheios_be_syslog_uninit(void* token)
 {
     STLSOFT_SUPPRESS_UNUSED(token);
 
     closelog();
 }
 
-PANTHEIOS_CALL(int) pantheios_be_syslog_logEntry(
+PANTHEIOS_CALL(int)
+pantheios_be_syslog_logEntry(
     void*       feToken
 ,   void*       beToken
 ,   int         severity
@@ -238,6 +242,7 @@ pantheios_be_syslog_parseArgs(
 )
 {
     int res;
+    int r;
 
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API((NULL != args || 0 == numArgs), "argument pointer must be non-null, or number of arguments must be 0");
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
@@ -250,25 +255,61 @@ pantheios_be_syslog_parseArgs(
     if (res >= 0)
     {
         /* 2.d Parse the custom argument: "useStderr" */
-        res = pantheios_be_parseBooleanArg(numArgs, args, "useStderr", 0, PANTHEIOS_BE_SYSLOG_F_PERROR, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, "useStderr", 0, PANTHEIOS_BE_SYSLOG_F_PERROR, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     if (res >= 0)
     {
         /* 2.e Parse the custom argument: "useConsole" */
-        res = pantheios_be_parseBooleanArg(numArgs, args, "useConsole", 0, PANTHEIOS_BE_SYSLOG_F_CONS, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, "useConsole", 0, PANTHEIOS_BE_SYSLOG_F_CONS, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     if (res >= 0)
     {
         /* 2.f Parse the custom argument: "showPid" */
-        res = pantheios_be_parseBooleanArg(numArgs, args, "showPid", 0, PANTHEIOS_BE_SYSLOG_F_PID, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, "showPid", 0, PANTHEIOS_BE_SYSLOG_F_PID, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     if (res >= 0)
     {
         /* 2.g Parse the custom argument: "connectImmediately" */
-        res = pantheios_be_parseBooleanArg(numArgs, args, "connectImmediately", 0, PANTHEIOS_BE_SYSLOG_F_NDELAY, &init->flags);
+        r = pantheios_be_parseBooleanArg(numArgs, args, "connectImmediately", 0, PANTHEIOS_BE_SYSLOG_F_NDELAY, &init->flags);
+
+        if (r < 0)
+        {
+            res = r;
+        }
+        else
+        {
+            res += r;
+        }
     }
 
     return res;

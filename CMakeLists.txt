@@ -1,11 +1,11 @@
 
 # ######################################################################## #
-# File:     CMakeLists.txt
+# File:     /CMakeLists.txt
 #
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  18th November 2024
+# Updated:  4th August 2026
 #
 # ######################################################################## #
 
@@ -14,6 +14,9 @@
 # CMake
 
 cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.31")
+	cmake_policy(SET CMP0177 NEW)
+endif()
 
 # require out-of-source builds
 file(TO_CMAKE_PATH "${CMAKE_CURRENT_BINARY_DIR}/CMakeLists.txt" LOC_PATH)
@@ -46,8 +49,8 @@ string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MAJOR${RX_WS}+
 set(_VERSION_MAJOR ${CMAKE_MATCH_1})
 string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MINOR${RX_WS}+([0-9]+)" MINOR_DUMMY ${_header_file})
 set(_VERSION_MINOR ${CMAKE_MATCH_1})
-string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_REVISION${RX_WS}+([0-9]+)" PATCH_DUMMY ${_header_file})
-set(_VERSION_PATCH ${CMAKE_MATCH_1})
+string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_(PATCH|REVISION)${RX_WS}+([0-9]+)" PATCH_DUMMY ${_header_file})
+set(_VERSION_PATCH ${CMAKE_MATCH_2})
 
 # set project version number here
 set(PROJECT_VERSION_MAJOR ${_VERSION_MAJOR})
@@ -66,6 +69,11 @@ set(CMAKE_CXX_EXTENSIONS ON)
 
 if(MSVC)
 
+	if(MSVC_VERSION LESS 1800)
+
+		add_compile_options("/wd4996")
+	endif()
+
 	if(MSVC_VERSION LESS 1930)
 
 		set(CMAKE_C_STANDARD 90)
@@ -75,6 +83,13 @@ if(MSVC)
 	if(MSVC_USE_MT)
 
 		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+	endif(MSVC_USE_MT)
+else(MSVC)
+
+	if(MSVC_USE_MT)
+
+		# this here just to absorb warning about not using `MSVC_USE_MT` (to
+		# enable **prepare_cmake.sh** to be simple)
 	endif(MSVC_USE_MT)
 endif(MSVC)
 
@@ -93,7 +108,12 @@ include(TargetMacros)
 # ################################################
 # dependencies, features, and options
 
+# ######################################
+# options
+
 option(BUILD_EXAMPLES "Build examples" ON)
+
+option(BUILD_TESTING "Build tests" ON)
 
 
 # ######################################
@@ -122,11 +142,13 @@ endif(PANTHEIOS_USE_WIDE_STRINGS)
 #
 # required:
 # - STLSoft;
-# - xTests - required for testing;
+# - xTests - required for testing only;
 #
 # optional:
 # - b64;
-# - shwild - required for testing;
+# - shwild - required for testing only;
+#
+# - Threads;
 
 
 # ############################
@@ -161,7 +183,10 @@ endif()
 
 if(DEFINED STLSOFT_INCLUDE_DIR)
 
+	get_filename_component(STLSOFT_INCLUDE_DIR "${STLSOFT_INCLUDE_DIR}" ABSOLUTE)
+
 	if(BUILD_TESTING)
+
 		find_package(STLSoft REQUIRED)
 
 		if(NOT STLSoft_FOUND)
@@ -180,17 +205,22 @@ endif()
 # ############################
 # b64
 
-find_package(b64 QUIET)
+if(NOT NO_B64)
 
-if(b64_FOUND)
+	find_package(b64 QUIET)
 
-	message("-- CMake package b64 found (version ${b64_VERSION})")
+	if(b64_FOUND)
 
-	add_compile_definitions(HAS_b64)
-else(b64_FOUND)
+		message("-- CMake package b64 found (version ${b64_VERSION})")
+
+		add_compile_definitions(HAS_b64)
+	endif(b64_FOUND)
+endif()
+
+if(NOT b64_FOUND)
 
 	add_compile_definitions(PANTHEIOS_NO_B64)
-endif(b64_FOUND)
+endif()
 
 
 # ############################
@@ -218,15 +248,37 @@ endif(BUILD_TESTING)
 
 
 # ############################
+# Threads
+
+if(UNIX)
+
+	set(CMAKE_USE_PTHREADS_INIT TRUE)
+	set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+endif(UNIX)
+
+find_package(Threads QUIET)
+
+if(Threads_FOUND)
+
+	message("-- Threads package found")
+
+	add_compile_definitions(_REENTRANT) # TODO: determine whether to further refine _which_ threads package is provided, and potentially change this definition and/or UNIXSTL and Pantheios::util functionality
+	add_compile_definitions(PANTHEIOS_FORCE_MT)
+endif(Threads_FOUND)
+
+
+# ############################
 # xTests
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.25.4)
+	set(xTests_REQUIRED_VERSION_ 0.26.4)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+
+	add_compile_definitions(HAS_xTests)
 endif(BUILD_TESTING)
 
 
@@ -244,6 +296,36 @@ include(GNUInstallDirs)
 
 # ##########################################################
 # targets
+
+# ################################################
+# custom definitions
+
+if(UNIX)
+
+	set(_BUILD_AS_UNIX 1)
+
+	message("-- Operating system Unix")
+else(UNIX)
+
+	if(WIN32)
+
+		if(USE_UNIXEM)
+
+			set(_BUILD_AS_UNIX 1)
+
+			message("-- Operating system Unix (synthesised on Windows)")
+		else(USE_UNIXEM)
+
+			set(_BUILD_AS_WIN32 1)
+
+			message("-- Operating system Windows")
+		endif(USE_UNIXEM)
+	else(WIN32)
+
+		message("-- Operating system unknown")
+	endif(WIN32)
+endif(UNIX)
+
 
 # ################################################
 # main libraries
@@ -286,7 +368,7 @@ endif(BUILD_TESTING)
 # ##########################################################
 # export
 
-set(EXPORT_NAME ${PROJECT_NAME})
+set(EXPORT_NAME ${PROJECT_NAME_LOWER})
 
 #[====[
 #]====]

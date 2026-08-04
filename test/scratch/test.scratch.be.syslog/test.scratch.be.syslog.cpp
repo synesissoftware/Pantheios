@@ -3,12 +3,11 @@
  *
  * Purpose: C++ example program for Pantheios. Demonstrates:
  *
- *            - use of custom severity level information for tabbing output
- *            - definition of a custom back-end that supports tabbed output
+ *            - use of Pantheios logging statements for C-style strings
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 10th November 2010
- * Updated: 28th October 2024
+ * Updated: 29th January 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 

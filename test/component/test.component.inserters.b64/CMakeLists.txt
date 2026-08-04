@@ -28,6 +28,8 @@ if(shwild_FOUND)
 	target_link_shwild(test.component.inserters.b64)
 endif(shwild_FOUND)
 
+target_link_STLSoft(test.component.inserters.b64)
+
 target_link_xTests(test.component.inserters.b64)
 
 target_compile_options(test.component.inserters.b64 PRIVATE

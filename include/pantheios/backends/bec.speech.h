@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios speech Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 28th October 2024
+ * Updated: 25th January 2025
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -271,7 +271,13 @@ pan_be_speech_init_t::pan_be_speech_init_t()
 #endif /* __cplusplus */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * inclusion
+ */
+
+#ifdef STLSOFT_PPF_pragma_once_SUPPORT
+# pragma once
+#endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_SPEECH */
 
