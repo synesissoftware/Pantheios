@@ -1,4 +1,5 @@
-# pantheios - Install <!-- omit in toc -->
+# Pantheios - Installation and Use <!-- omit in toc -->
+
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -179,18 +180,20 @@ $ make
 
 ----
 
+
 ## Understanding the top-level project build scripts
 
 This project comes with a number of scripts useful for building with **CMake**, as follows:
 
 | Script                    | Purpose |
 | ------------------------- | ------- |
-| **prepare_cmake.sh**          | Creates/reinitialises the **CMake** build script(s).<br/><br/>This is the primary script, and is used to generate all the **CMake** build artefacts. We recommend that you use the command  as follows:</br></br>&nbsp;&nbsp;&nbsp;&nbsp;`./prepare_cmake.sh -m -v`.<br/><br/>The flag `-m` executes a build upon successful generation completes, and the flag `-v` generates verbose makefile(s). Use `./prepare_cmake.sh --help` for further information. |
 | **build_cmake.sh**            | Executes **CMake**-generated artefacts to (re)build project.<br/><br/>Performs a (re)build, meaningful only once `prepare_cmake.sh` has been run once to generate all the **CMake** build artefacts.<br/><br/>Use `./build_cmake.sh --help` for further information. |
 | **clean_cmake.sh**            | Executes **CMake**-generated artefacts to clean project.<br/><br/>Performs a (re)build, meaningful only once `prepare_cmake.sh` has been run once to generate all the **CMake** build artefacts and a build has been run.<br/><br/>Use `./clean_cmake.sh --help` for further information. |
+| **libver.sh**                 | Builds (unless suppressed) and runs the **libver** scratch program, which prints composite version macros for **Pantheios** and its discovered dependencies.<br/><br/>Use `./libver.sh --help` for further information. |
+| **prepare_cmake.sh**          | Creates/reinitialises the **CMake** build script(s).<br/><br/>This is the primary script, and is used to generate all the **CMake** build artefacts. We recommend that you use the command  as follows:</br></br>&nbsp;&nbsp;&nbsp;&nbsp;`./prepare_cmake.sh -m -v`.<br/><br/>The flag `-m` executes a build upon successful generation completes, and the flag `-v` generates verbose makefile(s). Use `./prepare_cmake.sh --help` for further information. |
+| **remove_cmake_artefacts.sh** | Removes all known **CMake** artefacts.<br/><br/>Removes all known **CMake** build artefacts from the build directory (currently hard-coded to `./_build`) to prepare for complete regeneration using `prepare_cmake.sh`.<br/><br/>Use `./remove_cmake_artefacts.sh --help` for further information. |
 | **run_all_examples.sh**       | Runs all (matching) example programs.<br/><br/>Performs a build and then recursively runs all executable programs matching the shell patterns `example.c.*` and `example.cpp.*`.<br/><br/>Use `./run_all_examples.sh --help` for further information. |
 | **run_all_unit_tests.sh**     | Runs all (matching) unit-test programs.<br/><br/>Performs a build and then recursively runs and executes all (excutable programs) matching the shell patterns `test_*` and `test.*`.<br/><br/>Use `./run_all_unit_tests.sh --help` for further information. |
-| **remove_cmake_artefacts.sh** | Removes all known **CMake** artefacts.<br/><br/>Removes all known **CMake** build artefacts from the build directory (currently hard-coded to `./_build`) to prepare for complete regeneration using `prepare_cmake.sh`.<br/><br/>Use `./remove_cmake_artefacts.sh --help` for further information. |
 
 
 <!-- ########################### end of file ########################### -->

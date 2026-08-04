@@ -1,13 +1,13 @@
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-if(UNIX)
+if(_BUILD_AS_UNIX)
 
 	add_definitions(-DUNIX)
 	add_definitions(-Dunix)
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 
@@ -20,7 +20,7 @@ if(WIN32)
 
 		add_definitions(-DWIN32)
 	endif()
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 if ((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
 

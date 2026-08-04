@@ -3,277 +3,277 @@
 
 | Date           | News Item                                                                        |
 | -------------- | -------------------------------------------------------------------------------- |
-| 2nd Aug 2026   | [Pantheios 1.0.1 rc1 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc1) |
-| 18th Nov 2024  | Pantheios 1.0.1 beta 222 released                                                |
-| 24th Oct 2024  | Pantheios 1.0.1 beta 221 released                                                |
-| 16th Jul 2024  | Pantheios 1.0.1 beta 220 released                                                |
-| 5th Jul 2020   | Pantheios 1.0.1 beta 219 released                                                |
-| 29th Jan 2017  | Pantheios 1.0.1 beta 218 released                                                |
-| 30th Jun 2016  | Pantheios 1.0.1 beta 217 released                                                |
-| 25th Oct 2015  | Pantheios 1.0.1 beta 216 released                                                |
-| 27th Sep 2015  | Pantheios 1.0.1 beta 215 released                                                |
+| 4th Aug 2026   | [Pantheios 1.0.1-rc1 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc1) |
+| 18th Nov 2024  | Pantheios 1.0.1-beta222 released                                                 |
+| 24th Oct 2024  | Pantheios 1.0.1-beta221 released                                                 |
+| 16th Jul 2024  | Pantheios 1.0.1-beta220 released                                                 |
+| 5th Jul 2020   | Pantheios 1.0.1-beta219 released                                                 |
+| 29th Jan 2017  | Pantheios 1.0.1-beta218 released                                                 |
+| 30th Jun 2016  | Pantheios 1.0.1-beta217 released                                                 |
+| 25th Oct 2015  | Pantheios 1.0.1-beta216 released                                                 |
+| 27th Sep 2015  | Pantheios 1.0.1-beta215 released                                                 |
 | September 2015 | Pantheios now available on GitHub (https://github.com/synesissoftware/Pantheios) |
-| 7th Aug 2012   | Pantheios 1.0.1 beta 214 released                                                |
-| 6th Dec 2011   | Pantheios 1.0.1 beta 213 released                                                |
-| 13th Aug 2011  | Pantheios 1.0.1 beta 212 released                                                |
-| 1st Feb 2011   | Pantheios 1.0.1 beta 211 released                                                |
-| 10th Jan 2011  | Pantheios 1.0.1 beta 210 released                                                |
-| 8th Jan 2011   | Pantheios::Extras::DiagUtil 0.1.1 alpha 1 released                               |
-| 7th Jan 2011   | Pantheios::Extras::Main 0.1.1 alpha 1 released                                   |
-| 6th Jan 2011   | Pantheios 1.0.1 beta 209 released                                                |
-| 4th Jan 2011   | Pantheios 1.0.1 beta 208 released                                                |
-| 27th Dec 2010  | Pantheios 1.0.1 beta 207 released                                                |
-| 23rd Dec 2010  | Pantheios.COM 1.0.1 beta 31 released                                             |
-| 21st Dec 2010  | Pantheios 1.0.1 beta 206 released                                                |
-| 11th Dec 2010  | Pantheios 1.0.1 beta 205 released                                                |
-| 7th Dec 2010   | Pantheios 1.0.1 beta 204 released                                                |
-| 26th Nov 2010  | Pantheios 1.0.1 beta 203 released                                                |
-| 23rd Nov 2010  | Pantheios 1.0.1 beta 202 released                                                |
-| 19th Nov 2010  | Pantheios 1.0.1 beta 201 released                                                |
-| 15th Nov 2010  | Pantheios 1.0.1 beta 200 released                                                |
-| 10th Nov 2010  | Pantheios 1.0.1 beta 199 released                                                |
-| 8th Nov 2010   | Pantheios 1.0.1 beta 198 released                                                |
-| 18th Oct 2010  | Pantheios 1.0.1 beta 197 released                                                |
-| 4th Apr 2010   | Pantheios 1.0.1 beta 196 released                                                |
-| 5th Mar 2010   | Pantheios 1.0.1 beta 195 released                                                |
-| 15th Feb 2010  | Pantheios 1.0.1 beta 194 released                                                |
-| 24th Jul 2009  | Pantheios 1.0.1 beta 193 released                                                |
-| 8th Jul 2009   | Pantheios 1.0.1 beta 192 released                                                |
-| 4th Jul 2009   | Pantheios 1.0.1 beta 191 released                                                |
-| 3rd Jul 2009   | Pantheios 1.0.1 beta 190 released                                                |
-| 29th Jun 2009  | Pantheios 1.0.1 beta 189 released                                                |
-| 21st May 2009  | Pantheios 1.0.1 beta 188 released                                                |
-| 15th May 2009  | Pantheios 1.0.1 beta 187 released                                                |
-| 8th May 2009   | Pantheios 1.0.1 beta 186 released                                                |
-| 17th Apr 2009  | Pantheios 1.0.1 beta 185 released                                                |
-| 16th Apr 2009  | Pantheios 1.0.1 beta 184 released                                                |
-| 16th Feb 2009  | Pantheios 1.0.1 beta 183 released                                                |
-| 15th Feb 2009  | Pantheios 1.0.1 beta 182 released                                                |
-| 13th Feb 2009  | Pantheios 1.0.1 beta 181 released                                                |
-| 3rd Feb 2009   | Pantheios 1.0.1 beta 180 released                                                |
-| 1st Feb 2009   | Pantheios 1.0.1 beta 179 released                                                |
-| 16th Jan 2009  | Pantheios 1.0.1 beta 178 released                                                |
-| 1st Jan 2009   | Pantheios 1.0.1 beta 177 released                                                |
-| 30th Dec 2008  | Pantheios 1.0.1 beta 176 released                                                |
-| 19th Dec 2008  | Pantheios 1.0.1 beta 175 released                                                |
-| 3rd Dec 2008   | Pantheios 1.0.1 beta 174 released                                                |
-| 18th Nov 2008  | Pantheios 1.0.1 beta 173 released                                                |
-| 13th Nov 2008  | Pantheios 1.0.1 beta 172 released                                                |
-| 11th Nov 2008  | Pantheios 1.0.1 beta 171 released                                                |
-| 10th Nov 2008  | Pantheios 1.0.1 beta 170 released                                                |
-| 3rd Nov 2008   | Pantheios 1.0.1 beta 169 released                                                |
-| 18th Oct 2008  | Pantheios 1.0.1 beta 168 released                                                |
-| 16th Oct 2008  | Pantheios 1.0.1 beta 167 released                                                |
-| 15th Oct 2008  | Pantheios 1.0.1 beta 166 released                                                |
-| 14th Oct 2008  | Pantheios 1.0.1 beta 165 released                                                |
-| 12th Oct 2008  | Pantheios 1.0.1 beta 164 released                                                |
-| 11th Oct 2008  | Pantheios 1.0.1 beta 163 released                                                |
-| 8th Oct 2008   | Pantheios.COM 1.0.1 beta 27 released                                             |
-| 7th Oct 2008   | Pantheios 1.0.1 beta 162 released                                                |
-| 27th Sep 2008  | Pantheios 1.0.1 beta 161 released                                                |
-| 25th Aug 2008  | Pantheios.COM 1.0.1 beta 26 released                                             |
-| 24th Sep 2008  | Pantheios 1.0.1 beta 160 released                                                |
-| 22nd Sep 2008  | Pantheios 1.0.1 beta 159 released                                                |
-| 19th Sep 2008  | Pantheios 1.0.1 beta 158 released                                                |
-| 18th Sep 2008  | Pantheios 1.0.1 beta 157 released                                                |
-| 12th Sep 2008  | Pantheios 1.0.1 beta 156 released                                                |
-| 11th Sep 2008  | Pantheios 1.0.1 beta 155 released                                                |
-| 3rd Sep 2008   | FastFormat 0.2.1 alpha 1 released                                                |
-| 2nd Sep 2008   | Pantheios 1.0.1 beta 154 released                                                |
-| 1st Sep 2008   | Pantheios 1.0.1 beta 153 released                                                |
-| 28th Aug 2008  | Pantheios 1.0.1 beta 152 released                                                |
-| 27th Aug 2008  | Pantheios.COM 1.0.1 beta 25 released                                             |
+| 7th Aug 2012   | Pantheios 1.0.1-beta214 released                                                 |
+| 6th Dec 2011   | Pantheios 1.0.1-beta213 released                                                 |
+| 13th Aug 2011  | Pantheios 1.0.1-beta212 released                                                 |
+| 1st Feb 2011   | Pantheios 1.0.1-beta211 released                                                 |
+| 10th Jan 2011  | Pantheios 1.0.1-beta210 released                                                 |
+| 8th Jan 2011   | Pantheios::Extras::DiagUtil 0.1.1-alpha1 released                                |
+| 7th Jan 2011   | Pantheios::Extras::Main 0.1.1-alpha1 released                                    |
+| 6th Jan 2011   | Pantheios 1.0.1-beta209 released                                                 |
+| 4th Jan 2011   | Pantheios 1.0.1-beta208 released                                                 |
+| 27th Dec 2010  | Pantheios 1.0.1-beta207 released                                                 |
+| 23rd Dec 2010  | Pantheios.COM 1.0.1-beta31 released                                              |
+| 21st Dec 2010  | Pantheios 1.0.1-beta206 released                                                 |
+| 11th Dec 2010  | Pantheios 1.0.1-beta205 released                                                 |
+| 7th Dec 2010   | Pantheios 1.0.1-beta204 released                                                 |
+| 26th Nov 2010  | Pantheios 1.0.1-beta203 released                                                 |
+| 23rd Nov 2010  | Pantheios 1.0.1-beta202 released                                                 |
+| 19th Nov 2010  | Pantheios 1.0.1-beta201 released                                                 |
+| 15th Nov 2010  | Pantheios 1.0.1-beta200 released                                                 |
+| 10th Nov 2010  | Pantheios 1.0.1-beta199 released                                                 |
+| 8th Nov 2010   | Pantheios 1.0.1-beta198 released                                                 |
+| 18th Oct 2010  | Pantheios 1.0.1-beta197 released                                                 |
+| 4th Apr 2010   | Pantheios 1.0.1-beta196 released                                                 |
+| 5th Mar 2010   | Pantheios 1.0.1-beta195 released                                                 |
+| 15th Feb 2010  | Pantheios 1.0.1-beta194 released                                                 |
+| 24th Jul 2009  | Pantheios 1.0.1-beta193 released                                                 |
+| 8th Jul 2009   | Pantheios 1.0.1-beta192 released                                                 |
+| 4th Jul 2009   | Pantheios 1.0.1-beta191 released                                                 |
+| 3rd Jul 2009   | Pantheios 1.0.1-beta190 released                                                 |
+| 29th Jun 2009  | Pantheios 1.0.1-beta189 released                                                 |
+| 21st May 2009  | Pantheios 1.0.1-beta188 released                                                 |
+| 15th May 2009  | Pantheios 1.0.1-beta187 released                                                 |
+| 8th May 2009   | Pantheios 1.0.1-beta186 released                                                 |
+| 17th Apr 2009  | Pantheios 1.0.1-beta185 released                                                 |
+| 16th Apr 2009  | Pantheios 1.0.1-beta184 released                                                 |
+| 16th Feb 2009  | Pantheios 1.0.1-beta183 released                                                 |
+| 15th Feb 2009  | Pantheios 1.0.1-beta182 released                                                 |
+| 13th Feb 2009  | Pantheios 1.0.1-beta181 released                                                 |
+| 3rd Feb 2009   | Pantheios 1.0.1-beta180 released                                                 |
+| 1st Feb 2009   | Pantheios 1.0.1-beta179 released                                                 |
+| 16th Jan 2009  | Pantheios 1.0.1-beta178 released                                                 |
+| 1st Jan 2009   | Pantheios 1.0.1-beta177 released                                                 |
+| 30th Dec 2008  | Pantheios 1.0.1-beta176 released                                                 |
+| 19th Dec 2008  | Pantheios 1.0.1-beta175 released                                                 |
+| 3rd Dec 2008   | Pantheios 1.0.1-beta174 released                                                 |
+| 18th Nov 2008  | Pantheios 1.0.1-beta173 released                                                 |
+| 13th Nov 2008  | Pantheios 1.0.1-beta172 released                                                 |
+| 11th Nov 2008  | Pantheios 1.0.1-beta171 released                                                 |
+| 10th Nov 2008  | Pantheios 1.0.1-beta170 released                                                 |
+| 3rd Nov 2008   | Pantheios 1.0.1-beta169 released                                                 |
+| 18th Oct 2008  | Pantheios 1.0.1-beta168 released                                                 |
+| 16th Oct 2008  | Pantheios 1.0.1-beta167 released                                                 |
+| 15th Oct 2008  | Pantheios 1.0.1-beta166 released                                                 |
+| 14th Oct 2008  | Pantheios 1.0.1-beta165 released                                                 |
+| 12th Oct 2008  | Pantheios 1.0.1-beta164 released                                                 |
+| 11th Oct 2008  | Pantheios 1.0.1-beta163 released                                                 |
+| 8th Oct 2008   | Pantheios.COM 1.0.1-beta27 released                                              |
+| 7th Oct 2008   | Pantheios 1.0.1-beta162 released                                                 |
+| 27th Sep 2008  | Pantheios 1.0.1-beta161 released                                                 |
+| 25th Aug 2008  | Pantheios.COM 1.0.1-beta26 released                                              |
+| 24th Sep 2008  | Pantheios 1.0.1-beta160 released                                                 |
+| 22nd Sep 2008  | Pantheios 1.0.1-beta159 released                                                 |
+| 19th Sep 2008  | Pantheios 1.0.1-beta158 released                                                 |
+| 18th Sep 2008  | Pantheios 1.0.1-beta157 released                                                 |
+| 12th Sep 2008  | Pantheios 1.0.1-beta156 released                                                 |
+| 11th Sep 2008  | Pantheios 1.0.1-beta155 released                                                 |
+| 3rd Sep 2008   | FastFormat 0.2.1-alpha1 released                                                 |
+| 2nd Sep 2008   | Pantheios 1.0.1-beta154 released                                                 |
+| 1st Sep 2008   | Pantheios 1.0.1-beta153 released                                                 |
+| 28th Aug 2008  | Pantheios 1.0.1-beta152 released                                                 |
+| 27th Aug 2008  | Pantheios.COM 1.0.1-beta25 released                                              |
 | 26th Aug 2008  | Pantheios Library Selector Tool (for Win32) 1.9.4.50 released                    |
-| 25th Aug 2008  | Pantheios 1.0.1 beta 151 released                                                |
-| 24th Aug 2008  | Pantheios 1.0.1 beta 150 released                                                |
-| 12th Aug 2008  | Pantheios 1.0.1 beta 149 released                                                |
-| 11th Aug 2008  | Pantheios 1.0.1 beta 148 released                                                |
-| 7th Aug 2008   | Pantheios 1.0.1 beta 147 released                                                |
-| 7th Aug 2008   | Pantheios 1.0.1 beta 146 released                                                |
-| 1st Aug 2008   | Pantheios 1.0.1 beta 145 released                                                |
-| 30th Jul 2008  | Pantheios 1.0.1 beta 144 released                                                |
-| 29th Jul 2008  | Pantheios 1.0.1 beta 143 released                                                |
-| 25th Jul 2008  | Pantheios 1.0.1 beta 142 released                                                |
-| 24th Jul 2008  | Pantheios 1.0.1 beta 141 released                                                |
-| 19th Jun 2008  | Pantheios 1.0.1 beta 140 released                                                |
-| 18th Jun 2008  | Pantheios 1.0.1 beta 139 released                                                |
-| 16th Jun 2008  | Pantheios 1.0.1 beta 138 released                                                |
-| 2nd Jun 2008   | Pantheios 1.0.1 beta 137 released                                                |
-| 24th May 2008  | Pantheios.COM 1.0.1 beta 24 released                                             |
+| 25th Aug 2008  | Pantheios 1.0.1-beta151 released                                                 |
+| 24th Aug 2008  | Pantheios 1.0.1-beta150 released                                                 |
+| 12th Aug 2008  | Pantheios 1.0.1-beta149 released                                                 |
+| 11th Aug 2008  | Pantheios 1.0.1-beta148 released                                                 |
+| 7th Aug 2008   | Pantheios 1.0.1-beta147 released                                                 |
+| 7th Aug 2008   | Pantheios 1.0.1-beta146 released                                                 |
+| 1st Aug 2008   | Pantheios 1.0.1-beta145 released                                                 |
+| 30th Jul 2008  | Pantheios 1.0.1-beta144 released                                                 |
+| 29th Jul 2008  | Pantheios 1.0.1-beta143 released                                                 |
+| 25th Jul 2008  | Pantheios 1.0.1-beta142 released                                                 |
+| 24th Jul 2008  | Pantheios 1.0.1-beta141 released                                                 |
+| 19th Jun 2008  | Pantheios 1.0.1-beta140 released                                                 |
+| 18th Jun 2008  | Pantheios 1.0.1-beta139 released                                                 |
+| 16th Jun 2008  | Pantheios 1.0.1-beta138 released                                                 |
+| 2nd Jun 2008   | Pantheios 1.0.1-beta137 released                                                 |
+| 24th May 2008  | Pantheios.COM 1.0.1-beta24 released                                              |
 | 22nd May 2008  | Pantheios Library Selector Tool (for Win32) 1.9.2.48 released                    |
 | 21st May 2008  | Pantheios Library Selector Tool (for Win32) 1.9.1.47 released                    |
-| 21st May 2008  | Pantheios 1.0.1 beta 136 released                                                |
+| 21st May 2008  | Pantheios 1.0.1-beta136 released                                                 |
 | 18th May 2008  | Pantheios Library Selector Tool (for Win32) 1.8.1.45 released                    |
-| 17th May 2008  | Pantheios 1.0.1 beta 135 released                                                |
+| 17th May 2008  | Pantheios 1.0.1-beta135 released                                                 |
 | 17th May 2008  | Pantheios Library Selector Tool (for Win32) 1.7.1.44 released                    |
-| 16th May 2008  | Pantheios 1.0.1 beta 134 released                                                |
-| 14th May 2008  | Pantheios 1.0.1 beta 133 released                                                |
-| 13th May 2008  | Pantheios 1.0.1 beta 132 released                                                |
-| 11th May 2008  | Pantheios 1.0.1 beta 131 released                                                |
-| 4th May 2008   | Pantheios 1.0.1 beta 130 released                                                |
-| 3rd May 2008   | Pantheios 1.0.1 beta 129 released                                                |
-| 1st May 2008   | Pantheios 1.0.1 beta 128 released                                                |
-| 29th Apr 2008  | Pantheios 1.0.1 beta 127 released                                                |
-| 22nd Apr 2008  | Pantheios 1.0.1 beta 126 released                                                |
-| 20th Apr 2008  | Pantheios 1.0.1 beta 125 released                                                |
-| 20th Apr 2008  | Pantheios 1.0.1 beta 124 released                                                |
-| 19th Apr 2008  | Pantheios 1.0.1 beta 123 released                                                |
-| 16th Apr 2008  | Pantheios 1.0.1 beta 122 released                                                |
-| 15th Apr 2008  | Pantheios 1.0.1 beta 121 released                                                |
-| 13th Apr 2008  | Pantheios.COM 1.0.1 beta 23 released                                             |
-| 10th Apr 2008  | Pantheios 1.0.1 beta 120 released                                                |
-| 8th Apr 2008   | Pantheios 1.0.1 beta 119 released                                                |
-| 6th Apr 2008   | Pantheios 1.0.1 beta 118 released                                                |
-| 5th Apr 2008   | Pantheios 1.0.1 beta 117 released                                                |
-| 4th Apr 2008   | Pantheios 1.0.1 beta 116 released                                                |
-| 3rd Apr 2008   | Pantheios 1.0.1 beta 115 released                                                |
-| 2nd Apr 2008   | Pantheios 1.0.1 beta 114 released                                                |
-| 28th Mar 2008  | Pantheios 1.0.1 beta 113 released                                                |
-| 20th Mar 2008  | Pantheios 1.0.1 beta 112 released                                                |
-| 19th Mar 2008  | Pantheios 1.0.1 beta 111 released                                                |
-| 18th Mar 2008  | Pantheios 1.0.1 beta 110 released                                                |
-| 17th Mar 2008  | Pantheios 1.0.1 beta 109 released                                                |
-| 16th Mar 2008  | Pantheios 1.0.1 beta 108 released                                                |
+| 16th May 2008  | Pantheios 1.0.1-beta134 released                                                 |
+| 14th May 2008  | Pantheios 1.0.1-beta133 released                                                 |
+| 13th May 2008  | Pantheios 1.0.1-beta132 released                                                 |
+| 11th May 2008  | Pantheios 1.0.1-beta131 released                                                 |
+| 4th May 2008   | Pantheios 1.0.1-beta130 released                                                 |
+| 3rd May 2008   | Pantheios 1.0.1-beta129 released                                                 |
+| 1st May 2008   | Pantheios 1.0.1-beta128 released                                                 |
+| 29th Apr 2008  | Pantheios 1.0.1-beta127 released                                                 |
+| 22nd Apr 2008  | Pantheios 1.0.1-beta126 released                                                 |
+| 20th Apr 2008  | Pantheios 1.0.1-beta125 released                                                 |
+| 20th Apr 2008  | Pantheios 1.0.1-beta124 released                                                 |
+| 19th Apr 2008  | Pantheios 1.0.1-beta123 released                                                 |
+| 16th Apr 2008  | Pantheios 1.0.1-beta122 released                                                 |
+| 15th Apr 2008  | Pantheios 1.0.1-beta121 released                                                 |
+| 13th Apr 2008  | Pantheios.COM 1.0.1-beta23 released                                              |
+| 10th Apr 2008  | Pantheios 1.0.1-beta120 released                                                 |
+| 8th Apr 2008   | Pantheios 1.0.1-beta119 released                                                 |
+| 6th Apr 2008   | Pantheios 1.0.1-beta118 released                                                 |
+| 5th Apr 2008   | Pantheios 1.0.1-beta117 released                                                 |
+| 4th Apr 2008   | Pantheios 1.0.1-beta116 released                                                 |
+| 3rd Apr 2008   | Pantheios 1.0.1-beta115 released                                                 |
+| 2nd Apr 2008   | Pantheios 1.0.1-beta114 released                                                 |
+| 28th Mar 2008  | Pantheios 1.0.1-beta113 released                                                 |
+| 20th Mar 2008  | Pantheios 1.0.1-beta112 released                                                 |
+| 19th Mar 2008  | Pantheios 1.0.1-beta111 released                                                 |
+| 18th Mar 2008  | Pantheios 1.0.1-beta110 released                                                 |
+| 17th Mar 2008  | Pantheios 1.0.1-beta109 released                                                 |
+| 16th Mar 2008  | Pantheios 1.0.1-beta108 released                                                 |
 | 15th Mar 2008  | Pantheios Library Selector Tool (for Win32) 1.6.1.42 released                    |
-| 15th Mar 2008  | Pantheios 1.0.1 beta 107 released                                                |
-| 13th Mar 2008  | Pantheios 1.0.1 beta 106 released                                                |
-| 9th Mar 2008   | Pantheios 1.0.1 beta 105 released                                                |
-| 8th Mar 2008   | Pantheios 1.0.1 beta 104 released                                                |
-| 1st Mar 2008   | Pantheios 1.0.1 beta 103 released                                                |
-| 25th Feb 2008  | Pantheios 1.0.1 beta 102 released                                                |
-| 23rd Feb 2008  | Pantheios 1.0.1 beta 101 released                                                |
-| 20th Feb 2008  | Pantheios 1.0.1 beta 100 released                                                |
-| 12th Feb 2008  | Pantheios 1.0.1 beta 99 released                                                 |
-| 9th Feb 2008   | Pantheios 1.0.1 beta 98 released                                                 |
-| 8th Feb 2008   | Pantheios 1.0.1 beta 97 released                                                 |
-| 5th Feb 2008   | Pantheios 1.0.1 beta 96 released                                                 |
-| 5th Feb 2008   | Pantheios 1.0.1 beta 95 released                                                 |
-| 3rd Jan 2008   | Pantheios.COM 1.0.1 beta 22 released                                             |
-| 3rd Feb 2008   | Pantheios 1.0.1 beta 94 released                                                 |
-| 2nd Feb 2008   | Pantheios 1.0.1 beta 93 released                                                 |
-| 28th Jan 2008  | Pantheios 1.0.1 beta 92 released                                                 |
-| 27th Jan 2008  | Pantheios 1.0.1 beta 91 released                                                 |
-| 27th Jan 2008  | Pantheios 1.0.1 beta 90 released                                                 |
-| 26th Jan 2008  | Pantheios 1.0.1 beta 89 released                                                 |
-| 20th Jan 2008  | Pantheios 1.0.1 beta 88 released                                                 |
-| 20th Jan 2008  | Pantheios 1.0.1 beta 87 released                                                 |
-| 19th Jan 2008  | Pantheios 1.0.1 beta 86 released                                                 |
-| 15th Jan 2008  | Pantheios 1.0.1 beta 85 released                                                 |
-| 14th Jan 2008  | Pantheios 1.0.1 beta 84 released                                                 |
-| 13th Jan 2008  | Pantheios 1.0.1 beta 83 released                                                 |
-| 12th Jan 2008  | Pantheios 1.0.1 beta 82 released                                                 |
-| 11th Jan 2008  | Pantheios 1.0.1 beta 81 released                                                 |
-| 8th Jan 2008   | Pantheios 1.0.1 beta 80 released                                                 |
-| 6th Jan 2008   | Pantheios 1.0.1 beta 79 released                                                 |
-| 6th Jan 2008   | Pantheios 1.0.1 beta 78 released                                                 |
-| 5th Jan 2008   | Pantheios 1.0.1 beta 77 released                                                 |
-| 4th Jan 2008   | Pantheios 1.0.1 beta 76 released                                                 |
-| 3rd Jan 2008   | Pantheios 1.0.1 beta 75 released                                                 |
-| 3rd Jan 2008   | Pantheios.COM 1.0.1 beta 21 released                                             |
+| 15th Mar 2008  | Pantheios 1.0.1-beta107 released                                                 |
+| 13th Mar 2008  | Pantheios 1.0.1-beta106 released                                                 |
+| 9th Mar 2008   | Pantheios 1.0.1-beta105 released                                                 |
+| 8th Mar 2008   | Pantheios 1.0.1-beta104 released                                                 |
+| 1st Mar 2008   | Pantheios 1.0.1-beta103 released                                                 |
+| 25th Feb 2008  | Pantheios 1.0.1-beta102 released                                                 |
+| 23rd Feb 2008  | Pantheios 1.0.1-beta101 released                                                 |
+| 20th Feb 2008  | Pantheios 1.0.1-beta100 released                                                 |
+| 12th Feb 2008  | Pantheios 1.0.1-beta99 released                                                  |
+| 9th Feb 2008   | Pantheios 1.0.1-beta98 released                                                  |
+| 8th Feb 2008   | Pantheios 1.0.1-beta97 released                                                  |
+| 5th Feb 2008   | Pantheios 1.0.1-beta96 released                                                  |
+| 5th Feb 2008   | Pantheios 1.0.1-beta95 released                                                  |
+| 3rd Jan 2008   | Pantheios.COM 1.0.1-beta22 released                                              |
+| 3rd Feb 2008   | Pantheios 1.0.1-beta94 released                                                  |
+| 2nd Feb 2008   | Pantheios 1.0.1-beta93 released                                                  |
+| 28th Jan 2008  | Pantheios 1.0.1-beta92 released                                                  |
+| 27th Jan 2008  | Pantheios 1.0.1-beta91 released                                                  |
+| 27th Jan 2008  | Pantheios 1.0.1-beta90 released                                                  |
+| 26th Jan 2008  | Pantheios 1.0.1-beta89 released                                                  |
+| 20th Jan 2008  | Pantheios 1.0.1-beta88 released                                                  |
+| 20th Jan 2008  | Pantheios 1.0.1-beta87 released                                                  |
+| 19th Jan 2008  | Pantheios 1.0.1-beta86 released                                                  |
+| 15th Jan 2008  | Pantheios 1.0.1-beta85 released                                                  |
+| 14th Jan 2008  | Pantheios 1.0.1-beta84 released                                                  |
+| 13th Jan 2008  | Pantheios 1.0.1-beta83 released                                                  |
+| 12th Jan 2008  | Pantheios 1.0.1-beta82 released                                                  |
+| 11th Jan 2008  | Pantheios 1.0.1-beta81 released                                                  |
+| 8th Jan 2008   | Pantheios 1.0.1-beta80 released                                                  |
+| 6th Jan 2008   | Pantheios 1.0.1-beta79 released                                                  |
+| 6th Jan 2008   | Pantheios 1.0.1-beta78 released                                                  |
+| 5th Jan 2008   | Pantheios 1.0.1-beta77 released                                                  |
+| 4th Jan 2008   | Pantheios 1.0.1-beta76 released                                                  |
+| 3rd Jan 2008   | Pantheios 1.0.1-beta75 released                                                  |
+| 3rd Jan 2008   | Pantheios.COM 1.0.1-beta21 released                                              |
 | 2nd Jan 2008   | Pantheios Library Selector Tool (for Win32) 1.5.2.40 released                    |
-| 30th Dec 2007  | Pantheios 1.0.1 beta 74 released                                                 |
-| 29th Dec 2007  | Pantheios 1.0.1 beta 73 released                                                 |
-| 28th Dec 2007  | Pantheios.COM 1.0.1 beta 20 released                                             |
-| 28th Dec 2007  | Pantheios 1.0.1 beta 72 released                                                 |
-| 27th Dec 2007  | Pantheios 1.0.1 beta 71 released                                                 |
-| 22nd Dec 2007  | Pantheios.COM 1.0.1 beta 19 released                                             |
-| 11th Dec 2007  | Pantheios 1.0.1 beta 70 released                                                 |
-| 10th Dec 2007  | Pantheios 1.0.1 beta 69 released                                                 |
-| 8th Dec 2007   | Pantheios 1.0.1 beta 68 released                                                 |
-| 5th Dec 2007   | Pantheios 1.0.1 beta 67 released                                                 |
-| 4th Dec 2007   | Pantheios 1.0.1 beta 66 released                                                 |
-| 3rd Dec 2007   | Pantheios 1.0.1 beta 65 released                                                 |
-| 2nd Dev 2007   | Pantheios 1.0.1 beta 64 released                                                 |
-| 30th Nov 2007  | Pantheios.COM 1.0.1 beta 18 released                                             |
-| 29th Nov 2007  | Pantheios 1.0.1 beta 63 released                                                 |
-| 27th Nov 2007  | Pantheios 1.0.1 beta 62 released                                                 |
-| 26th Nov 2007  | Pantheios 1.0.1 beta 61 released                                                 |
-| 25th Nov 2007  | Pantheios 1.0.1 beta 60 released                                                 |
-| 24th Nov 2007  | Pantheios 1.0.1 beta 59 released                                                 |
-| 23rd Nov 2007  | Pantheios 1.0.1 beta 58 released                                                 |
-| 22nd Nov 2007  | Pantheios 1.0.1 beta 57 released                                                 |
-| 21st Nov 2007  | Pantheios 1.0.1 beta 56 released                                                 |
-| 20th Nov 2007  | Pantheios.COM 1.0.1 beta 17 released                                             |
-| 20th Nov 2007  | Pantheios 1.0.1 beta 55 released                                                 |
-| 19th Nov 2007  | Pantheios 1.0.1 beta 54 released                                                 |
-| 18th Nov 2007  | Pantheios.COM 1.0.1 beta 16 released                                             |
-| 18th Nov 2007  | Pantheios 1.0.1 beta 53 released                                                 |
-| 17th Nov 2007  | Pantheios 1.0.1 beta 52 released                                                 |
-| 16th Nov 2007  | Pantheios 1.0.1 beta 51 released                                                 |
-| 15th Nov 2007  | Pantheios 1.0.1 beta 50 released                                                 |
-| 14th Nov 2007  | Pantheios 1.0.1 beta 49 released                                                 |
-| 13th Nov 2007  | Pantheios 1.0.1 beta 48 released                                                 |
-| 12th Nov 2007  | Pantheios 1.0.1 beta 47 released                                                 |
-| 11th Nov 2007  | Pantheios 1.0.1 beta 46 released                                                 |
-| 10th Nov 2007  | Pantheios 1.0.1 beta 45 released                                                 |
-| 3rd Nov 2007   | Pantheios 1.0.1 beta 44 released                                                 |
-| 3rd Nov 2007   | Pantheios 1.0.1 beta 43 released                                                 |
-| 29th Oct 2007  | Pantheios 1.0.1 beta 42 released                                                 |
-| 28th Oct 2007  | Pantheios 1.0.1 beta 41 released                                                 |
-| 28th Oct 2007  | Pantheios.COM 1.0.1 beta 15 released                                             |
-| 26th Oct 2007  | Pantheios 1.0.1 beta 40 released                                                 |
-| 25th Oct 2007  | Pantheios 1.0.1 beta 39 released                                                 |
-| 23rd Oct 2007  | Pantheios 1.0.1 beta 38 released                                                 |
-| 22nd Oct 2007  | Pantheios.COM 1.0.1 beta 14 released                                             |
-| 21st Oct 2007  | Pantheios 1.0.1 beta 37 released                                                 |
-| 20th Oct 2007  | Pantheios 1.0.1 beta 36 released                                                 |
-| 19th Oct 2007  | Pantheios 1.0.1 beta 35 released                                                 |
-| 18th Oct 2007  | Pantheios 1.0.1 beta 34 released                                                 |
-| 11th Oct 2006  | Pantheios.COM 1.0.1 beta 13 released                                             |
-| 7th Oct 2007   | Pantheios 1.0.1 beta 33 released                                                 |
-| 28th Sep 2006  | Pantheios.COM 1.0.1 beta 12 released                                             |
-| 25th Sep 2006  | Pantheios.COM 1.0.1 beta 11 released                                             |
-| 23rd Sep 2006  | Pantheios.COM 1.0.1 beta 10 released                                             |
-| 3rd Sep 2007   | Pantheios 1.0.1 beta 32 released                                                 |
-| 18th Aug 2007  | Pantheios 1.0.1 beta 31 released                                                 |
-| 16th Aug 2007  | Pantheios 1.0.1 beta 30 released                                                 |
-| 5th Aug 2007   | Pantheios 1.0.1 beta 29 released                                                 |
-| 2nd Aug 2007   | Pantheios 1.0.1 beta 28 released                                                 |
-| 29th Jul 2007  | Pantheios 1.0.1 beta 27 released                                                 |
-| 30th Apr 2007  | Pantheios 1.0.1 beta 26 released                                                 |
+| 30th Dec 2007  | Pantheios 1.0.1-beta74 released                                                  |
+| 29th Dec 2007  | Pantheios 1.0.1-beta73 released                                                  |
+| 28th Dec 2007  | Pantheios.COM 1.0.1-beta20 released                                              |
+| 28th Dec 2007  | Pantheios 1.0.1-beta72 released                                                  |
+| 27th Dec 2007  | Pantheios 1.0.1-beta71 released                                                  |
+| 22nd Dec 2007  | Pantheios.COM 1.0.1-beta19 released                                              |
+| 11th Dec 2007  | Pantheios 1.0.1-beta70 released                                                  |
+| 10th Dec 2007  | Pantheios 1.0.1-beta69 released                                                  |
+| 8th Dec 2007   | Pantheios 1.0.1-beta68 released                                                  |
+| 5th Dec 2007   | Pantheios 1.0.1-beta67 released                                                  |
+| 4th Dec 2007   | Pantheios 1.0.1-beta66 released                                                  |
+| 3rd Dec 2007   | Pantheios 1.0.1-beta65 released                                                  |
+| 2nd Dev 2007   | Pantheios 1.0.1-beta64 released                                                  |
+| 30th Nov 2007  | Pantheios.COM 1.0.1-beta18 released                                              |
+| 29th Nov 2007  | Pantheios 1.0.1-beta63 released                                                  |
+| 27th Nov 2007  | Pantheios 1.0.1-beta62 released                                                  |
+| 26th Nov 2007  | Pantheios 1.0.1-beta61 released                                                  |
+| 25th Nov 2007  | Pantheios 1.0.1-beta60 released                                                  |
+| 24th Nov 2007  | Pantheios 1.0.1-beta59 released                                                  |
+| 23rd Nov 2007  | Pantheios 1.0.1-beta58 released                                                  |
+| 22nd Nov 2007  | Pantheios 1.0.1-beta57 released                                                  |
+| 21st Nov 2007  | Pantheios 1.0.1-beta56 released                                                  |
+| 20th Nov 2007  | Pantheios.COM 1.0.1-beta17 released                                              |
+| 20th Nov 2007  | Pantheios 1.0.1-beta55 released                                                  |
+| 19th Nov 2007  | Pantheios 1.0.1-beta54 released                                                  |
+| 18th Nov 2007  | Pantheios.COM 1.0.1-beta16 released                                              |
+| 18th Nov 2007  | Pantheios 1.0.1-beta53 released                                                  |
+| 17th Nov 2007  | Pantheios 1.0.1-beta52 released                                                  |
+| 16th Nov 2007  | Pantheios 1.0.1-beta51 released                                                  |
+| 15th Nov 2007  | Pantheios 1.0.1-beta50 released                                                  |
+| 14th Nov 2007  | Pantheios 1.0.1-beta49 released                                                  |
+| 13th Nov 2007  | Pantheios 1.0.1-beta48 released                                                  |
+| 12th Nov 2007  | Pantheios 1.0.1-beta47 released                                                  |
+| 11th Nov 2007  | Pantheios 1.0.1-beta46 released                                                  |
+| 10th Nov 2007  | Pantheios 1.0.1-beta45 released                                                  |
+| 3rd Nov 2007   | Pantheios 1.0.1-beta44 released                                                  |
+| 3rd Nov 2007   | Pantheios 1.0.1-beta43 released                                                  |
+| 29th Oct 2007  | Pantheios 1.0.1-beta42 released                                                  |
+| 28th Oct 2007  | Pantheios 1.0.1-beta41 released                                                  |
+| 28th Oct 2007  | Pantheios.COM 1.0.1-beta15 released                                              |
+| 26th Oct 2007  | Pantheios 1.0.1-beta40 released                                                  |
+| 25th Oct 2007  | Pantheios 1.0.1-beta39 released                                                  |
+| 23rd Oct 2007  | Pantheios 1.0.1-beta38 released                                                  |
+| 22nd Oct 2007  | Pantheios.COM 1.0.1-beta14 released                                              |
+| 21st Oct 2007  | Pantheios 1.0.1-beta37 released                                                  |
+| 20th Oct 2007  | Pantheios 1.0.1-beta36 released                                                  |
+| 19th Oct 2007  | Pantheios 1.0.1-beta35 released                                                  |
+| 18th Oct 2007  | Pantheios 1.0.1-beta34 released                                                  |
+| 11th Oct 2006  | Pantheios.COM 1.0.1-beta13 released                                              |
+| 7th Oct 2007   | Pantheios 1.0.1-beta33 released                                                  |
+| 28th Sep 2006  | Pantheios.COM 1.0.1-beta12 released                                              |
+| 25th Sep 2006  | Pantheios.COM 1.0.1-beta11 released                                              |
+| 23rd Sep 2006  | Pantheios.COM 1.0.1-beta10 released                                              |
+| 3rd Sep 2007   | Pantheios 1.0.1-beta32 released                                                  |
+| 18th Aug 2007  | Pantheios 1.0.1-beta31 released                                                  |
+| 16th Aug 2007  | Pantheios 1.0.1-beta30 released                                                  |
+| 5th Aug 2007   | Pantheios 1.0.1-beta29 released                                                  |
+| 2nd Aug 2007   | Pantheios 1.0.1-beta28 released                                                  |
+| 29th Jul 2007  | Pantheios 1.0.1-beta27 released                                                  |
+| 30th Apr 2007  | Pantheios 1.0.1-beta26 released                                                  |
 | 12th Apr 2007  | Pantheios Library Selector Tool (for Win32) 1.5.1.39 released                    |
-| 11th Apr 2007  | Pantheios 1.0.1 beta 25 released                                                 |
-| 6th Apr 2007   | Pantheios 1.0.1 beta 24 released                                                 |
+| 11th Apr 2007  | Pantheios 1.0.1-beta25 released                                                  |
+| 6th Apr 2007   | Pantheios 1.0.1-beta24 released                                                  |
 | 11th Mar 2007  | Pantheios Library Selector Tool (for Win32) 1.4.2.37 released                    |
-| 27th Jan 2007  | Pantheios 1.0.1 beta 23 released                                                 |
-| 15th Jan 2007  | Pantheios 1.0.1 beta 22 released                                                 |
+| 27th Jan 2007  | Pantheios 1.0.1-beta23 released                                                  |
+| 15th Jan 2007  | Pantheios 1.0.1-beta22 released                                                  |
 | 10th Jan 2007  | Pantheios Library Selector Tool (for Win32) 1.4.2.36 released                    |
-| 9th Jan 2007   | Pantheios 1.0.1 beta 21 released                                                 |
-| 5th Jan 2007   | Pantheios 1.0.1 beta 20 released                                                 |
+| 9th Jan 2007   | Pantheios 1.0.1-beta21 released                                                  |
+| 5th Jan 2007   | Pantheios 1.0.1-beta20 released                                                  |
 | 4th Jan 2007   | Pantheios Library Selector Tool (for Win32) 1.4.1.35 released                    |
-| 2nd Jan 2007   | Pantheios 1.0.1 beta 19 released                                                 |
+| 2nd Jan 2007   | Pantheios 1.0.1-beta19 released                                                  |
 | 29th Dec 2006  | Product-specific DLL project released                                            |
-| 23rd Dec 2006  | Pantheios.COM 1.0.1 beta 8 released                                              |
-| 23rd Dec 2006  | Pantheios.COM 1.0.1 beta 7 released                                              |
-| 23rd Dec 2006  | Pantheios 1.0.1 beta 18 released                                                 |
-| 20th Dec 2006  | Pantheios 1.0.1 beta 17 released                                                 |
-| 18th Dec 2006  | Pantheios 1.0.1 beta 16 released                                                 |
-| 16th Dec 2006  | Pantheios 1.0.1 beta 15 released                                                 |
-| 13th Dec 2006  | Pantheios.COM 1.0.1 beta 6 released                                              |
-| 12th Dec 2006  | Pantheios 1.0.1 beta 14 released                                                 |
-| 10th Dec 2006  | Pantheios.COM 1.0.1 beta 5 released                                              |
-| 7th Dec 2006   | Pantheios 1.0.1 beta 13 released                                                 |
-| 5th Dec 2006   | Pantheios 1.0.1 beta 12 released                                                 |
-| 4th Dec 2006   | Pantheios.COM 1.0.1 beta 4 released                                              |
+| 23rd Dec 2006  | Pantheios.COM 1.0.1-beta8 released                                               |
+| 23rd Dec 2006  | Pantheios.COM 1.0.1-beta7 released                                               |
+| 23rd Dec 2006  | Pantheios 1.0.1-beta18 released                                                  |
+| 20th Dec 2006  | Pantheios 1.0.1-beta17 released                                                  |
+| 18th Dec 2006  | Pantheios 1.0.1-beta16 released                                                  |
+| 16th Dec 2006  | Pantheios 1.0.1-beta15 released                                                  |
+| 13th Dec 2006  | Pantheios.COM 1.0.1-beta6 released                                               |
+| 12th Dec 2006  | Pantheios 1.0.1-beta14 released                                                  |
+| 10th Dec 2006  | Pantheios.COM 1.0.1-beta5 released                                               |
+| 7th Dec 2006   | Pantheios 1.0.1-beta13 released                                                  |
+| 5th Dec 2006   | Pantheios 1.0.1-beta12 released                                                  |
+| 4th Dec 2006   | Pantheios.COM 1.0.1-beta4 released                                               |
 | 3rd Dec 2006   | Pantheios Library Selector Tool (for Win32) 1.3.1.33 released                    |
-| 3rd Dec 2006   | Pantheios 1.0.1 beta 11 released                                                 |
-| 1st Dec 2006   | Pantheios 1.0.1 beta 10 released                                                 |
-| 29th Nov 2006  | Pantheios 1.0.1 beta 9 released                                                  |
-| 27th Nov 2006  | Pantheios 1.0.1 beta 8 released                                                  |
-| 29th Oct 2006  | Pantheios 1.0.1 beta 7 released                                                  |
-| 21st Oct 2006  | Pantheios 1.0.1 beta 6 released                                                  |
-| 8th Oct 2006   | Pantheios 1.0.1 beta 5 released                                                  |
-| 5th Dec 2006   | Pantheios.COM 1.0.1 beta 3 released                                              |
-| 4th Oct 2006   | Pantheios 1.0.1 beta 4 released                                                  |
+| 3rd Dec 2006   | Pantheios 1.0.1-beta11 released                                                  |
+| 1st Dec 2006   | Pantheios 1.0.1-beta10 released                                                  |
+| 29th Nov 2006  | Pantheios 1.0.1-beta9 released                                                   |
+| 27th Nov 2006  | Pantheios 1.0.1-beta8 released                                                   |
+| 29th Oct 2006  | Pantheios 1.0.1-beta7 released                                                   |
+| 21st Oct 2006  | Pantheios 1.0.1-beta6 released                                                   |
+| 8th Oct 2006   | Pantheios 1.0.1-beta5 released                                                   |
+| 5th Dec 2006   | Pantheios.COM 1.0.1-beta3 released                                               |
+| 4th Oct 2006   | Pantheios 1.0.1-beta4 released                                                   |
 | 26th Sep 2006  | Pre-beta 4 patch.                                                                |
 | 3rd Sep 2006   | Pantheios Library Selector Tool (for Win32) 1.2.2.29 released                    |
-| 24th Sep 2006  | Pantheios 1.0.1 beta 3 released                                                  |
+| 24th Sep 2006  | Pantheios 1.0.1-beta3 released                                                   |
 | 17th Sep 2006  | A comparative performance study released, showing that Pantheios is 10-100 times faster than its competitors when logging is switched off. Details: http://pantheios.org/performance.html |
 | 11th Sep 2006  | Synesis release Win32 logging tool w32dblog, a command-line tool that monitors the windows debugger and forwards to console/file/syslog. |
 | 3rd Sep 2006   | Pantheios Library Selector Tool (for Win32) 1.2.1.27 released                    |
-| 3rd Sep 2006   | Pantheios.COM 1.0.1 beta 2 released                                              |
-| 2nd Sep 2006   | Pantheios 1.0.1 beta 2 released                                                  |
-| 9th Aug 2006   | Pantheios.COM 1.0.1 beta 1 released                                              |
+| 3rd Sep 2006   | Pantheios.COM 1.0.1-beta2 released                                               |
+| 2nd Sep 2006   | Pantheios 1.0.1-beta2 released                                                   |
+| 9th Aug 2006   | Pantheios.COM 1.0.1-beta1 released                                               |
 
 
 <!-- ########################### end of file ########################### -->

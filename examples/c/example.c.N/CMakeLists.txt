@@ -27,13 +27,13 @@ target_link_Pantheios_util(example.c.N)
 
 target_link_STLSoft(example.c.N)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	target_link_libraries(example.c.N
 		PRIVATE
 			ws2_32
 	)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 define_target_compile_options(example.c.N)
 

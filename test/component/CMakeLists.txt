@@ -30,18 +30,18 @@ add_subdirectory(test.component.inserters.real)
 add_subdirectory(test.component.inserters.slice)
 add_subdirectory(test.component.inserters.stream_character)
 add_subdirectory(test.component.inserters.threadid)
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	add_subdirectory(test.component.inserters.variant_bool)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
 	add_subdirectory(test.component.inserters.w2m)
 endif()
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	add_subdirectory(test.component.inserters.windows.hive)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 add_subdirectory(test.component.log.1)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)

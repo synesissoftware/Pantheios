@@ -25,13 +25,13 @@ target_link_Pantheios_util(example.cpp.backends.mx.1)
 
 target_link_STLSoft(example.cpp.backends.mx.1)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	target_link_libraries(example.cpp.backends.mx.1
 		PRIVATE
 			ws2_32
 	)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 define_target_compile_options(example.cpp.backends.mx.1)
 

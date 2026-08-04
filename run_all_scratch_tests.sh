@@ -5,6 +5,8 @@ Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 MakeCmd=${SIS_CMAKE_COMMAND:-make}
+ProjectNameFile="$Dir/.sis/project_name.txt"
+ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 
 ListOnly=0
 RunMake=1
@@ -84,7 +86,7 @@ if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
 
-    echo "Executing build (via command \`$MakeCmd\`) and then running all scratch test programs"
+    echo "Executing build (via command \`$MakeCmd\`) and then running all ${ProjectName} scratch (and performance) test programs"
 
     mkdir -p $CMakeDir || exit 1
 
@@ -107,10 +109,10 @@ if [ $status -eq 0 ]; then
 
   if [ $ListOnly -ne 0 ]; then
 
-    echo "Listing all scratch test programs"
+    echo "Listing all ${ProjectName} scratch (and performance) test programs"
   else
 
-    echo "Running all scratch test programs"
+    echo "Running all ${ProjectName} scratch (and performance) test programs"
   fi
 
   for f in $(find $CMakeDir -type f '(' -name 'test_scratch*' -o -name 'test.scratch.*' -o -name 'test_performance*' -o -name 'test.performance.*' ')' -exec test -x {} \; -print)

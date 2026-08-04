@@ -12,22 +12,22 @@ target_link_libraries(test.scratch.be.N
 		Pantheios.bec.fprintf
 )
 
-if(UNIX)
+if(_BUILD_AS_UNIX)
 
 	target_link_libraries(test.scratch.be.N
 		PRIVATE
 			Pantheios.bec.syslog
 	)
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	target_link_libraries(test.scratch.be.N
 		PRIVATE
 			Pantheios.bec.WindowsDebugger.WithCallback
 			Pantheios.bec.WindowsSyslog
 	)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 target_link_libraries(test.scratch.be.N
 	PRIVATE

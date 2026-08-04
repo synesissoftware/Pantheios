@@ -1,5 +1,6 @@
 # Pantheios - Authors <!-- omit in toc -->
 
+
 ## Major Contributors:
 
 * **Matt Wilson** ([mwsis](https://github.com/mwsis)) - primary contributor of most of the libraries;
@@ -43,7 +44,7 @@
 * **Volker Lucas** - **GCC** build problem;
 * **alskc** - reported **bc564** build problem (in beta 29);
 * **brandstaetter** - **Fedora** build errors;
-* **itti83**, **mitchomtl** - **VC++10** compilation issues in test program(s);;
+* **itti83**, **mitchomtl** - **VC++10** compilation issues in test program(s);
 * **jdt141** - **GCC 4.2** trace example compile error;
 * **loo66** - **Intel 9.1** compilation problem; not yet fixed;
 * **markitus82** - **Borland** compatibility;

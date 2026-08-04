@@ -9,11 +9,11 @@ add_subdirectory(fe.null)
 add_subdirectory(fe.null.WithCallback)
 add_subdirectory(fe.simple)
 add_subdirectory(fe.simple.WithCallback)
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	add_subdirectory(fe.WindowsRegistry)
 	add_subdirectory(fe.WindowsRegistry.WithCallback)
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 
 # ############################## end of file ############################# #

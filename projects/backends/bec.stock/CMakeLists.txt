@@ -21,16 +21,16 @@ if(HAS_ACE)
 	set(BEC_STOCK_SRCS ${BEC_STOCK_SRCS} ${BEC_STOCK_SRCS_ace})
 endif(HAS_ACE)
 
-if(UNIX)
+if(_BUILD_AS_UNIX)
 
 	file(GLOB BEC_STOCK_SRCS_unix
 		${BEC_STOCK_SRC_DIR}/bec.syslog.c
 	)
 
 	set(BEC_STOCK_SRCS ${BEC_STOCK_SRCS} ${BEC_STOCK_SRCS_unix})
-endif(UNIX)
+endif(_BUILD_AS_UNIX)
 
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
 	file(GLOB BEC_STOCK_SRCS_win32
 		${BEC_STOCK_SRC_DIR}/bec.COMErrorObject.cpp
@@ -43,7 +43,7 @@ if(WIN32)
 	)
 
 	set(BEC_STOCK_SRCS ${BEC_STOCK_SRCS} ${BEC_STOCK_SRCS_win32})
-endif(WIN32)
+endif(_BUILD_AS_WIN32)
 
 add_library(Pantheios.bec.stock
 	${BEC_STOCK_SRCS}

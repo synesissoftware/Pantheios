@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  30th July 2026
+# Updated:  4th August 2026
 #
 # ######################################################################## #
 
@@ -142,11 +142,11 @@ endif(PANTHEIOS_USE_WIDE_STRINGS)
 #
 # required:
 # - STLSoft;
-# - xTests - required for testing;
+# - xTests - required for testing only;
 #
 # optional:
 # - b64;
-# - shwild - required for testing;
+# - shwild - required for testing only;
 #
 # - Threads;
 
@@ -186,6 +186,7 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 	get_filename_component(STLSOFT_INCLUDE_DIR "${STLSOFT_INCLUDE_DIR}" ABSOLUTE)
 
 	if(BUILD_TESTING)
+
 		find_package(STLSoft REQUIRED)
 
 		if(NOT STLSoft_FOUND)
@@ -271,11 +272,13 @@ endif(Threads_FOUND)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.25.4)
+	set(xTests_REQUIRED_VERSION_ 0.26.4)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
+
+	add_compile_definitions(HAS_xTests)
 endif(BUILD_TESTING)
 
 
@@ -293,6 +296,36 @@ include(GNUInstallDirs)
 
 # ##########################################################
 # targets
+
+# ################################################
+# custom definitions
+
+if(UNIX)
+
+	set(_BUILD_AS_UNIX 1)
+
+	message("-- Operating system Unix")
+else(UNIX)
+
+	if(WIN32)
+
+		if(USE_UNIXEM)
+
+			set(_BUILD_AS_UNIX 1)
+
+			message("-- Operating system Unix (synthesised on Windows)")
+		else(USE_UNIXEM)
+
+			set(_BUILD_AS_WIN32 1)
+
+			message("-- Operating system Windows")
+		endif(USE_UNIXEM)
+	else(WIN32)
+
+		message("-- Operating system unknown")
+	endif(WIN32)
+endif(UNIX)
+
 
 # ################################################
 # main libraries

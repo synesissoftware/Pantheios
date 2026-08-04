@@ -4,7 +4,7 @@
  * Purpose: Pantheios Core and Util APIs.
  *
  * Created: 21st June 2005
- * Updated: 31st July 2026
+ * Updated: 4th August 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -59,23 +59,25 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   10
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       392
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   11
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       394
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
-/** \def PANTHEIOS_VER_MAJOR
+/**
+ * \def PANTHEIOS_VER_MAJOR
+ *
  * The major version number of Pantheios
- */
-
-/** \def PANTHEIOS_VER_MINOR
+ *
+ * \def PANTHEIOS_VER_MINOR
+ *
  * The minor version number of Pantheios
- */
-
-/** \def PANTHEIOS_VER_REVISION
- * The revision version number of Pantheios
- */
-
-/** \def PANTHEIOS_VER
+ *
+ * \def PANTHEIOS_VER_PATCH
+ *
+ * The patch number of Pantheios
+ *
+ * \def PANTHEIOS_VER
+ *
  * The current composite version number of Pantheios
  */
 
@@ -121,9 +123,18 @@
 
 #define PANTHEIOS_VER_MAJOR                     1
 #define PANTHEIOS_VER_MINOR                     0
-#define PANTHEIOS_VER_REVISION                  1
+#define PANTHEIOS_VER_PATCH                     1
+#define PANTHEIOS_VER_ALPHABETA                 0xE1
 
-#define PANTHEIOS_VER                           PANTHEIOS_VER_1_0_1_RC1
+#define PANTHEIOS_VER \
+    (0\
+        |   (   PANTHEIOS_VER_MAJOR             << 24   ) \
+        |   (   PANTHEIOS_VER_MINOR             << 16   ) \
+        |   (   PANTHEIOS_VER_PATCH             <<  8   ) \
+        |   (   PANTHEIOS_VER_ALPHABETA         <<  0   ) \
+    )
+
+#define PANTHEIOS_VER_REVISION                  PANTHEIOS_VER_PATCH
 
 
 /* /////////////////////////////////////////////////////////////////////////
