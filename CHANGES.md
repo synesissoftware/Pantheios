@@ -8,7 +8,8 @@
 * new stock back-end **bec.AnsiConsole** / **be.AnsiConsole** (bel/ber, colouring flags, argument parsing, unit and scratch tests);
 * **CMake** enhancements: **Threads** / `PANTHEIOS_FORCE_MT`, `BUILD_TESTING`, optional **b64** via `NO_B64` / **`--no-b64`**, CMP0177, lowercase export package (**`pantheios-config.cmake`**), improved **STLSoft** include handling, and **`_BUILD_AS_UNIX`** / **`_BUILD_AS_WIN32`** OS discrimination;
 * modern composite **`PANTHEIOS_VER`** (`MAJOR` / `MINOR` / `PATCH` / `ALPHABETA`); **`test.unit.getversion`** covers those fields via **xTests** terse-api assertions; scratch **`libver`** + top-level **`libver.sh`**;
-* helper scripts: **`.sis/project_name.txt`** / **`.sis/script_info_lines.txt`** wired into **`--help`** and status messages; **run_all_examples.sh**; **run_all_unit_tests.sh** gains **`--unit-only`** / **`--component-only`**;
+* helper scripts: **`.sis/project_name.txt`** / **`.sis/script_info_lines.txt`** wired into **`--help`** and status messages; **run_all_examples.sh**; **run_all_unit_tests.sh** gains **`--unit-only`** / **`--component-only`**; test runners exclude **`*.log`** from discovery;
+* **bec.file**: create log files without execute permission (was `S_IRWXU`/`S_IRWXG`, which made suite-named logs executable and runnable by test discovery);
 * back-end argument parsing: stock/custom boolean matches accumulate correctly; stock recognition of **`showThreadId`** / **`showDateTime`**; **test.unit.util.parse_args** and expanded **bec.*.parseArgs** unit coverage;
 * test layout: **test.unit.be.WindowsSyslog** renamed to **test.unit.bec.WindowsSyslog**; added unit tests for **bec.speech**, **bec.syslog**, **bec.WindowsConsole**, and **bec.AnsiConsole**; **test.unit.bec.COMErrorObject** skipped on **MinGW** pending **xTests** multibyte equality fix;
 * tooling and packaging: **`.gitattributes`**, **`.vimrc`**, **`.vscode/settings.json`**; copyright years through 2026;

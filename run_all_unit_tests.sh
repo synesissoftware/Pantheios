@@ -163,7 +163,9 @@ if [ $status -eq 0 ]; then
     find_name_expr=( \( -name 'test_unit*' -o -name 'test.unit.*' -o -name 'test_component*' -o -name 'test.component.*' \) )
   fi
 
-  for f in $(find "$CMakeDir" -type f "${find_name_expr[@]}" -exec test -x {} \; -print | sort)
+  # Exclude artefacts that can match suite name globs (e.g. *.log from
+  # test.component.be.file.threading) even when left executable.
+  for f in $(find "$CMakeDir" -type f "${find_name_expr[@]}" ! -name '*.log' -exec test -x {} \; -print | sort)
   do
 
     if [ $ListOnly -ne 0 ]; then
