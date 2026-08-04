@@ -1,7 +1,7 @@
 # Pantheios - CHANGES <!-- omit in toc -->
 
 
-## 1.0.1-rc1 - 4th August 2026
+## 1.0.1-rc1 - 5th August 2026
 
 * modular GitHub Actions CI via **`.github/workflows/ci.yml`** and **`ci-cell.yml`** (Linux **Clang**/**GCC**, macOS **Clang**/**GCC**, Windows **cl**/**MinGW**; install-smoke consumer build/run; examples / unit / component / scratch as separate cells);
 * documentation modernisation: **CHANGES.md** (from **CHANGES.txt**), removal of **HISTORY.md** and **README.txt**, and updates to **README.md**, **FAQ.md**, **INSTALL.md**, **TODO.md**, **KNOWN_ISSUES.md**, **AUTHORS.md**, and **HOW_YOU_CAN_HELP.md**;
