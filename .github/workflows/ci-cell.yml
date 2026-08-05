@@ -322,11 +322,11 @@ jobs:
             export PATH="/mingw64/bin:$PATH"
           fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
-            VERBOSITY_ARGS=(--verbosity 4)
+            set -x
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only --verbosity 4
           else
-            VERBOSITY_ARGS=()
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only "${VERBOSITY_ARGS[@]}"
 
   test-component:
     name: Component tests (${{ inputs.cell-id }})
@@ -358,11 +358,11 @@ jobs:
             export PATH="/mingw64/bin:$PATH"
           fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
-            VERBOSITY_ARGS=(--verbosity 4)
+            set -x
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only --verbosity 4
           else
-            VERBOSITY_ARGS=()
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only "${VERBOSITY_ARGS[@]}"
 
   test-scratch:
     name: Scratch tests (${{ inputs.cell-id }})
@@ -399,8 +399,8 @@ jobs:
             export PATH="/mingw64/bin:$PATH"
           fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
-            VERBOSITY_ARGS=(--verbosity 4)
+            set -x
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M --verbosity 4
           else
-            VERBOSITY_ARGS=()
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M "${VERBOSITY_ARGS[@]}"
