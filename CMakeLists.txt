@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  4th August 2026
+# Updated:  5th August 2026
 #
 # ######################################################################## #
 
@@ -145,6 +145,7 @@ endif(PANTHEIOS_USE_WIDE_STRINGS)
 # - xTests - required for testing only;
 #
 # optional:
+# - ACE - stock ACE backends (be/bec/bel/ber.ACE);
 # - b64;
 # - shwild - required for testing only;
 #
@@ -199,6 +200,104 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 	endif(BUILD_TESTING)
 
 	include_directories(${STLSOFT_INCLUDE_DIR})
+endif()
+
+
+# ############################
+# ACE
+#
+# Discovery (when NO_ACE is not set):
+# 1. CMake/env ACE or ACE_ROOT as ACE tree root (makefile convention); or
+# 2. find_package(ACE) via cmake/FindACE.cmake (system packages, e.g. libace-dev)
+
+set(HAS_ACE OFF)
+
+if(NOT NO_ACE)
+
+	set(_PANTHEIOS_ACE_ROOT)
+
+	if(DEFINED ACE AND ACE)
+
+		set(_PANTHEIOS_ACE_ROOT "${ACE}")
+		message("-- ACE provided as CMake variable with value '${ACE}'")
+	elseif(DEFINED ACE_ROOT AND ACE_ROOT)
+
+		set(_PANTHEIOS_ACE_ROOT "${ACE_ROOT}")
+		message("-- ACE_ROOT provided as CMake variable with value '${ACE_ROOT}'")
+	elseif(DEFINED ENV{ACE} AND NOT "$ENV{ACE}" STREQUAL "")
+
+		set(_PANTHEIOS_ACE_ROOT "$ENV{ACE}")
+		message("-- ACE provided as environment variable with value '$ENV{ACE}'")
+	elseif(DEFINED ENV{ACE_ROOT} AND NOT "$ENV{ACE_ROOT}" STREQUAL "")
+
+		set(_PANTHEIOS_ACE_ROOT "$ENV{ACE_ROOT}")
+		message("-- ACE_ROOT provided as environment variable with value '$ENV{ACE_ROOT}'")
+	endif()
+
+	if(_PANTHEIOS_ACE_ROOT)
+
+		get_filename_component(_PANTHEIOS_ACE_ROOT "${_PANTHEIOS_ACE_ROOT}" ABSOLUTE)
+
+		if(EXISTS "${_PANTHEIOS_ACE_ROOT}/ace/ACE.h")
+
+			set(ACE_INCLUDE_DIR "${_PANTHEIOS_ACE_ROOT}")
+		elseif(EXISTS "${_PANTHEIOS_ACE_ROOT}/include/ace/ACE.h")
+
+			set(ACE_INCLUDE_DIR "${_PANTHEIOS_ACE_ROOT}/include")
+		endif()
+
+		if(ACE_INCLUDE_DIR)
+
+			find_library(ACE_LIBRARY
+				NAMES
+					ACE
+					ace
+				HINTS
+					"${_PANTHEIOS_ACE_ROOT}"
+					"${_PANTHEIOS_ACE_ROOT}/lib"
+					"${_PANTHEIOS_ACE_ROOT}/ace"
+			)
+
+			if(ACE_LIBRARY)
+
+				set(ACE_FOUND TRUE)
+				set(ACE_INCLUDE_DIRS "${ACE_INCLUDE_DIR}")
+				set(ACE_LIBRARIES "${ACE_LIBRARY}")
+
+				if(NOT TARGET ACE::ACE)
+
+					add_library(ACE::ACE UNKNOWN IMPORTED)
+					set_target_properties(ACE::ACE
+						PROPERTIES
+							IMPORTED_LOCATION "${ACE_LIBRARY}"
+							INTERFACE_INCLUDE_DIRECTORIES "${ACE_INCLUDE_DIR}"
+					)
+				endif()
+			endif()
+		endif()
+	endif()
+
+	if(NOT ACE_FOUND)
+
+		find_package(ACE QUIET)
+	endif()
+
+	if(ACE_FOUND)
+
+		set(HAS_ACE ON)
+
+		if(ACE_VERSION)
+
+			message("-- ACE found (version ${ACE_VERSION})")
+		else()
+
+			message("-- ACE found")
+		endif()
+
+		add_compile_definitions(HAS_ACE)
+	endif()
+
+	unset(_PANTHEIOS_ACE_ROOT)
 endif()
 
 

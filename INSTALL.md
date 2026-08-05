@@ -17,7 +17,7 @@ There are three options for installing **Pantheios**, depending on how you obtai
 
 ### Cloning project, installing via CMake
 
-0. First, ensure that [**STLSoft**](https://github.com/synesissoftware/STLSoft) and, optionally, [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild), have been cloned and then built and installed via CMake, as per the instructions in those projects.
+0. First, ensure that [**STLSoft**](https://github.com/synesissoftware/STLSoft) and, optionally, [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild), have been cloned and then built and installed via CMake, as per the instructions in those projects. To build the stock **ACE** backends, install **ACE** (for example `libace-dev` on Ubuntu, or set **`ACE`** / **`ACE_ROOT`** to an ACE tree) before configuring; pass **`--no-ace`** to **prepare_cmake.sh** to skip **ACE** discovery.
 
 
 1. Clone **Pantheios** from GitHub, as in;
@@ -82,6 +82,12 @@ Flags/options:
     --msvc-mt
         when using Visual C++ (MSVC), the static runtime library will be
         selected; the default is the dynamic runtime library
+
+    --no-ace
+        suppresses discovery of ACE (stock ACE backends will not be built)
+
+    --no-b64
+        suppresses discovery of b64 package
 
     -m
     --run-make

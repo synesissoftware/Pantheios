@@ -68,6 +68,27 @@ macro(target_link_STLSoft target_name)
 		endif()
 endmacro(target_link_STLSoft)
 
+macro(target_link_ACE target_name)
+
+	if(TARGET ACE::ACE)
+
+		target_link_libraries(${target_name}
+			PUBLIC
+				ACE::ACE
+		)
+	else()
+
+		target_include_directories(${target_name}
+			PUBLIC
+				${ACE_INCLUDE_DIRS}
+		)
+		target_link_libraries(${target_name}
+			PUBLIC
+				${ACE_LIBRARIES}
+		)
+	endif()
+endmacro(target_link_ACE)
+
 macro(target_link_shwild target_name)
 
 	target_link_libraries(${target_name}

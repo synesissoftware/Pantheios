@@ -19,6 +19,10 @@ on:
         required: false
         type: string
         default: Release
+      with-ace:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -31,6 +35,10 @@ jobs:
       - name: Install Clang (Ubuntu)
         if: runner.os == 'Linux' && inputs.c-compiler == 'clang'
         run: sudo apt-get update && sudo apt-get install -y clang
+
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
@@ -197,12 +205,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            ACE_FLAG="-DNO_ACE=OFF"
+          else
+            ACE_FLAG="-DNO_ACE=ON"
+          fi
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -B build -S . \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON
+              -DBUILD_TESTING=ON \
+              $ACE_FLAG
           elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -G "MinGW Makefiles" \
@@ -211,7 +225,8 @@ jobs:
               -DCMAKE_CXX_COMPILER=g++ \
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON
+              -DBUILD_TESTING=ON \
+              $ACE_FLAG
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
@@ -219,7 +234,8 @@ jobs:
               -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
               -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
               -DBUILD_EXAMPLES=ON \
-              -DBUILD_TESTING=ON
+              -DBUILD_TESTING=ON \
+              $ACE_FLAG
           fi
 
       - name: Build
@@ -264,12 +280,35 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -name 'example.c.*' -o -name 'example.cpp.*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
       - name: Run examples
         shell: bash
         run: |
           set -euo pipefail
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
+          fi
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            set -x
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
 
@@ -295,6 +334,26 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -name 'example.c.*' -o -name 'example.cpp.*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
       - name: Run unit tests
         shell: bash
         run: |
@@ -302,7 +361,12 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            set -x
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only --verbosity 9
+          else
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
+          fi
 
   test-component:
     name: Component tests (${{ inputs.cell-id }})
@@ -326,6 +390,26 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -name 'example.c.*' -o -name 'example.cpp.*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
       - name: Run component tests
         shell: bash
         run: |
@@ -333,7 +417,12 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            set -x
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only --verbosity 9
+          else
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
+          fi
 
   test-scratch:
     name: Scratch tests (${{ inputs.cell-id }})
@@ -343,6 +432,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
@@ -358,6 +451,26 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -name 'example.c.*' -o -name 'example.cpp.*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
+            ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
+            -exec chmod +x {} +
+
       - name: Run scratch tests
         shell: bash
         run: |
@@ -365,4 +478,9 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            set -x
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M --verbosity 9
+          else
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
+          fi
