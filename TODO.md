@@ -9,6 +9,11 @@
 * [ ] Re-enable **test.unit.bec.COMErrorObject** on MinGW once **xTests** fixes multibyte string-equality helpers for GCC two-phase lookup (shim overloads declared after **xtests.h** is included); currently skipped in **test/unit/CMakeLists.txt**;
 
 
+### Pantheios 1.0.1 (final)
+
+* [ ] Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release;
+
+
 ### Pantheios 1.0 TODOs
 
 * [ ] new logo;
