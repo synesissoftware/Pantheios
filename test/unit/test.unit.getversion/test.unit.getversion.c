@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.getversion project.
  *
  * Created: 28th August 2008
- * Updated: 4th August 2026
+ * Updated: 5th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -151,7 +151,7 @@ static void test_composite(void)
 
     TEST_INT_EQ(expected, PANTHEIOS_VER);
     TEST_INT_EQ(expected, pantheios_getVersion());
-    TEST_INT_EQ(PANTHEIOS_VER_1_0_1_RC1, PANTHEIOS_VER);
+    TEST_INT_EQ(PANTHEIOS_VER_1_0_1_RC3, PANTHEIOS_VER);
 }
 
 
