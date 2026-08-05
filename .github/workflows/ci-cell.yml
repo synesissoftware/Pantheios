@@ -280,6 +280,19 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -name 'example.c.*' -o -name 'example.cpp.*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -name '*.log' \
+            -exec chmod +x {} +
+
       - name: Run examples
         shell: bash
         run: |
@@ -314,6 +327,19 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -name 'example.c.*' -o -name 'example.cpp.*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -name '*.log' \
+            -exec chmod +x {} +
+
       - name: Run unit tests
         shell: bash
         run: |
@@ -323,7 +349,7 @@ jobs:
           fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
             set -x
-            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only --verbosity 4
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only --verbosity 9
           else
             SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
           fi
@@ -350,6 +376,19 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -name 'example.c.*' -o -name 'example.cpp.*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -name '*.log' \
+            -exec chmod +x {} +
+
       - name: Run component tests
         shell: bash
         run: |
@@ -359,7 +398,7 @@ jobs:
           fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
             set -x
-            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only --verbosity 4
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only --verbosity 9
           else
             SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
           fi
@@ -391,6 +430,19 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
+      - name: Restore executable bits
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build -type f \
+            \( -name 'example.c.*' -o -name 'example.cpp.*' \
+               -o -name 'test.unit.*' -o -name 'test_unit*' \
+               -o -name 'test.component.*' -o -name 'test_component*' \
+               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
+               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -name '*.log' \
+            -exec chmod +x {} +
+
       - name: Run scratch tests
         shell: bash
         run: |
@@ -400,7 +452,7 @@ jobs:
           fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
             set -x
-            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M --verbosity 4
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M --verbosity 9
           else
             SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
           fi

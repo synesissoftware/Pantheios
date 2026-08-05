@@ -165,7 +165,21 @@ if [ $status -eq 0 ]; then
 
   # Exclude artefacts that can match suite name globs (e.g. *.log from
   # test.component.be.file.threading) even when left executable.
-  for f in $(find "$CMakeDir" -type f "${find_name_expr[@]}" ! -name '*.log' -exec test -x {} \; -print | sort)
+  TestPrograms=( $(find "$CMakeDir" -type f "${find_name_expr[@]}" ! -name '*.log' -exec test -x {} \; -print | sort) )
+
+  echo "discovered ${#TestPrograms[@]} ${TestKindDescription} program(s)"
+
+  if [ ${#TestPrograms[@]} -eq 0 ]; then
+
+    >&2 echo "$ScriptPath: no matching executable ${TestKindDescription} programs under '$CMakeDir' (execute bits missing after artifact download?)"
+
+    if [ $ListOnly -eq 0 ]; then
+
+      status=1
+    fi
+  fi
+
+  for f in "${TestPrograms[@]}"
   do
 
     if [ $ListOnly -ne 0 ]; then
