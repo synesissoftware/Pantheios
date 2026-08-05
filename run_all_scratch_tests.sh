@@ -115,7 +115,16 @@ if [ $status -eq 0 ]; then
     echo "Running all ${ProjectName} scratch (and performance) test programs"
   fi
 
-  for f in $(find $CMakeDir -type f '(' -name 'test_scratch*' -o -name 'test.scratch.*' -o -name 'test_performance*' -o -name 'test.performance.*' ')' ! -name '*.log' -exec test -x {} \; -print)
+  for f in $(find $CMakeDir -type f '(' -name 'test_scratch*' -o -name 'test.scratch.*' -o -name 'test_performance*' -o -name 'test.performance.*' ')' \
+    ! -path '*/CMakeFiles/*' \
+    ! -name '*.a' \
+    ! -name '*.d' \
+    ! -name '*.lib' \
+    ! -name '*.log' \
+    ! -name '*.o' \
+    ! -name '*.obj' \
+    ! -name '*.pdb' \
+    -exec test -x {} \; -print)
   do
     if [ $ListOnly -ne 0 ]; then
 

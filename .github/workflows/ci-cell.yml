@@ -290,7 +290,14 @@ jobs:
                -o -name 'test.component.*' -o -name 'test_component*' \
                -o -name 'test.scratch.*' -o -name 'test_scratch*' \
                -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
             ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
             -exec chmod +x {} +
 
       - name: Run examples
@@ -337,7 +344,14 @@ jobs:
                -o -name 'test.component.*' -o -name 'test_component*' \
                -o -name 'test.scratch.*' -o -name 'test_scratch*' \
                -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
             ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
             -exec chmod +x {} +
 
       - name: Run unit tests
@@ -386,7 +400,14 @@ jobs:
                -o -name 'test.component.*' -o -name 'test_component*' \
                -o -name 'test.scratch.*' -o -name 'test_scratch*' \
                -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
             ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
             -exec chmod +x {} +
 
       - name: Run component tests
@@ -440,7 +461,14 @@ jobs:
                -o -name 'test.component.*' -o -name 'test_component*' \
                -o -name 'test.scratch.*' -o -name 'test_scratch*' \
                -o -name 'test.performance.*' -o -name 'test_performance*' \) \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.a' \
+            ! -name '*.d' \
+            ! -name '*.lib' \
             ! -name '*.log' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            ! -name '*.pdb' \
             -exec chmod +x {} +
 
       - name: Run scratch tests

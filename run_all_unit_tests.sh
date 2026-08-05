@@ -163,9 +163,18 @@ if [ $status -eq 0 ]; then
     find_name_expr=( \( -name 'test_unit*' -o -name 'test.unit.*' -o -name 'test_component*' -o -name 'test.component.*' \) )
   fi
 
-  # Exclude artefacts that can match suite name globs (e.g. *.log from
-  # test.component.be.file.threading) even when left executable.
-  TestPrograms=( $(find "$CMakeDir" -type f "${find_name_expr[@]}" ! -name '*.log' -exec test -x {} \; -print | sort) )
+  # Exclude build artefacts that can match suite name globs (CMake object
+  # files under CMakeFiles/, *.log from be.file.threading, etc.).
+  TestPrograms=( $(find "$CMakeDir" -type f "${find_name_expr[@]}" \
+    ! -path '*/CMakeFiles/*' \
+    ! -name '*.a' \
+    ! -name '*.d' \
+    ! -name '*.lib' \
+    ! -name '*.log' \
+    ! -name '*.o' \
+    ! -name '*.obj' \
+    ! -name '*.pdb' \
+    -exec test -x {} \; -print | sort) )
 
   echo "discovered ${#TestPrograms[@]} ${TestKindDescription} program(s)"
 

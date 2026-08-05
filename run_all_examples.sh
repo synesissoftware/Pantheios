@@ -107,7 +107,15 @@ if [ $status -eq 0 ]; then
     echo "Running all ${ProjectName} example programs"
   fi
 
-  for f in $(find $CMakeDir -type f '(' -name 'example.c.*' -o -name 'example.cpp.*' ')' -exec test -x {} \; -print)
+  for f in $(find $CMakeDir -type f '(' -name 'example.c.*' -o -name 'example.cpp.*' ')' \
+    ! -path '*/CMakeFiles/*' \
+    ! -name '*.a' \
+    ! -name '*.d' \
+    ! -name '*.lib' \
+    ! -name '*.o' \
+    ! -name '*.obj' \
+    ! -name '*.pdb' \
+    -exec test -x {} \; -print)
   do
 
     if [ $ListOnly -ne 0 ]; then
