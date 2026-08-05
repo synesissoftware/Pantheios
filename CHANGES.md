@@ -3,6 +3,8 @@
 
 ## 1.0.1-rc2 - 6th August 2026
 
+* examples and scratch tests: non-Windows console sink moved from **be.fprintf** to **be.AnsiConsole** for simple console demos (via **`define_simple_console_example_*`**, **be.console** / **bec.console** aliases, matching implicit-link headers, and per-project **CMakeLists.txt** / **implicit_link** updates); multiplex / callback / **be.N** cases deferred;
+
 
 ## 1.0.1-rc1 - 5th August 2026
 

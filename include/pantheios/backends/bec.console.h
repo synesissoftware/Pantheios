@@ -4,7 +4,7 @@
  * Purpose: Platform-specific console back-end
  *
  * Created: 3rd July 2009
- * Updated: 28th October 2024
+ * Updated: 5th August 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        5
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        6
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -81,9 +81,9 @@
 #  include <pantheios/backends/bec.WindowsConsole.h>
 # endif /* !PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE */
 #else /* ? OS */
-# ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FPRINTF
-#  include <pantheios/backends/bec.fprintf.h>
-# endif /* !PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FPRINTF */
+# ifndef PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_ANSICONSOLE
+#  include <pantheios/backends/bec.AnsiConsole.h>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_ANSICONSOLE */
 #endif /* OS */
 
 
@@ -98,7 +98,7 @@
  *
  * \note The Console back-end does not actually exist; rather it is the
  *   \ref group__backend__stock_backends__WindowsConsole for Windows, or the
- *   \ref group__backend__stock_backends__fprintf otherwise. All types,
+ *   \ref group__backend__stock_backends__AnsiConsole otherwise. All types,
  *   functions and constants are actually those of the underlying
  *   platform-specific back-end.
  */
@@ -124,7 +124,7 @@
 # define PANTHEIOS_BE_CONSOLE_F_NO_COLOURS                  PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS
 #else /* ? OS */
 
-# define PANTHEIOS_BE_CONSOLE_F_NO_COLOURS                  (0)
+# define PANTHEIOS_BE_CONSOLE_F_NO_COLOURS                  PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS
 #endif /* OS */
 
 
@@ -142,7 +142,7 @@
 typedef pan_be_WindowsConsole_init_t                        pan_be_console_init_t;
 #else /* ? OS */
 
-typedef pan_be_fprintf_init_t                               pan_be_console_init_t;
+typedef pan_be_AnsiConsole_init_t                           pan_be_console_init_t;
 #endif /* OS */
 
 
@@ -186,9 +186,9 @@ typedef pan_be_fprintf_init_t                               pan_be_console_init_
  *   that the name of the callback function will be
  *   <code>pantheios_be_WindowsConsole_getAppInit()</code>; if your
  *   operating system is UNIX, then you are actually using
- *   the  \ref group__backend__stock_backends__fprintf, which means that the
+ *   the  \ref group__backend__stock_backends__AnsiConsole, which means that the
  *   name of the callback function will be
- *   <code>pantheios_be_fprintf_getAppInit()</code>.
+ *   <code>pantheios_be_AnsiConsole_getAppInit()</code>.
  */
 
 PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
@@ -202,7 +202,7 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 #  define pantheios_be_console_getAppInit(backEndId, init)  pantheios_be_WindowsConsole_getAppInit(backEndId, init)
 # else /* ? OS */
 
-#  define pantheios_be_console_getAppInit(backEndId, init)  pantheios_be_fprintf_getAppInit(backEndId, init)
+#  define pantheios_be_console_getAppInit(backEndId, init)  pantheios_be_AnsiConsole_getAppInit(backEndId, init)
 # endif /* OS */
 #endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -229,7 +229,7 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 # define pantheios_be_console_getDefaultAppInit(init)       pantheios_be_WindowsConsole_getAppInit(init)
 #else /* ? OS */
 
-# define pantheios_be_console_getDefaultAppInit(init)       pantheios_be_fprintf_getAppInit(init)
+# define pantheios_be_console_getDefaultAppInit(init)       pantheios_be_AnsiConsole_getDefaultAppInit(init)
 #endif /* OS */
 
 
@@ -244,7 +244,7 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 # define pantheios_be_console_init                          pantheios_be_WindowsConsole_init
 #else /* ? OS */
 
-# define pantheios_be_console_init                          pantheios_be_fprintf_init
+# define pantheios_be_console_init                          pantheios_be_AnsiConsole_init
 #endif /* OS */
 
 
@@ -259,7 +259,7 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 # define pantheios_be_console_uninit                        pantheios_be_WindowsConsole_uninit
 #else /* ? OS */
 
-# define pantheios_be_console_uninit                        pantheios_be_fprintf_uninit
+# define pantheios_be_console_uninit                        pantheios_be_AnsiConsole_uninit
 #endif /* OS */
 
 
@@ -274,7 +274,7 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 # define pantheios_be_console_logEntry                      pantheios_be_WindowsConsole_logEntry
 #else /* ? OS */
 
-# define pantheios_be_console_logEntry                      pantheios_be_fprintf_logEntry
+# define pantheios_be_console_logEntry                      pantheios_be_AnsiConsole_logEntry
 #endif /* OS */
 
 
@@ -302,8 +302,10 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
  * - "lowResolution"            (Boolean)
  *
  * Recognises the following back-end specific argument names:
- * - "noColours"                (Boolean) - Windows-only
- * - "noColors"                 (Boolean) - Windows-only
+ * - "noColours" / "noColors"   (Boolean)
+ * - "forceAnsiEscapeSequences" (Boolean) - non-Windows (AnsiConsole)
+ * - "colourWholePrefix"        (Boolean) - non-Windows (AnsiConsole)
+ * - "colourMessage"            (Boolean) - non-Windows (AnsiConsole)
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -311,7 +313,7 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 # define pantheios_be_console_parseArgs(numArgs, args, init)        pantheios_be_WindowsConsole_parseArgs(numArgs, args, init)
 #else /* ? OS */
 
-# define pantheios_be_console_parseArgs(numArgs, args, init)        pantheios_be_fprintf_parseArgs(numArgs, args, init)
+# define pantheios_be_console_parseArgs(numArgs, args, init)        pantheios_be_AnsiConsole_parseArgs(numArgs, args, init)
 #endif /* OS */
 
 

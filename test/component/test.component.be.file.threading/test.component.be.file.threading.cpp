@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.be.file.threading project.
  *
  * Created: 3rd July 2009
- * Updated: 9th May 2025
+ * Updated: 5th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,7 +14,7 @@
 /* Pantheios header files */
 #include <pantheios/pan.hpp>
 #include <pantheios/backends/be.N.h>
-#include <pantheios/backends/bec.AnsiConsole.h>
+#include <pantheios/backends/bec.console.h>
 #include <pantheios/backends/bec.file.h>
 #include <pantheios/frontends/fe.N.h>
 #include <pantheios/inserters/args.hpp>
