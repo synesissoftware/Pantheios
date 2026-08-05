@@ -5,7 +5,7 @@
  *          dependencies.
  *
  * Created: 4th August 2026
- * Updated: 4th August 2026
+ * Updated: 5th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -20,6 +20,11 @@
 
 #ifdef HAS_b64
 # include <b64/b64.h>
+#endif
+
+#ifdef HAS_Diagnosticism
+# include <diagnosticism/diagnosticism.h>
+# include <diagnosticism/version_string.h>
 #endif
 
 #ifdef HAS_shwild
@@ -50,18 +55,45 @@ version(
 ,   T_integer   libver
 )
 {
-    stm
-        << libname
-        << " v"
-        << ((libver >> 24) & 0xff)
-        << '.'
-        << ((libver >> 16) & 0xff)
-        << '.'
-        << ((libver >> 8) & 0xff)
-        << '.'
-        << ((libver >> 0) & 0xff)
-        << std::endl
-        ;
+#ifdef HAS_Diagnosticism
+
+    char    sz[100];
+    size_t  sz_len;
+
+    if (0 == diagnosticism_calc_version_string(
+        sz, sizeof(sz)
+    ,   ((libver >> 24) & 0xff)
+    ,   ((libver >> 16) & 0xff)
+    ,   ((libver >> 8) & 0xff)
+    ,   ((libver >> 0) & 0xff)
+    ,   &sz_len
+    ))
+    {
+        sz[sz_len] = '\0';
+
+        stm
+            << libname
+            << " v"
+            << sz
+            << std::endl
+            ;
+    }
+    else
+#endif /* HAS_Diagnosticism */
+    {
+        stm
+            << libname
+            << " v"
+            << ((libver >> 24) & 0xff)
+            << '.'
+            << ((libver >> 16) & 0xff)
+            << '.'
+            << ((libver >> 8) & 0xff)
+            << '.'
+            << ((libver >> 0) & 0xff)
+            << std::endl
+            ;
+    }
 }
 
 
@@ -89,6 +121,15 @@ int main(int /* argc */, char* /* argv */[])
         unsigned const libver = B64_VER;
 
         version(std::cout, "\tb64", libver);
+    }
+#endif
+
+#ifdef HAS_Diagnosticism
+
+    {
+        unsigned const libver = DIAGNOSTICISM_VER;
+
+        version(std::cout, "\tDiagnosticism", libver);
     }
 #endif
 

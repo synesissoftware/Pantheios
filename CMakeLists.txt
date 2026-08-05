@@ -146,6 +146,7 @@ endif(PANTHEIOS_USE_WIDE_STRINGS)
 #
 # optional:
 # - b64;
+# - Diagnosticism - required for testing only;
 # - shwild - required for testing only;
 #
 # - Threads;
@@ -215,6 +216,27 @@ if(NOT NO_B64)
 
 		add_compile_definitions(HAS_b64)
 	endif(b64_FOUND)
+endif()
+
+if(NOT b64_FOUND)
+
+	add_compile_definitions(PANTHEIOS_NO_B64)
+endif()
+
+
+# ############################
+# Diagnosticism
+
+if(NOT NO_DIAGNOSTICISM)
+
+	find_package(Diagnosticism QUIET)
+
+	if(Diagnosticism_FOUND)
+
+		message("-- CMake package Diagnosticism found (version ${Diagnosticism_VERSION})")
+
+		add_compile_definitions(HAS_Diagnosticism)
+	endif(Diagnosticism_FOUND)
 endif()
 
 if(NOT b64_FOUND)
