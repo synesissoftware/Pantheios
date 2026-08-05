@@ -1,6 +1,9 @@
 # Pantheios - CHANGES <!-- omit in toc -->
 
 
+## 1.0.1-rc2 - 6th August 2026
+
+
 ## 1.0.1-rc1 - 5th August 2026
 
 * modular GitHub Actions CI via **`.github/workflows/ci.yml`** and **`ci-cell.yml`** (Linux **Clang**/**GCC**, macOS **Clang**/**GCC**, Windows **cl**/**MinGW**; install-smoke consumer build/run; examples / unit / component / scratch as separate cells);

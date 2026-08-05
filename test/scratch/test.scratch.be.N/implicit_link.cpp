@@ -4,7 +4,7 @@
 #include <pantheios/implicit_link/fe.N.h>
 #include <pantheios/implicit_link/be.N.h>
 #include <pantheios/implicit_link/bec.file.h>
-#include <pantheios/implicit_link/bec.fprintf.h>
+#include <pantheios/implicit_link/bec.AnsiConsole.h>
 #include <platformstl/platformstl.h>
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # include <pantheios/implicit_link/bec.syslog.h>

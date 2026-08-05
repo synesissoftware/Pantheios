@@ -7,8 +7,8 @@ target_link_Pantheios_core(test.scratch.I18N)
 
 target_link_libraries(test.scratch.I18N
 	PRIVATE
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf
+		Pantheios.be.AnsiConsole
+		Pantheios.bec.AnsiConsole
 )
 
 target_link_libraries(test.scratch.I18N

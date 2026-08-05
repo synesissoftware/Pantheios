@@ -5,7 +5,7 @@
 #include <pantheios/implicit_link/be.N.h>
 #include <pantheios/implicit_link/bec.fail.h>
 #include <pantheios/implicit_link/bec.file.h>
-#include <pantheios/implicit_link/bec.fprintf.h>
+#include <pantheios/implicit_link/bec.AnsiConsole.h>
 #include <pantheios/implicit_link/bec.null.h>
 
 /* UNIXem header files */

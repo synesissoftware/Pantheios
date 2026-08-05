@@ -4,7 +4,7 @@
  * Purpose: Implicit link file for the test.scratch.implicit_link project.
  *
  * Created: 18th July 2007
- * Updated: 28th October 2024
+ * Updated: 5th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -20,7 +20,7 @@
 
 #include <pantheios/implicit_link/fe.simple.h>
 
-#include <pantheios/implicit_link/be.fprintf.h>
+#include <pantheios/implicit_link/be.AnsiConsole.h>
 
 
 /* /////////////////////////////////////////////////////////////////////////
