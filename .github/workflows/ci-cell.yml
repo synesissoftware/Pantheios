@@ -287,6 +287,9 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            set -x
+          fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
 
   test-unit:
@@ -318,7 +321,12 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            VERBOSITY_ARGS=(--verbosity 4)
+          else
+            VERBOSITY_ARGS=()
+          fi
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only "${VERBOSITY_ARGS[@]}"
 
   test-component:
     name: Component tests (${{ inputs.cell-id }})
@@ -349,7 +357,12 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            VERBOSITY_ARGS=(--verbosity 4)
+          else
+            VERBOSITY_ARGS=()
+          fi
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only "${VERBOSITY_ARGS[@]}"
 
   test-scratch:
     name: Scratch tests (${{ inputs.cell-id }})
@@ -385,4 +398,9 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            VERBOSITY_ARGS=(--verbosity 4)
+          else
+            VERBOSITY_ARGS=()
+          fi
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M "${VERBOSITY_ARGS[@]}"
