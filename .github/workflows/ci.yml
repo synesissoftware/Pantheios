@@ -57,6 +57,27 @@ jobs:
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      with-ace: false
+    secrets: inherit
+
+  cell-ace:
+    name: CI ACE (${{ matrix.id }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: linux-gcc-ace
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+    uses: ./.github/workflows/ci-cell.yml
+    with:
+      cell-id: ${{ matrix.id }}
+      os: ${{ matrix.os }}
+      c-compiler: ${{ matrix.c_compiler }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      build-type: Release
+      with-ace: true
     secrets: inherit
 
   install-smoke:
@@ -148,7 +169,8 @@ jobs:
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
           elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -G "MinGW Makefiles" \
@@ -157,7 +179,8 @@ jobs:
               -DCMAKE_CXX_COMPILER=g++ \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
@@ -165,7 +188,8 @@ jobs:
               -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON
           fi
 
       - name: Build

@@ -13,6 +13,7 @@ Configuration=Release
 ExamplesDisabled=0
 MSVC_MT=0
 MinGW=0
+NO_ACE=0
 NO_b64=0
 RunMake=0
 STLSoftDirGiven=
@@ -50,6 +51,10 @@ while [[ $# -gt 0 ]]; do
     --msvc-mt)
 
       MSVC_MT=1
+      ;;
+    --no-ace)
+
+      NO_ACE=1
       ;;
     --no-b64)
 
@@ -107,6 +112,9 @@ Flags/options:
         when using Visual C++ (MSVC), the static runtime library will be
         selected; the default is the dynamic runtime library
 
+    --no-ace
+        suppresses discovery of ACE (stock ACE backends will not be built)
+
     --no-b64
         suppresses discovery of b64 package
 
@@ -157,6 +165,7 @@ echo "Executing CMake for ${ProjectName} (in ${CMakeDir})"
 
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
+if [ $NO_ACE -eq 0 ]; then CMakeNoACE="OFF" ; else CMakeNoACE="ON" ; fi
 if [ $NO_b64 -eq 0 ]; then CMakeNoB64="OFF" ; else CMakeNoB64="ON" ; fi
 if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
@@ -171,6 +180,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_EXAMPLES:BOOL=$CMakeBuildExamplesFlag \
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
+    -DNO_ACE=$CMakeNoACE \
     -DNO_B64=$CMakeNoB64 \
     -G "MinGW Makefiles" \
     -S $Dir \
@@ -186,6 +196,7 @@ else
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
+    -DNO_ACE=$CMakeNoACE \
     -DNO_B64=$CMakeNoB64 \
     -S $Dir \
     -B $CMakeDir \

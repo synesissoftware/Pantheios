@@ -1,6 +1,12 @@
 # Pantheios - CHANGES <!-- omit in toc -->
 
 
+## 1.0.1-rc3 - 6th August 2026
+
+* **CMake** optional **ACE** discovery (`ACE` / `ACE_ROOT`, **`cmake/FindACE.cmake`**, `NO_ACE` / **`--no-ace`**): builds **be**/**bec**/**bel**/**ber.ACE**, **bec.ACE.WithCallback**, stock ACE inclusion, and **test.scratch.be.ACE** when **ACE** is found;
+* dedicated Ubuntu **GHA** cell **`linux-gcc-ace`** (`libace-dev`); main matrix cells pass **`NO_ACE=ON`**;
+
+
 ## 1.0.1-rc2 - 6th August 2026
 
 * **bec.AnsiConsole**: on Windows, emit ANSI colours only when the host supports them — Win11 assumed ready, Win10 VT builds opt in via **`SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`**, older hosts (e.g. XP) stay plain;

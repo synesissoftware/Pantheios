@@ -9,9 +9,10 @@ endif(_BUILD_AS_WIN32)
 #[====[
 add_subdirectory(test.scratch.api)
 #]====]
-#[====[
-add_subdirectory(test.scratch.be.ACE)
-#]====]
+if(HAS_ACE)
+
+	add_subdirectory(test.scratch.be.ACE)
+endif(HAS_ACE)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
 	add_subdirectory(test.scratch.be.N)
