@@ -1,3 +1,19 @@
 @PACKAGE_INIT@
-include("${CMAKE_CURRENT_LIST_DIR}/@EXPORT_NAME@-targets.cmake")
 
+include(CMakeFindDependencyMacro)
+
+# STLSoft is a public/header dependency of Pantheios targets when the
+# package was discovered via find_package() at build time.
+if(@STLSoft_FOUND@)
+
+	find_dependency(STLSoft)
+endif()
+
+# b64 is linked into Pantheios.core (static) when present at build time,
+# so consumers must have the imported target available.
+if(@b64_FOUND@)
+
+	find_dependency(b64)
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/@EXPORT_NAME@-targets.cmake")
