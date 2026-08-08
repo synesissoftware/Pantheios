@@ -10,6 +10,7 @@ on:
       - rc1
       - rc2
       - rc3
+      - cmake-fix
   pull_request:
 
 concurrency:
