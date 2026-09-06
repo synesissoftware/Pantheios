@@ -38,6 +38,22 @@ jobs:
             os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
+          - id: linux-gcc-no-b64
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+            no_b64: true
+          - id: linux-gcc-no-b64-no-shwild
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+            no_b64: true
+            no_shwild: true
+          - id: linux-gcc-no-shwild
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+            no_shwild: true
           - id: macos-clang
             os: macos-latest
             c_compiler: clang
@@ -50,21 +66,27 @@ jobs:
             os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
+          # `toolchain` carries what is not a compiler: MinGW needs its own
+          # generator and PATH, but the compilers it drives are gcc and g++
           - id: windows-mingw
             os: windows-latest
-            c_compiler: mingw
+            c_compiler: gcc
             cpp_compiler: g++
+            toolchain: mingw
     uses: ./.github/workflows/ci-cell.yml
     with:
-      cell-id: ${{ matrix.id }}
-      os: ${{ matrix.os }}
-      c-compiler: ${{ matrix.c_compiler }}
-      cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      c-compiler: ${{ matrix.c_compiler }}
+      cell-id: ${{ matrix.id }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      no-b64: ${{ matrix.no_b64 == true }}
+      no-shwild: ${{ matrix.no_shwild == true }}
+      os: ${{ matrix.os }}
+      toolchain: ${{ matrix.toolchain }}
     secrets: inherit
 
   install-smoke:
-    name: Install smoke (${{ matrix.os }}, ${{ matrix.c_compiler }})
+    name: Install smoke (${{ matrix.os }}, ${{ matrix.toolchain || matrix.c_compiler }}${{ matrix.no_b64 && ', no-b64' || '' }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -73,6 +95,10 @@ jobs:
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
+          - os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+            no_b64: true
           - os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
@@ -83,8 +109,9 @@ jobs:
             c_compiler: cl
             cpp_compiler: cl
           - os: windows-latest
-            c_compiler: mingw
+            c_compiler: gcc
             cpp_compiler: g++
+            toolchain: mingw
 
     steps:
       - uses: actions/checkout@v4
@@ -94,7 +121,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y clang
 
       - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && matrix.c_compiler == 'mingw'
+        if: runner.os == 'Windows' && matrix.toolchain == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
@@ -104,98 +131,40 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install STLSoft and b64 dependencies
-        shell: bash
-        run: |
-          set -euo pipefail
-          DEPS="${RUNNER_TEMP}/sis-deps"
-          STLSRC="${RUNNER_TEMP}/stlsoft-src"
-          STLBUILD="${RUNNER_TEMP}/stlsoft-build"
-          B64SRC="${RUNNER_TEMP}/b64-src"
-          B64BUILD="${RUNNER_TEMP}/b64-build"
-          mkdir -p "$DEPS"
-          git clone --depth 1 https://github.com/synesissoftware/STLSoft "$STLSRC"
-          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
-            cmake -S "$STLSRC" -B "$STLBUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --config "${{ env.BUILD_TYPE }}" --parallel
-            cmake --install "$STLBUILD" --config "${{ env.BUILD_TYPE }}"
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$STLSRC" -B "$STLBUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --parallel 2
-            cmake --install "$STLBUILD"
-          else
-            cmake -S "$STLSRC" -B "$STLBUILD" \
-              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --parallel
-            cmake --install "$STLBUILD"
-          fi
-          git clone --depth 1 https://github.com/synesissoftware/b64 "$B64SRC"
-          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
-            cmake -S "$B64SRC" -B "$B64BUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$B64BUILD" --config "${{ env.BUILD_TYPE }}" --parallel
-            cmake --install "$B64BUILD" --config "${{ env.BUILD_TYPE }}"
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$B64SRC" -B "$B64BUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$B64BUILD" --parallel 2
-            cmake --install "$B64BUILD"
-          else
-            cmake -S "$B64SRC" -B "$B64BUILD" \
-              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$B64BUILD" --parallel
-            cmake --install "$B64BUILD"
-          fi
-          echo "SIS_DEPS=$DEPS" >> "$GITHUB_ENV"
+      - name: Install dependencies (STLSoft${{ !matrix.no_b64 && ' + b64' || '' }})
+        uses: ./.github/actions/install-sis-deps
+        with:
+          build-type: ${{ env.BUILD_TYPE }}
+          c-compiler: ${{ matrix.c_compiler }}
+          cpp-compiler: ${{ matrix.cpp_compiler }}
+          dependencies: ${{ matrix.no_b64 && 'STLSoft' || 'STLSoft b64' }}
+          toolchain: ${{ matrix.toolchain }}
 
       - name: Configure
         shell: bash
         run: |
           set -euo pipefail
+          NO_B64_OPT=""
+          if [ "${{ matrix.no_b64 }}" = "true" ]; then
+            NO_B64_OPT="-DNO_B64=ON"
+          fi
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake -B build -S . \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+              -DBUILD_TESTING=OFF \
+              $NO_B64_OPT
+          elif [ "${{ matrix.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
-            cmake -B build -G "MinGW Makefiles" \
+            cmake -B build -S . -G "MinGW Makefiles" \
               -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_C_COMPILER=gcc \
-              -DCMAKE_CXX_COMPILER=g++ \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              $NO_B64_OPT
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
@@ -203,7 +172,8 @@ jobs:
               -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              $NO_B64_OPT
           fi
 
       - name: Build
@@ -212,7 +182,7 @@ jobs:
           set -euo pipefail
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake --build build --config "${{ env.BUILD_TYPE }}" --parallel
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+          elif [ "${{ matrix.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake --build build --parallel 2
           else
@@ -270,10 +240,12 @@ jobs:
               -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX};${{ env.SIS_DEPS }}"
             cmake --build consumer-build --config "${{ env.BUILD_TYPE }}" --parallel
             consumer-build/${{ env.BUILD_TYPE }}/consumer.exe
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+          elif [ "${{ matrix.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -S "$CONSUMER" -B consumer-build -G "MinGW Makefiles" \
               -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
               -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX};${{ env.SIS_DEPS }}"
             cmake --build consumer-build --parallel 2
             consumer-build/consumer.exe
@@ -286,3 +258,143 @@ jobs:
             cmake --build consumer-build --parallel
             consumer-build/consumer
           fi
+
+  # CMakeLists.txt offers three ways to locate STLSoft, of which the jobs
+  # above exercise only find_package(). These cells cover the other two,
+  # which short-circuit find_package() entirely and so are not merely a
+  # different spelling of the same code path.
+  stlsoft-routes:
+    name: STLSoft route (${{ matrix.route }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        route:
+          - environment
+          - variable
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # These routes consume STLSoft as a source tree, so it is cloned
+      # rather than built and installed.
+      - name: Clone STLSoft
+        shell: bash
+        run: |
+          set -euo pipefail
+          STLSOFT_SRC="${RUNNER_TEMP}/stlsoft-src"
+          git clone --depth 1 https://github.com/synesissoftware/STLSoft "$STLSOFT_SRC"
+          echo "STLSOFT_SRC=$STLSOFT_SRC" >> "$GITHUB_ENV"
+
+      - name: Configure
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Deliberately no CMAKE_PREFIX_PATH: nothing here may fall back to
+          # the STLSoft package.
+          if [ "${{ matrix.route }}" = "variable" ]; then
+            cmake -B build -S . \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DSTLSOFT="${STLSOFT_SRC}" \
+              -DNO_B64=ON \
+              -DBUILD_EXAMPLES=ON \
+              -DBUILD_TESTING=OFF \
+              2>&1 | tee configure.log
+          else
+            STLSOFT="${STLSOFT_SRC}" cmake -B build -S . \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DNO_B64=ON \
+              -DBUILD_EXAMPLES=ON \
+              -DBUILD_TESTING=OFF \
+              2>&1 | tee configure.log
+          fi
+
+      # Without this, a regression that silently routed the build through
+      # find_package() would leave the cell green while testing nothing new.
+      - name: Assert the intended route was taken
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.route }}" = "variable" ]; then
+            expected="STLSOFT provided as CMake variable"
+          else
+            expected="STLSOFT provided as environment variable"
+          fi
+          if ! grep -q "$expected" configure.log; then
+            echo "configure did not report '${expected}'" >&2
+            exit 1
+          fi
+
+      - name: Build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --build build --parallel
+
+      - name: Run examples
+        shell: bash
+        run: |
+          set -euo pipefail
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
+
+      - name: Install
+        shell: bash
+        run: |
+          set -euo pipefail
+          PREFIX="${RUNNER_TEMP}/install-prefix"
+          echo "INSTALL_PREFIX=$PREFIX" >> "$GITHUB_ENV"
+          cmake --install build --prefix "$PREFIX"
+
+      - name: Verify install tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "${INSTALL_PREFIX}/include/pantheios/pantheios.h"
+          test -f "${INSTALL_PREFIX}/lib/cmake/pantheios/pantheios-config.cmake"
+
+      # On these routes the export does not reference STLSoft::STLSoft, so
+      # the package configuration must not require the package either.
+      - name: Assert package config does not require STLSoft
+        shell: bash
+        run: |
+          set -euo pipefail
+          config="${INSTALL_PREFIX}/lib/cmake/pantheios/pantheios-config.cmake"
+          test -f "$config"
+          if ! grep -B 2 'find_dependency(STLSoft)' "$config" | grep -q '^if()'; then
+            echo "expected the find_dependency(STLSoft) guard to be empty/false" >&2
+            cat "$config" >&2
+            exit 1
+          fi
+
+      # Deliberately omit SIS_DEPS from CMAKE_PREFIX_PATH: the consumer must
+      # resolve cleanly using only the installed Pantheios prefix.
+      - name: Configure and run install smoke consumer
+        shell: bash
+        run: |
+          set -euo pipefail
+          CONSUMER="${RUNNER_TEMP}/consumer"
+          mkdir -p "$CONSUMER"
+          cat > "$CONSUMER/CMakeLists.txt" <<'EOF'
+          cmake_minimum_required(VERSION 3.13)
+          project(pantheios_install_smoke CXX)
+          find_package(Pantheios REQUIRED)
+          add_executable(consumer consumer.cpp)
+          target_link_libraries(consumer PRIVATE
+            Pantheios::Pantheios.core
+            Pantheios::Pantheios.be.fprintf
+            Pantheios::Pantheios.bec.fprintf
+            Pantheios::Pantheios.fe.simple
+            Pantheios::Pantheios.util
+          )
+          EOF
+          cat > "$CONSUMER/consumer.cpp" <<'EOF'
+          #include <pantheios/pantheios.hpp>
+          PANTHEIOS_EXTERN const char PANTHEIOS_FE_PROCESS_IDENTITY[] = "install_smoke_consumer";
+          int main() { return 0; }
+          EOF
+          cmake -S "$CONSUMER" -B consumer-build \
+            -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+            -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}"
+          cmake --build consumer-build --parallel
+          consumer-build/consumer
+
