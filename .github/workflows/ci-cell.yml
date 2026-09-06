@@ -21,8 +21,8 @@ on:
         default: Release
 
 jobs:
-  build:
-    name: Build (${{ inputs.cell-id }})
+  build-and-test:
+    name: Build and test (${{ inputs.cell-id }})
     runs-on: ${{ inputs.os }}
 
     steps:
@@ -235,66 +235,6 @@ jobs:
             cmake --build build --parallel
           fi
 
-      - name: Upload build tree
-        uses: actions/upload-artifact@v4
-        with:
-          name: sis-build-${{ inputs.cell-id }}
-          path: build
-          retention-days: 1
-
-  run-examples:
-    name: Examples (${{ inputs.cell-id }})
-    needs: build
-    runs-on: ${{ inputs.os }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: mingw-w64-x86_64-toolchain
-
-      - name: Download build tree
-        uses: actions/download-artifact@v4
-        with:
-          name: sis-build-${{ inputs.cell-id }}
-          path: build
-
-      - name: Run examples
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-          fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
-
-  test-unit:
-    name: Unit tests (${{ inputs.cell-id }})
-    needs: build
-    runs-on: ${{ inputs.os }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: mingw-w64-x86_64-toolchain
-
-      - name: Download build tree
-        uses: actions/download-artifact@v4
-        with:
-          name: sis-build-${{ inputs.cell-id }}
-          path: build
-
       - name: Run unit tests
         shell: bash
         run: |
@@ -303,28 +243,6 @@ jobs:
             export PATH="/mingw64/bin:$PATH"
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
-
-  test-component:
-    name: Component tests (${{ inputs.cell-id }})
-    needs: build
-    runs-on: ${{ inputs.os }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: mingw-w64-x86_64-toolchain
-
-      - name: Download build tree
-        uses: actions/download-artifact@v4
-        with:
-          name: sis-build-${{ inputs.cell-id }}
-          path: build
 
       - name: Run component tests
         shell: bash
@@ -335,30 +253,17 @@ jobs:
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
 
-  test-scratch:
-    name: Scratch tests (${{ inputs.cell-id }})
-    needs: build
-    continue-on-error: true
-    runs-on: ${{ inputs.os }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: mingw-w64-x86_64-toolchain
-
-      - name: Download build tree
-        uses: actions/download-artifact@v4
-        with:
-          name: sis-build-${{ inputs.cell-id }}
-          path: build
+      - name: Run examples
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+          fi
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
 
       - name: Run scratch tests
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
