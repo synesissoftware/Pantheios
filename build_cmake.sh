@@ -5,6 +5,8 @@ Dir=$(cd $(dirname "$ScriptPath"); pwd)
 Basename=$(basename "$ScriptPath")
 CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 MakeCmd=${SIS_CMAKE_COMMAND:-make}
+ProjectNameFile="$Dir/.sis/project_name.txt"
+ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 
 IgnoreRemainingFlagsAndOptions=0
 Targets=()
@@ -102,10 +104,10 @@ else
 
     if [ -z "$Targets" ]; then
 
-      echo "Executing build (via command \`$MakeCmd\`)"
+      echo "Executing build for ${ProjectName} (via command \`$MakeCmd\`)"
     else
 
-      echo "Executing build (via command \`$MakeCmd\`) with specific target(s) $(join_by , "${Targets[@]}")"
+      echo "Executing build for ${ProjectName} (via command \`$MakeCmd\`) with specific target(s) $(join_by , "${Targets[@]}")"
     fi
 
     $MakeCmd ${Targets[*]}

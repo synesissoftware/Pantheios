@@ -5,6 +5,9 @@ on:
     branches:
       - master
       - dev
+      - boilerplate
+      - cmake-fix
+      - idiomatic
       - rc1
       - rc2
       - rc3
@@ -101,13 +104,15 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install STLSoft dependency
+      - name: Install STLSoft and b64 dependencies
         shell: bash
         run: |
           set -euo pipefail
           DEPS="${RUNNER_TEMP}/sis-deps"
           STLSRC="${RUNNER_TEMP}/stlsoft-src"
           STLBUILD="${RUNNER_TEMP}/stlsoft-build"
+          B64SRC="${RUNNER_TEMP}/b64-src"
+          B64BUILD="${RUNNER_TEMP}/b64-build"
           mkdir -p "$DEPS"
           git clone --depth 1 https://github.com/synesissoftware/STLSoft "$STLSRC"
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
@@ -137,6 +142,38 @@ jobs:
               -DBUILD_TESTING=OFF
             cmake --build "$STLBUILD" --parallel
             cmake --install "$STLBUILD"
+          fi
+          git clone --depth 1 https://github.com/synesissoftware/b64 "$B64SRC"
+          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
+            cmake -S "$B64SRC" -B "$B64BUILD" \
+              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$B64BUILD" --config "${{ env.BUILD_TYPE }}" --parallel
+            cmake --install "$B64BUILD" --config "${{ env.BUILD_TYPE }}"
+          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            cmake -S "$B64SRC" -B "$B64BUILD" -G "MinGW Makefiles" \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$B64BUILD" --parallel 2
+            cmake --install "$B64BUILD"
+          else
+            cmake -S "$B64SRC" -B "$B64BUILD" \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
+              -DCMAKE_PREFIX_PATH="$DEPS" \
+              -DCMAKE_INSTALL_PREFIX="$DEPS" \
+              -DBUILD_EXAMPLES=OFF \
+              -DBUILD_TESTING=OFF
+            cmake --build "$B64BUILD" --parallel
+            cmake --install "$B64BUILD"
           fi
           echo "SIS_DEPS=$DEPS" >> "$GITHUB_ENV"
 
@@ -210,7 +247,7 @@ jobs:
           cat > "$CONSUMER/CMakeLists.txt" <<'EOF'
           cmake_minimum_required(VERSION 3.13)
           project(pantheios_install_smoke CXX)
-          find_package(STLSoft REQUIRED)
+          # STLSoft and b64 must come from pantheios-config.cmake's find_dependency().
           find_package(Pantheios REQUIRED)
           add_executable(consumer consumer.cpp)
           # Link order matters for GNU ld (static archives are single-pass):

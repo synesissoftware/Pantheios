@@ -10,7 +10,6 @@ ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 
 ListOnly=0
 RunMake=1
-Verbosity=${XTESTS_VERBOSITY:-${TEST_VERBOSITY:-3}}
 
 
 # ##########################################################
@@ -27,16 +26,11 @@ while [[ $# -gt 0 ]]; do
 
       RunMake=0
       ;;
-    --verbosity)
-
-      shift
-      Verbosity=$1
-      ;;
     --help)
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Runs all (matching) scratch and performance test programs
+Builds (unless suppressed) and runs the ${ProjectName} libver program
 
 $ScriptPath [ ... flags/options ... ]
 
@@ -46,14 +40,11 @@ Flags/options:
 
     -l
     --list-only
-        lists the target programs but does not execute them
+        lists the libver program path but does not execute it
 
     -M
     --no-make
-        does not execute CMake and make before running tests
-
-    --verbosity <verbosity>
-        specifies an explicit verbosity for the unit-test(s)
+        does not execute make before running libver
 
 
     standard flags:
@@ -86,13 +77,13 @@ if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
 
-    echo "Executing build (via command \`$MakeCmd\`) and then running all ${ProjectName} scratch (and performance) test programs"
+    echo "Executing build (via command \`$MakeCmd\`) and then running ${ProjectName} libver"
 
     mkdir -p $CMakeDir || exit 1
 
     cd $CMakeDir
 
-    $MakeCmd
+    $MakeCmd libver
     status=$?
 
     cd ->/dev/null
@@ -102,44 +93,41 @@ else
   if [ ! -d "$CMakeDir" ] || [ ! -f "$CMakeDir/CMakeCache.txt" ] || [ ! -d "$CMakeDir/CMakeFiles" ]; then
 
     >&2 echo "$ScriptPath: cannot run in '--no-make' mode without a previous successful build step"
+
+    exit 1
   fi
 fi
 
 if [ $status -eq 0 ]; then
 
-  if [ $ListOnly -ne 0 ]; then
+  LibVerExe=$(find "$CMakeDir" -type f -name 'libver' -exec test -x {} \; -print | head -1)
 
-    echo "Listing all ${ProjectName} scratch (and performance) test programs"
-  else
+  if [ -z "$LibVerExe" ]; then
 
-    echo "Running all ${ProjectName} scratch (and performance) test programs"
+    # Windows / MinGW may emit libver.exe
+    LibVerExe=$(find "$CMakeDir" -type f \( -name 'libver' -o -name 'libver.exe' \) -print | head -1)
   fi
 
-  for f in $(find $CMakeDir -type f '(' -name 'test_scratch*' -o -name 'test.scratch.*' -o -name 'test_performance*' -o -name 'test.performance.*' ')' ! -name '*.log' -exec test -x {} \; -print)
-  do
-    if [ $ListOnly -ne 0 ]; then
+  if [ -z "$LibVerExe" ]; then
 
-      echo "would execute $f:"
+    >&2 echo "$ScriptPath: libver executable not found under '$CMakeDir'"
 
-      continue
-    fi
+    exit 1
+  fi
 
-    if [ $Verbosity -ge 3 ]; then
+  if [ $ListOnly -ne 0 ]; then
 
-      echo
-    fi
-    if [ $Verbosity -ge 2 ]; then
+    echo "would execute $LibVerExe:"
+  else
 
-      echo "executing $f:"
-    fi
+    echo "Running ${ProjectName} libver ($LibVerExe):"
 
-    # NOTE: we do not break on fail because these tests are not always intended to succeed
-    $f
-  done
+    "$LibVerExe"
+    status=$?
+  fi
 fi
 
 exit $status
 
 
 # ############################## end of file ############################# #
-
