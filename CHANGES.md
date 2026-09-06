@@ -1,4 +1,12 @@
-# Pantheios - CHANGES <!-- omit in toc -->
+# Pantheios - Changes <!-- omit in toc -->
+
+
+## 1.0.1-rc2 - 6th September 2026
+
+* **CMake** package configuration: loaded `CMakeFindDependencyMacro` and added conditional `find_dependency()` calls for **STLSoft** and **b64** in **`pantheios-config.cmake`**; ensures exported static targets (such as `Pantheios::Pantheios.core`) provide transitive interface link dependencies (`b64::core`, `STLSoft::STLSoft`) to downstream consumers without requiring callers to invoke `find_package(b64)` manually;
+* version definition: added `PANTHEIOS_VER_1_0_1_RC2` (`0x010001e2`) and updated `PANTHEIOS_VER` to RC2 in **include/pantheios/pantheios.h**;
+* tooling and configuration: added **`.vscode/settings.json`**;
+* documentation and release alignment: updated **NEWS.md**, **INSTALL.md**, and **KNOWN_ISSUES.md** for the 1.0.1-rc2 release;
 
 
 ## 1.0.1-rc1 - 5th August 2026
@@ -7,6 +15,7 @@
 * documentation modernisation: **CHANGES.md** (from **CHANGES.txt**), removal of **HISTORY.md** and **README.txt**, and updates to **README.md**, **FAQ.md**, **INSTALL.md**, **TODO.md**, **KNOWN_ISSUES.md**, **AUTHORS.md**, and **HOW_YOU_CAN_HELP.md**;
 * new stock back-end **bec.AnsiConsole** / **be.AnsiConsole** (bel/ber, colouring flags, argument parsing, unit and scratch tests);
 * **CMake** enhancements: **Threads** / `PANTHEIOS_FORCE_MT`, `BUILD_TESTING`, optional **b64** via `NO_B64` / **`--no-b64`**, CMP0177, lowercase export package (**`pantheios-config.cmake`**), improved **STLSoft** include handling, and **`_BUILD_AS_UNIX`** / **`_BUILD_AS_WIN32`** OS discrimination;
+* **CMake** package config: `find_dependency()` for **STLSoft** and (when built with it) **b64**, so consumers of **`Pantheios::Pantheios.core`** no longer see a missing **`b64::core`** imported target;
 * modern composite **`PANTHEIOS_VER`** (`MAJOR` / `MINOR` / `PATCH` / `ALPHABETA`); **`test.unit.getversion`** covers those fields via **xTests** terse-api assertions; scratch **`libver`** + top-level **`libver.sh`**;
 * helper scripts: **`.sis/project_name.txt`** / **`.sis/script_info_lines.txt`** wired into **`--help`** and status messages; **run_all_examples.sh**; **run_all_unit_tests.sh** gains **`--unit-only`** / **`--component-only`**; test runners exclude **`*.log`** from discovery;
 * **bec.file**: create log files without execute permission (was `S_IRWXU`/`S_IRWXG`, which made suite-named logs executable and runnable by test discovery);
