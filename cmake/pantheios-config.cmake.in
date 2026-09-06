@@ -6,7 +6,8 @@ include(CMakeFindDependencyMacro)
 # Transitive Dependencies
 #
 # Pantheios builds and exports static library targets
-# (Pantheios::Pantheios.core, back-ends, front-ends, and utilities).
+# (Pantheios::Pantheios.core, Pantheios::Pantheios.util, back-ends,
+# front-ends, and utilities).
 #
 # In CMake, private link dependencies of static libraries are exported into
 # INTERFACE_LINK_LIBRARIES (wrapped in $<LINK_ONLY:...>) in the generated
@@ -24,8 +25,8 @@ include(CMakeFindDependencyMacro)
 # and the build fails during linking because the linker attempts to resolve
 # the target name as a literal file or library flag (e.g. -lb64::core).
 #
-# Using CMakeFindDependencyMacro's find_dependency() solves this by cleanly
-# loading the required imported target definitions while forwarding the
+# Using CMakeFindDependencyMacro's find_dependency() solves this by loading
+# cleanly the required imported target definitions while forwarding the
 # calling project's QUIET and REQUIRED flags.
 #
 # Why these calls are strictly CONDITIONAL:
@@ -70,3 +71,7 @@ if(@b64_FOUND@)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/@EXPORT_NAME@-targets.cmake")
+
+
+# ############################## end of file ############################# #
+
