@@ -20,6 +20,10 @@ on:
         required: false
         type: boolean
         default: false
+      no-shwild:
+        required: false
+        type: boolean
+        default: false
       os:
         required: true
         type: string
@@ -51,13 +55,17 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install test dependencies (STLSoft + shwild + xTests${{ !inputs.no-b64 && ' + b64' || '' }})
+      - name: Install test dependencies (STLSoft${{ !inputs.no-shwild && ' + shwild' || '' }} + xTests${{ !inputs.no-b64 && ' + b64' || '' }})
         uses: ./.github/actions/install-sis-deps
         with:
           build-type: ${{ inputs.build-type }}
           c-compiler: ${{ inputs.c-compiler }}
           cpp-compiler: ${{ inputs.cpp-compiler }}
-          dependencies: ${{ inputs.no-b64 && 'STLSoft shwild xTests' || 'STLSoft shwild xTests b64' }}
+          dependencies: >-
+            STLSoft
+            ${{ !inputs.no-shwild && 'shwild' || '' }}
+            xTests
+            ${{ !inputs.no-b64 && 'b64' || '' }}
           toolchain: ${{ inputs.toolchain }}
 
       - name: Configure
@@ -68,13 +76,18 @@ jobs:
           if [ "${{ inputs.no-b64 }}" = "true" ]; then
             NO_B64_OPT="-DNO_B64=ON"
           fi
+          NO_SHWILD_OPT=""
+          if [ "${{ inputs.no-shwild }}" = "true" ]; then
+            NO_SHWILD_OPT="-DNO_SHWILD=ON -DCMAKE_DISABLE_FIND_PACKAGE_shwild=TRUE"
+          fi
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -B build -S . \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              $NO_B64_OPT
+              $NO_B64_OPT \
+              $NO_SHWILD_OPT
           elif [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -S . -G "MinGW Makefiles" \
@@ -84,7 +97,8 @@ jobs:
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              $NO_B64_OPT
+              $NO_B64_OPT \
+              $NO_SHWILD_OPT
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
@@ -93,7 +107,8 @@ jobs:
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
-              $NO_B64_OPT
+              $NO_B64_OPT \
+              $NO_SHWILD_OPT
           fi
 
       - name: Build

@@ -43,6 +43,17 @@ jobs:
             c_compiler: gcc
             cpp_compiler: g++
             no_b64: true
+          - id: linux-gcc-no-b64-no-shwild
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+            no_b64: true
+            no_shwild: true
+          - id: linux-gcc-no-shwild
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+            no_shwild: true
           - id: macos-clang
             os: macos-latest
             c_compiler: clang
@@ -69,6 +80,7 @@ jobs:
       cell-id: ${{ matrix.id }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       no-b64: ${{ matrix.no_b64 == true }}
+      no-shwild: ${{ matrix.no_shwild == true }}
       os: ${{ matrix.os }}
       toolchain: ${{ matrix.toolchain }}
     secrets: inherit

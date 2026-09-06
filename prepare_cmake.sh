@@ -14,6 +14,7 @@ ExamplesDisabled=0
 MSVC_MT=0
 MinGW=0
 NO_b64=0
+NO_shwild=0
 RunMake=0
 STLSoftDirGiven=
 TestingDisabled=0
@@ -54,6 +55,10 @@ while [[ $# -gt 0 ]]; do
     --no-b64)
 
       NO_b64=1
+      ;;
+    --no-shwild)
+
+      NO_shwild=1
       ;;
     -m|--run-make)
 
@@ -110,6 +115,9 @@ Flags/options:
     --no-b64
         suppresses discovery of b64 package
 
+    --no-shwild
+        suppresses discovery of shwild package
+
     -m
     --run-make
         executes make after a successful running of CMake
@@ -158,6 +166,7 @@ echo "Executing CMake for ${ProjectName} (in ${CMakeDir})"
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
 if [ $NO_b64 -eq 0 ]; then CMakeNoB64="OFF" ; else CMakeNoB64="ON" ; fi
+if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ -z $STLSoftDirGiven ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
@@ -172,6 +181,7 @@ if [ $MinGW -ne 0 ]; then
     -DBUILD_TESTING:BOOL=$CMakeBuildTestingFlag \
     -DCMAKE_BUILD_TYPE=$Configuration \
     -DNO_B64=$CMakeNoB64 \
+    -DNO_SHWILD=$CMakeNoShwild \
     -G "MinGW Makefiles" \
     -S $Dir \
     -B $CMakeDir \
@@ -187,6 +197,7 @@ else
     -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
     -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
     -DNO_B64=$CMakeNoB64 \
+    -DNO_SHWILD=$CMakeNoShwild \
     -S $Dir \
     -B $CMakeDir \
     || (cd ->/dev/null ; exit 1)
