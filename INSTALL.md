@@ -46,7 +46,7 @@ The **prepare_cmake.sh** script has a bunch of command-line flags/options to cus
 
 ```plaintext
 Pantheios is an efficient, flexible, and robust C/C++ diagnostic logging library
-Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
 Creates/reinitialises the CMake build script(s)
 
@@ -128,7 +128,7 @@ $ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 1. Download the latest distributions;
 
 Obtain the latest releases of **Pantheios** and **STLSoft** from:
-* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-rc1.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-rc1.zip);
+* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-rc2.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-rc2.zip);
 * [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft/tags), e.g. [**STLSoft-1.11.1-rc4**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/STLSoft-1.11.1-rc4);
 
 
@@ -137,7 +137,7 @@ Obtain the latest releases of **Pantheios** and **STLSoft** from:
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
-$ unzip Pantheios-1.0.1-rc1.zip
+$ unzip Pantheios-1.0.1-rc2.zip
 $ unzip STLSoft-1.11.1-rc4
 ```
 
@@ -146,7 +146,7 @@ $ unzip STLSoft-1.11.1-rc4
 4. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make
 
 ```bash
-$ cd Pantheios-1.0.1-rc1
+$ cd Pantheios-1.0.1-rc2
 $ cd build/gcc48.unix
 $ make
 ```
