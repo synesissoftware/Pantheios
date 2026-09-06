@@ -3,14 +3,17 @@ name: CI
 on:
   push:
     branches:
-      - boilerplate
-      - dev
-      - idiomatic
       - master
+      - dev
+      - boilerplate
+      - cmake-fix
+      - idiomatic
       - rc1
       - rc2
       - rc3
-      - cmake-fix
+      - rc4
+      - rc5
+      - update
   pull_request:
 
 concurrency:

@@ -2,15 +2,68 @@
 
 include(CMakeFindDependencyMacro)
 
-# STLSoft is a public/header dependency of Pantheios targets when the
-# package was discovered via find_package() at build time.
+# ##########################################################################
+# Transitive Dependencies
+#
+# Pantheios builds and exports static library targets
+# (Pantheios::Pantheios.core, back-ends, front-ends, and utilities).
+#
+# In CMake, private link dependencies of static libraries are exported into
+# INTERFACE_LINK_LIBRARIES (wrapped in $<LINK_ONLY:...>) in the generated
+# pantheios-targets.cmake file so downstream consumers linking static
+# archives can resolve all referenced symbols at final link time.
+#
+# When downstream consumers call find_package(pantheios), CMake loads
+# pantheios-targets.cmake and verifies that any targets named in
+# INTERFACE_LINK_LIBRARIES already exist in the imported target namespace.
+# If an imported target (e.g. b64::core or STLSoft::STLSoft) has not been
+# defined yet, CMake reports a configuration error:
+#
+#   "The link interface of target ... contains: ... but the target was not found."
+#
+# and the build fails during linking because the linker attempts to resolve
+# the target name as a literal file or library flag (e.g. -lb64::core).
+#
+# Using CMakeFindDependencyMacro's find_dependency() solves this by cleanly
+# loading the required imported target definitions while forwarding the
+# calling project's QUIET and REQUIRED flags.
+#
+# Why these calls are strictly CONDITIONAL:
+#
+# 1. STLSoft (@STLSoft_FOUND@):
+#    Pantheios public headers and internals depend on STLSoft. When
+#    Pantheios was configured and built with STLSoft discovered via CMake
+#    find_package() (@STLSoft_FOUND@ is true), exported targets reference
+#    STLSoft::STLSoft, and downstream consumers must find that CMake
+#    package. If STLSoft was provided via a manual include path (e.g. via
+#    the STLSOFT variable or environment variable without CMake package
+#    export), @STLSoft_FOUND@ is empty/false and no CMake target dependency
+#    is exported or required.
+#
+# 2. b64 (@b64_FOUND@):
+#    b64 is an OPTIONAL dependency for Pantheios, providing the
+#    pantheios::b64 inserter class in Pantheios.core.
+#    - If Pantheios was built WITH b64 (@b64_FOUND@ is true), Pantheios.core
+#      compiles b64 support and links b64::core. The exported targets file
+#      therefore requires b64::core in its link interface, and downstream
+#      consumers must locate b64.
+#    - If Pantheios was built WITHOUT b64 (e.g. via NO_B64 or because b64
+#      was not present at build time), b64 support is omitted and
+#      pantheios-targets.cmake contains no reference to b64::core. In that
+#      scenario, calling find_dependency(b64) unconditionally would fail on
+#      systems where b64 is not installed, needlessly breaking downstream
+#      consumers.
+#
+# Guarding with @STLSoft_FOUND@ and @b64_FOUND@ ensures downstream discovery
+# precisely mirrors the dependencies linked into the installed Pantheios
+# binary.
+# ##########################################################################
+
 if(@STLSoft_FOUND@)
 
 	find_dependency(STLSoft)
 endif()
 
-# b64 is linked into Pantheios.core (static) when present at build time,
-# so consumers must have the imported target available.
 if(@b64_FOUND@)
 
 	find_dependency(b64)
