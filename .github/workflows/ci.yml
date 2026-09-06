@@ -38,6 +38,11 @@ jobs:
             os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
+          - id: linux-gcc-no-b64
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+            no_b64: true
           - id: macos-clang
             os: macos-latest
             c_compiler: clang
@@ -59,16 +64,17 @@ jobs:
             toolchain: mingw
     uses: ./.github/workflows/ci-cell.yml
     with:
-      cell-id: ${{ matrix.id }}
-      os: ${{ matrix.os }}
-      c-compiler: ${{ matrix.c_compiler }}
-      cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      c-compiler: ${{ matrix.c_compiler }}
+      cell-id: ${{ matrix.id }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      no-b64: ${{ matrix.no_b64 == true }}
+      os: ${{ matrix.os }}
       toolchain: ${{ matrix.toolchain }}
     secrets: inherit
 
   install-smoke:
-    name: Install smoke (${{ matrix.os }}, ${{ matrix.toolchain || matrix.c_compiler }})
+    name: Install smoke (${{ matrix.os }}, ${{ matrix.toolchain || matrix.c_compiler }}${{ matrix.no_b64 && ', no-b64' || '' }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -77,6 +83,10 @@ jobs:
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
+          - os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+            no_b64: true
           - os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
@@ -109,25 +119,30 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install dependencies (STLSoft + b64)
+      - name: Install dependencies (STLSoft${{ matrix.no_b64 && '' || ' + b64' }})
         uses: ./.github/actions/install-sis-deps
         with:
           build-type: ${{ env.BUILD_TYPE }}
           c-compiler: ${{ matrix.c_compiler }}
           cpp-compiler: ${{ matrix.cpp_compiler }}
-          dependencies: STLSoft b64
+          dependencies: ${{ matrix.no_b64 && 'STLSoft' || 'STLSoft b64' }}
           toolchain: ${{ matrix.toolchain }}
 
       - name: Configure
         shell: bash
         run: |
           set -euo pipefail
+          NO_B64_OPT=""
+          if [ "${{ matrix.no_b64 }}" = "true" ]; then
+            NO_B64_OPT="-DNO_B64=ON"
+          fi
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake -B build -S . \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              $NO_B64_OPT
           elif [ "${{ matrix.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -S . -G "MinGW Makefiles" \
@@ -136,7 +151,8 @@ jobs:
               -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              $NO_B64_OPT
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
@@ -144,7 +160,8 @@ jobs:
               -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
+              -DBUILD_TESTING=OFF \
+              $NO_B64_OPT
           fi
 
       - name: Build
