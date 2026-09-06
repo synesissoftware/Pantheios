@@ -248,7 +248,7 @@ jobs:
           cmake_minimum_required(VERSION 3.13)
           project(pantheios_install_smoke CXX)
           # STLSoft and b64 must come from pantheios-config.cmake's find_dependency().
-          find_package(pantheios REQUIRED)
+          find_package(Pantheios REQUIRED)
           add_executable(consumer consumer.cpp)
           # Link order matters for GNU ld (static archives are single-pass):
           # dependents before providers — matches in-tree example link order.

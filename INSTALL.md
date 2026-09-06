@@ -185,8 +185,8 @@ $ make
 
 This project comes with a number of scripts useful for building with **CMake**, as follows:
 
-| Script                    | Purpose |
-| ------------------------- | ------- |
+| Script | Purpose |
+| ------ | ------- |
 | **build_cmake.sh**            | Executes **CMake**-generated artefacts to (re)build project.<br/><br/>Performs a (re)build, meaningful only once `prepare_cmake.sh` has been run once to generate all the **CMake** build artefacts.<br/><br/>Use `./build_cmake.sh --help` for further information. |
 | **clean_cmake.sh**            | Executes **CMake**-generated artefacts to clean project.<br/><br/>Performs a (re)build, meaningful only once `prepare_cmake.sh` has been run once to generate all the **CMake** build artefacts and a build has been run.<br/><br/>Use `./clean_cmake.sh --help` for further information. |
 | **libver.sh**                 | Builds (unless suppressed) and runs the **libver** scratch program, which prints composite version macros for **Pantheios** and its discovered dependencies.<br/><br/>Use `./libver.sh --help` for further information. |
