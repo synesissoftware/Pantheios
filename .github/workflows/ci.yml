@@ -246,3 +246,143 @@ jobs:
             cmake --build consumer-build --parallel
             consumer-build/consumer
           fi
+
+  # CMakeLists.txt offers three ways to locate STLSoft, of which the jobs
+  # above exercise only find_package(). These cells cover the other two,
+  # which short-circuit find_package() entirely and so are not merely a
+  # different spelling of the same code path.
+  stlsoft-routes:
+    name: STLSoft route (${{ matrix.route }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        route:
+          - environment
+          - variable
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # These routes consume STLSoft as a source tree, so it is cloned
+      # rather than built and installed.
+      - name: Clone STLSoft
+        shell: bash
+        run: |
+          set -euo pipefail
+          STLSOFT_SRC="${RUNNER_TEMP}/stlsoft-src"
+          git clone --depth 1 https://github.com/synesissoftware/STLSoft "$STLSOFT_SRC"
+          echo "STLSOFT_SRC=$STLSOFT_SRC" >> "$GITHUB_ENV"
+
+      - name: Configure
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Deliberately no CMAKE_PREFIX_PATH: nothing here may fall back to
+          # the STLSoft package.
+          if [ "${{ matrix.route }}" = "variable" ]; then
+            cmake -B build -S . \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DSTLSOFT="${STLSOFT_SRC}" \
+              -DNO_B64=ON \
+              -DBUILD_EXAMPLES=ON \
+              -DBUILD_TESTING=OFF \
+              2>&1 | tee configure.log
+          else
+            STLSOFT="${STLSOFT_SRC}" cmake -B build -S . \
+              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DNO_B64=ON \
+              -DBUILD_EXAMPLES=ON \
+              -DBUILD_TESTING=OFF \
+              2>&1 | tee configure.log
+          fi
+
+      # Without this, a regression that silently routed the build through
+      # find_package() would leave the cell green while testing nothing new.
+      - name: Assert the intended route was taken
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ matrix.route }}" = "variable" ]; then
+            expected="STLSOFT provided as CMake variable"
+          else
+            expected="STLSOFT provided as environment variable"
+          fi
+          if ! grep -q "$expected" configure.log; then
+            echo "configure did not report '${expected}'" >&2
+            exit 1
+          fi
+
+      - name: Build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --build build --parallel
+
+      - name: Run examples
+        shell: bash
+        run: |
+          set -euo pipefail
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
+
+      - name: Install
+        shell: bash
+        run: |
+          set -euo pipefail
+          PREFIX="${RUNNER_TEMP}/install-prefix"
+          echo "INSTALL_PREFIX=$PREFIX" >> "$GITHUB_ENV"
+          cmake --install build --prefix "$PREFIX"
+
+      - name: Verify install tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "${INSTALL_PREFIX}/include/pantheios/pantheios.h"
+          test -f "${INSTALL_PREFIX}/lib/cmake/pantheios/pantheios-config.cmake"
+
+      # On these routes the export does not reference STLSoft::STLSoft, so
+      # the package configuration must not require the package either.
+      - name: Assert package config does not require STLSoft
+        shell: bash
+        run: |
+          set -euo pipefail
+          config="${INSTALL_PREFIX}/lib/cmake/pantheios/pantheios-config.cmake"
+          test -f "$config"
+          if ! grep -B 2 'find_dependency(STLSoft)' "$config" | grep -q '^if()'; then
+            echo "expected the find_dependency(STLSoft) guard to be empty/false" >&2
+            cat "$config" >&2
+            exit 1
+          fi
+
+      # Deliberately omit SIS_DEPS from CMAKE_PREFIX_PATH: the consumer must
+      # resolve cleanly using only the installed Pantheios prefix.
+      - name: Configure and run install smoke consumer
+        shell: bash
+        run: |
+          set -euo pipefail
+          CONSUMER="${RUNNER_TEMP}/consumer"
+          mkdir -p "$CONSUMER"
+          cat > "$CONSUMER/CMakeLists.txt" <<'EOF'
+          cmake_minimum_required(VERSION 3.13)
+          project(pantheios_install_smoke CXX)
+          find_package(Pantheios REQUIRED)
+          add_executable(consumer consumer.cpp)
+          target_link_libraries(consumer PRIVATE
+            Pantheios::Pantheios.core
+            Pantheios::Pantheios.be.fprintf
+            Pantheios::Pantheios.bec.fprintf
+            Pantheios::Pantheios.fe.simple
+            Pantheios::Pantheios.util
+          )
+          EOF
+          cat > "$CONSUMER/consumer.cpp" <<'EOF'
+          #include <pantheios/pantheios.hpp>
+          PANTHEIOS_EXTERN const char PANTHEIOS_FE_PROCESS_IDENTITY[] = "install_smoke_consumer";
+          int main() { return 0; }
+          EOF
+          cmake -S "$CONSUMER" -B consumer-build \
+            -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+            -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}"
+          cmake --build consumer-build --parallel
+          consumer-build/consumer
+
