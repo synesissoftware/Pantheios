@@ -119,7 +119,7 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install dependencies (STLSoft${{ matrix.no_b64 && '' || ' + b64' }})
+      - name: Install dependencies (STLSoft${{ !matrix.no_b64 && ' + b64' || '' }})
         uses: ./.github/actions/install-sis-deps
         with:
           build-type: ${{ env.BUILD_TYPE }}
