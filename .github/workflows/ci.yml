@@ -50,10 +50,13 @@ jobs:
             os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
+          # `toolchain` carries what is not a compiler: MinGW needs its own
+          # generator and PATH, but the compilers it drives are gcc and g++
           - id: windows-mingw
             os: windows-latest
-            c_compiler: mingw
+            c_compiler: gcc
             cpp_compiler: g++
+            toolchain: mingw
     uses: ./.github/workflows/ci-cell.yml
     with:
       cell-id: ${{ matrix.id }}
@@ -61,10 +64,11 @@ jobs:
       c-compiler: ${{ matrix.c_compiler }}
       cpp-compiler: ${{ matrix.cpp_compiler }}
       build-type: Release
+      toolchain: ${{ matrix.toolchain }}
     secrets: inherit
 
   install-smoke:
-    name: Install smoke (${{ matrix.os }}, ${{ matrix.c_compiler }})
+    name: Install smoke (${{ matrix.os }}, ${{ matrix.toolchain || matrix.c_compiler }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -83,8 +87,9 @@ jobs:
             c_compiler: cl
             cpp_compiler: cl
           - os: windows-latest
-            c_compiler: mingw
+            c_compiler: gcc
             cpp_compiler: g++
+            toolchain: mingw
 
     steps:
       - uses: actions/checkout@v4
@@ -94,7 +99,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y clang
 
       - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && matrix.c_compiler == 'mingw'
+        if: runner.os == 'Windows' && matrix.toolchain == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
@@ -104,78 +109,14 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install STLSoft and b64 dependencies
-        shell: bash
-        run: |
-          set -euo pipefail
-          DEPS="${RUNNER_TEMP}/sis-deps"
-          STLSRC="${RUNNER_TEMP}/stlsoft-src"
-          STLBUILD="${RUNNER_TEMP}/stlsoft-build"
-          B64SRC="${RUNNER_TEMP}/b64-src"
-          B64BUILD="${RUNNER_TEMP}/b64-build"
-          mkdir -p "$DEPS"
-          git clone --depth 1 https://github.com/synesissoftware/STLSoft "$STLSRC"
-          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
-            cmake -S "$STLSRC" -B "$STLBUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --config "${{ env.BUILD_TYPE }}" --parallel
-            cmake --install "$STLBUILD" --config "${{ env.BUILD_TYPE }}"
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$STLSRC" -B "$STLBUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --parallel 2
-            cmake --install "$STLBUILD"
-          else
-            cmake -S "$STLSRC" -B "$STLBUILD" \
-              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --parallel
-            cmake --install "$STLBUILD"
-          fi
-          git clone --depth 1 https://github.com/synesissoftware/b64 "$B64SRC"
-          if [ "${{ matrix.c_compiler }}" = "cl" ]; then
-            cmake -S "$B64SRC" -B "$B64BUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$B64BUILD" --config "${{ env.BUILD_TYPE }}" --parallel
-            cmake --install "$B64BUILD" --config "${{ env.BUILD_TYPE }}"
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$B64SRC" -B "$B64BUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$B64BUILD" --parallel 2
-            cmake --install "$B64BUILD"
-          else
-            cmake -S "$B64SRC" -B "$B64BUILD" \
-              -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$B64BUILD" --parallel
-            cmake --install "$B64BUILD"
-          fi
-          echo "SIS_DEPS=$DEPS" >> "$GITHUB_ENV"
+      - name: Install dependencies (STLSoft + b64)
+        uses: ./.github/actions/install-sis-deps
+        with:
+          build-type: ${{ env.BUILD_TYPE }}
+          c-compiler: ${{ matrix.c_compiler }}
+          cpp-compiler: ${{ matrix.cpp_compiler }}
+          dependencies: STLSoft b64
+          toolchain: ${{ matrix.toolchain }}
 
       - name: Configure
         shell: bash
@@ -187,12 +128,12 @@ jobs:
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+          elif [ "${{ matrix.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
-            cmake -B build -G "MinGW Makefiles" \
+            cmake -B build -S . -G "MinGW Makefiles" \
               -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-              -DCMAKE_C_COMPILER=gcc \
-              -DCMAKE_CXX_COMPILER=g++ \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF
@@ -212,7 +153,7 @@ jobs:
           set -euo pipefail
           if [ "${{ matrix.c_compiler }}" = "cl" ]; then
             cmake --build build --config "${{ env.BUILD_TYPE }}" --parallel
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+          elif [ "${{ matrix.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake --build build --parallel 2
           else
@@ -270,10 +211,12 @@ jobs:
               -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX};${{ env.SIS_DEPS }}"
             cmake --build consumer-build --config "${{ env.BUILD_TYPE }}" --parallel
             consumer-build/${{ env.BUILD_TYPE }}/consumer.exe
-          elif [ "${{ matrix.c_compiler }}" = "mingw" ]; then
+          elif [ "${{ matrix.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -S "$CONSUMER" -B consumer-build -G "MinGW Makefiles" \
               -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}" \
               -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX};${{ env.SIS_DEPS }}"
             cmake --build consumer-build --parallel 2
             consumer-build/consumer.exe
