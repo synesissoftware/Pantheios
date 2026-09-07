@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the pseudoUNIX.test project.
  *
  * Created: 23rd September 2006
- * Updated: 16th July 2024
+ * Updated: 6th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,14 +12,7 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/implicit_link/core.h>
 #include <pantheios/implicit_link/fe.simple.h>
-#if defined(unix) || \
-    defined(__unix) || \
-    defined(__unix__)
-# include <pantheios/implicit_link/be.fprintf.h>
-#elif defined(_WIN32) || \
-      defined(WIN32)
-# include <pantheios/implicit_link/be.WindowsConsole.h>
-#endif /* operating system */
+#include <pantheios/implicit_link/be.AnsiConsole.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>

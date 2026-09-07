@@ -7,8 +7,8 @@ target_link_Pantheios_core(test.scratch.extras.com_exception_helpers)
 
 target_link_libraries(test.scratch.extras.com_exception_helpers
 	PRIVATE
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf
+		Pantheios.be.AnsiConsole
+		Pantheios.bec.AnsiConsole
 )
 
 target_link_libraries(test.scratch.extras.com_exception_helpers

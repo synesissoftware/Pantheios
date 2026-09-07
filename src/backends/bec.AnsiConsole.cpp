@@ -4,11 +4,11 @@
  * Purpose: Implementation of the Pantheios ANSI-Console Stock Back-end API.
  *
  * Created: 20th October 2024
- * Updated: 30th January 2025
+ * Updated: 5th August 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2024-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2024-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,11 +54,26 @@
 #include <pantheios/util/backends/context.hpp>
 
 #include <stlsoft/stlsoft.h>
+#include <platformstl/platformstl.h>
 #include <platformstl/system/console_functions.h>
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+# include <winstl/system/system_version.hpp>
+#endif
 
 #include <utility>
 
 #include <stdio.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * compatibility
+ */
+
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+# ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
+#  define ENABLE_VIRTUAL_TERMINAL_PROCESSING                (0x0004)
+# endif
+#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,11 +95,6 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * compatibility
- */
-
-
-/* /////////////////////////////////////////////////////////////////////////
  * namespace
  */
 
@@ -98,6 +108,96 @@ namespace {
 #if !defined(PLATFORMSTL_NO_NAMESPACE)
     using platformstl::platformstl_C_isatty_stm;
 #endif /* !PLATFORMSTL_NO_NAMESPACE */
+
+    /* Intended to ensure that, on Windows, we are not emitting ANSI colour
+     * codes when on an old terminal that cannot be instructed to accept
+     * them. Pattern mirrors BDUT (`BDUT_console_supports_ansi_`) and
+     * xTests (`tty::ansi_supporter`).
+     *
+     * - Windows 11 (build >= 22000): ANSI typically accepted without
+     *   opt-in (e.g. modern Command Box / console hosts);
+     * - Windows 10 VT-capable builds (>= 16257), or unknown build (0):
+     *   attempt `SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`
+     *   on the standard output and error handles;
+     * - Older Windows (e.g. XP): do not emit ANSI sequences.
+     */
+    struct ansi_supporter
+    {
+    private:
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+        static
+        bool
+        try_enable_console_vt_(
+            HANDLE h
+        )
+        {
+            DWORD mode;
+
+            if (NULL == h ||
+                INVALID_HANDLE_VALUE == h)
+            {
+                return false;
+            }
+
+            if (!::GetConsoleMode(h, &mode))
+            {
+                return false;
+            }
+
+            if (0 != (mode & ENABLE_VIRTUAL_TERMINAL_PROCESSING))
+            {
+                return true;
+            }
+
+            return !!::SetConsoleMode(h, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+        }
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+
+    public:
+        static
+        bool
+        determine_support()
+        {
+#if defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+            using winstl::system_version;
+
+            /* Cache: `SetConsoleMode` is a process-wide console side-effect. */
+            static bool s_determined;
+            static bool s_supports;
+
+            if (!s_determined)
+            {
+                DWORD const build = system_version::build_number();
+
+                if (build >= 22000)
+                {
+                    s_supports = true;
+                }
+                else if (build >= 16257 ||
+                         0 == build)
+                {
+                    bool const out_ok = try_enable_console_vt_(::GetStdHandle(STD_OUTPUT_HANDLE));
+                    bool const err_ok = try_enable_console_vt_(::GetStdHandle(STD_ERROR_HANDLE));
+
+                    s_supports = out_ok || err_ok;
+                }
+                else
+                {
+                    s_supports = false;
+                }
+
+                s_determined = true;
+            }
+
+            return s_supports;
+#else /* ? PLATFORMSTL_OS_IS_WINDOWS */
+
+            return true;
+#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+        }
+    };
 
     struct AnsiConsole_Context
         : public Context
@@ -428,7 +528,8 @@ namespace {
         if (0 == (PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS & flags))
         {
             if (0 != (PANTHEIOS_BE_ANSICONSOLE_F_FORCE_ANSI_ESCAPE_SEQUENCES & flags) ||
-                platformstl_C_isatty_stm(stm))
+                (platformstl_C_isatty_stm(stm) &&
+                 ansi_supporter::determine_support()))
             {
                 switch (severity4 & 0xf)
                 {

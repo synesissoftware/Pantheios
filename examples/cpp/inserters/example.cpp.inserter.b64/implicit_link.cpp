@@ -6,7 +6,7 @@
 #include <pantheios/implicit_link/core.h>
 #include <pantheios/implicit_link/fe.simple.h>
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-# include <pantheios/implicit_link/be.fprintf.h>
+# include <pantheios/implicit_link/be.AnsiConsole.h>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 # include <pantheios/implicit_link/be.WindowsConsole.h>
 #else /* ? OS */

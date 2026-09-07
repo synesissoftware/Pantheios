@@ -126,17 +126,20 @@
 #define PANTHEIOS_VER_MAJOR                     1
 #define PANTHEIOS_VER_MINOR                     0
 #define PANTHEIOS_VER_PATCH                     1
-#define PANTHEIOS_VER_ALPHABETA                 0xE3
+#define PANTHEIOS_VER_AB                        0xE3
 
 #define PANTHEIOS_VER \
     (0\
         |   (   PANTHEIOS_VER_MAJOR             << 24   ) \
         |   (   PANTHEIOS_VER_MINOR             << 16   ) \
         |   (   PANTHEIOS_VER_PATCH             <<  8   ) \
-        |   (   PANTHEIOS_VER_ALPHABETA         <<  0   ) \
+        |   (   PANTHEIOS_VER_AB                <<  0   ) \
     )
 
-#define PANTHEIOS_VER_REVISION                  PANTHEIOS_VER_PATCH
+#ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# define PANTHEIOS_VER_ALPHABETA                PANTHEIOS_VER_AB
+# define PANTHEIOS_VER_REVISION                 PANTHEIOS_VER_PATCH
+#endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -8,9 +8,9 @@ target_link_Pantheios_core(test.scratch.c_api)
 target_link_libraries(test.scratch.c_api
 	PRIVATE
 		Pantheios.be.lrsplit
-		Pantheios.bel.fprintf
+		Pantheios.bel.AnsiConsole
 		Pantheios.ber.null
-		Pantheios.bec.fprintf
+		Pantheios.bec.AnsiConsole
 		Pantheios.bec.null
 )
 
