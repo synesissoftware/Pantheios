@@ -1,125 +1,133 @@
+# Synesis Information Systems .gitignore for C / C++ libraries
+
 
 # directories (by name)
 
-/.git-old/
-/.vs/
+bin/
+ideas/
+ipch/
+lib/
+scripts/internal/
+Win32/
+x64/
 
+.idea/
+.svn/
+.vs/
+
+__pycache__/
+
+/_analyses/
+/_build-ci/
 /_build/
 /_internal/
 
-/bin/
-/ipch/
-/lib/
-
-/doc/
+/docs/
 /dox/
 /ideas/
+/include/xcontract/
+/include/xcover/
+/included/
+/node_modules/
 /releases/
 /scratch/
+/src/xcontract/
+/src/xcover/
+/target/
 /temp/
 
-/--include
-/--src
-/-include
-/-src
+/examples/bin/
+/examples/c/bin/
+/examples/c/lib/
+/examples/cpp/bin/
+/examples/cpp/lib/
+/examples/lib/
 
-include/b64/
-include/shwild/
-include/xcontract/
-include/xcover/
-include/xtests/
-
-src/b64/
-src/shwild/
-src/xcontract/
-src/xcover/
-src/xtests/
-
-.svn/
-
-/examples/bin
-/examples/c/bin
-/examples/cpp/bin
-
-/examples/lib
-/examples/c/lib
-/examples/cpp/lib
-
-projects/util/vc10-generated/
-
-perf_test/
-
-
-scripts/internal/
-
+Debug Multithreaded Dll/
 Debug Multithreaded DLL/
+Debug Multithreaded pseudoUnix/
+Debug Multithreaded pseudoUNIX/
 Debug Multithreaded/
 Debug/
-DebugDLLUNIX/
 DebugDll/
+DebugDLL/
+DebugDLLUNIX/
 DebugMt/
+DebugMTDll/
+DebugMTDLL/
+DebugMTUnix/
+DebugNox/
+DebugUnix/
+DebugUNIX/
+Release Multithreaded Dll/
 Release Multithreaded DLL/
+Release Multithreaded pseudoUnix/
+Release Multithreaded pseudoUNIX/
 Release Multithreaded/
 Release/
-ReleaseDLLUNIX/
 ReleaseDll/
+ReleaseDLL/
+ReleaseDLLUNIX/
 ReleaseMt/
+ReleaseMTDll/
+ReleaseMTDLL/
+ReleaseMTUnix/
+ReleaseNox/
+ReleaseUnix/
+UDebug/
+UDebugMt/
+Unicode Debug Multithreaded Dll/
 Unicode Debug Multithreaded DLL/
 Unicode Debug Multithreaded/
 Unicode Debug/
+Unicode Release Multithreaded Dll/
 Unicode Release Multithreaded DLL/
 Unicode Release Multithreaded/
 Unicode Release/
-
-vc71/
-vc8/
-vc9/
-
-Win32/
-x64/
+URelease/
+UReleaseMt/
 
 
 # directories (by pattern)
 
-/build/ar*
-/build/bc5*
-/build/como*
-/build/cw*
-/build/icl*
-/build/vc5*
-/build/*.zip
+/include-*/
 
 
 # files (by name)
 
 .DS_Store
+
+.classpath
+.env.development.local
+.env.local
+.env.production.local
+.env.test.local
 .ruby-version
+.svnignore
+.svnignore-at-root
 .update_deps
 
+build/CMakeCache.txt
+build/makefile.tmpl
+build/makefile.tools.xml
+build/shwild.tmplgen
+include/pantheios/internal/dos2unix.has.been.performed
+include/stlsoft/dos2unix.has.been.performed
+include/stlsoft/internal/dos2unix.has.been.performed
 list_changes.cmd
 logging-bailout.txt
 prepare.cmd
+sh.exe.stackdump
+test/testpatterns.orj
+test/tests-plan.txt
 tidydir.cmd
 update_deps.cmd
-
-build/makefile.tmpl
-build/makefile.tools.xml
-
-include/pantheios/internal/dos2unix.has.been.performed
-
-projects/core/vc10/pantheios.core.2.vcxproj
-
-# TODO: remove these exclusions when be.loader released
-include/pantheios/backends/bec.loader.h
-src/backends/be/be.loader.c
-src/backends/bec.loader.cpp
-src/backends/bel/bel.loader.c
-src/backends/ber/ber.loader.c
 
 
 # files (by pattern)
 
 *~
+*.*~
 *.???_obj
 *.a
 *.app
@@ -127,12 +135,16 @@ src/backends/ber/ber.loader.c
 *.b64
 *.bak
 *.chm
+*.class
+*.csproj*user
 *.d
+*.diff
 *.dll
 *.dsp
 *.dylib
 *.exe
 *.gch
+*.gem
 *.idb
 *.ilk
 *.iobj
@@ -152,6 +164,7 @@ src/backends/ber/ber.loader.c
 *.out
 *.pch
 *.pdb
+*.pyc
 *.rar
 *.res
 *.sbr
@@ -160,22 +173,42 @@ src/backends/ber/ber.loader.c
 *.slo
 *.so
 *.suo
+*.sw[ponm]
 *.swp
+*.test
 *.tlog
 *.tmp
 *.unsuccessfulbuild
-*.vcproj*.user
-*.vcxproj*.user
+*.VC.db
+*.VC.opendb
 *.xcuserstate
 *.zip
+
+/build/*.tmpl
+/build/*.tmplgen
+/build/*.tools.xml
+/build/*.zip
+/build/ar*
+/build/bc5*
+/build/como*
+/build/cw*
+/build/gcc3*
+/build/gcc4*
+/build/icl*
+/build/vc5*
 
 RCa0*
 RCb0*
 
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 *.vc71.sln
 *.vc8.sln
 *.vc9.sln
+*.vcproj*.user
+*.vcproj*user
+*.vcxproj*.user
+*.vcxproj*user
 
-build/*.tmplgen
-build/*.tmpl
-build/*.tools.xml
