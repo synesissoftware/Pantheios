@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/libver/main.cpp
+ * File:    test/scratch/versions/main.cpp
  *
  * Purpose: Lists composite version macros for Pantheios and its
  *          dependencies.
