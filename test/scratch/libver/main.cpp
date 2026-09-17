@@ -5,7 +5,7 @@
  *          dependencies.
  *
  * Created: 4th August 2026
- * Updated: 4th August 2026
+ * Updated: 17th September 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -30,6 +30,7 @@
 # include <xtests/xtests.h>
 #endif
 
+#include <iomanip>
 #include <iostream>
 
 #include <stdlib.h>
@@ -46,13 +47,16 @@ template<
 void
 version(
     T_stream&   stm
+,   char const* prefix
 ,   char const* libname
+,   char const* macroname
 ,   T_integer   libver
 )
 {
     stm
+        << prefix
         << libname
-        << " v"
+        << ": v"
         << ((libver >> 24) & 0xff)
         << '.'
         << ((libver >> 16) & 0xff)
@@ -60,6 +64,13 @@ version(
         << ((libver >> 8) & 0xff)
         << '.'
         << ((libver >> 0) & 0xff)
+        << " ("
+        << macroname
+        << " = 0x"
+        << std::hex << std::setfill('0') << std::setw(8)
+        << static_cast<unsigned>(libver)
+        << std::dec
+        << ")"
         << std::endl
         ;
 }
@@ -74,13 +85,15 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = PANTHEIOS_VER;
 
-        version(std::cout, "\tPantheios", libver);
+        version(std::cout, "", "Pantheios", "PANTHEIOS_VER", libver);
     }
+
+    std::cout << "\n" << "efferent dependencies:" << std::endl;
 
     {
         unsigned const libver = _STLSOFT_VER;
 
-        version(std::cout, "\tSTLSoft", libver);
+        version(std::cout, "\t", "STLSoft", "_STLSOFT_VER", libver);
     }
 
 #ifdef HAS_b64
@@ -88,7 +101,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = B64_VER;
 
-        version(std::cout, "\tb64", libver);
+        version(std::cout, "\t", "b64", "B64_VER", libver);
     }
 #endif
 
@@ -97,7 +110,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = SHWILD_VER;
 
-        version(std::cout, "\tshwild", libver);
+        version(std::cout, "\t", "shwild", "SHWILD_VER", libver);
     }
 #endif
 
@@ -106,7 +119,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = _XTESTS_VER;
 
-        version(std::cout, "\txTests", libver);
+        version(std::cout, "\t", "xTests", "_XTESTS_VER", libver);
     }
 #endif
 
