@@ -1,6 +1,17 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## Unreleased
+
+* Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;
+* Restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
+
+
+## 1.0.1-rc3 - 10th September 2026
+
+T.B.C.
+
+
 ## 1.0.1-rc2 - 6th September 2026
 
 * **CMake** package configuration: loaded `CMakeFindDependencyMacro` and added conditional `find_dependency()` calls for **STLSoft** and **b64** in **`pantheios-config.cmake`**; ensures exported static targets (such as `Pantheios::Pantheios.core`) provide transitive interface link dependencies (`b64::core`, `STLSoft::STLSoft`) to downstream consumers without requiring callers to invoke `find_package(b64)` manually;
