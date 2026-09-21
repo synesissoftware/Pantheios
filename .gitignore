@@ -5,6 +5,7 @@
 /.vs/
 
 /_build/
+/_install/
 /_internal/
 
 /bin/
@@ -80,6 +81,8 @@ x64/
 
 
 # directories (by pattern)
+
+/_build*/
 
 /build/ar*
 /build/bc5*
