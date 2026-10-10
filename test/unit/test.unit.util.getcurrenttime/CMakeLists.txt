@@ -1,6 +1,6 @@
 
 add_executable(test.unit.util.getcurrenttime
-	test.unit.util.getcurrenttime.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_util(test.unit.util.getcurrenttime)

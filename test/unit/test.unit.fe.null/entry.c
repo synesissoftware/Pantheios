@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.fe.all/test.unit.fe.all.c
+ * File:    test/unit/test.unit.fe.null/entry.c
  *
- * Purpose: Implementation file for the test.unit.fe.all project.
+ * Purpose: Implementation file for the test.unit.fe.null project.
  *
  * Created: 14th May 2008
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#include <pantheios/frontends/fe.all.h>
+#include <pantheios/frontends/fe.null.h>
 #include <pantheios/init_codes.h>
 
 #include <xtests/xtests.h>
@@ -39,7 +39,7 @@
  * globals
  */
 
-PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.all");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.null");
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,14 +60,14 @@ static const int s_severityLevels[] =
 
 static const int s_severityLevelResults[] =
 {
-        1
-    ,   1
-    ,   1
-    ,   1
-    ,   1
-    ,   1
-    ,   1
-    ,   1
+        0
+    ,   0
+    ,   0
+    ,   0
+    ,   0
+    ,   0
+    ,   0
+    ,   0
 };
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
 
     STLSOFT_STATIC_ASSERT(STLSOFT_NUM_ELEMENTS(s_severityLevels) == STLSOFT_NUM_ELEMENTS(s_severityLevelResults));
 
-    if (XTESTS_START_RUNNER("test.unit.fe.all", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.fe.null", verbosity))
     {
         /* Test-1 */
         if (XTESTS_CASE_BEGIN("Test-1", "Verify that the initialisation succeeds"))
@@ -122,7 +122,7 @@ int main(int argc, char* argv[])
 
 
         /* Test-3 */
-        if (XTESTS_CASE_BEGIN("Test-3", "Verify that all levels are acceptable"))
+        if (XTESTS_CASE_BEGIN("Test-3", "Verify that null levels are acceptable"))
         {
             void*   token;
             int     res;

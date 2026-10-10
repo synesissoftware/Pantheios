@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/inserters/test.unit.inserter.w2m/test.unit.inserter.w2m.cpp
+ * File:    test/unit/inserters/test.unit.inserter.integer/entry.cpp
  *
- * Purpose: Implementation file for the test.unit.inserter.w2m project.
+ * Purpose: Implementation file for the test.unit.inserter.integer project.
  *
  * Created: 21st December 2010
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -13,18 +13,9 @@
 
 #include <pantheios/pantheios.h>
 
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-# error This project only valid in multibyte-string builds
-#endif
-
-#include <pantheios/inserters/w2m.hpp>
+#include <pantheios/inserters/integer.hpp>
 
 #include <xtests/xtests.h>
-
-#include <stlsoft/conversion/char_conversions.hpp>
-#include <stlsoft/shims/access/string.hpp>
-#include <stlsoft/util/limit_traits.h>
-#include <stlsoft/util/minmax.hpp>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
@@ -53,7 +44,26 @@ static void test_1_12();
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.inserter.w2m");
+#define PSTR(x)                         PANTHEIOS_LITERAL_STRING(x)
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * character encoding
+ */
+
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+
+#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
+# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.inserter.integer");
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -64,7 +74,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.inserter.w2m", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserter.integer", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -91,38 +101,29 @@ int main(int argc, char* argv[])
 
 namespace
 {
-    wchar_t const* strings[] =
-    {
-            L""
-        ,   L"a"
-        ,   L"ab"
-        ,   L"abc"
-        ,   L"abcd"
-        ,   L"abcde"
-        ,   L"abcdef"
-        ,   L"abcdefghijklmnopqrstuvwxyz"
-        ,   L"abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"
-    };
-
 
 static void test_1_01()
 {
-    { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
-    {
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(stlsoft::w2m(strings[i]), pantheios::w2m(strings[i]));
-    }}
+    XTESTS_TEST_STRING_EQUAL(PSTR("0"), pantheios::integer(0));
 }
 
 static void test_1_02()
 {
+    XTESTS_TEST_STRING_EQUAL(PSTR("-1"), pantheios::integer(-1));
+    XTESTS_TEST_STRING_EQUAL(PSTR( "1"), pantheios::integer(+1));
 }
 
 static void test_1_03()
 {
+    XTESTS_TEST_STRING_EQUAL(PSTR("-1"), pantheios::integer(-1, 0, 0));
+    XTESTS_TEST_STRING_EQUAL(PSTR( "1"), pantheios::integer(+1, 0, 0));
 }
 
 static void test_1_04()
 {
+    XTESTS_TEST_STRING_EQUAL(PSTR("+0"), pantheios::integer( 0, 0, pantheios::fmt::showPlus));
+    XTESTS_TEST_STRING_EQUAL(PSTR("-1"), pantheios::integer(-1, 0, pantheios::fmt::showPlus));
+    XTESTS_TEST_STRING_EQUAL(PSTR("+1"), pantheios::integer(+1, 0, pantheios::fmt::showPlus));
 }
 
 static void test_1_05()
@@ -131,6 +132,8 @@ static void test_1_05()
 
 static void test_1_06()
 {
+    XTESTS_TEST_STRING_EQUAL(PSTR("-1"), pantheios::integer(-1));
+//    XTESTS_TEST_STRING_EQUAL(PSTR("+1"), pantheios::integer(+1));
 }
 
 static void test_1_07()

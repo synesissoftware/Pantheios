@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.util.getcurrenttime/test.unit.util.getcurrenttime.cpp
+ * File:    test/unit/test.unit.util.getcurrenttime/entry.cpp
  *
  * Purpose: Unit-testing of `pantheios_util_getCurrentTime()`
  *
  * Created: 10th November 2007
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

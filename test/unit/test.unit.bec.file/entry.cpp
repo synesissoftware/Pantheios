@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.bec.file/test.unit.bec.file.cpp
+ * File:    test/unit/test.unit.bec.file/entry.cpp
  *
  * Purpose: Unit-tests for bec.file.
  *
  * Created: 19th January 2008
- * Updated: 24th January 2025
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

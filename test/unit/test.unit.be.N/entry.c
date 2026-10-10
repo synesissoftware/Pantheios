@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.be.N/test.unit.be.N.c
+ * File:    test/unit/test.unit.be.N/entry.c
  *
  * Purpose: Unit test of be.N backend.
  *
  * Created: 29th January 2008
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

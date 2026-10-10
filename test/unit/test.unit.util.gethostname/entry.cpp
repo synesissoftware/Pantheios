@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.util.gethostname/test.unit.util.gethostname.cpp
+ * File:    test/unit/test.unit.util.gethostname/entry.cpp
  *
  * Purpose: Implementation file for the test.unit.util.gethostname project.
  *
  * Created: 14th April 2008
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

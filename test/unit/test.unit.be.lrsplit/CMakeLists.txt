@@ -1,6 +1,6 @@
 
 add_executable(test.unit.be.lrsplit
-	test.unit.be.lrsplit.c
+	entry.c
 )
 
 target_link_libraries(test.unit.be.lrsplit

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.fe.WindowsRegistry/test.unit.fe.WindowsRegistry.cpp
+ * File:    test/unit/test.unit.fe.WindowsRegistry/entry.cpp
  *
  * Purpose: Implementation file for the test.unit.fe.WindowsRegistry project.
  *
  * Created: 14th May 2008
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

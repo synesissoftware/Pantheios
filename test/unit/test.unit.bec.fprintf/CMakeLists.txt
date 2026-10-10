@@ -1,6 +1,6 @@
 
 add_executable(test.unit.bec.fprintf
-	test.unit.bec.fprintf.cpp
+	entry.cpp
 )
 
 target_link_libraries(test.unit.bec.fprintf

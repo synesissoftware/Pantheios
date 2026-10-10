@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.fe.simple/test.unit.fe.simple.c
+ * File:    test/unit/test.unit.fe.all/entry.c
  *
- * Purpose: Implementation file for the test.unit.fe.simple project.
+ * Purpose: Implementation file for the test.unit.fe.all project.
  *
  * Created: 14th May 2008
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#include <pantheios/frontends/fe.simple.h>
+#include <pantheios/frontends/fe.all.h>
 #include <pantheios/init_codes.h>
 
 #include <xtests/xtests.h>
@@ -39,7 +39,7 @@
  * globals
  */
 
-PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.simple");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.fe.all");
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,13 +66,8 @@ static const int s_severityLevelResults[] =
     ,   1
     ,   1
     ,   1
-#ifdef NDEBUG
-    ,   0
-    ,   0
-#else /* ? NDEBUG */
     ,   1
     ,   1
-#endif /* NDEBUG */
 };
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -86,7 +81,7 @@ int main(int argc, char* argv[])
 
     STLSOFT_STATIC_ASSERT(STLSOFT_NUM_ELEMENTS(s_severityLevels) == STLSOFT_NUM_ELEMENTS(s_severityLevelResults));
 
-    if (XTESTS_START_RUNNER("test.unit.fe.simple", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.fe.all", verbosity))
     {
         /* Test-1 */
         if (XTESTS_CASE_BEGIN("Test-1", "Verify that the initialisation succeeds"))
@@ -127,7 +122,7 @@ int main(int argc, char* argv[])
 
 
         /* Test-3 */
-        if (XTESTS_CASE_BEGIN("Test-3", "Verify that simple levels are acceptable"))
+        if (XTESTS_CASE_BEGIN("Test-3", "Verify that all levels are acceptable"))
         {
             void*   token;
             int     res;

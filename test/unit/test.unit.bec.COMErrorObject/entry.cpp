@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.bec.COMErrorObject/test.unit.bec.COMErrorObject.cpp
+ * File:    test/unit/test.unit.bec.COMErrorObject/entry.cpp
  *
  * Purpose: Implementation file for the test.unit.be.COMErrorObject project.
  *
  * Created: 1st January 2008
- * Updated: 25th January 2025
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

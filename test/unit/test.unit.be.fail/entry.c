@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.bec.fail/test.unit.bec.fail.c
+ * File:    test/unit/test.unit.be.fail/entry.c
  *
- * Purpose: Implementation file for the test.unit.bec.fail project.
+ * Purpose: Implementation file for the test.unit.be.fail project.
  *
  * Created: 27th January 2008
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#include <pantheios/backends/bec.fail.h>
+#include <pantheios/backend.h>
 #include <pantheios/init_codes.h>
 
 #include <xtests/xtests.h>
@@ -24,7 +24,7 @@
  * globals
  */
 
-PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.bec.fail");
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.fail");
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -38,13 +38,13 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.bec.fail", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.be.fail", verbosity))
     {
         /* Test-1 */
         if (XTESTS_CASE_BEGIN("Test-1", "Verify that it fails"))
         {
             void*   token;
-            int     res = pantheios_be_fail_init(PANTHEIOS_FE_PROCESS_IDENTITY, 0, NULL, NULL, &token);
+            int     res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
             XTESTS_TEST_INTEGER_LESS(0, res);
             XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE, res);

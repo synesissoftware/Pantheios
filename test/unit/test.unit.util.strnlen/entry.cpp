@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.util.strnlen/test.unit.util.strnlen.cpp
+ * File:    test/unit/test.unit.util.strnlen/entry.cpp
  *
  * Purpose: Implementation file for the test.unit.util.strnlen project.
  *
  * Created: 17th April 2009
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

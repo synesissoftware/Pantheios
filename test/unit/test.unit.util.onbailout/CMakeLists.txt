@@ -1,6 +1,6 @@
 
 add_executable(test.unit.util.onbailout
-	test.unit.util.onbailout.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_util(test.unit.util.onbailout)
