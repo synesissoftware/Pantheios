@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.api/main.cpp
+ * File:    test/scratch/api/main.cpp
  *
  * Purpose: Implementation file for the test.scratch.api project.
  *

@@ -38,7 +38,7 @@ add_subdirectory(test.unit.fe.all)
 add_subdirectory(test.unit.fe.fail)
 add_subdirectory(test.unit.fe.null)
 add_subdirectory(test.unit.fe.simple)
-add_subdirectory(test.unit.getversion)
+add_subdirectory(getversion)
 if(_BUILD_AS_WIN32)
 
 	add_subdirectory(test.unit.inserters.windows.sc)

@@ -5,9 +5,9 @@ add_subdirectory(test.component.core.getProcessIdentity)
 add_subdirectory(test.component.core.initialisation_sequence)
 add_subdirectory(test.component.core.pantheios_logprintf)
 add_subdirectory(test.component.core.pantheios_logputs)
-add_subdirectory(test.component.custom_severity)
+add_subdirectory(custom_severity)
 
-add_subdirectory(test.component.details)
+add_subdirectory(details)
 
 add_subdirectory(test.component.inserters.args)
 #[====[

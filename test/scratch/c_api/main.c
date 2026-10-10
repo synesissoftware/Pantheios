@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.c_api/main.c
+ * File:    test/scratch/c_api/main.c
  *
  * Purpose: Implementation file for the test.scratch.c_api project.
  *

@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.details/entry.cpp
+ * File:    test/component/details/entry.cpp
  *
  * Purpose: Component test of details permutations.
  *

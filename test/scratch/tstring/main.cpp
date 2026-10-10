@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.tstring/main.cpp
+ * File:    test/scratch/tstring/main.cpp
  *
  * Purpose: Implementation file for the test.scratch.tstring project.
  *

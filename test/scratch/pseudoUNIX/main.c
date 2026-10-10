@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.pseudoUNIX/main.c
+ * File:    test/scratch/pseudoUNIX/main.c
  *
  * Purpose: Implementation file for the pseudoUNIX.test project.
  *

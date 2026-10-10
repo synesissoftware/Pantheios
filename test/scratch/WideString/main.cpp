@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.WideString/main.cpp
+ * File:    test/scratch/WideString/main.cpp
  *
  * Purpose: Scratch test for widestring application layer.
  *

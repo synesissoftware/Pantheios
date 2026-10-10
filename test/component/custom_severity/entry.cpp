@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.custom_severity/entry.cpp
+ * File:    test/component/custom_severity/entry.cpp
  *
  * Purpose: Implementation file for the test.component.custom_severity project.
  *

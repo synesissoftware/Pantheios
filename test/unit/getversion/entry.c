@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/unit/test.unit.getversion/entry.c
+ * File:    test/unit/getversion/entry.c
  *
  * Purpose: Implementation file for the test.unit.getversion project.
  *

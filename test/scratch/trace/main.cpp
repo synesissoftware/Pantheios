@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.trace/main.cpp
+ * File:    test/scratch/trace/main.cpp
  *
  * Purpose: Implementation file for the trace_test project.
  *

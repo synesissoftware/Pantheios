@@ -1,12 +1,12 @@
 
 
-add_subdirectory(test.scratch.I18N)
+add_subdirectory(I18N)
 if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.scratch.WideString)
+	add_subdirectory(WideString)
 endif(_BUILD_AS_WIN32)
 #[====[
-add_subdirectory(test.scratch.api)
+add_subdirectory(api)
 #]====]
 if(HAS_ACE)
 
@@ -52,7 +52,7 @@ if(_BUILD_AS_WIN32)
 endif(_BUILD_AS_WIN32)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
-	add_subdirectory(test.scratch.c_api)
+	add_subdirectory(c_api)
 endif()
 #[====[
 if(_BUILD_AS_WIN32)
@@ -63,7 +63,7 @@ endif(_BUILD_AS_WIN32)
 #]====]
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
-	add_subdirectory(test.scratch.fe)
+	add_subdirectory(fe)
 endif()
 if(_BUILD_AS_WIN32)
 
@@ -75,17 +75,17 @@ add_subdirectory(test.scratch.fe.simple.WithCallback)
 # Needs UNIXem (pseudo-UNIX on Windows); not valid under _BUILD_AS_WIN32.
 if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.scratch.pseudoUNIX)
+	add_subdirectory(pseudoUNIX)
 endif(_BUILD_AS_WIN32)
 #]====]
 add_subdirectory(test.scratch.showPlus.integer)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
-	add_subdirectory(test.scratch.trace)
+	add_subdirectory(trace)
 endif()
 if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.scratch.tstring)
+	add_subdirectory(tstring)
 endif(_BUILD_AS_WIN32)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 

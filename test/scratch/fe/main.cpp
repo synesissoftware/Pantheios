@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.fe/main.cpp
+ * File:    test/scratch/fe/main.cpp
  *
  * Purpose: Implementation file for the test.scratch.fe project.
  *
