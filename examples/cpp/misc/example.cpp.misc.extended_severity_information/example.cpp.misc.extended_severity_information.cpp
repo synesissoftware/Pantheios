@@ -8,7 +8,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 31st August 2006
- * Updated: 28th October 2024
+ * Updated: 5th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -141,12 +141,14 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
     platformstl::system_traits<PAN_CHAR_T>::str_set(&prefixes[0], prefixes.size(), ' ');
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
+
     return ::fwprintf(stm
                     , L"[%s; %s]:%.*s %.*s\n"
                     , processId, severity_s
                     , int(prefixes.size()), prefixes.data()
                     , int(cchEntry), entry);
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
+
     return ::fprintf( stm
                     , "[%s; %s]:%.*s %.*s\n"
                     , processId, severity_s

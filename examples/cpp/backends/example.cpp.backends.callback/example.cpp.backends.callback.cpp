@@ -7,7 +7,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 25th August 2006
- * Updated: 28th October 2024
+ * Updated: 5th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,13 +19,7 @@
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>                  // Pantheios C++ main header
 #include <platformstl/platformstl.h>
-#if defined(PLATFORMSTL_OS_IS_UNIX)
-# include <pantheios/backends/bec.fprintf.h>        // Include the API for bec.fprintf
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-# include <pantheios/backends/bec.WindowsConsole.h> // Include the API for bec.WindowsConsole
-#else /* ? OS */
-# error Platform not discriminated
-#endif /* OS */
+#include <pantheios/backends/bec.AnsiConsole.h>        // Include the API for bec.AnsiConsole
 
 /* Standard C/C++ header files */
 #include <exception>                                // for std::exception
@@ -50,32 +44,12 @@ PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
-
-PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(
-  int                     /* backEndId */
-, pan_be_fprintf_init_t*  init) /* throw() */
+PANTHEIOS_CALL(void) pantheios_be_AnsiConsole_getAppInit(
+  int                        /* backEndId */
+, pan_be_AnsiConsole_init_t*    init) /* throw() */
 {
   init->flags |= PANTHEIOS_BE_INIT_F_NO_DATETIME; // Don't show date/time
 }
-
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-
-PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
-  int                           /* backEndId */
-, pan_be_WindowsConsole_init_t* init
-) /* throw() */
-{
-  init->flags |= PANTHEIOS_BE_INIT_F_NO_DATETIME; // Don't show date/time
-
-  init->colours[pantheios::debug]   = FOREGROUND_BLUE | FOREGROUND_INTENSITY;              // Lose the white background
-  init->colours[pantheios::notice]  = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED; // Lose the intensity
-}
-
-#else /* ? OS */
-
-# error Platform not discriminated
-#endif /* OS */
 
 
 /* /////////////////////////////////////////////////////////////////////////

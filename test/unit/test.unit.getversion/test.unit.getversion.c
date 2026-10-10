@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.getversion project.
  *
  * Created: 28th August 2008
- * Updated: 6th September 2026
+ * Updated: 11th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -50,7 +50,7 @@ static void test_composite(void);
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -136,6 +136,8 @@ static void test_alphabeta(void)
 {
     pan_uint32_t const verAlphabeta = pantheios_getVersion() & 0x000000ff;
 
+    TEST_INT_EQ(PANTHEIOS_VER_RELSTATUS, verAlphabeta);
+    TEST_INT_EQ(PANTHEIOS_VER_AB, verAlphabeta);
     TEST_INT_EQ(PANTHEIOS_VER_ALPHABETA, verAlphabeta);
 }
 
@@ -143,16 +145,17 @@ static void test_composite(void)
 {
     pan_uint32_t const expected = (pan_uint32_t)(
         0
-    |   (PANTHEIOS_VER_MAJOR        << 24)
-    |   (PANTHEIOS_VER_MINOR        << 16)
-    |   (PANTHEIOS_VER_PATCH        <<  8)
-    |   (PANTHEIOS_VER_ALPHABETA    <<  0)
+    |   (PANTHEIOS_VER_MAJOR    << 24)
+    |   (PANTHEIOS_VER_MINOR    << 16)
+    |   (PANTHEIOS_VER_PATCH    <<  8)
+    |   (PANTHEIOS_VER_AB       <<  0)
     );
 
     TEST_INT_EQ(expected, PANTHEIOS_VER);
     TEST_INT_EQ(expected, pantheios_getVersion());
-    TEST_INT_EQ(PANTHEIOS_VER_1_0_1_RC2, PANTHEIOS_VER);
+    TEST_INT_EQ(PANTHEIOS_VER_1_0_1_RC3, PANTHEIOS_VER);
 }
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

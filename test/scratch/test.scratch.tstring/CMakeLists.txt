@@ -7,8 +7,8 @@ target_link_Pantheios_core(test.scratch.tstring)
 
 target_link_libraries(test.scratch.tstring
 	PRIVATE
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf
+		$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.be.WindowsConsole,Pantheios.be.AnsiConsole>
+		$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.bec.WindowsConsole,Pantheios.bec.AnsiConsole>
 )
 
 target_link_libraries(test.scratch.tstring

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the example.cpp.backends.mx.1 project.
  *
  * Created: 19th September 2008
- * Updated: 27th October 2024
+ * Updated: 5th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -18,11 +18,10 @@
 #include <pantheios/frontends/fe.simple.h>
 #include <pantheios/backends/be.N.h>
 #include <platformstl/platformstl.h>
+#include <pantheios/backends/bec.AnsiConsole.h>
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-# include <pantheios/backends/bec.fprintf.h>
 # include <pantheios/backends/bec.syslog.h>
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-# include <pantheios/backends/bec.WindowsConsole.h>
 # include <pantheios/backends/bec.WindowsSyslog.h>
 #else /* ? OS */
 # error Platform not discriminated
@@ -63,11 +62,10 @@ enum
 
 pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
 {
+    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Console, pantheios_be_AnsiConsole, 0),
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Console, pantheios_be_fprintf, 0),
     PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Syslog, pantheios_be_syslog, PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28),
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Console, pantheios_be_WindowsConsole, 0),
     PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Syslog, pantheios_be_WindowsSyslog, PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28),
 #else /* ? OS */
 # error Platform not discriminated

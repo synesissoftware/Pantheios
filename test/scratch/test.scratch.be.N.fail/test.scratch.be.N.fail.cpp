@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the be.N.fail.test project.
  *
  * Created: 9th January 2007
- * Updated: 15th July 2024
+ * Updated: 5th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,7 +22,7 @@
 #include <pantheios/backends/be.N.h>
 #include <pantheios/backends/bec.fail.h>
 #include <pantheios/backends/bec.file.h>
-#include <pantheios/backends/bec.fprintf.h>
+#include <pantheios/backends/bec.AnsiConsole.h>
 
 /* Standard C++ header files */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -64,7 +64,7 @@ pan_be_N_t      PAN_BE_N_BACKEND_LIST[]         =
     PANTHEIOS_BE_N_STDFORM_ENTRY(1, pantheios_be_fail, PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE),
     PANTHEIOS_BE_N_STDFORM_ENTRY(2, pantheios_be_file, 0),
     PANTHEIOS_BE_N_STDFORM_ENTRY(3, pantheios_be_fail, PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE),
-    PANTHEIOS_BE_N_STDFORM_ENTRY(4, pantheios_be_fprintf, 0),
+    PANTHEIOS_BE_N_STDFORM_ENTRY(4, pantheios_be_AnsiConsole, 0),
     PANTHEIOS_BE_N_TERMINATOR_ENTRY
 };
 

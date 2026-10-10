@@ -8,7 +8,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 3rd August 2012
- * Updated: 29th January 2025
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -48,9 +48,9 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 PANTHEIOS_CALL(void)
 pantheios_be_WindowsSyslog_getAppInit(
-    int                             backEndId
+    int                          /* backEndId */
 ,   pan_be_WindowsSyslog_init_t*    init
-) throw()
+) /* throw() */
 {
     init->addrSize = 0;
     init->hostName = "127.0.0.1";

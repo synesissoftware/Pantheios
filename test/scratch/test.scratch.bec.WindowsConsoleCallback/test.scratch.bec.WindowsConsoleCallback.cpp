@@ -4,7 +4,7 @@
  * Purpose:  Implementation file for the test.scratch.bec.WindowsConsoleCallback project.
  *
  * Created:  31st July 2007
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,7 +40,10 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(int backEndId, pan_be_WindowsConsole_init_t *init) /* throw() */
+PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
+    int                          /* backEndId */
+,   pan_be_WindowsConsole_init_t*   init
+) /* throw() */
 {
     init->flags |= PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
     init->flags |= PANTHEIOS_BE_INIT_F_NO_DATETIME;

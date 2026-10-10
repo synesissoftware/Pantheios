@@ -68,6 +68,27 @@ macro(target_link_STLSoft target_name)
 		endif()
 endmacro(target_link_STLSoft)
 
+macro(target_link_ACE target_name)
+
+	if(TARGET ACE::ACE)
+
+		target_link_libraries(${target_name}
+			PUBLIC
+				ACE::ACE
+		)
+	else()
+
+		target_include_directories(${target_name}
+			PUBLIC
+				${ACE_INCLUDE_DIRS}
+		)
+		target_link_libraries(${target_name}
+			PUBLIC
+				${ACE_LIBRARIES}
+		)
+	endif()
+endmacro(target_link_ACE)
+
 macro(target_link_shwild target_name)
 
 	target_link_libraries(${target_name}
@@ -94,8 +115,8 @@ function(define_simple_console_example_c program_and_main_source_stem)
 
 	target_link_libraries(${program_and_main_source_stem}
 		PRIVATE
-			$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.be.WindowsConsole,Pantheios.be.fprintf>
-			$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+			$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.be.WindowsConsole,Pantheios.be.AnsiConsole>
+			$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.bec.WindowsConsole,Pantheios.bec.AnsiConsole>
 	)
 
 	target_link_libraries(${program_and_main_source_stem}
@@ -158,8 +179,8 @@ function(define_simple_console_example_cpp program_and_main_source_stem)
 
 	target_link_libraries(${program_and_main_source_stem}
 		PRIVATE
-			$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.be.WindowsConsole,Pantheios.be.fprintf>
-			$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+			$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.be.WindowsConsole,Pantheios.be.AnsiConsole>
+			$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.bec.WindowsConsole,Pantheios.bec.AnsiConsole>
 	)
 
 	target_link_libraries(${program_and_main_source_stem}

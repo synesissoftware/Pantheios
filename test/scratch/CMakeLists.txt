@@ -1,6 +1,5 @@
 
 
-add_subdirectory(libver)
 add_subdirectory(test.scratch.I18N)
 if(_BUILD_AS_WIN32)
 
@@ -9,9 +8,10 @@ endif(_BUILD_AS_WIN32)
 #[====[
 add_subdirectory(test.scratch.api)
 #]====]
-#[====[
-add_subdirectory(test.scratch.be.ACE)
-#]====]
+if(HAS_ACE)
+
+	add_subdirectory(test.scratch.be.ACE)
+endif(HAS_ACE)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
 	add_subdirectory(test.scratch.be.N)
@@ -32,7 +32,10 @@ add_subdirectory(test.scratch.be.file.rolling)
 #]====]
 if(_BUILD_AS_WIN32)
 
+	#[====[
+	# Needs UNIXem; sources pull unixem headers unconditionally.
 	add_subdirectory(test.scratch.be.pantheios.COM)
+	#]====]
 	add_subdirectory(test.scratch.be.speech)
 endif(_BUILD_AS_WIN32)
 if(_BUILD_AS_UNIX)
@@ -69,12 +72,12 @@ if(_BUILD_AS_WIN32)
 endif(_BUILD_AS_WIN32)
 add_subdirectory(test.scratch.fe.simple.WithCallback)
 #[====[
-add_subdirectory(test.scratch.implicit_link)
-#]====]
+# Needs UNIXem (pseudo-UNIX on Windows); not valid under _BUILD_AS_WIN32.
 if(_BUILD_AS_WIN32)
 
 	add_subdirectory(test.scratch.pseudoUNIX)
 endif(_BUILD_AS_WIN32)
+#]====]
 add_subdirectory(test.scratch.showPlus.integer)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
@@ -88,6 +91,8 @@ if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
 	add_subdirectory(test.scratch.util.onbailout)
 endif()
+
+add_subdirectory(versions)
 
 
 # ############################## end of file ############################# #
