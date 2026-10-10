@@ -50,7 +50,7 @@ static void test_composite(void);
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -158,3 +158,4 @@ static void test_composite(void)
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
