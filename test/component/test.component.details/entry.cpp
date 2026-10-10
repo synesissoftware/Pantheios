@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.details/test.component.details.cpp
+ * File:    test/component/test.component.details/entry.cpp
  *
  * Purpose: Component test of details permutations.
  *
  * Created: 27th October 2024
- * Updated: 27th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

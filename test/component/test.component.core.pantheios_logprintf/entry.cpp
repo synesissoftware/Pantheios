@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.core.pantheios_logprintf/test.component.core.pantheios_logprintf.cpp
+ * File:    test/component/test.component.core.pantheios_logprintf/entry.cpp
  *
  * Purpose: Implementation file for the test.component.core.pantheios_logprintf project.
  *
  * Created: 31st October 2005
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

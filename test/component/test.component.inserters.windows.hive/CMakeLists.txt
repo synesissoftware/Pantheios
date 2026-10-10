@@ -1,6 +1,6 @@
 
 add_executable(test.component.inserters.windows.hive
-	test.component.inserters.windows.hive.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.component.inserters.windows.hive)

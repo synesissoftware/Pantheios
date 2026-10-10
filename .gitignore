@@ -133,6 +133,9 @@ update_deps.cmd
 *.app
 *.aps
 *.b64
+# Directory test.component.inserters.b64 matches *.b64; keep its sources.
+!test/component/test.component.inserters.b64/
+!test/component/test.component.inserters.b64/**
 *.bak
 *.chm
 *.class

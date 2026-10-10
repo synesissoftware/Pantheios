@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.log.1/test.component.log.1.cpp
+ * File:    test/component/test.component.log.1/entry.cpp
  *
  * Purpose: Implementation file for the test.component.log.1 project.
  *
  * Created: 25th November 2007
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

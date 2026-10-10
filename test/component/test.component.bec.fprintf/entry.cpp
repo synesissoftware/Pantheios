@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.bec.fprintf/test.component.bec.fprintf.cpp
+ * File:    test/component/test.component.bec.fprintf/entry.cpp
  *
  * Purpose: Implementation file for the test.component.bec.fprintf project.
  *
  * Created: 25th June 2020
- * Updated: 23rd April 2025
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

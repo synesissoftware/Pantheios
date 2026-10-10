@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.stream_character/test.component.inserters.stream_character.cpp
+ * File:    test/component/test.component.inserters.stream_character/entry.cpp
  *
  * Purpose: Implementation file for the test.component.inserters.stream_character project.
  *
  * Created: 9th May 2014
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

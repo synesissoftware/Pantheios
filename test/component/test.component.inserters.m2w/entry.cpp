@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.m2w/test.component.inserters.m2w.cpp
+ * File:    test/component/test.component.inserters.m2w/entry.cpp
  *
  * Purpose: Implementation file for the test.component.inserters.m2w project.
  *
  * Created: 22nd November 2010
- * Updated: 27th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

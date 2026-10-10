@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.args/test.component.inserters.args.cpp
+ * File:    test/component/test.component.inserters.args/entry.cpp
  *
  * Purpose: Implementation file for the test.component.inserters.args project.
  *
  * Created: 19th October 2006
- * Updated: 27th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

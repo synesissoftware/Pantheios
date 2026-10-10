@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.boolean/test.component.inserters.boolean.cpp
+ * File:    test/component/test.component.inserters.boolean/entry.cpp
  *
  * Purpose: Implementation file for the test.component.inserters.boolean project.
  *
  * Created: 7th August 2008
- * Updated: 27th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

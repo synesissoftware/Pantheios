@@ -1,6 +1,6 @@
 
 add_executable(test.component.be.file.threading
-	test.component.be.file.threading.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.component.be.file.threading)

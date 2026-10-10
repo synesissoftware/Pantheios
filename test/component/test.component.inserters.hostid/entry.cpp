@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.hostid/test.component.inserters.hostid.cpp
+ * File:    test/component/test.component.inserters.hostid/entry.cpp
  *
  * Purpose: Implementation file for the test.component.inserters.hostid project.
  *
  * Created: 14th April 2008
- * Updated: 27th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.custom_severity/test.component.custom_severity.cpp
+ * File:    test/component/test.component.custom_severity/entry.cpp
  *
  * Purpose: Implementation file for the test.component.custom_severity project.
  *
  * Created: 31st October 2005
- * Updated: 27th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.core.initialisation_sequence/test.component.core.initialisation_sequence.c
+ * File:    test/component/test.component.core.initialisation_sequence/entry.c
  *
  * Purpose: Implementation file for the test.component.core.initialisation_sequence project.
  *
  * Created: 8th February 2008
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

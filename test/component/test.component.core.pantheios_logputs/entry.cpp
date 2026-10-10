@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.core.pantheios_logputs/test.component.core.pantheios_logputs.cpp
+ * File:    test/component/test.component.core.pantheios_logputs/entry.cpp
  *
  * Purpose: Implementation file for the test.component.core.pantheios_logputs project.
  *
  * Created: 19th November 2008
- * Updated: 27th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

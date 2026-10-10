@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.slice/test.component.inserters.slice.cpp
+ * File:    test/component/test.component.inserters.slice/entry.cpp
  *
  * Purpose: Implementation file for the test.component.inserters.slice project.
  *
  * Created: 14th February 2010
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

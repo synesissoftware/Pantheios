@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.integer/test.component.inserters.integer.cpp
+ * File:    test/component/test.component.inserters.integer/entry.cpp
  *
  * Purpose: Implementation file for the test.component.inserters.integer project.
  *
  * Created: 19th October 2006
- * Updated: 27th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

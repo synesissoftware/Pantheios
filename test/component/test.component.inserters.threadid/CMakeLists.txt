@@ -1,6 +1,6 @@
 
 add_executable(test.component.inserters.threadid
-	test.component.inserters.threadid.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.component.inserters.threadid)

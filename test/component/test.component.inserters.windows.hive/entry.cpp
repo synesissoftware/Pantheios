@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.windows.hive/test.component.inserters.windows.hive.cpp
+ * File:    test/component/test.component.inserters.windows.hive/entry.cpp
  *
  * Purpose: Implementation file for the test.component.inserters.windows.hive project.
  *
  * Created: 26th January 2017
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

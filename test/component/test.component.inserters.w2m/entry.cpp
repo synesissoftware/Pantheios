@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.w2m/test.component.inserters.w2m.cpp
+ * File:    test/component/test.component.inserters.w2m/entry.cpp
  *
  * Purpose: Implementation file for the test.component.inserters.w2m project.
  *
  * Created: 19th October 2006
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

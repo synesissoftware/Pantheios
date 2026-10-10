@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/component/test.component.inserters.variant_bool/test.component.inserters.variant_bool.cpp
+ * File:    test/component/test.component.inserters.real/entry.cpp
  *
- * Purpose: Implementation file for the test.component.inserters.variant_bool project.
+ * Purpose: Implementation file for the test.component.inserters.real project.
  *
- * Created: 18th June 2012
- * Updated: 28th October 2024
+ * Created: 19th October 2006
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -15,16 +15,12 @@
 #include <xtests/xtests.h>
 
 /* Pantheios header files */
-#include <pantheios/pantheios.hpp>              // Pantheios C++ main header
-#include <pantheios/inserters/variant_bool.hpp> // for pantheios::variant_bool
+#include <pantheios/pantheios.hpp>          // Pantheios C++ main header
+#include <pantheios/inserters/real.hpp>     // for pantheios::real
 #include <pantheios/backends/bec.test.h>
-
-/* STLSoft header files */
-#include <stlsoft/util/limit_traits.h>
 
 /* Standard C++ header files */
 #include <exception>
-#include <string>
 
 /* Standard C header files */
 #include <stdio.h>
@@ -46,14 +42,13 @@ static void test_1_06();
 static void test_1_07();
 static void test_1_08();
 static void test_1_09();
-static void test_1_10();
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.variant_bool");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.component.inserters.real");
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,7 +66,9 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////
+ * main()
+ */
 
 int main(int argc, char* argv[])
 {
@@ -80,7 +77,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.real", verbosity))
     {
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
@@ -91,7 +88,6 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_1_07);
         XTESTS_RUN_CASE(test_1_08);
         XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_10);
 
         XTESTS_PRINT_RESULTS();
 
@@ -113,8 +109,9 @@ static void test_1_01()
 
     // 2. Create test data
 
-    pantheios::log_NOTICE(PSTR("{"), pantheios::variant_bool(false), PSTR("}"));
-    pantheios::log_NOTICE(PSTR("{"), pantheios::variant_bool(true), PSTR("}"));
+    pantheios::log_NOTICE(pantheios::real(static_cast<float>(0)));
+    pantheios::log_NOTICE(pantheios::real(static_cast<double>(0)));
+    pantheios::log_NOTICE(pantheios::real(static_cast<long double>(0)));
 
 
     // 3. Verification
@@ -122,13 +119,37 @@ static void test_1_01()
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
     XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(2u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("{VARIANT_FALSE}"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{VARIANT_TRUE}"), results[1].statement);
+    XTESTS_TEST_INTEGER_EQUAL(3, results.size());
+    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[0].statement);
+    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[1].statement);
+    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[2].statement);
 }
 
 static void test_1_02()
 {
+    // 1. Setup
+
+    pantheios::be::test::reset();
+
+
+    // 2. Create test data
+
+    pantheios::log_NOTICE(pantheios::real(+1.1));
+    pantheios::log_NOTICE(pantheios::real(-1.1));
+    pantheios::log_NOTICE(pantheios::real(+0.0000001));
+    pantheios::log_NOTICE(pantheios::real(-0.0000001));
+
+
+    // 3. Verification
+
+    pantheios::be::test::Results  results = pantheios::be::test::results();
+
+    XTESTS_TEST(!results.empty());
+    XTESTS_TEST_INTEGER_EQUAL(4, results.size());
+    XTESTS_TEST_STRING_EQUAL(PSTR("1.1"), results[0].statement);
+    XTESTS_TEST_STRING_EQUAL(PSTR("-1.1"), results[1].statement);
+//    XTESTS_TEST_STRING_EQUAL(PSTR("0.0000001"), results[2].statement);
+//    XTESTS_TEST_STRING_EQUAL(PSTR("-0.0000001"), results[3].statement);
 }
 
 static void test_1_03()
@@ -156,10 +177,6 @@ static void test_1_08()
 }
 
 static void test_1_09()
-{
-}
-
-static void test_1_10()
 {
 }
 
