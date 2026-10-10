@@ -6,7 +6,7 @@
  *            - use of implicit linking to bind in front-end and back-end
  *
  * Created: 31st August 2006
- * Updated: 28th October 2024
+ * Updated: 5th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,10 +23,10 @@
  */
 
 /* Pantheios header files */
-#include <pantheios/pantheios.hpp>              // Pantheios C++ main header
-#include <pantheios/implicit_link/core.h>       // Implicitly link the core
-#include <pantheios/implicit_link/fe.simple.h>  // Implicitly link the stock front-end fe.simple
-#include <pantheios/implicit_link/be.fprintf.h> // Implicitly link the stock back-end be.fprintf
+#include <pantheios/pantheios.hpp>                  // Pantheios C++ main header
+#include <pantheios/implicit_link/core.h>           // Implicitly link the core
+#include <pantheios/implicit_link/fe.simple.h>      // Implicitly link the stock front-end fe.simple
+#include <pantheios/implicit_link/be.AnsiConsole.h> // Implicitly link the stock back-end be.AnsiConsole
 
 /* Standard C/C++ header files */
 #include <string>                               // for std::string

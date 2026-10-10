@@ -9,7 +9,7 @@ target_link_libraries(example.c.N
 	PRIVATE
 		Pantheios.be.N
 		Pantheios.bec.file
-		Pantheios.bec.fprintf
+		Pantheios.bec.AnsiConsole
 		Pantheios.bec.null
 )
 

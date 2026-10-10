@@ -6,8 +6,7 @@
  *            - high-resolution date/time fields in statements
  *
  * Created: 12th November 2007
- * Updated: 28th October 2024
- *
+ * Updated: 5th August 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -15,9 +14,9 @@
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS // Faster compilation
 
 /* Pantheios header files */
-#include <pantheios/pantheios.hpp>            // Pantheios C++ main header
-#include <pantheios/inserters/integer.hpp>    // for pantheios::integer
-#include <pantheios/backends/bec.fprintf.h>   // for be.fprintf
+#include <pantheios/pantheios.hpp>              // Pantheios C++ main header
+#include <pantheios/inserters/integer.hpp>      // for pantheios::integer
+#include <pantheios/backends/bec.AnsiConsole.h> // for be.AnsiConsole
 
 /* Standard C/C++ header files */
 #include <exception>                          // for std::exception
@@ -30,7 +29,7 @@
  * application-defined callbacks
  */
 
-PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(int /* backEndId */, pan_be_fprintf_init_t* init) /* throw() */
+PANTHEIOS_CALL(void) pantheios_be_AnsiConsole_getAppInit(int /* backEndId */, pan_be_AnsiConsole_init_t* init) /* throw() */
 {
     /* init->flags |= PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME; */
     init->flags |= PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT;

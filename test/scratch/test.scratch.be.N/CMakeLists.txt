@@ -9,7 +9,7 @@ target_link_libraries(test.scratch.be.N
 	PRIVATE
 		Pantheios.be.N
 		Pantheios.bec.file
-		Pantheios.bec.fprintf
+		Pantheios.bec.AnsiConsole
 )
 
 if(_BUILD_AS_UNIX)

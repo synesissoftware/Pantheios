@@ -48,6 +48,7 @@ VerboseMakefile=0
 
 
 NO_b64=0
+NO_shwild=0
 STLSoftDirGiven=
 WideStrings=0
 
@@ -175,6 +176,10 @@ while [[ $# -gt 0 ]]; do
 
       NO_b64=1
       ;;
+    --no-shwild)
+
+      NO_shwild=1
+      ;;
     --run-make|-m)
 
       RunMake=1
@@ -233,6 +238,9 @@ Flags/options:
     --no-b64
         suppresses discovery of b64 package
 
+    --no-shwild
+        suppresses discovery of shwild package
+
     -m
     --run-make
         executes a build via cmake --build after a successful configure
@@ -281,6 +289,7 @@ if [ $BuildSharedLibs -eq 0 ]; then CMakeBuildSharedLibsFlag="OFF" ; else CMakeB
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
 if [ $NO_b64 -eq 0 ]; then CMakeNoB64="OFF" ; else CMakeNoB64="ON" ; fi
+if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ -z "$STLSoftDirGiven" ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
@@ -310,6 +319,7 @@ cmake \
   -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
   -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
   -DNO_B64:BOOL=$CMakeNoB64 \
+  -DNO_SHWILD:BOOL=$CMakeNoShwild \
   $CMakeWideStringVariable \
   $CMakeSTLSoftVariable \
   "${CMakeGeneratorArgs[@]}" \

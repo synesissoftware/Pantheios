@@ -10,7 +10,7 @@ target_link_libraries(test.scratch.be.N.fail
 		Pantheios.be.N
 		Pantheios.bec.fail
 		Pantheios.bec.file
-		Pantheios.bec.fprintf
+		Pantheios.bec.AnsiConsole
 		Pantheios.bec.null
 )
 

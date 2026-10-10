@@ -12,7 +12,7 @@ target_link_libraries(example.cpp.backends.mx.2
 
 target_link_libraries(example.cpp.backends.mx.2
 	PRIVATE
-		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+		Pantheios.bec.AnsiConsole
 		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsSyslog,Pantheios.bec.syslog>
 )
 

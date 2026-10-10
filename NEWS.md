@@ -1,8 +1,9 @@
 # Pantheios - News <!-- omit in toc -->
 
+
 | Date                | News Item                                                     | Details    |
 | ------------------- | ------------------------------------------------------------- | ---------- |
-| 11th October 2026   | [Pantheios 1.0.1-rc3 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc3) | transition to `_RELSTATUS`; removed legacy **implicit_link.cpp** files; purged legacy Visual Studio files |
+| 11th October 2026   | [Pantheios 1.0.1-rc3 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc3) | **bec.AnsiConsole** VT / default sink; removed legacy **implicit_link.cpp** / VS projects; `_RELSTATUS`; CI refactor; Phase **4c** helpers and **test.scratch.versions**; **STLSoft** **1.11.1-rc8** floor |
 | 6th September 2026  | [Pantheios 1.0.1-rc2 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc2) | transitive link dependencies in **pantheios-config.cmake**; added **.vscode/settings.json** |
 | 5th August 2026     | [Pantheios 1.0.1-rc1 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc1) | modular GitHub Actions CI; documentation modernisation; **bec.AnsiConsole** back-end; **CMake** package config |
 | 18th Nov 2024       | Pantheios 1.0.1-beta222 released                              | full CMake for optional deps; wholesale file structure canonicalisation; MT library |
@@ -275,5 +276,6 @@
 | 3rd Sep 2006        | Pantheios.COM 1.0.1-beta2 released                            |            |
 | 2nd Sep 2006        | Pantheios 1.0.1-beta2 released                                |            |
 | 9th Aug 2006        | Pantheios.COM 1.0.1-beta1 released                            |            |
+
 
 <!-- ########################### end of file ########################### -->
