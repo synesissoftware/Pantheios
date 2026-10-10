@@ -4,7 +4,7 @@
  * Purpose: Pantheios Core and Util APIs.
  *
  * Created: 21st June 2005
- * Updated: 17th September 2026
+ * Updated: 10th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   13
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       396
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       397
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -119,8 +119,8 @@
 # define PANTHEIOS_VER_1_0_1_B224               0x010001e0
 # define PANTHEIOS_VER_1_0_1_RC1                0x010001e1 /* NOTE: e1 is required just to step over the prior 1.0.1 beta version values */
 # define PANTHEIOS_VER_1_0_1_RC2                0x010001e2
-# define PANTHEIOS_VER_1_0_1_RC3                0x010001e3
-# define PANTHEIOS_VER_1_0_1                    0x010001ff
+# define PANTHEIOS_VER_1_0_1_RC3                0x010001E3
+# define PANTHEIOS_VER_1_0_1                    0x010001FF
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #define PANTHEIOS_VER_MAJOR                     1
@@ -221,9 +221,9 @@
 #  define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 # endif
 
-# if _STLSOFT_VER < 0x010b0159
+# if _STLSOFT_VER < 0x010B01C7
 
-#  error This version Pantheios requires STLSoft 1.11.1 alpha 25, or later. (www.stlsoft.org)
+#  error This version Pantheios requires STLSoft 1.11.1 rc 7, or later. (www.stlsoft.org)
 # endif
 #else
 
