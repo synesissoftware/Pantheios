@@ -8,6 +8,7 @@
   * examples and scratch tests: non-Windows console sink moved from **be.fprintf** to **be.AnsiConsole** for simple console demos (via **`define_simple_console_example_*`**, **be.console** / **bec.console** aliases, matching implicit-link headers, and per-project **CMakeLists.txt** / **implicit_link** updates); multiplex / callback / **be.N** cases deferred;
   * **test.component.be.file.threading**: **be.N** console entry uses **`pantheios_be_console`** (platform alias) to match **bec.console.h** / Windows **bec.WindowsConsole** linkage;
 * build:
+  * **CMake** optional **ACE** discovery (`ACE` / `ACE_ROOT`, **`cmake/FindACE.cmake`**, `NO_ACE` / **`--no-ace`**): builds **be**/**bec**/**bel**/**ber.ACE**, **bec.ACE.WithCallback**, stock ACE inclusion, and **test.scratch.be.ACE** when **ACE** is found;
   * removed all 122 legacy **implicit_link.cpp** files;
   * purged all 394 legacy Visual Studio build files (`.dsp`, `.dsw`, `.vcxproj`, `.filters`) and cleaned up empty **vc6** and **vc10** directories;
   * removed obsolete **test.scratch.implicit_link** test target and associated test files;
@@ -25,6 +26,7 @@
   * added **stlsoft-routes** job for CMake vs environment **STLSoft** resolution;
   * added minimal **no-b64** and **no-b64** + **no-shwild** matrix permutations and install-smoke coverage;
   * optional **shwild** exclusion via `NO_SHWILD` / **prepare_cmake.sh --no-shwild**;
+  * dedicated Ubuntu **GHA** cell **`linux-gcc-ace`** (`libace-dev`); main matrix cells pass **`NO_ACE=ON`**;
   * Windows cells dogfood native **`.cmd`** runners; restore execute bits after artifact download (excluding **CMakeFiles**);
   * component tests via **run_all_component_tests.sh** / **.cmd**;
   * push-branch set canonicalised (**master**, **dev**, **boilerplate**, **idiomatic**, **rc1**–**rc3**);

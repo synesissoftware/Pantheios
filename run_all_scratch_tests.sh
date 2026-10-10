@@ -329,7 +329,13 @@ if [ $status -eq 0 ]; then
 
       break 1
     fi
-  done < <(find "$CMakeDir" -type f \( -name 'test_scratch*' -o -name 'test.scratch.*' \) \( -perm -100 -o -name '*.exe' \) -print0 2>/dev/null | sort -z)
+  done < <(find "$CMakeDir" -type f \( -name 'test_scratch*' -o -name 'test.scratch.*' \) \
+    ! -path '*/CMakeFiles/*' \
+    ! -name '*.a' \
+    ! -name '*.d' \
+    ! -name '*.lib' \
+    ! -name '*.log' \
+    \( -perm -100 -o -name '*.exe' \) -print0 2>/dev/null | sort -z)
 
   if [ $NumPrograms -eq 0 ]; then
 

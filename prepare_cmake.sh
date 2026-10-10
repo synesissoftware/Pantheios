@@ -47,6 +47,7 @@ VerboseMakefile=0
 # misc-dev-scripts/shell-scripts/cmake-helpers/prepare_cmake.sh.
 
 
+NO_ACE=0
 NO_b64=0
 NO_shwild=0
 STLSoftDirGiven=
@@ -172,6 +173,10 @@ while [[ $# -gt 0 ]]; do
 
       MSVC_MT=1
       ;;
+    --no-ace)
+
+      NO_ACE=1
+      ;;
     --no-b64)
 
       NO_b64=1
@@ -235,6 +240,9 @@ Flags/options:
     --msvc-mt
         when using Visual C++ (MSVC), select the static runtime library
 
+    --no-ace
+        suppresses discovery of ACE (stock ACE backends will not be built)
+
     --no-b64
         suppresses discovery of b64 package
 
@@ -288,6 +296,7 @@ echo "Executing CMake for ${ProjectNameClr} (in ${CMakeDirClr})"
 if [ $BuildSharedLibs -eq 0 ]; then CMakeBuildSharedLibsFlag="OFF" ; else CMakeBuildSharedLibsFlag="ON" ; fi
 if [ $ExamplesDisabled -eq 0 ]; then CMakeBuildExamplesFlag="ON" ; else CMakeBuildExamplesFlag="OFF" ; fi
 if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; fi
+if [ $NO_ACE -eq 0 ]; then CMakeNoACE="OFF" ; else CMakeNoACE="ON" ; fi
 if [ $NO_b64 -eq 0 ]; then CMakeNoB64="OFF" ; else CMakeNoB64="ON" ; fi
 if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
 if [ -z "$STLSoftDirGiven" ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
@@ -318,6 +327,7 @@ cmake \
   -DCMAKE_BUILD_TYPE=$Configuration \
   -DCMAKE_VERBOSE_MAKEFILE:BOOL=$CMakeVerboseMakefileFlag \
   -DMSVC_USE_MT:BOOL=$CMakeMsvcMtFlag \
+  -DNO_ACE:BOOL=$CMakeNoACE \
   -DNO_B64:BOOL=$CMakeNoB64 \
   -DNO_SHWILD:BOOL=$CMakeNoShwild \
   $CMakeWideStringVariable \

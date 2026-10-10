@@ -31,6 +31,11 @@ Candidates to consider for the final 1.0.1 release if time permits, but non-bloc
 * [ ] Prune obsolete compiler and IDE project-file items from **TODO.md** (VS '98 through 2010, Turbo C++, Comeau, Xcode project-file generators);
 
 
+### Pantheios 1.0.1 (final)
+
+* [ ] Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release;
+
+
 ### Pantheios 1.0 TODOs
 
 * [ ] new logo;
