@@ -435,7 +435,7 @@ actually proceed. In the example.cpp.tracing.with_function example, the
 PANTHEIOS_TRACE_PREFIX macro is defined as follows:
 
 ```C++
-  // From examples/cpp/example.cpp.tracing.with_function/example.cpp.tracing.with_function.cpp
+  // From examples/cpp/tracing/with_function/main.cpp
 
   #ifdef STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT
   # define PANTHEIOS_TRACE_PREFIX             __FILE__ " " PANTHEIOS_STRINGIZE(__LINE__) ": " __FUNCTION__ ": "

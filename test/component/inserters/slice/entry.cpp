@@ -45,8 +45,6 @@ static void test_1_05();
 static void test_1_06();
 static void test_1_07();
 static void test_1_08();
-static void test_1_09();
-
 #ifndef PANTHEIOS_NO_NAMESPACE
 using pantheios::pan_char_t;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
@@ -97,8 +95,6 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_1_06);
         XTESTS_RUN_CASE(test_1_07);
         XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -335,9 +331,6 @@ static void test_1_08()
     }}
 }
 
-static void test_1_09()
-{
-}
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

@@ -57,35 +57,6 @@ typedef std::basic_string<PAN_CHAR_T>                       string_t;
 
 static void test_01();
 static void test_02();
-static void test_03();
-static void test_04();
-static void test_05();
-static void test_06();
-static void test_07();
-static void test_08();
-static void test_09();
-static void test_10();
-static void test_11();
-static void test_12();
-static void test_13();
-static void test_14();
-static void test_15();
-static void test_16();
-static void test_17();
-static void test_18();
-static void test_19();
-static void test_20();
-static void test_21();
-static void test_22();
-static void test_23();
-static void test_24();
-static void test_25();
-static void test_26();
-static void test_27();
-static void test_28();
-static void test_29();
-
-
 /* /////////////////////////////////////////////////////////////////////////
  * main()
  */
@@ -101,34 +72,6 @@ int main(int argc, char* argv[])
     {
         XTESTS_RUN_CASE(test_01);
         XTESTS_RUN_CASE(test_02);
-        XTESTS_RUN_CASE(test_03);
-        XTESTS_RUN_CASE(test_04);
-        XTESTS_RUN_CASE(test_05);
-        XTESTS_RUN_CASE(test_06);
-        XTESTS_RUN_CASE(test_07);
-        XTESTS_RUN_CASE(test_08);
-        XTESTS_RUN_CASE(test_09);
-        XTESTS_RUN_CASE(test_10);
-        XTESTS_RUN_CASE(test_11);
-        XTESTS_RUN_CASE(test_12);
-        XTESTS_RUN_CASE(test_13);
-        XTESTS_RUN_CASE(test_14);
-        XTESTS_RUN_CASE(test_15);
-        XTESTS_RUN_CASE(test_16);
-        XTESTS_RUN_CASE(test_17);
-        XTESTS_RUN_CASE(test_18);
-        XTESTS_RUN_CASE(test_19);
-        XTESTS_RUN_CASE(test_20);
-        XTESTS_RUN_CASE(test_21);
-        XTESTS_RUN_CASE(test_22);
-        XTESTS_RUN_CASE(test_23);
-        XTESTS_RUN_CASE(test_24);
-        XTESTS_RUN_CASE(test_25);
-        XTESTS_RUN_CASE(test_26);
-        XTESTS_RUN_CASE(test_27);
-        XTESTS_RUN_CASE(test_28);
-        XTESTS_RUN_CASE(test_29);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -183,96 +126,6 @@ static void test_02()
     XTESTS_TEST_STRING_EQUAL(PSTR("the message details"), results[0].statement);
     XTESTS_TEST(pantheios::notice == results[0].severity);
 }
-
-static void test_03()
-{
-}
-
-static void test_04()
-{
-}
-
-static void test_05()
-{
-}
-
-static void test_06()
-{
-}
-
-static void test_07()
-{
-}
-
-static void test_08()
-{}
-
-static void test_09()
-{}
-
-static void test_10()
-{
-}
-
-static void test_11()
-{
-}
-
-static void test_12()
-{}
-
-static void test_13()
-{}
-
-static void test_14()
-{}
-
-static void test_15()
-{}
-
-static void test_16()
-{}
-
-static void test_17()
-{}
-
-static void test_18()
-{}
-
-static void test_19()
-{}
-
-static void test_20()
-{}
-
-static void test_21()
-{
-}
-
-static void test_22()
-{
-}
-
-static void test_23()
-{}
-
-static void test_24()
-{}
-
-static void test_25()
-{}
-
-static void test_26()
-{}
-
-static void test_27()
-{}
-
-static void test_28()
-{}
-
-static void test_29()
-{}
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

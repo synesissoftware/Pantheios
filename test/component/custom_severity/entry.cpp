@@ -57,14 +57,6 @@
 static void test_1_01();
 static void test_1_02();
 static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-
-
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -88,13 +80,6 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_1_01);
         XTESTS_RUN_CASE(test_1_02);
         XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -170,30 +155,6 @@ static void test_1_03()
     XTESTS_TEST_INTEGER_EQUAL(1, results.size());
     XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_NOTICE | (0x01234567 << 4), results[0].severity);
-}
-
-static void test_1_04()
-{
-}
-
-static void test_1_05()
-{
-}
-
-static void test_1_06()
-{
-}
-
-static void test_1_07()
-{
-}
-
-static void test_1_08()
-{
-}
-
-static void test_1_09()
-{
 }
 
 

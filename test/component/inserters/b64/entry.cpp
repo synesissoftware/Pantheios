@@ -47,21 +47,10 @@ static void test_1_04();
 static void test_1_05();
 static void test_1_06();
 static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_10();
-static void test_1_11();
 static void test_1_12();
-static void test_1_13();
 static void test_1_14();
 static void test_1_15();
 static void test_1_16();
-static void test_1_17();
-static void test_1_18();
-static void test_1_19();
-static void test_1_20();
-
-
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -104,20 +93,10 @@ int main(int argc, char** argv)
         XTESTS_RUN_CASE(test_1_05);
         XTESTS_RUN_CASE(test_1_06);
         XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
         XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
         XTESTS_RUN_CASE(test_1_14);
         XTESTS_RUN_CASE(test_1_15);
         XTESTS_RUN_CASE(test_1_16);
-        XTESTS_RUN_CASE(test_1_17);
-        XTESTS_RUN_CASE(test_1_18);
-        XTESTS_RUN_CASE(test_1_19);
-        XTESTS_RUN_CASE(test_1_20);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -288,21 +267,6 @@ static void test_1_07()
     XTESTS_TEST_STRING_EQUAL(PSTR("VGhpcyBpcyBhIHRlc3Qgc3RyaW5n"), results[0].statement);
 }
 
-static void test_1_08()
-{
-}
-
-static void test_1_09()
-{
-}
-
-static void test_1_10()
-{
-}
-
-static void test_1_11()
-{
-}
 
 static void test_1_12()
 {
@@ -327,9 +291,6 @@ static void test_1_12()
     XTESTS_TEST_STRING_EQUAL(PSTR("BwYFBAMCAQD//v38+/r5"), results[0].statement);
 }
 
-static void test_1_13()
-{
-}
 
 static void test_1_14()
 {
@@ -409,22 +370,6 @@ static void test_1_16()
     XTESTS_TEST(!results.empty());
     XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
     XTESTS_TEST_STRING_EQUAL(PSTR("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="), results[0].statement);
-}
-
-static void test_1_17()
-{
-}
-
-static void test_1_18()
-{
-}
-
-static void test_1_19()
-{
-}
-
-static void test_1_20()
-{
 }
 
 

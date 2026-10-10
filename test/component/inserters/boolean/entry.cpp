@@ -45,10 +45,6 @@ static void test_1_05();
 static void test_1_06();
 static void test_1_07();
 static void test_1_08();
-static void test_1_09();
-static void test_1_10();
-
-
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -92,9 +88,6 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_1_06);
         XTESTS_RUN_CASE(test_1_07);
         XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_10);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -365,14 +358,6 @@ static void test_1_08()
     XTESTS_TEST_STRING_EQUAL(PSTR("{T}"), results[5].statement);
     XTESTS_TEST_STRING_EQUAL(PSTR("{false}"), results[6].statement);
     XTESTS_TEST_STRING_EQUAL(PSTR("{true}"), results[7].statement);
-}
-
-static void test_1_09()
-{
-}
-
-static void test_1_10()
-{
 }
 
 

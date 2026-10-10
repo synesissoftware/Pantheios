@@ -36,25 +36,6 @@
 
 static void test_1_0(void);
 static void test_1_1(void);
-static void test_1_2(void);
-static void test_1_3(void);
-static void test_1_4(void);
-static void test_1_5(void);
-static void test_1_6(void);
-static void test_1_7(void);
-static void test_1_8(void);
-static void test_1_9(void);
-static void test_1_10(void);
-static void test_1_11(void);
-static void test_1_12(void);
-static void test_1_13(void);
-static void test_1_14(void);
-static void test_1_15(void);
-static void test_1_16(void);
-static void test_1_17(void);
-static void test_1_18(void);
-static void test_1_19(void);
-
 static int setup(void*);
 static int teardown(void*);
 static void* s_param;
@@ -75,25 +56,6 @@ int main(int argc, char **argv)
     {
         XTESTS_RUN_CASE(test_1_0);
         XTESTS_RUN_CASE(test_1_1);
-        XTESTS_RUN_CASE(test_1_2);
-        XTESTS_RUN_CASE(test_1_3);
-        XTESTS_RUN_CASE(test_1_4);
-        XTESTS_RUN_CASE(test_1_5);
-        XTESTS_RUN_CASE(test_1_6);
-        XTESTS_RUN_CASE(test_1_7);
-        XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_16);
-        XTESTS_RUN_CASE(test_1_17);
-        XTESTS_RUN_CASE(test_1_18);
-        XTESTS_RUN_CASE(test_1_19);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -274,78 +236,6 @@ static void test_1_1(void)
         XTESTS_TEST_INTEGER_EQUAL(1, s_numUninits);
         XTESTS_TEST_INTEGER_EQUAL(4, s_numGPI);
     }
-}
-
-static void test_1_2(void)
-{
-}
-
-static void test_1_3(void)
-{
-}
-
-static void test_1_4(void)
-{
-}
-
-static void test_1_5(void)
-{
-}
-
-static void test_1_6(void)
-{
-}
-
-static void test_1_7(void)
-{
-}
-
-static void test_1_8(void)
-{
-}
-
-static void test_1_9(void)
-{
-}
-
-static void test_1_10(void)
-{
-}
-
-static void test_1_11(void)
-{
-}
-
-static void test_1_12(void)
-{
-}
-
-static void test_1_13(void)
-{
-}
-
-static void test_1_14(void)
-{
-}
-
-static void test_1_15(void)
-{
-}
-
-static void test_1_16(void)
-{
-}
-
-static void test_1_17(void)
-{
-}
-
-static void test_1_18(void)
-{
-}
-
-static void test_1_19(void)
-{
 }
 
 

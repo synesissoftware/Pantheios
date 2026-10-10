@@ -71,29 +71,10 @@ static void test_04();
 static void test_05();
 static void test_06();
 static void test_07();
-static void test_08();
-static void test_09();
 static void test_10();
 static void test_11();
-static void test_12();
-static void test_13();
-static void test_14();
-static void test_15();
-static void test_16();
-static void test_17();
-static void test_18();
-static void test_19();
-static void test_20();
 static void test_21();
 static void test_22();
-static void test_23();
-static void test_24();
-static void test_25();
-static void test_26();
-static void test_27();
-static void test_28();
-static void test_29();
-
 /* ////////////////////////////////////////////////////////////////////// */
 
 int main(int argc, char* argv[])
@@ -112,29 +93,10 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_05);
         XTESTS_RUN_CASE(test_06);
         XTESTS_RUN_CASE(test_07);
-        XTESTS_RUN_CASE(test_08);
-        XTESTS_RUN_CASE(test_09);
         XTESTS_RUN_CASE(test_10);
         XTESTS_RUN_CASE(test_11);
-        XTESTS_RUN_CASE(test_12);
-        XTESTS_RUN_CASE(test_13);
-        XTESTS_RUN_CASE(test_14);
-        XTESTS_RUN_CASE(test_15);
-        XTESTS_RUN_CASE(test_16);
-        XTESTS_RUN_CASE(test_17);
-        XTESTS_RUN_CASE(test_18);
-        XTESTS_RUN_CASE(test_19);
-        XTESTS_RUN_CASE(test_20);
         XTESTS_RUN_CASE(test_21);
         XTESTS_RUN_CASE(test_22);
-        XTESTS_RUN_CASE(test_23);
-        XTESTS_RUN_CASE(test_24);
-        XTESTS_RUN_CASE(test_25);
-        XTESTS_RUN_CASE(test_26);
-        XTESTS_RUN_CASE(test_27);
-        XTESTS_RUN_CASE(test_28);
-        XTESTS_RUN_CASE(test_29);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -223,7 +185,6 @@ static void test_04()
     PANTHEIOS_TRACE_INFORMATIONAL("abc", "def"); int LINE = __LINE__;
 
 
-
     // 3. Verification
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
@@ -243,7 +204,6 @@ static void test_05()
     // 2. Create test data
 
     PANTHEIOS_TRACE_INFORMATIONAL("abc", "def", "ghi"); int LINE = __LINE__;
-
 
 
     // 3. Verification
@@ -267,7 +227,6 @@ static void test_06()
     PANTHEIOS_TRACE_INFORMATIONAL("abc", "def", "ghi", "jk", "lm", "no", "pq", "rs", "tu", "vw", "xy", "z"); int LINE = __LINE__;
 
 
-
     // 3. Verification
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
@@ -289,7 +248,6 @@ static void test_07()
     PANTHEIOS_TRACE_INFORMATIONAL("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"); int LINE = __LINE__;
 
 
-
     // 3. Verification
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
@@ -299,11 +257,6 @@ static void test_07()
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abcdefghijklmnopqrstuvwxyz", LINE), results[0].statement);
 }
 
-static void test_08()
-{}
-
-static void test_09()
-{}
 
 static void test_10()
 {
@@ -316,7 +269,6 @@ static void test_10()
 
     PANTHEIOS_TRACE_INFORMATIONAL("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"); int LINE1 = __LINE__;
     PANTHEIOS_TRACE_INFORMATIONAL("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"); int LINE2 = __LINE__;
-
 
 
     // 3. Verification
@@ -355,7 +307,6 @@ static void test_11()
     }}
 
 
-
     // 3. Verification
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
@@ -375,32 +326,6 @@ static void test_11()
     }}
 }
 
-static void test_12()
-{}
-
-static void test_13()
-{}
-
-static void test_14()
-{}
-
-static void test_15()
-{}
-
-static void test_16()
-{}
-
-static void test_17()
-{}
-
-static void test_18()
-{}
-
-static void test_19()
-{}
-
-static void test_20()
-{}
 
 static void test_21()
 {
@@ -416,7 +341,6 @@ static void test_21()
 
 
     PANTHEIOS_TRACE_INFORMATIONAL(msgEl1, msgEl2); int LINE = __LINE__;
-
 
 
     // 3. Verification
@@ -452,26 +376,6 @@ static void test_22()
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_((msgEl1 + msgEl2).c_str(), LINE), results[0].statement);
 }
 
-static void test_23()
-{}
-
-static void test_24()
-{}
-
-static void test_25()
-{}
-
-static void test_26()
-{}
-
-static void test_27()
-{}
-
-static void test_28()
-{}
-
-static void test_29()
-{}
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

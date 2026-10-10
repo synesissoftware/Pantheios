@@ -59,30 +59,10 @@ static void test_04();
 static void test_05();
 static void test_06();
 static void test_07();
-static void test_08();
-static void test_09();
 static void test_10();
 static void test_11();
-static void test_12();
-static void test_13();
-static void test_14();
-static void test_15();
-static void test_16();
-static void test_17();
-static void test_18();
-static void test_19();
-static void test_20();
 static void test_21();
 static void test_22();
-static void test_23();
-static void test_24();
-static void test_25();
-static void test_26();
-static void test_27();
-static void test_28();
-static void test_29();
-
-
 /* /////////////////////////////////////////////////////////////////////////
  * main()
  */
@@ -103,29 +83,10 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_05);
         XTESTS_RUN_CASE(test_06);
         XTESTS_RUN_CASE(test_07);
-        XTESTS_RUN_CASE(test_08);
-        XTESTS_RUN_CASE(test_09);
         XTESTS_RUN_CASE(test_10);
         XTESTS_RUN_CASE(test_11);
-        XTESTS_RUN_CASE(test_12);
-        XTESTS_RUN_CASE(test_13);
-        XTESTS_RUN_CASE(test_14);
-        XTESTS_RUN_CASE(test_15);
-        XTESTS_RUN_CASE(test_16);
-        XTESTS_RUN_CASE(test_17);
-        XTESTS_RUN_CASE(test_18);
-        XTESTS_RUN_CASE(test_19);
-        XTESTS_RUN_CASE(test_20);
         XTESTS_RUN_CASE(test_21);
         XTESTS_RUN_CASE(test_22);
-        XTESTS_RUN_CASE(test_23);
-        XTESTS_RUN_CASE(test_24);
-        XTESTS_RUN_CASE(test_25);
-        XTESTS_RUN_CASE(test_26);
-        XTESTS_RUN_CASE(test_27);
-        XTESTS_RUN_CASE(test_28);
-        XTESTS_RUN_CASE(test_29);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -215,7 +176,6 @@ static void test_04()
     pantheios::log(pantheios::informational, PSTR("abc"), PSTR("def"));
 
 
-
     // 3. Verification
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
@@ -235,7 +195,6 @@ static void test_05()
     // 2. Create test data
 
     pantheios::log(pantheios::informational, PSTR("abc"), PSTR("def"), PSTR("ghi"));
-
 
 
     // 3. Verification
@@ -259,7 +218,6 @@ static void test_06()
     pantheios::log(pantheios::informational, PSTR("abc"), PSTR("def"), PSTR("ghi"), PSTR("jk"), PSTR("lm"), PSTR("no"), PSTR("pq"), PSTR("rs"), PSTR("tu"), PSTR("vw"), PSTR("xy"), PSTR("z"));
 
 
-
     // 3. Verification
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
@@ -281,7 +239,6 @@ static void test_07()
     pantheios::log(pantheios::informational, PSTR("a"), PSTR("b"), PSTR("c"), PSTR("d"), PSTR("e"), PSTR("f"), PSTR("g"), PSTR("h"), PSTR("i"), PSTR("j"), PSTR("k"), PSTR("l"), PSTR("m"), PSTR("n"), PSTR("o"), PSTR("p"), PSTR("q"), PSTR("r"), PSTR("s"), PSTR("t"), PSTR("u"), PSTR("v"), PSTR("w"), PSTR("x"), PSTR("y"), PSTR("z"));
 
 
-
     // 3. Verification
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
@@ -291,11 +248,6 @@ static void test_07()
     XTESTS_TEST(pantheios::informational == results[0].severity);
 }
 
-static void test_08()
-{}
-
-static void test_09()
-{}
 
 static void test_10()
 {
@@ -308,7 +260,6 @@ static void test_10()
 
     pantheios::log(pantheios::informational, PSTR("a"), PSTR("b"), PSTR("c"), PSTR("d"), PSTR("e"), PSTR("f"), PSTR("g"), PSTR("h"), PSTR("i"), PSTR("j"), PSTR("k"), PSTR("l"), PSTR("m"), PSTR("n"), PSTR("o"), PSTR("p"), PSTR("q"), PSTR("r"), PSTR("s"), PSTR("t"), PSTR("u"), PSTR("v"), PSTR("w"), PSTR("x"), PSTR("y"), PSTR("z"));
     pantheios::log(pantheios::informational, PSTR("A"), PSTR("B"), PSTR("C"), PSTR("D"), PSTR("E"), PSTR("F"), PSTR("G"), PSTR("H"), PSTR("I"), PSTR("J"), PSTR("K"), PSTR("L"), PSTR("M"), PSTR("N"), PSTR("O"), PSTR("P"), PSTR("Q"), PSTR("R"), PSTR("S"), PSTR("T"), PSTR("U"), PSTR("V"), PSTR("W"), PSTR("X"), PSTR("Y"), PSTR("Z"));
-
 
 
     // 3. Verification
@@ -343,7 +294,6 @@ static void test_11()
     }}
 
 
-
     // 3. Verification
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
@@ -362,32 +312,6 @@ static void test_11()
     }}
 }
 
-static void test_12()
-{}
-
-static void test_13()
-{}
-
-static void test_14()
-{}
-
-static void test_15()
-{}
-
-static void test_16()
-{}
-
-static void test_17()
-{}
-
-static void test_18()
-{}
-
-static void test_19()
-{}
-
-static void test_20()
-{}
 
 static void test_21()
 {
@@ -403,7 +327,6 @@ static void test_21()
 
 
     pantheios::log(pantheios::informational, msgEl1, msgEl2);
-
 
 
     // 3. Verification
@@ -438,27 +361,6 @@ static void test_22()
     XTESTS_TEST_STRING_EQUAL(msgEl1 + msgEl2, results[0].statement);
     XTESTS_TEST(pantheios::informational == results[0].severity);
 }
-
-static void test_23()
-{}
-
-static void test_24()
-{}
-
-static void test_25()
-{}
-
-static void test_26()
-{}
-
-static void test_27()
-{}
-
-static void test_28()
-{}
-
-static void test_29()
-{}
 
 
 /* ///////////////////////////// end of file //////////////////////////// */

@@ -45,21 +45,6 @@ static void test_1_03();
 static void test_1_04();
 static void test_1_05();
 static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_10();
-static void test_1_11();
-static void test_1_12();
-static void test_1_13();
-static void test_1_14();
-static void test_1_15();
-static void test_1_21();
-static void test_1_22();
-static void test_1_23();
-static void test_1_24();
-
-
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -102,20 +87,6 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_1_04);
         XTESTS_RUN_CASE(test_1_05);
         XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_21);
-        XTESTS_RUN_CASE(test_1_22);
-        XTESTS_RUN_CASE(test_1_23);
-        XTESTS_RUN_CASE(test_1_24);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -292,58 +263,6 @@ static void test_1_06()
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(n, results.size()));
     XTESTS_TEST_STRING_EQUAL(PSTR("hive is HKEY_DYN_DATA"), results[0].statement);
 #endif
-}
-
-static void test_1_07()
-{
-}
-
-static void test_1_08()
-{
-}
-
-static void test_1_09()
-{
-}
-
-static void test_1_10()
-{
-}
-
-static void test_1_11()
-{
-}
-
-static void test_1_12()
-{
-}
-
-static void test_1_13()
-{
-}
-
-static void test_1_14()
-{
-}
-
-static void test_1_15()
-{
-}
-
-static void test_1_21()
-{
-}
-
-static void test_1_22()
-{
-}
-
-static void test_1_23()
-{
-}
-
-static void test_1_24()
-{
 }
 
 

@@ -36,14 +36,6 @@ static void test_length_via_strlen();
 static void test_length_calculated_forwards();
 static void test_length_calculated_backwards();
 static void test_strnlen_with_negatives();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_10();
-static void test_1_11();
-static void test_1_12();
-
 } /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -66,14 +58,6 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_length_calculated_forwards);
         XTESTS_RUN_CASE(test_length_calculated_backwards);
         XTESTS_RUN_CASE(test_strnlen_with_negatives);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -290,33 +274,6 @@ static void test_strnlen_with_negatives()
     }
 }
 
-static void test_1_06()
-{
-}
-
-static void test_1_07()
-{
-}
-
-static void test_1_08()
-{
-}
-
-static void test_1_09()
-{
-}
-
-static void test_1_10()
-{
-}
-
-static void test_1_11()
-{
-}
-
-static void test_1_12()
-{
-}
 
 } /* anonymous namespace */
 

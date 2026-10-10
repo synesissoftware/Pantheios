@@ -72,19 +72,6 @@ namespace
     static void test_levels_in_HKLM(void);
     static void test_HKCU_overrides_HKLM(void);
     static void test_star(void);
-    static void test_1_6(void);
-    static void test_1_7(void);
-    static void test_1_8(void);
-    static void test_1_9(void);
-    static void test_1_10(void);
-    static void test_1_11(void);
-    static void test_1_12(void);
-    static void test_1_13(void);
-    static void test_1_14(void);
-    static void test_1_15(void);
-    static void test_1_16(void);
-    static void test_1_17(void);
-    static void test_1_18(void);
     static void test_cleanup(void);
 
 } /* anonymous namespace */
@@ -115,19 +102,6 @@ static int main_(int argc, char* argv[])
         XTESTS_RUN_CASE(test_levels_in_HKLM);
         XTESTS_RUN_CASE(test_HKCU_overrides_HKLM);
         XTESTS_RUN_CASE(test_star);
-        XTESTS_RUN_CASE(test_1_6);
-        XTESTS_RUN_CASE(test_1_7);
-        XTESTS_RUN_CASE(test_1_8);
-        XTESTS_RUN_CASE(test_1_9);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_16);
-        XTESTS_RUN_CASE(test_1_17);
-        XTESTS_RUN_CASE(test_1_18);
         XTESTS_RUN_CASE(test_cleanup);
 
         XTESTS_PRINT_RESULTS();
@@ -645,57 +619,6 @@ static void test_star()
     }
 }
 
-static void test_1_6()
-{
-}
-
-static void test_1_7()
-{
-}
-
-static void test_1_8()
-{
-}
-
-static void test_1_9()
-{
-}
-
-static void test_1_10()
-{
-}
-
-static void test_1_11()
-{
-}
-
-static void test_1_12()
-{
-}
-
-static void test_1_13()
-{
-}
-
-static void test_1_14()
-{
-}
-
-static void test_1_15()
-{
-}
-
-static void test_1_16()
-{
-}
-
-static void test_1_17()
-{
-}
-
-static void test_1_18()
-{
-}
 
 static void test_cleanup()
 {

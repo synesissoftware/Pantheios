@@ -147,14 +147,6 @@ static void test_pantheios_onBailOut3_w();
 static void test_pantheios_onBailOut4_w();
 static void test_pantheios_onBailOut6_w();
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_10();
-static void test_1_11();
-static void test_1_12();
-
 } /* anonymous namespace */
 
 
@@ -312,14 +304,6 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_pantheios_onBailOut4_w);
         XTESTS_RUN_CASE(test_pantheios_onBailOut6_w);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -1051,33 +1035,7 @@ static void test_pantheios_onBailOut6_w()
 }
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-static void test_1_06()
-{
-}
 
-static void test_1_07()
-{
-}
-
-static void test_1_08()
-{
-}
-
-static void test_1_09()
-{
-}
-
-static void test_1_10()
-{
-}
-
-static void test_1_11()
-{
-}
-
-static void test_1_12()
-{
-}
 } /* anonymous namespace */
 
 
@@ -1124,7 +1082,6 @@ int bailout_test_fopen_s_(FILE**, void const*, void const*);
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-
 
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)

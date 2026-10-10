@@ -34,12 +34,6 @@ static void test_pantheios_util_snprintf_a();
 static void test_pantheios_util_snprintf_w();
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 static void test_pantheios_util_snprintf();
-static void test_1_08();
-static void test_1_09();
-static void test_1_10();
-static void test_1_11();
-static void test_1_12();
-
 } /* anonymous namespace */
 
 
@@ -69,12 +63,6 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(test_pantheios_util_snprintf_w);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
         XTESTS_RUN_CASE(test_pantheios_util_snprintf);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -404,25 +392,7 @@ static void test_pantheios_util_snprintf()
     }
 }
 
-static void test_1_08()
-{
-}
 
-static void test_1_09()
-{
-}
-
-static void test_1_10()
-{
-}
-
-static void test_1_11()
-{
-}
-
-static void test_1_12()
-{
-}
 } /* anonymous namespace */
 
 
