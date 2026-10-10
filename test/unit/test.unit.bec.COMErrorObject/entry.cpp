@@ -1,7 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    test/unit/test.unit.bec.COMErrorObject/entry.cpp
  *
- * Purpose: Implementation file for the test.unit.be.COMErrorObject project.
+ * Purpose: Implementation file for the test.unit.bec.COMErrorObject project.
  *
  * Created: 1st January 2008
  * Updated: 10th October 2026
@@ -75,7 +75,7 @@
  * globals
  */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.COMErrorObject");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.bec.COMErrorObject");
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,7 +120,7 @@ static int main_(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.be.COMErrorObject", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.bec.COMErrorObject", verbosity))
     {
         /* Case 1 - verifying be.COMErrorObject, with flags 0 */
         if (!XTESTS_CASE_BEGIN("case-1", "verifying be.COMErrorObject, with flags 0"))

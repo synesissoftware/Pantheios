@@ -1,7 +1,7 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:    test/unit/test.unit.bec.fprintf/entry.cpp
  *
- * Purpose: Implementation file for the test.unit.be.file project.
+ * Purpose: Implementation file for the test.unit.bec.fprintf project.
  *
  * Created: 3rd August 2008
  * Updated: 10th October 2026
@@ -92,7 +92,7 @@ typedef platformstl::basic_file_lines<char>     lines_t;
  * globals
  */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.file");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.bec.fprintf");
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -130,7 +130,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER_WITH_STREAM("test.unit.be.file", verbosity, stdout))
+    if (XTESTS_START_RUNNER_WITH_STREAM("test.unit.bec.fprintf", verbosity, stdout))
     {
         XTESTS_RUN_CASE(test_1_00);
         XTESTS_RUN_CASE(test_1_01);

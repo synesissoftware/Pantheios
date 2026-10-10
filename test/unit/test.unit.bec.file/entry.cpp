@@ -91,7 +91,7 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
  * globals
  */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.be.file");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.unit.bec.file");
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -168,7 +168,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.be.file", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.bec.file", verbosity))
     {
         XTESTS_RUN_CASE(test_1_00);
         XTESTS_RUN_CASE(test_1_01);

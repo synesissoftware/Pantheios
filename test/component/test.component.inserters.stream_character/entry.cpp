@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
+    if (XTESTS_START_RUNNER("test.component.inserters.stream_character", verbosity))
     {
         XTESTS_RUN_CASE(test_plain_characters);
         XTESTS_RUN_CASE(test_special_characters_1);
