@@ -144,18 +144,26 @@ jobs:
 
       # download-artifact does not restore Unix execute bits;
       # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      # Skip CMakeFiles and compiler deps — name globs also match
+      # e.g. test.component.*.cpp.o.d / example*.c.o.d; chmod +x on those
+      # makes tip runners treat them as programs (exit 127).
       - name: Restore execute bits on test and example binaries
         if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          find build -type f \( \
-            -name 'test_unit*' -o -name 'test.unit.*' -o \
-            -name 'test_component*' -o -name 'test.component.*' -o \
-            -name 'test_performance*' -o -name 'test.performance.*' -o \
-            -name 'test_scratch*' -o -name 'test.scratch.*' -o \
-            \( -name 'example*' ! -name '*.md' \) \
-          \) -exec chmod +x {} +
+          find build -type f \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.d' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            \( \
+              -name 'test_unit*' -o -name 'test.unit.*' -o \
+              -name 'test_component*' -o -name 'test.component.*' -o \
+              -name 'test_performance*' -o -name 'test.performance.*' -o \
+              -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+              \( -name 'example*' ! -name '*.md' \) \
+            \) -exec chmod +x {} +
 
       - name: Run examples (Bash)
         if: runner.os != 'Windows'
@@ -203,18 +211,26 @@ jobs:
 
       # download-artifact does not restore Unix execute bits;
       # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      # Skip CMakeFiles and compiler deps — name globs also match
+      # e.g. test.component.*.cpp.o.d / example*.c.o.d; chmod +x on those
+      # makes tip runners treat them as programs (exit 127).
       - name: Restore execute bits on test and example binaries
         if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          find build -type f \( \
-            -name 'test_unit*' -o -name 'test.unit.*' -o \
-            -name 'test_component*' -o -name 'test.component.*' -o \
-            -name 'test_performance*' -o -name 'test.performance.*' -o \
-            -name 'test_scratch*' -o -name 'test.scratch.*' -o \
-            \( -name 'example*' ! -name '*.md' \) \
-          \) -exec chmod +x {} +
+          find build -type f \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.d' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            \( \
+              -name 'test_unit*' -o -name 'test.unit.*' -o \
+              -name 'test_component*' -o -name 'test.component.*' -o \
+              -name 'test_performance*' -o -name 'test.performance.*' -o \
+              -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+              \( -name 'example*' ! -name '*.md' \) \
+            \) -exec chmod +x {} +
 
       - name: Run unit tests (Bash)
         if: runner.os != 'Windows'
@@ -262,18 +278,26 @@ jobs:
 
       # download-artifact does not restore Unix execute bits;
       # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      # Skip CMakeFiles and compiler deps — name globs also match
+      # e.g. test.component.*.cpp.o.d / example*.c.o.d; chmod +x on those
+      # makes tip runners treat them as programs (exit 127).
       - name: Restore execute bits on test and example binaries
         if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          find build -type f \( \
-            -name 'test_unit*' -o -name 'test.unit.*' -o \
-            -name 'test_component*' -o -name 'test.component.*' -o \
-            -name 'test_performance*' -o -name 'test.performance.*' -o \
-            -name 'test_scratch*' -o -name 'test.scratch.*' -o \
-            \( -name 'example*' ! -name '*.md' \) \
-          \) -exec chmod +x {} +
+          find build -type f \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.d' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            \( \
+              -name 'test_unit*' -o -name 'test.unit.*' -o \
+              -name 'test_component*' -o -name 'test.component.*' -o \
+              -name 'test_performance*' -o -name 'test.performance.*' -o \
+              -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+              \( -name 'example*' ! -name '*.md' \) \
+            \) -exec chmod +x {} +
 
       - name: Run component tests (Bash)
         if: runner.os != 'Windows'
@@ -321,18 +345,26 @@ jobs:
 
       # download-artifact does not restore Unix execute bits;
       # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      # Skip CMakeFiles and compiler deps — name globs also match
+      # e.g. test.component.*.cpp.o.d / example*.c.o.d; chmod +x on those
+      # makes tip runners treat them as programs (exit 127).
       - name: Restore execute bits on test and example binaries
         if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          find build -type f \( \
-            -name 'test_unit*' -o -name 'test.unit.*' -o \
-            -name 'test_component*' -o -name 'test.component.*' -o \
-            -name 'test_performance*' -o -name 'test.performance.*' -o \
-            -name 'test_scratch*' -o -name 'test.scratch.*' -o \
-            \( -name 'example*' ! -name '*.md' \) \
-          \) -exec chmod +x {} +
+          find build -type f \
+            ! -path '*/CMakeFiles/*' \
+            ! -name '*.d' \
+            ! -name '*.o' \
+            ! -name '*.obj' \
+            \( \
+              -name 'test_unit*' -o -name 'test.unit.*' -o \
+              -name 'test_component*' -o -name 'test.component.*' -o \
+              -name 'test_performance*' -o -name 'test.performance.*' -o \
+              -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+              \( -name 'example*' ! -name '*.md' \) \
+            \) -exec chmod +x {} +
 
       - name: Run scratch tests (Bash)
         if: runner.os != 'Windows'
