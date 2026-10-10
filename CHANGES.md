@@ -9,6 +9,8 @@
   * **test.component.be.file.threading**: **be.N** console entry uses **`pantheios_be_console`** (platform alias) to match **bec.console.h** / Windows **bec.WindowsConsole** linkage;
 * build:
   * **CMake** optional **ACE** discovery (`ACE` / `ACE_ROOT`, **`cmake/FindACE.cmake`**, `NO_ACE` / **`--no-ace`**): builds **be**/**bec**/**bel**/**ber.ACE**, **bec.ACE.WithCallback**, stock ACE inclusion, and **test.scratch.be.ACE** when **ACE** is found;
+  * console / syslog BE selection in **`cmake/TargetMacros.cmake`** and leaf **CMakeLists.txt** now uses **`_BUILD_AS_WIN32`** rather than **`CMAKE_SYSTEM_NAME`**, so **UNIXem** builds link **AnsiConsole** / **syslog** correctly;
+  * restored empty Windows scratch **CMakeLists.txt** for **be.WindowsSyslog** (+ **WithCallback**), **bec.WindowsConsoleCallback**, **bec.WindowsMessageBox**, and **fe.WindowsRegistry** (+ **controller**); deferred **be.pantheios.COM** / **pseudoUNIX** (need **UNIXem**, not valid under **`_BUILD_AS_WIN32`**);
   * removed all 122 legacy **implicit_link.cpp** files;
   * purged all 394 legacy Visual Studio build files (`.dsp`, `.dsw`, `.vcxproj`, `.filters`) and cleaned up empty **vc6** and **vc10** directories;
   * removed obsolete **test.scratch.implicit_link** test target and associated test files;

@@ -32,7 +32,10 @@ add_subdirectory(test.scratch.be.file.rolling)
 #]====]
 if(_BUILD_AS_WIN32)
 
+	#[====[
+	# Needs UNIXem; sources pull unixem headers unconditionally.
 	add_subdirectory(test.scratch.be.pantheios.COM)
+	#]====]
 	add_subdirectory(test.scratch.be.speech)
 endif(_BUILD_AS_WIN32)
 if(_BUILD_AS_UNIX)
@@ -68,10 +71,13 @@ if(_BUILD_AS_WIN32)
 	add_subdirectory(test.scratch.fe.WindowsRegistry.controller)
 endif(_BUILD_AS_WIN32)
 add_subdirectory(test.scratch.fe.simple.WithCallback)
+#[====[
+# Needs UNIXem (pseudo-UNIX on Windows); not valid under _BUILD_AS_WIN32.
 if(_BUILD_AS_WIN32)
 
 	add_subdirectory(test.scratch.pseudoUNIX)
 endif(_BUILD_AS_WIN32)
+#]====]
 add_subdirectory(test.scratch.showPlus.integer)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
