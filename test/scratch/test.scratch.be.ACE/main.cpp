@@ -1,13 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.be.WindowsSyslog/test.scratch.be.WindowsSyslog.cpp
+ * File:    test/scratch/test.scratch.be.ACE/main.cpp
  *
- * Purpose: C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios with ACE.
  *
- *            - use of Pantheios logging statements for C-style strings
- *            - use of pantheios::logputs() in bail-out conditions
- *
- * Created: 3rd August 2012
- * Updated: 29th January 2025
+ * Created: 26th January 2017
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,20 +16,24 @@
 /* This inclusion required for suppressing warnings during NoX (No eXception-support) configurations. */
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
-/* Pantheios header files */
+/* Pantheios header files - 1 */
+#include <pantheios/pantheios.h>
+
+/* ACE header files */
+#include <ace/OS_main.h>
+
+/* Pantheios header files - 2 */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/backend.h>
-#include <pantheios/backends/bec.WindowsSyslog.h>
+#include <pantheios/backends/bec.ACE.h>
 
 /* STLSoft header files */
 #include <platformstl/synch/sleep_functions.h>
 
 /* Standard C/C++ header files */
 #include <exception>                        // for std::exception
-#include <string>                           // for std::string
-#include <stdio.h>                          // for fprintf()
+#include <new>                              // for std::bad_alloc
 #include <stdlib.h>                         // for exit codes
-#include <string.h>                         // for memset()
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
@@ -42,14 +43,15 @@
  */
 
 // Define the fe.simple process identity, so that it links when using fe.simple
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.WindowsSyslog");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.ACE");
 
 
 /* /////////////////////////////////////////////////////////////////////////
  * main()
  */
 
-int main(int /* argc */, char* /* argv */[])
+int
+ACE_TMAIN(int /* argc */, ACE_TCHAR* /* argv */[])
 {
     unsigned shortPause = 1250;
 

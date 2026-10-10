@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.be.speech/test.scratch.be.speech.cpp
+ * File:    test/scratch/test.scratch.be.speech/main.cpp
  *
  * Purpose: C++ example program for Pantheios. Demonstrates:
  *
@@ -8,7 +8,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 31st August 2006
- * Updated: 29th January 2025
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

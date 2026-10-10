@@ -1,67 +1,28 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/test.scratch.be.pantheios.COM/test.scratch.be.pantheios.COM.cpp
+ * File:    test/scratch/test.scratch.bec.WindowsMessageBox/main.cpp
  *
- * Purpose:     Implementation file for the test.scratch.be.pantheios.COM project.
+ * Purpose: Implementation file for the test.scratch.bec.WindowsMessageBox project.
  *
- * Created:     9th October 2006
- * Updated:     16th December 2023
+ * Created: 14th March 2008
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
-#define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
-
-/* Open-RJ header files */
-//#include <openrj/implicit_link.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>
-#include <pantheios/implicit_link/core.h>
-#include <pantheios/implicit_link/fe.simple.h>
-#if defined(unix) || \
-    defined(__unix) || \
-    defined(__unix__)
-# include <pantheios/implicit_link/be.syslog.h>
-#elif defined(_WIN32) || \
-      defined(WIN32)
-# include <pantheios/implicit_link/be.lrsplit.h>
-# include <pantheios/implicit_link/bel.WindowsDebugger.h>
-# include <pantheios/implicit_link/ber.WindowsSyslog.h>
-#endif /* operating system */
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-
-/* PlatformSTL header files */
-#include <platformstl/platformstl.hpp>
-
-
-/* UNIXem header files */
-#include <unixem/unixem.h>
-#include <unixem/implicit_link.h>
+#include <winstl/winstl.h>
+#include <winstl/error/error_desc.hpp>
 
 /* Standard C++ header files */
 #include <exception>
-#if 0
-#include <algorithm>
-#include <iterator>
-#include <list>
-#include <string>
-#include <vector>
-#endif /* 0 */
-
-#if !defined(__WATCOMC__) && \
-    (   !defined(_MSC_VER) || \
-        _MSC_VER >= 1100)
-
-#else /* ? __WATCOMC__ */
-namespace std
-{
-    using ::exception;
-}
-#endif /* __WATCOMC__ */
 
 /* Standard C header files */
+#include <stdio.h>
 #include <stdlib.h>
 
 #if defined(_MSC_VER) && \
@@ -79,7 +40,7 @@ namespace std
  * globals
  */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.pantheios.COM");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.bec.WindowsMessageBox");
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,17 +58,21 @@ typedef std::string     string_t;
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int /* argc */, char ** /*argv*/)
+static int main_(int /* argc */, char** /*argv*/)
 {
-    {
-        pantheios::log_DEBUG("debug");
-
-    }
+    pantheios::log_DEBUG("debug");
+    pantheios::log_INFORMATIONAL("informational");
+    pantheios::log_NOTICE("notice");
+    pantheios::log_WARNING("warning");
+    pantheios::log_ERROR("error");
+    pantheios::log_CRITICAL("critical");
+    pantheios::log_ALERT("alert");
+    pantheios::log_EMERGENCY("emergency");
 
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     int             res;
 
@@ -129,19 +94,20 @@ int main(int argc, char *argv[])
     {
 #if defined(_DEBUG) || \
     defined(__SYNSOFT_DBS_DEBUG)
+        puts("test.scratch.bec.WindowsMessageBox: " __STLSOFT_COMPILER_LABEL_STRING);
 #endif /* debug */
 
         res = main_(argc, argv);
     }
     catch (std::exception &x)
     {
-        fprintf(stderr, "Unhandled error: %s\n", x.what());
+        pantheios::log_ALERT("Unexpected general error: ", x, ". Application terminating");
 
         res = EXIT_FAILURE;
     }
     catch (...)
     {
-        fprintf(stderr, "Unhandled unknown error\n");
+        pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
 
         res = EXIT_FAILURE;
     }

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.tstring/test.scratch.tstring.cpp
+ * File:    test/scratch/test.scratch.tstring/main.cpp
  *
  * Purpose: Implementation file for the test.scratch.tstring project.
  *
  * Created: 23rd February 2010
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

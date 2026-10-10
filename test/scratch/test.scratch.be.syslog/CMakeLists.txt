@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.be.syslog
-	test.scratch.be.syslog.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.be.syslog)

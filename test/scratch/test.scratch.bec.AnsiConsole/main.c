@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.bec.AnsiConsole/test.scratch.bec.AnsiConsole.c
+ * File:    test/scratch/test.scratch.bec.AnsiConsole/main.c
  *
  * Purpose: Scratch test program for demonstrating be.AnsiConsole, including
  *          ability to supply stock and be-specific flags for be
  *          initialisation.
  *
  * Created: 21st October 2024
- * Updated: 30th January 2025
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.be.N.with.custom.fe/test.scratch.be.N.with.custom.fe.cpp
+ * File:    test/scratch/test.scratch.be.N.with.custom.fe/main.cpp
  *
  * Purpose: Implementation file for the test.scratch.be.N.with.custom.fe project.
  *
  * Created: 23rd December 2010
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * Thanks:  To wassime, for submitting the original program definition.
  *

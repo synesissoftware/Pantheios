@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.pseudoUNIX/test.scratch.pseudoUNIX.c
+ * File:    test/scratch/test.scratch.pseudoUNIX/main.c
  *
  * Purpose: Implementation file for the pseudoUNIX.test project.
  *
  * Created: 23rd September 2006
- * Updated: 6th August 2026
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

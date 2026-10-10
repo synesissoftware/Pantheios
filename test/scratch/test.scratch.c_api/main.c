@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.c_api/test.scratch.c_api.c
+ * File:    test/scratch/test.scratch.c_api/main.c
  *
  * Purpose: Implementation file for the test.scratch.c_api project.
  *
  * Created: 14th October 2005
- * Updated: 20th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

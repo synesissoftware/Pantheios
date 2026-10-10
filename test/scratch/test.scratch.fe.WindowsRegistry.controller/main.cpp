@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.fe.WindowsRegistry.controller/test.scratch.fe.WindowsRegistry.controller.cpp
+ * File:    test/scratch/test.scratch.fe.WindowsRegistry.controller/main.cpp
  *
  * Purpose: Implementation file for the test.scratch.fe.WindowsRegistry.controller project.
  *

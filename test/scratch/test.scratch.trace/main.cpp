@@ -1,22 +1,25 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.bec.WindowsMessageBox/test.scratch.bec.WindowsMessageBox.cpp
+ * File:    test/scratch/test.scratch.trace/main.cpp
  *
- * Purpose: Implementation file for the test.scratch.bec.WindowsMessageBox project.
+ * Purpose: Implementation file for the trace_test project.
  *
- * Created: 14th March 2008
+ * Created: 5th August 2007
  * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+#define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>
+#include <pantheios/trace.h>
+#include <pantheios/backend.h>
+#include <pantheios/backends/bec.WindowsConsole.h>
+#include <pantheios/backends/bec.WindowsDebugger.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
-#include <winstl/winstl.h>
-#include <winstl/error/error_desc.hpp>
 
 /* Standard C++ header files */
 #include <exception>
@@ -32,42 +35,45 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * macros
- */
-
-
-/* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.bec.WindowsMessageBox");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.trace");
 
+PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(int /* backEndId */, pan_be_WindowsConsole_init_t *init) /* throw() */
+{
+    init->flags |= PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
+    init->flags |= PANTHEIOS_BE_INIT_F_NO_THREAD_ID;
+    init->flags |= PANTHEIOS_BE_INIT_F_NO_DATETIME;
+    init->flags |= PANTHEIOS_BE_INIT_F_NO_SEVERITY;
+    init->flags |= PANTHEIOS_BE_INIT_F_DETAILS_AT_START;
+}
 
-/* /////////////////////////////////////////////////////////////////////////
- * typedefs
- */
-
-#if 0
-typedef std::string     string_t;
-#endif /* 0 */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * forward declarations
- */
+PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(int /* backEndId */, pan_be_WindowsDebugger_init_t *init) /* throw() */
+{
+    init->flags |= PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
+    init->flags |= PANTHEIOS_BE_INIT_F_NO_THREAD_ID;
+    init->flags |= PANTHEIOS_BE_INIT_F_NO_DATETIME;
+    init->flags |= PANTHEIOS_BE_INIT_F_NO_SEVERITY;
+    init->flags |= PANTHEIOS_BE_INIT_F_DETAILS_AT_START;
+}
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 static int main_(int /* argc */, char** /*argv*/)
 {
-    pantheios::log_DEBUG("debug");
-    pantheios::log_INFORMATIONAL("informational");
-    pantheios::log_NOTICE("notice");
-    pantheios::log_WARNING("warning");
-    pantheios::log_ERROR("error");
-    pantheios::log_CRITICAL("critical");
-    pantheios::log_ALERT("alert");
-    pantheios::log_EMERGENCY("emergency");
+#ifndef __FUNCTION__
+# define __FUNCTION__                                       "main"
+#endif
+
+    PANTHEIOS_TRACE_DEBUG("debug");
+    PANTHEIOS_TRACE_INFORMATIONAL("informational");
+    PANTHEIOS_TRACE_NOTICE("notice");
+    PANTHEIOS_TRACE_WARNING("warning");
+    PANTHEIOS_TRACE_ERROR("error");
+    PANTHEIOS_TRACE_CRITICAL("critical");
+    PANTHEIOS_TRACE_ALERT("alert");
+    PANTHEIOS_TRACE_EMERGENCY("emergency");
 
     return EXIT_SUCCESS;
 }
@@ -92,11 +98,6 @@ int main(int argc, char* argv[])
 
     try
     {
-#if defined(_DEBUG) || \
-    defined(__SYNSOFT_DBS_DEBUG)
-        puts("test.scratch.bec.WindowsMessageBox: " __STLSOFT_COMPILER_LABEL_STRING);
-#endif /* debug */
-
         res = main_(argc, argv);
     }
     catch (std::exception &x)

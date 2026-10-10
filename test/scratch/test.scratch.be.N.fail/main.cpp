@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.be.N.fail/test.scratch.be.N.fail.cpp
+ * File:    test/scratch/test.scratch.be.N.fail/main.cpp
  *
  * Purpose: Implementation file for the be.N.fail.test project.
  *
  * Created: 9th January 2007
- * Updated: 5th August 2026
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,27 +1,26 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:     test/scratch/test.scratch.bec.WindowsConsoleCallback/test.scratch.bec.WindowsConsoleCallback.cpp
+ * File:    test/scratch/test.scratch.fe.WindowsRegistry/main.cpp
  *
- * Purpose:  Implementation file for the test.scratch.bec.WindowsConsoleCallback project.
+ * Purpose: Implementation file for the test.scratch.fe.WindowsRegistry project.
  *
- * Created:  31st July 2007
+ * Created: 28th October 2007
  * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
+
 
 
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>
-#include <pantheios/backends/bec.WindowsConsole.h>
 
 /* STLSoft header files */
-#include <stlsoft/stlsoft.h>
-#include <winstl/winstl.h>
 #include <winstl/error/error_desc.hpp>
 
 /* Standard C++ header files */
 #include <exception>
+#include <iostream>
 
 /* Standard C header files */
 #include <stdlib.h>
@@ -36,35 +35,21 @@
  * globals
  */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.bec.WindowsConsoleCallback");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.fe.WindowsRegistry");
 
 /* ////////////////////////////////////////////////////////////////////// */
-
-PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
-    int                          /* backEndId */
-,   pan_be_WindowsConsole_init_t*   init
-) /* throw() */
-{
-    init->flags |= PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
-    init->flags |= PANTHEIOS_BE_INIT_F_NO_DATETIME;
-    init->flags |= PANTHEIOS_BE_INIT_F_NO_SEVERITY;
-    init->flags |= PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME;
-
-//  init->flags |= PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS;
-}
 
 static int main_(int /* argc */, char** /*argv*/)
 {
     pantheios::log_DEBUG("debug");
-    pantheios::log_INFORMATIONAL("info");
+    pantheios::log_INFORMATIONAL("informational");
     pantheios::log_NOTICE("notice");
-    pantheios::log_WARNING("warn");
+    pantheios::log_WARNING("warning");
     pantheios::log_ERROR("error");
     pantheios::log_CRITICAL("critical");
     pantheios::log_ALERT("alert");
     pantheios::log_EMERGENCY("emergency");
 
-    /* . */
     return EXIT_SUCCESS;
 }
 
@@ -90,6 +75,7 @@ int main(int argc, char* argv[])
     {
 #if defined(_DEBUG) || \
     defined(__SYNSOFT_DBS_DEBUG)
+        pantheios::log_DEBUG("test.scratch.fe.WindowsRegistry: " __STLSOFT_COMPILER_LABEL_STRING);
 #endif /* debug */
 
         res = main_(argc, argv);

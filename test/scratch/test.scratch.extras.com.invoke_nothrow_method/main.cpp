@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.extras.com.invoke_nothrow_method/test.scratch.extras.com.invoke_nothrow_method.cpp
+ * File:    test/scratch/test.scratch.extras.com.invoke_nothrow_method/main.cpp
  *
  * Purpose: Implementation file for the test.scratch.extras.com.invoke_nothrow_method project.
  *
  * Created: 3rd November 2008
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

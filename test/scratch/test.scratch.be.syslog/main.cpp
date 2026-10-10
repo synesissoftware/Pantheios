@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.be.syslog/test.scratch.be.syslog.cpp
+ * File:    test/scratch/test.scratch.be.syslog/main.cpp
  *
  * Purpose: C++ example program for Pantheios. Demonstrates:
  *
@@ -7,7 +7,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 10th November 2010
- * Updated: 29th January 2025
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

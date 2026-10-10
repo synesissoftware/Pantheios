@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.WideString/test.scratch.WideString.cpp
+ * File:    test/scratch/test.scratch.WideString/main.cpp
  *
  * Purpose: Scratch test for widestring application layer.
  *
  * Created: 22nd March 2010
- * Updated: 20th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.fe.WindowsRegistry.controller
-	test.scratch.fe.WindowsRegistry.controller.cpp
+	main.cpp
 )
 
 target_link_STLSoft(test.scratch.fe.WindowsRegistry.controller)

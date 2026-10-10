@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.be.N
-	test.scratch.be.N.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.be.N)

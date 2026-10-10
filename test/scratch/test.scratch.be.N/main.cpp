@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.be.N/test.scratch.be.N.cpp
+ * File:    test/scratch/test.scratch.be.N/main.cpp
  *
  * Purpose: Implementation file for the test.scratch.be.N project.
  *
  * Created: 18th October 2006
- * Updated: 5th August 2026
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.be.file.rolling
-test.scratch.be.file.rolling.cpp
+main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.be.file.rolling)

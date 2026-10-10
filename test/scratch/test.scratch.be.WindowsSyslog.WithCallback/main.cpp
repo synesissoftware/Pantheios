@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.be.WindowsSyslog/test.scratch.be.WindowsSyslog.cpp
+ * File:    test/scratch/test.scratch.be.WindowsSyslog.WithCallback/main.cpp
  *
  * Purpose: C++ example program for Pantheios. Demonstrates:
  *

@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.extras.com_exception_helpers
-	test.scratch.extras.com_exception_helpers.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.extras.com_exception_helpers)
