@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.fe.WindowsRegistry.controller project.
  *
  * Created: 2nd December 2007
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -71,8 +71,6 @@ namespace control
 
 static int main_(int argc, char* argv[])
 {
-    int bVerbose = true;
-
     { for (int i = 1; i < argc; ++i)
     {
         char const* const arg = argv[i];
