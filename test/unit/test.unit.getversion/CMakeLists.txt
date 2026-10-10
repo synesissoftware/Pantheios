@@ -1,6 +1,6 @@
 
 add_executable(test.unit.getversion
-	test.unit.getversion.c
+	entry.c
 )
 
 target_link_Pantheios_core(test.unit.getversion)

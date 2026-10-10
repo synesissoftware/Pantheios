@@ -1,6 +1,6 @@
 
 add_executable(test.unit.util.gethostname
-	test.unit.util.gethostname.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_util(test.unit.util.gethostname)

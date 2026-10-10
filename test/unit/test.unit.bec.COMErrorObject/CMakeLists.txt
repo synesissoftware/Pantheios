@@ -1,6 +1,6 @@
 
 add_executable(test.unit.bec.COMErrorObject
-	test.unit.bec.COMErrorObject.cpp
+	entry.cpp
 )
 
 target_link_libraries(test.unit.bec.COMErrorObject

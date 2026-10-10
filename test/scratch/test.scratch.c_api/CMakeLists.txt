@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.c_api
-	test.scratch.c_api.c
+	main.c
 )
 
 target_link_Pantheios_core(test.scratch.c_api)

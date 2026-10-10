@@ -1,6 +1,6 @@
 
 add_executable(test.component.bec.fprintf
-	test.component.bec.fprintf.cpp
+	entry.cpp
 )
 
 target_link_libraries(test.component.bec.fprintf

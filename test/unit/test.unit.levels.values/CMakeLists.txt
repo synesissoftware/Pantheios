@@ -1,6 +1,6 @@
 
 add_executable(test.unit.levels.values
-	test.unit.levels.values.c
+	entry.c
 )
 
 target_link_Pantheios_util(test.unit.levels.values)

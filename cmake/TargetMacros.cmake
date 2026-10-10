@@ -105,32 +105,32 @@ macro(target_link_xTests target_name)
 	)
 endmacro(target_link_xTests)
 
-function(define_simple_console_example_c program_and_main_source_stem)
+function(define_simple_console_example_c program_stem)
 
-	add_executable(${program_and_main_source_stem}
-		${program_and_main_source_stem}.c
+	add_executable(${program_stem}
+		main.c
 	)
 
-	target_link_Pantheios_core(${program_and_main_source_stem})
+	target_link_Pantheios_core(${program_stem})
 
-	target_link_libraries(${program_and_main_source_stem}
+	target_link_libraries(${program_stem}
 		PRIVATE
 			$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.be.WindowsConsole,Pantheios.be.AnsiConsole>
 			$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.bec.WindowsConsole,Pantheios.bec.AnsiConsole>
 	)
 
-	target_link_libraries(${program_and_main_source_stem}
+	target_link_libraries(${program_stem}
 		PRIVATE
 			Pantheios.fe.simple
 	)
 
-	target_link_Pantheios_util(${program_and_main_source_stem})
+	target_link_Pantheios_util(${program_stem})
 
-	target_link_STLSoft(${program_and_main_source_stem})
+	target_link_STLSoft(${program_stem})
 
 	if(b64_FOUND)
 
-		target_link_libraries(${program_and_main_source_stem}
+		target_link_libraries(${program_stem}
 			PRIVATE
 				b64::core
 		)
@@ -154,7 +154,7 @@ function(define_simple_console_example_c program_and_main_source_stem)
 			endforeach()
 	endif()
 
-	target_compile_options(${program_and_main_source_stem}
+	target_compile_options(${program_stem}
 		PRIVATE
 			$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 				-Werror -Wall -Wextra -pedantic
@@ -169,30 +169,30 @@ function(define_simple_console_example_c program_and_main_source_stem)
 	)
 endfunction(define_simple_console_example_c)
 
-function(define_simple_console_example_cpp program_and_main_source_stem)
+function(define_simple_console_example_cpp program_stem)
 
-	add_executable(${program_and_main_source_stem}
-		${program_and_main_source_stem}.cpp
+	add_executable(${program_stem}
+		main.cpp
 	)
 
-	target_link_Pantheios_core(${program_and_main_source_stem})
+	target_link_Pantheios_core(${program_stem})
 
-	target_link_libraries(${program_and_main_source_stem}
+	target_link_libraries(${program_stem}
 		PRIVATE
 			$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.be.WindowsConsole,Pantheios.be.AnsiConsole>
 			$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.bec.WindowsConsole,Pantheios.bec.AnsiConsole>
 	)
 
-	target_link_libraries(${program_and_main_source_stem}
+	target_link_libraries(${program_stem}
 		PRIVATE
 			Pantheios.fe.simple
 	)
 
-	target_link_Pantheios_util(${program_and_main_source_stem})
+	target_link_Pantheios_util(${program_stem})
 
 	if(b64_FOUND)
 
-		target_link_libraries(${program_and_main_source_stem}
+		target_link_libraries(${program_stem}
 			PRIVATE
 				b64::core
 		)
@@ -200,13 +200,13 @@ function(define_simple_console_example_cpp program_and_main_source_stem)
 
 	if(Threads_FOUND)
 
-		target_link_libraries(${program_and_main_source_stem}
+		target_link_libraries(${program_stem}
 			PRIVATE
 				Threads::Threads
 		)
 	endif(Threads_FOUND)
 
-	target_link_STLSoft(${program_and_main_source_stem})
+	target_link_STLSoft(${program_stem})
 
 	set(X_GCC_CUSTOM_WARNINGS_ "")
 
@@ -226,7 +226,7 @@ function(define_simple_console_example_cpp program_and_main_source_stem)
 			endforeach()
 	endif()
 
-	target_compile_options(${program_and_main_source_stem}
+	target_compile_options(${program_stem}
 		PRIVATE
 			$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
 				-Werror -Wall -Wextra -pedantic

@@ -1,6 +1,6 @@
 
 add_executable(test.component.core.getProcessIdentity
-	test.component.core.getProcessIdentity.c
+	entry.c
 )
 
 target_link_Pantheios_core(test.component.core.getProcessIdentity)

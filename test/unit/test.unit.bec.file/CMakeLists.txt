@@ -1,6 +1,6 @@
 
 add_executable(test.unit.bec.file
-	test.unit.bec.file.cpp
+	entry.cpp
 )
 
 target_link_libraries(test.unit.bec.file

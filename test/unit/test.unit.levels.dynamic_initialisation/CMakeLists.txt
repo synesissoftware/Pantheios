@@ -1,6 +1,6 @@
 
 add_executable(test.unit.levels.dynamic_initialisation
-	test.unit.levels.dynamic_initialisation.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_util(test.unit.levels.dynamic_initialisation)

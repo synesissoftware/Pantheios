@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.bec.AnsiConsole
-	test.scratch.bec.AnsiConsole.c
+	main.c
 )
 
 target_link_Pantheios_core(test.scratch.bec.AnsiConsole)

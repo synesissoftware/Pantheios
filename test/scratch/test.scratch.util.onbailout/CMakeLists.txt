@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.util.onbailout
-	test.scratch.util.onbailout.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.util.onbailout)

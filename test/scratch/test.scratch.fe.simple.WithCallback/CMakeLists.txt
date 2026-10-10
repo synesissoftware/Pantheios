@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.fe.simple.WithCallback
-	test.scratch.fe.simple.WithCallback.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.fe.simple.WithCallback)

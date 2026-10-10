@@ -1,6 +1,6 @@
 
 add_executable(test.component.custom_severity
-	test.component.custom_severity.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.component.custom_severity)

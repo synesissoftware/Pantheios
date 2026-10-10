@@ -1,6 +1,6 @@
 
 add_executable(test.unit.bec.fail
-	test.unit.bec.fail.c
+	entry.c
 )
 
 target_link_libraries(test.unit.bec.fail
