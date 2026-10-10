@@ -27,7 +27,6 @@ CMakeDir=${SIS_CMAKE_BUILD_DIR:-$Dir/_build}
 ProjectNameFile="$Dir/.sis/project_name.txt"
 ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 ScriptPath=$0
-AllowedToFailFile="$Dir/.sis/ci_examples_allowed_to_fail.txt"
 
 AlwaysUseColours=${SIS_CMAKE_ALWAYS_USE_COLOURS:-${SIS_ALWAYS_USE_COLOURS:-0}}
 ListOnly=0
@@ -116,49 +115,6 @@ sis_cmake_build() {
   cmake "${args[@]}"
 }
 
-# Reduces a program path to its (lowercase) name, without any directory or
-# .exe suffix.
-sis_program_stem() {
-
-  local p="${1//\\//}"
-
-  p="${p##*/}"
-
-  case "$p" in
-    *.exe|*.EXE) p="${p%.*}" ;;
-  esac
-
-  printf '%s' "$p" | tr '[:upper:]' '[:lower:]'
-}
-
-# Succeeds if the program is named (by name or stem, case-insensitively) in
-# the optional .sis/ci_examples_allowed_to_fail.txt file; blank lines and
-# lines beginning with '#' are ignored.
-sis_is_allowed_to_fail() {
-
-  local name line
-
-  [ -f "$AllowedToFailFile" ] || return 1
-
-  name=$(sis_program_stem "$1")
-
-  while IFS= read -r line || [ -n "$line" ]; do
-
-    line="${line//$'\r'/}"
-
-    case "$line" in
-      ''|\#*) continue ;;
-    esac
-
-    if [ "$name" = "$(sis_program_stem "$line")" ]; then
-
-      return 0
-    fi
-  done < "$AllowedToFailFile"
-
-  return 1
-}
-
 
 # ##########################################################
 # command-line handling
@@ -182,7 +138,7 @@ while [[ $# -gt 0 ]]; do
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Runs all (matching) example programs
+Runs all (matching) performance-test programs
 
 ${ScriptPath} [ ... flags/options ... ]
 
@@ -202,15 +158,6 @@ Flags/options:
     -M
     --no-make
         does not execute a build before running programs
-
-
-    files:
-
-    .sis/ci_examples_allowed_to_fail.txt
-        optional list of example programs (one name per line; blank lines
-        and lines beginning with '#' are ignored) that are allowed to fail;
-        such a program is still executed, but a non-zero exit is reported as
-        anticipated and neither stops the run nor affects the exit status
 
 
     standard flags:
@@ -244,7 +191,7 @@ if [ $RunMake -ne 0 ]; then
   if [ $ListOnly -eq 0 ]; then
 
     echo
-    echo "Executing build of ${ProjectNameClr} (via cmake --build) and then running all example programs"
+    echo "Executing build of ${ProjectNameClr} (via cmake --build) and then running all performance-test programs"
 
     mkdir -p "$CMakeDir" || exit 1
 
@@ -273,16 +220,12 @@ if [ $status -eq 0 ]; then
   if [ $ListOnly -ne 0 ]; then
 
     echo
-    echo "Listing all ${ProjectNameClr} example programs"
+    echo "Listing all ${ProjectNameClr} performance-test programs"
   else
 
     echo
-    echo "Running all ${ProjectNameClr} example programs"
+    echo "Running all ${ProjectNameClr} performance-test programs"
   fi
-
-  # Examples that require human input may honour SIS_EXAMPLE_SMOKE for a
-  # no-arg built-in tmpfile demo (see example.c.cstring_vector).
-  export SIS_EXAMPLE_SMOKE=1
 
   NumPrograms=0
 
@@ -300,13 +243,7 @@ if [ $status -eq 0 ]; then
 
     if [ $ListOnly -ne 0 ]; then
 
-      if sis_is_allowed_to_fail "$f"; then
-
-        echo "would execute ${fClr} (allowed to fail):"
-      else
-
-        echo "would execute ${fClr}:"
-      fi
+      echo "would execute ${fClr}:"
 
       continue
     fi
@@ -319,29 +256,15 @@ if [ $status -eq 0 ]; then
       :
     else
 
-      fStatus=$?
-
-      if sis_is_allowed_to_fail "$f"; then
-
-        echo "${SisClr_Yellow}${SisClr_Bold}anticipated failure${SisClr_None}: ${fClr} exited with status ${fStatus}; it is listed in .sis/ci_examples_allowed_to_fail.txt"
-
-        continue
-      fi
-
-      status=$fStatus
+      status=$?
 
       break 1
     fi
-  done < <(find "$CMakeDir" -type f \( -name 'example*' ! -name '*.md' \) \
-    ! -path '*/CMakeFiles/*' \
-    ! -name '*.a' \
-    ! -name '*.d' \
-    ! -name '*.lib' \
-    \( -perm -100 -o -name '*.exe' \) -print0 2>/dev/null | sort -z)
+  done < <(find "$CMakeDir" -type f \( -name 'test_performance*' -o -name 'test.performance.*' \) \( -perm -100 -o -name '*.exe' \) -print0 2>/dev/null | sort -z)
 
   if [ $NumPrograms -eq 0 ]; then
 
-    echo "${ScriptPathClr}: found no example programs under '${CMakeDirClr}' (none found)"
+    echo "${ScriptPathClr}: found no performance-test programs under '${CMakeDirClr}' (none found)"
 
     exit 0
   fi

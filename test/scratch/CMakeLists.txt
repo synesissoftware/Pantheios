@@ -1,6 +1,5 @@
 
 
-add_subdirectory(libver)
 add_subdirectory(test.scratch.I18N)
 if(_BUILD_AS_WIN32)
 
@@ -89,6 +88,8 @@ if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
 	add_subdirectory(test.scratch.util.onbailout)
 endif()
+
+add_subdirectory(versions)
 
 
 # ############################## end of file ############################# #

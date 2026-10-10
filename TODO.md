@@ -4,9 +4,31 @@
 ## Functional improvements
 
 
-### CI / tooling
+### 1.0.1-rc3 (11th October 2026)
 
-* [ ] Re-enable **test.unit.bec.COMErrorObject** on MinGW once **xTests** fixes multibyte string-equality helpers for GCC two-phase lookup (shim overloads declared after **xtests.h** is included); currently skipped in **test/unit/CMakeLists.txt**;
+* [x] ~~~CI refactoring~~~ - ✅;
+* [ ] **README.md** (and other project markdown) significant enhancement (in a similar vein as has been done for **xqsr3** (Ruby));
+* [ ] Integration of **woad**;
+* [ ] Refactor CMake test targets / options so that only unit-test executables are built when only executing unit tests (and similarly for component, scratch, and performance tests);
+* [ ] Using **AnsiConsole**;
+* [ ] Using **ACE**;
+
+
+### 1.0.1-rc4
+
+* [ ] Replace selected Pantheios custom code with post-**STLSoft**-1.9 facilities;
+* [ ] Additional performance tests;
+
+
+### 1.0.1 final release (nice-to-have / non-mandatory)
+
+Candidates to consider for the final 1.0.1 release if time permits, but non-blocking:
+
+* [ ] Re-enable **test.unit.bec.COMErrorObject** on **MinGW** once **xTests** fixes multibyte string-equality helpers for GCC two-phase lookup (shim overloads declared after **xtests.h** is included); currently skipped in **test/unit/CMakeLists.txt**;
+* [ ] Review all download/build/install documentation (**INSTALL.md**);
+* [ ] Component test for **be.WindowsSyslog**;
+* [ ] Sort out `\file` Doxygen fields across headers;
+* [ ] Prune obsolete compiler and IDE project-file items from **TODO.md** (VS '98 through 2010, Turbo C++, Comeau, Xcode project-file generators);
 
 
 ### Pantheios 1.0.1 (final)

@@ -1,4 +1,47 @@
-# Pantheios - CHANGES <!-- omit in toc -->
+# Pantheios - Changes <!-- omit in toc -->
+
+
+## 1.0.1-rc3 - 11th October 2026
+
+* backends:
+  * **bec.AnsiConsole**: on Windows, emit ANSI colours only when the host supports them — Win11 assumed ready, Win10 VT builds opt in via **`SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`**, older hosts (e.g. XP) stay plain;
+  * examples and scratch tests: non-Windows console sink moved from **be.fprintf** to **be.AnsiConsole** for simple console demos (via **`define_simple_console_example_*`**, **be.console** / **bec.console** aliases, matching implicit-link headers, and per-project **CMakeLists.txt** / **implicit_link** updates); multiplex / callback / **be.N** cases deferred;
+  * **test.component.be.file.threading**: **be.N** console entry uses **`pantheios_be_console`** (platform alias) to match **bec.console.h** / Windows **bec.WindowsConsole** linkage;
+* dependencies:
+  * now requires **STLSoft** **1.11.1-rc8** (or later) — compile-time floor `_STLSOFT_VER < 0x010B01C8`;
+* version:
+  * added `PANTHEIOS_VER_1_0_1_RC3` (`0x010001E3`) and set `PANTHEIOS_VER_ALPHABETA` to `0xE3` in **include/pantheios/pantheios.h**;
+  * **test.unit.getversion** asserts `PANTHEIOS_VER_1_0_1_RC3`;
+* testing:
+  * renamed scratch version reporter **test/scratch/libver** → **test/scratch/versions** (executable **test.scratch.versions**); Phase **4c** one-line VER printer with tab-indented efferent dependencies;
+* CI:
+  * consolidated **ci-cell.yml** into a single build-and-test job;
+  * adopted local composite action **`.github/actions/install-sis-deps`**;
+  * added **stlsoft-routes** job for CMake vs environment **STLSoft** resolution;
+  * added minimal **no-b64** and **no-b64** + **no-shwild** matrix permutations and install-smoke coverage;
+  * optional **shwild** exclusion via `NO_SHWILD` / **prepare_cmake.sh --no-shwild**;
+  * Windows cells dogfood native **`.cmd`** runners; restore execute bits after artifact download (excluding **CMakeFiles**);
+  * component tests via **run_all_component_tests.sh** / **.cmd**;
+  * push-branch set canonicalised (**master**, **dev**, **boilerplate**, **idiomatic**, **rc1**–**rc3**);
+* boilerplate:
+  * applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates;
+  * restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
+  * added **.editorconfig**; **.gitattributes** Linguist language-bar policy;
+  * helper scripts rewritten to the common Synesis layout (**build_cmake.sh**, **clean_cmake.sh**, **prepare_cmake.sh**, **remove_cmake_artefacts.sh**, and kin): builds via `cmake --build`, coloured output, **`.sis/project_name.txt`** in status messages;
+  * added **ctest_cmake.sh**;
+  * added **run_all_component_tests.sh** / **.cmd**, **run_all_performance_tests.sh** / **.cmd**, and **run_all_automated_tests.sh** / **.cmd**; native **.cmd** counterparts for examples / unit / scratch;
+  * **run_all_unit_tests.sh** / **.cmd** — unit-only (`--unit-only` accepted for compatibility; `--component-only` removed from the unit runner);
+  * **.sis/ci_examples_allowed_to_fail.txt** for example-smoke allow-list;
+* documentation:
+  * **NEWS.md** three-column chronology; **INSTALL.md**, **KNOWN_ISSUES.md**, and **TODO.md** aligned to **1.0.1-rc3**;
+
+
+## 1.0.1-rc2 - 6th September 2026
+
+* **CMake** package configuration: loaded `CMakeFindDependencyMacro` and added conditional `find_dependency()` calls for **STLSoft** and **b64** in **`pantheios-config.cmake`**; ensures exported static targets (such as `Pantheios::Pantheios.core`) provide transitive interface link dependencies (`b64::core`, `STLSoft::STLSoft`) to downstream consumers without requiring callers to invoke `find_package(b64)` manually;
+* version definition: added `PANTHEIOS_VER_1_0_1_RC2` (`0x010001e2`) and updated `PANTHEIOS_VER` to RC2 in **include/pantheios/pantheios.h**;
+* tooling and configuration: added **`.vscode/settings.json`**;
+* documentation and release alignment: updated **NEWS.md**, **INSTALL.md**, and **KNOWN_ISSUES.md** for the 1.0.1-rc2 release;
 
 
 ## 1.0.1-rc3 - 6th August 2026
@@ -20,6 +63,7 @@
 * documentation modernisation: **CHANGES.md** (from **CHANGES.txt**), removal of **HISTORY.md** and **README.txt**, and updates to **README.md**, **FAQ.md**, **INSTALL.md**, **TODO.md**, **KNOWN_ISSUES.md**, **AUTHORS.md**, and **HOW_YOU_CAN_HELP.md**;
 * new stock back-end **bec.AnsiConsole** / **be.AnsiConsole** (bel/ber, colouring flags, argument parsing, unit and scratch tests);
 * **CMake** enhancements: **Threads** / `PANTHEIOS_FORCE_MT`, `BUILD_TESTING`, optional **b64** via `NO_B64` / **`--no-b64`**, CMP0177, lowercase export package (**`pantheios-config.cmake`**), improved **STLSoft** include handling, and **`_BUILD_AS_UNIX`** / **`_BUILD_AS_WIN32`** OS discrimination;
+* **CMake** package config: `find_dependency()` for **STLSoft** and (when built with it) **b64**, so consumers of **`Pantheios::Pantheios.core`** no longer see a missing **`b64::core`** imported target;
 * modern composite **`PANTHEIOS_VER`** (`MAJOR` / `MINOR` / `PATCH` / `ALPHABETA`); **`test.unit.getversion`** covers those fields via **xTests** terse-api assertions; scratch **`libver`** + top-level **`libver.sh`**;
 * helper scripts: **`.sis/project_name.txt`** / **`.sis/script_info_lines.txt`** wired into **`--help`** and status messages; **run_all_examples.sh**; **run_all_unit_tests.sh** gains **`--unit-only`** / **`--component-only`**; test runners exclude **`*.log`** from discovery;
 * **bec.file**: create log files without execute permission (was `S_IRWXU`/`S_IRWXG`, which made suite-named logs executable and runnable by test discovery);

@@ -1,28 +1,48 @@
+#
+# Created:  7th September 2025
+# Updated:  11th October 2026
+#
+
 name: CI cell
 
 on:
   workflow_call:
     inputs:
-      cell-id:
-        required: true
+      build-type:
+        required: false
         type: string
-      os:
-        required: true
-        type: string
+        default: Release
       c-compiler:
+        required: true
+        type: string
+      cell-id:
         required: true
         type: string
       cpp-compiler:
         required: true
         type: string
-      build-type:
+      no-b64:
+        required: false
+        type: boolean
+        default: false
+      no-shwild:
+        required: false
+        type: boolean
+        default: false
+      os:
+        required: true
+        type: string
+      toolchain:
         required: false
         type: string
-        default: Release
+        default: ''
       with-ace:
         required: false
         type: boolean
         default: false
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -41,7 +61,8 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
+        id: msys2
+        if: runner.os == 'Windows' && inputs.toolchain == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
@@ -51,160 +72,34 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install test dependencies (STLSoft + shwild + xTests + b64)
-        shell: bash
-        run: |
-          set -euxo pipefail
-
-          DEPS="${RUNNER_TEMP}/sis-deps"
-          STLSRC="${RUNNER_TEMP}/stlsoft-src"
-          STLBUILD="${RUNNER_TEMP}/stlsoft-build"
-          SHWSRC="${RUNNER_TEMP}/shwild-src"
-          SHWBUILD="${RUNNER_TEMP}/shwild-build"
-          XTSRC="${RUNNER_TEMP}/xtests-src"
-          XTBUILD="${RUNNER_TEMP}/xtests-build"
-          B64SRC="${RUNNER_TEMP}/b64-src"
-          B64BUILD="${RUNNER_TEMP}/b64-build"
-
-          mkdir -p "$DEPS"
-
-          # 1. STLSoft
-          git clone --depth 1 https://github.com/synesissoftware/STLSoft "$STLSRC"
-          if [ "${{ inputs.c-compiler }}" = "cl" ]; then
-            cmake -S "$STLSRC" -B "$STLBUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --config "${{ inputs.build-type }}" --parallel
-            cmake --install "$STLBUILD" --config "${{ inputs.build-type }}"
-          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$STLSRC" -B "$STLBUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --parallel 2
-            cmake --install "$STLBUILD"
-          else
-            cmake -S "$STLSRC" -B "$STLBUILD" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$STLBUILD" --parallel
-            cmake --install "$STLBUILD"
-          fi
-
-          # 2. shwild
-          git clone --depth 1 https://github.com/synesissoftware/shwild "$SHWSRC"
-          if [ "${{ inputs.c-compiler }}" = "cl" ]; then
-            cmake -S "$SHWSRC" -B "$SHWBUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$SHWBUILD" --config "${{ inputs.build-type }}" --parallel
-            cmake --install "$SHWBUILD" --config "${{ inputs.build-type }}"
-          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$SHWSRC" -B "$SHWBUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$SHWBUILD" --parallel 2
-            cmake --install "$SHWBUILD"
-          else
-            cmake -S "$SHWSRC" -B "$SHWBUILD" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$SHWBUILD" --parallel
-            cmake --install "$SHWBUILD"
-          fi
-
-          # 3. xTests
-          git clone --depth 1 https://github.com/synesissoftware/xTests "$XTSRC"
-          if [ "${{ inputs.c-compiler }}" = "cl" ]; then
-            cmake -S "$XTSRC" -B "$XTBUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$XTBUILD" --config "${{ inputs.build-type }}" --parallel
-            cmake --install "$XTBUILD" --config "${{ inputs.build-type }}"
-          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$XTSRC" -B "$XTBUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$XTBUILD" --parallel 2
-            cmake --install "$XTBUILD"
-          else
-            cmake -S "$XTSRC" -B "$XTBUILD" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$XTBUILD" --parallel
-            cmake --install "$XTBUILD"
-          fi
-
-          # 4. b64
-          git clone --depth 1 https://github.com/synesissoftware/b64 "$B64SRC"
-          if [ "${{ inputs.c-compiler }}" = "cl" ]; then
-            cmake -S "$B64SRC" -B "$B64BUILD" \
-              -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$B64BUILD" --config "${{ inputs.build-type }}" --parallel
-            cmake --install "$B64BUILD" --config "${{ inputs.build-type }}"
-          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
-            export PATH="/mingw64/bin:$PATH"
-            cmake -S "$B64SRC" -B "$B64BUILD" -G "MinGW Makefiles" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$B64BUILD" --parallel 2
-            cmake --install "$B64BUILD"
-          else
-            cmake -S "$B64SRC" -B "$B64BUILD" \
-              -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
-              -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
-              -DCMAKE_INSTALL_PREFIX="$DEPS" \
-              -DCMAKE_PREFIX_PATH="$DEPS" \
-              -DBUILD_EXAMPLES=OFF \
-              -DBUILD_TESTING=OFF
-            cmake --build "$B64BUILD" --parallel
-            cmake --install "$B64BUILD"
-          fi
+      # Dependency order (not lexicographic): each package is configured
+      # against those already installed under the shared prefix. Optional
+      # packages are omitted when the corresponding no-* input is true.
+      - name: Install Synesis dependencies
+        uses: ./.github/actions/install-sis-deps
+        with:
+          build-type: ${{ inputs.build-type }}
+          c-compiler: ${{ inputs.c-compiler }}
+          cpp-compiler: ${{ inputs.cpp-compiler }}
+          dependencies: >-
+            STLSoft
+            ${{ !inputs.no-shwild && 'shwild' || '' }}
+            xTests
+            ${{ !inputs.no-b64 && 'b64' || '' }}
+          toolchain: ${{ inputs.toolchain }}
 
       - name: Configure
         shell: bash
         run: |
           set -euo pipefail
+          NO_B64_OPT=""
+          if [ "${{ inputs.no-b64 }}" = "true" ]; then
+            NO_B64_OPT="-DNO_B64=ON"
+          fi
+          NO_SHWILD_OPT=""
+          if [ "${{ inputs.no-shwild }}" = "true" ]; then
+            NO_SHWILD_OPT="-DNO_SHWILD=ON -DCMAKE_DISABLE_FIND_PACKAGE_shwild=TRUE"
+          fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
             ACE_FLAG="-DNO_ACE=OFF"
           else
@@ -213,28 +108,34 @@ jobs:
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -B build -S . \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
-              -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
+              $NO_B64_OPT \
+              $NO_SHWILD_OPT \
               $ACE_FLAG
-          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+          elif [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
-            cmake -B build -G "MinGW Makefiles" \
+            cmake -B build -S . -G "MinGW Makefiles" \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
-              -DCMAKE_C_COMPILER=gcc \
-              -DCMAKE_CXX_COMPILER=g++ \
-              -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
+              -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
+              -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
+              $NO_B64_OPT \
+              $NO_SHWILD_OPT \
               $ACE_FLAG
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
               -DCMAKE_C_COMPILER="${{ inputs.c-compiler }}" \
               -DCMAKE_CXX_COMPILER="${{ inputs.cpp-compiler }}" \
-              -DCMAKE_PREFIX_PATH="${RUNNER_TEMP}/sis-deps" \
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
+              $NO_B64_OPT \
+              $NO_SHWILD_OPT \
               $ACE_FLAG
           fi
 
@@ -244,7 +145,7 @@ jobs:
           set -euo pipefail
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake --build build --config "${{ inputs.build-type }}" --parallel
-          elif [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+          elif [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake --build build --parallel 2
           else
@@ -258,6 +159,9 @@ jobs:
           path: build
           retention-days: 1
 
+  # Windows cells dogfood the native .cmd runners (never the .sh); every
+  # other cell uses the Bash runners. Scratch must gate the Phase 4c
+  # reporter (no continue-on-error greenwash).
   run-examples:
     name: Examples (${{ inputs.cell-id }})
     needs: build
@@ -267,7 +171,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
+        id: msys2
+        if: runner.os == 'Windows' && inputs.toolchain == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
@@ -280,37 +185,52 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Restore executable bits
+      # download-artifact does not restore Unix execute bits;
+      # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      # Skip CMakeFiles and compiler deps — name globs also match
+      # e.g. test.component.*.cpp.o.d / example*.c.o.d; chmod +x on those
+      # makes tip runners treat them as programs (exit 127).
+      - name: Restore execute bits on test and example binaries
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
           find build -type f \
-            \( -name 'example.c.*' -o -name 'example.cpp.*' \
-               -o -name 'test.unit.*' -o -name 'test_unit*' \
-               -o -name 'test.component.*' -o -name 'test_component*' \
-               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
-               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
             ! -path '*/CMakeFiles/*' \
-            ! -name '*.a' \
             ! -name '*.d' \
-            ! -name '*.lib' \
-            ! -name '*.log' \
             ! -name '*.o' \
             ! -name '*.obj' \
-            ! -name '*.pdb' \
-            -exec chmod +x {} +
+            \( \
+              -name 'test_unit*' -o -name 'test.unit.*' -o \
+              -name 'test_component*' -o -name 'test.component.*' -o \
+              -name 'test_performance*' -o -name 'test.performance.*' -o \
+              -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+              \( -name 'example*' ! -name '*.md' \) \
+            \) -exec chmod +x {} +
 
-      - name: Run examples
+      - name: Run examples (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+          if [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
             set -x
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
+
+      - name: Run examples (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.toolchain }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_examples.cmd
+          if errorlevel 1 exit /b 1
 
   test-unit:
     name: Unit tests (${{ inputs.cell-id }})
@@ -321,7 +241,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
+        id: msys2
+        if: runner.os == 'Windows' && inputs.toolchain == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
@@ -334,31 +255,35 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Restore executable bits
+      # download-artifact does not restore Unix execute bits;
+      # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      # Skip CMakeFiles and compiler deps — name globs also match
+      # e.g. test.component.*.cpp.o.d / example*.c.o.d; chmod +x on those
+      # makes tip runners treat them as programs (exit 127).
+      - name: Restore execute bits on test and example binaries
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
           find build -type f \
-            \( -name 'example.c.*' -o -name 'example.cpp.*' \
-               -o -name 'test.unit.*' -o -name 'test_unit*' \
-               -o -name 'test.component.*' -o -name 'test_component*' \
-               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
-               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
             ! -path '*/CMakeFiles/*' \
-            ! -name '*.a' \
             ! -name '*.d' \
-            ! -name '*.lib' \
-            ! -name '*.log' \
             ! -name '*.o' \
             ! -name '*.obj' \
-            ! -name '*.pdb' \
-            -exec chmod +x {} +
+            \( \
+              -name 'test_unit*' -o -name 'test.unit.*' -o \
+              -name 'test_component*' -o -name 'test.component.*' -o \
+              -name 'test_performance*' -o -name 'test.performance.*' -o \
+              -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+              \( -name 'example*' ! -name '*.md' \) \
+            \) -exec chmod +x {} +
 
-      - name: Run unit tests
+      - name: Run unit tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+          if [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
@@ -367,6 +292,17 @@ jobs:
           else
             SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
           fi
+
+      - name: Run unit tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.toolchain }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_unit_tests.cmd --unit-only
+          if errorlevel 1 exit /b 1
 
   test-component:
     name: Component tests (${{ inputs.cell-id }})
@@ -377,7 +313,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
+        id: msys2
+        if: runner.os == 'Windows' && inputs.toolchain == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
@@ -390,55 +327,66 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Restore executable bits
+      # download-artifact does not restore Unix execute bits;
+      # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      # Skip CMakeFiles and compiler deps — name globs also match
+      # e.g. test.component.*.cpp.o.d / example*.c.o.d; chmod +x on those
+      # makes tip runners treat them as programs (exit 127).
+      - name: Restore execute bits on test and example binaries
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
           find build -type f \
-            \( -name 'example.c.*' -o -name 'example.cpp.*' \
-               -o -name 'test.unit.*' -o -name 'test_unit*' \
-               -o -name 'test.component.*' -o -name 'test_component*' \
-               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
-               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
             ! -path '*/CMakeFiles/*' \
-            ! -name '*.a' \
             ! -name '*.d' \
-            ! -name '*.lib' \
-            ! -name '*.log' \
             ! -name '*.o' \
             ! -name '*.obj' \
-            ! -name '*.pdb' \
-            -exec chmod +x {} +
+            \( \
+              -name 'test_unit*' -o -name 'test.unit.*' -o \
+              -name 'test_component*' -o -name 'test.component.*' -o \
+              -name 'test_performance*' -o -name 'test.performance.*' -o \
+              -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+              \( -name 'example*' ! -name '*.md' \) \
+            \) -exec chmod +x {} +
 
-      - name: Run component tests
+      - name: Run component tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+          if [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
             set -x
-            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only --verbosity 9
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_component_tests.sh -M --verbosity 9
           else
-            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --component-only
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_component_tests.sh -M
           fi
+
+      - name: Run component tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.toolchain }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_component_tests.cmd
+          if errorlevel 1 exit /b 1
 
   test-scratch:
     name: Scratch tests (${{ inputs.cell-id }})
     needs: build
-    continue-on-error: true
     runs-on: ${{ inputs.os }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install ACE (Ubuntu)
-        if: inputs.with-ace && runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y libace-dev
-
       - name: Setup MSYS2 MinGW
-        if: runner.os == 'Windows' && inputs.c-compiler == 'mingw'
+        id: msys2
+        if: runner.os == 'Windows' && inputs.toolchain == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
@@ -451,36 +399,49 @@ jobs:
           name: sis-build-${{ inputs.cell-id }}
           path: build
 
-      - name: Restore executable bits
+      # download-artifact does not restore Unix execute bits;
+      # run_all_*.sh discovery requires -perm -100 (or *.exe on Windows).
+      # Skip CMakeFiles and compiler deps — name globs also match
+      # e.g. test.component.*.cpp.o.d / example*.c.o.d; chmod +x on those
+      # makes tip runners treat them as programs (exit 127).
+      - name: Restore execute bits on test and example binaries
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
           find build -type f \
-            \( -name 'example.c.*' -o -name 'example.cpp.*' \
-               -o -name 'test.unit.*' -o -name 'test_unit*' \
-               -o -name 'test.component.*' -o -name 'test_component*' \
-               -o -name 'test.scratch.*' -o -name 'test_scratch*' \
-               -o -name 'test.performance.*' -o -name 'test_performance*' \) \
             ! -path '*/CMakeFiles/*' \
-            ! -name '*.a' \
             ! -name '*.d' \
-            ! -name '*.lib' \
-            ! -name '*.log' \
             ! -name '*.o' \
             ! -name '*.obj' \
-            ! -name '*.pdb' \
-            -exec chmod +x {} +
+            \( \
+              -name 'test_unit*' -o -name 'test.unit.*' -o \
+              -name 'test_component*' -o -name 'test.component.*' -o \
+              -name 'test_performance*' -o -name 'test.performance.*' -o \
+              -name 'test_scratch*' -o -name 'test.scratch.*' -o \
+              \( -name 'example*' ! -name '*.md' \) \
+            \) -exec chmod +x {} +
 
-      - name: Run scratch tests
+      - name: Run scratch tests (Bash)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
-          if [ "${{ inputs.c-compiler }}" = "mingw" ]; then
+          if [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
           if [ "${{ inputs.with-ace }}" = "true" ]; then
             set -x
-            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M --verbosity 9
-          else
-            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
           fi
+          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
+
+      - name: Run scratch tests (native cmd)
+        if: runner.os == 'Windows'
+        shell: cmd
+        env:
+          MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
+          SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
+        run: |
+          if "${{ inputs.toolchain }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
+          call run_all_scratch_tests.cmd
+          if errorlevel 1 exit /b 1

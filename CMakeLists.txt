@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  5th August 2026
+# Updated:  11th October 2026
 #
 # ######################################################################## #
 
@@ -175,7 +175,7 @@ elseif(DEFINED ENV{STLSOFT})
 	set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
 else()
 
-	set(STLSoft_REQUIRED_VERSION_ 1.11)
+	set(STLSoft_REQUIRED_VERSION_ 1.11.1)
 
 	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 
@@ -325,25 +325,31 @@ endif()
 # ############################
 # shwild
 
-if(BUILD_TESTING)
+if(NOT NO_SHWILD)
 
-	find_package(shwild QUIET)
+	if(BUILD_TESTING)
 
-	if(shwild_FOUND)
+		find_package(shwild QUIET)
 
-		message("-- CMake package shwild found (version ${shwild_VERSION})")
+		if(shwild_FOUND)
 
-		add_compile_definitions(HAS_shwild)
-		add_compile_definitions(PANTHEIOS_HAS_SHWILD)
-		add_compile_definitions(XTESTS_HAS_SHWILD)
-	else(shwild_FOUND)
+			message("-- CMake package shwild found (version ${shwild_VERSION})")
+
+			add_compile_definitions(HAS_shwild)
+			add_compile_definitions(PANTHEIOS_HAS_SHWILD)
+			add_compile_definitions(XTESTS_HAS_SHWILD)
+		else(shwild_FOUND)
+
+			add_compile_definitions(PANTHEIOS_NO_SHWILD)
+		endif(shwild_FOUND)
+	else(BUILD_TESTING)
 
 		add_compile_definitions(PANTHEIOS_NO_SHWILD)
-	endif(shwild_FOUND)
-else(BUILD_TESTING)
+	endif(BUILD_TESTING)
+else()
 
 	add_compile_definitions(PANTHEIOS_NO_SHWILD)
-endif(BUILD_TESTING)
+endif()
 
 
 # ############################
