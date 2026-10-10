@@ -9,45 +9,38 @@ add_subdirectory(api)
 #]====]
 if(HAS_ACE)
 
-	add_subdirectory(test.scratch.be.ACE)
+	add_subdirectory(be.ACE)
 endif(HAS_ACE)
-if(NOT PANTHEIOS_USE_WIDE_STRINGS)
-
-	add_subdirectory(test.scratch.be.N)
-endif()
-add_subdirectory(test.scratch.be.N.fail)
+add_subdirectory(be.N)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
 	add_subdirectory(test.scratch.be.N.with.custom.fe)
 endif()
 if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.scratch.be.WindowsSyslog)
-	add_subdirectory(test.scratch.be.WindowsSyslog.WithCallback)
+	add_subdirectory(be.WindowsSyslog)
+	add_subdirectory(be.WindowsSyslog.WithCallback)
 endif(_BUILD_AS_WIN32)
-add_subdirectory(test.scratch.be.file)
-#[====[
-add_subdirectory(test.scratch.be.file.rolling)
-#]====]
+add_subdirectory(be.file)
 if(_BUILD_AS_WIN32)
 
 	#[====[
 	# Needs UNIXem; sources pull unixem headers unconditionally.
-	add_subdirectory(test.scratch.be.pantheios.COM)
+	add_subdirectory(be.pantheios.COM)
 	#]====]
-	add_subdirectory(test.scratch.be.speech)
+	add_subdirectory(be.speech)
 endif(_BUILD_AS_WIN32)
 if(_BUILD_AS_UNIX)
 
-	add_subdirectory(test.scratch.be.syslog)
-	add_subdirectory(test.scratch.be.syslog.WithCallback)
+	add_subdirectory(be.syslog)
+	add_subdirectory(be.syslog.WithCallback)
 endif(_BUILD_AS_UNIX)
 
-add_subdirectory(test.scratch.bec.AnsiConsole)
+add_subdirectory(bec.AnsiConsole)
 if(_BUILD_AS_WIN32)
 
 	add_subdirectory(test.scratch.bec.WindowsConsoleCallback)
-	add_subdirectory(test.scratch.bec.WindowsMessageBox)
+	add_subdirectory(bec.WindowsMessageBox)
 endif(_BUILD_AS_WIN32)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
@@ -65,10 +58,9 @@ if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 endif()
 if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.scratch.fe.WindowsRegistry)
-	add_subdirectory(test.scratch.fe.WindowsRegistry.controller)
+	add_subdirectory(fe.WindowsRegistry)
 endif(_BUILD_AS_WIN32)
-add_subdirectory(test.scratch.fe.simple.WithCallback)
+add_subdirectory(fe.simple.WithCallback)
 #[====[
 # Needs UNIXem (pseudo-UNIX on Windows); not valid under _BUILD_AS_WIN32.
 if(_BUILD_AS_WIN32)

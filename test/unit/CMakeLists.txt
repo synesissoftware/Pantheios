@@ -1,46 +1,44 @@
 
-add_subdirectory(getversion)
-add_subdirectory(inserters)
-add_subdirectory(levels)
-
-add_subdirectory(test.unit.be.N)
-add_subdirectory(test.unit.be.N.filtering)
-add_subdirectory(test.unit.be.fail)
-add_subdirectory(test.unit.be.lrsplit)
-add_subdirectory(test.unit.bec.AnsiConsole)
+add_subdirectory(be.N)
+add_subdirectory(be.fail)
+add_subdirectory(be.lrsplit)
+add_subdirectory(bec.AnsiConsole)
 # Skipped on MinGW until xTests string-equality helpers honour post-include
 # c_str_data_a shims under GCC two-phase lookup (see TODO.md in Pantheios
 # and xTests).
 if(_BUILD_AS_WIN32 AND NOT MINGW)
 
-	add_subdirectory(test.unit.bec.COMErrorObject)
+	add_subdirectory(bec.COMErrorObject)
 endif()
-add_subdirectory(test.unit.bec.fail)
-add_subdirectory(test.unit.bec.file)
-add_subdirectory(test.unit.bec.fprintf)
+add_subdirectory(bec.fail)
+add_subdirectory(bec.file)
+add_subdirectory(bec.fprintf)
 if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.unit.bec.speech)
+	add_subdirectory(bec.speech)
 endif(_BUILD_AS_WIN32)
 if(_BUILD_AS_UNIX)
 
-	add_subdirectory(test.unit.bec.syslog)
+	add_subdirectory(bec.syslog)
 endif(_BUILD_AS_UNIX)
 if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.unit.bec.WindowsConsole)
-	add_subdirectory(test.unit.bec.WindowsSyslog)
+	add_subdirectory(bec.WindowsConsole)
+	add_subdirectory(bec.WindowsSyslog)
 endif(_BUILD_AS_WIN32)
-add_subdirectory(test.unit.fe.N)
+add_subdirectory(fe.N)
 if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.unit.fe.WindowsRegistry)
+	add_subdirectory(fe.WindowsRegistry)
 endif(_BUILD_AS_WIN32)
-add_subdirectory(test.unit.fe.all)
-add_subdirectory(test.unit.fe.fail)
-add_subdirectory(test.unit.fe.null)
-add_subdirectory(test.unit.fe.simple)
+add_subdirectory(fe.all)
+add_subdirectory(fe.fail)
+add_subdirectory(fe.null)
+add_subdirectory(fe.simple)
 
+add_subdirectory(getversion)
+add_subdirectory(inserters)
+add_subdirectory(levels)
 add_subdirectory(util)
 
 
