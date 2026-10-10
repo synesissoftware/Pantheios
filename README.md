@@ -190,7 +190,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 
 | Dependency | Role | Required? |
 | ---------- | ---- | --------- |
-| [**STLSoft**](https://github.com/synesissoftware/STLSoft) 1.11 (1.11.1-alpha25 or later) | Implementation and interface support | ✅ Always |
+| [**STLSoft**](https://github.com/synesissoftware/STLSoft) **1.11.1-rc8** or later | Implementation and interface support | ✅ Always |
 | [**b64**](https://github.com/synesissoftware/b64) | `pantheios::b64` inserter | ⚪ Optional (`PANTHEIOS_NO_B64` when absent) |
 | [**shwild**](https://github.com/synesissoftware/shwild) | Pattern matching in tests | ⚪ Optional; tests only |
 | [**xTests**](https://github.com/synesissoftware/xTests) (≥ 0.25.4) | Unit / component tests | ⚪ Tests only (`BUILD_TESTING`) |

@@ -40,7 +40,7 @@
   * **run_all_unit_tests.sh** / **.cmd** — unit-only (`--unit-only` accepted for compatibility; `--component-only` removed from the unit runner);
   * **.sis/ci_examples_allowed_to_fail.txt** for example-smoke allow-list;
 * documentation:
-  * **NEWS.md** three-column chronology; **INSTALL.md**, **KNOWN_ISSUES.md**, and **TODO.md** aligned to **1.0.1-rc3**;
+  * **NEWS.md** three-column chronology; **README.md**, **INSTALL.md**, **KNOWN_ISSUES.md**, and **TODO.md** aligned to **1.0.1-rc3** (**STLSoft** floor **1.11.1-rc8**);
 
 
 ## 1.0.1-rc2 - 6th September 2026
