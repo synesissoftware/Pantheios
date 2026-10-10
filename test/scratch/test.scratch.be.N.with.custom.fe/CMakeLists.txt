@@ -9,7 +9,7 @@ target_link_libraries(test.scratch.be.N.with.custom.fe
 	PRIVATE
 		Pantheios.be.N
 		Pantheios.bec.file
-		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.fprintf>
+		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.bec.WindowsConsole,Pantheios.bec.AnsiConsole>
 )
 
 target_link_Pantheios_util(test.scratch.be.N.with.custom.fe)

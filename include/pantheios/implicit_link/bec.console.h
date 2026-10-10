@@ -4,7 +4,7 @@
  * Purpose: Implicitly links in the Pantheios Console Back-End Common Library
  *
  * Created: 3rd July 2009
- * Updated: 16th December 2023
+ * Updated: 5th August 2026
  *
  * Home:    http://pantheios.org/
  *
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_EDIT       4
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_EDIT       5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,9 +80,9 @@
 #  include <pantheios/implicit_link/bec.WindowsConsole.h>
 # endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSCONSOLE */
 #else /* ? OS */
-# ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF
-#  include <pantheios/implicit_link/bec.fprintf.h>
-# endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF */
+# ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE
+#  include <pantheios/implicit_link/bec.AnsiConsole.h>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE */
 #endif /* OS */
 
 /* ////////////////////////////////////////////////////////////////////// */

@@ -7,8 +7,8 @@ target_link_Pantheios_core(example.cpp.format.highres)
 
 target_link_libraries(example.cpp.format.highres
 	PRIVATE
-		Pantheios.be.fprintf
-		Pantheios.bec.fprintf.WithCallback
+		Pantheios.be.AnsiConsole
+		Pantheios.bec.AnsiConsole.WithCallback
 )
 
 target_link_libraries(example.cpp.format.highres

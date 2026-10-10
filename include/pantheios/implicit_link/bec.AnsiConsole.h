@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    pantheios/implicit_link/ber.console.h
+ * File:    pantheios/implicit_link/bec.AnsiConsole.h
  *
- * Purpose: Implicitly links in the Pantheios Console Remote Back-End Library
+ * Purpose: Implicitly links in the Pantheios ANSI Console Back-End Common Library
  *
- * Created: 3rd July 2009
+ * Created: 5th August 2026
  * Updated: 5th August 2026
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
- * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
+ * Copyright (c) 2024-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,15 +39,15 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file pantheios/implicit_link/ber.console.h
+/** \file pantheios/implicit_link/bec.AnsiConsole.h
  *
  * [C, C++] Implicitly links in the
- *   \ref group__backend__stock_backends__console "Pantheios Console Remote Back-End Library"
- *   as the remote back-end for the given link-unit.
+ *   \ref group__backend__stock_backends__AnsiConsole "Pantheios ANSI Console Back-End Common Library"
+ *   common implementation (that may be used by sole/local/remote back-end).
  */
 
-#ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_CONSOLE
-#define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_CONSOLE
+#ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE
+#define PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -56,10 +55,10 @@
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_CONSOLE_MAJOR      1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_CONSOLE_MINOR      0
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_CONSOLE_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_CONSOLE_EDIT       4
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE_MAJOR      1
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE_MINOR      0
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE_EDIT       7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -70,24 +69,42 @@
 #ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS
 # include <pantheios/pantheios.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS */
+#ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE_
+# include <pantheios/implicit_link/implicit_link_base_.h>
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_IMPLICIT_LINK_BASE_ */
 
-#ifndef PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL
-# include <platformstl/platformstl.h>
-#endif /* !PLATFORMSTL_INCL_PLATFORMSTL_H_PLATFORMSTL */
 
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
-# ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSCONSOLE
-#  include <pantheios/implicit_link/ber.WindowsConsole.h>
-# endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSCONSOLE */
-#else /* ? OS */
-# ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_ANSICONSOLE
-#  include <pantheios/implicit_link/ber.AnsiConsole.h>
-# endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_ANSICONSOLE */
-#endif /* OS */
+/* /////////////////////////////////////////////////////////////////////////
+ * implicit-linking directives
+ */
+
+#ifdef PANTHEIOS_IMPLICIT_LINK_SUPPORT
+
+# if defined(__BORLANDC__)
+# elif defined(__COMO__)
+# elif defined(__DMC__)
+# elif defined(__GNUC__)
+# elif defined(__INTEL_COMPILER)
+
+#  pragma comment(lib, PANTHEIOS_IMPL_LINK_LIBRARY_NAME_("bec.AnsiConsole"))
+#  pragma message("     " PANTHEIOS_IMPL_LINK_LIBRARY_NAME_("bec.AnsiConsole"))
+
+# elif defined(__MWERKS__)
+# elif defined(__WATCOMC__)
+# elif defined(_MSC_VER)
+
+#  pragma comment(lib, PANTHEIOS_IMPL_LINK_LIBRARY_NAME_("bec.AnsiConsole"))
+#  pragma message("     " PANTHEIOS_IMPL_LINK_LIBRARY_NAME_("bec.AnsiConsole"))
+
+# else /* ? compiler */
+#  error Compiler not recognised
+# endif /* compiler */
+
+#endif /* PANTHEIOS_IMPLICIT_LINK_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_CONSOLE */
+#endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE */
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
