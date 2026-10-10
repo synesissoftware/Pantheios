@@ -1,6 +1,14 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1-rc3 - 11th October 2026
+
+* migrated the project to the new `PANTHEIOS_VER_RELSTATUS` symbol pattern;
+* removed all 122 legacy **implicit_link.cpp** files;
+* purged all 394 legacy Visual Studio build files (`.dsp`, `.dsw`, `.vcxproj`, `.filters`) and cleaned up empty **vc6** and **vc10** directories;
+* removed obsolete **test.scratch.implicit_link** test target and associated test files;
+
+
 ## 1.0.1-rc3 - 10th September 2026
 
 * Applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates on **boilerplate**;

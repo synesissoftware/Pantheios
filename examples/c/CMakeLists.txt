@@ -1,4 +1,4 @@
-
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
 add_subdirectory(example.c.101)
 add_subdirectory(example.c.assert)
 add_subdirectory(example.c.core.pantheios_logprintf)
