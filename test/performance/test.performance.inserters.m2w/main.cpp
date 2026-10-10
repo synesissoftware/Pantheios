@@ -1,18 +1,24 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/performance/test.performance.inserters.w2m/test.performance.inserters.w2m.cpp
+ * File:    test/performance/test.performance.inserters.m2w/main.cpp
  *
- * Purpose: Implementation file for the test.performance.inserters.w2m project.
+ * Purpose: Implementation file for the test.performance.inserters.m2w project.
  *
- * Created: 2nd September 2008
- * Updated: 28th October 2024
+ * Created: 22nd November 2010
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
+#define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
+
 /* Pantheios header files */
+#include <pantheios/pantheios.h>
+#ifndef PANTHEIOS_USE_WIDE_STRINGS
+# error This program source only valid in wide string builds
+#endif /* !PANTHEIOS_USE_WIDE_STRINGS */
 #include <pantheios/pantheios.hpp>
 #include <pantheios/inserters/exception.hpp>
-#include <pantheios/inserters/w2m.hpp>
+#include <pantheios/inserters/m2w.hpp>
 #include <pantheios/frontends/fe.simple.h>
 
 /* STLSoft header files */
@@ -20,9 +26,9 @@
 #include <platformstl/platformstl.hpp>
 #include <platformstl/performance/performance_counter.hpp>
 #if defined(STLSOFT_OS_IS_WINDOWS)
-# include <winstl/conversion/w2m.hpp>
+# include <winstl/conversion/m2w.hpp>
 #else /* ? OS */
-# include <stlsoft/conversion/w2m.hpp>
+# include <stlsoft/conversion/m2w.hpp>
 #endif /* OS */
 
 /* Standard C++ header files */
@@ -53,43 +59,15 @@ const int       ITERATIONS  =   10000;
  * globals
  */
 
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEIOS_LITERAL_STRING("test.performance.inserters.w2m");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   L"test.performance.inserters.m2w";
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * character encoding
+ * main()
  */
-
-#define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
-
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
-#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * typedefs
- */
-
-#if 0
-typedef std::string                                         string_t;
-#endif /* 0 */
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * forward declarations
- */
-
-/* ////////////////////////////////////////////////////////////////////// */
 
 static int main_(int argc, char* argv[])
 {
-#ifndef PANTHEIOS_USE_WIDE_STRINGS
-
     platformstl::performance_counter                counter;
     platformstl::performance_counter::interval_type tm_cvrt_small   =   1;
     platformstl::performance_counter::interval_type tm_insrt_small  =   1;
@@ -100,10 +78,10 @@ static int main_(int argc, char* argv[])
     int                                             len_cvrt_large  =   1;
     int                                             len_insrt_large =   1;
 
-    const wchar_t   wstr1[]     =   L"str1";
-    const wchar_t   wstr2[]     =   L"the second wide string";
-    const wchar_t   wstr3[]     =   L"the third wide string, which is quite a bit bigger than the first and second put together, but still is massively smaller than the fourth";
-    wchar_t         wstr4[10001];   std::fill(&wstr4[0], &wstr4[0] + STLSOFT_NUM_ELEMENTS(wstr4) - 1, L'~'); wstr4[STLSOFT_NUM_ELEMENTS(wstr4) - 1] = L'\0';
+    const char  mbstr1[]    =   "str1";
+    const char  mbstr2[]    =   "the second wide string";
+    const char  mbstr3[]    =   "the third wide string, which is quite a bit bigger than the first and second put together, but still is massively smaller than the fourth";
+    char        mbstr4[10001];  std::fill(&mbstr4[0], &mbstr4[0] + STLSOFT_NUM_ELEMENTS(mbstr4) - 1, '~'); mbstr4[STLSOFT_NUM_ELEMENTS(mbstr4) - 1] = L'\0';
 
     if (1 != argc)
     {
@@ -117,7 +95,7 @@ static int main_(int argc, char* argv[])
         }
         else
         {
-            fputs("USAGE: test.performance.inserters.w2m [{on|off}]", stderr);
+            fputs("USAGE: test.performance.inserters.m2w [{on|off}]", stderr);
         }
     }
 
@@ -127,15 +105,15 @@ static int main_(int argc, char* argv[])
     { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
 #if defined(STLSOFT_OS_IS_WINDOWS)
-        using winstl::w2m;
+        using winstl::m2w;
 #else /* ? OS */
-        using stlsoft::w2m;
+        using stlsoft::m2w;
 #endif /* OS */
 
         counter.start();
         { for (int i = 0; i != ITERATIONS; ++i)
         {
-            len_cvrt_small = pantheios::log_NOTICE("abc ", w2m(wstr1).c_str(), " - ", w2m(wstr2).c_str(), " - ", w2m(wstr3).c_str(), ".");
+            len_cvrt_small = pantheios::log_NOTICE(L"abc ", m2w(mbstr1).c_str(), L" - ", m2w(mbstr2).c_str(), L" - ", m2w(mbstr3).c_str(), L".");
         }}
         counter.stop();
         tm_cvrt_small = counter.get_microseconds();
@@ -145,12 +123,12 @@ static int main_(int argc, char* argv[])
 
     { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
-        using pantheios::w2m;
+        using pantheios::m2w;
 
         counter.start();
         { for (int i = 0; i != ITERATIONS; ++i)
         {
-            len_insrt_small = pantheios::log_NOTICE("abc ", w2m(wstr1), " - ", w2m(wstr2), " - ", w2m(wstr3), ".");
+            len_insrt_small = pantheios::log_NOTICE(L"abc ", m2w(mbstr1), L" - ", m2w(mbstr2), L" - ", m2w(mbstr3), L".");
         }}
         counter.stop();
         tm_insrt_small = counter.get_microseconds();
@@ -164,15 +142,15 @@ static int main_(int argc, char* argv[])
     { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
 #if defined(STLSOFT_OS_IS_WINDOWS)
-        using winstl::w2m;
+        using winstl::m2w;
 #else /* ? OS */
-        using stlsoft::w2m;
+        using stlsoft::m2w;
 #endif /* OS */
 
         counter.start();
         { for (int i = 0; i != ITERATIONS; ++i)
         {
-            len_cvrt_large = pantheios::log_NOTICE("abc ", w2m(wstr1).c_str(), " - ", w2m(wstr2).c_str(), " - ", w2m(wstr3).c_str(), " - ", w2m(wstr4).c_str(), ".");
+            len_cvrt_large = pantheios::log_NOTICE(L"abc ", m2w(mbstr1).c_str(), L" - ", m2w(mbstr2).c_str(), L" - ", m2w(mbstr3).c_str(), L" - ", m2w(mbstr4).c_str(), L".");
         }}
         counter.stop();
         tm_cvrt_large = counter.get_microseconds();
@@ -182,12 +160,12 @@ static int main_(int argc, char* argv[])
 
     { for (int WARMUPS = 2; 0 != WARMUPS; --WARMUPS)
     {
-        using pantheios::w2m;
+        using pantheios::m2w;
 
         counter.start();
         { for (int i = 0; i != ITERATIONS; ++i)
         {
-            len_insrt_large = pantheios::log_NOTICE("abc ", w2m(wstr1), " - ", w2m(wstr2), " - ", w2m(wstr3), " - ", w2m(wstr4), ".");
+            len_insrt_large = pantheios::log_NOTICE(L"abc ", m2w(mbstr1), L" - ", m2w(mbstr2), L" - ", m2w(mbstr3), L" - ", m2w(mbstr4), L".");
         }}
         counter.stop();
         tm_insrt_large = counter.get_microseconds();
@@ -203,13 +181,6 @@ static int main_(int argc, char* argv[])
     }
 
     fprintf(stderr, "large: winstl : pantheios:\t% 9.04f\n", (double)tm_cvrt_large/(double)tm_insrt_large);
-
-#else /* ? !PANTHEIOS_USE_WIDE_STRINGS */
-
-    STLSOFT_SUPPRESS_UNUSED(argc);
-    STLSOFT_SUPPRESS_UNUSED(argv);
-
-#endif /* !PANTHEIOS_USE_WIDE_STRINGS */
 
 
     return EXIT_SUCCESS;
@@ -235,22 +206,17 @@ int main(int argc, char* argv[])
 
     try
     {
-#if defined(_DEBUG) || \
-    defined(__SYNSOFT_DBS_DEBUG)
-        puts("test.performance.inserters.w2m: " __STLSOFT_COMPILER_LABEL_STRING);
-#endif /* debug */
-
         res = main_(argc, argv);
     }
     catch (std::exception& x)
     {
-                pantheios::log_ALERT(PSTR("Unexpected general error: "), pantheios::exception(x), PSTR(". Application terminating"));
+        pantheios::log_ALERT(L"Unexpected general error: ", x, L". Application terminating");
 
         res = EXIT_FAILURE;
     }
     catch (...)
     {
-        pantheios::logputs(pantheios::emergency, PSTR("Unhandled unknown error"));
+        pantheios::logputs(pantheios::emergency, L"Unhandled unknown error");
 
         res = EXIT_FAILURE;
     }
@@ -262,6 +228,7 @@ int main(int argc, char* argv[])
 
     return res;
 }
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

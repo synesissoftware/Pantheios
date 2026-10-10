@@ -1,6 +1,6 @@
 
 add_executable(test.performance.inserters.w2m
-	test.performance.inserters.w2m.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.performance.inserters.w2m)
