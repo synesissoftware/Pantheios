@@ -1,11 +1,39 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
-## 1.0.1-rc3 - 10th September 2026
+## 1.0.1-rc3 - 11th October 2026
 
-* **bec.AnsiConsole**: on Windows, emit ANSI colours only when the host supports them — Win11 assumed ready, Win10 VT builds opt in via **`SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`**, older hosts (e.g. XP) stay plain;
-* examples and scratch tests: non-Windows console sink moved from **be.fprintf** to **be.AnsiConsole** for simple console demos (via **`define_simple_console_example_*`**, **be.console** / **bec.console** aliases, matching implicit-link headers, and per-project **CMakeLists.txt** / **implicit_link** updates); multiplex / callback / **be.N** cases deferred;
-* **test.component.be.file.threading**: **be.N** console entry uses **`pantheios_be_console`** (platform alias) to match **bec.console.h** / Windows **bec.WindowsConsole** linkage;
+* backends:
+  * **bec.AnsiConsole**: on Windows, emit ANSI colours only when the host supports them — Win11 assumed ready, Win10 VT builds opt in via **`SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`**, older hosts (e.g. XP) stay plain;
+  * examples and scratch tests: non-Windows console sink moved from **be.fprintf** to **be.AnsiConsole** for simple console demos (via **`define_simple_console_example_*`**, **be.console** / **bec.console** aliases, matching implicit-link headers, and per-project **CMakeLists.txt** / **implicit_link** updates); multiplex / callback / **be.N** cases deferred;
+  * **test.component.be.file.threading**: **be.N** console entry uses **`pantheios_be_console`** (platform alias) to match **bec.console.h** / Windows **bec.WindowsConsole** linkage;
+* dependencies:
+  * now requires **STLSoft** **1.11.1-rc8** (or later) — compile-time floor `_STLSOFT_VER < 0x010B01C8`;
+* version:
+  * added `PANTHEIOS_VER_1_0_1_RC3` (`0x010001E3`) and set `PANTHEIOS_VER_ALPHABETA` to `0xE3` in **include/pantheios/pantheios.h**;
+  * **test.unit.getversion** asserts `PANTHEIOS_VER_1_0_1_RC3`;
+* testing:
+  * renamed scratch version reporter **test/scratch/libver** → **test/scratch/versions** (executable **test.scratch.versions**); Phase **4c** one-line VER printer with tab-indented efferent dependencies;
+* CI:
+  * consolidated **ci-cell.yml** into a single build-and-test job;
+  * adopted local composite action **`.github/actions/install-sis-deps`**;
+  * added **stlsoft-routes** job for CMake vs environment **STLSoft** resolution;
+  * added minimal **no-b64** and **no-b64** + **no-shwild** matrix permutations and install-smoke coverage;
+  * optional **shwild** exclusion via `NO_SHWILD` / **prepare_cmake.sh --no-shwild**;
+  * Windows cells dogfood native **`.cmd`** runners; restore execute bits after artifact download (excluding **CMakeFiles**);
+  * component tests via **run_all_component_tests.sh** / **.cmd**;
+  * push-branch set canonicalised (**master**, **dev**, **boilerplate**, **idiomatic**, **rc1**–**rc3**);
+* boilerplate:
+  * applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates;
+  * restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
+  * added **.editorconfig**; **.gitattributes** Linguist language-bar policy;
+  * helper scripts rewritten to the common Synesis layout (**build_cmake.sh**, **clean_cmake.sh**, **prepare_cmake.sh**, **remove_cmake_artefacts.sh**, and kin): builds via `cmake --build`, coloured output, **`.sis/project_name.txt`** in status messages;
+  * added **ctest_cmake.sh**;
+  * added **run_all_component_tests.sh** / **.cmd**, **run_all_performance_tests.sh** / **.cmd**, and **run_all_automated_tests.sh** / **.cmd**; native **.cmd** counterparts for examples / unit / scratch;
+  * **run_all_unit_tests.sh** / **.cmd** — unit-only (`--unit-only` accepted for compatibility; `--component-only` removed from the unit runner);
+  * **.sis/ci_examples_allowed_to_fail.txt** for example-smoke allow-list;
+* documentation:
+  * **NEWS.md** three-column chronology; **INSTALL.md**, **KNOWN_ISSUES.md**, and **TODO.md** aligned to **1.0.1-rc3**;
 
 
 ## 1.0.1-rc2 - 6th September 2026

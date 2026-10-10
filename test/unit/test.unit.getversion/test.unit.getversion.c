@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.getversion project.
  *
  * Created: 28th August 2008
- * Updated: 6th September 2026
+ * Updated: 11th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -136,6 +136,7 @@ static void test_alphabeta(void)
 {
     pan_uint32_t const verAlphabeta = pantheios_getVersion() & 0x000000ff;
 
+    TEST_INT_EQ(PANTHEIOS_VER_RELSTATUS, verAlphabeta);
     TEST_INT_EQ(PANTHEIOS_VER_AB, verAlphabeta);
     TEST_INT_EQ(PANTHEIOS_VER_ALPHABETA, verAlphabeta);
 }
