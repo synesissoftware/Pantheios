@@ -10,8 +10,8 @@
 * [ ] **README.md** (and other project markdown) significant enhancement (in a similar vein as has been done for **xqsr3** (Ruby));
 * [ ] Integration of **woad**;
 * [ ] Refactor CMake test targets / options so that only unit-test executables are built when only executing unit tests (and similarly for component, scratch, and performance tests);
-* [ ] Using **AnsiConsole**;
-* [ ] Using **ACE**;
+* [x] ~~~Using **AnsiConsole**~~~ - ✅;
+* [x] ~~~Using **ACE**~~~ - ✅;
 
 
 ### 1.0.1-rc4
