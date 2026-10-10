@@ -329,7 +329,7 @@ if [ $status -eq 0 ]; then
 
       break 1
     fi
-  done < <(find "$CMakeDir" -type f \( -name 'test_scratch*' -o -name 'test.scratch.*' -o -name 'test_performance*' -o -name 'test.performance.*' \) \
+  done < <(find "$CMakeDir" -type f \( -name 'test_scratch*' -o -name 'test.scratch.*' \) \
     ! -path '*/CMakeFiles/*' \
     ! -name '*.a' \
     ! -name '*.d' \

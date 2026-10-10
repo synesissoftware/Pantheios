@@ -1,6 +1,6 @@
 #
 # Created:  7th September 2025
-# Updated:  11th October 2026
+# Updated:  10th October 2026
 #
 
 name: CI cell
@@ -170,6 +170,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Dynamically linked ACE backends need libACE on the run runner
+      # (artifact download does not carry the system shared library).
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
         id: msys2
         if: runner.os == 'Windows' && inputs.toolchain == 'mingw'
@@ -239,6 +245,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      # Dynamically linked ACE backends need libACE on the run runner
+      # (artifact download does not carry the system shared library).
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         id: msys2
@@ -312,6 +324,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Dynamically linked ACE backends need libACE on the run runner
+      # (artifact download does not carry the system shared library).
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
+
       - name: Setup MSYS2 MinGW
         id: msys2
         if: runner.os == 'Windows' && inputs.toolchain == 'mingw'
@@ -383,6 +401,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      # Dynamically linked ACE backends need libACE on the run runner
+      # (artifact download does not carry the system shared library).
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         id: msys2
