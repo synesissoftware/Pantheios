@@ -26,6 +26,7 @@
   * **test.unit.getversion** asserts `PANTHEIOS_VER_1_0_1_RC3`;
 * testing:
   * renamed scratch version reporter **test/scratch/libver** → **test/scratch/versions** (executable **test.scratch.versions**); Phase **4c** one-line VER printer with tab-indented efferent dependencies;
+  * canonicalised test and example entry-point basenames per **c-cpp-standards** / **test-standards**: unit and component sources to **entry.c** / **entry.cpp**; scratch, performance, and example sources to **main.c** / **main.cpp** (executable / **CMake** target names unchanged); **`define_simple_console_example_*`** in **cmake/TargetMacros.cmake** now compile **main.c** / **main.cpp**;
 * CI:
   * consolidated **ci-cell.yml** into a single build-and-test job;
   * adopted local composite action **`.github/actions/install-sis-deps`**;
