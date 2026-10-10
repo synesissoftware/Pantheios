@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    examples/cpp/linking/example.cpp.linking.implicit_link_1/main.cpp
+ * File:    examples/cpp/linking/implicit_link_1/main.cpp
  *
  * Purpose: C++ example program for Pantheios. Demonstrates:
  *

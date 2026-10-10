@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    examples/cpp/custom/example.cpp.custom.wrap_log4cxx/main.cpp
+ * File:    examples/cpp/custom/wrap_log4cxx/main.cpp
  *
  * Purpose: C++ example program for Pantheios. Demonstrates:
  *

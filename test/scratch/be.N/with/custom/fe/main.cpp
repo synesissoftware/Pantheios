@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test/scratch/test.scratch.be.N.with.custom.fe/main.cpp
+ * File:    test/scratch/be.N/with/custom/fe/main.cpp
  *
  * Purpose: Implementation file for the test.scratch.be.N.with.custom.fe project.
  *

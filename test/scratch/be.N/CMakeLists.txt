@@ -45,5 +45,10 @@ endif()
 
 add_subdirectory(fail)
 
+if(NOT PANTHEIOS_USE_WIDE_STRINGS)
+
+	add_subdirectory(with)
+endif()
+
 
 # ############################## end of file ############################# #

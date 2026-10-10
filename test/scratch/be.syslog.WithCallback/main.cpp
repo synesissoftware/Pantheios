@@ -46,7 +46,7 @@
  */
 
 // Define the fe.simple process identity, so that it links when using fe.simple
-PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.speech");
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.be.syslog.WithCallback");
 
 
 /* /////////////////////////////////////////////////////////////////////////

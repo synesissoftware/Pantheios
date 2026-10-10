@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:     test/scratch/test.scratch.bec.WindowsConsoleCallback/main.cpp
+ * File:     test/scratch/bec.WindowsConsoleCallback/main.cpp
  *
  * Purpose:  Implementation file for the test.scratch.bec.WindowsConsoleCallback project.
  *

@@ -167,7 +167,7 @@ int main()
 }
 ```
 
-See **examples/cpp/linking/example.cpp.linking.implicit_link_1** for the canonical form of this pattern. C programs must call `pantheios_init()` (and check the return) before logging — see **examples/c/example.c.101**.
+See **examples/cpp/linking/implicit_link_1** for the canonical form of this pattern. C programs must call `pantheios_init()` (and check the return) before logging — see **examples/c/101**.
 
 
 ## Project Information
