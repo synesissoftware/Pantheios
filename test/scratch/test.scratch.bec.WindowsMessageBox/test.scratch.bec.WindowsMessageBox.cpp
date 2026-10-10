@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.bec.WindowsMessageBox project.
  *
  * Created: 14th March 2008
- * Updated: 28th October 2024
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
     }
     catch (...)
     {
-        pantheios::puts(pantheios::emergency, "Unhandled unknown error");
+        pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
 
         res = EXIT_FAILURE;
     }

@@ -11,6 +11,11 @@ add_library(Pantheios.bec.WindowsSyslog
 
 target_link_STLSoft(Pantheios.bec.WindowsSyslog)
 
+target_link_libraries(Pantheios.bec.WindowsSyslog
+	PUBLIC
+		ws2_32
+)
+
 define_target_compile_options(Pantheios.bec.WindowsSyslog)
 
 install(TARGETS Pantheios.bec.WindowsSyslog
