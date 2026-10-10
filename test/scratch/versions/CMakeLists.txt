@@ -23,11 +23,6 @@ if(shwild_FOUND)
 	target_link_shwild(test.scratch.versions)
 endif(shwild_FOUND)
 
-if(xTests_FOUND)
-
-	target_link_xTests(test.scratch.versions)
-endif(xTests_FOUND)
-
 define_target_compile_options(test.scratch.versions)
 
 

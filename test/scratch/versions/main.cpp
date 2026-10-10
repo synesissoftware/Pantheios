@@ -5,7 +5,7 @@
  *          dependencies.
  *
  * Created: 4th August 2026
- * Updated: 17th September 2026
+ * Updated: 10th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,10 +24,6 @@
 
 #ifdef HAS_shwild
 # include <shwild/shwild.h>
-#endif
-
-#ifdef HAS_xTests
-# include <xtests/xtests.h>
 #endif
 
 #include <iomanip>
@@ -111,15 +107,6 @@ int main(int /* argc */, char* /* argv */[])
         unsigned const libver = SHWILD_VER;
 
         version(std::cout, "\t", "shwild", "SHWILD_VER", libver);
-    }
-#endif
-
-#ifdef HAS_xTests
-
-    {
-        unsigned const libver = _XTESTS_VER;
-
-        version(std::cout, "\t", "xTests", "_XTESTS_VER", libver);
     }
 #endif
 
