@@ -13,6 +13,8 @@
   * restored empty Windows scratch **CMakeLists.txt** for **be.WindowsSyslog** (+ **WithCallback**), **bec.WindowsConsoleCallback**, **bec.WindowsMessageBox**, and **fe.WindowsRegistry** (+ **controller**); deferred **be.pantheios.COM** / **pseudoUNIX** (need **UNIXem**, not valid under **`_BUILD_AS_WIN32`**);
   * **bec.WindowsSyslog** (+ **WithCallback**) **PUBLIC**-link **ws2_32**; Windows scratch compile fixes (**logputs**, callback exception-spec / unused-parameter hygiene);
   * restored empty Windows backend **CMakeLists.txt** for **be**/**bec**/**bel**/**ber** (**WindowsMessageBox**, **WindowsConsole.WithCallback**, **WindowsDebugger**, **WindowsEventLog**, **speech.WithCallback**, **COMErrorObject.WithCallback**, and kin) so scratch/example link lines resolve to real targets;
+  * **bec.WindowsConsole.WithCallback**: suppress GCC/Clang **`-Wunused-function`** (same as **bec.WindowsConsole**) for MinGW **`-Werror`**;
+  * **bec.AnsiConsole.WithCallback**: suppress GCC/Clang **`-Wunused-parameter`** (same as **bec.AnsiConsole**);
   * removed all 122 legacy **implicit_link.cpp** files;
   * purged all 394 legacy Visual Studio build files (`.dsp`, `.dsw`, `.vcxproj`, `.filters`) and cleaned up empty **vc6** and **vc10** directories;
   * removed obsolete **test.scratch.implicit_link** test target and associated test files;
