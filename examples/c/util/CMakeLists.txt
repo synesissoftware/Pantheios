@@ -1,10 +1,9 @@
 
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
-	add_subdirectory(example.c.util.getcurrenttime)
-	add_subdirectory(example.c.util.gethostname)
+	add_subdirectory(getcurrenttime)
+	add_subdirectory(gethostname)
 endif()
 
 
 # ############################## end of file ############################# #
-

@@ -1,7 +1,5 @@
 
-add_subdirectory(callback)
-add_subdirectory(file)
-add_subdirectory(mx)
+add_subdirectory(pantheios_logprintf)
 
 
 # ############################## end of file ############################# #

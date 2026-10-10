@@ -1,7 +1,6 @@
 
-add_subdirectory(callback)
-add_subdirectory(file)
-add_subdirectory(mx)
+add_subdirectory(1)
+add_subdirectory(2)
 
 
 # ############################## end of file ############################# #
