@@ -1,13 +1,12 @@
 
-add_subdirectory(example.cpp.misc.101)
+add_subdirectory(101)
 #[====[
-add_subdirectory(example.cpp.misc.custom_type_1)
+add_subdirectory(custom_type_1)
 #]====]
-add_subdirectory(example.cpp.misc.extended_severity_information)
-add_subdirectory(example.cpp.misc.hetero1)
-add_subdirectory(example.cpp.misc.no_namespace)
-add_subdirectory(example.cpp.misc.strings)
+add_subdirectory(extended_severity_information)
+add_subdirectory(hetero1)
+add_subdirectory(no_namespace)
+add_subdirectory(strings)
 
 
 # ############################## end of file ############################# #
-

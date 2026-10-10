@@ -1,14 +1,6 @@
-
-if(PANTHEIOS_USE_WIDE_STRINGS)
-
-	add_subdirectory(test.performance.inserters.m2w)
-endif(PANTHEIOS_USE_WIDE_STRINGS)
-if(NOT PANTHEIOS_USE_WIDE_STRINGS)
-
-	add_subdirectory(test.performance.inserters.w2m)
-	add_subdirectory(test.performance.util.date_elements_to_string)
-endif()
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+add_subdirectory(inserters)
+add_subdirectory(util)
 
 
 # ############################## end of file ############################# #
-

@@ -1,6 +1,5 @@
-# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(example.cpp.linking.implicit_link_1)
+# implicit_link_1 demonstrates pantheios/implicit_link/* headers; leave
+# unwired — define_simple_console_example_cpp would explicit-link FE/BE.
 
 
 # ############################## end of file ############################# #
-
