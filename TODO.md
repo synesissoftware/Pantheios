@@ -112,6 +112,7 @@ Candidates to consider for the final 1.0.1 release if time permits, but non-bloc
 * [ ] A decent README, and tutorial for UNIX and Win32, w + w/o IDE(s);
 * [ ] Fully document the library naming convention (explain to users what on earth pantheios.1.bec.COMErrorObject.vc71.mt.nox.debug.lib means);
 * [ ] Fully-featured ACE back-end / front-end;
+* [ ] Develop a modern equivalent to the legacy Windows back-end selector tool (e.g. an interactive CLI setup assistant or web-based configurator) to generate ready-to-use **CMake** target linking configurations and presets;
 
 
 ## Performance improvements

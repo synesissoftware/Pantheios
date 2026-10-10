@@ -7,10 +7,16 @@
   * **bec.AnsiConsole**: on Windows, emit ANSI colours only when the host supports them — Win11 assumed ready, Win10 VT builds opt in via **`SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`**, older hosts (e.g. XP) stay plain;
   * examples and scratch tests: non-Windows console sink moved from **be.fprintf** to **be.AnsiConsole** for simple console demos (via **`define_simple_console_example_*`**, **be.console** / **bec.console** aliases, matching implicit-link headers, and per-project **CMakeLists.txt** / **implicit_link** updates); multiplex / callback / **be.N** cases deferred;
   * **test.component.be.file.threading**: **be.N** console entry uses **`pantheios_be_console`** (platform alias) to match **bec.console.h** / Windows **bec.WindowsConsole** linkage;
+* build:
+  * **CMake** optional **ACE** discovery (`ACE` / `ACE_ROOT`, **`cmake/FindACE.cmake`**, `NO_ACE` / **`--no-ace`**): builds **be**/**bec**/**bel**/**ber.ACE**, **bec.ACE.WithCallback**, stock ACE inclusion, and **test.scratch.be.ACE** when **ACE** is found;
+  * removed all 122 legacy **implicit_link.cpp** files;
+  * purged all 394 legacy Visual Studio build files (`.dsp`, `.dsw`, `.vcxproj`, `.filters`) and cleaned up empty **vc6** and **vc10** directories;
+  * removed obsolete **test.scratch.implicit_link** test target and associated test files;
 * dependencies:
   * now requires **STLSoft** **1.11.1-rc8** (or later) — compile-time floor `_STLSOFT_VER < 0x010B01C8`;
 * version:
-  * added `PANTHEIOS_VER_1_0_1_RC3` (`0x010001E3`) and set `PANTHEIOS_VER_ALPHABETA` to `0xE3` in **include/pantheios/pantheios.h**;
+  * migrated to the `PANTHEIOS_VER_RELSTATUS` symbol pattern (`PANTHEIOS_VER_AB` / `PANTHEIOS_VER_ALPHABETA` aliases);
+  * added `PANTHEIOS_VER_1_0_1_RC3` (`0x010001E3`) and set release status to `0xE3` in **include/pantheios/pantheios.h**;
   * **test.unit.getversion** asserts `PANTHEIOS_VER_1_0_1_RC3`;
 * testing:
   * renamed scratch version reporter **test/scratch/libver** → **test/scratch/versions** (executable **test.scratch.versions**); Phase **4c** one-line VER printer with tab-indented efferent dependencies;
@@ -20,6 +26,7 @@
   * added **stlsoft-routes** job for CMake vs environment **STLSoft** resolution;
   * added minimal **no-b64** and **no-b64** + **no-shwild** matrix permutations and install-smoke coverage;
   * optional **shwild** exclusion via `NO_SHWILD` / **prepare_cmake.sh --no-shwild**;
+  * dedicated Ubuntu **GHA** cell **`linux-gcc-ace`** (`libace-dev`); main matrix cells pass **`NO_ACE=ON`**;
   * Windows cells dogfood native **`.cmd`** runners; restore execute bits after artifact download (excluding **CMakeFiles**);
   * component tests via **run_all_component_tests.sh** / **.cmd**;
   * push-branch set canonicalised (**master**, **dev**, **boilerplate**, **idiomatic**, **rc1**–**rc3**);
@@ -42,19 +49,6 @@
 * version definition: added `PANTHEIOS_VER_1_0_1_RC2` (`0x010001e2`) and updated `PANTHEIOS_VER` to RC2 in **include/pantheios/pantheios.h**;
 * tooling and configuration: added **`.vscode/settings.json`**;
 * documentation and release alignment: updated **NEWS.md**, **INSTALL.md**, and **KNOWN_ISSUES.md** for the 1.0.1-rc2 release;
-
-
-## 1.0.1-rc3 - 6th August 2026
-
-* **CMake** optional **ACE** discovery (`ACE` / `ACE_ROOT`, **`cmake/FindACE.cmake`**, `NO_ACE` / **`--no-ace`**): builds **be**/**bec**/**bel**/**ber.ACE**, **bec.ACE.WithCallback**, stock ACE inclusion, and **test.scratch.be.ACE** when **ACE** is found;
-* dedicated Ubuntu **GHA** cell **`linux-gcc-ace`** (`libace-dev`); main matrix cells pass **`NO_ACE=ON`**;
-
-
-## 1.0.1-rc2 - 6th August 2026
-
-* **bec.AnsiConsole**: on Windows, emit ANSI colours only when the host supports them — Win11 assumed ready, Win10 VT builds opt in via **`SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`**, older hosts (e.g. XP) stay plain;
-* examples and scratch tests: non-Windows console sink moved from **be.fprintf** to **be.AnsiConsole** for simple console demos (via **`define_simple_console_example_*`**, **be.console** / **bec.console** aliases, matching implicit-link headers, and per-project **CMakeLists.txt** / **implicit_link** updates); multiplex / callback / **be.N** cases deferred;
-* **test.component.be.file.threading**: **be.N** console entry uses **`pantheios_be_console`** (platform alias) to match **bec.console.h** / Windows **bec.WindowsConsole** linkage;
 
 
 ## 1.0.1-rc1 - 5th August 2026
