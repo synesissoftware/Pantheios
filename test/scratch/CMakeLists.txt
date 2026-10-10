@@ -67,9 +67,6 @@ if(_BUILD_AS_WIN32)
 	add_subdirectory(test.scratch.fe.WindowsRegistry.controller)
 endif(_BUILD_AS_WIN32)
 add_subdirectory(test.scratch.fe.simple.WithCallback)
-#[====[
-add_subdirectory(test.scratch.implicit_link)
-#]====]
 if(_BUILD_AS_WIN32)
 
 	add_subdirectory(test.scratch.pseudoUNIX)

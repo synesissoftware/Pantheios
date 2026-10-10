@@ -15,11 +15,7 @@
       <UniqueIdentifier>{B9E55206-806A-4D89-B2CF-AFEB1A5806BD}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\implicit_link.cpp">
-      <Filter>Implementation Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\test.unit.util.snprintf.cpp">
+  <ItemGroup>    <ClCompile Include="..\test.unit.util.snprintf.cpp">
       <Filter>Implementation Files</Filter>
     </ClCompile>
   </ItemGroup>

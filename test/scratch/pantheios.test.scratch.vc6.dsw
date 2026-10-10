@@ -385,25 +385,6 @@ Package=<4>
     End Project Dependency
 }}}
 
-###############################################################################
-
-Project: "test.scratch.implicit_link"=.\test.scratch.implicit_link\vc6\test.scratch.implicit_link.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name pantheios.core
-    End Project Dependency
-    Begin Project Dependency
-    Project_Dep_Name pantheios.util
-    End Project Dependency
-}}}
-
-###############################################################################
 
 Project: "test.scratch.pan_with_ff"=.\test.scratch.pan_with_ff\vc6\test.scratch.pan_with_ff.dsp - Package Owner=<4>
 

@@ -412,9 +412,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release Multithreaded DLL|x64'">
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\implicit_link.cpp" />
-    <ClCompile Include="..\test.unit.util.snprintf.cpp" />
+  <ItemGroup>    <ClCompile Include="..\test.unit.util.snprintf.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(PANTHEIOS_ROOT)\include\pantheios\pantheios.h" />

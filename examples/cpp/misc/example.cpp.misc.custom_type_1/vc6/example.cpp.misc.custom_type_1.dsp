@@ -560,10 +560,6 @@ LINK32=link.exe
 
 SOURCE=..\example.cpp.misc.custom_type_1.cpp
 # End Source File
-# Begin Source File
-
-SOURCE=..\implicit_link.cpp
-# End Source File
 # End Group
 # Begin Group "Header Files"
 

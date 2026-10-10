@@ -560,10 +560,6 @@ LINK32=link.exe
 
 SOURCE=..\example.cpp.backends.callback.cpp
 # End Source File
-# Begin Source File
-
-SOURCE=..\implicit_link.cpp
-# End Source File
 # End Group
 # Begin Group "Header Files"
 
