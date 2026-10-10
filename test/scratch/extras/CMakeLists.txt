@@ -1,6 +1,6 @@
 
-add_subdirectory(inserters)
-add_subdirectory(util)
+add_subdirectory(com)
+add_subdirectory(com_exception_helpers)
 
 
 # ############################## end of file ############################# #

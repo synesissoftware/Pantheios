@@ -1,6 +1,5 @@
 
-add_subdirectory(inserters)
-add_subdirectory(util)
+add_subdirectory(invoke_nothrow_method)
 
 
 # ############################## end of file ############################# #

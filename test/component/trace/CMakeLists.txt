@@ -1,6 +1,5 @@
 
-add_subdirectory(inserters)
-add_subdirectory(util)
+add_subdirectory(1)
 
 
 # ############################## end of file ############################# #

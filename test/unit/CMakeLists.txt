@@ -1,5 +1,7 @@
 
+add_subdirectory(getversion)
 add_subdirectory(inserters)
+add_subdirectory(levels)
 
 add_subdirectory(test.unit.be.N)
 add_subdirectory(test.unit.be.N.filtering)
@@ -38,30 +40,8 @@ add_subdirectory(test.unit.fe.all)
 add_subdirectory(test.unit.fe.fail)
 add_subdirectory(test.unit.fe.null)
 add_subdirectory(test.unit.fe.simple)
-add_subdirectory(getversion)
-if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.unit.inserters.windows.sc)
-endif(_BUILD_AS_WIN32)
-#[====[
-add_subdirectory(test.unit.levels.2)
-#]====]
-add_subdirectory(test.unit.levels.dynamic_initialisation)
-add_subdirectory(test.unit.levels.values)
-add_subdirectory(test.unit.util.date_elements_to_string)
-if(shwild_FOUND)
-
-	add_subdirectory(test.unit.util.getcurrenttime)
-endif(shwild_FOUND)
-add_subdirectory(test.unit.util.gethostname)
-if(shwild_FOUND)
-
-	add_subdirectory(test.unit.util.onbailout)
-endif(shwild_FOUND)
-add_subdirectory(test.unit.util.parse_args)
-add_subdirectory(test.unit.util.snprintf)
-add_subdirectory(test.unit.util.strnlen)
+add_subdirectory(util)
 
 
 # ############################## end of file ############################# #
-

@@ -1,5 +1,4 @@
 
-
 add_subdirectory(I18N)
 if(_BUILD_AS_WIN32)
 
@@ -57,8 +56,7 @@ endif()
 #[====[
 if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.scratch.extras.com.invoke_nothrow_method)
-	add_subdirectory(test.scratch.extras.com_exception_helpers)
+	add_subdirectory(extras)
 endif(_BUILD_AS_WIN32)
 #]====]
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
@@ -78,7 +76,7 @@ if(_BUILD_AS_WIN32)
 	add_subdirectory(pseudoUNIX)
 endif(_BUILD_AS_WIN32)
 #]====]
-add_subdirectory(test.scratch.showPlus.integer)
+add_subdirectory(showPlus)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
 	add_subdirectory(trace)
@@ -89,11 +87,10 @@ if(_BUILD_AS_WIN32)
 endif(_BUILD_AS_WIN32)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
-	add_subdirectory(test.scratch.util.onbailout)
+	add_subdirectory(util)
 endif()
 
 add_subdirectory(versions)
 
 
 # ############################## end of file ############################# #
-
