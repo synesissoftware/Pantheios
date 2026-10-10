@@ -87,6 +87,29 @@ jobs:
       no-shwild: ${{ matrix.no_shwild == true }}
       os: ${{ matrix.os }}
       toolchain: ${{ matrix.toolchain }}
+      with-ace: false
+    secrets: inherit
+
+  cell-ace:
+    name: CI ACE (${{ matrix.id }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: linux-gcc-ace
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+    uses: ./.github/workflows/ci-cell.yml
+    with:
+      build-type: Release
+      c-compiler: ${{ matrix.c_compiler }}
+      cell-id: ${{ matrix.id }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      no-b64: false
+      no-shwild: false
+      os: ${{ matrix.os }}
+      with-ace: true
     secrets: inherit
 
   install-smoke:
@@ -162,6 +185,7 @@ jobs:
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON \
               $NO_B64_OPT
           elif [ "${{ matrix.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
@@ -172,6 +196,7 @@ jobs:
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON \
               $NO_B64_OPT
           else
             cmake -B build -S . \
@@ -181,6 +206,7 @@ jobs:
               -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF \
+              -DNO_ACE=ON \
               $NO_B64_OPT
           fi
 

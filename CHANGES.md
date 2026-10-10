@@ -44,6 +44,19 @@
 * documentation and release alignment: updated **NEWS.md**, **INSTALL.md**, and **KNOWN_ISSUES.md** for the 1.0.1-rc2 release;
 
 
+## 1.0.1-rc3 - 6th August 2026
+
+* **CMake** optional **ACE** discovery (`ACE` / `ACE_ROOT`, **`cmake/FindACE.cmake`**, `NO_ACE` / **`--no-ace`**): builds **be**/**bec**/**bel**/**ber.ACE**, **bec.ACE.WithCallback**, stock ACE inclusion, and **test.scratch.be.ACE** when **ACE** is found;
+* dedicated Ubuntu **GHA** cell **`linux-gcc-ace`** (`libace-dev`); main matrix cells pass **`NO_ACE=ON`**;
+
+
+## 1.0.1-rc2 - 6th August 2026
+
+* **bec.AnsiConsole**: on Windows, emit ANSI colours only when the host supports them — Win11 assumed ready, Win10 VT builds opt in via **`SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`**, older hosts (e.g. XP) stay plain;
+* examples and scratch tests: non-Windows console sink moved from **be.fprintf** to **be.AnsiConsole** for simple console demos (via **`define_simple_console_example_*`**, **be.console** / **bec.console** aliases, matching implicit-link headers, and per-project **CMakeLists.txt** / **implicit_link** updates); multiplex / callback / **be.N** cases deferred;
+* **test.component.be.file.threading**: **be.N** console entry uses **`pantheios_be_console`** (platform alias) to match **bec.console.h** / Windows **bec.WindowsConsole** linkage;
+
+
 ## 1.0.1-rc1 - 5th August 2026
 
 * modular GitHub Actions CI via **`.github/workflows/ci.yml`** and **`ci-cell.yml`** (Linux **Clang**/**GCC**, macOS **Clang**/**GCC**, Windows **cl**/**MinGW**; install-smoke consumer build/run; examples / unit / component / scratch as separate cells);

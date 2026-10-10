@@ -1,6 +1,6 @@
 #
 # Created:  7th September 2025
-# Updated:  11th October 2026
+# Updated:  10th October 2026
 #
 
 name: CI cell
@@ -36,6 +36,10 @@ on:
         required: false
         type: string
         default: ''
+      with-ace:
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -51,6 +55,10 @@ jobs:
       - name: Install Clang (Ubuntu)
         if: runner.os == 'Linux' && inputs.c-compiler == 'clang'
         run: sudo apt-get update && sudo apt-get install -y clang
+
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         id: msys2
@@ -92,6 +100,11 @@ jobs:
           if [ "${{ inputs.no-shwild }}" = "true" ]; then
             NO_SHWILD_OPT="-DNO_SHWILD=ON -DCMAKE_DISABLE_FIND_PACKAGE_shwild=TRUE"
           fi
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            ACE_FLAG="-DNO_ACE=OFF"
+          else
+            ACE_FLAG="-DNO_ACE=ON"
+          fi
           if [ "${{ inputs.c-compiler }}" = "cl" ]; then
             cmake -B build -S . \
               -DCMAKE_DISABLE_FIND_PACKAGE_MFC=TRUE \
@@ -99,7 +112,8 @@ jobs:
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
               $NO_B64_OPT \
-              $NO_SHWILD_OPT
+              $NO_SHWILD_OPT \
+              $ACE_FLAG
           elif [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
             cmake -B build -S . -G "MinGW Makefiles" \
@@ -110,7 +124,8 @@ jobs:
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
               $NO_B64_OPT \
-              $NO_SHWILD_OPT
+              $NO_SHWILD_OPT \
+              $ACE_FLAG
           else
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ inputs.build-type }}" \
@@ -120,7 +135,8 @@ jobs:
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=ON \
               $NO_B64_OPT \
-              $NO_SHWILD_OPT
+              $NO_SHWILD_OPT \
+              $ACE_FLAG
           fi
 
       - name: Build
@@ -153,6 +169,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      # Dynamically linked ACE backends need libACE on the run runner
+      # (artifact download does not carry the system shared library).
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         id: msys2
@@ -200,6 +222,9 @@ jobs:
           if [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            set -x
+          fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_examples.sh -M
 
       - name: Run examples (native cmd)
@@ -220,6 +245,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      # Dynamically linked ACE backends need libACE on the run runner
+      # (artifact download does not carry the system shared library).
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         id: msys2
@@ -267,7 +298,12 @@ jobs:
           if [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            set -x
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only --verbosity 9
+          else
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_unit_tests.sh -M --unit-only
+          fi
 
       - name: Run unit tests (native cmd)
         if: runner.os == 'Windows'
@@ -287,6 +323,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      # Dynamically linked ACE backends need libACE on the run runner
+      # (artifact download does not carry the system shared library).
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         id: msys2
@@ -334,7 +376,12 @@ jobs:
           if [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
           fi
-          SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_component_tests.sh -M
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            set -x
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_component_tests.sh -M --verbosity 9
+          else
+            SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_component_tests.sh -M
+          fi
 
       - name: Run component tests (native cmd)
         if: runner.os == 'Windows'
@@ -354,6 +401,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      # Dynamically linked ACE backends need libACE on the run runner
+      # (artifact download does not carry the system shared library).
+      - name: Install ACE (Ubuntu)
+        if: inputs.with-ace && runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libace-dev
 
       - name: Setup MSYS2 MinGW
         id: msys2
@@ -400,6 +453,9 @@ jobs:
           set -euo pipefail
           if [ "${{ inputs.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
+          fi
+          if [ "${{ inputs.with-ace }}" = "true" ]; then
+            set -x
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
 
