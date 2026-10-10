@@ -1,6 +1,6 @@
 
 add_executable(example.cpp.format.lowres
-	example.cpp.format.lowres.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(example.cpp.format.lowres)

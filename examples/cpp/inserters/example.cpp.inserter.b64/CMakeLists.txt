@@ -1,6 +1,6 @@
 
 add_executable(example.cpp.inserter.b64
-	example.cpp.inserter.b64.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(example.cpp.inserter.b64)

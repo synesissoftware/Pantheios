@@ -1,6 +1,6 @@
 
 add_executable(example.cpp.contract.PANTHEIOS_ASSERT
-	example.cpp.contract.PANTHEIOS_ASSERT.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(example.cpp.contract.PANTHEIOS_ASSERT)
