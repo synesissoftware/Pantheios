@@ -1,3 +1,8 @@
+#
+# Created:  7th September 2025
+# Updated:  11th October 2026
+#
+
 name: CI
 
 on:
@@ -6,15 +11,14 @@ on:
       - master
       - dev
       - boilerplate
-      - cmake-fix
       - idiomatic
       - rc1
       - rc2
       - rc3
-      - rc4
-      - rc5
-      - update
   pull_request:
+
+permissions:
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -108,6 +112,7 @@ jobs:
           - os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
+          # MinGW: compilers are gcc/g++; toolchain selects generator/PATH
           - os: windows-latest
             c_compiler: gcc
             cpp_compiler: g++
@@ -121,6 +126,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y clang
 
       - name: Setup MSYS2 MinGW
+        id: msys2
         if: runner.os == 'Windows' && matrix.toolchain == 'mingw'
         uses: msys2/setup-msys2@v2
         with:
@@ -131,7 +137,9 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      - name: Install dependencies (STLSoft${{ !matrix.no_b64 && ' + b64' || '' }})
+      # Runtime/public deps only (BUILD_TESTING=OFF): STLSoft then b64.
+      # Order is intentional (not lexicographic). When no_b64, omit b64.
+      - name: Install Synesis dependencies
         uses: ./.github/actions/install-sis-deps
         with:
           build-type: ${{ env.BUILD_TYPE }}
@@ -397,4 +405,3 @@ jobs:
             -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}"
           cmake --build consumer-build --parallel
           consumer-build/consumer
-

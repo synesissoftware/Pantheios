@@ -4,7 +4,7 @@
 ## Functional improvements
 
 
-### 1.0.1-rc3 (10th September 2026)
+### 1.0.1-rc3 (11th October 2026)
 
 * [x] ~~~CI refactoring~~~ - ✅;
 * [ ] **README.md** (and other project markdown) significant enhancement (in a similar vein as has been done for **xqsr3** (Ruby));
@@ -12,6 +12,12 @@
 * [ ] Refactor CMake test targets / options so that only unit-test executables are built when only executing unit tests (and similarly for component, scratch, and performance tests);
 * [ ] Using **AnsiConsole**;
 * [ ] Using **ACE**;
+
+
+### 1.0.1-rc4
+
+* [ ] Replace selected Pantheios custom code with post-**STLSoft**-1.9 facilities;
+* [ ] Additional performance tests;
 
 
 ### 1.0.1 final release (nice-to-have / non-mandatory)
