@@ -174,6 +174,13 @@ endmacro(target_link_xTests)
 #
 # CTest is not registered here: Pantheios discovers binaries via
 # run_all_*.sh / .cmd (same as before these helpers).
+#
+# SIS:AUTO_GENERATED: pure stock leaves that are only a define_* call
+# (including kwargs forms) carry the eyecatcher on line 1. Leaves with
+# trailing target_link_libraries, add_subdirectory, or warning-list
+# appends must omit it. Pantheios has no in-tree generate_cmakelists.rb
+# yet; do not run a 2-arg-only generator against kwargs leaves or it
+# will drop CORE/FE/BE/BEC/LIB/CONSOLE/BE_TEST.
 
 
 function(_pantheios_configure_program program_name)
