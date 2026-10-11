@@ -1,21 +1,2 @@
-
-add_executable(test.unit.util.strnlen
-	entry.cpp
-)
-
-target_link_Pantheios_util(test.unit.util.strnlen)
-
-target_link_STLSoft(test.unit.util.strnlen)
-
-if(shwild_FOUND)
-
-	target_link_shwild(test.unit.util.strnlen)
-endif(shwild_FOUND)
-
-target_link_xTests(test.unit.util.strnlen)
-
-define_target_compile_options(test.unit.util.strnlen)
-
-
-# ############################## end of file ############################# #
-
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+define_automated_test_program(test.unit.util.strnlen entry.cpp)
