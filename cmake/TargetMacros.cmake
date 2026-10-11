@@ -1,9 +1,24 @@
+# ######################################################################## #
+# File:     /cmake/TargetMacros.cmake
+#
+# Purpose:  CMake target helper macros/functions for Pantheios
+#
+# Created:  29th March 2021
+# Updated:  12th October 2026
+#
+# ######################################################################## #
+
+
+# ##########################################################
+# compile options
+
 
 macro(define_target_compile_options target_name)
 
 	set(X_GCC_CUSTOM_WARNINGS_ "")
 
 	if(X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED)
+
 		foreach(warning ${X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED})
 
 			list(APPEND X_GCC_CUSTOM_WARNINGS_ "-Wno-${warning}")
@@ -13,10 +28,11 @@ macro(define_target_compile_options target_name)
 	set(X_MSVC_CUSTOM_WARNINGS_ "")
 
 	if(X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED)
-			foreach(warning ${X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED})
 
-					list(APPEND X_MSVC_CUSTOM_WARNINGS_ "/wd${warning}")
-			endforeach()
+		foreach(warning ${X_MSVC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED})
+
+			list(APPEND X_MSVC_CUSTOM_WARNINGS_ "/wd${warning}")
+		endforeach()
 	endif()
 
 	target_compile_options(${target_name}
@@ -33,6 +49,11 @@ macro(define_target_compile_options target_name)
 			>
 	)
 endmacro(define_target_compile_options)
+
+
+# ##########################################################
+# link helpers
+
 
 macro(target_link_Pantheios_core target_name)
 
@@ -57,15 +78,15 @@ macro(target_link_STLSoft target_name)
 			$<$<STREQUAL:${STLSOFT_INCLUDE_DIR},>:STLSoft::STLSoft>
 	)
 
-		if(DEFINED STLSOFT_INCLUDE_DIR)
+	if(DEFINED STLSOFT_INCLUDE_DIR)
 
-			get_filename_component(STLSOFT_INCLUDE_DIR "${STLSOFT_INCLUDE_DIR}" ABSOLUTE)
+		get_filename_component(STLSOFT_INCLUDE_DIR "${STLSOFT_INCLUDE_DIR}" ABSOLUTE)
 
-			target_include_directories(${target_name}
-				PUBLIC
-					${STLSOFT_INCLUDE_DIR}
-			)
-		endif()
+		target_include_directories(${target_name}
+			PUBLIC
+				${STLSOFT_INCLUDE_DIR}
+		)
+	endif()
 endmacro(target_link_STLSoft)
 
 macro(target_link_ACE target_name)
