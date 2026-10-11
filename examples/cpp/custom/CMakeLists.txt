@@ -1,7 +1,5 @@
-# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
-add_subdirectory(example.cpp.custom.wrap_log4plus)
-add_subdirectory(example.cpp.custom.wrap_log4cxx)
+# wrap_log4cplus / wrap_log4cxx need external log4* deps; leave unwired.
+# Sources live under wrap_log4cplus/ and wrap_log4cxx/ for reference.
 
 
 # ############################## end of file ############################# #
-
