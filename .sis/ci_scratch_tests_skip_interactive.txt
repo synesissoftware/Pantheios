@@ -6,3 +6,5 @@
 # test.scratch.bec.WindowsMessageBox.exe are equivalent).
 test.scratch.bec.WindowsMessageBox
 test.scratch.be.speech
+test.scratch.fe.WindowsRegistry
+
