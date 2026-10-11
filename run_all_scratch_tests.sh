@@ -28,10 +28,12 @@ ProjectNameFile="$Dir/.sis/project_name.txt"
 ProjectName=$(tr -d '[:space:]' < "$ProjectNameFile")
 ScriptPath=$0
 AllowedToFailFile="$Dir/.sis/ci_scratch_tests_allowed_to_fail.txt"
+SkipInteractiveFile="$Dir/.sis/ci_scratch_tests_skip_interactive.txt"
 
 AlwaysUseColours=${SIS_CMAKE_ALWAYS_USE_COLOURS:-${SIS_ALWAYS_USE_COLOURS:-0}}
 ListOnly=0
 RunMake=1
+SkipInteractive=0
 SisUseColours=0
 
 
@@ -159,6 +161,35 @@ sis_is_allowed_to_fail() {
   return 1
 }
 
+# Succeeds if --skip-interactive is active and the program is named in
+# .sis/ci_scratch_tests_skip_interactive.txt (GUI / speech / similar).
+sis_is_skipped_interactive() {
+
+  local name line
+
+  [ $SkipInteractive -ne 0 ] || return 1
+
+  [ -f "$SkipInteractiveFile" ] || return 1
+
+  name=$(sis_program_stem "$1")
+
+  while IFS= read -r line || [ -n "$line" ]; do
+
+    line="${line//$'\r'/}"
+
+    case "$line" in
+      ''|\#*) continue ;;
+    esac
+
+    if [ "$name" = "$(sis_program_stem "$line")" ]; then
+
+      return 0
+    fi
+  done < "$SkipInteractiveFile"
+
+  return 1
+}
+
 
 # ##########################################################
 # command-line handling
@@ -177,6 +208,10 @@ while [[ $# -gt 0 ]]; do
     --no-make|-M)
 
       RunMake=0
+      ;;
+    --skip-interactive)
+
+      SkipInteractive=1
       ;;
     --help)
 
@@ -203,6 +238,11 @@ Flags/options:
     --no-make
         does not execute a build before running programs
 
+    --skip-interactive
+        skips programs listed in .sis/ci_scratch_tests_skip_interactive.txt
+        (GUI / speech / desktop-interactive programs unsuitable for headless
+        CI; principally Windows MessageBox and speech sinks)
+
 
     files:
 
@@ -212,6 +252,10 @@ Flags/options:
         fail; such a program is still executed, but a non-zero exit is
         reported as anticipated and neither stops the run nor affects the
         exit status
+
+    .sis/ci_scratch_tests_skip_interactive.txt
+        list of scratch-test programs skipped when --skip-interactive is
+        given (one name per line; blank lines and '#' comments ignored)
 
 
     standard flags:
@@ -233,6 +277,13 @@ EOF
 
   shift
 done
+
+if [ $SkipInteractive -ne 0 ] && [ ! -f "$SkipInteractiveFile" ]; then
+
+  >&2 echo "${ScriptPath}: --skip-interactive: skip list not found at '$SkipInteractiveFile'"
+
+  exit 1
+fi
 
 
 # ##########################################################
@@ -294,6 +345,20 @@ if [ $status -eq 0 ]; then
     NumPrograms=$((NumPrograms + 1))
 
     fClr="${SisClr_Blue}${SisClr_Bold}${f}${SisClr_None}"
+
+    if sis_is_skipped_interactive "$f"; then
+
+      if [ $ListOnly -ne 0 ]; then
+
+        echo "would skip ${fClr} (interactive; --skip-interactive)"
+      else
+
+        echo
+        echo "skipping ${fClr} (interactive; --skip-interactive)"
+      fi
+
+      continue
+    fi
 
     if [ $ListOnly -ne 0 ]; then
 

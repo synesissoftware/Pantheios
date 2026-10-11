@@ -1,0 +1,8 @@
+# Scratch programs that require an interactive desktop (GUI dialogs,
+# speech synthesis, and similar) and would hang a headless CI run.
+# Skipped when run_all_scratch_tests.{sh,cmd} is invoked with
+# --skip-interactive.
+# List program names or stems (test.scratch.bec.WindowsMessageBox and
+# test.scratch.bec.WindowsMessageBox.exe are equivalent).
+test.scratch.bec.WindowsMessageBox
+test.scratch.be.speech

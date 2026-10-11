@@ -1,6 +1,6 @@
 #
 # Created:  7th September 2025
-# Updated:  10th October 2026
+# Updated:  12th October 2026
 #
 
 name: CI cell
@@ -459,6 +459,8 @@ jobs:
           fi
           SIS_CMAKE_BUILD_DIR="${{ github.workspace }}/build" ./run_all_scratch_tests.sh -M
 
+      # Windows: --skip-interactive omits MessageBox / speech (and kin) that
+      # hang headless GHA; list is .sis/ci_scratch_tests_skip_interactive.txt.
       - name: Run scratch tests (native cmd)
         if: runner.os == 'Windows'
         shell: cmd
@@ -467,5 +469,5 @@ jobs:
           SIS_CMAKE_BUILD_DIR: ${{ github.workspace }}\build
         run: |
           if "${{ inputs.toolchain }}"=="mingw" set "PATH=%MSYS2_LOCATION%\mingw64\bin;%PATH%"
-          call run_all_scratch_tests.cmd
+          call run_all_scratch_tests.cmd --skip-interactive
           if errorlevel 1 exit /b 1

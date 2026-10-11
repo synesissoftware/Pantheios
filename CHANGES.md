@@ -27,6 +27,9 @@
 * testing:
   * renamed scratch version reporter **test/scratch/libver** → **test/scratch/versions** (executable **test.scratch.versions**); Phase **4c** one-line VER printer with tab-indented efferent dependencies;
   * canonicalised test and example entry-point basenames per **c-cpp-standards** / **test-standards**: unit and component sources to **entry.c** / **entry.cpp**; scratch, performance, and example sources to **main.c** / **main.cpp** (executable / **CMake** target names unchanged); **`define_simple_console_example_*`** in **cmake/TargetMacros.cmake** now compile **main.c** / **main.cpp**;
+  * shortened / nested test and example intermediate directories (subject-only leaves and scenario suffixes under **be.*** / **bec.*** / **fe.*** / **inserters/** / **util/** / **examples/c|cpp/**…); kept dotted **CMake** targets and argv0 identities;
+  * aligned **xTests** `XTESTS_START_RUNNER` / `PROCESS_IDENTITY` strings with program ids; removed empty / passed-only unit and component stub cases;
+  * restored **`# SIS:AUTO_GENERATED`** on stock intermediate **CMakeLists.txt** lists after the path rename rework;
 * CI:
   * consolidated **ci-cell.yml** into a single build-and-test job;
   * adopted local composite action **`.github/actions/install-sis-deps`**;
@@ -37,6 +40,7 @@
   * Windows cells dogfood native **`.cmd`** runners; restore execute bits after artifact download (excluding **CMakeFiles**);
   * component tests via **run_all_component_tests.sh** / **.cmd**;
   * push-branch set canonicalised (**master**, **dev**, **boilerplate**, **idiomatic**, **rc1**–**rc3**);
+  * **run_all_scratch_tests.sh** / **.cmd** gain **`--skip-interactive`**, reading **`.sis/ci_scratch_tests_skip_interactive.txt`** (e.g. **test.scratch.bec.WindowsMessageBox**, **test.scratch.be.speech**); Windows **ci-cell** scratch steps pass the flag so headless **GHA** does not hang on GUI / speech sinks;
 * boilerplate:
   * applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates;
   * restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
@@ -46,6 +50,7 @@
   * added **run_all_component_tests.sh** / **.cmd**, **run_all_performance_tests.sh** / **.cmd**, and **run_all_automated_tests.sh** / **.cmd**; native **.cmd** counterparts for examples / unit / scratch;
   * **run_all_unit_tests.sh** / **.cmd** — unit-only (`--unit-only` accepted for compatibility; `--component-only` removed from the unit runner);
   * **.sis/ci_examples_allowed_to_fail.txt** for example-smoke allow-list;
+  * **.sis/ci_scratch_tests_skip_interactive.txt** for headless scratch skips (with **`--skip-interactive`**);
 * documentation:
   * **NEWS.md** three-column chronology; **README.md**, **INSTALL.md**, **KNOWN_ISSUES.md**, and **TODO.md** aligned to **1.0.1-rc3** (**STLSoft** floor **1.11.1-rc8**);
 
