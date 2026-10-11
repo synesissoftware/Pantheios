@@ -1,27 +1,6 @@
-
-add_executable(test.scratch.trace
-	main.cpp
+define_example_program(test.scratch.trace main.cpp
+	CORE
+	BE Pantheios.be.AnsiConsole
+	BEC Pantheios.bec.AnsiConsole
+	FE Pantheios.fe.simple
 )
-
-target_link_Pantheios_core(test.scratch.trace)
-
-target_link_libraries(test.scratch.trace
-	PRIVATE
-		Pantheios.be.AnsiConsole
-		Pantheios.bec.AnsiConsole
-)
-
-target_link_libraries(test.scratch.trace
-	PRIVATE
-		Pantheios.fe.simple
-)
-
-target_link_Pantheios_util(test.scratch.trace)
-
-target_link_STLSoft(test.scratch.trace)
-
-define_target_compile_options(test.scratch.trace)
-
-
-# ############################## end of file ############################# #
-

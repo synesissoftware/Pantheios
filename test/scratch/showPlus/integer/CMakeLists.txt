@@ -1,27 +1,6 @@
-
-add_executable(test.scratch.showPlus.integer
-	main.cpp
+define_example_program(test.scratch.showPlus.integer main.cpp
+	CORE
+	BE Pantheios.be.AnsiConsole
+	BEC Pantheios.bec.AnsiConsole
+	FE Pantheios.fe.simple
 )
-
-target_link_Pantheios_core(test.scratch.showPlus.integer)
-
-target_link_libraries(test.scratch.showPlus.integer
-	PRIVATE
-		Pantheios.be.AnsiConsole
-		Pantheios.bec.AnsiConsole
-)
-
-target_link_libraries(test.scratch.showPlus.integer
-	PRIVATE
-		Pantheios.fe.simple
-)
-
-target_link_Pantheios_util(test.scratch.showPlus.integer)
-
-target_link_STLSoft(test.scratch.showPlus.integer)
-
-define_target_compile_options(test.scratch.showPlus.integer)
-
-
-# ############################## end of file ############################# #
-
