@@ -1,7 +1,7 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
-## 1.0.1-rc3 - 11th October 2026
+## 1.0.1-rc3 - 12th October 2026
 
 * backends:
   * **bec.AnsiConsole**: on Windows, emit ANSI colours only when the host supports them — Win11 assumed ready, Win10 VT builds opt in via **`SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`**, older hosts (e.g. XP) stay plain;
@@ -10,6 +10,9 @@
 * build:
   * **CMake** optional **ACE** discovery (`ACE` / `ACE_ROOT`, **`cmake/FindACE.cmake`**, `NO_ACE` / **`--no-ace`**): builds **be**/**bec**/**bel**/**ber.ACE**, **bec.ACE.WithCallback**, stock ACE inclusion, and **test.scratch.be.ACE** when **ACE** is found;
   * console / syslog BE selection in **`cmake/TargetMacros.cmake`** and leaf **CMakeLists.txt** now uses **`_BUILD_AS_WIN32`** rather than **`CMAKE_SYSTEM_NAME`**, so **UNIXem** builds link **AnsiConsole** / **syslog** correctly;
+  * **CMake** leaf helpers in **`cmake/TargetMacros.cmake`**: added **`define_automated_test_program`** / **`define_example_program`** with **CORE** / **FE** / **BE** / **BEC** / **BE_TEST** / **CONSOLE** / **LIB** / **NO_UTIL** kwargs (plus **`target_link_shwild_if_found`**); folded **`define_simple_console_example_*`** into the example helper; call sites list **FE** above **BE** / **BE_TEST** / **CONSOLE** (helper link order still CORE → BE/BEC → FE);
+  * converted most unit / component / performance / scratch / example leaf **CMakeLists.txt** to those macros (util-only, stock **fe.*** / **bec.***, **be.test** harnesses, and common FE/BE examples); left multi-BE / **ACE** / **b64**+custom-warning outliers hand-rolled;
+  * marked pure stock **`define_*`** leaves with **`# SIS:AUTO_GENERATED`** (including kwargs forms); tailed hybrids (extra **`target_link_libraries`**, **`add_subdirectory`**, warning-list appends) omit the eyecatcher;
   * restored empty Windows scratch **CMakeLists.txt** for **be.WindowsSyslog** (+ **WithCallback**), **bec.WindowsConsoleCallback**, **bec.WindowsMessageBox**, and **fe.WindowsRegistry** (+ **controller**); deferred **be.pantheios.COM** / **pseudoUNIX** (need **UNIXem**, not valid under **`_BUILD_AS_WIN32`**);
   * **bec.WindowsSyslog** (+ **WithCallback**) **PUBLIC**-link **ws2_32**; Windows scratch compile fixes (**logputs**, callback exception-spec / unused-parameter hygiene);
   * restored empty Windows backend **CMakeLists.txt** for **be**/**bec**/**bel**/**ber** (**WindowsMessageBox**, **WindowsConsole.WithCallback**, **WindowsDebugger**, **WindowsEventLog**, **speech.WithCallback**, **COMErrorObject.WithCallback**, and kin) so scratch/example link lines resolve to real targets;
