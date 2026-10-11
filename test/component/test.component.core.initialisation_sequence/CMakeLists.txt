@@ -1,6 +1,6 @@
 
 add_executable(test.component.core.initialisation_sequence
-	test.component.core.initialisation_sequence.c
+	entry.c
 )
 
 target_link_Pantheios_core(test.component.core.initialisation_sequence)

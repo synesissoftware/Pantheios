@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.be.speech
-	test.scratch.be.speech.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.be.speech)

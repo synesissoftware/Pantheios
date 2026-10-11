@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.WideString
-	test.scratch.WideString.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.WideString)

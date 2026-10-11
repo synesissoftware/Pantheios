@@ -1,6 +1,6 @@
 
 add_executable(test.unit.util.strnlen
-	test.unit.util.strnlen.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_util(test.unit.util.strnlen)

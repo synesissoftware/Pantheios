@@ -1,6 +1,6 @@
 
 add_executable(test.unit.fe.WindowsRegistry
-	test.unit.fe.WindowsRegistry.cpp
+	entry.cpp
 )
 
 target_link_libraries(test.unit.fe.WindowsRegistry

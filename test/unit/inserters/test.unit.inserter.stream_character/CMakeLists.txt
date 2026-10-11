@@ -1,6 +1,6 @@
 
 add_executable(test.unit.inserter.stream_character
-	test.unit.inserter.stream_character.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.unit.inserter.stream_character)

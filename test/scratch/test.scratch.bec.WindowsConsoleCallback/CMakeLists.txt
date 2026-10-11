@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.bec.WindowsConsoleCallback
-	test.scratch.bec.WindowsConsoleCallback.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.bec.WindowsConsoleCallback)

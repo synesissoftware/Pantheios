@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.fe.WindowsRegistry
-	test.scratch.fe.WindowsRegistry.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.fe.WindowsRegistry)

@@ -1,6 +1,6 @@
 
 add_executable(test.unit.fe.all
-	test.unit.fe.all.c
+	entry.c
 )
 
 target_link_libraries(test.unit.fe.all

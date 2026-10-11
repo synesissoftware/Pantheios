@@ -1,6 +1,6 @@
 
 add_executable(example.cpp.format.highres
-	example.cpp.format.highres.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(example.cpp.format.highres)

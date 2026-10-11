@@ -1,6 +1,6 @@
 
 add_executable(test.component.trace.1
-	test.component.trace.1.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.component.trace.1)

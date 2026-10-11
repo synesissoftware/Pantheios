@@ -1,6 +1,6 @@
 
 add_executable(test.unit.inserters.windows.sc
-	test.unit.inserters.windows.sc.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.unit.inserters.windows.sc)

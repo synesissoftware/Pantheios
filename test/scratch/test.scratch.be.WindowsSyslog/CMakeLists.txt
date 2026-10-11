@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.be.WindowsSyslog
-	test.scratch.be.WindowsSyslog.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.be.WindowsSyslog)

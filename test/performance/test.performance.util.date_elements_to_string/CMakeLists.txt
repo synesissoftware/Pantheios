@@ -1,6 +1,6 @@
 
 add_executable(test.performance.util.date_elements_to_string
-	test.performance.util.date_elements_to_string.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.performance.util.date_elements_to_string)

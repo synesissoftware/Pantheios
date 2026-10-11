@@ -1,6 +1,6 @@
 
 add_executable(example.cpp.backends.file.callback
-	example.cpp.backends.file.callback.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(example.cpp.backends.file.callback)

@@ -1,6 +1,6 @@
 
 add_executable(test.component.inserters.variant_bool
-	test.component.inserters.variant_bool.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.component.inserters.variant_bool)

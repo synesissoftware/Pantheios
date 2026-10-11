@@ -1,6 +1,6 @@
 
 add_executable(test.unit.inserter.m2w
-	test.unit.inserter.m2w.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.unit.inserter.m2w)

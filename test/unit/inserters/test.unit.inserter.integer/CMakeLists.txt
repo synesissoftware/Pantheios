@@ -1,6 +1,6 @@
 
 add_executable(test.unit.inserter.integer
-	test.unit.inserter.integer.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.unit.inserter.integer)

@@ -1,6 +1,6 @@
 
 add_executable(example.cpp.util.strdup
-	example.cpp.util.strdup.cpp
+	main.cpp
 )
 
 target_link_Pantheios_util(example.cpp.util.strdup)

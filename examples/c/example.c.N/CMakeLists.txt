@@ -1,6 +1,6 @@
 
 add_executable(example.c.N
-	example.c.N.c
+	main.c
 )
 
 target_link_Pantheios_core(example.c.N)

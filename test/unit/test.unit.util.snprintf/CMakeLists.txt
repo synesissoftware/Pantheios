@@ -1,6 +1,6 @@
 
 add_executable(test.unit.util.snprintf
-	test.unit.util.snprintf.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_util(test.unit.util.snprintf)

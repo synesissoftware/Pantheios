@@ -1,6 +1,6 @@
 
 add_executable(test.scratch.bec.WindowsMessageBox
-	test.scratch.bec.WindowsMessageBox.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(test.scratch.bec.WindowsMessageBox)

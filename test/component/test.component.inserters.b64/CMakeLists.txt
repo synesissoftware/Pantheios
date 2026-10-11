@@ -1,6 +1,6 @@
 
 add_executable(test.component.inserters.b64
-	test.component.inserters.b64.cpp
+	entry.cpp
 )
 
 target_link_Pantheios_core(test.component.inserters.b64)

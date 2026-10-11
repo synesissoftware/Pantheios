@@ -1,6 +1,6 @@
 
 add_executable(example.cpp.misc.extended_severity_information
-	example.cpp.misc.extended_severity_information.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(example.cpp.misc.extended_severity_information)

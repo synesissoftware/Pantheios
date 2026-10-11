@@ -1,6 +1,6 @@
 
 add_executable(example.cpp.frontends.custom
-	example.cpp.frontends.custom.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(example.cpp.frontends.custom)

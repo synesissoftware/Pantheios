@@ -1,6 +1,6 @@
 
 add_executable(example.cpp.backends.mx.2
-	example.cpp.backends.mx.2.cpp
+	main.cpp
 )
 
 target_link_Pantheios_core(example.cpp.backends.mx.2)
