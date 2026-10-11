@@ -4,7 +4,7 @@
 ## Functional improvements
 
 
-### 1.0.1-rc3 (11th October 2026)
+### 1.0.1-rc3 (12th October 2026)
 
 * [x] ~~~CI refactoring~~~ - ✅;
 * [ ] **README.md** (and other project markdown) significant enhancement (in a similar vein as has been done for **xqsr3** (Ruby));
