@@ -1,23 +1,4 @@
-
-add_executable(test.unit.inserter.stream_character
-	entry.cpp
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+define_automated_test_program(test.unit.inserter.stream_character entry.cpp
+	CORE
 )
-
-target_link_Pantheios_core(test.unit.inserter.stream_character)
-
-target_link_Pantheios_util(test.unit.inserter.stream_character)
-
-target_link_STLSoft(test.unit.inserter.stream_character)
-
-if(shwild_FOUND)
-
-	target_link_shwild(test.unit.inserter.stream_character)
-endif(shwild_FOUND)
-
-target_link_xTests(test.unit.inserter.stream_character)
-
-define_target_compile_options(test.unit.inserter.stream_character)
-
-
-# ############################## end of file ############################# #
-

@@ -1,27 +1,7 @@
-
-add_executable(example.cpp.format.highres
-	main.cpp
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+define_example_program(example.cpp.format.highres main.cpp
+	CORE
+	FE Pantheios.fe.simple
+	BE Pantheios.be.AnsiConsole
+	BEC Pantheios.bec.AnsiConsole.WithCallback
 )
-
-target_link_Pantheios_core(example.cpp.format.highres)
-
-target_link_libraries(example.cpp.format.highres
-	PRIVATE
-		Pantheios.be.AnsiConsole
-		Pantheios.bec.AnsiConsole.WithCallback
-)
-
-target_link_libraries(example.cpp.format.highres
-	PRIVATE
-		Pantheios.fe.simple
-)
-
-target_link_Pantheios_util(example.cpp.format.highres)
-
-target_link_STLSoft(example.cpp.format.highres)
-
-define_target_compile_options(example.cpp.format.highres)
-
-
-# ############################## end of file ############################# #
-

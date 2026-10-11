@@ -1,22 +1,6 @@
-
-add_executable(example.cpp.frontends.custom
-	main.cpp
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+define_example_program(example.cpp.frontends.custom main.cpp
+	CORE
+	FE Pantheios.fe.simple
+	CONSOLE
 )
-
-target_link_Pantheios_core(example.cpp.frontends.custom)
-
-target_link_libraries(example.cpp.frontends.custom
-	PRIVATE
-		$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.be.WindowsConsole,Pantheios.be.AnsiConsole>
-		$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.bec.WindowsConsole,Pantheios.bec.AnsiConsole>
-)
-
-target_link_Pantheios_util(example.cpp.frontends.custom)
-
-target_link_STLSoft(example.cpp.frontends.custom)
-
-define_target_compile_options(example.cpp.frontends.custom)
-
-
-# ############################## end of file ############################# #
-

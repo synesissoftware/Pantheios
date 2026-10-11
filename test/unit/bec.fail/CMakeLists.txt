@@ -1,26 +1,4 @@
-
-add_executable(test.unit.bec.fail
-	entry.c
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+define_automated_test_program(test.unit.bec.fail entry.c
+	BEC Pantheios.bec.fail
 )
-
-target_link_libraries(test.unit.bec.fail
-	PRIVATE
-		Pantheios.bec.fail
-)
-
-target_link_Pantheios_util(test.unit.bec.fail)
-
-target_link_STLSoft(test.unit.bec.fail)
-
-if(shwild_FOUND)
-
-	target_link_shwild(test.unit.bec.fail)
-endif(shwild_FOUND)
-
-target_link_xTests(test.unit.bec.fail)
-
-define_target_compile_options(test.unit.bec.fail)
-
-
-# ############################## end of file ############################# #
-

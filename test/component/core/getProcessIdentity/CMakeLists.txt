@@ -1,29 +1,6 @@
-
-add_executable(test.component.core.getProcessIdentity
-	entry.c
+# SIS:AUTO_GENERATED: Remove this line if you edit the file, otherwise it will be overwritten
+define_automated_test_program(test.component.core.getProcessIdentity entry.c
+	CORE
+	BE Pantheios.be.null
+	BEC Pantheios.bec.null
 )
-
-target_link_Pantheios_core(test.component.core.getProcessIdentity)
-
-target_link_libraries(test.component.core.getProcessIdentity
-	PRIVATE
-		Pantheios.be.null
-		Pantheios.bec.null
-)
-
-target_link_Pantheios_util(test.component.core.getProcessIdentity)
-
-target_link_STLSoft(test.component.core.getProcessIdentity)
-
-if(shwild_FOUND)
-
-	target_link_shwild(test.component.core.getProcessIdentity)
-endif(shwild_FOUND)
-
-target_link_xTests(test.component.core.getProcessIdentity)
-
-define_target_compile_options(test.component.core.getProcessIdentity)
-
-
-# ############################## end of file ############################# #
-
