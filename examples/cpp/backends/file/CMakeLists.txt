@@ -1,8 +1,8 @@
 define_example_program(example.cpp.backends.file main.cpp
 	CORE
+	FE Pantheios.fe.simple
 	BE Pantheios.be.file
 	BEC Pantheios.bec.file
-	FE Pantheios.fe.simple
 )
 
 add_subdirectory(callback)

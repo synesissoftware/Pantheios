@@ -144,13 +144,18 @@ endmacro(target_link_xTests)
 # optional keyword arguments:
 #
 #   CORE              - link Pantheios.core
-#   BE_TEST           - link Pantheios.be.test + Pantheios.bec.test
-#   CONSOLE           - link Win/Ansi console be + bec (via _BUILD_AS_WIN32)
 #   NO_UTIL           - skip Pantheios.util (default: link util)
 #   FE <target>       - link a frontend (e.g. Pantheios.fe.simple)
+#   BE_TEST           - link Pantheios.be.test + Pantheios.bec.test
+#   CONSOLE           - link Win/Ansi console be + bec (via _BUILD_AS_WIN32)
 #   BE <target>       - link a backend wrapper (e.g. Pantheios.be.file)
 #   BEC <target>      - link a backend callback (e.g. Pantheios.bec.file)
 #   LIB <target>...   - link additional stock libs (e.g. unit-under-test)
+#
+# Call-site convention: write FE above BE / BE_TEST / CONSOLE / BEC
+# (cmake_parse_arguments does not care about order). Link order inside
+# the helper remains CORE, then BE/BEC, then FE, then LIB — matching
+# the historical leaf lists for static-link stability.
 #
 # Examples:
 #
@@ -162,14 +167,14 @@ endmacro(target_link_xTests)
 #
 #   define_automated_test_program(test.component.inserters.boolean entry.cpp
 #     CORE
-#     BE_TEST
 #     FE Pantheios.fe.all
+#     BE_TEST
 #   )
 #
 #   define_example_program(example.cpp.misc.101 main.cpp
 #     CORE
-#     CONSOLE
 #     FE Pantheios.fe.simple
+#     CONSOLE
 #   )
 #
 # CTest is not registered here: Pantheios discovers binaries via
@@ -321,8 +326,8 @@ function(define_simple_console_example_c program_stem)
 
 	define_example_program(${program_stem} main.c
 		CORE
-		CONSOLE
 		FE Pantheios.fe.simple
+		CONSOLE
 	)
 
 	if(b64_FOUND)
@@ -338,8 +343,8 @@ function(define_simple_console_example_cpp program_stem)
 
 	define_example_program(${program_stem} main.cpp
 		CORE
-		CONSOLE
 		FE Pantheios.fe.simple
+		CONSOLE
 	)
 
 	if(b64_FOUND)
