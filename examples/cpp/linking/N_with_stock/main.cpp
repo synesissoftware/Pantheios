@@ -50,6 +50,10 @@
  * globals
  */
 
+/* Define the stock front-end process identity, so that it links when using
+ * fe.N, fe.simple, etc. */
+PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.linking.N_with_stock");
+
 enum
 {
     beid_Console  = 1,
@@ -62,10 +66,6 @@ enum
 
 extern "C"
 {
-
-/* Define the stock front-end process identity, so that it links when using
- * fe.N, fe.simple, etc. */
-PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.linking.N_with_stock");
 
 /* Declared in include:pantheios/backends/be.N.h */
 pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
