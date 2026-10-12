@@ -260,24 +260,6 @@ int main(int argc, char *argv[])
     pantheios::log(pantheios::alert(10), P_STR("alert"));
     pantheios::log(pantheios::emergency(10), P_STR("emergency"));
 
-#ifdef _DEBUGx
-    { for (size_t i = 0; i != 200; ++i)
-    {
-        std::string s(i, '~');
-
-        pantheios::log_DEBUG(s);
-        pantheios::log_INFORMATIONAL(s);
-        pantheios::log_NOTICE(s);
-        pantheios::log_WARNING(s);
-        pantheios::log_ERROR(s);
-        pantheios::log_CRITICAL(s);
-        pantheios::log_ALERT(s);
-        pantheios::log_EMERGENCY(s);
-
-        ::Sleep(5);
-    }}
-#endif /* _DEBUG */
-
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     try
     {
