@@ -6,6 +6,8 @@
 * backends:
   * **bec.stock**: excludes **bec.test** (test harness stays a separate library);
   * **bec.stock.WithCallback**: platform-scoped stock archive with **`PANTHEIOS_BE_USE_CALLBACK`** (same membership as **bec.stock**; fixed source-dir variable for **bec.AnsiConsole**);
+* examples:
+  * restored **example.cpp.linking.N_with_stock** (**examples/cpp/linking/N_with_stock/**) linking **be.N** + **bec.stock**, multiplexing console / file / fprintf / null / syslog (Windows Syslog + debugger on Win32); re-enabled the **examples/cpp/linking** CMake subdirectory; listed in **README.md**;
 * version:
   * current composite is `PANTHEIOS_VER_1_0_1_RC4` (`0x010001E4`) in **include/pantheios/pantheios.h**;
   * **test.unit.getversion** asserts `PANTHEIOS_VER_1_0_1_RC4`;
