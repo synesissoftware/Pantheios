@@ -4,7 +4,7 @@
  * Purpose: Unit-test for bec.AnsiConsole.
  *
  * Created: 24th January 2025
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -118,7 +118,7 @@ static void TEST_pantheios_be_parseStockArgs_WITH_ALL_STOCK_true()
 
     int const r = pantheios_be_AnsiConsole_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    TEST_INTEGER_EQUAL(16, r);
+    TEST_INT_EQ(16, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -141,7 +141,7 @@ static void TEST_pantheios_be_parseStockArgs_WITH_ALL_STOCK_true()
                                     |   PANTHEIOS_BE_ANSICONSOLE_F_COLOUR_MESSAGE
                                     ;
 
-    TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 
 static void TEST_pantheios_be_parseStockArgs_WITH_ALL_STOCK_false()
@@ -194,7 +194,7 @@ static void TEST_pantheios_be_parseStockArgs_WITH_ALL_STOCK_false()
 
     int const r = pantheios_be_AnsiConsole_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    TEST_INTEGER_EQUAL(16, r);
+    TEST_INT_EQ(16, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -217,7 +217,7 @@ static void TEST_pantheios_be_parseStockArgs_WITH_ALL_STOCK_false()
                                     // |   PANTHEIOS_BE_ANSICONSOLE_F_COLOUR_MESSAGE
                                     ;
 
-    TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 
 

@@ -4,7 +4,7 @@
  * Purpose: Unit-testing of `pantheios_util_getCurrentTime()`
  *
  * Created: 10th November 2007
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,7 +32,7 @@
 #include <pantheios/util/time/currenttime.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* shwild header files */
 #include <shwild/shwild.h>

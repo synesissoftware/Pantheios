@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.inserter.w2m project.
  *
  * Created: 21st December 2010
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,7 +19,7 @@
 
 #include <pantheios/inserters/w2m.hpp>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/conversion/char_conversions.hpp>
 #include <stlsoft/shims/access/string.hpp>
@@ -85,7 +85,7 @@ static void test_1_01()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
     {
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(stlsoft::w2m(strings[i]), pantheios::w2m(strings[i]));
+        TEST_MS_EQ(stlsoft::w2m(strings[i]), pantheios::w2m(strings[i]));
     }}
 }
 

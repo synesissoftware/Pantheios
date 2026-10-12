@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.args project.
  *
  * Created: 19th October 2006
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>      // Pantheios C++ main header
@@ -119,9 +119,9 @@ static void test_1_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
 static void test_1_02()
@@ -145,9 +145,9 @@ static void test_1_02()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc", results[0].statement);
 }
 
 static void test_1_03()
@@ -172,9 +172,9 @@ static void test_1_03()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc, def", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc, def", results[0].statement);
 }
 
 static void test_1_04()
@@ -201,9 +201,9 @@ static void test_1_04()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc, def, ghi, jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc, def, ghi, jkl", results[0].statement);
 }
 
 static void test_1_05()
@@ -230,9 +230,9 @@ static void test_1_05()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\"abc\", \"def\", \"ghi\", \"jkl\"", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("\"abc\", \"def\", \"ghi\", \"jkl\"", results[0].statement);
 }
 
 static void test_1_06()
@@ -258,9 +258,9 @@ static void test_1_06()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc, def ghi, jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc, def ghi, jkl", results[0].statement);
 }
 
 static void test_1_07()
@@ -286,9 +286,9 @@ static void test_1_07()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc, \"def ghi\", jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc, \"def ghi\", jkl", results[0].statement);
 }
 
 static void test_1_08()
@@ -314,9 +314,9 @@ static void test_1_08()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\"abc\", \"def ghi\", \"jkl\"", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("\"abc\", \"def ghi\", \"jkl\"", results[0].statement);
 }
 
 
@@ -336,9 +336,9 @@ static void test_1_11()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
 static void test_1_12()
@@ -362,9 +362,9 @@ static void test_1_12()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc", results[0].statement);
 }
 
 static void test_1_13()
@@ -389,9 +389,9 @@ static void test_1_13()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc|def", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc|def", results[0].statement);
 }
 
 static void test_1_14()
@@ -418,9 +418,9 @@ static void test_1_14()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc|def|ghi|jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc|def|ghi|jkl", results[0].statement);
 }
 
 static void test_1_15()
@@ -447,9 +447,9 @@ static void test_1_15()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\"abc\"|\"def\"|\"ghi\"|\"jkl\"", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("\"abc\"|\"def\"|\"ghi\"|\"jkl\"", results[0].statement);
 }
 
 static void test_1_16()
@@ -475,9 +475,9 @@ static void test_1_16()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc|def ghi|jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc|def ghi|jkl", results[0].statement);
 }
 
 static void test_1_17()
@@ -503,9 +503,9 @@ static void test_1_17()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc|\"def ghi\"|jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc|\"def ghi\"|jkl", results[0].statement);
 }
 
 static void test_1_18()
@@ -531,9 +531,9 @@ static void test_1_18()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\"abc\"|\"def ghi\"|\"jkl\"", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("\"abc\"|\"def ghi\"|\"jkl\"", results[0].statement);
 }
 
 

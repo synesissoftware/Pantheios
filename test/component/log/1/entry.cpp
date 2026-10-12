@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.log.1 project.
  *
  * Created: 25th November 2007
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>
@@ -34,10 +34,10 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -116,8 +116,8 @@ static void test_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_BOOLEAN_TRUE(results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(0u, results.size());
+    TEST_BOOLEAN_TRUE(results.empty());
+    TEST_INT_EQ(0u, results.size());
 }
 
 static void test_02()
@@ -136,10 +136,10 @@ static void test_02()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_BOOLEAN_FALSE(results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR(""), results[0].statement);
-    XTESTS_TEST(pantheios::notice == results[0].severity);
+    TEST_BOOLEAN_FALSE(results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_STRING_EQ(PSTR(""), results[0].statement);
+    TEST(pantheios::notice == results[0].severity);
 }
 
 static void test_03()
@@ -158,10 +158,10 @@ static void test_03()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_BOOLEAN_FALSE(results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
-    XTESTS_TEST(pantheios::notice == results[0].severity);
+    TEST_BOOLEAN_FALSE(results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_STRING_EQ(PSTR("abc"), results[0].statement);
+    TEST(pantheios::notice == results[0].severity);
 }
 
 static void test_04()
@@ -180,9 +180,9 @@ static void test_04()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("abcdef"), results[0].statement);
-    XTESTS_TEST(pantheios::informational == results[0].severity);
+    TEST_INT_EQ(1u, results.size());
+    TEST_STRING_EQ(PSTR("abcdef"), results[0].statement);
+    TEST(pantheios::informational == results[0].severity);
 }
 
 static void test_05()
@@ -201,9 +201,9 @@ static void test_05()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("abcdefghi"), results[0].statement);
-    XTESTS_TEST(pantheios::informational == results[0].severity);
+    TEST_INT_EQ(1u, results.size());
+    TEST_STRING_EQ(PSTR("abcdefghi"), results[0].statement);
+    TEST(pantheios::informational == results[0].severity);
 }
 
 static void test_06()
@@ -222,9 +222,9 @@ static void test_06()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("abcdefghijklmnopqrstuvwxyz"), results[0].statement);
-    XTESTS_TEST(pantheios::informational == results[0].severity);
+    TEST_INT_EQ(1u, results.size());
+    TEST_STRING_EQ(PSTR("abcdefghijklmnopqrstuvwxyz"), results[0].statement);
+    TEST(pantheios::informational == results[0].severity);
 }
 
 static void test_07()
@@ -243,9 +243,9 @@ static void test_07()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("abcdefghijklmnopqrstuvwxyz"), results[0].statement);
-    XTESTS_TEST(pantheios::informational == results[0].severity);
+    TEST_INT_EQ(1u, results.size());
+    TEST_STRING_EQ(PSTR("abcdefghijklmnopqrstuvwxyz"), results[0].statement);
+    TEST(pantheios::informational == results[0].severity);
 }
 
 
@@ -266,9 +266,9 @@ static void test_10()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_INTEGER_EQUAL(2u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("abcdefghijklmnopqrstuvwxyz"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), results[1].statement);
+    TEST_INT_EQ(2u, results.size());
+    TEST_STRING_EQ(PSTR("abcdefghijklmnopqrstuvwxyz"), results[0].statement);
+    TEST_STRING_EQ(PSTR("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), results[1].statement);
 }
 
 static void test_11()
@@ -298,16 +298,16 @@ static void test_11()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_INTEGER_EQUAL(numEntries, results.size());
+    TEST_INT_EQ(numEntries, results.size());
     { for (size_t i = 0; i < numEntries; ++i)
     {
         if (0 == (i % 2))
         {
-            XTESTS_TEST_STRING_EQUAL(PSTR("abcdefghijklmnopqrstuvwxyz"), results[i].statement);
+            TEST_STRING_EQ(PSTR("abcdefghijklmnopqrstuvwxyz"), results[i].statement);
         }
         else
         {
-            XTESTS_TEST_STRING_EQUAL(PSTR("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), results[i].statement);
+            TEST_STRING_EQ(PSTR("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), results[i].statement);
         }
     }}
 }
@@ -333,9 +333,9 @@ static void test_21()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_STRING_EQUAL(msgEl1 + msgEl2, results[0].statement);
-    XTESTS_TEST(pantheios::informational == results[0].severity);
+    TEST_INT_EQ(1u, results.size());
+    TEST_STRING_EQ(msgEl1 + msgEl2, results[0].statement);
+    TEST(pantheios::informational == results[0].severity);
 }
 
 static void test_22()
@@ -357,9 +357,9 @@ static void test_22()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_STRING_EQUAL(msgEl1 + msgEl2, results[0].statement);
-    XTESTS_TEST(pantheios::informational == results[0].severity);
+    TEST_INT_EQ(1u, results.size());
+    TEST_STRING_EQ(msgEl1 + msgEl2, results[0].statement);
+    TEST(pantheios::informational == results[0].severity);
 }
 
 
