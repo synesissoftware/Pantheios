@@ -50,10 +50,6 @@
  * globals
  */
 
-/* Define the stock front-end process identity, so that it links when using
- * fe.N, fe.simple, etc. */
-PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.linking.N_with_stock");
-
 enum
 {
     beid_Console  = 1,
@@ -64,23 +60,31 @@ enum
     beid_Debugger = 6
 };
 
-PANTHEIOS_EXTERN pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
+extern "C"
 {
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Console, pantheios_be_console, 0),
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_File, pantheios_be_file, 0),
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Fprintf, pantheios_be_fprintf, 0),
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Null, pantheios_be_null, 0),
+
+/* Define the stock front-end process identity, so that it links when using
+ * fe.N, fe.simple, etc. */
+PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("example.cpp.linking.N_with_stock");
+
+/* Declared in include:pantheios/backends/be.N.h */
+pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
+{
+    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Console, pantheios_be_console, 0)
+  , PANTHEIOS_BE_N_STDFORM_ENTRY(beid_File, pantheios_be_file, 0)
+  , PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Fprintf, pantheios_be_fprintf, 0)
+  , PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Null, pantheios_be_null, 0)
 #if defined(PLATFORMSTL_OS_IS_UNIX)
-
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Syslog, pantheios_be_syslog, 0),
+  , PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Syslog, pantheios_be_syslog, 0)
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+  , PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Syslog, pantheios_be_WindowsSyslog, 0)
+  , PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Debugger, pantheios_be_WindowsDebugger, 0)
+#endif /* OS */
 
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Syslog, pantheios_be_WindowsSyslog, 0),
-    PANTHEIOS_BE_N_STDFORM_ENTRY(beid_Debugger, pantheios_be_WindowsDebugger, 0),
-#endif
-
-    PANTHEIOS_BE_N_TERMINATOR_ENTRY
+  , PANTHEIOS_BE_N_TERMINATOR_ENTRY
 };
+
+} // extern "C"
 
 
 /* /////////////////////////////////////////////////////////////////////////
