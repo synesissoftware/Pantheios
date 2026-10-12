@@ -1,93 +1,88 @@
 
+add_subdirectory(I18N)
+if(_BUILD_AS_WIN32)
 
-add_subdirectory(test.scratch.I18N)
-if(WIN32)
+	add_subdirectory(WideString)
+endif(_BUILD_AS_WIN32)
+#[====[
+add_subdirectory(api)
+#]====]
+if(HAS_ACE)
 
-	add_subdirectory(test.scratch.WideString)
-endif(WIN32)
-#[====[
-add_subdirectory(test.scratch.api)
-#]====]
-#[====[
-add_subdirectory(test.scratch.be.ACE)
-#]====]
+	add_subdirectory(be.ACE)
+endif(HAS_ACE)
+if(HAS_ZMQ)
+
+	add_subdirectory(be.zmq)
+endif(HAS_ZMQ)
+add_subdirectory(be.N)
+if(_BUILD_AS_WIN32)
+
+	add_subdirectory(be.WindowsSyslog)
+	add_subdirectory(be.WindowsSyslog.WithCallback)
+endif(_BUILD_AS_WIN32)
+add_subdirectory(be.file)
+if(_BUILD_AS_WIN32)
+
+	#[====[
+	# Needs UNIXem; sources pull unixem headers unconditionally.
+	add_subdirectory(be.pantheios.COM)
+	#]====]
+	add_subdirectory(be.speech)
+endif(_BUILD_AS_WIN32)
+if(_BUILD_AS_UNIX)
+
+	add_subdirectory(be.syslog)
+	add_subdirectory(be.syslog.WithCallback)
+endif(_BUILD_AS_UNIX)
+
+add_subdirectory(bec.AnsiConsole)
+if(_BUILD_AS_WIN32)
+
+	add_subdirectory(bec.WindowsConsoleCallback)
+	add_subdirectory(bec.WindowsMessageBox)
+endif(_BUILD_AS_WIN32)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
-	add_subdirectory(test.scratch.be.N)
-endif()
-add_subdirectory(test.scratch.be.N.fail)
-if(NOT PANTHEIOS_USE_WIDE_STRINGS)
-
-	add_subdirectory(test.scratch.be.N.with.custom.fe)
-endif()
-if(WIN32)
-
-	add_subdirectory(test.scratch.be.WindowsSyslog)
-	add_subdirectory(test.scratch.be.WindowsSyslog.WithCallback)
-endif(WIN32)
-add_subdirectory(test.scratch.be.file)
-#[====[
-add_subdirectory(test.scratch.be.file.rolling)
-#]====]
-if(WIN32)
-
-	add_subdirectory(test.scratch.be.pantheios.COM)
-	add_subdirectory(test.scratch.be.speech)
-endif(WIN32)
-if(UNIX)
-
-	add_subdirectory(test.scratch.be.syslog)
-	add_subdirectory(test.scratch.be.syslog.WithCallback)
-endif(UNIX)
-
-add_subdirectory(test.scratch.bec.AnsiConsole)
-if(WIN32)
-
-	add_subdirectory(test.scratch.bec.WindowsConsoleCallback)
-	add_subdirectory(test.scratch.bec.WindowsMessageBox)
-endif(WIN32)
-if(NOT PANTHEIOS_USE_WIDE_STRINGS)
-
-	add_subdirectory(test.scratch.c_api)
+	add_subdirectory(c_api)
 endif()
 #[====[
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.scratch.extras.com.invoke_nothrow_method)
-	add_subdirectory(test.scratch.extras.com_exception_helpers)
-endif(WIN32)
+	add_subdirectory(extras)
+endif(_BUILD_AS_WIN32)
 #]====]
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
-	add_subdirectory(test.scratch.fe)
+	add_subdirectory(fe)
 endif()
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.scratch.fe.WindowsRegistry)
-	add_subdirectory(test.scratch.fe.WindowsRegistry.controller)
-endif(WIN32)
-add_subdirectory(test.scratch.fe.simple.WithCallback)
+	add_subdirectory(fe.WindowsRegistry)
+endif(_BUILD_AS_WIN32)
+add_subdirectory(fe.simple.WithCallback)
 #[====[
-add_subdirectory(test.scratch.implicit_link)
+# Needs UNIXem (pseudo-UNIX on Windows); not valid under _BUILD_AS_WIN32.
+if(_BUILD_AS_WIN32)
+
+	add_subdirectory(pseudoUNIX)
+endif(_BUILD_AS_WIN32)
 #]====]
-if(WIN32)
-
-	add_subdirectory(test.scratch.pseudoUNIX)
-endif(WIN32)
-add_subdirectory(test.scratch.showPlus.integer)
+add_subdirectory(showPlus)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
-	add_subdirectory(test.scratch.trace)
+	add_subdirectory(trace)
 endif()
-if(WIN32)
+if(_BUILD_AS_WIN32)
 
-	add_subdirectory(test.scratch.tstring)
-endif(WIN32)
+	add_subdirectory(tstring)
+endif(_BUILD_AS_WIN32)
 if(NOT PANTHEIOS_USE_WIDE_STRINGS)
 
-	add_subdirectory(test.scratch.util.onbailout)
+	add_subdirectory(util)
 endif()
+
+add_subdirectory(versions)
 
 
 # ############################## end of file ############################# #
-

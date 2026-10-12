@@ -469,7 +469,6 @@ pan_be_file_init_t::pan_be_file_init_t()
 # pragma once
 #endif /* STLSOFT_PPF_pragma_once_SUPPORT */
 
-
 #endif /* PANTHEIOS_INCL_PANTHEIOS_BACKENDS_H_BEC_FILE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

@@ -4,7 +4,7 @@
  * Purpose: Implementation for the file back-end.
  *
  * Created: 25th November 2006
- * Updated: 29th January 2025
+ * Updated: 5th August 2026
  *
  * Thanks:  CookieRaver for filling in the (accidental) blanks in the UNIX
  *          implementation.
@@ -21,7 +21,7 @@
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -180,8 +180,18 @@
 
    /* types and constants */
 #  define ssize_t                                           intptr_t
-#  define S_IRWXU                                           (0)
-#  define S_IRWXG                                           (0)
+#  ifndef S_IRUSR
+#   define S_IRUSR                                          (_S_IREAD)
+#  endif
+#  ifndef S_IWUSR
+#   define S_IWUSR                                          (_S_IWRITE)
+#  endif
+#  ifndef S_IRGRP
+#   define S_IRGRP                                          (_S_IREAD)
+#  endif
+#  ifndef S_IWGRP
+#   define S_IWGRP                                          (_S_IWRITE)
+#  endif
 
 # endif /* _WIN32 && _MSC_VER */
 #endif /* OS */
@@ -1401,7 +1411,7 @@ int be_file_Context::Open(
         flags |= O_APPEND;
     }
 
-    m_hFile = ::open(fileName, flags, S_IRWXU | S_IRWXG);
+    m_hFile = ::open(fileName, flags, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 
 #elif defined(PLATFORMSTL_OS_IS_WINDOWS)
 

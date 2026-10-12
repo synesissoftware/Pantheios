@@ -1,0 +1,40 @@
+
+add_executable(example.cpp.backends.mx.2
+	main.cpp
+)
+
+target_link_Pantheios_core(example.cpp.backends.mx.2)
+
+target_link_libraries(example.cpp.backends.mx.2
+	PRIVATE
+		Pantheios.be.N
+)
+
+target_link_libraries(example.cpp.backends.mx.2
+	PRIVATE
+		Pantheios.bec.AnsiConsole
+		$<IF:$<BOOL:${_BUILD_AS_WIN32}>,Pantheios.bec.WindowsSyslog,Pantheios.bec.syslog>
+)
+
+target_link_libraries(example.cpp.backends.mx.2
+	PRIVATE
+		Pantheios.fe.simple
+)
+
+target_link_Pantheios_util(example.cpp.backends.mx.2)
+
+target_link_STLSoft(example.cpp.backends.mx.2)
+
+if(_BUILD_AS_WIN32)
+
+	target_link_libraries(example.cpp.backends.mx.2
+		PRIVATE
+			ws2_32
+	)
+endif(_BUILD_AS_WIN32)
+
+define_target_compile_options(example.cpp.backends.mx.2)
+
+
+# ############################## end of file ############################# #
+

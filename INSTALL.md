@@ -1,4 +1,5 @@
-# pantheios - Install <!-- omit in toc -->
+# Pantheios - Installation and Use <!-- omit in toc -->
+
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -16,7 +17,7 @@ There are three options for installing **Pantheios**, depending on how you obtai
 
 ### Cloning project, installing via CMake
 
-0. First, ensure that [**STLSoft**](https://github.com/synesissoftware/STLSoft) and, optionally, [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild), have been cloned and then built and installed via CMake, as per the instructions in those projects.
+0. First, ensure that [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.1-rc8** or later) and, optionally, [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild), have been cloned and then built and installed via CMake, as per the instructions in those projects. To build the stock **ACE** backends, install **ACE** (for example `libace-dev` on Ubuntu, or set **`ACE`** / **`ACE_ROOT`** to an ACE tree) before configuring; pass **`--no-ace`** to **prepare_cmake.sh** to skip **ACE** discovery. To build the stock **ZeroMQ** (**0MQ**) backends, install **libzmq** (for example `libzmq3-dev` on Ubuntu, or `brew install zeromq` on macOS) before configuring; pass **`--no-zmq`** to **prepare_cmake.sh** to skip **ZeroMQ** discovery.
 
 
 1. Clone **Pantheios** from GitHub, as in;
@@ -45,7 +46,7 @@ The **prepare_cmake.sh** script has a bunch of command-line flags/options to cus
 
 ```plaintext
 Pantheios is an efficient, flexible, and robust C/C++ diagnostic logging library
-Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
 Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
 Creates/reinitialises the CMake build script(s)
 
@@ -81,6 +82,18 @@ Flags/options:
     --msvc-mt
         when using Visual C++ (MSVC), the static runtime library will be
         selected; the default is the dynamic runtime library
+
+    --no-ace
+        suppresses discovery of ACE (stock ACE backends will not be built)
+
+    --no-b64
+        suppresses discovery of b64 package
+
+    --no-shwild
+        suppresses discovery of shwild package
+
+    --no-zmq
+        suppresses discovery of ZeroMQ (stock zmq backends will not be built)
 
     -m
     --run-make
@@ -127,8 +140,8 @@ $ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 1. Download the latest distributions;
 
 Obtain the latest releases of **Pantheios** and **STLSoft** from:
-* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-rc1.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-rc1.zip);
-* [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft/tags), e.g. [**STLSoft-1.11.1-rc4**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/STLSoft-1.11.1-rc4);
+* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.1.0-alpha1.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.1.0-alpha1.zip);
+* [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft/tags), e.g. [**STLSoft-1.11.1-rc8**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/STLSoft-1.11.1-rc8);
 
 
 2. Unzip to directories of your choice, as in:
@@ -136,16 +149,16 @@ Obtain the latest releases of **Pantheios** and **STLSoft** from:
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
-$ unzip Pantheios-1.0.1-rc1.zip
-$ unzip STLSoft-1.11.1-rc4
+$ unzip Pantheios-1.1.0-alpha1.zip
+$ unzip STLSoft-1.11.1-rc8
 ```
 
-3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11.1-rc4`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11.1-rc8`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
 
 4. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make
 
 ```bash
-$ cd Pantheios-1.0.1-rc1
+$ cd Pantheios-1.1.0-alpha1
 $ cd build/gcc48.unix
 $ make
 ```
@@ -179,18 +192,20 @@ $ make
 
 ----
 
+
 ## Understanding the top-level project build scripts
 
 This project comes with a number of scripts useful for building with **CMake**, as follows:
 
-| Script                    | Purpose |
-| ------------------------- | ------- |
-| **prepare_cmake.sh**          | Creates/reinitialises the **CMake** build script(s).<br/><br/>This is the primary script, and is used to generate all the **CMake** build artefacts. We recommend that you use the command  as follows:</br></br>&nbsp;&nbsp;&nbsp;&nbsp;`./prepare_cmake.sh -m -v`.<br/><br/>The flag `-m` executes a build upon successful generation completes, and the flag `-v` generates verbose makefile(s). Use `./prepare_cmake.sh --help` for further information. |
+| Script | Purpose |
+| ------ | ------- |
 | **build_cmake.sh**            | Executes **CMake**-generated artefacts to (re)build project.<br/><br/>Performs a (re)build, meaningful only once `prepare_cmake.sh` has been run once to generate all the **CMake** build artefacts.<br/><br/>Use `./build_cmake.sh --help` for further information. |
 | **clean_cmake.sh**            | Executes **CMake**-generated artefacts to clean project.<br/><br/>Performs a (re)build, meaningful only once `prepare_cmake.sh` has been run once to generate all the **CMake** build artefacts and a build has been run.<br/><br/>Use `./clean_cmake.sh --help` for further information. |
+| **libver.sh**                 | Builds (unless suppressed) and runs the **libver** scratch program, which prints composite version macros for **Pantheios** and its discovered dependencies.<br/><br/>Use `./libver.sh --help` for further information. |
+| **prepare_cmake.sh**          | Creates/reinitialises the **CMake** build script(s).<br/><br/>This is the primary script, and is used to generate all the **CMake** build artefacts. We recommend that you use the command  as follows:</br></br>&nbsp;&nbsp;&nbsp;&nbsp;`./prepare_cmake.sh -m -v`.<br/><br/>The flag `-m` executes a build upon successful generation completes, and the flag `-v` generates verbose makefile(s). Use `./prepare_cmake.sh --help` for further information. |
+| **remove_cmake_artefacts.sh** | Removes all known **CMake** artefacts.<br/><br/>Removes all known **CMake** build artefacts from the build directory (currently hard-coded to `./_build`) to prepare for complete regeneration using `prepare_cmake.sh`.<br/><br/>Use `./remove_cmake_artefacts.sh --help` for further information. |
 | **run_all_examples.sh**       | Runs all (matching) example programs.<br/><br/>Performs a build and then recursively runs all executable programs matching the shell patterns `example.c.*` and `example.cpp.*`.<br/><br/>Use `./run_all_examples.sh --help` for further information. |
 | **run_all_unit_tests.sh**     | Runs all (matching) unit-test programs.<br/><br/>Performs a build and then recursively runs and executes all (excutable programs) matching the shell patterns `test_*` and `test.*`.<br/><br/>Use `./run_all_unit_tests.sh --help` for further information. |
-| **remove_cmake_artefacts.sh** | Removes all known **CMake** artefacts.<br/><br/>Removes all known **CMake** build artefacts from the build directory (currently hard-coded to `./_build`) to prepare for complete regeneration using `prepare_cmake.sh`.<br/><br/>Use `./remove_cmake_artefacts.sh --help` for further information. |
 
 
 <!-- ########################### end of file ########################### -->

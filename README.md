@@ -126,7 +126,7 @@ and others under **include/pantheios/inserters/**.
 
 Stock **front-ends** include `fe.simple`, `fe.all`, `fe.null`, `fe.fail`, `fe.N`, and `fe.WindowsRegistry` (plus `*.WithCallback` variants). Process identity for stock front-ends is supplied by defining `PANTHEIOS_FE_PROCESS_IDENTITY`.
 
-Stock **back-ends** include `be.fprintf`, `be.file`, `be.null`, `be.fail`, `be.N`, `be.lrsplit`, `be.syslog`, `be.AnsiConsole`, and Windows-oriented backends such as `be.WindowsConsole`, `be.WindowsDebugger`, `be.WindowsEventLog`, `be.WindowsSyslog`, `be.COMErrorObject`, `be.speech`, and others. ACE-oriented stock backends exist in the tree; full **CMake** optional discovery for **ACE** is not yet complete.
+Stock **back-ends** include `be.fprintf`, `be.file`, `be.null`, `be.fail`, `be.N`, `be.lrsplit`, `be.syslog`, `be.AnsiConsole`, `be.ACE` (when **ACE** is discovered), and Windows-oriented backends such as `be.WindowsConsole`, `be.WindowsDebugger`, `be.WindowsEventLog`, `be.WindowsSyslog`, `be.COMErrorObject`, `be.speech`, and others.
 
 
 ## Examples
@@ -167,7 +167,7 @@ int main()
 }
 ```
 
-See **examples/cpp/linking/example.cpp.linking.implicit_link_1** for the canonical form of this pattern. C programs must call `pantheios_init()` (and check the return) before logging — see **examples/c/example.c.101**.
+See **examples/cpp/linking/implicit_link_1** for the canonical form of this pattern. C programs must call `pantheios_init()` (and check the return) before logging — see **examples/c/101**.
 
 
 ## Project Information
@@ -190,11 +190,11 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 
 | Dependency | Role | Required? |
 | ---------- | ---- | --------- |
-| [**STLSoft**](https://github.com/synesissoftware/STLSoft) 1.11 (1.11.1-alpha25 or later) | Implementation and interface support | ✅ Always |
+| [**STLSoft**](https://github.com/synesissoftware/STLSoft) **1.11.1-rc8** or later | Implementation and interface support | ✅ Always |
 | [**b64**](https://github.com/synesissoftware/b64) | `pantheios::b64` inserter | ⚪ Optional (`PANTHEIOS_NO_B64` when absent) |
 | [**shwild**](https://github.com/synesissoftware/shwild) | Pattern matching in tests | ⚪ Optional; tests only |
 | [**xTests**](https://github.com/synesissoftware/xTests) (≥ 0.25.4) | Unit / component tests | ⚪ Tests only (`BUILD_TESTING`) |
-| **ACE** | Stock `be.ACE` / related backends | ⚪ Optional; CMake wiring incomplete |
+| **ACE** | Stock `be.ACE` / related backends | ⚪ Optional (`NO_ACE` / **`--no-ace`**; `ACE` / `ACE_ROOT` or system package) |
 
 
 ### Related projects

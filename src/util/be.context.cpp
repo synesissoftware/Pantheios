@@ -371,6 +371,7 @@ Context::logEntry(
         if (0 != (PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY & m_flags))
         {
 do_sev_as_integer:
+
             slice->ptr = stlsoft::integer_to_string(&numSev[0], STLSOFT_NUM_ELEMENTS(numSev), severity4, &slice->len);
         }
         else

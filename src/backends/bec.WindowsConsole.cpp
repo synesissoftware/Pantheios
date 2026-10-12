@@ -587,57 +587,6 @@ pantheios_be_WindowsConsole_parseArgs(
         {
             res += r;
         }
-
-        if (r < 0)
-        {
-            res = r;
-        }
-        else
-        {
-            res += r;
-        }
-    }
-
-    if (res >= 0)
-    {
-        // Parse the custom argument: "clearAfterEachStatement"
-        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("clearAfterEachStatement"), false, PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT, &init->flags);
-
-        if (r < 0)
-        {
-            res = r;
-        }
-        else
-        {
-            res += r;
-        }
-    }
-
-    if (res >= 0)
-    {
-        // Parse the custom argument: "recognise16Severities"
-        r = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("recognise16Severities"), false, PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES, &init->flags);
-
-        if (r < 0)
-        {
-            res = r;
-        }
-        else
-        {
-            res += r;
-        }
-    }
-
-    if (res >= 0)
-    {
-        // Parse the custom argument: "clearAfterEachStatement"
-        res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("clearAfterEachStatement"), false, PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT, &init->flags);
-    }
-
-    if (res >= 0)
-    {
-        // Parse the custom argument: "recognise16Severities"
-        res = pantheios_be_parseBooleanArg(numArgs, args, PANTHEIOS_LITERAL_STRING("recognise16Severities"), false, PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES, &init->flags);
     }
 
     return res;

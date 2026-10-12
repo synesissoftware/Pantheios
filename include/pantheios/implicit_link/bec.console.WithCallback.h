@@ -4,7 +4,7 @@
  * Purpose: Implicitly links in the Pantheios Console Back-End Common Library
  *
  * Created: 7th December 2010
- * Updated: 16th December 2023
+ * Updated: 5th August 2026
  *
  * Home:    http://pantheios.org/
  *
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_EDIT      4
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_CONSOLE_WITHCALLBACK_EDIT      5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,9 +80,9 @@
 #  include <pantheios/implicit_link/bec.WindowsConsole.WithCallback.h>
 # endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_WINDOWSCONSOLE_WITHCALLBACK */
 #else /* ? OS */
-# ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK
-#  include <pantheios/implicit_link/bec.fprintf.WithCallback.h>
-# endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_FPRINTF_WITHCALLBACK */
+# ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE_WITHCALLBACK
+#  include <pantheios/implicit_link/bec.AnsiConsole.WithCallback.h>
+# endif /* !PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_ANSICONSOLE_WITHCALLBACK */
 #endif /* OS */
 
 /* ////////////////////////////////////////////////////////////////////// */

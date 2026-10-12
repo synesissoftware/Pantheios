@@ -2,6 +2,10 @@
  *
  * Purpose:     Implementation for the ZeroMQ back-end
  *
+ * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
+ * Copyright (c) 2016, Mikko Johannes Koivunalho
+ *
  * ////////////////////////////////////////////////////////////////////// */
 
 
@@ -330,8 +334,8 @@ PANTHEIOS_CALL(int) pantheios_be_zmq_logEntry(
 
 PANTHEIOS_CALL(int) pantheios_be_zmq_parseArgs(
     size_t                      numArgs
-,   struct pan_slice_t* const   args
-,   pan_be_zmq_init_t*       init
+,   pantheios_slice_t           args[]
+,   pan_be_zmq_init_t*          init
 )
 {
     int res;
@@ -365,6 +369,8 @@ be_zmq_Context::be_zmq_Context(
     : parent_class_type(processIdentity, backEndId, init.flags, be_zmq_Context::severityMask)
     , m_flags(init.flags)
 {
+    STLSOFT_SUPPRESS_UNUSED(m_flags);
+
     this->context = zmq_ctx_new();
 
     void* socket = zmq_socket(context, init.zmq_socket.socket_type);
@@ -395,6 +401,9 @@ int be_zmq_Context::rawLogEntry(
 ,   size_t cchTotal
 )
 {
+    STLSOFT_SUPPRESS_UNUSED(severity4);
+    STLSOFT_SUPPRESS_UNUSED(severityX);
+
     // Allocate the buffer
     buffer_t buff(cchTotal + 2);
     if(0 == buff.size()) {
@@ -403,6 +412,7 @@ int be_zmq_Context::rawLogEntry(
     else {
         size_t nWritten = concatenateSlices(&buff[0], buff.size(), rawLogArrayDimension, &ar[0]);
         PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_RETURN_INTERNAL(nWritten == cchTotal, "Written length differs from allocated length");
+        STLSOFT_SUPPRESS_UNUSED(nWritten);
     }
     this->WriteEntry(buff.data(), cchTotal, this->socket);
     return cchTotal;
@@ -415,6 +425,9 @@ int be_zmq_Context::rawLogEntry(
 ,   size_t              cchEntry
 )
 {
+    STLSOFT_SUPPRESS_UNUSED(severity4);
+    STLSOFT_SUPPRESS_UNUSED(severityX);
+
     buffer_t buff(cchEntry);
     if(0 == buff.size()) {
         return PANTHEIOS_INIT_RC_OUT_OF_MEMORY;
