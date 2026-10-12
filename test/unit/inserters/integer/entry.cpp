@@ -27,11 +27,11 @@
 namespace
 {
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_06();
+static void TEST_pantheios_integer_ZERO();
+static void TEST_pantheios_integer_SIGNED_ONES();
+static void TEST_pantheios_integer_SIGNED_ONES_WITH_ZERO_WIDTH_AND_FLAGS();
+static void TEST_pantheios_integer_showPlus();
+static void TEST_pantheios_integer_NEGATIVE_ONE();
 } /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -68,11 +68,11 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.inserter.integer", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_06);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_ZERO);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_SIGNED_ONES);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_SIGNED_ONES_WITH_ZERO_WIDTH_AND_FLAGS);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_showPlus);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_NEGATIVE_ONE);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -86,24 +86,24 @@ int main(int argc, char* argv[])
 namespace
 {
 
-static void test_1_01()
+static void TEST_pantheios_integer_ZERO()
 {
     TEST_STRING_EQ(PSTR("0"), pantheios::integer(0));
 }
 
-static void test_1_02()
+static void TEST_pantheios_integer_SIGNED_ONES()
 {
     TEST_STRING_EQ(PSTR("-1"), pantheios::integer(-1));
     TEST_STRING_EQ(PSTR( "1"), pantheios::integer(+1));
 }
 
-static void test_1_03()
+static void TEST_pantheios_integer_SIGNED_ONES_WITH_ZERO_WIDTH_AND_FLAGS()
 {
     TEST_STRING_EQ(PSTR("-1"), pantheios::integer(-1, 0, 0));
     TEST_STRING_EQ(PSTR( "1"), pantheios::integer(+1, 0, 0));
 }
 
-static void test_1_04()
+static void TEST_pantheios_integer_showPlus()
 {
     TEST_STRING_EQ(PSTR("+0"), pantheios::integer( 0, 0, pantheios::fmt::showPlus));
     TEST_STRING_EQ(PSTR("-1"), pantheios::integer(-1, 0, pantheios::fmt::showPlus));
@@ -111,7 +111,7 @@ static void test_1_04()
 }
 
 
-static void test_1_06()
+static void TEST_pantheios_integer_NEGATIVE_ONE()
 {
     TEST_STRING_EQ(PSTR("-1"), pantheios::integer(-1));
 //    TEST_STRING_EQ(PSTR("+1"), pantheios::integer(+1));

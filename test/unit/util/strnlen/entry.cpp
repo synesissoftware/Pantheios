@@ -31,11 +31,11 @@
 namespace
 {
 
-static void test_length_passed_through();
-static void test_length_via_strlen();
-static void test_length_calculated_forwards();
-static void test_length_calculated_backwards();
-static void test_strnlen_with_negatives();
+static void TEST_pantheios_util_strnlen_LENGTH_PASSED_THROUGH();
+static void TEST_pantheios_util_strnlen_VIA_strlen();
+static void TEST_pantheios_util_strnlen_CALCULATED_FORWARDS();
+static void TEST_pantheios_util_strnlen_CALCULATED_BACKWARDS();
+static void TEST_pantheios_util_strnlen_WITH_NEGATIVES();
 } /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -53,11 +53,11 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.util.strnlen", verbosity))
     {
-        XTESTS_RUN_CASE(test_length_passed_through);
-        XTESTS_RUN_CASE(test_length_via_strlen);
-        XTESTS_RUN_CASE(test_length_calculated_forwards);
-        XTESTS_RUN_CASE(test_length_calculated_backwards);
-        XTESTS_RUN_CASE(test_strnlen_with_negatives);
+        XTESTS_RUN_CASE(TEST_pantheios_util_strnlen_LENGTH_PASSED_THROUGH);
+        XTESTS_RUN_CASE(TEST_pantheios_util_strnlen_VIA_strlen);
+        XTESTS_RUN_CASE(TEST_pantheios_util_strnlen_CALCULATED_FORWARDS);
+        XTESTS_RUN_CASE(TEST_pantheios_util_strnlen_CALCULATED_BACKWARDS);
+        XTESTS_RUN_CASE(TEST_pantheios_util_strnlen_WITH_NEGATIVES);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -90,7 +90,7 @@ namespace
         return pantheios::pan_slice_t::get_lazy_length(minLen, maxLen);
     }
 
-static void test_length_passed_through()
+static void TEST_pantheios_util_strnlen_LENGTH_PASSED_THROUGH()
 {
     /* Verify that when the top two bits are not set, the length returned
      * is the length given
@@ -104,7 +104,7 @@ static void test_length_passed_through()
     }}
 }
 
-static void test_length_via_strlen()
+static void TEST_pantheios_util_strnlen_VIA_strlen()
 {
     /* Verify that when the size given is size_t(-1) that the string length
      * is calculated
@@ -117,7 +117,7 @@ static void test_length_via_strlen()
     }}
 }
 
-static void test_length_calculated_forwards()
+static void TEST_pantheios_util_strnlen_CALCULATED_FORWARDS()
 {
     /* Verify that when the size has the top-bit set, then the string length
      * is calculated between the given limits
@@ -180,7 +180,7 @@ static void test_length_calculated_forwards()
     TEST_INT_EQ(21u, pantheios_util_strnlen(string, get_min_max(18, 24)));
 }
 
-static void test_length_calculated_backwards()
+static void TEST_pantheios_util_strnlen_CALCULATED_BACKWARDS()
 {
     /* Verify that when the size has the top-bit set, then the string length
      * is calculated between the given limits
@@ -243,7 +243,7 @@ static void test_length_calculated_backwards()
     TEST_INT_EQ(21u, pantheios_util_strnlen(string, get_min_max(24, 18)));
 }
 
-static void test_strnlen_with_negatives()
+static void TEST_pantheios_util_strnlen_WITH_NEGATIVES()
 {
     PAN_CHAR_T const abcdefghi[] = PANTHEIOS_LITERAL_STRING("abcdefghi");
 

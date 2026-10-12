@@ -101,59 +101,59 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 namespace
 {
 
-static void test_1_00();
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_0a();
-static void test_1_0b();
-static void test_1_0c();
-static void test_1_0d();
-static void test_1_0e();
-static void test_1_0f();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_NONE();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_ALL_STOCK();
 
-static void test_2_00();
-static void test_2_01();
-static void test_2_02();
-static void test_2_03();
-static void test_2_04();
-static void test_2_05();
-static void test_2_06();
-static void test_2_07();
-static void test_2_08();
-static void test_2_09();
-static void test_2_0a();
-static void test_2_0b();
-static void test_2_0c();
-static void test_2_0d();
-static void test_2_0e();
-static void test_2_0f();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_NONE();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_ALL_STOCK();
 
-static void test_3_00();
-static void test_3_01();
-static void test_3_02();
-static void test_3_03();
-static void test_3_04();
-static void test_3_05();
-static void test_3_06();
-static void test_3_07();
-static void test_3_08();
-static void test_3_09();
-static void test_3_0a();
-static void test_3_0b();
-static void test_3_0c();
-static void test_3_0d();
-static void test_3_0e();
-static void test_3_0f();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_NONE();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_ALL_STOCK();
 
-static void test_4_00();
-static void test_4_01();
+static void TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY();
+static void TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY_SHOW_NONE();
 
 static void TEST_pantheios_be_file_WITH_ALL_STOCK_true();
 static void TEST_pantheios_be_file_WITH_ALL_STOCK_false();
@@ -170,59 +170,59 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.bec.file", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_00);
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_0a);
-        XTESTS_RUN_CASE(test_1_0b);
-        XTESTS_RUN_CASE(test_1_0c);
-        XTESTS_RUN_CASE(test_1_0d);
-        XTESTS_RUN_CASE(test_1_0e);
-        XTESTS_RUN_CASE(test_1_0f);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_NONE);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_ALL_STOCK);
 
-        XTESTS_RUN_CASE(test_2_00);
-        XTESTS_RUN_CASE(test_2_01);
-        XTESTS_RUN_CASE(test_2_02);
-        XTESTS_RUN_CASE(test_2_03);
-        XTESTS_RUN_CASE(test_2_04);
-        XTESTS_RUN_CASE(test_2_05);
-        XTESTS_RUN_CASE(test_2_06);
-        XTESTS_RUN_CASE(test_2_07);
-        XTESTS_RUN_CASE(test_2_08);
-        XTESTS_RUN_CASE(test_2_09);
-        XTESTS_RUN_CASE(test_2_0a);
-        XTESTS_RUN_CASE(test_2_0b);
-        XTESTS_RUN_CASE(test_2_0c);
-        XTESTS_RUN_CASE(test_2_0d);
-        XTESTS_RUN_CASE(test_2_0e);
-        XTESTS_RUN_CASE(test_2_0f);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_NONE);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_ALL_STOCK);
 
-        XTESTS_RUN_CASE(test_3_00);
-        XTESTS_RUN_CASE(test_3_01);
-        XTESTS_RUN_CASE(test_3_02);
-        XTESTS_RUN_CASE(test_3_03);
-        XTESTS_RUN_CASE(test_3_04);
-        XTESTS_RUN_CASE(test_3_05);
-        XTESTS_RUN_CASE(test_3_06);
-        XTESTS_RUN_CASE(test_3_07);
-        XTESTS_RUN_CASE(test_3_08);
-        XTESTS_RUN_CASE(test_3_09);
-        XTESTS_RUN_CASE(test_3_0a);
-        XTESTS_RUN_CASE(test_3_0b);
-        XTESTS_RUN_CASE(test_3_0c);
-        XTESTS_RUN_CASE(test_3_0d);
-        XTESTS_RUN_CASE(test_3_0e);
-        XTESTS_RUN_CASE(test_3_0f);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_NONE);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_ALL_STOCK);
 
-        XTESTS_RUN_CASE(test_4_00);
-        XTESTS_RUN_CASE(test_4_01);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY_SHOW_NONE);
 
         XTESTS_RUN_CASE(TEST_pantheios_be_file_WITH_ALL_STOCK_true);
         XTESTS_RUN_CASE(TEST_pantheios_be_file_WITH_ALL_STOCK_false);
@@ -273,7 +273,7 @@ static PAN_CHAR_T const* strings[] =
 
 
 
-static void test_1_00()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_NONE()
 {
     pan_be_file_init_t  init;
 
@@ -300,7 +300,7 @@ static void test_1_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -327,7 +327,7 @@ static void test_1_00()
     }
 }
 
-static void test_1_01()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID()
 {
     pan_be_file_init_t  init;
 
@@ -354,7 +354,7 @@ static void test_1_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -381,7 +381,7 @@ static void test_1_01()
     }
 }
 
-static void test_1_02()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -408,7 +408,7 @@ static void test_1_02()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -435,7 +435,7 @@ static void test_1_02()
     }
 }
 
-static void test_1_03()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -462,7 +462,7 @@ static void test_1_03()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -489,7 +489,7 @@ static void test_1_03()
     }
 }
 
-static void test_1_04()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -516,7 +516,7 @@ static void test_1_04()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -545,7 +545,7 @@ static void test_1_04()
     }
 }
 
-static void test_1_05()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -572,7 +572,7 @@ static void test_1_05()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -601,7 +601,7 @@ static void test_1_05()
     }
 }
 
-static void test_1_06()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -628,7 +628,7 @@ static void test_1_06()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -657,7 +657,7 @@ static void test_1_06()
     }
 }
 
-static void test_1_07()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -684,7 +684,7 @@ static void test_1_07()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -713,7 +713,7 @@ static void test_1_07()
     }
 }
 
-static void test_1_08()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -740,7 +740,7 @@ static void test_1_08()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -767,7 +767,7 @@ static void test_1_08()
     }
 }
 
-static void test_1_09()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -794,7 +794,7 @@ static void test_1_09()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -821,7 +821,7 @@ static void test_1_09()
     }
 }
 
-static void test_1_0a()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -848,7 +848,7 @@ static void test_1_0a()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -875,7 +875,7 @@ static void test_1_0a()
     }
 }
 
-static void test_1_0b()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -902,7 +902,7 @@ static void test_1_0b()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -929,7 +929,7 @@ static void test_1_0b()
     }
 }
 
-static void test_1_0c()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -956,7 +956,7 @@ static void test_1_0c()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -985,7 +985,7 @@ static void test_1_0c()
     }
 }
 
-static void test_1_0d()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1012,7 +1012,7 @@ static void test_1_0d()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1041,7 +1041,7 @@ static void test_1_0d()
     }
 }
 
-static void test_1_0e()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1068,7 +1068,7 @@ static void test_1_0e()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1097,7 +1097,7 @@ static void test_1_0e()
     }
 }
 
-static void test_1_0f()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_ALL_STOCK()
 {
     pan_be_file_init_t  init;
 
@@ -1124,7 +1124,7 @@ static void test_1_0f()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1155,7 +1155,7 @@ static void test_1_0f()
 
 
 
-static void test_2_00()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_NONE()
 {
     pan_be_file_init_t  init;
 
@@ -1182,7 +1182,7 @@ static void test_2_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1209,7 +1209,7 @@ static void test_2_00()
     }
 }
 
-static void test_2_01()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID()
 {
     pan_be_file_init_t  init;
 
@@ -1236,7 +1236,7 @@ static void test_2_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1263,7 +1263,7 @@ static void test_2_01()
     }
 }
 
-static void test_2_02()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -1290,7 +1290,7 @@ static void test_2_02()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1317,7 +1317,7 @@ static void test_2_02()
     }
 }
 
-static void test_2_03()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -1344,7 +1344,7 @@ static void test_2_03()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1371,7 +1371,7 @@ static void test_2_03()
     }
 }
 
-static void test_2_04()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -1398,7 +1398,7 @@ static void test_2_04()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1427,7 +1427,7 @@ static void test_2_04()
     }
 }
 
-static void test_2_05()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -1454,7 +1454,7 @@ static void test_2_05()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1483,7 +1483,7 @@ static void test_2_05()
     }
 }
 
-static void test_2_06()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -1510,7 +1510,7 @@ static void test_2_06()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1539,7 +1539,7 @@ static void test_2_06()
     }
 }
 
-static void test_2_07()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -1566,7 +1566,7 @@ static void test_2_07()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1595,7 +1595,7 @@ static void test_2_07()
     }
 }
 
-static void test_2_08()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1622,7 +1622,7 @@ static void test_2_08()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1649,7 +1649,7 @@ static void test_2_08()
     }
 }
 
-static void test_2_09()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1676,7 +1676,7 @@ static void test_2_09()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1703,7 +1703,7 @@ static void test_2_09()
     }
 }
 
-static void test_2_0a()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1730,7 +1730,7 @@ static void test_2_0a()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1757,7 +1757,7 @@ static void test_2_0a()
     }
 }
 
-static void test_2_0b()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1784,7 +1784,7 @@ static void test_2_0b()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1811,7 +1811,7 @@ static void test_2_0b()
     }
 }
 
-static void test_2_0c()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1838,7 +1838,7 @@ static void test_2_0c()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1867,7 +1867,7 @@ static void test_2_0c()
     }
 }
 
-static void test_2_0d()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1894,7 +1894,7 @@ static void test_2_0d()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1923,7 +1923,7 @@ static void test_2_0d()
     }
 }
 
-static void test_2_0e()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1950,7 +1950,7 @@ static void test_2_0e()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1979,7 +1979,7 @@ static void test_2_0e()
     }
 }
 
-static void test_2_0f()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_ALL_STOCK()
 {
     pan_be_file_init_t  init;
 
@@ -2006,7 +2006,7 @@ static void test_2_0f()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2037,7 +2037,7 @@ static void test_2_0f()
 
 
 
-static void test_3_00()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_NONE()
 {
     pan_be_file_init_t  init;
 
@@ -2063,7 +2063,7 @@ static void test_3_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2090,7 +2090,7 @@ static void test_3_00()
     }
 }
 
-static void test_3_01()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID()
 {
     pan_be_file_init_t  init;
 
@@ -2116,7 +2116,7 @@ static void test_3_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2143,7 +2143,7 @@ static void test_3_01()
     }
 }
 
-static void test_3_02()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -2169,7 +2169,7 @@ static void test_3_02()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2196,7 +2196,7 @@ static void test_3_02()
     }
 }
 
-static void test_3_03()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -2222,7 +2222,7 @@ static void test_3_03()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2249,7 +2249,7 @@ static void test_3_03()
     }
 }
 
-static void test_3_04()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -2275,7 +2275,7 @@ static void test_3_04()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2304,7 +2304,7 @@ static void test_3_04()
     }
 }
 
-static void test_3_05()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -2330,7 +2330,7 @@ static void test_3_05()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2359,7 +2359,7 @@ static void test_3_05()
     }
 }
 
-static void test_3_06()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -2385,7 +2385,7 @@ static void test_3_06()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2414,7 +2414,7 @@ static void test_3_06()
     }
 }
 
-static void test_3_07()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -2440,7 +2440,7 @@ static void test_3_07()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2469,7 +2469,7 @@ static void test_3_07()
     }
 }
 
-static void test_3_08()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2495,7 +2495,7 @@ static void test_3_08()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2522,7 +2522,7 @@ static void test_3_08()
     }
 }
 
-static void test_3_09()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2548,7 +2548,7 @@ static void test_3_09()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2575,7 +2575,7 @@ static void test_3_09()
     }
 }
 
-static void test_3_0a()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2601,7 +2601,7 @@ static void test_3_0a()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0a.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_SEVERITY.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2628,7 +2628,7 @@ static void test_3_0a()
     }
 }
 
-static void test_3_0b()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2654,7 +2654,7 @@ static void test_3_0b()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0b.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2681,7 +2681,7 @@ static void test_3_0b()
     }
 }
 
-static void test_3_0c()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2707,7 +2707,7 @@ static void test_3_0c()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0c.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME_SEVERITY.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2736,7 +2736,7 @@ static void test_3_0c()
     }
 }
 
-static void test_3_0d()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2762,7 +2762,7 @@ static void test_3_0d()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0d.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2791,7 +2791,7 @@ static void test_3_0d()
     }
 }
 
-static void test_3_0e()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2817,7 +2817,7 @@ static void test_3_0e()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0e.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2846,7 +2846,7 @@ static void test_3_0e()
     }
 }
 
-static void test_3_0f()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_ALL_STOCK()
 {
     pan_be_file_init_t  init;
 
@@ -2872,7 +2872,7 @@ static void test_3_0f()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0f.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_ALL_STOCK.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2902,7 +2902,7 @@ static void test_3_0f()
 }
 
 
-static void test_4_00()
+static void TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY()
 {
     pan_be_file_init_t  init;
 
@@ -2925,7 +2925,7 @@ static void test_4_00()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY.results");
 
 
         { // (i) Writing something (none-0 length)
@@ -2968,7 +2968,7 @@ static void test_4_00()
     }
 }
 
-static void test_4_01()
+static void TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY_SHOW_NONE()
 {
     pan_be_file_init_t  init;
 
@@ -2995,7 +2995,7 @@ static void test_4_01()
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY.results");
 
 
         { // (i) Writing something (none-0 length)

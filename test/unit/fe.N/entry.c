@@ -35,11 +35,11 @@
  * forward declarations
  */
 
-static void test_empty_array_with_negative_default_ceiling(void);
-static void test_empty_array_with_EMERGENCY_default_ceiling(void);
-static void test_empty_array_with_ALERT_default_ceiling(void);
-static void test_array_with_one_specific_id(void);
-static void test_array_with_three_specific_ids(void);
+static void TEST_fe_N_EMPTY_ARRAY_WITH_NEGATIVE_DEFAULT_CEILING(void);
+static void TEST_fe_N_EMPTY_ARRAY_WITH_EMERGENCY_DEFAULT_CEILING(void);
+static void TEST_fe_N_EMPTY_ARRAY_WITH_ALERT_DEFAULT_CEILING(void);
+static void TEST_fe_N_ARRAY_WITH_ONE_SPECIFIC_ID(void);
+static void TEST_fe_N_ARRAY_WITH_THREE_SPECIFIC_IDS(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -55,11 +55,11 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.fe.N", verbosity))
     {
-        XTESTS_RUN_CASE(test_empty_array_with_negative_default_ceiling);
-        XTESTS_RUN_CASE(test_empty_array_with_EMERGENCY_default_ceiling);
-        XTESTS_RUN_CASE(test_empty_array_with_ALERT_default_ceiling);
-        XTESTS_RUN_CASE(test_array_with_one_specific_id);
-        XTESTS_RUN_CASE(test_array_with_three_specific_ids);
+        XTESTS_RUN_CASE(TEST_fe_N_EMPTY_ARRAY_WITH_NEGATIVE_DEFAULT_CEILING);
+        XTESTS_RUN_CASE(TEST_fe_N_EMPTY_ARRAY_WITH_EMERGENCY_DEFAULT_CEILING);
+        XTESTS_RUN_CASE(TEST_fe_N_EMPTY_ARRAY_WITH_ALERT_DEFAULT_CEILING);
+        XTESTS_RUN_CASE(TEST_fe_N_ARRAY_WITH_ONE_SPECIFIC_ID);
+        XTESTS_RUN_CASE(TEST_fe_N_ARRAY_WITH_THREE_SPECIFIC_IDS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -122,7 +122,7 @@ static void reinitialise_ceilings(void)
  * test function implementations
  */
 
-static void test_empty_array_with_negative_default_ceiling(void)
+static void TEST_fe_N_EMPTY_ARRAY_WITH_NEGATIVE_DEFAULT_CEILING(void)
 {
     static const int severityLevelResults[] =
     {
@@ -157,7 +157,7 @@ static void test_empty_array_with_negative_default_ceiling(void)
     }
 }
 
-static void test_empty_array_with_EMERGENCY_default_ceiling(void)
+static void TEST_fe_N_EMPTY_ARRAY_WITH_EMERGENCY_DEFAULT_CEILING(void)
 {
     static const int severityLevelResults[] =
     {
@@ -193,7 +193,7 @@ static void test_empty_array_with_EMERGENCY_default_ceiling(void)
     }
 }
 
-static void test_empty_array_with_ALERT_default_ceiling(void)
+static void TEST_fe_N_EMPTY_ARRAY_WITH_ALERT_DEFAULT_CEILING(void)
 {
     static const int severityLevelResults[] =
     {
@@ -229,7 +229,7 @@ static void test_empty_array_with_ALERT_default_ceiling(void)
     }
 }
 
-static void test_array_with_one_specific_id(void)
+static void TEST_fe_N_ARRAY_WITH_ONE_SPECIFIC_ID(void)
 {
 #define BACKEND_0_ID                                        1001
 
@@ -304,7 +304,7 @@ static void test_array_with_one_specific_id(void)
     }
 }
 
-static void test_array_with_three_specific_ids(void)
+static void TEST_fe_N_ARRAY_WITH_THREE_SPECIFIC_IDS(void)
 {
 #define BACKEND_0_ID                                        1001
 #define BACKEND_1_ID                                        3

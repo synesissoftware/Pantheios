@@ -49,28 +49,28 @@
 namespace
 {
 
-static void test_formatYearToString2_01();
-static void test_formatYearToString2_02();
-static void test_formatYearToString2_03();
-static void test_formatMonthToString2_01();
-static void test_formatMonthToString2_02();
-static void test_formatMonthToString2_03();
-static void test_formatDayToString2_01();
-static void test_formatDayToString2_02();
-static void test_formatDayToString2_03();
-static void test_formatHourToString2_01();
-static void test_formatHourToString2_02();
-static void test_formatHourToString2_03();
-static void test_formatMinuteOrSecondToString2_01();
-static void test_formatMinuteOrSecondToString2_02();
-static void test_formatMinuteOrSecondToString2_03();
-static void test_formatMillisecondToString3_01();
-static void test_formatMillisecondToString3_02();
-static void test_formatMillisecondToString3_03();
-static void test_formatMicrosecondToString6_01();
-static void test_formatMicrosecondToString6_02();
-static void test_formatMicrosecondToString6_03();
-static void test_date_formatting_01();
+static void TEST_pantheios_util_formatYearToString4_ZERO();
+static void TEST_pantheios_util_formatYearToString4_VALID_RANGE();
+static void TEST_pantheios_util_formatYearToString4_OUT_OF_RANGE();
+static void TEST_pantheios_util_formatMonthToString2_ZERO();
+static void TEST_pantheios_util_formatMonthToString2_VALID_RANGE();
+static void TEST_pantheios_util_formatMonthToString2_OUT_OF_RANGE();
+static void TEST_pantheios_util_formatDayToString2_ZERO();
+static void TEST_pantheios_util_formatDayToString2_VALID_RANGE();
+static void TEST_pantheios_util_formatDayToString2_OUT_OF_RANGE();
+static void TEST_pantheios_util_formatHourToString2_ZERO();
+static void TEST_pantheios_util_formatHourToString2_VALID_RANGE();
+static void TEST_pantheios_util_formatHourToString2_OUT_OF_RANGE();
+static void TEST_pantheios_util_formatMinuteOrSecondToString2_ZERO();
+static void TEST_pantheios_util_formatMinuteOrSecondToString2_VALID_RANGE();
+static void TEST_pantheios_util_formatMinuteOrSecondToString2_OUT_OF_RANGE();
+static void TEST_pantheios_util_formatMillisecondToString3_ZERO();
+static void TEST_pantheios_util_formatMillisecondToString3_VALID_RANGE();
+static void TEST_pantheios_util_formatMillisecondToString3_OUT_OF_RANGE();
+static void TEST_pantheios_util_formatMicrosecondToString6_ZERO();
+static void TEST_pantheios_util_formatMicrosecondToString6_VALID_RANGE();
+static void TEST_pantheios_util_formatMicrosecondToString6_OUT_OF_RANGE();
+static void TEST_pantheios_util_date_formatting_COMPOSITE();
 } /* anonymous namespace */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,28 +93,28 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.util.date_elements_to_string", verbosity))
     {
-        XTESTS_RUN_CASE(test_formatYearToString2_01);
-        XTESTS_RUN_CASE(test_formatYearToString2_02);
-        XTESTS_RUN_CASE(test_formatYearToString2_03);
-        XTESTS_RUN_CASE(test_formatMonthToString2_01);
-        XTESTS_RUN_CASE(test_formatMonthToString2_02);
-        XTESTS_RUN_CASE(test_formatMonthToString2_03);
-        XTESTS_RUN_CASE(test_formatDayToString2_01);
-        XTESTS_RUN_CASE(test_formatDayToString2_02);
-        XTESTS_RUN_CASE(test_formatDayToString2_03);
-        XTESTS_RUN_CASE(test_formatHourToString2_01);
-        XTESTS_RUN_CASE(test_formatHourToString2_02);
-        XTESTS_RUN_CASE(test_formatHourToString2_03);
-        XTESTS_RUN_CASE(test_formatMinuteOrSecondToString2_01);
-        XTESTS_RUN_CASE(test_formatMinuteOrSecondToString2_02);
-        XTESTS_RUN_CASE(test_formatMinuteOrSecondToString2_03);
-        XTESTS_RUN_CASE(test_formatMillisecondToString3_01);
-        XTESTS_RUN_CASE(test_formatMillisecondToString3_02);
-        XTESTS_RUN_CASE(test_formatMillisecondToString3_03);
-        XTESTS_RUN_CASE(test_formatMicrosecondToString6_01);
-        XTESTS_RUN_CASE(test_formatMicrosecondToString6_02);
-        XTESTS_RUN_CASE(test_formatMicrosecondToString6_03);
-        XTESTS_RUN_CASE(test_date_formatting_01);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatYearToString4_ZERO);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatYearToString4_VALID_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatYearToString4_OUT_OF_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMonthToString2_ZERO);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMonthToString2_VALID_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMonthToString2_OUT_OF_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatDayToString2_ZERO);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatDayToString2_VALID_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatDayToString2_OUT_OF_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatHourToString2_ZERO);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatHourToString2_VALID_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatHourToString2_OUT_OF_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMinuteOrSecondToString2_ZERO);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMinuteOrSecondToString2_VALID_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMinuteOrSecondToString2_OUT_OF_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMillisecondToString3_ZERO);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMillisecondToString3_VALID_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMillisecondToString3_OUT_OF_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMicrosecondToString6_ZERO);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMicrosecondToString6_VALID_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_formatMicrosecondToString6_OUT_OF_RANGE);
+        XTESTS_RUN_CASE(TEST_pantheios_util_date_formatting_COMPOSITE);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -133,7 +133,7 @@ namespace
     using ::pantheios::pantheios_util_snprintf;
 
 
-static void test_formatYearToString2_01()
+static void TEST_pantheios_util_formatYearToString4_ZERO()
 {
     PAN_CHAR_T  sz[4];
 
@@ -142,7 +142,7 @@ static void test_formatYearToString2_01()
     TEST_STRING_EQ_N(PSTR("0000"), sz, 4);
 }
 
-static void test_formatYearToString2_02()
+static void TEST_pantheios_util_formatYearToString4_VALID_RANGE()
 {
     PAN_CHAR_T  sz[4];
 
@@ -158,7 +158,7 @@ static void test_formatYearToString2_02()
     }
 }
 
-static void test_formatYearToString2_03()
+static void TEST_pantheios_util_formatYearToString4_OUT_OF_RANGE()
 {
     PAN_CHAR_T  sz[4];
 
@@ -179,7 +179,7 @@ static void test_formatYearToString2_03()
 }
 
 
-static void test_formatMonthToString2_01()
+static void TEST_pantheios_util_formatMonthToString2_ZERO()
 {
     PAN_CHAR_T  sz[2];
 
@@ -188,7 +188,7 @@ static void test_formatMonthToString2_01()
     TEST_STRING_EQ_N(PSTR("00"), sz, 2);
 }
 
-static void test_formatMonthToString2_02()
+static void TEST_pantheios_util_formatMonthToString2_VALID_RANGE()
 {
     PAN_CHAR_T  sz[2];
 
@@ -204,7 +204,7 @@ static void test_formatMonthToString2_02()
     }
 }
 
-static void test_formatMonthToString2_03()
+static void TEST_pantheios_util_formatMonthToString2_OUT_OF_RANGE()
 {
     PAN_CHAR_T  sz[2];
 
@@ -226,7 +226,7 @@ static void test_formatMonthToString2_03()
 }
 
 
-static void test_formatDayToString2_01()
+static void TEST_pantheios_util_formatDayToString2_ZERO()
 {
     PAN_CHAR_T  sz[2];
 
@@ -235,7 +235,7 @@ static void test_formatDayToString2_01()
     TEST_STRING_EQ_N(PSTR("00"), sz, 2);
 }
 
-static void test_formatDayToString2_02()
+static void TEST_pantheios_util_formatDayToString2_VALID_RANGE()
 {
     PAN_CHAR_T  sz[2];
 
@@ -251,7 +251,7 @@ static void test_formatDayToString2_02()
     }
 }
 
-static void test_formatDayToString2_03()
+static void TEST_pantheios_util_formatDayToString2_OUT_OF_RANGE()
 {
     PAN_CHAR_T  sz[2];
 
@@ -265,7 +265,7 @@ static void test_formatDayToString2_03()
 }
 
 
-static void test_formatHourToString2_01()
+static void TEST_pantheios_util_formatHourToString2_ZERO()
 {
     PAN_CHAR_T  sz[2];
 
@@ -274,7 +274,7 @@ static void test_formatHourToString2_01()
     TEST_STRING_EQ_N(PSTR("00"), sz, 2);
 }
 
-static void test_formatHourToString2_02()
+static void TEST_pantheios_util_formatHourToString2_VALID_RANGE()
 {
     PAN_CHAR_T  sz[2];
 
@@ -290,7 +290,7 @@ static void test_formatHourToString2_02()
     }
 }
 
-static void test_formatHourToString2_03()
+static void TEST_pantheios_util_formatHourToString2_OUT_OF_RANGE()
 {
     PAN_CHAR_T  sz[2];
 
@@ -332,7 +332,7 @@ static void test_formatHourToString2_03()
 }
 
 
-static void test_formatMinuteOrSecondToString2_01()
+static void TEST_pantheios_util_formatMinuteOrSecondToString2_ZERO()
 {
     PAN_CHAR_T  sz[2];
 
@@ -341,7 +341,7 @@ static void test_formatMinuteOrSecondToString2_01()
     TEST_STRING_EQ_N(PSTR("00"), sz, 2);
 }
 
-static void test_formatMinuteOrSecondToString2_02()
+static void TEST_pantheios_util_formatMinuteOrSecondToString2_VALID_RANGE()
 {
     PAN_CHAR_T  sz[2];
 
@@ -357,7 +357,7 @@ static void test_formatMinuteOrSecondToString2_02()
     }
 }
 
-static void test_formatMinuteOrSecondToString2_03()
+static void TEST_pantheios_util_formatMinuteOrSecondToString2_OUT_OF_RANGE()
 {
     PAN_CHAR_T  sz[2];
 
@@ -383,7 +383,7 @@ static void test_formatMinuteOrSecondToString2_03()
 }
 
 
-static void test_formatMillisecondToString3_01()
+static void TEST_pantheios_util_formatMillisecondToString3_ZERO()
 {
     PAN_CHAR_T  sz[3];
 
@@ -392,7 +392,7 @@ static void test_formatMillisecondToString3_01()
     TEST_STRING_EQ_N(PSTR("000"), sz, 3);
 }
 
-static void test_formatMillisecondToString3_02()
+static void TEST_pantheios_util_formatMillisecondToString3_VALID_RANGE()
 {
     PAN_CHAR_T  sz[3];
 
@@ -408,7 +408,7 @@ static void test_formatMillisecondToString3_02()
     }
 }
 
-static void test_formatMillisecondToString3_03()
+static void TEST_pantheios_util_formatMillisecondToString3_OUT_OF_RANGE()
 {
     PAN_CHAR_T  sz[3];
 
@@ -442,7 +442,7 @@ static void test_formatMillisecondToString3_03()
 }
 
 
-static void test_formatMicrosecondToString6_01()
+static void TEST_pantheios_util_formatMicrosecondToString6_ZERO()
 {
     PAN_CHAR_T  sz[6];
 
@@ -451,7 +451,7 @@ static void test_formatMicrosecondToString6_01()
     TEST_STRING_EQ_N(PSTR("000000"), sz, 6);
 }
 
-static void test_formatMicrosecondToString6_02()
+static void TEST_pantheios_util_formatMicrosecondToString6_VALID_RANGE()
 {
     PAN_CHAR_T  sz[6];
 
@@ -467,7 +467,7 @@ static void test_formatMicrosecondToString6_02()
     }
 }
 
-static void test_formatMicrosecondToString6_03()
+static void TEST_pantheios_util_formatMicrosecondToString6_OUT_OF_RANGE()
 {
     PAN_CHAR_T  sz[6];
 
@@ -481,7 +481,7 @@ static void test_formatMicrosecondToString6_03()
 }
 
 
-static void test_date_formatting_01()
+static void TEST_pantheios_util_date_formatting_COMPOSITE()
 {
     // to format as "YYYY-mm-DD HH:MM:SS"
 

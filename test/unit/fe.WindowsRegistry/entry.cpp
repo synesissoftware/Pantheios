@@ -66,13 +66,13 @@ PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
 namespace
 {
 
-    static void test_can_init(void);
-    static void test_cannot_init(void);
-    static void test_levels_in_HKCU(void);
-    static void test_levels_in_HKLM(void);
-    static void test_HKCU_overrides_HKLM(void);
-    static void test_star(void);
-    static void test_cleanup(void);
+    static void TEST_fe_WindowsRegistry_CAN_INIT(void);
+    static void TEST_fe_WindowsRegistry_CANNOT_INIT(void);
+    static void TEST_fe_WindowsRegistry_LEVELS_IN_HKCU(void);
+    static void TEST_fe_WindowsRegistry_LEVELS_IN_HKLM(void);
+    static void TEST_fe_WindowsRegistry_HKCU_OVERRIDES_HKLM(void);
+    static void TEST_fe_WindowsRegistry_STAR(void);
+    static void TEST_fe_WindowsRegistry_CLEANUP(void);
 
 } /* anonymous namespace */
 
@@ -96,13 +96,13 @@ static int main_(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.fe.WindowsRegistry", verbosity))
     {
-        XTESTS_RUN_CASE(test_can_init);
-        XTESTS_RUN_CASE(test_cannot_init);
-        XTESTS_RUN_CASE(test_levels_in_HKCU);
-        XTESTS_RUN_CASE(test_levels_in_HKLM);
-        XTESTS_RUN_CASE(test_HKCU_overrides_HKLM);
-        XTESTS_RUN_CASE(test_star);
-        XTESTS_RUN_CASE(test_cleanup);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_CAN_INIT);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_CANNOT_INIT);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_LEVELS_IN_HKCU);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_LEVELS_IN_HKLM);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_HKCU_OVERRIDES_HKLM);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_STAR);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_CLEANUP);
 
         XTESTS_PRINT_RESULTS();
 
@@ -325,7 +325,7 @@ namespace
         }
     }
 
-static void test_can_init()
+static void TEST_fe_WindowsRegistry_CAN_INIT()
 {
     // Ensure that the HKCU key exists
     ensure_HKCU(0, 0, 0);
@@ -357,7 +357,7 @@ static void test_can_init()
     }
 }
 
-static void test_cannot_init()
+static void TEST_fe_WindowsRegistry_CANNOT_INIT()
 {
     // Ensure that neither the HKCU key nor the HKLM key exist
     delete_HKCU();
@@ -387,7 +387,7 @@ static void test_cannot_init()
     }
 }
 
-static void test_levels_in_HKCU()
+static void TEST_fe_WindowsRegistry_LEVELS_IN_HKCU()
 {
     // Ensure that the HKCU key exists, and has the right levels
     ensure_HKCU(0xff, 0x3f, -1);
@@ -446,7 +446,7 @@ static void test_levels_in_HKCU()
     }
 }
 
-static void test_levels_in_HKLM()
+static void TEST_fe_WindowsRegistry_LEVELS_IN_HKLM()
 {
     // Ensure that the HKCU key exists, and has the right levels
     delete_HKCU();
@@ -505,7 +505,7 @@ static void test_levels_in_HKLM()
     }
 }
 
-static void test_HKCU_overrides_HKLM()
+static void TEST_fe_WindowsRegistry_HKCU_OVERRIDES_HKLM()
 {
     // Ensure that the HKCU key exists, and has the right levels
     ensure_HKCU(0xff, 0x3f, -1);
@@ -564,7 +564,7 @@ static void test_HKCU_overrides_HKLM()
     }
 }
 
-static void test_star()
+static void TEST_fe_WindowsRegistry_STAR()
 {
     // Ensure that the HKCU key exists, and has the right levels
     delete_HKCU();
@@ -620,7 +620,7 @@ static void test_star()
 }
 
 
-static void test_cleanup()
+static void TEST_fe_WindowsRegistry_CLEANUP()
 {
     delete_HKCU();
     delete_HKLM();

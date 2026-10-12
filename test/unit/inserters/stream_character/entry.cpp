@@ -27,9 +27,9 @@
 namespace
 {
 
-    static void test_type_exists();
-    static void test_plain_characters();
-    static void test_special_characters_1();
+    static void TEST_pantheios_stream_character_TYPE_EXISTS();
+    static void TEST_pantheios_stream_character_PLAIN_CHARACTERS();
+    static void TEST_pantheios_stream_character_SPECIAL_CHARACTERS();
 } /* anonymous namespace */
 
 
@@ -68,9 +68,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.inserter.stream_character", verbosity))
     {
-        XTESTS_RUN_CASE(test_type_exists);
-        XTESTS_RUN_CASE(test_plain_characters);
-        XTESTS_RUN_CASE(test_special_characters_1);
+        XTESTS_RUN_CASE(TEST_pantheios_stream_character_TYPE_EXISTS);
+        XTESTS_RUN_CASE(TEST_pantheios_stream_character_PLAIN_CHARACTERS);
+        XTESTS_RUN_CASE(TEST_pantheios_stream_character_SPECIAL_CHARACTERS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -88,14 +88,14 @@ int main(int argc, char* argv[])
 namespace
 {
 
-static void test_type_exists()
+static void TEST_pantheios_stream_character_TYPE_EXISTS()
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(pantheios::stream_character));
 
     TEST_PASSED();
 }
 
-static void test_plain_characters()
+static void TEST_pantheios_stream_character_PLAIN_CHARACTERS()
 {
     static char const plain_characters[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}|;:\",<.>/?";
 
@@ -108,7 +108,7 @@ static void test_plain_characters()
     }}
 }
 
-static void test_special_characters_1()
+static void TEST_pantheios_stream_character_SPECIAL_CHARACTERS()
 {
     TEST_STRING_EQ(PSTR("NUL"), pantheios::stream_character(0));
     TEST_STRING_EQ(PSTR("SOH"), pantheios::stream_character(1));
