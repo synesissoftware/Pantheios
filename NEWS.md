@@ -3,7 +3,7 @@
 
 | Date                | News Item                                                     | Details    |
 | ------------------- | ------------------------------------------------------------- | ---------- |
-| 14th October 2026   | [Pantheios 1.0.1-rc4 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc4) |  |
+| 18th October 2026   | [Pantheios 1.0.1-rc4 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc4) | **bec.stock** / **bec.stock.WithCallback** (no **bec.test**); `PANTHEIOS_VER_1_0_1_RC4` |
 | 12th October 2026   | [Pantheios 1.0.1-rc3 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc3) | **bec.AnsiConsole** VT / default sink; optional **ACE**; **CMake** leaf helpers; entry/main + path canonicalisation; headless scratch **`--skip-interactive`**; `_RELSTATUS`; CI refactor; Phase **4c** **test.scratch.versions**; **STLSoft** **1.11.1-rc8** floor |
 | 6th September 2026  | [Pantheios 1.0.1-rc2 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc2) | transitive link dependencies in **pantheios-config.cmake**; added **.vscode/settings.json** |
 | 5th August 2026     | [Pantheios 1.0.1-rc1 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc1) | modular GitHub Actions CI; documentation modernisation; **bec.AnsiConsole** back-end; **CMake** package config |

@@ -1,8 +1,16 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
-## 1.0.1-rc4 - 14th October 2026
+## 1.0.1-rc4 - 18th October 2026
 
+* backends:
+  * **bec.stock**: excludes **bec.test** (test harness stays a separate library);
+  * **bec.stock.WithCallback**: platform-scoped stock archive with **`PANTHEIOS_BE_USE_CALLBACK`** (same membership as **bec.stock**; fixed source-dir variable for **bec.AnsiConsole**);
+* version:
+  * current composite is `PANTHEIOS_VER_1_0_1_RC4` (`0x010001E4`) in **include/pantheios/pantheios.h**;
+  * **test.unit.getversion** asserts `PANTHEIOS_VER_1_0_1_RC4`;
+* documentation:
+  * **NEWS.md**, **INSTALL.md**, **KNOWN_ISSUES.md**, and **TODO.md** aligned to **1.0.1-rc4**;
 
 
 ## 1.0.1-rc3 - 12th October 2026

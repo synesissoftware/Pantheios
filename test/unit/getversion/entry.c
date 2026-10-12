@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.getversion project.
  *
  * Created: 28th August 2008
- * Updated: 10th October 2026
+ * Updated: 18th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
