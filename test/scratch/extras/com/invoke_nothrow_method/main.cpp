@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.extras.com.invoke_nothrow_method project.
  *
  * Created: 3rd November 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -243,7 +243,7 @@ private:
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int /* argc */, char** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     Class1  instance1;
 

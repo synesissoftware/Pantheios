@@ -213,7 +213,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
  * main()
  */
 
-static int main_(int /*argc*/, char** /*argv*/)
+static int main_(int /*argc*/, char* /*argv*/[])
 {
     thread_handle_t threads[NUM_THREADS];
 
