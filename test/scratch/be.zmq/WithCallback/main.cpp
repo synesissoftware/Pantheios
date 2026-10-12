@@ -1,19 +1,19 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/be.zmq/WithCallback/main.cpp
+ * File:    test/scratch/be.zmq/WithCallback/main.cpp
  *
- * Purpose:     Scratch program for the be.zmq.WithCallback back-end.
+ * Purpose: Scratch program for the be.zmq.WithCallback back-end.
  *
- * Created:     25th March 2015
- * Updated:     19th October 2026
+ * Created: 25th March 2015
+ * Updated: 19th October 2026
  *
- * Status:      Hand generated
+ * Status:  Hand generated
  *
- * License:     (Licensed under the Synesis Software Open License)
+ * License: (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2006-2015, Synesis Software Pty Ltd.
- *              All rights reserved.
+ *          Copyright (c) 2006-2015, Synesis Software Pty Ltd.
+ *          All rights reserved.
  *
- *              www:        http://www.synesis.com.au/software
+ *          www:        http://www.synesis.com.au/software
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -57,7 +57,7 @@
 PANTHEIOS_EXTERN_C const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PSTR("test.scratch.be.zmq.WithCallback");
 
 PANTHEIOS_CALL(void) pantheios_be_zmq_getAppInit(
-    int                     backEndId
+    int                  /* backEndId */
 ,   pan_be_zmq_init_t*      init
 ) {
     init->sleep_microsecs_at_start          = 500000; // Need to wait because this is PUB/SUB queue.
@@ -130,7 +130,7 @@ static void player() { // Thread Player
     pantheios::log_NOTICE("stmt 7");
 }
 
-static int main_(int argc, char **argv)
+static int main_(int /* argc */, char* /* argv */[])
 {
     {
         struct timespec sleep_time;
@@ -159,7 +159,7 @@ static int main_(int argc, char **argv)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     int             res;
 
