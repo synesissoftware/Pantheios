@@ -6,7 +6,7 @@
 * **Matt Wilson** ([mwsis](https://github.com/mwsis)) - primary contributor of most of the libraries;
 * **Garth Lancaster** (sage, salt 'o the earth advice and counterpointing);
 * **Adi Shavit** (contributions that became be.speech);
-* **Mikko Koivunalho** (CMake; zmq backend);
+* **Mikko Koivunalho** ([mikkoi](https://github.com/mikkoi)) — CMake; submitted **be.zmq**;
 
 
 ## Defect reports, fixes and suggestions (for which we are very grateful):

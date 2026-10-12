@@ -3,7 +3,7 @@
 
 ## 1.1.0-alpha1 - 19th October 2026
 
-* added **be.zmq**, a backend that uses **zeromq** (aka **0MQ**);
+* added **be.zmq**, a backend that uses **zeromq** (aka **0MQ**) — submitted by **Mikko Koivunalho** ([mikkoi](https://github.com/mikkoi));
 * **CMake** optional **ZeroMQ** discovery (`NO_ZMQ` / **`--no-zmq`**, **`cmake/FindZeroMQ.cmake`**): builds **be**/**bec**/**bel**/**ber.zmq**, **bec.zmq.WithCallback**, and **test.scratch.be.zmq.WithCallback** when **libzmq** is found;
 * dedicated Ubuntu **GHA** cell **`linux-gcc-zmq`** (`libzmq3-dev`); main matrix cells pass **`NO_ZMQ=ON`**;
 * **test.component.be.zmq**: PUB/SUB round-trip component test (built when **ZeroMQ** is found);
