@@ -4,7 +4,7 @@
  * Purpose: Implementation of the Pantheios ANSI-Console Stock Back-end API.
  *
  * Created: 20th October 2024
- * Updated: 5th August 2026
+ * Updated: 12th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -54,26 +54,11 @@
 #include <pantheios/util/backends/context.hpp>
 
 #include <stlsoft/stlsoft.h>
-#include <platformstl/platformstl.h>
-#include <platformstl/system/console_functions.h>
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
-# include <winstl/system/system_version.hpp>
-#endif
+#include <woad/woad.h>
 
 #include <utility>
 
 #include <stdio.h>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * compatibility
- */
-
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
-# ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
-#  define ENABLE_VIRTUAL_TERMINAL_PROCESSING                (0x0004)
-# endif
-#endif
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,100 +90,6 @@ namespace {
     using ::pantheios::pantheios_getStockSeverityStringSlice;
     using ::pantheios::util::backends::Context;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
-#if !defined(PLATFORMSTL_NO_NAMESPACE)
-    using platformstl::platformstl_C_isatty_stm;
-#endif /* !PLATFORMSTL_NO_NAMESPACE */
-
-    /* Intended to ensure that, on Windows, we are not emitting ANSI colour
-     * codes when on an old terminal that cannot be instructed to accept
-     * them. Pattern mirrors BDUT (`BDUT_console_supports_ansi_`) and
-     * xTests (`tty::ansi_supporter`).
-     *
-     * - Windows 11 (build >= 22000): ANSI typically accepted without
-     *   opt-in (e.g. modern Command Box / console hosts);
-     * - Windows 10 VT-capable builds (>= 16257), or unknown build (0):
-     *   attempt `SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`
-     *   on the standard output and error handles;
-     * - Older Windows (e.g. XP): do not emit ANSI sequences.
-     */
-    struct ansi_supporter
-    {
-    private:
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
-
-        static
-        bool
-        try_enable_console_vt_(
-            HANDLE h
-        )
-        {
-            DWORD mode;
-
-            if (NULL == h ||
-                INVALID_HANDLE_VALUE == h)
-            {
-                return false;
-            }
-
-            if (!::GetConsoleMode(h, &mode))
-            {
-                return false;
-            }
-
-            if (0 != (mode & ENABLE_VIRTUAL_TERMINAL_PROCESSING))
-            {
-                return true;
-            }
-
-            return !!::SetConsoleMode(h, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
-        }
-#endif /* PLATFORMSTL_OS_IS_WINDOWS */
-
-    public:
-        static
-        bool
-        determine_support()
-        {
-#if defined(PLATFORMSTL_OS_IS_WINDOWS)
-
-            using winstl::system_version;
-
-            /* Cache: `SetConsoleMode` is a process-wide console side-effect. */
-            static bool s_determined;
-            static bool s_supports;
-
-            if (!s_determined)
-            {
-                DWORD const build = system_version::build_number();
-
-                if (build >= 22000)
-                {
-                    s_supports = true;
-                }
-                else if (build >= 16257 ||
-                         0 == build)
-                {
-                    bool const out_ok = try_enable_console_vt_(::GetStdHandle(STD_OUTPUT_HANDLE));
-                    bool const err_ok = try_enable_console_vt_(::GetStdHandle(STD_ERROR_HANDLE));
-
-                    s_supports = out_ok || err_ok;
-                }
-                else
-                {
-                    s_supports = false;
-                }
-
-                s_determined = true;
-            }
-
-            return s_supports;
-#else /* ? PLATFORMSTL_OS_IS_WINDOWS */
-
-            return true;
-#endif /* PLATFORMSTL_OS_IS_WINDOWS */
-        }
-    };
-
     struct AnsiConsole_Context
         : public Context
     {
@@ -511,6 +402,37 @@ pantheios_be_AnsiConsole_parseArgs(
 
 namespace {
 
+    /* Maps a stock severity (low nibble) to its SGR prefix. All parts are
+     * woad sequences: WOAD_BOLD / WOAD_BLINKING where used, then foreground
+     * and background.
+     */
+    char const*
+    severity_sequence_(
+        int severity4
+    ) STLSOFT_NOEXCEPT
+    {
+        switch (severity4 & 0xf)
+        {
+        case  0:    return WOAD_BOLD WOAD_BLINKING WOAD_FG_BRIGHT_YELLOW WOAD_BG_RED;   /* emergency */
+        case  1:    return WOAD_BOLD WOAD_BLINKING WOAD_FG_BRIGHT_CYAN WOAD_BG_RED;     /* alert */
+        case  2:    return WOAD_BOLD WOAD_FG_BRIGHT_WHITE WOAD_BG_RED;                  /* critical */
+        case  3:    return WOAD_BOLD WOAD_FG_RED WOAD_BG_YELLOW;                        /* error */
+        case  4:    return WOAD_BOLD WOAD_FG_BLUE WOAD_BG_YELLOW;                       /* warning */
+        case  5:    return WOAD_BOLD WOAD_FG_BRIGHT_WHITE WOAD_BG_BRIGHT_BLACK;         /* notice */
+        case  6:    return WOAD_BOLD WOAD_FG_WHITE WOAD_BG_BRIGHT_BLACK;                /* informational */
+        case  7:    return WOAD_BOLD WOAD_FG_WHITE WOAD_BG_BLUE;                        /* debug */
+        case  8:    return WOAD_BOLD WOAD_FG_WHITE WOAD_BG_BLUE;                        /* debug-1 */
+        case  9:    return WOAD_FG_WHITE WOAD_BG_BLUE;                                  /* debug-2 */
+        case 10:    return WOAD_FG_WHITE WOAD_BG_BLUE;                                  /* debug-3 */
+        case 11:    return WOAD_FG_WHITE WOAD_BG_BLUE;                                  /* debug-4 */
+        case 12:    return WOAD_FG_WHITE WOAD_BG_BLUE;                                  /* debug-5 */
+        case 13:    return WOAD_FG_WHITE WOAD_BG_BLUE;                                  /* debug-6 */
+        case 14:    return WOAD_FG_WHITE WOAD_BG_BLUE;                                  /* trace */
+        case 15:    return WOAD_BOLD WOAD_FG_CYAN WOAD_BG_BLACK;                        /* benchmark */
+        default:    return "";
+        }
+    }
+
     /* static */
     std::pair<
         char const*
@@ -527,31 +449,17 @@ namespace {
 
         if (0 == (PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS & flags))
         {
-            if (0 != (PANTHEIOS_BE_ANSICONSOLE_F_FORCE_ANSI_ESCAPE_SEQUENCES & flags) ||
-                (platformstl_C_isatty_stm(stm) &&
-                 ansi_supporter::determine_support()))
-            {
-                switch (severity4 & 0xf)
-                {
-                case  0: pre = "\033[1;93;41;5m"; break;    // emergency / violation
-                case  1: pre = "\033[1;96;41;5m"; break;    // alert
-                case  2: pre = "\033[1;97;41m"; break;      // critical
-                case  3: pre = "\033[1;31;43m"; break;      // failure / error
-                case  4: pre = "\033[1;34;43m"; break;      // warning
-                case  5: pre = "\033[1;97;100m"; break;     // notice
-                case  6: pre = "\033[1;37;100m"; break;     // info(rmational)
-                case  7: pre = "\033[1;37;44m"; break;      // debug
-                case  8: pre = "\033[1;37;44m"; break;      // debug-1
-                case  9: pre = "\033[0;37;44m"; break;      // debug-2
-                case 10: pre = "\033[0;37;44m"; break;      // debug-3
-                case 11: pre = "\033[0;37;44m"; break;      // debug-4
-                case 12: pre = "\033[0;37;44m"; break;      // debug-5
-                case 13: pre = "\033[0;37;44m"; break;      // debug-6
-                case 14: pre = "\033[0;37;44m"; break;      // trace
-                case 15: pre = "\033[1;36;40m"; break;      // benchmark
-                }
+            char const* const seq = severity_sequence_(severity4);
 
-                post = "\033[0m";
+            if (0 != (PANTHEIOS_BE_ANSICONSOLE_F_FORCE_ANSI_ESCAPE_SEQUENCES & flags))
+            {
+                pre     =   seq;
+                post    =   WOAD_RESET;
+            }
+            else
+            {
+                pre     =   woad_seq_for_stream(seq, stm);
+                post    =   woad_seq_for_stream(WOAD_RESET, stm);
             }
         }
 

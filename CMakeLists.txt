@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  11th October 2026
+# Updated:  12th October 2026
 #
 # ######################################################################## #
 
@@ -142,6 +142,8 @@ endif(PANTHEIOS_USE_WIDE_STRINGS)
 #
 # required:
 # - STLSoft;
+# - woad - ANSI colour for bec.AnsiConsole (and stock libraries that
+#   compile it);
 # - xTests - required for testing only;
 #
 # optional:
@@ -201,6 +203,19 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
+
+
+# ############################
+# woad
+#
+# Required by bec.AnsiConsole, and by the stock back-end libraries that
+# compile that translation unit, for SGR sequences and stream policy.
+
+find_package(woad REQUIRED)
+
+message("-- CMake package woad found (version ${woad_VERSION})")
+
+add_compile_definitions(HAS_woad)
 
 
 # ############################

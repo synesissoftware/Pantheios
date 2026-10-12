@@ -53,7 +53,7 @@ Further reading: [http://pantheios.org/](http://pantheios.org/), [FAQ.md](./FAQ.
 
 3. **It depends on other libraries, which are also open-source and free.**
 
-	**STLSoft** is required. **b64** is optional (for the `pantheios::b64` inserter). **shwild** and **xTests** are used for testing. See [Dependencies](#dependencies).
+	**STLSoft** is required. **woad** is required for ANSI console colour. **b64** is optional (for the `pantheios::b64` inserter). **shwild** and **xTests** are used for testing. See [Dependencies](#dependencies).
 
 4. **It's designed for efficiency.**
 
@@ -191,6 +191,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 | Dependency | Role | Required? |
 | ---------- | ---- | --------- |
 | [**STLSoft**](https://github.com/synesissoftware/STLSoft) **1.11.1-rc8** or later | Implementation and interface support | ✅ Always |
+| [**woad**](https://github.com/synesissoftware/woad) | ANSI colour for **bec.AnsiConsole** | ✅ Always |
 | [**b64**](https://github.com/synesissoftware/b64) | `pantheios::b64` inserter | ⚪ Optional (`PANTHEIOS_NO_B64` when absent) |
 | [**shwild**](https://github.com/synesissoftware/shwild) | Pattern matching in tests | ⚪ Optional; tests only |
 | [**xTests**](https://github.com/synesissoftware/xTests) (≥ 0.25.4) | Unit / component tests | ⚪ Tests only (`BUILD_TESTING`) |
@@ -208,6 +209,7 @@ Projects closely related to **Pantheios** include:
 * [**shwild**](https://github.com/synesissoftware/shwild) — used in testing;
 * [**STLSoft**](https://github.com/synesissoftware/STLSoft) — required foundation;
 * [**xTests**](https://github.com/synesissoftware/xTests) — used in testing;
+* [**woad**](https://github.com/synesissoftware/woad) — ANSI colour for **bec.AnsiConsole**;
 
 
 ### License

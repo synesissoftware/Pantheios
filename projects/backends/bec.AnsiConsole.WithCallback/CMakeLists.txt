@@ -11,6 +11,11 @@ add_library(Pantheios.bec.AnsiConsole.WithCallback
 
 target_link_STLSoft(Pantheios.bec.AnsiConsole.WithCallback)
 
+target_link_libraries(Pantheios.bec.AnsiConsole.WithCallback
+	PUBLIC
+		$<LINK_ONLY:woad::woad>
+)
+
 target_compile_options(Pantheios.bec.AnsiConsole.WithCallback
 	PRIVATE
 		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
