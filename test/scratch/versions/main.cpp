@@ -5,7 +5,7 @@
  *          dependencies.
  *
  * Created: 4th August 2026
- * Updated: 12th October 2026
+ * Updated: 14th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,6 +29,10 @@
 
 #ifdef HAS_shwild
 # include <shwild/shwild.h>
+#endif
+
+#ifdef HAS_woad
+# include <woad/woad.h>
 #endif
 
 #ifdef HAS_xTests
@@ -163,6 +167,16 @@ int main(int /* argc */, char* /* argv */[])
 
         version(std::cout, "\t", "shwild", "SHWILD_VER", libver);
     }
+#endif
+
+#ifdef HAS_woad
+
+    {
+        unsigned const libver = WOAD_VER;
+
+        version(std::cout, "\t", "woad", "WOAD_VER", libver);
+    }
+#endif
 
 #ifdef HAS_xTests
 
