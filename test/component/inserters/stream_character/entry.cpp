@@ -37,8 +37,8 @@
  * forward declarations
  */
 
-static void test_plain_characters();
-static void test_special_characters_1();
+static void TEST_pantheios_stream_character_PLAIN_CHARACTERS();
+static void TEST_pantheios_stream_character_SPECIAL_CHARACTERS();
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -75,8 +75,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.stream_character", verbosity))
     {
-        XTESTS_RUN_CASE(test_plain_characters);
-        XTESTS_RUN_CASE(test_special_characters_1);
+        XTESTS_RUN_CASE(TEST_pantheios_stream_character_PLAIN_CHARACTERS);
+        XTESTS_RUN_CASE(TEST_pantheios_stream_character_SPECIAL_CHARACTERS);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_plain_characters()
+static void TEST_pantheios_stream_character_PLAIN_CHARACTERS()
 {
     static char const plain_characters[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}|;:\",<.>/?";
 
@@ -123,7 +123,7 @@ static void test_plain_characters()
     }}
 }
 
-static void test_special_characters_1()
+static void TEST_pantheios_stream_character_SPECIAL_CHARACTERS()
 {
     // 1. Setup
 

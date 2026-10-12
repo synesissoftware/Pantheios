@@ -33,19 +33,19 @@
  * forward declarations
  */
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_10();
-static void test_1_11();
-static void test_1_12();
-static void test_1_13();
+static void TEST_pantheios_pointer_NULL_WIDTH_1_cv_QUALIFIERS();
+static void TEST_pantheios_pointer_NULL_WIDTH_4_AND_8();
+static void TEST_pantheios_pointer_NONNULL_WIDTHS();
+static void TEST_pantheios_pointer_NONNULL_hex();
+static void TEST_pantheios_pointer_NONNULL_zeroXPrefix();
+static void TEST_pantheios_pointer_NONNULL_zeroPad();
+static void TEST_pantheios_pointer_NONNULL_zeroPad_zeroXPrefix();
+static void TEST_pantheios_pointer_NONNULL_zeroXPrefix_REPEAT();
+static void TEST_pantheios_pointer_hex_WIDTHS_COMBINED_FLAGS();
+static void TEST_pantheios_pointer_hex_WIDTH_AND_FLAGS_ARGS();
+static void TEST_pantheios_pointer_hex_NEGATIVE_WIDTHS();
+static void TEST_pantheios_pointer_hex_zeroXPrefix_WIDTHS();
+static void TEST_pantheios_pointer_hex_zeroXPrefix_NEGATIVE_WIDTHS();
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,19 +83,19 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.pointer", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_NULL_WIDTH_1_cv_QUALIFIERS);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_NULL_WIDTH_4_AND_8);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_NONNULL_WIDTHS);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_NONNULL_hex);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_NONNULL_zeroXPrefix);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_NONNULL_zeroPad);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_NONNULL_zeroPad_zeroXPrefix);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_NONNULL_zeroXPrefix_REPEAT);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_hex_WIDTHS_COMBINED_FLAGS);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_hex_WIDTH_AND_FLAGS_ARGS);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_hex_NEGATIVE_WIDTHS);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_hex_zeroXPrefix_WIDTHS);
+        XTESTS_RUN_CASE(TEST_pantheios_pointer_hex_zeroXPrefix_NEGATIVE_WIDTHS);
 
         XTESTS_PRINT_RESULTS();
 
@@ -108,7 +108,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_pointer_NULL_WIDTH_1_cv_QUALIFIERS()
 {
     // 1. Setup
 
@@ -135,7 +135,7 @@ static void test_1_01()
     TEST_STRING_EQ(PSTR("(null)"), results[3].statement);
 }
 
-static void test_1_02()
+static void TEST_pantheios_pointer_NULL_WIDTH_4_AND_8()
 {
     // 1. Setup
 
@@ -158,7 +158,7 @@ static void test_1_02()
     TEST_STRING_EQ(PSTR("(null)"), results[1].statement);
 }
 
-static void test_1_03()
+static void TEST_pantheios_pointer_NONNULL_WIDTHS()
 {
     // 1. Setup
 
@@ -185,7 +185,7 @@ static void test_1_03()
     TEST_STRING_EQ(PSTR("    1234"), results[2].statement);
 }
 
-static void test_1_04()
+static void TEST_pantheios_pointer_NONNULL_hex()
 {
     // 1. Setup
 
@@ -212,7 +212,7 @@ static void test_1_04()
     TEST_STRING_EQ(PSTR("    1234"), results[2].statement);
 }
 
-static void test_1_05()
+static void TEST_pantheios_pointer_NONNULL_zeroXPrefix()
 {
     // 1. Setup
 
@@ -239,7 +239,7 @@ static void test_1_05()
     TEST_STRING_EQ(PSTR("0x00001234"), results[2].statement);
 }
 
-static void test_1_06()
+static void TEST_pantheios_pointer_NONNULL_zeroPad()
 {
     // 1. Setup
 
@@ -266,7 +266,7 @@ static void test_1_06()
     TEST_STRING_EQ(PSTR("00001234"), results[2].statement);
 }
 
-static void test_1_07()
+static void TEST_pantheios_pointer_NONNULL_zeroPad_zeroXPrefix()
 {
     // 1. Setup
 
@@ -293,7 +293,7 @@ static void test_1_07()
     TEST_STRING_EQ(PSTR("0x00001234"), results[2].statement);
 }
 
-static void test_1_08()
+static void TEST_pantheios_pointer_NONNULL_zeroXPrefix_REPEAT()
 {
     // 1. Setup
 
@@ -320,7 +320,7 @@ static void test_1_08()
     TEST_STRING_EQ(PSTR("0x00001234"), results[2].statement);
 }
 
-static void test_1_09()
+static void TEST_pantheios_pointer_hex_WIDTHS_COMBINED_FLAGS()
 {
     // 1. Setup
 
@@ -353,7 +353,7 @@ static void test_1_09()
     TEST_STRING_EQ(PSTR("        12345678"), results[5].statement);
 }
 
-static void test_1_10()
+static void TEST_pantheios_pointer_hex_WIDTH_AND_FLAGS_ARGS()
 {
     // 1. Setup
 
@@ -386,7 +386,7 @@ static void test_1_10()
     TEST_STRING_EQ(PSTR("        12345678"), results[5].statement);
 }
 
-static void test_1_11()
+static void TEST_pantheios_pointer_hex_NEGATIVE_WIDTHS()
 {
     // 1. Setup
 
@@ -419,7 +419,7 @@ static void test_1_11()
     TEST_STRING_EQ(PSTR("12345678        "), results[5].statement);
 }
 
-static void test_1_12()
+static void TEST_pantheios_pointer_hex_zeroXPrefix_WIDTHS()
 {
     // 1. Setup
 
@@ -452,7 +452,7 @@ static void test_1_12()
     TEST_STRING_EQ(PSTR("        0x12345678"), results[5].statement);
 }
 
-static void test_1_13()
+static void TEST_pantheios_pointer_hex_zeroXPrefix_NEGATIVE_WIDTHS()
 {
     // 1. Setup
 

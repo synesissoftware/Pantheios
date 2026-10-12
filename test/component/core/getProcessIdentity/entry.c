@@ -34,8 +34,8 @@
  * forward declarations
  */
 
-static void test_1_0(void);
-static void test_1_1(void);
+static void TEST_pantheios_getProcessIdentity_RETURNS_COPIED_STRING(void);
+static void TEST_pantheios_getProcessIdentity_RETURNS_SAME_POINTER(void);
 static int setup(void*);
 static int teardown(void*);
 static void* s_param;
@@ -54,8 +54,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.core.getProcessIdentity", verbosity, setup, teardown, s_param))
     {
-        XTESTS_RUN_CASE(test_1_0);
-        XTESTS_RUN_CASE(test_1_1);
+        XTESTS_RUN_CASE(TEST_pantheios_getProcessIdentity_RETURNS_COPIED_STRING);
+        XTESTS_RUN_CASE(TEST_pantheios_getProcessIdentity_RETURNS_SAME_POINTER);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -172,9 +172,9 @@ static int teardown(void* param)
     return 0;
 }
 
-static void test_1_0(void)
+static void TEST_pantheios_getProcessIdentity_RETURNS_COPIED_STRING(void)
 {
-    PAN_CHAR_T const pi[] = PSTR("test_1_0");
+    PAN_CHAR_T const pi[] = PSTR("TEST_pantheios_getProcessIdentity_RETURNS_COPIED_STRING");
 
     int r;
 
@@ -194,7 +194,7 @@ static void test_1_0(void)
         TEST_INT_EQ(0, s_numUninits);
         TEST_INT_EQ(1, s_numGPI);
 
-        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("test_1_0"), pantheios_getProcessIdentity());
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("TEST_pantheios_getProcessIdentity_RETURNS_COPIED_STRING"), pantheios_getProcessIdentity());
         TEST_PTR_NE(pi, pantheios_getProcessIdentity());
 
         pantheios_uninit();
@@ -205,9 +205,9 @@ static void test_1_0(void)
     }
 }
 
-static void test_1_1(void)
+static void TEST_pantheios_getProcessIdentity_RETURNS_SAME_POINTER(void)
 {
-    PAN_CHAR_T const pi[] = PSTR("test_1_1");
+    PAN_CHAR_T const pi[] = PSTR("TEST_pantheios_getProcessIdentity_RETURNS_SAME_POINTER");
 
     int r;
 
@@ -227,7 +227,7 @@ static void test_1_1(void)
         TEST_INT_EQ(0, s_numUninits);
         TEST_INT_EQ(2, s_numGPI);
 
-        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("test_1_1"), pantheios_getProcessIdentity());
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("TEST_pantheios_getProcessIdentity_RETURNS_SAME_POINTER"), pantheios_getProcessIdentity());
         TEST_PTR_EQ(pi, pantheios_getProcessIdentity());
 
         pantheios_uninit();

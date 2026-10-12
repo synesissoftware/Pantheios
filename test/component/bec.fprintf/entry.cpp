@@ -78,14 +78,14 @@
  * forward declarations
  */
 
-static void test_NO_THREAD_ID_and_NO_DATETIME();
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID();
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY();
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY();
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME();
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID();
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY();
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY();
 #ifdef PANTHEIOS_HAS_SHWILD
 
-static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID();
-static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION();
+static void TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID();
+static void TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION();
 #endif /* PANTHEIOS_HAS_SHWILD */
 
 
@@ -103,14 +103,14 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.bec.fprintf", verbosity))
     {
-        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME);
-        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID);
-        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY);
-        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY);
 #ifdef PANTHEIOS_HAS_SHWILD
 
-        XTESTS_RUN_CASE(test_USE_UNIX_FORMAT_and_NO_THREAD_ID);
-        XTESTS_RUN_CASE(test_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION);
 #endif /* PANTHEIOS_HAS_SHWILD */
 
         XTESTS_PRINT_RESULTS();
@@ -244,7 +244,7 @@ namespace {
  * forward implementations
  */
 
-static void test_NO_THREAD_ID_and_NO_DATETIME()
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
@@ -262,7 +262,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME()
     }
 }
 
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID()
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
@@ -281,7 +281,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID()
     }
 }
 
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY()
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
@@ -300,7 +300,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY()
     }
 }
 
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY()
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
@@ -320,7 +320,7 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY()
 }
 #ifdef PANTHEIOS_HAS_SHWILD
 
-static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID()
+static void TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
@@ -344,7 +344,7 @@ static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID()
     }
 }
 
-static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION()
+static void TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT

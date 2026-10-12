@@ -54,9 +54,9 @@
  * forward declarations
  */
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
+static void TEST_pantheios_log_NOTICE_STOCK();
+static void TEST_pantheios_log_NOTICE_CUSTOM_SEVERITY_LEVEL_1();
+static void TEST_pantheios_log_NOTICE_CUSTOM_SEVERITY_LEVEL_LARGE();
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -77,9 +77,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.custom_severity", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
+        XTESTS_RUN_CASE(TEST_pantheios_log_NOTICE_STOCK);
+        XTESTS_RUN_CASE(TEST_pantheios_log_NOTICE_CUSTOM_SEVERITY_LEVEL_1);
+        XTESTS_RUN_CASE(TEST_pantheios_log_NOTICE_CUSTOM_SEVERITY_LEVEL_LARGE);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_log_NOTICE_STOCK()
 {
     // 1. Setup
 
@@ -113,7 +113,7 @@ static void test_1_01()
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_NOTICE, results[0].severity);
 }
 
-static void test_1_02()
+static void TEST_pantheios_log_NOTICE_CUSTOM_SEVERITY_LEVEL_1()
 {
     // 1. Setup
 
@@ -135,7 +135,7 @@ static void test_1_02()
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_NOTICE | (1 << 4), results[0].severity);
 }
 
-static void test_1_03()
+static void TEST_pantheios_log_NOTICE_CUSTOM_SEVERITY_LEVEL_LARGE()
 {
     // 1. Setup
 

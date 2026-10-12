@@ -51,7 +51,7 @@ typedef std::basic_string<PAN_CHAR_T>   string_t;
  * forward declarations
  */
 
-static void test_1_01();
+static void TEST_pantheios_hostId_ALONE_AND_WITH_PREFIX();
 
 static string_t pan_get_hid_();
 
@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.hostid", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
+        XTESTS_RUN_CASE(TEST_pantheios_hostId_ALONE_AND_WITH_PREFIX);
 
         XTESTS_PRINT_RESULTS();
 
@@ -103,7 +103,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_hostId_ALONE_AND_WITH_PREFIX()
 {
     // 1. Setup
 

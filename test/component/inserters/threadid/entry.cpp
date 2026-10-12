@@ -49,7 +49,7 @@
  * forward declarations
  */
 
-static void test_1_01();
+static void TEST_pantheios_threadId_ALONE_AND_WITH_PREFIX();
 
 static pantheios::sint64_t pan_get_tid_();
 
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.threadid", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
+        XTESTS_RUN_CASE(TEST_pantheios_threadId_ALONE_AND_WITH_PREFIX);
 
         XTESTS_PRINT_RESULTS();
 
@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-static void test_1_01()
+static void TEST_pantheios_threadId_ALONE_AND_WITH_PREFIX()
 {
     // 1. Setup
 
