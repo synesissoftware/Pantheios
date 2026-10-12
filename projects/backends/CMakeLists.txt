@@ -1,7 +1,8 @@
 
-#[====[
-add_subdirectory(be.ACE)
-#]====]
+if(HAS_ACE)
+
+	add_subdirectory(be.ACE)
+endif(HAS_ACE)
 add_subdirectory(be.AnsiConsole)
 if(_BUILD_AS_WIN32)
 
@@ -34,10 +35,11 @@ if(_BUILD_AS_UNIX)
 endif(_BUILD_AS_UNIX)
 add_subdirectory(be.test)
 
-#[====[
-add_subdirectory(bec.ACE)
-add_subdirectory(bec.ACE.WithCallback)
-#]====]
+if(HAS_ACE)
+
+	add_subdirectory(bec.ACE)
+	add_subdirectory(bec.ACE.WithCallback)
+endif(HAS_ACE)
 add_subdirectory(bec.AnsiConsole)
 add_subdirectory(bec.AnsiConsole.WithCallback)
 if(_BUILD_AS_WIN32)
@@ -82,9 +84,10 @@ endif(_BUILD_AS_UNIX)
 add_subdirectory(bec.test)
 add_subdirectory(bec.test.WithCallback)
 
-#[====[
-add_subdirectory(bel.ACE)
-#]====]
+if(HAS_ACE)
+
+	add_subdirectory(bel.ACE)
+endif(HAS_ACE)
 add_subdirectory(bel.AnsiConsole)
 if(_BUILD_AS_WIN32)
 
@@ -112,9 +115,10 @@ if(_BUILD_AS_UNIX)
 endif(_BUILD_AS_UNIX)
 add_subdirectory(bel.test)
 
-#[====[
-add_subdirectory(ber.ACE)
-#]====]
+if(HAS_ACE)
+
+	add_subdirectory(ber.ACE)
+endif(HAS_ACE)
 add_subdirectory(ber.AnsiConsole)
 if(_BUILD_AS_WIN32)
 

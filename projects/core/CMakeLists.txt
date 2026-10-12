@@ -36,10 +36,16 @@ target_include_directories(Pantheios.core
 
 target_link_STLSoft(Pantheios.core)
 
-target_link_libraries(Pantheios.core
-	PRIVATE
-		$<$<BOOL:${b64_FOUND}>: b64::core >
-)
+# Link b64 only when discovered at configure time. Prefer a plain
+# target_link_libraries() over a generator expression so the exported
+# interface records `$<LINK_ONLY:b64::core>` cleanly (static lib).
+if(b64_FOUND)
+
+	target_link_libraries(Pantheios.core
+		PRIVATE
+			b64::core
+	)
+endif(b64_FOUND)
 
 define_target_compile_options(Pantheios.core)
 

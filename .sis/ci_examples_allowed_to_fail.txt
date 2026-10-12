@@ -1,0 +1,10 @@
+# Example programs that are allowed to fail: these demonstrate Pantheios
+# assertion / contract macros (PANTHEIOS_ASSERT /
+# PANTHEIOS_MESSAGE_ASSERT) and are expected to exit non-zero.
+# run_all_examples.{sh,cmd} still executes each of them, but reports a
+# non-zero exit as anticipated rather than failing the run.
+# List program names or stems (example.c.assert and example.c.assert.exe
+# are equivalent).
+example.c.assert
+example.cpp.contract.PANTHEIOS_ASSERT
+example.cpp.contract.PANTHEIOS_MESSAGE_ASSERT
