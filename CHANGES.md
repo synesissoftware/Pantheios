@@ -3,6 +3,7 @@
 
 ## 1.0.1-rc4 - 14th October 2026
 
+* reimplemented `pantheios_getCurrentProcessId()` in terms of `platformstl_C_get_current_process_id()`;
 
 
 ## 1.0.1-rc3 - 12th October 2026

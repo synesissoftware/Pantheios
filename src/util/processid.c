@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/processid.c
+ * File:    src/util/processid.c
  *
- * Purpose:     Process utility functions
+ * Purpose: Process utility functions
  *
- * Created:     4th January 2008
- * Updated:     16th December 2023
+ * Created: 4th January 2008
+ * Updated: 12th October 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -46,6 +46,7 @@
 #include <pantheios/util/system/processid.h>
 
 #include <platformstl/platformstl.h>
+#include <platformstl/process/functions.h>
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # include <unistd.h>
@@ -70,19 +71,7 @@ namespace pantheios
 
 PANTHEIOS_CALL(stlsoft_ns_qual(ss_sint64_t)) pantheios_getCurrentProcessId(void)
 {
-#if defined(PLATFORMSTL_OS_IS_UNIX)
-
-    return stlsoft_static_cast(stlsoft_ns_qual(ss_sint64_t), getpid());
-
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-
-    return stlsoft_static_cast(stlsoft_ns_qual(ss_sint64_t), GetCurrentProcessId());
-
-#else /* ? OS */
-
-# error Operating system not discriminated
-
-#endif /* OS */
+    return STLSOFT_STATIC_CAST(ss_sint64_t, platformstl_C_get_current_process_id());
 }
 
 
