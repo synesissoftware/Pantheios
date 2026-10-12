@@ -11,6 +11,11 @@ add_library(Pantheios.bec.WindowsSyslog.WithCallback
 
 target_link_STLSoft(Pantheios.bec.WindowsSyslog.WithCallback)
 
+target_link_libraries(Pantheios.bec.WindowsSyslog.WithCallback
+	PUBLIC
+		ws2_32
+)
+
 target_compile_options(Pantheios.bec.WindowsSyslog.WithCallback
 	PRIVATE
 		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:

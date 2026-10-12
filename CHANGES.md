@@ -1,6 +1,63 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1-rc3 - 12th October 2026
+
+* backends:
+  * **bec.AnsiConsole**: on Windows, emit ANSI colours only when the host supports them — Win11 assumed ready, Win10 VT builds opt in via **`SetConsoleMode(... | ENABLE_VIRTUAL_TERMINAL_PROCESSING)`**, older hosts (e.g. XP) stay plain;
+  * examples and scratch tests: non-Windows console sink moved from **be.fprintf** to **be.AnsiConsole** for simple console demos (via **`define_simple_console_example_*`**, **be.console** / **bec.console** aliases, matching implicit-link headers, and per-project **CMakeLists.txt** / **implicit_link** updates); multiplex / callback / **be.N** cases deferred;
+  * **test.component.be.file.threading**: **be.N** console entry uses **`pantheios_be_console`** (platform alias) to match **bec.console.h** / Windows **bec.WindowsConsole** linkage;
+* build:
+  * **CMake** optional **ACE** discovery (`ACE` / `ACE_ROOT`, **`cmake/FindACE.cmake`**, `NO_ACE` / **`--no-ace`**): builds **be**/**bec**/**bel**/**ber.ACE**, **bec.ACE.WithCallback**, stock ACE inclusion, and **test.scratch.be.ACE** when **ACE** is found;
+  * console / syslog BE selection in **`cmake/TargetMacros.cmake`** and leaf **CMakeLists.txt** now uses **`_BUILD_AS_WIN32`** rather than **`CMAKE_SYSTEM_NAME`**, so **UNIXem** builds link **AnsiConsole** / **syslog** correctly;
+  * **CMake** leaf helpers in **`cmake/TargetMacros.cmake`**: added **`define_automated_test_program`** / **`define_example_program`** with **CORE** / **FE** / **BE** / **BEC** / **BE_TEST** / **CONSOLE** / **LIB** / **NO_UTIL** kwargs (plus **`target_link_shwild_if_found`**); folded **`define_simple_console_example_*`** into the example helper; call sites list **FE** above **BE** / **BE_TEST** / **CONSOLE** (helper link order still CORE → BE/BEC → FE);
+  * converted most unit / component / performance / scratch / example leaf **CMakeLists.txt** to those macros (util-only, stock **fe.*** / **bec.***, **be.test** harnesses, and common FE/BE examples); left multi-BE / **ACE** / **b64**+custom-warning outliers hand-rolled;
+  * marked pure stock **`define_*`** leaves with **`# SIS:AUTO_GENERATED`** (including kwargs forms); tailed hybrids (extra **`target_link_libraries`**, **`add_subdirectory`**, warning-list appends) omit the eyecatcher;
+  * restored empty Windows scratch **CMakeLists.txt** for **be.WindowsSyslog** (+ **WithCallback**), **bec.WindowsConsoleCallback**, **bec.WindowsMessageBox**, and **fe.WindowsRegistry** (+ **controller**); deferred **be.pantheios.COM** / **pseudoUNIX** (need **UNIXem**, not valid under **`_BUILD_AS_WIN32`**);
+  * **bec.WindowsSyslog** (+ **WithCallback**) **PUBLIC**-link **ws2_32**; Windows scratch compile fixes (**logputs**, callback exception-spec / unused-parameter hygiene);
+  * restored empty Windows backend **CMakeLists.txt** for **be**/**bec**/**bel**/**ber** (**WindowsMessageBox**, **WindowsConsole.WithCallback**, **WindowsDebugger**, **WindowsEventLog**, **speech.WithCallback**, **COMErrorObject.WithCallback**, and kin) so scratch/example link lines resolve to real targets;
+  * **bec.WindowsConsole.WithCallback**: suppress GCC/Clang **`-Wunused-function`** (same as **bec.WindowsConsole**) for MinGW **`-Werror`**;
+  * **bec.AnsiConsole.WithCallback**: suppress GCC/Clang **`-Wunused-parameter`** (same as **bec.AnsiConsole**);
+  * removed all 122 legacy **implicit_link.cpp** files;
+  * purged all 394 legacy Visual Studio build files (`.dsp`, `.dsw`, `.vcxproj`, `.filters`) and cleaned up empty **vc6** and **vc10** directories;
+  * removed obsolete **test.scratch.implicit_link** test target and associated test files;
+* dependencies:
+  * now requires **STLSoft** **1.11.1-rc8** (or later) — compile-time floor `_STLSOFT_VER < 0x010B01C8`;
+* version:
+  * migrated to the `PANTHEIOS_VER_RELSTATUS` symbol pattern (`PANTHEIOS_VER_AB` / `PANTHEIOS_VER_ALPHABETA` aliases);
+  * added `PANTHEIOS_VER_1_0_1_RC3` (`0x010001E3`) and set release status to `0xE3` in **include/pantheios/pantheios.h**;
+  * **test.unit.getversion** asserts `PANTHEIOS_VER_1_0_1_RC3`;
+* testing:
+  * renamed scratch version reporter **test/scratch/libver** → **test/scratch/versions** (executable **test.scratch.versions**); Phase **4c** one-line VER printer with tab-indented efferent dependencies;
+  * canonicalised test and example entry-point basenames per **c-cpp-standards** / **test-standards**: unit and component sources to **entry.c** / **entry.cpp**; scratch, performance, and example sources to **main.c** / **main.cpp** (executable / **CMake** target names unchanged); **`define_simple_console_example_*`** in **cmake/TargetMacros.cmake** now compile **main.c** / **main.cpp**;
+  * shortened / nested test and example intermediate directories (subject-only leaves and scenario suffixes under **be.*** / **bec.*** / **fe.*** / **inserters/** / **util/** / **examples/c|cpp/**…); kept dotted **CMake** targets and argv0 identities;
+  * aligned **xTests** `XTESTS_START_RUNNER` / `PROCESS_IDENTITY` strings with program ids; removed empty / passed-only unit and component stub cases;
+  * restored **`# SIS:AUTO_GENERATED`** on stock intermediate **CMakeLists.txt** lists after the path rename rework;
+* CI:
+  * consolidated **ci-cell.yml** into a single build-and-test job;
+  * adopted local composite action **`.github/actions/install-sis-deps`**;
+  * added **stlsoft-routes** job for CMake vs environment **STLSoft** resolution;
+  * added minimal **no-b64** and **no-b64** + **no-shwild** matrix permutations and install-smoke coverage;
+  * optional **shwild** exclusion via `NO_SHWILD` / **prepare_cmake.sh --no-shwild**;
+  * dedicated Ubuntu **GHA** cell **`linux-gcc-ace`** (`libace-dev`); main matrix cells pass **`NO_ACE=ON`**;
+  * Windows cells dogfood native **`.cmd`** runners; restore execute bits after artifact download (excluding **CMakeFiles**);
+  * component tests via **run_all_component_tests.sh** / **.cmd**;
+  * push-branch set canonicalised (**master**, **dev**, **boilerplate**, **idiomatic**, **rc1**–**rc3**);
+  * **run_all_scratch_tests.sh** / **.cmd** gain **`--skip-interactive`**, reading **`.sis/ci_scratch_tests_skip_interactive.txt`** (e.g. **test.scratch.bec.WindowsMessageBox**, **test.scratch.be.speech**); Windows **ci-cell** scratch steps pass the flag so headless **GHA** does not hang on GUI / speech sinks;
+* boilerplate:
+  * applied **misc-dev-scripts** **0.6.0** editor/Git/`.sis` drop-in templates;
+  * restored historical **.gitignore** patterns as a sorted union with **misc-dev-scripts** gold section layout;
+  * added **.editorconfig**; **.gitattributes** Linguist language-bar policy;
+  * helper scripts rewritten to the common Synesis layout (**build_cmake.sh**, **clean_cmake.sh**, **prepare_cmake.sh**, **remove_cmake_artefacts.sh**, and kin): builds via `cmake --build`, coloured output, **`.sis/project_name.txt`** in status messages;
+  * added **ctest_cmake.sh**;
+  * added **run_all_component_tests.sh** / **.cmd**, **run_all_performance_tests.sh** / **.cmd**, and **run_all_automated_tests.sh** / **.cmd**; native **.cmd** counterparts for examples / unit / scratch;
+  * **run_all_unit_tests.sh** / **.cmd** — unit-only (`--unit-only` accepted for compatibility; `--component-only` removed from the unit runner);
+  * **.sis/ci_examples_allowed_to_fail.txt** for example-smoke allow-list;
+  * **.sis/ci_scratch_tests_skip_interactive.txt** for headless scratch skips (with **`--skip-interactive`**);
+* documentation:
+  * **NEWS.md** three-column chronology; **README.md**, **INSTALL.md**, **KNOWN_ISSUES.md**, and **TODO.md** aligned to **1.0.1-rc3** (**STLSoft** floor **1.11.1-rc8**);
+
+
 ## 1.0.1-rc2 - 6th September 2026
 
 * **CMake** package configuration: loaded `CMakeFindDependencyMacro` and added conditional `find_dependency()` calls for **STLSoft** and **b64** in **`pantheios-config.cmake`**; ensures exported static targets (such as `Pantheios::Pantheios.core`) provide transitive interface link dependencies (`b64::core`, `STLSoft::STLSoft`) to downstream consumers without requiring callers to invoke `find_package(b64)` manually;

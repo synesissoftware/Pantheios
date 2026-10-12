@@ -51,6 +51,11 @@ add_library(Pantheios.bec.stock
 
 target_link_STLSoft(Pantheios.bec.stock)
 
+if(HAS_ACE)
+
+	target_link_ACE(Pantheios.bec.stock)
+endif(HAS_ACE)
+
 list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED unused-function)
 list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED unused-private-field) # this (temporarily) for bec.test.cpp
 define_target_compile_options(Pantheios.bec.stock)

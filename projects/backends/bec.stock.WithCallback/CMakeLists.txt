@@ -51,6 +51,11 @@ add_library(Pantheios.bec.stock.WithCallback
 
 target_link_STLSoft(Pantheios.bec.stock.WithCallback)
 
+if(HAS_ACE)
+
+	target_link_ACE(Pantheios.bec.stock.WithCallback)
+endif(HAS_ACE)
+
 target_compile_options(Pantheios.bec.stock.WithCallback
 	PRIVATE
 		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
