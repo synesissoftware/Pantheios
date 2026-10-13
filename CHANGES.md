@@ -3,6 +3,10 @@
 
 ## 1.0.1-rc4 - 14th October 2026
 
+* util:
+  * reimplemented `pantheios_getCurrentProcessId()` in terms of `platformstl_C_get_current_process_id()`;
+  * **args** inserter: `arg0FileOnly` basenaming via `filesystem_traits::find_last_path_name_separator`;
+  * thin `pantheios_util_vsnprintf_a` over `stlsoft_C_vsnprintf` (wide CRT fallback retained where STLSoft has no `vsnwprintf`);
 * backends:
   * **bec.stock**: excludes **bec.test** (test harness stays a separate library);
   * **bec.stock.WithCallback**: platform-scoped stock archive with **`PANTHEIOS_BE_USE_CALLBACK`** (same membership as **bec.stock**; fixed source-dir variable for **bec.AnsiConsole**);

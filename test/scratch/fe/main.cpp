@@ -43,17 +43,6 @@ using std::endl;
 
 
 /* /////////////////////////////////////////////////////////////////////////
- * forward declarations
- */
-
-#if (   defined(_WIN32) || \
-        defined(_WIN64)) && \
-    !defined(_INC_WINDOWS)
-extern "C" void __stdcall Sleep(unsigned long);
-#endif /* WIN32 */
-
-
-/* /////////////////////////////////////////////////////////////////////////
  * globals
  */
 
