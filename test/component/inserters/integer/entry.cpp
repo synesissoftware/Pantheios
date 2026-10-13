@@ -39,27 +39,27 @@
  * forward declarations
  */
 
-static void test_1_00();
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_10();
-static void test_1_11();
-static void test_1_12();
-static void test_1_13();
-static void test_1_14();
-static void test_1_15();
+static void TEST_pantheios_integer_ZERO_FIXED_WIDTH_TYPES();
+static void TEST_pantheios_integer_ZERO_SHORT_INT_LONG();
+static void TEST_pantheios_integer_ZERO_ONE_NEGATIVE_ONE();
+static void TEST_pantheios_integer_WIDTH_5();
+static void TEST_pantheios_integer_fullHex();
+static void TEST_pantheios_integer_WIDTH_NEG_5();
+static void TEST_pantheios_integer_zeroXPrefix_hex();
+static void TEST_pantheios_integer_fullHex_sint64();
+static void TEST_pantheios_integer_fullHex_uint64();
+static void TEST_pantheios_integer_zeroXPrefix_hex_sint64();
+static void TEST_pantheios_integer_zeroXPrefix_hex_LEFT_JUSTIFY_sint64();
+static void TEST_pantheios_integer_DECIMAL_LEFT_JUSTIFY_sint64();
+static void TEST_pantheios_integer_DECIMAL_WIDTH_sint64();
+static void TEST_pantheios_integer_DECIMAL_WIDTH_NEGATIVE_sint64();
+static void TEST_pantheios_integer_MIXED_TYPES_WIDTHS_AND_FORMATS();
+static void TEST_pantheios_integer_PLUS_MINUS_15_WIDTHS_zeroPad_hex();
 
-static void test_1_21();
-static void test_1_22();
-static void test_1_23();
-static void test_1_24();
+static void TEST_pantheios_integer_showPlus_LEFT_JUSTIFY_sint64();
+static void TEST_pantheios_integer_showPlus_WIDTH_sint64();
+static void TEST_pantheios_integer_showPlus_WIDTH_NEGATIVE_sint64();
+static void TEST_pantheios_integer_showPlus_MIXED_TYPES_WIDTHS_AND_FORMATS();
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,49 +119,49 @@ int main(int argc, char* argv[])
     if (XTESTS_START_RUNNER("test.component.inserters.integer", verbosity))
     {
 #if 1
-        XTESTS_RUN_CASE(test_1_00);
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_ZERO_FIXED_WIDTH_TYPES);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_ZERO_SHORT_INT_LONG);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_ZERO_ONE_NEGATIVE_ONE);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_WIDTH_5);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_fullHex);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_WIDTH_NEG_5);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_zeroXPrefix_hex);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_fullHex_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_fullHex_uint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_zeroXPrefix_hex_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_zeroXPrefix_hex_LEFT_JUSTIFY_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_DECIMAL_LEFT_JUSTIFY_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_DECIMAL_WIDTH_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_DECIMAL_WIDTH_NEGATIVE_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_MIXED_TYPES_WIDTHS_AND_FORMATS);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_PLUS_MINUS_15_WIDTHS_zeroPad_hex);
 
-        XTESTS_RUN_CASE(test_1_21);
-        XTESTS_RUN_CASE(test_1_22);
-        XTESTS_RUN_CASE(test_1_23);
-        XTESTS_RUN_CASE(test_1_24);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_showPlus_LEFT_JUSTIFY_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_showPlus_WIDTH_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_showPlus_WIDTH_NEGATIVE_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_showPlus_MIXED_TYPES_WIDTHS_AND_FORMATS);
 #else /* ? 0 */
-        XTESTS_RUN_CASE(test_1_24);
-        XTESTS_RUN_CASE(test_1_23);
-        XTESTS_RUN_CASE(test_1_22);
-        XTESTS_RUN_CASE(test_1_21);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_showPlus_MIXED_TYPES_WIDTHS_AND_FORMATS);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_showPlus_WIDTH_NEGATIVE_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_showPlus_WIDTH_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_showPlus_LEFT_JUSTIFY_sint64);
 
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_13);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_00);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_PLUS_MINUS_15_WIDTHS_zeroPad_hex);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_MIXED_TYPES_WIDTHS_AND_FORMATS);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_DECIMAL_WIDTH_NEGATIVE_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_DECIMAL_WIDTH_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_DECIMAL_LEFT_JUSTIFY_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_zeroXPrefix_hex_LEFT_JUSTIFY_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_zeroXPrefix_hex_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_fullHex_uint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_fullHex_sint64);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_zeroXPrefix_hex);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_WIDTH_NEG_5);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_fullHex);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_WIDTH_5);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_ZERO_ONE_NEGATIVE_ONE);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_ZERO_SHORT_INT_LONG);
+        XTESTS_RUN_CASE(TEST_pantheios_integer_ZERO_FIXED_WIDTH_TYPES);
 #endif /* 0 */
 
         XTESTS_PRINT_RESULTS();
@@ -175,7 +175,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_00()
+static void TEST_pantheios_integer_ZERO_FIXED_WIDTH_TYPES()
 {
     // 1. Setup
 
@@ -233,7 +233,7 @@ static void test_1_00()
     }}
 }
 
-static void test_1_01()
+static void TEST_pantheios_integer_ZERO_SHORT_INT_LONG()
 {
     // 1. Setup
 
@@ -272,7 +272,7 @@ static void test_1_01()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_02()
+static void TEST_pantheios_integer_ZERO_ONE_NEGATIVE_ONE()
 {
     // 1. Setup
 
@@ -297,7 +297,7 @@ static void test_1_02()
     TEST_STRING_EQ(PSTR("-1"), results[2].statement);
 }
 
-static void test_1_03()
+static void TEST_pantheios_integer_WIDTH_5()
 {
     // 1. Setup
 
@@ -322,7 +322,7 @@ static void test_1_03()
     TEST_STRING_EQ(PSTR("   -1"), results[2].statement);
 }
 
-static void test_1_04()
+static void TEST_pantheios_integer_fullHex()
 {
     // 1. Setup
 
@@ -430,7 +430,7 @@ static void test_1_04()
     TEST_STRING_EQ(PSTR("0x00008421"), results[n++].statement);
 }
 
-static void test_1_05()
+static void TEST_pantheios_integer_WIDTH_NEG_5()
 {
     // 1. Setup
 
@@ -455,7 +455,7 @@ static void test_1_05()
     TEST_STRING_EQ(PSTR("-1   "), results[2].statement);
 }
 
-static void test_1_06()
+static void TEST_pantheios_integer_zeroXPrefix_hex()
 {
     // 1. Setup
 
@@ -547,7 +547,7 @@ static void test_1_06()
     TEST_STRING_EQ(PSTR("  0x8421"), results[n++].statement);
 }
 
-static void test_1_07()
+static void TEST_pantheios_integer_fullHex_sint64()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -757,7 +757,7 @@ static void test_1_07()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_08()
+static void TEST_pantheios_integer_fullHex_uint64()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -966,7 +966,7 @@ static void test_1_08()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_09()
+static void TEST_pantheios_integer_zeroXPrefix_hex_sint64()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -1176,7 +1176,7 @@ static void test_1_09()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_10()
+static void TEST_pantheios_integer_zeroXPrefix_hex_LEFT_JUSTIFY_sint64()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -1386,7 +1386,7 @@ static void test_1_10()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_11()
+static void TEST_pantheios_integer_DECIMAL_LEFT_JUSTIFY_sint64()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -1596,7 +1596,7 @@ static void test_1_11()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_12()
+static void TEST_pantheios_integer_DECIMAL_WIDTH_sint64()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -1806,7 +1806,7 @@ static void test_1_12()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_13()
+static void TEST_pantheios_integer_DECIMAL_WIDTH_NEGATIVE_sint64()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -2016,7 +2016,7 @@ static void test_1_13()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_14()
+static void TEST_pantheios_integer_MIXED_TYPES_WIDTHS_AND_FORMATS()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -2332,7 +2332,7 @@ static void test_1_14()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_15()
+static void TEST_pantheios_integer_PLUS_MINUS_15_WIDTHS_zeroPad_hex()
 {
     // 1. Setup
 
@@ -2477,7 +2477,7 @@ static void test_1_15()
 
 
 
-static void test_1_21()
+static void TEST_pantheios_integer_showPlus_LEFT_JUSTIFY_sint64()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -2737,7 +2737,7 @@ static void test_1_21()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_22()
+static void TEST_pantheios_integer_showPlus_WIDTH_sint64()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -2947,7 +2947,7 @@ static void test_1_22()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_23()
+static void TEST_pantheios_integer_showPlus_WIDTH_NEGATIVE_sint64()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup
@@ -3157,7 +3157,7 @@ static void test_1_23()
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
-static void test_1_24()
+static void TEST_pantheios_integer_showPlus_MIXED_TYPES_WIDTHS_AND_FORMATS()
 {
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     // 1. Setup

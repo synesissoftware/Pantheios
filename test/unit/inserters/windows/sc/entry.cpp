@@ -30,9 +30,9 @@
 namespace
 {
 
-static void test_regular_decimal_codes_DWORD();
-static void test_highbit_hexadecimal_codes_DWORD();
-static void test_1_07();
+static void TEST_pantheios_windows_sc_REGULAR_DECIMAL_CODES_DWORD();
+static void TEST_pantheios_windows_sc_HIGHBIT_HEXADECIMAL_CODES_DWORD();
+static void TEST_pantheios_windows_sc_WSA_DECIMAL_CODES_MATCH_integer();
 } // anonymous namespace
 
 
@@ -71,9 +71,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.inserters.windows.sc", verbosity))
     {
-        XTESTS_RUN_CASE(test_regular_decimal_codes_DWORD);
-        XTESTS_RUN_CASE(test_highbit_hexadecimal_codes_DWORD);
-        XTESTS_RUN_CASE(test_1_07);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_sc_REGULAR_DECIMAL_CODES_DWORD);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_sc_HIGHBIT_HEXADECIMAL_CODES_DWORD);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_sc_WSA_DECIMAL_CODES_MATCH_integer);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -2340,7 +2340,7 @@ namespace
         ,   WSANO_DATA
     };
 
-static void test_regular_decimal_codes_DWORD()
+static void TEST_pantheios_windows_sc_REGULAR_DECIMAL_CODES_DWORD()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(regular_decimal_codes); ++i)
     {
@@ -2351,7 +2351,7 @@ static void test_regular_decimal_codes_DWORD()
 }
 
 
-static void test_highbit_hexadecimal_codes_DWORD()
+static void TEST_pantheios_windows_sc_HIGHBIT_HEXADECIMAL_CODES_DWORD()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(highbit_hexadecimal_codes); ++i)
     {
@@ -2362,7 +2362,7 @@ static void test_highbit_hexadecimal_codes_DWORD()
 }
 
 
-static void test_1_07()
+static void TEST_pantheios_windows_sc_WSA_DECIMAL_CODES_MATCH_integer()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(WSA_decimal_codes); ++i)
     {

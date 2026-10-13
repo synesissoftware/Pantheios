@@ -33,8 +33,8 @@
  * forward declarations
  */
 
-static void test_1_01();
-static void test_1_02();
+static void TEST_pantheios_real_ZERO_float_double_long_double();
+static void TEST_pantheios_real_SIGNED_AND_SMALL_MAGNITUDE();
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -70,8 +70,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.real", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
+        XTESTS_RUN_CASE(TEST_pantheios_real_ZERO_float_double_long_double);
+        XTESTS_RUN_CASE(TEST_pantheios_real_SIGNED_AND_SMALL_MAGNITUDE);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_real_ZERO_float_double_long_double()
 {
     // 1. Setup
 
@@ -108,7 +108,7 @@ static void test_1_01()
     TEST_STRING_EQ(PSTR("0"), results[2].statement);
 }
 
-static void test_1_02()
+static void TEST_pantheios_real_SIGNED_AND_SMALL_MAGNITUDE()
 {
     // 1. Setup
 

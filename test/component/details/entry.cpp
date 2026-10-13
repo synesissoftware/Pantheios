@@ -55,8 +55,8 @@ typedef std::basic_string<PAN_CHAR_T>                       string_t;
  * forward declarations
  */
 
-static void test_01();
-static void test_02();
+static void TEST_be_test_RESULTS_EMPTY_AFTER_RESET();
+static void TEST_be_test_RESULTS_CAPTURE_STATEMENT_AND_SEVERITY();
 /* /////////////////////////////////////////////////////////////////////////
  * main()
  */
@@ -70,8 +70,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.details", verbosity))
     {
-        XTESTS_RUN_CASE(test_01);
-        XTESTS_RUN_CASE(test_02);
+        XTESTS_RUN_CASE(TEST_be_test_RESULTS_EMPTY_AFTER_RESET);
+        XTESTS_RUN_CASE(TEST_be_test_RESULTS_CAPTURE_STATEMENT_AND_SEVERITY);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_01()
+static void TEST_be_test_RESULTS_EMPTY_AFTER_RESET()
 {
     // 1. Setup
 
@@ -105,7 +105,7 @@ static void test_01()
     TEST_INT_EQ(0u, results.size());
 }
 
-static void test_02()
+static void TEST_be_test_RESULTS_CAPTURE_STATEMENT_AND_SEVERITY()
 {
     // 1. Setup
 

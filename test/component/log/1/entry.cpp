@@ -52,17 +52,17 @@ typedef std::basic_string<PAN_CHAR_T>                       string_t;
  * forward declarations
  */
 
-static void test_01();
-static void test_02();
-static void test_03();
-static void test_04();
-static void test_05();
-static void test_06();
-static void test_07();
-static void test_10();
-static void test_11();
-static void test_21();
-static void test_22();
+static void TEST_pantheios_log_NO_STATEMENTS();
+static void TEST_pantheios_log_EMPTY_STRING();
+static void TEST_pantheios_log_SINGLE_STRING();
+static void TEST_pantheios_log_TWO_STRINGS();
+static void TEST_pantheios_log_THREE_STRINGS();
+static void TEST_pantheios_log_TWELVE_STRINGS_ALPHABET();
+static void TEST_pantheios_log_TWENTY_SIX_SINGLE_CHARS();
+static void TEST_pantheios_log_TWO_STATEMENTS_LOWER_AND_UPPER();
+static void TEST_pantheios_log_MANY_STATEMENTS();
+static void TEST_pantheios_log_TWO_LARGE_STRINGS_256();
+static void TEST_pantheios_log_TWO_LARGE_STRINGS_2560();
 /* /////////////////////////////////////////////////////////////////////////
  * main()
  */
@@ -76,17 +76,17 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.log.1", verbosity))
     {
-        XTESTS_RUN_CASE(test_01);
-        XTESTS_RUN_CASE(test_02);
-        XTESTS_RUN_CASE(test_03);
-        XTESTS_RUN_CASE(test_04);
-        XTESTS_RUN_CASE(test_05);
-        XTESTS_RUN_CASE(test_06);
-        XTESTS_RUN_CASE(test_07);
-        XTESTS_RUN_CASE(test_10);
-        XTESTS_RUN_CASE(test_11);
-        XTESTS_RUN_CASE(test_21);
-        XTESTS_RUN_CASE(test_22);
+        XTESTS_RUN_CASE(TEST_pantheios_log_NO_STATEMENTS);
+        XTESTS_RUN_CASE(TEST_pantheios_log_EMPTY_STRING);
+        XTESTS_RUN_CASE(TEST_pantheios_log_SINGLE_STRING);
+        XTESTS_RUN_CASE(TEST_pantheios_log_TWO_STRINGS);
+        XTESTS_RUN_CASE(TEST_pantheios_log_THREE_STRINGS);
+        XTESTS_RUN_CASE(TEST_pantheios_log_TWELVE_STRINGS_ALPHABET);
+        XTESTS_RUN_CASE(TEST_pantheios_log_TWENTY_SIX_SINGLE_CHARS);
+        XTESTS_RUN_CASE(TEST_pantheios_log_TWO_STATEMENTS_LOWER_AND_UPPER);
+        XTESTS_RUN_CASE(TEST_pantheios_log_MANY_STATEMENTS);
+        XTESTS_RUN_CASE(TEST_pantheios_log_TWO_LARGE_STRINGS_256);
+        XTESTS_RUN_CASE(TEST_pantheios_log_TWO_LARGE_STRINGS_2560);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_01()
+static void TEST_pantheios_log_NO_STATEMENTS()
 {
     // 1. Setup
 
@@ -120,7 +120,7 @@ static void test_01()
     TEST_INT_EQ(0u, results.size());
 }
 
-static void test_02()
+static void TEST_pantheios_log_EMPTY_STRING()
 {
     // 1. Setup
 
@@ -142,7 +142,7 @@ static void test_02()
     TEST(pantheios::notice == results[0].severity);
 }
 
-static void test_03()
+static void TEST_pantheios_log_SINGLE_STRING()
 {
     // 1. Setup
 
@@ -164,7 +164,7 @@ static void test_03()
     TEST(pantheios::notice == results[0].severity);
 }
 
-static void test_04()
+static void TEST_pantheios_log_TWO_STRINGS()
 {
     // 1. Setup
 
@@ -185,7 +185,7 @@ static void test_04()
     TEST(pantheios::informational == results[0].severity);
 }
 
-static void test_05()
+static void TEST_pantheios_log_THREE_STRINGS()
 {
     // 1. Setup
 
@@ -206,7 +206,7 @@ static void test_05()
     TEST(pantheios::informational == results[0].severity);
 }
 
-static void test_06()
+static void TEST_pantheios_log_TWELVE_STRINGS_ALPHABET()
 {
     // 1. Setup
 
@@ -227,7 +227,7 @@ static void test_06()
     TEST(pantheios::informational == results[0].severity);
 }
 
-static void test_07()
+static void TEST_pantheios_log_TWENTY_SIX_SINGLE_CHARS()
 {
     // 1. Setup
 
@@ -249,7 +249,7 @@ static void test_07()
 }
 
 
-static void test_10()
+static void TEST_pantheios_log_TWO_STATEMENTS_LOWER_AND_UPPER()
 {
     // 1. Setup
 
@@ -271,7 +271,7 @@ static void test_10()
     TEST_STRING_EQ(PSTR("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), results[1].statement);
 }
 
-static void test_11()
+static void TEST_pantheios_log_MANY_STATEMENTS()
 {
     // 1. Setup
 
@@ -313,7 +313,7 @@ static void test_11()
 }
 
 
-static void test_21()
+static void TEST_pantheios_log_TWO_LARGE_STRINGS_256()
 {
     // 1. Setup
 
@@ -338,7 +338,7 @@ static void test_21()
     TEST(pantheios::informational == results[0].severity);
 }
 
-static void test_22()
+static void TEST_pantheios_log_TWO_LARGE_STRINGS_2560()
 {
     // 1. Setup
 

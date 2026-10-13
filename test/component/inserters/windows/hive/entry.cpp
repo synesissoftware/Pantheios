@@ -38,13 +38,13 @@
  * forward declarations
  */
 
-static void test_1_00();
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
+static void TEST_pantheios_windows_hive_HKEY_CLASSES_ROOT();
+static void TEST_pantheios_windows_hive_HKEY_CURRENT_USER();
+static void TEST_pantheios_windows_hive_HKEY_LOCAL_MACHINE();
+static void TEST_pantheios_windows_hive_HKEY_USERS();
+static void TEST_pantheios_windows_hive_HKEY_PERFORMANCE_DATA();
+static void TEST_pantheios_windows_hive_HKEY_CURRENT_CONFIG();
+static void TEST_pantheios_windows_hive_HKEY_DYN_DATA();
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -80,13 +80,13 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.windows.hive", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_00);
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_hive_HKEY_CLASSES_ROOT);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_hive_HKEY_CURRENT_USER);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_hive_HKEY_LOCAL_MACHINE);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_hive_HKEY_USERS);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_hive_HKEY_PERFORMANCE_DATA);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_hive_HKEY_CURRENT_CONFIG);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_hive_HKEY_DYN_DATA);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -98,7 +98,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_00()
+static void TEST_pantheios_windows_hive_HKEY_CLASSES_ROOT()
 {
     // 1. Setup
 
@@ -121,7 +121,7 @@ static void test_1_00()
     TEST_STRING_EQ(PSTR("hive is HKEY_CLASSES_ROOT"), results[0].statement);
 }
 
-static void test_1_01()
+static void TEST_pantheios_windows_hive_HKEY_CURRENT_USER()
 {
     // 1. Setup
 
@@ -144,7 +144,7 @@ static void test_1_01()
     TEST_STRING_EQ(PSTR("hive is HKEY_CURRENT_USER"), results[0].statement);
 }
 
-static void test_1_02()
+static void TEST_pantheios_windows_hive_HKEY_LOCAL_MACHINE()
 {
     // 1. Setup
 
@@ -167,7 +167,7 @@ static void test_1_02()
     TEST_STRING_EQ(PSTR("hive is HKEY_LOCAL_MACHINE"), results[0].statement);
 }
 
-static void test_1_03()
+static void TEST_pantheios_windows_hive_HKEY_USERS()
 {
     // 1. Setup
 
@@ -190,7 +190,7 @@ static void test_1_03()
     TEST_STRING_EQ(PSTR("hive is HKEY_USERS"), results[0].statement);
 }
 
-static void test_1_04()
+static void TEST_pantheios_windows_hive_HKEY_PERFORMANCE_DATA()
 {
 #ifdef HKEY_PERFORMANCE_DATA
     // 1. Setup
@@ -215,7 +215,7 @@ static void test_1_04()
 #endif
 }
 
-static void test_1_05()
+static void TEST_pantheios_windows_hive_HKEY_CURRENT_CONFIG()
 {
 #ifdef HKEY_CURRENT_CONFIG
     // 1. Setup
@@ -240,7 +240,7 @@ static void test_1_05()
 #endif
 }
 
-static void test_1_06()
+static void TEST_pantheios_windows_hive_HKEY_DYN_DATA()
 {
 #ifdef HKEY_DYN_DATA
     // 1. Setup

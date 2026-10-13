@@ -36,7 +36,7 @@
 namespace
 {
 
-static void test_1_01();
+static void TEST_pantheios_m2w_MATCHES_stlsoft_m2w();
 } /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.inserter.m2w", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_MATCHES_stlsoft_m2w);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -81,7 +81,7 @@ namespace
     };
 
 
-static void test_1_01()
+static void TEST_pantheios_m2w_MATCHES_stlsoft_m2w()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
     {

@@ -70,8 +70,8 @@ typedef std::basic_string<PAN_CHAR_T>   string_t;
  * forward declarations
  */
 
-static void test_1_01();
-static void test_1_02();
+static void TEST_pantheios_getHostName_C_STRING_BUFFER_SIZES();
+static void TEST_pantheios_getHostName_auto_buffer_SIZES();
 
 static string_t pan_get_hid_();
 
@@ -92,8 +92,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.util.gethostname", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
+        XTESTS_RUN_CASE(TEST_pantheios_getHostName_C_STRING_BUFFER_SIZES);
+        XTESTS_RUN_CASE(TEST_pantheios_getHostName_auto_buffer_SIZES);
 
         XTESTS_PRINT_RESULTS();
 
@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_getHostName_C_STRING_BUFFER_SIZES()
 {
     PAN_CHAR_T      hostname[1000];
     const string_t  hid = pan_get_hid_();
@@ -135,7 +135,7 @@ static void test_1_01()
     }}
 }
 
-static void test_1_02()
+static void TEST_pantheios_getHostName_auto_buffer_SIZES()
 {
     const string_t hid = pan_get_hid_();
 

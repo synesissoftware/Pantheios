@@ -37,14 +37,14 @@
  * forward declarations
  */
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
+static void TEST_pantheios_boolean_DEFAULT_false_true();
+static void TEST_pantheios_boolean_set_value_strings_NULL_RESTORES_DEFAULT();
+static void TEST_pantheios_boolean_set_value_strings_FALSE_TRUE();
+static void TEST_pantheios_boolean_CUSTOM_THEN_RESTORE_DEFAULT();
+static void TEST_pantheios_boolean_LONG_FALSE_STRING_THEN_RESTORE_DEFAULT();
+static void TEST_pantheios_boolean_CUSTOM_DEFAULT_CUSTOM_CYCLE();
+static void TEST_pantheios_boolean_CUSTOM_DEFAULT_SHORT_CYCLE();
+static void TEST_pantheios_boolean_CUSTOM_DEFAULT_SHORT_CYCLE_REPEAT();
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -80,14 +80,14 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.boolean", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
+        XTESTS_RUN_CASE(TEST_pantheios_boolean_DEFAULT_false_true);
+        XTESTS_RUN_CASE(TEST_pantheios_boolean_set_value_strings_NULL_RESTORES_DEFAULT);
+        XTESTS_RUN_CASE(TEST_pantheios_boolean_set_value_strings_FALSE_TRUE);
+        XTESTS_RUN_CASE(TEST_pantheios_boolean_CUSTOM_THEN_RESTORE_DEFAULT);
+        XTESTS_RUN_CASE(TEST_pantheios_boolean_LONG_FALSE_STRING_THEN_RESTORE_DEFAULT);
+        XTESTS_RUN_CASE(TEST_pantheios_boolean_CUSTOM_DEFAULT_CUSTOM_CYCLE);
+        XTESTS_RUN_CASE(TEST_pantheios_boolean_CUSTOM_DEFAULT_SHORT_CYCLE);
+        XTESTS_RUN_CASE(TEST_pantheios_boolean_CUSTOM_DEFAULT_SHORT_CYCLE_REPEAT);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_boolean_DEFAULT_false_true()
 {
     // 1. Setup
 
@@ -122,7 +122,7 @@ static void test_1_01()
     TEST_STRING_EQ(PSTR("{true}"), results[1].statement);
 }
 
-static void test_1_02()
+static void TEST_pantheios_boolean_set_value_strings_NULL_RESTORES_DEFAULT()
 {
     // 1. Setup
 
@@ -147,7 +147,7 @@ static void test_1_02()
     TEST_STRING_EQ(PSTR("{true}"), results[1].statement);
 }
 
-static void test_1_03()
+static void TEST_pantheios_boolean_set_value_strings_FALSE_TRUE()
 {
     // 1. Setup
 
@@ -172,7 +172,7 @@ static void test_1_03()
     TEST_STRING_EQ(PSTR("{TRUE}"), results[1].statement);
 }
 
-static void test_1_04()
+static void TEST_pantheios_boolean_CUSTOM_THEN_RESTORE_DEFAULT()
 {
     // 1. Setup
 
@@ -204,7 +204,7 @@ static void test_1_04()
     TEST_STRING_EQ(PSTR("{true}"), results[3].statement);
 }
 
-static void test_1_05()
+static void TEST_pantheios_boolean_LONG_FALSE_STRING_THEN_RESTORE_DEFAULT()
 {
     // 1. Setup
 
@@ -236,7 +236,7 @@ static void test_1_05()
     TEST_STRING_EQ(PSTR("{true}"), results[3].statement);
 }
 
-static void test_1_06()
+static void TEST_pantheios_boolean_CUSTOM_DEFAULT_CUSTOM_CYCLE()
 {
     // 1. Setup
 
@@ -275,7 +275,7 @@ static void test_1_06()
     TEST_STRING_EQ(PSTR("{TRUE}"), results[5].statement);
 }
 
-static void test_1_07()
+static void TEST_pantheios_boolean_CUSTOM_DEFAULT_SHORT_CYCLE()
 {
     // 1. Setup
 
@@ -314,7 +314,7 @@ static void test_1_07()
     TEST_STRING_EQ(PSTR("{T}"), results[5].statement);
 }
 
-static void test_1_08()
+static void TEST_pantheios_boolean_CUSTOM_DEFAULT_SHORT_CYCLE_REPEAT()
 {
     // 1. Setup
 

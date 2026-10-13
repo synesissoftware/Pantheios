@@ -37,14 +37,14 @@
  * forward declarations
  */
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
+static void TEST_pantheios_slice_LENGTHS_ONLY();
+static void TEST_pantheios_slice_WITH_str_LABEL();
+static void TEST_pantheios_slice_WITH_str_LABEL_AND_COLON_SEP();
+static void TEST_pantheios_slice_WITH_str_AND_len_LABELS();
+static void TEST_pantheios_slice_WITH_str_len_LABELS_AND_SEP();
+static void TEST_pantheios_slice_WITH_str_len_LABELS_AND_SEP_VARIANT_A();
+static void TEST_pantheios_slice_WITH_str_len_LABELS_AND_SEP_VARIANT_B();
+static void TEST_pantheios_slice_WITH_str_len_LABELS_NULL_SEP_AND_EXTRA();
 #ifndef PANTHEIOS_NO_NAMESPACE
 using pantheios::pan_char_t;
 #endif /* !PANTHEIOS_NO_NAMESPACE */
@@ -87,14 +87,14 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.slice", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
+        XTESTS_RUN_CASE(TEST_pantheios_slice_LENGTHS_ONLY);
+        XTESTS_RUN_CASE(TEST_pantheios_slice_WITH_str_LABEL);
+        XTESTS_RUN_CASE(TEST_pantheios_slice_WITH_str_LABEL_AND_COLON_SEP);
+        XTESTS_RUN_CASE(TEST_pantheios_slice_WITH_str_AND_len_LABELS);
+        XTESTS_RUN_CASE(TEST_pantheios_slice_WITH_str_len_LABELS_AND_SEP);
+        XTESTS_RUN_CASE(TEST_pantheios_slice_WITH_str_len_LABELS_AND_SEP_VARIANT_A);
+        XTESTS_RUN_CASE(TEST_pantheios_slice_WITH_str_len_LABELS_AND_SEP_VARIANT_B);
+        XTESTS_RUN_CASE(TEST_pantheios_slice_WITH_str_len_LABELS_NULL_SEP_AND_EXTRA);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_slice_LENGTHS_ONLY()
 {
     // 1. Setup
 
@@ -132,7 +132,7 @@ static void test_1_01()
     }}
 }
 
-static void test_1_02()
+static void TEST_pantheios_slice_WITH_str_LABEL()
 {
     // 1. Setup
 
@@ -159,7 +159,7 @@ static void test_1_02()
     }}
 }
 
-static void test_1_03()
+static void TEST_pantheios_slice_WITH_str_LABEL_AND_COLON_SEP()
 {
     // 1. Setup
 
@@ -186,7 +186,7 @@ static void test_1_03()
     }}
 }
 
-static void test_1_04()
+static void TEST_pantheios_slice_WITH_str_AND_len_LABELS()
 {
     // 1. Setup
 
@@ -215,7 +215,7 @@ static void test_1_04()
     }}
 }
 
-static void test_1_05()
+static void TEST_pantheios_slice_WITH_str_len_LABELS_AND_SEP()
 {
     // 1. Setup
 
@@ -244,7 +244,7 @@ static void test_1_05()
     }}
 }
 
-static void test_1_06()
+static void TEST_pantheios_slice_WITH_str_len_LABELS_AND_SEP_VARIANT_A()
 {
     // 1. Setup
 
@@ -273,7 +273,7 @@ static void test_1_06()
     }}
 }
 
-static void test_1_07()
+static void TEST_pantheios_slice_WITH_str_len_LABELS_AND_SEP_VARIANT_B()
 {
     // 1. Setup
 
@@ -302,7 +302,7 @@ static void test_1_07()
     }}
 }
 
-static void test_1_08()
+static void TEST_pantheios_slice_WITH_str_len_LABELS_NULL_SEP_AND_EXTRA()
 {
     // 1. Setup
 

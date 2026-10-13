@@ -40,17 +40,17 @@
  * forward declarations
  */
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_12();
-static void test_1_14();
-static void test_1_15();
-static void test_1_16();
+static void TEST_pantheios_b64_uint8_0();
+static void TEST_pantheios_b64_uint8_1();
+static void TEST_pantheios_b64_uint8_10();
+static void TEST_pantheios_b64_uint8_100();
+static void TEST_pantheios_b64_uint8_128();
+static void TEST_pantheios_b64_uint8_255();
+static void TEST_pantheios_b64_STRING_LITERAL();
+static void TEST_pantheios_b64_sint8_SEQUENCE();
+static void TEST_pantheios_b64_ZERO_INTS_LINE_LEN_64();
+static void TEST_pantheios_b64_ZERO_INTS_LINE_LEN_INFINITE();
+static void TEST_pantheios_b64_ZERO_INTS_LINE_LEN_INFINITE_REPEAT();
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -86,17 +86,17 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.b64", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_16);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_uint8_0);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_uint8_1);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_uint8_10);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_uint8_100);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_uint8_128);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_uint8_255);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_STRING_LITERAL);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_sint8_SEQUENCE);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_ZERO_INTS_LINE_LEN_64);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_ZERO_INTS_LINE_LEN_INFINITE);
+        XTESTS_RUN_CASE(TEST_pantheios_b64_ZERO_INTS_LINE_LEN_INFINITE_REPEAT);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -108,7 +108,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_b64_uint8_0()
 {
     // 1. Setup
 
@@ -131,7 +131,7 @@ static void test_1_01()
     TEST_STRING_EQ(PSTR("AA=="), results[0].statement);
 }
 
-static void test_1_02()
+static void TEST_pantheios_b64_uint8_1()
 {
     // 1. Setup
 
@@ -154,7 +154,7 @@ static void test_1_02()
     TEST_STRING_EQ(PSTR("AQ=="), results[0].statement);
 }
 
-static void test_1_03()
+static void TEST_pantheios_b64_uint8_10()
 {
     // 1. Setup
 
@@ -177,7 +177,7 @@ static void test_1_03()
     TEST_STRING_EQ(PSTR("Cg=="), results[0].statement);
 }
 
-static void test_1_04()
+static void TEST_pantheios_b64_uint8_100()
 {
     // 1. Setup
 
@@ -200,7 +200,7 @@ static void test_1_04()
     TEST_STRING_EQ(PSTR("ZA=="), results[0].statement);
 }
 
-static void test_1_05()
+static void TEST_pantheios_b64_uint8_128()
 {
     // 1. Setup
 
@@ -223,7 +223,7 @@ static void test_1_05()
     TEST_STRING_EQ(PSTR("gA=="), results[0].statement);
 }
 
-static void test_1_06()
+static void TEST_pantheios_b64_uint8_255()
 {
     // 1. Setup
 
@@ -246,7 +246,7 @@ static void test_1_06()
     TEST_STRING_EQ(PSTR("/w=="), results[0].statement);
 }
 
-static void test_1_07()
+static void TEST_pantheios_b64_STRING_LITERAL()
 {
     // 1. Setup
 
@@ -268,7 +268,7 @@ static void test_1_07()
 }
 
 
-static void test_1_12()
+static void TEST_pantheios_b64_sint8_SEQUENCE()
 {
     // 1. Setup
 
@@ -292,7 +292,7 @@ static void test_1_12()
 }
 
 
-static void test_1_14()
+static void TEST_pantheios_b64_ZERO_INTS_LINE_LEN_64()
 {
     // 1. Setup
 
@@ -322,7 +322,7 @@ static void test_1_14()
         PSTR("AAAAAAAAAAA="), results[0].statement);
 }
 
-static void test_1_15()
+static void TEST_pantheios_b64_ZERO_INTS_LINE_LEN_INFINITE()
 {
     // 1. Setup
 
@@ -347,7 +347,7 @@ static void test_1_15()
     TEST_STRING_EQ(PSTR("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="), results[0].statement);
 }
 
-static void test_1_16()
+static void TEST_pantheios_b64_ZERO_INTS_LINE_LEN_INFINITE_REPEAT()
 {
     // 1. Setup
 

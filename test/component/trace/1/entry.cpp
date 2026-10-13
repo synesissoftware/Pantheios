@@ -64,17 +64,17 @@ namespace
  * forward declarations
  */
 
-static void test_01();
-static void test_02();
-static void test_03();
-static void test_04();
-static void test_05();
-static void test_06();
-static void test_07();
-static void test_10();
-static void test_11();
-static void test_21();
-static void test_22();
+static void TEST_PANTHEIOS_TRACE_NO_STATEMENTS();
+static void TEST_PANTHEIOS_TRACE_NOTICE_EMPTY_STRING();
+static void TEST_PANTHEIOS_TRACE_NOTICE_SINGLE_STRING();
+static void TEST_PANTHEIOS_TRACE_INFORMATIONAL_TWO_STRINGS();
+static void TEST_PANTHEIOS_TRACE_INFORMATIONAL_THREE_STRINGS();
+static void TEST_PANTHEIOS_TRACE_INFORMATIONAL_TWELVE_STRINGS_ALPHABET();
+static void TEST_PANTHEIOS_TRACE_INFORMATIONAL_TWENTY_SIX_SINGLE_CHARS();
+static void TEST_PANTHEIOS_TRACE_TWO_STATEMENTS_LOWER_AND_UPPER();
+static void TEST_PANTHEIOS_TRACE_MANY_STATEMENTS();
+static void TEST_PANTHEIOS_TRACE_TWO_LARGE_STRINGS_256();
+static void TEST_PANTHEIOS_TRACE_TWO_LARGE_STRINGS_2560();
 /* ////////////////////////////////////////////////////////////////////// */
 
 int main(int argc, char* argv[])
@@ -86,17 +86,17 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.trace.1", verbosity))
     {
-        XTESTS_RUN_CASE(test_01);
-        XTESTS_RUN_CASE(test_02);
-        XTESTS_RUN_CASE(test_03);
-        XTESTS_RUN_CASE(test_04);
-        XTESTS_RUN_CASE(test_05);
-        XTESTS_RUN_CASE(test_06);
-        XTESTS_RUN_CASE(test_07);
-        XTESTS_RUN_CASE(test_10);
-        XTESTS_RUN_CASE(test_11);
-        XTESTS_RUN_CASE(test_21);
-        XTESTS_RUN_CASE(test_22);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_NO_STATEMENTS);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_NOTICE_EMPTY_STRING);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_NOTICE_SINGLE_STRING);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_INFORMATIONAL_TWO_STRINGS);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_INFORMATIONAL_THREE_STRINGS);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_INFORMATIONAL_TWELVE_STRINGS_ALPHABET);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_INFORMATIONAL_TWENTY_SIX_SINGLE_CHARS);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_TWO_STATEMENTS_LOWER_AND_UPPER);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_MANY_STATEMENTS);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_TWO_LARGE_STRINGS_256);
+        XTESTS_RUN_CASE(TEST_PANTHEIOS_TRACE_TWO_LARGE_STRINGS_2560);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -111,7 +111,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_01()
+static void TEST_PANTHEIOS_TRACE_NO_STATEMENTS()
 {
     // 1. Setup
 
@@ -129,7 +129,7 @@ static void test_01()
     TEST_INT_EQ(0, results.size());
 }
 
-static void test_02()
+static void TEST_PANTHEIOS_TRACE_NOTICE_EMPTY_STRING()
 {
     // 1. Setup
 
@@ -151,7 +151,7 @@ static void test_02()
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("", LINE), results[0].statement);
 }
 
-static void test_03()
+static void TEST_PANTHEIOS_TRACE_NOTICE_SINGLE_STRING()
 {
     // 1. Setup
 
@@ -173,7 +173,7 @@ static void test_03()
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abc", LINE), results[0].statement);
 }
 
-static void test_04()
+static void TEST_PANTHEIOS_TRACE_INFORMATIONAL_TWO_STRINGS()
 {
     // 1. Setup
 
@@ -194,7 +194,7 @@ static void test_04()
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abcdef", LINE), results[0].statement);
 }
 
-static void test_05()
+static void TEST_PANTHEIOS_TRACE_INFORMATIONAL_THREE_STRINGS()
 {
     // 1. Setup
 
@@ -215,7 +215,7 @@ static void test_05()
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abcdefghi", LINE), results[0].statement);
 }
 
-static void test_06()
+static void TEST_PANTHEIOS_TRACE_INFORMATIONAL_TWELVE_STRINGS_ALPHABET()
 {
     // 1. Setup
 
@@ -236,7 +236,7 @@ static void test_06()
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("abcdefghijklmnopqrstuvwxyz", LINE), results[0].statement);
 }
 
-static void test_07()
+static void TEST_PANTHEIOS_TRACE_INFORMATIONAL_TWENTY_SIX_SINGLE_CHARS()
 {
     // 1. Setup
 
@@ -258,7 +258,7 @@ static void test_07()
 }
 
 
-static void test_10()
+static void TEST_PANTHEIOS_TRACE_TWO_STATEMENTS_LOWER_AND_UPPER()
 {
     // 1. Setup
 
@@ -282,7 +282,7 @@ static void test_10()
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_("ABCDEFGHIJKLMNOPQRSTUVWXYZ", LINE2), results[1].statement);
 }
 
-static void test_11()
+static void TEST_PANTHEIOS_TRACE_MANY_STATEMENTS()
 {
     // 1. Setup
 
@@ -327,7 +327,7 @@ static void test_11()
 }
 
 
-static void test_21()
+static void TEST_PANTHEIOS_TRACE_TWO_LARGE_STRINGS_256()
 {
     // 1. Setup
 
@@ -352,7 +352,7 @@ static void test_21()
     PANTHEIOS_TEST_STRING_OBJECTS_EQUAL(fileline_stmt_((msgEl1 + msgEl2).c_str(), LINE), results[0].statement);
 }
 
-static void test_22()
+static void TEST_PANTHEIOS_TRACE_TWO_LARGE_STRINGS_2560()
 {
     // 1. Setup
 

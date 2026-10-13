@@ -41,7 +41,7 @@
  * forward declarations
  */
 
-static void test_1_01();
+static void TEST_pantheios_processId_ALONE_AND_WITH_PREFIX();
 
 static int pan_get_pid_();
 
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.processid", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
+        XTESTS_RUN_CASE(TEST_pantheios_processId_ALONE_AND_WITH_PREFIX);
 
         XTESTS_PRINT_RESULTS();
 
@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-static void test_1_01()
+static void TEST_pantheios_processId_ALONE_AND_WITH_PREFIX()
 {
     // 1. Setup
 

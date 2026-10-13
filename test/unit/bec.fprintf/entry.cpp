@@ -102,22 +102,22 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 namespace
 {
 
-static void test_1_00();
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_0a();
-static void test_1_0b();
-static void test_1_0c();
-static void test_1_0d();
-static void test_1_0e();
-static void test_1_0f();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_NONE();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_ALL_STOCK();
 
 } /* anonymous namespace */
 
@@ -132,22 +132,22 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER_WITH_STREAM("test.unit.bec.fprintf", verbosity, stdout))
     {
-        XTESTS_RUN_CASE(test_1_00);
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_0a);
-        XTESTS_RUN_CASE(test_1_0b);
-        XTESTS_RUN_CASE(test_1_0c);
-        XTESTS_RUN_CASE(test_1_0d);
-        XTESTS_RUN_CASE(test_1_0e);
-        XTESTS_RUN_CASE(test_1_0f);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_NONE);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_ALL_STOCK);
 
         XTESTS_PRINT_RESULTS();
 
@@ -198,7 +198,7 @@ static PAN_CHAR_T const* strings[] =
     ,   PANTHEIOS_LITERAL_STRING("00000000000000000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111222222222222222222222222222222222222222223333333333333333333333333")
 };
 
-static void test_1_00()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_NONE()
 {
     pan_be_fprintf_init_t  init;
 
@@ -258,7 +258,7 @@ static void test_1_00()
     }
 }
 
-static void test_1_01()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID()
 {
     pan_be_fprintf_init_t  init;
 
@@ -318,7 +318,7 @@ static void test_1_01()
     }
 }
 
-static void test_1_02()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID()
 {
     pan_be_fprintf_init_t  init;
 
@@ -378,7 +378,7 @@ static void test_1_02()
     }
 }
 
-static void test_1_03()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID()
 {
     pan_be_fprintf_init_t  init;
 
@@ -438,7 +438,7 @@ static void test_1_03()
     }
 }
 
-static void test_1_04()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME()
 {
     pan_be_fprintf_init_t  init;
 
@@ -500,7 +500,7 @@ static void test_1_04()
     }
 }
 
-static void test_1_05()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME()
 {
     pan_be_fprintf_init_t  init;
 
@@ -562,7 +562,7 @@ static void test_1_05()
     }
 }
 
-static void test_1_06()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME()
 {
     pan_be_fprintf_init_t  init;
 
@@ -624,7 +624,7 @@ static void test_1_06()
     }
 }
 
-static void test_1_07()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_DATETIME()
 {
     pan_be_fprintf_init_t  init;
 
@@ -686,7 +686,7 @@ static void test_1_07()
     }
 }
 
-static void test_1_08()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -746,7 +746,7 @@ static void test_1_08()
     }
 }
 
-static void test_1_09()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -806,7 +806,7 @@ static void test_1_09()
     }
 }
 
-static void test_1_0a()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -866,7 +866,7 @@ static void test_1_0a()
     }
 }
 
-static void test_1_0b()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -926,7 +926,7 @@ static void test_1_0b()
     }
 }
 
-static void test_1_0c()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -988,7 +988,7 @@ static void test_1_0c()
     }
 }
 
-static void test_1_0d()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -1050,7 +1050,7 @@ static void test_1_0d()
     }
 }
 
-static void test_1_0e()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -1112,7 +1112,7 @@ static void test_1_0e()
     }
 }
 
-static void test_1_0f()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_ALL_STOCK()
 {
     pan_be_fprintf_init_t  init;
 

@@ -45,35 +45,35 @@
  * forward declarations
  */
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
+static void TEST_pantheios_m2w_C_STR_EMPTY();
+static void TEST_pantheios_m2w_C_STR_SINGLE_CHAR();
+static void TEST_pantheios_m2w_C_STR_THREE_CHARS_WITH_BRACKETS();
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_04();
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_05();
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_06();
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_07();
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_08();
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_09();
 
-static void test_2_01();
-static void test_2_02();
-static void test_2_03();
-static void test_2_04();
-static void test_2_05();
-static void test_2_06();
-static void test_2_07();
-static void test_2_08();
-static void test_2_09();
+static void TEST_pantheios_m2w_STD_STRING_EMPTY();
+static void TEST_pantheios_m2w_STD_STRING_SINGLE_CHAR();
+static void TEST_pantheios_m2w_STD_STRING_THREE_CHARS_WITH_BRACKETS();
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_04();
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_05();
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_06();
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_07();
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_08();
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_09();
 
-static void test_3_01();
-static void test_3_02();
-static void test_3_03();
-static void test_3_04();
-static void test_3_05();
-static void test_3_06();
-static void test_3_07();
-static void test_3_08();
-static void test_3_09();
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY();
+static void TEST_pantheios_m2w_SIMPLE_STRING_SINGLE_CHAR();
+static void TEST_pantheios_m2w_SIMPLE_STRING_THREE_CHARS_WITH_BRACKETS();
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_04();
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_05();
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_06();
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_07();
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_08();
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_09();
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,35 +93,35 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.m2w", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_C_STR_EMPTY);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_C_STR_SINGLE_CHAR);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_C_STR_THREE_CHARS_WITH_BRACKETS);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_04);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_05);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_06);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_07);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_08);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_09);
 
-        XTESTS_RUN_CASE(test_2_01);
-        XTESTS_RUN_CASE(test_2_02);
-        XTESTS_RUN_CASE(test_2_03);
-        XTESTS_RUN_CASE(test_2_04);
-        XTESTS_RUN_CASE(test_2_05);
-        XTESTS_RUN_CASE(test_2_06);
-        XTESTS_RUN_CASE(test_2_07);
-        XTESTS_RUN_CASE(test_2_08);
-        XTESTS_RUN_CASE(test_2_09);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_STD_STRING_EMPTY);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_STD_STRING_SINGLE_CHAR);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_STD_STRING_THREE_CHARS_WITH_BRACKETS);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_04);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_05);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_06);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_07);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_08);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_09);
 
-        XTESTS_RUN_CASE(test_3_01);
-        XTESTS_RUN_CASE(test_3_02);
-        XTESTS_RUN_CASE(test_3_03);
-        XTESTS_RUN_CASE(test_3_04);
-        XTESTS_RUN_CASE(test_3_05);
-        XTESTS_RUN_CASE(test_3_06);
-        XTESTS_RUN_CASE(test_3_07);
-        XTESTS_RUN_CASE(test_3_08);
-        XTESTS_RUN_CASE(test_3_09);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_SIMPLE_STRING_EMPTY);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_SIMPLE_STRING_SINGLE_CHAR);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_SIMPLE_STRING_THREE_CHARS_WITH_BRACKETS);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_04);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_05);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_06);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_07);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_08);
+        XTESTS_RUN_CASE(TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_09);
 
         XTESTS_PRINT_RESULTS();
 
@@ -133,7 +133,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_m2w_C_STR_EMPTY()
 {
     // 1. Setup
 
@@ -154,7 +154,7 @@ static void test_1_01()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_1_02()
+static void TEST_pantheios_m2w_C_STR_SINGLE_CHAR()
 {
     // 1. Setup
 
@@ -175,7 +175,7 @@ static void test_1_02()
     TEST_WS_EQ(L"a", results[0].statement);
 }
 
-static void test_1_03()
+static void TEST_pantheios_m2w_C_STR_THREE_CHARS_WITH_BRACKETS()
 {
     // 1. Setup
 
@@ -196,7 +196,7 @@ static void test_1_03()
     TEST_WS_EQ(L"[abc]", results[0].statement);
 }
 
-static void test_1_04()
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_04()
 {
     // 1. Setup
 
@@ -217,7 +217,7 @@ static void test_1_04()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_1_05()
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_05()
 {
     // 1. Setup
 
@@ -238,7 +238,7 @@ static void test_1_05()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_1_06()
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_06()
 {
     // 1. Setup
 
@@ -259,7 +259,7 @@ static void test_1_06()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_1_07()
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_07()
 {
     // 1. Setup
 
@@ -280,7 +280,7 @@ static void test_1_07()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_1_08()
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_08()
 {
     // 1. Setup
 
@@ -301,7 +301,7 @@ static void test_1_08()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_1_09()
+static void TEST_pantheios_m2w_C_STR_EMPTY_DUPLICATE_09()
 {
     // 1. Setup
 
@@ -322,7 +322,7 @@ static void test_1_09()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_2_01()
+static void TEST_pantheios_m2w_STD_STRING_EMPTY()
 {
     // 1. Setup
 
@@ -343,7 +343,7 @@ static void test_2_01()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_2_02()
+static void TEST_pantheios_m2w_STD_STRING_SINGLE_CHAR()
 {
     // 1. Setup
 
@@ -364,7 +364,7 @@ static void test_2_02()
     TEST_WS_EQ(L"a", results[0].statement);
 }
 
-static void test_2_03()
+static void TEST_pantheios_m2w_STD_STRING_THREE_CHARS_WITH_BRACKETS()
 {
     // 1. Setup
 
@@ -385,7 +385,7 @@ static void test_2_03()
     TEST_WS_EQ(L"[abc]", results[0].statement);
 }
 
-static void test_2_04()
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_04()
 {
     // 1. Setup
 
@@ -406,7 +406,7 @@ static void test_2_04()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_2_05()
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_05()
 {
     // 1. Setup
 
@@ -427,7 +427,7 @@ static void test_2_05()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_2_06()
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_06()
 {
     // 1. Setup
 
@@ -448,7 +448,7 @@ static void test_2_06()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_2_07()
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_07()
 {
     // 1. Setup
 
@@ -469,7 +469,7 @@ static void test_2_07()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_2_08()
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_08()
 {
     // 1. Setup
 
@@ -490,7 +490,7 @@ static void test_2_08()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_2_09()
+static void TEST_pantheios_m2w_STD_STRING_EMPTY_DUPLICATE_09()
 {
     // 1. Setup
 
@@ -511,7 +511,7 @@ static void test_2_09()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_3_01()
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY()
 {
     // 1. Setup
 
@@ -532,7 +532,7 @@ static void test_3_01()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_3_02()
+static void TEST_pantheios_m2w_SIMPLE_STRING_SINGLE_CHAR()
 {
     // 1. Setup
 
@@ -553,7 +553,7 @@ static void test_3_02()
     TEST_WS_EQ(L"a", results[0].statement);
 }
 
-static void test_3_03()
+static void TEST_pantheios_m2w_SIMPLE_STRING_THREE_CHARS_WITH_BRACKETS()
 {
     // 1. Setup
 
@@ -574,7 +574,7 @@ static void test_3_03()
     TEST_WS_EQ(L"[abc]", results[0].statement);
 }
 
-static void test_3_04()
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_04()
 {
     // 1. Setup
 
@@ -595,7 +595,7 @@ static void test_3_04()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_3_05()
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_05()
 {
     // 1. Setup
 
@@ -616,7 +616,7 @@ static void test_3_05()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_3_06()
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_06()
 {
     // 1. Setup
 
@@ -637,7 +637,7 @@ static void test_3_06()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_3_07()
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_07()
 {
     // 1. Setup
 
@@ -658,7 +658,7 @@ static void test_3_07()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_3_08()
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_08()
 {
     // 1. Setup
 
@@ -679,7 +679,7 @@ static void test_3_08()
     TEST_WS_EQ(L"", results[0].statement);
 }
 
-static void test_3_09()
+static void TEST_pantheios_m2w_SIMPLE_STRING_EMPTY_DUPLICATE_09()
 {
     // 1. Setup
 

@@ -37,7 +37,7 @@
  * forward declarations
  */
 
-static void test_1_01();
+static void TEST_pantheios_variant_bool_false_true();
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.variant_bool", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
+        XTESTS_RUN_CASE(TEST_pantheios_variant_bool_false_true);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_variant_bool_false_true()
 {
     // 1. Setup
 

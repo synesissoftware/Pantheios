@@ -37,10 +37,10 @@
 namespace
 {
 
-    static void test_1_01();
-    static void test_1_02();
-    static void test_1_03();
-    static void test_1_04();
+    static void TEST_pantheios_pad_EMPTY_C_STR_TO_WIDTH();
+    static void TEST_pantheios_pad_EMPTY_std_string_TO_WIDTH();
+    static void TEST_pantheios_pad_SINGLE_SPACE_SOURCE();
+    static void TEST_pantheios_pad_VALUE_THEN_VALUE_MATRIX();
 } /* anonymous namespace */
 
 
@@ -79,10 +79,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER_WITH_FLAGS("test.component.inserters.pad", verbosity, XTESTS_NS_C_QUAL(xtestsReportOnlyNonEmptyCases)))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
+        XTESTS_RUN_CASE(TEST_pantheios_pad_EMPTY_C_STR_TO_WIDTH);
+        XTESTS_RUN_CASE(TEST_pantheios_pad_EMPTY_std_string_TO_WIDTH);
+        XTESTS_RUN_CASE(TEST_pantheios_pad_SINGLE_SPACE_SOURCE);
+        XTESTS_RUN_CASE(TEST_pantheios_pad_VALUE_THEN_VALUE_MATRIX);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -98,7 +98,7 @@ namespace
 {
     typedef std::basic_string<pantheios::pan_char_t>    string_t;
 
-static void test_1_01()
+static void TEST_pantheios_pad_EMPTY_C_STR_TO_WIDTH()
 {
     { for (size_t i = 0; i != 1000; ++i)
     {
@@ -123,7 +123,7 @@ static void test_1_01()
     }}
 }
 
-static void test_1_02()
+static void TEST_pantheios_pad_EMPTY_std_string_TO_WIDTH()
 {
     { for (size_t i = 0; i != 1000; ++i)
     {
@@ -148,7 +148,7 @@ static void test_1_02()
     }}
 }
 
-static void test_1_03()
+static void TEST_pantheios_pad_SINGLE_SPACE_SOURCE()
 {
     { for (size_t i = 0; i != 1/* 000 */; ++i)
     {
@@ -181,7 +181,7 @@ static void test_1_03()
     }}
 }
 
-static void test_1_04()
+static void TEST_pantheios_pad_VALUE_THEN_VALUE_MATRIX()
 {
     { for (size_t i = 0; i != 1000; ++i)
     {

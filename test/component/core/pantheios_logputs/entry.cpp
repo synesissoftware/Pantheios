@@ -54,10 +54,10 @@
  * forward declarations
  */
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
+static void TEST_pantheios_logputs_STOCK_SEVERITIES_SIMPLE();
+static void TEST_pantheios_logputs_CUSTOM_SEVERITY_LEVEL_1();
+static void TEST_pantheios_logputs_CUSTOM_SEVERITY_LEVEL_LARGE();
+static void TEST_pantheios_logputs_STOCK_SEVERITIES_MULTIPLE_LENGTHS();
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -90,10 +90,10 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.core.pantheios_logputs", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
+        XTESTS_RUN_CASE(TEST_pantheios_logputs_STOCK_SEVERITIES_SIMPLE);
+        XTESTS_RUN_CASE(TEST_pantheios_logputs_CUSTOM_SEVERITY_LEVEL_1);
+        XTESTS_RUN_CASE(TEST_pantheios_logputs_CUSTOM_SEVERITY_LEVEL_LARGE);
+        XTESTS_RUN_CASE(TEST_pantheios_logputs_STOCK_SEVERITIES_MULTIPLE_LENGTHS);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_logputs_STOCK_SEVERITIES_SIMPLE()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severities); ++i)
     {
@@ -134,7 +134,7 @@ static void test_1_01()
     }}
 }
 
-static void test_1_02()
+static void TEST_pantheios_logputs_CUSTOM_SEVERITY_LEVEL_1()
 {
     // 1. Setup
 
@@ -156,7 +156,7 @@ static void test_1_02()
     TEST_STRING_EQ(PSTR("abc"), results[0].statement);
 }
 
-static void test_1_03()
+static void TEST_pantheios_logputs_CUSTOM_SEVERITY_LEVEL_LARGE()
 {
     // 1. Setup
 
@@ -178,7 +178,7 @@ static void test_1_03()
     TEST_STRING_EQ(PSTR("abc"), results[0].statement);
 }
 
-static void test_1_04()
+static void TEST_pantheios_logputs_STOCK_SEVERITIES_MULTIPLE_LENGTHS()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severities); ++i)
     {

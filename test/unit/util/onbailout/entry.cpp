@@ -137,15 +137,15 @@ namespace {
 namespace
 {
 
-static void test_unused_receiver();
-static void test_pantheios_onBailOut3();
-static void test_pantheios_onBailOut4();
-static void test_pantheios_onBailOut6();
-static void test_pantheios_onBailOut6_too_long();
+static void TEST_pantheios_onBailOut_UNUSED_RECEIVER();
+static void TEST_pantheios_onBailOut3();
+static void TEST_pantheios_onBailOut4();
+static void TEST_pantheios_onBailOut6();
+static void TEST_pantheios_onBailOut6_TOO_LONG();
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-static void test_pantheios_onBailOut3_w();
-static void test_pantheios_onBailOut4_w();
-static void test_pantheios_onBailOut6_w();
+static void TEST_pantheios_onBailOut3_w();
+static void TEST_pantheios_onBailOut4_w();
+static void TEST_pantheios_onBailOut6_w();
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 } /* anonymous namespace */
 
@@ -294,15 +294,15 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.util.onbailout", verbosity))
     {
-        XTESTS_RUN_CASE(test_unused_receiver);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut3);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut4);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut6);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut6_too_long);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut_UNUSED_RECEIVER);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut3);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut4);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut6);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut6_TOO_LONG);
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-        XTESTS_RUN_CASE(test_pantheios_onBailOut3_w);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut4_w);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut6_w);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut3_w);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut4_w);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut6_w);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
         XTESTS_PRINT_RESULTS();
 
@@ -320,7 +320,7 @@ int main(int argc, char* argv[])
 namespace
 {
 
-static void test_unused_receiver()
+static void TEST_pantheios_onBailOut_UNUSED_RECEIVER()
 {
     receiver.Clear();
 
@@ -345,7 +345,7 @@ static void test_unused_receiver()
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut3()
+static void TEST_pantheios_onBailOut3()
 {
     receiver.Clear();
 
@@ -380,7 +380,7 @@ static void test_pantheios_onBailOut3()
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut4()
+static void TEST_pantheios_onBailOut4()
 {
     char const  message[]           =   "hello";
     char const  pattern_no_qual[]   =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello";
@@ -484,7 +484,7 @@ static void test_pantheios_onBailOut4()
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut6()
+static void TEST_pantheios_onBailOut6()
 {
     const char  message[]       =   "hello";
     const char  pattern_none[]  =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: qual-#1";
@@ -613,7 +613,7 @@ static void test_pantheios_onBailOut6()
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut6_too_long()
+static void TEST_pantheios_onBailOut6_TOO_LONG()
 {
     const char  message[]           =   "hello";
     const char  pattern_short[]     =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: fe=fe-#1, be=be-#1: qual-#1";
@@ -744,7 +744,7 @@ static void test_pantheios_onBailOut6_too_long()
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-static void test_pantheios_onBailOut3_w()
+static void TEST_pantheios_onBailOut3_w()
 {
     receiver.Clear();
 
@@ -780,7 +780,7 @@ static void test_pantheios_onBailOut3_w()
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut4_w()
+static void TEST_pantheios_onBailOut4_w()
 {
     wchar_t const   message[]           =   L"hello";
     wchar_t const   pattern_no_qual[]   =   L"2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello";
@@ -884,7 +884,7 @@ static void test_pantheios_onBailOut4_w()
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut6_w()
+static void TEST_pantheios_onBailOut6_w()
 {
     const wchar_t   message[]           =   L"hello";
     const wchar_t   pattern_noqual[]    =   L"2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello";

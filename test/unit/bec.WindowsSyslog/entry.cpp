@@ -46,9 +46,9 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 namespace
 {
 
-    static void test_getDefaultAppInit();
-    static void test_initialisation();
-    static void test_1_2();
+    static void TEST_pantheios_be_WindowsSyslog_getDefaultAppInit();
+    static void TEST_pantheios_be_WindowsSyslog_init();
+    static void TEST_pantheios_be_WindowsSyslog_init_STUB_log_verification();
     static void TEST_pantheios_be_WindowsSyslog_WITH_ALL_STOCK_true();
     static void TEST_pantheios_be_WindowsSyslog_WITH_ALL_STOCK_false();
 } /* anonymous namespace */
@@ -81,9 +81,9 @@ int main(int argc, char* argv[])
 
         if (XTESTS_START_RUNNER("test.unit.bec.WindowsSyslog", verbosity))
         {
-            XTESTS_RUN_CASE(test_getDefaultAppInit);
-            XTESTS_RUN_CASE(test_initialisation);
-            XTESTS_RUN_CASE(test_1_2);
+            XTESTS_RUN_CASE(TEST_pantheios_be_WindowsSyslog_getDefaultAppInit);
+            XTESTS_RUN_CASE(TEST_pantheios_be_WindowsSyslog_init);
+            XTESTS_RUN_CASE(TEST_pantheios_be_WindowsSyslog_init_STUB_log_verification);
             XTESTS_RUN_CASE(TEST_pantheios_be_WindowsSyslog_WITH_ALL_STOCK_true);
             XTESTS_RUN_CASE(TEST_pantheios_be_WindowsSyslog_WITH_ALL_STOCK_false);
         }
@@ -105,7 +105,7 @@ namespace
 {
 
 
-static void test_getDefaultAppInit()
+static void TEST_pantheios_be_WindowsSyslog_getDefaultAppInit()
 {
     pan_be_WindowsSyslog_init_t init;
 
@@ -122,7 +122,7 @@ static void test_getDefaultAppInit()
     TEST_INT_EQ(PANTHEIOS_SYSLOG_FAC_USER, init.facility);
 }
 
-static void test_initialisation()
+static void TEST_pantheios_be_WindowsSyslog_init()
 {
     pan_be_WindowsSyslog_init_t init;
 
@@ -148,7 +148,7 @@ static void test_initialisation()
     }
 }
 
-static void test_1_2()
+static void TEST_pantheios_be_WindowsSyslog_init_STUB_log_verification()
 {
     pan_be_WindowsSyslog_init_t init;
 
