@@ -33,7 +33,7 @@ require 'date'
 
 PROGRAM_VER_MAJOR               =   2
 PROGRAM_VER_MINOR               =   4
-PROGRAM_VER_REVISION            =   0
+PROGRAM_VER_REVISION            =   1
 
 
 # ##########################################################################
@@ -165,7 +165,9 @@ end
 
 r = climate.run ARGV
 
-climate.abort "too many values; use --help for usage" unless ARGV.empty?
+# LibCLImate/CLASP leave consumed tokens in ARGV; reject unused positionals
+# via the parse result, not ARGV.empty?
+climate.abort "too many values; use --help for usage" unless r[:values].empty?
 
 
 ############################################################################
