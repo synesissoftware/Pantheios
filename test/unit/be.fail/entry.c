@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.be.fail project.
  *
  * Created: 27th January 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/backend.h>
 #include <pantheios/init_codes.h>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/stlsoft.h>        /* for STLSOFT_NUM_ELEMENTS */
 
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
             void*   token;
             int     res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_LESS(0, res);
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE, res);
+            TEST_INT_LT(0, res);
+            TEST_INT_EQ(PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE, res);
 
             XTESTS_CASE_END("Test-1");
         }

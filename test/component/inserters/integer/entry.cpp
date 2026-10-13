@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.integer project.
  *
  * Created: 19th October 2006
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,7 +14,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #define PANTHEIOS_NO_INCLUDE_OS_AND_3PTYLIB_STRING_ACCESS
@@ -77,10 +77,10 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                          	XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -225,11 +225,11 @@ static void test_1_00()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(n, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(n, results.size()));
     { for (size_t i = 0; i != n; ++i)
     {
-        XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[i].statement);
+        TEST_STRING_EQ(PSTR("0"), results[i].statement);
     }}
 }
 
@@ -258,17 +258,17 @@ static void test_1_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(8u, results.size()));
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[5].statement);
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(8u, results.size()));
+    TEST_STRING_EQ(PSTR("0"), results[0].statement);
+    TEST_STRING_EQ(PSTR("0"), results[1].statement);
+    TEST_STRING_EQ(PSTR("0"), results[2].statement);
+    TEST_STRING_EQ(PSTR("0"), results[3].statement);
+    TEST_STRING_EQ(PSTR("0"), results[4].statement);
+    TEST_STRING_EQ(PSTR("0"), results[5].statement);
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[7].statement);
+    TEST_STRING_EQ(PSTR("0"), results[6].statement);
+    TEST_STRING_EQ(PSTR("0"), results[7].statement);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -290,11 +290,11 @@ static void test_1_02()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, results.size()));
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1"), results[2].statement);
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(3u, results.size()));
+    TEST_STRING_EQ(PSTR("0"), results[0].statement);
+    TEST_STRING_EQ(PSTR("1"), results[1].statement);
+    TEST_STRING_EQ(PSTR("-1"), results[2].statement);
 }
 
 static void test_1_03()
@@ -315,11 +315,11 @@ static void test_1_03()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, results.size()));
-    XTESTS_TEST_STRING_EQUAL(PSTR("    0"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    1"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   -1"), results[2].statement);
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(3u, results.size()));
+    TEST_STRING_EQ(PSTR("    0"), results[0].statement);
+    TEST_STRING_EQ(PSTR("    1"), results[1].statement);
+    TEST_STRING_EQ(PSTR("   -1"), results[2].statement);
 }
 
 static void test_1_04()
@@ -380,54 +380,54 @@ static void test_1_04()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(33u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(33u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x01"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x01"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x001"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x001"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0001"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0001"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00001"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x08421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00001"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x08421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000001"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x008421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000001"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x008421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000001"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0008421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000001"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0008421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000001"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00008421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000001"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00008421"), results[n++].statement);
 }
 
 static void test_1_05()
@@ -448,11 +448,11 @@ static void test_1_05()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, results.size()));
-    XTESTS_TEST_STRING_EQUAL(PSTR("0    "), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1    "), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1   "), results[2].statement);
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(3u, results.size()));
+    TEST_STRING_EQ(PSTR("0    "), results[0].statement);
+    TEST_STRING_EQ(PSTR("1    "), results[1].statement);
+    TEST_STRING_EQ(PSTR("-1   "), results[2].statement);
 }
 
 static void test_1_06()
@@ -505,46 +505,46 @@ static void test_1_06()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(27u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 0x0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 0x1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("  0x0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  0x1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  0x0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  0x1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   0x0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   0x1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("    0x0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    0x1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    0x0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    0x1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 0x8421"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("     0x0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("     0x1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  0x8421"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     0x0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     0x1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  0x8421"), results[n++].statement);
 }
 
 static void test_1_07()
@@ -658,102 +658,102 @@ static void test_1_07()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(69u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(69u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x01"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x01"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x001"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x001"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0001"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0001"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00001"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00001"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000001"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000001"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000001"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000001"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000001"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000001"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000001"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000001"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000001"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000001"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000001"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000001"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000000"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000001"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000000"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000001"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000000"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000001"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000000"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000001"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"),  results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"),   results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x01234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x01234567812345678"),   results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x001234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x001234567812345678"),   results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0001234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0001234567812345678"),   results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00001234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00001234567812345678"),   results[n++].statement);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -867,102 +867,102 @@ static void test_1_08()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(69u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(69u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x01"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x01"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x001"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x001"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0001"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0001"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00001"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00001"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000001"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000001"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000001"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000001"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000001"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000001"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000001"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000001"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000001"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000001"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000001"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000001"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000000"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000001"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000000"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000001"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000000"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000001"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000000"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000001"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"),  results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"),   results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x01234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x01234567812345678"),   results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x001234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x000000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x001234567812345678"),   results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0001234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0000000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0001234567812345678"),   results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000000000000"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00000000000000000001"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00001234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000000000000"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00000000000000000001"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x00001234567812345678"),   results[n++].statement);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -1077,102 +1077,102 @@ static void test_1_09()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(69u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(69u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x0"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x1"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 0x0"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 0x1"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("  0x0"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  0x1"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  0x0"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("  0x1"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x0"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x1"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   0x0"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("   0x1"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("    0x0"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    0x1"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    0x0"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("    0x1"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("     0x0"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("     0x1"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     0x0"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("     0x1"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("      0x0"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("      0x1"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("      0x0"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("      0x1"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("       0x0"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("       0x1"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("       0x0"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("       0x1"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("        0x0"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        0x1"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("        0x0"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("        0x1"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("         0x0"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("         0x1"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("         0x0"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("         0x1"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("          0x0"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("          0x1"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("          0x0"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("          0x1"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("           0x0"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("           0x1"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("           0x0"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("           0x1"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("            0x0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("            0x1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("            0x0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("            0x1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("             0x0"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("             0x1"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("             0x0"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("             0x1"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("              0x0"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("              0x1"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("              0x0"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("              0x1"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("               0x0"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("               0x1"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("               0x0"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("               0x1"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"),     results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                0x0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                0x1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x1234567812345678"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("                0x0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("                0x1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 0x1234567812345678"),    results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 0x0"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 0x1"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  0x1234567812345678"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("                 0x0"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("                 0x1"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("  0x1234567812345678"),   results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  0x0"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  0x1"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x1234567812345678"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("                  0x0"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("                  0x1"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("   0x1234567812345678"),  results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   0x0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   0x1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                   0x0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                   0x1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    0x1234567812345678"), results[n++].statement);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -1287,102 +1287,102 @@ static void test_1_10()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(69u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(69u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0 "),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1 "),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0 "),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1 "),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0  "),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1  "),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0  "),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1  "),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0   "),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1   "),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0   "),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1   "),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0    "),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1    "),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0    "),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1    "),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0     "),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1     "),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0     "),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1     "),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0      "),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1      "),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0      "),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1      "),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0       "),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1       "),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0       "),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1       "),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0        "),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1        "),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0        "),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1        "),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0         "),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1         "),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0         "),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1         "),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0          "),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1          "),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0          "),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1          "),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0           "),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1           "),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0           "),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1           "),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0            "),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1            "),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0            "),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1            "),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0             "),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1             "),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0             "),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1             "),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0              "),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1              "),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0              "),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1              "),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0               "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1               "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0               "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1               "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0                "),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1                "),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678 "),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0                "),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1                "),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678 "),    results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0                 "),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1                 "),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678  "),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0                 "),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1                 "),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678  "),   results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0                  "),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1                  "),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678   "),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0                  "),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1                  "),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678   "),  results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0                   "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1                   "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234567812345678    "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x0                   "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1                   "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0x1234567812345678    "), results[n++].statement);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -1497,102 +1497,102 @@ static void test_1_11()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(69u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(69u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0 "),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1 "),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0 "),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("1 "),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0  "),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1  "),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0  "),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("1  "),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0   "),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1   "),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0   "),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("1   "),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0    "),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1    "),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0    "),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("1    "),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0     "),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1     "),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0     "),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("1     "),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0      "),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1      "),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0      "),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("1      "),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0       "),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1       "),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0       "),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("1       "),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0        "),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1        "),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0        "),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("1        "),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0         "),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1         "),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0         "),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("1         "),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0          "),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1          "),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0          "),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("1          "),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0           "),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1           "),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0           "),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("1           "),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0            "),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1            "),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0            "),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("1            "),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0             "),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1             "),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0             "),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("1             "),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0              "),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1              "),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0              "),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("1              "),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0               "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1               "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0               "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1               "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0                "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1                "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678 "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0                "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1                "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678 "), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0                 "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1                 "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678  "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0                 "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1                 "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678  "), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0                  "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1                  "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678   "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0                  "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1                  "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678   "), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0                   "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1                   "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678    "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0                   "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1                   "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678    "), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0                    "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1                    "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678     "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0                    "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1                    "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678     "), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0                     "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1                     "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678      "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0                     "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1                     "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678      "), results[n++].statement);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -1707,102 +1707,102 @@ static void test_1_12()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(69u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(69u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 1"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 0"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 1"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("  0"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  1"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  0"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("  1"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   1"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   0"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("   1"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("    0"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    1"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    0"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("    1"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("     0"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("     1"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     0"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("     1"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("      0"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("      1"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("      0"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("      1"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("       0"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("       1"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("       0"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("       1"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("        0"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        1"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("        0"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("        1"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("         0"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("         1"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("         0"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("         1"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("          0"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("          1"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("          0"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("          1"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("           0"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("           1"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("           0"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("           1"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("            0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("            1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("            0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("            1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("             0"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("             1"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("             0"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("             1"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("              0"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("              1"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("              0"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("              1"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("               0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("               1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("               0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("               1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                 0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                 1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                  0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                  1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                   0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                   1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                    0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                    1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("     1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                    0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                    1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                     0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                     1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("      1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                     0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                     1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("      1234567812345678"), results[n++].statement);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -1917,102 +1917,102 @@ static void test_1_13()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(69u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(69u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                 results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1"),                 results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0"),                 results[n++].statement);
+    TEST_STRING_EQ(PSTR("1"),                 results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                 results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1"),                 results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("0"),                 results[n++].statement);
+    TEST_STRING_EQ(PSTR("1"),                 results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR(" 1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("  0"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  1"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  0"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("  1"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   1"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   0"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("   1"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("    0"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    1"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    0"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("    1"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("     0"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("     1"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     0"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("     1"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("      0"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("      1"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("      0"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("      1"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("       0"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("       1"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("       0"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("       1"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("        0"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        1"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("        0"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("        1"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("         0"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("         1"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("         0"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("         1"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("          0"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("          1"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("          0"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("          1"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("           0"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("           1"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("           0"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("           1"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("            0"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("            1"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("            0"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("            1"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("             0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("             1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("             0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("             1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("              0"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("              1"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("              0"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("              1"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("               0"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("               1"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("               0"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("               1"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" -1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                 0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                 1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" -1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  -1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                  0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                  1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  -1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   -1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                   0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                   1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   -1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                    0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                    1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    -1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                    0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                    1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    -1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                     0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                     1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("     -1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                     0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                     1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     -1234567812345678"), results[n++].statement);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -2176,158 +2176,158 @@ static void test_1_14()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(112u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(112u, results.size()));
 
     size_t base = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("-127"),                    results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("11"),                      results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-300"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                       results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-100000"),                 results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("123456"),                  results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"),       results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"),        results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("-127"),                    results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("11"),                      results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("-300"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0"),                       results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("-100000"),                 results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("123456"),                  results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"),       results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"),        results[base + 7].statement);
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("      -127"),              results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        11"),              results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("      -300"),              results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("         0"),              results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   -100000"),              results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    123456"),              results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"),       results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"),        results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("      -127"),              results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("        11"),              results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("      -300"),              results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("         0"),              results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("   -100000"),              results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("    123456"),              results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"),       results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"),        results[base + 7].statement);
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("-127      "),              results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("11        "),              results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-300      "),              results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0         "),              results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-100000   "),              results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("123456    "),              results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"),       results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678"),        results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("-127      "),              results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("11        "),              results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("-300      "),              results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0         "),              results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("-100000   "),              results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("123456    "),              results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"),       results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678"),        results[base + 7].statement);
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("                -127"),    results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  11"),    results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                -300"),    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   0"),    results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("             -100000"),    results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("              123456"),    results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   -1234567812345678"),    results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    1234567812345678"),    results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("                -127"),    results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("                  11"),    results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("                -300"),    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("                   0"),    results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("             -100000"),    results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("              123456"),    results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("   -1234567812345678"),    results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("    1234567812345678"),    results[base + 7].statement);
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("-127                "),    results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("11                  "),    results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-300                "),    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0                   "),    results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-100000             "),    results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("123456              "),    results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678   "),    results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234567812345678    "),    results[base + 7].statement);
-
-
-    base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("b"),                       results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                       results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1e240"),                   results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("462d537e7ef4e"),           results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("-127                "),    results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("11                  "),    results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("-300                "),    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0                   "),    results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("-100000             "),    results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("123456              "),    results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678   "),    results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("1234567812345678    "),    results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("b"),                       results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                       results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1e240"),                   results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("462d537e7ef4e"),           results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("b"),                       results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("fed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0"),                       results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("fffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("1e240"),                   results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("462d537e7ef4e"),           results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0b"),                      results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0000"),                    results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0001e240"),                results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("000462d537e7ef4e"),        results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("b"),                       results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("fed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0"),                       results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("fffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("1e240"),                   results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("462d537e7ef4e"),           results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xb"),                       results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                       results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1e240"),                   results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x462d537e7ef4e"),           results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0b"),                      results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("fed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0000"),                    results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("fffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("0001e240"),                results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("000462d537e7ef4e"),        results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xb"),                       results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x0"),                      results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x1e240"),                  results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x462d537e7ef4e"),          results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("0x81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0xb"),                       results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("0xfed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                       results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("0xfffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("0x1e240"),                   results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("0x462d537e7ef4e"),           results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0xb"),                      results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x0"),                    results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x1e240"),                results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x462d537e7ef4e"),        results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("0x81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0xb"),                       results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("0xfed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR(" 0x0"),                      results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("0xfffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR(" 0x1e240"),                  results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR(" 0x462d537e7ef4e"),          results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("81"),                        results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0b"),                        results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fed4"),                      results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0000"),                      results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffe7960"),                  results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0001e240"),                  results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffb9d2ac81810b2"),          results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("000462d537e7ef4e"),          results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("0x81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR(" 0xb"),                      results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("0xfed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("   0x0"),                    results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("0xfffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("   0x1e240"),                results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("   0x462d537e7ef4e"),        results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xb"),                       results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00"),                      results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x01e240"),                  results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0462d537e7ef4e"),          results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("81"),                        results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0b"),                        results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("fed4"),                      results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0000"),                      results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("fffe7960"),                  results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("0001e240"),                  results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("fffb9d2ac81810b2"),          results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("000462d537e7ef4e"),          results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0b"),                      results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000"),                    results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0001e240"),                results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000462d537e7ef4e"),        results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("0x81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0xb"),                       results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("0xfed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0x00"),                      results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("0xfffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("0x01e240"),                  results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("0x0462d537e7ef4e"),          results[base + 7].statement);
+
+
+    base += 8;
+    TEST_STRING_EQ(PSTR("0x81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0x0b"),                      results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("0xfed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0x0000"),                    results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("0xfffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("0x0001e240"),                results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("0x000462d537e7ef4e"),        results[base + 7].statement);
 
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
@@ -2404,70 +2404,70 @@ static void test_1_15()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-//    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(80u, results.size()));
+    TEST(!results.empty());
+//    REQUIRE(TEST_INT_EQ(80u, results.size()));
 
     size_t base = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("15"),                       results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-15"),                      results[base++].statement);
+    TEST_STRING_EQ(PSTR("15"),                       results[base++].statement);
+    TEST_STRING_EQ(PSTR("-15"),                      results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("15"),                       results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-15"),                      results[base++].statement);
+    TEST_STRING_EQ(PSTR("15"),                       results[base++].statement);
+    TEST_STRING_EQ(PSTR("-15"),                      results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("15"),                       results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-15"),                      results[base++].statement);
+    TEST_STRING_EQ(PSTR("15"),                       results[base++].statement);
+    TEST_STRING_EQ(PSTR("-15"),                      results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("15"),                       results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-15"),                      results[base++].statement);
+    TEST_STRING_EQ(PSTR("15"),                       results[base++].statement);
+    TEST_STRING_EQ(PSTR("-15"),                      results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 15"),                      results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-15"),                      results[base++].statement);
+    TEST_STRING_EQ(PSTR(" 15"),                      results[base++].statement);
+    TEST_STRING_EQ(PSTR("-15"),                      results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("15 "),                      results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-15"),                      results[base++].statement);
+    TEST_STRING_EQ(PSTR("15 "),                      results[base++].statement);
+    TEST_STRING_EQ(PSTR("-15"),                      results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("  15"),                     results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" -15"),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR("  15"),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR(" -15"),                     results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("15  "),                     results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-15 "),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR("15  "),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR("-15 "),                     results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("0015"),                     results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-015"),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR("0015"),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR("-015"),                     results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("15  "),                     results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-15 "),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR("15  "),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR("-15 "),                     results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("f"),                        results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("f1"),                       results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fff1"),                     results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffffff1"),                 results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffffffffffffff1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("f"),                        results[base++].statement);
+    TEST_STRING_EQ(PSTR("f1"),                       results[base++].statement);
+    TEST_STRING_EQ(PSTR("fff1"),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR("fffffff1"),                 results[base++].statement);
+    TEST_STRING_EQ(PSTR("fffffffffffffff1"),         results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR(" f"),                       results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("f1"),                       results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fff1"),                     results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffffff1"),                 results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffffffffffffff1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR(" f"),                       results[base++].statement);
+    TEST_STRING_EQ(PSTR("f1"),                       results[base++].statement);
+    TEST_STRING_EQ(PSTR("fff1"),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR("fffffff1"),                 results[base++].statement);
+    TEST_STRING_EQ(PSTR("fffffffffffffff1"),         results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR(" f"),                       results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("f1"),                       results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fff1"),                     results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffffff1"),                 results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffffffffffffff1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR(" f"),                       results[base++].statement);
+    TEST_STRING_EQ(PSTR("f1"),                       results[base++].statement);
+    TEST_STRING_EQ(PSTR("fff1"),                     results[base++].statement);
+    TEST_STRING_EQ(PSTR("fffffff1"),                 results[base++].statement);
+    TEST_STRING_EQ(PSTR("fffffffffffffff1"),         results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("               f"),         results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("              f1"),         results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("            fff1"),         results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        fffffff1"),         results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffffffffffffff1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("               f"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("              f1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("            fff1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("        fffffff1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("fffffffffffffff1"),         results[base++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("000000000000000f"),         results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("00000000000000f1"),         results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("000000000000fff1"),         results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("00000000fffffff1"),         results[base++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffffffffffffff1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("000000000000000f"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("00000000000000f1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("000000000000fff1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("00000000fffffff1"),         results[base++].statement);
+    TEST_STRING_EQ(PSTR("fffffffffffffff1"),         results[base++].statement);
 }
 
 
@@ -2612,128 +2612,128 @@ static void test_1_21()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(92u, results.size());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(92u, results.size()));
+    TEST(!results.empty());
+    TEST_INT_EQ(92u, results.size());
+    REQUIRE(TEST_INT_GE(92u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0 "),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1 "),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1 "),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0 "),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1 "),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1 "),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0  "),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1  "),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1  "),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0  "),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1  "),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1  "),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0   "),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1   "),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1   "),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0   "),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1   "),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1   "),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0    "),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1    "),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1    "),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0    "),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1    "),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1    "),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0     "),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1     "),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1     "),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0     "),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1     "),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1     "),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0      "),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1      "),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1      "),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0      "),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1      "),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1      "),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0       "),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1       "),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1       "),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0       "),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1       "),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1       "),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0        "),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1        "),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1        "),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0        "),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1        "),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1        "),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0         "),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1         "),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1         "),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0         "),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1         "),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1         "),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0          "),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1          "),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1          "),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0          "),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1          "),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1          "),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0           "),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1           "),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1           "),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0           "),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1           "),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1           "),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0            "),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1            "),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1            "),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0            "),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1            "),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1            "),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0             "),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1             "),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1             "),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0             "),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1             "),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1             "),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0              "),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1              "),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1              "),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0              "),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1              "),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1              "),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0               "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1               "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1               "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0               "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1               "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1               "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0                "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1                "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1                "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678 "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0                "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1                "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1                "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678 "), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0                 "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1                 "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1                 "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678  "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0                 "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1                 "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1                 "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678  "), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0                  "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1                  "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1                  "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678   "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0                  "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1                  "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1                  "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678   "), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0                   "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1                   "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1                   "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678    "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0                   "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1                   "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1                   "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678    "), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0                    "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1                    "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1                    "), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678     "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0                    "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1                    "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1                    "), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678     "), results[n++].statement);
 
-    XTESTS_TEST_INTEGER_EQUAL(results.size(), n);
+    TEST_INT_EQ(n, results.size());
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -2848,102 +2848,102 @@ static void test_1_22()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(69u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(69u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR(" +0"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" +1"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" +0"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR(" +1"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("  +0"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  +1"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  +0"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("  +1"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("   +0"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   +1"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   +0"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("   +1"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("    +0"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    +1"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    +0"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("    +1"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("     +0"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("     +1"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     +0"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("     +1"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("      +0"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("      +1"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("      +0"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("      +1"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("       +0"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("       +1"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("       +0"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("       +1"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("        +0"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        +1"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("        +0"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("        +1"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("         +0"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("         +1"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("         +0"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("         +1"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("          +0"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("          +1"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("          +0"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("          +1"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("           +0"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("           +1"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("           +0"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("           +1"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("            +0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("            +1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("            +0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("            +1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("             +0"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("             +1"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("             +0"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("             +1"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("              +0"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("              +1"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("              +0"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("              +1"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("               +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("               +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("               +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("               +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" +1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" +1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  +1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                 +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                 +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  +1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   +1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                  +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                  +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   +1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    +1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                   +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                   +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    +1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                    +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                    +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("     +1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                    +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                    +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     +1234567812345678"), results[n++].statement);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -3058,102 +3058,102 @@ static void test_1_23()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(69u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(69u, results.size()));
 
     size_t n = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1"),                results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("+0"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("+1"),                results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR(" +0"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" +1"),               results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" +0"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR(" +1"),               results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("  +0"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  +1"),              results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  +0"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("  +1"),              results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("   +0"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   +1"),             results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   +0"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("   +1"),             results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("    +0"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    +1"),            results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    +0"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("    +1"),            results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("     +0"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("     +1"),           results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     +0"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("     +1"),           results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("      +0"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("      +1"),          results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("      +0"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("      +1"),          results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("       +0"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("       +1"),         results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("       +0"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("       +1"),         results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("        +0"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        +1"),        results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("        +0"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("        +1"),        results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("         +0"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("         +1"),       results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("         +0"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("         +1"),       results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("          +0"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("          +1"),      results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("          +0"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("          +1"),      results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("           +0"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("           +1"),     results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("           +0"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("           +1"),     results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("            +0"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("            +1"),    results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("            +0"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("            +1"),    results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("             +0"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("             +1"),   results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("             +0"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("             +1"),   results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("              +0"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("              +1"),  results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("              +0"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("              +1"),  results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("               +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("               +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("               +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("               +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" -1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR(" -1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("  -1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                 +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                 +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("  -1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   -1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                  +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                  +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("   -1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                   +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    -1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                   +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                   +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("    -1234567812345678"), results[n++].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("                    +0"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                    +1"), results[n++].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("     -1234567812345678"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                    +0"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("                    +1"), results[n++].statement);
+    TEST_STRING_EQ(PSTR("     -1234567812345678"), results[n++].statement);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
@@ -3317,158 +3317,158 @@ static void test_1_24()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(112u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(112u, results.size()));
 
     size_t base = 0;
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("-127"),                    results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+11"),                     results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-300"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"),                      results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-100000"),                 results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+123456"),                 results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"),       results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"),       results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("-127"),                    results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("+11"),                     results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("-300"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("+0"),                      results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("-100000"),                 results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("+123456"),                 results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"),       results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"),       results[base + 7].statement);
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("      -127"),              results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("       +11"),              results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("      -300"),              results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        +0"),              results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   -100000"),              results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   +123456"),              results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"),       results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"),       results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("      -127"),              results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("       +11"),              results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("      -300"),              results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("        +0"),              results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("   -100000"),              results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("   +123456"),              results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"),       results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"),       results[base + 7].statement);
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("-127      "),              results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+11       "),              results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-300      "),              results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0        "),              results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-100000   "),              results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+123456   "),              results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678"),       results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678"),       results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("-127      "),              results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("+11       "),              results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("-300      "),              results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("+0        "),              results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("-100000   "),              results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("+123456   "),              results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678"),       results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678"),       results[base + 7].statement);
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("                -127"),    results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                 +11"),    results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                -300"),    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("                  +0"),    results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("             -100000"),    results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("             +123456"),    results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   -1234567812345678"),    results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   +1234567812345678"),    results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("                -127"),    results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("                 +11"),    results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("                -300"),    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("                  +0"),    results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("             -100000"),    results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("             +123456"),    results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("   -1234567812345678"),    results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("   +1234567812345678"),    results[base + 7].statement);
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("-127                "),    results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+11                 "),    results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-300                "),    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0                  "),    results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-100000             "),    results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+123456             "),    results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1234567812345678   "),    results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1234567812345678   "),    results[base + 7].statement);
-
-
-    base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("b"),                       results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                       results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1e240"),                   results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("462d537e7ef4e"),           results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("-127                "),    results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("+11                 "),    results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("-300                "),    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("+0                  "),    results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("-100000             "),    results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("+123456             "),    results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("-1234567812345678   "),    results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("+1234567812345678   "),    results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("b"),                       results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"),                       results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1e240"),                   results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("462d537e7ef4e"),           results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("b"),                       results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("fed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0"),                       results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("fffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("1e240"),                   results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("462d537e7ef4e"),           results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0b"),                      results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0000"),                    results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0001e240"),                results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("000462d537e7ef4e"),        results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("b"),                       results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("fed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0"),                       results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("fffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("1e240"),                   results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("462d537e7ef4e"),           results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xb"),                       results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0"),                       results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1e240"),                   results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x462d537e7ef4e"),           results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0b"),                      results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("fed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0000"),                    results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("fffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("0001e240"),                results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("fffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("000462d537e7ef4e"),        results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xb"),                       results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x0"),                      results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x1e240"),                  results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0x462d537e7ef4e"),          results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("0x81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0xb"),                       results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("0xfed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0x0"),                       results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("0xfffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("0x1e240"),                   results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("0x462d537e7ef4e"),           results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR(" 0xb"),                      results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x0"),                    results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x1e240"),                results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("   0x462d537e7ef4e"),        results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("0x81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0xb"),                       results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("0xfed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR(" 0x0"),                      results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("0xfffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR(" 0x1e240"),                  results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR(" 0x462d537e7ef4e"),          results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("81"),                        results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0b"),                        results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fed4"),                      results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0000"),                      results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffe7960"),                  results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0001e240"),                  results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("fffb9d2ac81810b2"),          results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("000462d537e7ef4e"),          results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("0x81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR(" 0xb"),                      results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("0xfed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("   0x0"),                    results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("0xfffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("   0x1e240"),                results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("   0x462d537e7ef4e"),        results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xb"),                       results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00"),                      results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x01e240"),                  results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0462d537e7ef4e"),          results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("81"),                        results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0b"),                        results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("fed4"),                      results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0000"),                      results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("fffe7960"),                  results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("0001e240"),                  results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("fffb9d2ac81810b2"),          results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("000462d537e7ef4e"),          results[base + 7].statement);
 
 
     base += 8;
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x81"),                      results[base + 0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0b"),                      results[base + 1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfed4"),                    results[base + 2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0000"),                    results[base + 3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffe7960"),                results[base + 4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x0001e240"),                results[base + 5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x000462d537e7ef4e"),        results[base + 7].statement);
+    TEST_STRING_EQ(PSTR("0x81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0xb"),                       results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("0xfed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0x00"),                      results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("0xfffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("0x01e240"),                  results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("0x0462d537e7ef4e"),          results[base + 7].statement);
+
+
+    base += 8;
+    TEST_STRING_EQ(PSTR("0x81"),                      results[base + 0].statement);
+    TEST_STRING_EQ(PSTR("0x0b"),                      results[base + 1].statement);
+    TEST_STRING_EQ(PSTR("0xfed4"),                    results[base + 2].statement);
+    TEST_STRING_EQ(PSTR("0x0000"),                    results[base + 3].statement);
+    TEST_STRING_EQ(PSTR("0xfffe7960"),                results[base + 4].statement);
+    TEST_STRING_EQ(PSTR("0x0001e240"),                results[base + 5].statement);
+    TEST_STRING_EQ(PSTR("0xfffb9d2ac81810b2"),        results[base + 6].statement);
+    TEST_STRING_EQ(PSTR("0x000462d537e7ef4e"),        results[base + 7].statement);
 
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }

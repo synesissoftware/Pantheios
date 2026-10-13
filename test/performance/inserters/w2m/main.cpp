@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.performance.inserters.w2m project.
  *
  * Created: 2nd September 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -61,14 +61,6 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEI
  */
 
 #define PSTR(x)                                             PANTHEIOS_LITERAL_STRING(x)
-
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
-#else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
 /* /////////////////////////////////////////////////////////////////////////

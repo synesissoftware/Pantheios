@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.hostid project.
  *
  * Created: 14th April 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>          // Pantheios C++ main header
@@ -71,11 +71,11 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
 # define pantheios_GetComputerName_                         ::GetComputerNameW
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 # define pantheios_GetComputerName_                         ::GetComputerNameA
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -126,10 +126,10 @@ static void test_1_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(2, results.size());
-    XTESTS_TEST_STRING_EQUAL(hid, results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(stmt, results[1].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(2, results.size());
+    TEST_STRING_EQ(hid, results[0].statement);
+    TEST_STRING_EQ(stmt, results[1].statement);
 }
 
 static string_t pan_get_hid_()

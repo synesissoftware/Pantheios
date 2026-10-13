@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for bec.file.
  *
  * Created: 19th January 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,7 +24,7 @@
 #include <stlsoft/smartptr/scoped_handle.hpp>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Standard C++ header files */
 #include <exception>                    // for std::exception
@@ -41,7 +41,7 @@
  * macros
  */
 
-#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    TEST_INT_EQ(static_cast<int>(x), static_cast<int>(y))
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 
 # define P_TO_M_(x)                     static_cast<char const*>(stlsoft::w2m((x)))
 # define P_TO_W_(x)                     (x)
@@ -72,7 +72,7 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 
 # define P_TO_M_(x)                     (x)
 # define P_TO_W_(x)                     static_cast<wchar_t const*>(stlsoft::m2w((x)))
@@ -294,7 +294,7 @@ static void test_1_00()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -319,10 +319,10 @@ static void test_1_00()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
@@ -348,7 +348,7 @@ static void test_1_01()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -373,10 +373,10 @@ static void test_1_01()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
@@ -402,7 +402,7 @@ static void test_1_02()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -427,10 +427,10 @@ static void test_1_02()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
@@ -456,7 +456,7 @@ static void test_1_03()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -481,10 +481,10 @@ static void test_1_03()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
@@ -510,7 +510,7 @@ static void test_1_04()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -535,11 +535,11 @@ static void test_1_04()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -566,7 +566,7 @@ static void test_1_05()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -591,11 +591,11 @@ static void test_1_05()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -622,7 +622,7 @@ static void test_1_06()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -647,11 +647,11 @@ static void test_1_06()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -678,7 +678,7 @@ static void test_1_07()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -703,11 +703,11 @@ static void test_1_07()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -734,7 +734,7 @@ static void test_1_08()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -759,10 +759,10 @@ static void test_1_08()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
@@ -788,7 +788,7 @@ static void test_1_09()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -813,10 +813,10 @@ static void test_1_09()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
@@ -842,7 +842,7 @@ static void test_1_0a()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -867,10 +867,10 @@ static void test_1_0a()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
@@ -896,7 +896,7 @@ static void test_1_0b()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -921,10 +921,10 @@ static void test_1_0b()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
@@ -950,7 +950,7 @@ static void test_1_0c()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -975,11 +975,11 @@ static void test_1_0c()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1006,7 +1006,7 @@ static void test_1_0d()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1031,11 +1031,11 @@ static void test_1_0d()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1062,7 +1062,7 @@ static void test_1_0e()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1087,11 +1087,11 @@ static void test_1_0e()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1118,7 +1118,7 @@ static void test_1_0f()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1143,11 +1143,11 @@ static void test_1_0f()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1176,7 +1176,7 @@ static void test_2_00()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1201,10 +1201,10 @@ static void test_2_00()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
@@ -1230,7 +1230,7 @@ static void test_2_01()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1255,10 +1255,10 @@ static void test_2_01()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
@@ -1284,7 +1284,7 @@ static void test_2_02()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1309,10 +1309,10 @@ static void test_2_02()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
@@ -1338,7 +1338,7 @@ static void test_2_03()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1363,10 +1363,10 @@ static void test_2_03()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
@@ -1392,7 +1392,7 @@ static void test_2_04()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1417,11 +1417,11 @@ static void test_2_04()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1448,7 +1448,7 @@ static void test_2_05()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1473,11 +1473,11 @@ static void test_2_05()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1504,7 +1504,7 @@ static void test_2_06()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1529,11 +1529,11 @@ static void test_2_06()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1560,7 +1560,7 @@ static void test_2_07()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1585,11 +1585,11 @@ static void test_2_07()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1616,7 +1616,7 @@ static void test_2_08()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1641,10 +1641,10 @@ static void test_2_08()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
@@ -1670,7 +1670,7 @@ static void test_2_09()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1695,10 +1695,10 @@ static void test_2_09()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
@@ -1724,7 +1724,7 @@ static void test_2_0a()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1749,10 +1749,10 @@ static void test_2_0a()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
@@ -1778,7 +1778,7 @@ static void test_2_0b()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1803,10 +1803,10 @@ static void test_2_0b()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
@@ -1832,7 +1832,7 @@ static void test_2_0c()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1857,11 +1857,11 @@ static void test_2_0c()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1888,7 +1888,7 @@ static void test_2_0d()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1913,11 +1913,11 @@ static void test_2_0d()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1944,7 +1944,7 @@ static void test_2_0e()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1969,11 +1969,11 @@ static void test_2_0e()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2000,7 +2000,7 @@ static void test_2_0f()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2025,11 +2025,11 @@ static void test_2_0f()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2057,7 +2057,7 @@ static void test_3_00()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2082,10 +2082,10 @@ static void test_3_00()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
@@ -2110,7 +2110,7 @@ static void test_3_01()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2135,10 +2135,10 @@ static void test_3_01()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
@@ -2163,7 +2163,7 @@ static void test_3_02()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2188,10 +2188,10 @@ static void test_3_02()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL(resultPrefix + strings[i], lines[i]);
+            TEST_STRING_EQ(resultPrefix + strings[i], lines[i]);
         }}
     }
 }
@@ -2216,7 +2216,7 @@ static void test_3_03()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2241,10 +2241,10 @@ static void test_3_03()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
@@ -2269,7 +2269,7 @@ static void test_3_04()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2294,11 +2294,11 @@ static void test_3_04()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2324,7 +2324,7 @@ static void test_3_05()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2349,11 +2349,11 @@ static void test_3_05()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2379,7 +2379,7 @@ static void test_3_06()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2404,11 +2404,11 @@ static void test_3_06()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2434,7 +2434,7 @@ static void test_3_07()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2459,11 +2459,11 @@ static void test_3_07()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2489,7 +2489,7 @@ static void test_3_08()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2514,10 +2514,10 @@ static void test_3_08()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
@@ -2542,7 +2542,7 @@ static void test_3_09()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2567,10 +2567,10 @@ static void test_3_09()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
@@ -2595,7 +2595,7 @@ static void test_3_0a()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2620,10 +2620,10 @@ static void test_3_0a()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
@@ -2648,7 +2648,7 @@ static void test_3_0b()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2673,10 +2673,10 @@ static void test_3_0b()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
@@ -2701,7 +2701,7 @@ static void test_3_0c()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2726,11 +2726,11 @@ static void test_3_0c()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2756,7 +2756,7 @@ static void test_3_0d()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2781,11 +2781,11 @@ static void test_3_0d()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2811,7 +2811,7 @@ static void test_3_0e()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2836,11 +2836,11 @@ static void test_3_0e()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2866,7 +2866,7 @@ static void test_3_0f()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2891,11 +2891,11 @@ static void test_3_0f()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2919,7 +2919,7 @@ static void test_4_00()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -2931,35 +2931,35 @@ static void test_4_00()
         { // (i) Writing something (none-0 length)
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, PANTHEIOS_LITERAL_STRING("abc"), 3u);
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
         }
 
         { // (i) Writing something (0 length)
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, PANTHEIOS_LITERAL_STRING("abc"), 0u);
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
         }
 
         { // (i) Writing nothing
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_FALSE(fs_traits_t::file_exists(FILE_PATH));
         }
 
 
@@ -2989,7 +2989,7 @@ static void test_4_01()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -3001,35 +3001,35 @@ static void test_4_01()
         { // (i) Writing something (none-0 length)
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, PANTHEIOS_LITERAL_STRING("abc"), 3u);
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
         }
 
         { // (i) Writing something (0 length)
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, PANTHEIOS_LITERAL_STRING("abc"), 0u);
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
         }
 
         { // (i) Writing nothing
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_FALSE(fs_traits_t::file_exists(FILE_PATH));
         }
 
 
@@ -3093,7 +3093,7 @@ static void TEST_pantheios_be_file_WITH_ALL_STOCK_true()
 
     int const r = pantheios_be_file_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    XTESTS_TEST_INTEGER_EQUAL(18, r);
+    TEST_INT_EQ(18, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -3118,7 +3118,7 @@ static void TEST_pantheios_be_file_WITH_ALL_STOCK_true()
                                     |   PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY
                                     ;
 
-    XTESTS_TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 
 static void TEST_pantheios_be_file_WITH_ALL_STOCK_false()
@@ -3175,7 +3175,7 @@ static void TEST_pantheios_be_file_WITH_ALL_STOCK_false()
 
     int const r = pantheios_be_file_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    XTESTS_TEST_INTEGER_EQUAL(18, r);
+    TEST_INT_EQ(18, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -3200,7 +3200,7 @@ static void TEST_pantheios_be_file_WITH_ALL_STOCK_false()
                                     // |   PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY
                                     ;
 
-    XTESTS_TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 } /* anonymous namespace */
 

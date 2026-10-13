@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.slice project.
  *
  * Created: 14th February 2010
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>          // Pantheios C++ main header
@@ -64,9 +64,9 @@ const pan_char_t alphabet[] = PANTHEIOS_LITERAL_STRING("abcdefghijklmnopqrstuvwx
  */
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-# define XTESTS_TEST_STRINGS_EQUAL_                         XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else
-# define XTESTS_TEST_STRINGS_EQUAL_                         XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif
 
 
@@ -124,11 +124,11 @@ static void test_1_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(27u, results.size()));
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
-        XTESTS_TEST_STRINGS_EQUAL_(string_t(alphabet, i), results[i].statement);
+        TEST_STRING_EQ(string_t(alphabet, i), results[i].statement);
     }}
 }
 
@@ -151,11 +151,11 @@ static void test_1_02()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(27u, results.size()));
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
-        XTESTS_TEST_STRINGS_EQUAL_(PANTHEIOS_LITERAL_STRING("str=") + string_t(alphabet, i), results[i].statement);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("str=") + string_t(alphabet, i), results[i].statement);
     }}
 }
 
@@ -178,11 +178,11 @@ static void test_1_03()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(27u, results.size()));
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
-        XTESTS_TEST_STRINGS_EQUAL_(PANTHEIOS_LITERAL_STRING("str:") + string_t(alphabet, i), results[i].statement);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("str:") + string_t(alphabet, i), results[i].statement);
     }}
 }
 
@@ -205,13 +205,13 @@ static void test_1_04()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(27u, results.size()));
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pan_char_t num[21];
 
-        XTESTS_TEST_STRINGS_EQUAL_(PANTHEIOS_LITERAL_STRING("str=") + string_t(alphabet, i) + PANTHEIOS_LITERAL_STRING(", len=") + stlsoft::integer_to_string(num, STLSOFT_NUM_ELEMENTS(num), i), results[i].statement);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("str=") + string_t(alphabet, i) + PANTHEIOS_LITERAL_STRING(", len=") + stlsoft::integer_to_string(num, STLSOFT_NUM_ELEMENTS(num), i), results[i].statement);
     }}
 }
 
@@ -234,13 +234,13 @@ static void test_1_05()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(27u, results.size()));
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pan_char_t num[21];
 
-        XTESTS_TEST_STRINGS_EQUAL_(PANTHEIOS_LITERAL_STRING("str:") + string_t(alphabet, i) + PANTHEIOS_LITERAL_STRING(", len:") + stlsoft::integer_to_string(num, STLSOFT_NUM_ELEMENTS(num), i), results[i].statement);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("str:") + string_t(alphabet, i) + PANTHEIOS_LITERAL_STRING(", len:") + stlsoft::integer_to_string(num, STLSOFT_NUM_ELEMENTS(num), i), results[i].statement);
     }}
 }
 
@@ -263,13 +263,13 @@ static void test_1_06()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(27u, results.size()));
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pan_char_t num[21];
 
-        XTESTS_TEST_STRINGS_EQUAL_(PANTHEIOS_LITERAL_STRING("str:") + string_t(alphabet, i) + PANTHEIOS_LITERAL_STRING("; len:") + stlsoft::integer_to_string(num, STLSOFT_NUM_ELEMENTS(num), i), results[i].statement);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("str:") + string_t(alphabet, i) + PANTHEIOS_LITERAL_STRING("; len:") + stlsoft::integer_to_string(num, STLSOFT_NUM_ELEMENTS(num), i), results[i].statement);
     }}
 }
 
@@ -292,13 +292,13 @@ static void test_1_07()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(27u, results.size()));
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pan_char_t num[21];
 
-        XTESTS_TEST_STRINGS_EQUAL_(PANTHEIOS_LITERAL_STRING("str:") + string_t(alphabet, i) + PANTHEIOS_LITERAL_STRING(";len:") + stlsoft::integer_to_string(num, STLSOFT_NUM_ELEMENTS(num), i), results[i].statement);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("str:") + string_t(alphabet, i) + PANTHEIOS_LITERAL_STRING(";len:") + stlsoft::integer_to_string(num, STLSOFT_NUM_ELEMENTS(num), i), results[i].statement);
     }}
 }
 
@@ -321,13 +321,13 @@ static void test_1_08()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(27u, results.size()));
+    TEST(!results.empty());
+    REQUIRE(TEST_INT_EQ(27u, results.size()));
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(alphabet); ++i)
     {
         pan_char_t num[21];
 
-        XTESTS_TEST_STRINGS_EQUAL_(PANTHEIOS_LITERAL_STRING("str=") + string_t(alphabet, i) + PANTHEIOS_LITERAL_STRING(";len=") + stlsoft::integer_to_string(num, STLSOFT_NUM_ELEMENTS(num), i), results[i].statement);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("str=") + string_t(alphabet, i) + PANTHEIOS_LITERAL_STRING(";len=") + stlsoft::integer_to_string(num, STLSOFT_NUM_ELEMENTS(num), i), results[i].statement);
     }}
 }
 

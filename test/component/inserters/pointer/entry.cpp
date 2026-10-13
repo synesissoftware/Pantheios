@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.pointer project.
  *
  * Created: 19th October 2006
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>          // Pantheios C++ main header
@@ -63,10 +63,10 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -127,12 +127,12 @@ static void test_1_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(4u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("(null)"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("(null)"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("(null)"), results[2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("(null)"), results[3].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(4u, results.size());
+    TEST_STRING_EQ(PSTR("(null)"), results[0].statement);
+    TEST_STRING_EQ(PSTR("(null)"), results[1].statement);
+    TEST_STRING_EQ(PSTR("(null)"), results[2].statement);
+    TEST_STRING_EQ(PSTR("(null)"), results[3].statement);
 }
 
 static void test_1_02()
@@ -152,10 +152,10 @@ static void test_1_02()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(2u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("(null)"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("(null)"), results[1].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(2u, results.size());
+    TEST_STRING_EQ(PSTR("(null)"), results[0].statement);
+    TEST_STRING_EQ(PSTR("(null)"), results[1].statement);
 }
 
 static void test_1_03()
@@ -178,11 +178,11 @@ static void test_1_03()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("12345678"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    1234"), results[2].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(3u, results.size());
+    TEST_STRING_EQ(PSTR("1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("12345678"), results[1].statement);
+    TEST_STRING_EQ(PSTR("    1234"), results[2].statement);
 }
 
 static void test_1_04()
@@ -205,11 +205,11 @@ static void test_1_04()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("12345678"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    1234"), results[2].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(3u, results.size());
+    TEST_STRING_EQ(PSTR("1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("12345678"), results[1].statement);
+    TEST_STRING_EQ(PSTR("    1234"), results[2].statement);
 }
 
 static void test_1_05()
@@ -232,11 +232,11 @@ static void test_1_05()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x12345678"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00001234"), results[2].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(3u, results.size());
+    TEST_STRING_EQ(PSTR("0x1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("0x12345678"), results[1].statement);
+    TEST_STRING_EQ(PSTR("0x00001234"), results[2].statement);
 }
 
 static void test_1_06()
@@ -259,11 +259,11 @@ static void test_1_06()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("12345678"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("00001234"), results[2].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(3u, results.size());
+    TEST_STRING_EQ(PSTR("1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("12345678"), results[1].statement);
+    TEST_STRING_EQ(PSTR("00001234"), results[2].statement);
 }
 
 static void test_1_07()
@@ -286,11 +286,11 @@ static void test_1_07()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x12345678"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00001234"), results[2].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(3u, results.size());
+    TEST_STRING_EQ(PSTR("0x1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("0x12345678"), results[1].statement);
+    TEST_STRING_EQ(PSTR("0x00001234"), results[2].statement);
 }
 
 static void test_1_08()
@@ -313,11 +313,11 @@ static void test_1_08()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(3u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x12345678"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x00001234"), results[2].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(3u, results.size());
+    TEST_STRING_EQ(PSTR("0x1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("0x12345678"), results[1].statement);
+    TEST_STRING_EQ(PSTR("0x00001234"), results[2].statement);
 }
 
 static void test_1_09()
@@ -343,14 +343,14 @@ static void test_1_09()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(6u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    1234"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("            1234"), results[2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("12345678"), results[3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("12345678"), results[4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        12345678"), results[5].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(6u, results.size());
+    TEST_STRING_EQ(PSTR("1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("    1234"), results[1].statement);
+    TEST_STRING_EQ(PSTR("            1234"), results[2].statement);
+    TEST_STRING_EQ(PSTR("12345678"), results[3].statement);
+    TEST_STRING_EQ(PSTR("12345678"), results[4].statement);
+    TEST_STRING_EQ(PSTR("        12345678"), results[5].statement);
 }
 
 static void test_1_10()
@@ -376,14 +376,14 @@ static void test_1_10()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(6u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    1234"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("            1234"), results[2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("12345678"), results[3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("12345678"), results[4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        12345678"), results[5].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(6u, results.size());
+    TEST_STRING_EQ(PSTR("1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("    1234"), results[1].statement);
+    TEST_STRING_EQ(PSTR("            1234"), results[2].statement);
+    TEST_STRING_EQ(PSTR("12345678"), results[3].statement);
+    TEST_STRING_EQ(PSTR("12345678"), results[4].statement);
+    TEST_STRING_EQ(PSTR("        12345678"), results[5].statement);
 }
 
 static void test_1_11()
@@ -409,14 +409,14 @@ static void test_1_11()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(6u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234    "), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("1234            "), results[2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("12345678"), results[3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("12345678"), results[4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("12345678        "), results[5].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(6u, results.size());
+    TEST_STRING_EQ(PSTR("1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("1234    "), results[1].statement);
+    TEST_STRING_EQ(PSTR("1234            "), results[2].statement);
+    TEST_STRING_EQ(PSTR("12345678"), results[3].statement);
+    TEST_STRING_EQ(PSTR("12345678"), results[4].statement);
+    TEST_STRING_EQ(PSTR("12345678        "), results[5].statement);
 }
 
 static void test_1_12()
@@ -442,14 +442,14 @@ static void test_1_12()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(6u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("    0x1234"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("            0x1234"), results[2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x12345678"), results[3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x12345678"), results[4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("        0x12345678"), results[5].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(6u, results.size());
+    TEST_STRING_EQ(PSTR("0x1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("    0x1234"), results[1].statement);
+    TEST_STRING_EQ(PSTR("            0x1234"), results[2].statement);
+    TEST_STRING_EQ(PSTR("0x12345678"), results[3].statement);
+    TEST_STRING_EQ(PSTR("0x12345678"), results[4].statement);
+    TEST_STRING_EQ(PSTR("        0x12345678"), results[5].statement);
 }
 
 static void test_1_13()
@@ -475,14 +475,14 @@ static void test_1_13()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(6u, results.size());
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234    "), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x1234            "), results[2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x12345678"), results[3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x12345678"), results[4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("0x12345678        "), results[5].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(6u, results.size());
+    TEST_STRING_EQ(PSTR("0x1234"), results[0].statement);
+    TEST_STRING_EQ(PSTR("0x1234    "), results[1].statement);
+    TEST_STRING_EQ(PSTR("0x1234            "), results[2].statement);
+    TEST_STRING_EQ(PSTR("0x12345678"), results[3].statement);
+    TEST_STRING_EQ(PSTR("0x12345678"), results[4].statement);
+    TEST_STRING_EQ(PSTR("0x12345678        "), results[5].statement);
 }
 
 
