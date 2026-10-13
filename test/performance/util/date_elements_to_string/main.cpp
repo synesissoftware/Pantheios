@@ -129,7 +129,7 @@ iteration_to_tm_(
  * main()
  */
 
-static int main_(int /* argc */, char** /* argv */)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     platformstl::performance_counter                counter;
     platformstl::performance_counter::interval_type tm_date_elements    =   0;

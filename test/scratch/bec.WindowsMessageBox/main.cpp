@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.bec.WindowsMessageBox project.
  *
  * Created: 14th March 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -58,7 +58,7 @@ typedef std::string     string_t;
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int /* argc */, char** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     pantheios::log_DEBUG("debug");
     pantheios::log_INFORMATIONAL("informational");

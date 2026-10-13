@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.be.file project.
  *
  * Created: 27th November 2006
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -67,7 +67,7 @@ typedef platformstl::file_lines                 file_lines_t;
  * main()
  */
 
-static int main_(int argc, char **argv)
+static int main_(int argc, char* argv[])
 {
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
     pantheios::log_DEBUG("main_(", pantheios::args(argc, argv), ")");

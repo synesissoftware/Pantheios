@@ -4,7 +4,7 @@
  * Purpose:     Implementation file for the test.scratch.be.pantheios.COM project.
  *
  * Created:     9th October 2006
- * Updated:     10th October 2026
+ * Updated:     12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -97,7 +97,7 @@ typedef std::string     string_t;
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int /* argc */, char ** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     {
         pantheios::log_DEBUG("debug");

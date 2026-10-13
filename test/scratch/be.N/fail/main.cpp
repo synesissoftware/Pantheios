@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the be.N.fail.test project.
  *
  * Created: 9th January 2007
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -75,7 +75,7 @@ pan_be_N_t      PAN_BE_N_BACKEND_LIST[]         =
  * main()
  */
 
-static int main_(int /* argc */, char ** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     pantheios::log_NOTICE(PSTR("a notice"));
 
