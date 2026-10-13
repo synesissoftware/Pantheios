@@ -4,7 +4,7 @@
  * Purpose: Unit-testing of `pantheios_util_getCurrentTime()`
  *
  * Created: 10th November 2007
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,7 +32,7 @@
 #include <pantheios/util/time/currenttime.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* shwild header files */
 #include <shwild/shwild.h>
@@ -91,32 +91,32 @@ static string_t translate_pattern(PAN_CHAR_T const* pattern);
 
 /* flags to be tested:
  *
- * - PANTHEIOS_GETCURRENTTIME_F_USE_SYSTEM_TIME     -   test_unix_F_USE_SYSTEM_TIME(), ;
- * - PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT     -   test_unix_0(), test_unix_F_USE_SYSTEM_TIME(), test_unix_F_HIDE_DATE(), test_unix_F_HIDE_TIME();
- * - PANTHEIOS_GETCURRENTTIME_F_HIDE_DATE           -   test_unix_F_HIDE_DATE(), ;
- * - PANTHEIOS_GETCURRENTTIME_F_HIDE_TIME           -   test_unix_F_HIDE_TIME(), ;
- * - PANTHEIOS_GETCURRENTTIME_F_TIME_RES_SECONDS    -   test_unix_F_TIME_RES_SECONDS(), ;
- * - PANTHEIOS_GETCURRENTTIME_F_TIME_RES_TENTHS     -   test_unix_F_TIME_RES_TENTHS(), ;
- * - PANTHEIOS_GETCURRENTTIME_F_TIME_RES_HUNDREDTHS -   test_unix_F_TIME_RES_HUNDREDTHS(), ;
- * - PANTHEIOS_GETCURRENTTIME_F_TIME_RES_MILLISECS  -   test_unix_F_TIME_RES_MILLISECS(), ;
- * - PANTHEIOS_GETCURRENTTIME_F_TIME_RES_MICROSECS  -   test_unix_F_TIME_RES_MICROSECS(), ;
+ * - PANTHEIOS_GETCURRENTTIME_F_USE_SYSTEM_TIME     -   TEST_pantheios_util_getCurrentTime_UNIX_F_USE_SYSTEM_TIME(), ;
+ * - PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT     -   TEST_pantheios_util_getCurrentTime_UNIX_flags_0(), TEST_pantheios_util_getCurrentTime_UNIX_F_USE_SYSTEM_TIME(), TEST_pantheios_util_getCurrentTime_UNIX_F_HIDE_DATE(), TEST_pantheios_util_getCurrentTime_UNIX_F_HIDE_TIME();
+ * - PANTHEIOS_GETCURRENTTIME_F_HIDE_DATE           -   TEST_pantheios_util_getCurrentTime_UNIX_F_HIDE_DATE(), ;
+ * - PANTHEIOS_GETCURRENTTIME_F_HIDE_TIME           -   TEST_pantheios_util_getCurrentTime_UNIX_F_HIDE_TIME(), ;
+ * - PANTHEIOS_GETCURRENTTIME_F_TIME_RES_SECONDS    -   TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_SECONDS(), ;
+ * - PANTHEIOS_GETCURRENTTIME_F_TIME_RES_TENTHS     -   TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_TENTHS(), ;
+ * - PANTHEIOS_GETCURRENTTIME_F_TIME_RES_HUNDREDTHS -   TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_HUNDREDTHS(), ;
+ * - PANTHEIOS_GETCURRENTTIME_F_TIME_RES_MILLISECS  -   TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MILLISECS(), ;
+ * - PANTHEIOS_GETCURRENTTIME_F_TIME_RES_MICROSECS  -   TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MICROSECS(), ;
 */
 
-static void     test_unix_0();
-static void     test_unix_F_USE_SYSTEM_TIME();
-static void     test_unix_F_HIDE_DATE();
-static void     test_unix_F_HIDE_TIME();
-static void     test_unix_F_TIME_RES_SECONDS();
-static void     test_unix_F_TIME_RES_TENTHS();
-static void     test_unix_F_TIME_RES_HUNDREDTHS();
-static void     test_unix_F_TIME_RES_MILLISECS();
-static void     test_unix_F_TIME_RES_MICROSECS();
-static void     test_unix_F_TIME_RES_MILLISECS_and_F_FAVOUR_SPEED();
+static void     TEST_pantheios_util_getCurrentTime_UNIX_flags_0();
+static void     TEST_pantheios_util_getCurrentTime_UNIX_F_USE_SYSTEM_TIME();
+static void     TEST_pantheios_util_getCurrentTime_UNIX_F_HIDE_DATE();
+static void     TEST_pantheios_util_getCurrentTime_UNIX_F_HIDE_TIME();
+static void     TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_SECONDS();
+static void     TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_TENTHS();
+static void     TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_HUNDREDTHS();
+static void     TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MILLISECS();
+static void     TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MICROSECS();
+static void     TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MILLISECS_and_F_FAVOUR_SPEED();
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-static void     test_win_0();
-static void     test_win_F_USE_SYSTEM_TIME();
-static void     test_win_F_HIDE_DATE();
-static void     test_win_F_HIDE_TIME();
+static void     TEST_pantheios_util_getCurrentTime_WINDOWS_flags_0();
+static void     TEST_pantheios_util_getCurrentTime_WINDOWS_F_USE_SYSTEM_TIME();
+static void     TEST_pantheios_util_getCurrentTime_WINDOWS_F_HIDE_DATE();
+static void     TEST_pantheios_util_getCurrentTime_WINDOWS_F_HIDE_TIME();
 #endif /* PLATFORMSTL_OS_IS_WINDOWS */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -130,21 +130,21 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.util.getcurrenttime", verbosity))
     {
-        XTESTS_RUN_CASE_WITH_DESC(test_unix_0, "testing UNIX format; flags=0");
-        XTESTS_RUN_CASE_WITH_DESC(test_unix_F_USE_SYSTEM_TIME, "testing UNIX format; flags=F_USE_SYSTEM_TIME");
-        XTESTS_RUN_CASE_WITH_DESC(test_unix_F_HIDE_DATE, "testing UNIX format; flags=F_HIDE_DATE");
-        XTESTS_RUN_CASE_WITH_DESC(test_unix_F_HIDE_TIME, "testing UNIX format; flags=F_HIDE_TIME");
-        XTESTS_RUN_CASE_WITH_DESC(test_unix_F_TIME_RES_SECONDS, "testing UNIX format; flags=F_TIME_RES_SECONDS");
-        XTESTS_RUN_CASE_WITH_DESC(test_unix_F_TIME_RES_TENTHS, "testing UNIX format; flags=F_TIME_RES_TENTHS");
-        XTESTS_RUN_CASE_WITH_DESC(test_unix_F_TIME_RES_HUNDREDTHS, "testing UNIX format; flags=F_TIME_RES_HUNDREDTHS");
-        XTESTS_RUN_CASE_WITH_DESC(test_unix_F_TIME_RES_MILLISECS, "testing UNIX format; flags=F_TIME_RES_MILLISECS");
-        XTESTS_RUN_CASE_WITH_DESC(test_unix_F_TIME_RES_MICROSECS, "testing UNIX format; flags=F_TIME_RES_MICROSECS");
-        XTESTS_RUN_CASE_WITH_DESC(test_unix_F_TIME_RES_MILLISECS_and_F_FAVOUR_SPEED, "testing UNIX format; flags=F_TIME_RES_MILLISECS | F_FAVOUR_SPEED");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_UNIX_flags_0, "testing UNIX format; flags=0");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_UNIX_F_USE_SYSTEM_TIME, "testing UNIX format; flags=F_USE_SYSTEM_TIME");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_UNIX_F_HIDE_DATE, "testing UNIX format; flags=F_HIDE_DATE");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_UNIX_F_HIDE_TIME, "testing UNIX format; flags=F_HIDE_TIME");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_SECONDS, "testing UNIX format; flags=F_TIME_RES_SECONDS");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_TENTHS, "testing UNIX format; flags=F_TIME_RES_TENTHS");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_HUNDREDTHS, "testing UNIX format; flags=F_TIME_RES_HUNDREDTHS");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MILLISECS, "testing UNIX format; flags=F_TIME_RES_MILLISECS");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MICROSECS, "testing UNIX format; flags=F_TIME_RES_MICROSECS");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MILLISECS_and_F_FAVOUR_SPEED, "testing UNIX format; flags=F_TIME_RES_MILLISECS | F_FAVOUR_SPEED");
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-        XTESTS_RUN_CASE_WITH_DESC(test_win_0, "testing Windows format; flags=0");
-        XTESTS_RUN_CASE_WITH_DESC(test_win_F_USE_SYSTEM_TIME, "testing Windows format; flags=F_USE_SYSTEM_TIME");
-        XTESTS_RUN_CASE_WITH_DESC(test_win_F_HIDE_DATE, "testing Windows format; flags=F_HIDE_DATE");
-        XTESTS_RUN_CASE_WITH_DESC(test_win_F_HIDE_TIME, "testing Windows format; flags=0");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_WINDOWS_flags_0, "testing Windows format; flags=0");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_WINDOWS_F_USE_SYSTEM_TIME, "testing Windows format; flags=F_USE_SYSTEM_TIME");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_WINDOWS_F_HIDE_DATE, "testing Windows format; flags=F_HIDE_DATE");
+        XTESTS_RUN_CASE_WITH_DESC(TEST_pantheios_util_getCurrentTime_WINDOWS_F_HIDE_TIME, "testing Windows format; flags=0");
 #endif /* PLATFORMSTL_OS_IS_WINDOWS */
 
         XTESTS_PRINT_RESULTS();
@@ -155,7 +155,7 @@ int main(int argc, char* argv[])
     return retCode;
 }
 
-static void test_unix_0()
+static void TEST_pantheios_util_getCurrentTime_UNIX_flags_0()
 {
     const int   timeFlags   =   PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT
                             |   0
@@ -188,7 +188,7 @@ static void test_unix_0()
     PANTHEIOS_TEST_TIME(1000, timeFlags, 15, PANTHEIOS_LITERAL_STRING("?<Mon> <DD> <DD>:<DD>:<DD>"));
 }
 
-static void test_unix_F_USE_SYSTEM_TIME()
+static void TEST_pantheios_util_getCurrentTime_UNIX_F_USE_SYSTEM_TIME()
 {
     const int   timeFlags   =   PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT
                             |   0
@@ -221,7 +221,7 @@ static void test_unix_F_USE_SYSTEM_TIME()
     PANTHEIOS_TEST_TIME(1000, timeFlags, 15, PANTHEIOS_LITERAL_STRING("?<Mon> <DD> <DD>:<DD>:<DD>"));
 }
 
-static void test_unix_F_HIDE_DATE()
+static void TEST_pantheios_util_getCurrentTime_UNIX_F_HIDE_DATE()
 {
     const int   timeFlags   =   PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT
                             |   0
@@ -254,7 +254,7 @@ static void test_unix_F_HIDE_DATE()
     PANTHEIOS_TEST_TIME(1000, timeFlags,  8, PANTHEIOS_LITERAL_STRING("?<DD>:<DD>:<DD>"));
 }
 
-static void test_unix_F_HIDE_TIME()
+static void TEST_pantheios_util_getCurrentTime_UNIX_F_HIDE_TIME()
 {
     const int   timeFlags   =   PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT
                             |   0
@@ -287,7 +287,7 @@ static void test_unix_F_HIDE_TIME()
     PANTHEIOS_TEST_TIME(1000, timeFlags,  6, PANTHEIOS_LITERAL_STRING("?<Mon> <DD>"));
 }
 
-static void test_unix_F_TIME_RES_SECONDS()
+static void TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_SECONDS()
 {
     const int   timeFlags   =   PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT
                             |   0
@@ -317,7 +317,7 @@ static void test_unix_F_TIME_RES_SECONDS()
     PANTHEIOS_TEST_TIME(1000, timeFlags, 15 + 0, PANTHEIOS_LITERAL_STRING("?<Mon> <DD> <DD>:<DD>:<DD>"));
 }
 
-static void test_unix_F_TIME_RES_TENTHS()
+static void TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_TENTHS()
 {
     const int   timeFlags   =   PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT
                             |   0
@@ -350,7 +350,7 @@ static void test_unix_F_TIME_RES_TENTHS()
     PANTHEIOS_TEST_TIME(1000, timeFlags, 15 + 2, PANTHEIOS_LITERAL_STRING("?<Mon> <DD> <DD>:<DD>:<DD>.<D>"));
 }
 
-static void test_unix_F_TIME_RES_HUNDREDTHS()
+static void TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_HUNDREDTHS()
 {
     const int   timeFlags   =   PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT
                             |   0
@@ -383,7 +383,7 @@ static void test_unix_F_TIME_RES_HUNDREDTHS()
     PANTHEIOS_TEST_TIME(1000, timeFlags, 15 + 3, PANTHEIOS_LITERAL_STRING("?<Mon> <DD> <DD>:<DD>:<DD>.<D><D>"));
 }
 
-static void test_unix_F_TIME_RES_MILLISECS()
+static void TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MILLISECS()
 {
     const int   timeFlags   =   PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT
                             |   0
@@ -416,7 +416,7 @@ static void test_unix_F_TIME_RES_MILLISECS()
     PANTHEIOS_TEST_TIME(1000, timeFlags, 15 + 4, PANTHEIOS_LITERAL_STRING("?<Mon> <DD> <DD>:<DD>:<DD>.<D><D><D>"));
 }
 
-static void test_unix_F_TIME_RES_MICROSECS()
+static void TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MICROSECS()
 {
     const int   timeFlags   =   PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT
                             |   0
@@ -451,7 +451,7 @@ static void test_unix_F_TIME_RES_MICROSECS()
     PANTHEIOS_TEST_TIME(1000, timeFlags, 15 + 7, PANTHEIOS_LITERAL_STRING("?<Mon> <DD> <DD>:<DD>:<DD>.<D><D><D><D><D><D>"));
 }
 
-static void test_unix_F_TIME_RES_MILLISECS_and_F_FAVOUR_SPEED()
+static void TEST_pantheios_util_getCurrentTime_UNIX_F_TIME_RES_MILLISECS_and_F_FAVOUR_SPEED()
 {
     const int   timeFlags   =   PANTHEIOS_GETCURRENTTIME_F_USE_UNIX_FORMAT
                             |   0
@@ -487,7 +487,7 @@ static void test_unix_F_TIME_RES_MILLISECS_and_F_FAVOUR_SPEED()
 /* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
-static void test_win_0()
+static void TEST_pantheios_util_getCurrentTime_WINDOWS_flags_0()
 {
     const int   timeFlags   =   0
                             |   0
@@ -505,7 +505,7 @@ static void test_win_0()
     }}
 }
 
-static void test_win_F_USE_SYSTEM_TIME()
+static void TEST_pantheios_util_getCurrentTime_WINDOWS_F_USE_SYSTEM_TIME()
 {
     const int   timeFlags   =   0
                             |   0
@@ -523,7 +523,7 @@ static void test_win_F_USE_SYSTEM_TIME()
     }}
 }
 
-static void test_win_F_HIDE_DATE()
+static void TEST_pantheios_util_getCurrentTime_WINDOWS_F_HIDE_DATE()
 {
     const int   timeFlags   =   0
                             |   0
@@ -541,7 +541,7 @@ static void test_win_F_HIDE_DATE()
     }}
 }
 
-static void test_win_F_HIDE_TIME()
+static void TEST_pantheios_util_getCurrentTime_WINDOWS_F_HIDE_TIME()
 {
     const int   timeFlags   =   0
                             |   0

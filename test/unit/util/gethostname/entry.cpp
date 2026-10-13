@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.util.gethostname project.
  *
  * Created: 14th April 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.h>            // Pantheios C++ main header
@@ -55,13 +55,13 @@ typedef std::basic_string<PAN_CHAR_T>   string_t;
 
 # define pantheios_GetComputerName_                         ::GetComputerNameW
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
 # define pantheios_GetComputerName_                         ::GetComputerNameA
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -70,8 +70,8 @@ typedef std::basic_string<PAN_CHAR_T>   string_t;
  * forward declarations
  */
 
-static void test_1_01();
-static void test_1_02();
+static void TEST_pantheios_getHostName_C_STRING_BUFFER_SIZES();
+static void TEST_pantheios_getHostName_auto_buffer_SIZES();
 
 static string_t pan_get_hid_();
 
@@ -92,8 +92,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.util.gethostname", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
+        XTESTS_RUN_CASE(TEST_pantheios_getHostName_C_STRING_BUFFER_SIZES);
+        XTESTS_RUN_CASE(TEST_pantheios_getHostName_auto_buffer_SIZES);
 
         XTESTS_PRINT_RESULTS();
 
@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_1_01()
+static void TEST_pantheios_getHostName_C_STRING_BUFFER_SIZES()
 {
     PAN_CHAR_T      hostname[1000];
     const string_t  hid = pan_get_hid_();
@@ -120,22 +120,22 @@ static void test_1_01()
         {
             // The function did not have enough space to write in, so it
             // will return the length passed to it ...
-            XTESTS_TEST_INTEGER_EQUAL(i, len);
+            TEST_INT_EQ(i, len);
             // ... and will not have written anything to the file
-            XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING(""), hostname);
+            TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING(""), hostname);
         }
         else
         {
             // The function had enough space, so it will return the length
             // of the intended hostname ...
-            XTESTS_TEST_INTEGER_EQUAL(hid.size(), len);
+            TEST_INT_EQ(hid.size(), len);
             // ... and will have written the hostname
-            XTESTS_TEST_STRING_EQUAL(hid, hostname);
+            TEST_STRING_EQ(hid, hostname);
         }
     }}
 }
 
-static void test_1_02()
+static void TEST_pantheios_getHostName_auto_buffer_SIZES()
 {
     const string_t hid = pan_get_hid_();
 
@@ -147,9 +147,9 @@ static void test_1_02()
 
         // The function had enough space, so it will return the length
         // of the intended hostname ...
-        XTESTS_TEST_INTEGER_EQUAL(hid.size(), len);
+        TEST_INT_EQ(hid.size(), len);
         // ... and will have written the hostname
-        XTESTS_TEST_STRING_EQUAL(hid, hostname.data());
+        TEST_STRING_EQ(hid, hostname.data());
     }}
 }
 

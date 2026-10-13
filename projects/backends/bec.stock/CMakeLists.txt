@@ -7,7 +7,6 @@ file(GLOB BEC_STOCK_SRCS_common
 	${BEC_STOCK_SRC_DIR}/bec.file.cpp
 	${BEC_STOCK_SRC_DIR}/bec.fprintf.cpp
 	${BEC_STOCK_SRC_DIR}/bec.null.c
-	${BEC_STOCK_SRC_DIR}/bec.test.cpp
 )
 
 set(BEC_STOCK_SRCS ${BEC_STOCK_SRCS_common})
@@ -57,7 +56,7 @@ if(HAS_ACE)
 endif(HAS_ACE)
 
 list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED unused-function)
-list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED unused-private-field) # this (temporarily) for bec.test.cpp
+list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED unused-parameter)
 define_target_compile_options(Pantheios.bec.stock)
 
 install(TARGETS Pantheios.bec.stock
@@ -66,4 +65,3 @@ install(TARGETS Pantheios.bec.stock
 
 
 # ############################## end of file ############################# #
-

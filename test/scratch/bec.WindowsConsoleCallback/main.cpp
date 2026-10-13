@@ -4,7 +4,7 @@
  * Purpose:  Implementation file for the test.scratch.bec.WindowsConsoleCallback project.
  *
  * Created:  31st July 2007
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -53,7 +53,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
 //  init->flags |= PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS;
 }
 
-static int main_(int /* argc */, char** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     pantheios::log_DEBUG("debug");
     pantheios::log_INFORMATIONAL("info");

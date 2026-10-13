@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.processid project.
  *
  * Created: 17th October 2006
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>      // Pantheios C++ main header
@@ -41,7 +41,7 @@
  * forward declarations
  */
 
-static void test_1_01();
+static void TEST_pantheios_processId_ALONE_AND_WITH_PREFIX();
 
 static int pan_get_pid_();
 
@@ -62,10 +62,10 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.processid", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
+        XTESTS_RUN_CASE(TEST_pantheios_processId_ALONE_AND_WITH_PREFIX);
 
         XTESTS_PRINT_RESULTS();
 
@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-static void test_1_01()
+static void TEST_pantheios_processId_ALONE_AND_WITH_PREFIX()
 {
     // 1. Setup
 
@@ -121,10 +121,10 @@ static void test_1_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST_BOOLEAN_FALSE(results.empty());
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(2u, results.size()));
-    XTESTS_TEST_STRING_EQUAL(pid, results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(stmt, results[1].statement);
+    TEST_BOOLEAN_FALSE(results.empty());
+    REQUIRE(TEST_INT_EQ(2u, results.size()));
+    TEST_STRING_EQ(pid, results[0].statement);
+    TEST_STRING_EQ(stmt, results[1].statement);
 }
 
 static int pan_get_pid_()

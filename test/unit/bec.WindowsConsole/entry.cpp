@@ -4,7 +4,7 @@
  * Purpose: Unit-test for bec.WindowsConsole.
  *
  * Created: 25th January 2025
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -118,7 +118,7 @@ static void TEST_pantheios_be_WindowsConsole_WITH_ALL_STOCK_true()
 
     int const r = pantheios_be_WindowsConsole_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    TEST_INTEGER_EQUAL(15, r);
+    TEST_INT_EQ(15, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -140,7 +140,7 @@ static void TEST_pantheios_be_WindowsConsole_WITH_ALL_STOCK_true()
                                     |   PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES
                                     ;
 
-    TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 
 static void TEST_pantheios_be_WindowsConsole_WITH_ALL_STOCK_false()
@@ -191,7 +191,7 @@ static void TEST_pantheios_be_WindowsConsole_WITH_ALL_STOCK_false()
 
     int const r = pantheios_be_WindowsConsole_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    TEST_INTEGER_EQUAL(15, r);
+    TEST_INT_EQ(15, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -213,7 +213,7 @@ static void TEST_pantheios_be_WindowsConsole_WITH_ALL_STOCK_false()
                                     // |   PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES
                                     ;
 
-    TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 
 

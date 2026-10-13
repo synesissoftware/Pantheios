@@ -4,7 +4,7 @@
  * Purpose: Tests **pantheios.be.N** filtering functionality.
  *
  * Created: 28th June 2016
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -13,7 +13,7 @@
 #include <pantheios/backends/bec.test.h>
 #include <pantheios/init_codes.h>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/stlsoft.h>        /* for STLSOFT_NUM_ELEMENTS */
 
@@ -182,50 +182,50 @@ int main(int argc, char* argv[])
 
                 pantheios_be_uninit(token);
 
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[1][PANTHEIOS_SEV_DEBUG]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[1][PANTHEIOS_SEV_INFORMATIONAL]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[1][PANTHEIOS_SEV_NOTICE]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[1][PANTHEIOS_SEV_WARNING]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[1][PANTHEIOS_SEV_ERROR]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[1][PANTHEIOS_SEV_CRITICAL]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[1][PANTHEIOS_SEV_ALERT]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[1][PANTHEIOS_SEV_EMERGENCY]);
+                TEST_INT_EQ(10u, results.counts[1][PANTHEIOS_SEV_DEBUG]);
+                TEST_INT_EQ(10u, results.counts[1][PANTHEIOS_SEV_INFORMATIONAL]);
+                TEST_INT_EQ(10u, results.counts[1][PANTHEIOS_SEV_NOTICE]);
+                TEST_INT_EQ(10u, results.counts[1][PANTHEIOS_SEV_WARNING]);
+                TEST_INT_EQ(10u, results.counts[1][PANTHEIOS_SEV_ERROR]);
+                TEST_INT_EQ(10u, results.counts[1][PANTHEIOS_SEV_CRITICAL]);
+                TEST_INT_EQ(10u, results.counts[1][PANTHEIOS_SEV_ALERT]);
+                TEST_INT_EQ(10u, results.counts[1][PANTHEIOS_SEV_EMERGENCY]);
 
-                XTESTS_TEST_INTEGER_EQUAL( 0u, results.counts[2][PANTHEIOS_SEV_DEBUG]);
-                XTESTS_TEST_INTEGER_EQUAL( 0u, results.counts[2][PANTHEIOS_SEV_INFORMATIONAL]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[2][PANTHEIOS_SEV_NOTICE]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[2][PANTHEIOS_SEV_WARNING]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[2][PANTHEIOS_SEV_ERROR]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[2][PANTHEIOS_SEV_CRITICAL]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[2][PANTHEIOS_SEV_ALERT]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[2][PANTHEIOS_SEV_EMERGENCY]);
+                TEST_INT_EQ( 0u, results.counts[2][PANTHEIOS_SEV_DEBUG]);
+                TEST_INT_EQ( 0u, results.counts[2][PANTHEIOS_SEV_INFORMATIONAL]);
+                TEST_INT_EQ(10u, results.counts[2][PANTHEIOS_SEV_NOTICE]);
+                TEST_INT_EQ(10u, results.counts[2][PANTHEIOS_SEV_WARNING]);
+                TEST_INT_EQ(10u, results.counts[2][PANTHEIOS_SEV_ERROR]);
+                TEST_INT_EQ(10u, results.counts[2][PANTHEIOS_SEV_CRITICAL]);
+                TEST_INT_EQ(10u, results.counts[2][PANTHEIOS_SEV_ALERT]);
+                TEST_INT_EQ(10u, results.counts[2][PANTHEIOS_SEV_EMERGENCY]);
 
-                XTESTS_TEST_INTEGER_EQUAL( 0u, results.counts[3][PANTHEIOS_SEV_DEBUG]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[3][PANTHEIOS_SEV_INFORMATIONAL]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[3][PANTHEIOS_SEV_NOTICE]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[3][PANTHEIOS_SEV_WARNING]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[3][PANTHEIOS_SEV_ERROR]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[3][PANTHEIOS_SEV_CRITICAL]);
-                XTESTS_TEST_INTEGER_EQUAL( 0u, results.counts[3][PANTHEIOS_SEV_ALERT]);
-                XTESTS_TEST_INTEGER_EQUAL( 0u, results.counts[3][PANTHEIOS_SEV_EMERGENCY]);
+                TEST_INT_EQ( 0u, results.counts[3][PANTHEIOS_SEV_DEBUG]);
+                TEST_INT_EQ(10u, results.counts[3][PANTHEIOS_SEV_INFORMATIONAL]);
+                TEST_INT_EQ(10u, results.counts[3][PANTHEIOS_SEV_NOTICE]);
+                TEST_INT_EQ(10u, results.counts[3][PANTHEIOS_SEV_WARNING]);
+                TEST_INT_EQ(10u, results.counts[3][PANTHEIOS_SEV_ERROR]);
+                TEST_INT_EQ(10u, results.counts[3][PANTHEIOS_SEV_CRITICAL]);
+                TEST_INT_EQ( 0u, results.counts[3][PANTHEIOS_SEV_ALERT]);
+                TEST_INT_EQ( 0u, results.counts[3][PANTHEIOS_SEV_EMERGENCY]);
 
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[4][PANTHEIOS_SEV_DEBUG]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[4][PANTHEIOS_SEV_INFORMATIONAL]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[4][PANTHEIOS_SEV_NOTICE]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[4][PANTHEIOS_SEV_WARNING]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[4][PANTHEIOS_SEV_ERROR]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[4][PANTHEIOS_SEV_CRITICAL]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[4][PANTHEIOS_SEV_ALERT]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[4][PANTHEIOS_SEV_EMERGENCY]);
+                TEST_INT_EQ(10u, results.counts[4][PANTHEIOS_SEV_DEBUG]);
+                TEST_INT_EQ(10u, results.counts[4][PANTHEIOS_SEV_INFORMATIONAL]);
+                TEST_INT_EQ(10u, results.counts[4][PANTHEIOS_SEV_NOTICE]);
+                TEST_INT_EQ(10u, results.counts[4][PANTHEIOS_SEV_WARNING]);
+                TEST_INT_EQ(10u, results.counts[4][PANTHEIOS_SEV_ERROR]);
+                TEST_INT_EQ(10u, results.counts[4][PANTHEIOS_SEV_CRITICAL]);
+                TEST_INT_EQ(10u, results.counts[4][PANTHEIOS_SEV_ALERT]);
+                TEST_INT_EQ(10u, results.counts[4][PANTHEIOS_SEV_EMERGENCY]);
 
-                XTESTS_TEST_INTEGER_EQUAL( 0u, results.counts[5][PANTHEIOS_SEV_DEBUG]);
-                XTESTS_TEST_INTEGER_EQUAL( 0u, results.counts[5][PANTHEIOS_SEV_INFORMATIONAL]);
-                XTESTS_TEST_INTEGER_EQUAL( 0u, results.counts[5][PANTHEIOS_SEV_NOTICE]);
-                XTESTS_TEST_INTEGER_EQUAL( 0u, results.counts[5][PANTHEIOS_SEV_WARNING]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[5][PANTHEIOS_SEV_ERROR]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[5][PANTHEIOS_SEV_CRITICAL]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[5][PANTHEIOS_SEV_ALERT]);
-                XTESTS_TEST_INTEGER_EQUAL(10u, results.counts[5][PANTHEIOS_SEV_EMERGENCY]);
+                TEST_INT_EQ( 0u, results.counts[5][PANTHEIOS_SEV_DEBUG]);
+                TEST_INT_EQ( 0u, results.counts[5][PANTHEIOS_SEV_INFORMATIONAL]);
+                TEST_INT_EQ( 0u, results.counts[5][PANTHEIOS_SEV_NOTICE]);
+                TEST_INT_EQ( 0u, results.counts[5][PANTHEIOS_SEV_WARNING]);
+                TEST_INT_EQ(10u, results.counts[5][PANTHEIOS_SEV_ERROR]);
+                TEST_INT_EQ(10u, results.counts[5][PANTHEIOS_SEV_CRITICAL]);
+                TEST_INT_EQ(10u, results.counts[5][PANTHEIOS_SEV_ALERT]);
+                TEST_INT_EQ(10u, results.counts[5][PANTHEIOS_SEV_EMERGENCY]);
 
                 XTESTS_CASE_END("Test-SeverityCeiling");
             }

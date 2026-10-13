@@ -4,9 +4,9 @@
 ## Functional improvements
 
 
-### 1.0.1-rc4 (14th October 2026)
+### 1.0.1-rc4 (18th October 2026)
 
-* [ ] **bec.stock**;
+* [x] ~~~**bec.stock** / **bec.stock.WithCallback** (exclude **bec.test**)~~~ - ✅;
 * [ ] Additional performance tests;
 * [ ] Integration of **woad**;
 * [ ] Replace selected Pantheios custom code with post-**STLSoft**-1.9 facilities;
