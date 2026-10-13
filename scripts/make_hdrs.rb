@@ -1,19 +1,19 @@
 #! /usr/bin/env ruby
 
-# ######################################################################### #
+# ##########################################################################
 # File:     make_hdrs.rb
 #
 # Purpose:  Generates the Pantheios logging API N-param functions
 #
 # Created:  21st June 2005
-# Updated:  6th February 2024
+# Updated:  14th October 2026
 #
 # Author:   Matthew Wilson
 #
 ############################################################
 
 
-# ##########################################################
+# ##########################################################################
 # imports
 
 begin require 'synsoft/srcutil'; rescue LoadError; end
@@ -23,17 +23,20 @@ require 'recls'
 
 require 'date'
 
-# ##########################################################
+
+# ##########################################################################
 # includes
 
-# ##########################################################
+
+# ##########################################################################
 # constants
 
 PROGRAM_VER_MAJOR               =   2
 PROGRAM_VER_MINOR               =   3
-PROGRAM_VER_REVISION            =   1
+PROGRAM_VER_REVISION            =   2
 
-# ##########################################################
+
+# ##########################################################################
 # functions
 
 def current_date
@@ -94,7 +97,8 @@ def round_up(n, granularity)
   ((n + (granularity - 1)) / granularity) * granularity
 end # round_up()
 
-############################################################
+
+############################################################################
 # command-line processing
 
 options   = {}
@@ -116,7 +120,7 @@ climate = LibCLImate::Climate.new do |climate|
   climate.info_lines = [
 
     'Pantheios N-ary function template generator script',
-    'Copyright Synesis Software Pty Ltd (c) 2005-2016',
+    'Copyright Synesis Software Pty Ltd (c) 2005-2019, Synesis Information Systems Pty Ltd (c) 2019-2026',
     :version,
     '',
   ]
@@ -132,7 +136,8 @@ r = climate.run ARGV
 
 climate.abort "too many values; use --help for usage" unless ARGV.empty?
 
-############################################################
+
+############################################################################
 # main()
 
 NUM_PARAMS        = numParams
@@ -153,6 +158,7 @@ CALL_LMARGIN          = "#{TAB}#{TAB}"
 PARAMS_LIMIT_SYMBOL   = 'PANTHEIOS_APPL_PARAMS_LIMIT'
 
 SEVERITY_LEVELS       = %w{ EMERGENCY ALERT CRITICAL ERROR WARNING NOTICE INFORMATIONAL DEBUG }
+
 
 ############################################################
 
@@ -195,6 +201,7 @@ num_pantheios_log_N_definitions           = 0
 num_log_dispatch_N_definitions            = 0
 num_log_definitions                       = 0
 num_log_sev_definitions                   = 0
+
 
 ############################################################
 # C_LOG_FUNCTIONS_HEADER_NAME
@@ -265,6 +272,7 @@ end
 
 f.close()
 f = nil
+
 
 ############################################################
 # C_LOG_FUNCTIONS_IMPL_NAME
@@ -405,6 +413,7 @@ end
 f.close()
 f = nil
 
+
 ############################################################
 # C_LOG_DISPATCH_FUNCTIONS_HEADER_NAME
 puts C_LOG_DISPATCH_FUNCTIONS_HEADER_NAME
@@ -467,6 +476,7 @@ end
 
 f.close()
 f = nil
+
 
 ############################################################
 # Cpp_LOG_DISPATCH_FUNCTIONS_HEADER_NAME
@@ -551,6 +561,7 @@ PARAM_RANGE.each { |i| f << "#endif /* #{PARAMS_LIMIT_SYMBOL} >= #{NUM_PARAMS - 
 
 f.close()
 f = nil
+
 
 ############################################################
 # Cpp_LOG_FUNCTIONS_HEADER_NAME
@@ -662,6 +673,7 @@ PARAM_RANGE.each { |i| f << "#endif /* #{PARAMS_LIMIT_SYMBOL} >= #{NUM_PARAMS - 
 
 f.close()
 f = nil
+
 
 ############################################################
 # Cpp_LOG_SEV_FUNCTIONS_HEADER_NAME
@@ -804,5 +816,5 @@ puts "--------------------------------------------"
 puts "# of function declarations:                  #{num_pantheios_log_N_declarations + num_pantheios_log_N_no_test_declarations}"
 puts "# of function definitions:                   #{num_pantheios_log_N_no_test_definitions + num_pantheios_log_N_definitions + num_log_dispatch_N_definitions + num_log_definitions + num_log_sev_definitions}"
 
-# ############################## end of file ############################## #
+# ############################## end of file ############################# #
 
