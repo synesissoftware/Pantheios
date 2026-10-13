@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/string/strlen.h (formerly part of pantheios/pantheios.h)
+ * File:        pantheios/util/string/strnlen.h (formerly part of pantheios/pantheios.h)
  *
  * Purpose:     String length functions.
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -40,7 +40,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file pantheios/util/string/strlen.h
+/** \file pantheios/util/string/strnlen.h
  *
  * \brief [C, C++] INTERNAL FILE (AND SUBJECT TO CHANGE): String length functions.
  */
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_MINOR     0
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_EDIT      4
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_REVISION  3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_EDIT      5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
