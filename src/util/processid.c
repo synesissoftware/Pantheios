@@ -4,7 +4,7 @@
  * Purpose: Process utility functions
  *
  * Created: 4th January 2008
- * Updated: 12th October 2026
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -47,12 +47,6 @@
 
 #include <platformstl/platformstl.h>
 #include <platformstl/process/functions.h>
-
-#if defined(PLATFORMSTL_OS_IS_UNIX)
-# include <unistd.h>
-#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
-# include <windows.h>
-#endif /* PLATFORMSTL_OS_IS_???? */
 
 
 /* /////////////////////////////////////////////////////////////////////////
