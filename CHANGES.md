@@ -19,7 +19,8 @@
   * current composite is `PANTHEIOS_VER_1_0_1_RC4` (`0x010001E4`) in **include/pantheios/pantheios.h**;
   * **test.unit.getversion** asserts `PANTHEIOS_VER_1_0_1_RC4`;
 * documentation:
-  * **NEWS.md**, **INSTALL.md**, **KNOWN_ISSUES.md**, and **TODO.md** aligned to **1.0.1-rc4**;
+  * compact **Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**, and **doc/doxygen_stlsoft_stubs.h**; public-header Doxygen prose / groups / `\file` alignment; CI `documentation` job (Ubuntu, asserts `_build/doxygen/html/index.html`);
+  * **NEWS.md**, **INSTALL.md**, **KNOWN_ISSUES.md**, **README.md**, and **TODO.md** aligned to **1.0.1-rc4**;
 
 
 ## 1.0.1-rc3 - 12th October 2026
