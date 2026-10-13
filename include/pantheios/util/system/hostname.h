@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_EDIT     16
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_EDIT     17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -105,8 +105,8 @@ namespace pantheios
  *
  * \param buffer Pointer to a character buffer to receive a copy of the host
  *   name. May not be \c NULL unless \c cchBuffer is 0;
- * \param cchBuffer Number of characters available in \c buffer.
- *   Must include the space for a terminating nul;
+ * \param cchBuffer Number of characters available in \c buffer. Must
+ *   include the space for a terminating nul;
  *
  * \return The number of characters copied into the destination buffer, or
  *   an error indication code.
@@ -117,17 +117,18 @@ namespace pantheios
  *   the buffer. The host name is \c not copied into the buffer;
  *
  * \remarks This function abstracts the underlying system call(s) of the
- *   supported operating systems. The somewhat awkward semantics - indicating
- *   exhaustion by returning the requested size rather than the required
- *   size - is a result of the limitation of the UNIX
- *   \c gethostname() function. Since the function is intended to be
- *   mostly used, via the C++ wrapper, from the pantheios::hostId inserter
- *   class, the inconvenience is deemed acceptable.
+ *   supported operating systems. The somewhat awkward semantics -
+ *   indicating exhaustion by returning the requested size rather than the
+ *   required size - is a result of the limitation of the UNIX
+ *   \c gethostname() function. Since the function is intended to be mostly
+ *   used, via the C++ wrapper, from the pantheios::hostId inserter class,
+ *   the inconvenience is deemed acceptable.
  */
 PANTHEIOS_CALL(size_t) pantheios_getHostName(pantheios_char_t* buffer, size_t cchBuffer);
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-/** Equivalent to \ref pantheios::pantheios_getHostName "pantheios_getHostName()"
+/** Equivalent to \ref pantheios::pantheios_getHostName
+ * "pantheios_getHostName()"
  *
  * \ingroup group__utility
  */
@@ -144,9 +145,8 @@ inline size_t getHostName(pantheios_char_t* buffer, size_t cchBuffer)
  * \ingroup group__utility
  *
  * \param buffer A mutable (non-const) reference to an instance of a
- *   specialisation of \c stlsoft::auto_buffer in which the
- *   elicited host-name will be written, including terminating
- *   nul-character;
+ *   specialisation of \c stlsoft::auto_buffer in which the elicited
+ *   host-name will be written, including terminating nul-character;
  */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1300

@@ -4,7 +4,7 @@
  * Purpose: Implicitly links in the Pantheios Stock (All) Back-End Common Library
  *
  * Created: 21st June 2020
- * Updated: 21st June 2020
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
@@ -42,8 +42,9 @@
 /** \file pantheios/implicit_link/bec.stock.h
  *
  * [C, C++] Implicitly links in the
- *   \ref group__backend__stock_backends__stock "Pantheios Stock (All) Back-End Common Library"
- *   common implementation (that may be used by sole/local/remote back-end).
+ * \ref group__backend__stock_backends__stock "Pantheios Stock (All)
+ * Back-End Common Library" common implementation (that may be used by
+ * sole/local/remote back-end).
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_STOCK
@@ -58,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_STOCK_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_STOCK_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_STOCK_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_STOCK_EDIT     1
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_STOCK_EDIT     2
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

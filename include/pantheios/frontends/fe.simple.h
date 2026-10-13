@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_REVISION 5
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_EDIT     19
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_EDIT     20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,11 +72,11 @@
 # include <pantheios/frontends/stock.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK */
 
-/** \defgroup group__frontend__stock_frontends__simple Pantheios simple Stock Front-end
- * \ingroup group__frontend__stock_frontends
- *   Front-end library that allows all severity levels in debug mode
- *   and \link pantheios::SEV_NOTICE NOTICE\endlink and higher in
- *   release mode.
+/** \defgroup group__frontend__stock_frontends__simple Pantheios simple
+ *   Stock Front-end
+ * \ingroup group__frontend__stock_frontends Front-end library that allows
+ *   all severity levels in debug mode and
+ *   \link pantheios::SEV_NOTICE NOTICE\endlink and higher in release mode.
  */
 
 
@@ -104,10 +104,10 @@ PANTHEIOS_CALL(int) pantheios_fe_simple_getSeverityCeiling(void);
  *
  * \ingroup group__frontend__stock_frontends__simple
  *
- * \warning This function is \c not thread-safe. If called by two
- *   threads concurrently, the return value in one thread may indicate the
- *   recently set ceiling in the other, rather than the original value at
- *   the time of the call.
+ * \warning This function is \c not thread-safe. If called by two threads
+ *   concurrently, the return value in one thread may indicate the recently
+ *   set ceiling in the other, rather than the original value at the time of
+ *   the call.
  */
 PANTHEIOS_CALL(int) pantheios_fe_simple_setSeverityCeiling(int ceiling);
 

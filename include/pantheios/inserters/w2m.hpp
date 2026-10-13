@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MINOR    3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     21
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     22
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -97,13 +97,12 @@ namespace pantheios
  */
 
 /** Class for inserting wide strings into Pantheios diagnostic logging
- *   statements.
+ * statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
- * This class converts a w2m variable into a string, thereby enabling
- * it to be inserted into a logging statement. Consider the following
- * statement:
+ * This class converts a w2m variable into a string, thereby enabling it to
+ * be inserted into a logging statement. Consider the following statement:
  *
  * \code
   wchar_t     ws  = L"abc";
@@ -172,9 +171,11 @@ private:
     class_type& operator =(class_type const&);
 
 public: // Accessors
-    /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the w2m
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the w2m
     char const* data() const;
-    /// A nul-terminated non-null pointer to the c-style string representation of the w2m
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the w2m
     char const* c_str() const;
     /// The length of the c-style string representation of the w2m
     size_t      length() const;

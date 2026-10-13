@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      9
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       29
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,8 +79,8 @@
  */
 
 /** \defgroup group__backend__stock_backends__N Pantheios N Stock Back-end
- * \ingroup group__backend__stock_backends
- *   Back-end library that splits output to N back-ends.
+ * \ingroup group__backend__stock_backends Back-end library that splits
+ *   output to N back-ends.
  */
 
 
@@ -93,40 +93,39 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__N__flags Pantheios be.N Stock Back-end Flags
- * \ingroup group__backend__stock_backends__N
- *   Flags for the \ref group__backend__stock_backends__N
+/** \defgroup group__backend__stock_backends__N__flags Pantheios be.N Stock
+ *   Back-end Flags
+ * \ingroup group__backend__stock_backends__N Flags for the
+ *   \ref group__backend__stock_backends__N
  */
 
 /** \def PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE
- *  Cause the \ref group__backend__stock_backends__N to
- *   ignore initialisation failure of the given back-end.
+ * Cause the \ref group__backend__stock_backends__N to ignore initialisation
+ * failure of the given back-end.
  * \ingroup group__backend__stock_backends__N__flags
  */
 
 #define PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE                (0x00100000)
 
 /** \def PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28
- *  Cause the \ref group__backend__stock_backends__N to
- *   only output to a given back-end if the custom-28 value
- *   matches the back-end's Id.
+ * Cause the \ref group__backend__stock_backends__N to only output to a
+ * given back-end if the custom-28 value matches the back-end's Id.
  * \ingroup group__backend__stock_backends__N__flags
  */
 
 #define PANTHEIOS_BE_N_F_ID_MUST_MATCH_CUSTOM28             (0x00200000)
 
 /** \def PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID
- *  Cause the \ref group__backend__stock_backends__N to
- *   only output to a given back-end if the custom-28 value
- *   does not match the back-end's Id.
+ * Cause the \ref group__backend__stock_backends__N to only output to a
+ * given back-end if the custom-28 value does not match the back-end's Id.
  * \ingroup group__backend__stock_backends__N__flags
  */
 
 #define PANTHEIOS_BE_N_F_IGNORE_NONMATCHED_CUSTOM28_ID      (0x00400000)
 
 /** \def PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED
- *  Cause the \ref group__backend__stock_backends__N to
- *   initialise the given back-end only if all others have failed.
+ * Cause the \ref group__backend__stock_backends__N to initialise the given
+ * back-end only if all others have failed.
  * \ingroup group__backend__stock_backends__N__flags
  */
 
@@ -137,7 +136,8 @@
  * typedefs
  */
 
-/** Structure that describes a back-end to be used by the \ref group__backend__stock_backends__N.
+/** Structure that describes a back-end to be used by the
+ * \ref group__backend__stock_backends__N.
  *
  * \ingroup group__backend__stock_backends__N
  *
@@ -146,8 +146,8 @@
 struct pan_be_N_t
 {
     /** A combination of the
-     *   \ref group__backend__stock_backends__N__flags "be.N flags" that control
-     *   the behaviour of the given back-end
+     * \ref group__backend__stock_backends__N__flags "be.N flags" that
+     * control the behaviour of the given back-end
      */
     int     flags;
     /** The back-end Id
@@ -210,7 +210,8 @@ typedef struct pan_be_N_t   pan_be_N_t;
  * Defines an entry in an array of pan_be_N_t.
  *
  * \param backEndId The back-end identifier. Must be >0;
- * \param be_prefix The prefix of all the back-end functions, e.g. \c pantheios_be_speech;
+ * \param be_prefix The prefix of all the back-end functions, e.g.
+ *   \c pantheios_be_speech;
  * \param flags A combination of the
  *   \ref group__backend__stock_backends__N__flags "be.N flags" that control
  *   the behaviour of the given back-end;
@@ -257,7 +258,8 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
  * Defines an entry in an array of pan_be_N_t.
  *
  * \param backEndId The back-end identifier. Must be >0;
- * \param be_prefix The prefix of all the back-end functions, e.g. \c pantheios_be_speech;
+ * \param be_prefix The prefix of all the back-end functions, e.g.
+ *   \c pantheios_be_speech;
  * \param severityCeiling A static severity level, used to filter out
  *   messages of a given severity level prior to passing to the given
  *   specific back-end;
@@ -334,7 +336,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
  */
 
 /** The application-defined array of back-end descriptors that specify what
- *   concrete back-ends are to be attached to the program.
+ * concrete back-ends are to be attached to the program.
  *
  * \note The array must be defined with a last terminator element whose
  *   \c pfnInit member is \c NULL.

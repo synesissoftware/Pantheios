@@ -44,12 +44,12 @@
 /** \file pantheios/pantheios.hpp
  *
  * [C++ only] Primary header file for the
- *    \ref group__application_layer_interface, and included in all
- *    C++ compilation units.
+ * \ref group__application_layer_interface, and included in all C++
+ * compilation units.
  *
  * Users should include this file to ensure that the Pantheios library is
- * automatically initialised, and to access
- * the \ref group__application_layer_interface.
+ * automatically initialised, and to access the
+ * \ref group__application_layer_interface.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS
@@ -64,7 +64,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      11
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       109
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       110
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -394,7 +394,7 @@ namespace internal
 namespace
 {
     /// The per-compilation unit instance of pantheios_initialiser, which
-    /// ensures that the Pantheios library is initialised prior to use.
+    ///   ensures that the Pantheios library is initialised prior to use.
     static pantheios_initialiser    s_pantheios_initialiser;
 
 } /* anonymous namespace */

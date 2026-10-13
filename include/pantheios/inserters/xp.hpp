@@ -5,11 +5,11 @@
  *              class for inserting pointers in hexadecimal format.
  *
  * Created:     23rd March 2010
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -44,7 +44,7 @@
 /** \file pantheios/inserters/xp.hpp
  *
  * [C++ only] Defines shorthand name for pantheios::pointer inserter class
- *  for inserting pointers in hexadecimal format.
+ * for inserting pointers in hexadecimal format.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_XP
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_MINOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_EDIT      6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_EDIT      7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -114,7 +114,7 @@ private:
     }
 
 public:
-    ///  Construct from an unsigned long
+    /// Construct from an unsigned long
     explicit xp(void const volatile* pv, int width = get_default_width_(sizeof(void*)))
           : parent_class_type(pv, validate_width_(width), int(fmt::fullHex))
     {}

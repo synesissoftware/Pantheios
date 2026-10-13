@@ -42,8 +42,8 @@
 
 /** \file pantheios/inserters/pad.hpp
  *
- * [C++ only] definition of the pantheios::pad string inserter for
- *   for providing padding of arguments of arbitrary type.
+ * [C++ only] definition of the pantheios::pad string inserter for for
+ * providing padding of arguments of arbitrary type.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PAD
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

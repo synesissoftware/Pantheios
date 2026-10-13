@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     29
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,8 +98,8 @@
  * \return An indication of whether a valid argument was found.
  * \retval 0 No matching arguments were found, or the argument was found but
  *   did not have boolean values;
- * \retval 1 An argument with the given name, and with values interpretable as
- *   boolean, was found;
+ * \retval 1 An argument with the given name, and with values interpretable
+ *   as boolean, was found;
  *
  * \pre NULL != args || 0 == numArgs
  * \pre NULL != argName
@@ -158,10 +158,10 @@ pantheios_be_parseStringArg(
  * Searches the argument slices list for the arguments associated with all
  * stock \ref group__backend__init__flags. For each argument found (and
  * having an appropriate value; see pantheios_be_parseBooleanArg()) its
- * value is processed, the flags parameter's value is adjusted
- * accordingly, and the argument slice's length is set to 0 to indicate
- * that it has been successfully processed. Returns the number of arguments
- * successfully matched.
+ * value is processed, the flags parameter's value is adjusted accordingly,
+ * and the argument slice's length is set to 0 to indicate that it has been
+ * successfully processed. Returns the number of arguments successfully
+ * matched.
  *
  * Recognises the following argument names:
  * - "showProcessId"            (Boolean)

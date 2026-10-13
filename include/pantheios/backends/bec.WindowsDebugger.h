@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        27
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,9 +80,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__WindowsDebugger Pantheios Windows Debugger Stock Back-end
- * \ingroup group__backend__stock_backends
- *   Back-end library that outputs to the Windows debugger.
+/** \defgroup group__backend__stock_backends__WindowsDebugger Pantheios
+ *   Windows Debugger Stock Back-end
+ * \ingroup group__backend__stock_backends Back-end library that outputs to
+ *   the Windows debugger.
  */
 
 
@@ -90,9 +91,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__WindowsDebugger__flags Pantheios Windows Debugger Stock Back-end Flags
- * \ingroup group__backend__stock_backends__WindowsDebugger
- *   Flags for the \ref group__backend__stock_backends__WindowsDebugger
+/** \defgroup group__backend__stock_backends__WindowsDebugger__flags
+ *   Pantheios Windows Debugger Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__WindowsDebugger Flags for the
+ *   \ref group__backend__stock_backends__WindowsDebugger
  */
 
 
@@ -101,7 +103,7 @@
  */
 
 /** Structure used for specifying initialisation information to the
- *    be.WindowsDebugger library.
+ * be.WindowsDebugger library.
  * \ingroup group__backend__stock_backends__WindowsDebugger
  */
 
@@ -127,7 +129,7 @@ typedef struct pan_be_WindowsDebugger_init_t    pan_be_WindowsDebugger_init_t;
  */
 
 /** Callback function defined by the application, invoked when the
- *    API is initialised with a NULL \c init parameter.
+ * API is initialised with a NULL \c init parameter.
  *
  * \note When using explicit initialisation, this function must be defined,
  *   but will not be invoked.
@@ -143,15 +145,16 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(
  */
 
 /** Fills out a copy of the initialisation structure with default
- *    values (representative of the default behaviour of the library),
- *    ready to be customised and passed to the API initialiser function
- *    pantheios_be_WindowsDebugger_init().
+ * values (representative of the default behaviour of the library), ready to
+ * be customised and passed to the API initialiser function
+ * pantheios_be_WindowsDebugger_init().
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getDefaultAppInit(
     pan_be_WindowsDebugger_init_t*  init
 ) /* throw() */;
 
-/** Implements the functionality for pantheios_be_init() over the Windows Debugger API.
+/** Implements the functionality for pantheios_be_init() over the Windows
+ * Debugger API.
  * \ingroup group__backend__stock_backends__WindowsDebugger
  */
 PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_init(
@@ -162,14 +165,16 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_init(
 ,   void**                                  ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the Windows Debugger API.
+/** Implements the functionality for pantheios_be_uninit() over the Windows
+ * Debugger API.
  * \ingroup group__backend__stock_backends__WindowsDebugger
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the Windows Debugger API.
+/** Implements the functionality for pantheios_be_logEntry() over the
+ * Windows Debugger API.
  * \ingroup group__backend__stock_backends__WindowsDebugger
  */
 PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
@@ -188,8 +193,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsDebugger_logEntry(
  *
  * Processes an argument list in the same way as
  * pantheios_be_parseStockArgs(), filling out the
- * pan_be_WindowsDebugger_init_t in accordance with the arguments
- * found.
+ * pan_be_WindowsDebugger_init_t in accordance with the arguments found.
  *
  * Recognises the following standard argument names:
  * - "showProcessId"            (Boolean)

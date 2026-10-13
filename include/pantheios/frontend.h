@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        25
+# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,8 +84,8 @@
  *
  * Process identity is defined by the front-end according to the
  * return-value of pantheios_fe_getProcessIdentity(), which should return a
- * nul-terminated C-style string representing the host process,
- * e.g. \c "MyDaemon"
+ * nul-terminated C-style string representing the host process, e.g.
+ * \c "MyDaemon"
  *
  * Filtering is carried out by pantheios_fe_isSeverityLogged(), which
  * receives three parameters: the front-end state, the log entry severity
@@ -106,8 +106,8 @@
  *   of the Pantheios library;
  * \param ptoken Pointer to a variable to receive the front-end token, which
  *   will be stored in the Pantheios library and passed to the
- *   pantheios_fe_getProcessIdentity(), pantheios_fe_isSeverityLogged()
- *   and pantheios_fe_uninit() functions;
+ *   pantheios_fe_getProcessIdentity(), pantheios_fe_isSeverityLogged() and
+ *   pantheios_fe_uninit() functions;
  *
  * This function must be defined by each front-end implementation. It
  * initialises the front-end. If the implementation requires any context,
@@ -162,17 +162,17 @@ pantheios_fe_uninit(
  *   maximum length of the returned string is 1000 characters.
  *
  * \note When the first invocation returns \c NULL, to denote that a dynamic
- *   process identity, the second invocation (which must
- *   \c not return \c NULL) will be called on the same thread,
- *   and at a time when no other (Pantheios-related) threads will call it,
- *   enabling implementations to use simple static flag variables to handle
- *   their switching logic (should they so wish).
+ *   process identity, the second invocation (which must \c not return
+ *   \c NULL) will be called on the same thread, and at a time when no other
+ *   (Pantheios-related) threads will call it, enabling implementations to
+ *   use simple static flag variables to handle their switching logic
+ *   (should they so wish).
  *
- * \note When the first invocation returns non-\c NULL, to denote
- *   a "classic" non-dynamic process identity, then the function is called
- *   at most once during successful
- *   initialisation, but in the case where initialisation fails it may be
- *   called additional times by the bail out handler
+ * \note When the first invocation returns non-\c NULL, to denote a
+ *   "classic" non-dynamic process identity, then the function is called at
+ *   most once during successful initialisation, but in the case where
+ *   initialisation fails it may be called additional times by the bail out
+ *   handler
  *   (\link pantheios::util::pantheios_onBailOut4 pantheios_onBailOut4()\endlink).
  *   It may also be called if the application, or the front-end or
  *   back-end(s) invoke the bail out handler at any other time.
@@ -184,13 +184,13 @@ pantheios_fe_getProcessIdentity(
 
 /** Determines whether a given severity is being logged
  *
- * This function must be defined by each front-end implementation. It
- * is called by the Pantheios core library and, optionally, a
- * back-end library, to determine whether, for the given \c severity,
- * any/all logging is enabled (\c backEndId == 0), or whether local
- * (\c backEndId == 1) or remote (\c backEndId == 2) logging is enabled. It
- * is passed the token returned in pantheios_fe_init(), which the front-end
- * implementation may use to access its state
+ * This function must be defined by each front-end implementation. It is
+ * called by the Pantheios core library and, optionally, a back-end library,
+ * to determine whether, for the given \c severity, any/all logging is
+ * enabled (\c backEndId == 0), or whether local (\c backEndId == 1) or
+ * remote (\c backEndId == 2) logging is enabled. It is passed the token
+ * returned in pantheios_fe_init(), which the front-end implementation may
+ * use to access its state
  *
  * \param token The front-end token, created by the pantheios_fe_init()
  *   function;
@@ -198,10 +198,10 @@ pantheios_fe_getProcessIdentity(
  * \param backEndId A front-end+back-end specific parameter. This is used to
  *   enable a back-end, such as the be.lrsplit library, to simultaneously
  *   provide multiple actual back-ends and query the front-end for their
- *   respective. The value 0 is used within the Pantheios library and
- *   stands for every back-end. All other values indicate specific
- *   back-end splits, although by convention 1 indicates local logging
- *   and 2 indicates remote logging;
+ *   respective. The value 0 is used within the Pantheios library and stands
+ *   for every back-end. All other values indicate specific back-end splits,
+ *   although by convention 1 indicates local logging and 2 indicates remote
+ *   logging;
  *
  * \return A status indicating whether the given severity level is being
  *   logged.

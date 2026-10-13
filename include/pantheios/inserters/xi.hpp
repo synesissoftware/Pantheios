@@ -5,11 +5,11 @@
  *              class for inserting integers in hexadecimal format.
  *
  * Created:     12th March 2010
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -44,7 +44,7 @@
 /** \file pantheios/inserters/xi.hpp
  *
  * [C++ only] Defines shorthand name for pantheios::integer inserter class
- *  for inserting integers in hexadecimal format.
+ * for inserting integers in hexadecimal format.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_XI
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XI_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XI_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XI_REVISION  4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XI_EDIT      8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XI_EDIT      9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -114,21 +114,21 @@ private:
 
 public:
 #ifdef STLSOFT_CF_8BIT_INT_EXTENDED_TYPE_IS_DISTINCT
-    ///  Construct from an 8-bit signed integer
+    /// Construct from an 8-bit signed integer
     explicit xi(::stlsoft::sint8_t i, int width = get_default_width_(1))
         : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
-    ///  Construct from an 8-bit unsigned integer
+    /// Construct from an 8-bit unsigned integer
     explicit xi(::stlsoft::uint8_t i, int width = get_default_width_(1))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
 #endif // STLSOFT_CF_8BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 #ifdef STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
-    ///  Construct from a 16-bit signed integer
+    /// Construct from a 16-bit signed integer
     explicit xi(::stlsoft::sint16_t i, int width = get_default_width_(2))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
-    ///  Construct from a 16-bit unsigned integer
+    /// Construct from a 16-bit unsigned integer
     explicit xi(::stlsoft::uint16_t i, int width = get_default_width_(2))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
@@ -136,38 +136,38 @@ public:
 #if defined(STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT) || \
 ( defined(STLSOFT_COMPILER_IS_MSVC) && \
   _MSC_VER == 1200) /* NOTE: This is a hack, and should be updated when STLSoft 1.10 is released */
-    ///  Construct from a 32-bit signed integer
+    /// Construct from a 32-bit signed integer
     explicit xi(::stlsoft::sint32_t i, int width = get_default_width_(4))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
-    ///  Construct from a 32-bit unsigned integer
+    /// Construct from a 32-bit unsigned integer
     explicit xi(::stlsoft::uint32_t i, int width = get_default_width_(4))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
 #endif // STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    ///  Construct from a 64-bit signed integer
+    /// Construct from a 64-bit signed integer
     explicit xi(::stlsoft::sint64_t i, int width = get_default_width_(8))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
-    ///  Construct from a 64-bit unsigned integer
+    /// Construct from a 64-bit unsigned integer
     explicit xi(::stlsoft::uint64_t i, int width = get_default_width_(8))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-    ///  Construct from an int
+    /// Construct from an int
     explicit xi(int i, int width = get_default_width_(sizeof(int)))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
-    ///  Construct from an unsigned int
+    /// Construct from an unsigned int
     explicit xi(unsigned int i, int width = get_default_width_(sizeof(unsigned int)))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
-    ///  Construct from a long
+    /// Construct from a long
     explicit xi(long i, int width = get_default_width_(sizeof(long)))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}
-    ///  Construct from an unsigned long
+    /// Construct from an unsigned long
     explicit xi(unsigned long i, int width = get_default_width_(sizeof(unsigned long)))
           : parent_class_type(i, validate_width_(width), int(fmt::fullHex))
     {}

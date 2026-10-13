@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MINOR    4
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     40
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     41
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,10 +95,11 @@ namespace backends
  * types
  */
 
-/** Framework class for assisting in the writing of \ref group__backend "Back-ends".
+/** Framework class for assisting in the writing of \ref group__backend
+ * "Back-ends".
  *
- * To use pantheios::util::backends::Context, you derive from it, and override
- * the rawLogEntry() method, as in the implementation of be.speech:
+ * To use pantheios::util::backends::Context, you derive from it, and
+ * override the rawLogEntry() method, as in the implementation of be.speech:
 <pre>
 struct be_speech_context
     : public pantheios::util::backends::Context
@@ -170,8 +171,8 @@ protected: // construction
     /// \param processIdentity The process identity. May not be NULL or
     ///   empty
     /// \param id The back-end identifier
-    /// \param flags Flags that control the elements presented in the
-    ///   log statements
+    /// \param flags Flags that control the elements presented in the log
+    ///   statements
     /// \param severityMask Mask that prescribes the valid range of the
     ///   severity for the derived class. Must be either 0x07 or 0x0f
     Context(
@@ -190,9 +191,9 @@ public: // operations
     ///
     ///
     /// \note This method does not mutate any member data. It is not marked
-    ///   \c const solely because it invokes rawLogEntry(), which
-    ///   may need to mutate member data of the derived class (though this
-    ///   will not be the dominant form).
+    ///   \c const solely because it invokes rawLogEntry(), which may need
+    ///   to mutate member data of the derived class (though this will not
+    ///   be the dominant form).
     ///
     /// \note Because the method does not, in and of itself, mutate data,
     ///   backends using the class may only need to lock if the underlying

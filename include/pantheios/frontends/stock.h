@@ -44,7 +44,7 @@
 /** \file pantheios/frontends/stock.h
  *
  * [C, C++] Declaration of the Pantheios Stock Front-end API Common
- *   Elements.
+ * Elements.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     20
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -115,18 +115,18 @@
  */
 
 /** The application must define this variable, to contain the
- *    application name/identity.
+ * application name/identity.
  *
  * \ingroup group__frontend__stock_frontends
  *
- * The variable is an immutable array of \c PAN_CHAR_T (i.e.
- * \c char in multibyte string builds, \c wchar_t in
- * wide string builds) whose name is non-mangled and has external linkage.
+ * The variable is an immutable array of \c PAN_CHAR_T (i.e. \c char in
+ * multibyte string builds, \c wchar_t in wide string builds) whose name is
+ * non-mangled and has external linkage.
  *
  * Therefore, when defining within a C++ compilation unit it must be
- * declared `extern "C"`; when defined within a C compilation
- * unit it must be extern (optionally declared \c extern; it
- * must not be declared \c static).
+ * declared `extern "C"`; when defined within a C compilation unit it must
+ * be extern (optionally declared \c extern; it must not be declared
+ * \c static).
  *
  * Examples:
 \htmlonly
@@ -154,9 +154,8 @@
  * \note The process identity must not contain any whitespace characters,
  *   otherwise Pantheios library initialisation will fail.
  *
- * \warning If you define the variable as a pointer
- *   (`PAN_CHAR_T const*`) the behaviour of the link unit is
- *   undefined.
+ * \warning If you define the variable as a pointer (`PAN_CHAR_T const*`)
+ *   the behaviour of the link unit is undefined.
  */
 PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
 
@@ -166,7 +165,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
  */
 
 /** \ref page__frontend__callbacks "Callback" function defined by the
- *    application, invoked during API initialisation.
+ * application, invoked during API initialisation.
  *
  * \ingroup group__frontend__stock_frontends
  *
@@ -175,9 +174,9 @@ PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
  *   library is used.
  *
  * \note This function *MUST NOT* throw an exception, and *MUST NOT* return
- *   \c NULL. If the implementation fails to acquire/produce the
- *   identity, it must call `pantheios_exitProcess(1)`. It may
- *   optionally call \c pantheios_util_onBailOut4() first.
+ *   \c NULL. If the implementation fails to acquire/produce the identity,
+ *   it must call `pantheios_exitProcess(1)`. It may optionally call
+ *   \c pantheios_util_onBailOut4() first.
  */
 PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) /* throw() */;
 

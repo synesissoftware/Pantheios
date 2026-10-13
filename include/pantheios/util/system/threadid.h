@@ -4,7 +4,7 @@
  * Purpose:     Functions for eliciting thread identifier
  *
  * Created:     4th January 2008
- * Updated:     21st November 2019
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_EDIT     10
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_EDIT     11
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -90,9 +90,9 @@ namespace pantheios
  *
  * \ingroup group__utility
  *
- * \remarks The returned value will be unique on a per-thread basis within
- *   a given process. It is not guaranteed to be the same value as that
- *   known to/obtained from the operating system.
+ * \remarks The returned value will be unique on a per-thread basis within a
+ *   given process. It is not guaranteed to be the same value as that known
+ *   to/obtained from the operating system.
  */
 PANTHEIOS_CALL(stlsoft_ns_qual(ss_sint64_t))
 pantheios_getCurrentThreadId(void) STLSOFT_NOEXCEPT;
@@ -106,7 +106,8 @@ pantheios_getCurrentThreadId(void) STLSOFT_NOEXCEPT;
 namespace util
 {
 
-/** Equivalent to \ref pantheios::pantheios_getCurrentThreadId "pantheios_getCurrentThreadId()".
+/** Equivalent to \ref pantheios::pantheios_getCurrentThreadId
+ * "pantheios_getCurrentThreadId()".
  *
  * \ingroup group__utility
  */

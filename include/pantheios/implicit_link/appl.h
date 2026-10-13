@@ -4,11 +4,11 @@
  * Purpose: Implicitly links in the Pantheios Appl library
  *
  * Created: 26th November 2010
- * Updated: 16th December 2023
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -42,7 +42,8 @@
 
 /** \file pantheios/implicit_link/appl.h
  *
- * [C, C++] Implicitly links in the \ref group__appl_library "Pantheios Appl library"
+ * [C, C++] Implicitly links in the \ref group__appl_library "Pantheios Appl
+ * library"
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_APPL
@@ -57,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_APPL_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_APPL_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_APPL_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_APPL_EDIT      4
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_APPL_EDIT      5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

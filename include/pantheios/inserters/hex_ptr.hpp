@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_MINOR    3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_EDIT     20
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_EDIT     21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -89,7 +89,7 @@ namespace pantheios
  */
 
 /** [DEPRECATED] Class for inserting pointers into Pantheios diagnostic
- *   logging statements.
+ * logging statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -141,7 +141,7 @@ public: // Construction
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
     /// Construct from a pointer, using the ambient pointer width and
-    /// pantheios::fmt::fullHex format
+    ///   pantheios::fmt::fullHex format
     ///
     /// \param p The pointer whose value will be represented as a string
     explicit hex_ptr(void const volatile *p)
@@ -153,7 +153,8 @@ public: // Construction
     /// \param p The pointer whose value will be represented as a string
     /// \param minWidth The minimum width of the field. Must be in the range
     ///   [-20, 20]
-    /// \param format Combination of \link pantheios::fmt format\endlink flags
+    /// \param format Combination of \link pantheios::fmt format\endlink
+    ///   flags
     hex_ptr(void const volatile *p, int minWidth, int format)
         : pointer(p, minWidth, format)
     {}

@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     30
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,9 +77,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__syslog Pantheios UNIX SysLog Stock Back-end
- * \ingroup group__backend__stock_backends
- *   Back-end library built on top of the UNIX \c syslog API.
+/** \defgroup group__backend__stock_backends__syslog Pantheios UNIX SysLog
+ *   Stock Back-end
+ * \ingroup group__backend__stock_backends Back-end library built on top of
+ *   the UNIX \c syslog API.
  */
 
 
@@ -87,19 +88,18 @@
  * typedefs
  */
 
-/** \defgroup group__backend__stock_backends__syslog__flags Pantheios UNIX syslog Stock Back-end Flags
- * \ingroup group__backend__stock_backends__syslog
- *   Flags for the \ref group__backend__stock_backends__syslog
+/** \defgroup group__backend__stock_backends__syslog__flags Pantheios UNIX
+ *   syslog Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__syslog Flags for the
+ *   \ref group__backend__stock_backends__syslog
  *
- * These flags are passed as the \c options parameter to the
- * SysLog API function \c openlog() during back-end
- * initialisation.
+ * These flags are passed as the \c options parameter to the SysLog API
+ * function \c openlog() during back-end initialisation.
  */
 
 /** \def PANTHEIOS_BE_SYSLOG_F_PERROR
- *  Causes the \ref group__backend__stock_backends__syslog to
- *   write to the calling process' standard error, in addition to submitting
- *   it to SysLog.
+ * Causes the \ref group__backend__stock_backends__syslog to write to the
+ * calling process' standard error, in addition to submitting it to SysLog.
  * \ingroup group__backend__stock_backends__syslog__flags
  *
  * Specifying this flag causes the pan_be_syslog_init_t::options member to
@@ -113,9 +113,8 @@
 #define PANTHEIOS_BE_SYSLOG_F_PERROR                        (0x00100000)
 
 /** \def PANTHEIOS_BE_SYSLOG_F_CONS
- *  Causes the \ref group__backend__stock_backends__syslog to
- *   write any message that fails to be submitted to SysLog to the system
- *   console.
+ * Causes the \ref group__backend__stock_backends__syslog to write any
+ * message that fails to be submitted to SysLog to the system console.
  * \ingroup group__backend__stock_backends__syslog__flags
  *
  * Specifying this flag causes the pan_be_syslog_init_t::options member to
@@ -125,8 +124,8 @@
 #define PANTHEIOS_BE_SYSLOG_F_CONS                          (0x00200000)
 
 /** \def PANTHEIOS_BE_SYSLOG_F_PID
- *  Causes the \ref group__backend__stock_backends__syslog to include
- *   the process Id in the statement.
+ * Causes the \ref group__backend__stock_backends__syslog to include the
+ * process Id in the statement.
  * \ingroup group__backend__stock_backends__syslog__flags
  *
  * Specifying this flag causes the pan_be_syslog_init_t::options member to
@@ -136,9 +135,8 @@
 #define PANTHEIOS_BE_SYSLOG_F_PID                           (0x00400000)
 
 /** \def PANTHEIOS_BE_SYSLOG_F_NDELAY
- *  Causes the \ref group__backend__stock_backends__syslog to
- *   connect to the syslog socket immediately, rather than on the first call
- *   to \c syslog().
+ * Causes the \ref group__backend__stock_backends__syslog to connect to the
+ * syslog socket immediately, rather than on the first call to \c syslog().
  * \ingroup group__backend__stock_backends__syslog__flags
  *
  * Specifying this flag causes the pan_be_syslog_init_t::options member to
@@ -150,7 +148,7 @@
 
 
 /** Structure used for specifying initialisation information to the
- *    be.syslog library.
+ * be.syslog library.
  * \ingroup group__backend__stock_backends__syslog
  */
 struct pan_be_syslog_init_t
@@ -177,8 +175,8 @@ typedef struct pan_be_syslog_init_t     pan_be_syslog_init_t;
  */
 
 /** \ref page__backend__callbacks "Callback" function defined by
- *    the application, invoked when the
- *    API is initialised with a NULL \c init parameter.
+ * the application, invoked when the API is initialised with a NULL \c init
+ * parameter.
  * \ingroup group__backend__stock_backends__syslog
  *
  * \note This function is only required when the
@@ -197,23 +195,23 @@ pantheios_be_syslog_getAppInit(
  */
 
 /** Fills out a copy of the initialisation structure with default
- *    values (representative of the default behaviour of the library),
- *    ready to be customised and passed to the API initialiser function
- *    pantheios_be_syslog_init().
+ * values (representative of the default behaviour of the library), ready to
+ * be customised and passed to the API initialiser function
+ * pantheios_be_syslog_init().
  * \ingroup group__backend__stock_backends__syslog
  *
- * \note This function should \c not be called on an
- *   already-initialised instance, as is the case in the implementation
- *   of the pantheios_be_syslog_getAppInit() function, as it will
- *   already have been called by pantheios_be_syslog_init() prior
- *   to the callback.
+ * \note This function should \c not be called on an already-initialised
+ *   instance, as is the case in the implementation of the
+ *   pantheios_be_syslog_getAppInit() function, as it will already have been
+ *   called by pantheios_be_syslog_init() prior to the callback.
  */
 PANTHEIOS_CALL(void)
 pantheios_be_syslog_getDefaultAppInit(
     pan_be_syslog_init_t* init
 ) /* throw() */;
 
-/** Implements the functionality for pantheios_be_init() over the UNIX SysLog API.
+/** Implements the functionality for pantheios_be_init() over the UNIX
+ * SysLog API.
  * \ingroup group__backend__stock_backends__syslog
  */
 PANTHEIOS_CALL(int)
@@ -225,7 +223,8 @@ pantheios_be_syslog_init(
 ,   void**                      ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the UNIX SysLog API.
+/** Implements the functionality for pantheios_be_uninit() over the UNIX
+ * SysLog API.
  * \ingroup group__backend__stock_backends__syslog
  */
 PANTHEIOS_CALL(void)
@@ -233,7 +232,8 @@ pantheios_be_syslog_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the UNIX SysLog API.
+/** Implements the functionality for pantheios_be_logEntry() over the UNIX
+ * SysLog API.
  * \ingroup group__backend__stock_backends__syslog
  */
 PANTHEIOS_CALL(int)
@@ -251,8 +251,7 @@ pantheios_be_syslog_logEntry(
  *
  * Processes an argument list in the same way as
  * pantheios_be_parseStockArgs(), filling out the
- * pan_be_COMErrorObject_init_t in accordance with the arguments
- * found.
+ * pan_be_COMErrorObject_init_t in accordance with the arguments found.
  *
  * Recognises the following standard argument names:
  * - "showProcessId"            (Boolean)

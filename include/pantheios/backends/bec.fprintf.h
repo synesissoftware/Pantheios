@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        27
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -82,10 +82,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__fprintf Pantheios fprintf() Stock Back-end
- * \ingroup group__backend__stock_backends
- *   Back-end library that writes to the standard output or error stream
- *   via \c fprintf().
+/** \defgroup group__backend__stock_backends__fprintf Pantheios fprintf()
+ *   Stock Back-end
+ * \ingroup group__backend__stock_backends Back-end library that writes to
+ *   the standard output or error stream via \c fprintf().
  */
 
 
@@ -93,10 +93,11 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__fprintf__flags Pantheios fprintf() Stock Back-end Flags
+/** \defgroup group__backend__stock_backends__fprintf__flags Pantheios
+ *   fprintf() Stock Back-end Flags
  *
- * \ingroup group__backend__stock_backends__fprintf
- *   Flags for the \ref group__backend__stock_backends__fprintf
+ * \ingroup group__backend__stock_backends__fprintf Flags for the
+ *   \ref group__backend__stock_backends__fprintf
  */
 
 
@@ -105,7 +106,7 @@
  */
 
 /** Structure used for specifying initialisation information to the
- *    be.fprintf library.
+ * be.fprintf library.
  * \ingroup group__backend__stock_backends__fprintf
  */
 struct pan_be_fprintf_init_t
@@ -132,19 +133,19 @@ typedef struct pan_be_fprintf_init_t                        pan_be_fprintf_init_
  */
 
 /** \ref page__backend__callbacks "Callback" function defined by
- *    the application, invoked when the
- *    API is initialised with a NULL \c init parameter.
+ * the application, invoked when the API is initialised with a NULL \c init
+ * parameter.
  * \ingroup group__backend__stock_backends__fprintf
  *
- * \param backEndId The back-end identifier passed to the back-end
- *   during its initialisation;
+ * \param backEndId The back-end identifier passed to the back-end during
+ *   its initialisation;
  * \param init A pointer to an already-initialised instance of
  *   pan_be_fprintf_init_t;
  *
- * If any application-specific changes are required they can be made to
- * the structure to which \c init points, which will already
- * have been initialised. These changes will then be incorporated into
- * the back-end state, and reflected in its behaviour.
+ * If any application-specific changes are required they can be made to the
+ * structure to which \c init points, which will already have been
+ * initialised. These changes will then be incorporated into the back-end
+ * state, and reflected in its behaviour.
  *
  * If no changes are required, then the function can be a simple stub,
  * containing no instructions.
@@ -170,20 +171,20 @@ PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(
  */
 
 /** Fills out a copy of the initialisation structure with default
- *    values (representative of the default behaviour of the library),
- *    ready to be customised and passed to the API initialiser function
- *    pantheios_be_fprintf_init().
+ * values (representative of the default behaviour of the library), ready to
+ * be customised and passed to the API initialiser function
+ * pantheios_be_fprintf_init().
  * \ingroup group__backend__stock_backends__fprintf
  *
- * \note This function should \c not be called on an
- *   already-initialised instance, as is the case in the implementation
- *   of the pantheios_be_fprintf_getAppInit() function, as it will
- *   already have been called by pantheios_be_fprintf_init() prior
- *   to the callback.
+ * \note This function should \c not be called on an already-initialised
+ *   instance, as is the case in the implementation of the
+ *   pantheios_be_fprintf_getAppInit() function, as it will already have
+ *   been called by pantheios_be_fprintf_init() prior to the callback.
  */
 PANTHEIOS_CALL(void) pantheios_be_fprintf_getDefaultAppInit(pan_be_fprintf_init_t* init) /* throw() */;
 
-/** Implements the functionality for pantheios_be_init() over the fprintf() function.
+/** Implements the functionality for pantheios_be_init() over the fprintf()
+ * function.
  * \ingroup group__backend__stock_backends__fprintf
  */
 PANTHEIOS_CALL(int) pantheios_be_fprintf_init(
@@ -194,12 +195,14 @@ PANTHEIOS_CALL(int) pantheios_be_fprintf_init(
 ,   void**                          ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the fprintf() function.
+/** Implements the functionality for pantheios_be_uninit() over the
+ * fprintf() function.
  * \ingroup group__backend__stock_backends__fprintf
  */
 PANTHEIOS_CALL(void) pantheios_be_fprintf_uninit(void* token);
 
-/** Implements the functionality for pantheios_be_logEntry() over the fprintf() function.
+/** Implements the functionality for pantheios_be_logEntry() over the
+ * fprintf() function.
  * \ingroup group__backend__stock_backends__fprintf
  */
 PANTHEIOS_CALL(int) pantheios_be_fprintf_logEntry(
@@ -217,9 +220,8 @@ PANTHEIOS_CALL(int) pantheios_be_fprintf_logEntry(
  * \ingroup group__backend
  *
  * Processes an argument list in the same way as
- * pantheios_be_parseStockArgs(), filling out the
- * pan_be_fprintf_init_t in accordance with the arguments
- * found.
+ * pantheios_be_parseStockArgs(), filling out the pan_be_fprintf_init_t in
+ * accordance with the arguments found.
  *
  * Recognises the following standard argument names:
  * - "showProcessId"            (Boolean)

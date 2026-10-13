@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MINOR     3
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      22
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,9 +72,10 @@
 # include <pantheios/frontends/stock.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK */
 
-/** \defgroup group__frontend__stock_frontends__N Pantheios N Stock Front-end
- * \ingroup group__frontend__stock_frontends
- *   Front-end library that can filter N back-ends.
+/** \defgroup group__frontend__stock_frontends__N Pantheios N Stock
+ *   Front-end
+ * \ingroup group__frontend__stock_frontends Front-end library that can
+ *   filter N back-ends.
  */
 
 
@@ -108,7 +109,9 @@ struct pan_fe_N_t
 {
     /** The back-end identifier. Specify 0 to terminate the array. */
     int backEndId;
-    /** The severity ceiling. When backEndId is 0, this specifies the default ceiling */
+    /** The severity ceiling. When backEndId is 0, this specifies the
+     * default ceiling
+     */
     int severityCeiling;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -159,20 +162,20 @@ struct Pantheios_no_longer_uses_the_symbol_PAN_FE_N_PROCESS_IDENTITY_all_front_e
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** The application must define this variable, to contain an array
- *    of filter entries whose last, "null", element has a `0`
- *    \link pan_fe_N_t::backEndId backEndId\endlink.
+ * of filter entries whose last, "null", element has a `0`
+ * \link pan_fe_N_t::backEndId backEndId\endlink.
  *
  * \warning Due to the inherent ordering imperfection in C++ - it's not
- *   predictable between compilation units; see Chapter 11 of Imperfect
- *   C++ (http://imperfectcplusplus.com) - you should \c not use
- *   the pseudo-constants (pantheios::debug, pantheios::informational, ...
- *   pantheios::emergency) in the initialisers for this array. Instead,
- *   use the enumerators in
+ *   predictable between compilation units; see Chapter 11 of Imperfect C++
+ *   (http://imperfectcplusplus.com) - you should \c not use the
+ *   pseudo-constants (pantheios::debug, pantheios::informational, ...
+ *   pantheios::emergency) in the initialisers for this array. Instead, use
+ *   the enumerators in
  *   \link pantheios::pan_severity_t pan_severity_t\endlink.
  *
- * \note This array is declared mutable (non-const), but that is only as
- *   an expedient for testing. Its contents **must not be changed**\
- *   at any time.
+ * \note This array is declared mutable (non-const), but that is only as an
+ *   expedient for testing. Its contents **must not be changed**\ at any
+ *   time.
  *
  * \ingroup group__frontend__stock_frontends__N
  */

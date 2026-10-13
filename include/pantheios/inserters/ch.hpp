@@ -43,8 +43,8 @@
 
 /** \file pantheios/inserters/ch.hpp
  *
- * [C++ only] Definition of the pantheios::character string inserter
- *   for built-in character type(s).
+ * [C++ only] Definition of the pantheios::character string inserter for
+ * built-in character type(s).
  *
  * This file is not included by default.
  *
@@ -83,7 +83,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_EDIT      4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CH_EDIT      5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -115,7 +115,7 @@ namespace pantheios
  */
 
 /** Class for inserting characters into Pantheios diagnostic logging
- *   statements.
+ * statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -135,13 +135,14 @@ namespace pantheios
  *
  * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, c=#, str=def**
  *
- * \note Currently, Pantheios does not support the insertion of character types
- *   in diagnostic logging statements, due to the various ambiguities inherent
- *   in the C++ language. (See chapters 14, 15, 19, 24 of
- *   <a href = "http://imperfectcplusplus.com" target="_blank">Imperfect C++</a>
- *   for discussions of these issues.) It is possible that a future version of
- *   the library will be able to incorporate them directly, so long as that does
- *   not sacrifice Pantheios's central claim of not paying for what you don't use.
+ * \note Currently, Pantheios does not support the insertion of character
+ *   types in diagnostic logging statements, due to the various ambiguities
+ *   inherent in the C++ language. (See chapters 14, 15, 19, 24 of <a href =
+ *   "http://imperfectcplusplus.com" target="_blank">Imperfect C++</a> for
+ *   discussions of these issues.) It is possible that a future version of
+ *   the library will be able to incorporate them directly, so long as that
+ *   does not sacrifice Pantheios's central claim of not paying for what you
+ *   don't use.
  */
 typedef character ch;
 

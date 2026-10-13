@@ -4,11 +4,11 @@
  * Purpose: Implicitly links in the Pantheios syslog Local Back-End Library
  *
  * Created: 30th May 2006
- * Updated: 16th December 2023
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,8 +43,8 @@
 /** \file pantheios/implicit_link/bel.syslog.h
  *
  * [C, C++] Implicitly links in the
- *   \ref group__backend__stock_backends__syslog "Pantheios syslog Local Back-End Library"
- *   as the local back-end for the given link-unit.
+ * \ref group__backend__stock_backends__syslog "Pantheios syslog Local
+ * Back-End Library" as the local back-end for the given link-unit.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG_EDIT     7
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_SYSLOG_EDIT     8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

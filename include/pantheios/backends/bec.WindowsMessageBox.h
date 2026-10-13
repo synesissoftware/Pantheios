@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_MINOR     1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_EDIT      11
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_EDIT      12
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,9 +77,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__WindowsMessageBox Pantheios Windows Message Box Stock Back-end
- * \ingroup group__backend__stock_backends
- *   Back-end library that writes to the Windows event log.
+/** \defgroup group__backend__stock_backends__WindowsMessageBox Pantheios
+ *   Windows Message Box Stock Back-end
+ * \ingroup group__backend__stock_backends Back-end library that writes to
+ *   the Windows event log.
  */
 
 
@@ -87,7 +88,8 @@
  * API
  */
 
-/** Implements the functionality for pantheios_be_init() over the Windows Message Box API.
+/** Implements the functionality for pantheios_be_init() over the Windows
+ * Message Box API.
  *
  * \ingroup group__backend__stock_backends__WindowsMessageBox
  */
@@ -99,14 +101,16 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsMessageBox_init(
 ,   void**              ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the Windows Message Box API.
+/** Implements the functionality for pantheios_be_uninit() over the Windows
+ * Message Box API.
  * \ingroup group__backend__stock_backends__WindowsMessageBox
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsMessageBox_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the Windows Message Box API.
+/** Implements the functionality for pantheios_be_logEntry() over the
+ * Windows Message Box API.
  * \ingroup group__backend__stock_backends__WindowsMessageBox
  */
 PANTHEIOS_CALL(int) pantheios_be_WindowsMessageBox_logEntry(

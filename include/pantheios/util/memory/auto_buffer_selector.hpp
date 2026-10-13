@@ -43,9 +43,9 @@
 
 /** \file pantheios/util/memory/auto_buffer_selector.hpp
  *
- * [C++ only] Type generator template (see 12.2 of Extended STL,
- *   volume 1; http://extendedstl.com/) for defining stlsoft::auto_buffer
- *   specialisations.
+ * [C++ only] Type generator template (see 12.2 of Extended STL, volume 1;
+ * http://extendedstl.com/) for defining stlsoft::auto_buffer
+ * specialisations.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_REVISION  4
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      16
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

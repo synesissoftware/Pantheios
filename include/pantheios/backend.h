@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MINOR      12
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       38
+# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       39
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,17 +77,17 @@
 
 /** \defgroup group__backend Pantheios Back-end API
  *
- * The Pantheios back-end API describes the required functionality of a back-end
- * library. The back-end is responsible solely for translating the log entry -
- * severity indicator + length-specified, nul-terminated string - into output,
- * as appropriate to its implementation.
+ * The Pantheios back-end API describes the required functionality of a
+ * back-end library. The back-end is responsible solely for translating the
+ * log entry - severity indicator + length-specified, nul-terminated string
+ * - into output, as appropriate to its implementation.
  *
- * There are several stock back-ends supplied with the Pantheios distribution
- * (http://pantheios.org/), providing logging to stderr (using \c fprintf()),
- * SysLog (using UNIX syslog(), or an emulation library on Windows), Windows
- * Debugger, ACE output. You may also supply your own back-end by implementing
- * the three simple functions of the API: pantheios_be_init(),
- * pantheios_be_uninit(), and pantheios_be_logEntry().
+ * There are several stock back-ends supplied with the Pantheios
+ * distribution (http://pantheios.org/), providing logging to stderr (using
+ * \c fprintf()), SysLog (using UNIX syslog(), or an emulation library on
+ * Windows), Windows Debugger, ACE output. You may also supply your own
+ * back-end by implementing the three simple functions of the API:
+ * pantheios_be_init(), pantheios_be_uninit(), and pantheios_be_logEntry().
  *
  * @{
  */
@@ -96,14 +96,15 @@
  *
  * \ingroup group__backend
  *
- *  Pre-built back-ends supplied with the Pantheios library
+ * Pre-built back-ends supplied with the Pantheios library
  *
  * Pantheios comes with several pre-written stock back-end libraries, which
  * cover most common needs for diagnostic logging. They also serve as good
  * examples of how to write a custom back-end.
  */
 
-/** \defgroup group__backend__stock_backends__stock Pantheios Stock (All) Back-End Common Library
+/** \defgroup group__backend__stock_backends__stock Pantheios Stock (All)
+ *   Back-End Common Library
  *
  * \ingroup group__backend__stock_backends
  *
@@ -114,8 +115,8 @@
 /** \page page__backend__callbacks Pantheios Back-end Callbacks
  *
  * Several stock back-ends are available in a <em>WithCallback</em> form.
- * Those variants invoke an application-defined initialisation callback
- * (for example \c pantheios_be_file_getAppInit()) when the back-end is
+ * Those variants invoke an application-defined initialisation callback (for
+ * example \c pantheios_be_file_getAppInit()) when the back-end is
  * initialised with a \c NULL \c init parameter, so that process-specific
  * defaults can be supplied without changing the core library.
  *
@@ -127,15 +128,14 @@
  *
  * \ingroup group__backend
  *
- *  Stock back-end identifiers used by the Pantheios back-end
- *   libraries.
+ * Stock back-end identifiers used by the Pantheios back-end libraries.
  */
 
 /** \def PANTHEIOS_BEID_ALL
  *
  * \ingroup group__backend__stock_ids
  *
- *  Indicates that the operation/query applies to all back-ends
+ * Indicates that the operation/query applies to all back-ends
  */
 
 #define PANTHEIOS_BEID_ALL                                  (0)
@@ -144,7 +144,7 @@
  *
  * \ingroup group__backend__stock_ids
  *
- *  Identifies the local (or only) back-end in a link-unit
+ * Identifies the local (or only) back-end in a link-unit
  */
 
 #define PANTHEIOS_BEID_LOCAL                                (1)
@@ -153,8 +153,8 @@
  *
  * \ingroup group__backend__stock_ids
  *
- *  Identifies the remote back-end in a link-unit using local/remote
- *   splitting.
+ * Identifies the remote back-end in a link-unit using local/remote
+ * splitting.
  */
 
 #define PANTHEIOS_BEID_REMOTE                               (2)
@@ -164,83 +164,79 @@
  * constants
  */
 
-/** \defgroup group__backend__init__flags Pantheios Back-end Initialisation Flags
+/** \defgroup group__backend__init__flags Pantheios Back-end Initialisation
+ *   Flags
  *
  * \ingroup group__backend
  *
- *  Flags for the \ref group__backend__stock_backends
+ * Flags for the \ref group__backend__stock_backends
  */
 
 /** \def PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
- *  Causes the back-end to
- *   omit the process identity from emitted log statements.
+ * Causes the back-end to omit the process identity from emitted log
+ * statements.
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_NO_THREAD_ID
- *  Causes the back-end to
- *   omit the thread identity from emitted log statements.
+ * Causes the back-end to omit the thread identity from emitted log
+ * statements.
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_NO_DATETIME
- *  Causes the back-end to
- *   omit the date/time field from emitted log statements.
+ * Causes the back-end to omit the date/time field from emitted log
+ * statements.
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_NO_SEVERITY
- *  Causes the back-end to
- *   omit the severity from emitted log statements.
+ * Causes the back-end to omit the severity from emitted log statements.
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME
- *  Causes the back-end to
- *   use system time, rather than local time, from emitted log statements.
+ * Causes the back-end to use system time, rather than local time, from
+ * emitted log statements.
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_DETAILS_AT_START
- *  Causes the details
- *   to be emitted at the start of the statement, rather than after the
- *   process id, time, and so on.
+ * Causes the details to be emitted at the start of the statement, rather
+ * than after the process id, time, and so on.
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
- *  Causes the back-end to
- *   use UNIX format for the date/time field, even on other operating
- *   systems.
+ * Causes the back-end to use UNIX format for the date/time field, even on
+ * other operating systems.
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_HIDE_DATE
- *  Causes the back-end to
- *   omit the date in the date/time field (if shown).
+ * Causes the back-end to omit the date in the date/time field (if shown).
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_HIDE_TIME
- *  Causes the back-end to
- *   omit the time in the date/time field (if shown).
+ * Causes the back-end to omit the time in the date/time field (if shown).
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_HIGH_RESOLUTION
- *  Causes the back-end to
- *   favour high-resolution in the date/time field (if shown).
+ * Causes the back-end to favour high-resolution in the date/time field (if
+ * shown).
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_LOW_RESOLUTION
- *  Causes the back-end to
- *   favour low-resolution in the date/time field (if shown).
+ * Causes the back-end to favour low-resolution in the date/time field (if
+ * shown).
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
- *  Causes the back-end to represent the severity, if shown, as an integer.
+ * Causes the back-end to represent the severity, if shown, as an integer.
  * \ingroup group__backend__init__flags
  */
 
@@ -260,12 +256,12 @@
 
 
 /** \def PANTHEIOS_BE_INIT_F_COMMON_MASK
- *  Mask of stock back-end flags.
+ * Mask of stock back-end flags.
  * \ingroup group__backend__init__flags
  */
 
 /** \def PANTHEIOS_BE_INIT_F_CUSTOM_MASK
- *  Mask of custom back-end flags.
+ * Mask of custom back-end flags.
  * \ingroup group__backend__init__flags
  */
 
@@ -285,24 +281,25 @@
  *
  * \ingroup group__backend
  *
- * This function is called once by the Pantheios core library to initialise the
- * back-end library. It passes the process identity (in the form of a
- * nul-terminated C-style string) and a second parameter (reserved for future
- * use; currently always has value 0), which the back-end may use in its
- * initialisation. The third parameter is a pointer to a void*, with which the
- * back-end may store state, to be passed back to it in the pantheios_be_logEntry()
- * and pantheios_be_uninit() functions.
+ * This function is called once by the Pantheios core library to initialise
+ * the back-end library. It passes the process identity (in the form of a
+ * nul-terminated C-style string) and a second parameter (reserved for
+ * future use; currently always has value 0), which the back-end may use in
+ * its initialisation. The third parameter is a pointer to a void*, with
+ * which the back-end may store state, to be passed back to it in the
+ * pantheios_be_logEntry() and pantheios_be_uninit() functions.
  *
- * \param processIdentity The identity of the process within which Pantheios is
- *   being used. Should be a meaningful human-readable string. Must not be NULL.
- *   Maximum length is limited solely by what the back-end library can accomodate.
- *   The string pointed to by this parameter may not persist after the call is
- *   complete, so the back-end should take a copy if required;
- * \param reserved Currently reserved. Will contain 0 in the current version of
- *   the Pantheios library;
- * \param ptoken Pointer to a variable to receive the back-end token, which will
- *   be stored in the Pantheios library and passed to the pantheios_be_logEntry()
- *   and pantheios_be_uninit() functions;
+ * \param processIdentity The identity of the process within which Pantheios
+ *   is being used. Should be a meaningful human-readable string. Must not
+ *   be NULL. Maximum length is limited solely by what the back-end library
+ *   can accomodate. The string pointed to by this parameter may not persist
+ *   after the call is complete, so the back-end should take a copy if
+ *   required;
+ * \param reserved Currently reserved. Will contain 0 in the current version
+ *   of the Pantheios library;
+ * \param ptoken Pointer to a variable to receive the back-end token, which
+ *   will be stored in the Pantheios library and passed to the
+ *   pantheios_be_logEntry() and pantheios_be_uninit() functions;
  *
  * \note This function must be defined by each back-end implementation.
  *
@@ -324,14 +321,15 @@ PANTHEIOS_CALL(int) pantheios_be_init(
  * \ingroup group__backend
  *
  * This function is called to uninitialise the back-end library during the
- * uninitialisation of the Pantheios core library. It is passed the value of the
- * token stored on its behalf by the Pantheios core library.
+ * uninitialisation of the Pantheios core library. It is passed the value of
+ * the token stored on its behalf by the Pantheios core library.
  *
  * \note This function must be defined by each back-end implementation.
  *
  * \note This function is called at most once per process.
  *
- * \param token The back-end token, created by the pantheios_be_init() function;
+ * \param token The back-end token, created by the pantheios_be_init()
+ *   function;
  */
 PANTHEIOS_CALL(void) pantheios_be_uninit(void* token);
 
@@ -339,21 +337,23 @@ PANTHEIOS_CALL(void) pantheios_be_uninit(void* token);
  *
  * \ingroup group__backend
  *
- * This function is called by the Pantheios core library to emit a log entry.
- * It is passed five parameters. The \c severity, \c entry and \c cchEntry
- * parameters describe the severity level, and the nul-terminated contents of
- * the log entry. The \c feToken and \c beToken parameters hold the
- * library-specific state of the front-end and back-end librarys, respectively.
+ * This function is called by the Pantheios core library to emit a log
+ * entry. It is passed five parameters. The \c severity, \c entry and
+ * \c cchEntry parameters describe the severity level, and the
+ * nul-terminated contents of the log entry. The \c feToken and \c beToken
+ * parameters hold the library-specific state of the front-end and back-end
+ * librarys, respectively.
  *
  * \note This function must be defined by each back-end implementation.
  *
  * \note This may be called from any thread in a multi-threaded process.
  *
  * \param feToken The front-end token, created by the pantheios_fe_init()
- *   function. This value does not hold any meaning to the back-end library, and
- *   may be used only to passed back to the front-end in calls to
+ *   function. This value does not hold any meaning to the back-end library,
+ *   and may be used only to passed back to the front-end in calls to
  *   pantheios_fe_isSeverityLogged();
- * \param beToken The back-end token, created by the pantheios_be_init() function;
+ * \param beToken The back-end token, created by the pantheios_be_init()
+ *   function;
  * \param severity The severity level;
  * \param entry The nul-terminated string containing the entry information;
  * \param cchEntry The number of bytes in the string, not including the
@@ -376,21 +376,19 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
 /** \def PANTHEIOS_BE_DEFINE_BE_FUNCTIONS(expr)
  *
- *  Back-end generation macro for the Pantheios API
+ * Back-end generation macro for the Pantheios API
  *
- * Generates the functions \c pantheios_be_init(),
- * \c pantheios_be_uninit() and
- * \c pantheios_be_logEntry() from the given back-end
- * implementation. The given id is assumed to be common to all three
- * back-end API functions for the given back-end implementation. In other
- * words, for the back-end "be.loader" one would specify the id to be
- * \c loader, from which the macro assumes the existence of the
- * three functions \c pantheios_be_loader_init(),
- * \c pantheios_be_loader_uninit() and
+ * Generates the functions \c pantheios_be_init(), \c pantheios_be_uninit()
+ * and \c pantheios_be_logEntry() from the given back-end implementation.
+ * The given id is assumed to be common to all three back-end API functions
+ * for the given back-end implementation. In other words, for the back-end
+ * "be.loader" one would specify the id to be \c loader, from which the
+ * macro assumes the existence of the three functions
+ * \c pantheios_be_loader_init(), \c pantheios_be_loader_uninit() and
  * \c pantheios_be_loader_logEntry().
  *
- * \param id The back-end identifier, e.g. \c loader for the
- *   "be.loader" back-end;
+ * \param id The back-end identifier, e.g. \c loader for the "be.loader"
+ *   back-end;
  */
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_BE_DEFINE_BE_FUNCTIONS_(fullId)                                                                                  \
@@ -410,21 +408,19 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
 /** \def PANTHEIOS_BE_DEFINE_BEL_FUNCTIONS(expr)
  *
- *  Local back-end generation macro for the Pantheios API
+ * Local back-end generation macro for the Pantheios API
  *
  * Generates the functions \c pantheios_be_local_init(),
- * \c pantheios_be_local_uninit() and
- * \c pantheios_be_local_logEntry() from the given back-end
- * implementation. The given id is assumed to be common to all three
- * back-end API functions for the given back-end implementation. In other
- * words, for the back-end "be.loader" one would specify the id to be
- * \c loader, from which the macro assumes the existence of the
- * three functions \c pantheios_be_loader_init(),
- * \c pantheios_be_loader_uninit() and
- * \c pantheios_be_loader_logEntry().
+ * \c pantheios_be_local_uninit() and \c pantheios_be_local_logEntry() from
+ * the given back-end implementation. The given id is assumed to be common
+ * to all three back-end API functions for the given back-end
+ * implementation. In other words, for the back-end "be.loader" one would
+ * specify the id to be \c loader, from which the macro assumes the
+ * existence of the three functions \c pantheios_be_loader_init(),
+ * \c pantheios_be_loader_uninit() and \c pantheios_be_loader_logEntry().
  *
- * \param id The back-end identifier, e.g. \c loader for the
- *   "be.loader" back-end;
+ * \param id The back-end identifier, e.g. \c loader for the "be.loader"
+ *   back-end;
  */
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_BE_DEFINE_BEL_FUNCTIONS_(fullId)                                                                                         \
@@ -441,21 +437,19 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
 
 /** \def PANTHEIOS_BE_DEFINE_BER_FUNCTIONS(expr)
  *
- *  Remote back-end generation macro for the Pantheios API
+ * Remote back-end generation macro for the Pantheios API
  *
  * Generates the functions \c pantheios_be_remote_init(),
- * \c pantheios_be_remote_uninit() and
- * \c pantheios_be_remote_logEntry() from the given back-end
- * implementation. The given id is assumed to be common to all three
- * back-end API functions for the given back-end implementation. In other
- * words, for the back-end "be.loader" one would specify the id to be
- * \c loader, from which the macro assumes the existence of the
- * three functions \c pantheios_be_loader_init(),
- * \c pantheios_be_loader_uninit() and
- * \c pantheios_be_loader_logEntry().
+ * \c pantheios_be_remote_uninit() and \c pantheios_be_remote_logEntry()
+ * from the given back-end implementation. The given id is assumed to be
+ * common to all three back-end API functions for the given back-end
+ * implementation. In other words, for the back-end "be.loader" one would
+ * specify the id to be \c loader, from which the macro assumes the
+ * existence of the three functions \c pantheios_be_loader_init(),
+ * \c pantheios_be_loader_uninit() and \c pantheios_be_loader_logEntry().
  *
- * \param id The back-end identifier, e.g. \c loader for the
- *   "be.loader" back-end;
+ * \param id The back-end identifier, e.g. \c loader for the "be.loader"
+ *   back-end;
  */
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_BE_DEFINE_BER_FUNCTIONS_(fullId)                                                                                         \

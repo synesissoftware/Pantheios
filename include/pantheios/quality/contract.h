@@ -45,7 +45,7 @@
 /** \file pantheios/quality/contract.h
  *
  * [C, C++] Defines the contract enforcement constructs used in the
- *  Pantheios core and APIs.
+ * Pantheios core and APIs.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    3
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        23
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

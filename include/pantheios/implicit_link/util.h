@@ -4,11 +4,11 @@
  * Purpose: Implicitly links in the Pantheios Util library
  *
  * Created: 15th April 2008
- * Updated: 16th December 2023
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -42,7 +42,8 @@
 
 /** \file pantheios/implicit_link/util.h
  *
- * [C, C++] Implicitly links in the \ref group__util_library "Pantheios Util library"
+ * [C, C++] Implicitly links in the \ref group__util_library "Pantheios Util
+ * library"
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_UTIL
@@ -57,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_UTIL_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_UTIL_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_UTIL_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_UTIL_EDIT      6
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_UTIL_EDIT      7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

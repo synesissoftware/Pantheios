@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_MINOR    3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_REVISION 6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_EDIT     25
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_EDIT     26
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,7 +96,7 @@ namespace pantheios
  */
 
 /** Class for inserting Boolean types into Pantheios diagnostic logging
- *   statements.
+ * statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -150,17 +150,19 @@ public:
 /// \name Accessors
 /// @{
 public:
-    ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* data() const
     {
         return get_slice_(m_value)->ptr;
     }
-    ///  A nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* c_str() const
     {
         return get_slice_(m_value)->ptr;
     }
-    ///  The length of the c-style string representation of the integer
+    /// The length of the c-style string representation of the integer
     size_t      length() const
     {
         return get_slice_(m_value)->len;

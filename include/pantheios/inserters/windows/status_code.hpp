@@ -43,7 +43,7 @@
 /** \file pantheios/inserters/windows/status_code.hpp
  *
  * [C++ only] Definition of the pantheios::windows::status_code inserter
- *   class, for selective format string inserter for Windows status codes.
+ * class, for selective format string inserter for Windows status codes.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_STATUS_CODE_EDIT     9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -94,9 +94,8 @@ namespace windows
  */
 
 /** Class for inserting Windows status codes, either Windows API
- * \c DWORD values (from \c GetLastError()), which will
- * be rendered as plain integers, or COM \c HRESULT values, which
- * will be rendered as 0xYYYYYYYY.
+ * \c DWORD values (from \c GetLastError()), which will be rendered as plain
+ * integers, or COM \c HRESULT values, which will be rendered as 0xYYYYYYYY.
  *
  * \ingroup group__application_layer_interface__inserters
  *

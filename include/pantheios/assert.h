@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MINOR     3
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      15
+# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      16
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -139,9 +139,9 @@
 
 /** \def PANTHEIOS_ASSERT_IMPL(expr)
  *
- * The underlying assertion that is invoked by \c PANTHEIOS_ASSERT, after
- * it has issued a trace message (via pantheios_logassertfail()), except in
- * the case where \c PANTHEIOS_ASSERT_ABORT_ON_FAILURE is defined.
+ * The underlying assertion that is invoked by \c PANTHEIOS_ASSERT, after it
+ * has issued a trace message (via pantheios_logassertfail()), except in the
+ * case where \c PANTHEIOS_ASSERT_ABORT_ON_FAILURE is defined.
  *
  * Defaults to \c STLSOFT_ASSERT
  *
@@ -175,14 +175,14 @@
  *
  * \param expr Must be non-zero, or an assertion will be fired;
  *
- * If the expression evaluates to false a log statement will be
- * submitted at the PANTHEIOS_ASSERT_SEVERITY_LEVEL severity level, and
- * emitted if that level is currently switched on.
+ * If the expression evaluates to false a log statement will be submitted at
+ * the PANTHEIOS_ASSERT_SEVERITY_LEVEL severity level, and emitted if that
+ * level is currently switched on.
  *
- * If the preprocessor symbol PANTHEIOS_ASSERT_ABORT_ON_FAILURE is
- * defined, then pantheios_exitProcess() will be invoked for a failed
- * expression; if not, the expression will also be subjected to a
- * "standard" assert, via \c PANTHEIOS_ASSERT_IMPL()
+ * If the preprocessor symbol PANTHEIOS_ASSERT_ABORT_ON_FAILURE is defined,
+ * then pantheios_exitProcess() will be invoked for a failed expression; if
+ * not, the expression will also be subjected to a "standard" assert, via
+ * \c PANTHEIOS_ASSERT_IMPL()
  *
  * \ingroup group__assertion
  */
@@ -236,16 +236,17 @@
  * Defines an assertion construct for runtime verification.
  *
  * \param expr Must be non-zero, or an assertion will be fired;
- * \param msg The message that will be associated with the output if the assertion fires;
+ * \param msg The message that will be associated with the output if the
+ *   assertion fires;
  *
- * If the expression evaluates to false a log statement will be
- * submitted at the PANTHEIOS_ASSERT_SEVERITY_LEVEL severity level, and
- * emitted if that level is currently switched on.
+ * If the expression evaluates to false a log statement will be submitted at
+ * the PANTHEIOS_ASSERT_SEVERITY_LEVEL severity level, and emitted if that
+ * level is currently switched on.
  *
- * If the preprocessor symbol PANTHEIOS_ASSERT_ABORT_ON_FAILURE is
- * defined, then pantheios_exitProcess() will be invoked for a failed
- * expression; if not, the expression will also be subjected to a
- * "standard" assert, via \c PANTHEIOS_MESSAGE_ASSERT_IMPL()
+ * If the preprocessor symbol PANTHEIOS_ASSERT_ABORT_ON_FAILURE is defined,
+ * then pantheios_exitProcess() will be invoked for a failed expression; if
+ * not, the expression will also be subjected to a "standard" assert, via
+ * \c PANTHEIOS_MESSAGE_ASSERT_IMPL()
  *
  * \ingroup group__assertion
  */

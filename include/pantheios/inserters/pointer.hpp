@@ -43,8 +43,8 @@
 
 /** \file pantheios/inserters/pointer.hpp
  *
- * [C++ only] Definition of the pantheios::pointer string inserter for
- *   for pointer types.
+ * [C++ only] Definition of the pantheios::pointer string inserter for for
+ * pointer types.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_POINTER
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MINOR    5
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     38
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     39
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -97,12 +97,12 @@ namespace pantheios
  */
 
 /** Class for inserting pointers into Pantheios diagnostic logging
- *   statements.
+ * statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
- * This class converts a pointer variable into a string, thereby enabling it to be
- * inserted into a logging statement. Consider the following statement
+ * This class converts a pointer variable into a string, thereby enabling it
+ * to be inserted into a logging statement. Consider the following statement
  *
  * \code
   void*       p   = reinterpret_cast<void*>(0x01234567);
@@ -132,8 +132,8 @@ public:
     ///   width must be in the range [0, 20]
     ///
     /// \deprecated This constructor form is deprecated, and will be removed
-    ///   in a forthcoming release; instead use
-    ///   the \link pantheios::pointer::pointer(void const volatile*, int, int) 3-parameter\endlink
+    ///   in a forthcoming release; instead use the
+    ///   \link pantheios::pointer::pointer(void const volatile*, int, int) 3-parameter\endlink
     ///   overload.
     ///
     /// \note For backwards-compatibility, specifiying the zeroXPrefix flag
@@ -144,15 +144,18 @@ public:
     ///
     /// \param pv The pointer whose value will be inserted
     /// \param minWidth The minimum width. Must be in the range [-20, 20]
-    /// \param format Combination of \link pantheios::fmt format\endlink flags
+    /// \param format Combination of \link pantheios::fmt format\endlink
+    ///   flags
     ///
     /// \pre (minWidth >= -20 && minWidth <= 20)
     pointer(void const volatile* pv, int minWidth, int format);
 
 public:
-    /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the pointer
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the pointer
     char_type const*    data() const;
-    /// A nul-terminated non-null pointer to the c-style string representation of the pointer
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the pointer
     char_type const*    c_str() const;
     /// The length of the c-style string representation of the pointer
     size_t              length() const;

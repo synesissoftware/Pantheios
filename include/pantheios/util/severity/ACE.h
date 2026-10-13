@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_MINOR      2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_EDIT       18
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_EDIT       19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,7 +95,8 @@ namespace pantheios
 
 /** Converts a Pantheios severity level to an ACE priority level
  *
- * \param severity The Pantheios \link pantheios::pan_severity_t severity level\endlink;
+ * \param severity The Pantheios
+ *   \link pantheios::pan_severity_t severity level\endlink;
  *
  * \return The ACE priority.
  */

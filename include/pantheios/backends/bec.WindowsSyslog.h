@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MAJOR     4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      30
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,10 +77,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__WindowsSyslog Pantheios Windows-SysLog Stock Back-end
- * \ingroup group__backend__stock_backends
- *   Back-end library that provides a custom implementation of the
- *   \c SysLog-protocol for Windows.
+/** \defgroup group__backend__stock_backends__WindowsSyslog Pantheios
+ *   Windows-SysLog Stock Back-end
+ * \ingroup group__backend__stock_backends Back-end library that provides a
+ *   custom implementation of the \c SysLog-protocol for Windows.
  */
 
 
@@ -88,14 +88,15 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__WindowsSyslog__flags Pantheios Windows syslog Stock Back-end Flags
- * \ingroup group__backend__stock_backends__WindowsSyslog
- *   Flags for the \ref group__backend__stock_backends__WindowsSyslog
+/** \defgroup group__backend__stock_backends__WindowsSyslog__flags Pantheios
+ *   Windows syslog Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__WindowsSyslog Flags for the
+ *   \ref group__backend__stock_backends__WindowsSyslog
  */
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_USE_SYSTEM_TIME
- * Causes the \ref group__backend__stock_backends__WindowsSyslog to
- *   use system time, rather than local time, from emitted log statements.
+ * Causes the \ref group__backend__stock_backends__WindowsSyslog to use
+ * system time, rather than local time, from emitted log statements.
  * \ingroup group__backend__stock_backends__WindowsSyslog__flags
  */
 
@@ -103,57 +104,57 @@
 
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_PERROR
- * Causes the \ref group__backend__stock_backends__WindowsSyslog to
- *   write to the calling process' standard error, in addition to submitting
- *   it to SysLog.
+ * Causes the \ref group__backend__stock_backends__WindowsSyslog to write to
+ * the calling process' standard error, in addition to submitting it to
+ * SysLog.
  * \ingroup group__backend__stock_backends__WindowsSyslog__flags
  *
- * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options member to
- * contain the SysLog \c LOG_PERROR flag.
+ * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options
+ * member to contain the SysLog \c LOG_PERROR flag.
  */
 
 #define PANTHEIOS_BE_WINDOWSSYSLOG_F_PERROR                 (0x00100000)
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_CONS
- * Causes the \ref group__backend__stock_backends__WindowsSyslog to
- *   write any message that fails to be submitted to SysLog to the system
- *   console.
+ * Causes the \ref group__backend__stock_backends__WindowsSyslog to write
+ * any message that fails to be submitted to SysLog to the system console.
  * \ingroup group__backend__stock_backends__WindowsSyslog__flags
  *
- * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options member to
- * contain the SysLog \c LOG_CONS flag.
+ * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options
+ * member to contain the SysLog \c LOG_CONS flag.
  */
 
 #define PANTHEIOS_BE_WINDOWSSYSLOG_F_CONS                   (0x00200000)
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_PID
  * Causes the \ref group__backend__stock_backends__WindowsSyslog to include
- *   the process Id in the statement.
+ * the process Id in the statement.
  * \ingroup group__backend__stock_backends__WindowsSyslog__flags
  *
- * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options member to
- * contain the SysLog \c LOG_PID flag.
+ * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options
+ * member to contain the SysLog \c LOG_PID flag.
  */
 
 #define PANTHEIOS_BE_WINDOWSSYSLOG_F_PID                    (0x00400000)
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY
- * Causes the \ref group__backend__stock_backends__WindowsSyslog to
- *   connect to the syslog socket immediately, rather than on the first call
- *   to \c syslog().
+ * Causes the \ref group__backend__stock_backends__WindowsSyslog to connect
+ * to the syslog socket immediately, rather than on the first call to
+ * \c syslog().
  * \ingroup group__backend__stock_backends__WindowsSyslog__flags
  *
- * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options member to
- * contain the SysLog \c LOG_NDELAY flag.
+ * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options
+ * member to contain the SysLog \c LOG_NDELAY flag.
  */
 
 #define PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY                 (0x00800000)
 
 
 
-/** \defgroup group__backend__stock_backends__WindowsSyslog__facilities Pantheios Windows syslog Facility Codes
- * \ingroup group__backend__stock_backends__WindowsSyslog
- *   Facility levels for the \ref group__backend__stock_backends__WindowsSyslog
+/** \defgroup group__backend__stock_backends__WindowsSyslog__facilities
+ *   Pantheios Windows syslog Facility Codes
+ * \ingroup group__backend__stock_backends__WindowsSyslog Facility levels
+ *   for the \ref group__backend__stock_backends__WindowsSyslog
  */
 
 /** \def PANTHEIOS_SYSLOG_FAC_KERN
@@ -437,7 +438,7 @@
  */
 
 /** Structure used for specifying initialisation information to the
- *    be.WindowsSyslog library.
+ * be.WindowsSyslog library.
  * \ingroup group__backend__stock_backends__WindowsSyslog
  */
 struct pan_be_WindowsSyslog_init_t
@@ -468,8 +469,8 @@ typedef struct pan_be_WindowsSyslog_init_t                  pan_be_WindowsSyslog
  */
 
 /** \ref page__backend__callbacks "Callback" function defined by
- *    the application, invoked when the
- *    API is initialised with a NULL \c init parameter.
+ * the application, invoked when the API is initialised with a NULL \c init
+ * parameter.
  * \ingroup group__backend__stock_backends__WindowsSyslog
  *
  * \note This function is only required when the
@@ -488,33 +489,32 @@ pantheios_be_WindowsSyslog_getAppInit(
  */
 
 /** Fills out a copy of the initialisation structure with default
- *    values (representative of the default behaviour of the library),
- *    ready to be customised and passed to the API initialiser function
- *    pantheios_be_WindowsSyslog_init().
+ * values (representative of the default behaviour of the library), ready to
+ * be customised and passed to the API initialiser function
+ * pantheios_be_WindowsSyslog_init().
  * \ingroup group__backend__stock_backends__WindowsSyslog
  *
- * \note This function should \c not be called on an
- *   already-initialised instance, as is the case in the implementation
- *   of the pantheios_be_WindowsSyslog_getAppInit() function, as it will
- *   already have been called by pantheios_be_WindowsSyslog_init() prior
- *   to the callback.
+ * \note This function should \c not be called on an already-initialised
+ *   instance, as is the case in the implementation of the
+ *   pantheios_be_WindowsSyslog_getAppInit() function, as it will already
+ *   have been called by pantheios_be_WindowsSyslog_init() prior to the
+ *   callback.
  */
 PANTHEIOS_CALL(void)
 pantheios_be_WindowsSyslog_getDefaultAppInit(
     pan_be_WindowsSyslog_init_t* init
 ) /* throw() */;
 
-/** Implements the functionality for pantheios_be_init() over the Windows-SysLog API.
+/** Implements the functionality for pantheios_be_init() over the
+ * Windows-SysLog API.
  * \ingroup group__backend__stock_backends__WindowsSyslog
  *
- * \remarks This function will fail to initialise if the host does not
- *   have network connectivity. Users should consider using with be.N
- *   and applying the
- *   \c PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE
- *   and
- *   \c PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED
- *   flags, so that initialisation failure will not prevent the
- *   application from initialising.
+ * \remarks This function will fail to initialise if the host does not have
+ *   network connectivity. Users should consider using with be.N and
+ *   applying the \c PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE and
+ *   \c PANTHEIOS_BE_N_F_INIT_ONLY_IF_PREVIOUS_FAILED flags, so that
+ *   initialisation failure will not prevent the application from
+ *   initialising.
  */
 PANTHEIOS_CALL(int)
 pantheios_be_WindowsSyslog_init(
@@ -525,7 +525,8 @@ pantheios_be_WindowsSyslog_init(
 ,   void**                              ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the Windows-SysLog API.
+/** Implements the functionality for pantheios_be_uninit() over the
+ * Windows-SysLog API.
  * \ingroup group__backend__stock_backends__WindowsSyslog
  */
 PANTHEIOS_CALL(void)
@@ -533,7 +534,8 @@ pantheios_be_WindowsSyslog_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the Windows-SysLog API.
+/** Implements the functionality for pantheios_be_logEntry() over the
+ * Windows-SysLog API.
  * \ingroup group__backend__stock_backends__WindowsSyslog
  */
 PANTHEIOS_CALL(int)
@@ -551,8 +553,7 @@ pantheios_be_WindowsSyslog_logEntry(
  *
  * Processes an argument list in the same way as
  * pantheios_be_parseStockArgs(), filling out the
- * pan_be_COMErrorObject_init_t in accordance with the arguments
- * found.
+ * pan_be_COMErrorObject_init_t in accordance with the arguments found.
  *
  * Recognises the following standard argument names:
  * - "showProcessId"            (Boolean)

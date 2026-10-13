@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MINOR       3
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        26
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -91,8 +91,8 @@ namespace pantheios
  */
 
 /** An \c snprintf()-equivalent that insulates Pantheios
- *   implementation code from the peculiarities of different compilers
- *   and/or libraries.
+ * implementation code from the peculiarities of different compilers and/or
+ * libraries.
  *
  * \param dest The buffer into which the result will be written;
  * \param cchDest The number of character spaces that are available to be
@@ -114,8 +114,8 @@ __attribute__((format(printf,3,4)))
 ;
 
 /** A \c vsnprintf()-equivalent that insulates Pantheios
- *   implementation code from the peculiarities of different compilers
- *   and/or libraries.
+ * implementation code from the peculiarities of different compilers and/or
+ * libraries.
  *
  * \param dest The buffer into which the result will be written;
  * \param cchDest The number of character spaces that are available to be

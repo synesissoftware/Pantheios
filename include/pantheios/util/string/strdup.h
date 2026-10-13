@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_REVISION  4
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      11
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      12
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -108,7 +108,7 @@ namespace pantheios
 PANTHEIOS_CALL(pantheios_char_t*) pantheios_util_strdup_nothrow(pantheios_char_t const* s) STLSOFT_NOEXCEPT;
 
 /** Frees a duplicated string allocated by pantheios_util_strdup_nothrow()
- *   or pantheios_util_strdup_throw()
+ * or pantheios_util_strdup_throw()
  *
  * \param s The string to deallocate;
  */
@@ -134,8 +134,7 @@ PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) STLSOFT_NOEXCEPT;
  * \param s The string to duplicate;
  *
  * \return A C-style string that is an equivalent copy of the source string.
- *   If memory cannot be allocated, \c std::bad_alloc will be
- *   thrown.
+ *   If memory cannot be allocated, \c std::bad_alloc will be thrown.
  *
  * \note The returned value must be freed using pantheios_util_free().
  */
@@ -158,7 +157,8 @@ inline pantheios_char_t* pantheios_util_strdup_throw(pantheios_char_t const* s)
 namespace util
 {
 
-/** Equivalent to \ref pantheios::pantheios_util_strdup_nothrow "pantheios_util_strdup_nothrow()".
+/** Equivalent to \ref pantheios::pantheios_util_strdup_nothrow
+ * "pantheios_util_strdup_nothrow()".
  *
  * \ingroup group__utility
  */
@@ -168,7 +168,8 @@ inline pantheios_char_t* strdup_nothrow(pantheios_char_t const* s) STLSOFT_NOEXC
 }
 
 # if defined(STLSOFT_CF_THROW_BAD_ALLOC)
-/** Equivalent to \ref pantheios::pantheios_util_strdup_throw "pantheios_util_strdup_throw()".
+/** Equivalent to \ref pantheios::pantheios_util_strdup_throw
+ * "pantheios_util_strdup_throw()".
  *
  * \ingroup group__utility
  */
@@ -178,7 +179,8 @@ inline pantheios_char_t* strdup_throw(pantheios_char_t const* s)
 }
 # endif /* exceptions */
 
-/** Equivalent to \ref pantheios::pantheios_util_strfree "pantheios_util_strfree()".
+/** Equivalent to \ref pantheios::pantheios_util_strfree
+ * "pantheios_util_strfree()".
  *
  * \ingroup group__utility
  */

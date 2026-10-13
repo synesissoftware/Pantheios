@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MINOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_EDIT       14
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_EDIT       15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,11 +77,13 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__fail Pantheios Fail Stock Back-end
- * \ingroup group__backend__stock_backends
- *   Stub back-end library that fails its initialisation.
+/** \defgroup group__backend__stock_backends__fail Pantheios Fail Stock
+ *   Back-end
+ * \ingroup group__backend__stock_backends Stub back-end library that fails
+ *   its initialisation.
  *
- * This library is useful for testing \ref group__backend__stock_backends__N.
+ * This library is useful for testing
+ * \ref group__backend__stock_backends__N.
  */
 
 
@@ -100,14 +102,16 @@ PANTHEIOS_CALL(int) pantheios_be_fail_init(
 ,   void**              ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the Fail API.
+/** Implements the functionality for pantheios_be_uninit() over the Fail
+ * API.
  * \ingroup group__backend__stock_backends__fail
  */
 PANTHEIOS_CALL(void) pantheios_be_fail_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the Fail API.
+/** Implements the functionality for pantheios_be_logEntry() over the Fail
+ * API.
  * \ingroup group__backend__stock_backends__fail
  */
 PANTHEIOS_CALL(int) pantheios_be_fail_logEntry(

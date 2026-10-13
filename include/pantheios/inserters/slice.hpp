@@ -42,8 +42,8 @@
 
 /** \file pantheios/inserters/slice.hpp
  *
- * [C++ only] definition of the pantheios::slice string inserter for
- *   for string slices.
+ * [C++ only] definition of the pantheios::slice string inserter for for
+ * string slices.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_PAD
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 7
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     14
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,7 +101,7 @@ namespace pantheios
 #endif /* PANTHEIOS_CF_NAMESPACE_SUPPORT */
 
 /** Class for inserting string slices into Pantheios diagnostic logging
- *   statements.
+ * statements.
  */
 class slice_inserter
 {
@@ -132,11 +132,13 @@ public:
 /// \name Accessors
 /// @{
 public:
-    ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the slice
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the slice
     pantheios_char_t const* data() const;
-    ///  A nul-terminated non-null pointer to the c-style string representation of the slice
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the slice
     pantheios_char_t const* c_str() const;
-    ///  The length of the c-style string representation of the slice
+    /// The length of the c-style string representation of the slice
     size_t                  length() const;
 /// @}
 
@@ -248,7 +250,8 @@ inline slice_inserter slice(
  * \param strName Name of the string parameter;
  * \param lenName Name of the length parameter;
  * \param equals The string that separates the name and the value;
- * \param separator The string to be used between the string and length parameters;
+ * \param separator The string to be used between the string and length
+ *   parameters;
  */
 inline slice_inserter slice(
     pantheios_char_t const* str

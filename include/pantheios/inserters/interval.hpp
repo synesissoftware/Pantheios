@@ -42,8 +42,8 @@
 
 /** \file pantheios/inserters/interval.hpp
  *
- * [C++ only] Definition of the pantheios::interval inserter for
- *   `argc+argv` pairs.
+ * [C++ only] Definition of the pantheios::interval inserter for `argc+argv`
+ * pairs.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTERVAL
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        6
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,7 +95,7 @@ namespace pantheios
  */
 
 /** Class for inserting time interval arguments into Pantheios
- *    diagnostic logging statements.
+ * diagnostic logging statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -112,7 +112,7 @@ public:
 /// \name Member Constants
 /// @{
 public:
-    ///  The format flags
+    /// The format flags
     enum units
     {
             microseconds    =   1
@@ -138,11 +138,13 @@ private:
 /// \name Accessors
 /// @{
 public:
-    ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* data() const;
-    ///  A nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* c_str() const;
-    ///  The size of the c-style string representation of the integer
+    /// The size of the c-style string representation of the integer
     size_t                  size() const;
 /// @}
 

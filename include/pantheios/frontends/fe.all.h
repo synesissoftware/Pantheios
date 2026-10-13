@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_ALL_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_ALL_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_ALL_REVISION    3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_ALL_EDIT        8
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_ALL_EDIT        9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,9 +72,10 @@
 # include <pantheios/frontends/stock.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK */
 
-/** \defgroup group__frontend__stock_frontends__all Pantheios all Stock Front-end
- * \ingroup group__frontend__stock_frontends
- *   Front-end library that allows all severity levels in all modes.
+/** \defgroup group__frontend__stock_frontends__all Pantheios all Stock
+ *   Front-end
+ * \ingroup group__frontend__stock_frontends Front-end library that allows
+ *   all severity levels in all modes.
  */
 
 

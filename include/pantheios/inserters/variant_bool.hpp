@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_EDIT        4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_EDIT        5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,7 +93,7 @@ namespace pantheios
  */
 
 /** Class for inserting VARIANT_BOOL variables into Pantheios diagnostic
- *   logging statements.
+ * logging statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -129,7 +129,8 @@ public:
 public:
     /// Construct from a variant_bool value
     ///
-    /// \param value The variant_bool whose value will be represented as a string
+    /// \param value The variant_bool whose value will be represented as a
+    ///   string
     explicit variant_bool(VARIANT_BOOL value)
         : parent_class_type(VARIANT_FALSE != value)
     {}

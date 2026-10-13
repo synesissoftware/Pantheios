@@ -44,7 +44,7 @@
 /** \file pantheios/util/severity/WindowsEventLog.h
  *
  * [C, C++] Translations from Pantheios stock severity to Windows Event Log
- *   type.
+ * type.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_MINOR      2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_EDIT       20
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_EDIT       21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,7 +96,8 @@ namespace pantheios
 
 /** Converts a Pantheios severity level to a Windows Event Log event type
  *
- * \param severity The Pantheios \link pantheios::pan_severity_t severity level\endlink;
+ * \param severity The Pantheios
+ *   \link pantheios::pan_severity_t severity level\endlink;
  *
  * \return The Windows Event Log event type.
  *

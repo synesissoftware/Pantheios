@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_MINOR      1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_EDIT       22
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_EDIT       23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -75,7 +75,7 @@
  */
 
 /** Structure for use with the pantheios_util_getCurrentTime()
- *    function.
+ * function.
  *
  * \ingroup group__utility__backend
  */
@@ -116,8 +116,8 @@ typedef struct pan_beutil_time_t pan_beutil_time_t;
 
 /** \def PANTHEIOS_GETCURRENTTIME_F_USE_SYSTEM_TIME
  *
- * Indicates that pantheios_util_getCurrentTime() should express the time
- * as system time (UTC)
+ * Indicates that pantheios_util_getCurrentTime() should express the time as
+ * system time (UTC)
  *
  * \ingroup group__utility__backend
  */
@@ -241,22 +241,20 @@ typedef struct pan_beutil_time_t pan_beutil_time_t;
  *
  * This function gets the current time, and formats it in an operating
  * system-specific manner into the given pan_beutil_time_t instance, using
- * either the local time or the system time (if the
- * \c flags parameter includes
- * PANTHEIOS_GETCURRENTTIME_F_USE_SYSTEM_TIME).
+ * either the local time or the system time (if the \c flags parameter
+ * includes PANTHEIOS_GETCURRENTTIME_F_USE_SYSTEM_TIME).
  *
  * Specifically, on Windows platforms the function formats according to the
  * current locale settings. On UNIX, the function uses the syslog-standard
- * format (\c strftimeFmt() format: `"%b %d %I:%M:%S"`)
- * or the \c pan_beutil_time_t::strftimeFmt member if it is
- * non-NULL.
+ * format (\c strftimeFmt() format: `"%b %d %I:%M:%S"`) or the
+ * \c pan_beutil_time_t::strftimeFmt member if it is non-NULL.
  *
- * \param tm Pointer to a pan_beutil_time_t instance, whose \c str
- *   and \c capacity members must be valid. May not be NULL;
- * \param flags One or more of the
- *   `PANTHEIOS_GETCURRENTTIME_F_*` flags;
+ * \param tm Pointer to a pan_beutil_time_t instance, whose \c str and
+ *   \c capacity members must be valid. May not be NULL;
+ * \param flags One or more of the `PANTHEIOS_GETCURRENTTIME_F_*` flags;
  *
- * \return The number of characters written into the buffer, or 0 on failure.
+ * \return The number of characters written into the buffer, or 0 on
+ *   failure.
  */
 PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int flags);
 
