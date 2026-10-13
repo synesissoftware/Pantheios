@@ -4,11 +4,11 @@
  * Purpose:     snprintf() utility functions.
  *
  * Created:     21st June 2005
- * Updated:     4th July 2020
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2020, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -57,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MINOR       3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        24
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    3
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,7 +99,7 @@ namespace pantheios
  *   written
  * \param fmt The format string
  *
- * \return The usual return values defined for <code>snprinf()</code>
+ * \return The usual return values defined for <code>snprintf()</code>
  */
 PANTHEIOS_CALL(int) pantheios_util_snprintf(
     pantheios_char_t*       dest
@@ -123,7 +123,7 @@ __attribute__((format(printf,3,4)))
  * \param fmt The format string
  * \param args The argument list
  *
- * \return The usual return values defined for <code>vsnprinf()</code>
+ * \return The usual return values defined for <code>vsnprintf()</code>
  */
 PANTHEIOS_CALL(int)
 pantheios_util_vsnprintf(

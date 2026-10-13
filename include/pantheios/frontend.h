@@ -4,11 +4,11 @@
  * Purpose:     Pantheios front end API
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -57,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        23
+# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -149,14 +149,14 @@ pantheios_fe_uninit(
  * statements by back-ends.
  *
  * \param token The front-end token, created by the pantheios_fe_init()
- *   function.There is no strict maximum length as far as Pantheios is
+ *   function. There is no strict maximum length as far as Pantheios is
  *   concerned, but it should not exceed the limitation provided by the
  *   implementing back-end library.
  *
  * \return A pointer to a nul-terminated C-style string containing the
  *   process identity. May not be \c NULL, except on the first invocation,
- *   which is an indication to the Pantheios core library (and congnisant
- *   custom back-ends; no stock back-ends use his behaviour) that the
+ *   which is an indication to the Pantheios core library (and cognisant
+ *   custom back-ends; no stock back-ends use this behaviour) that the
  *   front-end may provide changing process identity at different times and
  *   that multiple calls are supported (and, presumably, desired). The
  *   maximum length of the returned string is 1000 characters.
