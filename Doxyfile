@@ -1,0 +1,81 @@
+# Doxyfile for Pantheios (C/C++ API)
+
+PROJECT_NAME           = "Pantheios"
+PROJECT_BRIEF          = "The C/C++ Diagnostic Logging Sweetspot"
+PROJECT_NUMBER         = 1.0.1
+
+# Prefer SIS_CMAKE_BUILD_DIR-aligned output (same convention as BDUT /
+# CLASP / Diagnosticism / STLSoft). ./dox/ remains gitignored for
+# legacy/local runs that override OUTPUT_DIRECTORY.
+OUTPUT_DIRECTORY       = _build/doxygen
+CREATE_SUBDIRS         = NO
+
+OPTIMIZE_OUTPUT_FOR_C  = YES
+OUTPUT_LANGUAGE        = English
+TAB_SIZE               = 4
+FULL_PATH_NAMES        = NO
+STRIP_FROM_PATH        = .
+STRIP_FROM_INC_PATH    = include
+TIMESTAMP              = NO
+
+# Public tree is nested (backends/, frontends/, inserters/, util/, …);
+# recurse like STLSoft, and drop the internal/ tree like CLASP.
+INPUT                  = include/pantheios \
+                         doc
+FILE_PATTERNS          = *.h \
+                         *.hpp \
+                         *.md
+RECURSIVE              = YES
+EXCLUDE                = include/pantheios/internal
+
+USE_MDFILE_AS_MAINPAGE = doc/mainpage.md
+
+EXAMPLE_PATH           = examples
+EXAMPLE_RECURSIVE      = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+SEARCHENGINE           = YES
+SOURCE_BROWSER         = YES
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+VERBATIM_HEADERS       = YES
+
+MARKDOWN_SUPPORT       = YES
+JAVADOC_AUTOBRIEF      = YES
+QUIET                  = YES
+
+# Prefer WARN_AS_ERROR once the headers are clean (CLASP). Until then,
+# keep the BDUT / Diagnosticism warning set without failing the run.
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = YES
+WARN_IF_DOC_ERROR      = YES
+
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+SKIP_FUNCTION_MACROS   = YES
+# Hide implementation / internal macros; strip linkage wrappers so
+# prototypes read as the return type alone (CLASP form).
+PREDEFINED             = PANTHEIOS_DOCUMENTATION_SKIP_SECTION \
+                         PANTHEIOS_CALL(rt)=rt \
+                         PANTHEIOS_CALL_DEPRECATED(rt,oldfn,newfn)=rt \
+                         PANTHEIOS_CALLCONV= \
+                         PANTHEIOS_DECLSPEC= \
+                         PANTHEIOS_EXTERN= \
+                         PANTHEIOS_EXTERN_C=
+
+HAVE_DOT               = NO
+
+
+# ########################### end of file ########################### #
