@@ -32,8 +32,8 @@ require 'date'
 # constants
 
 PROGRAM_VER_MAJOR               =   2
-PROGRAM_VER_MINOR               =   3
-PROGRAM_VER_REVISION            =   2
+PROGRAM_VER_MINOR               =   4
+PROGRAM_VER_REVISION            =   0
 
 
 # ##########################################################################
@@ -46,8 +46,39 @@ def current_date
     return SrcUtil.currentDate
   end
 
-  DateTime.now.strftime('%d/%m/%Y')
+  now = Date.today
+  day = now.day
+  suffix =
+    if (11 .. 13).include?(day % 100)
+
+      'th'
+    else
+
+      case day % 10
+      when 1 then 'st'
+      when 2 then 'nd'
+      when 3 then 'rd'
+      else 'th'
+      end
+    end
+
+  "#{day}#{suffix} #{now.strftime('%B %Y')}"
 end # current_date()
+
+# Emits a Pantheios-style Doxygen \file block for a generated header.
+#
+# +relative_path+ is relative to include/pantheios/ (e.g. "generated/log_functions.h").
+# +language_tag+ is typically "[C, C++]" or "[C++ only]".
+def emit_doxygen_file_block(f, relative_path, language_tag)
+
+  nl = "\n"
+
+  f << "/** \\file pantheios/#{relative_path}" << nl
+  f << ' *' << nl
+  f << " * #{language_tag} INTERNAL, AUTO-GENERATED FILE: Do not include" << nl
+  f << ' *   directly.' << nl
+  f << ' */' << nl
+end # emit_doxygen_file_block()
 
 def declare_template_parameter_list(f, i)
 
@@ -224,7 +255,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{C_LOG_FUNCTIONS_HEADER_NAME} [C, C++] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
+emit_doxygen_file_block(f, C_LOG_FUNCTIONS_HEADER_NAME, '[C, C++]')
 f << '' << ENDL
 
 f << '#ifndef PANTHEIOS_INCLUDING_C_API_FUNCTIONS' << '' << ENDL
@@ -296,7 +327,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{C_LOG_FUNCTIONS_IMPL_NAME} [C++ only] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
+emit_doxygen_file_block(f, C_LOG_FUNCTIONS_IMPL_NAME, '[C++ only]')
 f << '' << ENDL
 
 f << '#ifndef __cplusplus' << ENDL
@@ -435,7 +466,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{C_LOG_DISPATCH_FUNCTIONS_HEADER_NAME} [C, C++] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
+emit_doxygen_file_block(f, C_LOG_DISPATCH_FUNCTIONS_HEADER_NAME, '[C, C++]')
 f << '' << ENDL
 
 f << '#ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS' << '' << ENDL
@@ -499,7 +530,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{Cpp_LOG_DISPATCH_FUNCTIONS_HEADER_NAME} [C++ only] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
+emit_doxygen_file_block(f, Cpp_LOG_DISPATCH_FUNCTIONS_HEADER_NAME, '[C++ only]')
 f << '' << ENDL
 
 f << '#ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS' << '' << ENDL
@@ -584,7 +615,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{Cpp_LOG_FUNCTIONS_HEADER_NAME} [C++ only] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
+emit_doxygen_file_block(f, Cpp_LOG_FUNCTIONS_HEADER_NAME, '[C++ only]')
 f << '' << ENDL
 
 f << '#ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS' << '' << ENDL
@@ -696,8 +727,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{Cpp_LOG_SEV_FUNCTIONS_HEADER_NAME} [C++ only] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
-
+emit_doxygen_file_block(f, Cpp_LOG_SEV_FUNCTIONS_HEADER_NAME, '[C++ only]')
 f << '' << ENDL
 f << '#ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS' << '' << ENDL
 f << '# error This file is included by the Pantheios API, and cannot be included directly' << '' << ENDL

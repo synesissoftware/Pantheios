@@ -3,7 +3,7 @@
  *
  * Purpose:     Declarations of the pantheios_log_<N>() functions
  *
- * Generated:   19th June 2020
+ * Generated:   14th October 2026
  *
  * Status:      This file is auto-generated: DO NOT EDIT!
  *
@@ -13,6 +13,11 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+/** \file pantheios/generated/log_functions.h
+ *
+ * [C, C++] INTERNAL, AUTO-GENERATED FILE: Do not include
+ *   directly.
+ */
 
 #ifndef PANTHEIOS_INCLUDING_C_API_FUNCTIONS
 # error This file is included by the Pantheios API, and cannot be included directly
