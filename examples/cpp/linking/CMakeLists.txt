@@ -1,5 +1,7 @@
 # implicit_link_1 demonstrates pantheios/implicit_link/* headers; leave
-# unwired — define_simple_console_example_cpp would explicit-link FE/BE.
+# unwired — CMake links FE/BE explicitly (see N_with_stock).
+
+add_subdirectory(N_with_stock)
 
 
 # ############################## end of file ############################# #

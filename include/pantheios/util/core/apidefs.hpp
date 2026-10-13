@@ -5,11 +5,11 @@
  *              ends.
  *
  * Created:     3rd November 2007
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -44,7 +44,7 @@
 /** \file pantheios/util/core/apidefs.hpp
  *
  * [C++ only] API definition helpers for use in Pantheios back- and front-
- *   ends.
+ * ends.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_CORE_HPP_APIDEFS
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     21
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -141,11 +141,11 @@ typedef int (PANTHEIOS_CALLCONV* pantheios_be_X_logEntry_pfn_t)(
 /** Invokes a front-end initialisation function, implementating all the
  * exception-handling boilerplate for the function.
  *
- * \param pfn The front-end initialisation function
- * \param reserved The <code>reserved</code> parameter to be passed to <code>pfn</code>
- * \param ptoken The <code>ptoken</code> parameter to be passed to <code>pfn</code>
- * \param feName A human-readable name that identifies the front-end, used in
- *   bail-out calls in severe/fatal conditions
+ * \param pfn The front-end initialisation function;
+ * \param reserved The \c reserved parameter to be passed to \c pfn;
+ * \param ptoken The \c ptoken parameter to be passed to \c pfn;
+ * \param feName A human-readable name that identifies the front-end, used
+ *   in bail-out calls in severe/fatal conditions;
  */
 PANTHEIOS_CALL(int) pantheios_call_fe_init(
     pantheios_fe_X_init_pfn_t   pfn
@@ -173,10 +173,10 @@ pantheios_call_fe_init(
 /** Invokes a front-end uninitialisation function, implementating all the
  * exception-handling boilerplate for the function.
  *
- * \param pfn The front-end uninitialisation function
- * \param token The <code>token</code> parameter to be passed to <code>pfn</code>
- * \param feName A human-readable name that identifies the front-end, used in
- *   bail-out calls in severe/fatal conditions
+ * \param pfn The front-end uninitialisation function;
+ * \param token The \c token parameter to be passed to \c pfn;
+ * \param feName A human-readable name that identifies the front-end, used
+ *   in bail-out calls in severe/fatal conditions;
  */
 PANTHEIOS_CALL(int) pantheios_call_fe_uninit(
     pantheios_fe_X_uninit_pfn_t pfn
@@ -202,10 +202,10 @@ pantheios_call_fe_uninit(
 /** Invokes a front-end process-identity function, implementating all the
  * exception-handling boilerplate for the function.
  *
- * \param pfn The front-end process-identity function
- * \param token The <code>token</code> parameter to be passed to <code>pfn</code>
- * \param feName A human-readable name that identifies the front-end, used in
- *   bail-out calls in severe/fatal conditions
+ * \param pfn The front-end process-identity function;
+ * \param token The \c token parameter to be passed to \c pfn;
+ * \param feName A human-readable name that identifies the front-end, used
+ *   in bail-out calls in severe/fatal conditions;
  */
 PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_call_fe_getProcessIdentity(
     pantheios_fe_X_getProcessIdentity_pfn_t pfn
@@ -228,22 +228,23 @@ pantheios_call_fe_getProcessIdentity(
 
 #if defined(STLSOFT_CF_EXCEPTION_SUPPORT) || \
     defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
-/** Invokes a front-end severity arbitration function, implementating all the
+/** Invokes a front-end severity arbitration function, implementating all
+ * the
  * exception-handling boilerplate for the function.
  *
- * \param pfn The front-end severity arbitration function
- * \param token The <code>token</code> parameter to be passed to <code>pfn</code>
- * \param severity The severity level to test. Usually one of
- *   the \link pantheios::pan_severity_t PANTHEIOS_SEV_*\endlink enumerators.
+ * \param pfn The front-end severity arbitration function;
+ * \param token The \c token parameter to be passed to \c pfn;
+ * \param severity The severity level to test. Usually one of the
+ *   \link pantheios::pan_severity_t PANTHEIOS_SEV_*\endlink enumerators;
  * \param backEndId A front-end+back-end specific parameter. This is used to
  *   enable a back-end, such as the be.lrsplit library, to simultaneously
  *   provide multiple actual back-ends and query the front-end for their
- *   respective. The value 0 is used within the Pantheios library and
- *   stands for every back-end. All other values indicate specific
- *   back-end splits, although by convention 1 indicates local logging
- *   and 2 indicates remote logging.
- * \param feName A human-readable name that identifies the front-end, used in
- *   bail-out calls in severe/fatal conditions
+ *   respective. The value 0 is used within the Pantheios library and stands
+ *   for every back-end. All other values indicate specific back-end splits,
+ *   although by convention 1 indicates local logging and 2 indicates remote
+ *   logging;
+ * \param feName A human-readable name that identifies the front-end, used
+ *   in bail-out calls in severe/fatal conditions;
  */
 PANTHEIOS_CALL(int) pantheios_call_fe_isSeverityLogged(
     pantheios_fe_X_isSeverityLogged_pfn_t   pfn
@@ -277,14 +278,15 @@ pantheios_call_fe_isSeverityLogged(
 /** Invokes a back-end initialisation function, implementating all the
  * exception-handling boilerplate for the function.
  *
- * \param pfn The back-end initialisation function
- * \param processIdentity The <code>processIdentity</code> parameter to be passed to <code>pfn</code>
- * \param backEndId The <code>backEndId</code> parameter to be passed to <code>pfn</code>
- * \param init The <code>init</code> parameter to be passed to <code>pfn</code>
- * \param reserved The <code>reserved</code> parameter to be passed to <code>pfn</code>
- * \param ptoken The <code>ptoken</code> parameter to be passed to <code>pfn</code>
+ * \param pfn The back-end initialisation function;
+ * \param processIdentity The \c processIdentity parameter to be passed to
+ *   \c pfn;
+ * \param backEndId The \c backEndId parameter to be passed to \c pfn;
+ * \param init The \c init parameter to be passed to \c pfn;
+ * \param reserved The \c reserved parameter to be passed to \c pfn;
+ * \param ptoken The \c ptoken parameter to be passed to \c pfn;
  * \param beName A human-readable name that identifies the back-end, used in
- *   bail-out calls in severe/fatal conditions
+ *   bail-out calls in severe/fatal conditions;
  */
 PANTHEIOS_CALL(int) pantheios_call_be_void_init(
     pantheios_be_X_init_pfn_t   pfn
@@ -316,14 +318,15 @@ pantheios_call_be_void_init(
 /** Invokes a back-end initialisation function, implementating all the
  * exception-handling boilerplate for the function.
  *
- * \param pfn The back-end initialisation function
- * \param processIdentity The <code>processIdentity</code> parameter to be passed to <code>pfn</code>
- * \param backEndId The <code>backEndId</code> parameter to be passed to <code>pfn</code>
- * \param init The <code>init</code> parameter to be passed to <code>pfn</code>
- * \param reserved The <code>reserved</code> parameter to be passed to <code>pfn</code>
- * \param ptoken The <code>ptoken</code> parameter to be passed to <code>pfn</code>
+ * \param pfn The back-end initialisation function;
+ * \param processIdentity The \c processIdentity parameter to be passed to
+ *   \c pfn;
+ * \param backEndId The \c backEndId parameter to be passed to \c pfn;
+ * \param init The \c init parameter to be passed to \c pfn;
+ * \param reserved The \c reserved parameter to be passed to \c pfn;
+ * \param ptoken The \c ptoken parameter to be passed to \c pfn;
  * \param beName A human-readable name that identifies the back-end, used in
- *   bail-out calls in severe/fatal conditions
+ *   bail-out calls in severe/fatal conditions;
  */
 template <typename T>
 inline
@@ -351,10 +354,10 @@ pantheios_call_be_X_init(
 /** Invokes a back-end uninitialisation function, implementating all the
  * exception-handling boilerplate for the function.
  *
- * \param pfn The back-end uninitialisation function
- * \param token The <code>token</code> parameter to be passed to <code>pfn</code>
+ * \param pfn The back-end uninitialisation function;
+ * \param token The \c token parameter to be passed to \c pfn;
  * \param beName A human-readable name that identifies the back-end, used in
- *   bail-out calls in severe/fatal conditions
+ *   bail-out calls in severe/fatal conditions;
  */
 PANTHEIOS_CALL(int) pantheios_call_be_uninit(
     pantheios_be_X_uninit_pfn_t pfn
@@ -380,14 +383,14 @@ pantheios_call_be_uninit(
 /** Invokes a back-end log function, implementating all the
  * exception-handling boilerplate for the function.
  *
- * \param pfn The back-end log function
- * \param feToken The <code>feToken</code> parameter to be passed to <code>pfn</code>
- * \param beToken The <code>beToken</code> parameter to be passed to <code>pfn</code>
- * \param severity The <code>severity</code> parameter to be passed to <code>pfn</code>
- * \param entry The <code>entry</code> parameter to be passed to <code>pfn</code>
- * \param cchEntry The <code>cchEntry</code> parameter to be passed to <code>pfn</code>
+ * \param pfn The back-end log function;
+ * \param feToken The \c feToken parameter to be passed to \c pfn;
+ * \param beToken The \c beToken parameter to be passed to \c pfn;
+ * \param severity The \c severity parameter to be passed to \c pfn;
+ * \param entry The \c entry parameter to be passed to \c pfn;
+ * \param cchEntry The \c cchEntry parameter to be passed to \c pfn;
  * \param beName A human-readable name that identifies the back-end, used in
- *   bail-out calls in severe/fatal conditions
+ *   bail-out calls in severe/fatal conditions;
  */
 PANTHEIOS_CALL(int) pantheios_call_be_logEntry(
     pantheios_be_X_logEntry_pfn_t   pfn

@@ -4,11 +4,11 @@
  * Purpose:     String duplication utilty functions.
  *
  * Created:     19th April 2008
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_REVISION  4
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      10
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRDUP_EDIT      12
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,19 +98,19 @@ namespace pantheios
 
 /** Non-exception-throwing C-style string duplication function
  *
- * \param s The string to duplicate
+ * \param s The string to duplicate;
  *
  * \return A C-style string that is an equivalent copy of the source string,
- *   or a <code>NULL</code> pointer if memory could not be allocated.
+ *   or a \c NULL pointer if memory could not be allocated.
  *
- * \note The returned value must be freed using pantheios_util_free()
+ * \note The returned value must be freed using pantheios_util_free().
  */
 PANTHEIOS_CALL(pantheios_char_t*) pantheios_util_strdup_nothrow(pantheios_char_t const* s) STLSOFT_NOEXCEPT;
 
 /** Frees a duplicated string allocated by pantheios_util_strdup_nothrow()
- *   or pantheios_util_strdup_throw()
+ * or pantheios_util_strdup_throw()
  *
- * \param s The string to deallocate
+ * \param s The string to deallocate;
  */
 PANTHEIOS_CALL(void) pantheios_util_strfree(pantheios_char_t* s) STLSOFT_NOEXCEPT;
 
@@ -131,13 +131,12 @@ PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) STLSOFT_NOEXCEPT;
     defined(STLSOFT_CF_THROW_BAD_ALLOC)
 /** [C++ only] Exception-throwing C-style string duplication function
  *
- * \param s The string to duplicate
+ * \param s The string to duplicate;
  *
  * \return A C-style string that is an equivalent copy of the source string.
- *   If memory cannot be allocated, <code>std::bad_alloc</code> will be
- *   thrown.
+ *   If memory cannot be allocated, \c std::bad_alloc will be thrown.
  *
- * \note The returned value must be freed using pantheios_util_free()
+ * \note The returned value must be freed using pantheios_util_free().
  */
 inline pantheios_char_t* pantheios_util_strdup_throw(pantheios_char_t const* s)
 {
@@ -158,7 +157,8 @@ inline pantheios_char_t* pantheios_util_strdup_throw(pantheios_char_t const* s)
 namespace util
 {
 
-/** Equivalent to \ref pantheios::pantheios_util_strdup_nothrow "pantheios_util_strdup_nothrow()".
+/** Equivalent to \ref pantheios::pantheios_util_strdup_nothrow
+ * "pantheios_util_strdup_nothrow()".
  *
  * \ingroup group__utility
  */
@@ -168,7 +168,8 @@ inline pantheios_char_t* strdup_nothrow(pantheios_char_t const* s) STLSOFT_NOEXC
 }
 
 # if defined(STLSOFT_CF_THROW_BAD_ALLOC)
-/** Equivalent to \ref pantheios::pantheios_util_strdup_throw "pantheios_util_strdup_throw()".
+/** Equivalent to \ref pantheios::pantheios_util_strdup_throw
+ * "pantheios_util_strdup_throw()".
  *
  * \ingroup group__utility
  */
@@ -178,7 +179,8 @@ inline pantheios_char_t* strdup_throw(pantheios_char_t const* s)
 }
 # endif /* exceptions */
 
-/** Equivalent to \ref pantheios::pantheios_util_strfree "pantheios_util_strfree()".
+/** Equivalent to \ref pantheios::pantheios_util_strfree
+ * "pantheios_util_strfree()".
  *
  * \ingroup group__utility
  */

@@ -4,7 +4,7 @@
  * Purpose: Implicitly links in the Pantheios ANSI Console Local Back-End Library
  *
  * Created: 5th August 2026
- * Updated: 5th August 2026
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
@@ -42,8 +42,8 @@
 /** \file pantheios/implicit_link/bel.AnsiConsole.h
  *
  * [C, C++] Implicitly links in the
- *   \ref group__backend__stock_backends__AnsiConsole "Pantheios ANSI Console Local Back-End Library"
- *   as the local back-end for the given link-unit.
+ * \ref group__backend__stock_backends__AnsiConsole "Pantheios ANSI Console
+ * Local Back-End Library" as the local back-end for the given link-unit.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_EDIT       7
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_EDIT       8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

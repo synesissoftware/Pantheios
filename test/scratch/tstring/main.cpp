@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.tstring project.
  *
  * Created: 23rd February 2010
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -63,7 +63,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
  * main()
  */
 
-static int main_(int /* argc */, char** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     std::string             mbs("multibyte string");
     std::wstring            ws1(L"wide string #1");

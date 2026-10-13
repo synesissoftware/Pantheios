@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.be.file.threading project.
  *
  * Created: 3rd July 2009
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -77,10 +77,10 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -213,7 +213,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
  * main()
  */
 
-static int main_(int /*argc*/, char** /*argv*/)
+static int main_(int /*argc*/, char* /*argv*/[])
 {
     thread_handle_t threads[NUM_THREADS];
 

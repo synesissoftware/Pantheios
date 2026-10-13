@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.be.N.with.custom.fe project.
  *
  * Created: 23rd December 2010
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * Thanks:  To wassime, for submitting the original program definition.
  *
@@ -60,7 +60,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
  * main()
  */
 
-static int main_(int /* argc */, char** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     pantheios_be_file_setFilePath("normal.log", 0, 0, WG_LOG_FILE_ID);
     pantheios_be_file_setFilePath("error.log", 0, 0, WG_LOG_FILE_ERROR_ID);

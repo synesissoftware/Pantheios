@@ -5,11 +5,11 @@
  *          Pantheios core and APIs.
  *
  * Created: 26th June 2005
- * Updated: 27th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -45,7 +45,7 @@
 /** \file pantheios/quality/contract.h
  *
  * [C, C++] Defines the contract enforcement constructs used in the
- *  Pantheios core and APIs.
+ * Pantheios core and APIs.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_QUALITY_H_CONTRACT
@@ -59,8 +59,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        21
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    3
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,6 +79,16 @@
 #else /* ? contract */
 # include <stlsoft/stlsoft.h>
 #endif /* contract */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * documentation
+ */
+
+/** \defgroup group__quality Pantheios Quality / Contract Enforcement
+ *
+ * Contract-enforcement macros used inside the Pantheios core and APIs.
+ */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -343,7 +353,7 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Unexpected condition contract enforcement (internal)
  *
- * \param msg The literal string describing the failed condition
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_UNEXPECTED_CONDITION_INTERNAL(msg)              STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), 0)
 
@@ -353,7 +363,7 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Unexpected condition contract enforcement (API)
  *
- * \param msg The literal string describing the failed condition
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_UNEXPECTED_CONDITION_API(msg)                   STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), 0)
 
@@ -363,7 +373,7 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Unexpected condition contract enforcement (application layer)
  *
- * \param msg The literal string describing the failed condition
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_UNEXPECTED_CONDITION_APPL_LAYER(msg)            STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), 0)
 
@@ -374,8 +384,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Precondition (state) contract enforcement (internal)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_INTERNAL(expr, msg)          STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -385,8 +395,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Precondition (state) contract enforcement (API)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_API(expr, msg)               STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -396,8 +406,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Precondition (state) contract enforcement (application layer)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_APPL_LAYER(expr, msg)        STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -408,8 +418,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Precondition (parameters) contract enforcement (internal)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_INTERNAL(expr, msg)         STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -419,8 +429,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Precondition (parameters) contract enforcement (API)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(expr, msg)              STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -430,8 +440,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Precondition (parameters) contract enforcement (application layer)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_APPL_LAYER(expr, msg)       STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -442,8 +452,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Postcondition (return-value) contract enforcement (internal)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_RETURN_INTERNAL(expr, msg)        STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -453,8 +463,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Postcondition (return-value) contract enforcement (API)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_RETURN_API(expr, msg)             STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -464,8 +474,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Postcondition (return-value) contract enforcement (application layer)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_RETURN_APPL_LAYER(expr, msg)      STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -476,8 +486,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Postcondition (state) contract enforcement (internal)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL(expr, msg)         STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -487,8 +497,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Postcondition (state) contract enforcement (API)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_API(expr, msg)              STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -498,8 +508,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Postcondition (state) contract enforcement (application layer)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_APPL_LAYER(expr, msg)       STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -510,8 +520,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Postcondition (parameters) contract enforcement (internal)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_PARAMS_INTERNAL(expr, msg)        STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -521,8 +531,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Postcondition (parameters) contract enforcement (API)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_PARAMS_API(expr, msg)             STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -532,8 +542,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Postcondition (parameters) contract enforcement (application layer)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_PARAMS_APPL_LAYER(expr, msg)      STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -544,8 +554,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Invariant (class) contract enforcement (internal)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_CLASS_INVARIANT_INTERNAL(expr, msg)             STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -555,8 +565,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Invariant (class) contract enforcement (API)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_CLASS_INVARIANT_API(expr, msg)                  STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -566,8 +576,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Invariant (class) contract enforcement (application layer)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_CLASS_INVARIANT_APPL_LAYER(expr, msg)           STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -578,8 +588,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Invariant (global) contract enforcement (internal)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_GLOBAL_INVARIANT_INTERNAL(expr, msg)            STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -589,8 +599,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Invariant (global) contract enforcement (API)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_GLOBAL_INVARIANT_API(expr, msg)                 STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -600,8 +610,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Invariant (global) contract enforcement (application layer)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_GLOBAL_INVARIANT_APPL_LAYER(expr, msg)          STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -612,8 +622,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Static data state contract enforcement (internal)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_STATIC_DATA_INTERNAL(expr, msg)                 STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -623,8 +633,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Static data state contract enforcement (API)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_STATIC_DATA_API(expr, msg)                      STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -634,8 +644,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Static data state contract enforcement (application layer)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_STATIC_DATA_APPL_LAYER(expr, msg)               STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -645,8 +655,8 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Static data state contract enforcement (application defined)
  *
- * \param expr The expression that must evaluate to \c true
- * \param msg The literal string describing the failed condition
+ * \param expr The expression that must evaluate to \c true;
+ * \param msg The literal string describing the failed condition;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_STATIC_DATA_APPL_DEF(expr, msg)                 STLSOFT_MESSAGE_ASSERT(PANTHEIOS_TYPECHECK_MSG_(msg), expr)
 
@@ -657,7 +667,7 @@ PANTHEIOS_TYPECHECK_MSG_(...)
  *
  * Intermediate assumption contract enforcement
  *
- * \param expr The expression that must evaluate to \c true
+ * \param expr The expression that must evaluate to \c true;
  */
 # define PANTHEIOS_CONTRACT_ENFORCE_ASSUMPTION(expr)                                STLSOFT_ASSERT(expr)
 #endif /* PANTHEIOS_QA_USE_XCONTRACT */

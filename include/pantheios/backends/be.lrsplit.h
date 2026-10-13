@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Local/Remote Split Back-end library API
  *
  * Created:     26th June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_EDIT     13
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_EDIT     16
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,9 +79,9 @@
 
 /** \defgroup group__backend__stock_backends__lrsplit Pantheios Local/Remote Split Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that splits the emission of log statements,
- *   writing to <b>local</b> and/or <b>remote</b> back-ends that are
- *   independently filtered.
+ *
+ * Back-end library that splits the emission of log statements, writing to
+ * \c local and/or \c remote back-ends that are independently filtered.
  */
 
 
@@ -93,9 +93,10 @@
  *
  * \ingroup group__backend__stock_backends__lrsplit
  *
- * \note The semantics of this function, and the constraints on its behaviour,
- *  are identical to those of the Pantheios backend library function
- *  pantheios_be_init(), except it applies to the local backend only
+ * \note The semantics of this function, and the constraints on its
+ *   behaviour, are identical to those of the Pantheios backend library
+ *   function pantheios_be_init(), except it applies to the local backend
+ *   only.
  */
 PANTHEIOS_CALL(int) pantheios_be_local_init(
     PAN_CHAR_T const*   processIdentity
@@ -107,9 +108,10 @@ PANTHEIOS_CALL(int) pantheios_be_local_init(
  *
  * \ingroup group__backend__stock_backends__lrsplit
  *
- * \note The semantics of this function, and the constraints on its behaviour,
- *  are identical to those of the Pantheios backend library function
- *  pantheios_be_init(), except it applies to the remote backend only
+ * \note The semantics of this function, and the constraints on its
+ *   behaviour, are identical to those of the Pantheios backend library
+ *   function pantheios_be_init(), except it applies to the remote backend
+ *   only.
  */
 PANTHEIOS_CALL(int) pantheios_be_remote_init(
     PAN_CHAR_T const*   processIdentity
@@ -121,9 +123,10 @@ PANTHEIOS_CALL(int) pantheios_be_remote_init(
  *
  * \ingroup group__backend__stock_backends__lrsplit
  *
- * \note The semantics of this function, and the constraints on its behaviour,
- *  are identical to those of the Pantheios backend library function
- *  pantheios_be_uninit(), except it applies to the local backend only
+ * \note The semantics of this function, and the constraints on its
+ *   behaviour, are identical to those of the Pantheios backend library
+ *   function pantheios_be_uninit(), except it applies to the local backend
+ *   only.
  */
 PANTHEIOS_CALL(void) pantheios_be_local_uninit(
     void* token
@@ -132,9 +135,10 @@ PANTHEIOS_CALL(void) pantheios_be_local_uninit(
  *
  * \ingroup group__backend__stock_backends__lrsplit
  *
- * \note The semantics of this function, and the constraints on its behaviour,
- *  are identical to those of the Pantheios backend library function
- *  pantheios_be_uninit(), except it applies to the remote backend only
+ * \note The semantics of this function, and the constraints on its
+ *   behaviour, are identical to those of the Pantheios backend library
+ *   function pantheios_be_uninit(), except it applies to the remote backend
+ *   only.
  */
 PANTHEIOS_CALL(void) pantheios_be_remote_uninit(
     void* token
@@ -144,9 +148,10 @@ PANTHEIOS_CALL(void) pantheios_be_remote_uninit(
  *
  * \ingroup group__backend__stock_backends__lrsplit
  *
- * \note The semantics of this function, and the constraints on its behaviour,
- *  are identical to those of the Pantheios backend library function
- *  pantheios_be_logEntry(), except it applies to the local backend only
+ * \note The semantics of this function, and the constraints on its
+ *   behaviour, are identical to those of the Pantheios backend library
+ *   function pantheios_be_logEntry(), except it applies to the local
+ *   backend only.
  */
 PANTHEIOS_CALL(int) pantheios_be_local_logEntry(
     void*               feToken
@@ -159,9 +164,10 @@ PANTHEIOS_CALL(int) pantheios_be_local_logEntry(
  *
  * \ingroup group__backend__stock_backends__lrsplit
  *
- * \note The semantics of this function, and the constraints on its behaviour,
- *  are identical to those of the Pantheios backend library function
- *  pantheios_be_logEntry(), except it applies to the remote backend only
+ * \note The semantics of this function, and the constraints on its
+ *   behaviour, are identical to those of the Pantheios backend library
+ *   function pantheios_be_logEntry(), except it applies to the remote
+ *   backend only.
  */
 PANTHEIOS_CALL(int) pantheios_be_remote_logEntry(
     void*               feToken

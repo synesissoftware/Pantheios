@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.fe.simple.WithCallback project.
  *
  * Created: 15th November 2010
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,7 +39,7 @@ PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) /* th
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int /* argc */, char** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     pan::log_DEBUG(PANTHEIOS_LITERAL_STRING("debug"));
     pan::log_INFORMATIONAL(PANTHEIOS_LITERAL_STRING("informational"));

@@ -5,11 +5,11 @@
  *              wide string statement.
  *
  * Created:     22nd November 2010
- * Updated:     16th January 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -44,7 +44,7 @@
 /** \file pantheios/inserters/m2w.hpp
  *
  * [C++ only] Inserter class for incorporating multibyte strings into a wide
- *  string statement.
+ * string statement.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_M2W
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,13 +98,12 @@ namespace pantheios
  */
 
 /** Class for inserting wide strings into Pantheios diagnostic logging
- *   statements.
+ * statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
- * This class converts a m2w variable into a string, thereby enabling
- * it to be inserted into a logging statement. Consider the following
- * statement:
+ * This class converts a m2w variable into a string, thereby enabling it to
+ * be inserted into a logging statement. Consider the following statement:
  *
  * \code
   char          s[] = "abc";
@@ -116,7 +115,7 @@ namespace pantheios
  *
  * This will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, ws=def, str=ghi</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, ws=def, str=ghi**
  */
 
 class m2w
@@ -170,9 +169,11 @@ private:
     class_type& operator =(class_type const&);
 
 public: // Accessors
-    /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the m2w
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the m2w
     wchar_t const* data() const;
-    /// A nul-terminated non-null pointer to the c-style string representation of the m2w
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the m2w
     wchar_t const* c_str() const;
     /// The length of the c-style string representation of the m2w
     size_t      length() const;

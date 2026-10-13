@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.fe.WindowsRegistry project.
  *
  * Created: 14th May 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,7 +14,7 @@
 #include <pantheios/frontends/fe.WindowsRegistry.h>
 #include <pantheios/init_codes.h>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/stlsoft.h>                        /* for STLSOFT_NUM_ELEMENTS */
 #include <stlsoft/conversion/integer_to_string.hpp> /* stlsoft::integer_to_string */
@@ -34,17 +34,17 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-#ifndef XTESTS_TEST_NOTICE
-# define XTESTS_TEST_NOTICE(x)          ::OutputDebugString(PANTHEIOS_LITERAL_STRING(x))
-#endif // XTESTS_TEST_NOTICE
+#ifndef DEBUG_LOG_NOTICE
+# define DEBUG_LOG_NOTICE(x)                                ::OutputDebugString(PANTHEIOS_LITERAL_STRING(x))
+#endif // DEBUG_LOG_NOTICE
 
 #ifdef PSTR
 # undef PSTR
@@ -66,13 +66,13 @@ PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
 namespace
 {
 
-    static void test_can_init(void);
-    static void test_cannot_init(void);
-    static void test_levels_in_HKCU(void);
-    static void test_levels_in_HKLM(void);
-    static void test_HKCU_overrides_HKLM(void);
-    static void test_star(void);
-    static void test_cleanup(void);
+    static void TEST_fe_WindowsRegistry_CAN_INIT(void);
+    static void TEST_fe_WindowsRegistry_CANNOT_INIT(void);
+    static void TEST_fe_WindowsRegistry_LEVELS_IN_HKCU(void);
+    static void TEST_fe_WindowsRegistry_LEVELS_IN_HKLM(void);
+    static void TEST_fe_WindowsRegistry_HKCU_OVERRIDES_HKLM(void);
+    static void TEST_fe_WindowsRegistry_STAR(void);
+    static void TEST_fe_WindowsRegistry_CLEANUP(void);
 
 } /* anonymous namespace */
 
@@ -96,13 +96,13 @@ static int main_(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.fe.WindowsRegistry", verbosity))
     {
-        XTESTS_RUN_CASE(test_can_init);
-        XTESTS_RUN_CASE(test_cannot_init);
-        XTESTS_RUN_CASE(test_levels_in_HKCU);
-        XTESTS_RUN_CASE(test_levels_in_HKLM);
-        XTESTS_RUN_CASE(test_HKCU_overrides_HKLM);
-        XTESTS_RUN_CASE(test_star);
-        XTESTS_RUN_CASE(test_cleanup);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_CAN_INIT);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_CANNOT_INIT);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_LEVELS_IN_HKCU);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_LEVELS_IN_HKLM);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_HKCU_OVERRIDES_HKLM);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_STAR);
+        XTESTS_RUN_CASE(TEST_fe_WindowsRegistry_CLEANUP);
 
         XTESTS_PRINT_RESULTS();
 
@@ -325,13 +325,13 @@ namespace
         }
     }
 
-static void test_can_init()
+static void TEST_fe_WindowsRegistry_CAN_INIT()
 {
     // Ensure that the HKCU key exists
     ensure_HKCU(0, 0, 0);
     if (!delete_HKLM())
     {
-        XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
+        DEBUG_LOG_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
         return;
     }
@@ -341,29 +341,29 @@ static void test_can_init()
 
     res = pantheios_fe_init(NULL, &token);
 
-    XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
+    TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         char    num[21];
 
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), res));
     }
     else
     {
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         pantheios_fe_uninit(token);
     }
 }
 
-static void test_cannot_init()
+static void TEST_fe_WindowsRegistry_CANNOT_INIT()
 {
     // Ensure that neither the HKCU key nor the HKLM key exist
     delete_HKCU();
     if (!delete_HKLM())
     {
-        XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
+        DEBUG_LOG_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
         return;
     }
@@ -373,27 +373,27 @@ static void test_cannot_init()
 
     res = pantheios_fe_init(NULL, &token);
 
-    XTESTS_TEST_INTEGER_NOT_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
+    TEST_INT_NE(PANTHEIOS_INIT_RC_SUCCESS, res);
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
     else
     {
-        XTESTS_TEST_FAIL("unexpectedly able to initialise front-end");
+        TEST_FAIL("unexpectedly able to initialise front-end");
 
         pantheios_fe_uninit(token);
     }
 }
 
-static void test_levels_in_HKCU()
+static void TEST_fe_WindowsRegistry_LEVELS_IN_HKCU()
 {
     // Ensure that the HKCU key exists, and has the right levels
     ensure_HKCU(0xff, 0x3f, -1);
     if (!delete_HKLM())
     {
-        XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
+        DEBUG_LOG_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
         return;
     }
@@ -422,37 +422,37 @@ static void test_levels_in_HKCU()
 
     res = pantheios_fe_init(NULL, &token);
 
-    XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
+    TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         char    num[21];
 
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), res));
     }
     else
     {
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         // Now verify the levels
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             int b = pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0);
 
-            XTESTS_TEST_INTEGER_EQUAL(s_severityLevelResults[i], b);
+            TEST_INT_EQ(s_severityLevelResults[i], b);
         }}
 
         pantheios_fe_uninit(token);
     }
 }
 
-static void test_levels_in_HKLM()
+static void TEST_fe_WindowsRegistry_LEVELS_IN_HKLM()
 {
     // Ensure that the HKCU key exists, and has the right levels
     delete_HKCU();
     if (!ensure_HKLM(0xff, 0x3f, -1))
     {
-        XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
+        DEBUG_LOG_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
         return;
     }
@@ -481,37 +481,37 @@ static void test_levels_in_HKLM()
 
     res = pantheios_fe_init(NULL, &token);
 
-    XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
+    TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         char    num[21];
 
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), res));
     }
     else
     {
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         // Now verify the levels
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             int b = pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0);
 
-            XTESTS_TEST_INTEGER_EQUAL(s_severityLevelResults[i], b);
+            TEST_INT_EQ(s_severityLevelResults[i], b);
         }}
 
         pantheios_fe_uninit(token);
     }
 }
 
-static void test_HKCU_overrides_HKLM()
+static void TEST_fe_WindowsRegistry_HKCU_OVERRIDES_HKLM()
 {
     // Ensure that the HKCU key exists, and has the right levels
     ensure_HKCU(0xff, 0x3f, -1);
     if (!ensure_HKLM(0, 0, 0))
     {
-        XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
+        DEBUG_LOG_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
         return;
     }
@@ -540,38 +540,38 @@ static void test_HKCU_overrides_HKLM()
 
     res = pantheios_fe_init(NULL, &token);
 
-    XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
+    TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         char    num[21];
 
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), res));
     }
     else
     {
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         // Now verify the levels
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             int b = pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0);
 
-            XTESTS_TEST_INTEGER_EQUAL(s_severityLevelResults[i], b);
+            TEST_INT_EQ(s_severityLevelResults[i], b);
         }}
 
         pantheios_fe_uninit(token);
     }
 }
 
-static void test_star()
+static void TEST_fe_WindowsRegistry_STAR()
 {
     // Ensure that the HKCU key exists, and has the right levels
     delete_HKCU();
     ensure_HKCU(-1, -1, 0x0f);
     if (!delete_HKLM())
     {
-        XTESTS_TEST_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
+        DEBUG_LOG_NOTICE("could not change HKEY_LOCAL_MACHINE, so skipping test case");
 
         return;
     }
@@ -595,24 +595,24 @@ static void test_star()
 
     res = pantheios_fe_init(NULL, &token);
 
-    XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
+    TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
         char    num[21];
 
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise front-end", stlsoft::integer_to_string(&num[0], STLSOFT_NUM_ELEMENTS(num), res));
     }
     else
     {
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
 
         // Now verify the levels
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
         {
             int b = pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0);
 
-            XTESTS_TEST_INTEGER_EQUAL(s_severityLevelResults[i], b);
+            TEST_INT_EQ(s_severityLevelResults[i], b);
         }}
 
         pantheios_fe_uninit(token);
@@ -620,12 +620,12 @@ static void test_star()
 }
 
 
-static void test_cleanup()
+static void TEST_fe_WindowsRegistry_CLEANUP()
 {
     delete_HKCU();
     delete_HKLM();
 
-    XTESTS_TEST_PASSED();
+    TEST_PASSED();
 }
 
 

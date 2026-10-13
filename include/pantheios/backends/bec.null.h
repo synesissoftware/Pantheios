@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios NULL Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 16th July 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MINOR      2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       15
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,9 +79,9 @@
 
 /** \defgroup group__backend__stock_backends__null Pantheios NULL Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Stub back-end library that does no emission.
  *
- * This library is useful for conducting performance tests.
+ * Stub back-end library that does no emission. This library is useful for
+ * conducting performance tests.
  */
 
 
@@ -100,14 +100,16 @@ PANTHEIOS_CALL(int) pantheios_be_null_init(
 ,   void**              ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the NULL API.
+/** Implements the functionality for pantheios_be_uninit() over the NULL
+ * API.
  * \ingroup group__backend__stock_backends__null
  */
 PANTHEIOS_CALL(void) pantheios_be_null_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the NULL API.
+/** Implements the functionality for pantheios_be_logEntry() over the NULL
+ * API.
  * \ingroup group__backend__stock_backends__null
  */
 PANTHEIOS_CALL(int) pantheios_be_null_logEntry(
@@ -125,9 +127,9 @@ PANTHEIOS_CALL(int) pantheios_be_null_logEntry(
  * \ingroup group__backend
  *
  * There are currently no arguments whatsoever for be.null, hence
- * pantheios_be_null_parseArgs is actually a \#define for
- * <code>NULL</code>. At such time as back-end specific arguments
- * are required, it will become a first-class function.
+ * pantheios_be_null_parseArgs is actually a \#define for \c NULL. At such
+ * time as back-end specific arguments are required, it will become a
+ * first-class function.
  */
 #define pantheios_be_null_parseArgs                         NULL
 

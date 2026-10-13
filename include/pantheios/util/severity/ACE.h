@@ -4,11 +4,11 @@
  * Purpose: Translations from Pantheios stock severity to ACE priority.
  *
  * Created: 13th November 2007
- * Updated: 7th February 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_MINOR      2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_EDIT       17
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_ACE_EDIT       19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,9 +95,10 @@ namespace pantheios
 
 /** Converts a Pantheios severity level to an ACE priority level
  *
- * \param severity The Pantheios \link pantheios::pan_severity_t severity level\endlink
+ * \param severity The Pantheios
+ *   \link pantheios::pan_severity_t severity level\endlink;
  *
- * \return The ACE priority
+ * \return The ACE priority.
  */
 #ifdef __cplusplus
 inline

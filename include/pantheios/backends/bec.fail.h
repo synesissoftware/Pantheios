@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios Fail Stock Back-end API.
  *
  * Created:     9th January 2007
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MINOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_EDIT       13
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_EDIT       17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,9 +79,9 @@
 
 /** \defgroup group__backend__stock_backends__fail Pantheios Fail Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Stub back-end library that fails its initialisation.
  *
- * This library is useful for testing \ref group__backend__stock_backends__N.
+ * Stub back-end library that fails its initialisation. This library is
+ * useful for testing \ref group__backend__stock_backends__N.
  */
 
 
@@ -100,14 +100,16 @@ PANTHEIOS_CALL(int) pantheios_be_fail_init(
 ,   void**              ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the Fail API.
+/** Implements the functionality for pantheios_be_uninit() over the Fail
+ * API.
  * \ingroup group__backend__stock_backends__fail
  */
 PANTHEIOS_CALL(void) pantheios_be_fail_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the Fail API.
+/** Implements the functionality for pantheios_be_logEntry() over the Fail
+ * API.
  * \ingroup group__backend__stock_backends__fail
  */
 PANTHEIOS_CALL(int) pantheios_be_fail_logEntry(

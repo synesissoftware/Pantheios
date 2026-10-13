@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.stream_character project.
  *
  * Created: 9th May 2014
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>          // Pantheios C++ main header
@@ -37,8 +37,8 @@
  * forward declarations
  */
 
-static void test_plain_characters();
-static void test_special_characters_1();
+static void TEST_pantheios_stream_character_PLAIN_CHARACTERS();
+static void TEST_pantheios_stream_character_SPECIAL_CHARACTERS();
 /* /////////////////////////////////////////////////////////////////////////
  * globals
  */
@@ -57,10 +57,10 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -75,8 +75,8 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.inserters.stream_character", verbosity))
     {
-        XTESTS_RUN_CASE(test_plain_characters);
-        XTESTS_RUN_CASE(test_special_characters_1);
+        XTESTS_RUN_CASE(TEST_pantheios_stream_character_PLAIN_CHARACTERS);
+        XTESTS_RUN_CASE(TEST_pantheios_stream_character_SPECIAL_CHARACTERS);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void test_plain_characters()
+static void TEST_pantheios_stream_character_PLAIN_CHARACTERS()
 {
     static char const plain_characters[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}|;:\",<.>/?";
 
@@ -111,19 +111,19 @@ static void test_plain_characters()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(plain_characters) - 1, results.size());
+    TEST(!results.empty());
+    TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(plain_characters) - 1, results.size());
 
     { for (size_t i = 0; STLSOFT_NUM_ELEMENTS(plain_characters) - 1 != i; ++i)
     {
         PAN_CHAR_T const    ch      =   plain_characters[i];
         PAN_CHAR_T          sz[4]   =   { '{', ch, '}', '\0' };
 
-        XTESTS_TEST_STRING_EQUAL(sz, results[i].statement);
+        TEST_STRING_EQ(sz, results[i].statement);
     }}
 }
 
-static void test_special_characters_1()
+static void TEST_pantheios_stream_character_SPECIAL_CHARACTERS()
 {
     // 1. Setup
 
@@ -172,43 +172,43 @@ static void test_special_characters_1()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(33u, results.size());
+    TEST(!results.empty());
+    TEST_INT_EQ(33u, results.size());
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("{NUL}"), results[0].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{SOH}"), results[1].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{STX}"), results[2].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{ETX}"), results[3].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{EOT}"), results[4].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{ENQ}"), results[5].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{ACK}"), results[6].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{BEL}"), results[7].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{BS}"), results[8].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{HT}"), results[9].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{LF}"), results[10].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{VT}"), results[11].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{FF}"), results[12].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{CR}"), results[13].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{SO}"), results[14].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{SI}"), results[15].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{DLE}"), results[16].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{DC1}"), results[17].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{DC2}"), results[18].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{DC3}"), results[19].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{DC4}"), results[20].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{NAK}"), results[21].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{SYN}"), results[22].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{ETB}"), results[23].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{CAN}"), results[24].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{EM}"), results[25].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{SUB}"), results[26].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{ESC}"), results[27].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{FS}"), results[28].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{GS}"), results[29].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{RS}"), results[30].statement);
-    XTESTS_TEST_STRING_EQUAL(PSTR("{US}"), results[31].statement);
+    TEST_STRING_EQ(PSTR("{NUL}"), results[0].statement);
+    TEST_STRING_EQ(PSTR("{SOH}"), results[1].statement);
+    TEST_STRING_EQ(PSTR("{STX}"), results[2].statement);
+    TEST_STRING_EQ(PSTR("{ETX}"), results[3].statement);
+    TEST_STRING_EQ(PSTR("{EOT}"), results[4].statement);
+    TEST_STRING_EQ(PSTR("{ENQ}"), results[5].statement);
+    TEST_STRING_EQ(PSTR("{ACK}"), results[6].statement);
+    TEST_STRING_EQ(PSTR("{BEL}"), results[7].statement);
+    TEST_STRING_EQ(PSTR("{BS}"), results[8].statement);
+    TEST_STRING_EQ(PSTR("{HT}"), results[9].statement);
+    TEST_STRING_EQ(PSTR("{LF}"), results[10].statement);
+    TEST_STRING_EQ(PSTR("{VT}"), results[11].statement);
+    TEST_STRING_EQ(PSTR("{FF}"), results[12].statement);
+    TEST_STRING_EQ(PSTR("{CR}"), results[13].statement);
+    TEST_STRING_EQ(PSTR("{SO}"), results[14].statement);
+    TEST_STRING_EQ(PSTR("{SI}"), results[15].statement);
+    TEST_STRING_EQ(PSTR("{DLE}"), results[16].statement);
+    TEST_STRING_EQ(PSTR("{DC1}"), results[17].statement);
+    TEST_STRING_EQ(PSTR("{DC2}"), results[18].statement);
+    TEST_STRING_EQ(PSTR("{DC3}"), results[19].statement);
+    TEST_STRING_EQ(PSTR("{DC4}"), results[20].statement);
+    TEST_STRING_EQ(PSTR("{NAK}"), results[21].statement);
+    TEST_STRING_EQ(PSTR("{SYN}"), results[22].statement);
+    TEST_STRING_EQ(PSTR("{ETB}"), results[23].statement);
+    TEST_STRING_EQ(PSTR("{CAN}"), results[24].statement);
+    TEST_STRING_EQ(PSTR("{EM}"), results[25].statement);
+    TEST_STRING_EQ(PSTR("{SUB}"), results[26].statement);
+    TEST_STRING_EQ(PSTR("{ESC}"), results[27].statement);
+    TEST_STRING_EQ(PSTR("{FS}"), results[28].statement);
+    TEST_STRING_EQ(PSTR("{GS}"), results[29].statement);
+    TEST_STRING_EQ(PSTR("{RS}"), results[30].statement);
+    TEST_STRING_EQ(PSTR("{US}"), results[31].statement);
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("{DEL}"), results[32].statement);
+    TEST_STRING_EQ(PSTR("{DEL}"), results[32].statement);
 }
 
 

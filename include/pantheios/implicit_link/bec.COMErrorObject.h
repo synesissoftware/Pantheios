@@ -4,11 +4,11 @@
  * Purpose: Implicitly links in the Pantheios COM Error Object Back-End Common Library
  *
  * Created: 18th July 2005
- * Updated: 16th December 2023
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,8 +43,9 @@
 /** \file pantheios/implicit_link/bec.COMErrorObject.h
  *
  * [C, C++] Implicitly links in the
- *   \ref group__backend__stock_backends__COMErrorObject "Pantheios COM Error Object Back-End Common Library"
- *   common implementation (that may be used by sole/local/remote back-end).
+ * \ref group__backend__stock_backends__COMErrorObject "Pantheios COM Error
+ * Object Back-End Common Library" common implementation (that may be used
+ * by sole/local/remote back-end).
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEC_COMERROROBJECT
@@ -59,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_COMERROROBJECT_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_COMERROROBJECT_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_COMERROROBJECT_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_COMERROROBJECT_EDIT        7
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEC_COMERROROBJECT_EDIT        8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

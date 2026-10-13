@@ -4,11 +4,11 @@
  * Purpose: Implicitly links in the Pantheios Windows Debugger Back-End Library
  *
  * Created: 18th July 2005
- * Updated: 16th December 2023
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,8 +43,8 @@
 /** \file pantheios/implicit_link/be.WindowsDebugger.h
  *
  * [C, C++] Implicitly links in the
- *   \ref group__backend__stock_backends__WindowsDebugger "Pantheios Windows Debugger Back-End Library"
- *   as the sole back-end for the given link-unit.
+ * \ref group__backend__stock_backends__WindowsDebugger "Pantheios Windows
+ * Debugger Back-End Library" as the sole back-end for the given link-unit.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BE_WINDOWSDEBUGGER
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_WINDOWSDEBUGGER_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_WINDOWSDEBUGGER_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_WINDOWSDEBUGGER_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_WINDOWSDEBUGGER_EDIT        8
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BE_WINDOWSDEBUGGER_EDIT        9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.be.lrsplit project.
  *
  * Created: 27th January 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/backends/be.lrsplit.h>
 #include <pantheios/init_codes.h>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/stlsoft.h>        /* for STLSOFT_NUM_ELEMENTS */
 
@@ -151,7 +151,7 @@ int main(int argc, char* argv[])
 
             res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
+            TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
 
             pantheios_be_uninit(token);
 
@@ -171,7 +171,7 @@ int main(int argc, char* argv[])
 
             res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE, res);
+            TEST_INT_EQ(PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE, res);
 
             /* pantheios_be_uninit(token); */
 
@@ -191,7 +191,7 @@ int main(int argc, char* argv[])
 
             res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE, res);
+            TEST_INT_EQ(PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE, res);
 
             /* pantheios_be_uninit(token); */
 
@@ -211,7 +211,7 @@ int main(int argc, char* argv[])
 
             res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE, res);
+            TEST_INT_EQ(PANTHEIOS_BE_INIT_RC_INTENDED_FAILURE, res);
 
             /* pantheios_be_uninit(token); */
 

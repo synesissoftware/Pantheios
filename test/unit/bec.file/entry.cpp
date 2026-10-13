@@ -4,7 +4,7 @@
  * Purpose: Unit-tests for bec.file.
  *
  * Created: 19th January 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -24,7 +24,7 @@
 #include <stlsoft/smartptr/scoped_handle.hpp>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Standard C++ header files */
 #include <exception>                    // for std::exception
@@ -41,7 +41,7 @@
  * macros
  */
 
-#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    TEST_INT_EQ(static_cast<int>(x), static_cast<int>(y))
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 
 # define P_TO_M_(x)                     static_cast<char const*>(stlsoft::w2m((x)))
 # define P_TO_W_(x)                     (x)
@@ -72,7 +72,7 @@ typedef std::basic_string<PAN_CHAR_T>               string_t;
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 
 # define P_TO_M_(x)                     (x)
 # define P_TO_W_(x)                     static_cast<wchar_t const*>(stlsoft::m2w((x)))
@@ -101,59 +101,59 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 namespace
 {
 
-static void test_1_00();
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_0a();
-static void test_1_0b();
-static void test_1_0c();
-static void test_1_0d();
-static void test_1_0e();
-static void test_1_0f();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_NONE();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_ALL_STOCK();
 
-static void test_2_00();
-static void test_2_01();
-static void test_2_02();
-static void test_2_03();
-static void test_2_04();
-static void test_2_05();
-static void test_2_06();
-static void test_2_07();
-static void test_2_08();
-static void test_2_09();
-static void test_2_0a();
-static void test_2_0b();
-static void test_2_0c();
-static void test_2_0d();
-static void test_2_0e();
-static void test_2_0f();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_NONE();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_ALL_STOCK();
 
-static void test_3_00();
-static void test_3_01();
-static void test_3_02();
-static void test_3_03();
-static void test_3_04();
-static void test_3_05();
-static void test_3_06();
-static void test_3_07();
-static void test_3_08();
-static void test_3_09();
-static void test_3_0a();
-static void test_3_0b();
-static void test_3_0c();
-static void test_3_0d();
-static void test_3_0e();
-static void test_3_0f();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_NONE();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_ALL_STOCK();
 
-static void test_4_00();
-static void test_4_01();
+static void TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY();
+static void TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY_SHOW_NONE();
 
 static void TEST_pantheios_be_file_WITH_ALL_STOCK_true();
 static void TEST_pantheios_be_file_WITH_ALL_STOCK_false();
@@ -170,59 +170,59 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.bec.file", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_00);
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_0a);
-        XTESTS_RUN_CASE(test_1_0b);
-        XTESTS_RUN_CASE(test_1_0c);
-        XTESTS_RUN_CASE(test_1_0d);
-        XTESTS_RUN_CASE(test_1_0e);
-        XTESTS_RUN_CASE(test_1_0f);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_NONE);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_ALL_STOCK);
 
-        XTESTS_RUN_CASE(test_2_00);
-        XTESTS_RUN_CASE(test_2_01);
-        XTESTS_RUN_CASE(test_2_02);
-        XTESTS_RUN_CASE(test_2_03);
-        XTESTS_RUN_CASE(test_2_04);
-        XTESTS_RUN_CASE(test_2_05);
-        XTESTS_RUN_CASE(test_2_06);
-        XTESTS_RUN_CASE(test_2_07);
-        XTESTS_RUN_CASE(test_2_08);
-        XTESTS_RUN_CASE(test_2_09);
-        XTESTS_RUN_CASE(test_2_0a);
-        XTESTS_RUN_CASE(test_2_0b);
-        XTESTS_RUN_CASE(test_2_0c);
-        XTESTS_RUN_CASE(test_2_0d);
-        XTESTS_RUN_CASE(test_2_0e);
-        XTESTS_RUN_CASE(test_2_0f);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_NONE);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_ALL_STOCK);
 
-        XTESTS_RUN_CASE(test_3_00);
-        XTESTS_RUN_CASE(test_3_01);
-        XTESTS_RUN_CASE(test_3_02);
-        XTESTS_RUN_CASE(test_3_03);
-        XTESTS_RUN_CASE(test_3_04);
-        XTESTS_RUN_CASE(test_3_05);
-        XTESTS_RUN_CASE(test_3_06);
-        XTESTS_RUN_CASE(test_3_07);
-        XTESTS_RUN_CASE(test_3_08);
-        XTESTS_RUN_CASE(test_3_09);
-        XTESTS_RUN_CASE(test_3_0a);
-        XTESTS_RUN_CASE(test_3_0b);
-        XTESTS_RUN_CASE(test_3_0c);
-        XTESTS_RUN_CASE(test_3_0d);
-        XTESTS_RUN_CASE(test_3_0e);
-        XTESTS_RUN_CASE(test_3_0f);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_NONE);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_ALL_STOCK);
 
-        XTESTS_RUN_CASE(test_4_00);
-        XTESTS_RUN_CASE(test_4_01);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY_SHOW_NONE);
 
         XTESTS_RUN_CASE(TEST_pantheios_be_file_WITH_ALL_STOCK_true);
         XTESTS_RUN_CASE(TEST_pantheios_be_file_WITH_ALL_STOCK_false);
@@ -273,7 +273,7 @@ static PAN_CHAR_T const* strings[] =
 
 
 
-static void test_1_00()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_NONE()
 {
     pan_be_file_init_t  init;
 
@@ -294,13 +294,13 @@ static void test_1_00()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -319,15 +319,15 @@ static void test_1_00()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_1_01()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID()
 {
     pan_be_file_init_t  init;
 
@@ -348,13 +348,13 @@ static void test_1_01()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -373,15 +373,15 @@ static void test_1_01()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_1_02()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -402,13 +402,13 @@ static void test_1_02()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -427,15 +427,15 @@ static void test_1_02()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_1_03()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -456,13 +456,13 @@ static void test_1_03()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -481,15 +481,15 @@ static void test_1_03()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_1_04()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -510,13 +510,13 @@ static void test_1_04()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -535,17 +535,17 @@ static void test_1_04()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_1_05()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -566,13 +566,13 @@ static void test_1_05()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -591,17 +591,17 @@ static void test_1_05()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_1_06()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -622,13 +622,13 @@ static void test_1_06()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -647,17 +647,17 @@ static void test_1_06()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_1_07()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -678,13 +678,13 @@ static void test_1_07()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -703,17 +703,17 @@ static void test_1_07()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_1_08()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -734,13 +734,13 @@ static void test_1_08()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -759,15 +759,15 @@ static void test_1_08()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_1_09()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -788,13 +788,13 @@ static void test_1_09()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -813,15 +813,15 @@ static void test_1_09()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_1_0a()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -842,13 +842,13 @@ static void test_1_0a()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -867,15 +867,15 @@ static void test_1_0a()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_1_0b()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -896,13 +896,13 @@ static void test_1_0b()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -921,15 +921,15 @@ static void test_1_0b()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_1_0c()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -950,13 +950,13 @@ static void test_1_0c()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -975,17 +975,17 @@ static void test_1_0c()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_1_0d()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1006,13 +1006,13 @@ static void test_1_0d()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1031,17 +1031,17 @@ static void test_1_0d()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_1_0e()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1062,13 +1062,13 @@ static void test_1_0e()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1087,17 +1087,17 @@ static void test_1_0e()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_1_0f()
+static void TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_ALL_STOCK()
 {
     pan_be_file_init_t  init;
 
@@ -1118,13 +1118,13 @@ static void test_1_0f()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_1_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_MULTIBYTE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1143,11 +1143,11 @@ static void test_1_0f()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_MULTIBYTE_STRING_EQUAL((resultPrefix + P_TO_M_(strings[i])), lines[i]);
+            TEST_MS_EQ((resultPrefix + P_TO_M_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -1155,7 +1155,7 @@ static void test_1_0f()
 
 
 
-static void test_2_00()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_NONE()
 {
     pan_be_file_init_t  init;
 
@@ -1176,13 +1176,13 @@ static void test_2_00()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1201,15 +1201,15 @@ static void test_2_00()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_2_01()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID()
 {
     pan_be_file_init_t  init;
 
@@ -1230,13 +1230,13 @@ static void test_2_01()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1255,15 +1255,15 @@ static void test_2_01()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_2_02()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -1284,13 +1284,13 @@ static void test_2_02()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1309,15 +1309,15 @@ static void test_2_02()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_2_03()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -1338,13 +1338,13 @@ static void test_2_03()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1363,15 +1363,15 @@ static void test_2_03()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_2_04()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -1392,13 +1392,13 @@ static void test_2_04()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1417,17 +1417,17 @@ static void test_2_04()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_2_05()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -1448,13 +1448,13 @@ static void test_2_05()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1473,17 +1473,17 @@ static void test_2_05()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_2_06()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -1504,13 +1504,13 @@ static void test_2_06()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1529,17 +1529,17 @@ static void test_2_06()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_2_07()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -1560,13 +1560,13 @@ static void test_2_07()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1585,17 +1585,17 @@ static void test_2_07()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_2_08()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1616,13 +1616,13 @@ static void test_2_08()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1641,15 +1641,15 @@ static void test_2_08()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_2_09()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1670,13 +1670,13 @@ static void test_2_09()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1695,15 +1695,15 @@ static void test_2_09()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_2_0a()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1724,13 +1724,13 @@ static void test_2_0a()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1749,15 +1749,15 @@ static void test_2_0a()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_2_0b()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1778,13 +1778,13 @@ static void test_2_0b()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1803,15 +1803,15 @@ static void test_2_0b()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
         }}
     }
 }
 
-static void test_2_0c()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1832,13 +1832,13 @@ static void test_2_0c()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1857,17 +1857,17 @@ static void test_2_0c()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_2_0d()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1888,13 +1888,13 @@ static void test_2_0d()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1913,17 +1913,17 @@ static void test_2_0d()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_2_0e()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -1944,13 +1944,13 @@ static void test_2_0e()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -1969,17 +1969,17 @@ static void test_2_0e()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_2_0f()
+static void TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_ALL_STOCK()
 {
     pan_be_file_init_t  init;
 
@@ -2000,13 +2000,13 @@ static void test_2_0f()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_2_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_WIDE_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2025,11 +2025,11 @@ static void test_2_0f()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_WIDE_STRING_EQUAL((resultPrefix + P_TO_W_(strings[i])), lines[i]);
+            TEST_WS_EQ((resultPrefix + P_TO_W_(strings[i])), lines[i]);
 #endif /* 0 */
         }}
     }
@@ -2037,7 +2037,7 @@ static void test_2_0f()
 
 
 
-static void test_3_00()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_NONE()
 {
     pan_be_file_init_t  init;
 
@@ -2057,13 +2057,13 @@ static void test_3_00()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2082,15 +2082,15 @@ static void test_3_00()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
 
-static void test_3_01()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID()
 {
     pan_be_file_init_t  init;
 
@@ -2110,13 +2110,13 @@ static void test_3_01()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2135,15 +2135,15 @@ static void test_3_01()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
 
-static void test_3_02()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -2163,13 +2163,13 @@ static void test_3_02()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_01.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2188,15 +2188,15 @@ static void test_3_02()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL(resultPrefix + strings[i], lines[i]);
+            TEST_STRING_EQ(resultPrefix + strings[i], lines[i]);
         }}
     }
 }
 
-static void test_3_03()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID()
 {
     pan_be_file_init_t  init;
 
@@ -2216,13 +2216,13 @@ static void test_3_03()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2241,15 +2241,15 @@ static void test_3_03()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
 
-static void test_3_04()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -2269,13 +2269,13 @@ static void test_3_04()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_02.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2294,17 +2294,17 @@ static void test_3_04()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_3_05()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -2324,13 +2324,13 @@ static void test_3_05()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2349,17 +2349,17 @@ static void test_3_05()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_3_06()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -2379,13 +2379,13 @@ static void test_3_06()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2404,17 +2404,17 @@ static void test_3_06()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_3_07()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_DATETIME()
 {
     pan_be_file_init_t  init;
 
@@ -2434,13 +2434,13 @@ static void test_3_07()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2459,17 +2459,17 @@ static void test_3_07()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_3_08()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2489,13 +2489,13 @@ static void test_3_08()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_04.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2514,15 +2514,15 @@ static void test_3_08()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
 
-static void test_3_09()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2542,13 +2542,13 @@ static void test_3_09()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_03.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2567,15 +2567,15 @@ static void test_3_09()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
 
-static void test_3_0a()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2595,13 +2595,13 @@ static void test_3_0a()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0a.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_SEVERITY.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2620,15 +2620,15 @@ static void test_3_0a()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
 
-static void test_3_0b()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2648,13 +2648,13 @@ static void test_3_0b()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0b.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_THREAD_ID_SEVERITY.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2673,15 +2673,15 @@ static void test_3_0b()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
         }}
     }
 }
 
-static void test_3_0c()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2701,13 +2701,13 @@ static void test_3_0c()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0c.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_DATETIME_SEVERITY.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2726,17 +2726,17 @@ static void test_3_0c()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_3_0d()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2756,13 +2756,13 @@ static void test_3_0d()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0d.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_PROCESS_ID_DATETIME_SEVERITY.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2781,17 +2781,17 @@ static void test_3_0d()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_3_0e()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY()
 {
     pan_be_file_init_t  init;
 
@@ -2811,13 +2811,13 @@ static void test_3_0e()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0e.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_THREAD_ID_DATETIME_SEVERITY.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2836,17 +2836,17 @@ static void test_3_0e()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
-static void test_3_0f()
+static void TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_ALL_STOCK()
 {
     pan_be_file_init_t  init;
 
@@ -2866,13 +2866,13 @@ static void test_3_0f()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_3_0f.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_logEntry_DEFAULT_TRUNCATE_SHOW_ALL_STOCK.results");
 
         // create the output file
         pantheios_be_file_setFilePath(FILE_PATH);
@@ -2891,18 +2891,18 @@ static void test_3_0f()
         fs_traits_t::unlink_file(FILE_PATH);
 
         // Start the tests
-        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+        REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
         { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
         {
 #if 0
-            XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), lines[i]);
+            TEST_STRING_EQ((resultPrefix + strings[i]), lines[i]);
 #endif /* 0 */
         }}
     }
 }
 
 
-static void test_4_00()
+static void TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY()
 {
     pan_be_file_init_t  init;
 
@@ -2919,47 +2919,47 @@ static void test_4_00()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY.results");
 
 
         { // (i) Writing something (none-0 length)
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, PANTHEIOS_LITERAL_STRING("abc"), 3u);
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
         }
 
         { // (i) Writing something (0 length)
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, PANTHEIOS_LITERAL_STRING("abc"), 0u);
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
         }
 
         { // (i) Writing nothing
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_FALSE(fs_traits_t::file_exists(FILE_PATH));
         }
 
 
@@ -2968,7 +2968,7 @@ static void test_4_00()
     }
 }
 
-static void test_4_01()
+static void TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY_SHOW_NONE()
 {
     pan_be_file_init_t  init;
 
@@ -2989,47 +2989,47 @@ static void test_4_01()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.file", pantheios::getInitErrorString(res));
     }
     else
     {
         stlsoft::scoped_handle<void*>   uninit_(token, pantheios_be_file_uninit);
 
-        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("test_4_00.results");
+        static PAN_CHAR_T const FILE_PATH[] = PANTHEIOS_LITERAL_STRING("TEST_pantheios_be_file_TRUNCATE_DELETE_IF_EMPTY.results");
 
 
         { // (i) Writing something (none-0 length)
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, PANTHEIOS_LITERAL_STRING("abc"), 3u);
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
         }
 
         { // (i) Writing something (0 length)
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_logEntry(NULL, token, PANTHEIOS_SEV_EMERGENCY, PANTHEIOS_LITERAL_STRING("abc"), 0u);
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
         }
 
         { // (i) Writing nothing
             pantheios_be_file_setFilePath(FILE_PATH);
 
-            XTESTS_TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_TRUE(fs_traits_t::file_exists(FILE_PATH));
 
             pantheios_be_file_setFilePath(NULL);
 
-            XTESTS_TEST_BOOLEAN_FALSE(fs_traits_t::file_exists(FILE_PATH));
+            TEST_BOOLEAN_FALSE(fs_traits_t::file_exists(FILE_PATH));
         }
 
 
@@ -3093,7 +3093,7 @@ static void TEST_pantheios_be_file_WITH_ALL_STOCK_true()
 
     int const r = pantheios_be_file_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    XTESTS_TEST_INTEGER_EQUAL(18, r);
+    TEST_INT_EQ(18, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -3118,7 +3118,7 @@ static void TEST_pantheios_be_file_WITH_ALL_STOCK_true()
                                     |   PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY
                                     ;
 
-    XTESTS_TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 
 static void TEST_pantheios_be_file_WITH_ALL_STOCK_false()
@@ -3175,7 +3175,7 @@ static void TEST_pantheios_be_file_WITH_ALL_STOCK_false()
 
     int const r = pantheios_be_file_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    XTESTS_TEST_INTEGER_EQUAL(18, r);
+    TEST_INT_EQ(18, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -3200,7 +3200,7 @@ static void TEST_pantheios_be_file_WITH_ALL_STOCK_false()
                                     // |   PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY
                                     ;
 
-    XTESTS_TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 } /* anonymous namespace */
 

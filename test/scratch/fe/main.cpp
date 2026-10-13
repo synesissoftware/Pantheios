@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.fe project.
  *
  * Created: 21st June 2005
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,17 +40,6 @@ using std::endl;
 #include <stdio.h>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
-
-
-/* /////////////////////////////////////////////////////////////////////////
- * forward declarations
- */
-
-#if (   defined(_WIN32) || \
-        defined(_WIN64)) && \
-    !defined(_INC_WINDOWS)
-extern "C" void __stdcall Sleep(unsigned long);
-#endif /* WIN32 */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,7 +80,7 @@ static void call_all_severities()
     pantheios::log_EMERGENCY("Emergency, there's an emergency going on, it's still going on, it's still an emergency");
 }
 
-static int main_(int /* argc */, char ** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
 #if defined(_DEBUG)
     {
