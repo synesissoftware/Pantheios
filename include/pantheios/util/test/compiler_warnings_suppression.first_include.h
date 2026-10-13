@@ -5,11 +5,11 @@
  *              list.
  *
  * Created:     8th December 2007
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -44,7 +44,7 @@
 /** \file pantheios/util/test/compiler_warnings_suppression.first_include.h
  *
  * [C, C++] \#include file to go at the start of a test file's \#include
- *   list.
+ * list.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_UTIL_TEST_H_COMPILER_WARNINGS_SUPPRESSION_FIRST_INCLUDE

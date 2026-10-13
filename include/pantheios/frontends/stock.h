@@ -5,11 +5,11 @@
  *          Elements.
  *
  * Created: 23rd November 2007
- * Updated: 28th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -44,7 +44,7 @@
 /** \file pantheios/frontends/stock.h
  *
  * [C, C++] Declaration of the Pantheios Stock Front-end API Common
- *   Elements.
+ * Elements.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK
@@ -58,8 +58,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MINOR    2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     18
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 4
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     22
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -75,12 +75,23 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_FRONTEND */
 
 /** \defgroup group__frontend__stock_frontends Pantheios Stock Front-ends
- * \ingroup group__frontend Pantheios
- *  Pre-built front-ends supplied with the Pantheios library
+ * \ingroup group__frontend
  *
- * Pantheios comes with several pre-written stock front-end libraries, which
- * cover most common needs for diagnostic logging. They also serve as good
- * examples of how to write a custom front-end.
+ * Pre-built front-ends supplied with the Pantheios library Pantheios comes
+ * with several pre-written stock front-end libraries, which cover most
+ * common needs for diagnostic logging. They also serve as good examples of
+ * how to write a custom front-end.
+ */
+
+/** \page page__frontend__callbacks Pantheios Front-end Callbacks
+ *
+ * Several stock front-ends are available in a <em>WithCallback</em> form.
+ * Those variants obtain the process identity (and related initialisation
+ * data) via an application-defined callback, rather than requiring a
+ * compiled-in \c PANTHEIOS_FE_PROCESS_IDENTITY array alone.
+ *
+ * The callback must not throw, and must not call into Pantheios (directly
+ * or indirectly), because it runs during Pantheios initialisation.
  */
 
 
@@ -102,18 +113,18 @@
  */
 
 /** The application must define this variable, to contain the
- *    application name/identity.
+ * application name/identity.
  *
  * \ingroup group__frontend__stock_frontends
  *
- * The variable is an immutable array of <code>PAN_CHAR_T</code> (i.e.
- * <code>char</code> in multibyte string builds, <code>wchar_t</code> in
- * wide string builds) whose name is non-mangled and has external linkage.
+ * The variable is an immutable array of \c PAN_CHAR_T (i.e. \c char in
+ * multibyte string builds, \c wchar_t in wide string builds) whose name is
+ * non-mangled and has external linkage.
  *
  * Therefore, when defining within a C++ compilation unit it must be
- * declared <code>extern "C"</code>; when defined within a C compilation
- * unit it must be extern (optionally declared <code>extern</code>; it
- * must not be declared <code>static</code>).
+ * declared `extern "C"`; when defined within a C compilation unit it must
+ * be extern (optionally declared \c extern; it must not be declared
+ * \c static).
  *
  * Examples:
 \htmlonly
@@ -141,9 +152,8 @@
  * \note The process identity must not contain any whitespace characters,
  *   otherwise Pantheios library initialisation will fail.
  *
- * \warning If you define the variable as a pointer
- *   (<code>PAN_CHAR_T const*</code>) the behaviour of the link unit is
- *   undefined.
+ * \warning If you define the variable as a pointer (`PAN_CHAR_T const*`)
+ *   the behaviour of the link unit is undefined.
  */
 PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
 
@@ -153,7 +163,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
  */
 
 /** \ref page__frontend__callbacks "Callback" function defined by the
- *    application, invoked during API initialisation.
+ * application, invoked during API initialisation.
  *
  * \ingroup group__frontend__stock_frontends
  *
@@ -162,9 +172,9 @@ PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
  *   library is used.
  *
  * \note This function *MUST NOT* throw an exception, and *MUST NOT* return
- *   <code>NULL</code>. If the implementation fails to acquire/produce the
- *   identity, it must call <code>pantheios_exitProcess(1)</code>. It may
- *   optionally call <code>pantheios_util_onBailOut4()</code> first.
+ *   \c NULL. If the implementation fails to acquire/produce the identity,
+ *   it must call `pantheios_exitProcess(1)`. It may optionally call
+ *   \c pantheios_util_onBailOut4() first.
  */
 PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) /* throw() */;
 

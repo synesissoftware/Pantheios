@@ -4,11 +4,11 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -43,8 +43,8 @@
 
 /** \file pantheios/inserters/real.hpp
  *
- * [C++ only] Definition of the pantheios::real string inserter for
- *   for floating-point built-in types.
+ * [C++ only] Definition of the pantheios::real string inserter for for
+ * floating-point built-in types.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_REAL
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_MINOR       3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_REVISION    7
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_EDIT        32
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_EDIT        34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,12 +98,13 @@ namespace pantheios
  */
 
 /** Class for inserting floating-point types into Pantheios diagnostic
- *   logging statements.
+ * logging statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
- * This class converts a floating-point variable into a string, thereby enabling it to be
- * inserted into a logging statement. Consider the following statement
+ * This class converts a floating-point variable into a string, thereby
+ * enabling it to be inserted into a logging statement. Consider the
+ * following statement
  *
  * \code
   double      d   = 123.456;
@@ -115,15 +116,16 @@ namespace pantheios
  *
  * This will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, d=123.456, str=def</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, d=123.456, str=def**
  *
  * \note Currently, Pantheios does not support the implicit insertion of
- * floating-point types in diagnostic logging statements, due to the various
- * ambiguities inherent in the C++ language. (See chapters 14, 15, 19, 24 of
- * <a href = "http://imperfectcplusplus.com" target="_blank">Imperfect C++</a>
- * for discussions of these issues.) It is possible that a future version of
- * the library will be able to incorporate them directly, so long as that does
- * not sacrifice Pantheios's central claim of not paying for what you don't use.
+ *   floating-point types in diagnostic logging statements, due to the
+ *   various ambiguities inherent in the C++ language. (See chapters 14, 15,
+ *   19, 24 of <a href = "http://imperfectcplusplus.com"
+ *   target="_blank">Imperfect C++</a> for discussions of these issues.) It
+ *   is possible that a future version of the library will be able to
+ *   incorporate them directly, so long as that does not sacrifice
+ *   Pantheios's central claim of not paying for what you don't use.
  */
 class real
 {
@@ -152,11 +154,14 @@ private:
     explicit real(int); // Prevents implicit conversion from an integer
 
 public:
-    /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the floating-point number
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the floating-point number
     pantheios_char_t const* data() const;
-    /// A nul-terminated non-null pointer to the c-style string representation of the floating-point number
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the floating-point number
     pantheios_char_t const* c_str() const;
-    /// The length of the c-style string representation of the floating-point number
+    /// The length of the c-style string representation of the
+    ///   floating-point number
     size_t                  length() const;
 
 private:

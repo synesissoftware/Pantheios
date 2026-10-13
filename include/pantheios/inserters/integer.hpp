@@ -4,11 +4,11 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -43,8 +43,8 @@
 
 /** \file pantheios/inserters/integer.hpp
  *
- * [C++ only] Definition of the pantheios::integer string inserter for
- *   for integral built-in types.
+ * [C++ only] Definition of the pantheios::integer string inserter for for
+ * integral built-in types.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTEGER
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_MINOR    5
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_REVISION 8
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_EDIT     43
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_EDIT     45
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,7 +98,7 @@ namespace pantheios
  */
 
 /** Class for inserting integral types into Pantheios diagnostic logging
- *   statements.
+ * statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -115,20 +115,21 @@ namespace pantheios
  *
  * This will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, i=123, str=def</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, i=123, str=def**
  *
  * The constructor takes a second, defaulted (to 0), parameter, which allows
- * a width (up to a maximum of 255) and a format to be specified. The low
- * 8 bits of this parameter are interpreted as an unsigned integer specifying
+ * a width (up to a maximum of 255) and a format to be specified. The low 8
+ * bits of this parameter are interpreted as an unsigned integer specifying
  * the width. The remaining bits are treated as bit flags that control the
  *
- * \note Currently, Pantheios does not support the insertion of integral types
- * in diagnostic logging statements, due to the various ambiguities inherent
- * in the C++ language. (See chapters 14, 15, 19, 24 of
- * <a href = "http://imperfectcplusplus.com" target="_blank">Imperfect C++</a>
- * for discussions of these issues.) It is possible that a future version of
- * the library will be able to incorporate them directly, so long as that does
- * not sacrifice Pantheios's central claim of not paying for what you don't use.
+ * \note Currently, Pantheios does not support the insertion of integral
+ *   types in diagnostic logging statements, due to the various ambiguities
+ *   inherent in the C++ language. (See chapters 14, 15, 19, 24 of <a href =
+ *   "http://imperfectcplusplus.com" target="_blank">Imperfect C++</a> for
+ *   discussions of these issues.) It is possible that a future version of
+ *   the library will be able to incorporate them directly, so long as that
+ *   does not sacrifice Pantheios's central claim of not paying for what you
+ *   don't use.
  */
 class integer
 {
@@ -166,138 +167,150 @@ private:
 public:
     /// [DEPRECATED] Construct from an 8-bit signed integer
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(::stlsoft::sint8_t i, int widthAndFormat);
-    ///  [DEPRECATED] Construct from an 8-bit unsigned integer
+    /// [DEPRECATED] Construct from an 8-bit unsigned integer
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(::stlsoft::uint8_t i, int widthAndFormat);
-    ///  [DEPRECATED] Construct from a 16-bit signed integer
+    /// [DEPRECATED] Construct from a 16-bit signed integer
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(::stlsoft::sint16_t i, int widthAndFormat);
-    ///  [DEPRECATED] Construct from a 16-bit unsigned integer
+    /// [DEPRECATED] Construct from a 16-bit unsigned integer
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(::stlsoft::uint16_t i, int widthAndFormat);
-    ///  [DEPRECATED] Construct from a 32-bit signed integer
+    /// [DEPRECATED] Construct from a 32-bit signed integer
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(::stlsoft::sint32_t i, int widthAndFormat);
-    ///  [DEPRECATED] Construct from a 32-bit unsigned integer
+    /// [DEPRECATED] Construct from a 32-bit unsigned integer
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(::stlsoft::uint32_t i, int widthAndFormat);
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    ///  [DEPRECATED] Construct from a 64-bit signed integer
+    /// [DEPRECATED] Construct from a 64-bit signed integer
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(::stlsoft::sint64_t i, int widthAndFormat);
-    ///  [DEPRECATED] Construct from a 64-bit unsigned integer
+    /// [DEPRECATED] Construct from a 64-bit unsigned integer
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(::stlsoft::uint64_t i, int widthAndFormat);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-    ///  [DEPRECATED] Construct from an int
+    /// [DEPRECATED] Construct from an int
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(int i, int widthAndFormat);
-    ///  [DEPRECATED] Construct from an unsigned int
+    /// [DEPRECATED] Construct from an unsigned int
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(unsigned int i, int widthAndFormat);
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-    ///  [DEPRECATED] Construct from a long
+    /// [DEPRECATED] Construct from a long
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(long i, int widthAndFormat);
-    ///  [DEPRECATED] Construct from an unsigned long
+    /// [DEPRECATED] Construct from an unsigned long
     ///
-    /// \deprecated This function is now deprecated, and will be removed from a future
-    ///   version of Pantheios; instead use either the 1-parameter or 3-parameter overload.
+    /// \deprecated This function is now deprecated, and will be removed
+    ///   from a future version of Pantheios; instead use either the
+    ///   1-parameter or 3-parameter overload.
     explicit integer(unsigned long i, int widthAndFormat);
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-    ///  Construct from an 8-bit signed integer
+    /// Construct from an 8-bit signed integer
     explicit integer(::stlsoft::sint8_t i);
-    ///  Construct from an 8-bit unsigned integer
+    /// Construct from an 8-bit unsigned integer
     explicit integer(::stlsoft::uint8_t i);
-    ///  Construct from a 16-bit signed integer
+    /// Construct from a 16-bit signed integer
     explicit integer(::stlsoft::sint16_t i);
-    ///  Construct from a 16-bit unsigned integer
+    /// Construct from a 16-bit unsigned integer
     explicit integer(::stlsoft::uint16_t i);
-    ///  Construct from a 32-bit signed integer
+    /// Construct from a 32-bit signed integer
     explicit integer(::stlsoft::sint32_t i);
-    ///  Construct from a 32-bit unsigned integer
+    /// Construct from a 32-bit unsigned integer
     explicit integer(::stlsoft::uint32_t i);
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    ///  Construct from a 64-bit signed integer
+    /// Construct from a 64-bit signed integer
     explicit integer(::stlsoft::sint64_t i);
-    ///  Construct from a 64-bit unsigned integer
+    /// Construct from a 64-bit unsigned integer
     explicit integer(::stlsoft::uint64_t i);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-    ///  Construct from an int
+    /// Construct from an int
     explicit integer(int i);
-    ///  Construct from an unsigned int
+    /// Construct from an unsigned int
     explicit integer(unsigned int i);
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-    ///  Construct from a long
+    /// Construct from a long
     explicit integer(long i);
-    ///  Construct from an unsigned long
+    /// Construct from an unsigned long
     explicit integer(unsigned long i);
 #endif /* STLSOFT_CF_LONG_DISTINCT_INT_TYPE */
 
-    ///  Construct from an 8-bit signed integer
+    /// Construct from an 8-bit signed integer
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
     ///   the range [-128,127]
     /// \param format The format used in the conversion
     explicit integer(::stlsoft::sint8_t i, int minWidth, int format);
-    ///  Construct from an 8-bit unsigned integer
+    /// Construct from an 8-bit unsigned integer
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
     ///   the range [-128,127]
     /// \param format The format used in the conversion
     explicit integer(::stlsoft::uint8_t i, int minWidth, int format);
-    ///  Construct from a 16-bit signed integer
+    /// Construct from a 16-bit signed integer
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
     ///   the range [-128,127]
     /// \param format The format used in the conversion
     explicit integer(::stlsoft::sint16_t i, int minWidth, int format);
-    ///  Construct from a 16-bit unsigned integer
+    /// Construct from a 16-bit unsigned integer
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
     ///   the range [-128,127]
     /// \param format The format used in the conversion
     explicit integer(::stlsoft::uint16_t i, int minWidth, int format);
-    ///  Construct from a 32-bit signed integer
+    /// Construct from a 32-bit signed integer
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
     ///   the range [-128,127]
     /// \param format The format used in the conversion
     explicit integer(::stlsoft::sint32_t i, int minWidth, int format);
-    ///  Construct from a 32-bit unsigned integer
+    /// Construct from a 32-bit unsigned integer
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
@@ -305,14 +318,14 @@ public:
     /// \param format The format used in the conversion
     explicit integer(::stlsoft::uint32_t i, int minWidth, int format);
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    ///  Construct from a 64-bit signed integer
+    /// Construct from a 64-bit signed integer
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
     ///   the range [-128,127]
     /// \param format The format used in the conversion
     explicit integer(::stlsoft::sint64_t i, int minWidth, int format);
-    ///  Construct from a 64-bit unsigned integer
+    /// Construct from a 64-bit unsigned integer
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
@@ -321,14 +334,14 @@ public:
     explicit integer(::stlsoft::uint64_t i, int minWidth, int format);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 #ifdef STLSOFT_CF_INT_DISTINCT_INT_TYPE
-    ///  Construct from an int
+    /// Construct from an int
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
     ///   the range [-128,127]
     /// \param format The format used in the conversion
     explicit integer(int i, int minWidth, int format);
-    ///  Construct from an unsigned int
+    /// Construct from an unsigned int
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
@@ -337,14 +350,14 @@ public:
     explicit integer(unsigned int i, int minWidth, int format);
 #endif /* STLSOFT_CF_INT_DISTINCT_INT_TYPE */
 #ifdef STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-    ///  Construct from a long
+    /// Construct from a long
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
     ///   the range [-128,127]
     /// \param format The format used in the conversion
     explicit integer(long i, int minWidth, int format);
-    ///  Construct from an unsigned long
+    /// Construct from an unsigned long
     ///
     /// \param i The integer to convert to string form
     /// \param minWidth The minimum width of the converted form. Must be in
@@ -357,11 +370,13 @@ public:
 /// \name Accessors
 /// @{
 public:
-    ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* data() const;
-    ///  A nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* c_str() const;
-    ///  The length of the c-style string representation of the integer
+    /// The length of the c-style string representation of the integer
     size_t                  length() const;
 /// @}
 
@@ -427,7 +442,6 @@ PANTHEIOS_c_str_data_name_(
 {
     return i.data();
 }
-/** \overload c_str_data(integer const&) */
 inline
 pantheios_char_t const*
 c_str_data(integer const& i)
@@ -443,7 +457,6 @@ PANTHEIOS_c_str_len_name_(
 {
     return i.length();
 }
-/** \overload c_str_len(integer const&) */
 inline
 size_t
 c_str_len(
@@ -461,7 +474,6 @@ PANTHEIOS_c_str_ptr_name_(
 {
     return i.c_str();
 }
-/** \overload c_str_ptr(integer const&) */
 inline
 pantheios_char_t const*
 c_str_ptr(integer const& i)

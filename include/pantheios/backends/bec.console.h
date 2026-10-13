@@ -4,11 +4,11 @@
  * Purpose: Platform-specific console back-end
  *
  * Created: 3rd July 2009
- * Updated: 5th August 2026
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        6
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -93,14 +93,14 @@
 
 /** \defgroup group__backend__stock_backends__console Pantheios Console Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that outputs to the console, providing colour-coding
- *  options as available on the given platform.
  *
- * \note The Console back-end does not actually exist; rather it is the
- *   \ref group__backend__stock_backends__WindowsConsole for Windows, or the
- *   \ref group__backend__stock_backends__AnsiConsole otherwise. All types,
- *   functions and constants are actually those of the underlying
- *   platform-specific back-end.
+ * Back-end library that outputs to the console, providing colour-coding
+ * options as available on the given platform. \note The Console back-end
+ * does not actually exist; rather it is the
+ * \ref group__backend__stock_backends__WindowsConsole for Windows, or the
+ * \ref group__backend__stock_backends__AnsiConsole otherwise. All types,
+ * functions and constants are actually those of the underlying
+ * platform-specific back-end.
  */
 
 
@@ -110,12 +110,13 @@
 
 /** \defgroup group__backend__stock_backends__console__flags Pantheios Console Stock Back-end Flags
  * \ingroup group__backend__stock_backends__console
- *  Flags for the \ref group__backend__stock_backends__console
+ *
+ * Flags for the \ref group__backend__stock_backends__console
  */
 
 /** \def PANTHEIOS_BE_CONSOLE_F_NO_COLOURS
- *  Causes the \ref group__backend__stock_backends__console to
- *   emit log statements without colouring based on severity.
+ * Causes the \ref group__backend__stock_backends__console to emit log
+ * statements without colouring based on severity.
  * \ingroup group__backend__stock_backends__console__flags
  */
 
@@ -133,7 +134,7 @@
  */
 
 /** Structure used for specifying initialisation information to the
- *    be.console library.
+ * be.console library.
  * \ingroup group__backend__stock_backends__console
  */
 
@@ -152,19 +153,19 @@ typedef pan_be_AnsiConsole_init_t                           pan_be_console_init_
 
 #if defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
 /** \ref page__backend__callbacks "Callback" function defined by
- *    the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ * the application, invoked when the API is initialised with a NULL \c init
+ * parameter.
  * \ingroup group__backend__stock_backends__console
  *
- * \param backEndId The back-end identifier passed to the back-end
- *   during its initialisation.
+ * \param backEndId The back-end identifier passed to the back-end during
+ *   its initialisation;
  * \param init A pointer to an already-initialised instance of
- *   <code>pan_be_console_init_t</code>.
+ *   \c pan_be_console_init_t;
  *
- * If any application-specific changes are required they can be made to
- * the structure to which <code>init</code> points, which will already
- * have been initialised. These changes will then be incorporated into
- * the back-end state, and reflected in its behaviour.
+ * If any application-specific changes are required they can be made to the
+ * structure to which \c init points, which will already have been
+ * initialised. These changes will then be incorporated into the back-end
+ * state, and reflected in its behaviour.
  *
  * If no changes are required, then the function can be a simple stub,
  * containing no instructions.
@@ -173,22 +174,22 @@ typedef pan_be_AnsiConsole_init_t                           pan_be_console_init_
  *   \ref page__backend__callbacks "callback" version of the library is
  *   used.
  *
- * \exception "throw()" This function must <b>not</b> throw any exceptions!
+ * \exception "throw()" This function must \c not throw any exceptions!
  *
  * \warning This function will be called during the initialisation of
- *   Pantheios, and so <b>must not</b> make any calls into Pantheios, either
+ *   Pantheios, and so **must not** make any calls into Pantheios, either
  *   directly or indirectly!
  *
  * \note This function is actually an alias for the actual console required,
  *   depending on your operating system. If your operating system is
- *   Windows, then you are actually using
- *   the \ref group__backend__stock_backends__WindowsConsole, which means
- *   that the name of the callback function will be
- *   <code>pantheios_be_WindowsConsole_getAppInit()</code>; if your
- *   operating system is UNIX, then you are actually using
- *   the  \ref group__backend__stock_backends__AnsiConsole, which means that the
+ *   Windows, then you are actually using the
+ *   \ref group__backend__stock_backends__WindowsConsole, which means that
+ *   the name of the callback function will be
+ *   \c pantheios_be_WindowsConsole_getAppInit(); if your operating system
+ *   is UNIX, then you are actually using the
+ *   \ref group__backend__stock_backends__AnsiConsole, which means that the
  *   name of the callback function will be
- *   <code>pantheios_be_AnsiConsole_getAppInit()</code>.
+ *   \c pantheios_be_AnsiConsole_getAppInit().
  */
 
 PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
@@ -212,16 +213,15 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
  */
 
 /** Fills out a copy of the initialisation structure with default
- *    values (representative of the default behaviour of the library),
- *    ready to be customised and passed to the API initialiser function
- *    pantheios_be_console_init().
+ * values (representative of the default behaviour of the library), ready to
+ * be customised and passed to the API initialiser function
+ * pantheios_be_console_init().
  * \ingroup group__backend__stock_backends__console
  *
- * \note This function should <b>not</b> be called on an
- *   already-initialised instance, as is the case in the implementation
- *   of the pantheios_be_console_getAppInit() function, as it will
- *   already have been called by pantheios_be_console_init() prior
- *   to the callback.
+ * \note This function should \c not be called on an already-initialised
+ *   instance, as is the case in the implementation of the
+ *   pantheios_be_console_getAppInit() function, as it will already have
+ *   been called by pantheios_be_console_init() prior to the callback.
  */
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
@@ -235,7 +235,8 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 
 /** \def pantheios_be_console_init(processIdentity, id, init, param, ptoken)
  *
- * Implements the functionality for pantheios_be_init() over the Console API.
+ * Implements the functionality for pantheios_be_init() over the Console
+ * API.
  * \ingroup group__backend__stock_backends__console
  */
 
@@ -250,7 +251,8 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 
 /** \def pantheios_be_console_uninit(token)
  *
- * Implements the functionality for pantheios_be_uninit() over the Console API.
+ * Implements the functionality for pantheios_be_uninit() over the Console
+ * API.
  * \ingroup group__backend__stock_backends__console
  */
 
@@ -265,7 +267,8 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
 
 /** \def pantheios_be_console_logEntry(feToken, beToken, severity, entry, cchEntry)
  *
- * Implements the functionality for pantheios_be_logEntry() over the Console API.
+ * Implements the functionality for pantheios_be_logEntry() over the Console
+ * API.
  * \ingroup group__backend__stock_backends__console
  */
 
@@ -285,9 +288,8 @@ PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
  * \ingroup group__backend
  *
  * Processes an argument list in the same way as
- * pantheios_be_parseStockArgs(), filling out the
- * pan_be_console_init_t in accordance with the arguments
- * found.
+ * pantheios_be_parseStockArgs(), filling out the pan_be_console_init_t in
+ * accordance with the arguments found.
  *
  * Recognises the following standard argument names:
  * - "showProcessId"            (Boolean)

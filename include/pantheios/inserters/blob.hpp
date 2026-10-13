@@ -4,11 +4,11 @@
  * Purpose:     String inserter for binary regions.
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -43,8 +43,7 @@
 
 /** \file pantheios/inserters/blob.hpp
  *
- * [C++ only] Definition of the pantheios::blob inserter for binary
- *  regions.
+ * [C++ only] Definition of the pantheios::blob inserter for binary regions.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_BLOB
@@ -59,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MINOR       4
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_REVISION    8
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        34
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        35
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -103,7 +102,7 @@ namespace pantheios
  */
 
 /** Class for inserting binary regions types into Pantheios diagnostic
- *   logging statements.
+ * logging statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -169,22 +168,23 @@ public:
 /// \name Construction
 /// @{
 public:
-    ///  Constructs a \link pantheios::blob blob\endlink inserter
-    ///   that will display as an unbroken sequence of hexadecimal digits.
+    /// Constructs a \link pantheios::blob blob\endlink inserter that will
+    ///   display as an unbroken sequence of hexadecimal digits.
     ///
     /// \param pv Pointer to the first byte in the sequence to be displayed.
     /// \param cb Number of bytes in the sequence.
     blob(   void const* pv
         ,   size_t      cb);
 
-    ///  Constructs a \link pantheios::blob blob\endlink inserter
-    ///   that will break the sequence of hexadecimal digits into groups
-    ///   of the specified number of bytes, separating groups with the
-    ///   specified separator.
+    /// Constructs a \link pantheios::blob blob\endlink inserter that will
+    ///   break the sequence of hexadecimal digits into groups of the
+    ///   specified number of bytes, separating groups with the specified
+    ///   separator.
     ///
     /// \param pv Pointer to the first byte in the sequence to be displayed.
     /// \param cb Number of bytes in the sequence.
-    /// \param bytesPerGroup Number of bytes per group. Must be a power of 2.
+    /// \param bytesPerGroup Number of bytes per group. Must be a power of
+    ///   2.
     /// \param groupSeparator The string used to separate the byte groups.
     blob(
         void const*             pv
@@ -193,15 +193,16 @@ public:
     ,   pantheios_char_t const* groupSeparator
     );
 
-    ///  Constructs a \link pantheios::blob blob\endlink inserter
-    ///   that will break the sequence of hexadecimal digits into groups
-    ///   of the specified number of bytes, separating groups with the
-    ///   specified separator, and break into lines of the specified
-    ///   number of groups, using the given line separator.
+    /// Constructs a \link pantheios::blob blob\endlink inserter that will
+    ///   break the sequence of hexadecimal digits into groups of the
+    ///   specified number of bytes, separating groups with the specified
+    ///   separator, and break into lines of the specified number of groups,
+    ///   using the given line separator.
     ///
     /// \param pv Pointer to the first byte in the sequence to be displayed.
     /// \param cb Number of bytes in the sequence.
-    /// \param bytesPerGroup Number of bytes per group. Must be a power of 2.
+    /// \param bytesPerGroup Number of bytes per group. Must be a power of
+    ///   2.
     /// \param groupSeparator The string used to separate the byte groups.
     /// \param groupsPerLine Number of groups per line.
     /// \param lineSeparator The string used to separate the lines.
@@ -214,18 +215,20 @@ public:
     ,   pantheios_char_t const* lineSeparator  =   PANTHEIOS_LITERAL_STRING("\n")
     );
 
-    ///  Releases any storage associated with the instance.
+    /// Releases any storage associated with the instance.
     ~blob() STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name Accessors
 /// @{
 public:
-    ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* data() const;
-    ///  A nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* c_str() const;
-    ///  The length of the c-style string representation of the integer
+    /// The length of the c-style string representation of the integer
     size_t                  length() const;
 /// @}
 

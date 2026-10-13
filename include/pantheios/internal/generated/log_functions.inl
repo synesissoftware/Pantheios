@@ -4,7 +4,7 @@
  * Purpose:     Definitions of the pantheios_log_<N>() and
  *              pantheios_log_<N>_no_test() functions
  *
- * Generated:   19th June 2020
+ * Generated:   14th October 2026
  *
  * Status:      This file is auto-generated: DO NOT EDIT!
  *
@@ -14,6 +14,11 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+/** \file pantheios/internal/generated/log_functions.inl
+ *
+ * [C++ only] INTERNAL, AUTO-GENERATED FILE: Do not include
+ *   directly.
+ */
 
 #ifndef __cplusplus
 # error This file cannot be used independently, nor as part of a C compilation unit. It should only be included from within pantheios_core.cpp

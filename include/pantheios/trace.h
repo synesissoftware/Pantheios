@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Tracing API.
  *
  * Created:     11th November 2007
- * Updated:     16th July 2024
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MINOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       20
+# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -90,8 +90,8 @@
  * Pantheios Tracing API
  *
  * If your compiler supports variadic macros, you may use this to log by
- * "tracing", where your log statement is preceded by
- * "<file>(<line>): ", or "<file>: ", and so on, or a custom value.
+ * "tracing", where your log statement is preceded by "<file>(<line>): ", or
+ * "<file>: ", and so on, or a custom value.
  *
  * The Pantheios Tracing API consists of:
  *
@@ -106,12 +106,11 @@
  *  - PANTHEIOS_TRACE_INFORMATIONAL() -   uses pantheios::log_INFORMATIONAL
  *  - PANTHEIOS_TRACE_DEBUG()         -   uses pantheios::log_DEBUG
  *
- * By default, support for variadic macros is via the STLSoft
- * preprocessor symbol, STLSOFT_CF_SUPPORTS_VARIADIC_MACROS. If that is
- * defined, and you have *not* defined PANTHEIOS_NO_USE_VARIADIC_MACROS,
- * then the symbol PANTHEIOS_USES_VARIADIC_MACROS will be defined, and
- * the various aspects of the Pantheios tracing api described above will be
- * available to you.
+ * By default, support for variadic macros is via the STLSoft preprocessor
+ * symbol, STLSOFT_CF_SUPPORTS_VARIADIC_MACROS. If that is defined, and you
+ * have *not* defined PANTHEIOS_NO_USE_VARIADIC_MACROS, then the symbol
+ * PANTHEIOS_USES_VARIADIC_MACROS will be defined, and the various aspects
+ * of the Pantheios tracing api described above will be available to you.
  *
  * If you _know_ that your compiler supports variadics even when STLSoft
  * thinks that it does not, you can just define
@@ -131,8 +130,8 @@
 /** \def PANTHEIOS_TRACE_PREFIX
  *
  * The file-line prefix uses by the \ref group__tracing for C constructs. It
- *  defaults to PANTHEIOS_FILELINE, but may be \#define'd by the user to be
- *  something else, as desired.
+ * defaults to PANTHEIOS_FILELINE, but may be \#define'd by the user to be
+ * something else, as desired.
  *
  * \ingroup group__tracing
  */
@@ -140,8 +139,8 @@
 /** \def PANTHEIOS_TRACE_LOG_PREFIX
  *
  * The file-line prefix uses by the \ref group__tracing for C++ constructs.
- *  It defaults to <code>pantheios::pan_slice_t(PANTHEIOS_FILELINE)</code>,
- *  but may be \#define'd by the user to be something else, as desired.
+ * It defaults to `pantheios::pan_slice_t(PANTHEIOS_FILELINE)`, but may be
+ * \#define'd by the user to be something else, as desired.
  *
  * \ingroup group__tracing
  */
@@ -166,13 +165,13 @@
 
 /** \def PANTHEIOS_TRACE_PRINTF
  *
- * Logs a printf()-formatted statement with a file+line prefix, at the
- * given severity level
+ * Logs a printf()-formatted statement with a file+line prefix, at the given
+ * severity level
  *
  * \ingroup group__tracing
  *
- * \param sev The severity level
- * \param fmt The format string
+ * \param sev The severity level;
+ * \param fmt The format string;
  */
 
 # define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...)                                  \
@@ -189,12 +188,12 @@
 
 /** \def PANTHEIOS_TRACE
  *
- * Logs a multi-argument statement with a file+line prefix, at the
- * given severity level
+ * Logs a multi-argument statement with a file+line prefix, at the given
+ * severity level
  *
  * \ingroup group__tracing
  *
- * \param sev The severity level
+ * \param sev The severity level;
  */
 
 /** \def PANTHEIOS_TRACE_EMERGENCY

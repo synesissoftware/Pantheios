@@ -5,11 +5,11 @@
  *          used to generate levels pseudo-constants.
  *
  * Created: 22nd July 2006
- * Updated: 24th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -44,7 +44,7 @@
 /** \file pantheios/severity/levels.hpp
  *
  * [C++ only] Definition of the pantheios::level class template, which can
- *   be used to generate levels pseudo-constants.
+ * be used to generate levels pseudo-constants.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_SEVERITY_HPP_LEVELS
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_EDIT       26
+# define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_EDIT       27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -90,8 +90,8 @@ namespace pantheios
  */
 
 /** Class that acts as an integer value - indicating a severity
- *   level - but which also facilitates the provision of 28-bits of
- *   extended severity information.
+ * level - but which also facilitates the provision of 28-bits of extended
+ * severity information.
  *
  * In normal use, the levels instances - pantheios::debug,
  * pantheios::informational ... pantheios::emergency - can be used in the
@@ -129,11 +129,11 @@ public: // operators
         return Level;
     }
 
-    /// Function-call operator that allows extended severity information
-    /// to be provided to the front-/back-ends
+    /// Function-call operator that allows extended severity information to
+    ///   be provided to the front-/back-ends
     ///
-    /// \param extendedSeverityInformation28 28-bits of extended
-    ///   information to be included in the
+    /// \param extendedSeverityInformation28 28-bits of extended information
+    ///   to be included in the
     ///
     /// \pre 0 == (extendedSeverityInformation28 & ~0xf0000000)
     pan_sev_t operator ()(pan_sev_t extendedSeverityInformation28) const

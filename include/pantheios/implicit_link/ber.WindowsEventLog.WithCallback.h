@@ -4,7 +4,7 @@
  * Purpose: Implicitly links in the Pantheios Windows EventLog Remote Back-End Library
  *
  * Created: 7th December 2016
- * Updated: 16th December 2023
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
@@ -41,9 +41,10 @@
 
 /** \file pantheios/implicit_link/ber.WindowsEventLog.WithCallback.h
  *
- * [C, C++] Implicitly links in the \ref page__backend__callbacks "callback" version of the
- *   \ref group__backend__stock_backends__WindowsEventLog "Pantheios Windows EventLog Remote Back-End Library"
- *   as the remote back-end for the given link-unit.
+ * [C, C++] Implicitly links in the \ref page__backend__callbacks "callback"
+ * version of the \ref group__backend__stock_backends__WindowsEventLog
+ * "Pantheios Windows EventLog Remote Back-End Library" as the remote
+ * back-end for the given link-unit.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSEVENTLOG_WITHCALLBACK
@@ -58,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSEVENTLOG_WITHCALLBACK_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSEVENTLOG_WITHCALLBACK_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSEVENTLOG_WITHCALLBACK_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSEVENTLOG_WITHCALLBACK_EDIT      2
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BER_WINDOWSEVENTLOG_WITHCALLBACK_EDIT      3
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

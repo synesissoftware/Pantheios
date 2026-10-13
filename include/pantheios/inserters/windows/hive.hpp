@@ -4,11 +4,11 @@
  * Purpose:     Selective format string inserter for Windows Registry hives.
  *
  * Created:     22nd May 2016
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -42,9 +42,8 @@
 
 /** \file pantheios/inserters/windows/hive.hpp
  *
- * [C++ only] Definition of the pantheios::windows::hive inserter
- *   class, for selective format string insertion for Windows Registry
- *   hives.
+ * [C++ only] Definition of the pantheios::windows::hive inserter class, for
+ * selective format string insertion for Windows Registry hives.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE
@@ -59,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_EDIT        4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_EDIT        5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,9 +119,11 @@ public: // Construction
     {}
 
 public:
-    /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the pointer
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the pointer
     pantheios_char_t const* data() const;
-    /// A nul-terminated non-null pointer to the c-style string representation of the pointer
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the pointer
     pantheios_char_t const* c_str() const;
     /// The length of the c-style string representation of the pointer
     size_t                  length() const;

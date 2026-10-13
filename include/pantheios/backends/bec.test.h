@@ -4,11 +4,11 @@
  * Purpose: Declaration of the be.test library.
  *
  * Created: 1st November 2006
- * Updated: 28th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  4
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      31
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -90,9 +90,9 @@
 
 /** \defgroup group__backend__stock_backends__test Pantheios Test Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Stub back-end library that does no emission.
  *
- * This library is useful for conducting performance tests.
+ * Stub back-end library that does no emission. This library is useful for
+ * conducting performance tests.
  */
 
 /** Implements the functionality for pantheios_be_init() over the Test API.
@@ -106,14 +106,16 @@ PANTHEIOS_CALL(int) pantheios_be_test_init(
 ,   void**              ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the Test API.
+/** Implements the functionality for pantheios_be_uninit() over the Test
+ * API.
  * \ingroup group__backend__stock_backends__test
  */
 PANTHEIOS_CALL(void) pantheios_be_test_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the Test API.
+/** Implements the functionality for pantheios_be_logEntry() over the Test
+ * API.
  * \ingroup group__backend__stock_backends__test
  */
 PANTHEIOS_CALL(int) pantheios_be_test_logEntry(
@@ -131,9 +133,9 @@ PANTHEIOS_CALL(int) pantheios_be_test_logEntry(
  * \ingroup group__backend
  *
  * There are currently no arguments whatsoever for be.test, hence
- * pantheios_be_test_parseArgs is actually a \#define for
- * <code>NULL</code>. At such time as back-end specific arguments
- * are required, it will become a first-class function.
+ * pantheios_be_test_parseArgs is actually a \#define for \c NULL. At such
+ * time as back-end specific arguments are required, it will become a
+ * first-class function.
  */
 #define pantheios_be_test_parseArgs                         NULL
 
@@ -234,7 +236,8 @@ namespace test
         size_type           size() const STLSOFT_NOEXCEPT;
         /** Requests an element from the container
          *
-         * \param index The index of the element. Must be less than the value returned by size()
+         * \param index The index of the element. Must be less than the
+         *   value returned by size();
          */
         value_type const&   operator [](size_type index) const STLSOFT_NOEXCEPT;
 

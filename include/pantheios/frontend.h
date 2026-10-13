@@ -4,11 +4,11 @@
  * Purpose:     Pantheios front end API
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -57,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        23
+# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_REVISION    2
+# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,8 +84,8 @@
  *
  * Process identity is defined by the front-end according to the
  * return-value of pantheios_fe_getProcessIdentity(), which should return a
- * nul-terminated C-style string representing the host process,
- * e.g. \c "MyDaemon"
+ * nul-terminated C-style string representing the host process, e.g.
+ * \c "MyDaemon"
  *
  * Filtering is carried out by pantheios_fe_isSeverityLogged(), which
  * receives three parameters: the front-end state, the log entry severity
@@ -103,23 +103,23 @@
 /** Initialises the front-end API.
  *
  * \param reserved Currently reserved. Will be NULL in the current version
- *   of the Pantheios library
+ *   of the Pantheios library;
  * \param ptoken Pointer to a variable to receive the front-end token, which
  *   will be stored in the Pantheios library and passed to the
- *   pantheios_fe_getProcessIdentity(), pantheios_fe_isSeverityLogged()
- *   and pantheios_fe_uninit() functions.
+ *   pantheios_fe_getProcessIdentity(), pantheios_fe_isSeverityLogged() and
+ *   pantheios_fe_uninit() functions;
  *
  * This function must be defined by each front-end implementation. It
  * initialises the front-end. If the implementation requires any context,
  * e.g. a front-end class instance, this can be allocated and placed into
- * <code>*ptoken</code>, and it will be passed back to the other functions.
+ * `*ptoken`, and it will be passed back to the other functions.
  *
  * \note This function is called at most once per process.
  *
  * \return A status indicating whether the front-end is initialised, and
  *   therefore whether the Pantheios library as a whole is initialised.
- * \retval <0 Initialisation failed.
- * \retval >=0 Initialisation succeeded
+ * \retval &lt;0 Initialisation failed;
+ * \retval &gt;=0 Initialisation succeeded;
  */
 PANTHEIOS_CALL(int)
 pantheios_fe_init(
@@ -133,7 +133,7 @@ pantheios_fe_init(
  * uninitialises the front-end.
  *
  * \param token The front-end token, created by the pantheios_fe_init()
- *   function.
+ *   function;
  *
  * \note This function is called at most once per process.
  */
@@ -149,30 +149,30 @@ pantheios_fe_uninit(
  * statements by back-ends.
  *
  * \param token The front-end token, created by the pantheios_fe_init()
- *   function.There is no strict maximum length as far as Pantheios is
+ *   function. There is no strict maximum length as far as Pantheios is
  *   concerned, but it should not exceed the limitation provided by the
- *   implementing back-end library.
+ *   implementing back-end library;
  *
  * \return A pointer to a nul-terminated C-style string containing the
  *   process identity. May not be \c NULL, except on the first invocation,
- *   which is an indication to the Pantheios core library (and congnisant
- *   custom back-ends; no stock back-ends use his behaviour) that the
+ *   which is an indication to the Pantheios core library (and cognisant
+ *   custom back-ends; no stock back-ends use this behaviour) that the
  *   front-end may provide changing process identity at different times and
  *   that multiple calls are supported (and, presumably, desired). The
  *   maximum length of the returned string is 1000 characters.
  *
  * \note When the first invocation returns \c NULL, to denote that a dynamic
- *   process identity, the second invocation (which must
- *   <strong>not</strong> return \c NULL) will be called on the same thread,
- *   and at a time when no other (Pantheios-related) threads will call it,
- *   enabling implementations to use simple static flag variables to handle
- *   their switching logic (should they so wish).
+ *   process identity, the second invocation (which must \c not return
+ *   \c NULL) will be called on the same thread, and at a time when no other
+ *   (Pantheios-related) threads will call it, enabling implementations to
+ *   use simple static flag variables to handle their switching logic
+ *   (should they so wish).
  *
- * \note When the first invocation returns non-<code>NULL</code>, to denote
- *   a "classic" non-dynamic process identity, then the function is called
- *   at most once during successful
- *   initialisation, but in the case where initialisation fails it may be
- *   called additional times by the bail out handler
+ * \note When the first invocation returns non-\c NULL, to denote a
+ *   "classic" non-dynamic process identity, then the function is called at
+ *   most once during successful initialisation, but in the case where
+ *   initialisation fails it may be called additional times by the bail out
+ *   handler
  *   (\link pantheios::util::pantheios_onBailOut4 pantheios_onBailOut4()\endlink).
  *   It may also be called if the application, or the front-end or
  *   back-end(s) invoke the bail out handler at any other time.
@@ -184,29 +184,29 @@ pantheios_fe_getProcessIdentity(
 
 /** Determines whether a given severity is being logged
  *
- * This function must be defined by each front-end implementation. It
- * is called by the Pantheios core library and, optionally, a
- * back-end library, to determine whether, for the given \c severity,
- * any/all logging is enabled (\c backEndId == 0), or whether local
- * (\c backEndId == 1) or remote (\c backEndId == 2) logging is enabled. It
- * is passed the token returned in pantheios_fe_init(), which the front-end
- * implementation may use to access its state
+ * This function must be defined by each front-end implementation. It is
+ * called by the Pantheios core library and, optionally, a back-end library,
+ * to determine whether, for the given \c severity, any/all logging is
+ * enabled (\c backEndId == 0), or whether local (\c backEndId == 1) or
+ * remote (\c backEndId == 2) logging is enabled. It is passed the token
+ * returned in pantheios_fe_init(), which the front-end implementation may
+ * use to access its state
  *
  * \param token The front-end token, created by the pantheios_fe_init()
- *   function.
- * \param severity The severity level
+ *   function;
+ * \param severity The severity level;
  * \param backEndId A front-end+back-end specific parameter. This is used to
  *   enable a back-end, such as the be.lrsplit library, to simultaneously
  *   provide multiple actual back-ends and query the front-end for their
- *   respective. The value 0 is used within the Pantheios library and
- *   stands for every back-end. All other values indicate specific
- *   back-end splits, although by convention 1 indicates local logging
- *   and 2 indicates remote logging.
+ *   respective. The value 0 is used within the Pantheios library and stands
+ *   for every back-end. All other values indicate specific back-end splits,
+ *   although by convention 1 indicates local logging and 2 indicates remote
+ *   logging;
  *
  * \return A status indicating whether the given severity level is being
  *   logged.
- * \retval non-0 Severity is being logged.
- * \retval 0 Severity is not being logged.
+ * \retval !0 Severity is being logged;
+ * \retval 0 Severity is not being logged;
  *
  * \note This may be called from any thread in a multi-threaded process, and
  *   so it must be safely callable by multiple threads concurrently.

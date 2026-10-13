@@ -4,11 +4,11 @@
  * Purpose:     Back-/Front-end initialisation codes.
  *
  * Created:     27th September 2007
- * Updated:     16th July 2024
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_MINOR     5
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      21
+# define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,30 +80,32 @@
 /** \defgroup group__init_codes Pantheios Low-level Initialisation Codes
  *
  * Status codes for use by the implementors of the various sub-systems,
- * including \ref group__core_library "core",
- * \ref group__backend "back-ends",
- * \ref group__frontend "front-ends", and so on
+ * including \ref group__core_library "core", \ref group__backend
+ * "back-ends", \ref group__frontend "front-ends", and so on
  */
 
 /** \defgroup group__init_codes__core Pantheios Core Low-level Initialisation Codes
  *
  * \ingroup group__init_codes
  *
- * Status codes used in the implementation of the \ref group__core_library "core".
+ * Status codes used in the implementation of the \ref group__core_library
+ * "core".
  */
 
 /** \defgroup group__init_codes__backend Pantheios Back-End Low-level Initialisation Codes
  *
  * \ingroup group__init_codes
  *
- * Status codes for use by the implementors of \ref group__backend "back-ends".
+ * Status codes for use by the implementors of \ref group__backend
+ * "back-ends".
  */
 
 /** \defgroup group__init_codes__frontend Pantheios Front-End Low-level Initialisation Codes
  *
  * \ingroup group__init_codes
  *
- * Status codes for use by the implementors of \ref group__frontend "front-ends".
+ * Status codes for use by the implementors of \ref group__frontend
+ * "front-ends".
  */
 
 
@@ -129,7 +131,8 @@
 
 /** \def PANTHEIOS_INIT_RC_UNSPECIFIED_EXCEPTION
  *
- * Specifies that the operation failed because a general, standard-derived, exception was thrown
+ * Specifies that the operation failed because a general, standard-derived,
+ * exception was thrown
  *
  * \ingroup group__init_codes
  */
@@ -137,7 +140,9 @@
 
 /** \def PANTHEIOS_INIT_RC_UNKNOWN_FAILURE
  *
- * Specifies that the operation failed because a bespoke, non-standard-derived, exception was thrown; this may indicate a design failure.
+ * Specifies that the operation failed because a bespoke,
+ * non-standard-derived, exception was thrown; this may indicate a design
+ * failure.
  *
  * \ingroup group__init_codes
  */
@@ -145,7 +150,9 @@
 
 /** \def PANTHEIOS_INIT_RC_UNSPECIFIED_FAILURE
  *
- * Specifies that the operation failed in an unspecified manner. Callers may be able to retrieve more specific information from the platform-specific error mechanism (e.g. errno / GetLastError()).
+ * Specifies that the operation failed in an unspecified manner. Callers may
+ * be able to retrieve more specific information from the platform-specific
+ * error mechanism (e.g. errno / GetLastError()).
  *
  * \ingroup group__init_codes
  */
@@ -189,7 +196,8 @@
 
 /** \def PANTHEIOS_BE_INIT_RC_ALL_BACKEND_INITS_FAILED
  *
- * Specifies that the operation failed because all backends failed to initialise
+ * Specifies that the operation failed because all backends failed to
+ * initialise
  *
  * \ingroup group__init_codes__backend
  */
@@ -197,7 +205,8 @@
 
 /** \def PANTHEIOS_BE_INIT_RC_INVALID_PROCESSID
  *
- * Specifies that the operation failed due to specification of an invalid process identifier
+ * Specifies that the operation failed due to specification of an invalid
+ * process identifier
  *
  * \ingroup group__init_codes__backend
  */
@@ -221,7 +230,8 @@
 
 /** \def PANTHEIOS_BE_INIT_RC_INIT_PARAM_REQUIRED
  *
- * Specifies that the operation failed because a required parameter was not supplied
+ * Specifies that the operation failed because a required parameter was not
+ * supplied
  *
  * \ingroup group__init_codes__backend
  */
@@ -229,7 +239,8 @@
 
 /** \def PANTHEIOS_BE_INIT_RC_INVALID_ARGUMENT
  *
- * Specifies that the operation failed due to an invalid argument being specified
+ * Specifies that the operation failed due to an invalid argument being
+ * specified
  *
  * \ingroup group__init_codes__backend
  */
@@ -253,7 +264,8 @@
 
 /** \def PANTHEIOS_BE_INIT_RC_INIT_CONFIG_REQUIRED
  *
- * Specifies that the operation failed because required initialisation configuration information was missing or not supplied
+ * Specifies that the operation failed because required initialisation
+ * configuration information was missing or not supplied
  *
  * \ingroup group__init_codes__backend
  */
@@ -261,7 +273,8 @@
 
 /** \def PANTHEIOS_BE_INIT_RC_PERMISSION_DENIED
  *
- * Specifies that the operation failed because permission to access a required resource (such as a file) was denied
+ * Specifies that the operation failed because permission to access a
+ * required resource (such as a file) was denied
  *
  * \ingroup group__init_codes__backend
  */
@@ -269,7 +282,8 @@
 
 /** \def PANTHEIOS_BE_INIT_RC_RESOURCE_BUSY
  *
- * Specifies that the operation failed because a required resource (such as a file) was already in use
+ * Specifies that the operation failed because a required resource (such as
+ * a file) was already in use
  *
  * \ingroup group__init_codes__backend
  */
@@ -277,7 +291,8 @@
 
 /** \def PANTHEIOS_BE_INIT_RC_FUTURE_VERSION_REQUESTED
  *
- * Specifies that the operation failed because a version was requested of a later version of Pantheios than was used to create the back-end
+ * Specifies that the operation failed because a version was requested of a
+ * later version of Pantheios than was used to create the back-end
  *
  * \ingroup group__init_codes__backend
  */
@@ -285,7 +300,8 @@
 
 /** \def PANTHEIOS_BE_INIT_RC_OLD_VERSION_NOT_SUPPORTED
  *
- * Specifies that the operation failed because a version was requested of a previous version of Pantheios that is no longer supported by the back-end
+ * Specifies that the operation failed because a version was requested of a
+ * previous version of Pantheios that is no longer supported by the back-end
  *
  * \ingroup group__init_codes__backend
  */
@@ -293,7 +309,8 @@
 
 /** \def PANTHEIOS_BE_LOGENTRY_FAILED
  *
- * Specifies that the underlying call to <code>pantheios_be_logEntry()</code> failed; the back-end may have used bail-out logging to record the problem.
+ * Specifies that the underlying call to \c pantheios_be_logEntry() failed;
+ * the back-end may have used bail-out logging to record the problem.
  *
  * \ingroup group__init_codes__backend
  */
@@ -310,7 +327,8 @@
 
 /** \def PANTHEIOS_FE_INIT_RC_SYSTEM_NOT_CONFIGURED
  *
- * Specifies that the operation failed because the system is not correctly configured
+ * Specifies that the operation failed because the system is not correctly
+ * configured
  *
  * \ingroup group__init_codes__frontend
  */
@@ -318,7 +336,8 @@
 
 /** \def PANTHEIOS_FE_INIT_RC_INIT_CONFIG_REQUIRED
  *
- * Specifies that the operation failed because required initialisation configuration information was missing or not supplied
+ * Specifies that the operation failed because required initialisation
+ * configuration information was missing or not supplied
  *
  * \ingroup group__init_codes__frontend
  */

@@ -1,6 +1,6 @@
 #
 # Created:  7th September 2025
-# Updated:  11th October 2026
+# Updated:  14th October 2026
 #
 
 name: CI
@@ -111,6 +111,27 @@ jobs:
       os: ${{ matrix.os }}
       with-ace: true
     secrets: inherit
+
+  # API docs: Doxygen HTML only (no publish). Matches the CLASP documentation
+  # job — install Doxygen, run generate_doxygen.sh, assert index.html.
+  documentation:
+    name: Build API documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen
+
+      - name: Build API documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./generate_doxygen.sh
+          test -f _build/doxygen/html/index.html
 
   install-smoke:
     name: Install smoke (${{ matrix.os }}, ${{ matrix.toolchain || matrix.c_compiler }}${{ matrix.no_b64 && ', no-b64' || '' }})

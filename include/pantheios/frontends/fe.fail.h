@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios fe.fail Stock Front-end API.
  *
  * Created:     8th March 2008
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_EDIT       7
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_EDIT       10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -74,7 +74,8 @@
 
 /** \defgroup group__frontend__stock_frontends__fail Pantheios fail Stock Front-end
  * \ingroup group__frontend__stock_frontends
- *  Front-end library that does not initialise.
+ *
+ * Front-end library that does not initialise.
  */
 
 
