@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.core.pantheios_logputs project.
  *
  * Created: 19th November 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>
@@ -32,7 +32,7 @@
  * macros
  */
 
-#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)                    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)                    TEST_INT_EQ(static_cast<int>(x), static_cast<int>(y))
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -43,10 +43,10 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -127,9 +127,9 @@ static void test_1_01()
 
         if (!results.empty()) // Do test here, so will work with any back-end
         {
-            XTESTS_TEST_INTEGER_EQUAL(1, results.size());
+            TEST_INT_EQ(1, results.size());
             PANTHEIOS_SEV_LEVELS_EQUAL(severity, results[0].severity);
-            XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
+            TEST_STRING_EQ(PSTR("abc"), results[0].statement);
         }
     }}
 }
@@ -150,10 +150,10 @@ static void test_1_02()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_ERROR | (1 << 4), results[0].severity);
-    XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
+    TEST_STRING_EQ(PSTR("abc"), results[0].statement);
 }
 
 static void test_1_03()
@@ -172,10 +172,10 @@ static void test_1_03()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
     PANTHEIOS_SEV_LEVELS_EQUAL(PANTHEIOS_SEV_ERROR | (0x01234567 << 4), results[0].severity);
-    XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
+    TEST_STRING_EQ(PSTR("abc"), results[0].statement);
 }
 
 static void test_1_04()
@@ -203,19 +203,19 @@ static void test_1_04()
 
         if (!results.empty()) // Do test here, so will work with any back-end
         {
-            XTESTS_TEST_INTEGER_EQUAL(4, results.size());
+            TEST_INT_EQ(4, results.size());
 
             PANTHEIOS_SEV_LEVELS_EQUAL(severity, results[0].severity);
-            XTESTS_TEST_STRING_EQUAL(PSTR("abc"), results[0].statement);
+            TEST_STRING_EQ(PSTR("abc"), results[0].statement);
 
             PANTHEIOS_SEV_LEVELS_EQUAL(severity, results[1].severity);
-            XTESTS_TEST_STRING_EQUAL(PSTR("def"), results[1].statement);
+            TEST_STRING_EQ(PSTR("def"), results[1].statement);
 
             PANTHEIOS_SEV_LEVELS_EQUAL(severity, results[2].severity);
-            XTESTS_TEST_STRING_EQUAL(PSTR("abcdefghijklmnopqrstuvwxyz"), results[2].statement);
+            TEST_STRING_EQ(PSTR("abcdefghijklmnopqrstuvwxyz"), results[2].statement);
 
             PANTHEIOS_SEV_LEVELS_EQUAL(severity, results[3].severity);
-            XTESTS_TEST_STRING_EQUAL(PSTR("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), results[3].statement);
+            TEST_STRING_EQ(PSTR("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), results[3].statement);
         }
     }}
 }

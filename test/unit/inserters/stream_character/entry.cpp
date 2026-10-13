@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.inserter.stream_character project.
  *
  * Created: 9th May 2014
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -15,7 +15,7 @@
 
 #include <pantheios/inserters/stream_character.hpp>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
@@ -41,10 +41,10 @@ namespace
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -92,7 +92,7 @@ static void test_type_exists()
 {
     STLSOFT_SUPPRESS_UNUSED(typeid(pantheios::stream_character));
 
-    XTESTS_TEST_PASSED();
+    TEST_PASSED();
 }
 
 static void test_plain_characters()
@@ -104,46 +104,46 @@ static void test_plain_characters()
         PAN_CHAR_T  ch      =   plain_characters[i];
         PAN_CHAR_T  sz[2]   =   { ch, '\0' };
 
-        XTESTS_TEST_STRING_EQUAL(sz, pantheios::stream_character(ch));
+        TEST_STRING_EQ(sz, pantheios::stream_character(ch));
     }}
 }
 
 static void test_special_characters_1()
 {
-    XTESTS_TEST_STRING_EQUAL(PSTR("NUL"), pantheios::stream_character(0));
-    XTESTS_TEST_STRING_EQUAL(PSTR("SOH"), pantheios::stream_character(1));
-    XTESTS_TEST_STRING_EQUAL(PSTR("STX"), pantheios::stream_character(2));
-    XTESTS_TEST_STRING_EQUAL(PSTR("ETX"), pantheios::stream_character(3));
-    XTESTS_TEST_STRING_EQUAL(PSTR("EOT"), pantheios::stream_character(4));
-    XTESTS_TEST_STRING_EQUAL(PSTR("ENQ"), pantheios::stream_character(5));
-    XTESTS_TEST_STRING_EQUAL(PSTR("ACK"), pantheios::stream_character(6));
-    XTESTS_TEST_STRING_EQUAL(PSTR("BEL"), pantheios::stream_character(7));
-    XTESTS_TEST_STRING_EQUAL(PSTR("BS"), pantheios::stream_character(8));
-    XTESTS_TEST_STRING_EQUAL(PSTR("HT"), pantheios::stream_character(9));
-    XTESTS_TEST_STRING_EQUAL(PSTR("LF"), pantheios::stream_character(10));
-    XTESTS_TEST_STRING_EQUAL(PSTR("VT"), pantheios::stream_character(11));
-    XTESTS_TEST_STRING_EQUAL(PSTR("FF"), pantheios::stream_character(12));
-    XTESTS_TEST_STRING_EQUAL(PSTR("CR"), pantheios::stream_character(13));
-    XTESTS_TEST_STRING_EQUAL(PSTR("SO"), pantheios::stream_character(14));
-    XTESTS_TEST_STRING_EQUAL(PSTR("SI"), pantheios::stream_character(15));
-    XTESTS_TEST_STRING_EQUAL(PSTR("DLE"), pantheios::stream_character(16));
-    XTESTS_TEST_STRING_EQUAL(PSTR("DC1"), pantheios::stream_character(17));
-    XTESTS_TEST_STRING_EQUAL(PSTR("DC2"), pantheios::stream_character(18));
-    XTESTS_TEST_STRING_EQUAL(PSTR("DC3"), pantheios::stream_character(19));
-    XTESTS_TEST_STRING_EQUAL(PSTR("DC4"), pantheios::stream_character(20));
-    XTESTS_TEST_STRING_EQUAL(PSTR("NAK"), pantheios::stream_character(21));
-    XTESTS_TEST_STRING_EQUAL(PSTR("SYN"), pantheios::stream_character(22));
-    XTESTS_TEST_STRING_EQUAL(PSTR("ETB"), pantheios::stream_character(23));
-    XTESTS_TEST_STRING_EQUAL(PSTR("CAN"), pantheios::stream_character(24));
-    XTESTS_TEST_STRING_EQUAL(PSTR("EM"), pantheios::stream_character(25));
-    XTESTS_TEST_STRING_EQUAL(PSTR("SUB"), pantheios::stream_character(26));
-    XTESTS_TEST_STRING_EQUAL(PSTR("ESC"), pantheios::stream_character(27));
-    XTESTS_TEST_STRING_EQUAL(PSTR("FS"), pantheios::stream_character(28));
-    XTESTS_TEST_STRING_EQUAL(PSTR("GS"), pantheios::stream_character(29));
-    XTESTS_TEST_STRING_EQUAL(PSTR("RS"), pantheios::stream_character(30));
-    XTESTS_TEST_STRING_EQUAL(PSTR("US"), pantheios::stream_character(31));
+    TEST_STRING_EQ(PSTR("NUL"), pantheios::stream_character(0));
+    TEST_STRING_EQ(PSTR("SOH"), pantheios::stream_character(1));
+    TEST_STRING_EQ(PSTR("STX"), pantheios::stream_character(2));
+    TEST_STRING_EQ(PSTR("ETX"), pantheios::stream_character(3));
+    TEST_STRING_EQ(PSTR("EOT"), pantheios::stream_character(4));
+    TEST_STRING_EQ(PSTR("ENQ"), pantheios::stream_character(5));
+    TEST_STRING_EQ(PSTR("ACK"), pantheios::stream_character(6));
+    TEST_STRING_EQ(PSTR("BEL"), pantheios::stream_character(7));
+    TEST_STRING_EQ(PSTR("BS"), pantheios::stream_character(8));
+    TEST_STRING_EQ(PSTR("HT"), pantheios::stream_character(9));
+    TEST_STRING_EQ(PSTR("LF"), pantheios::stream_character(10));
+    TEST_STRING_EQ(PSTR("VT"), pantheios::stream_character(11));
+    TEST_STRING_EQ(PSTR("FF"), pantheios::stream_character(12));
+    TEST_STRING_EQ(PSTR("CR"), pantheios::stream_character(13));
+    TEST_STRING_EQ(PSTR("SO"), pantheios::stream_character(14));
+    TEST_STRING_EQ(PSTR("SI"), pantheios::stream_character(15));
+    TEST_STRING_EQ(PSTR("DLE"), pantheios::stream_character(16));
+    TEST_STRING_EQ(PSTR("DC1"), pantheios::stream_character(17));
+    TEST_STRING_EQ(PSTR("DC2"), pantheios::stream_character(18));
+    TEST_STRING_EQ(PSTR("DC3"), pantheios::stream_character(19));
+    TEST_STRING_EQ(PSTR("DC4"), pantheios::stream_character(20));
+    TEST_STRING_EQ(PSTR("NAK"), pantheios::stream_character(21));
+    TEST_STRING_EQ(PSTR("SYN"), pantheios::stream_character(22));
+    TEST_STRING_EQ(PSTR("ETB"), pantheios::stream_character(23));
+    TEST_STRING_EQ(PSTR("CAN"), pantheios::stream_character(24));
+    TEST_STRING_EQ(PSTR("EM"), pantheios::stream_character(25));
+    TEST_STRING_EQ(PSTR("SUB"), pantheios::stream_character(26));
+    TEST_STRING_EQ(PSTR("ESC"), pantheios::stream_character(27));
+    TEST_STRING_EQ(PSTR("FS"), pantheios::stream_character(28));
+    TEST_STRING_EQ(PSTR("GS"), pantheios::stream_character(29));
+    TEST_STRING_EQ(PSTR("RS"), pantheios::stream_character(30));
+    TEST_STRING_EQ(PSTR("US"), pantheios::stream_character(31));
 
-    XTESTS_TEST_STRING_EQUAL(PSTR("DEL"), pantheios::stream_character(127));
+    TEST_STRING_EQ(PSTR("DEL"), pantheios::stream_character(127));
 }
 
 } /* anonymous namespace */

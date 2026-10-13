@@ -4,7 +4,7 @@
  * Purpose: Unit test of be.N backend.
  *
  * Created: 29th January 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/backends/be.N.h>
 #include <pantheios/init_codes.h>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/stlsoft.h>        /* for STLSOFT_NUM_ELEMENTS */
 
@@ -179,12 +179,12 @@ int main(int argc, char* argv[])
 
             res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[2]);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[3]);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[4]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[5]);
+            TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
+            TEST_INT_EQ(1, s_initCounts[1]);
+            TEST_INT_EQ(1, s_initCounts[2]);
+            TEST_INT_EQ(1, s_initCounts[3]);
+            TEST_INT_EQ(1, s_initCounts[4]);
+            TEST_INT_EQ(0, s_initCounts[5]);
 
             pantheios_be_uninit(token);
 
@@ -204,12 +204,12 @@ int main(int argc, char* argv[])
 
             res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_FE_INIT_RC_INTENDED_FAILURE, res);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[1]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[2]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[3]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[4]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[5]);
+            TEST_INT_EQ(PANTHEIOS_FE_INIT_RC_INTENDED_FAILURE, res);
+            TEST_INT_EQ(0, s_initCounts[1]);
+            TEST_INT_EQ(0, s_initCounts[2]);
+            TEST_INT_EQ(0, s_initCounts[3]);
+            TEST_INT_EQ(0, s_initCounts[4]);
+            TEST_INT_EQ(0, s_initCounts[5]);
 
             /* pantheios_be_uninit(token); */
 
@@ -229,12 +229,12 @@ int main(int argc, char* argv[])
 
             res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[1]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[2]);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[3]);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[4]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[5]);
+            TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
+            TEST_INT_EQ(1, s_initCounts[1]);
+            TEST_INT_EQ(0, s_initCounts[2]);
+            TEST_INT_EQ(1, s_initCounts[3]);
+            TEST_INT_EQ(1, s_initCounts[4]);
+            TEST_INT_EQ(0, s_initCounts[5]);
 
             pantheios_be_uninit(token);
 
@@ -264,12 +264,12 @@ int main(int argc, char* argv[])
 
             res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[1]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[2]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[3]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[4]);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[5]);
+            TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
+            TEST_INT_EQ(0, s_initCounts[1]);
+            TEST_INT_EQ(0, s_initCounts[2]);
+            TEST_INT_EQ(0, s_initCounts[3]);
+            TEST_INT_EQ(0, s_initCounts[4]);
+            TEST_INT_EQ(1, s_initCounts[5]);
 
             pantheios_be_uninit(token);
 
@@ -299,12 +299,12 @@ int main(int argc, char* argv[])
 
             res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_BE_INIT_RC_ALL_BACKEND_INITS_FAILED, res);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[1]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[2]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[3]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[4]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[5]);
+            TEST_INT_EQ(PANTHEIOS_BE_INIT_RC_ALL_BACKEND_INITS_FAILED, res);
+            TEST_INT_EQ(0, s_initCounts[1]);
+            TEST_INT_EQ(0, s_initCounts[2]);
+            TEST_INT_EQ(0, s_initCounts[3]);
+            TEST_INT_EQ(0, s_initCounts[4]);
+            TEST_INT_EQ(0, s_initCounts[5]);
 
             pantheios_be_uninit(token);
 
@@ -323,27 +323,27 @@ int main(int argc, char* argv[])
 
             res = pantheios_be_init(PANTHEIOS_FE_PROCESS_IDENTITY, NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[1]);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[2]);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[3]);
-            XTESTS_TEST_INTEGER_EQUAL(1, s_initCounts[4]);
-            XTESTS_TEST_INTEGER_EQUAL(0, s_initCounts[5]);
+            TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
+            TEST_INT_EQ(1, s_initCounts[1]);
+            TEST_INT_EQ(1, s_initCounts[2]);
+            TEST_INT_EQ(1, s_initCounts[3]);
+            TEST_INT_EQ(1, s_initCounts[4]);
+            TEST_INT_EQ(0, s_initCounts[5]);
 
 
-            XTESTS_TEST_POINTER_EQUAL(NULL, pantheios_be_N_tokenFromId(-1, NULL));
-            XTESTS_TEST_POINTER_EQUAL(NULL, pantheios_be_N_tokenFromId( 0, NULL));
+            TEST_PTR_EQ(NULL, pantheios_be_N_tokenFromId(-1, NULL));
+            TEST_PTR_EQ(NULL, pantheios_be_N_tokenFromId( 0, NULL));
             { size_t i; for (i = 0 ; i != STLSOFT_NUM_ELEMENTS(tokens); ++i)
             {
                 tokens[i] = pantheios_be_N_tokenFromId((int)i, NULL);
 
                 if (i > 0)
                 {
-                    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, tokens[i]);
+                    TEST_PTR_NE(NULL, tokens[i]);
                 }
                 if (i > 1)
                 {
-                    XTESTS_TEST_POINTER_LESS(tokens[i], tokens[i - 1]);
+                    TEST_PTR_LT(tokens[i], tokens[i - 1]);
                 }
             }}
 

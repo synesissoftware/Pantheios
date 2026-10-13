@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.bec.WindowsSyslog project.
  *
  * Created: 17th October 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -111,15 +111,15 @@ static void test_getDefaultAppInit()
 
     pantheios_be_WindowsSyslog_getDefaultAppInit(&init);
 
-    XTESTS_TEST_INTEGER_EQUAL(0u, unsigned(init.flags));
-    XTESTS_TEST_INTEGER_EQUAL(4u, init.addrSize);
-    XTESTS_TEST_INTEGER_EQUAL(255u, init.bytes[0]);
-    XTESTS_TEST_INTEGER_EQUAL(255u, init.bytes[1]);
-    XTESTS_TEST_INTEGER_EQUAL(255u, init.bytes[2]);
-    XTESTS_TEST_INTEGER_EQUAL(255u, init.bytes[3]);
-    XTESTS_TEST_POINTER_EQUAL(static_cast<char const*>(NULL), init.hostName);
-    XTESTS_TEST_INTEGER_EQUAL(514u, init.port);
-    XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_SYSLOG_FAC_USER, init.facility);
+    TEST_INT_EQ(0u, unsigned(init.flags));
+    TEST_INT_EQ(4u, init.addrSize);
+    TEST_INT_EQ(255u, init.bytes[0]);
+    TEST_INT_EQ(255u, init.bytes[1]);
+    TEST_INT_EQ(255u, init.bytes[2]);
+    TEST_INT_EQ(255u, init.bytes[3]);
+    TEST_PTR_EQ(static_cast<char const*>(NULL), init.hostName);
+    TEST_INT_EQ(514u, init.port);
+    TEST_INT_EQ(PANTHEIOS_SYSLOG_FAC_USER, init.facility);
 }
 
 static void test_initialisation()
@@ -138,13 +138,13 @@ static void test_initialisation()
 
     if (r < 0)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise bec.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
+        TEST_FAIL_WITH_QUALIFIER("could not initialise bec.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
     }
     else
     {
         stlsoft::scoped_handle<void*> scoper(token, pantheios_be_WindowsSyslog_uninit);
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 }
 
@@ -164,7 +164,7 @@ static void test_1_2()
 
     if (r < 0)
     {
-        XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise bec.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
+        TEST_FAIL_WITH_QUALIFIER("could not initialise bec.WindowsSyslog", winstl::t2m(pantheios::getStockSeverityString(r)));
     }
     else
     {
@@ -172,7 +172,7 @@ static void test_1_2()
 
         // TODO: create a listening thread, do the statements, stop the thread, verify the elements;
 
-        XTESTS_TEST_PASSED();
+        TEST_PASSED();
     }
 }
 
@@ -230,7 +230,7 @@ static void TEST_pantheios_be_WindowsSyslog_WITH_ALL_STOCK_true()
 
     int const r = pantheios_be_WindowsSyslog_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    TEST_INTEGER_EQUAL(17, r);
+    TEST_INT_EQ(17, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -254,7 +254,7 @@ static void TEST_pantheios_be_WindowsSyslog_WITH_ALL_STOCK_true()
                                     |   PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY
                                     ;
 
-    TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 
 static void TEST_pantheios_be_WindowsSyslog_WITH_ALL_STOCK_false()
@@ -309,7 +309,7 @@ static void TEST_pantheios_be_WindowsSyslog_WITH_ALL_STOCK_false()
 
     int const r = pantheios_be_WindowsSyslog_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    TEST_INTEGER_EQUAL(17, r);
+    TEST_INT_EQ(17, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -333,7 +333,7 @@ static void TEST_pantheios_be_WindowsSyslog_WITH_ALL_STOCK_false()
                                     // |   PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY
                                     ;
 
-    TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 } /* anonymous namespace */
 

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.inserter.m2w project.
  *
  * Created: 22nd November 2010
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,7 +19,7 @@
 
 #include <pantheios/inserters/m2w.hpp>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/conversion/char_conversions.hpp>
 #include <stlsoft/shims/access/string.hpp>
@@ -85,7 +85,7 @@ static void test_1_01()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
     {
-        XTESTS_TEST_WIDE_STRING_EQUAL(stlsoft::m2w(strings[i]), pantheios::m2w(strings[i]));
+        TEST_WS_EQ(stlsoft::m2w(strings[i]), pantheios::m2w(strings[i]));
     }}
 }
 

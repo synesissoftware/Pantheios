@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.core.getProcessIdentity project.
  *
  * Created: 6th August 2012
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,7 +21,7 @@
  */
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -72,10 +72,10 @@ int main(int argc, char **argv)
 #define PSTR                                                PANTHEIOS_LITERAL_STRING
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -182,26 +182,26 @@ static void test_1_0(void)
 
     r = pantheios_init();
 
-    XTESTS_TEST_INTEGER_EQUAL(1, s_numGPI);
+    TEST_INT_EQ(1, s_numGPI);
 
     if (r < 0)
     {
-        XTESTS_FAIL("could not initialise libraries");
+        TEST_FAIL("could not initialise libraries");
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numInits);
-        XTESTS_TEST_INTEGER_EQUAL(0, s_numUninits);
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numGPI);
+        TEST_INT_EQ(1, s_numInits);
+        TEST_INT_EQ(0, s_numUninits);
+        TEST_INT_EQ(1, s_numGPI);
 
-        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("test_1_0"), pantheios_getProcessIdentity());
-        XTESTS_TEST_POINTER_NOT_EQUAL(pi, pantheios_getProcessIdentity());
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("test_1_0"), pantheios_getProcessIdentity());
+        TEST_PTR_NE(pi, pantheios_getProcessIdentity());
 
         pantheios_uninit();
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numInits);
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numUninits);
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numGPI);
+        TEST_INT_EQ(1, s_numInits);
+        TEST_INT_EQ(1, s_numUninits);
+        TEST_INT_EQ(1, s_numGPI);
     }
 }
 
@@ -215,26 +215,26 @@ static void test_1_1(void)
 
     r = pantheios_init();
 
-    XTESTS_TEST_INTEGER_EQUAL(2, s_numGPI);
+    TEST_INT_EQ(2, s_numGPI);
 
     if (r < 0)
     {
-        XTESTS_FAIL("could not initialise libraries");
+        TEST_FAIL("could not initialise libraries");
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numInits);
-        XTESTS_TEST_INTEGER_EQUAL(0, s_numUninits);
-        XTESTS_TEST_INTEGER_EQUAL(2, s_numGPI);
+        TEST_INT_EQ(1, s_numInits);
+        TEST_INT_EQ(0, s_numUninits);
+        TEST_INT_EQ(2, s_numGPI);
 
-        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("test_1_1"), pantheios_getProcessIdentity());
-        XTESTS_TEST_POINTER_EQUAL(pi, pantheios_getProcessIdentity());
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("test_1_1"), pantheios_getProcessIdentity());
+        TEST_PTR_EQ(pi, pantheios_getProcessIdentity());
 
         pantheios_uninit();
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numInits);
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numUninits);
-        XTESTS_TEST_INTEGER_EQUAL(4, s_numGPI);
+        TEST_INT_EQ(1, s_numInits);
+        TEST_INT_EQ(1, s_numUninits);
+        TEST_INT_EQ(4, s_numGPI);
     }
 }
 

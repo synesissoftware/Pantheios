@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.performance.util.date_elements_to_string project.
  *
  * Created: 13th November 2016
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -67,11 +67,9 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[]    =   PANTHEI
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
 # define P_strcmp                                           ::wcscmp
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
 # define P_strcmp                                           ::strcmp
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.inserter.integer project.
  *
  * Created: 21st December 2010
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -15,7 +15,7 @@
 
 #include <pantheios/inserters/integer.hpp>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <pantheios/util/test/compiler_warnings_suppression.last_include.h>
 
@@ -45,11 +45,11 @@ static void test_1_06();
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -88,33 +88,33 @@ namespace
 
 static void test_1_01()
 {
-    XTESTS_TEST_STRING_EQUAL(PSTR("0"), pantheios::integer(0));
+    TEST_STRING_EQ(PSTR("0"), pantheios::integer(0));
 }
 
 static void test_1_02()
 {
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1"), pantheios::integer(-1));
-    XTESTS_TEST_STRING_EQUAL(PSTR( "1"), pantheios::integer(+1));
+    TEST_STRING_EQ(PSTR("-1"), pantheios::integer(-1));
+    TEST_STRING_EQ(PSTR( "1"), pantheios::integer(+1));
 }
 
 static void test_1_03()
 {
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1"), pantheios::integer(-1, 0, 0));
-    XTESTS_TEST_STRING_EQUAL(PSTR( "1"), pantheios::integer(+1, 0, 0));
+    TEST_STRING_EQ(PSTR("-1"), pantheios::integer(-1, 0, 0));
+    TEST_STRING_EQ(PSTR( "1"), pantheios::integer(+1, 0, 0));
 }
 
 static void test_1_04()
 {
-    XTESTS_TEST_STRING_EQUAL(PSTR("+0"), pantheios::integer( 0, 0, pantheios::fmt::showPlus));
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1"), pantheios::integer(-1, 0, pantheios::fmt::showPlus));
-    XTESTS_TEST_STRING_EQUAL(PSTR("+1"), pantheios::integer(+1, 0, pantheios::fmt::showPlus));
+    TEST_STRING_EQ(PSTR("+0"), pantheios::integer( 0, 0, pantheios::fmt::showPlus));
+    TEST_STRING_EQ(PSTR("-1"), pantheios::integer(-1, 0, pantheios::fmt::showPlus));
+    TEST_STRING_EQ(PSTR("+1"), pantheios::integer(+1, 0, pantheios::fmt::showPlus));
 }
 
 
 static void test_1_06()
 {
-    XTESTS_TEST_STRING_EQUAL(PSTR("-1"), pantheios::integer(-1));
-//    XTESTS_TEST_STRING_EQUAL(PSTR("+1"), pantheios::integer(+1));
+    TEST_STRING_EQ(PSTR("-1"), pantheios::integer(-1));
+//    TEST_STRING_EQ(PSTR("+1"), pantheios::integer(+1));
 }
 
 
