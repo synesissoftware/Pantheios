@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.args project.
  *
  * Created: 19th October 2006
- * Updated: 12th October 2026
+ * Updated: 14th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -51,6 +51,8 @@ static void TEST_pantheios_args_alwaysQuoteArgs_CUSTOM_SEPARATOR();
 static void TEST_pantheios_args_neverQuoteArgs_CUSTOM_SEPARATOR();
 static void TEST_pantheios_args_quoteArgsWithSpaces_CUSTOM_SEPARATOR();
 static void TEST_pantheios_args_alwaysQuoteArgs_WITH_SPACES_CUSTOM_SEPARATOR();
+static void TEST_pantheios_args_ONE_ARG_WITH_ARG0_HAVING_DIRECTORY();
+static void TEST_pantheios_args_ONE_ARG_WITH_ARG0_HAVING_DIRECTORY_arg0FileOnly();
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -89,6 +91,8 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_pantheios_args_neverQuoteArgs_CUSTOM_SEPARATOR);
         XTESTS_RUN_CASE(TEST_pantheios_args_quoteArgsWithSpaces_CUSTOM_SEPARATOR);
         XTESTS_RUN_CASE(TEST_pantheios_args_alwaysQuoteArgs_WITH_SPACES_CUSTOM_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_pantheios_args_ONE_ARG_WITH_ARG0_HAVING_DIRECTORY);
+        XTESTS_RUN_CASE(TEST_pantheios_args_ONE_ARG_WITH_ARG0_HAVING_DIRECTORY_arg0FileOnly);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
         XTESTS_PRINT_RESULTS();
@@ -536,8 +540,59 @@ static void TEST_pantheios_args_alwaysQuoteArgs_WITH_SPACES_CUSTOM_SEPARATOR()
     TEST_MS_EQ("\"abc\"|\"def ghi\"|\"jkl\"", results[0].statement);
 }
 
+static void TEST_pantheios_args_ONE_ARG_WITH_ARG0_HAVING_DIRECTORY()
+{
+    // 1. Setup
 
+    pantheios::be::test::reset();
+
+
+    // 2. Create test data
+
+    char const* argv[] =
+    {
+       "dir1/dir2/abc"
+    };
+
+    pantheios::log_NOTICE(pantheios::args(STLSOFT_NUM_ELEMENTS(argv), argv));
+
+
+    // 3. Verification
+
+    pantheios::be::test::Results  results = pantheios::be::test::results();
+
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("dir1/dir2/abc", results[0].statement);
+}
+
+static void TEST_pantheios_args_ONE_ARG_WITH_ARG0_HAVING_DIRECTORY_arg0FileOnly()
+{
+    // 1. Setup
+
+    pantheios::be::test::reset();
+
+
+    // 2. Create test data
+
+    char const* argv[] =
+    {
+       "dir1/dir2/abc"
+    };
+
+    pantheios::log_NOTICE(pantheios::args(STLSOFT_NUM_ELEMENTS(argv), argv, pantheios::args::arg0FileOnly));
+
+
+    // 3. Verification
+
+    pantheios::be::test::Results  results = pantheios::be::test::results();
+
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc", results[0].statement);
+}
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
+
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
