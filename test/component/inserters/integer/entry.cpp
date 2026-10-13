@@ -2733,7 +2733,7 @@ static void test_1_21()
     TEST_STRING_EQ(PSTR("-1                    "), results[n++].statement);
     TEST_STRING_EQ(PSTR("+1234567812345678     "), results[n++].statement);
 
-    TEST_INT_EQ(results.size(), n);
+    TEST_INT_EQ(n, results.size());
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 }
 
