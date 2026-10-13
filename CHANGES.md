@@ -9,6 +9,8 @@
 * examples:
   * restored **example.cpp.linking.N_with_stock** (**examples/cpp/linking/N_with_stock/**) linking **be.N** + **bec.stock**, multiplexing console / file / fprintf / null / syslog (Windows Syslog + debugger on Win32); re-enabled the **examples/cpp/linking** CMake subdirectory; listed in **README.md**;
   * **example.cpp.linking.N_with_stock**: define `PANTHEIOS_FE_PROCESS_IDENTITY` with `PANTHEIOS_EXTERN` (C++ `const` external linkage) and `PAN_BE_N_BACKEND_LIST` in an `extern "C"` block without `PANTHEIOS_EXTERN` (stock Pantheios C++ form; avoids GCC/MinGW `-Werror` on `extern` + initializer);
+* testing:
+  * (example/test only) now uses **Diagnosticism** for version strings;
 * version:
   * current composite is `PANTHEIOS_VER_1_0_1_RC4` (`0x010001E4`) in **include/pantheios/pantheios.h**;
   * **test.unit.getversion** asserts `PANTHEIOS_VER_1_0_1_RC4`;
