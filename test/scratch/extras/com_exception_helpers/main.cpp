@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.extras.com_exception_helpers project.
  *
  * Created: 19th December 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -123,7 +123,7 @@ private:
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int /* argc */, char** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     TestClass   instance;
 

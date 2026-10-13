@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.bec.fprintf project.
  *
  * Created: 25th June 2020
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,7 +21,7 @@
 #include <pantheios/backend.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 #include <xtests/util/temp_file.hpp>
 
 /* STLSoft header files */
@@ -54,10 +54,10 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #define PAN_STR                                             PANTHEIOS_LITERAL_STRING
@@ -78,14 +78,14 @@
  * forward declarations
  */
 
-static void test_NO_THREAD_ID_and_NO_DATETIME();
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID();
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY();
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY();
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME();
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID();
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY();
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY();
 #ifdef PANTHEIOS_HAS_SHWILD
 
-static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID();
-static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION();
+static void TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID();
+static void TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION();
 #endif /* PANTHEIOS_HAS_SHWILD */
 
 
@@ -103,14 +103,14 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.component.bec.fprintf", verbosity))
     {
-        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME);
-        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID);
-        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY);
-        XTESTS_RUN_CASE(test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY);
 #ifdef PANTHEIOS_HAS_SHWILD
 
-        XTESTS_RUN_CASE(test_USE_UNIX_FORMAT_and_NO_THREAD_ID);
-        XTESTS_RUN_CASE(test_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION);
 #endif /* PANTHEIOS_HAS_SHWILD */
 
         XTESTS_PRINT_RESULTS();
@@ -201,7 +201,7 @@ namespace {
 
             if (0 != r)
             {
-                XTESTS_TEST_FAIL_WITH_QUALIFIER("could not initialise bec.fprintf", stlsoft::t2a(pantheios::getStockSeverityString(r)));
+                TEST_FAIL_WITH_QUALIFIER("could not initialise bec.fprintf", stlsoft::t2a(pantheios::getStockSeverityString(r)));
 
                 return std::make_pair(false, file_lines_t());
             }
@@ -225,7 +225,7 @@ namespace {
                 {
                     char buffer[21];
 
-                    XTESTS_TEST_FAIL_WITH_QUALIFIER("could not write to bec.fprintf", stlsoft::integer_to_decimal_string(&buffer[0], STLSOFT_NUM_ELEMENTS(buffer), r2));
+                    TEST_FAIL_WITH_QUALIFIER("could not write to bec.fprintf", stlsoft::integer_to_decimal_string(&buffer[0], STLSOFT_NUM_ELEMENTS(buffer), r2));
 
                     return std::make_pair(false, file_lines_t());
                 }
@@ -244,7 +244,7 @@ namespace {
  * forward implementations
  */
 
-static void test_NO_THREAD_ID_and_NO_DATETIME()
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
@@ -257,12 +257,12 @@ static void test_NO_THREAD_ID_and_NO_DATETIME()
     {
         file_lines_t const& lines = r.second;
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; Notice]: some message"), lines[0]);
+        TEST_INT_EQ(1u, lines.size());
+        TEST_MS_EQ(("[test.component.bec.fprintf; Notice]: some message"), lines[0]);
     }
 }
 
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID()
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
@@ -276,12 +276,12 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_PROCESS_ID()
     {
         file_lines_t const& lines = r.second;
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[Notice]: some message"), lines[0]);
+        TEST_INT_EQ(1u, lines.size());
+        TEST_MS_EQ(("[Notice]: some message"), lines[0]);
     }
 }
 
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY()
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
@@ -295,12 +295,12 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NO_SEVERITY()
     {
         file_lines_t const& lines = r.second;
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf]: some message"), lines[0]);
+        TEST_INT_EQ(1u, lines.size());
+        TEST_MS_EQ(("[test.component.bec.fprintf]: some message"), lines[0]);
     }
 }
 
-static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY()
+static void TEST_pantheios_be_fprintf_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_NO_THREAD_ID
@@ -314,13 +314,13 @@ static void test_NO_THREAD_ID_and_NO_DATETIME_and_NUMERIC_SEVERITY()
     {
         file_lines_t const& lines = r.second;
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(("[test.component.bec.fprintf; 5]: some message"), lines[0]);
+        TEST_INT_EQ(1u, lines.size());
+        TEST_MS_EQ(("[test.component.bec.fprintf; 5]: some message"), lines[0]);
     }
 }
 #ifdef PANTHEIOS_HAS_SHWILD
 
-static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID()
+static void TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
@@ -333,18 +333,18 @@ static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID()
     {
         file_lines_t const& lines = r.second;
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[*\\]: *", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*test.component.bec.fprintf,*", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*" PATTERN_DATE_TIMEms "*", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*Notice*", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*test.component.bec.fprintf, " PATTERN_DATE_TIMEms "; Notice*", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEms "; Notice\\]: *", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEms "; Notice\\]: some message", lines[0]);
+        TEST_INT_EQ(1u, lines.size());
+        TEST_MS_MATCHES("\\[*\\]: *", lines[0]);
+        TEST_MS_MATCHES("*test.component.bec.fprintf,*", lines[0]);
+        TEST_MS_MATCHES("*" PATTERN_DATE_TIMEms "*", lines[0]);
+        TEST_MS_MATCHES("*Notice*", lines[0]);
+        TEST_MS_MATCHES("*test.component.bec.fprintf, " PATTERN_DATE_TIMEms "; Notice*", lines[0]);
+        TEST_MS_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEms "; Notice\\]: *", lines[0]);
+        TEST_MS_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEms "; Notice\\]: some message", lines[0]);
     }
 }
 
-static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION()
+static void TEST_pantheios_be_fprintf_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION()
 {
     pantheios_uint32_t  flags   =   0
                                 |   PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT
@@ -358,14 +358,14 @@ static void test_USE_UNIX_FORMAT_and_NO_THREAD_ID_and_HIGH_RESOLUTION()
     {
         file_lines_t const& lines = r.second;
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, lines.size());
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[*\\]: *", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*test.component.bec.fprintf,*", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*" PATTERN_DATE_TIMEus "*", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*Notice*", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("*test.component.bec.fprintf, " PATTERN_DATE_TIMEus "; Notice*", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEus "; Notice\\]: *", lines[0]);
-        XTESTS_TEST_MULTIBYTE_STRING_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEus "; Notice\\]: some message", lines[0]);
+        TEST_INT_EQ(1u, lines.size());
+        TEST_MS_MATCHES("\\[*\\]: *", lines[0]);
+        TEST_MS_MATCHES("*test.component.bec.fprintf,*", lines[0]);
+        TEST_MS_MATCHES("*" PATTERN_DATE_TIMEus "*", lines[0]);
+        TEST_MS_MATCHES("*Notice*", lines[0]);
+        TEST_MS_MATCHES("*test.component.bec.fprintf, " PATTERN_DATE_TIMEus "; Notice*", lines[0]);
+        TEST_MS_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEus "; Notice\\]: *", lines[0]);
+        TEST_MS_MATCHES("\\[test.component.bec.fprintf, " PATTERN_DATE_TIMEus "; Notice\\]: some message", lines[0]);
     }
 }
 #endif /* PANTHEIOS_HAS_SHWILD */

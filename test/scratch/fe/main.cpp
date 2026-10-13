@@ -80,7 +80,7 @@ static void call_all_severities()
     pantheios::log_EMERGENCY("Emergency, there's an emergency going on, it's still going on, it's still an emergency");
 }
 
-static int main_(int /* argc */, char ** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
 #if defined(_DEBUG)
     {

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.inserter.w2m project.
  *
  * Created: 21st December 2010
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -19,7 +19,7 @@
 
 #include <pantheios/inserters/w2m.hpp>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/conversion/char_conversions.hpp>
 #include <stlsoft/shims/access/string.hpp>
@@ -36,7 +36,7 @@
 namespace
 {
 
-static void test_1_01();
+static void TEST_pantheios_w2m_MATCHES_stlsoft_w2m();
 } /* anonymous namespace */
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.inserter.w2m", verbosity))
     {
-        XTESTS_RUN_CASE(test_1_01);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_MATCHES_stlsoft_w2m);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -81,11 +81,11 @@ namespace
     };
 
 
-static void test_1_01()
+static void TEST_pantheios_w2m_MATCHES_stlsoft_w2m()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
     {
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(stlsoft::w2m(strings[i]), pantheios::w2m(strings[i]));
+        TEST_MS_EQ(stlsoft::w2m(strings[i]), pantheios::w2m(strings[i]));
     }}
 }
 

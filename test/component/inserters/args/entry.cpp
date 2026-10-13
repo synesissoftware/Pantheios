@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.args project.
  *
  * Created: 19th October 2006
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.hpp>      // Pantheios C++ main header
@@ -35,22 +35,22 @@
 
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_11();
-static void test_1_12();
-static void test_1_13();
-static void test_1_14();
-static void test_1_15();
-static void test_1_16();
-static void test_1_17();
-static void test_1_18();
+static void TEST_pantheios_args_EMPTY_NULL_argv();
+static void TEST_pantheios_args_ONE_ARG();
+static void TEST_pantheios_args_TWO_ARGS();
+static void TEST_pantheios_args_FOUR_ARGS();
+static void TEST_pantheios_args_alwaysQuoteArgs();
+static void TEST_pantheios_args_neverQuoteArgs_WITH_SPACES();
+static void TEST_pantheios_args_quoteArgsWithSpaces();
+static void TEST_pantheios_args_alwaysQuoteArgs_WITH_SPACES();
+static void TEST_pantheios_args_EMPTY_CUSTOM_SEPARATOR();
+static void TEST_pantheios_args_ONE_ARG_CUSTOM_SEPARATOR();
+static void TEST_pantheios_args_TWO_ARGS_CUSTOM_SEPARATOR();
+static void TEST_pantheios_args_FOUR_ARGS_CUSTOM_SEPARATOR();
+static void TEST_pantheios_args_alwaysQuoteArgs_CUSTOM_SEPARATOR();
+static void TEST_pantheios_args_neverQuoteArgs_CUSTOM_SEPARATOR();
+static void TEST_pantheios_args_quoteArgsWithSpaces_CUSTOM_SEPARATOR();
+static void TEST_pantheios_args_alwaysQuoteArgs_WITH_SPACES_CUSTOM_SEPARATOR();
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -73,22 +73,22 @@ int main(int argc, char* argv[])
     {
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_11);
-        XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
-        XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
-        XTESTS_RUN_CASE(test_1_16);
-        XTESTS_RUN_CASE(test_1_17);
-        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(TEST_pantheios_args_EMPTY_NULL_argv);
+        XTESTS_RUN_CASE(TEST_pantheios_args_ONE_ARG);
+        XTESTS_RUN_CASE(TEST_pantheios_args_TWO_ARGS);
+        XTESTS_RUN_CASE(TEST_pantheios_args_FOUR_ARGS);
+        XTESTS_RUN_CASE(TEST_pantheios_args_alwaysQuoteArgs);
+        XTESTS_RUN_CASE(TEST_pantheios_args_neverQuoteArgs_WITH_SPACES);
+        XTESTS_RUN_CASE(TEST_pantheios_args_quoteArgsWithSpaces);
+        XTESTS_RUN_CASE(TEST_pantheios_args_alwaysQuoteArgs_WITH_SPACES);
+        XTESTS_RUN_CASE(TEST_pantheios_args_EMPTY_CUSTOM_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_pantheios_args_ONE_ARG_CUSTOM_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_pantheios_args_TWO_ARGS_CUSTOM_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_pantheios_args_FOUR_ARGS_CUSTOM_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_pantheios_args_alwaysQuoteArgs_CUSTOM_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_pantheios_args_neverQuoteArgs_CUSTOM_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_pantheios_args_quoteArgsWithSpaces_CUSTOM_SEPARATOR);
+        XTESTS_RUN_CASE(TEST_pantheios_args_alwaysQuoteArgs_WITH_SPACES_CUSTOM_SEPARATOR);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
         XTESTS_PRINT_RESULTS();
@@ -103,7 +103,7 @@ int main(int argc, char* argv[])
 
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 
-static void test_1_01()
+static void TEST_pantheios_args_EMPTY_NULL_argv()
 {
     // 1. Setup
 
@@ -119,12 +119,12 @@ static void test_1_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_1_02()
+static void TEST_pantheios_args_ONE_ARG()
 {
     // 1. Setup
 
@@ -145,12 +145,12 @@ static void test_1_02()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc", results[0].statement);
 }
 
-static void test_1_03()
+static void TEST_pantheios_args_TWO_ARGS()
 {
     // 1. Setup
 
@@ -172,12 +172,12 @@ static void test_1_03()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc, def", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc, def", results[0].statement);
 }
 
-static void test_1_04()
+static void TEST_pantheios_args_FOUR_ARGS()
 {
     // 1. Setup
 
@@ -201,12 +201,12 @@ static void test_1_04()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc, def, ghi, jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc, def, ghi, jkl", results[0].statement);
 }
 
-static void test_1_05()
+static void TEST_pantheios_args_alwaysQuoteArgs()
 {
     // 1. Setup
 
@@ -230,12 +230,12 @@ static void test_1_05()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\"abc\", \"def\", \"ghi\", \"jkl\"", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("\"abc\", \"def\", \"ghi\", \"jkl\"", results[0].statement);
 }
 
-static void test_1_06()
+static void TEST_pantheios_args_neverQuoteArgs_WITH_SPACES()
 {
     // 1. Setup
 
@@ -258,12 +258,12 @@ static void test_1_06()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc, def ghi, jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc, def ghi, jkl", results[0].statement);
 }
 
-static void test_1_07()
+static void TEST_pantheios_args_quoteArgsWithSpaces()
 {
     // 1. Setup
 
@@ -286,12 +286,12 @@ static void test_1_07()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc, \"def ghi\", jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc, \"def ghi\", jkl", results[0].statement);
 }
 
-static void test_1_08()
+static void TEST_pantheios_args_alwaysQuoteArgs_WITH_SPACES()
 {
     // 1. Setup
 
@@ -314,13 +314,13 @@ static void test_1_08()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\"abc\", \"def ghi\", \"jkl\"", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("\"abc\", \"def ghi\", \"jkl\"", results[0].statement);
 }
 
 
-static void test_1_11()
+static void TEST_pantheios_args_EMPTY_CUSTOM_SEPARATOR()
 {
     // 1. Setup
 
@@ -336,12 +336,12 @@ static void test_1_11()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_1_12()
+static void TEST_pantheios_args_ONE_ARG_CUSTOM_SEPARATOR()
 {
     // 1. Setup
 
@@ -362,12 +362,12 @@ static void test_1_12()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc", results[0].statement);
 }
 
-static void test_1_13()
+static void TEST_pantheios_args_TWO_ARGS_CUSTOM_SEPARATOR()
 {
     // 1. Setup
 
@@ -389,12 +389,12 @@ static void test_1_13()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc|def", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc|def", results[0].statement);
 }
 
-static void test_1_14()
+static void TEST_pantheios_args_FOUR_ARGS_CUSTOM_SEPARATOR()
 {
     // 1. Setup
 
@@ -418,12 +418,12 @@ static void test_1_14()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc|def|ghi|jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc|def|ghi|jkl", results[0].statement);
 }
 
-static void test_1_15()
+static void TEST_pantheios_args_alwaysQuoteArgs_CUSTOM_SEPARATOR()
 {
     // 1. Setup
 
@@ -447,12 +447,12 @@ static void test_1_15()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\"abc\"|\"def\"|\"ghi\"|\"jkl\"", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("\"abc\"|\"def\"|\"ghi\"|\"jkl\"", results[0].statement);
 }
 
-static void test_1_16()
+static void TEST_pantheios_args_neverQuoteArgs_CUSTOM_SEPARATOR()
 {
     // 1. Setup
 
@@ -475,12 +475,12 @@ static void test_1_16()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc|def ghi|jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc|def ghi|jkl", results[0].statement);
 }
 
-static void test_1_17()
+static void TEST_pantheios_args_quoteArgsWithSpaces_CUSTOM_SEPARATOR()
 {
     // 1. Setup
 
@@ -503,12 +503,12 @@ static void test_1_17()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc|\"def ghi\"|jkl", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("abc|\"def ghi\"|jkl", results[0].statement);
 }
 
-static void test_1_18()
+static void TEST_pantheios_args_alwaysQuoteArgs_WITH_SPACES_CUSTOM_SEPARATOR()
 {
     // 1. Setup
 
@@ -531,9 +531,9 @@ static void test_1_18()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\"abc\"|\"def ghi\"|\"jkl\"", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1, results.size());
+    TEST_MS_EQ("\"abc\"|\"def ghi\"|\"jkl\"", results[0].statement);
 }
 
 

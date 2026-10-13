@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.getversion project.
  *
  * Created: 28th August 2008
- * Updated: 10th October 2026
+ * Updated: 13th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,7 +22,6 @@
 
 /* xTests header files */
 #include <xtests/terse-api.h>
-#include <xtests/xtests.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -35,15 +34,15 @@
  * forward declarations
  */
 
-static void test_signature(void);
-static void test_call(void);
-static void test_version(void);
-static void test_major(void);
-static void test_minor(void);
-static void test_patch(void);
-static void test_revision(void);
-static void test_alphabeta(void);
-static void test_composite(void);
+static void TEST_pantheios_getVersion_SIGNATURE(void);
+static void TEST_pantheios_getVersion_CALL(void);
+static void TEST_pantheios_getVersion_VERSION(void);
+static void TEST_pantheios_getVersion_MAJOR(void);
+static void TEST_pantheios_getVersion_MINOR(void);
+static void TEST_pantheios_getVersion_PATCH(void);
+static void TEST_pantheios_getVersion_REVISION(void);
+static void TEST_pantheios_getVersion_ALPHABETA(void);
+static void TEST_pantheios_getVersion_COMPOSITE(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,15 +58,15 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.getversion", verbosity))
     {
-        XTESTS_RUN_CASE(test_signature);
-        XTESTS_RUN_CASE(test_call);
-        XTESTS_RUN_CASE(test_version);
-        XTESTS_RUN_CASE(test_major);
-        XTESTS_RUN_CASE(test_minor);
-        XTESTS_RUN_CASE(test_patch);
-        XTESTS_RUN_CASE(test_revision);
-        XTESTS_RUN_CASE(test_alphabeta);
-        XTESTS_RUN_CASE(test_composite);
+        XTESTS_RUN_CASE(TEST_pantheios_getVersion_SIGNATURE);
+        XTESTS_RUN_CASE(TEST_pantheios_getVersion_CALL);
+        XTESTS_RUN_CASE(TEST_pantheios_getVersion_VERSION);
+        XTESTS_RUN_CASE(TEST_pantheios_getVersion_MAJOR);
+        XTESTS_RUN_CASE(TEST_pantheios_getVersion_MINOR);
+        XTESTS_RUN_CASE(TEST_pantheios_getVersion_PATCH);
+        XTESTS_RUN_CASE(TEST_pantheios_getVersion_REVISION);
+        XTESTS_RUN_CASE(TEST_pantheios_getVersion_ALPHABETA);
+        XTESTS_RUN_CASE(TEST_pantheios_getVersion_COMPOSITE);
 
         XTESTS_PRINT_RESULTS();
 
@@ -82,49 +81,49 @@ int main(int argc, char* argv[])
  * test function implementations
  */
 
-static void test_signature(void)
+static void TEST_pantheios_getVersion_SIGNATURE(void)
 {
     pan_uint32_t (PANTHEIOS_CALLCONV *pfn)(void) = pantheios_getVersion;
 
     TEST_FNPTR_NE(((pan_uint32_t (PANTHEIOS_CALLCONV *)(void))0), pfn);
 }
 
-static void test_call(void)
+static void TEST_pantheios_getVersion_CALL(void)
 {
     pantheios_getVersion();
 
     TEST_PASSED();
 }
 
-static void test_version(void)
+static void TEST_pantheios_getVersion_VERSION(void)
 {
     pan_uint32_t const ver = pantheios_getVersion();
 
     TEST_INT_EQ(PANTHEIOS_VER, ver);
 }
 
-static void test_major(void)
+static void TEST_pantheios_getVersion_MAJOR(void)
 {
     pan_uint32_t const verMajor = (pantheios_getVersion() & 0xff000000) >> 24;
 
     TEST_INT_EQ(PANTHEIOS_VER_MAJOR, verMajor);
 }
 
-static void test_minor(void)
+static void TEST_pantheios_getVersion_MINOR(void)
 {
     pan_uint32_t const verMinor = (pantheios_getVersion() & 0x00ff0000) >> 16;
 
     TEST_INT_EQ(PANTHEIOS_VER_MINOR, verMinor);
 }
 
-static void test_patch(void)
+static void TEST_pantheios_getVersion_PATCH(void)
 {
     pan_uint32_t const verPatch = (pantheios_getVersion() & 0x0000ff00) >> 8;
 
     TEST_INT_EQ(PANTHEIOS_VER_PATCH, verPatch);
 }
 
-static void test_revision(void)
+static void TEST_pantheios_getVersion_REVISION(void)
 {
     pan_uint32_t const verRevision = (pantheios_getVersion() & 0x0000ff00) >> 8;
 
@@ -132,7 +131,7 @@ static void test_revision(void)
     TEST_INT_EQ(PANTHEIOS_VER_PATCH, PANTHEIOS_VER_REVISION);
 }
 
-static void test_alphabeta(void)
+static void TEST_pantheios_getVersion_ALPHABETA(void)
 {
     pan_uint32_t const verAlphabeta = pantheios_getVersion() & 0x000000ff;
 
@@ -141,7 +140,7 @@ static void test_alphabeta(void)
     TEST_INT_EQ(PANTHEIOS_VER_ALPHABETA, verAlphabeta);
 }
 
-static void test_composite(void)
+static void TEST_pantheios_getVersion_COMPOSITE(void)
 {
     pan_uint32_t const expected = (pan_uint32_t)(
         0

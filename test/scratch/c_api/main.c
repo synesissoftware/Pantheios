@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.c_api project.
  *
  * Created: 14th October 2005
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,7 +29,7 @@
  * forward declarations
  */
 
-static int main_(int /* argc */, char ** /*argv*/);
+static int main_(int /* argc */, char* /*argv*/[]);
 static void some_logging_1(void);
 static void some_logging_2(void);
 static void some_logging_3(void);
@@ -51,7 +51,7 @@ PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
  * main()
  */
 
-static int main_(int argc, char **argv)
+static int main_(int argc, char* argv[])
 {
     STLSOFT_SUPPRESS_UNUSED(argc);
     STLSOFT_SUPPRESS_UNUSED(argv);

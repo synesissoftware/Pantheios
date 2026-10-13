@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.bec.fprintf project.
  *
  * Created: 3rd August 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -23,7 +23,7 @@
 #include <stlsoft/smartptr/scoped_handle.hpp>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Standard C++ header files */
 #include <exception>                    // for std::exception
@@ -52,7 +52,7 @@ namespace
  * macros
  */
 
-#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    TEST_INT_EQ(static_cast<int>(x), static_cast<int>(y))
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -69,13 +69,13 @@ typedef platformstl::basic_file_lines<char>     lines_t;
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 
 # define PGET_(x)                       string_t(stlsoft::m2w(x).c_str())
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 
 # define PGET_(x)                       (x)
 
@@ -102,22 +102,22 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 namespace
 {
 
-static void test_1_00();
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
-static void test_1_0a();
-static void test_1_0b();
-static void test_1_0c();
-static void test_1_0d();
-static void test_1_0e();
-static void test_1_0f();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_NONE();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_DATETIME();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME_SEVERITY();
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_ALL_STOCK();
 
 } /* anonymous namespace */
 
@@ -132,22 +132,22 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER_WITH_STREAM("test.unit.bec.fprintf", verbosity, stdout))
     {
-        XTESTS_RUN_CASE(test_1_00);
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
-        XTESTS_RUN_CASE(test_1_0a);
-        XTESTS_RUN_CASE(test_1_0b);
-        XTESTS_RUN_CASE(test_1_0c);
-        XTESTS_RUN_CASE(test_1_0d);
-        XTESTS_RUN_CASE(test_1_0e);
-        XTESTS_RUN_CASE(test_1_0f);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_NONE);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_DATETIME);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME_SEVERITY);
+        XTESTS_RUN_CASE(TEST_pantheios_be_fprintf_logEntry_SHOW_ALL_STOCK);
 
         XTESTS_PRINT_RESULTS();
 
@@ -198,7 +198,7 @@ static PAN_CHAR_T const* strings[] =
     ,   PANTHEIOS_LITERAL_STRING("00000000000000000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111222222222222222222222222222222222222222223333333333333333333333333")
 };
 
-static void test_1_00()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_NONE()
 {
     pan_be_fprintf_init_t  init;
 
@@ -216,7 +216,7 @@ static void test_1_00()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -227,7 +227,7 @@ static void test_1_00()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -245,20 +245,20 @@ static void test_1_00()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
             }
         }
     }
 }
 
-static void test_1_01()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID()
 {
     pan_be_fprintf_init_t  init;
 
@@ -276,7 +276,7 @@ static void test_1_01()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -287,7 +287,7 @@ static void test_1_01()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -305,20 +305,20 @@ static void test_1_01()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
             }
         }
     }
 }
 
-static void test_1_02()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID()
 {
     pan_be_fprintf_init_t  init;
 
@@ -336,7 +336,7 @@ static void test_1_02()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -347,7 +347,7 @@ static void test_1_02()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -365,20 +365,20 @@ static void test_1_02()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
-                    XTESTS_TEST_STRING_EQUAL(resultPrefix + strings[i], PGET_(lines[i]));
+                    TEST_STRING_EQ(resultPrefix + strings[i], PGET_(lines[i]));
                 }}
             }
         }
     }
 }
 
-static void test_1_03()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID()
 {
     pan_be_fprintf_init_t  init;
 
@@ -396,7 +396,7 @@ static void test_1_03()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -407,7 +407,7 @@ static void test_1_03()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -425,20 +425,20 @@ static void test_1_03()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
             }
         }
     }
 }
 
-static void test_1_04()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME()
 {
     pan_be_fprintf_init_t  init;
 
@@ -456,7 +456,7 @@ static void test_1_04()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -467,7 +467,7 @@ static void test_1_04()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -485,14 +485,14 @@ static void test_1_04()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
 #endif /* 0 */
                 }}
             }
@@ -500,7 +500,7 @@ static void test_1_04()
     }
 }
 
-static void test_1_05()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME()
 {
     pan_be_fprintf_init_t  init;
 
@@ -518,7 +518,7 @@ static void test_1_05()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -529,7 +529,7 @@ static void test_1_05()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -547,14 +547,14 @@ static void test_1_05()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
 #endif /* 0 */
                 }}
             }
@@ -562,7 +562,7 @@ static void test_1_05()
     }
 }
 
-static void test_1_06()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME()
 {
     pan_be_fprintf_init_t  init;
 
@@ -580,7 +580,7 @@ static void test_1_06()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -591,7 +591,7 @@ static void test_1_06()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -609,14 +609,14 @@ static void test_1_06()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
 #endif /* 0 */
                 }}
             }
@@ -624,7 +624,7 @@ static void test_1_06()
     }
 }
 
-static void test_1_07()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_DATETIME()
 {
     pan_be_fprintf_init_t  init;
 
@@ -642,7 +642,7 @@ static void test_1_07()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -653,7 +653,7 @@ static void test_1_07()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -671,14 +671,14 @@ static void test_1_07()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
 #endif /* 0 */
                 }}
             }
@@ -686,7 +686,7 @@ static void test_1_07()
     }
 }
 
-static void test_1_08()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -704,7 +704,7 @@ static void test_1_08()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -715,7 +715,7 @@ static void test_1_08()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -733,20 +733,20 @@ static void test_1_08()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
             }
         }
     }
 }
 
-static void test_1_09()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -764,7 +764,7 @@ static void test_1_09()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -775,7 +775,7 @@ static void test_1_09()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -793,20 +793,20 @@ static void test_1_09()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
             }
         }
     }
 }
 
-static void test_1_0a()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -824,7 +824,7 @@ static void test_1_0a()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -835,7 +835,7 @@ static void test_1_0a()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -853,20 +853,20 @@ static void test_1_0a()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
             }
         }
     }
 }
 
-static void test_1_0b()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_THREAD_ID_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -884,7 +884,7 @@ static void test_1_0b()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -895,7 +895,7 @@ static void test_1_0b()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -913,20 +913,20 @@ static void test_1_0b()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
                 }}
             }
         }
     }
 }
 
-static void test_1_0c()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_DATETIME_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -944,7 +944,7 @@ static void test_1_0c()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -955,7 +955,7 @@ static void test_1_0c()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -973,14 +973,14 @@ static void test_1_0c()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
 #endif /* 0 */
                 }}
             }
@@ -988,7 +988,7 @@ static void test_1_0c()
     }
 }
 
-static void test_1_0d()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_PROCESS_ID_DATETIME_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -1006,7 +1006,7 @@ static void test_1_0d()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1017,7 +1017,7 @@ static void test_1_0d()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -1035,14 +1035,14 @@ static void test_1_0d()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
 #endif /* 0 */
                 }}
             }
@@ -1050,7 +1050,7 @@ static void test_1_0d()
     }
 }
 
-static void test_1_0e()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_THREAD_ID_DATETIME_SEVERITY()
 {
     pan_be_fprintf_init_t  init;
 
@@ -1068,7 +1068,7 @@ static void test_1_0e()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1079,7 +1079,7 @@ static void test_1_0e()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -1097,14 +1097,14 @@ static void test_1_0e()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
 #endif /* 0 */
                 }}
             }
@@ -1112,7 +1112,7 @@ static void test_1_0e()
     }
 }
 
-static void test_1_0f()
+static void TEST_pantheios_be_fprintf_logEntry_SHOW_ALL_STOCK()
 {
     pan_be_fprintf_init_t  init;
 
@@ -1130,7 +1130,7 @@ static void test_1_0f()
 
     if (PANTHEIOS_INIT_RC_SUCCESS != res)
     {
-        XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
+        TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.fprintf", pantheios::getInitErrorString(res));
     }
     else
     {
@@ -1141,7 +1141,7 @@ static void test_1_0f()
 
         if (NULL == f)
         {
-            XTESTS_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
+            TEST_FAIL_WITH_QUALIFIER("failed to reopen standard output stream", strerror(errno));
         }
         else
         {
@@ -1159,14 +1159,14 @@ static void test_1_0f()
             ::remove(STDERR_FILE_NAME);
 
             // Start the tests
-            XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
+            REQUIRE(TEST_INT_EQ(STLSOFT_NUM_ELEMENTS(strings), lines.size()));
 
             if (STLSOFT_NUM_ELEMENTS(strings) == lines.size())
             {
                 { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(strings); ++i)
                 {
 #if 0
-                    XTESTS_TEST_STRING_EQUAL((resultPrefix + strings[i]), PGET_(lines[i]));
+                    TEST_STRING_EQ((resultPrefix + strings[i]), PGET_(lines[i]));
 #endif /* 0 */
                 }}
             }

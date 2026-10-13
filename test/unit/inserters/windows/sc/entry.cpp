@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.inserters.windows.sc project.
  *
  * Created: 5th April 2014
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -16,7 +16,7 @@
 
 #include <pantheios/inserters/windows/sc.hpp>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <winerror.h>
 
@@ -30,9 +30,9 @@
 namespace
 {
 
-static void test_regular_decimal_codes_DWORD();
-static void test_highbit_hexadecimal_codes_DWORD();
-static void test_1_07();
+static void TEST_pantheios_windows_sc_REGULAR_DECIMAL_CODES_DWORD();
+static void TEST_pantheios_windows_sc_HIGHBIT_HEXADECIMAL_CODES_DWORD();
+static void TEST_pantheios_windows_sc_WSA_DECIMAL_CODES_MATCH_integer();
 } // anonymous namespace
 
 
@@ -51,10 +51,10 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -71,9 +71,9 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.inserters.windows.sc", verbosity))
     {
-        XTESTS_RUN_CASE(test_regular_decimal_codes_DWORD);
-        XTESTS_RUN_CASE(test_highbit_hexadecimal_codes_DWORD);
-        XTESTS_RUN_CASE(test_1_07);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_sc_REGULAR_DECIMAL_CODES_DWORD);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_sc_HIGHBIT_HEXADECIMAL_CODES_DWORD);
+        XTESTS_RUN_CASE(TEST_pantheios_windows_sc_WSA_DECIMAL_CODES_MATCH_integer);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -2340,35 +2340,35 @@ namespace
         ,   WSANO_DATA
     };
 
-static void test_regular_decimal_codes_DWORD()
+static void TEST_pantheios_windows_sc_REGULAR_DECIMAL_CODES_DWORD()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(regular_decimal_codes); ++i)
     {
         DWORD const code = static_cast<DWORD>(regular_decimal_codes[i]);
 
-        XTESTS_TEST_STRING_EQUAL(pantheios::integer(code), pantheios::windows::sc(code));
+        TEST_STRING_EQ(pantheios::integer(code), pantheios::windows::sc(code));
     }}
 }
 
 
-static void test_highbit_hexadecimal_codes_DWORD()
+static void TEST_pantheios_windows_sc_HIGHBIT_HEXADECIMAL_CODES_DWORD()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(highbit_hexadecimal_codes); ++i)
     {
         DWORD const code = static_cast<DWORD>(highbit_hexadecimal_codes[i]);
 
-        XTESTS_TEST_STRING_EQUAL(pantheios::integer(code, 8, pantheios::fmt::fullHex), pantheios::windows::sc(code));
+        TEST_STRING_EQ(pantheios::integer(code, 8, pantheios::fmt::fullHex), pantheios::windows::sc(code));
     }}
 }
 
 
-static void test_1_07()
+static void TEST_pantheios_windows_sc_WSA_DECIMAL_CODES_MATCH_integer()
 {
     { for (size_t i = 0; i != STLSOFT_NUM_ELEMENTS(WSA_decimal_codes); ++i)
     {
         DWORD const code = static_cast<DWORD>(WSA_decimal_codes[i]);
 
-        XTESTS_TEST_STRING_EQUAL(pantheios::integer(code), pantheios::windows::sc(code));
+        TEST_STRING_EQ(pantheios::integer(code), pantheios::windows::sc(code));
     }}
 }
 
