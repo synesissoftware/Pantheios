@@ -1,7 +1,7 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
-## 1.0.1-rc4 - 18th October 2026
+## 1.0.1-rc4 - 14th October 2026
 
 * backends:
   * **bec.stock**: excludes **bec.test** (test harness stays a separate library);
