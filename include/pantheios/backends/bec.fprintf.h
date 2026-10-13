@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios fprintf Stock Back-end API.
  *
  * Created: 21st June 2005
- * Updated: 28th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        26
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,8 +84,8 @@
 
 /** \defgroup group__backend__stock_backends__fprintf Pantheios fprintf() Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that writes to the standard output or error stream
- *   via <code>fprintf()</code>.
+ *   Back-end library that writes to the standard output or error stream
+ *   via \c fprintf().
  */
 
 
@@ -96,7 +96,7 @@
 /** \defgroup group__backend__stock_backends__fprintf__flags Pantheios fprintf() Stock Back-end Flags
  *
  * \ingroup group__backend__stock_backends__fprintf
- *  Flags for the \ref group__backend__stock_backends__fprintf
+ *   Flags for the \ref group__backend__stock_backends__fprintf
  */
 
 
@@ -133,16 +133,16 @@ typedef struct pan_be_fprintf_init_t                        pan_be_fprintf_init_
 
 /** \ref page__backend__callbacks "Callback" function defined by
  *    the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ *    API is initialised with a NULL \c init parameter.
  * \ingroup group__backend__stock_backends__fprintf
  *
  * \param backEndId The back-end identifier passed to the back-end
- *   during its initialisation.
+ *   during its initialisation;
  * \param init A pointer to an already-initialised instance of
- *   pan_be_fprintf_init_t.
+ *   pan_be_fprintf_init_t;
  *
  * If any application-specific changes are required they can be made to
- * the structure to which <code>init</code> points, which will already
+ * the structure to which \c init points, which will already
  * have been initialised. These changes will then be incorporated into
  * the back-end state, and reflected in its behaviour.
  *
@@ -153,10 +153,10 @@ typedef struct pan_be_fprintf_init_t                        pan_be_fprintf_init_
  *   \ref page__backend__callbacks "callback" version of the library is
  *   used.
  *
- * \exception "throw()" This function must <b>not</b> throw any exceptions!
+ * \exception "throw()" This function must \c not throw any exceptions!
  *
  * \warning This function will be called during the initialisation of
- *   Pantheios, and so <b>must not</b> make any calls into Pantheios, either
+ *   Pantheios, and so **must not** make any calls into Pantheios, either
  *   directly or indirectly!
  */
 PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(
@@ -175,7 +175,7 @@ PANTHEIOS_CALL(void) pantheios_be_fprintf_getAppInit(
  *    pantheios_be_fprintf_init().
  * \ingroup group__backend__stock_backends__fprintf
  *
- * \note This function should <b>not</b> be called on an
+ * \note This function should \c not be called on an
  *   already-initialised instance, as is the case in the implementation
  *   of the pantheios_be_fprintf_getAppInit() function, as it will
  *   already have been called by pantheios_be_fprintf_init() prior

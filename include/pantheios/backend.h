@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MINOR      12
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       37
+# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       38
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -294,24 +294,24 @@
  * and pantheios_be_uninit() functions.
  *
  * \param processIdentity The identity of the process within which Pantheios is
- * being used. Should be a meaningful human-readable string. Must not be NULL.
- * Maximum length is limited solely by what the back-end library can accomodate.
- * The string pointed to by this parameter may not persist after the call is
- * complete, so the back-end should take a copy if required.
+ *   being used. Should be a meaningful human-readable string. Must not be NULL.
+ *   Maximum length is limited solely by what the back-end library can accomodate.
+ *   The string pointed to by this parameter may not persist after the call is
+ *   complete, so the back-end should take a copy if required;
  * \param reserved Currently reserved. Will contain 0 in the current version of
- * the Pantheios library
+ *   the Pantheios library;
  * \param ptoken Pointer to a variable to receive the back-end token, which will
- * be stored in the Pantheios library and passed to the pantheios_be_logEntry()
- * and pantheios_be_uninit() functions
+ *   be stored in the Pantheios library and passed to the pantheios_be_logEntry()
+ *   and pantheios_be_uninit() functions;
  *
- * \note This function must be defined by each back-end implementation
+ * \note This function must be defined by each back-end implementation.
  *
  * \note This function is called at most once per process.
  *
  * \return A status indicating whether the back-end is initialised, and
- * therefore whether the Pantheios library as a whole is initialised.
- * \retval <0 Initialisation failed.
- * \retval >=0 Initialisation succeeded
+ *   therefore whether the Pantheios library as a whole is initialised.
+ * \retval &lt;0 Initialisation failed;
+ * \retval &gt;=0 Initialisation succeeded;
  */
 PANTHEIOS_CALL(int) pantheios_be_init(
     PAN_CHAR_T const*   processIdentity
@@ -327,11 +327,11 @@ PANTHEIOS_CALL(int) pantheios_be_init(
  * uninitialisation of the Pantheios core library. It is passed the value of the
  * token stored on its behalf by the Pantheios core library.
  *
- * \note This function must be defined by each back-end implementation
+ * \note This function must be defined by each back-end implementation.
  *
  * \note This function is called at most once per process.
  *
- * \param token The back-end token, created by the pantheios_be_init() function
+ * \param token The back-end token, created by the pantheios_be_init() function;
  */
 PANTHEIOS_CALL(void) pantheios_be_uninit(void* token);
 
@@ -345,19 +345,19 @@ PANTHEIOS_CALL(void) pantheios_be_uninit(void* token);
  * the log entry. The \c feToken and \c beToken parameters hold the
  * library-specific state of the front-end and back-end librarys, respectively.
  *
- * \note This function must be defined by each back-end implementation
+ * \note This function must be defined by each back-end implementation.
  *
  * \note This may be called from any thread in a multi-threaded process.
  *
  * \param feToken The front-end token, created by the pantheios_fe_init()
  *   function. This value does not hold any meaning to the back-end library, and
  *   may be used only to passed back to the front-end in calls to
- *   pantheios_fe_isSeverityLogged().
- * \param beToken The back-end token, created by the pantheios_be_init() function
- * \param severity The severity level.
- * \param entry The nul-terminated string containing the entry information
+ *   pantheios_fe_isSeverityLogged();
+ * \param beToken The back-end token, created by the pantheios_be_init() function;
+ * \param severity The severity level;
+ * \param entry The nul-terminated string containing the entry information;
  * \param cchEntry The number of bytes in the string, not including the
- * nul-terminating character
+ *   nul-terminating character;
  */
 PANTHEIOS_CALL(int) pantheios_be_logEntry(
     void*               feToken
@@ -378,19 +378,19 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
  *
  *  Back-end generation macro for the Pantheios API
  *
- * Generates the functions <code>pantheios_be_init()</code>,
- * <code>pantheios_be_uninit()</code> and
- * <code>pantheios_be_logEntry()</code> from the given back-end
+ * Generates the functions \c pantheios_be_init(),
+ * \c pantheios_be_uninit() and
+ * \c pantheios_be_logEntry() from the given back-end
  * implementation. The given id is assumed to be common to all three
  * back-end API functions for the given back-end implementation. In other
  * words, for the back-end "be.loader" one would specify the id to be
- * <code>loader</code>, from which the macro assumes the existence of the
- * three functions <code>pantheios_be_loader_init()</code>,
- * <code>pantheios_be_loader_uninit()</code> and
- * <code>pantheios_be_loader_logEntry()</code>.
+ * \c loader, from which the macro assumes the existence of the
+ * three functions \c pantheios_be_loader_init(),
+ * \c pantheios_be_loader_uninit() and
+ * \c pantheios_be_loader_logEntry().
  *
- * \param id The back-end identifier, e.g. <code>loader</code> for the
- *   "be.loader" back-end.
+ * \param id The back-end identifier, e.g. \c loader for the
+ *   "be.loader" back-end;
  */
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_BE_DEFINE_BE_FUNCTIONS_(fullId)                                                                                  \
@@ -412,19 +412,19 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
  *
  *  Local back-end generation macro for the Pantheios API
  *
- * Generates the functions <code>pantheios_be_local_init()</code>,
- * <code>pantheios_be_local_uninit()</code> and
- * <code>pantheios_be_local_logEntry()</code> from the given back-end
+ * Generates the functions \c pantheios_be_local_init(),
+ * \c pantheios_be_local_uninit() and
+ * \c pantheios_be_local_logEntry() from the given back-end
  * implementation. The given id is assumed to be common to all three
  * back-end API functions for the given back-end implementation. In other
  * words, for the back-end "be.loader" one would specify the id to be
- * <code>loader</code>, from which the macro assumes the existence of the
- * three functions <code>pantheios_be_loader_init()</code>,
- * <code>pantheios_be_loader_uninit()</code> and
- * <code>pantheios_be_loader_logEntry()</code>.
+ * \c loader, from which the macro assumes the existence of the
+ * three functions \c pantheios_be_loader_init(),
+ * \c pantheios_be_loader_uninit() and
+ * \c pantheios_be_loader_logEntry().
  *
- * \param id The back-end identifier, e.g. <code>loader</code> for the
- *   "be.loader" back-end.
+ * \param id The back-end identifier, e.g. \c loader for the
+ *   "be.loader" back-end;
  */
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_BE_DEFINE_BEL_FUNCTIONS_(fullId)                                                                                         \
@@ -443,19 +443,19 @@ PANTHEIOS_CALL(int) pantheios_be_logEntry(
  *
  *  Remote back-end generation macro for the Pantheios API
  *
- * Generates the functions <code>pantheios_be_remote_init()</code>,
- * <code>pantheios_be_remote_uninit()</code> and
- * <code>pantheios_be_remote_logEntry()</code> from the given back-end
+ * Generates the functions \c pantheios_be_remote_init(),
+ * \c pantheios_be_remote_uninit() and
+ * \c pantheios_be_remote_logEntry() from the given back-end
  * implementation. The given id is assumed to be common to all three
  * back-end API functions for the given back-end implementation. In other
  * words, for the back-end "be.loader" one would specify the id to be
- * <code>loader</code>, from which the macro assumes the existence of the
- * three functions <code>pantheios_be_loader_init()</code>,
- * <code>pantheios_be_loader_uninit()</code> and
- * <code>pantheios_be_loader_logEntry()</code>.
+ * \c loader, from which the macro assumes the existence of the
+ * three functions \c pantheios_be_loader_init(),
+ * \c pantheios_be_loader_uninit() and
+ * \c pantheios_be_loader_logEntry().
  *
- * \param id The back-end identifier, e.g. <code>loader</code> for the
- *   "be.loader" back-end.
+ * \param id The back-end identifier, e.g. \c loader for the
+ *   "be.loader" back-end;
  */
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_BE_DEFINE_BER_FUNCTIONS_(fullId)                                                                                         \

@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Tracing API.
  *
  * Created:     11th November 2007
- * Updated:     16th July 2024
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MINOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       20
+# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -140,7 +140,7 @@
 /** \def PANTHEIOS_TRACE_LOG_PREFIX
  *
  * The file-line prefix uses by the \ref group__tracing for C++ constructs.
- *  It defaults to <code>pantheios::pan_slice_t(PANTHEIOS_FILELINE)</code>,
+ *  It defaults to `pantheios::pan_slice_t(PANTHEIOS_FILELINE)`,
  *  but may be \#define'd by the user to be something else, as desired.
  *
  * \ingroup group__tracing
@@ -171,8 +171,8 @@
  *
  * \ingroup group__tracing
  *
- * \param sev The severity level
- * \param fmt The format string
+ * \param sev The severity level;
+ * \param fmt The format string;
  */
 
 # define PANTHEIOS_TRACE_PRINTF(sev, fmt, ...)                                  \
@@ -194,7 +194,7 @@
  *
  * \ingroup group__tracing
  *
- * \param sev The severity level
+ * \param sev The severity level;
  */
 
 /** \def PANTHEIOS_TRACE_EMERGENCY

@@ -5,11 +5,11 @@
  *              specialisations.
  *
  * Created:     9th November 2007
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_REVISION  4
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      15
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      16
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -120,11 +120,11 @@ namespace util
 
 /** <a href = "http://extendedstl.com/glossary.html#type_generator">Type-generator template</a>
  *   that deduces the appropriate specialisation of
- *   <code>stlsoft::auto_buffer</code>.
+ *   \c stlsoft::auto_buffer.
  *
  * There are two reasons for this:
  * - Some (older) compilers have to use the old (pre-1.9) form of
- *   <code>stlsoft::auto_buffer</code>. Using
+ *   \c stlsoft::auto_buffer. Using
  *   pantheios::auto_buffer_selector makes Pantheios code independent of
  *   such compilers' behavioural odities.
  * - Visual C++ 8 & 9 both have  bug that causes them to exhibit a linker

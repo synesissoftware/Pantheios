@@ -4,11 +4,11 @@
  * Purpose:     padding of arguments of arbitrary type.
  *
  * Created:     29th June 2009
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -42,7 +42,7 @@
 
 /** \file pantheios/inserters/pad.hpp
  *
- * [c++ only] definition of the pantheios::pad string inserter for
+ * [C++ only] definition of the pantheios::pad string inserter for
  *   for providing padding of arguments of arbitrary type.
  */
 
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     7
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,8 +95,8 @@ namespace pantheios
  *
  * Inserts a variable with a minimum width, padding to the left with spaces
  *
- * \param var The variable to be inserted
- * \param minWidth The minimum width of the inserted variable
+ * \param var The variable to be inserted;
+ * \param minWidth The minimum width of the inserted variable;
  */
 #define PANTHEIOS_LPAD(var, minWidth)   ( ::pantheios::pad(var, minWidth)), (var)
 
@@ -106,8 +106,8 @@ namespace pantheios
  *
  * Inserts a variable with a minimum width, padding to the right with spaces
  *
- * \param var The variable to be inserted
- * \param minWidth The minimum width of the inserted variable
+ * \param var The variable to be inserted;
+ * \param minWidth The minimum width of the inserted variable;
  */
 #define PANTHEIOS_RPAD(var, minWidth)   (var), ( ::pantheios::pad(var, minWidth))
 

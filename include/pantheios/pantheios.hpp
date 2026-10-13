@@ -4,11 +4,11 @@
  * Purpose: Primary header file for Pantheios
  *
  * Created: 21st June 2005
- * Updated: 20th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -64,7 +64,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      11
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       108
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       109
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -256,9 +256,9 @@ namespace pantheios
  *
  * To suppress all log-specific generated functions (i.e. log_DEBUG(),
  * log_CRITICAL(), etc.), define the preprocessor symbol
- * <code>PANTHEIOS_NO_LOG_SEV_FUNCTIONS</code>. Note: if the symbol
- * <code>PANTHEIOS_NO_STOCK_LEVELS</code> is defined, then
- * <code>PANTHEIOS_NO_LOG_SEV_FUNCTIONS</code> will be defined
+ * \c PANTHEIOS_NO_LOG_SEV_FUNCTIONS. Note: if the symbol
+ * \c PANTHEIOS_NO_STOCK_LEVELS is defined, then
+ * \c PANTHEIOS_NO_LOG_SEV_FUNCTIONS will be defined
  * automatically.
  */
 

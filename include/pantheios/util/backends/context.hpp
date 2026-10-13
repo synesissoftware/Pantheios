@@ -4,11 +4,11 @@
  * Purpose: Implementation class to assist in the creation of back-ends.
  *
  * Created: 16th December 2006
- * Updated: 29th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MINOR    4
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     39
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     40
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -190,7 +190,7 @@ public: // operations
     ///
     ///
     /// \note This method does not mutate any member data. It is not marked
-    ///   <code>const</code> solely because it invokes rawLogEntry(), which
+    ///   \c const solely because it invokes rawLogEntry(), which
     ///   may need to mutate member data of the derived class (though this
     ///   will not be the dominant form).
     ///

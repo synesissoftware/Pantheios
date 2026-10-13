@@ -5,11 +5,11 @@
  *              wide string statement.
  *
  * Created:     22nd November 2010
- * Updated:     16th January 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -116,7 +116,7 @@ namespace pantheios
  *
  * This will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, ws=def, str=ghi</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, ws=def, str=ghi**
  */
 
 class m2w

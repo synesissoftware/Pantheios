@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios Windows-SysLog Stock Back-end API.
  *
  * Created: 23rd September 2005
- * Updated: 25th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MAJOR     4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      29
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,8 +79,8 @@
 
 /** \defgroup group__backend__stock_backends__WindowsSyslog Pantheios Windows-SysLog Stock Back-end
  * \ingroup group__backend__stock_backends
- * Back-end library that provides a custom implementation of the
- *   <b>SysLog</b>-protocol for Windows.
+ *   Back-end library that provides a custom implementation of the
+ *   \c SysLog-protocol for Windows.
  */
 
 
@@ -90,7 +90,7 @@
 
 /** \defgroup group__backend__stock_backends__WindowsSyslog__flags Pantheios Windows syslog Stock Back-end Flags
  * \ingroup group__backend__stock_backends__WindowsSyslog
- * Flags for the \ref group__backend__stock_backends__WindowsSyslog
+ *   Flags for the \ref group__backend__stock_backends__WindowsSyslog
  */
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_USE_SYSTEM_TIME
@@ -109,7 +109,7 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__flags
  *
  * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options member to
- * contain the SysLog <code>LOG_PERROR</code> flag.
+ * contain the SysLog \c LOG_PERROR flag.
  */
 
 #define PANTHEIOS_BE_WINDOWSSYSLOG_F_PERROR                 (0x00100000)
@@ -121,7 +121,7 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__flags
  *
  * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options member to
- * contain the SysLog <code>LOG_CONS</code> flag.
+ * contain the SysLog \c LOG_CONS flag.
  */
 
 #define PANTHEIOS_BE_WINDOWSSYSLOG_F_CONS                   (0x00200000)
@@ -132,7 +132,7 @@
  * \ingroup group__backend__stock_backends__WindowsSyslog__flags
  *
  * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options member to
- * contain the SysLog <code>LOG_PID</code> flag.
+ * contain the SysLog \c LOG_PID flag.
  */
 
 #define PANTHEIOS_BE_WINDOWSSYSLOG_F_PID                    (0x00400000)
@@ -140,11 +140,11 @@
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY
  * Causes the \ref group__backend__stock_backends__WindowsSyslog to
  *   connect to the syslog socket immediately, rather than on the first call
- *   to <code>syslog()</code>.
+ *   to \c syslog().
  * \ingroup group__backend__stock_backends__WindowsSyslog__flags
  *
  * Specifying this flag causes the pan_be_WindowsSyslog_init_t::options member to
- * contain the SysLog <code>LOG_NDELAY</code> flag.
+ * contain the SysLog \c LOG_NDELAY flag.
  */
 
 #define PANTHEIOS_BE_WINDOWSSYSLOG_F_NDELAY                 (0x00800000)
@@ -153,12 +153,12 @@
 
 /** \defgroup group__backend__stock_backends__WindowsSyslog__facilities Pantheios Windows syslog Facility Codes
  * \ingroup group__backend__stock_backends__WindowsSyslog
- * Facility levels for the \ref group__backend__stock_backends__WindowsSyslog
+ *   Facility levels for the \ref group__backend__stock_backends__WindowsSyslog
  */
 
 /** \def PANTHEIOS_SYSLOG_FAC_KERN
  * Kernel messages
- * \remarks Equivalent to the SysLog facility <code>LOG_KERN</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_KERN.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_KERN
@@ -169,7 +169,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_USER
  * Arbitrary user-level messages (the default)
- * \remarks Equivalent to the SysLog facility <code>LOG_USER</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_USER.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_USER
@@ -180,7 +180,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_MAIL
  * Mail system messages
- * \remarks Equivalent to the SysLog facility <code>LOG_MAIL</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_MAIL.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_MAIL
@@ -191,7 +191,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_DAEMON
  * System daemon messages
- * \remarks Equivalent to the SysLog facility <code>LOG_DAEMON</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_DAEMON.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_DAEMON
@@ -202,7 +202,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_AUTH
  * Security / authorisation messages
- * \remarks Equivalent to the SysLog facility <code>LOG_AUTH</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_AUTH.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_AUTH
@@ -213,7 +213,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_SYSLOG
  * SysLog (or Pantheios) messages
- * \remarks Equivalent to the SysLog facility <code>LOG_SYSLOG</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_SYSLOG.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_SYSLOG
@@ -224,7 +224,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_LPR
  * Printer messages
- * \remarks Equivalent to the SysLog facility <code>LOG_LPR</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_LPR.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LPR
@@ -235,7 +235,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_NEWS
  * Network news subsystem messages
- * \remarks Equivalent to the SysLog facility <code>LOG_NEWS</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_NEWS.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_NEWS
@@ -246,7 +246,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_UUCP
  * UUCP subsystem messages
- * \remarks Equivalent to the SysLog facility <code>LOG_UUCP</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_UUCP.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_UUCP
@@ -257,7 +257,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_CRON
  * Scheduler daemon messages
- * \remarks Equivalent to the SysLog facility <code>LOG_CRON</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_CRON.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_CRON
@@ -268,7 +268,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_AUTHPRIV
  * Private security / authorisation messages
- * \remarks Equivalent to the SysLog facility <code>LOG_AUTHPRIV</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_AUTHPRIV.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_AUTHPRIV
@@ -279,7 +279,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_FTP
  * FTP daemon messages
- * \remarks Equivalent to the SysLog facility <code>LOG_FTP</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_FTP.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_FTP
@@ -290,7 +290,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_NETINFO
  * NetInfo subsystem messages
- * \remarks Equivalent to the SysLog facility <code>LOG_NETINFO</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_NETINFO.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_NETINFO
@@ -301,7 +301,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_REMOTEAUTH
  * Remote authentication / authorisation subsystem messages
- * \remarks Equivalent to the SysLog facility <code>LOG_REMOTEAUTH</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_REMOTEAUTH.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_REMOTEAUTH
@@ -312,7 +312,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_INSTALL
  * Installer subsystem messages
- * \remarks Equivalent to the SysLog facility <code>LOG_INSTALL</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_INSTALL.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_INSTALL
@@ -323,7 +323,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_RAS
  * RAS subsystem messages
- * \remarks Equivalent to the SysLog facility <code>LOG_RAS</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_RAS.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_RAS
@@ -334,7 +334,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL0
  * Reserved for local use
- * \remarks Equivalent to the SysLog facility <code>LOG_LOCAL0</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_LOCAL0.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL0
@@ -345,7 +345,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL1
  * Reserved for local use
- * \remarks Equivalent to the SysLog facility <code>LOG_LOCAL1</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_LOCAL1.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL1
@@ -356,7 +356,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL2
  * Reserved for local use
- * \remarks Equivalent to the SysLog facility <code>LOG_LOCAL2</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_LOCAL2.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL2
@@ -367,7 +367,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL3
  * Reserved for local use
- * \remarks Equivalent to the SysLog facility <code>LOG_LOCAL3</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_LOCAL3.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL3
@@ -378,7 +378,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL4
  * Reserved for local use
- * \remarks Equivalent to the SysLog facility <code>LOG_LOCAL4</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_LOCAL4.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL4
@@ -389,7 +389,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL5
  * Reserved for local use
- * \remarks Equivalent to the SysLog facility <code>LOG_LOCAL5</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_LOCAL5.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL5
@@ -400,7 +400,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL6
  * Reserved for local use
- * \remarks Equivalent to the SysLog facility <code>LOG_LOCAL6</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_LOCAL6.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL6
@@ -411,7 +411,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_LOCAL7
  * Reserved for local use
- * \remarks Equivalent to the SysLog facility <code>LOG_LOCAL7</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_LOCAL7.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LOCAL7
@@ -422,7 +422,7 @@
 
 /** \def PANTHEIOS_SYSLOG_FAC_LAUNCHD
  * Boostrap daemon subsystem messages
- * \remarks Equivalent to the SysLog facility <code>LOG_LAUNCHD</code>.
+ * \remarks Equivalent to the SysLog facility \c LOG_LAUNCHD.
  * \ingroup group__backend__stock_backends__WindowsSyslog__facilities
  */
 #ifdef LOG_LAUNCHD
@@ -469,7 +469,7 @@ typedef struct pan_be_WindowsSyslog_init_t                  pan_be_WindowsSyslog
 
 /** \ref page__backend__callbacks "Callback" function defined by
  *    the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ *    API is initialised with a NULL \c init parameter.
  * \ingroup group__backend__stock_backends__WindowsSyslog
  *
  * \note This function is only required when the
@@ -493,7 +493,7 @@ pantheios_be_WindowsSyslog_getAppInit(
  *    pantheios_be_WindowsSyslog_init().
  * \ingroup group__backend__stock_backends__WindowsSyslog
  *
- * \note This function should <b>not</b> be called on an
+ * \note This function should \c not be called on an
  *   already-initialised instance, as is the case in the implementation
  *   of the pantheios_be_WindowsSyslog_getAppInit() function, as it will
  *   already have been called by pantheios_be_WindowsSyslog_init() prior

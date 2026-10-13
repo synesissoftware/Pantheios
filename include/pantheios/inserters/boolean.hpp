@@ -4,11 +4,11 @@
  * Purpose:     String inserter for booleans.
  *
  * Created:     3rd August 2008
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_MINOR    3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_REVISION 6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_EDIT     24
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BOOLEAN_EDIT     25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -112,7 +112,7 @@ namespace pantheios
  *
  * This will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, b=false, str=def</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, b=false, str=def**
  *
  * \note The class provides the static method set_value_strings() for
  *   assigning user-defined strings to represent true and false values.
@@ -214,7 +214,6 @@ PANTHEIOS_c_str_data_name_(
 {
     return b.data();
 }
-/** \overload c_str_data(boolean const&) */
 inline
 pantheios_char_t const*
 c_str_data(boolean const& b)
@@ -230,7 +229,6 @@ PANTHEIOS_c_str_len_name_(
 {
     return b.length();
 }
-/** \overload c_str_len(boolean const&) */
 inline
 size_t
 c_str_len(boolean const& b)
@@ -246,7 +244,6 @@ PANTHEIOS_c_str_ptr_name_(
 {
     return b.c_str();
 }
-/** \overload c_str_ptr(boolean const&) */
 inline
 pantheios_char_t const*
 c_str_ptr(boolean const& b)

@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios NULL Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 16th July 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MINOR      2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       15
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       16
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,7 @@
 
 /** \defgroup group__backend__stock_backends__null Pantheios NULL Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Stub back-end library that does no emission.
+ *   Stub back-end library that does no emission.
  *
  * This library is useful for conducting performance tests.
  */
@@ -126,7 +126,7 @@ PANTHEIOS_CALL(int) pantheios_be_null_logEntry(
  *
  * There are currently no arguments whatsoever for be.null, hence
  * pantheios_be_null_parseArgs is actually a \#define for
- * <code>NULL</code>. At such time as back-end specific arguments
+ * \c NULL. At such time as back-end specific arguments
  * are required, it will become a first-class function.
  */
 #define pantheios_be_null_parseArgs                         NULL

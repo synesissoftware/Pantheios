@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios WindowsConsole Stock Back-end API.
  *
  * Created: 17th July 2006
- * Updated: 25th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MAJOR    5
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     30
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,7 @@
 
 /** \defgroup group__backend__stock_backends__WindowsConsole Pantheios Windows Console Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that outputs to the Windows console, colour-coding
+ *   Back-end library that outputs to the Windows console, colour-coding
  *   based on severity level.
  */
 
@@ -90,7 +90,7 @@
 
 /** \defgroup group__backend__stock_backends__WindowsConsole__flags Pantheios Windows Console Stock Back-end Flags
  * \ingroup group__backend__stock_backends__WindowsConsole
- *  Flags for the \ref group__backend__stock_backends__WindowsConsole
+ *   Flags for the \ref group__backend__stock_backends__WindowsConsole
  */
 
 /** \def PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS
@@ -112,7 +112,7 @@
 /** \def PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES
  *  Causes the \ref group__backend__stock_backends__WindowsConsole to
  *   recognise the colours for 16 severities, using the
- *   <code>colours2</code> member.
+ *   \c colours2 member.
  * \ingroup group__backend__stock_backends__WindowsConsole__flags
  */
 
@@ -152,16 +152,16 @@ typedef struct pan_be_WindowsConsole_init_t     pan_be_WindowsConsole_init_t;
 
 /** \ref page__backend__callbacks "Callback" function defined by
  *    the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ *    API is initialised with a NULL \c init parameter.
  * \ingroup group__backend__stock_backends__WindowsConsole
  *
  * \param backEndId The back-end identifier passed to the back-end
- *   during its initialisation.
+ *   during its initialisation;
  * \param init A pointer to an already-initialised instance of
- *   pan_be_WindowsConsole_init_t.
+ *   pan_be_WindowsConsole_init_t;
  *
  * If any application-specific changes are required they can be made to
- * the structure to which <code>init</code> points, which will already
+ * the structure to which \c init points, which will already
  * have been initialised. These changes will then be incorporated into
  * the back-end state, and reflected in its behaviour.
  *
@@ -172,10 +172,10 @@ typedef struct pan_be_WindowsConsole_init_t     pan_be_WindowsConsole_init_t;
  *   \ref page__backend__callbacks "callback" version of the library is
  *   used.
  *
- * \exception "throw()" This function must <b>not</b> throw any exceptions!
+ * \exception "throw()" This function must \c not throw any exceptions!
  *
  * \warning This function will be called during the initialisation of
- *   Pantheios, and so <b>must not</b> make any calls into Pantheios, either
+ *   Pantheios, and so **must not** make any calls into Pantheios, either
  *   directly or indirectly!
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
@@ -194,7 +194,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
  *    pantheios_be_WindowsConsole_init().
  * \ingroup group__backend__stock_backends__WindowsConsole
  *
- * \note This function should <b>not</b> be called on an
+ * \note This function should \c not be called on an
  *   already-initialised instance, as is the case in the implementation
  *   of the pantheios_be_WindowsConsole_getAppInit() function, as it will
  *   already have been called by pantheios_be_WindowsConsole_init() prior

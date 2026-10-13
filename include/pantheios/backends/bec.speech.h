@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios speech Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 25th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_EDIT     24
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_EDIT     25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,7 @@
 
 /** \defgroup group__backend__stock_backends__speech Pantheios speech Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that outputs as speech.
+ *   Back-end library that outputs as speech.
  */
 
 
@@ -89,7 +89,7 @@
 
 /** \defgroup group__backend__stock_backends__speech__flags Pantheios speech Stock Back-end Flags
  * \ingroup group__backend__stock_backends__speech
- *  Flags for the \ref group__backend__stock_backends__speech
+ *   Flags for the \ref group__backend__stock_backends__speech
  */
 
 /** \def PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS
@@ -178,16 +178,16 @@ PANTHEIOS_CALL(void) pantheios_be_speech_getDefaultAppInit(
 
 /** \ref page__backend__callbacks "Callback" function defined by
  *    the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ *    API is initialised with a NULL \c init parameter.
  * \ingroup group__backend__stock_backends__speech
  *
  * \param backEndId The back-end identifier passed to the back-end
- *   during its initialisation.
+ *   during its initialisation;
  * \param init A pointer to an already-initialised instance of
- *   pan_be_speech_init_t.
+ *   pan_be_speech_init_t;
  *
  * If any application-specific changes are required they can be made to
- * the structure to which <code>init</code> points, which will already
+ * the structure to which \c init points, which will already
  * have been initialised. These changes will then be incorporated into
  * the back-end state, and reflected in its behaviour.
  *
@@ -198,10 +198,10 @@ PANTHEIOS_CALL(void) pantheios_be_speech_getDefaultAppInit(
  *   \ref page__backend__callbacks "callback" version of the library is
  *   used.
  *
- * \exception "throw()" This function must <b>not</b> throw any exceptions!
+ * \exception "throw()" This function must \c not throw any exceptions!
  *
  * \warning This function will be called during the initialisation of
- *   Pantheios, and so <b>must not</b> make any calls into Pantheios, either
+ *   Pantheios, and so **must not** make any calls into Pantheios, either
  *   directly or indirectly!
  */
 PANTHEIOS_CALL(void) pantheios_be_speech_getAppInit(

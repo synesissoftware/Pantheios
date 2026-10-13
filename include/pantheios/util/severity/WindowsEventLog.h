@@ -5,11 +5,11 @@
  *          type.
  *
  * Created: 13th November 2007
- * Updated: 7th February 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_MINOR      2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_EDIT       19
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_SEVERITY_H_WINDOWSEVENTLOG_EDIT       20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,11 +96,11 @@ namespace pantheios
 
 /** Converts a Pantheios severity level to a Windows Event Log event type
  *
- * \param severity The Pantheios \link pantheios::pan_severity_t severity level\endlink
+ * \param severity The Pantheios \link pantheios::pan_severity_t severity level\endlink;
  *
- * \return The Windows Event Log event type
+ * \return The Windows Event Log event type.
  *
- * \pre (severity >= 0) && (severity < 16)
+ * \pre severity >= 0 && severity < 16
  */
 pantheios_uint16_t
 pantheios_severity_to_WindowsEventLog_type(

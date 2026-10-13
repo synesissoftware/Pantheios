@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MAJOR      4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MINOR      4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       40
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       41
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,7 @@
 
 /** \defgroup group__backend__stock_backends__file Pantheios file Stock Back-end
  * \ingroup group__backend__stock_backends
- * Back-end library that outputs to a file.
+ *   Back-end library that outputs to a file.
  */
 
 
@@ -89,7 +89,7 @@
 
 /** \defgroup group__backend__stock_backends__file__flags Pantheios file Stock Back-end Flags
  * \ingroup group__backend__stock_backends__file
- * Flags for the \ref group__backend__stock_backends__file
+ *   Flags for the \ref group__backend__stock_backends__file
  */
 
 /** \def PANTHEIOS_BE_FILE_F_TRUNCATE
@@ -99,8 +99,8 @@
  * \ingroup group__backend__stock_backends__file__flags
  *
  * \note If more than one process is using the same file and either, or
- *  both, uses this flag, the log file contents cannot be guaranteed to
- *  be consistent.
+ *   both, uses this flag, the log file contents cannot be guaranteed to
+ *   be consistent.
  */
 
 /** \def PANTHEIOS_BE_FILE_F_DISCARD_CACHED_CONTENTS
@@ -200,9 +200,9 @@ struct Pantheios_be_file_no_longer_defines_the_function_pantheios_be_file_setFil
  *
  * The maximum length of a file path that can be specified in a
  * pan_be_file_init_t instance using the internal buffer
- * (<code>pan_be_file_init_t::buff</code>). File paths exceeding this size must be
+ * (\c pan_be_file_init_t::buff). File paths exceeding this size must be
  * represented in caller-side memory (i.e.
- * <code>pan_be_file_init_t::fileName != &pan_be_file_init_t::buff[0]</code>).
+ * `pan_be_file_init_t::fileName != &pan_be_file_init_t::buff[0]`).
  */
 #define PANTHEIOS_BE_FILE_MAX_FILE_LEN                      (1000)
 
@@ -246,16 +246,16 @@ typedef struct pan_be_file_init_t   pan_be_file_init_t;
 
 /** \ref page__backend__callbacks "Callback" function defined by
  *    the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ *    API is initialised with a NULL \c init parameter.
  * \ingroup group__backend__stock_backends__file
  *
  * \param backEndId The back-end identifier passed to the back-end
- *   during its initialisation.
+ *   during its initialisation;
  * \param init A pointer to an already-initialised instance of
- *   pan_be_file_init_t.
+ *   pan_be_file_init_t;
  *
  * If any application-specific changes are required they can be made to
- * the structure to which <code>init</code> points, which will already
+ * the structure to which \c init points, which will already
  * have been initialised. These changes will then be incorporated into
  * the back-end state, and reflected in its behaviour.
  *
@@ -266,10 +266,10 @@ typedef struct pan_be_file_init_t   pan_be_file_init_t;
  *   \ref page__backend__callbacks "callback" version of the library is
  *   used.
  *
- * \exception "throw()" This function must <b>not</b> throw any exceptions!
+ * \exception "throw()" This function must \c not throw any exceptions!
  *
  * \warning This function will be called during the initialisation of
- *   Pantheios, and so <b>must not</b> make any calls into Pantheios, either
+ *   Pantheios, and so **must not** make any calls into Pantheios, either
  *   directly or indirectly!
  */
 PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(
@@ -326,17 +326,17 @@ PANTHEIOS_CALL(int) pantheios_be_file_logEntry(
  * \ingroup group__backend__stock_backends__file
  *
  * \param fileName The (absolute or relative) name of the log file to be used
- *   with the given back-end.
+ *   with the given back-end;
  * \param fileMask A bitmask that controls which values of
  *   the \ref group__backend__stock_backends__file__flags "flags" are to be
- *   interpreted in the <code>fileFlags</code> parameter.
+ *   interpreted in the \c fileFlags parameter;
  * \param fileFlags The \ref group__backend__stock_backends__file__flags "flags"
  *   that control the file creation - only
  *   \ref PANTHEIOS_BE_FILE_F_TRUNCATE
- *   is recognised by this function.
+ *   is recognised by this function;
  * \param backEndId The back-end identifier. If this is
  *   \ref PANTHEIOS_BEID_ALL,
- *   then all back-ends will be initialised with the file-name.
+ *   then all back-ends will be initialised with the file-name;
  *
  * \note In the case where you are using
  *   \link group__backend__stock_backends__file be.file\endlink for both
@@ -358,7 +358,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_setFilePath(
  * \ingroup group__backend__stock_backends__file
  *
  * \param fileName The (absolute or relative) name of the log file to be used
- *   with the given back-end.
+ *   with the given back-end;
  */
 inline int pantheios_be_file_setFilePath(PAN_CHAR_T const* fileName)
 {
@@ -370,10 +370,10 @@ inline int pantheios_be_file_setFilePath(PAN_CHAR_T const* fileName)
  * \ingroup group__backend__stock_backends__file
  *
  * \param fileName The (absolute or relative) name of the log file to be used
- *   with the given back-end.
+ *   with the given back-end;
  * \param backEndId The back-end identifier. If this is
  *   \ref PANTHEIOS_BEID_ALL,
- *   then all back-ends will be initialised with the file-name.
+ *   then all back-ends will be initialised with the file-name;
  */
 inline int pantheios_be_file_setFilePath(PAN_CHAR_T const* fileName, int backEndId)
 {
@@ -387,7 +387,7 @@ inline int pantheios_be_file_setFilePath(PAN_CHAR_T const* fileName, int backEnd
  *
  * \param backEndId The back-end identifier. If this is
  *   \ref PANTHEIOS_BEID_ALL,
- *   then all back-ends will be flushed.
+ *   then all back-ends will be flushed;
  */
 PANTHEIOS_CALL(int) pantheios_be_file_flush(int backEndId);
 
@@ -397,10 +397,10 @@ PANTHEIOS_CALL(int) pantheios_be_file_flush(int backEndId);
  *
  * \param backEndId The back-end identifier. If this is
  *   \ref PANTHEIOS_BEID_ALL,
- *   then the caches of all back-ends will be emptied.
+ *   then the caches of all back-ends will be emptied;
  *
  * \note If the back-end(s) have already been opened, this operation has
- *   no effect
+ *   no effect.
  */
 PANTHEIOS_CALL(int) pantheios_be_file_emptyCache(int backEndId);
 

@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios AnsiConsole Stock Back-end API.
  *
  * Created: 20th October 2024
- * Updated: 28th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2024-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2024-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_REVISION    3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_EDIT        3
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_EDIT        4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -78,7 +78,7 @@
 
 /** \defgroup group__backend__stock_backends__AnsiConsole Pantheios ANSI Console Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that sets the calling threads's COM error object.
+ *   Back-end library that sets the calling threads's COM error object.
  */
 
 
@@ -88,7 +88,7 @@
 
 /** \defgroup group__backend__stock_backends__AnsiConsole__flags Pantheios ANSI Console Stock Back-end Flags
  * \ingroup group__backend__stock_backends__AnsiConsole
- *  Flags for the \ref group__backend__stock_backends__AnsiConsole
+ *   Flags for the \ref group__backend__stock_backends__AnsiConsole
  */
 
 /** \def PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS
@@ -161,7 +161,7 @@ typedef struct pan_be_AnsiConsole_init_t                    pan_be_AnsiConsole_i
  */
 
 /** Callback function defined by the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ *    API is initialised with a NULL \c init parameter.
  *
  * \note When using explicit initialisation, this function must be defined,
  *   but will not be invoked.

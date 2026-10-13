@@ -4,11 +4,11 @@
  * Purpose:     String inserter for time intervals pairs.
  *
  * Created:     19th April 2014
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,7 +43,7 @@
 /** \file pantheios/inserters/interval.hpp
  *
  * [C++ only] Definition of the pantheios::interval inserter for
- *   <code>argc+argv</code> pairs.
+ *   `argc+argv` pairs.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTERVAL
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

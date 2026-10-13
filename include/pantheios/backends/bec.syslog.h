@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios syslog Stock Back-end API.
  *
  * Created: 23rd July 2005
- * Updated: 24th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     29
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,7 @@
 
 /** \defgroup group__backend__stock_backends__syslog Pantheios UNIX SysLog Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library built on top of the UNIX <b>syslog</b> API.
+ *   Back-end library built on top of the UNIX \c syslog API.
  */
 
 
@@ -89,10 +89,10 @@
 
 /** \defgroup group__backend__stock_backends__syslog__flags Pantheios UNIX syslog Stock Back-end Flags
  * \ingroup group__backend__stock_backends__syslog
- *  Flags for the \ref group__backend__stock_backends__syslog
+ *   Flags for the \ref group__backend__stock_backends__syslog
  *
- * These flags are passed as the <code>options</code> parameter to the
- * SysLog API function <code>openlog()</code> during back-end
+ * These flags are passed as the \c options parameter to the
+ * SysLog API function \c openlog() during back-end
  * initialisation.
  */
 
@@ -103,7 +103,7 @@
  * \ingroup group__backend__stock_backends__syslog__flags
  *
  * Specifying this flag causes the pan_be_syslog_init_t::options member to
- * contain the SysLog <code>LOG_PERROR</code> flag.
+ * contain the SysLog \c LOG_PERROR flag.
  *
  * \note On operating systems on which this non-standard feature is not
  *   available as part of the Syslog API, this will be provided by a
@@ -119,7 +119,7 @@
  * \ingroup group__backend__stock_backends__syslog__flags
  *
  * Specifying this flag causes the pan_be_syslog_init_t::options member to
- * contain the SysLog <code>LOG_CONS</code> flag.
+ * contain the SysLog \c LOG_CONS flag.
  */
 
 #define PANTHEIOS_BE_SYSLOG_F_CONS                          (0x00200000)
@@ -130,7 +130,7 @@
  * \ingroup group__backend__stock_backends__syslog__flags
  *
  * Specifying this flag causes the pan_be_syslog_init_t::options member to
- * contain the SysLog <code>LOG_PID</code> flag.
+ * contain the SysLog \c LOG_PID flag.
  */
 
 #define PANTHEIOS_BE_SYSLOG_F_PID                           (0x00400000)
@@ -138,11 +138,11 @@
 /** \def PANTHEIOS_BE_SYSLOG_F_NDELAY
  *  Causes the \ref group__backend__stock_backends__syslog to
  *   connect to the syslog socket immediately, rather than on the first call
- *   to <code>syslog()</code>.
+ *   to \c syslog().
  * \ingroup group__backend__stock_backends__syslog__flags
  *
  * Specifying this flag causes the pan_be_syslog_init_t::options member to
- * contain the SysLog <code>LOG_NDELAY</code> flag.
+ * contain the SysLog \c LOG_NDELAY flag.
  */
 
 #define PANTHEIOS_BE_SYSLOG_F_NDELAY                        (0x00800000)
@@ -157,7 +157,7 @@ struct pan_be_syslog_init_t
 {
     pantheios_uint32_t    version;    /*!< Must be initialised to the value of PANTHEIOS_VER */
     pantheios_uint32_t    flags;      /*!<  \ref group__backend__stock_backends__syslog__flags "Flags" that control the information displayed. */
-    pantheios_uint32_t    options;    /*!<  Options passed to <code>openlog()</code>. Will be overridden by \link pan_be_syslog_init_t::flags flags\endlink. */
+    pantheios_uint32_t    options;    /*!<  Options passed to \c openlog(). Will be overridden by \link pan_be_syslog_init_t::flags flags\endlink. */
     pantheios_uint8_t     facility;   /*!<  The facility used by the process. Must be <= 124. Defaults to LOG_USER */
 
 #ifdef __cplusplus
@@ -178,7 +178,7 @@ typedef struct pan_be_syslog_init_t     pan_be_syslog_init_t;
 
 /** \ref page__backend__callbacks "Callback" function defined by
  *    the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ *    API is initialised with a NULL \c init parameter.
  * \ingroup group__backend__stock_backends__syslog
  *
  * \note This function is only required when the
@@ -202,7 +202,7 @@ pantheios_be_syslog_getAppInit(
  *    pantheios_be_syslog_init().
  * \ingroup group__backend__stock_backends__syslog
  *
- * \note This function should <b>not</b> be called on an
+ * \note This function should \c not be called on an
  *   already-initialised instance, as is the case in the implementation
  *   of the pantheios_be_syslog_getAppInit() function, as it will
  *   already have been called by pantheios_be_syslog_init() prior

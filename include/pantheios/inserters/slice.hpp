@@ -4,11 +4,11 @@
  * Purpose:     String inserter for slices of strings.
  *
  * Created:     13th February 2010
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -42,7 +42,7 @@
 
 /** \file pantheios/inserters/slice.hpp
  *
- * [c++ only] definition of the pantheios::slice string inserter for
+ * [C++ only] definition of the pantheios::slice string inserter for
  *   for string slices.
  */
 
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_REVISION 7
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     13
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PAD_EDIT     14
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -178,8 +178,8 @@ private:
 
 /** Defines slice of a string
  *
- * \param str Pointer to the first character in the string to be sliced
- * \param len Number of characters to be sliced
+ * \param str Pointer to the first character in the string to be sliced;
+ * \param len Number of characters to be sliced;
  *
  */
 inline pan_slice_t slice(
@@ -192,9 +192,9 @@ inline pan_slice_t slice(
 
 /** Defines a slice of string
  *
- * \param str Pointer to the first character in the string to be sliced
- * \param len Number of characters to be sliced
- * \param strName Name of the string parameter
+ * \param str Pointer to the first character in the string to be sliced;
+ * \param len Number of characters to be sliced;
+ * \param strName Name of the string parameter;
  */
 inline slice_inserter slice(
     pantheios_char_t const* str
@@ -207,10 +207,10 @@ inline slice_inserter slice(
 
 /** Defines a slice of string
  *
- * \param str Pointer to the first character in the string to be sliced
- * \param len Number of characters to be sliced
- * \param strName Name of the string parameter
- * \param lenName Name of the length parameter
+ * \param str Pointer to the first character in the string to be sliced;
+ * \param len Number of characters to be sliced;
+ * \param strName Name of the string parameter;
+ * \param lenName Name of the length parameter;
  */
 inline slice_inserter slice(
     pantheios_char_t const* str
@@ -224,11 +224,11 @@ inline slice_inserter slice(
 
 /** Defines a slice of string
  *
- * \param str Pointer to the first character in the string to be sliced
- * \param len Number of characters to be sliced
- * \param strName Name of the string parameter
- * \param lenName Name of the length parameter
- * \param equals The string that separates the name and the value
+ * \param str Pointer to the first character in the string to be sliced;
+ * \param len Number of characters to be sliced;
+ * \param strName Name of the string parameter;
+ * \param lenName Name of the length parameter;
+ * \param equals The string that separates the name and the value;
  */
 inline slice_inserter slice(
     pantheios_char_t const* str
@@ -243,12 +243,12 @@ inline slice_inserter slice(
 
 /** Defines a slice of string
  *
- * \param str Pointer to the first character in the string to be sliced
- * \param len Number of characters to be sliced
- * \param strName Name of the string parameter
- * \param lenName Name of the length parameter
- * \param equals The string that separates the name and the value
- * \param separator The string to be used between the string and length parameters
+ * \param str Pointer to the first character in the string to be sliced;
+ * \param len Number of characters to be sliced;
+ * \param strName Name of the string parameter;
+ * \param lenName Name of the length parameter;
+ * \param equals The string that separates the name and the value;
+ * \param separator The string to be used between the string and length parameters;
  */
 inline slice_inserter slice(
     pantheios_char_t const* str

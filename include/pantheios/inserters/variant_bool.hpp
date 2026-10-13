@@ -4,11 +4,11 @@
  * Purpose:     String inserter for booleans.
  *
  * Created:     18th June 2012
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_EDIT        3
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_EDIT        4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -109,7 +109,7 @@ namespace pantheios
  *
  * This will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, b=false, str=def</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, b=false, str=def**
  *
  * \note The class provides the static method set_value_strings() for
  *   assigning user-defined strings to represent true and false values.

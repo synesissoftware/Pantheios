@@ -4,11 +4,11 @@
  * Purpose:     String inserter for argc+argv pairs.
  *
  * Created:     19th October 2006
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,7 +43,7 @@
 /** \file pantheios/inserters/args.hpp
  *
  * [C++ only] Definition of the pantheios::args inserter for
- *   <code>argc+argv</code> pairs.
+ *   `argc+argv` pairs.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_ARGS
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_MINOR       6
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_REVISION    8
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_EDIT        35
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_EDIT        36
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -94,12 +94,12 @@ namespace pantheios
  * inserter classes
  */
 
-/** Class for inserting <code>argc+argv</code> arguments into Pantheios
+/** Class for inserting `argc+argv` arguments into Pantheios
  *    diagnostic logging statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
- * This class formats an <code>argc+argv</code> pair into a string to
+ * This class formats an `argc+argv` pair into a string to
  * be inserted into a logging statement.
  *
  * By default, arguments that contain spaces (TAB or space character) will
@@ -119,9 +119,9 @@ namespace pantheios
     . . .
  * \endcode
  *
- * Suppose the program is <code>/test/myprog</code> and the command-line
- * arguments are <code>abc</code>, <code>-123</code> and
- * <code>Billy Jean</code>. This will produce the output:
+ * Suppose the program is `/test/myprog` and the command-line
+ * arguments are \c abc, `-123` and
+ * `Billy Jean`. This will produce the output:
 \htmlonly
 <pre>
    <b>/test/myprog, abc, -123, "Billy Jean"</b>

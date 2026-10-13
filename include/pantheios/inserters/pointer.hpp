@@ -4,11 +4,11 @@
  * Purpose: String inserters for fundamental types
  *
  * Created: 21st June 2005
- * Updated: 20th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_MINOR    5
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     37
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_POINTER_EDIT     38
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -114,7 +114,7 @@ namespace pantheios
  *
  * This will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, p=0x01234567, str=def</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, p=0x01234567, str=def**
  */
 class pointer
 {

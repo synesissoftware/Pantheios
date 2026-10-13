@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios WindowsEventLog Stock Back-end API.
  *
  * Created: 8th May 2006
- * Updated: 28th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MINOR       4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        33
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,7 @@
 
 /** \defgroup group__backend__stock_backends__WindowsEventLog Pantheios Windows EventLog Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that writes to the Windows event log.
+ *   Back-end library that writes to the Windows event log.
  */
 
 
@@ -89,7 +89,7 @@
 
 /** \defgroup group__backend__stock_backends__WindowsEventLog__flags Pantheios Windows EventLog Stock Back-end Flags
  * \ingroup group__backend__stock_backends__WindowsEventLog
- *  Flags for the \ref group__backend__stock_backends__WindowsEventLog
+ *   Flags for the \ref group__backend__stock_backends__WindowsEventLog
  */
 
 
@@ -149,15 +149,15 @@ struct Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_pantheios_be_Windo
  *
  * \ingroup group__backend__stock_backends__WindowsEventLog
  *
- * \param backEndId The back-end identifier
- * \param severity The severity associated with the event
+ * \param backEndId The back-end identifier;
+ * \param severity The severity associated with the event;
  * \param category A pointer to a variable to receive the Event Log category
- *   to be used
+ *   to be used;
  * \param eventId A pointer to a variable to receive the Event Log event
- *   identifier to be used
+ *   identifier to be used;
  *
  * \note As of Pantheios 1.0.1 beta-215, if the values of
- *   <code>*category</code> and <code>*eventId</code> are set to the
+ *   `*category` and `*eventId` are set to the
  *   maximum limit for those types - 0xFFFF and 0xFFFFFFFF, respectively -
  *   then no statement is emitted. When the function is called, these
  *   values are preset. Note that this is an inefficient way of filtering
@@ -173,16 +173,16 @@ pantheios_be_WindowsEventLog_calcCategoryAndEventId(
 
 /** \ref page__backend__callbacks "Callback" function defined by
  *    the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ *    API is initialised with a NULL \c init parameter.
  * \ingroup group__backend__stock_backends__WindowsEventLog
  *
  * \param backEndId The back-end identifier passed to the back-end
- *   during its initialisation.
+ *   during its initialisation;
  * \param init A pointer to an already-initialised instance of
- *   pan_be_WindowsEventLog_init_t.
+ *   pan_be_WindowsEventLog_init_t;
  *
  * If any application-specific changes are required they can be made to
- * the structure to which <code>init</code> points, which will already
+ * the structure to which \c init points, which will already
  * have been initialised. These changes will then be incorporated into
  * the back-end state, and reflected in its behaviour.
  *
@@ -193,10 +193,10 @@ pantheios_be_WindowsEventLog_calcCategoryAndEventId(
  *   \ref page__backend__callbacks "callback" version of the library is
  *   used.
  *
- * \exception "throw()" This function must <b>not</b> throw any exceptions!
+ * \exception "throw()" This function must \c not throw any exceptions!
  *
  * \warning This function will be called during the initialisation of
- *   Pantheios, and so <b>must not</b> make any calls into Pantheios, either
+ *   Pantheios, and so **must not** make any calls into Pantheios, either
  *   directly or indirectly!
  */
 PANTHEIOS_CALL(void)
@@ -216,7 +216,7 @@ pantheios_be_WindowsEventLog_getAppInit(
  *    pantheios_be_WindowsEventLog_init().
  * \ingroup group__backend__stock_backends__WindowsEventLog
  *
- * \note This function should <b>not</b> be called on an
+ * \note This function should \c not be called on an
  *   already-initialised instance, as is the case in the implementation
  *   of the pantheios_be_WindowsEventLog_getAppInit() function, as it will
  *   already have been called by pantheios_be_WindowsEventLog_init() prior

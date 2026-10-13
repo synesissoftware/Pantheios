@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios COMErrorObject Stock Back-end API.
  *
  * Created: 21st June 2005
- * Updated: 25th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_EDIT     27
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_EDIT     28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,7 @@
 
 /** \defgroup group__backend__stock_backends__COMErrorObject Pantheios COM Error Object Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that sets the calling threads's COM error object.
+ *   Back-end library that sets the calling threads's COM error object.
  */
 
 
@@ -89,7 +89,7 @@
 
 /** \defgroup group__backend__stock_backends__COMErrorObject__flags Pantheios COM Error Object Stock Back-end Flags
  * \ingroup group__backend__stock_backends__COMErrorObject
- *  Flags for the \ref group__backend__stock_backends__COMErrorObject
+ *   Flags for the \ref group__backend__stock_backends__COMErrorObject
  */
 
 /** \def PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING
@@ -134,7 +134,7 @@ typedef struct pan_be_COMErrorObject_init_t pan_be_COMErrorObject_init_t;
  */
 
 /** Callback function defined by the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ *    API is initialised with a NULL \c init parameter.
  *
  * \note When using explicit initialisation, this function must be defined,
  *   but will not be invoked.

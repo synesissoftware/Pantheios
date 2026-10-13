@@ -4,11 +4,11 @@
  * Purpose:     Back-/Front-end initialisation codes.
  *
  * Created:     27th September 2007
- * Updated:     16th July 2024
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_MINOR     5
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      21
+# define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      22
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -293,7 +293,7 @@
 
 /** \def PANTHEIOS_BE_LOGENTRY_FAILED
  *
- * Specifies that the underlying call to <code>pantheios_be_logEntry()</code> failed; the back-end may have used bail-out logging to record the problem.
+ * Specifies that the underlying call to \c pantheios_be_logEntry() failed; the back-end may have used bail-out logging to record the problem.
  *
  * \ingroup group__init_codes__backend
  */

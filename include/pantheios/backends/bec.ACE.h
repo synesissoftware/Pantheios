@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios ACE Stock Back-end API.
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_EDIT        14
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_EDIT        15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,7 @@
 
 /** \defgroup group__backend__stock_backends__ACE Pantheios ACE Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library built on top of the diagnostic logging facilities of
+ *   Back-end library built on top of the diagnostic logging facilities of
  *   the <a href = "http://www.cs.wustl.edu/~schmidt/ACE.html">Adaptive Communications Environment (ACE)</a>.
  */
 

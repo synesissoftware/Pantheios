@@ -4,7 +4,7 @@
  * Purpose: Pantheios back end API
  *
  * Created: 21st June 2005
- * Updated: 24th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     28
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_H_ARGUMENTS_EDIT     29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -91,11 +91,11 @@
  * \param flagSuppressesAction Indicates whether the flagValue is a
  *   suppression flag, such as PANTHEIOS_BE_INIT_F_NO_SEVERITY, rather than
  *   an activation flag, such as PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME;
- * \param flagValue A flag value, such as PANTHEIOS_BE_INIT_F_NO_SEVERITY
+ * \param flagValue A flag value, such as PANTHEIOS_BE_INIT_F_NO_SEVERITY;
  * \param flags A pointer to a flags variable whose value may be modified
  *   upon a successful match. May not be NULL;
  *
- * \return An indication of whether a valid argument was found;
+ * \return An indication of whether a valid argument was found.
  * \retval 0 No matching arguments were found, or the argument was found but
  *   did not have boolean values;
  * \retval 1 An argument with the given name, and with values interpretable as
@@ -131,7 +131,7 @@ pantheios_be_parseBooleanArg(
  * \param argValue A pointer to a slice that will receive the value part of
  *   an argument if successfully matched. May not be NULL;
  *
- * \return An indication of whether a valid argument was found;
+ * \return An indication of whether a valid argument was found.
  * \retval 0 No matching arguments were found;
  * \retval 1 An argument with the given name was found;
  *
@@ -140,7 +140,7 @@ pantheios_be_parseBooleanArg(
  * \pre NULL != argValue
  *
  * \note The contents of \c argValue are unchanged if \c argName is not
- *  matched.
+ *   matched.
  */
 PANTHEIOS_CALL(int)
 pantheios_be_parseStringArg(
@@ -183,7 +183,7 @@ pantheios_be_parseStringArg(
  * \param flags A pointer to a flags variable whose value may be modified
  *   upon a successful matches. May not be NULL;
  *
- * \return The number of arguments successfully matched
+ * \return The number of arguments successfully matched.
  *
  * \pre NULL != args || 0 == numArgs
  * \pre NULL != flags

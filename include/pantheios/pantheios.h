@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   15
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       400
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       401
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -347,7 +347,7 @@
  *
  * \ingroup group__utility
  *
- * \param x The preprocessor symbol whose value will be turned into a string
+ * \param x The preprocessor symbol whose value will be turned into a string;
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -362,9 +362,9 @@
  * a \link pantheios::pan_severity_t stock severity level\endlink and
  * 28-bits of extended information
  *
- * \param sev A \link pantheios::pan_severity_t stock severity level\endlink
+ * \param sev A \link pantheios::pan_severity_t stock severity level\endlink;
  * \param xi28 The extended severity information. Must be no larger than
- *   28-bits
+ *   28-bits;
  *
  * \pre 0 == (xi28 & ~0xf0000000)
  */
@@ -373,33 +373,33 @@
 
 /** \def PANTHEIOS_CARG_STR(s)
  *
- * \param s A (nul-terminated) C-style string pointer/array
+ * \param s A (nul-terminated) C-style string pointer/array;
  *
  * \note The length of this macro is necessary to disambiguate with respect to
  *   arbitrary codebases. For convenience, it is recommended that you
- *   <code>#define</code> a shorter macro for use in your code, as in:
+ *   `#define` a shorter macro for use in your code, as in:
 \htmlonly
 <pre>
 \#define PANARG_S(s)        PANTHEIOS_CARG_STR(s)
 </pre>
-\endhtmlonly
+\endhtmlonly.
  */
 
 #define PANTHEIOS_CARG_STR(s)                               (s), (-1)
 
 /** \def PANTHEIOS_CARG_STR_LEN(s, n)
  *
- * \param s A C-style string pointer/array, whose length is \c n
- * \param n The length of the string pointed to by the \c s parameter
+ * \param s A C-style string pointer/array, whose length is \c n;
+ * \param n The length of the string pointed to by the \c s parameter;
  *
  * \note The length of this macro is necessary to disambiguate with respect to
  *   arbitrary codebases. For convenience, it is recommended that you
- *   <code>#define</code> a shorter macro for use in your code, as in:
+ *   `#define` a shorter macro for use in your code, as in:
 \htmlonly
 <pre>
 \#define PANARG_SN(s, n)    PANTHEIOS_CARG_STR_LEN(s, n)
 </pre>
-\endhtmlonly
+\endhtmlonly.
  */
 
 #define PANTHEIOS_CARG_STR_LEN(s, n)                        (s), (n)
@@ -412,16 +412,16 @@
  *
  * Defaults to no symbol. Can be defined to a symbol appropriate to the
  * operating system and linkage model. e.g. on Windows you might choose to
- * define it to <code>__declspec(dllexport)</code> when building Pantheios
- * and to <code>__declspec(dllimport)</code> in client code using Pantheios.
+ * define it to `__declspec(dllexport)` when building Pantheios
+ * and to `__declspec(dllimport)` in client code using Pantheios.
  *
  * Used in the PANTHEIOS_CALL() macro.
  */
 
 /** \def PANTHEIOS_EXTERN
  *
- * Resolves to <code>extern</code> when compiling in C, and
- * <code>extern "C"</code> when compiling in C++.
+ * Resolves to \c extern when compiling in C, and
+ * `extern "C"` when compiling in C++.
  *
  * \ingroup group__utility
  *
@@ -431,7 +431,7 @@
 /** \def PANTHEIOS_EXTERN_C
  *
  * Resolves to nothin when compiling in C, and
- * <code>extern "C"</code> when compiling in C++.
+ * `extern "C"` when compiling in C++.
  *
  * \ingroup group__utility
  *
@@ -636,9 +636,9 @@ typedef pantheios_sint64_t                                  pan_sint64_t;
 
 /** Character type used by the library
  *
- * This will be <code>wchar_t</code> if
- * <code>PANTHEIOS_USE_WIDE_STRINGS</code> is defined, otherwise
- * <code>char</code>.
+ * This will be \c wchar_t if
+ * \c PANTHEIOS_USE_WIDE_STRINGS is defined, otherwise
+ * \c char.
  */
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 typedef wchar_t                                             pantheios_char_t;
@@ -657,8 +657,8 @@ typedef pantheios_char_t                                    pan_char_t;
  *
  * The type \c pantheios_char_t, suitably namespace qualified in the contexts
  * in which the \c pantheios namespace is operative. Acts as a convenient
- * shorthand for <code>::pantheios::pantheios_char_t</code> when in C++ (and
- * namespace not suppressed) or <code>pantheios_char_t</code> otherwise.
+ * shorthand for `::pantheios::pantheios_char_t` when in C++ (and
+ * namespace not suppressed) or \c pantheios_char_t otherwise.
  */
 #define PAN_CHAR_T                                          pantheios_char_t
 
@@ -813,7 +813,7 @@ typedef stlsoft_ns_qual(ss_sint32_t)    pan_sev_t;
  *  - bits 0-7: the alpha/beta designatorm, or 0xFF for a non-beta release
  *
  * \return The value of PANTHEIOS_VER at the time that Pantheios was
- *   built
+ *   built.
  *
  * \remarks This function may be called without having initialised the
  *   Pantheios library
@@ -824,22 +824,22 @@ PANTHEIOS_CALL(pan_uint32_t) pantheios_getVersion(void);
  *
  * \ingroup group__core_library
  *
- * \return Indicates
- * \retval <0 initialisation has failed, and the library cannot be used
- * \retval >=0 initialisation has succeeded, and the library can be used.
- *   pantheios_uninit() should be called when the library is no longer needed
+ * \return Indicates.
+ * \retval &lt;0 initialisation has failed, and the library cannot be used;
+ * \retval &gt;=0 initialisation has succeeded, and the library can be used.
+ *   pantheios_uninit() should be called when the library is no longer needed;
  *
  * \note C++ compilation units that include pantheios/pantheios.hpp do not
  *   need to explicitly call pantheios_init() / pantheios_uninit(), since
  *   they will be automatically called by the pantheios_initialiser Schwarz
  *   counter class defined by the C++ inclusion. Further note that this is
- *   disabled by the definition of the <code>PANTHEIOS_NO_AUTO_INIT</code>,
+ *   disabled by the definition of the \c PANTHEIOS_NO_AUTO_INIT,
  *   which is  automatically defined by a Windows DLL build (as detected by
- *   the presence of any of the <code>__DLL__</code>, <code>_WINDLL</code>
- *   or <code>_USRDLL</code> symbols).
+ *   the presence of any of the \c __DLL__, \c _WINDLL
+ *   or \c _USRDLL symbols).
  *   Auto-initialisation can be forced regardless of the definition of
- *   <code>PANTHEIOS_NO_AUTO_INIT</code> by the definition of the symbol
- *   <code>PANTHEIOS_FORCE_AUTO_INIT</code>.
+ *   \c PANTHEIOS_NO_AUTO_INIT by the definition of the symbol
+ *   \c PANTHEIOS_FORCE_AUTO_INIT.
  */
 PANTHEIOS_CALL(int) pantheios_init(void);
 
@@ -854,13 +854,13 @@ PANTHEIOS_CALL(int) pantheios_init(void);
  *   need to explicitly call pantheios_init() / pantheios_uninit(), since
  *   they will be automatically called by the pantheios_initialiser Schwarz
  *   counter class defined by the C++ inclusion. Further note that this is
- *   disabled by the definition of the <code>PANTHEIOS_NO_AUTO_INIT</code>,
+ *   disabled by the definition of the \c PANTHEIOS_NO_AUTO_INIT,
  *   which is  automatically defined by a Windows DLL build (as detected by
- *   the presence of any of the <code>__DLL__</code>, <code>_WINDLL</code>
- *   or <code>_USRDLL</code> symbols).
+ *   the presence of any of the \c __DLL__, \c _WINDLL
+ *   or \c _USRDLL symbols).
  *   Auto-initialisation can be forced regardless of the definition of
- *   <code>PANTHEIOS_NO_AUTO_INIT</code> by the definition of the symbol
- *   <code>PANTHEIOS_FORCE_AUTO_INIT</code>.
+ *   \c PANTHEIOS_NO_AUTO_INIT by the definition of the symbol
+ *   \c PANTHEIOS_FORCE_AUTO_INIT.
  */
 PANTHEIOS_CALL(void) pantheios_uninit(void);
 
@@ -869,10 +869,10 @@ PANTHEIOS_CALL(void) pantheios_uninit(void);
  *
  * \ingroup group__core_library
  *
- * \param severity The severity level to test. Usually one of the \link pantheios::pan_severity_t PANTHEIOS_SEV_*\endlink enumerators.
+ * \param severity The severity level to test. Usually one of the \link pantheios::pan_severity_t PANTHEIOS_SEV_*\endlink enumerators;
  *
- * \retval 0 The given severity level is not being logged.
- * \retval 1 The given severity level is being logged.
+ * \retval 0 The given severity level is not being logged;
+ * \retval 1 The given severity level is being logged;
  *
  * This function is used by \ref group__application_layer_interface "Application Layer API"
  * for filtering statements prior to formatting their elements for output. It
@@ -907,7 +907,7 @@ pantheios_getProcessIdentity(void);
  * \param severity The severity level whose string equivalent is to be
  *   returned. Must be one of the
  *   \link pantheios::pan_severity_t PANTHEIOS_SEV_*\endlink enumerators,
- *   otherwise, the empty string (<code>""</code>) will be returned.
+ *   otherwise, the empty string (`""`) will be returned;
  */
 PANTHEIOS_CALL(pantheios_char_t const*) pantheios_getStockSeverityString(pan_sev_t severity);
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -921,7 +921,7 @@ PANTHEIOS_CALL_DEPRECATED(pantheios_char_t const*, pantheios_getSeverityString, 
  * \param severity The severity level whose string equivalent is to be
  *   returned. Must be one of the
  *   \link pantheios::pan_severity_t PANTHEIOS_SEV_*\endlink enumerators,
- *   otherwise, 0 will be returned.
+ *   otherwise, 0 will be returned;
  */
 PANTHEIOS_CALL(size_t) pantheios_getStockSeverityStringLength(pan_sev_t severity);
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -935,7 +935,7 @@ PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_getSeverityStringLength, pantheios_g
  * \param severity The severity level whose string equivalent is to be
  *   returned. Must be one of the
  *   \link pantheios::pan_severity_t PANTHEIOS_SEV_*\endlink enumerators,
- *   otherwise, the empty slice (<code>{ 0, "" }</code>) will be returned.
+ *   otherwise, the empty slice (`{ 0, "" }`) will be returned;
  */
 PANTHEIOS_CALL(pantheios_slice_t)
 pantheios_getStockSeverityStringSlice(
@@ -949,7 +949,7 @@ pantheios_getStockSeverityStringSlice(
  *
  * \param code The initialisation code whose string explanation is to be
  *   returned. If the error code is not recognised,
- *   the empty string (<code>""</code>) will be returned.
+ *   the empty string (`""`) will be returned;
  */
 PANTHEIOS_CALL(char const*) pantheios_getInitCodeString(int code);
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -961,7 +961,7 @@ PANTHEIOS_CALL_DEPRECATED(char const*, pantheios_getInitErrorString, pantheios_g
  * \ingroup group__util_library
  *
  * \param code The initialisation code whose string equivalent is to be
- *   returned. If the error code is not recognised, 0 will be returned.
+ *   returned. If the error code is not recognised, 0 will be returned;
  */
 PANTHEIOS_CALL(size_t) pantheios_getInitCodeStringLength(int code);
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -978,13 +978,13 @@ namespace core
  *
  * \ingroup group__core_library
  *
- * \param severity The severity of the log entry
- * \param slices Pointer to the array of slices
- * \param numSlices The number of slices
+ * \param severity The severity of the log entry;
+ * \param slices Pointer to the array of slices;
+ * \param numSlices The number of slices;
  *
- * \return An indicator of success
- * \retval <0 An error occurred
- * \retval >=0 The log entry was successfully passed to the back-end
+ * \return An indicator of success.
+ * \retval &lt;0 An error occurred;
+ * \retval &gt;=0 The log entry was successfully passed to the back-end;
  */
 PANTHEIOS_CALL(int) pantheios_log_n(
     pan_sev_t                       severity
@@ -1009,8 +1009,8 @@ PANTHEIOS_CALL(int) pantheios_log_n(
  *
  * \ingroup group__core_library
  *
- * \param severity The severity of the log entry
- * \param format The format string
+ * \param severity The severity of the log entry;
+ * \param format The format string;
  *
  * \warning This function is not type-safe. C++ application code should
  *   prefer the \ref group__application_layer_interface "application layer"
@@ -1031,9 +1031,9 @@ __attribute__((format(printf,2,3)))
  *
  * \ingroup group__core_library
  *
- * \param severity The severity of the log entry
- * \param format The format string
- * \param args <code>va_list</code> form of the arguments
+ * \param severity The severity of the log entry;
+ * \param format The format string;
+ * \param args \c va_list form of the arguments;
  *
  * \note The behaviour is undefined if the total size of the formatted output
  *   exceeds 4095 characters.
@@ -1069,13 +1069,13 @@ namespace util
  * can be tracked by a user / system administrator.
  *
  * \param severity The severity level at which the event will be represented
- *   to the operating-system dependent facilities
- * \param message The message to be emitted
+ *   to the operating-system dependent facilities;
+ * \param message The message to be emitted;
  * \param processId An optional identifier of the process within which the
- *   subsystem has failed. May be NULL
+ *   subsystem has failed. May be NULL;
  * \param qualifier An optional additional qualifier (e.g. error string) that
  *   may be used to pass additional information about the reason why the
- *   subsystem has failed. May be NULL
+ *   subsystem has failed. May be NULL;
  *
  * \remarks On UNIX systems, this function will output to the console, the
  *   file "logging-bailout.txt" in the current directory, and to Syslog. On
@@ -1139,10 +1139,10 @@ pantheios_onBailOut6_w(
  * can be tracked by a user / system administrator.
  *
  * \param severity The severity level at which the event will be represented
- *   to the operating-system dependent facilities
- * \param message The message to be emitted
+ *   to the operating-system dependent facilities;
+ * \param message The message to be emitted;
  * \param processId An optional identifier of the process within which the
- *   subsystem has failed. May be NULL
+ *   subsystem has failed. May be NULL;
  *
  * \remarks On UNIX systems, this function will output to the console, the
  *   file "logging-bailout.txt" in the current directory, and to Syslog. On
@@ -1153,7 +1153,7 @@ pantheios_onBailOut6_w(
  * \see pantheios_onBailOut4
  *
  * \note This is equivalent to calling pantheios_onBailOut4() specifying NULL
- *   for the <code>qualifier</code> parameter
+ *   for the \c qualifier parameter.
  */
 PANTHEIOS_CALL(void)
 pantheios_onBailOut3(
@@ -1255,7 +1255,7 @@ PANTHEIOS_CALL_DEPRECATED(void, pantheios_exit_process, pantheios_exitProcess) p
  *
  * \remarks Memory block is not release until Pantheios is uninitialised.
  *
- * \param cb The number of bytes to allocate
+ * \param cb The number of bytes to allocate;
  *
  * \return the NULL pointer if allocation failed, otherwise a pointer to a
  *   correctly aligned block of bytes, all of whose values are 0x00.
@@ -1289,16 +1289,16 @@ PANTHEIOS_CALL(void)    pantheios_inserterDeallocate(void* pv);
  * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
  *
- * \param minimumWidth The requested length of the pad string
+ * \param minimumWidth The requested length of the pad string;
  * \param actualWidth Pointer to a variable to receive the actual number of
  *   pad characters available. Result may be less than \c minimumWidth but
- *   will never be so for requests less than 1000. Must not be NULL.
+ *   will never be so for requests less than 1000. Must not be NULL;
  *
  * \remarks Guaranteed to support up to 1000 characters.
  *
- * \note The string is NOT guaranteed to be nul-terminated!
+ * \note The string is NOT guaranteed to be nul-terminated.
  *
- * \pre (NULL != actualWidth)
+ * \pre NULL != actualWidth
  */
 PANTHEIOS_CALL(pantheios_char_t const*)
 pantheios_getPad(
@@ -1352,10 +1352,10 @@ PANTHEIOS_CALL(int) pantheios_getNextBackEndId(void);
  * Using this function skips the application layer entirely and, if the
  * given severity level is enabled, goes straight to the back-end. It is
  * therefore more suitable for use in emergency bail-out situations, such as
- * in an application-level <code>catch(...)</code> clause.
+ * in an application-level `catch(...)` clause.
  *
- * \param severity The severity of the message to be output.
- * \param message The message to be output.
+ * \param severity The severity of the message to be output;
+ * \param message The message to be output;
  */
 PANTHEIOS_CALL(void) pantheios_logputs(
     pan_sev_t               severity
@@ -1404,15 +1404,15 @@ PANTHEIOS_CALL(void) pantheios_logassertfail(
  *
  * \ingroup group__core_library
  *
- * \param backEndId The identifier of the back-end
- * \param ptoken Pointer to a <code>void*</code> variable to receive the
- *    pointer to the token. May be NULL, if the caller does not want to
- *    retrieve the token.
+ * \param backEndId The identifier of the back-end;
+ * \param ptoken Pointer to a `void*` variable to receive the
+ *   pointer to the token. May be NULL, if the caller does not want to
+ *   retrieve the token;
  *
  * \return A Boolean value indicating whether the back-end is registered in
- *    the map.
- * \retval 0 The value of backEndId is not in the map
- * \retval 1 The value of backEndId is in the map
+ *   the map.
+ * \retval 0 The value of backEndId is not in the map;
+ * \retval 1 The value of backEndId is in the map;
  */
 PANTHEIOS_CALL(int) pantheios_backEndMap_lookup(int backEndId, void** ptoken);
 
@@ -1420,13 +1420,13 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_lookup(int backEndId, void** ptoken);
  *
  * \ingroup group__core_library
  *
- * \param backEndId The identifier of the back-end
- * \param token The token value to add
+ * \param backEndId The identifier of the back-end;
+ * \param token The token value to add;
  *
- * \return A value indicating whether the addition was successful
- * \retval 0 The entry is added, and backEndId is linked to token
- * \retval 1 An entry already exists for backEndId. It is NOT updated.
- * \retval <0 The operation failed
+ * \return A value indicating whether the addition was successful.
+ * \retval 0 The entry is added, and backEndId is linked to token;
+ * \retval 1 An entry already exists for backEndId. It is NOT updated;
+ * \retval &lt;0 The operation failed;
  */
 PANTHEIOS_CALL(int) pantheios_backEndMap_add(int backEndId, void* token);
 
@@ -1434,12 +1434,12 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_add(int backEndId, void* token);
  *
  * \ingroup group__core_library
  *
- * \param backEndId The identifier of the back-end to be removed
+ * \param backEndId The identifier of the back-end to be removed;
  *
- * \return A value indicating whether the removal was successful
- * \retval 0 No entry for the given backEndId exists
- * \retval 1 The entry is removed
- * \retval <0 The operation failed
+ * \return A value indicating whether the removal was successful.
+ * \retval 0 No entry for the given backEndId exists;
+ * \retval 1 The entry is removed;
+ * \retval &lt;0 The operation failed;
  */
 PANTHEIOS_CALL(int) pantheios_backEndMap_remove(int backEndId);
 #endif /* 0 */
@@ -2013,16 +2013,16 @@ logvprintf(
 
 /** The <a href = "http://stlsoft.org" target="_blank">STLSoft</a> namespace - \c stlsoft.
  *
- * The Pantheios project inserts overloads of the <strong>c_str_data_a</strong> and <strong>c_str_len_a</strong>
+ * The Pantheios project inserts overloads of the \c c_str_data_a and \c c_str_len_a
  * <a href = "http://www.drdobbs.com/184401689"><em>String Access Shims</em></a>
- * into the <code>stlsoft</code> namespace, for generalised manipulation of various Pantheios types,
+ * into the \c stlsoft namespace, for generalised manipulation of various Pantheios types,
  * including
  * \c pantheios::pan_slice_t, \c pantheios::integer,
  * \c pantheios::pointer, and \c pantheios::real.
  *
  * Because <a href = "http://www.synesis.com.au/resources/articles/cpp/shims.pdf"><em>Shims</em></a>
  * are unbound sets of functions, opening and extending the
- * <code>stlsoft</code> namespace in this way is quite legitimate.
+ * \c stlsoft namespace in this way is quite legitimate.
  */
 # endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 /* TODO: make this include relative */

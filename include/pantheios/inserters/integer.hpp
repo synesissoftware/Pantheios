@@ -4,11 +4,11 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_MINOR    5
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_REVISION 8
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_EDIT     43
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTEGER_EDIT     44
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -115,7 +115,7 @@ namespace pantheios
  *
  * This will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, i=123, str=def</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, i=123, str=def**
  *
  * The constructor takes a second, defaulted (to 0), parameter, which allows
  * a width (up to a maximum of 255) and a format to be specified. The low
@@ -123,12 +123,12 @@ namespace pantheios
  * the width. The remaining bits are treated as bit flags that control the
  *
  * \note Currently, Pantheios does not support the insertion of integral types
- * in diagnostic logging statements, due to the various ambiguities inherent
- * in the C++ language. (See chapters 14, 15, 19, 24 of
- * <a href = "http://imperfectcplusplus.com" target="_blank">Imperfect C++</a>
- * for discussions of these issues.) It is possible that a future version of
- * the library will be able to incorporate them directly, so long as that does
- * not sacrifice Pantheios's central claim of not paying for what you don't use.
+ *   in diagnostic logging statements, due to the various ambiguities inherent
+ *   in the C++ language. (See chapters 14, 15, 19, 24 of
+ *   <a href = "http://imperfectcplusplus.com" target="_blank">Imperfect C++</a>
+ *   for discussions of these issues.) It is possible that a future version of
+ *   the library will be able to incorporate them directly, so long as that does
+ *   not sacrifice Pantheios's central claim of not paying for what you don't use.
  */
 class integer
 {
@@ -427,7 +427,6 @@ PANTHEIOS_c_str_data_name_(
 {
     return i.data();
 }
-/** \overload c_str_data(integer const&) */
 inline
 pantheios_char_t const*
 c_str_data(integer const& i)
@@ -443,7 +442,6 @@ PANTHEIOS_c_str_len_name_(
 {
     return i.length();
 }
-/** \overload c_str_len(integer const&) */
 inline
 size_t
 c_str_len(
@@ -461,7 +459,6 @@ PANTHEIOS_c_str_ptr_name_(
 {
     return i.c_str();
 }
-/** \overload c_str_ptr(integer const&) */
 inline
 pantheios_char_t const*
 c_str_ptr(integer const& i)

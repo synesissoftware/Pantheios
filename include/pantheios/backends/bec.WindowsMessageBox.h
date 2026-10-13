@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios WindowsMessageBox Stock Back-end API.
  *
  * Created:     8th March 2008
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_MINOR     1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_EDIT      10
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_EDIT      11
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,7 @@
 
 /** \defgroup group__backend__stock_backends__WindowsMessageBox Pantheios Windows Message Box Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that writes to the Windows event log.
+ *   Back-end library that writes to the Windows event log.
  */
 
 

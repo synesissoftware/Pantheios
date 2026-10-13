@@ -4,11 +4,11 @@
  * Purpose:     Memory-copying functions.
  *
  * Created:     1st September 2015
- * Updated:     16th July 2024
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2015-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_EDIT     7
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_EDIT     8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -105,12 +105,12 @@ namespace util
 
 /** Copies \c cch characters from \c src to \c dest
  *
- * \param dest Destination
- * \param src The destination
- * \param cch The number of characters
+ * \param dest Destination;
+ * \param src The destination;
+ * \param cch The number of characters;
  *
- * \pre (NULL != dest)
- * \pre (NULL != src)
+ * \pre NULL != dest
+ * \pre NULL != src
  */
 template <typename C>
 inline
@@ -132,12 +132,12 @@ pantheios_util_memory_copyChars(
 
 /** Copies \c cch multibyte characters from \c src to \c dest
  *
- * \param dest Destination
- * \param src The destination
- * \param cch The number of characters
+ * \param dest Destination;
+ * \param src The destination;
+ * \param cch The number of characters;
  *
- * \pre (NULL != dest)
- * \pre (NULL != src)
+ * \pre NULL != dest
+ * \pre NULL != src
  */
 PANTHEIOS_CALL(char const*)
 pantheios_util_memory_copyChars_m(
@@ -148,12 +148,12 @@ pantheios_util_memory_copyChars_m(
 
 /** Copies \c cch wide characters from \c src to \c dest
  *
- * \param dest Destination
- * \param src The destination
- * \param cch The number of characters
+ * \param dest Destination;
+ * \param src The destination;
+ * \param cch The number of characters;
  *
- * \pre (NULL != dest)
- * \pre (NULL != src)
+ * \pre NULL != dest
+ * \pre NULL != src
  */
 PANTHEIOS_CALL(wchar_t const*)
 pantheios_util_memory_copyChars_w(
@@ -166,12 +166,12 @@ pantheios_util_memory_copyChars_w(
  *
  * Copies \c cch parameters from \c src to \c dest
  *
- * \param dest Destination
- * \param src The destination
- * \param cch The number of characters
+ * \param dest Destination;
+ * \param src The destination;
+ * \param cch The number of characters;
  *
- * \pre (NULL != dest)
- * \pre (NULL != src)
+ * \pre NULL != dest
+ * \pre NULL != src
  */
 
 # define pantheios_util_memory_copyChars(dest, src, cch)   stlsoft_static_cast(PAN_CHAR_T*, memcpy((dest), (src), (cch) * sizeof(PAN_CHAR_T)))

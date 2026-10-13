@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios WindowsDebugger Stock Back-end API.
  *
  * Created: 21st June 2005
- * Updated: 28th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        26
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -82,7 +82,7 @@
 
 /** \defgroup group__backend__stock_backends__WindowsDebugger Pantheios Windows Debugger Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that outputs to the Windows debugger.
+ *   Back-end library that outputs to the Windows debugger.
  */
 
 
@@ -92,7 +92,7 @@
 
 /** \defgroup group__backend__stock_backends__WindowsDebugger__flags Pantheios Windows Debugger Stock Back-end Flags
  * \ingroup group__backend__stock_backends__WindowsDebugger
- *  Flags for the \ref group__backend__stock_backends__WindowsDebugger
+ *   Flags for the \ref group__backend__stock_backends__WindowsDebugger
  */
 
 
@@ -127,7 +127,7 @@ typedef struct pan_be_WindowsDebugger_init_t    pan_be_WindowsDebugger_init_t;
  */
 
 /** Callback function defined by the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ *    API is initialised with a NULL \c init parameter.
  *
  * \note When using explicit initialisation, this function must be defined,
  *   but will not be invoked.

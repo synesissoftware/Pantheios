@@ -4,13 +4,13 @@
  * Purpose: Pantheios Assertion API.
  *
  * Created: 8th May 2009
- * Updated: 7th February 2024
+ * Updated: 14th October 2026
  *
  * Thanks:  markitus82 for requesting this functionality
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_MINOR     3
 # define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      14
+# define PANTHEIOS_VER_PANTHEIOS_H_ASSERT_EDIT      15
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -173,7 +173,7 @@
  *
  * Defines an assertion construct for runtime verification.
  *
- * \param expr Must be non-zero, or an assertion will be fired
+ * \param expr Must be non-zero, or an assertion will be fired;
  *
  * If the expression evaluates to false a log statement will be
  * submitted at the PANTHEIOS_ASSERT_SEVERITY_LEVEL severity level, and
@@ -235,8 +235,8 @@
  *
  * Defines an assertion construct for runtime verification.
  *
- * \param expr Must be non-zero, or an assertion will be fired
- * \param msg The message that will be associated with the output if the assertion fires
+ * \param expr Must be non-zero, or an assertion will be fired;
+ * \param msg The message that will be associated with the output if the assertion fires;
  *
  * If the expression evaluates to false a log statement will be
  * submitted at the PANTHEIOS_ASSERT_SEVERITY_LEVEL severity level, and

@@ -4,11 +4,11 @@
  * Purpose:     String inserters for fundamental types
  *
  * Created:     21st June 2005
- * Updated:     16th January 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -83,7 +83,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_MINOR      5
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_REVISION   4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_EDIT       30
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_EDIT       31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -140,15 +140,15 @@ namespace pantheios
  *
  * This will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, c=#, str=def</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, c=#, str=def**
  *
  * \note Currently, Pantheios does not support the insertion of character types
- * in diagnostic logging statements, due to the various ambiguities inherent
- * in the C++ language. (See chapters 14, 15, 19, 24 of
- * <a href = "http://imperfectcplusplus.com" target="_blank">Imperfect C++</a>
- * for discussions of these issues.) It is possible that a future version of
- * the library will be able to incorporate them directly, so long as that does
- * not sacrifice Pantheios's central claim of not paying for what you don't use.
+ *   in diagnostic logging statements, due to the various ambiguities inherent
+ *   in the C++ language. (See chapters 14, 15, 19, 24 of
+ *   <a href = "http://imperfectcplusplus.com" target="_blank">Imperfect C++</a>
+ *   for discussions of these issues.) It is possible that a future version of
+ *   the library will be able to incorporate them directly, so long as that does
+ *   not sacrifice Pantheios's central claim of not paying for what you don't use.
  */
 class character
 {
@@ -157,7 +157,7 @@ public:
     typedef character   class_type;
 
 public:
-    /// Construct from a <code>char</code> value
+    /// Construct from a \c char value
     explicit character(pantheios_char_t value);
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
