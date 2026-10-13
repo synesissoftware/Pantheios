@@ -135,7 +135,7 @@ Examples are provided in the `examples` directory (C under `examples/c/`, C++ un
 
 * `example.c.101`, `example.c.core.pantheios_logprintf`, `example.c.N`;
 * `example.cpp.misc.101`;
-* `example.cpp.linking.implicit_link_1`;
+* `example.cpp.linking.implicit_link_1`, `example.cpp.linking.N_with_stock`;
 * `example.cpp.frontends.custom`;
 * `example.cpp.backends.file`, `example.cpp.backends.callback`;
 * `example.cpp.inserters.integer`, `example.cpp.inserters.b64`, `example.cpp.inserters.args`;
