@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios file Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 24th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -56,8 +56,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MAJOR      4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MINOR      4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       39
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   4
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       40
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -321,9 +321,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_logEntry(
 ,   size_t              cchEntry
 );
 
-/** \fn pantheios_be_file_setFilePath(PAN_CHAR_T const*, pantheios_uint32_t, pantheios_uint32_t, int)
- *
- * Sets/changes the log file name for a single back-end.
+/** Sets/changes the log file name for a single back-end.
  *
  * \ingroup group__backend__stock_backends__file
  *
@@ -355,9 +353,7 @@ PANTHEIOS_CALL(int) pantheios_be_file_setFilePath(
 );
 
 #ifdef __cplusplus
-/** \overload int pantheios_be_file_setFilePath(PAN_CHAR_T const*)
- *
- * Sets/changes the log file name for all back-ends.
+/** Sets/changes the log file name for all back-ends.
  *
  * \ingroup group__backend__stock_backends__file
  *
@@ -369,9 +365,7 @@ inline int pantheios_be_file_setFilePath(PAN_CHAR_T const* fileName)
     return pantheios_be_file_setFilePath(fileName, 0, 0, PANTHEIOS_BEID_ALL);
 }
 
-/** \overload int pantheios_be_file_setFilePath(PAN_CHAR_T const*, int)
- *
- * Sets/changes the log file name for all back-ends.
+/** Sets/changes the log file name for all back-ends.
  *
  * \ingroup group__backend__stock_backends__file
  *
