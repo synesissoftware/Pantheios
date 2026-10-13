@@ -5,11 +5,11 @@
  *          Elements.
  *
  * Created: 23rd November 2007
- * Updated: 28th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,8 +58,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MINOR    2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     18
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 4
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -75,12 +75,25 @@
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_H_FRONTEND */
 
 /** \defgroup group__frontend__stock_frontends Pantheios Stock Front-ends
- * \ingroup group__frontend Pantheios
- *  Pre-built front-ends supplied with the Pantheios library
+ *
+ * \ingroup group__frontend
+ *
+ * Pre-built front-ends supplied with the Pantheios library
  *
  * Pantheios comes with several pre-written stock front-end libraries, which
  * cover most common needs for diagnostic logging. They also serve as good
  * examples of how to write a custom front-end.
+ */
+
+/** \page page__frontend__callbacks Pantheios Front-end Callbacks
+ *
+ * Several stock front-ends are available in a <em>WithCallback</em> form.
+ * Those variants obtain the process identity (and related initialisation
+ * data) via an application-defined callback, rather than requiring a
+ * compiled-in \c PANTHEIOS_FE_PROCESS_IDENTITY array alone.
+ *
+ * The callback must not throw, and must not call into Pantheios (directly
+ * or indirectly), because it runs during Pantheios initialisation.
  */
 
 

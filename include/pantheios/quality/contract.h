@@ -5,11 +5,11 @@
  *          Pantheios core and APIs.
  *
  * Created: 26th June 2005
- * Updated: 27th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -59,8 +59,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_MINOR       2
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        21
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_REVISION    3
+# define PANTHEIOS_VER_PANTHEIOS_QUALITY_H_CONTRACT_EDIT        22
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,6 +79,16 @@
 #else /* ? contract */
 # include <stlsoft/stlsoft.h>
 #endif /* contract */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * documentation
+ */
+
+/** \defgroup group__quality Pantheios Quality / Contract Enforcement
+ *
+ * Contract-enforcement macros used inside the Pantheios core and APIs.
+ */
 
 
 /* /////////////////////////////////////////////////////////////////////////

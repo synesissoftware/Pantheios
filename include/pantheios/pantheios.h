@@ -59,8 +59,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   14
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       399
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   15
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       400
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -279,6 +279,62 @@
 
 /* TODO: make this include relative */
 #include <pantheios/internal/string_encoding.h>
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * documentation
+ */
+
+/** \defgroup group__core_library Pantheios Core Library
+ *
+ * Core logging API: initialisation, severity filtering, and log emission.
+ */
+
+/** \defgroup group__util_library Pantheios Utility Library
+ *
+ * Utility functions and helpers used by the core and by stock libraries.
+ */
+
+/** \defgroup group__utility Pantheios Utility Constructs
+ *
+ * \ingroup group__util_library
+ *
+ * Macros and small helpers that support the Pantheios APIs.
+ */
+
+/** \defgroup group__utility__backend Pantheios Back-end Utility Constructs
+ *
+ * \ingroup group__utility
+ *
+ * Helpers for implementing custom and stock back-ends.
+ */
+
+/** \defgroup group__application_layer_interface Pantheios Application Layer
+ *
+ * Application-facing logging API, including C++ inserters and generated
+ * \c pantheios_log_N() / severity-specific overloads.
+ */
+
+/** \defgroup group__application_layer_interface__inserters Pantheios Inserters
+ *
+ * \ingroup group__application_layer_interface
+ *
+ * C++ inserter types that format values for diagnostic logging statements.
+ */
+
+/** \defgroup group__application_layer_interface__generated Pantheios Generated Application Layer
+ *
+ * \ingroup group__application_layer_interface
+ *
+ * Auto-generated application-layer overloads
+ * (\c pantheios_log_N() and stock severity helpers).
+ */
+
+/** \defgroup group__appl_library Pantheios Appl Library
+ *
+ * Link library that provides the compiled Application Layer support used
+ * with the C++ application-layer interface.
+ */
 
 
 /* /////////////////////////////////////////////////////////////////////////

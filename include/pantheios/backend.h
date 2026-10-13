@@ -4,11 +4,11 @@
  * Purpose: Pantheios back end API
  *
  * Created: 21st June 2005
- * Updated: 28th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -57,8 +57,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MINOR      12
-# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       36
+# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_REVISION   2
+# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       37
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -101,6 +101,26 @@
  * Pantheios comes with several pre-written stock back-end libraries, which
  * cover most common needs for diagnostic logging. They also serve as good
  * examples of how to write a custom back-end.
+ */
+
+/** \defgroup group__backend__stock_backends__stock Pantheios Stock (All) Back-End Common Library
+ *
+ * \ingroup group__backend__stock_backends
+ *
+ * Aggregate stock back-end common library that may be used by sole, local,
+ * or remote back-end configurations.
+ */
+
+/** \page page__backend__callbacks Pantheios Back-end Callbacks
+ *
+ * Several stock back-ends are available in a <em>WithCallback</em> form.
+ * Those variants invoke an application-defined initialisation callback
+ * (for example \c pantheios_be_file_getAppInit()) when the back-end is
+ * initialised with a \c NULL \c init parameter, so that process-specific
+ * defaults can be supplied without changing the core library.
+ *
+ * The callback must not throw, and must not call into Pantheios (directly
+ * or indirectly), because it runs during Pantheios initialisation.
  */
 
 /** \defgroup group__backend__stock_ids Pantheios Stock Back-end Ids

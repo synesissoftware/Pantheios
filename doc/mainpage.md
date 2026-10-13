@@ -10,7 +10,9 @@ chosen at link time via a **front-end** and a **back-end**.
 
 | Module | Header | Summary |
 | ------ | ------ | ------- |
-| Core / Application Layer | `<pantheios/pantheios.h>` | Core logging API, application-layer calls, and utilities |
+| \ref group__core_library | `<pantheios/pantheios.h>` | Core logging API |
+| \ref group__application_layer_interface | `<pantheios/pantheios.hpp>` | Application-layer API and inserters |
+| \ref group__util_library | `<pantheios/pantheios.h>` | Utility helpers |
 | \ref group__frontend | `<pantheios/frontend.h>` | Front-end contract (`pantheios_fe_*`) |
 | \ref group__backend | `<pantheios/backend.h>` | Back-end contract (`pantheios_be_*`) |
 | \ref group__frontend__stock_frontends | `<pantheios/frontends/stock.h>` | Stock front-ends (simple, N, null, …) |
