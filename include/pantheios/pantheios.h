@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   15
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       404
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       406
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -473,9 +473,15 @@
  * \ingroup group__utility
  */
 
-#if !defined(PANTHEIOS_DECLSPEC)
+/* Under PANTHEIOS_DOCUMENTATION_SKIP_SECTION always emit the #define so
+ * Doxygen can attach the \def documentation (an empty PREDEFINED value
+ * would hide these lines and yield "unknown define").
+ */
+#if defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
 # define PANTHEIOS_DECLSPEC
-#endif /* !PANTHEIOS_DECLSPEC */
+#elif !defined(PANTHEIOS_DECLSPEC)
+# define PANTHEIOS_DECLSPEC
+#endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION || !PANTHEIOS_DECLSPEC */
 
 #if defined(__cplusplus) || \
     defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
@@ -488,9 +494,11 @@
 # define PANTHEIOS_EXTERN                                   extern
 #endif /* !__cplusplus */
 
-#if !defined(PANTHEIOS_CALLCONV)
+#if defined(PANTHEIOS_DOCUMENTATION_SKIP_SECTION)
 # define PANTHEIOS_CALLCONV
-#endif /* !PANTHEIOS_CALLCONV */
+#elif !defined(PANTHEIOS_CALLCONV)
+# define PANTHEIOS_CALLCONV
+#endif /* PANTHEIOS_DOCUMENTATION_SKIP_SECTION || !PANTHEIOS_CALLCONV */
 
 #define PANTHEIOS_CALL(rt)                                  PANTHEIOS_DECLSPEC PANTHEIOS_EXTERN_C rt PANTHEIOS_CALLCONV
 
@@ -656,10 +664,9 @@ typedef pantheios_char_t                                    pan_char_t;
 
 /** \def PAN_CHAR_T
  *
- * The type \c pantheios_char_t, suitably namespace qualified in the
- * contexts in which the \c pantheios namespace is operative. Acts as a
- * convenient shorthand for `::pantheios::pantheios_char_t` when in C++ (and
- * namespace not suppressed) or \c pantheios_char_t otherwise.
+ * Expands to \c pantheios_char_t — the library character typedef (at
+ * global scope). Inside namespace \c pantheios, \c pan_char_t is the
+ * corresponding alias.
  */
 #define PAN_CHAR_T                                          pantheios_char_t
 

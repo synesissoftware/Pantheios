@@ -27,6 +27,10 @@ FILE_PATTERNS          = *.h \
                          *.md
 RECURSIVE              = YES
 EXCLUDE                = include/pantheios/internal
+# Resolve `#include <pantheios/...>` under PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# (e.g. generated/log_functions.h) the same way consumers see the tree.
+INCLUDE_PATH           = include
+SEARCH_INCLUDES        = YES
 
 USE_MDFILE_AS_MAINPAGE = doc/mainpage.md
 
@@ -55,8 +59,8 @@ MARKDOWN_SUPPORT       = YES
 JAVADOC_AUTOBRIEF      = YES
 QUIET                  = YES
 
-# Prefer WARN_AS_ERROR once the headers are clean (CLASP). Until then,
-# keep the BDUT / Diagnosticism warning set without failing the run.
+# Match CLASP: documentation warnings fail the generator (and CI job).
+WARN_AS_ERROR          = YES
 WARN_IF_UNDOCUMENTED   = YES
 WARN_NO_PARAMDOC       = YES
 WARN_IF_DOC_ERROR      = YES
@@ -70,14 +74,16 @@ SKIP_FUNCTION_MACROS   = YES
 # PANTHEIOS_CALL* strip linkage wrappers from prototypes. Do not predefine
 # PANTHEIOS_DECLSPEC / PANTHEIOS_CALLCONV empty — that hides the header
 # #define lines and yields "documentation for unknown define". Leave those
-# macros to the headers (empty by default). Expand stlsoft_ns_qual so
-# typedef/return types parse as plain identifiers.
+# macros to the headers (empty by default). Expand stlsoft_ns_qual into the
+# stlsoft namespace (see doc/doxygen_stlsoft_stubs.h). Skip the real
+# STLSoft umbrella include so CI need not install STLSoft for docs.
 PREDEFINED             = PANTHEIOS_DOCUMENTATION_SKIP_SECTION \
                          PANTHEIOS_CALL(rt)=rt \
                          PANTHEIOS_CALL_DEPRECATED(rt,oldfn,newfn)=rt \
                          PANTHEIOS_EXTERN= \
                          PANTHEIOS_EXTERN_C= \
-                         stlsoft_ns_qual(x)=x
+                         STLSOFT_INCL_STLSOFT_H_STLSOFT \
+                         stlsoft_ns_qual(x)=::stlsoft::x
 
 HAVE_DOT               = NO
 
