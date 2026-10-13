@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_EDIT        16
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_EDIT        17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,12 +77,12 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__ACE Pantheios ACE Stock
- *   Back-end
- * \ingroup group__backend__stock_backends Back-end library built on top of
- *   the diagnostic logging facilities of the <a href =
- *   "http://www.cs.wustl.edu/~schmidt/ACE.html">Adaptive Communications
- *   Environment (ACE)</a>.
+/** \defgroup group__backend__stock_backends__ACE Pantheios ACE Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library built on top of the diagnostic logging facilities of the
+ * <a href = "http://www.cs.wustl.edu/~schmidt/ACE.html">Adaptive
+ * Communications Environment (ACE)</a>.
  */
 
 

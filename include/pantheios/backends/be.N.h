@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_MINOR      9
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       30
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_N_EDIT       32
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,8 +79,9 @@
  */
 
 /** \defgroup group__backend__stock_backends__N Pantheios N Stock Back-end
- * \ingroup group__backend__stock_backends Back-end library that splits
- *   output to N back-ends.
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that splits output to N back-ends.
  */
 
 
@@ -93,10 +94,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__N__flags Pantheios be.N Stock
- *   Back-end Flags
- * \ingroup group__backend__stock_backends__N Flags for the
- *   \ref group__backend__stock_backends__N
+/** \defgroup group__backend__stock_backends__N__flags Pantheios be.N Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__N
+ *
+ * Flags for the \ref group__backend__stock_backends__N
  */
 
 /** \def PANTHEIOS_BE_N_F_IGNORE_INIT_FAILURE

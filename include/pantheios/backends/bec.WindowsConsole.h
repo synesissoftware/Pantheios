@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MAJOR    5
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     32
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,10 +77,11 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__WindowsConsole Pantheios
- *   Windows Console Stock Back-end
- * \ingroup group__backend__stock_backends Back-end library that outputs to
- *   the Windows console, colour-coding based on severity level.
+/** \defgroup group__backend__stock_backends__WindowsConsole Pantheios Windows Console Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that outputs to the Windows console, colour-coding based
+ * on severity level.
  */
 
 
@@ -88,10 +89,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__WindowsConsole__flags
- *   Pantheios Windows Console Stock Back-end Flags
- * \ingroup group__backend__stock_backends__WindowsConsole Flags for the
- *   \ref group__backend__stock_backends__WindowsConsole
+/** \defgroup group__backend__stock_backends__WindowsConsole__flags Pantheios Windows Console Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__WindowsConsole
+ *
+ * Flags for the \ref group__backend__stock_backends__WindowsConsole
  */
 
 /** \def PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS

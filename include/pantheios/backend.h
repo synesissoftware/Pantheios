@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_MINOR      12
 # define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       39
+# define PANTHEIOS_VER_PANTHEIOS_H_BACKEND_EDIT       41
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -103,8 +103,7 @@
  * examples of how to write a custom back-end.
  */
 
-/** \defgroup group__backend__stock_backends__stock Pantheios Stock (All)
- *   Back-End Common Library
+/** \defgroup group__backend__stock_backends__stock Pantheios Stock (All) Back-End Common Library
  *
  * \ingroup group__backend__stock_backends
  *
@@ -164,8 +163,7 @@
  * constants
  */
 
-/** \defgroup group__backend__init__flags Pantheios Back-end Initialisation
- *   Flags
+/** \defgroup group__backend__init__flags Pantheios Back-end Initialisation Flags
  *
  * \ingroup group__backend
  *

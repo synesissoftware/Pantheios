@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        8
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -91,17 +91,16 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__console Pantheios Console
- *   Stock Back-end
- * \ingroup group__backend__stock_backends Back-end library that outputs to
- *   the console, providing colour-coding options as available on the given
- *   platform.
+/** \defgroup group__backend__stock_backends__console Pantheios Console Stock Back-end
+ * \ingroup group__backend__stock_backends
  *
- * \note The Console back-end does not actually exist; rather it is the
- *   \ref group__backend__stock_backends__WindowsConsole for Windows, or the
- *   \ref group__backend__stock_backends__AnsiConsole otherwise. All types,
- *   functions and constants are actually those of the underlying
- *   platform-specific back-end.
+ * Back-end library that outputs to the console, providing colour-coding
+ * options as available on the given platform. \note The Console back-end
+ * does not actually exist; rather it is the
+ * \ref group__backend__stock_backends__WindowsConsole for Windows, or the
+ * \ref group__backend__stock_backends__AnsiConsole otherwise. All types,
+ * functions and constants are actually those of the underlying
+ * platform-specific back-end.
  */
 
 
@@ -109,10 +108,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__console__flags Pantheios
- *   Console Stock Back-end Flags
- * \ingroup group__backend__stock_backends__console Flags for the
- *   \ref group__backend__stock_backends__console
+/** \defgroup group__backend__stock_backends__console__flags Pantheios Console Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__console
+ *
+ * Flags for the \ref group__backend__stock_backends__console
  */
 
 /** \def PANTHEIOS_BE_CONSOLE_F_NO_COLOURS

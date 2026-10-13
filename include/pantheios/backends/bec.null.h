@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MINOR      2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       17
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,12 +77,11 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__null Pantheios NULL Stock
- *   Back-end
- * \ingroup group__backend__stock_backends Stub back-end library that does
- *   no emission.
+/** \defgroup group__backend__stock_backends__null Pantheios NULL Stock Back-end
+ * \ingroup group__backend__stock_backends
  *
- * This library is useful for conducting performance tests.
+ * Stub back-end library that does no emission. This library is useful for
+ * conducting performance tests.
  */
 
 

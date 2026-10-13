@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MINOR       4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        35
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        37
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,10 +77,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__WindowsEventLog Pantheios
- *   Windows EventLog Stock Back-end
- * \ingroup group__backend__stock_backends Back-end library that writes to
- *   the Windows event log.
+/** \defgroup group__backend__stock_backends__WindowsEventLog Pantheios Windows EventLog Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that writes to the Windows event log.
  */
 
 
@@ -88,10 +88,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__WindowsEventLog__flags
- *   Pantheios Windows EventLog Stock Back-end Flags
- * \ingroup group__backend__stock_backends__WindowsEventLog Flags for the
- *   \ref group__backend__stock_backends__WindowsEventLog
+/** \defgroup group__backend__stock_backends__WindowsEventLog__flags Pantheios Windows EventLog Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__WindowsEventLog
+ *
+ * Flags for the \ref group__backend__stock_backends__WindowsEventLog
  */
 
 

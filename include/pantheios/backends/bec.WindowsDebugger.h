@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        28
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -80,10 +80,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__WindowsDebugger Pantheios
- *   Windows Debugger Stock Back-end
- * \ingroup group__backend__stock_backends Back-end library that outputs to
- *   the Windows debugger.
+/** \defgroup group__backend__stock_backends__WindowsDebugger Pantheios Windows Debugger Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that outputs to the Windows debugger.
  */
 
 
@@ -91,10 +91,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__WindowsDebugger__flags
- *   Pantheios Windows Debugger Stock Back-end Flags
- * \ingroup group__backend__stock_backends__WindowsDebugger Flags for the
- *   \ref group__backend__stock_backends__WindowsDebugger
+/** \defgroup group__backend__stock_backends__WindowsDebugger__flags Pantheios Windows Debugger Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__WindowsDebugger
+ *
+ * Flags for the \ref group__backend__stock_backends__WindowsDebugger
  */
 
 

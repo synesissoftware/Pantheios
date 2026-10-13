@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_MINOR     5
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      23
+# define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -84,8 +84,7 @@
  * "back-ends", \ref group__frontend "front-ends", and so on
  */
 
-/** \defgroup group__init_codes__core Pantheios Core Low-level
- *   Initialisation Codes
+/** \defgroup group__init_codes__core Pantheios Core Low-level Initialisation Codes
  *
  * \ingroup group__init_codes
  *
@@ -93,8 +92,7 @@
  * "core".
  */
 
-/** \defgroup group__init_codes__backend Pantheios Back-End Low-level
- *   Initialisation Codes
+/** \defgroup group__init_codes__backend Pantheios Back-End Low-level Initialisation Codes
  *
  * \ingroup group__init_codes
  *
@@ -102,8 +100,7 @@
  * "back-ends".
  */
 
-/** \defgroup group__init_codes__frontend Pantheios Front-End Low-level
- *   Initialisation Codes
+/** \defgroup group__init_codes__frontend Pantheios Front-End Low-level Initialisation Codes
  *
  * \ingroup group__init_codes
  *

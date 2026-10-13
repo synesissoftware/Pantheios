@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_EDIT        15
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_EDIT        17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,11 +72,11 @@
 # include <pantheios/frontends/stock.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK */
 
-/** \defgroup group__frontend__stock_frontends__WindowsRegistry Pantheios
- *   Windows Registry Stock Front-end
- * \ingroup group__frontend__stock_frontends Front-end library that allows
- *   all severity levels in debug mode and
- *   \link pantheios::SEV_NOTICE NOTICE\endlink and higher in release mode.
+/** \defgroup group__frontend__stock_frontends__WindowsRegistry Pantheios Windows Registry Stock Front-end
+ * \ingroup group__frontend__stock_frontends
+ *
+ * Front-end library that allows all severity levels in debug mode and
+ * \link pantheios::SEV_NOTICE NOTICE\endlink and higher in release mode.
  */
 
 

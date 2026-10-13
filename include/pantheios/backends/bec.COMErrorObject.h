@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_EDIT     29
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_EDIT     31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,10 +77,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__COMErrorObject Pantheios COM
- *   Error Object Stock Back-end
- * \ingroup group__backend__stock_backends Back-end library that sets the
- *   calling threads's COM error object.
+/** \defgroup group__backend__stock_backends__COMErrorObject Pantheios COM Error Object Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that sets the calling threads's COM error object.
  */
 
 
@@ -88,10 +88,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__COMErrorObject__flags
- *   Pantheios COM Error Object Stock Back-end Flags
- * \ingroup group__backend__stock_backends__COMErrorObject Flags for the
- *   \ref group__backend__stock_backends__COMErrorObject
+/** \defgroup group__backend__stock_backends__COMErrorObject__flags Pantheios COM Error Object Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__COMErrorObject
+ *
+ * Flags for the \ref group__backend__stock_backends__COMErrorObject
  */
 
 /** \def PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING

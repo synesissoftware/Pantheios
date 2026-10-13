@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MINOR     3
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      23
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,10 +72,10 @@
 # include <pantheios/frontends/stock.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK */
 
-/** \defgroup group__frontend__stock_frontends__N Pantheios N Stock
- *   Front-end
- * \ingroup group__frontend__stock_frontends Front-end library that can
- *   filter N back-ends.
+/** \defgroup group__frontend__stock_frontends__N Pantheios N Stock Front-end
+ * \ingroup group__frontend__stock_frontends
+ *
+ * Front-end library that can filter N back-ends.
  */
 
 

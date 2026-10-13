@@ -67,13 +67,17 @@ EXPAND_ONLY_PREDEF     = YES
 SKIP_FUNCTION_MACROS   = YES
 # Hide implementation / internal macros; strip linkage wrappers so
 # prototypes read as the return type alone (CLASP form).
+# PANTHEIOS_CALL* strip linkage wrappers from prototypes. Do not predefine
+# PANTHEIOS_DECLSPEC / PANTHEIOS_CALLCONV empty — that hides the header
+# #define lines and yields "documentation for unknown define". Leave those
+# macros to the headers (empty by default). Expand stlsoft_ns_qual so
+# typedef/return types parse as plain identifiers.
 PREDEFINED             = PANTHEIOS_DOCUMENTATION_SKIP_SECTION \
                          PANTHEIOS_CALL(rt)=rt \
                          PANTHEIOS_CALL_DEPRECATED(rt,oldfn,newfn)=rt \
-                         PANTHEIOS_CALLCONV= \
-                         PANTHEIOS_DECLSPEC= \
                          PANTHEIOS_EXTERN= \
-                         PANTHEIOS_EXTERN_C=
+                         PANTHEIOS_EXTERN_C= \
+                         stlsoft_ns_qual(x)=x
 
 HAVE_DOT               = NO
 

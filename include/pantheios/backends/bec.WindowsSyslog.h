@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MAJOR     4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      31
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSSYSLOG_EDIT      33
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,10 +77,11 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__WindowsSyslog Pantheios
- *   Windows-SysLog Stock Back-end
- * \ingroup group__backend__stock_backends Back-end library that provides a
- *   custom implementation of the \c SysLog-protocol for Windows.
+/** \defgroup group__backend__stock_backends__WindowsSyslog Pantheios Windows-SysLog Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that provides a custom implementation of the \c
+ * SysLog-protocol for Windows.
  */
 
 
@@ -88,10 +89,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__WindowsSyslog__flags Pantheios
- *   Windows syslog Stock Back-end Flags
- * \ingroup group__backend__stock_backends__WindowsSyslog Flags for the
- *   \ref group__backend__stock_backends__WindowsSyslog
+/** \defgroup group__backend__stock_backends__WindowsSyslog__flags Pantheios Windows syslog Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__WindowsSyslog
+ *
+ * Flags for the \ref group__backend__stock_backends__WindowsSyslog
  */
 
 /** \def PANTHEIOS_BE_WINDOWSSYSLOG_F_USE_SYSTEM_TIME
@@ -151,10 +152,11 @@
 
 
 
-/** \defgroup group__backend__stock_backends__WindowsSyslog__facilities
- *   Pantheios Windows syslog Facility Codes
- * \ingroup group__backend__stock_backends__WindowsSyslog Facility levels
- *   for the \ref group__backend__stock_backends__WindowsSyslog
+/** \defgroup group__backend__stock_backends__WindowsSyslog__facilities Pantheios Windows syslog Facility Codes
+ * \ingroup group__backend__stock_backends__WindowsSyslog
+ *
+ * Facility levels for the
+ * \ref group__backend__stock_backends__WindowsSyslog
  */
 
 /** \def PANTHEIOS_SYSLOG_FAC_KERN

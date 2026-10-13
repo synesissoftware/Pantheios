@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_EDIT       9
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_EDIT       10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -72,10 +72,10 @@
 # include <pantheios/frontends/stock.h>
 #endif /* !PANTHEIOS_INCL_PANTHEIOS_FRONTENDS_H_STOCK */
 
-/** \defgroup group__frontend__stock_frontends__fail Pantheios fail Stock
- *   Front-end
- * \ingroup group__frontend__stock_frontends Front-end library that does not
- *   initialise.
+/** \defgroup group__frontend__stock_frontends__fail Pantheios fail Stock Front-end
+ * \ingroup group__frontend__stock_frontends
+ *
+ * Front-end library that does not initialise.
  */
 
 

@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   15
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       402
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       404
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -315,16 +315,14 @@
  * \c pantheios_log_N() / severity-specific overloads.
  */
 
-/** \defgroup group__application_layer_interface__inserters Pantheios
- *   Inserters
+/** \defgroup group__application_layer_interface__inserters Pantheios Inserters
  *
  * \ingroup group__application_layer_interface
  *
  * C++ inserter types that format values for diagnostic logging statements.
  */
 
-/** \defgroup group__application_layer_interface__generated Pantheios
- *   Generated Application Layer
+/** \defgroup group__application_layer_interface__generated Pantheios Generated Application Layer
  *
  * \ingroup group__application_layer_interface
  *

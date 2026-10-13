@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MAJOR      4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MINOR      4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       42
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       44
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,10 +77,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__file Pantheios file Stock
- *   Back-end
- * \ingroup group__backend__stock_backends Back-end library that outputs to
- *   a file.
+/** \defgroup group__backend__stock_backends__file Pantheios file Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that outputs to a file.
  */
 
 
@@ -88,10 +88,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__file__flags Pantheios file
- *   Stock Back-end Flags
- * \ingroup group__backend__stock_backends__file Flags for the
- *   \ref group__backend__stock_backends__file
+/** \defgroup group__backend__stock_backends__file__flags Pantheios file Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__file
+ *
+ * Flags for the \ref group__backend__stock_backends__file
  */
 
 /** \def PANTHEIOS_BE_FILE_F_TRUNCATE

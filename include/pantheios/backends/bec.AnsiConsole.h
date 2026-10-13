@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_REVISION    3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_EDIT        5
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_EDIT        7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -76,10 +76,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__AnsiConsole Pantheios ANSI
- *   Console Stock Back-end
- * \ingroup group__backend__stock_backends Back-end library that sets the
- *   calling threads's COM error object.
+/** \defgroup group__backend__stock_backends__AnsiConsole Pantheios ANSI Console Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that sets the calling threads's COM error object.
  */
 
 
@@ -87,10 +87,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__AnsiConsole__flags Pantheios
- *   ANSI Console Stock Back-end Flags
- * \ingroup group__backend__stock_backends__AnsiConsole Flags for the
- *   \ref group__backend__stock_backends__AnsiConsole
+/** \defgroup group__backend__stock_backends__AnsiConsole__flags Pantheios ANSI Console Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__AnsiConsole
+ *
+ * Flags for the \ref group__backend__stock_backends__AnsiConsole
  */
 
 /** \def PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS

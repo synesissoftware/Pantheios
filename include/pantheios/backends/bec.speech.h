@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_EDIT     26
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_EDIT     28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,10 +77,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__speech Pantheios speech Stock
- *   Back-end
- * \ingroup group__backend__stock_backends Back-end library that outputs as
- *   speech.
+/** \defgroup group__backend__stock_backends__speech Pantheios speech Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that outputs as speech.
  */
 
 
@@ -88,10 +88,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__speech__flags Pantheios speech
- *   Stock Back-end Flags
- * \ingroup group__backend__stock_backends__speech Flags for the
- *   \ref group__backend__stock_backends__speech
+/** \defgroup group__backend__stock_backends__speech__flags Pantheios speech Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__speech
+ *
+ * Flags for the \ref group__backend__stock_backends__speech
  */
 
 /** \def PANTHEIOS_BE_SPEECH_F_SYNCHRONOUS

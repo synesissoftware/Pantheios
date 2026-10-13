@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_EDIT     15
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BE_LRSPLIT_EDIT     16
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,11 +77,11 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__lrsplit Pantheios Local/Remote
- *   Split Back-end
- * \ingroup group__backend__stock_backends Back-end library that splits the
- *   emission of log statements, writing to \c local and/or \c remote
- *   back-ends that are independently filtered.
+/** \defgroup group__backend__stock_backends__lrsplit Pantheios Local/Remote Split Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that splits the emission of log statements, writing to
+ * \c local and/or \c remote back-ends that are independently filtered.
  */
 
 

@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     31
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     33
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,10 +77,10 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__syslog Pantheios UNIX SysLog
- *   Stock Back-end
- * \ingroup group__backend__stock_backends Back-end library built on top of
- *   the UNIX \c syslog API.
+/** \defgroup group__backend__stock_backends__syslog Pantheios UNIX SysLog Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library built on top of the UNIX \c syslog API.
  */
 
 
@@ -88,13 +88,12 @@
  * typedefs
  */
 
-/** \defgroup group__backend__stock_backends__syslog__flags Pantheios UNIX
- *   syslog Stock Back-end Flags
- * \ingroup group__backend__stock_backends__syslog Flags for the
- *   \ref group__backend__stock_backends__syslog
+/** \defgroup group__backend__stock_backends__syslog__flags Pantheios UNIX syslog Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__syslog
  *
- * These flags are passed as the \c options parameter to the SysLog API
- * function \c openlog() during back-end initialisation.
+ * Flags for the \ref group__backend__stock_backends__syslog These flags are
+ * passed as the \c options parameter to the SysLog API function \c
+ * openlog() during back-end initialisation.
  */
 
 /** \def PANTHEIOS_BE_SYSLOG_F_PERROR

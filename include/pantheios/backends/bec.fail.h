@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MINOR      1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_EDIT       15
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_EDIT       17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -77,13 +77,11 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__fail Pantheios Fail Stock
- *   Back-end
- * \ingroup group__backend__stock_backends Stub back-end library that fails
- *   its initialisation.
+/** \defgroup group__backend__stock_backends__fail Pantheios Fail Stock Back-end
+ * \ingroup group__backend__stock_backends
  *
- * This library is useful for testing
- * \ref group__backend__stock_backends__N.
+ * Stub back-end library that fails its initialisation. This library is
+ * useful for testing \ref group__backend__stock_backends__N.
  */
 
 

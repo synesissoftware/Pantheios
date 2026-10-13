@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        28
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FPRINTF_EDIT        30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -82,10 +82,11 @@
  * documentation
  */
 
-/** \defgroup group__backend__stock_backends__fprintf Pantheios fprintf()
- *   Stock Back-end
- * \ingroup group__backend__stock_backends Back-end library that writes to
- *   the standard output or error stream via \c fprintf().
+/** \defgroup group__backend__stock_backends__fprintf Pantheios fprintf() Stock Back-end
+ * \ingroup group__backend__stock_backends
+ *
+ * Back-end library that writes to the standard output or error stream via
+ * \c fprintf().
  */
 
 
@@ -93,11 +94,10 @@
  * constants
  */
 
-/** \defgroup group__backend__stock_backends__fprintf__flags Pantheios
- *   fprintf() Stock Back-end Flags
+/** \defgroup group__backend__stock_backends__fprintf__flags Pantheios fprintf() Stock Back-end Flags
+ * \ingroup group__backend__stock_backends__fprintf
  *
- * \ingroup group__backend__stock_backends__fprintf Flags for the
- *   \ref group__backend__stock_backends__fprintf
+ * Flags for the \ref group__backend__stock_backends__fprintf
  */
 
 

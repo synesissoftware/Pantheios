@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
 # define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  4
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      33
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -88,12 +88,11 @@
  * API
  */
 
-/** \defgroup group__backend__stock_backends__test Pantheios Test Stock
- *   Back-end
- * \ingroup group__backend__stock_backends Stub back-end library that does
- *   no emission.
+/** \defgroup group__backend__stock_backends__test Pantheios Test Stock Back-end
+ * \ingroup group__backend__stock_backends
  *
- * This library is useful for conducting performance tests.
+ * Stub back-end library that does no emission. This library is useful for
+ * conducting performance tests.
  */
 
 /** Implements the functionality for pantheios_be_init() over the Test API.
