@@ -4,10 +4,10 @@
 ## Functional improvements
 
 
-### 1.0.1-rc5
+### 1.0.1-rc5 (18th October 2026)
 
 * [ ] **b64** link-time dependency broken;
-* [ ] Integration of **woad** for coloured output;
+* [x] ~~~Integration of **woad** for coloured output~~~ - ✅;
 * [ ] Additional performance tests;
 * [ ] Refactor CMake test targets / options so that only unit-test executables are built when only unit-tests are asked for;
 * [ ] **README.md** (and other project markdown) significant enhancement (in a similar vein as has been done for **xqsr3** (Ruby));

@@ -181,15 +181,16 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-make
 
-      # Runtime/public deps only (BUILD_TESTING=OFF): STLSoft then b64.
-      # Order is intentional (not lexicographic). When no_b64, omit b64.
+      # Runtime deps (BUILD_TESTING=OFF): STLSoft, optional b64, then woad.
+      # Order is dependency order, not lexicographic. Omit b64 when no_b64.
+      # woad is required for bec.AnsiConsole.
       - name: Install Synesis dependencies
         uses: ./.github/actions/install-sis-deps
         with:
           build-type: ${{ env.BUILD_TYPE }}
           c-compiler: ${{ matrix.c_compiler }}
           cpp-compiler: ${{ matrix.cpp_compiler }}
-          dependencies: ${{ matrix.no_b64 && 'STLSoft' || 'STLSoft b64' }}
+          dependencies: ${{ matrix.no_b64 && 'STLSoft woad' || 'STLSoft b64 woad' }}
           toolchain: ${{ matrix.toolchain }}
 
       - name: Configure
@@ -272,7 +273,8 @@ jobs:
           cat > "$CONSUMER/CMakeLists.txt" <<'EOF'
           cmake_minimum_required(VERSION 3.13)
           project(pantheios_install_smoke CXX)
-          # STLSoft and b64 must come from pantheios-config.cmake's find_dependency().
+          # STLSoft, b64, and woad must come from pantheios-config.cmake's
+          # find_dependency().
           find_package(Pantheios REQUIRED)
           add_executable(consumer consumer.cpp)
           # Link order matters for GNU ld (static archives are single-pass):
@@ -332,7 +334,16 @@ jobs:
       - uses: actions/checkout@v4
 
       # These routes consume STLSoft as a source tree, so it is cloned
-      # rather than built and installed.
+      # rather than built and installed. woad is still a CMake package:
+      # install it alone so CMAKE_PREFIX_PATH cannot satisfy STLSoft.
+      - name: Install woad
+        uses: ./.github/actions/install-sis-deps
+        with:
+          build-type: ${{ env.BUILD_TYPE }}
+          c-compiler: gcc
+          cpp-compiler: g++
+          dependencies: woad
+
       - name: Clone STLSoft
         shell: bash
         run: |
@@ -345,11 +356,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Deliberately no CMAKE_PREFIX_PATH: nothing here may fall back to
-          # the STLSoft package.
+          # Prefix holds woad only, so find_package(STLSoft) still cannot
+          # succeed on these routes.
           if [ "${{ matrix.route }}" = "variable" ]; then
             cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DSTLSOFT="${STLSOFT_SRC}" \
               -DNO_B64=ON \
               -DBUILD_EXAMPLES=ON \
@@ -358,6 +370,7 @@ jobs:
           else
             STLSOFT="${STLSOFT_SRC}" cmake -B build -S . \
               -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
+              -DCMAKE_PREFIX_PATH="${{ env.SIS_DEPS }}" \
               -DNO_B64=ON \
               -DBUILD_EXAMPLES=ON \
               -DBUILD_TESTING=OFF \
@@ -421,8 +434,8 @@ jobs:
             exit 1
           fi
 
-      # Deliberately omit SIS_DEPS from CMAKE_PREFIX_PATH: the consumer must
-      # resolve cleanly using only the installed Pantheios prefix.
+      # The consumer needs the Pantheios prefix and the woad prefix. It must
+      # not be given a prefix that contains the STLSoft package.
       - name: Configure and run install smoke consumer
         shell: bash
         run: |
@@ -449,6 +462,6 @@ jobs:
           EOF
           cmake -S "$CONSUMER" -B consumer-build \
             -DCMAKE_BUILD_TYPE="${{ env.BUILD_TYPE }}" \
-            -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}"
+            -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX};${{ env.SIS_DEPS }}"
           cmake --build consumer-build --parallel
           consumer-build/consumer

@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios AnsiConsole Stock Back-end API.
  *
  * Created: 20th October 2024
- * Updated: 14th October 2026
+ * Updated: 18th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -95,7 +95,8 @@
 
 /** \def PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS
  * Causes the \ref group__backend__stock_backends__AnsiConsole to emit log
- * statements without colouring based on severity.
+ * statements without colouring based on severity. This overrides woad's
+ * colour policy.
  * \ingroup group__backend__stock_backends__AnsiConsole__flags
  */
 
@@ -106,9 +107,9 @@
 
 /** \def PANTHEIOS_BE_ANSICONSOLE_F_FORCE_ANSI_ESCAPE_SEQUENCES
  * Causes the \ref group__backend__stock_backends__AnsiConsole to write ANSI
- * escape sequences regardless of the console/terminal mode, i.e. even if
- * the output is being redirected. Ignored when
- * PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS is specified.
+ * escape sequences regardless of woad's colour policy, i.e. even if the
+ * output is being redirected or colour is inhibited in the environment.
+ * Ignored when PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS is specified.
  * \ingroup group__backend__stock_backends__AnsiConsole__flags
  */
 

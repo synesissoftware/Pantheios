@@ -11,6 +11,11 @@ add_library(Pantheios.bec.AnsiConsole
 
 target_link_STLSoft(Pantheios.bec.AnsiConsole)
 
+target_link_libraries(Pantheios.bec.AnsiConsole
+	PUBLIC
+		$<LINK_ONLY:woad::woad>
+)
+
 list(APPEND X_GCC_CUSTOM_WARNINGS_TO_BE_SUPPRESSED unused-parameter)
 define_target_compile_options(Pantheios.bec.AnsiConsole)
 

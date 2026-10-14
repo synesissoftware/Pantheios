@@ -42,6 +42,7 @@
 #include <iomanip>
 #include <iostream>
 
+#include <stdio.h>
 #include <stdlib.h>
 
 
@@ -56,6 +57,7 @@ template<
 void
 version(
     T_stream&   stm
+,   FILE*       file
 ,   char const* prefix
 ,   char const* libname
 ,   char const* macroname
@@ -80,15 +82,41 @@ version(
 
         stm
             << prefix
+#ifdef HAS_woad
+            << WOAD_FG_BLUE_FOR(file)
+#endif
             << libname
-            << ": v"
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << ": "
+#ifdef HAS_woad
+            << WOAD_FG_GREEN_FOR(file)
+#endif
+            << 'v'
             << sz
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
             << " ("
+#ifdef HAS_woad
+            << WOAD_FG_CYAN_FOR(file)
+#endif
             << macroname
-            << " = 0x"
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << " = "
+#ifdef HAS_woad
+            << WOAD_FG_GREEN_FOR(file)
+#endif
+            << "0x"
             << std::hex << std::setfill('0') << std::setw(8)
             << static_cast<unsigned>(libver)
             << std::dec
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
             << ")"
             << std::endl
             ;
@@ -100,8 +128,18 @@ version(
     {
         stm
             << prefix
+#ifdef HAS_woad
+            << WOAD_FG_BLUE_FOR(file)
+#endif
             << libname
-            << ": v"
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << ": "
+#ifdef HAS_woad
+            << WOAD_FG_GREEN_FOR(file)
+#endif
+            << 'v'
             << ((libver >> 24) & 0xff)
             << '.'
             << ((libver >> 16) & 0xff)
@@ -109,12 +147,28 @@ version(
             << ((libver >> 8) & 0xff)
             << '.'
             << ((libver >> 0) & 0xff)
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
             << " ("
+#ifdef HAS_woad
+            << WOAD_FG_CYAN_FOR(file)
+#endif
             << macroname
-            << " = 0x"
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << " = "
+#ifdef HAS_woad
+            << WOAD_FG_GREEN_FOR(file)
+#endif
+            << "0x"
             << std::hex << std::setfill('0') << std::setw(8)
             << static_cast<unsigned>(libver)
             << std::dec
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
             << ")"
             << std::endl
             ;
@@ -131,7 +185,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = PANTHEIOS_VER;
 
-        version(std::cout, "", "Pantheios", "PANTHEIOS_VER", libver);
+        version(std::cout, stdout, "", "Pantheios", "PANTHEIOS_VER", libver);
     }
 
     std::cout << "\n" << "efferent dependencies:" << std::endl;
@@ -139,7 +193,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = _STLSOFT_VER;
 
-        version(std::cout, "\t", "STLSoft", "_STLSOFT_VER", libver);
+        version(std::cout, stdout, "\t", "STLSoft", "_STLSOFT_VER", libver);
     }
 
 #ifdef HAS_b64
@@ -147,7 +201,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = B64_VER;
 
-        version(std::cout, "\t", "b64", "B64_VER", libver);
+        version(std::cout, stdout, "\t", "b64", "B64_VER", libver);
     }
 #endif
 
@@ -156,7 +210,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = DIAGNOSTICISM_VER;
 
-        version(std::cout, "\t", "Diagnosticism", "DIAGNOSTICISM_VER", libver);
+        version(std::cout, stdout, "\t", "Diagnosticism", "DIAGNOSTICISM_VER", libver);
     }
 #endif
 
@@ -165,7 +219,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = SHWILD_VER;
 
-        version(std::cout, "\t", "shwild", "SHWILD_VER", libver);
+        version(std::cout, stdout, "\t", "shwild", "SHWILD_VER", libver);
     }
 #endif
 
@@ -174,7 +228,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = WOAD_VER;
 
-        version(std::cout, "\t", "woad", "WOAD_VER", libver);
+        version(std::cout, stdout, "\t", "woad", "WOAD_VER", libver);
     }
 #endif
 
@@ -183,7 +237,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = _XTESTS_VER;
 
-        version(std::cout, "\t", "xTests", "_XTESTS_VER", libver);
+        version(std::cout, stdout, "\t", "xTests", "_XTESTS_VER", libver);
     }
 #endif
 
@@ -192,3 +246,4 @@ int main(int /* argc */, char* /* argv */[])
 
 
 /* ///////////////////////////// end of file //////////////////////////// */
+

@@ -50,6 +50,11 @@ add_library(Pantheios.bec.stock
 
 target_link_STLSoft(Pantheios.bec.stock)
 
+target_link_libraries(Pantheios.bec.stock
+	PUBLIC
+		$<LINK_ONLY:woad::woad>
+)
+
 if(HAS_ACE)
 
 	target_link_ACE(Pantheios.bec.stock)

@@ -1,6 +1,16 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1-rc5 - 18th October 2026
+
+* backends:
+  * **bec.AnsiConsole** colour handling now uses **woad**: severity colours are **woad** SGR sequences (`WOAD_BOLD` / `WOAD_BLINKING` where used, plus foreground and background), and emission follows `woad_seq_for_stream()` unless **`noColours`** or **`forceAnsiEscapeSequences`** overrides that policy;
+* dependencies:
+  * **woad** is required, for ANSI colour in **bec.AnsiConsole** and in the stock back-end libraries that compile it;
+* testing:
+  * **test.scratch.versions** colours the library name, version, and macro fields with **woad**, in the same roles as **WordLen**'s scratch versions printer;
+
+
 ## 1.0.1-rc4 - 14th October 2026
 
 * util:
