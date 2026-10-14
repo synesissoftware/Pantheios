@@ -1,6 +1,10 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1-rc5 - 18th October 2026
+
+
+
 ## 1.0.1-rc4 - 14th October 2026
 
 * util:

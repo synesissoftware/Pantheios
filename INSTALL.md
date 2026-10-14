@@ -134,7 +134,7 @@ $ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 1. Download the latest distributions;
 
 Obtain the latest releases of **Pantheios** and **STLSoft** from:
-* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-rc4.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-rc4.zip);
+* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-rc5.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-rc5.zip);
 * [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft/tags), e.g. [**STLSoft-1.11.1-rc8**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/STLSoft-1.11.1-rc8);
 
 
@@ -143,7 +143,7 @@ Obtain the latest releases of **Pantheios** and **STLSoft** from:
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
-$ unzip Pantheios-1.0.1-rc4.zip
+$ unzip Pantheios-1.0.1-rc5.zip
 $ unzip STLSoft-1.11.1-rc8
 ```
 
@@ -152,7 +152,7 @@ $ unzip STLSoft-1.11.1-rc8
 4. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make
 
 ```bash
-$ cd Pantheios-1.0.1-rc4
+$ cd Pantheios-1.0.1-rc5
 $ cd build/gcc48.unix
 $ make
 ```
