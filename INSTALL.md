@@ -133,9 +133,10 @@ $ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 
 1. Download the latest distributions;
 
-Obtain the latest releases of **Pantheios** and **STLSoft** from:
+Obtain the latest releases of **Pantheios**, **STLSoft**, and **woad** from:
 * [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-rc5.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-rc5.zip);
 * [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft/tags), e.g. [**STLSoft-1.11.1-rc8**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/STLSoft-1.11.1-rc8);
+* [woad GitHub project](https://github.com/synesissoftware/woad/tags);
 
 
 2. Unzip to directories of your choice, as in:
@@ -145,9 +146,10 @@ $ mkdir -p ~/open-source
 $ cd ~/open-source
 $ unzip Pantheios-1.0.1-rc5.zip
 $ unzip STLSoft-1.11.1-rc8
+$ unzip woad-<version>.zip
 ```
 
-3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11.1-rc8`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped **STLSoft**, e.g. `STLSOFT=~/open-source/STLSoft-1.11.1-rc8`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles. Install **woad** via its **CMake** package (see the **woad** project) so `find_package(woad)` succeeds — required for **bec.AnsiConsole** and stock libraries that compile it;
 
 4. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make
 
@@ -162,16 +164,17 @@ $ make
 
 If you clone the project from https://github.com/synesissoftware/Pantheios and prefer the legacy makefile-based workflow (rather than [CMake](#cloning-project-installing-via-cmake)):
 
-1. Clone **STLSoft** and **Pantheios**, as in;
+1. Clone **STLSoft**, **woad**, and **Pantheios**, as in;
 
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
 $ git clone -b master https://github.com/synesissoftware/STLSoft
+$ git clone -b master https://github.com/synesissoftware/woad
 $ git clone -b master https://github.com/synesissoftware/Pantheios
 ```
 
-2. Define an environment variable `STLSOFT`, whose value is the directory in which you cloned **STLSoft**, e.g. `STLSOFT=~/open-source/STLSoft`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+2. Define an environment variable `STLSOFT`, whose value is the directory in which you cloned **STLSoft**, e.g. `STLSOFT=~/open-source/STLSoft`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles. Build and install **woad** via **CMake** so `find_package(woad)` succeeds when configuring **Pantheios**;
 
 3. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make:
 

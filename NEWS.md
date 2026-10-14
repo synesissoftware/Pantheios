@@ -3,7 +3,7 @@
 
 | Date                | News Item                                                     | Details    |
 | ------------------- | ------------------------------------------------------------- | ---------- |
-| 18th October 2026   | [Pantheios 1.0.1-rc5 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc5) | |
+| 18th October 2026   | [Pantheios 1.0.1-rc5 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc5) | **woad** required for **bec.AnsiConsole** colour; coloured **test.scratch.versions**; `PANTHEIOS_VER_1_0_1_RC5` |
 | 14th October 2026   | [Pantheios 1.0.1-rc4 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc4) | **bec.stock** / **WithCallback** (no **bec.test**); **example.cpp.linking.N_with_stock**; STLSoft util thinning (process id / **args** / **snprintf**); **Diagnosticism** version strings; Doxygen / **generate_doxygen.sh** / **doc/mainpage.md**; `PANTHEIOS_VER_1_0_1_RC4` |
 | 12th October 2026   | [Pantheios 1.0.1-rc3 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc3) | **bec.AnsiConsole** VT / default sink; optional **ACE**; **CMake** leaf helpers; entry/main + path canonicalisation; headless scratch **`--skip-interactive`**; `_RELSTATUS`; CI refactor; Phase **4c** **test.scratch.versions**; **STLSoft** **1.11.1-rc8** floor |
 | 6th September 2026  | [Pantheios 1.0.1-rc2 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc2) | transitive link dependencies in **pantheios-config.cmake**; added **.vscode/settings.json** |

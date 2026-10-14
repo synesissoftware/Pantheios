@@ -25,7 +25,6 @@
 ### 1.0.1-rc3 (12th October 2026)
 
 * [x] ~~~CI refactoring~~~ - ✅;
-executing unit tests (and similarly for component, scratch, and performance tests);
 * [x] ~~~Using **AnsiConsole**~~~ - ✅;
 * [x] ~~~Using **ACE**~~~ - ✅;
 * [x] ~~~Prune obsolete compiler and IDE project-file items from **TODO.md** (VS '98 through 2010, Turbo C++, Comeau, Xcode project-file generators)~~~ - ✅;
