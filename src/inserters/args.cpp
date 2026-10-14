@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inserters/args.cpp
+ * File:    inserters/args.cpp
  *
- * Purpose:     Implementation of the inserter classes.
+ * Purpose: Implementation of the inserter classes.
  *
- * Created:     16th October 2006
- * Updated:     16th July 2024
+ * Created: 16th October 2006
+ * Updated: 14th October 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -52,7 +52,7 @@
 
 /* STLSoft header files */
 #include <stlsoft/shims/access/string/std/c_string.h>
-#include <platformstl/platformstl.h>
+#include <platformstl/filesystem/filesystem_traits.hpp>
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,13 @@
 # pragma warn -8008
 # pragma warn -8066
 #endif /* compiler */
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * types
+ */
+
+typedef platformstl::filesystem_traits<PAN_CHAR_T>          fs_traits_t;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,8 +118,8 @@ args::args(
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(argc >= 0, "argument count must not be negative");
 }
-
 #ifdef STLSOFT_COMPILER_IS_BORLAND
+
 args::args(
     int                             argc
 ,   pantheios_char_t**              argv
@@ -165,22 +172,7 @@ void args::construct_()
         {
             if (arg0FileOnly == (m_flags & arg0FileOnly))
             {
-                pantheios_char_t const* slash   =   pan_strrchr_(arg, PANTHEIOS_LITERAL_CHAR('/'));
-#ifdef PLATFORMSTL_OS_IS_WINDOWS
-                pantheios_char_t const* bslash  =   pan_strrchr_(arg, PANTHEIOS_LITERAL_CHAR('\\'));
-
-                if (NULL == slash)
-                {
-                    slash = bslash;
-                }
-                else if (NULL != bslash)
-                {
-                    if (slash < bslash)
-                    {
-                        slash = bslash;
-                    }
-                }
-#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+                PAN_CHAR_T const* const slash = fs_traits_t::find_last_path_name_separator(arg);
 
                 if (NULL != slash)
                 {

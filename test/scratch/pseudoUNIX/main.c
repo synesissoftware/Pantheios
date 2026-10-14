@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the pseudoUNIX.test project.
  *
  * Created: 23rd September 2006
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -67,7 +67,7 @@ PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("pse
  * forward declarations
  */
 
-static void usage(int bExit, char const *reason, int invalidArg, int argc, char **argv);
+static void usage(int bExit, char const *reason, int invalidArg, int argc, char* argv[]);
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static void usage(int bExit, char const *reason, int invalidArg, int argc, char **argv)
+static void usage(int bExit, char const *reason, int invalidArg, int argc, char* argv[])
 {
     FILE    *stm    =   (NULL == reason) ? stdout : stderr;
 

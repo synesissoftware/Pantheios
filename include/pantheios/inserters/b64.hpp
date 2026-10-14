@@ -4,11 +4,11 @@
  * Purpose: String inserter for binary regions in Base-64.
  *
  * Created: 31st July 2006
- * Updated: 20th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -42,9 +42,9 @@
 
 /** \file pantheios/inserters/b64.hpp
  *
- * [C++ only; requires the
- *   <a href = "http://www.synesis.com.au/software/b64.html">b64</a>
- *   library] Definition of the pantheios::b64 inserter for binary regions.
+ * [C++ only; requires the <a href =
+ * "http://www.synesis.com.au/software/b64.html">b64</a> library] Definition
+ * of the pantheios::b64 inserter for binary regions.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MINOR    5
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     34
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     35
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -157,7 +157,7 @@ namespace pantheios
  */
 
 /** Class for inserting binary regions types into Pantheios diagnostic
- *   logging statements.
+ * logging statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -244,7 +244,7 @@ public:
     );
 
     /// Constructs an instance from the given memory designator, flags, and
-    /// line-length
+    ///   line-length
     b64(
         void const* pv
     ,   size_type   cb
@@ -268,10 +268,10 @@ private:
 /// @{
 public:
     /// A possibly non-nul-terminated non-null pointer to the c-style string
-    /// representation of the integer
+    ///   representation of the integer
     char_type const*    data() const;
     /// A nul-terminated non-null pointer to the c-style string
-    /// representation of the integer
+    ///   representation of the integer
     char_type const*    c_str() const;
     /// The length of the c-style string representation of the integer
     size_type           length() const;

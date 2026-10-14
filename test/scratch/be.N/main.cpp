@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.be.N project.
  *
  * Created: 18th October 2006
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -89,7 +89,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(
  * main()
  */
 
-static int main_(int /* argc */, char ** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
 #ifdef PANTHEIOS_USES_VARIADIC_MACROS
   PANTHEIOS_TRACE_PRINTF(PANTHEIOS_SEV_ERROR, "Something went wrong here: %s %d", "abc", 10);

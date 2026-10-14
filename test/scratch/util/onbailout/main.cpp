@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.util.onbailout project.
  *
  * Created: 21st June 2005
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -37,7 +37,7 @@ using std::endl;
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.util.onbailout");
 
-static int main_(int /* argc */, char ** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
 #if 0
     pantheios::util::onBailOut(PANTHEIOS_SEV_DEBUG, "abc");

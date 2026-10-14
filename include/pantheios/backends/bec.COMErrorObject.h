@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios COMErrorObject Stock Back-end API.
  *
  * Created: 21st June 2005
- * Updated: 25th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_EDIT     27
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_COMERROROBJECT_EDIT     31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,8 @@
 
 /** \defgroup group__backend__stock_backends__COMErrorObject Pantheios COM Error Object Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that sets the calling threads's COM error object.
+ *
+ * Back-end library that sets the calling threads's COM error object.
  */
 
 
@@ -89,15 +90,16 @@
 
 /** \defgroup group__backend__stock_backends__COMErrorObject__flags Pantheios COM Error Object Stock Back-end Flags
  * \ingroup group__backend__stock_backends__COMErrorObject
- *  Flags for the \ref group__backend__stock_backends__COMErrorObject
+ *
+ * Flags for the \ref group__backend__stock_backends__COMErrorObject
  */
 
 /** \def PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING
- *  Prevents the \ref group__backend__stock_backends__COMErrorObject
- *   from writing to the COM Error Object if there is an existing error
- *   object set (for the calling thread). This is helpful when several
- *   levels of code are handling and reporting errors, so as not to lose.
- *   the innermost (and most exact) error report.
+ * Prevents the \ref group__backend__stock_backends__COMErrorObject from
+ * writing to the COM Error Object if there is an existing error object set
+ * (for the calling thread). This is helpful when several levels of code are
+ * handling and reporting errors, so as not to lose. the innermost (and most
+ * exact) error report.
  * \ingroup group__backend__stock_backends__COMErrorObject__flags
  */
 
@@ -109,7 +111,7 @@
  */
 
 /** Structure used for specifying initialisation information to the
- *    be.COMErrorObject library.
+ * be.COMErrorObject library.
  * \ingroup group__backend__stock_backends__COMErrorObject
  */
 struct pan_be_COMErrorObject_init_t
@@ -134,7 +136,7 @@ typedef struct pan_be_COMErrorObject_init_t pan_be_COMErrorObject_init_t;
  */
 
 /** Callback function defined by the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ * API is initialised with a NULL \c init parameter.
  *
  * \note When using explicit initialisation, this function must be defined,
  *   but will not be invoked.
@@ -151,16 +153,17 @@ pantheios_be_COMErrorObject_getAppInit(
  */
 
 /** Fills out a copy of the initialisation structure with default
- *    values (representative of the default behaviour of the library),
- *    ready to be customised and passed to the API initialiser function
- *    pantheios_be_COMErrorObject_init().
+ * values (representative of the default behaviour of the library), ready to
+ * be customised and passed to the API initialiser function
+ * pantheios_be_COMErrorObject_init().
  */
 PANTHEIOS_CALL(void)
 pantheios_be_COMErrorObject_getDefaultAppInit(
     pan_be_COMErrorObject_init_t* init
 ) /* throw() */;
 
-/** Implements the functionality for pantheios_be_init() over the COM Error Object API.
+/** Implements the functionality for pantheios_be_init() over the COM Error
+ * Object API.
  * \ingroup group__backend__stock_backends__COMErrorObject
  */
 PANTHEIOS_CALL(int)
@@ -172,7 +175,8 @@ pantheios_be_COMErrorObject_init(
 ,   void**                              ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the COM Error Object API.
+/** Implements the functionality for pantheios_be_uninit() over the COM
+ * Error Object API.
  * \ingroup group__backend__stock_backends__COMErrorObject
  */
 PANTHEIOS_CALL(void)
@@ -180,7 +184,8 @@ pantheios_be_COMErrorObject_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the COM Error Object API.
+/** Implements the functionality for pantheios_be_logEntry() over the COM
+ * Error Object API.
  * \ingroup group__backend__stock_backends__COMErrorObject
  */
 PANTHEIOS_CALL(int)
@@ -198,8 +203,7 @@ pantheios_be_COMErrorObject_logEntry(
  *
  * Processes an argument list in the same way as
  * pantheios_be_parseStockArgs(), filling out the
- * pan_be_COMErrorObject_init_t in accordance with the arguments
- * found.
+ * pan_be_COMErrorObject_init_t in accordance with the arguments found.
  *
  * Recognises the following standard argument names:
  * - "showProcessId"            (Boolean)

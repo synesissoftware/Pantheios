@@ -8,7 +8,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 31st August 2006
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -77,18 +77,6 @@ int main(int /* argc */, char* /* argv */[])
 
     try
     {
-//      pantheios::log(pantheios::notice, "Hello");
-
-//      ::Sleep(shortPause);
-
-//      pantheios::log(pantheios::notice(2), "Hello");
-
-//      ::Sleep(shortPause);
-
-//      pantheios::log(pantheios::notice(2), "Hello, boys. This is your daddy, telling you to turn around and eat your dinner. Now!");
-
-//      ::Sleep(shortPause);
-
 #if 0
         short           s   = SHRT_MIN;
         unsigned short  us  = USHRT_MAX;

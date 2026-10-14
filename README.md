@@ -53,7 +53,7 @@ Further reading: [http://pantheios.org/](http://pantheios.org/), [FAQ.md](./FAQ.
 
 3. **It depends on other libraries, which are also open-source and free.**
 
-	**STLSoft** is required. **woad** is required for ANSI console colour. **b64** is optional (for the `pantheios::b64` inserter). **shwild** and **xTests** are used for testing. See [Dependencies](#dependencies).
+	**STLSoft** is required. **woad** is required for ANSI console colour. **b64** is optional (for the `pantheios::b64` inserter). **Diagnosticism**, **shwild**, and **xTests** are used for testing. See [Dependencies](#dependencies).
 
 4. **It's designed for efficiency.**
 
@@ -135,7 +135,7 @@ Examples are provided in the `examples` directory (C under `examples/c/`, C++ un
 
 * `example.c.101`, `example.c.core.pantheios_logprintf`, `example.c.N`;
 * `example.cpp.misc.101`;
-* `example.cpp.linking.implicit_link_1`;
+* `example.cpp.linking.implicit_link_1`, `example.cpp.linking.N_with_stock`;
 * `example.cpp.frontends.custom`;
 * `example.cpp.backends.file`, `example.cpp.backends.callback`;
 * `example.cpp.inserters.integer`, `example.cpp.inserters.b64`, `example.cpp.inserters.args`;
@@ -193,6 +193,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 | [**STLSoft**](https://github.com/synesissoftware/STLSoft) **1.11.1-rc8** or later | Implementation and interface support | ✅ Always |
 | [**woad**](https://github.com/synesissoftware/woad) | ANSI colour for **bec.AnsiConsole** | ✅ Always |
 | [**b64**](https://github.com/synesissoftware/b64) | `pantheios::b64` inserter | ⚪ Optional (`PANTHEIOS_NO_B64` when absent) |
+| [**Diagnosticism**](https://github.com/synesissoftware/Diagnosticism) | Version strings in scratch / examples | ⚪ Optional; tests / scratch only |
 | [**shwild**](https://github.com/synesissoftware/shwild) | Pattern matching in tests | ⚪ Optional; tests only |
 | [**xTests**](https://github.com/synesissoftware/xTests) (≥ 0.25.4) | Unit / component tests | ⚪ Tests only (`BUILD_TESTING`) |
 | **ACE** | Stock `be.ACE` / related backends | ⚪ Optional (`NO_ACE` / **`--no-ace`**; `ACE` / `ACE_ROOT` or system package) |
@@ -203,6 +204,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 Projects closely related to **Pantheios** include:
 
 * [**b64**](https://github.com/synesissoftware/b64) — optional Base-64 inserter support;
+* [**Diagnosticism**](https://github.com/synesissoftware/Diagnosticism) — version strings in scratch / examples;
 * [**Pantheios.Extras.DiagUtil**](https://github.com/synesissoftware/Pantheios.Extras.DiagUtil);
 * [**Pantheios.Extras.Main**](https://github.com/synesissoftware/Pantheios.Extras.Main);
 * [**Pantheios.Extras.xHelpers**](https://github.com/synesissoftware/Pantheios.Extras.xHelpers);

@@ -1,19 +1,19 @@
 #! /usr/bin/env ruby
 
-# ######################################################################### #
+# ##########################################################################
 # File:     make_hdrs.rb
 #
 # Purpose:  Generates the Pantheios logging API N-param functions
 #
 # Created:  21st June 2005
-# Updated:  6th February 2024
+# Updated:  14th October 2026
 #
 # Author:   Matthew Wilson
 #
 ############################################################
 
 
-# ##########################################################
+# ##########################################################################
 # imports
 
 begin require 'synsoft/srcutil'; rescue LoadError; end
@@ -23,17 +23,20 @@ require 'recls'
 
 require 'date'
 
-# ##########################################################
+
+# ##########################################################################
 # includes
 
-# ##########################################################
+
+# ##########################################################################
 # constants
 
 PROGRAM_VER_MAJOR               =   2
-PROGRAM_VER_MINOR               =   3
+PROGRAM_VER_MINOR               =   4
 PROGRAM_VER_REVISION            =   1
 
-# ##########################################################
+
+# ##########################################################################
 # functions
 
 def current_date
@@ -43,8 +46,39 @@ def current_date
     return SrcUtil.currentDate
   end
 
-  DateTime.now.strftime('%d/%m/%Y')
+  now = Date.today
+  day = now.day
+  suffix =
+    if (11 .. 13).include?(day % 100)
+
+      'th'
+    else
+
+      case day % 10
+      when 1 then 'st'
+      when 2 then 'nd'
+      when 3 then 'rd'
+      else 'th'
+      end
+    end
+
+  "#{day}#{suffix} #{now.strftime('%B %Y')}"
 end # current_date()
+
+# Emits a Pantheios-style Doxygen \file block for a generated header.
+#
+# +relative_path+ is relative to include/pantheios/ (e.g. "generated/log_functions.h").
+# +language_tag+ is typically "[C, C++]" or "[C++ only]".
+def emit_doxygen_file_block(f, relative_path, language_tag)
+
+  nl = "\n"
+
+  f << "/** \\file pantheios/#{relative_path}" << nl
+  f << ' *' << nl
+  f << " * #{language_tag} INTERNAL, AUTO-GENERATED FILE: Do not include" << nl
+  f << ' *   directly.' << nl
+  f << ' */' << nl
+end # emit_doxygen_file_block()
 
 def declare_template_parameter_list(f, i)
 
@@ -94,7 +128,8 @@ def round_up(n, granularity)
   ((n + (granularity - 1)) / granularity) * granularity
 end # round_up()
 
-############################################################
+
+############################################################################
 # command-line processing
 
 options   = {}
@@ -116,7 +151,7 @@ climate = LibCLImate::Climate.new do |climate|
   climate.info_lines = [
 
     'Pantheios N-ary function template generator script',
-    'Copyright Synesis Software Pty Ltd (c) 2005-2016',
+    'Copyright Synesis Software Pty Ltd (c) 2005-2019, Synesis Information Systems Pty Ltd (c) 2019-2026',
     :version,
     '',
   ]
@@ -130,9 +165,12 @@ end
 
 r = climate.run ARGV
 
-climate.abort "too many values; use --help for usage" unless ARGV.empty?
+# LibCLImate/CLASP leave consumed tokens in ARGV; reject unused positionals
+# via the parse result, not ARGV.empty?
+climate.abort "too many values; use --help for usage" unless r[:values].empty?
 
-############################################################
+
+############################################################################
 # main()
 
 NUM_PARAMS        = numParams
@@ -153,6 +191,7 @@ CALL_LMARGIN          = "#{TAB}#{TAB}"
 PARAMS_LIMIT_SYMBOL   = 'PANTHEIOS_APPL_PARAMS_LIMIT'
 
 SEVERITY_LEVELS       = %w{ EMERGENCY ALERT CRITICAL ERROR WARNING NOTICE INFORMATIONAL DEBUG }
+
 
 ############################################################
 
@@ -196,6 +235,7 @@ num_log_dispatch_N_definitions            = 0
 num_log_definitions                       = 0
 num_log_sev_definitions                   = 0
 
+
 ############################################################
 # C_LOG_FUNCTIONS_HEADER_NAME
 puts C_LOG_FUNCTIONS_HEADER_NAME
@@ -217,7 +257,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{C_LOG_FUNCTIONS_HEADER_NAME} [C, C++] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
+emit_doxygen_file_block(f, C_LOG_FUNCTIONS_HEADER_NAME, '[C, C++]')
 f << '' << ENDL
 
 f << '#ifndef PANTHEIOS_INCLUDING_C_API_FUNCTIONS' << '' << ENDL
@@ -266,6 +306,7 @@ end
 f.close()
 f = nil
 
+
 ############################################################
 # C_LOG_FUNCTIONS_IMPL_NAME
 puts C_LOG_FUNCTIONS_IMPL_NAME
@@ -288,7 +329,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{C_LOG_FUNCTIONS_IMPL_NAME} [C++ only] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
+emit_doxygen_file_block(f, C_LOG_FUNCTIONS_IMPL_NAME, '[C++ only]')
 f << '' << ENDL
 
 f << '#ifndef __cplusplus' << ENDL
@@ -405,6 +446,7 @@ end
 f.close()
 f = nil
 
+
 ############################################################
 # C_LOG_DISPATCH_FUNCTIONS_HEADER_NAME
 puts C_LOG_DISPATCH_FUNCTIONS_HEADER_NAME
@@ -426,7 +468,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{C_LOG_DISPATCH_FUNCTIONS_HEADER_NAME} [C, C++] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
+emit_doxygen_file_block(f, C_LOG_DISPATCH_FUNCTIONS_HEADER_NAME, '[C, C++]')
 f << '' << ENDL
 
 f << '#ifndef PANTHEIOS_INCL_PANTHEIOS_H_PANTHEIOS' << '' << ENDL
@@ -468,6 +510,7 @@ end
 f.close()
 f = nil
 
+
 ############################################################
 # Cpp_LOG_DISPATCH_FUNCTIONS_HEADER_NAME
 puts Cpp_LOG_DISPATCH_FUNCTIONS_HEADER_NAME
@@ -489,7 +532,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{Cpp_LOG_DISPATCH_FUNCTIONS_HEADER_NAME} [C++ only] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
+emit_doxygen_file_block(f, Cpp_LOG_DISPATCH_FUNCTIONS_HEADER_NAME, '[C++ only]')
 f << '' << ENDL
 
 f << '#ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS' << '' << ENDL
@@ -552,6 +595,7 @@ PARAM_RANGE.each { |i| f << "#endif /* #{PARAMS_LIMIT_SYMBOL} >= #{NUM_PARAMS - 
 f.close()
 f = nil
 
+
 ############################################################
 # Cpp_LOG_FUNCTIONS_HEADER_NAME
 puts Cpp_LOG_FUNCTIONS_HEADER_NAME
@@ -573,7 +617,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{Cpp_LOG_FUNCTIONS_HEADER_NAME} [C++ only] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
+emit_doxygen_file_block(f, Cpp_LOG_FUNCTIONS_HEADER_NAME, '[C++ only]')
 f << '' << ENDL
 
 f << '#ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS' << '' << ENDL
@@ -663,6 +707,7 @@ PARAM_RANGE.each { |i| f << "#endif /* #{PARAMS_LIMIT_SYMBOL} >= #{NUM_PARAMS - 
 f.close()
 f = nil
 
+
 ############################################################
 # Cpp_LOG_SEV_FUNCTIONS_HEADER_NAME
 puts Cpp_LOG_SEV_FUNCTIONS_HEADER_NAME
@@ -684,8 +729,7 @@ f << ' *              apply to this file' << '' << ENDL
 f << ' *' << '' << ENDL
 f << ' * ////////////////////////////////////////////////////////////////////// */' << '' << ENDL
 f << '' << ENDL
-# f << "/** \\file pantheios/#{Cpp_LOG_SEV_FUNCTIONS_HEADER_NAME} [C++ only] INTERNAL, AUTO-GENERATED FILE: Do not include directly */" << ENDL
-
+emit_doxygen_file_block(f, Cpp_LOG_SEV_FUNCTIONS_HEADER_NAME, '[C++ only]')
 f << '' << ENDL
 f << '#ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS' << '' << ENDL
 f << '# error This file is included by the Pantheios API, and cannot be included directly' << '' << ENDL
@@ -804,5 +848,5 @@ puts "--------------------------------------------"
 puts "# of function declarations:                  #{num_pantheios_log_N_declarations + num_pantheios_log_N_no_test_declarations}"
 puts "# of function definitions:                   #{num_pantheios_log_N_no_test_definitions + num_pantheios_log_N_definitions + num_log_dispatch_N_definitions + num_log_definitions + num_log_sev_definitions}"
 
-# ############################## end of file ############################## #
+# ############################## end of file ############################# #
 

@@ -4,14 +4,14 @@
  * Purpose: Implementation file for the test.unit.levels.values project.
  *
  * Created: 29th November 2007
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
 
 #include <pantheios/pantheios.h>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/stlsoft.h>        /* for STLSOFT_NUM_ELEMENTS */
 
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 
             for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
             {
-                XTESTS_TEST_INTEGER_EQUAL(s_severityLevels[i], s_severityLevelValues[i]);
+                TEST_INT_EQ(s_severityLevels[i], s_severityLevelValues[i]);
             }
 
             XTESTS_CASE_END("Test-1");
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 
             for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
             {
-                XTESTS_TEST_INTEGER_EQUAL(s_severityLevels[i], s_severityLevelValues[i]);
+                TEST_INT_EQ(s_severityLevels[i], s_severityLevelValues[i]);
             }
 
             XTESTS_CASE_END("Test-2");

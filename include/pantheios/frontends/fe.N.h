@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios fe.N Stock Front-end API.
  *
  * Created: 18th October 2006
- * Updated: 16th July 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_MINOR     3
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      21
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_N_EDIT      24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -74,7 +74,8 @@
 
 /** \defgroup group__frontend__stock_frontends__N Pantheios N Stock Front-end
  * \ingroup group__frontend__stock_frontends
- *  Front-end library that can filter N back-ends.
+ *
+ * Front-end library that can filter N back-ends.
  */
 
 
@@ -108,7 +109,9 @@ struct pan_fe_N_t
 {
     /** The back-end identifier. Specify 0 to terminate the array. */
     int backEndId;
-    /** The severity ceiling. When backEndId is 0, this specifies the default ceiling */
+    /** The severity ceiling. When backEndId is 0, this specifies the
+     * default ceiling
+     */
     int severityCeiling;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
@@ -159,20 +162,20 @@ struct Pantheios_no_longer_uses_the_symbol_PAN_FE_N_PROCESS_IDENTITY_all_front_e
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** The application must define this variable, to contain an array
- *    of filter entries whose last, "null", element has a <code>0</code>
- *    \link pan_fe_N_t::backEndId backEndId\endlink.
+ * of filter entries whose last, "null", element has a `0`
+ * \link pan_fe_N_t::backEndId backEndId\endlink.
  *
  * \warning Due to the inherent ordering imperfection in C++ - it's not
- *    predictable between compilation units; see Chapter 11 of Imperfect
- *    C++ (http://imperfectcplusplus.com) - you should <b>not</b> use
- *    the pseudo-constants (pantheios::debug, pantheios::informational, ...
- *    pantheios::emergency) in the initialisers for this array. Instead,
- *    use the enumerators in
- *    \link pantheios::pan_severity_t pan_severity_t\endlink.
+ *   predictable between compilation units; see Chapter 11 of Imperfect C++
+ *   (http://imperfectcplusplus.com) - you should \c not use the
+ *   pseudo-constants (pantheios::debug, pantheios::informational, ...
+ *   pantheios::emergency) in the initialisers for this array. Instead, use
+ *   the enumerators in
+ *   \link pantheios::pan_severity_t pan_severity_t\endlink.
  *
- * \note This array is declared mutable (non-const), but that is only as
- *    an expedient for testing. Its contents <b>must not be changed</b>\
- *    at any time
+ * \note This array is declared mutable (non-const), but that is only as an
+ *   expedient for testing. Its contents **must not be changed**\ at any
+ *   time.
  *
  * \ingroup group__frontend__stock_frontends__N
  */

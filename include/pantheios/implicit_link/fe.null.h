@@ -4,11 +4,11 @@
  * Purpose: Implicitly links in the Pantheios fe.null Front-end Library
  *
  * Created: 28th August 2008
- * Updated: 16th December 2023
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,7 +43,8 @@
 /** \file pantheios/implicit_link/fe.null.h
  *
  * [C, C++] Implicitly links in the
- *   \ref group__frontend__stock_frontends__null "Pantheios null Stock Front-end".
+ * \ref group__frontend__stock_frontends__null "Pantheios null Stock
+ * Front-end".
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_FE_NULL
@@ -58,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_FE_NULL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_FE_NULL_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_FE_NULL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_FE_NULL_EDIT       6
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_FE_NULL_EDIT       7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

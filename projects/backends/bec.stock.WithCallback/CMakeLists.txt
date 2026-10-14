@@ -2,12 +2,11 @@
 set(BEC_STOCK_WC_SRC_DIR ../../../src/backends)
 
 file(GLOB BEC_STOCK_WC_SRCS_common
-	${BEC_STOCK_SRC_DIR}/bec.AnsiConsole.cpp
+	${BEC_STOCK_WC_SRC_DIR}/bec.AnsiConsole.cpp
 	${BEC_STOCK_WC_SRC_DIR}/bec.fail.c
 	${BEC_STOCK_WC_SRC_DIR}/bec.file.cpp
 	${BEC_STOCK_WC_SRC_DIR}/bec.fprintf.cpp
 	${BEC_STOCK_WC_SRC_DIR}/bec.null.c
-	${BEC_STOCK_WC_SRC_DIR}/bec.test.cpp
 )
 
 set(BEC_STOCK_WC_SRCS ${BEC_STOCK_WC_SRCS_common})
@@ -67,7 +66,7 @@ target_compile_options(Pantheios.bec.stock.WithCallback
 			-Werror -Wall -Wextra -pedantic
 
 			-Wno-unused-function
-			-Wno-unused-private-field # this (temporarily) for bec.test.cpp
+			-Wno-unused-parameter
 
 			-DPANTHEIOS_BE_USE_CALLBACK
 		>
@@ -84,4 +83,3 @@ install(TARGETS Pantheios.bec.stock.WithCallback
 
 
 # ############################## end of file ############################# #
-

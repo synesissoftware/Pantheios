@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the I18N project.
  *
  * Created: 1st September 2015
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -42,7 +42,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
  * main()
  */
 
-static int main_(int /* argc */, char** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     {
         wchar_t const   ws[]    =   L"wide-string";

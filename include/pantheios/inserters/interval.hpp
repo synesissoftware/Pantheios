@@ -4,11 +4,11 @@
  * Purpose:     String inserter for time intervals pairs.
  *
  * Created:     19th April 2014
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -42,8 +42,8 @@
 
 /** \file pantheios/inserters/interval.hpp
  *
- * [C++ only] Definition of the pantheios::interval inserter for
- *   <code>argc+argv</code> pairs.
+ * [C++ only] Definition of the pantheios::interval inserter for `argc+argv`
+ * pairs.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_INTERVAL
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INTERVAL_EDIT        6
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,7 +95,7 @@ namespace pantheios
  */
 
 /** Class for inserting time interval arguments into Pantheios
- *    diagnostic logging statements.
+ * diagnostic logging statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -112,7 +112,7 @@ public:
 /// \name Member Constants
 /// @{
 public:
-    ///  The format flags
+    /// The format flags
     enum units
     {
             microseconds    =   1
@@ -138,11 +138,13 @@ private:
 /// \name Accessors
 /// @{
 public:
-    ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* data() const;
-    ///  A nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* c_str() const;
-    ///  The size of the c-style string representation of the integer
+    /// The size of the c-style string representation of the integer
     size_t                  size() const;
 /// @}
 

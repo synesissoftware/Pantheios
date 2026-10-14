@@ -23,6 +23,14 @@ if(b64_FOUND)
 	)
 endif(b64_FOUND)
 
+if(Diagnosticism_FOUND)
+
+	target_link_libraries(test.scratch.versions
+		PRIVATE
+			Diagnosticism::core
+	)
+endif(Diagnosticism_FOUND)
+
 if(shwild_FOUND)
 
 	target_link_shwild(test.scratch.versions)

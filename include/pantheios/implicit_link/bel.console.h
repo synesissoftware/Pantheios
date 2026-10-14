@@ -4,11 +4,11 @@
  * Purpose: Implicitly links in the Pantheios Console Local Back-End Library
  *
  * Created: 3rd July 2009
- * Updated: 5th August 2026
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2009-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,8 +43,8 @@
 /** \file pantheios/implicit_link/bel.console.h
  *
  * [C, C++] Implicitly links in the
- *   \ref group__backend__stock_backends__console "Pantheios Console Local Back-End Library"
- *   as the local back-end for the given link-unit.
+ * \ref group__backend__stock_backends__console "Pantheios Console Local
+ * Back-End Library" as the local back-end for the given link-unit.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_CONSOLE
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_CONSOLE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_CONSOLE_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_CONSOLE_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_CONSOLE_EDIT       4
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_CONSOLE_EDIT       5
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

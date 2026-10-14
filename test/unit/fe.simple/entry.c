@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.fe.simple project.
  *
  * Created: 14th May 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/frontends/fe.simple.h>
 #include <pantheios/init_codes.h>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/stlsoft.h>        /* for STLSOFT_NUM_ELEMENTS */
 
@@ -26,11 +26,11 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
 
             res = pantheios_fe_init(NULL, &token);
 
-            XTESTS_TEST_INTEGER_EQUAL(PANTHEIOS_INIT_RC_SUCCESS, res);
+            TEST_INT_EQ(PANTHEIOS_INIT_RC_SUCCESS, res);
 
             if (PANTHEIOS_INIT_RC_SUCCESS == res)
             {
@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
 
             if (PANTHEIOS_INIT_RC_SUCCESS == res)
             {
-                XTESTS_TEST_STRING_EQUAL(PANTHEIOS_FE_PROCESS_IDENTITY, pantheios_fe_getProcessIdentity(token));
+                TEST_STRING_EQ(PANTHEIOS_FE_PROCESS_IDENTITY, pantheios_fe_getProcessIdentity(token));
 
                 pantheios_fe_uninit(token);
             }
@@ -139,7 +139,7 @@ int main(int argc, char* argv[])
 
                 { size_t i; for (i = 0; i != STLSOFT_NUM_ELEMENTS(s_severityLevels); ++i)
                 {
-                    XTESTS_TEST_INTEGER_EQUAL(s_severityLevelResults[i], pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0));
+                    TEST_INT_EQ(s_severityLevelResults[i], pantheios_fe_isSeverityLogged(token, s_severityLevels[i], 0));
                 }}
 
                 pantheios_fe_uninit(token);

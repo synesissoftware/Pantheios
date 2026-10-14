@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.util.onbailout project.
  *
  * Created: 29th April 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,7 +29,7 @@
 #include <pantheios/internal/lean.h>
 #include <pantheios/init_codes.h>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <shwild/shwild.hpp>
 
@@ -62,11 +62,11 @@
 
 #if _XTESTS_VER < 0x00150000
 
-# define XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern, value)       \
+# define TEST_MS_MATCHES(pattern, value)                            \
                                                                     \
     ((0 == shwild::match(pattern, stlsoft::c_str_ptr(value), 0))    \
-        ?   XTESTS_TEST_PASSED()                                    \
-        :   XTESTS_TEST_FAIL_WITH_QUALIFIER(std::string("the actual value did not match the pattern '") + pattern + "'", value))
+        ?   TEST_PASSED()                                           \
+        :   TEST_FAIL_WITH_QUALIFIER(std::string("the actual value did not match the pattern '") + pattern + "'", value))
 #endif
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
@@ -94,11 +94,11 @@ namespace {
 
 } /* anonymous namespace */
 
-#define XTESTS_TEST_WIDE_STRING_MATCHES(pattern, value)             \
+#define TEST_WS_MATCHES(pattern, value)                             \
                                                                     \
     ((0 == shwild_match_w(pattern, value, 0))                       \
-        ?   XTESTS_TEST_PASSED()                                    \
-        :   XTESTS_TEST_FAIL_WITH_QUALIFIER(winstl::w2m(std::wstring(L"the actual value did not match the pattern '") + pattern + L"'"), winstl::w2m(value)))
+        ?   TEST_PASSED()                                           \
+        :   TEST_FAIL_WITH_QUALIFIER(winstl::w2m(std::wstring(L"the actual value did not match the pattern '") + pattern + L"'"), winstl::w2m(value)))
 
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -137,15 +137,15 @@ namespace {
 namespace
 {
 
-static void test_unused_receiver();
-static void test_pantheios_onBailOut3();
-static void test_pantheios_onBailOut4();
-static void test_pantheios_onBailOut6();
-static void test_pantheios_onBailOut6_too_long();
+static void TEST_pantheios_onBailOut_UNUSED_RECEIVER();
+static void TEST_pantheios_onBailOut3();
+static void TEST_pantheios_onBailOut4();
+static void TEST_pantheios_onBailOut6();
+static void TEST_pantheios_onBailOut6_TOO_LONG();
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-static void test_pantheios_onBailOut3_w();
-static void test_pantheios_onBailOut4_w();
-static void test_pantheios_onBailOut6_w();
+static void TEST_pantheios_onBailOut3_w();
+static void TEST_pantheios_onBailOut4_w();
+static void TEST_pantheios_onBailOut6_w();
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 } /* anonymous namespace */
 
@@ -294,15 +294,15 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.util.onbailout", verbosity))
     {
-        XTESTS_RUN_CASE(test_unused_receiver);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut3);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut4);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut6);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut6_too_long);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut_UNUSED_RECEIVER);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut3);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut4);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut6);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut6_TOO_LONG);
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
-        XTESTS_RUN_CASE(test_pantheios_onBailOut3_w);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut4_w);
-        XTESTS_RUN_CASE(test_pantheios_onBailOut6_w);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut3_w);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut4_w);
+        XTESTS_RUN_CASE(TEST_pantheios_onBailOut6_w);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
         XTESTS_PRINT_RESULTS();
 
@@ -320,32 +320,32 @@ int main(int argc, char* argv[])
 namespace
 {
 
-static void test_unused_receiver()
+static void TEST_pantheios_onBailOut_UNUSED_RECEIVER()
 {
     receiver.Clear();
 
 #ifdef TEST_ODS_
-    XTESTS_TEST_INTEGER_EQUAL(0u, receiver.OutputDebugStringResults.size());
+    TEST_INT_EQ(0u, receiver.OutputDebugStringResults.size());
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_TEST_INTEGER_EQUAL(0u, receiver.ConsoleResults.size());
+    TEST_INT_EQ(0u, receiver.ConsoleResults.size());
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_TEST_INTEGER_EQUAL(0u, receiver.LoggingBailoutTxtResults.size());
+    TEST_INT_EQ(0u, receiver.LoggingBailoutTxtResults.size());
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_TEST_INTEGER_EQUAL(0u, receiver.EventLogResults.size());
+    TEST_INT_EQ(0u, receiver.EventLogResults.size());
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_TEST_INTEGER_EQUAL(0u, receiver.SyslogResults.size());
+    TEST_INT_EQ(0u, receiver.SyslogResults.size());
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut3()
+static void TEST_pantheios_onBailOut3()
 {
     receiver.Clear();
 
@@ -355,32 +355,32 @@ static void test_pantheios_onBailOut3()
     pantheios_onBailOut3(PANTHEIOS_SEV_DEBUG, message, "process-#1");
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut4()
+static void TEST_pantheios_onBailOut4()
 {
     char const  message[]           =   "hello";
     char const  pattern_no_qual[]   =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello";
@@ -399,28 +399,28 @@ static void test_pantheios_onBailOut4()
     pantheios_onBailOut4(PANTHEIOS_SEV_DEBUG, message, "process-#1", NULL);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_no_qual, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_no_qual, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_no_qual, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_no_qual, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_no_qual, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_no_qual, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_no_qual, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_no_qual, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_no_qual, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_no_qual, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -429,28 +429,28 @@ static void test_pantheios_onBailOut4()
     pantheios_onBailOut4(PANTHEIOS_SEV_DEBUG, message, "process-#1", qualifier_1);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_1, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_qual_1, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_1, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_qual_1, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_1, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_qual_1, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_1, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_qual_1, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_1, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_qual_1, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -459,32 +459,32 @@ static void test_pantheios_onBailOut4()
     pantheios_onBailOut4(PANTHEIOS_SEV_DEBUG, message, "process-#1", qualifier_2);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_2, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_qual_2, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_2, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_qual_2, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_2, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_qual_2, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_2, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_qual_2, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_qual_2, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_qual_2, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut6()
+static void TEST_pantheios_onBailOut6()
 {
     const char  message[]       =   "hello";
     const char  pattern_none[]  =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: qual-#1";
@@ -498,28 +498,28 @@ static void test_pantheios_onBailOut6()
     pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "qual-#1", NULL, NULL);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_none, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_none, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_none, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_none, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_none, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_none, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_none, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_none, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_none, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_none, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -528,28 +528,28 @@ static void test_pantheios_onBailOut6()
     pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "qual-#1", "fe-#1", NULL);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_fe, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_fe, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_fe, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_fe, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_fe, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_fe, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_fe, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_fe, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_fe, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_fe, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -558,28 +558,28 @@ static void test_pantheios_onBailOut6()
     pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "qual-#1", NULL, "be-#1");
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_be, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_be, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_be, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_be, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_be, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_be, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_be, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_be, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_be, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_be, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -588,32 +588,32 @@ static void test_pantheios_onBailOut6()
     pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "qual-#1", "fe-#1", "be-#1");
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_febe, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_febe, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_febe, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_febe, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_febe, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_febe, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_febe, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_febe, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_febe, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_febe, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut6_too_long()
+static void TEST_pantheios_onBailOut6_TOO_LONG()
 {
     const char  message[]           =   "hello";
     const char  pattern_short[]     =   "2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello: fe=fe-#1, be=be-#1: qual-#1";
@@ -627,28 +627,28 @@ static void test_pantheios_onBailOut6_too_long()
     pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "qual-#1", "fe-#1", "be-#1");
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_short, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_short, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_short, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_short, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_short, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_short, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_short, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_short, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_short, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_short, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -657,28 +657,28 @@ static void test_pantheios_onBailOut6_too_long()
     pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "a-longish-qualifier-#1", "a-longish-front-end-#1", "a-longish-back-end-#1");
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_1, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_medium_1, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_1, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_medium_1, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_1, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_medium_1, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_1, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_medium_1, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_1, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_medium_1, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -687,28 +687,28 @@ static void test_pantheios_onBailOut6_too_long()
     pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "a-fair-bit-more-than-fairish-amount-longer-qualifier-#1", "a-fair-bit-more-than-fairish-amount-longer-front-end-#1", "a-fair-bit-more-than-fairish-amount-longer-back-end-#1");
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_2, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_medium_2, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_2, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_medium_2, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_2, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_medium_2, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_2, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_medium_2, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_medium_2, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_medium_2, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -717,34 +717,34 @@ static void test_pantheios_onBailOut6_too_long()
     pantheios_onBailOut6(PANTHEIOS_SEV_DEBUG, message, "process-#1", "a-much-much-much-much-much-much-much-much-longer-qualifier-#1", "a-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-name-for-a-front-end-#1", "a-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-very-long-name-for-a-back-end-#1");
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.OutputDebugStringResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_long, receiver.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.OutputDebugStringResults.size()));
+    TEST_MS_MATCHES(pattern_long, receiver.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.ConsoleResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_long, receiver.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.ConsoleResults.size()));
+    TEST_MS_MATCHES(pattern_long, receiver.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_long, receiver.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.LoggingBailoutTxtResults.size()));
+    TEST_MS_MATCHES(pattern_long, receiver.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.EventLogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_long, receiver.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.EventLogResults.size()));
+    TEST_MS_MATCHES(pattern_long, receiver.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver.SyslogResults.size()));
-    XTESTS_TEST_MULTIBYTE_STRING_MATCHES(pattern_long, receiver.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver.SyslogResults.size()));
+    TEST_MS_MATCHES(pattern_long, receiver.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-static void test_pantheios_onBailOut3_w()
+static void TEST_pantheios_onBailOut3_w()
 {
     receiver.Clear();
 
@@ -755,32 +755,32 @@ static void test_pantheios_onBailOut3_w()
     pantheios_onBailOut3_w(PANTHEIOS_SEV_DEBUG, message, L"process-#1");
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.OutputDebugStringResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern, receiver_w.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.OutputDebugStringResults.size()));
+    TEST_WS_MATCHES(pattern, receiver_w.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.ConsoleResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern, receiver_w.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.ConsoleResults.size()));
+    TEST_WS_MATCHES(pattern, receiver_w.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern, receiver_w.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.LoggingBailoutTxtResults.size()));
+    TEST_WS_MATCHES(pattern, receiver_w.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.EventLogResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern, receiver_w.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.EventLogResults.size()));
+    TEST_WS_MATCHES(pattern, receiver_w.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.SyslogResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern, receiver_w.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.SyslogResults.size()));
+    TEST_WS_MATCHES(pattern, receiver_w.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut4_w()
+static void TEST_pantheios_onBailOut4_w()
 {
     wchar_t const   message[]           =   L"hello";
     wchar_t const   pattern_no_qual[]   =   L"2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello";
@@ -799,28 +799,28 @@ static void test_pantheios_onBailOut4_w()
     pantheios_onBailOut4_w(PANTHEIOS_SEV_DEBUG, message, L"process-#1", NULL);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.OutputDebugStringResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_no_qual, receiver_w.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.OutputDebugStringResults.size()));
+    TEST_WS_MATCHES(pattern_no_qual, receiver_w.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.ConsoleResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_no_qual, receiver_w.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.ConsoleResults.size()));
+    TEST_WS_MATCHES(pattern_no_qual, receiver_w.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_no_qual, receiver_w.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.LoggingBailoutTxtResults.size()));
+    TEST_WS_MATCHES(pattern_no_qual, receiver_w.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.EventLogResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_no_qual, receiver_w.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.EventLogResults.size()));
+    TEST_WS_MATCHES(pattern_no_qual, receiver_w.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.SyslogResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_no_qual, receiver_w.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.SyslogResults.size()));
+    TEST_WS_MATCHES(pattern_no_qual, receiver_w.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -829,28 +829,28 @@ static void test_pantheios_onBailOut4_w()
     pantheios_onBailOut4_w(PANTHEIOS_SEV_DEBUG, message, L"process-#1", qualifier_1);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.OutputDebugStringResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_qual_1, receiver_w.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.OutputDebugStringResults.size()));
+    TEST_WS_MATCHES(pattern_qual_1, receiver_w.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.ConsoleResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_qual_1, receiver_w.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.ConsoleResults.size()));
+    TEST_WS_MATCHES(pattern_qual_1, receiver_w.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_qual_1, receiver_w.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.LoggingBailoutTxtResults.size()));
+    TEST_WS_MATCHES(pattern_qual_1, receiver_w.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.EventLogResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_qual_1, receiver_w.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.EventLogResults.size()));
+    TEST_WS_MATCHES(pattern_qual_1, receiver_w.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.SyslogResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_qual_1, receiver_w.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.SyslogResults.size()));
+    TEST_WS_MATCHES(pattern_qual_1, receiver_w.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -859,32 +859,32 @@ static void test_pantheios_onBailOut4_w()
     pantheios_onBailOut4_w(PANTHEIOS_SEV_DEBUG, message, L"process-#1", qualifier_2);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.OutputDebugStringResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_qual_2, receiver_w.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.OutputDebugStringResults.size()));
+    TEST_WS_MATCHES(pattern_qual_2, receiver_w.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.ConsoleResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_qual_2, receiver_w.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.ConsoleResults.size()));
+    TEST_WS_MATCHES(pattern_qual_2, receiver_w.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_qual_2, receiver_w.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.LoggingBailoutTxtResults.size()));
+    TEST_WS_MATCHES(pattern_qual_2, receiver_w.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.EventLogResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_qual_2, receiver_w.EventLogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.EventLogResults.size()));
+    TEST_WS_MATCHES(pattern_qual_2, receiver_w.EventLogResults[0].message);
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.SyslogResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_qual_2, receiver_w.SyslogResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.SyslogResults.size()));
+    TEST_WS_MATCHES(pattern_qual_2, receiver_w.SyslogResults[0].message);
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 
-static void test_pantheios_onBailOut6_w()
+static void TEST_pantheios_onBailOut6_w()
 {
     const wchar_t   message[]           =   L"hello";
     const wchar_t   pattern_noqual[]    =   L"2[0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9].[0-9][0-9][0-9]: hello";
@@ -899,26 +899,26 @@ static void test_pantheios_onBailOut6_w()
     pantheios_onBailOut6_w(PANTHEIOS_SEV_DEBUG, message, L"process-#1", NULL, NULL, NULL);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.OutputDebugStringResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_noqual, receiver_w.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.OutputDebugStringResults.size()));
+    TEST_WS_MATCHES(pattern_noqual, receiver_w.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.ConsoleResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_noqual, receiver_w.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.ConsoleResults.size()));
+    TEST_WS_MATCHES(pattern_noqual, receiver_w.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_noqual, receiver_w.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.LoggingBailoutTxtResults.size()));
+    TEST_WS_MATCHES(pattern_noqual, receiver_w.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.EventLogResults.size()));
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.EventLogResults.size()));
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.SyslogResults.size()));
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.SyslogResults.size()));
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -927,26 +927,26 @@ static void test_pantheios_onBailOut6_w()
     pantheios_onBailOut6_w(PANTHEIOS_SEV_DEBUG, message, L"process-#1", L"qual-#1", NULL, NULL);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.OutputDebugStringResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_none, receiver_w.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.OutputDebugStringResults.size()));
+    TEST_WS_MATCHES(pattern_none, receiver_w.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.ConsoleResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_none, receiver_w.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.ConsoleResults.size()));
+    TEST_WS_MATCHES(pattern_none, receiver_w.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_none, receiver_w.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.LoggingBailoutTxtResults.size()));
+    TEST_WS_MATCHES(pattern_none, receiver_w.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.EventLogResults.size()));
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.EventLogResults.size()));
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.SyslogResults.size()));
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.SyslogResults.size()));
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -955,26 +955,26 @@ static void test_pantheios_onBailOut6_w()
     pantheios_onBailOut6_w(PANTHEIOS_SEV_DEBUG, message, L"process-#1", L"qual-#1", L"fe-#1", NULL);
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.OutputDebugStringResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_fe, receiver_w.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.OutputDebugStringResults.size()));
+    TEST_WS_MATCHES(pattern_fe, receiver_w.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.ConsoleResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_fe, receiver_w.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.ConsoleResults.size()));
+    TEST_WS_MATCHES(pattern_fe, receiver_w.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_fe, receiver_w.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.LoggingBailoutTxtResults.size()));
+    TEST_WS_MATCHES(pattern_fe, receiver_w.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.EventLogResults.size()));
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.EventLogResults.size()));
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.SyslogResults.size()));
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.SyslogResults.size()));
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -983,26 +983,26 @@ static void test_pantheios_onBailOut6_w()
     pantheios_onBailOut6_w(PANTHEIOS_SEV_DEBUG, message, L"process-#1", L"qual-#1", NULL, L"be-#1");
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.OutputDebugStringResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_be, receiver_w.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.OutputDebugStringResults.size()));
+    TEST_WS_MATCHES(pattern_be, receiver_w.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.ConsoleResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_be, receiver_w.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.ConsoleResults.size()));
+    TEST_WS_MATCHES(pattern_be, receiver_w.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_be, receiver_w.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.LoggingBailoutTxtResults.size()));
+    TEST_WS_MATCHES(pattern_be, receiver_w.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.EventLogResults.size()));
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.EventLogResults.size()));
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.SyslogResults.size()));
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.SyslogResults.size()));
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 
 
@@ -1011,26 +1011,26 @@ static void test_pantheios_onBailOut6_w()
     pantheios_onBailOut6_w(PANTHEIOS_SEV_DEBUG, message, L"process-#1", L"qual-#1", L"fe-#1", L"be-#1");
 
 #ifdef TEST_ODS_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.OutputDebugStringResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_febe, receiver_w.OutputDebugStringResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.OutputDebugStringResults.size()));
+    TEST_WS_MATCHES(pattern_febe, receiver_w.OutputDebugStringResults[0].message);
 #endif
 
 #ifdef TEST_CONSOLE_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.ConsoleResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_febe, receiver_w.ConsoleResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.ConsoleResults.size()));
+    TEST_WS_MATCHES(pattern_febe, receiver_w.ConsoleResults[0].message);
 #endif
 
 #ifdef TEST_LBT_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.LoggingBailoutTxtResults.size()));
-    XTESTS_TEST_WIDE_STRING_MATCHES(pattern_febe, receiver_w.LoggingBailoutTxtResults[0].message);
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.LoggingBailoutTxtResults.size()));
+    TEST_WS_MATCHES(pattern_febe, receiver_w.LoggingBailoutTxtResults[0].message);
 #endif
 
 #if TEST_EVLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.EventLogResults.size()));
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.EventLogResults.size()));
 #endif
 
 #if TEST_SYSLOG_
-    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(1u, receiver_w.SyslogResults.size()));
+    REQUIRE(TEST_INT_EQ(1u, receiver_w.SyslogResults.size()));
 #endif /* PLATFORMSTL_OS_IS_UNIX */
 }
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */

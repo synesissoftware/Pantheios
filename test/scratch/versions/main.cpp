@@ -5,7 +5,7 @@
  *          dependencies.
  *
  * Created: 4th August 2026
- * Updated: 12th October 2026
+ * Updated: 18th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -22,11 +22,22 @@
 # include <b64/b64.h>
 #endif
 
+#ifdef HAS_Diagnosticism
+# include <diagnosticism/diagnosticism.h>
+# include <diagnosticism/version_string.h>
+#endif
+
 #ifdef HAS_shwild
 # include <shwild/shwild.h>
 #endif
 
-#include <woad/woad.h>
+#ifdef HAS_woad
+# include <woad/woad.h>
+#endif
+
+#ifdef HAS_xTests
+# include <xtests/xtests.h>
+#endif
 
 #include <iomanip>
 #include <iostream>
@@ -53,36 +64,115 @@ version(
 ,   T_integer   libver
 )
 {
-    stm
-        << prefix
-        << WOAD_FG_BLUE_FOR(file)
-        << libname
-        << WOAD_RESET_FOR(file)
-        << ": "
-        << WOAD_FG_GREEN_FOR(file)
-        << 'v'
-        << ((libver >> 24) & 0xff)
-        << '.'
-        << ((libver >> 16) & 0xff)
-        << '.'
-        << ((libver >> 8) & 0xff)
-        << '.'
-        << ((libver >> 0) & 0xff)
-        << WOAD_RESET_FOR(file)
-        << " ("
-        << WOAD_FG_CYAN_FOR(file)
-        << macroname
-        << WOAD_RESET_FOR(file)
-        << " = "
-        << WOAD_FG_GREEN_FOR(file)
-        << "0x"
-        << std::hex << std::setfill('0') << std::setw(8)
-        << static_cast<unsigned>(libver)
-        << std::dec
-        << WOAD_RESET_FOR(file)
-        << ")"
-        << std::endl
-        ;
+#ifdef HAS_Diagnosticism
+
+    char    sz[100];
+    size_t  sz_len;
+
+    if (0 == diagnosticism_calc_version_string(
+        sz, sizeof(sz)
+    ,   ((libver >> 24) & 0xff)
+    ,   ((libver >> 16) & 0xff)
+    ,   ((libver >> 8) & 0xff)
+    ,   ((libver >> 0) & 0xff)
+    ,   &sz_len
+    ))
+    {
+        sz[sz_len] = '\0';
+
+        stm
+            << prefix
+#ifdef HAS_woad
+            << WOAD_FG_BLUE_FOR(file)
+#endif
+            << libname
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << ": "
+#ifdef HAS_woad
+            << WOAD_FG_GREEN_FOR(file)
+#endif
+            << 'v'
+            << sz
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << " ("
+#ifdef HAS_woad
+            << WOAD_FG_CYAN_FOR(file)
+#endif
+            << macroname
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << " = "
+#ifdef HAS_woad
+            << WOAD_FG_GREEN_FOR(file)
+#endif
+            << "0x"
+            << std::hex << std::setfill('0') << std::setw(8)
+            << static_cast<unsigned>(libver)
+            << std::dec
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << ")"
+            << std::endl
+            ;
+
+        return;
+    }
+    else
+#endif /* HAS_Diagnosticism */
+    {
+        stm
+            << prefix
+#ifdef HAS_woad
+            << WOAD_FG_BLUE_FOR(file)
+#endif
+            << libname
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << ": "
+#ifdef HAS_woad
+            << WOAD_FG_GREEN_FOR(file)
+#endif
+            << 'v'
+            << ((libver >> 24) & 0xff)
+            << '.'
+            << ((libver >> 16) & 0xff)
+            << '.'
+            << ((libver >> 8) & 0xff)
+            << '.'
+            << ((libver >> 0) & 0xff)
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << " ("
+#ifdef HAS_woad
+            << WOAD_FG_CYAN_FOR(file)
+#endif
+            << macroname
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << " = "
+#ifdef HAS_woad
+            << WOAD_FG_GREEN_FOR(file)
+#endif
+            << "0x"
+            << std::hex << std::setfill('0') << std::setw(8)
+            << static_cast<unsigned>(libver)
+            << std::dec
+#ifdef HAS_woad
+            << WOAD_RESET_FOR(file)
+#endif
+            << ")"
+            << std::endl
+            ;
+    }
 }
 
 
@@ -115,6 +205,15 @@ int main(int /* argc */, char* /* argv */[])
     }
 #endif
 
+#ifdef HAS_Diagnosticism
+
+    {
+        unsigned const libver = DIAGNOSTICISM_VER;
+
+        version(std::cout, stdout, "\t", "Diagnosticism", "DIAGNOSTICISM_VER", libver);
+    }
+#endif
+
 #ifdef HAS_shwild
 
     {
@@ -124,11 +223,23 @@ int main(int /* argc */, char* /* argv */[])
     }
 #endif
 
+#ifdef HAS_woad
+
     {
         unsigned const libver = WOAD_VER;
 
         version(std::cout, stdout, "\t", "woad", "WOAD_VER", libver);
     }
+#endif
+
+#ifdef HAS_xTests
+
+    {
+        unsigned const libver = _XTESTS_VER;
+
+        version(std::cout, stdout, "\t", "xTests", "_XTESTS_VER", libver);
+    }
+#endif
 
     return EXIT_SUCCESS;
 }

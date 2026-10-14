@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.util.snprintf project.
  *
  * Created: 19th June 2020
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -14,7 +14,7 @@
 #include <pantheios/pantheios.h>
 #include <pantheios/util/string/snprintf.h>
 
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 #include <stlsoft/util/minmax.hpp>
 
@@ -28,12 +28,12 @@
 namespace
 {
 
-static void test_pantheios_util_snprintf_a();
+static void TEST_pantheios_util_snprintf_a();
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-static void test_pantheios_util_snprintf_w();
+static void TEST_pantheios_util_snprintf_w();
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
-static void test_pantheios_util_snprintf();
+static void TEST_pantheios_util_snprintf();
 } /* anonymous namespace */
 
 
@@ -57,12 +57,12 @@ int main(int argc, char* argv[])
 
     if (XTESTS_START_RUNNER("test.unit.util.snprintf", verbosity))
     {
-        XTESTS_RUN_CASE(test_pantheios_util_snprintf_a);
+        XTESTS_RUN_CASE(TEST_pantheios_util_snprintf_a);
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-        XTESTS_RUN_CASE(test_pantheios_util_snprintf_w);
+        XTESTS_RUN_CASE(TEST_pantheios_util_snprintf_w);
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
-        XTESTS_RUN_CASE(test_pantheios_util_snprintf);
+        XTESTS_RUN_CASE(TEST_pantheios_util_snprintf);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -85,17 +85,17 @@ namespace
     using ::pantheios::pantheios_util_snprintf_w;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-#ifndef XTESTS_TEST_STRING_EQUAL
+#ifndef TEST_STRING_EQ
 # ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-#  define XTESTS_TEST_STRING_EQUAL                          XTESTS_TEST_WIDE_STRING_EQUAL
+#  define TEST_STRING_EQ                                    TEST_WS_EQ
 # else
 
-#  define XTESTS_TEST_STRING_EQUAL                          XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+#  define TEST_STRING_EQ                                    TEST_MS_EQ
 # endif
 #endif
 
-static void test_pantheios_util_snprintf_a()
+static void TEST_pantheios_util_snprintf_a()
 {
     // ""
 
@@ -109,7 +109,7 @@ static void test_pantheios_util_snprintf_a()
 
         size_t const    n   =   pantheios_util_snprintf_a(&buff[0], STLSOFT_NUM_ELEMENTS(buff), "");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, n);
+        TEST_INT_EQ(0u, n);
     }
 
     {
@@ -117,7 +117,7 @@ static void test_pantheios_util_snprintf_a()
 
         size_t const    n   =   pantheios_util_snprintf_a(&buff[0], STLSOFT_NUM_ELEMENTS(buff), "%s", "");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, n);
+        TEST_INT_EQ(0u, n);
     }
 #if defined(__GNUC__) && \
     __GNUC__ >= 9
@@ -132,8 +132,8 @@ static void test_pantheios_util_snprintf_a()
 
         size_t const    n   =   pantheios_util_snprintf_a(&buff[0], STLSOFT_NUM_ELEMENTS(buff), "a");
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", buff);
+        TEST_INT_EQ(1u, n);
+        TEST_MS_EQ("a", buff);
     }
 
     {
@@ -141,8 +141,8 @@ static void test_pantheios_util_snprintf_a()
 
         size_t const    n   =   pantheios_util_snprintf_a(&buff[0], STLSOFT_NUM_ELEMENTS(buff), "%s", "a");
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", buff);
+        TEST_INT_EQ(1u, n);
+        TEST_MS_EQ("a", buff);
     }
 
 
@@ -153,7 +153,7 @@ static void test_pantheios_util_snprintf_a()
 
         size_t const    n   =   pantheios_util_snprintf_a(&buff[0], STLSOFT_NUM_ELEMENTS(buff), "abc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
+        TEST_INT_EQ(3u, n);
     }
 
     {
@@ -161,8 +161,8 @@ static void test_pantheios_util_snprintf_a()
 
         size_t const    n   =   pantheios_util_snprintf_a(&buff[0], STLSOFT_NUM_ELEMENTS(buff), "abc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", buff);
+        TEST_INT_EQ(3u, n);
+        TEST_MS_EQ("abc", buff);
     }
 
     {
@@ -170,8 +170,8 @@ static void test_pantheios_util_snprintf_a()
 
         size_t const    n   =   pantheios_util_snprintf_a(&buff[0], STLSOFT_NUM_ELEMENTS(buff), "%s", "abc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", buff);
+        TEST_INT_EQ(3u, n);
+        TEST_MS_EQ("abc", buff);
     }
 
     {
@@ -179,8 +179,8 @@ static void test_pantheios_util_snprintf_a()
 
         size_t const    n   =   pantheios_util_snprintf_a(&buff[0], STLSOFT_NUM_ELEMENTS(buff), "a%cc", 'b');
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", buff);
+        TEST_INT_EQ(3u, n);
+        TEST_MS_EQ("abc", buff);
     }
 
 
@@ -191,14 +191,14 @@ static void test_pantheios_util_snprintf_a()
 
         size_t const    n   =   pantheios_util_snprintf_a(&buff[0], STLSOFT_NUM_ELEMENTS(buff), "%d", -10);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("-10", buff);
+        TEST_INT_EQ(3u, n);
+        TEST_MS_EQ("-10", buff);
     }
 }
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-static void test_pantheios_util_snprintf_w()
+static void TEST_pantheios_util_snprintf_w()
 {
     // ""
 
@@ -207,7 +207,7 @@ static void test_pantheios_util_snprintf_w()
 
         size_t const    n   =   pantheios_util_snprintf_w(&buff[0], STLSOFT_NUM_ELEMENTS(buff), L"");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, n);
+        TEST_INT_EQ(0u, n);
     }
 
     {
@@ -215,7 +215,7 @@ static void test_pantheios_util_snprintf_w()
 
         size_t const    n   =   pantheios_util_snprintf_w(&buff[0], STLSOFT_NUM_ELEMENTS(buff), L"%s", L"");
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, n);
+        TEST_INT_EQ(0u, n);
     }
 
 
@@ -226,8 +226,8 @@ static void test_pantheios_util_snprintf_w()
 
         size_t const    n   =   pantheios_util_snprintf_w(&buff[0], STLSOFT_NUM_ELEMENTS(buff), L"a");
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"a", buff);
+        TEST_INT_EQ(1u, n);
+        TEST_WS_EQ(L"a", buff);
     }
 
     {
@@ -235,8 +235,8 @@ static void test_pantheios_util_snprintf_w()
 
         size_t const    n   =   pantheios_util_snprintf_w(&buff[0], STLSOFT_NUM_ELEMENTS(buff), L"%s", L"a");
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"a", buff);
+        TEST_INT_EQ(1u, n);
+        TEST_WS_EQ(L"a", buff);
     }
 
 
@@ -247,7 +247,7 @@ static void test_pantheios_util_snprintf_w()
 
         size_t const    n   =   pantheios_util_snprintf_w(&buff[0], STLSOFT_NUM_ELEMENTS(buff), L"abc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
+        TEST_INT_EQ(3u, n);
     }
 
     {
@@ -255,8 +255,8 @@ static void test_pantheios_util_snprintf_w()
 
         size_t const    n   =   pantheios_util_snprintf_w(&buff[0], STLSOFT_NUM_ELEMENTS(buff), L"abc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"abc", buff);
+        TEST_INT_EQ(3u, n);
+        TEST_WS_EQ(L"abc", buff);
     }
 
     {
@@ -264,8 +264,8 @@ static void test_pantheios_util_snprintf_w()
 
         size_t const    n   =   pantheios_util_snprintf_w(&buff[0], STLSOFT_NUM_ELEMENTS(buff), L"%s", L"abc");
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"abc", buff);
+        TEST_INT_EQ(3u, n);
+        TEST_WS_EQ(L"abc", buff);
     }
 
     {
@@ -273,8 +273,8 @@ static void test_pantheios_util_snprintf_w()
 
         size_t const    n   =   pantheios_util_snprintf_w(&buff[0], STLSOFT_NUM_ELEMENTS(buff), L"a%cc", 'b');
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"abc", buff);
+        TEST_INT_EQ(3u, n);
+        TEST_WS_EQ(L"abc", buff);
     }
 
 
@@ -285,13 +285,13 @@ static void test_pantheios_util_snprintf_w()
 
         size_t const    n   =   pantheios_util_snprintf_w(&buff[0], STLSOFT_NUM_ELEMENTS(buff), L"%d", -10);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_WIDE_STRING_EQUAL(L"-10", buff);
+        TEST_INT_EQ(3u, n);
+        TEST_WS_EQ(L"-10", buff);
     }
 }
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-static void test_pantheios_util_snprintf()
+static void TEST_pantheios_util_snprintf()
 {
     // ""
 
@@ -305,7 +305,7 @@ static void test_pantheios_util_snprintf()
 
         size_t const        n   =   pantheios_util_snprintf(&buff[0], STLSOFT_NUM_ELEMENTS(buff), PANTHEIOS_LITERAL_STRING(""));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, n);
+        TEST_INT_EQ(0u, n);
     }
 
     {
@@ -313,7 +313,7 @@ static void test_pantheios_util_snprintf()
 
         size_t const        n   =   pantheios_util_snprintf(&buff[0], STLSOFT_NUM_ELEMENTS(buff), PANTHEIOS_LITERAL_STRING("%s"), PANTHEIOS_LITERAL_STRING(""));
 
-        XTESTS_TEST_INTEGER_EQUAL(0u, n);
+        TEST_INT_EQ(0u, n);
     }
 #if defined(__GNUC__) && \
     __GNUC__ >= 9
@@ -328,8 +328,8 @@ static void test_pantheios_util_snprintf()
 
         size_t const        n   =   pantheios_util_snprintf(&buff[0], STLSOFT_NUM_ELEMENTS(buff), PANTHEIOS_LITERAL_STRING("a"));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, n);
-        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("a"), buff);
+        TEST_INT_EQ(1u, n);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("a"), buff);
     }
 
     {
@@ -337,8 +337,8 @@ static void test_pantheios_util_snprintf()
 
         size_t const        n   =   pantheios_util_snprintf(&buff[0], STLSOFT_NUM_ELEMENTS(buff), PANTHEIOS_LITERAL_STRING("%s"), PANTHEIOS_LITERAL_STRING("a"));
 
-        XTESTS_TEST_INTEGER_EQUAL(1u, n);
-        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("a"), buff);
+        TEST_INT_EQ(1u, n);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("a"), buff);
     }
 
 
@@ -349,7 +349,7 @@ static void test_pantheios_util_snprintf()
 
         size_t const        n   =   pantheios_util_snprintf(&buff[0], STLSOFT_NUM_ELEMENTS(buff), PANTHEIOS_LITERAL_STRING("abc"));
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
+        TEST_INT_EQ(3u, n);
     }
 
     {
@@ -357,8 +357,8 @@ static void test_pantheios_util_snprintf()
 
         size_t const        n   =   pantheios_util_snprintf(&buff[0], STLSOFT_NUM_ELEMENTS(buff), PANTHEIOS_LITERAL_STRING("abc"));
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("abc"), buff);
+        TEST_INT_EQ(3u, n);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("abc"), buff);
     }
 
     {
@@ -366,8 +366,8 @@ static void test_pantheios_util_snprintf()
 
         size_t const        n   =   pantheios_util_snprintf(&buff[0], STLSOFT_NUM_ELEMENTS(buff), PANTHEIOS_LITERAL_STRING("%s"), PANTHEIOS_LITERAL_STRING("abc"));
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("abc"), buff);
+        TEST_INT_EQ(3u, n);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("abc"), buff);
     }
 
     {
@@ -375,8 +375,8 @@ static void test_pantheios_util_snprintf()
 
         size_t const        n   =   pantheios_util_snprintf(&buff[0], STLSOFT_NUM_ELEMENTS(buff), PANTHEIOS_LITERAL_STRING("a%cc"), 'b');
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("abc"), buff);
+        TEST_INT_EQ(3u, n);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("abc"), buff);
     }
 
 
@@ -387,8 +387,8 @@ static void test_pantheios_util_snprintf()
 
         size_t const        n   =   pantheios_util_snprintf(&buff[0], STLSOFT_NUM_ELEMENTS(buff), PANTHEIOS_LITERAL_STRING("%d"), -10);
 
-        XTESTS_TEST_INTEGER_EQUAL(3u, n);
-        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("-10"), buff);
+        TEST_INT_EQ(3u, n);
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("-10"), buff);
     }
 }
 
