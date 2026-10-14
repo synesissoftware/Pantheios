@@ -1,6 +1,6 @@
 #
 # Created:  7th September 2025
-# Updated:  14th October 2026
+# Updated:  18th October 2026
 #
 
 name: CI
@@ -88,6 +88,7 @@ jobs:
       os: ${{ matrix.os }}
       toolchain: ${{ matrix.toolchain }}
       with-ace: false
+      with-zmq: false
     secrets: inherit
 
   cell-ace:
@@ -110,6 +111,30 @@ jobs:
       no-shwild: false
       os: ${{ matrix.os }}
       with-ace: true
+      with-zmq: false
+    secrets: inherit
+
+  cell-zmq:
+    name: CI ZeroMQ (${{ matrix.id }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: linux-gcc-zmq
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+    uses: ./.github/workflows/ci-cell.yml
+    with:
+      build-type: Release
+      c-compiler: ${{ matrix.c_compiler }}
+      cell-id: ${{ matrix.id }}
+      cpp-compiler: ${{ matrix.cpp_compiler }}
+      no-b64: false
+      no-shwild: false
+      os: ${{ matrix.os }}
+      with-ace: false
+      with-zmq: true
     secrets: inherit
 
   # API docs: Doxygen HTML only (no publish). Matches the CLASP documentation
@@ -208,6 +233,7 @@ jobs:
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF \
               -DNO_ACE=ON \
+              -DNO_ZMQ=ON \
               $NO_B64_OPT
           elif [ "${{ matrix.toolchain }}" = "mingw" ]; then
             export PATH="/mingw64/bin:$PATH"
@@ -219,6 +245,7 @@ jobs:
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF \
               -DNO_ACE=ON \
+              -DNO_ZMQ=ON \
               $NO_B64_OPT
           else
             cmake -B build -S . \
@@ -229,6 +256,7 @@ jobs:
               -DBUILD_EXAMPLES=OFF \
               -DBUILD_TESTING=OFF \
               -DNO_ACE=ON \
+              -DNO_ZMQ=ON \
               $NO_B64_OPT
           fi
 

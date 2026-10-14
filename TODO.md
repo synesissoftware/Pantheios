@@ -4,6 +4,24 @@
 ## Functional improvements
 
 
+### Misc (esp. new transports)
+
+* [ ] **gRPC** back-end;
+* [ ] **Kafka** back-end;
+* [ ] **libev** back-end;
+* [ ] **NATS** back-end;
+* [ ] **NNG** (Nanomsg Next Generation) back-end;
+* [x] ~~~**zeromq** (aka **0MQ**) back-end~~~ - ✅;
+
+* [ ] JSON inserter;
+
+
+### 1.1.0-alpha1 (19th October 2026)
+
+* [x] ~~~**be.zmq** stock back-end (+ **CMake** discovery / **linux-gcc-zmq** CI)~~~ - ✅;
+* [x] ~~~**test.component.be.zmq** PUB/SUB round-trip~~~ - ✅;
+
+
 ### 1.0.1-rc5 (18th October 2026)
 
 * [ ] **b64** link-time dependency broken;

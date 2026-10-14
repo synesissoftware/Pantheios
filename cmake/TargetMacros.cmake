@@ -4,7 +4,7 @@
 # Purpose:  CMake target helper macros/functions for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  12th October 2026
+# Updated:  19th October 2026
 #
 # ######################################################################## #
 
@@ -109,6 +109,41 @@ macro(target_link_ACE target_name)
 		)
 	endif()
 endmacro(target_link_ACE)
+
+macro(target_link_ZeroMQ target_name)
+
+	# Prefer an imported target: our FindZeroMQ creates ZeroMQ::ZeroMQ;
+	# upstream libzmq packages export libzmq / libzmq-static.
+	if(TARGET ZeroMQ::ZeroMQ)
+
+		target_link_libraries(${target_name}
+			PUBLIC
+				ZeroMQ::ZeroMQ
+		)
+	elseif(TARGET libzmq)
+
+		target_link_libraries(${target_name}
+			PUBLIC
+				libzmq
+		)
+	elseif(TARGET libzmq-static)
+
+		target_link_libraries(${target_name}
+			PUBLIC
+				libzmq-static
+		)
+	else()
+
+		target_include_directories(${target_name}
+			PUBLIC
+				${ZeroMQ_INCLUDE_DIRS}
+		)
+		target_link_libraries(${target_name}
+			PUBLIC
+				${ZeroMQ_LIBRARIES}
+		)
+	endif()
+endmacro(target_link_ZeroMQ)
 
 macro(target_link_shwild target_name)
 

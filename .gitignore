@@ -20,6 +20,7 @@ __pycache__/
 /_analyses/
 /_build-ci/
 /_build/
+/_build*/
 /_internal/
 
 /docs/

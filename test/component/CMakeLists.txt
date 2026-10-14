@@ -1,5 +1,9 @@
 
 add_subdirectory(be.file)
+if(HAS_ZMQ)
+
+	add_subdirectory(be.zmq)
+endif(HAS_ZMQ)
 add_subdirectory(bec.fprintf)
 add_subdirectory(core)
 add_subdirectory(custom_severity)

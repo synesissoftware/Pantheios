@@ -11,6 +11,10 @@ if(HAS_ACE)
 
 	add_subdirectory(be.ACE)
 endif(HAS_ACE)
+if(HAS_ZMQ)
+
+	add_subdirectory(be.zmq)
+endif(HAS_ZMQ)
 add_subdirectory(be.N)
 if(_BUILD_AS_WIN32)
 
