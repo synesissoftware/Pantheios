@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios fe.WindowsRegistry Stock Front-end API.
  *
  * Created: 28th October 2007
- * Updated: 16th July 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_REVISION    4
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_EDIT        13
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_WINDOWSREGISTRY_EDIT        17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -74,9 +74,9 @@
 
 /** \defgroup group__frontend__stock_frontends__WindowsRegistry Pantheios Windows Registry Stock Front-end
  * \ingroup group__frontend__stock_frontends
- *  Front-end library that allows all severity levels in debug mode
- *   and \link pantheios::SEV_NOTICE NOTICE\endlink and higher in
- *   release mode.
+ *
+ * Front-end library that allows all severity levels in debug mode and
+ * \link pantheios::SEV_NOTICE NOTICE\endlink and higher in release mode.
  */
 
 

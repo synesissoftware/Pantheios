@@ -1,0 +1,91 @@
+# Doxyfile for Pantheios (C/C++ API)
+
+PROJECT_NAME           = "Pantheios"
+PROJECT_BRIEF          = "The C/C++ Diagnostic Logging Sweetspot"
+PROJECT_NUMBER         = 1.0.1
+
+# Prefer SIS_CMAKE_BUILD_DIR-aligned output (same convention as BDUT /
+# CLASP / Diagnosticism / STLSoft). ./dox/ remains gitignored for
+# legacy/local runs that override OUTPUT_DIRECTORY.
+OUTPUT_DIRECTORY       = _build/doxygen
+CREATE_SUBDIRS         = NO
+
+OPTIMIZE_OUTPUT_FOR_C  = YES
+OUTPUT_LANGUAGE        = English
+TAB_SIZE               = 4
+FULL_PATH_NAMES        = NO
+STRIP_FROM_PATH        = .
+STRIP_FROM_INC_PATH    = include
+TIMESTAMP              = NO
+
+# Public tree is nested (backends/, frontends/, inserters/, util/, …);
+# recurse like STLSoft, and drop the internal/ tree like CLASP.
+INPUT                  = include/pantheios \
+                         doc
+FILE_PATTERNS          = *.h \
+                         *.hpp \
+                         *.md
+RECURSIVE              = YES
+EXCLUDE                = include/pantheios/internal
+# Resolve `#include <pantheios/...>` under PANTHEIOS_DOCUMENTATION_SKIP_SECTION
+# (e.g. generated/log_functions.h) the same way consumers see the tree.
+INCLUDE_PATH           = include
+SEARCH_INCLUDES        = YES
+
+USE_MDFILE_AS_MAINPAGE = doc/mainpage.md
+
+EXAMPLE_PATH           = examples
+EXAMPLE_RECURSIVE      = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+SEARCHENGINE           = YES
+SOURCE_BROWSER         = YES
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+VERBATIM_HEADERS       = YES
+
+MARKDOWN_SUPPORT       = YES
+JAVADOC_AUTOBRIEF      = YES
+QUIET                  = YES
+
+# Match CLASP: documentation warnings fail the generator (and CI job).
+WARN_AS_ERROR          = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = YES
+WARN_IF_DOC_ERROR      = YES
+
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+SKIP_FUNCTION_MACROS   = YES
+# Hide implementation / internal macros; strip linkage wrappers so
+# prototypes read as the return type alone (CLASP form).
+# PANTHEIOS_CALL* strip linkage wrappers from prototypes. Do not predefine
+# PANTHEIOS_DECLSPEC / PANTHEIOS_CALLCONV empty — that hides the header
+# #define lines and yields "documentation for unknown define". Leave those
+# macros to the headers (empty by default). Expand stlsoft_ns_qual into the
+# stlsoft namespace (see doc/doxygen_stlsoft_stubs.h). Skip the real
+# STLSoft umbrella include so CI need not install STLSoft for docs.
+PREDEFINED             = PANTHEIOS_DOCUMENTATION_SKIP_SECTION \
+                         PANTHEIOS_CALL(rt)=rt \
+                         PANTHEIOS_CALL_DEPRECATED(rt,oldfn,newfn)=rt \
+                         PANTHEIOS_EXTERN= \
+                         PANTHEIOS_EXTERN_C= \
+                         STLSOFT_INCL_STLSOFT_H_STLSOFT \
+                         stlsoft_ns_qual(x)=::stlsoft::x
+
+HAVE_DOT               = NO
+
+
+# ########################### end of file ########################### #

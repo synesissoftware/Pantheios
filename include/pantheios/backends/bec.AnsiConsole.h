@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios AnsiConsole Stock Back-end API.
  *
  * Created: 20th October 2024
- * Updated: 28th January 2025
+ * Updated: 18th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2024-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2024-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +56,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_REVISION    3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_EDIT        3
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_EDIT        7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -78,7 +78,8 @@
 
 /** \defgroup group__backend__stock_backends__AnsiConsole Pantheios ANSI Console Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that sets the calling threads's COM error object.
+ *
+ * Back-end library that sets the calling threads's COM error object.
  */
 
 
@@ -88,12 +89,14 @@
 
 /** \defgroup group__backend__stock_backends__AnsiConsole__flags Pantheios ANSI Console Stock Back-end Flags
  * \ingroup group__backend__stock_backends__AnsiConsole
- *  Flags for the \ref group__backend__stock_backends__AnsiConsole
+ *
+ * Flags for the \ref group__backend__stock_backends__AnsiConsole
  */
 
 /** \def PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS
- *  Causes the \ref group__backend__stock_backends__AnsiConsole to
- *   emit log statements without colouring based on severity.
+ * Causes the \ref group__backend__stock_backends__AnsiConsole to emit log
+ * statements without colouring based on severity. This overrides woad's
+ * colour policy.
  * \ingroup group__backend__stock_backends__AnsiConsole__flags
  */
 
@@ -103,28 +106,26 @@
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** \def PANTHEIOS_BE_ANSICONSOLE_F_FORCE_ANSI_ESCAPE_SEQUENCES
- *  Causes the \ref group__backend__stock_backends__AnsiConsole
- *   to write ANSI escape sequences regardless of the console/terminal mode,
- *   i.e. even if the output is being redirected. Ignored when
- *   PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS is specified.
+ * Causes the \ref group__backend__stock_backends__AnsiConsole to write ANSI
+ * escape sequences regardless of woad's colour policy, i.e. even if the
+ * output is being redirected or colour is inhibited in the environment.
+ * Ignored when PANTHEIOS_BE_ANSICONSOLE_F_NO_COLOURS is specified.
  * \ingroup group__backend__stock_backends__AnsiConsole__flags
  */
 
 #define PANTHEIOS_BE_ANSICONSOLE_F_FORCE_ANSI_ESCAPE_SEQUENCES      (0x20000000)
 
 /** \def PANTHEIOS_BE_ANSICONSOLE_F_COLOUR_WHOLE_PREFIX
- *  Causes the \ref group__backend__stock_backends__AnsiConsole to
- *   colour the whole prefix (date, time, etc.) rather than just the
- *   severity.
+ * Causes the \ref group__backend__stock_backends__AnsiConsole to colour the
+ * whole prefix (date, time, etc.) rather than just the severity.
  * \ingroup group__backend__stock_backends__AnsiConsole__flags
  */
 
 #define PANTHEIOS_BE_ANSICONSOLE_F_COLOUR_WHOLE_PREFIX              (0x00010000)
 
 /** \def PANTHEIOS_BE_ANSICONSOLE_F_COLOUR_MESSAGE
- *  Causes the \ref group__backend__stock_backends__AnsiConsole to
- *   colour the message, in addition to whatever parts of the prefix are
- *   coloured.
+ * Causes the \ref group__backend__stock_backends__AnsiConsole to colour the
+ * message, in addition to whatever parts of the prefix are coloured.
  * \ingroup group__backend__stock_backends__AnsiConsole__flags
  */
 
@@ -136,7 +137,7 @@
  */
 
 /** Structure used for specifying initialisation information to the
- *    be.AnsiConsole library.
+ * be.AnsiConsole library.
  * \ingroup group__backend__stock_backends__AnsiConsole
  */
 struct pan_be_AnsiConsole_init_t
@@ -161,7 +162,7 @@ typedef struct pan_be_AnsiConsole_init_t                    pan_be_AnsiConsole_i
  */
 
 /** Callback function defined by the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ * API is initialised with a NULL \c init parameter.
  *
  * \note When using explicit initialisation, this function must be defined,
  *   but will not be invoked.
@@ -178,16 +179,17 @@ pantheios_be_AnsiConsole_getAppInit(
  */
 
 /** Fills out a copy of the initialisation structure with default
- *    values (representative of the default behaviour of the library),
- *    ready to be customised and passed to the API initialiser function
- *    pantheios_be_AnsiConsole_init().
+ * values (representative of the default behaviour of the library), ready to
+ * be customised and passed to the API initialiser function
+ * pantheios_be_AnsiConsole_init().
  */
 PANTHEIOS_CALL(void)
 pantheios_be_AnsiConsole_getDefaultAppInit(
     pan_be_AnsiConsole_init_t* init
 ) /* throw() */;
 
-/** Implements the functionality for pantheios_be_init() over the ANSI Console API.
+/** Implements the functionality for pantheios_be_init() over the ANSI
+ * Console API.
  * \ingroup group__backend__stock_backends__AnsiConsole
  */
 PANTHEIOS_CALL(int)
@@ -199,13 +201,15 @@ pantheios_be_AnsiConsole_init(
 ,   void**                              ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the ANSI Console API.
+/** Implements the functionality for pantheios_be_uninit() over the ANSI
+ * Console API.
  * \ingroup group__backend__stock_backends__AnsiConsole
  */
 PANTHEIOS_CALL(void)
 pantheios_be_AnsiConsole_uninit(void* token);
 
-/** Implements the functionality for pantheios_be_logEntry() over the ANSI Console API.
+/** Implements the functionality for pantheios_be_logEntry() over the ANSI
+ * Console API.
  * \ingroup group__backend__stock_backends__AnsiConsole
  */
 PANTHEIOS_CALL(int)
@@ -222,9 +226,8 @@ pantheios_be_AnsiConsole_logEntry(
  * \ingroup group__backend
  *
  * Processes an argument list in the same way as
- * pantheios_be_parseStockArgs(), filling out the
- * pan_be_AnsiConsole_init_t in accordance with the arguments
- * found.
+ * pantheios_be_parseStockArgs(), filling out the pan_be_AnsiConsole_init_t
+ * in accordance with the arguments found.
  *
  * Recognises the following standard argument names:
  * - "showProcessId"            (Boolean)

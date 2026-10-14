@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.bec.COMErrorObject project.
  *
  * Created: 1st January 2008
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -55,7 +55,7 @@
  * macros
  */
 
-#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    TEST_INT_EQ(static_cast<int>(x), static_cast<int>(y))
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,10 +64,10 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -142,7 +142,7 @@ static int main_(int argc, char* argv[])
 
             if (PANTHEIOS_INIT_RC_SUCCESS != res)
             {
-                XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.COMErrorObject", pantheios::getInitErrorString(res));
+                TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.COMErrorObject", pantheios::getInitErrorString(res));
             }
             else
             {
@@ -163,7 +163,7 @@ static int main_(int argc, char* argv[])
                         {
                             comstl::errorinfo_desc  ed;
 
-                            XTESTS_TEST_STRING_EQUAL(strings[j], ed);
+                            TEST_STRING_EQ(strings[j], ed);
                         }
                     }}
                 }}
@@ -195,7 +195,7 @@ static int main_(int argc, char* argv[])
 
             if (PANTHEIOS_INIT_RC_SUCCESS != res)
             {
-                XTESTS_FAIL_WITH_QUALIFIER("failed to initialise bec.COMErrorObject", pantheios::getInitErrorString(res));
+                TEST_FAIL_WITH_QUALIFIER("failed to initialise bec.COMErrorObject", pantheios::getInitErrorString(res));
             }
             else
             {
@@ -218,7 +218,7 @@ static int main_(int argc, char* argv[])
                         {
                             comstl::errorinfo_desc  ed;
 
-                            XTESTS_TEST_MULTIBYTE_STRING_EQUAL("the first string", ed);
+                            TEST_MS_EQ("the first string", ed);
                         }
                     }}
                 }}
@@ -319,7 +319,7 @@ static void TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_true()
 
     int const r = pantheios_be_COMErrorObject_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    TEST_INTEGER_EQUAL(13, r);
+    TEST_INT_EQ(13, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -339,7 +339,7 @@ static void TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_true()
                                     // |   PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING
                                     ;
 
-    TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 
 static void TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_false()
@@ -388,7 +388,7 @@ static void TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_false()
 
     int const r = pantheios_be_COMErrorObject_parseArgs(STLSOFT_NUM_ELEMENTS(args), args, &init);
 
-    TEST_INTEGER_EQUAL(13, r);
+    TEST_INT_EQ(13, r);
 
     pantheios_uint32_t  expected    =   0
                                     /* stock */
@@ -408,7 +408,7 @@ static void TEST_pantheios_be_COMErrorObject_WITH_ALL_STOCK_false()
                                     |   PANTHEIOS_BE_COMERROROBJECT_F_DONT_OVERWRITE_EXISTING
                                     ;
 
-    TEST_INTEGER_EQUAL(expected, init.flags);
+    TEST_INT_EQ(expected, init.flags);
 }
 } /* anonymous namespace */
 

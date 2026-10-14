@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Core entity string access shims : pan_severity_t.
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_MAJOR      4
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_EDIT       357
+# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_EDIT       358
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,7 +106,9 @@ namespace shims
 
 /* Shims for (pan_severity_t severity) */
 
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the severity */
+/** Returns a possibly non-nul-terminated non-NULL C-style string
+ * representing the severity
+ */
 inline
 pantheios_char_t const*
 PANTHEIOS_c_str_data_name_(
@@ -115,7 +117,9 @@ PANTHEIOS_c_str_data_name_(
 {
     return pantheios_getStockSeverityString(severity);
 }
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the severity */
+/** Returns a possibly non-nul-terminated non-NULL C-style string
+ * representing the severity
+ */
 inline
 pantheios_char_t const*
 c_str_data(
@@ -125,7 +129,9 @@ c_str_data(
     return pantheios_getStockSeverityString(severity);
 }
 
-/** Returns the number of characters in the length of the C-style string representing the severity */
+/** Returns the number of characters in the length of the C-style string
+ * representing the severity
+ */
 inline
 size_t
 PANTHEIOS_c_str_len_name_(
@@ -134,7 +140,9 @@ PANTHEIOS_c_str_len_name_(
 {
     return pantheios_getStockSeverityStringLength(severity);
 }
-/** Returns the number of characters in the length of the C-style string representing the severity */
+/** Returns the number of characters in the length of the C-style string
+ * representing the severity
+ */
 inline
 size_t
 c_str_len(
@@ -144,7 +152,9 @@ c_str_len(
     return pantheios_getStockSeverityStringLength(severity);
 }
 
-/** Returns a nul-terminated non-NULL C-style string representing the severity */
+/** Returns a nul-terminated non-NULL C-style string representing the
+ * severity
+ */
 inline
 pantheios_char_t const*
 PANTHEIOS_c_str_ptr_name_(
@@ -153,7 +163,9 @@ PANTHEIOS_c_str_ptr_name_(
 {
     return pantheios_getStockSeverityString(severity);
 }
-/** Returns a nul-terminated non-NULL C-style string representing the severity */
+/** Returns a nul-terminated non-NULL C-style string representing the
+ * severity
+ */
 inline
 pantheios_char_t const*
 c_str_ptr(
@@ -163,7 +175,9 @@ c_str_ptr(
     return pantheios_getStockSeverityString(severity);
 }
 
-/** Returns a nul-terminated potentially null C-style string representing the severity */
+/** Returns a nul-terminated potentially null C-style string representing
+ * the severity
+ */
 inline
 pantheios_char_t const*
 PANTHEIOS_c_str_ptr_null_name_(
@@ -174,7 +188,9 @@ PANTHEIOS_c_str_ptr_null_name_(
 
     return ('\0' != *s) ? s : NULL;
 }
-/** Returns a nul-terminated potentially null C-style string representing the severity */
+/** Returns a nul-terminated potentially null C-style string representing
+ * the severity
+ */
 inline
 pantheios_char_t const*
 c_str_ptr_null(

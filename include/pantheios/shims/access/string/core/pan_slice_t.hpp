@@ -4,11 +4,11 @@
  * Purpose:     Pantheios Core entity string access shims : pantheios_slice_t.
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_MAJOR     4
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_MINOR     1
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_EDIT      358
+# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SLICE_T_EDIT      359
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -102,7 +102,8 @@ namespace shims
 
 /* Shims for (pantheios_slice_t const& s) */
 
-/** Returns a nul-terminated non-NULL C-style string representing the slice */
+/** Returns a nul-terminated non-NULL C-style string representing the slice
+ */
 inline
 pantheios_char_t const*
 PANTHEIOS_c_str_ptr_name_(
@@ -113,7 +114,8 @@ PANTHEIOS_c_str_ptr_name_(
 
     return (0 == s.len) ? s_empty : s.ptr;
 }
-/** Returns a nul-terminated non-NULL C-style string representing the slice */
+/** Returns a nul-terminated non-NULL C-style string representing the slice
+ */
 inline
 pantheios_char_t const*
 c_str_ptr(
@@ -123,7 +125,9 @@ c_str_ptr(
     return PANTHEIOS_c_str_ptr_name_(s);
 }
 
-/** Returns a nul-terminated potentially null C-style string representing the slice */
+/** Returns a nul-terminated potentially null C-style string representing
+ * the slice
+ */
 inline
 pantheios_char_t const*
 PANTHEIOS_c_str_ptr_null_name_(
@@ -132,7 +136,9 @@ PANTHEIOS_c_str_ptr_null_name_(
 {
     return (0 != s.len) ? s.ptr : NULL;
 }
-/** Returns a nul-terminated potentially null C-style string representing the slice */
+/** Returns a nul-terminated potentially null C-style string representing
+ * the slice
+ */
 inline
 pantheios_char_t const*
 c_str_ptr_null(
@@ -142,7 +148,9 @@ c_str_ptr_null(
     return PANTHEIOS_c_str_ptr_null_name_(s);
 }
 
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
+/** Returns a possibly non-nul-terminated non-NULL C-style string
+ * representing the slice
+ */
 inline
 pantheios_char_t const*
 PANTHEIOS_c_str_data_name_(
@@ -151,7 +159,9 @@ PANTHEIOS_c_str_data_name_(
 {
     return c_str_ptr(s);
 }
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
+/** Returns a possibly non-nul-terminated non-NULL C-style string
+ * representing the slice
+ */
 inline
 pantheios_char_t const*
 c_str_data(
@@ -161,7 +171,9 @@ c_str_data(
     return PANTHEIOS_c_str_data_name_(s);
 }
 
-/** Returns the number of characters in the length of the C-style string representing the slice */
+/** Returns the number of characters in the length of the C-style string
+ * representing the slice
+ */
 inline
 size_t
 PANTHEIOS_c_str_len_name_(
@@ -170,7 +182,9 @@ PANTHEIOS_c_str_len_name_(
 {
     return s.len;
 }
-/** Returns the number of characters in the length of the C-style string representing the slice */
+/** Returns the number of characters in the length of the C-style string
+ * representing the slice
+ */
 inline
 size_t
 c_str_len(
@@ -184,7 +198,8 @@ c_str_len(
 
 /* Shims for (pantheios_slice_t const* s) */
 
-/** Returns a nul-terminated non-NULL C-style string representing the slice */
+/** Returns a nul-terminated non-NULL C-style string representing the slice
+ */
 inline
 pantheios_char_t const*
 PANTHEIOS_c_str_ptr_name_(
@@ -195,7 +210,8 @@ PANTHEIOS_c_str_ptr_name_(
 
     return (NULL != s) ? PANTHEIOS_c_str_ptr_name_(*s) : s_empty;
 }
-/** Returns a nul-terminated non-NULL C-style string representing the slice */
+/** Returns a nul-terminated non-NULL C-style string representing the slice
+ */
 inline
 pantheios_char_t const*
 c_str_ptr(
@@ -205,7 +221,9 @@ c_str_ptr(
     return PANTHEIOS_c_str_ptr_name_(s);
 }
 
-/** Returns a nul-terminated potentially null C-style string representing the slice */
+/** Returns a nul-terminated potentially null C-style string representing
+ * the slice
+ */
 inline
 pantheios_char_t const*
 PANTHEIOS_c_str_ptr_null_name_(
@@ -214,7 +232,9 @@ PANTHEIOS_c_str_ptr_null_name_(
 {
     return (NULL != s && (0 != s->len)) ? s->ptr : NULL;
 }
-/** Returns a nul-terminated potentially null C-style string representing the slice */
+/** Returns a nul-terminated potentially null C-style string representing
+ * the slice
+ */
 inline
 pantheios_char_t const*
 c_str_ptr_null(
@@ -224,7 +244,9 @@ c_str_ptr_null(
     return PANTHEIOS_c_str_ptr_null_name_(s);
 }
 
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
+/** Returns a possibly non-nul-terminated non-NULL C-style string
+ * representing the slice
+ */
 inline
 pantheios_char_t const*
 PANTHEIOS_c_str_data_name_(
@@ -233,7 +255,9 @@ PANTHEIOS_c_str_data_name_(
 {
     return c_str_ptr(s);
 }
-/** Returns a possibly non-nul-terminated non-NULL C-style string representing the slice */
+/** Returns a possibly non-nul-terminated non-NULL C-style string
+ * representing the slice
+ */
 inline
 pantheios_char_t const*
 c_str_data(
@@ -243,7 +267,9 @@ c_str_data(
     return PANTHEIOS_c_str_data_name_(s);
 }
 
-/** Returns the number of characters in the length of the C-style string representing the slice */
+/** Returns the number of characters in the length of the C-style string
+ * representing the slice
+ */
 inline
 size_t
 PANTHEIOS_c_str_len_name_(
@@ -252,7 +278,9 @@ PANTHEIOS_c_str_len_name_(
 {
     return (NULL != s) ? s->len : 0;
 }
-/** Returns the number of characters in the length of the C-style string representing the slice */
+/** Returns the number of characters in the length of the C-style string
+ * representing the slice
+ */
 inline
 size_t
 c_str_len(

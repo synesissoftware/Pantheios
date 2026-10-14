@@ -4,7 +4,7 @@
  * Purpose: Unit-test for argument parsing functions.
  *
  * Created: 24th January 2025
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -120,9 +120,9 @@ static void TEST_pantheios_be_parseBooleanArg_NO_ARGS()
 
     int const r = pantheios_be_parseBooleanArg(0, args, "verbose", false, 0x01, &flags);
 
-    TEST_INTEGER_EQUAL(0, r);
+    TEST_INT_EQ(0, r);
 
-    TEST_INTEGER_EQUAL(0, flags);
+    TEST_INT_EQ(0, flags);
 }
 
 static void TEST_pantheios_be_parseBooleanArg_EMPTY_ARG()
@@ -136,9 +136,9 @@ static void TEST_pantheios_be_parseBooleanArg_EMPTY_ARG()
 
     int const r = pantheios_be_parseBooleanArg(STLSOFT_NUM_ELEMENTS(args), args, "verbose", false, 0x01, &flags);
 
-    TEST_INTEGER_EQUAL(0, r);
+    TEST_INT_EQ(0, r);
 
-    TEST_INTEGER_EQUAL(0, flags);
+    TEST_INT_EQ(0, flags);
 }
 
 static void TEST_pantheios_be_parseBooleanArg_NO_MATCHING_ARGS()
@@ -152,9 +152,9 @@ static void TEST_pantheios_be_parseBooleanArg_NO_MATCHING_ARGS()
 
     int const r = pantheios_be_parseBooleanArg(STLSOFT_NUM_ELEMENTS(args), args, "verbose", false, 0x01, &flags);
 
-    TEST_INTEGER_EQUAL(0, r);
+    TEST_INT_EQ(0, r);
 
-    TEST_INTEGER_EQUAL(0, flags);
+    TEST_INT_EQ(0, flags);
 }
 
 static void TEST_pantheios_be_parseBooleanArg_ONE_MATCHING_ARG_WITH_NAME_ONLY()
@@ -168,13 +168,13 @@ static void TEST_pantheios_be_parseBooleanArg_ONE_MATCHING_ARG_WITH_NAME_ONLY()
 
     int const r = pantheios_be_parseBooleanArg(STLSOFT_NUM_ELEMENTS(args), args, "verbose", false, 0x01, &flags);
 
-    TEST_INTEGER_EQUAL(0, r);
+    TEST_INT_EQ(0, r);
 
-    TEST_INTEGER_EQUAL(0x00, flags);
+    TEST_INT_EQ(0x00, flags);
 
     // NOTE: current functionality is to ignore if not provided with a '=', but there's an argument to default this to true ...
-    // TEST_INTEGER_EQUAL(1, r);
-    // TEST_INTEGER_EQUAL(0x01, flags);
+    // TEST_INT_EQ(1, r);
+    // TEST_INT_EQ(0x01, flags);
 }
 
 static void TEST_pantheios_be_parseBooleanArg_ONE_MATCHING_ARG_WITH_NAME_AND_EMPTY_VALUE()
@@ -188,9 +188,9 @@ static void TEST_pantheios_be_parseBooleanArg_ONE_MATCHING_ARG_WITH_NAME_AND_EMP
 
     int const r = pantheios_be_parseBooleanArg(STLSOFT_NUM_ELEMENTS(args), args, "verbose", false, 0x01, &flags);
 
-    TEST_INTEGER_EQUAL(0, r);
+    TEST_INT_EQ(0, r);
 
-    TEST_INTEGER_EQUAL(0x00, flags);
+    TEST_INT_EQ(0x00, flags);
 }
 
 static void TEST_pantheios_be_parseBooleanArg_ONE_MATCHING_ARG_WITH_NAME_AND_true_VALUE()
@@ -206,9 +206,9 @@ static void TEST_pantheios_be_parseBooleanArg_ONE_MATCHING_ARG_WITH_NAME_AND_tru
 
         int const r = pantheios_be_parseBooleanArg(STLSOFT_NUM_ELEMENTS(args), args, "verbose", false, 0x01, &flags);
 
-        TEST_INTEGER_EQUAL(1, r);
+        TEST_INT_EQ(1, r);
 
-        TEST_INTEGER_EQUAL(0x01, flags);
+        TEST_INT_EQ(0x01, flags);
     }
 
     // suppressive
@@ -224,9 +224,9 @@ static void TEST_pantheios_be_parseBooleanArg_ONE_MATCHING_ARG_WITH_NAME_AND_tru
 
         int const r = pantheios_be_parseBooleanArg(STLSOFT_NUM_ELEMENTS(args), args, "verbose", true, 0x01, &flags);
 
-        TEST_INTEGER_EQUAL(1, r);
+        TEST_INT_EQ(1, r);
 
-        TEST_INTEGER_EQUAL(0x00, flags);
+        TEST_INT_EQ(0x00, flags);
     }
 }
 
@@ -243,9 +243,9 @@ static void TEST_pantheios_be_parseBooleanArg_ONE_MATCHING_ARG_WITH_NAME_AND_fal
 
         int const r = pantheios_be_parseBooleanArg(STLSOFT_NUM_ELEMENTS(args), args, "verbose", false, 0x01, &flags);
 
-        TEST_INTEGER_EQUAL(1, r);
+        TEST_INT_EQ(1, r);
 
-        TEST_INTEGER_EQUAL(0x00, flags);
+        TEST_INT_EQ(0x00, flags);
     }
 
     // suppressive
@@ -261,9 +261,9 @@ static void TEST_pantheios_be_parseBooleanArg_ONE_MATCHING_ARG_WITH_NAME_AND_fal
 
         int const r = pantheios_be_parseBooleanArg(STLSOFT_NUM_ELEMENTS(args), args, "verbose", true, 0x01, &flags);
 
-        TEST_INTEGER_EQUAL(1, r);
+        TEST_INT_EQ(1, r);
 
-        TEST_INTEGER_EQUAL(0xf1, flags);
+        TEST_INT_EQ(0xf1, flags);
     }
 }
 
@@ -279,10 +279,10 @@ static void TEST_pantheios_be_parseStringArg_NO_ARGS()
 
     int const r = pantheios_be_parseStringArg(0, args, "processName", &value);
 
-    TEST_INTEGER_EQUAL(0, r);
+    TEST_INT_EQ(0, r);
 
-    TEST_INTEGER_EQUAL(4, value.len);
-    TEST_MULTIBYTE_STRING_EQUAL("four", value.ptr);
+    TEST_INT_EQ(4, value.len);
+    TEST_MS_EQ("four", value.ptr);
 }
 
 static void TEST_pantheios_be_parseStringArg_EMPTY_ARG()
@@ -296,10 +296,10 @@ static void TEST_pantheios_be_parseStringArg_EMPTY_ARG()
 
     int const r = pantheios_be_parseStringArg(STLSOFT_NUM_ELEMENTS(args), args, "processName", &value);
 
-    TEST_INTEGER_EQUAL(0, r);
+    TEST_INT_EQ(0, r);
 
-    TEST_INTEGER_EQUAL(4, value.len);
-    TEST_MULTIBYTE_STRING_EQUAL("four", value.ptr);
+    TEST_INT_EQ(4, value.len);
+    TEST_MS_EQ("four", value.ptr);
 }
 
 static void TEST_pantheios_be_parseStringArg_NO_MATCHING_ARGS()
@@ -314,10 +314,10 @@ static void TEST_pantheios_be_parseStringArg_NO_MATCHING_ARGS()
 
     int const r = pantheios_be_parseStringArg(STLSOFT_NUM_ELEMENTS(args), args, "processName", &value);
 
-    TEST_INTEGER_EQUAL(0, r);
+    TEST_INT_EQ(0, r);
 
-    TEST_INTEGER_EQUAL(4, value.len);
-    TEST_MULTIBYTE_STRING_EQUAL("four", value.ptr);
+    TEST_INT_EQ(4, value.len);
+    TEST_MS_EQ("four", value.ptr);
 }
 
 static void TEST_pantheios_be_parseStringArg_ONE_MATCHING_ARG_WITH_NAME_ONLY()
@@ -333,10 +333,10 @@ static void TEST_pantheios_be_parseStringArg_ONE_MATCHING_ARG_WITH_NAME_ONLY()
 
     int const r = pantheios_be_parseStringArg(STLSOFT_NUM_ELEMENTS(args), args, "processName", &value);
 
-    TEST_INTEGER_EQUAL(1, r);
+    TEST_INT_EQ(1, r);
 
-    TEST_INTEGER_EQUAL(0, value.len);
-    TEST_POINTER_NOT_EQUAL(NULL, value.ptr);
+    TEST_INT_EQ(0, value.len);
+    TEST_PTR_NE(NULL, value.ptr);
 }
 
 static void TEST_pantheios_be_parseStringArg_ONE_MATCHING_ARG_WITH_EMPTY_VALUE()
@@ -352,10 +352,10 @@ static void TEST_pantheios_be_parseStringArg_ONE_MATCHING_ARG_WITH_EMPTY_VALUE()
 
     int const r = pantheios_be_parseStringArg(STLSOFT_NUM_ELEMENTS(args), args, "processName", &value);
 
-    TEST_INTEGER_EQUAL(1, r);
+    TEST_INT_EQ(1, r);
 
-    TEST_INTEGER_EQUAL(0, value.len);
-    TEST_POINTER_NOT_EQUAL(NULL, value.ptr);
+    TEST_INT_EQ(0, value.len);
+    TEST_PTR_NE(NULL, value.ptr);
 }
 
 static void TEST_pantheios_be_parseStringArg_ONE_MATCHING_ARG_WITH_VALUE()
@@ -371,10 +371,10 @@ static void TEST_pantheios_be_parseStringArg_ONE_MATCHING_ARG_WITH_VALUE()
 
     int const r = pantheios_be_parseStringArg(STLSOFT_NUM_ELEMENTS(args), args, "processName", &value);
 
-    TEST_INTEGER_EQUAL(1, r);
+    TEST_INT_EQ(1, r);
 
-    TEST_INTEGER_EQUAL(5, value.len);
-    TEST_MULTIBYTE_STRING_EQUAL("tuupa", value.ptr);
+    TEST_INT_EQ(5, value.len);
+    TEST_MS_EQ("tuupa", value.ptr);
 }
 
 static void TEST_pantheios_be_parseStringArg_TWO_MATCHING_ARGS()
@@ -391,10 +391,10 @@ static void TEST_pantheios_be_parseStringArg_TWO_MATCHING_ARGS()
 
     int const r = pantheios_be_parseStringArg(STLSOFT_NUM_ELEMENTS(args), args, "processName", &value);
 
-    TEST_INTEGER_EQUAL(1, r);
+    TEST_INT_EQ(1, r);
 
-    TEST_INTEGER_EQUAL(5, value.len);
-    TEST_MULTIBYTE_STRING_EQUAL("tuupa", value.ptr);
+    TEST_INT_EQ(5, value.len);
+    TEST_MS_EQ("tuupa", value.ptr);
 }
 
 
@@ -410,9 +410,9 @@ static void TEST_pantheios_be_parseStockArgs_NO_ARGS()
 
     int const r = pantheios_be_parseStockArgs(0, args, &flags);
 
-    TEST_INTEGER_EQUAL(0, r);
+    TEST_INT_EQ(0, r);
 
-    TEST_INTEGER_EQUAL(0, flags);
+    TEST_INT_EQ(0, flags);
 }
 
 static void TEST_pantheios_be_parseStockArgs_EMPTY_ARG()
@@ -426,9 +426,9 @@ static void TEST_pantheios_be_parseStockArgs_EMPTY_ARG()
 
     int const r = pantheios_be_parseStockArgs(STLSOFT_NUM_ELEMENTS(args), args, &flags);
 
-    TEST_INTEGER_EQUAL(0, r);
+    TEST_INT_EQ(0, r);
 
-    TEST_INTEGER_EQUAL(0, flags);
+    TEST_INT_EQ(0, flags);
 }
 
 static void TEST_pantheios_be_parseStockArgs_WITH_processId()
@@ -443,9 +443,9 @@ static void TEST_pantheios_be_parseStockArgs_WITH_processId()
 
         int const r = pantheios_be_parseStockArgs(STLSOFT_NUM_ELEMENTS(args), args, &flags);
 
-        TEST_INTEGER_EQUAL(1, r);
+        TEST_INT_EQ(1, r);
 
-        TEST_INTEGER_EQUAL(0, flags);
+        TEST_INT_EQ(0, flags);
     }
 
     {
@@ -458,9 +458,9 @@ static void TEST_pantheios_be_parseStockArgs_WITH_processId()
 
         int const r = pantheios_be_parseStockArgs(STLSOFT_NUM_ELEMENTS(args), args, &flags);
 
-        TEST_INTEGER_EQUAL(1, r);
+        TEST_INT_EQ(1, r);
 
-        TEST_INTEGER_EQUAL(0, flags);
+        TEST_INT_EQ(0, flags);
     }
 
     {
@@ -473,9 +473,9 @@ static void TEST_pantheios_be_parseStockArgs_WITH_processId()
 
         int const r = pantheios_be_parseStockArgs(STLSOFT_NUM_ELEMENTS(args), args, &flags);
 
-        TEST_INTEGER_EQUAL(1, r);
+        TEST_INT_EQ(1, r);
 
-        TEST_INTEGER_EQUAL(PANTHEIOS_BE_INIT_F_NO_PROCESS_ID, flags);
+        TEST_INT_EQ(PANTHEIOS_BE_INIT_F_NO_PROCESS_ID, flags);
     }
 
     {
@@ -488,9 +488,9 @@ static void TEST_pantheios_be_parseStockArgs_WITH_processId()
 
         int const r = pantheios_be_parseStockArgs(STLSOFT_NUM_ELEMENTS(args), args, &flags);
 
-        TEST_INTEGER_EQUAL(1, r);
+        TEST_INT_EQ(1, r);
 
-        TEST_INTEGER_EQUAL(PANTHEIOS_BE_INIT_F_NO_PROCESS_ID, flags);
+        TEST_INT_EQ(PANTHEIOS_BE_INIT_F_NO_PROCESS_ID, flags);
     }
 }
 
@@ -530,7 +530,7 @@ static void TEST_pantheios_be_parseStockArgs_WITH_ALL_STOCK_true()
 
     int const r = pantheios_be_parseStockArgs(STLSOFT_NUM_ELEMENTS(args), args, &flags);
 
-    TEST_INTEGER_EQUAL(12, r);
+    TEST_INT_EQ(12, r);
 
     pantheios_uint32_t  expected    =   0
                                     // |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
@@ -547,7 +547,7 @@ static void TEST_pantheios_be_parseStockArgs_WITH_ALL_STOCK_true()
                                     |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
                                     ;
 
-    TEST_INTEGER_EQUAL(expected, flags);
+    TEST_INT_EQ(expected, flags);
 }
 
 static void TEST_pantheios_be_parseStockArgs_WITH_ALL_STOCK_false()
@@ -586,7 +586,7 @@ static void TEST_pantheios_be_parseStockArgs_WITH_ALL_STOCK_false()
 
     int const r = pantheios_be_parseStockArgs(STLSOFT_NUM_ELEMENTS(args), args, &flags);
 
-    TEST_INTEGER_EQUAL(12, r);
+    TEST_INT_EQ(12, r);
 
     pantheios_uint32_t  expected    =   0
                                     |   PANTHEIOS_BE_INIT_F_NO_PROCESS_ID
@@ -603,7 +603,7 @@ static void TEST_pantheios_be_parseStockArgs_WITH_ALL_STOCK_false()
                                     // |   PANTHEIOS_BE_INIT_F_NUMERIC_SEVERITY
                                     ;
 
-    TEST_INTEGER_EQUAL(expected, flags);
+    TEST_INT_EQ(expected, flags);
 }
 
 

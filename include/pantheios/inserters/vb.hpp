@@ -5,11 +5,11 @@
  *              class.
  *
  * Created:     18th June 2012
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -43,7 +43,8 @@
 
 /** \file pantheios/inserters/vb.hpp
  *
- * [C++ only] Defines shorthand name for pantheios::variant_bool inserter class.
+ * [C++ only] Defines shorthand name for pantheios::variant_bool inserter
+ * class.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_VB
@@ -58,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_EDIT      3
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VB_EDIT      4
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

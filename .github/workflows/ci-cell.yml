@@ -91,6 +91,7 @@ jobs:
           cpp-compiler: ${{ inputs.cpp-compiler }}
           dependencies: >-
             STLSoft
+            woad
             ${{ !inputs.no-shwild && 'shwild' || '' }}
             xTests
             ${{ !inputs.no-b64 && 'b64' || '' }}

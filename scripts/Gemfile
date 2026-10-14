@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+gem "libclimate-ruby", '~> 0.17.4'
+gem "xqsr3", '~> 0.39.11'
+
+

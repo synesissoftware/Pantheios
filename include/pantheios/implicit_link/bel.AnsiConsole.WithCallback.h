@@ -4,7 +4,7 @@
  * Purpose: Implicitly links in the Pantheios ANSI Console Local Back-End Library
  *
  * Created: 5th August 2026
- * Updated: 5th August 2026
+ * Updated: 14th October 2026
  *
  * Home:    http://pantheios.org/
  *
@@ -41,9 +41,10 @@
 
 /** \file pantheios/implicit_link/bel.AnsiConsole.WithCallback.h
  *
- * [C, C++] Implicitly links in the \ref page__backend__callbacks "callback" version of the
- *   \ref group__backend__stock_backends__AnsiConsole "Pantheios ANSI Console Local Back-End Library"
- *   as the local back-end for the given link-unit.
+ * [C, C++] Implicitly links in the \ref page__backend__callbacks "callback"
+ * version of the \ref group__backend__stock_backends__AnsiConsole
+ * "Pantheios ANSI Console Local Back-End Library" as the local back-end for
+ * the given link-unit.
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_WITHCALLBACK
@@ -58,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_WITHCALLBACK_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_WITHCALLBACK_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_WITHCALLBACK_REVISION  2
-# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_WITHCALLBACK_EDIT      8
+# define PANTHEIOS_VER_PANTHEIOS_IMPLICIT_LINK_H_BEL_ANSICONSOLE_WITHCALLBACK_EDIT      9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

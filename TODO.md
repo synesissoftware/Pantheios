@@ -22,15 +22,22 @@
 * [x] ~~~**test.component.be.zmq** PUB/SUB round-trip~~~ - ✅;
 
 
+### 1.0.1-rc5 (18th October 2026)
+
+* [ ] **b64** link-time dependency broken;
+* [x] ~~~Integration of **woad** for coloured output~~~ - ✅;
+* [ ] Additional performance tests;
+* [ ] Refactor CMake test targets / options so that only unit-test executables are built when only unit-tests are asked for;
+* [ ] **README.md** (and other project markdown) significant enhancement (in a similar vein as has been done for **xqsr3** (Ruby));
+* [ ] Review all download/build/install documentation (**INSTALL.md**);
+
+
 ### 1.0.1-rc4 (14th October 2026)
 
-* [ ] **bec.stock**;
-* [ ] Additional performance tests;
-* [ ] Integration of **woad**;
-* [ ] Replace selected Pantheios custom code with post-**STLSoft**-1.9 facilities;
-* [ ] **README.md** (and other project markdown) significant enhancement (in a similar vein as has been done for **xqsr3** (Ruby));
-* [ ] Refactor CMake test targets / options so that only unit-test executables are built when only unit-tests are asked for;
-* [ ] **xTests**' Terse API applied throughout;
+* [x] ~~~**bec.stock** / **bec.stock.WithCallback** (exclude **bec.test**)~~~ - ✅;
+* [x] ~~~Replace selected Pantheios custom code with post-**STLSoft**-1.9 facilities (process id via `platformstl_C_get_current_process_id`, **args** path basenaming via `filesystem_traits::find_last_path_name_separator`, **snprintf** via `stlsoft_C_vsnprintf`)~~~ - ✅;
+* [x] ~~~**xTests**' Terse API applied throughout~~~ - ✅;
+* [ ] Sort out `\file` Doxygen fields across headers;
 
 
 ### 1.0.1-rc3 (12th October 2026)
@@ -39,21 +46,14 @@
 executing unit tests (and similarly for component, scratch, and performance tests);
 * [x] ~~~Using **AnsiConsole**~~~ - ✅;
 * [x] ~~~Using **ACE**~~~ - ✅;
-
-
-### 1.0.1 final release (nice-to-have / non-mandatory)
-
-Candidates to consider for the final 1.0.1 release if time permits, but non-blocking:
-
-* [ ] Re-enable **test.unit.bec.COMErrorObject** on **MinGW** once **xTests** fixes multibyte string-equality helpers for GCC two-phase lookup (shim overloads declared after **xtests.h** is included); currently skipped in **test/unit/CMakeLists.txt**;
-* [ ] Review all download/build/install documentation (**INSTALL.md**);
-* [ ] Component test for **be.WindowsSyslog**;
-* [ ] Sort out `\file` Doxygen fields across headers;
-* [ ] Prune obsolete compiler and IDE project-file items from **TODO.md** (VS '98 through 2010, Turbo C++, Comeau, Xcode project-file generators);
+* [x] ~~~Prune obsolete compiler and IDE project-file items from **TODO.md** (VS '98 through 2010, Turbo C++, Comeau, Xcode project-file generators)~~~ - ✅;
 
 
 ### Pantheios 1.0.1 (final)
 
+* [ ] Re-enable **test.unit.bec.COMErrorObject** on **MinGW** once **xTests** fixes multibyte string-equality helpers for GCC two-phase lookup (shim overloads declared after **xtests.h** is included); currently skipped in **test/unit/CMakeLists.txt**;
+* [ ] Component test for **be.WindowsSyslog**;
+* [ ] Thin `pantheios_getHostName` / **src/util/hostname.c** over a platformstl host-name C API once that API lands in **STLSoft** (Windows via `winstl_C_get_computer_name_*`; UNIX `gethostname` plus Pantheios Mac `ENAMETOOLONG` / length contract); keep test oracles OS-direct for orthogonality;
 * [ ] Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release;
 
 
@@ -79,24 +79,26 @@ Candidates to consider for the final 1.0.1 release if time permits, but non-bloc
 
 ### Pantheios 1.1 TODOs
 
-* [ ] auto-generate project files for Xcode;
 * [ ] fix the TODO file first!!;
-* [ ] Comeau 4.3.10 support;
-* [ ] README.TXT;
-* [ ] complete, sensible distribution files;
-* [ ] separate UNIX and Windows distros, with the appropriate newline sequence for each;
-* [ ] sort out \file fields;
-* [ ] full complement of Visual Studio 2003 project/solution files;
-* [ ] full complement of Visual Studio 2005 project/solution files;
-* [ ] full complement of Visual Studio 2008 project/solution files;
-* [ ] full complement of Visual Studio 2010 project/solution files;
-* [ ] full complement of Visual Studio '98 project/solution files;
-* [ ] review all the download/build/install documentation;
-* [ ] auto-check all implicit_link files;
-* [ ] full complement of Turbo C++ project/solution files;
-* [ ] (possibly, full complement of XCode project/solution files);
+* [ ] **bec.zmq** compatible;
+* [ ] **bec.speech** macOS compatible;
 * [ ] be.file buffering;
 * [ ] be.file rolling;
+* [x] ~~~auto-generate project files for Xcode~~~ - ❌;
+* [x] ~~~Comeau 4.3.10 support~~~ - ❌;
+* [x] ~~~README.TXT~~~ - ✅;
+* [ ] complete, sensible distribution files;
+* [x] ~~~separate UNIX and Windows distros, with the appropriate newline sequence for each~~~ - ✅;;
+* [ ] sort out \file fields;
+* [x] ~~~full complement of Visual Studio 2003 project/solution files~~~ - ❌;
+* [x] ~~~full complement of Visual Studio 2005 project/solution files~~~ - ❌;
+* [x] ~~~full complement of Visual Studio 2008 project/solution files~~~ - ❌;
+* [x] ~~~full complement of Visual Studio 2010 project/solution files~~~ - ❌;
+* [x] ~~~full complement of Visual Studio '98 project/solution files~~~ - ❌;
+* [ ] review all the download/build/install documentation;
+* [x] ~~~auto-check all implicit_link files~~~ - ❌;
+* [x] ~~~full complement of Turbo C++ project/solution files~~~ - ❌;
+* [x] ~~~(possibly, full complement of XCode project/solution files)~~~ - ❌;
 * [ ] control console for fe.WindowsRegistry;
 * [ ] component test be.WindowsSyslog;
 

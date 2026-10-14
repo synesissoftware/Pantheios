@@ -4,11 +4,11 @@
  * Purpose:     String inserter for characters as read from streams.
  *
  * Created:     3rd July 2011
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_REVISION    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        9
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -92,7 +92,7 @@ namespace pantheios
  */
 
 /** Class for inserting stream characters into Pantheios diagnostic logging
- *   statements.
+ * statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -110,8 +110,8 @@ public:
 public:
     /// Construct from a stream character value
     ///
-    /// \param ch The stream character whose value will be represented as
-    ///   a string
+    /// \param ch The stream character whose value will be represented as a
+    ///   string
     explicit stream_character(int ch)
         : m_ch(ch)
         , m_len(0)
@@ -123,11 +123,13 @@ private:
 /// \name Accessors
 /// @{
 public:
-    ///  A possibly non-nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* data() const;
-    ///  A nul-terminated non-null pointer to the c-style string representation of the integer
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the integer
     pantheios_char_t const* c_str() const;
-    ///  The length of the c-style string representation of the integer
+    /// The length of the c-style string representation of the integer
     size_t                  length() const;
 /// @}
 

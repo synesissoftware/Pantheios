@@ -3,7 +3,7 @@
  *
  * Purpose:     Inline definitions of the log_dispatch_<N>() functions
  *
- * Generated:   19th June 2020
+ * Generated:   14th October 2026
  *
  * Status:      This file is auto-generated: DO NOT EDIT!
  *
@@ -13,6 +13,11 @@
  *
  * ////////////////////////////////////////////////////////////////////// */
 
+/** \file pantheios/generated/log_dispatch_functions.hpp
+ *
+ * [C++ only] INTERNAL, AUTO-GENERATED FILE: Do not include
+ *   directly.
+ */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_HPP_PANTHEIOS
 # error This file is included by the Pantheios API, and cannot be included directly

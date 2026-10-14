@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.levels.dynamic_initialisation project.
  *
  * Created: 20th October 2007
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -40,7 +40,7 @@ private:
 #include <pantheios/pantheios.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Standard C++ header files */
 #include <exception>                    // for std::exception
@@ -56,7 +56,7 @@ private:
  * macros
  */
 
-#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    XTESTS_TEST_INTEGER_EQUAL(static_cast<int>(x), static_cast<int>(y))
+#define PANTHEIOS_SEV_LEVELS_EQUAL(x, y)    TEST_INT_EQ(static_cast<int>(x), static_cast<int>(y))
 
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     Declaration of the Pantheios ACE Stock Back-end API.
  *
  * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_EDIT        14
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_EDIT        17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,8 +79,10 @@
 
 /** \defgroup group__backend__stock_backends__ACE Pantheios ACE Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library built on top of the diagnostic logging facilities of
- *   the <a href = "http://www.cs.wustl.edu/~schmidt/ACE.html">Adaptive Communications Environment (ACE)</a>.
+ *
+ * Back-end library built on top of the diagnostic logging facilities of the
+ * <a href = "http://www.cs.wustl.edu/~schmidt/ACE.html">Adaptive
+ * Communications Environment (ACE)</a>.
  */
 
 
@@ -88,7 +90,8 @@
  * API
  */
 
-/** Implements the functionality for pantheios_be_init() over the ACE Diagnostic Logging API.
+/** Implements the functionality for pantheios_be_init() over the ACE
+ * Diagnostic Logging API.
  * \ingroup group__backend__stock_backends__ACE
  */
 PANTHEIOS_CALL(int) pantheios_be_ACE_init(
@@ -99,14 +102,16 @@ PANTHEIOS_CALL(int) pantheios_be_ACE_init(
 ,   void**              ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the ACE Diagnostic Logging API.
+/** Implements the functionality for pantheios_be_uninit() over the ACE
+ * Diagnostic Logging API.
  * \ingroup group__backend__stock_backends__ACE
  */
 PANTHEIOS_CALL(void) pantheios_be_ACE_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the ACE Diagnostic Logging API.
+/** Implements the functionality for pantheios_be_logEntry() over the ACE
+ * Diagnostic Logging API.
  * \ingroup group__backend__stock_backends__ACE
  */
 PANTHEIOS_CALL(int) pantheios_be_ACE_logEntry(

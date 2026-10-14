@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  19th October 2026
+# Updated:  18th October 2026
 #
 # ######################################################################## #
 
@@ -142,11 +142,14 @@ endif(PANTHEIOS_USE_WIDE_STRINGS)
 #
 # required:
 # - STLSoft;
+# - woad - ANSI colour for bec.AnsiConsole (and stock libraries that
+#   compile it);
 # - xTests - required for testing only;
 #
 # optional:
 # - ACE - stock ACE backends (be/bec/bel/ber.ACE);
 # - b64;
+# - Diagnosticism - required for testing only;
 # - shwild - required for testing only;
 # - zeromq (aka 0MQ) - stock zmq backends (be/bec/bel/ber.zmq);
 #
@@ -202,6 +205,19 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
+
+
+# ############################
+# woad
+#
+# Required by bec.AnsiConsole, and by the stock back-end libraries that
+# compile that translation unit, for SGR sequences and stream policy.
+
+find_package(woad REQUIRED)
+
+message("-- CMake package woad found (version ${woad_VERSION})")
+
+add_compile_definitions(HAS_woad)
 
 
 # ############################
@@ -320,6 +336,22 @@ endif()
 if(NOT b64_FOUND)
 
 	add_compile_definitions(PANTHEIOS_NO_B64)
+endif()
+
+
+# ############################
+# Diagnosticism
+
+if(NOT NO_DIAGNOSTICISM)
+
+	find_package(Diagnosticism QUIET)
+
+	if(Diagnosticism_FOUND)
+
+		message("-- CMake package Diagnosticism found (version ${Diagnosticism_VERSION})")
+
+		add_compile_definitions(HAS_Diagnosticism)
+	endif(Diagnosticism_FOUND)
 endif()
 
 

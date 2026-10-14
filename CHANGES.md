@@ -10,8 +10,36 @@
 * version: added `PANTHEIOS_VER_1_1_0_A1` (`0x01010041`) and set release status to `0x41` in **include/pantheios/pantheios.h**; **test.unit.getversion** asserts `PANTHEIOS_VER_1_1_0_A1`;
 
 
+## 1.0.1-rc5 - 18th October 2026
+
+* backends:
+  * **bec.AnsiConsole** colour handling now uses **woad**: severity colours are **woad** SGR sequences (`WOAD_BOLD` / `WOAD_BLINKING` where used, plus foreground and background), and emission follows `woad_seq_for_stream()` unless **`noColours`** or **`forceAnsiEscapeSequences`** overrides that policy;
+* dependencies:
+  * **woad** is required, for ANSI colour in **bec.AnsiConsole** and in the stock back-end libraries that compile it;
+* testing:
+  * **test.scratch.versions** colours the library name, version, and macro fields with **woad**, in the same roles as **WordLen**'s scratch versions printer;
+
+
 ## 1.0.1-rc4 - 14th October 2026
 
+* util:
+  * reimplemented `pantheios_getCurrentProcessId()` in terms of `platformstl_C_get_current_process_id()`;
+  * **args** inserter: `arg0FileOnly` basenaming via `filesystem_traits::find_last_path_name_separator`;
+  * thin `pantheios_util_vsnprintf_a` over `stlsoft_C_vsnprintf` (wide CRT fallback retained where STLSoft has no `vsnwprintf`);
+* backends:
+  * **bec.stock**: excludes **bec.test** (test harness stays a separate library);
+  * **bec.stock.WithCallback**: platform-scoped stock archive with **`PANTHEIOS_BE_USE_CALLBACK`** (same membership as **bec.stock**; fixed source-dir variable for **bec.AnsiConsole**);
+* examples:
+  * restored **example.cpp.linking.N_with_stock** (**examples/cpp/linking/N_with_stock/**) linking **be.N** + **bec.stock**, multiplexing console / file / fprintf / null / syslog (Windows Syslog + debugger on Win32); re-enabled the **examples/cpp/linking** CMake subdirectory; listed in **README.md**;
+  * **example.cpp.linking.N_with_stock**: define `PANTHEIOS_FE_PROCESS_IDENTITY` with `PANTHEIOS_EXTERN` (C++ `const` external linkage) and `PAN_BE_N_BACKEND_LIST` in an `extern "C"` block without `PANTHEIOS_EXTERN` (stock Pantheios C++ form; avoids GCC/MinGW `-Werror` on `extern` + initializer);
+* testing:
+  * (example/test only) now uses **Diagnosticism** for version strings;
+* version:
+  * current composite is `PANTHEIOS_VER_1_0_1_RC4` (`0x010001E4`) in **include/pantheios/pantheios.h**;
+  * **test.unit.getversion** asserts `PANTHEIOS_VER_1_0_1_RC4`;
+* documentation:
+  * compact **Doxyfile**, **generate_doxygen.sh**, **doc/mainpage.md**, and **doc/doxygen_stlsoft_stubs.h**; public-header Doxygen prose / groups / `\file` alignment; CI `documentation` job (Ubuntu, asserts `_build/doxygen/html/index.html`);
+  * **NEWS.md**, **INSTALL.md**, **KNOWN_ISSUES.md**, **README.md**, and **TODO.md** aligned to **1.0.1-rc4**;
 
 
 ## 1.0.1-rc3 - 12th October 2026

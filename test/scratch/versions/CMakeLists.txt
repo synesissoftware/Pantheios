@@ -10,6 +10,11 @@ target_include_directories(test.scratch.versions
 
 target_link_STLSoft(test.scratch.versions)
 
+target_link_libraries(test.scratch.versions
+	PRIVATE
+		woad::woad
+)
+
 if(b64_FOUND)
 
 	target_link_libraries(test.scratch.versions
@@ -17,6 +22,14 @@ if(b64_FOUND)
 			b64::core
 	)
 endif(b64_FOUND)
+
+if(Diagnosticism_FOUND)
+
+	target_link_libraries(test.scratch.versions
+		PRIVATE
+			Diagnosticism::core
+	)
+endif(Diagnosticism_FOUND)
 
 if(shwild_FOUND)
 

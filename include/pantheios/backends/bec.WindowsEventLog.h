@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios WindowsEventLog Stock Back-end API.
  *
  * Created: 8th May 2006
- * Updated: 28th October 2024
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MINOR       4
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        33
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        37
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,7 +79,8 @@
 
 /** \defgroup group__backend__stock_backends__WindowsEventLog Pantheios Windows EventLog Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that writes to the Windows event log.
+ *
+ * Back-end library that writes to the Windows event log.
  */
 
 
@@ -89,7 +90,8 @@
 
 /** \defgroup group__backend__stock_backends__WindowsEventLog__flags Pantheios Windows EventLog Stock Back-end Flags
  * \ingroup group__backend__stock_backends__WindowsEventLog
- *  Flags for the \ref group__backend__stock_backends__WindowsEventLog
+ *
+ * Flags for the \ref group__backend__stock_backends__WindowsEventLog
  */
 
 
@@ -98,7 +100,7 @@
  */
 
 /** Structure used for specifying initialisation information to the
- *    be.WindowsEventLog library.
+ * be.WindowsEventLog library.
  * \ingroup group__backend__stock_backends__WindowsEventLog
  */
 struct pan_be_WindowsEventLog_init_t
@@ -142,26 +144,26 @@ struct Pantheios_be_WindowsEventLog_no_longer_uses_the_symbol_pantheios_be_Windo
 
 
 /** Evaluates the appropriate category and event identifiers for a given
- *   back-end identifier and Pantheios severity level just prior to
- *   emitting the log entry to the event log.
+ * back-end identifier and Pantheios severity level just prior to emitting
+ * the log entry to the event log.
  *
  * \note This is an application-specified function.
  *
  * \ingroup group__backend__stock_backends__WindowsEventLog
  *
- * \param backEndId The back-end identifier
- * \param severity The severity associated with the event
+ * \param backEndId The back-end identifier;
+ * \param severity The severity associated with the event;
  * \param category A pointer to a variable to receive the Event Log category
- *   to be used
+ *   to be used;
  * \param eventId A pointer to a variable to receive the Event Log event
- *   identifier to be used
+ *   identifier to be used;
  *
- * \note As of Pantheios 1.0.1 beta-215, if the values of
- *   <code>*category</code> and <code>*eventId</code> are set to the
- *   maximum limit for those types - 0xFFFF and 0xFFFFFFFF, respectively -
- *   then no statement is emitted. When the function is called, these
- *   values are preset. Note that this is an inefficient way of filtering
- *   messages, and users should prefer to filter via a suitable front-end.
+ * \note As of Pantheios 1.0.1 beta-215, if the values of `*category` and
+ *   `*eventId` are set to the maximum limit for those types - 0xFFFF and
+ *   0xFFFFFFFF, respectively - then no statement is emitted. When the
+ *   function is called, these values are preset. Note that this is an
+ *   inefficient way of filtering messages, and users should prefer to
+ *   filter via a suitable front-end.
  */
 PANTHEIOS_CALL(void)
 pantheios_be_WindowsEventLog_calcCategoryAndEventId(
@@ -172,19 +174,19 @@ pantheios_be_WindowsEventLog_calcCategoryAndEventId(
 ) /* throw() */;
 
 /** \ref page__backend__callbacks "Callback" function defined by
- *    the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ * the application, invoked when the API is initialised with a NULL \c init
+ * parameter.
  * \ingroup group__backend__stock_backends__WindowsEventLog
  *
- * \param backEndId The back-end identifier passed to the back-end
- *   during its initialisation.
+ * \param backEndId The back-end identifier passed to the back-end during
+ *   its initialisation;
  * \param init A pointer to an already-initialised instance of
- *   pan_be_WindowsEventLog_init_t.
+ *   pan_be_WindowsEventLog_init_t;
  *
- * If any application-specific changes are required they can be made to
- * the structure to which <code>init</code> points, which will already
- * have been initialised. These changes will then be incorporated into
- * the back-end state, and reflected in its behaviour.
+ * If any application-specific changes are required they can be made to the
+ * structure to which \c init points, which will already have been
+ * initialised. These changes will then be incorporated into the back-end
+ * state, and reflected in its behaviour.
  *
  * If no changes are required, then the function can be a simple stub,
  * containing no instructions.
@@ -193,10 +195,10 @@ pantheios_be_WindowsEventLog_calcCategoryAndEventId(
  *   \ref page__backend__callbacks "callback" version of the library is
  *   used.
  *
- * \exception "throw()" This function must <b>not</b> throw any exceptions!
+ * \exception "throw()" This function must \c not throw any exceptions!
  *
  * \warning This function will be called during the initialisation of
- *   Pantheios, and so <b>must not</b> make any calls into Pantheios, either
+ *   Pantheios, and so **must not** make any calls into Pantheios, either
  *   directly or indirectly!
  */
 PANTHEIOS_CALL(void)
@@ -211,22 +213,23 @@ pantheios_be_WindowsEventLog_getAppInit(
  */
 
 /** Fills out a copy of the initialisation structure with default
- *    values (representative of the default behaviour of the library),
- *    ready to be customised and passed to the API initialiser function
- *    pantheios_be_WindowsEventLog_init().
+ * values (representative of the default behaviour of the library), ready to
+ * be customised and passed to the API initialiser function
+ * pantheios_be_WindowsEventLog_init().
  * \ingroup group__backend__stock_backends__WindowsEventLog
  *
- * \note This function should <b>not</b> be called on an
- *   already-initialised instance, as is the case in the implementation
- *   of the pantheios_be_WindowsEventLog_getAppInit() function, as it will
- *   already have been called by pantheios_be_WindowsEventLog_init() prior
- *   to the callback.
+ * \note This function should \c not be called on an already-initialised
+ *   instance, as is the case in the implementation of the
+ *   pantheios_be_WindowsEventLog_getAppInit() function, as it will already
+ *   have been called by pantheios_be_WindowsEventLog_init() prior to the
+ *   callback.
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_getDefaultAppInit(
     pan_be_WindowsEventLog_init_t* init
 ) /* throw() */;
 
-/** Implements the functionality for pantheios_be_init() over the Windows EventLog API.
+/** Implements the functionality for pantheios_be_init() over the Windows
+ * EventLog API.
  *
  * \ingroup group__backend__stock_backends__WindowsEventLog
  */
@@ -239,7 +242,8 @@ pantheios_be_WindowsEventLog_init(
 ,   void**                                  ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the Windows EventLog API.
+/** Implements the functionality for pantheios_be_uninit() over the Windows
+ * EventLog API.
  * \ingroup group__backend__stock_backends__WindowsEventLog
  */
 PANTHEIOS_CALL(void)
@@ -247,7 +251,8 @@ pantheios_be_WindowsEventLog_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the Windows EventLog API.
+/** Implements the functionality for pantheios_be_logEntry() over the
+ * Windows EventLog API.
  * \ingroup group__backend__stock_backends__WindowsEventLog
  */
 PANTHEIOS_CALL(int)

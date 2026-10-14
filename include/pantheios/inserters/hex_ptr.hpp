@@ -4,11 +4,11 @@
  * Purpose:     String inserters for pointers in Hexadecimal notation.
  *
  * Created:     11th October 2006
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_MINOR    3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_EDIT     19
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_HEX_PTR_EDIT     21
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -89,7 +89,7 @@ namespace pantheios
  */
 
 /** [DEPRECATED] Class for inserting pointers into Pantheios diagnostic
- *   logging statements.
+ * logging statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
@@ -111,11 +111,11 @@ namespace pantheios
  *
  * On a 32-bit system, this will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, p=0x01234567, str=def</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, p=0x01234567, str=def**
  *
  * On a 64-bit system, this will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, p=0x0000000001234567, str=def</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, p=0x0000000001234567, str=def**
  *
  * \deprecated This class is now obsolete, and will be removed from a future
  *   version of Pantheios; instead use the pantheios::xp inserter class.
@@ -141,7 +141,7 @@ public: // Construction
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
     /// Construct from a pointer, using the ambient pointer width and
-    /// pantheios::fmt::fullHex format
+    ///   pantheios::fmt::fullHex format
     ///
     /// \param p The pointer whose value will be represented as a string
     explicit hex_ptr(void const volatile *p)
@@ -153,7 +153,8 @@ public: // Construction
     /// \param p The pointer whose value will be represented as a string
     /// \param minWidth The minimum width of the field. Must be in the range
     ///   [-20, 20]
-    /// \param format Combination of \link pantheios::fmt format\endlink flags
+    /// \param format Combination of \link pantheios::fmt format\endlink
+    ///   flags
     hex_ptr(void const volatile *p, int minWidth, int format)
         : pointer(p, minWidth, format)
     {}

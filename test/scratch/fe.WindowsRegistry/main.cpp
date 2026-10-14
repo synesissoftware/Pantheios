@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.fe.WindowsRegistry project.
  *
  * Created: 28th October 2007
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -39,7 +39,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int /* argc */, char** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
     pantheios::log_DEBUG("debug");
     pantheios::log_INFORMATIONAL("informational");

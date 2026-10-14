@@ -4,11 +4,11 @@
  * Purpose: Declaration of the Pantheios WindowsConsole Stock Back-end API.
  *
  * Created: 17th July 2006
- * Updated: 25th January 2025
+ * Updated: 14th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MAJOR    5
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     30
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -79,8 +79,9 @@
 
 /** \defgroup group__backend__stock_backends__WindowsConsole Pantheios Windows Console Stock Back-end
  * \ingroup group__backend__stock_backends
- *  Back-end library that outputs to the Windows console, colour-coding
- *   based on severity level.
+ *
+ * Back-end library that outputs to the Windows console, colour-coding based
+ * on severity level.
  */
 
 
@@ -90,29 +91,29 @@
 
 /** \defgroup group__backend__stock_backends__WindowsConsole__flags Pantheios Windows Console Stock Back-end Flags
  * \ingroup group__backend__stock_backends__WindowsConsole
- *  Flags for the \ref group__backend__stock_backends__WindowsConsole
+ *
+ * Flags for the \ref group__backend__stock_backends__WindowsConsole
  */
 
 /** \def PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS
- *  Causes the \ref group__backend__stock_backends__WindowsConsole to
- *   emit log statements without colouring based on severity.
+ * Causes the \ref group__backend__stock_backends__WindowsConsole to emit
+ * log statements without colouring based on severity.
  * \ingroup group__backend__stock_backends__WindowsConsole__flags
  */
 
 #define PANTHEIOS_BE_WINDOWSCONSOLE_F_NO_COLOURS            (0x00100000)
 
 /** \def PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT
- *  Causes the \ref group__backend__stock_backends__WindowsConsole to
- *   a colour reset after each statement.
+ * Causes the \ref group__backend__stock_backends__WindowsConsole to a
+ * colour reset after each statement.
  * \ingroup group__backend__stock_backends__WindowsConsole__flags
  */
 
 #define PANTHEIOS_BE_WINDOWSCONSOLE_F_CLEAR_AFTER_EACH_STATEMENT    (0x00200000)
 
 /** \def PANTHEIOS_BE_WINDOWSCONSOLE_F_RECOGNISE_16_SEVERITIES
- *  Causes the \ref group__backend__stock_backends__WindowsConsole to
- *   recognise the colours for 16 severities, using the
- *   <code>colours2</code> member.
+ * Causes the \ref group__backend__stock_backends__WindowsConsole to
+ * recognise the colours for 16 severities, using the \c colours2 member.
  * \ingroup group__backend__stock_backends__WindowsConsole__flags
  */
 
@@ -124,7 +125,7 @@
  */
 
 /** Structure used for specifying initialisation information to the
- *    be.WindowsConsole library.
+ * be.WindowsConsole library.
  * \ingroup group__backend__stock_backends__WindowsConsole
  */
 struct pan_be_WindowsConsole_init_t
@@ -151,19 +152,19 @@ typedef struct pan_be_WindowsConsole_init_t     pan_be_WindowsConsole_init_t;
  */
 
 /** \ref page__backend__callbacks "Callback" function defined by
- *    the application, invoked when the
- *    API is initialised with a NULL <code>init</code> parameter.
+ * the application, invoked when the API is initialised with a NULL \c init
+ * parameter.
  * \ingroup group__backend__stock_backends__WindowsConsole
  *
- * \param backEndId The back-end identifier passed to the back-end
- *   during its initialisation.
+ * \param backEndId The back-end identifier passed to the back-end during
+ *   its initialisation;
  * \param init A pointer to an already-initialised instance of
- *   pan_be_WindowsConsole_init_t.
+ *   pan_be_WindowsConsole_init_t;
  *
- * If any application-specific changes are required they can be made to
- * the structure to which <code>init</code> points, which will already
- * have been initialised. These changes will then be incorporated into
- * the back-end state, and reflected in its behaviour.
+ * If any application-specific changes are required they can be made to the
+ * structure to which \c init points, which will already have been
+ * initialised. These changes will then be incorporated into the back-end
+ * state, and reflected in its behaviour.
  *
  * If no changes are required, then the function can be a simple stub,
  * containing no instructions.
@@ -172,10 +173,10 @@ typedef struct pan_be_WindowsConsole_init_t     pan_be_WindowsConsole_init_t;
  *   \ref page__backend__callbacks "callback" version of the library is
  *   used.
  *
- * \exception "throw()" This function must <b>not</b> throw any exceptions!
+ * \exception "throw()" This function must \c not throw any exceptions!
  *
  * \warning This function will be called during the initialisation of
- *   Pantheios, and so <b>must not</b> make any calls into Pantheios, either
+ *   Pantheios, and so **must not** make any calls into Pantheios, either
  *   directly or indirectly!
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
@@ -189,22 +190,23 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
  */
 
 /** Fills out a copy of the initialisation structure with default
- *    values (representative of the default behaviour of the library),
- *    ready to be customised and passed to the API initialiser function
- *    pantheios_be_WindowsConsole_init().
+ * values (representative of the default behaviour of the library), ready to
+ * be customised and passed to the API initialiser function
+ * pantheios_be_WindowsConsole_init().
  * \ingroup group__backend__stock_backends__WindowsConsole
  *
- * \note This function should <b>not</b> be called on an
- *   already-initialised instance, as is the case in the implementation
- *   of the pantheios_be_WindowsConsole_getAppInit() function, as it will
- *   already have been called by pantheios_be_WindowsConsole_init() prior
- *   to the callback.
+ * \note This function should \c not be called on an already-initialised
+ *   instance, as is the case in the implementation of the
+ *   pantheios_be_WindowsConsole_getAppInit() function, as it will already
+ *   have been called by pantheios_be_WindowsConsole_init() prior to the
+ *   callback.
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getDefaultAppInit(
     pan_be_WindowsConsole_init_t* init
 ) /* throw() */;
 
-/** Implements the functionality for pantheios_be_init() over the Windows Console API.
+/** Implements the functionality for pantheios_be_init() over the Windows
+ * Console API.
  * \ingroup group__backend__stock_backends__WindowsConsole
  */
 PANTHEIOS_CALL(int) pantheios_be_WindowsConsole_init(
@@ -215,14 +217,16 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsConsole_init(
 ,   void**                              ptoken
 );
 
-/** Implements the functionality for pantheios_be_uninit() over the Windows Console API.
+/** Implements the functionality for pantheios_be_uninit() over the Windows
+ * Console API.
  * \ingroup group__backend__stock_backends__WindowsConsole
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_uninit(
     void* token
 );
 
-/** Implements the functionality for pantheios_be_logEntry() over the Windows Console API.
+/** Implements the functionality for pantheios_be_logEntry() over the
+ * Windows Console API.
  * \ingroup group__backend__stock_backends__WindowsConsole
  */
 PANTHEIOS_CALL(int) pantheios_be_WindowsConsole_logEntry(
@@ -239,8 +243,7 @@ PANTHEIOS_CALL(int) pantheios_be_WindowsConsole_logEntry(
  *
  * Processes an argument list in the same way as
  * pantheios_be_parseStockArgs(), filling out the
- * pan_be_WindowsConsole_init_t in accordance with the arguments
- * found.
+ * pan_be_WindowsConsole_init_t in accordance with the arguments found.
  *
  * Recognises the following standard argument names:
  * - "showProcessId"            (Boolean)

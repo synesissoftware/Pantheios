@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.core.getProcessIdentity project.
  *
  * Created: 6th August 2012
- * Updated: 10th October 2026
+ * Updated: 13th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -21,7 +21,7 @@
  */
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* STLSoft header files */
 #include <stlsoft/stlsoft.h>
@@ -34,8 +34,8 @@
  * forward declarations
  */
 
-static void test_1_0(void);
-static void test_1_1(void);
+static void TEST_pantheios_getProcessIdentity_RETURNS_COPIED_STRING(void);
+static void TEST_pantheios_getProcessIdentity_RETURNS_SAME_POINTER(void);
 static int setup(void*);
 static int teardown(void*);
 static void* s_param;
@@ -45,7 +45,7 @@ static void* s_param;
  * main()
  */
 
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
@@ -54,8 +54,8 @@ int main(int argc, char **argv)
 
     if (XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.core.getProcessIdentity", verbosity, setup, teardown, s_param))
     {
-        XTESTS_RUN_CASE(test_1_0);
-        XTESTS_RUN_CASE(test_1_1);
+        XTESTS_RUN_CASE(TEST_pantheios_getProcessIdentity_RETURNS_COPIED_STRING);
+        XTESTS_RUN_CASE(TEST_pantheios_getProcessIdentity_RETURNS_SAME_POINTER);
         XTESTS_PRINT_RESULTS();
 
         XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
@@ -72,10 +72,10 @@ int main(int argc, char **argv)
 #define PSTR                                                PANTHEIOS_LITERAL_STRING
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_WIDE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_WS_EQ
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define XTESTS_TEST_STRING_EQUAL                           XTESTS_TEST_MULTIBYTE_STRING_EQUAL
+# define TEST_STRING_EQ                                     TEST_MS_EQ
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
@@ -172,9 +172,9 @@ static int teardown(void* param)
     return 0;
 }
 
-static void test_1_0(void)
+static void TEST_pantheios_getProcessIdentity_RETURNS_COPIED_STRING(void)
 {
-    PAN_CHAR_T const pi[] = PSTR("test_1_0");
+    PAN_CHAR_T const pi[] = PSTR("TEST_pantheios_getProcessIdentity_RETURNS_COPIED_STRING");
 
     int r;
 
@@ -182,32 +182,32 @@ static void test_1_0(void)
 
     r = pantheios_init();
 
-    XTESTS_TEST_INTEGER_EQUAL(1, s_numGPI);
+    TEST_INT_EQ(1, s_numGPI);
 
     if (r < 0)
     {
-        XTESTS_FAIL("could not initialise libraries");
+        TEST_FAIL("could not initialise libraries");
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numInits);
-        XTESTS_TEST_INTEGER_EQUAL(0, s_numUninits);
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numGPI);
+        TEST_INT_EQ(1, s_numInits);
+        TEST_INT_EQ(0, s_numUninits);
+        TEST_INT_EQ(1, s_numGPI);
 
-        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("test_1_0"), pantheios_getProcessIdentity());
-        XTESTS_TEST_POINTER_NOT_EQUAL(pi, pantheios_getProcessIdentity());
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("TEST_pantheios_getProcessIdentity_RETURNS_COPIED_STRING"), pantheios_getProcessIdentity());
+        TEST_PTR_NE(pi, pantheios_getProcessIdentity());
 
         pantheios_uninit();
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numInits);
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numUninits);
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numGPI);
+        TEST_INT_EQ(1, s_numInits);
+        TEST_INT_EQ(1, s_numUninits);
+        TEST_INT_EQ(1, s_numGPI);
     }
 }
 
-static void test_1_1(void)
+static void TEST_pantheios_getProcessIdentity_RETURNS_SAME_POINTER(void)
 {
-    PAN_CHAR_T const pi[] = PSTR("test_1_1");
+    PAN_CHAR_T const pi[] = PSTR("TEST_pantheios_getProcessIdentity_RETURNS_SAME_POINTER");
 
     int r;
 
@@ -215,26 +215,26 @@ static void test_1_1(void)
 
     r = pantheios_init();
 
-    XTESTS_TEST_INTEGER_EQUAL(2, s_numGPI);
+    TEST_INT_EQ(2, s_numGPI);
 
     if (r < 0)
     {
-        XTESTS_FAIL("could not initialise libraries");
+        TEST_FAIL("could not initialise libraries");
     }
     else
     {
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numInits);
-        XTESTS_TEST_INTEGER_EQUAL(0, s_numUninits);
-        XTESTS_TEST_INTEGER_EQUAL(2, s_numGPI);
+        TEST_INT_EQ(1, s_numInits);
+        TEST_INT_EQ(0, s_numUninits);
+        TEST_INT_EQ(2, s_numGPI);
 
-        XTESTS_TEST_STRING_EQUAL(PANTHEIOS_LITERAL_STRING("test_1_1"), pantheios_getProcessIdentity());
-        XTESTS_TEST_POINTER_EQUAL(pi, pantheios_getProcessIdentity());
+        TEST_STRING_EQ(PANTHEIOS_LITERAL_STRING("TEST_pantheios_getProcessIdentity_RETURNS_SAME_POINTER"), pantheios_getProcessIdentity());
+        TEST_PTR_EQ(pi, pantheios_getProcessIdentity());
 
         pantheios_uninit();
 
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numInits);
-        XTESTS_TEST_INTEGER_EQUAL(1, s_numUninits);
-        XTESTS_TEST_INTEGER_EQUAL(4, s_numGPI);
+        TEST_INT_EQ(1, s_numInits);
+        TEST_INT_EQ(1, s_numUninits);
+        TEST_INT_EQ(4, s_numGPI);
     }
 }
 

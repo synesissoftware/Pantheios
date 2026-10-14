@@ -5,11 +5,11 @@
  *              multibyte string statement.
  *
  * Created:     2nd September 2008
- * Updated:     16th January 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_MINOR    3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     20
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2M_EDIT     22
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -97,13 +97,12 @@ namespace pantheios
  */
 
 /** Class for inserting wide strings into Pantheios diagnostic logging
- *   statements.
+ * statements.
  *
  * \ingroup group__application_layer_interface__inserters
  *
- * This class converts a w2m variable into a string, thereby enabling
- * it to be inserted into a logging statement. Consider the following
- * statement:
+ * This class converts a w2m variable into a string, thereby enabling it to
+ * be inserted into a logging statement. Consider the following statement:
  *
  * \code
   wchar_t     ws  = L"abc";
@@ -115,7 +114,7 @@ namespace pantheios
  *
  * This will produce the output:
  *
- * &nbsp;&nbsp;&nbsp;&nbsp;<b>s=abc, c=abc, str=def</b>
+ * &nbsp;&nbsp;&nbsp;&nbsp;**s=abc, c=abc, str=def**
  */
 
 class w2m
@@ -172,9 +171,11 @@ private:
     class_type& operator =(class_type const&);
 
 public: // Accessors
-    /// A possibly non-nul-terminated non-null pointer to the c-style string representation of the w2m
+    /// A possibly non-nul-terminated non-null pointer to the c-style string
+    ///   representation of the w2m
     char const* data() const;
-    /// A nul-terminated non-null pointer to the c-style string representation of the w2m
+    /// A nul-terminated non-null pointer to the c-style string
+    ///   representation of the w2m
     char const* c_str() const;
     /// The length of the c-style string representation of the w2m
     size_t      length() const;
@@ -219,7 +220,6 @@ namespace shims
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
-/** \overload c_str_data_a(w2m const&) */
 inline
 char const*
 c_str_data_a(
@@ -228,7 +228,6 @@ c_str_data_a(
 {
     return r.data();
 }
-/** \overload c_str_data(w2m const&) */
 inline
 pantheios_char_t const*
 c_str_data(
@@ -238,7 +237,6 @@ c_str_data(
     return r.data();
 }
 
-/** \overload c_str_len_a(w2m const&) */
 inline
 size_t
 c_str_len_a(
@@ -247,7 +245,6 @@ c_str_len_a(
 {
     return r.length();
 }
-/** \overload c_str_len(w2m const&) */
 inline
 size_t
 c_str_len(
@@ -257,7 +254,6 @@ c_str_len(
     return r.length();
 }
 
-/** \overload c_str_ptr_a(w2m const&) */
 inline
 char const*
 c_str_ptr_a(
@@ -266,7 +262,6 @@ c_str_ptr_a(
 {
     return r.c_str();
 }
-/** \overload c_str_ptr(w2m const&) */
 inline
 pantheios_char_t const*
 c_str_ptr(

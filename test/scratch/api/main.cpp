@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.api project.
  *
  * Created: 26th June 2005
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -102,7 +102,7 @@ int main(int /* argc */, char* /* argv */[])
  * forward declarations
  */
 
-static int main_(int /* argc */, char ** /*argv*/);
+static int main_(int /* argc */, char* /*argv*/[]);
 static void some_logging_with_using_namespace_directive();
 static void some_logging_with_using_declarations();
 static void some_logging_with_explicit_qualification();
@@ -213,7 +213,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_calcCategoryAndEventId(
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-static int main_(int /* argc */, char ** /*argv*/)
+static int main_(int /* argc */, char* /*argv*/[])
 {
 #if defined(_DEBUG) || \
     defined(__SYNSOFT_DBS_DEBUG)
@@ -259,24 +259,6 @@ int main(int argc, char *argv[])
     pantheios::log(pantheios::critical(10), P_STR("critical"));
     pantheios::log(pantheios::alert(10), P_STR("alert"));
     pantheios::log(pantheios::emergency(10), P_STR("emergency"));
-
-#ifdef _DEBUGx
-    { for (size_t i = 0; i != 200; ++i)
-    {
-        std::string s(i, '~');
-
-        pantheios::log_DEBUG(s);
-        pantheios::log_INFORMATIONAL(s);
-        pantheios::log_NOTICE(s);
-        pantheios::log_WARNING(s);
-        pantheios::log_ERROR(s);
-        pantheios::log_CRITICAL(s);
-        pantheios::log_ALERT(s);
-        pantheios::log_EMERGENCY(s);
-
-        ::Sleep(5);
-    }}
-#endif /* _DEBUG */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     try

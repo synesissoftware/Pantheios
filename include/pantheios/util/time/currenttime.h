@@ -4,11 +4,11 @@
  * Purpose:     Functions for retrieving and formatting the current time.
  *
  * Created:     22nd August 2006
- * Updated:     16th December 2023
+ * Updated:     14th October 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_MINOR      1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_EDIT       21
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_EDIT       23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -75,23 +75,23 @@
  */
 
 /** Structure for use with the pantheios_util_getCurrentTime()
- *    function.
+ * function.
  *
  * \ingroup group__utility__backend
  */
 struct pan_beutil_time_t
 {
-    size_t                  capacity;       /*!< The capacity of the buffer in <code>str</code>. */
-    size_t                  len;            /*!< The length of the string written into <code>str</code>. */
-    pantheios_char_t*       str;            /*!< The buffer into which the results are written. Its maximum length is <code>capacity</code>. */
+    size_t                  capacity;       /*!< The capacity of the buffer in \c str. */
+    size_t                  len;            /*!< The length of the string written into \c str. */
+    pantheios_char_t*       str;            /*!< The buffer into which the results are written. Its maximum length is \c capacity. */
     pantheios_char_t const* strftimeFmt;    /*!< The time string format. Ignored on Windows, which uses the user/system locale time picture. May be NULL. */
 
 #ifdef __cplusplus
     /** Initialises all structure members
      *
-     * \param cap The capacity of the buffer
-     * \param s The pointer to the buffer
-     * \param f The time string format
+     * \param cap The capacity of the buffer;
+     * \param s The pointer to the buffer;
+     * \param f The time string format;
      */
     pan_beutil_time_t(
         size_t                  cap
@@ -116,8 +116,8 @@ typedef struct pan_beutil_time_t pan_beutil_time_t;
 
 /** \def PANTHEIOS_GETCURRENTTIME_F_USE_SYSTEM_TIME
  *
- * Indicates that pantheios_util_getCurrentTime() should express the time
- * as system time (UTC)
+ * Indicates that pantheios_util_getCurrentTime() should express the time as
+ * system time (UTC)
  *
  * \ingroup group__utility__backend
  */
@@ -241,22 +241,20 @@ typedef struct pan_beutil_time_t pan_beutil_time_t;
  *
  * This function gets the current time, and formats it in an operating
  * system-specific manner into the given pan_beutil_time_t instance, using
- * either the local time or the system time (if the
- * <code>flags</code> parameter includes
- * PANTHEIOS_GETCURRENTTIME_F_USE_SYSTEM_TIME).
+ * either the local time or the system time (if the \c flags parameter
+ * includes PANTHEIOS_GETCURRENTTIME_F_USE_SYSTEM_TIME).
  *
  * Specifically, on Windows platforms the function formats according to the
  * current locale settings. On UNIX, the function uses the syslog-standard
- * format (<code>strftimeFmt()</code> format: <code>"%b %d %I:%M:%S"</code>)
- * or the <code>pan_beutil_time_t::strftimeFmt</code> member if it is
- * non-NULL.
+ * format (\c strftimeFmt() format: `"%b %d %I:%M:%S"`) or the
+ * \c pan_beutil_time_t::strftimeFmt member if it is non-NULL.
  *
- * \param tm Pointer to a pan_beutil_time_t instance, whose <code>str</code>
- *   and <code>capacity</code> members must be valid. May not be NULL.
- * \param flags One or more of the
- *   <code>PANTHEIOS_GETCURRENTTIME_F_*</code> flags.
+ * \param tm Pointer to a pan_beutil_time_t instance, whose \c str and
+ *   \c capacity members must be valid. May not be NULL;
+ * \param flags One or more of the `PANTHEIOS_GETCURRENTTIME_F_*` flags;
  *
- * \return The number of characters written into the buffer, or 0 on failure
+ * \return The number of characters written into the buffer, or 0 on
+ *   failure.
  */
 PANTHEIOS_CALL(size_t) pantheios_util_getCurrentTime(pan_beutil_time_t* tm, int flags);
 

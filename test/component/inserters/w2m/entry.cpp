@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.component.inserters.w2m project.
  *
  * Created: 19th October 2006
- * Updated: 10th October 2026
+ * Updated: 12th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -12,7 +12,7 @@
 #include <pantheios/util/test/compiler_warnings_suppression.first_include.h>
 
 /* xTests header files */
-#include <xtests/xtests.h>
+#include <xtests/terse-api.h>
 
 /* Pantheios header files */
 #include <pantheios/pantheios.h>
@@ -42,35 +42,35 @@
 
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 
-static void test_1_01();
-static void test_1_02();
-static void test_1_03();
-static void test_1_04();
-static void test_1_05();
-static void test_1_06();
-static void test_1_07();
-static void test_1_08();
-static void test_1_09();
+static void TEST_pantheios_w2m_W_STR_EMPTY();
+static void TEST_pantheios_w2m_W_STR_SINGLE_CHAR();
+static void TEST_pantheios_w2m_W_STR_THREE_CHARS_WITH_BRACKETS();
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_04();
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_05();
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_06();
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_07();
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_08();
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_09();
 
-static void test_2_01();
-static void test_2_02();
-static void test_2_03();
-static void test_2_04();
-static void test_2_05();
-static void test_2_06();
-static void test_2_07();
-static void test_2_08();
-static void test_2_09();
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY();
+static void TEST_pantheios_w2m_STD_WSTRING_SINGLE_CHAR();
+static void TEST_pantheios_w2m_STD_WSTRING_THREE_CHARS_WITH_BRACKETS();
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_04();
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_05();
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_06();
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_07();
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_08();
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_09();
 
-static void test_3_01();
-static void test_3_02();
-static void test_3_03();
-static void test_3_04();
-static void test_3_05();
-static void test_3_06();
-static void test_3_07();
-static void test_3_08();
-static void test_3_09();
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY();
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_SINGLE_CHAR();
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_THREE_CHARS_WITH_BRACKETS();
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_04();
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_05();
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_06();
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_07();
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_08();
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_09();
 
 #endif /* !PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -94,35 +94,35 @@ int main(int argc, char* argv[])
     {
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 
-        XTESTS_RUN_CASE(test_1_01);
-        XTESTS_RUN_CASE(test_1_02);
-        XTESTS_RUN_CASE(test_1_03);
-        XTESTS_RUN_CASE(test_1_04);
-        XTESTS_RUN_CASE(test_1_05);
-        XTESTS_RUN_CASE(test_1_06);
-        XTESTS_RUN_CASE(test_1_07);
-        XTESTS_RUN_CASE(test_1_08);
-        XTESTS_RUN_CASE(test_1_09);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_W_STR_EMPTY);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_W_STR_SINGLE_CHAR);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_W_STR_THREE_CHARS_WITH_BRACKETS);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_04);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_05);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_06);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_07);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_08);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_09);
 
-        XTESTS_RUN_CASE(test_2_01);
-        XTESTS_RUN_CASE(test_2_02);
-        XTESTS_RUN_CASE(test_2_03);
-        XTESTS_RUN_CASE(test_2_04);
-        XTESTS_RUN_CASE(test_2_05);
-        XTESTS_RUN_CASE(test_2_06);
-        XTESTS_RUN_CASE(test_2_07);
-        XTESTS_RUN_CASE(test_2_08);
-        XTESTS_RUN_CASE(test_2_09);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_STD_WSTRING_EMPTY);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_STD_WSTRING_SINGLE_CHAR);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_STD_WSTRING_THREE_CHARS_WITH_BRACKETS);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_04);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_05);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_06);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_07);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_08);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_09);
 
-        XTESTS_RUN_CASE(test_3_01);
-        XTESTS_RUN_CASE(test_3_02);
-        XTESTS_RUN_CASE(test_3_03);
-        XTESTS_RUN_CASE(test_3_04);
-        XTESTS_RUN_CASE(test_3_05);
-        XTESTS_RUN_CASE(test_3_06);
-        XTESTS_RUN_CASE(test_3_07);
-        XTESTS_RUN_CASE(test_3_08);
-        XTESTS_RUN_CASE(test_3_09);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_SIMPLE_WSTRING_SINGLE_CHAR);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_SIMPLE_WSTRING_THREE_CHARS_WITH_BRACKETS);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_04);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_05);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_06);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_07);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_08);
+        XTESTS_RUN_CASE(TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_09);
 
 #endif /* !PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -138,7 +138,7 @@ int main(int argc, char* argv[])
 
 #ifndef PANTHEIOS_USE_WIDE_STRINGS
 
-static void test_1_01()
+static void TEST_pantheios_w2m_W_STR_EMPTY()
 {
     // 1. Setup
 
@@ -154,12 +154,12 @@ static void test_1_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_1_02()
+static void TEST_pantheios_w2m_W_STR_SINGLE_CHAR()
 {
     // 1. Setup
 
@@ -175,12 +175,12 @@ static void test_1_02()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("a", results[0].statement);
 }
 
-static void test_1_03()
+static void TEST_pantheios_w2m_W_STR_THREE_CHARS_WITH_BRACKETS()
 {
     // 1. Setup
 
@@ -196,12 +196,12 @@ static void test_1_03()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("[abc]", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("[abc]", results[0].statement);
 }
 
-static void test_1_04()
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_04()
 {
     // 1. Setup
 
@@ -217,12 +217,12 @@ static void test_1_04()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_1_05()
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_05()
 {
     // 1. Setup
 
@@ -238,12 +238,12 @@ static void test_1_05()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_1_06()
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_06()
 {
     // 1. Setup
 
@@ -259,12 +259,12 @@ static void test_1_06()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_1_07()
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_07()
 {
     // 1. Setup
 
@@ -280,12 +280,12 @@ static void test_1_07()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_1_08()
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_08()
 {
     // 1. Setup
 
@@ -301,12 +301,12 @@ static void test_1_08()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_1_09()
+static void TEST_pantheios_w2m_W_STR_EMPTY_DUPLICATE_09()
 {
     // 1. Setup
 
@@ -322,12 +322,12 @@ static void test_1_09()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_2_01()
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY()
 {
     // 1. Setup
 
@@ -343,12 +343,12 @@ static void test_2_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_2_02()
+static void TEST_pantheios_w2m_STD_WSTRING_SINGLE_CHAR()
 {
     // 1. Setup
 
@@ -364,12 +364,12 @@ static void test_2_02()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("a", results[0].statement);
 }
 
-static void test_2_03()
+static void TEST_pantheios_w2m_STD_WSTRING_THREE_CHARS_WITH_BRACKETS()
 {
     // 1. Setup
 
@@ -385,12 +385,12 @@ static void test_2_03()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("[abc]", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("[abc]", results[0].statement);
 }
 
-static void test_2_04()
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_04()
 {
     // 1. Setup
 
@@ -406,12 +406,12 @@ static void test_2_04()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_2_05()
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_05()
 {
     // 1. Setup
 
@@ -427,12 +427,12 @@ static void test_2_05()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_2_06()
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_06()
 {
     // 1. Setup
 
@@ -448,12 +448,12 @@ static void test_2_06()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_2_07()
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_07()
 {
     // 1. Setup
 
@@ -469,12 +469,12 @@ static void test_2_07()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_2_08()
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_08()
 {
     // 1. Setup
 
@@ -490,12 +490,12 @@ static void test_2_08()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_2_09()
+static void TEST_pantheios_w2m_STD_WSTRING_EMPTY_DUPLICATE_09()
 {
     // 1. Setup
 
@@ -511,12 +511,12 @@ static void test_2_09()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_3_01()
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY()
 {
     // 1. Setup
 
@@ -532,12 +532,12 @@ static void test_3_01()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_3_02()
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_SINGLE_CHAR()
 {
     // 1. Setup
 
@@ -553,12 +553,12 @@ static void test_3_02()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("a", results[0].statement);
 }
 
-static void test_3_03()
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_THREE_CHARS_WITH_BRACKETS()
 {
     // 1. Setup
 
@@ -574,12 +574,12 @@ static void test_3_03()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("[abc]", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("[abc]", results[0].statement);
 }
 
-static void test_3_04()
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_04()
 {
     // 1. Setup
 
@@ -595,12 +595,12 @@ static void test_3_04()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_3_05()
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_05()
 {
     // 1. Setup
 
@@ -616,12 +616,12 @@ static void test_3_05()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_3_06()
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_06()
 {
     // 1. Setup
 
@@ -637,12 +637,12 @@ static void test_3_06()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_3_07()
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_07()
 {
     // 1. Setup
 
@@ -658,12 +658,12 @@ static void test_3_07()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_3_08()
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_08()
 {
     // 1. Setup
 
@@ -679,12 +679,12 @@ static void test_3_08()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
-static void test_3_09()
+static void TEST_pantheios_w2m_SIMPLE_WSTRING_EMPTY_DUPLICATE_09()
 {
     // 1. Setup
 
@@ -700,9 +700,9 @@ static void test_3_09()
 
     pantheios::be::test::Results  results = pantheios::be::test::results();
 
-    XTESTS_TEST(!results.empty());
-    XTESTS_TEST_INTEGER_EQUAL(1u, results.size());
-    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", results[0].statement);
+    TEST(!results.empty());
+    TEST_INT_EQ(1u, results.size());
+    TEST_MS_EQ("", results[0].statement);
 }
 
 #endif /* !PANTHEIOS_USE_WIDE_STRINGS */
