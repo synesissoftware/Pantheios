@@ -5,7 +5,7 @@
  *          dependencies.
  *
  * Created: 4th August 2026
- * Updated: 18th October 2026
+ * Updated: 26th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -31,9 +31,7 @@
 # include <shwild/shwild.h>
 #endif
 
-#ifdef HAS_woad
-# include <woad/woad.h>
-#endif
+#include <woad/woad.h>
 
 #ifdef HAS_xTests
 # include <xtests/xtests.h>
@@ -82,41 +80,25 @@ version(
 
         stm
             << prefix
-#ifdef HAS_woad
             << WOAD_FG_BLUE_FOR(file)
-#endif
             << libname
-#ifdef HAS_woad
             << WOAD_RESET_FOR(file)
-#endif
             << ": "
-#ifdef HAS_woad
             << WOAD_FG_GREEN_FOR(file)
-#endif
             << 'v'
             << sz
-#ifdef HAS_woad
             << WOAD_RESET_FOR(file)
-#endif
             << " ("
-#ifdef HAS_woad
             << WOAD_FG_CYAN_FOR(file)
-#endif
             << macroname
-#ifdef HAS_woad
             << WOAD_RESET_FOR(file)
-#endif
             << " = "
-#ifdef HAS_woad
             << WOAD_FG_GREEN_FOR(file)
-#endif
             << "0x"
             << std::hex << std::setfill('0') << std::setw(8)
             << static_cast<unsigned>(libver)
             << std::dec
-#ifdef HAS_woad
             << WOAD_RESET_FOR(file)
-#endif
             << ")"
             << std::endl
             ;
@@ -128,17 +110,11 @@ version(
     {
         stm
             << prefix
-#ifdef HAS_woad
             << WOAD_FG_BLUE_FOR(file)
-#endif
             << libname
-#ifdef HAS_woad
             << WOAD_RESET_FOR(file)
-#endif
             << ": "
-#ifdef HAS_woad
             << WOAD_FG_GREEN_FOR(file)
-#endif
             << 'v'
             << ((libver >> 24) & 0xff)
             << '.'
@@ -147,28 +123,18 @@ version(
             << ((libver >> 8) & 0xff)
             << '.'
             << ((libver >> 0) & 0xff)
-#ifdef HAS_woad
             << WOAD_RESET_FOR(file)
-#endif
             << " ("
-#ifdef HAS_woad
             << WOAD_FG_CYAN_FOR(file)
-#endif
             << macroname
-#ifdef HAS_woad
             << WOAD_RESET_FOR(file)
-#endif
             << " = "
-#ifdef HAS_woad
             << WOAD_FG_GREEN_FOR(file)
-#endif
             << "0x"
             << std::hex << std::setfill('0') << std::setw(8)
             << static_cast<unsigned>(libver)
             << std::dec
-#ifdef HAS_woad
             << WOAD_RESET_FOR(file)
-#endif
             << ")"
             << std::endl
             ;
@@ -223,14 +189,11 @@ int main(int /* argc */, char* /* argv */[])
     }
 #endif
 
-#ifdef HAS_woad
-
     {
         unsigned const libver = WOAD_VER;
 
         version(std::cout, stdout, "\t", "woad", "WOAD_VER", libver);
     }
-#endif
 
 #ifdef HAS_xTests
 
