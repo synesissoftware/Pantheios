@@ -4,7 +4,7 @@
  * Purpose: Pantheios Core and Util APIs.
  *
  * Created: 21st June 2005
- * Updated: 25th October 2026
+ * Updated: 26th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -225,9 +225,9 @@
 #  define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 # endif
 
-# if _STLSOFT_VER < 0x010B01C8
+# if _STLSOFT_VER < 0x010B02FF
 
-#  error This version Pantheios requires STLSoft 1.11.1 rc 8, or later. (www.stlsoft.org)
+#  error This version Pantheios requires STLSoft 1.11.2, or later. (www.stlsoft.org)
 # endif
 #else
 

@@ -5,7 +5,7 @@
  *          dependencies.
  *
  * Created: 4th August 2026
- * Updated: 14th October 2026
+ * Updated: 26th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -32,6 +32,10 @@
 #endif
 
 #include <woad/woad.h>
+
+#ifdef HAS_xTests
+# include <xtests/xtests.h>
+#endif
 
 #include <iomanip>
 #include <iostream>
@@ -190,6 +194,15 @@ int main(int /* argc */, char* /* argv */[])
 
         version(std::cout, stdout, "\t", "woad", "WOAD_VER", libver);
     }
+
+#ifdef HAS_xTests
+
+    {
+        unsigned const libver = _XTESTS_VER;
+
+        version(std::cout, stdout, "\t", "xTests", "_XTESTS_VER", libver);
+    }
+#endif
 
     return EXIT_SUCCESS;
 }

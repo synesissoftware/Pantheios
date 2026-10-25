@@ -1,7 +1,7 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
-## 1.0.1-rc5 - 25th October 2026
+## 1.0.1-rc5 - 26th October 2026
 
 * backends:
   * **bec.AnsiConsole** colour handling now uses **woad**: severity colours are **woad** SGR sequences (`WOAD_BOLD` / `WOAD_BLINKING` where used, plus foreground and background), and emission follows `woad_seq_for_stream()` unless **`noColours`** or **`forceAnsiEscapeSequences`** overrides that policy;
