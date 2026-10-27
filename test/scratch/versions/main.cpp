@@ -60,62 +60,50 @@ version(
 ,   char const* libname
 ,   char const* macroname
 ,   T_integer   libver
+,   char const* version_string = nullptr
 )
 {
+    char        sz[100];
+    char const* rendered = version_string;
+
 #ifdef HAS_Diagnosticism
 
-    char    sz[100];
-    size_t  sz_len;
-
-    if (0 == diagnosticism_calc_version_string(
-        sz, sizeof(sz)
-    ,   ((libver >> 24) & 0xff)
-    ,   ((libver >> 16) & 0xff)
-    ,   ((libver >> 8) & 0xff)
-    ,   ((libver >> 0) & 0xff)
-    ,   &sz_len
-    ))
+    if (nullptr == rendered)
     {
-        sz[sz_len] = '\0';
+        size_t  sz_len;
 
-        stm
-            << prefix
-            << WOAD_FG_BLUE_FOR(file)
-            << libname
-            << WOAD_RESET_FOR(file)
-            << ": "
-            << WOAD_FG_GREEN_FOR(file)
-            << 'v'
-            << sz
-            << WOAD_RESET_FOR(file)
-            << " ("
-            << WOAD_FG_CYAN_FOR(file)
-            << macroname
-            << WOAD_RESET_FOR(file)
-            << " = "
-            << WOAD_FG_GREEN_FOR(file)
-            << "0x"
-            << std::hex << std::setfill('0') << std::setw(8)
-            << static_cast<unsigned>(libver)
-            << std::dec
-            << WOAD_RESET_FOR(file)
-            << ")"
-            << std::endl
-            ;
+        if (0 == diagnosticism_calc_version_string(
+            sz, sizeof(sz)
+        ,   ((libver >> 24) & 0xff)
+        ,   ((libver >> 16) & 0xff)
+        ,   ((libver >> 8) & 0xff)
+        ,   ((libver >> 0) & 0xff)
+        ,   &sz_len
+        ))
+        {
+            sz[sz_len] = '\0';
+            rendered = sz;
+        }
+    }
+#endif /* HAS_Diagnosticism */
 
-        return;
+    stm
+        << prefix
+        << WOAD_FG_BLUE_FOR(file)
+        << libname
+        << WOAD_RESET_FOR(file)
+        << ": "
+        << WOAD_FG_GREEN_FOR(file)
+        << 'v'
+        ;
+
+    if (nullptr != rendered)
+    {
+        stm << rendered;
     }
     else
-#endif /* HAS_Diagnosticism */
     {
         stm
-            << prefix
-            << WOAD_FG_BLUE_FOR(file)
-            << libname
-            << WOAD_RESET_FOR(file)
-            << ": "
-            << WOAD_FG_GREEN_FOR(file)
-            << 'v'
             << ((libver >> 24) & 0xff)
             << '.'
             << ((libver >> 16) & 0xff)
@@ -123,22 +111,25 @@ version(
             << ((libver >> 8) & 0xff)
             << '.'
             << ((libver >> 0) & 0xff)
-            << WOAD_RESET_FOR(file)
-            << " ("
-            << WOAD_FG_CYAN_FOR(file)
-            << macroname
-            << WOAD_RESET_FOR(file)
-            << " = "
-            << WOAD_FG_GREEN_FOR(file)
-            << "0x"
-            << std::hex << std::setfill('0') << std::setw(8)
-            << static_cast<unsigned>(libver)
-            << std::dec
-            << WOAD_RESET_FOR(file)
-            << ")"
-            << std::endl
             ;
     }
+
+    stm
+        << WOAD_RESET_FOR(file)
+        << " ("
+        << WOAD_FG_CYAN_FOR(file)
+        << macroname
+        << WOAD_RESET_FOR(file)
+        << " = "
+        << WOAD_FG_GREEN_FOR(file)
+        << "0x"
+        << std::hex << std::setfill('0') << std::setw(8)
+        << static_cast<unsigned>(libver)
+        << std::dec
+        << WOAD_RESET_FOR(file)
+        << ")"
+        << std::endl
+        ;
 }
 
 
@@ -217,7 +208,7 @@ int main(int /* argc */, char* /* argv */[])
     {
         unsigned const libver = WOAD_VER;
 
-        version(std::cout, stdout, "\t", "woad", "WOAD_VER", libver);
+        version(std::cout, stdout, "\t", "woad", "WOAD_VER", libver, woad::version_string());
     }
 
 #ifdef HAS_xTests
