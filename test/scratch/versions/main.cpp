@@ -5,7 +5,7 @@
  *          dependencies.
  *
  * Created: 4th August 2026
- * Updated: 26th October 2026
+ * Updated: 27th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -60,62 +60,50 @@ version(
 ,   char const* libname
 ,   char const* macroname
 ,   T_integer   libver
+,   char const* version_string = nullptr
 )
 {
+    char const* rendered = version_string;
 #ifdef HAS_Diagnosticism
 
-    char    sz[100];
-    size_t  sz_len;
+    char        sz[100];
 
-    if (0 == diagnosticism_calc_version_string(
-        sz, sizeof(sz)
-    ,   ((libver >> 24) & 0xff)
-    ,   ((libver >> 16) & 0xff)
-    ,   ((libver >> 8) & 0xff)
-    ,   ((libver >> 0) & 0xff)
-    ,   &sz_len
-    ))
+    if (nullptr == rendered)
     {
-        sz[sz_len] = '\0';
+        size_t  sz_len;
 
-        stm
-            << prefix
-            << WOAD_FG_BLUE_FOR(file)
-            << libname
-            << WOAD_RESET_FOR(file)
-            << ": "
-            << WOAD_FG_GREEN_FOR(file)
-            << 'v'
-            << sz
-            << WOAD_RESET_FOR(file)
-            << " ("
-            << WOAD_FG_CYAN_FOR(file)
-            << macroname
-            << WOAD_RESET_FOR(file)
-            << " = "
-            << WOAD_FG_GREEN_FOR(file)
-            << "0x"
-            << std::hex << std::setfill('0') << std::setw(8)
-            << static_cast<unsigned>(libver)
-            << std::dec
-            << WOAD_RESET_FOR(file)
-            << ")"
-            << std::endl
-            ;
+        if (0 == diagnosticism_calc_version_string(
+            sz, sizeof(sz)
+        ,   ((libver >> 24) & 0xff)
+        ,   ((libver >> 16) & 0xff)
+        ,   ((libver >> 8) & 0xff)
+        ,   ((libver >> 0) & 0xff)
+        ,   &sz_len
+        ))
+        {
+            sz[sz_len] = '\0';
+            rendered = sz;
+        }
+    }
+#endif /* HAS_Diagnosticism */
 
-        return;
+    stm
+        << prefix
+        << WOAD_FG_BLUE_FOR(file)
+        << libname
+        << WOAD_RESET_FOR(file)
+        << ": "
+        << WOAD_FG_GREEN_FOR(file)
+        << 'v'
+        ;
+
+    if (nullptr != rendered)
+    {
+        stm << rendered;
     }
     else
-#endif /* HAS_Diagnosticism */
     {
         stm
-            << prefix
-            << WOAD_FG_BLUE_FOR(file)
-            << libname
-            << WOAD_RESET_FOR(file)
-            << ": "
-            << WOAD_FG_GREEN_FOR(file)
-            << 'v'
             << ((libver >> 24) & 0xff)
             << '.'
             << ((libver >> 16) & 0xff)
@@ -123,22 +111,25 @@ version(
             << ((libver >> 8) & 0xff)
             << '.'
             << ((libver >> 0) & 0xff)
-            << WOAD_RESET_FOR(file)
-            << " ("
-            << WOAD_FG_CYAN_FOR(file)
-            << macroname
-            << WOAD_RESET_FOR(file)
-            << " = "
-            << WOAD_FG_GREEN_FOR(file)
-            << "0x"
-            << std::hex << std::setfill('0') << std::setw(8)
-            << static_cast<unsigned>(libver)
-            << std::dec
-            << WOAD_RESET_FOR(file)
-            << ")"
-            << std::endl
             ;
     }
+
+    stm
+        << WOAD_RESET_FOR(file)
+        << " ("
+        << WOAD_FG_CYAN_FOR(file)
+        << macroname
+        << WOAD_RESET_FOR(file)
+        << " = "
+        << WOAD_FG_GREEN_FOR(file)
+        << "0x"
+        << std::hex << std::setfill('0') << std::setw(8)
+        << static_cast<unsigned>(libver)
+        << std::dec
+        << WOAD_RESET_FOR(file)
+        << ")"
+        << std::endl
+        ;
 }
 
 
@@ -148,13 +139,18 @@ version(
 
 int main(int /* argc */, char* /* argv */[])
 {
+    int efferents_count = 0;
+
     {
         unsigned const libver = PANTHEIOS_VER;
 
         version(std::cout, stdout, "", "Pantheios", "PANTHEIOS_VER", libver);
     }
 
-    std::cout << "\n" << "efferent dependencies:" << std::endl;
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = _STLSOFT_VER;
@@ -163,6 +159,11 @@ int main(int /* argc */, char* /* argv */[])
     }
 
 #ifdef HAS_b64
+
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = B64_VER;
@@ -173,6 +174,11 @@ int main(int /* argc */, char* /* argv */[])
 
 #ifdef HAS_Diagnosticism
 
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
+
     {
         unsigned const libver = DIAGNOSTICISM_VER;
 
@@ -182,6 +188,11 @@ int main(int /* argc */, char* /* argv */[])
 
 #ifdef HAS_shwild
 
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
+
     {
         unsigned const libver = SHWILD_VER;
 
@@ -189,13 +200,23 @@ int main(int /* argc */, char* /* argv */[])
     }
 #endif
 
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
+
     {
         unsigned const libver = WOAD_VER;
 
-        version(std::cout, stdout, "\t", "woad", "WOAD_VER", libver);
+        version(std::cout, stdout, "\t", "woad", "WOAD_VER", libver, woad::version_string());
     }
 
 #ifdef HAS_xTests
+
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = _XTESTS_VER;
@@ -206,7 +227,6 @@ int main(int /* argc */, char* /* argv */[])
 
     return EXIT_SUCCESS;
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 

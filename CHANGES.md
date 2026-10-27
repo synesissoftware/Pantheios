@@ -1,6 +1,11 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1-rc6 - 27th October 2026
+
+* Defined `HAS_<Pkg>` and `HAS_<PKG>` when a Synesis package other than **STLSoft** is detected;
+
+
 ## 1.0.1-rc5 - 26th October 2026
 
 * backends:
