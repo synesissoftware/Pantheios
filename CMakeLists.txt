@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  12th October 2026
+# Updated:  27th October 2026
 #
 # ######################################################################## #
 
@@ -216,7 +216,10 @@ find_package(woad REQUIRED)
 
 message("-- CMake package woad found (version ${woad_VERSION})")
 
-add_compile_definitions(HAS_woad)
+add_compile_definitions(
+	HAS_woad
+	HAS_WOAD
+)
 
 
 # ############################
@@ -328,7 +331,10 @@ if(NOT NO_B64)
 
 		message("-- CMake package b64 found (version ${b64_VERSION})")
 
-		add_compile_definitions(HAS_b64)
+		add_compile_definitions(
+			HAS_b64
+			HAS_B64
+		)
 	endif(b64_FOUND)
 endif()
 
@@ -349,7 +355,10 @@ if(NOT NO_DIAGNOSTICISM)
 
 		message("-- CMake package Diagnosticism found (version ${Diagnosticism_VERSION})")
 
-		add_compile_definitions(HAS_Diagnosticism)
+		add_compile_definitions(
+			HAS_Diagnosticism
+			HAS_DIAGNOSTICISM
+		)
 	endif(Diagnosticism_FOUND)
 endif()
 
@@ -372,9 +381,13 @@ if(NOT NO_SHWILD)
 
 			message("-- CMake package shwild found (version ${shwild_VERSION})")
 
-			add_compile_definitions(HAS_shwild)
+			add_compile_definitions(
+				HAS_shwild
+				HAS_SHWILD
+			)
+
 			add_compile_definitions(PANTHEIOS_HAS_SHWILD)
-			add_compile_definitions(XTESTS_HAS_SHWILD)
+			add_compile_definitions(XTESTS_HAS_SHWILD) # Legacy form, and should be removed later
 		else(shwild_FOUND)
 
 			add_compile_definitions(PANTHEIOS_NO_SHWILD)
@@ -414,13 +427,16 @@ endif(Threads_FOUND)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.26.4)
+	set(xTests_REQUIRED_VERSION_ 0.28)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
 
-	add_compile_definitions(HAS_xTests)
+	add_compile_definitions(
+		HAS_xTests
+		HAS_XTESTS
+	)
 endif(BUILD_TESTING)
 
 
