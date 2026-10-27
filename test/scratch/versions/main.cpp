@@ -5,7 +5,7 @@
  *          dependencies.
  *
  * Created: 4th August 2026
- * Updated: 26th October 2026
+ * Updated: 27th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -148,13 +148,18 @@ version(
 
 int main(int /* argc */, char* /* argv */[])
 {
+    int efferents_count = 0;
+
     {
         unsigned const libver = PANTHEIOS_VER;
 
         version(std::cout, stdout, "", "Pantheios", "PANTHEIOS_VER", libver);
     }
 
-    std::cout << "\n" << "efferent dependencies:" << std::endl;
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = _STLSOFT_VER;
@@ -163,6 +168,11 @@ int main(int /* argc */, char* /* argv */[])
     }
 
 #ifdef HAS_b64
+
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = B64_VER;
@@ -173,6 +183,11 @@ int main(int /* argc */, char* /* argv */[])
 
 #ifdef HAS_Diagnosticism
 
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
+
     {
         unsigned const libver = DIAGNOSTICISM_VER;
 
@@ -182,12 +197,22 @@ int main(int /* argc */, char* /* argv */[])
 
 #ifdef HAS_shwild
 
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
+
     {
         unsigned const libver = SHWILD_VER;
 
         version(std::cout, stdout, "\t", "shwild", "SHWILD_VER", libver);
     }
 #endif
+
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = WOAD_VER;
@@ -196,6 +221,11 @@ int main(int /* argc */, char* /* argv */[])
     }
 
 #ifdef HAS_xTests
+
+    if (0 == efferents_count++)
+    {
+        std::cout << "\n" << "efferent dependencies:" << std::endl;
+    }
 
     {
         unsigned const libver = _XTESTS_VER;
@@ -206,7 +236,6 @@ int main(int /* argc */, char* /* argv */[])
 
     return EXIT_SUCCESS;
 }
-
 
 /* ///////////////////////////// end of file //////////////////////////// */
 
