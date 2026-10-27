@@ -63,10 +63,10 @@ version(
 ,   char const* version_string = nullptr
 )
 {
-    char        sz[100];
     char const* rendered = version_string;
-
 #ifdef HAS_Diagnosticism
+
+    char        sz[100];
 
     if (nullptr == rendered)
     {
