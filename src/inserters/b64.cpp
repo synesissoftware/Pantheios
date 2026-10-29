@@ -4,11 +4,11 @@
  * Purpose: Implementation of the b64 inserter class.
  *
  * Created: 31st July 2006
- * Updated: 20th October 2024
+ * Updated: 29th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -51,6 +51,7 @@
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 # include <pantheios/util/memory/auto_buffer_selector.hpp>
 # include <stlsoft/conversion/char_conversions.hpp>
+# include <stlsoft/string/encoding/mbstowcs.h>
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 /* b64 header files */
@@ -202,18 +203,7 @@ void b64::construct_()
             cch = b64_api::b64_encode2(m_pv, m_cb, &buff[0], cch, m_flags, m_lineLen, m_rc);
             buff[cch] = '\0';
 
-# if defined(STLSOFT_COMPILER_IS_MSVC) && \
-     _MSC_VER >= 1400
-
-#  pragma warning(push)
-#  pragma warning(disable : 4996)
-# endif
-            ::mbstowcs(value, buff.data(), cch);
-# if defined(STLSOFT_COMPILER_IS_MSVC) && \
-     _MSC_VER >= 1400
-
-#  pragma warning(pop)
-# endif
+            stlsoft_C_mbstowcs(value, 1 + cch, buff.data(), cch);
             value[cch] = '\0';
         }
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */

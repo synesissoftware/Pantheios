@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/core/api.cpp
+ * File:    src/core/api.cpp
  *
- * Purpose:     Implementation file for Pantheios core API.
+ * Purpose: Implementation file for Pantheios core API.
  *
- * Created:     21st June 2005
- * Updated:     16th July 2024
+ * Created: 21st June 2005
+ * Updated: 29th October 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -80,6 +80,9 @@
 #include <pantheios/util/memory/auto_buffer_selector.hpp>
 #include <stlsoft/shims/access/string.hpp>
 #include <stlsoft/smartptr/scoped_handle.hpp>
+#ifdef PANTHEIOS_USE_WIDE_STRINGS
+# include <stlsoft/string/encoding/wcstombs.h>
+#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 #include <stlsoft/synch/lock_scope.hpp>
 
 #include <platformstl/platformstl.h>
@@ -190,30 +193,6 @@ namespace std
 } /* namespace std */
 
 # define copy                                               daft_msvc_copy_workaround_
-
-/* Also pulling the same trick for wcstombs
- */
-
-namespace
-{
-
-    size_t daft_msvc_wcstombs_workaround_(
-        char*           s1
-    ,   const wchar_t*  s2
-    ,   size_t          n
-    )
-    {
-# pragma warning(push)
-# pragma warning(disable : 4996)
-
-        return ::wcstombs(s1, s2, n);
-
-# pragma warning(pop)
-    }
-} /* anonymous namespace */
-
-# define wcstombs                                           daft_msvc_wcstombs_workaround_
-
 
 # ifdef PANTHEIOS_STLSOFT_1_12_OR_LATER
 #  include <stlsoft/algorithm/std/alt.hpp>
@@ -810,8 +789,9 @@ namespace
                 // in bail-out.
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
+
                 char            processIdentity_[PANTHEIOS_MAXIMUM_MAX_PROCESS_IDENTITY_LENGTH + 1];
-                size_t const    n = ::wcstombs(processIdentity_, processIdentity, STLSOFT_NUM_ELEMENTS(processIdentity_) - 1);
+                size_t const    n = stlsoft_C_wcstombs(processIdentity_, STLSOFT_NUM_ELEMENTS(processIdentity_), processIdentity, STLSOFT_NUM_ELEMENTS(processIdentity_) - 1);
                 char const*     processIdentity_m;
 
                 if (n < STLSOFT_NUM_ELEMENTS(processIdentity_))
@@ -824,9 +804,9 @@ namespace
                     processIdentity_m = NULL;
                 }
 
-# define pantheios_core_impl_getProcessIdentity_a() processIdentity_m
+# define pantheios_core_impl_getProcessIdentity_a()         processIdentity_m
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
-# define pantheios_core_impl_getProcessIdentity_a() processIdentity
+# define pantheios_core_impl_getProcessIdentity_a()         processIdentity
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #ifdef PANTHEIOS_DEFINE_BACK_END_MAP

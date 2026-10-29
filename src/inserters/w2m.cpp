@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/inserters/w2m.cpp
+ * File:    src/inserters/w2m.cpp
  *
- * Purpose:     Implementation of the pantheios::w2m inserter class.
+ * Purpose: Implementation of the pantheios::w2m inserter class.
  *
- * Created:     7th August 2008
- * Updated:     16th January 2023
+ * Created: 7th August 2008
+ * Updated: 29th October 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,7 +50,8 @@
 #include <pantheios/internal/nox.h>
 
 #include <pantheios/inserters/w2m.hpp>
-#include <pantheios/internal/safestr.h>
+
+#include <stlsoft/string/encoding/wcstombs.h>
 
 /* Standard C header files */
 #include <stdio.h>
@@ -138,25 +139,7 @@ void w2m::construct_()
 
         if (NULL != m_result)
         {
-#ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
-            size_t len;
-
-            if (0 != ::wcstombs_s(&len, m_result, cb, m_source, m_sourceLen))
-            {
-                pantheios_inserterDeallocate(m_result);
-
-                m_result = NULL;
-            }
-            else
-            {
-                m_result[len] = '\0';
-
-                m_length = len - 1;
-            }
-#else /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-            size_t len = ::wcstombs(m_result, m_source, cb);
-
-            PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL((size_t(-1) == len || len < cb), "insufficient buffer");
+            size_t len = stlsoft_C_wcstombs(m_result, cb, m_source, m_sourceLen);
 
             if (size_t(-1) == len)
             {
@@ -166,11 +149,8 @@ void w2m::construct_()
             }
             else
             {
-                m_result[len] = '\0';
-
                 m_length = len;
             }
-#endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
         }
     }
 }
