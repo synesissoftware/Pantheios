@@ -1,6 +1,15 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1-rc7 - 30th October 2026
+
+* dependencies:
+  * now requires **STLSoft** **1.11.4** (or later) — compile-time floor `_STLSOFT_VER < 0x010B04FF`;
+* inserters / core:
+  * multibyte and wide conversions in **m2w**, **w2m**, **blob**, **b64**, and process identity call `stlsoft_C_mbstowcs` / `stlsoft_C_wcstombs`; removed the MSVC `wcstombs` workaround in **src/core/api.cpp**;
+  * boolean flag tokens in **src/util/be.parse.cpp** compare with `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`;
+
+
 ## 1.0.1-rc6 - 27th October 2026
 
 * Defined `HAS_<Pkg>` and `HAS_<PKG>` when a Synesis package other than **STLSoft** is detected;
