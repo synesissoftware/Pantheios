@@ -43,7 +43,7 @@ Further reading: [http://pantheios.org/](http://pantheios.org/), [FAQ.md](./FAQ.
 
 ## Developer Experience
 
-Install [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.1-rc8** or later) and [**woad**](https://github.com/synesissoftware/woad) via **CMake**, then clone **Pantheios** and:
+Install [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.4** or later) and [**woad**](https://github.com/synesissoftware/woad) via **CMake**, then clone **Pantheios** and:
 
 ```bash
 ./prepare_cmake.sh -m -v
@@ -121,7 +121,7 @@ See **examples/cpp/linking/implicit_link_1** for the canonical form. C programs 
 
 Detailed instructions — via **CMake**, via bundling, via custom makefile parameters — are provided in the accompanying [INSTALL.md](./INSTALL.md) file.
 
-In short: install [**STLSoft** 1.11](https://github.com/synesissoftware/STLSoft) and [**woad**](https://github.com/synesissoftware/woad) (and optionally [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild)) via **CMake**, clone **Pantheios**, run **prepare_cmake.sh**, build, then `cmake --install`.
+In short: install [**STLSoft** 1.11.4](https://github.com/synesissoftware/STLSoft) and [**woad**](https://github.com/synesissoftware/woad) (and optionally [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild)) via **CMake**, clone **Pantheios**, run **prepare_cmake.sh**, build, then `cmake --install`.
 
 
 ## Components
@@ -197,7 +197,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 
 | Dependency | Role | Required? |
 | ---------- | ---- | --------- |
-| [**STLSoft**](https://github.com/synesissoftware/STLSoft) **1.11.1-rc8** or later | Implementation and interface support | ✅ Always |
+| [**STLSoft**](https://github.com/synesissoftware/STLSoft) **1.11.4** or later | Implementation and interface support | ✅ Always |
 | [**woad**](https://github.com/synesissoftware/woad) | ANSI colour for **bec.AnsiConsole** | ✅ Always |
 | [**b64**](https://github.com/synesissoftware/b64) | `pantheios::b64` inserter | ⚪ Optional (`PANTHEIOS_NO_B64` when absent) |
 | [**Diagnosticism**](https://github.com/synesissoftware/Diagnosticism) | Version strings in scratch / examples | ⚪ Optional; tests / scratch only |

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.inserter.stream_character project.
  *
  * Created: 9th May 2014
- * Updated: 12th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.inserter.stream_character", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserters.stream_character", verbosity))
     {
         XTESTS_RUN_CASE(TEST_pantheios_stream_character_TYPE_EXISTS);
         XTESTS_RUN_CASE(TEST_pantheios_stream_character_PLAIN_CHARACTERS);
