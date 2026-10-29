@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.inserter.integer project.
  *
  * Created: 21st December 2010
- * Updated: 12th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.inserter.integer", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserters.integer", verbosity))
     {
         XTESTS_RUN_CASE(TEST_pantheios_integer_ZERO);
         XTESTS_RUN_CASE(TEST_pantheios_integer_SIGNED_ONES);
