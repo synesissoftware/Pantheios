@@ -1,6 +1,15 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1-rc8 - 2nd November 2026
+
+* dependencies:
+  * **STLSoft** minimum is **1.11.5** (`0x010B05FF`);
+  * **woad** minimum is **0.2.1**;
+  * **xTests** minimum is **0.28.2**;
+* version:
+  * added `PANTHEIOS_VER_1_0_1_RC8`;
+
 ## 1.0.1-rc7 - 30th October 2026
 
 * dependencies:

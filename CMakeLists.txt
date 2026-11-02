@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  30th October 2026
+# Updated:  2nd November 2026
 #
 # ######################################################################## #
 
@@ -178,7 +178,7 @@ elseif(DEFINED ENV{STLSOFT})
 	set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
 else()
 
-	set(STLSoft_REQUIRED_VERSION_ 1.11.4)
+	set(STLSoft_REQUIRED_VERSION_ 1.11.5)
 
 	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 
@@ -218,9 +218,11 @@ endif()
 # Required by bec.AnsiConsole, and by the stock back-end libraries that
 # compile that translation unit, for SGR sequences and stream policy.
 
-find_package(woad REQUIRED)
+set(woad_REQUIRED_VERSION_ 0.2.1)
 
-message("-- CMake package woad found (version ${woad_VERSION})")
+find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
+
+message("-- CMake package woad found (version ${woad_VERSION}; ${woad_REQUIRED_VERSION_} requested)")
 
 add_compile_definitions(
 	HAS_woad
@@ -433,7 +435,7 @@ endif(Threads_FOUND)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.28)
+	set(xTests_REQUIRED_VERSION_ 0.28.2)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
