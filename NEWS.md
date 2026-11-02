@@ -3,6 +3,7 @@
 
 | Date                | News Item                                                     | Details    |
 | ------------------- | ------------------------------------------------------------- | ---------- |
+| 2nd November 2026   | Release of [Pantheios 1.0.1-rc8](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc8) | **STLSoft** **1.11.5**; **woad** **0.2.1**; **xTests** **0.28.2** |
 | 30th October 2026   | Release of [Pantheios 1.0.1-rc7](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc7) | **STLSoft** **1.11.4** floor; `stlsoft_C_mbstowcs` / `stlsoft_C_wcstombs` |
 | 27th October 2026   | Release of [Pantheios 1.0.1-rc6](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc6) | `HAS_<Pkg>` / `HAS_<PKG>` for detected Synesis packages |
 | 26th October 2026   | [Pantheios 1.0.1-rc5 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc5) | **woad** required for **bec.AnsiConsole** colour; coloured **test.scratch.versions**; `PANTHEIOS_VER_1_0_1_RC5` |
