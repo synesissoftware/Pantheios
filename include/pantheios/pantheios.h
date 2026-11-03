@@ -1046,11 +1046,10 @@ PANTHEIOS_CALL(int) pantheios_logprintf(
     pan_sev_t               severity
 ,   pantheios_char_t const* format
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 #if defined(STLSOFT_COMPILER_IS_GCC) /* TODO: Change this to proper discriminated feature */
 __attribute__((format(printf,2,3)))
 #endif /* compiler */
-PANTHEIOS_NOEXCEPT
 ;
 
 /** vprintf()-form of logging function, passing the formatted result to
@@ -1261,11 +1260,10 @@ PANTHEIOS_CALL(int)     pantheios_isInitialised(void) PANTHEIOS_NOEXCEPT;
 #  if defined(STLSOFT_COMPILER_IS_MSVC)
 __declspec(noreturn)
 #  endif /* compiler */
-PANTHEIOS_CALL(void)    pantheios_exitProcess(int code)
+PANTHEIOS_CALL(void)    pantheios_exitProcess(int code) PANTHEIOS_NOEXCEPT
 #  if defined(STLSOFT_COMPILER_IS_GCC)
 __attribute__((noreturn))
 #  endif /* compiler */
-PANTHEIOS_NOEXCEPT
 ;
 /** [Currently undocumented] Equivalent to pantheios_exitProcess().
  *

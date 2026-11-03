@@ -106,12 +106,11 @@ PANTHEIOS_CALL(int) pantheios_util_snprintf(
 ,   size_t                  cchDest
 ,   const pantheios_char_t* fmt
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 /* TODO: Change this to proper discriminated feature */
 #if defined(STLSOFT_COMPILER_IS_GCC)
 __attribute__((format(printf,3,4)))
 #endif /* compiler */
-PANTHEIOS_NOEXCEPT
 ;
 
 /** A \c vsnprintf()-equivalent that insulates Pantheios
@@ -142,12 +141,11 @@ pantheios_util_snprintf_a(
 ,   size_t              cchDest
 ,   char const*         fmt
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 /* TODO: Change this to proper discriminated feature */
 #if defined(STLSOFT_COMPILER_IS_GCC)
 __attribute__((format(printf,3,4)))
 #endif /* compiler */
-PANTHEIOS_NOEXCEPT
 ;
 PANTHEIOS_CALL(int)
 pantheios_util_vsnprintf_a(
@@ -165,12 +163,11 @@ pantheios_util_snprintf_w(
 ,   size_t              cchDest
 ,   wchar_t const*      fmt
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 /* TODO: Change this to proper discriminated feature */
 #if defined(STLSOFT_COMPILER_IS_GCC)
 __attribute__((format(printf,3,4)))
 #endif /* compiler */
-PANTHEIOS_NOEXCEPT
 ;
 PANTHEIOS_CALL(int)
 pantheios_util_vsnprintf_w(
