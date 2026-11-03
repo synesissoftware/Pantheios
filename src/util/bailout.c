@@ -4,11 +4,11 @@
  * Purpose: Implementation file for low-level Pantheios bail out.
  *
  * Created: 21st June 2005
- * Updated: 19th October 2024
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -259,7 +259,7 @@ pantheios_onBailOut6(
 ,   char const* qualifier
 ,   char const* feName
 ,   char const* beName
-)
+) PANTHEIOS_NOEXCEPT
 {
     if (NULL == feName &&
         NULL == beName)
@@ -386,7 +386,7 @@ pantheios_onBailOut4(
 ,   char const* message
 ,   char const* processId
 ,   char const* qualifier
-)
+) PANTHEIOS_NOEXCEPT
 {
     if (NULL == qualifier)
     {
@@ -497,7 +497,7 @@ pantheios_onBailOut3(
     int         severity
 ,   char const* message
 ,   char const* processId
-)
+) PANTHEIOS_NOEXCEPT
 {
     size_t          cchMessage;
     char            message_[PANTHEIOS_BAILOUT_STACK_BUFFER_SIZE];
@@ -998,7 +998,7 @@ pantheios_onBailOut6_w(
 ,   wchar_t const*  qualifier
 ,   wchar_t const*  feName
 ,   wchar_t const*  beName
-)
+) PANTHEIOS_NOEXCEPT
 {
 #ifndef STLSOFT_NO_NAMESPACE
     using ::stlsoft::c_str_len_w;
@@ -1026,7 +1026,7 @@ pantheios_onBailOut4_w(
 ,   wchar_t const*  message
 ,   wchar_t const*  processId
 ,   wchar_t const*  qualifier
-)
+) PANTHEIOS_NOEXCEPT
 {
 #ifndef STLSOFT_NO_NAMESPACE
     using ::stlsoft::c_str_len_w;
@@ -1053,7 +1053,7 @@ pantheios_onBailOut3_w(
     int             severity
 ,   wchar_t const*  message
 ,   wchar_t const*  processId
-)
+) PANTHEIOS_NOEXCEPT
 {
 #ifndef STLSOFT_NO_NAMESPACE
     using ::stlsoft::c_str_len_w;

@@ -32,8 +32,22 @@
 #### 1.0.1-rc10 (3rd November 2026)
 
 * [ ] `PANTHEIOS_NOEXCEPT()`;
+  * Cannot be applied. These throw, lock, call a front-end or back-end, or may rethrow from a catch-all (`PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS`):
+    * `pantheios_init()`, `pantheios_uninit()`;
+    * `pantheios_isSeverityLogged()`, `pantheios_getProcessIdentity()`;
+    * `pantheios_log_n()`, the generated `pantheios_log_N()`, `pantheios_logputs()`, `pantheios_puts()`, `pantheios_logassertfail()`, `pantheios_dispatch()`;
+    * `pantheios_malloc()`, `pantheios_getNextBackEndId()`;
+    * `pantheios_call_fe_init()`, `pantheios_call_fe_uninit()`, `pantheios_call_fe_getProcessIdentity()`, `pantheios_call_fe_isSeverityLogged()`;
+    * `pantheios_call_be_void_init()`, `pantheios_call_be_X_init()`, `pantheios_call_be_uninit()`, `pantheios_call_be_logEntry()`;
+    * `pantheios_be_parseBooleanArg()`, `pantheios_be_parseStringArg()`, `pantheios_be_parseStockArgs()`;
+    * `pantheios_util_getCurrentTime()`;
+    * `pantheios_util_strdup_throw()`, `util::strdup_throw()`;
+    * `getHostName(stlsoft::auto_buffer&)`;
+    * stock inserter classes whose constructors or `c_str()` paths allocate (`args`, `b64`, `blob`, `hostid`, `integer`, `m2w`, `pointer`, `processid`, `real`, `slice`, `threadid`, `w2m`);
+  * Still to classify: stock front-end and back-end entry points, and any inserter method that only forwards to an API already marked `PANTHEIOS_NOEXCEPT`;
 * [ ] Additional performance tests;
 * [ ] Review all download/build/install documentation (**INSTALL.md**);
+* [ ] Sort out **build/** directory;
 
 
 #### 1.0.1-rc9 (3rd November 2026)

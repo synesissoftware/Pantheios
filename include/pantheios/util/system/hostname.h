@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/system/hostname.h
+ * File:    pantheios/util/system/hostname.h
  *
- * Purpose:     Functions for eliciting host name
+ * Purpose: Functions for eliciting host name
  *
- * Created:     14th April 2008
- * Updated:     14th October 2026
+ * Created: 14th April 2008
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_MAJOR    1
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_MINOR    2
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_EDIT     17
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_MINOR    3
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_HOSTNAME_EDIT     18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -124,7 +124,7 @@ namespace pantheios
  *   used, via the C++ wrapper, from the pantheios::hostId inserter class,
  *   the inconvenience is deemed acceptable.
  */
-PANTHEIOS_CALL(size_t) pantheios_getHostName(pantheios_char_t* buffer, size_t cchBuffer);
+PANTHEIOS_CALL(size_t) pantheios_getHostName(pantheios_char_t* buffer, size_t cchBuffer) PANTHEIOS_NOEXCEPT;
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 /** Equivalent to \ref pantheios::pantheios_getHostName
@@ -132,7 +132,7 @@ PANTHEIOS_CALL(size_t) pantheios_getHostName(pantheios_char_t* buffer, size_t cc
  *
  * \ingroup group__utility
  */
-inline size_t getHostName(pantheios_char_t* buffer, size_t cchBuffer)
+inline size_t getHostName(pantheios_char_t* buffer, size_t cchBuffer) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getHostName(buffer, cchBuffer);
 }

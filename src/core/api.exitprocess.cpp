@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/core/api.exitprocess.cpp (originally in core/api.cpp)
+ * File:    src/core/api.exitprocess.cpp (originally in core/api.cpp)
  *
- * Purpose:     Implementation file for Pantheios core API.
+ * Purpose: Implementation file for Pantheios core API.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2005-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
@@ -77,7 +77,7 @@ namespace core
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-PANTHEIOS_CALL(void) pantheios_exitProcess(int code)
+PANTHEIOS_CALL(void) pantheios_exitProcess(int code) PANTHEIOS_NOEXCEPT
 {
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 

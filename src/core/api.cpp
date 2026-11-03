@@ -4,7 +4,7 @@
  * Purpose: Implementation file for Pantheios core API.
  *
  * Created: 21st June 2005
- * Updated: 29th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -981,7 +981,7 @@ extern "C++" int pantheios_log_n__cpp(
 #endif /* _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS */
 
 
-PANTHEIOS_CALL(pan_uint32_t) pantheios_getVersion()
+PANTHEIOS_CALL(pan_uint32_t) pantheios_getVersion() PANTHEIOS_NOEXCEPT
 #ifdef _PANTHEIOS_COMPILER_REQUIRES_EXTERNCPP_DEFINITIONS
 {
     return pantheios_getVersion__cpp();
@@ -1461,7 +1461,7 @@ pantheios_logvprintf(
     pan_sev_t               severity
 ,   pantheios_char_t const* format
 ,   va_list                 args
-)
+) PANTHEIOS_NOEXCEPT
 {
 #if !defined(PANTHEIOS_NO_NAMESPACE)
     using pantheios::core::pantheios_dispatch;
@@ -1513,12 +1513,12 @@ namespace core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
-PANTHEIOS_CALL(int) pantheios_isInitialising(void)
+PANTHEIOS_CALL(int) pantheios_isInitialising(void) PANTHEIOS_NOEXCEPT
 {
     return s_isInitialising;
 }
 
-PANTHEIOS_CALL(int) pantheios_isInitialised(void)
+PANTHEIOS_CALL(int) pantheios_isInitialised(void) PANTHEIOS_NOEXCEPT
 {
     return 0 != s_apiInit;
 }
@@ -1672,12 +1672,12 @@ namespace core
 {
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
-PANTHEIOS_CALL(void*) pantheios_inserterAllocate(size_t cb)
+PANTHEIOS_CALL(void*) pantheios_inserterAllocate(size_t cb) PANTHEIOS_NOEXCEPT
 {
     return ::malloc(cb);
 }
 
-PANTHEIOS_CALL(void) pantheios_inserterDeallocate(void* pv)
+PANTHEIOS_CALL(void) pantheios_inserterDeallocate(void* pv) PANTHEIOS_NOEXCEPT
 {
     ::free(pv);
 }
@@ -1717,7 +1717,7 @@ PANTHEIOS_CALL(pantheios_char_t const*)
 pantheios_getPad(
     size_t  minimumWidth
 ,   size_t* actualWidth
-)
+) PANTHEIOS_NOEXCEPT
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_STATE_API(NULL != actualWidth, "pointer cannot be null");
 
