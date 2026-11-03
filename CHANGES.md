@@ -8,6 +8,8 @@
   * applied it to stock trivial front-end and back-end entry points (`be.null`, `be.fail`, the `fe.simple` severity ceiling, documented `/* throw() */` application callbacks, and `getDefaultAppInit`);
   * applied it to `pantheios_getCurrentProcessIdString()`, `pantheios_getCurrentProcessIdStringLength()`, and the `processId_t` string shims;
   * shared `pantheios_fe_*` / `pantheios_be_*` declarations, locking and dispatch paths, and allocating inserters stay unmarked (recorded under **TODO.md**);
+* build:
+  * removed legacy custom makefiles;
 * version:
   * current composite is `PANTHEIOS_VER_1_0_1_RC10` (`0x010001EA`);
 

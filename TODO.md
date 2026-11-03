@@ -50,7 +50,7 @@
   * Inserter shims that construct or format (`threadId`, `hostId`, `integer`, and the allocating inserters) stay unmarked. `processId` string shims forward to `pantheios_getCurrentProcessIdString()`, which formats into a static buffer;
 * [ ] Additional performance tests;
 * [ ] Review all download/build/install documentation (**INSTALL.md**);
-* [ ] Sort out **build/** directory;
+* [ ] ~~~Sort out **build/** directory~~~ - ✅;
 
 
 #### 1.0.1-rc9 (3rd November 2026)
