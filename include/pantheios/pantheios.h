@@ -58,9 +58,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   17
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       413
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      55
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   1
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       414
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -478,6 +478,14 @@
  *
  * \ingroup group__utility
  */
+
+/** \def PANTHEIOS_NOEXCEPT
+ *
+ * Function decorator that denotes the semantic of the C++ \c noexcept
+ *   keyword / <code>throw()</code> construct in a compiler-independent and
+ *   language-independent manner.
+ */
+#define PANTHEIOS_NOEXCEPT                                  STLSOFT_NOEXCEPT
 
 /* Under PANTHEIOS_DOCUMENTATION_SKIP_SECTION always emit the #define so
  * Doxygen can attach the \def documentation (an empty PREDEFINED value
