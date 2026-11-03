@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios syslog Stock Back-end API.
  *
  * Created: 23rd July 2005
- * Updated: 14th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MAJOR    3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     33
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_MINOR    2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SYSLOG_EDIT     34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -186,7 +186,7 @@ PANTHEIOS_CALL(void)
 pantheios_be_syslog_getAppInit(
     int                     backEndId
 ,   pan_be_syslog_init_t*   init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -207,7 +207,7 @@ pantheios_be_syslog_getAppInit(
 PANTHEIOS_CALL(void)
 pantheios_be_syslog_getDefaultAppInit(
     pan_be_syslog_init_t* init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 /** Implements the functionality for pantheios_be_init() over the UNIX
  * SysLog API.

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inserters/processid.cpp
+ * File:    inserters/processid.cpp
  *
- * Purpose:     Implementation of the inserter classes.
+ * Purpose: Implementation of the inserter classes.
  *
- * Created:     16th October 2006
- * Updated:     16th July 2024
+ * Created: 16th October 2006
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -130,13 +130,13 @@ namespace
  */
 
 PANTHEIOS_CALL(pantheios_char_t const*)
-pantheios_processId(void)
+pantheios_processId(void) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getCurrentProcessIdString();
 }
 
 PANTHEIOS_CALL(pantheios_char_t const*)
-pantheios_getCurrentProcessIdString(void)
+pantheios_getCurrentProcessIdString(void) PANTHEIOS_NOEXCEPT
 {
     pantheios_char_t const* processId;
 
@@ -145,12 +145,12 @@ pantheios_getCurrentProcessIdString(void)
     return processId;
 }
 
-PANTHEIOS_CALL(size_t) pantheios_processIdLength(void)
+PANTHEIOS_CALL(size_t) pantheios_processIdLength(void) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getCurrentProcessIdStringLength();
 }
 
-PANTHEIOS_CALL(size_t) pantheios_getCurrentProcessIdStringLength(void)
+PANTHEIOS_CALL(size_t) pantheios_getCurrentProcessIdStringLength(void) PANTHEIOS_NOEXCEPT
 {
     size_t  processIdLen;
 

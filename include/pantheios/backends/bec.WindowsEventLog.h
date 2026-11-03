@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios WindowsEventLog Stock Back-end API.
  *
  * Created: 8th May 2006
- * Updated: 14th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MAJOR       1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MINOR       4
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_MINOR       5
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        37
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_WINDOWSEVENTLOG_EDIT        38
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -171,7 +171,7 @@ pantheios_be_WindowsEventLog_calcCategoryAndEventId(
 ,   int                 severity
 ,   pantheios_uint16_t* category
 ,   pantheios_uint32_t* eventId
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 /** \ref page__backend__callbacks "Callback" function defined by
  * the application, invoked when the API is initialised with a NULL \c init
@@ -205,7 +205,7 @@ PANTHEIOS_CALL(void)
 pantheios_be_WindowsEventLog_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsEventLog_init_t*  init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -226,7 +226,7 @@ pantheios_be_WindowsEventLog_getAppInit(
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_getDefaultAppInit(
     pan_be_WindowsEventLog_init_t* init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 /** Implements the functionality for pantheios_be_init() over the Windows
  * EventLog API.
@@ -278,7 +278,7 @@ pantheios_be_WindowsEventLog_getPantheiosDotComCategoryAndEventId(
 ,   int                 severity
 ,   pantheios_uint16_t* category
 ,   pantheios_uint32_t* eventId
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 /** Registers an event source for use with Pantheios.COM
  */

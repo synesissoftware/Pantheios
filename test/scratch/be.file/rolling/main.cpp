@@ -48,7 +48,7 @@ static const int ENTRY_QUANTUM = 10;
  * function implementations
  */
 
-PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(int backEndId, pan_be_file_init_t* init) /* throw() */
+PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(int backEndId, pan_be_file_init_t* init) PANTHEIOS_NOEXCEPT
 {
     switch (backEndId)
     {

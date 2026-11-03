@@ -40,7 +40,7 @@
 
 PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("test.scratch.trace");
 
-PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(int /* backEndId */, pan_be_WindowsConsole_init_t *init) /* throw() */
+PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(int /* backEndId */, pan_be_WindowsConsole_init_t *init) PANTHEIOS_NOEXCEPT
 {
     init->flags |= PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
     init->flags |= PANTHEIOS_BE_INIT_F_NO_THREAD_ID;
@@ -49,7 +49,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(int /* backEndId */,
     init->flags |= PANTHEIOS_BE_INIT_F_DETAILS_AT_START;
 }
 
-PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(int /* backEndId */, pan_be_WindowsDebugger_init_t *init) /* throw() */
+PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(int /* backEndId */, pan_be_WindowsDebugger_init_t *init) PANTHEIOS_NOEXCEPT
 {
     init->flags |= PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
     init->flags |= PANTHEIOS_BE_INIT_F_NO_THREAD_ID;

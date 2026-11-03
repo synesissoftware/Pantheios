@@ -5,7 +5,7 @@
  *          Pantheios API
  *
  * Created: 12th November 2016
- * Updated: 20th October 2024
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -223,7 +223,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatYearToString4(
     unsigned       year
 ,   PAN_CHAR_T    (*ar)[4]
-) STLSOFT_NOEXCEPT
+) PANTHEIOS_NOEXCEPT
 {
     unsigned const  century =   year / 100;
     unsigned const  year100 =   year % 100;
@@ -241,7 +241,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatMonthToString2(
     unsigned       month
 ,   PAN_CHAR_T    (*ar)[2]
-) STLSOFT_NOEXCEPT
+) PANTHEIOS_NOEXCEPT
 {
     PAN_CHAR_T const* const  src =   PAN_DE2S_0299_[month & 0x0f];
 
@@ -253,7 +253,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatDayToString2(
     unsigned       day
 ,   PAN_CHAR_T    (*ar)[2]
-) STLSOFT_NOEXCEPT
+) PANTHEIOS_NOEXCEPT
 {
     PAN_CHAR_T const* const  src =   PAN_DE2S_0299_[day & 0x1f];
 
@@ -265,7 +265,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatHourToString2(
     unsigned       hour
 ,   PAN_CHAR_T    (*ar)[2]
-) STLSOFT_NOEXCEPT
+) PANTHEIOS_NOEXCEPT
 {
     PAN_CHAR_T const* const  src =   PAN_DE2S_0299_[hour & 0x1f];
 
@@ -277,7 +277,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatMinuteOrSecondToString2(
     unsigned       minOrSecond
 ,   PAN_CHAR_T    (*ar)[2]
-) STLSOFT_NOEXCEPT
+) PANTHEIOS_NOEXCEPT
 {
     PAN_CHAR_T const* const  src =   PAN_DE2S_0299_[minOrSecond & 0x3f];
 
@@ -289,7 +289,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatMillisecondToString3(
     unsigned       millisecond
 ,   PAN_CHAR_T   (*ar)[3]
-) STLSOFT_NOEXCEPT
+) PANTHEIOS_NOEXCEPT
 {
     unsigned const          digits_2_3  =   millisecond % 100;
 
@@ -311,7 +311,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatMicrosecondToString6(
     unsigned       microsecond
 ,   PAN_CHAR_T   (*ar)[6]
-) STLSOFT_NOEXCEPT
+) PANTHEIOS_NOEXCEPT
 {
     unsigned const          digits_5_6  =   microsecond % 100;
 

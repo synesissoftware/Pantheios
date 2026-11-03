@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/processid.hpp
+ * File:    pantheios/inserters/processid.hpp
  *
- * Purpose:     String inserter for process identity.
+ * Purpose: String inserter for process identity.
  *
- * Created:     16th October 2006
- * Updated:     14th October 2026
+ * Created: 16th October 2006
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_MAJOR      2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_MINOR      2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_REVISION   6
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_EDIT       26
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_MINOR      3
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_REVISION   1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_EDIT       27
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,11 +119,11 @@ extern struct processId_t const* processId;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
-PANTHEIOS_CALL(pantheios_char_t const*) pantheios_getCurrentProcessIdString(void);
-PANTHEIOS_CALL(size_t)                  pantheios_getCurrentProcessIdStringLength(void);
+PANTHEIOS_CALL(pantheios_char_t const*) pantheios_getCurrentProcessIdString(void) PANTHEIOS_NOEXCEPT;
+PANTHEIOS_CALL(size_t)                  pantheios_getCurrentProcessIdStringLength(void) PANTHEIOS_NOEXCEPT;
 
-PANTHEIOS_CALL_DEPRECATED(pantheios_char_t const*, pantheios_processId, pantheios_getCurrentProcessIdString) pantheios_processId(void);
-PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_processIdLength, pantheios_getCurrentProcessIdStringLength) pantheios_processIdLength(void);
+PANTHEIOS_CALL_DEPRECATED(pantheios_char_t const*, pantheios_processId, pantheios_getCurrentProcessIdString) pantheios_processId(void) PANTHEIOS_NOEXCEPT;
+PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_processIdLength, pantheios_getCurrentProcessIdStringLength) pantheios_processIdLength(void) PANTHEIOS_NOEXCEPT;
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
@@ -143,7 +143,7 @@ inline
 PAN_CHAR_T const*
 PANTHEIOS_c_str_data_name_(
     struct processId_t const*
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getCurrentProcessIdString();
 }
@@ -151,7 +151,7 @@ inline
 pantheios_char_t const*
 c_str_data(
     struct processId_t const*
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getCurrentProcessIdString();
 }
@@ -160,7 +160,7 @@ inline
 size_t
 PANTHEIOS_c_str_len_name_(
     struct processId_t const*
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getCurrentProcessIdStringLength();
 }
@@ -168,7 +168,7 @@ inline
 size_t
 c_str_len(
     struct processId_t const*
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getCurrentProcessIdStringLength();
 }
@@ -177,7 +177,7 @@ inline
 PAN_CHAR_T const*
 PANTHEIOS_c_str_ptr_name_(
     struct processId_t const*
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getCurrentProcessIdString();
 }
@@ -185,7 +185,7 @@ inline
 pantheios_char_t const*
 c_str_ptr(
     struct processId_t const*
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getCurrentProcessIdString();
 }

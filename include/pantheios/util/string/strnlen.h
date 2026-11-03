@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/string/strnlen.h (formerly part of pantheios/pantheios.h)
+ * File:    pantheios/util/string/strnlen.h (formerly part of pantheios/pantheios.h)
  *
- * Purpose:     String length functions.
+ * Purpose: String length functions.
  *
- * Created:     21st June 2005
- * Updated:     14th October 2026
+ * Created: 21st June 2005
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -56,9 +56,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_MAJOR     1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_MINOR     0
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_REVISION  3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_EDIT      6
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_MINOR     1
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_REVISION  1
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_STRLEN_EDIT      7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -99,10 +99,10 @@ namespace util
  * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
  */
-PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pantheios_char_t const* s, size_t len);
+PANTHEIOS_CALL(size_t) pantheios_util_strnlen(pantheios_char_t const* s, size_t len) PANTHEIOS_NOEXCEPT;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_strnlen, pantheios_util_strnlen) pantheios_strnlen(pantheios_char_t const* s, size_t len);
+PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_strnlen, pantheios_util_strnlen) pantheios_strnlen(pantheios_char_t const* s, size_t len) PANTHEIOS_NOEXCEPT;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios NULL Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 14th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MAJOR      1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MINOR      2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_MINOR      3
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       18
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_NULL_EDIT       19
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,7 +98,7 @@ PANTHEIOS_CALL(int) pantheios_be_null_init(
 ,   void*               unused
 ,   void*               reserved
 ,   void**              ptoken
-);
+) PANTHEIOS_NOEXCEPT;
 
 /** Implements the functionality for pantheios_be_uninit() over the NULL
  * API.
@@ -106,7 +106,7 @@ PANTHEIOS_CALL(int) pantheios_be_null_init(
  */
 PANTHEIOS_CALL(void) pantheios_be_null_uninit(
     void* token
-);
+) PANTHEIOS_NOEXCEPT;
 
 /** Implements the functionality for pantheios_be_logEntry() over the NULL
  * API.
@@ -118,7 +118,7 @@ PANTHEIOS_CALL(int) pantheios_be_null_logEntry(
 ,   int                 severity
 ,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
-);
+) PANTHEIOS_NOEXCEPT;
 
 /** \def pantheios_be_null_parseArgs
  *

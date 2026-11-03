@@ -215,7 +215,7 @@ pantheios_be_WindowsSyslog_init_a_(
 PANTHEIOS_CALL(void)
 pantheios_be_WindowsSyslog_getDefaultAppInit(
     pan_be_WindowsSyslog_init_t* init
-) /* throw() */
+) PANTHEIOS_NOEXCEPT
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
 

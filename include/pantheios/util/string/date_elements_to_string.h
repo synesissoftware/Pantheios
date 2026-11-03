@@ -5,7 +5,7 @@
  *          Pantheios API
  *
  * Created: 12th November 2016
- * Updated: 14th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -57,9 +57,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_MAJOR    1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_MINOR    0
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_EDIT     6
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_MINOR    1
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_DATE_ELEMENTS_TO_STRING_EDIT     7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -96,7 +96,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatYearToString4(
     unsigned       year
 ,   PAN_CHAR_T   (*ar)[4]
-) STLSOFT_NOEXCEPT;
+) PANTHEIOS_NOEXCEPT;
 
 /** Converts a month to a two-digit, unterminated string form.
  *
@@ -114,7 +114,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatMonthToString2(
     unsigned       month
 ,   PAN_CHAR_T   (*ar)[2]
-) STLSOFT_NOEXCEPT;
+) PANTHEIOS_NOEXCEPT;
 
 /** Converts a day-of-month to a two-digit, unterminated string form.
  *
@@ -132,7 +132,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatDayToString2(
     unsigned       day
 ,   PAN_CHAR_T   (*ar)[2]
-) STLSOFT_NOEXCEPT;
+) PANTHEIOS_NOEXCEPT;
 
 /** Converts an hour to a two-digit, unterminated string form.
  *
@@ -150,7 +150,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatHourToString2(
     unsigned       hour
 ,   PAN_CHAR_T   (*ar)[2]
-) STLSOFT_NOEXCEPT;
+) PANTHEIOS_NOEXCEPT;
 
 /** Converts a minute or second to a two-digit, unterminated string form.
  *
@@ -168,7 +168,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatMinuteOrSecondToString2(
     unsigned       minOrSecond
 ,   PAN_CHAR_T   (*ar)[2]
-) STLSOFT_NOEXCEPT;
+) PANTHEIOS_NOEXCEPT;
 
 /** Converts a millisecond to a three-digit, unterminated string form.
  *
@@ -186,7 +186,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatMillisecondToString3(
     unsigned       millisecond
 ,   PAN_CHAR_T   (*ar)[3]
-) STLSOFT_NOEXCEPT;
+) PANTHEIOS_NOEXCEPT;
 
 /** Converts a microsecond to a six-digit, unterminated string form.
  *
@@ -204,7 +204,7 @@ PANTHEIOS_CALL(void)
 pantheios_util_formatMicrosecondToString6(
     unsigned       microsecond
 ,   PAN_CHAR_T   (*ar)[6]
-) STLSOFT_NOEXCEPT;
+) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////

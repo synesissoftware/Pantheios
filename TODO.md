@@ -6,7 +6,7 @@
 - [Functional improvements](#functional-improvements)
   - [Pantheios 1.0.1](#pantheios-101)
     - [(final)](#final)
-    - [1.0.1-rc10 (3rd November 2026)](#101-rc10-3rd-november-2026)
+    - [1.0.1-rc10 (5th November 2026)](#101-rc10-5th-november-2026)
     - [1.0.1-rc9 (3rd November 2026)](#101-rc9-3rd-november-2026)
     - [1.0.1-rc5 (18th October 2026)](#101-rc5-18th-october-2026)
     - [1.0.1-rc4 (14th October 2026)](#101-rc4-14th-october-2026)
@@ -29,9 +29,25 @@
 * [x] ~~~Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release~~~ - ✅;
 
 
-#### 1.0.1-rc10 (3rd November 2026)
+#### 1.0.1-rc10 (5th November 2026)
 
-* [ ] `PANTHEIOS_NOEXCEPT()`;
+* [x] ~~~`PANTHEIOS_NOEXCEPT()`~~~ - ✅;
+  * Cannot be applied. These throw, lock, call a front-end or back-end, or may rethrow from a catch-all (`PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS`):
+    * `pantheios_init()`, `pantheios_uninit()`;
+    * `pantheios_isSeverityLogged()`, `pantheios_getProcessIdentity()`;
+    * `pantheios_log_n()`, the generated `pantheios_log_N()`, `pantheios_logputs()`, `pantheios_puts()`, `pantheios_logassertfail()`, `pantheios_dispatch()`;
+    * `pantheios_malloc()`, `pantheios_getNextBackEndId()`;
+    * `pantheios_call_fe_init()`, `pantheios_call_fe_uninit()`, `pantheios_call_fe_getProcessIdentity()`, `pantheios_call_fe_isSeverityLogged()`;
+    * `pantheios_call_be_void_init()`, `pantheios_call_be_X_init()`, `pantheios_call_be_uninit()`, `pantheios_call_be_logEntry()`;
+    * `pantheios_be_parseBooleanArg()`, `pantheios_be_parseStringArg()`, `pantheios_be_parseStockArgs()`;
+    * `pantheios_util_getCurrentTime()`;
+    * `pantheios_util_strdup_throw()`, `util::strdup_throw()`;
+    * `getHostName(stlsoft::auto_buffer&)`;
+    * stock inserter classes whose constructors or `c_str()` paths allocate (`args`, `b64`, `blob`, `hostid`, `integer`, `m2w`, `pointer`, `processid`, `real`, `slice`, `threadid`, `w2m`);
+  * `pantheios_fe_init()`, `pantheios_fe_uninit()`, `pantheios_fe_getProcessIdentity()`, `pantheios_fe_isSeverityLogged()` — one declaration shared by every front-end, and **fe.WindowsRegistry** may rethrow;
+  * `pantheios_be_init()`, `pantheios_be_uninit()`, `pantheios_be_logEntry()`, and the local/remote split names — one declaration shared by every back-end; stock **file** (and others) may rethrow, and a custom back-end may throw into `pantheios_call_be_*`;
+  * Named stock init / uninit / log / parse entry points that allocate or call a user callback (`file`, `fprintf`, `syslog`, `speech`, consoles, event log, `ACE`, `test`, `N`, `lrsplit`);
+  * Inserter shims that construct or format (`threadId`, `hostId`, `integer`, and the allocating inserters) stay unmarked. `processId` string shims forward to `pantheios_getCurrentProcessIdString()`, which formats into a static buffer;
 * [ ] Additional performance tests;
 * [ ] Review all download/build/install documentation (**INSTALL.md**);
 * [ ] ~~~Sort out **build/** directory~~~ - ✅;

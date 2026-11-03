@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/strdup.c (was src/util/strutil.cpp)
+ * File:    src/util/strdup.c (was src/util/strutil.cpp)
  *
- * Purpose:     Implementation file for string duplication utility functions.
+ * Purpose: Implementation file for string duplication utility functions.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -75,7 +75,7 @@ namespace pantheios
  * API
  */
 
-PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) STLSOFT_NOEXCEPT
+PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) PANTHEIOS_NOEXCEPT
 {
     if (NULL == s)
     {
@@ -95,12 +95,12 @@ PANTHEIOS_CALL(char*) pantheios_util_strdup_nothrow_m(char const* s) STLSOFT_NOE
     }
 }
 
-PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) STLSOFT_NOEXCEPT
+PANTHEIOS_CALL(void) pantheios_util_strfree_m(char* s) PANTHEIOS_NOEXCEPT
 {
     free(s);
 }
 
-PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) STLSOFT_NOEXCEPT
+PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) PANTHEIOS_NOEXCEPT
 {
     if (NULL == s)
     {
@@ -120,7 +120,7 @@ PANTHEIOS_CALL(wchar_t*) pantheios_util_strdup_nothrow_w(wchar_t const* s) STLSO
     }
 }
 
-PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) STLSOFT_NOEXCEPT
+PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) PANTHEIOS_NOEXCEPT
 {
     free(s);
 }
@@ -128,7 +128,7 @@ PANTHEIOS_CALL(void) pantheios_util_strfree_w(wchar_t* s) STLSOFT_NOEXCEPT
 PANTHEIOS_CALL(pantheios_char_t*)
 pantheios_util_strdup_nothrow(
     pantheios_char_t const* s
-) STLSOFT_NOEXCEPT
+) PANTHEIOS_NOEXCEPT
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     return pantheios_util_strdup_nothrow_w(s);
@@ -140,7 +140,7 @@ pantheios_util_strdup_nothrow(
 PANTHEIOS_CALL(void)
 pantheios_util_strfree(
     pantheios_char_t* s
-) STLSOFT_NOEXCEPT
+) PANTHEIOS_NOEXCEPT
 {
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
     pantheios_util_strfree_w(s);
