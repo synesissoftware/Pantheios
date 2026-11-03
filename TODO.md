@@ -31,9 +31,10 @@
 
 #### 1.0.1-rc10 (3rd November 2026)
 
-* [ ] `PANTHEIOS_NOTHROW()`;
+* [ ] `PANTHEIOS_NOEXCEPT()`;
 * [ ] Additional performance tests;
 * [ ] Review all download/build/install documentation (**INSTALL.md**);
+* [ ] Sort out **build/** directory;
 
 
 #### 1.0.1-rc9 (3rd November 2026)
