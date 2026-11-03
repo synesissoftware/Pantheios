@@ -47,7 +47,7 @@
   * `pantheios_fe_init()`, `pantheios_fe_uninit()`, `pantheios_fe_getProcessIdentity()`, `pantheios_fe_isSeverityLogged()` — one declaration shared by every front-end, and **fe.WindowsRegistry** may rethrow;
   * `pantheios_be_init()`, `pantheios_be_uninit()`, `pantheios_be_logEntry()`, and the local/remote split names — one declaration shared by every back-end; stock **file** (and others) may rethrow, and a custom back-end may throw into `pantheios_call_be_*`;
   * Named stock init / uninit / log / parse entry points that allocate or call a user callback (`file`, `fprintf`, `syslog`, `speech`, consoles, event log, `ACE`, `test`, `N`, `lrsplit`);
-  * Still to classify: inserter methods that only forward to an API already marked `PANTHEIOS_NOEXCEPT`;
+  * Inserter shims that construct or format (`threadId`, `hostId`, `integer`, and the allocating inserters) stay unmarked. `processId` string shims forward to `pantheios_getCurrentProcessIdString()`, which formats into a static buffer;
 * [ ] Additional performance tests;
 * [ ] Review all download/build/install documentation (**INSTALL.md**);
 * [ ] Sort out **build/** directory;
