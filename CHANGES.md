@@ -1,6 +1,10 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1-rc10 - 5th November 2026
+
+
+
 ## 1.0.1-rc9 - 3rd November 2026
 
 * packaging / inserters:

@@ -4,7 +4,7 @@
  * Purpose: Pantheios Core and Util APIs.
  *
  * Created: 21st June 2005
- * Updated: 3rd November 2026
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -59,8 +59,8 @@
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   16
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       412
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   17
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       413
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -133,7 +133,7 @@
 #define PANTHEIOS_VER_MAJOR                     1
 #define PANTHEIOS_VER_MINOR                     0
 #define PANTHEIOS_VER_PATCH                     1
-#define PANTHEIOS_VER_RELSTATUS                 0xE9
+#define PANTHEIOS_VER_RELSTATUS                 0xEA
 
 #define PANTHEIOS_VER \
     (0\

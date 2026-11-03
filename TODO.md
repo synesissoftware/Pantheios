@@ -26,19 +26,14 @@
 
 #### (final)
 
-* [ ] Re-enable **test.unit.bec.COMErrorObject** on **MinGW** once **xTests** fixes multibyte string-equality helpers for GCC two-phase lookup (shim overloads declared after **xtests.h** is included); currently skipped in **test/unit/CMakeLists.txt**;
-* [ ] Component test for **be.WindowsSyslog**;
-* [ ] Thin `pantheios_getHostName` / **src/util/hostname.c** over a platformstl host-name C API once that API lands in **STLSoft** (Windows via `winstl_C_get_computer_name_*`; UNIX `gethostname` plus Pantheios Mac `ENAMETOOLONG` / length contract); keep test oracles OS-direct for orthogonality;
-* [ ] Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release;
+* [x] ~~~Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release~~~ - ✅;
 
 
 #### 1.0.1-rc10 (3rd November 2026)
 
-* [ ] additional performance tests;
-* [ ] STLSoft-iiof last picks;
+* [ ] `PANTHEIOS_NOTHROW()`;
 * [ ] Additional performance tests;
 * [ ] Review all download/build/install documentation (**INSTALL.md**);
-* [ ]
 
 
 #### 1.0.1-rc9 (3rd November 2026)
@@ -82,23 +77,21 @@
 
 ### Pantheios 1.0.x TODOs
 
-
 * [ ] Refactor CMake test targets / options so that only unit-test executables are built when only unit-tests are asked for;
-
+* [ ] Re-enable **test.unit.bec.COMErrorObject** on **MinGW** once **xTests** fixes multibyte string-equality helpers for GCC two-phase lookup (shim overloads declared after **xtests.h** is included); currently skipped in **test/unit/CMakeLists.txt**;
+* [ ] Component test for **be.WindowsSyslog**;
+* [ ] Thin `pantheios_getHostName` / **src/util/hostname.c** over a platformstl host-name C API once that API lands in **STLSoft** (Windows via `winstl_C_get_computer_name_*`; UNIX `gethostname` plus Pantheios Mac `ENAMETOOLONG` / length contract); keep test oracles OS-direct for orthogonality;
 * [ ] new logo;
 * [ ] new website;
 * [ ] integrated blog;
 * [ ] separate out all utility code into separate headers, impl files, etc.;
-* [ ] `PANTHEIOS_NOTHROW()`;
-* [ ] rewrite Core in pure C (or NoX for VC++ 7.1+ and GCC);
-* [ ] rewrite Back-ends in pure C (or NoX for VC++ 7.1+ and GCC);
-* [ ] rewrite Front-ends in pure C (or NoX for VC++ 7.1+ and GCC);
-* [ ] auto-generate implicit-link files;
+* [X] ~~~auto-generate implicit-link files~~~ - ❌;
 * [ ] auto-generate be l/r source files;
 * [ ] auto-generate be l/r header files;
-* [ ] rolling file;
 * [ ] reimplement integral conversion in terms of new **STLSoft** 1.10 components;
-* [ ] release by Q4 2012!!!;
+* [X] ~~~release by Q4 2012!!!~~~ - ❌;
+* [ ] additional performance tests;
+* [ ] STLSoft-iiof last picks;
 
 
 ### Pantheios 1.1 TODOs
@@ -113,6 +106,7 @@
   * [ ] **bec.zmq** (Mikkoi's old submission modernised and introduced);
 * [ ] be.file buffering;
 * [ ] be.file rolling;
+* [ ] rolling file;
 * [x] ~~~README.TXT~~~ - ✅;
 * [ ] complete, sensible distribution files;
 * [ ] review all the download/build/install documentation;
@@ -127,6 +121,9 @@
 * [ ] Custom event log for be.WindowsEventLog;
 * [ ] be.loader fixed/internal (Windows, Mac & UNIX);
 * [ ] be.loader dynamic/external (Windows, Mac & UNIX);
+* [ ] rewrite Core in pure C (or NoX for VC++ 7.1+ and GCC);
+* [ ] rewrite Back-ends in pure C (or NoX for VC++ 7.1+ and GCC);
+* [ ] rewrite Front-ends in pure C (or NoX for VC++ 7.1+ and GCC);
 
 
 ### Pantheios 1.3 TODOs
