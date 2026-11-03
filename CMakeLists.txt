@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  2nd November 2026
+# Updated:  3rd November 2026
 #
 # ######################################################################## #
 
@@ -348,6 +348,7 @@ endif()
 
 if(NOT b64_FOUND)
 
+	add_compile_definitions(PANTHEIOS_NO_b64)
 	add_compile_definitions(PANTHEIOS_NO_B64)
 endif()
 
@@ -370,9 +371,10 @@ if(NOT NO_DIAGNOSTICISM)
 	endif(Diagnosticism_FOUND)
 endif()
 
-if(NOT b64_FOUND)
+if(NOT Diagnosticism_FOUND)
 
-	add_compile_definitions(PANTHEIOS_NO_B64)
+	add_compile_definitions(PANTHEIOS_NO_Diagnosticism)
+	add_compile_definitions(PANTHEIOS_NO_DIAGNOSTICISM)
 endif()
 
 

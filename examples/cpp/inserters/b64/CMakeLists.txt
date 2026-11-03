@@ -5,6 +5,8 @@ add_executable(example.cpp.inserter.b64
 
 target_link_Pantheios_core(example.cpp.inserter.b64)
 
+target_link_Pantheios_inserters_b64(example.cpp.inserter.b64)
+
 target_link_libraries(example.cpp.inserter.b64
 	PRIVATE
 		$<IF:$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>,Pantheios.be.WindowsConsole,Pantheios.be.fprintf>
@@ -23,7 +25,6 @@ target_link_libraries(example.cpp.inserter.b64
 
 target_link_libraries(example.cpp.inserter.b64
 	PRIVATE
-		b64::core
 		STLSoft::STLSoft
 )
 
@@ -38,4 +39,3 @@ target_compile_options(example.cpp.inserter.b64 PRIVATE
 
 
 # ############################## end of file ############################# #
-

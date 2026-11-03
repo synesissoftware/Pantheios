@@ -15,6 +15,7 @@ Directories=(
   CMakeFiles
   Testing
   cmake
+  doxygen
   examples
   projects
   src

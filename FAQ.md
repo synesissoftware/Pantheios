@@ -137,7 +137,7 @@ including:
   | Inserter type                     | Inserts                                                                | Alias                          |
   | --------------------------------- | ---------------------------------------------------------------------- | ------------------------------ |
   | `pantheios::args`                 | `argc`/`argv` pair (e.g. from `main()`)                                | -                              |
-  | `pantheios::b64`                  | binary region as Base-64 (requires the **b64** library)                | -                              |
+  | `pantheios::b64`                  | binary region as Base-64 (`#include <pantheios/inserters/b64.hpp>`; link **Pantheios.inserters.b64**; requires **b64**) | not in `inserters.hpp` |
   | `pantheios::blob`                 | binary region as a hex dump (optional grouping/separators)             | -                              |
   | `pantheios::boolean`              | boolean value                                                          | `pantheios::b` (or `pan::b`)   |
   | `pantheios::character`            | character value                                                        | `pantheios::ch` (or `pan::ch`) |
