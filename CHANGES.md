@@ -1,6 +1,20 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1-rc9 - 3rd November 2026
+
+* packaging / inserters:
+  * moved `pantheios::b64` out of **Pantheios.core** into optional **Pantheios.inserters.b64** under **projects/inserters/b64/** (built only when **b64** is found; **PUBLIC**-links **b64::core**);
+  * **inserters.hpp** no longer includes **inserters/b64.hpp** — include it explicitly and link **Pantheios.inserters.b64**;
+  * stock console example helpers no longer unconditional-link **b64::core**;
+  * **.gitignore** un-ignores the real **examples** / **test** `**/inserters/b64/` trees under the `*.b64` pattern;
+* build:
+  * when **b64** is absent, define both `PANTHEIOS_NO_b64` and `PANTHEIOS_NO_B64`;
+  * when **Diagnosticism** is absent, define both `PANTHEIOS_NO_Diagnosticism` and `PANTHEIOS_NO_DIAGNOSTICISM` (fixed a duplicated `PANTHEIOS_NO_B64` block);
+* version:
+  * added `PANTHEIOS_VER_1_0_1_RC9` (`0x010001E9`);
+
+
 ## 1.0.1-rc8 - 2nd November 2026
 
 * dependencies:

@@ -5,6 +5,8 @@ add_executable(test.component.inserters.b64
 
 target_link_Pantheios_core(test.component.inserters.b64)
 
+target_link_Pantheios_inserters_b64(test.component.inserters.b64)
+
 target_link_libraries(test.component.inserters.b64
 	PRIVATE
 		Pantheios.be.test
@@ -17,11 +19,6 @@ target_link_libraries(test.component.inserters.b64
 )
 
 target_link_Pantheios_util(test.component.inserters.b64)
-
-target_link_libraries(test.component.inserters.b64
-	PRIVATE
-		b64::core
-)
 
 if(shwild_FOUND)
 
@@ -45,4 +42,3 @@ target_compile_options(test.component.inserters.b64 PRIVATE
 
 
 # ############################## end of file ############################# #
-

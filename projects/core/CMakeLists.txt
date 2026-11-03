@@ -11,10 +11,9 @@ file(GLOB INSERTER_SRCS
 	${INSERTER_SRC_DIR}/*.cpp
 )
 
-if(NOT b64_FOUND)
+# pantheios::b64 lives in Pantheios.inserters.b64 (optional; needs b64).
+list(FILTER INSERTER_SRCS EXCLUDE REGEX "b64")
 
-	list(FILTER INSERTER_SRCS EXCLUDE REGEX "b64")
-endif()
 if(PANTHEIOS_USE_WIDE_STRINGS)
 
 	list(FILTER INSERTER_SRCS EXCLUDE REGEX "w2m")
@@ -35,17 +34,6 @@ target_include_directories(Pantheios.core
 )
 
 target_link_STLSoft(Pantheios.core)
-
-# Link b64 only when discovered at configure time. Prefer a plain
-# target_link_libraries() over a generator expression so the exported
-# interface records `$<LINK_ONLY:b64::core>` cleanly (static lib).
-if(b64_FOUND)
-
-	target_link_libraries(Pantheios.core
-		PRIVATE
-			b64::core
-	)
-endif(b64_FOUND)
 
 define_target_compile_options(Pantheios.core)
 
