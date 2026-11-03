@@ -134,7 +134,7 @@ $ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 1. Download the latest distributions;
 
 Obtain the latest releases of **Pantheios**, **STLSoft**, and **woad** from:
-* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-rc7.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-rc7.zip);
+* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-rc9.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-rc9.zip);
 * [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft/tags), e.g. [**STLSoft-1.11.5**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/STLSoft-1.11.5);
 * [woad GitHub project](https://github.com/synesissoftware/woad/tags);
 
@@ -144,7 +144,7 @@ Obtain the latest releases of **Pantheios**, **STLSoft**, and **woad** from:
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
-$ unzip Pantheios-1.0.1-rc7.zip
+$ unzip Pantheios-1.0.1-rc9.zip
 $ unzip STLSoft-1.11.5
 $ unzip woad-<version>.zip
 ```
@@ -154,7 +154,7 @@ $ unzip woad-<version>.zip
 4. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make
 
 ```bash
-$ cd Pantheios-1.0.1-rc5
+$ cd Pantheios-1.0.1-rc9
 $ cd build/gcc48.unix
 $ make
 ```

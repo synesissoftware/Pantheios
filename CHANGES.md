@@ -11,6 +11,8 @@
 * build:
   * when **b64** is absent, define both `PANTHEIOS_NO_b64` and `PANTHEIOS_NO_B64`;
   * when **Diagnosticism** is absent, define both `PANTHEIOS_NO_Diagnosticism` and `PANTHEIOS_NO_DIAGNOSTICISM` (fixed a duplicated `PANTHEIOS_NO_B64` block);
+* version:
+  * added `PANTHEIOS_VER_1_0_1_RC9` (`0x010001E9`);
 
 
 ## 1.0.1-rc8 - 2nd November 2026

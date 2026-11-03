@@ -8,9 +8,6 @@
     - [(final)](#final)
     - [1.0.1-rc10 (3rd November 2026)](#101-rc10-3rd-november-2026)
     - [1.0.1-rc9 (3rd November 2026)](#101-rc9-3rd-november-2026)
-    - [1.0.1-rc8 (2nd November 2026)](#101-rc8-2nd-november-2026)
-    - [1.0.1-rc7 (30th October 2026)](#101-rc7-30th-october-2026)
-    - [1.0.1-rc6 (27th October 2026)](#101-rc6-27th-october-2026)
     - [1.0.1-rc5 (18th October 2026)](#101-rc5-18th-october-2026)
     - [1.0.1-rc4 (14th October 2026)](#101-rc4-14th-october-2026)
     - [1.0.1-rc3 (12th October 2026)](#101-rc3-12th-october-2026)
@@ -37,8 +34,6 @@
 
 #### 1.0.1-rc10 (3rd November 2026)
 
-* [ ] sort out \file fields;
-* [ ] Sort out `\file` Doxygen fields across headers;
 * [ ] additional performance tests;
 * [ ] STLSoft-iiof last picks;
 * [ ] Additional performance tests;
@@ -51,15 +46,6 @@
 * [x] ~~~**b64** link-time dependency broken~~~ - ✅;
 
 
-#### 1.0.1-rc8 (2nd November 2026)
-
-
-#### 1.0.1-rc7 (30th October 2026)
-
-
-#### 1.0.1-rc6 (27th October 2026)
-
-
 #### 1.0.1-rc5 (18th October 2026)
 
 * [x] ~~~Integration of **woad** for coloured output~~~ - ✅;
@@ -70,6 +56,8 @@
 * [x] ~~~**bec.stock** / **bec.stock.WithCallback** (exclude **bec.test**)~~~ - ✅;
 * [x] ~~~Replace selected Pantheios custom code with post-**STLSoft**-1.9 facilities (process id via `platformstl_C_get_current_process_id`, **args** path basenaming via `filesystem_traits::find_last_path_name_separator`, **snprintf** via `stlsoft_C_vsnprintf`)~~~ - ✅;
 * [x] ~~~**xTests**' Terse API applied throughout~~~ - ✅;
+* [x] ~~~sort out \file fields~~~ - ✅;
+* [x] ~~~Sort out `\file` Doxygen fields across headers~~~ - ✅;
 
 
 #### 1.0.1-rc3 (12th October 2026)
@@ -78,6 +66,18 @@
 * [x] ~~~Using **AnsiConsole**~~~ - ✅;
 * [x] ~~~Using **ACE**~~~ - ✅;
 * [x] ~~~Prune obsolete compiler and IDE project-file items from **TODO.md** (VS '98 through 2010, Turbo C++, Comeau, Xcode project-file generators)~~~ - ✅;
+* [x] ~~~auto-generate project files for VS'98~~~ - ❌;
+* [x] ~~~auto-generate project files for 2010~~~ - ❌;
+* [x] ~~~auto-generate project files for Xcode~~~ - ❌;
+* [x] ~~~Comeau 4.3.10 support~~~ - ❌;
+* [x] ~~~full complement of Visual Studio 2003 project/solution files~~~ - ❌;
+* [x] ~~~full complement of Visual Studio 2005 project/solution files~~~ - ❌;
+* [x] ~~~full complement of Visual Studio 2008 project/solution files~~~ - ❌;
+* [x] ~~~full complement of Visual Studio 2010 project/solution files~~~ - ❌;
+* [x] ~~~full complement of Visual Studio '98 project/solution files~~~ - ❌;
+* [x] ~~~auto-check all implicit_link files~~~ - ❌;
+* [x] ~~~full complement of Turbo C++ project/solution files~~~ - ❌;
+* [x] ~~~(possibly, full complement of XCode project/solution files)~~~ - ❌;
 
 
 ### Pantheios 1.0.x TODOs
@@ -93,8 +93,6 @@
 * [ ] rewrite Core in pure C (or NoX for VC++ 7.1+ and GCC);
 * [ ] rewrite Back-ends in pure C (or NoX for VC++ 7.1+ and GCC);
 * [ ] rewrite Front-ends in pure C (or NoX for VC++ 7.1+ and GCC);
-* [ ] auto-generate project files for VS'98;
-* [ ] auto-generate project files for 2010;
 * [ ] auto-generate implicit-link files;
 * [ ] auto-generate be l/r source files;
 * [ ] auto-generate be l/r header files;
@@ -115,20 +113,10 @@
   * [ ] **bec.zmq** (Mikkoi's old submission modernised and introduced);
 * [ ] be.file buffering;
 * [ ] be.file rolling;
-* [x] ~~~auto-generate project files for Xcode~~~ - ❌;
-* [x] ~~~Comeau 4.3.10 support~~~ - ❌;
 * [x] ~~~README.TXT~~~ - ✅;
 * [ ] complete, sensible distribution files;
 * [ ] review all the download/build/install documentation;
-* [x] ~~~separate UNIX and Windows distros, with the appropriate newline sequence for each~~~ - ✅;;
-* [x] ~~~full complement of Visual Studio 2003 project/solution files~~~ - ❌;
-* [x] ~~~full complement of Visual Studio 2005 project/solution files~~~ - ❌;
-* [x] ~~~full complement of Visual Studio 2008 project/solution files~~~ - ❌;
-* [x] ~~~full complement of Visual Studio 2010 project/solution files~~~ - ❌;
-* [x] ~~~full complement of Visual Studio '98 project/solution files~~~ - ❌;
-* [x] ~~~auto-check all implicit_link files~~~ - ❌;
-* [x] ~~~full complement of Turbo C++ project/solution files~~~ - ❌;
-* [x] ~~~(possibly, full complement of XCode project/solution files)~~~ - ❌;
+* [x] ~~~separate UNIX and Windows distros, with the appropriate newline sequence for each~~~ - ✅;
 * [ ] control console for fe.WindowsRegistry;
 * [ ] component test be.WindowsSyslog;
 
