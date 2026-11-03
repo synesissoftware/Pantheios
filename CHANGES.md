@@ -3,6 +3,8 @@
 
 ## 1.0.1-rc10 - 5th November 2026
 
+* build:
+  * removed legacy custom makefiles;
 
 
 ## 1.0.1-rc9 - 3rd November 2026
