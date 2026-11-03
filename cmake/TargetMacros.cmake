@@ -71,6 +71,14 @@ macro(target_link_Pantheios_util target_name)
 	)
 endmacro(target_link_Pantheios_util)
 
+macro(target_link_Pantheios_inserters_b64 target_name)
+
+	target_link_libraries(${target_name}
+		PRIVATE
+			Pantheios.inserters.b64
+	)
+endmacro(target_link_Pantheios_inserters_b64)
+
 macro(target_link_STLSoft target_name)
 
 	target_link_libraries(${target_name}
@@ -364,14 +372,6 @@ function(define_simple_console_example_c program_stem)
 		FE Pantheios.fe.simple
 		CONSOLE
 	)
-
-	if(b64_FOUND)
-
-		target_link_libraries(${program_stem}
-			PRIVATE
-				b64::core
-		)
-	endif(b64_FOUND)
 endfunction(define_simple_console_example_c)
 
 function(define_simple_console_example_cpp program_stem)
@@ -381,14 +381,6 @@ function(define_simple_console_example_cpp program_stem)
 		FE Pantheios.fe.simple
 		CONSOLE
 	)
-
-	if(b64_FOUND)
-
-		target_link_libraries(${program_stem}
-			PRIVATE
-				b64::core
-		)
-	endif(b64_FOUND)
 
 	if(Threads_FOUND)
 

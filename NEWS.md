@@ -3,8 +3,13 @@
 
 | Date                | News Item                                                     | Details    |
 | ------------------- | ------------------------------------------------------------- | ---------- |
-| 19th October 2026   | [Pantheios 1.1.0-alpha1 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.1.0-alpha1) | **be.zmq** / **ZeroMQ**; **linux-gcc-zmq** CI; **test.component.be.zmq** |
-| 18th October 2026   | [Pantheios 1.0.1-rc5 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc5) | **woad** for **bec.AnsiConsole** colour; coloured **test.scratch.versions** |
+| 15th November 2026  | Release of [Pantheios 1.1.0-alpha1](https://github.com/synesissoftware/Pantheios/releases/tag/1.1.0-alpha1) | **be.zmq** / **ZeroMQ**; **linux-gcc-zmq** CI; **test.component.be.zmq**; `PANTHEIOS_VER_1_1_0_A1` |
+| 5th November 2026   | Release of [Pantheios 1.0.1-rc10](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc10) | `PANTHEIOS_NOEXCEPT` on core, util, trivial front/back-ends, and `processId` strings; `PANTHEIOS_VER_1_0_1_RC10` |
+| 3rd November 2026   | Release of [Pantheios 1.0.1-rc9](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc9) | optional **Pantheios.inserters.b64**; **inserters.hpp** no longer includes **b64**; `PANTHEIOS_VER_1_0_1_RC9` |
+| 2nd November 2026   | Release of [Pantheios 1.0.1-rc8](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc8) | **STLSoft** **1.11.5**; **woad** **0.2.1**; **xTests** **0.28.2** |
+| 30th October 2026   | Release of [Pantheios 1.0.1-rc7](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc7) | **STLSoft** **1.11.4** floor; `stlsoft_C_mbstowcs` / `stlsoft_C_wcstombs` |
+| 27th October 2026   | Release of [Pantheios 1.0.1-rc6](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc6) | `HAS_<Pkg>` / `HAS_<PKG>` for detected Synesis packages |
+| 26th October 2026   | [Pantheios 1.0.1-rc5 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc5) | **woad** required for **bec.AnsiConsole** colour; coloured **test.scratch.versions**; `PANTHEIOS_VER_1_0_1_RC5` |
 | 14th October 2026   | [Pantheios 1.0.1-rc4 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc4) | **bec.stock** / **WithCallback** (no **bec.test**); **example.cpp.linking.N_with_stock**; STLSoft util thinning (process id / **args** / **snprintf**); **Diagnosticism** version strings; Doxygen / **generate_doxygen.sh** / **doc/mainpage.md**; `PANTHEIOS_VER_1_0_1_RC4` |
 | 12th October 2026   | [Pantheios 1.0.1-rc3 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc3) | **bec.AnsiConsole** VT / default sink; optional **ACE**; **CMake** leaf helpers; entry/main + path canonicalisation; headless scratch **`--skip-interactive`**; `_RELSTATUS`; CI refactor; Phase **4c** **test.scratch.versions**; **STLSoft** **1.11.1-rc8** floor |
 | 6th September 2026  | [Pantheios 1.0.1-rc2 released](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc2) | transitive link dependencies in **pantheios-config.cmake**; added **.vscode/settings.json** |

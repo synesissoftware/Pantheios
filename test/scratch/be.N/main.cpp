@@ -78,7 +78,7 @@ pan_be_N_t PAN_BE_N_BACKEND_LIST[] =
 #if defined(PLATFORMSTL_OS_IS_WINDOWS)
 PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(
   int                             backEndId
-, pan_be_WindowsDebugger_init_t*  init) /* throw() */
+, pan_be_WindowsDebugger_init_t*  init) PANTHEIOS_NOEXCEPT
 {
   init->flags |= PANTHEIOS_BE_WINDOWSDEBUGGER_F_DETAILS_AT_START;
 }

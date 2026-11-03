@@ -4,11 +4,11 @@
  * Purpose: Utility functions for use in Pantheios back-ends.
  *
  * Created: 19th August 2007
- * Updated: 24th January 2025
+ * Updated: 29th October 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -45,8 +45,8 @@
 #include <pantheios/backend.h>
 #include <pantheios/quality/contract.h>
 #include <pantheios/util/backends/arguments.h>
-#include <pantheios/util/memory/memcopy.h>
 
+#include <stlsoft/string/c_string/strnicmp.h>
 #include <stlsoft/string/string_view.hpp>
 #include <stlsoft/string/split_functions.hpp>
 #include <stlsoft/string/view_slice_functions.hpp>
@@ -54,11 +54,6 @@
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <new>
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-
-#include <ctype.h>
-#ifdef PANTHEIOS_USE_WIDE_STRINGS
-# include <wchar.h>
-#endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,11 +72,11 @@
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
-# define pan_toupper_                                       towupper
+# define pan_strnicmp_                                      stlsoft_C_wcsnicmp
 typedef stlsoft::wstring_view                               string_view_t;
 #else /* ? PANTHEIOS_USE_WIDE_STRINGS */
 
-# define pan_toupper_                                       toupper
+# define pan_strnicmp_                                      stlsoft_C_strnicmp
 typedef stlsoft::string_view                                string_view_t;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
@@ -147,33 +142,19 @@ namespace
 
         if (n < 6)
         {
-            PAN_CHAR_T copy[6];
-
-            PANTHEIOS_char_copy(&copy[0], value.data(), n);
-            ::memset(&copy[0] + n, '\0', (6 - n) * sizeof(PAN_CHAR_T));
-
-            PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL('\0' == copy[5], "the character at [5] must be the nul-terminator");
-
-            { for (size_t i = 0; '\0' != copy[i]; ++i)
-            {
-                copy[i] = static_cast<PAN_CHAR_T>(pan_toupper_(copy[i]));
-            }}
-
-            const string_view_t val2(&copy[0], n);
-
-            if (PANTHEIOS_LITERAL_STRING("1") == val2 ||
-                PANTHEIOS_LITERAL_STRING("ON") == val2 ||
-                PANTHEIOS_LITERAL_STRING("YES") == val2 ||
-                PANTHEIOS_LITERAL_STRING("TRUE") == val2)
+            if ((1 == n && 0 == pan_strnicmp_(value.data(), PANTHEIOS_LITERAL_STRING("1"), n)) ||
+                (2 == n && 0 == pan_strnicmp_(value.data(), PANTHEIOS_LITERAL_STRING("ON"), n)) ||
+                (3 == n && 0 == pan_strnicmp_(value.data(), PANTHEIOS_LITERAL_STRING("YES"), n)) ||
+                (4 == n && 0 == pan_strnicmp_(value.data(), PANTHEIOS_LITERAL_STRING("TRUE"), n)))
             {
                 flagIsOn = true;
 
                 return true;
             }
-            else if (PANTHEIOS_LITERAL_STRING("0") == val2 ||
-                    PANTHEIOS_LITERAL_STRING("OFF") == val2 ||
-                    PANTHEIOS_LITERAL_STRING("NO") == val2 ||
-                    PANTHEIOS_LITERAL_STRING("FALSE") == val2)
+            else if ((1 == n && 0 == pan_strnicmp_(value.data(), PANTHEIOS_LITERAL_STRING("0"), n)) ||
+                    (3 == n && 0 == pan_strnicmp_(value.data(), PANTHEIOS_LITERAL_STRING("OFF"), n)) ||
+                    (2 == n && 0 == pan_strnicmp_(value.data(), PANTHEIOS_LITERAL_STRING("NO"), n)) ||
+                    (5 == n && 0 == pan_strnicmp_(value.data(), PANTHEIOS_LITERAL_STRING("FALSE"), n)))
             {
                 flagIsOn = false;
 

@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  18th October 2026
+# Updated:  4th November 2026
 #
 # ######################################################################## #
 
@@ -179,7 +179,7 @@ elseif(DEFINED ENV{STLSOFT})
 	set(STLSOFT_INCLUDE_DIR $ENV{STLSOFT}/include)
 else()
 
-	set(STLSoft_REQUIRED_VERSION_ 1.11.1)
+	set(STLSoft_REQUIRED_VERSION_ 1.11.5)
 
 	find_package(STLSoft ${STLSoft_REQUIRED_VERSION_} REQUIRED)
 
@@ -206,6 +206,12 @@ if(DEFINED STLSOFT_INCLUDE_DIR)
 	include_directories(${STLSOFT_INCLUDE_DIR})
 endif()
 
+if(DEFINED STLSOFT_INCLUDE_DIR OR DEFINED STLSoft_FOUND)
+
+	add_compile_definitions(HAS_STLSOFT)
+	add_compile_definitions(HAS_STLSoft)
+endif()
+
 
 # ############################
 # woad
@@ -213,11 +219,16 @@ endif()
 # Required by bec.AnsiConsole, and by the stock back-end libraries that
 # compile that translation unit, for SGR sequences and stream policy.
 
-find_package(woad REQUIRED)
+set(woad_REQUIRED_VERSION_ 0.2.2)
 
-message("-- CMake package woad found (version ${woad_VERSION})")
+find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
 
-add_compile_definitions(HAS_woad)
+message("-- CMake package woad found (version ${woad_VERSION}; ${woad_REQUIRED_VERSION_} requested)")
+
+add_compile_definitions(
+	HAS_woad
+	HAS_WOAD
+)
 
 
 # ############################
@@ -329,12 +340,16 @@ if(NOT NO_B64)
 
 		message("-- CMake package b64 found (version ${b64_VERSION})")
 
-		add_compile_definitions(HAS_b64)
+		add_compile_definitions(
+			HAS_b64
+			HAS_B64
+		)
 	endif(b64_FOUND)
 endif()
 
 if(NOT b64_FOUND)
 
+	add_compile_definitions(PANTHEIOS_NO_b64)
 	add_compile_definitions(PANTHEIOS_NO_B64)
 endif()
 
@@ -350,8 +365,17 @@ if(NOT NO_DIAGNOSTICISM)
 
 		message("-- CMake package Diagnosticism found (version ${Diagnosticism_VERSION})")
 
-		add_compile_definitions(HAS_Diagnosticism)
+		add_compile_definitions(
+			HAS_Diagnosticism
+			HAS_DIAGNOSTICISM
+		)
 	endif(Diagnosticism_FOUND)
+endif()
+
+if(NOT Diagnosticism_FOUND)
+
+	add_compile_definitions(PANTHEIOS_NO_Diagnosticism)
+	add_compile_definitions(PANTHEIOS_NO_DIAGNOSTICISM)
 endif()
 
 
@@ -368,9 +392,13 @@ if(NOT NO_SHWILD)
 
 			message("-- CMake package shwild found (version ${shwild_VERSION})")
 
-			add_compile_definitions(HAS_shwild)
+			add_compile_definitions(
+				HAS_shwild
+				HAS_SHWILD
+			)
+
 			add_compile_definitions(PANTHEIOS_HAS_SHWILD)
-			add_compile_definitions(XTESTS_HAS_SHWILD)
+			add_compile_definitions(XTESTS_HAS_SHWILD) # Legacy form, and should be removed later
 		else(shwild_FOUND)
 
 			add_compile_definitions(PANTHEIOS_NO_SHWILD)
@@ -479,13 +507,16 @@ endif(Threads_FOUND)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.26.4)
+	set(xTests_REQUIRED_VERSION_ 0.29)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 
 	message("-- CMake package xTests found (version ${xTests_VERSION}; ${xTests_REQUIRED_VERSION_} requested)")
 
-	add_compile_definitions(HAS_xTests)
+	add_compile_definitions(
+		HAS_xTests
+		HAS_XTESTS
+	)
 endif(BUILD_TESTING)
 
 

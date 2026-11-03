@@ -5,7 +5,7 @@
  *          Elements.
  *
  * Created: 23rd November 2007
- * Updated: 14th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -57,9 +57,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MAJOR    1
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MINOR    2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 4
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     22
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_MINOR    3
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_STOCK_EDIT     23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -176,7 +176,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const   PANTHEIOS_FE_PROCESS_IDENTITY[];
  *   it must call `pantheios_exitProcess(1)`. It may optionally call
  *   \c pantheios_util_onBailOut4() first.
  */
-PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) /* throw() */;
+PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////

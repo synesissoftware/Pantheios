@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/memory/memcopy.h
+ * File:    pantheios/util/memory/memcopy.h
  *
- * Purpose:     Memory-copying functions.
+ * Purpose: Memory-copying functions.
  *
- * Created:     1st September 2015
- * Updated:     14th October 2026
+ * Created: 1st September 2015
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2015-2019, Matthew Wilson and Synesis Software
@@ -56,9 +56,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_MAJOR    1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_MINOR    0
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_EDIT     9
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_H_MEMCOPY_EDIT     10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -119,7 +119,7 @@ pantheios_util_memory_copyChars(
     C*                  dest
 ,   C const*            src
 ,   size_t              cch
-)
+) PANTHEIOS_NOEXCEPT
 {
     STLSOFT_STATIC_ASSERT(stlsoft::is_character_type<C>::value);
 
@@ -144,7 +144,7 @@ pantheios_util_memory_copyChars_m(
     char*               dest
 ,   char const*         src
 ,   size_t              cch
-);
+) PANTHEIOS_NOEXCEPT;
 
 /** Copies \c cch wide characters from \c src to \c dest
  *
@@ -160,7 +160,7 @@ pantheios_util_memory_copyChars_w(
     wchar_t*            dest
 ,   wchar_t const*      src
 ,   size_t              cch
-);
+) PANTHEIOS_NOEXCEPT;
 
 /** \def pantheios_util_memory_copyChars(dest, src, cch)
  *

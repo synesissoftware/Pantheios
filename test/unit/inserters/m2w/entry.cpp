@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.inserter.m2w project.
  *
  * Created: 22nd November 2010
- * Updated: 12th October 2026
+ * Updated: 29th October 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.inserter.m2w", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.inserters.m2w", verbosity))
     {
         XTESTS_RUN_CASE(TEST_pantheios_m2w_MATCHES_stlsoft_m2w);
         XTESTS_PRINT_RESULTS();

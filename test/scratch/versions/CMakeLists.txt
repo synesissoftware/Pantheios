@@ -38,6 +38,13 @@ endif(shwild_FOUND)
 
 define_target_compile_options(test.scratch.versions)
 
+if(TARGET xTests::core)
+
+	target_link_libraries(test.scratch.versions
+		PRIVATE
+			xTests::core
+	)
+endif()
+
 
 # ############################## end of file ############################# #
-

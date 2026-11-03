@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inserters/blob.cpp
+ * File:    inserters/blob.cpp
  *
- * Purpose:     Implementation of the inserter classes.
+ * Purpose: Implementation of the inserter classes.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 29th October 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -61,6 +61,7 @@
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 # include <pantheios/util/memory/auto_buffer_selector.hpp>
 # include <stlsoft/conversion/char_conversions.hpp>
+# include <stlsoft/string/encoding/mbstowcs.h>
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
 #include <stlsoft/conversion/byte_format_functions.hpp>
@@ -235,16 +236,7 @@ void blob::construct_()
             cch = stlsoft::format_bytes(m_pv, m_cb, &buff[0], cch, m_byteGrouping, grpSep, m_groupsPerLine, lineSep);
             buff[cch] = '\0';
 
-# if defined(STLSOFT_COMPILER_IS_MSVC) && \
-     _MSC_VER >= 1400
-#  pragma warning(push)
-#  pragma warning(disable : 4996)
-# endif
-            ::mbstowcs(value, buff.data(), cch);
-# if defined(STLSOFT_COMPILER_IS_MSVC) && \
-     _MSC_VER >= 1400
-#  pragma warning(pop)
-# endif
+            stlsoft_C_mbstowcs(value, 1 + cch, buff.data(), cch);
             value[cch] = '\0';
         }
 

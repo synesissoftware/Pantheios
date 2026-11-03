@@ -170,7 +170,7 @@ namespace
  */
 
 PANTHEIOS_CALL(void)
-pantheios_be_fprintf_getDefaultAppInit(pan_be_fprintf_init_t* init)
+pantheios_be_fprintf_getDefaultAppInit(pan_be_fprintf_init_t* init) PANTHEIOS_NOEXCEPT
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
 

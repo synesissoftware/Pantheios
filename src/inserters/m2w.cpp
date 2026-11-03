@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/inserters/m2w.cpp
+ * File:    src/inserters/m2w.cpp
  *
- * Purpose:     Implementation of the pantheios::m2w inserter class.
+ * Purpose: Implementation of the pantheios::m2w inserter class.
  *
- * Created:     22nd November 2010
- * Updated:     16th January 2023
+ * Created: 22nd November 2010
+ * Updated: 29th October 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -50,7 +50,8 @@
 #include <pantheios/internal/nox.h>
 
 #include <pantheios/inserters/m2w.hpp>
-#include <pantheios/internal/safestr.h>
+
+#include <stlsoft/string/encoding/mbstowcs.h>
 
 /* Standard C header files */
 #include <stdio.h>
@@ -139,25 +140,7 @@ void m2w::construct_()
 
         if (NULL != m_result)
         {
-#ifdef PANTHEIOS_USING_SAFE_STR_FUNCTIONS
-            size_t len;
-
-            if (0 != ::mbstowcs_s(&len, m_result, cw, m_source, m_sourceLen))
-            {
-                pantheios_inserterDeallocate(m_result);
-
-                m_result = NULL;
-            }
-            else
-            {
-                m_result[len] = '\0';
-
-                m_length = len - 1;
-            }
-#else /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
-            size_t len = ::mbstowcs(m_result, m_source, m_sourceLen);
-
-            PANTHEIOS_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL((size_t(-1) == len || len < cb), "insufficient buffer");
+            size_t len = stlsoft_C_mbstowcs(m_result, cw, m_source, m_sourceLen);
 
             if (size_t(-1) == len)
             {
@@ -167,11 +150,8 @@ void m2w::construct_()
             }
             else
             {
-                m_result[len] = '\0';
-
                 m_length = len;
             }
-#endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
         }
     }
 }

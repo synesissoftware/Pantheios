@@ -17,7 +17,7 @@ There are three options for installing **Pantheios**, depending on how you obtai
 
 ### Cloning project, installing via CMake
 
-0. First, ensure that [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.1-rc8** or later) and [**woad**](https://github.com/synesissoftware/woad) have been cloned and then built and installed via CMake, as per the instructions in those projects. Optionally, install [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild) the same way. To build the stock **ACE** backends, install **ACE** (for example `libace-dev` on Ubuntu, or set **`ACE`** / **`ACE_ROOT`** to an ACE tree) before configuring; pass **`--no-ace`** to **prepare_cmake.sh** to skip **ACE** discovery. To build the stock **ZeroMQ** (**0MQ**) backends, install **libzmq** (for example `libzmq3-dev` on Ubuntu, or `brew install zeromq` on macOS) before configuring; pass **`--no-zmq`** to **prepare_cmake.sh** to skip **ZeroMQ** discovery.
+0. First, ensure that [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.5** or later) and [**woad**](https://github.com/synesissoftware/woad) (**0.2.1** or later) have been cloned and then built and installed via CMake, as per the instructions in those projects. Optionally, install [**b64**](https://github.com/synesissoftware/b64) (needed only for **Pantheios.inserters.b64** / `pantheios::b64`) and [**shwild**](https://github.com/synesissoftware/shwild) the same way. To build the stock **ACE** backends, install **ACE** (for example `libace-dev` on Ubuntu, or set **`ACE`** / **`ACE_ROOT`** to an ACE tree) before configuring; pass **`--no-ace`** to **prepare_cmake.sh** to skip **ACE** discovery. To build the stock **ZeroMQ** (**0MQ**) backends, install **libzmq** (for example `libzmq3-dev` on Ubuntu, or `brew install zeromq` on macOS) before configuring; pass **`--no-zmq`** to **prepare_cmake.sh** to skip **ZeroMQ** discovery.
 
 
 1. Clone **Pantheios** from GitHub, as in;
@@ -139,9 +139,10 @@ $ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 
 1. Download the latest distributions;
 
-Obtain the latest releases of **Pantheios** and **STLSoft** from:
+Obtain the latest releases of **Pantheios**, **STLSoft**, and **woad** from:
 * [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.1.0-alpha1.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.1.0-alpha1.zip);
-* [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft/tags), e.g. [**STLSoft-1.11.1-rc8**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/STLSoft-1.11.1-rc8);
+* [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft/tags), e.g. [**STLSoft-1.11.5**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/STLSoft-1.11.5);
+* [woad GitHub project](https://github.com/synesissoftware/woad/tags);
 
 
 2. Unzip to directories of your choice, as in:
@@ -150,10 +151,11 @@ Obtain the latest releases of **Pantheios** and **STLSoft** from:
 $ mkdir -p ~/open-source
 $ cd ~/open-source
 $ unzip Pantheios-1.1.0-alpha1.zip
-$ unzip STLSoft-1.11.1-rc8
+$ unzip STLSoft-1.11.5
+$ unzip woad-<version>.zip
 ```
 
-3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped it, e.g. `STLSOFT=~/open-source/STLSoft-1.11.1-rc8`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped **STLSoft**, e.g. `STLSOFT=~/open-source/STLSoft-1.11.5`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles. Install **woad** via its **CMake** package (see the **woad** project) so `find_package(woad)` succeeds — required for **bec.AnsiConsole** and stock libraries that compile it;
 
 4. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make
 
@@ -168,16 +170,17 @@ $ make
 
 If you clone the project from https://github.com/synesissoftware/Pantheios and prefer the legacy makefile-based workflow (rather than [CMake](#cloning-project-installing-via-cmake)):
 
-1. Clone **STLSoft** and **Pantheios**, as in;
+1. Clone **STLSoft**, **woad**, and **Pantheios**, as in;
 
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
 $ git clone -b master https://github.com/synesissoftware/STLSoft
+$ git clone -b master https://github.com/synesissoftware/woad
 $ git clone -b master https://github.com/synesissoftware/Pantheios
 ```
 
-2. Define an environment variable `STLSOFT`, whose value is the directory in which you cloned **STLSoft**, e.g. `STLSOFT=~/open-source/STLSoft`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles;
+2. Define an environment variable `STLSOFT`, whose value is the directory in which you cloned **STLSoft**, e.g. `STLSOFT=~/open-source/STLSoft`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles. Build and install **woad** via **CMake** so `find_package(woad)` succeeds when configuring **Pantheios**;
 
 3. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make:
 

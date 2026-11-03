@@ -50,7 +50,7 @@ PANTHEIOS_CALL(void)
 pantheios_be_WindowsSyslog_getAppInit(
     int                          /* backEndId */
 ,   pan_be_WindowsSyslog_init_t*    init
-) /* throw() */
+) PANTHEIOS_NOEXCEPT
 {
     init->addrSize = 0;
     init->hostName = "127.0.0.1";

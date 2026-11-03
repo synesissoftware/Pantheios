@@ -135,8 +135,12 @@ update_deps.cmd
 *.aps
 *.b64
 # Directories whose names end in .b64 match *.b64; keep their sources.
+!examples/cpp/inserters/b64/
+!examples/cpp/inserters/b64/**
 !examples/cpp/inserters/example.cpp.inserter.b64/
 !examples/cpp/inserters/example.cpp.inserter.b64/**
+!test/component/inserters/b64/
+!test/component/inserters/b64/**
 !test/component/test.component.inserters.b64/
 !test/component/test.component.inserters.b64/**
 *.bak

@@ -1,7 +1,7 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
-## 1.1.0-alpha1 - 19th October 2026
+## 1.1.0-alpha1 - 15th November 2026
 
 * added **be.zmq**, a backend that uses **zeromq** (aka **0MQ**) — submitted by **Mikko Koivunalho** ([mikkoi](https://github.com/mikkoi));
 * **CMake** optional **ZeroMQ** discovery (`NO_ZMQ` / **`--no-zmq`**, **`cmake/FindZeroMQ.cmake`**): builds **be**/**bec**/**bel**/**ber.zmq**, **bec.zmq.WithCallback**, and **test.scratch.be.zmq.WithCallback** when **libzmq** is found;
@@ -10,7 +10,57 @@
 * version: added `PANTHEIOS_VER_1_1_0_A1` (`0x01010041`) and set release status to `0x41` in **include/pantheios/pantheios.h**; **test.unit.getversion** asserts `PANTHEIOS_VER_1_1_0_A1`;
 
 
-## 1.0.1-rc5 - 18th October 2026
+## 1.0.1-rc10 - 5th November 2026
+
+* contract:
+  * added `PANTHEIOS_NOEXCEPT` (an alias of `STLSOFT_NOEXCEPT`) and applied it to core and util functions that cannot let a C++ exception escape, including version and init-state queries, bail-out, `snprintf` / `strdup_nothrow`, host name, process id, and thread id;
+  * applied it to stock trivial front-end and back-end entry points (`be.null`, `be.fail`, the `fe.simple` severity ceiling, documented `/* throw() */` application callbacks, and `getDefaultAppInit`);
+  * applied it to `pantheios_getCurrentProcessIdString()`, `pantheios_getCurrentProcessIdStringLength()`, and the `processId_t` string shims;
+  * shared `pantheios_fe_*` / `pantheios_be_*` declarations, locking and dispatch paths, and allocating inserters stay unmarked (recorded under **TODO.md**);
+* build:
+  * removed legacy custom makefiles;
+* version:
+  * current composite is `PANTHEIOS_VER_1_0_1_RC10` (`0x010001EA`);
+
+
+## 1.0.1-rc9 - 3rd November 2026
+
+* packaging / inserters:
+  * moved `pantheios::b64` out of **Pantheios.core** into optional **Pantheios.inserters.b64** under **projects/inserters/b64/** (built only when **b64** is found; **PUBLIC**-links **b64::core**);
+  * **inserters.hpp** no longer includes **inserters/b64.hpp** — include it explicitly and link **Pantheios.inserters.b64**;
+  * stock console example helpers no longer unconditional-link **b64::core**;
+  * **.gitignore** un-ignores the real **examples** / **test** `**/inserters/b64/` trees under the `*.b64` pattern;
+* build:
+  * when **b64** is absent, define both `PANTHEIOS_NO_b64` and `PANTHEIOS_NO_B64`;
+  * when **Diagnosticism** is absent, define both `PANTHEIOS_NO_Diagnosticism` and `PANTHEIOS_NO_DIAGNOSTICISM` (fixed a duplicated `PANTHEIOS_NO_B64` block);
+* version:
+  * added `PANTHEIOS_VER_1_0_1_RC9` (`0x010001E9`);
+
+
+## 1.0.1-rc8 - 2nd November 2026
+
+* dependencies:
+  * **STLSoft** minimum is **1.11.5** (`0x010B05FF`);
+  * **woad** minimum is **0.2.1**;
+  * **xTests** minimum is **0.28.2**;
+* version:
+  * added `PANTHEIOS_VER_1_0_1_RC8`;
+
+## 1.0.1-rc7 - 30th October 2026
+
+* dependencies:
+  * now requires **STLSoft** **1.11.4** (or later) — compile-time floor `_STLSOFT_VER < 0x010B04FF`;
+* inserters / core:
+  * multibyte and wide conversions in **m2w**, **w2m**, **blob**, **b64**, and process identity call `stlsoft_C_mbstowcs` / `stlsoft_C_wcstombs`; removed the MSVC `wcstombs` workaround in **src/core/api.cpp**;
+  * boolean flag tokens in **src/util/be.parse.cpp** compare with `stlsoft_C_strnicmp` / `stlsoft_C_wcsnicmp`;
+
+
+## 1.0.1-rc6 - 27th October 2026
+
+* Defined `HAS_<Pkg>` and `HAS_<PKG>` when a Synesis package other than **STLSoft** is detected;
+
+
+## 1.0.1-rc5 - 26th October 2026
 
 * backends:
   * **bec.AnsiConsole** colour handling now uses **woad**: severity colours are **woad** SGR sequences (`WOAD_BOLD` / `WOAD_BLINKING` where used, plus foreground and background), and emission follows `woad_seq_for_stream()` unless **`noColours`** or **`forceAnsiEscapeSequences`** overrides that policy;

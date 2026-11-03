@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/system/threadid.h (was pantheios/util/threading/threadid.h)
+ * File:    pantheios/util/system/threadid.h (was pantheios/util/threading/threadid.h)
  *
- * Purpose:     Functions for eliciting thread identifier
+ * Purpose: Functions for eliciting thread identifier
  *
- * Created:     4th January 2008
- * Updated:     14th October 2026
+ * Created: 4th January 2008
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
@@ -54,9 +54,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_MAJOR    3
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_MINOR    0
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_EDIT     11
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_MINOR    1
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_THREADID_EDIT     12
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -95,7 +95,7 @@ namespace pantheios
  *   to/obtained from the operating system.
  */
 PANTHEIOS_CALL(stlsoft_ns_qual(ss_sint64_t))
-pantheios_getCurrentThreadId(void) STLSOFT_NOEXCEPT;
+pantheios_getCurrentThreadId(void) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,7 +113,7 @@ namespace util
  */
 inline
 stlsoft_ns_qual(ss_sint64_t)
-getCurrentThreadId() STLSOFT_NOEXCEPT
+getCurrentThreadId() PANTHEIOS_NOEXCEPT
 {
     return pantheios_getCurrentThreadId();
 }

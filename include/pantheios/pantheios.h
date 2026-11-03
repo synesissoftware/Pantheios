@@ -4,7 +4,7 @@
  * Purpose: Pantheios Core and Util APIs.
  *
  * Created: 21st June 2005
- * Updated: 19th October 2026
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -58,9 +58,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MAJOR      3
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      54
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   15
-# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       406
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_MINOR      55
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_REVISION   1
+# define PANTHEIOS_VER_PANTHEIOS_H_PANTHEIOS_EDIT       414
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -117,11 +117,16 @@
 # define PANTHEIOS_VER_1_0_1_B223               0x010001df /* should be 0x010001df */
 # endif
 # define PANTHEIOS_VER_1_0_1_B224               0x010001e0
-# define PANTHEIOS_VER_1_0_1_RC1                0x010001e1 /* NOTE: e1 is required just to step over the prior 1.0.1 beta version values */
-# define PANTHEIOS_VER_1_0_1_RC2                0x010001e2
+# define PANTHEIOS_VER_1_0_1_RC1                0x010001E1 /* NOTE: E1 is required just to step over the prior 1.0.1 beta version values */
+# define PANTHEIOS_VER_1_0_1_RC2                0x010001E2
 # define PANTHEIOS_VER_1_0_1_RC3                0x010001E3
 # define PANTHEIOS_VER_1_0_1_RC4                0x010001E4
 # define PANTHEIOS_VER_1_0_1_RC5                0x010001E5
+# define PANTHEIOS_VER_1_0_1_RC6                0x010001E6
+# define PANTHEIOS_VER_1_0_1_RC7                0x010001E7
+# define PANTHEIOS_VER_1_0_1_RC8                0x010001E8
+# define PANTHEIOS_VER_1_0_1_RC9                0x010001E9
+# define PANTHEIOS_VER_1_0_1_RC10               0x010001EA
 # define PANTHEIOS_VER_1_0_1                    0x010001FF
 # define PANTHEIOS_VER_1_1_0_A1                 0x01010041
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
@@ -226,9 +231,9 @@
 #  define PANTHEIOS_STLSOFT_1_10_B01_OR_LATER
 # endif
 
-# if _STLSOFT_VER < 0x010B01C8
+# if _STLSOFT_VER < 0x010B05FF
 
-#  error This version Pantheios requires STLSoft 1.11.1 rc 8, or later. (www.stlsoft.org)
+#  error This version Pantheios requires STLSoft 1.11.5, or later. (www.stlsoft.org)
 # endif
 #else
 
@@ -474,6 +479,14 @@
  *
  * \ingroup group__utility
  */
+
+/** \def PANTHEIOS_NOEXCEPT
+ *
+ * Function decorator that denotes the semantic of the C++ \c noexcept
+ *   keyword / <code>throw()</code> construct in a compiler-independent and
+ *   language-independent manner.
+ */
+#define PANTHEIOS_NOEXCEPT                                  STLSOFT_NOEXCEPT
 
 /* Under PANTHEIOS_DOCUMENTATION_SKIP_SECTION always emit the #define so
  * Doxygen can attach the \def documentation (an empty PREDEFINED value
@@ -828,7 +841,7 @@ typedef stlsoft_ns_qual(ss_sint32_t)    pan_sev_t;
  * \remarks This function may be called without having initialised the
  *   Pantheios library
  */
-PANTHEIOS_CALL(pan_uint32_t) pantheios_getVersion(void);
+PANTHEIOS_CALL(pan_uint32_t) pantheios_getVersion(void) PANTHEIOS_NOEXCEPT;
 
 /** Initialises the Pantheios library
  *
@@ -921,9 +934,9 @@ pantheios_getProcessIdentity(void);
  *   \link pantheios::pan_severity_t PANTHEIOS_SEV_*\endlink enumerators,
  *   otherwise, the empty string (`""`) will be returned;
  */
-PANTHEIOS_CALL(pantheios_char_t const*) pantheios_getStockSeverityString(pan_sev_t severity);
+PANTHEIOS_CALL(pantheios_char_t const*) pantheios_getStockSeverityString(pan_sev_t severity) PANTHEIOS_NOEXCEPT;
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL_DEPRECATED(pantheios_char_t const*, pantheios_getSeverityString, pantheios_getStockSeverityString) pantheios_getSeverityString(pan_sev_t severity);
+PANTHEIOS_CALL_DEPRECATED(pantheios_char_t const*, pantheios_getSeverityString, pantheios_getStockSeverityString) pantheios_getSeverityString(pan_sev_t severity) PANTHEIOS_NOEXCEPT;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** Returns the length of the string returned by
@@ -936,9 +949,9 @@ PANTHEIOS_CALL_DEPRECATED(pantheios_char_t const*, pantheios_getSeverityString, 
  *   \link pantheios::pan_severity_t PANTHEIOS_SEV_*\endlink enumerators,
  *   otherwise, 0 will be returned;
  */
-PANTHEIOS_CALL(size_t) pantheios_getStockSeverityStringLength(pan_sev_t severity);
+PANTHEIOS_CALL(size_t) pantheios_getStockSeverityStringLength(pan_sev_t severity) PANTHEIOS_NOEXCEPT;
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_getSeverityStringLength, pantheios_getStockSeverityStringLength) pantheios_getSeverityStringLength(pan_sev_t severity);
+PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_getSeverityStringLength, pantheios_getStockSeverityStringLength) pantheios_getSeverityStringLength(pan_sev_t severity) PANTHEIOS_NOEXCEPT;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** Obtains the severity string as a slice
@@ -953,7 +966,7 @@ PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_getSeverityStringLength, pantheios_g
 PANTHEIOS_CALL(pantheios_slice_t)
 pantheios_getStockSeverityStringSlice(
     pan_sev_t severity
-);
+) PANTHEIOS_NOEXCEPT;
 
 /** Returns a constant pointer to a non-NULL non-modifiable nul-terminated
  * string representing the initialisation code.
@@ -964,9 +977,9 @@ pantheios_getStockSeverityStringSlice(
  *   returned. If the error code is not recognised, the empty string (`""`)
  *   will be returned;
  */
-PANTHEIOS_CALL(char const*) pantheios_getInitCodeString(int code);
+PANTHEIOS_CALL(char const*) pantheios_getInitCodeString(int code) PANTHEIOS_NOEXCEPT;
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL_DEPRECATED(char const*, pantheios_getInitErrorString, pantheios_getInitCodeString) pantheios_getInitErrorString(int code);
+PANTHEIOS_CALL_DEPRECATED(char const*, pantheios_getInitErrorString, pantheios_getInitCodeString) pantheios_getInitErrorString(int code) PANTHEIOS_NOEXCEPT;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** Returns the length of the string returned by
@@ -977,9 +990,9 @@ PANTHEIOS_CALL_DEPRECATED(char const*, pantheios_getInitErrorString, pantheios_g
  * \param code The initialisation code whose string equivalent is to be
  *   returned. If the error code is not recognised, 0 will be returned;
  */
-PANTHEIOS_CALL(size_t) pantheios_getInitCodeStringLength(int code);
+PANTHEIOS_CALL(size_t) pantheios_getInitCodeStringLength(int code) PANTHEIOS_NOEXCEPT;
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_getInitErrorStringLength, pantheios_getInitCodeStringLength) pantheios_getInitErrorStringLength(int code);
+PANTHEIOS_CALL_DEPRECATED(size_t, pantheios_getInitErrorStringLength, pantheios_getInitCodeStringLength) pantheios_getInitErrorStringLength(int code) PANTHEIOS_NOEXCEPT;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -1034,7 +1047,7 @@ PANTHEIOS_CALL(int) pantheios_logprintf(
     pan_sev_t               severity
 ,   pantheios_char_t const* format
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 #if defined(STLSOFT_COMPILER_IS_GCC) /* TODO: Change this to proper discriminated feature */
 __attribute__((format(printf,2,3)))
 #endif /* compiler */
@@ -1060,7 +1073,7 @@ PANTHEIOS_CALL(int) pantheios_logvprintf(
     pan_sev_t               severity
 ,   pantheios_char_t const* format
 ,   va_list                 args
-);
+) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1104,7 +1117,7 @@ pantheios_onBailOut4(
 ,   char const*   message
 ,   char const*   processId
 ,   char const*   qualifier
-);
+) PANTHEIOS_NOEXCEPT;
 
 /** Widestring form of pantheios_onBailOut4()
  *
@@ -1116,7 +1129,7 @@ pantheios_onBailOut4_w(
 ,   wchar_t const*  message
 ,   wchar_t const*  processId
 ,   wchar_t const*  qualifier
-);
+) PANTHEIOS_NOEXCEPT;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
@@ -1128,7 +1141,7 @@ pantheios_onBailOut6(
 ,   char const*   qualifier
 ,   char const*   frontEndName
 ,   char const*   backEndName
-);
+) PANTHEIOS_NOEXCEPT;
 
 PANTHEIOS_CALL(void)
 pantheios_onBailOut6_w(
@@ -1138,7 +1151,7 @@ pantheios_onBailOut6_w(
 ,   wchar_t const*  qualifier
 ,   wchar_t const*  frontEndName
 ,   wchar_t const*  backEndName
-);
+) PANTHEIOS_NOEXCEPT;
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 /** Prints a bail-out message to operating system-dependent
@@ -1172,7 +1185,7 @@ pantheios_onBailOut3(
     int           severity
 ,   char const*   message
 ,   char const*   processId
-);
+) PANTHEIOS_NOEXCEPT;
 
 /** Widestring form of pantheios_onBailOut3()
  *
@@ -1183,7 +1196,7 @@ pantheios_onBailOut3_w(
     int             severity
 ,   wchar_t const*  message
 ,   wchar_t const*  processId
-);
+) PANTHEIOS_NOEXCEPT;
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 } /* namespace util */
 } /* namespace pantheios */
@@ -1228,14 +1241,14 @@ namespace core
  * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
  */
-PANTHEIOS_CALL(int)     pantheios_isInitialising(void);
+PANTHEIOS_CALL(int)     pantheios_isInitialising(void) PANTHEIOS_NOEXCEPT;
 /** [Currently undocumented] Indicates whether the Pantheios libraries have
  * been successfully initialised.
  *
  * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
  */
-PANTHEIOS_CALL(int)     pantheios_isInitialised(void);
+PANTHEIOS_CALL(int)     pantheios_isInitialised(void) PANTHEIOS_NOEXCEPT;
 /** [Currently undocumented] Exits the process with all haste, .
  *
  * \warning Calling this function causes the process to exit immediately,
@@ -1248,7 +1261,7 @@ PANTHEIOS_CALL(int)     pantheios_isInitialised(void);
 #  if defined(STLSOFT_COMPILER_IS_MSVC)
 __declspec(noreturn)
 #  endif /* compiler */
-PANTHEIOS_CALL(void)    pantheios_exitProcess(int code)
+PANTHEIOS_CALL(void)    pantheios_exitProcess(int code) PANTHEIOS_NOEXCEPT
 #  if defined(STLSOFT_COMPILER_IS_GCC)
 __attribute__((noreturn))
 #  endif /* compiler */
@@ -1258,7 +1271,7 @@ __attribute__((noreturn))
  * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
  */
-PANTHEIOS_CALL_DEPRECATED(void, pantheios_exit_process, pantheios_exitProcess) pantheios_exit_process(int code);
+PANTHEIOS_CALL_DEPRECATED(void, pantheios_exit_process, pantheios_exitProcess) pantheios_exit_process(int code) PANTHEIOS_NOEXCEPT;
 
 /** [Currently undocumented] Allocates a permanent block of memory.
  *
@@ -1287,14 +1300,14 @@ PANTHEIOS_CALL(void*)   pantheios_malloc(size_t cb);
  * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
  */
-PANTHEIOS_CALL(void*)   pantheios_inserterAllocate(size_t cb);
+PANTHEIOS_CALL(void*)   pantheios_inserterAllocate(size_t cb) PANTHEIOS_NOEXCEPT;
 /** [Currently undocumented] Deallocates memory allocated with
  * pantheios_inserterAllocate().
  *
  * \note THIS FUNCTION IS NOT PART OF THE PUBLICLY DOCUMENTED API OF
  *   PANTHEIOS, AND IS SUBJECT TO REMOVAL/CHANGE IN A FUTURE RELEASE.
  */
-PANTHEIOS_CALL(void)    pantheios_inserterDeallocate(void* pv);
+PANTHEIOS_CALL(void)    pantheios_inserterDeallocate(void* pv) PANTHEIOS_NOEXCEPT;
 
 /** [Currently undocumented] Returns a pointer to a pad string of (up to)
  * the requested length.
@@ -1317,7 +1330,7 @@ PANTHEIOS_CALL(pantheios_char_t const*)
 pantheios_getPad(
     size_t  minimumWidth
 ,   size_t* actualWidth
-);
+) PANTHEIOS_NOEXCEPT;
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -1521,7 +1534,7 @@ onBailOut(
     int         severity
 ,   char const* message
 ,   char const* processId
-)
+) PANTHEIOS_NOEXCEPT
 {
     pantheios_onBailOut3(severity, message, processId);
 }
@@ -1533,7 +1546,7 @@ onBailOut(
 ,   char const* message
 ,   char const* processId
 ,   char const* qualifier
-)
+) PANTHEIOS_NOEXCEPT
 {
     pantheios_onBailOut4(severity, message, processId, qualifier);
 }
@@ -1547,7 +1560,7 @@ onBailOut(
 ,   char const*   qualifier
 ,   char const*   frontEndName
 ,   char const*   backEndName
-)
+) PANTHEIOS_NOEXCEPT
 {
     pantheios_onBailOut6(severity, message, processId, qualifier, frontEndName, backEndName);
 }
@@ -1588,14 +1601,14 @@ namespace core
 
 inline
 int
-isInitialising()
+isInitialising() PANTHEIOS_NOEXCEPT
 {
     return pantheios_isInitialising();
 }
 
 inline
 int
-isInitialised()
+isInitialised() PANTHEIOS_NOEXCEPT
 {
     return pantheios_isInitialised();
 }
@@ -1603,7 +1616,7 @@ isInitialised()
 #  if defined(STLSOFT_COMPILER_IS_GCC)
 
 void
-exitProcess(int code)
+exitProcess(int code) PANTHEIOS_NOEXCEPT
 __attribute__((noreturn));
 #  endif /* compiler */
 
@@ -1612,7 +1625,7 @@ __declspec(noreturn)
 #  endif /* compiler */
 inline
 void
-exitProcess(int code)
+exitProcess(int code) PANTHEIOS_NOEXCEPT
 {
     pantheios_exitProcess(code);
 }
@@ -1620,7 +1633,7 @@ exitProcess(int code)
 inline
 PANTHEIOS_DECLARE_DEPRECATION("function", exit_process, exitProcess)
 void
-exit_process(int code)
+exit_process(int code) PANTHEIOS_NOEXCEPT
 {
     exitProcess(code);
 }
@@ -1637,14 +1650,14 @@ malloc(size_t cb)
 
 inline
 void*
-inserterAllocate(size_t cb)
+inserterAllocate(size_t cb) PANTHEIOS_NOEXCEPT
 {
     return pantheios_inserterAllocate(cb);
 }
 
 inline
 void
-inserterDeallocate(void* pv)
+inserterDeallocate(void* pv) PANTHEIOS_NOEXCEPT
 {
     pantheios_inserterDeallocate(pv);
 }
@@ -1654,7 +1667,7 @@ pantheios_char_t const*
 getPad(
     size_t  minimumWidth
 ,   size_t* actualWidth
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getPad(minimumWidth, actualWidth);
 }
@@ -1701,7 +1714,7 @@ inline
 pantheios_char_t const*
 getStockSeverityString(
     pan_sev_t severity
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getStockSeverityString(severity);
 }
@@ -1713,7 +1726,7 @@ PANTHEIOS_DECLARE_DEPRECATION("function", getSeverityString, getStockSeverityStr
 pantheios_char_t const*
 getSeverityString(
     pan_sev_t severity
-)
+) PANTHEIOS_NOEXCEPT
 {
     return getStockSeverityString(severity);
 }
@@ -1728,7 +1741,7 @@ inline
 size_t
 getStockSeverityStringLength(
     pan_sev_t severity
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getStockSeverityStringLength(severity);
 }
@@ -1740,7 +1753,7 @@ PANTHEIOS_DECLARE_DEPRECATION("function", getSeverityStringLength, getStockSever
 size_t
 getSeverityStringLength(
     pan_sev_t severity
-)
+) PANTHEIOS_NOEXCEPT
 {
     return getStockSeverityStringLength(severity);
 }
@@ -1755,7 +1768,7 @@ inline
 pantheios_slice_t
 getStockSeverityStringSlice(
     pan_sev_t severity
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getStockSeverityStringSlice(severity);
 }
@@ -1770,7 +1783,7 @@ inline
 char const*
 getInitCodeString(
     int code
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getInitCodeString(code);
 }
@@ -1782,7 +1795,7 @@ PANTHEIOS_DECLARE_DEPRECATION("function", getInitErrorString, getInitCodeString)
 char const*
 getInitErrorString(
     int code
-)
+) PANTHEIOS_NOEXCEPT
 {
     return getInitCodeString(code);
 }
@@ -1797,7 +1810,7 @@ inline
 size_t
 getInitCodeStringLength(
     int code
-)
+) PANTHEIOS_NOEXCEPT
 {
     return pantheios_getInitCodeStringLength(code);
 }
@@ -1809,7 +1822,7 @@ PANTHEIOS_DECLARE_DEPRECATION("function", getInitErrorStringLength, getInitCodeS
 size_t
 getInitErrorStringLength(
     int code
-)
+) PANTHEIOS_NOEXCEPT
 {
     return getStockSeverityStringLength(code);
 }
