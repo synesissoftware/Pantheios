@@ -6,7 +6,7 @@
 - [Functional improvements](#functional-improvements)
   - [Pantheios 1.0.1](#pantheios-101)
     - [(final)](#final)
-    - [1.0.1-rc10 (3rd November 2026)](#101-rc10-3rd-november-2026)
+    - [1.0.1-rc10 (5th November 2026)](#101-rc10-5th-november-2026)
     - [1.0.1-rc9 (3rd November 2026)](#101-rc9-3rd-november-2026)
     - [1.0.1-rc5 (18th October 2026)](#101-rc5-18th-october-2026)
     - [1.0.1-rc4 (14th October 2026)](#101-rc4-14th-october-2026)
@@ -29,9 +29,9 @@
 * [x] ~~~Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release~~~ - ✅;
 
 
-#### 1.0.1-rc10 (3rd November 2026)
+#### 1.0.1-rc10 (5th November 2026)
 
-* [ ] `PANTHEIOS_NOEXCEPT()`;
+* [x] ~~~`PANTHEIOS_NOEXCEPT()`~~~ - ✅;
   * Cannot be applied. These throw, lock, call a front-end or back-end, or may rethrow from a catch-all (`PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS`):
     * `pantheios_init()`, `pantheios_uninit()`;
     * `pantheios_isSeverityLogged()`, `pantheios_getProcessIdentity()`;
