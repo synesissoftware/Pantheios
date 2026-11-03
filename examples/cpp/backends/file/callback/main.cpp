@@ -56,7 +56,7 @@ PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(
   int                 /* backEndId */
 , pan_be_file_init_t* init
-) /* throw() */
+) PANTHEIOS_NOEXCEPT
 {
   init->flags |= PANTHEIOS_BE_FILE_F_TRUNCATE;        // Truncate the contents
   init->flags |= PANTHEIOS_BE_FILE_F_DELETE_IF_EMPTY; // Delete the file if nothing written

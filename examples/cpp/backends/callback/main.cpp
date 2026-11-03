@@ -46,7 +46,7 @@ PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 
 PANTHEIOS_CALL(void) pantheios_be_AnsiConsole_getAppInit(
   int                        /* backEndId */
-, pan_be_AnsiConsole_init_t*    init) /* throw() */
+, pan_be_AnsiConsole_init_t*    init) PANTHEIOS_NOEXCEPT
 {
   init->flags |= PANTHEIOS_BE_INIT_F_NO_DATETIME; // Don't show date/time
 }

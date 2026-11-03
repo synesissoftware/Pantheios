@@ -74,13 +74,13 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_calcCategoryAndEventId(
 ,   int                     /* severity */
 ,   pantheios::uint16_t*    category
 ,   pantheios::uint32_t*    eventId
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_calcCategoryAndEventId(
     int                     /* backEndId */
 ,   int                     /* severity */
 ,   pantheios::uint16_t*    category
 ,   pantheios::uint32_t*    eventId
-) /* throw() */
+) PANTHEIOS_NOEXCEPT
 {
     // NOTE: A proper implementation would specify non-0 values here that
     // identify the requisite event identifier and category within the
@@ -195,13 +195,13 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_calcCategoryAndEventId(
 ,   int                     /* severity */
 ,   pantheios::uint16_t*    category
 ,   pantheios::uint32_t*    eventId
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 PANTHEIOS_CALL(void) pantheios_be_WindowsEventLog_calcCategoryAndEventId(
     int                     /* backEndId */
 ,   int                     /* severity */
 ,   pantheios::uint16_t*    category
 ,   pantheios::uint32_t*    eventId
-) /* throw() */
+) PANTHEIOS_NOEXCEPT
 {
     // NOTE: A proper implementation would specify non-0 values here that
     // identify the requisite event identifier and category within the

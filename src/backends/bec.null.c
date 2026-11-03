@@ -60,7 +60,7 @@ PANTHEIOS_CALL(int) pantheios_be_null_init(
 ,   void*               unused
 ,   void*               reserved
 ,   void**              ptoken
-)
+) PANTHEIOS_NOEXCEPT
 {
     STLSOFT_SUPPRESS_UNUSED(processIdentity);
     STLSOFT_SUPPRESS_UNUSED(id);
@@ -74,7 +74,7 @@ PANTHEIOS_CALL(int) pantheios_be_null_init(
     return 0;
 }
 
-PANTHEIOS_CALL(void) pantheios_be_null_uninit(void* token)
+PANTHEIOS_CALL(void) pantheios_be_null_uninit(void* token) PANTHEIOS_NOEXCEPT
 {
     STLSOFT_SUPPRESS_UNUSED(token);
 }
@@ -85,7 +85,7 @@ PANTHEIOS_CALL(int) pantheios_be_null_logEntry(
 ,   int                 severity
 ,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
-)
+) PANTHEIOS_NOEXCEPT
 {
     STLSOFT_SUPPRESS_UNUSED(feToken);
     STLSOFT_SUPPRESS_UNUSED(beToken);

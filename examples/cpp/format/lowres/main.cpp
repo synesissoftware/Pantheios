@@ -29,7 +29,7 @@
  * application-defined functions
  */
 
-PANTHEIOS_CALL(void) pantheios_be_AnsiConsole_getAppInit(int /* backEndId */, pan_be_AnsiConsole_init_t* init) /* throw() */
+PANTHEIOS_CALL(void) pantheios_be_AnsiConsole_getAppInit(int /* backEndId */, pan_be_AnsiConsole_init_t* init) PANTHEIOS_NOEXCEPT
 {
     /* init->flags |= PANTHEIOS_BE_INIT_F_USE_SYSTEM_TIME; */
     init->flags |= PANTHEIOS_BE_INIT_F_USE_UNIX_FORMAT;

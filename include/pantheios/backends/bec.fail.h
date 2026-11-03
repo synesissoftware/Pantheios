@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.fail.h
+ * File:    pantheios/backends/bec.fail.h
  *
- * Purpose:     Declaration of the Pantheios Fail Stock Back-end API.
+ * Purpose: Declaration of the Pantheios Fail Stock Back-end API.
  *
- * Created:     9th January 2007
- * Updated:     14th October 2026
+ * Created: 9th January 2007
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MAJOR      1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MINOR      1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_MINOR      2
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_EDIT       17
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FAIL_EDIT       18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,7 +98,7 @@ PANTHEIOS_CALL(int) pantheios_be_fail_init(
 ,   void*               unused
 ,   void*               reserved
 ,   void**              ptoken
-);
+) PANTHEIOS_NOEXCEPT;
 
 /** Implements the functionality for pantheios_be_uninit() over the Fail
  * API.
@@ -106,7 +106,7 @@ PANTHEIOS_CALL(int) pantheios_be_fail_init(
  */
 PANTHEIOS_CALL(void) pantheios_be_fail_uninit(
     void* token
-);
+) PANTHEIOS_NOEXCEPT;
 
 /** Implements the functionality for pantheios_be_logEntry() over the Fail
  * API.
@@ -118,7 +118,7 @@ PANTHEIOS_CALL(int) pantheios_be_fail_logEntry(
 ,   int                 severity
 ,   PAN_CHAR_T const*   entry
 ,   size_t              cchEntry
-);
+) PANTHEIOS_NOEXCEPT;
 
 /* ////////////////////////////////////////////////////////////////////// */
 

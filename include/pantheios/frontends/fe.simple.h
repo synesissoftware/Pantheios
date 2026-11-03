@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/frontends/fe.simple.h
+ * File:    pantheios/frontends/fe.simple.h
  *
- * Purpose:     Declaration of the Pantheios fe.simple Stock Front-end API.
+ * Purpose: Declaration of the Pantheios fe.simple Stock Front-end API.
  *
- * Created:     8th May 2006
- * Updated:     14th October 2026
+ * Created: 8th May 2006
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_MAJOR    2
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_REVISION 5
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_EDIT     22
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_MINOR    2
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_SIMPLE_EDIT     23
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,7 +98,7 @@ struct Pantheios_no_longer_uses_the_symbol_FE_SIMPLE_PROCESS_IDENTITY_all_front_
  *
  * \ingroup group__frontend__stock_frontends__simple
  */
-PANTHEIOS_CALL(int) pantheios_fe_simple_getSeverityCeiling(void);
+PANTHEIOS_CALL(int) pantheios_fe_simple_getSeverityCeiling(void) PANTHEIOS_NOEXCEPT;
 
 /** Sets the fe.simple severity ceiling, returning the previous value
  *
@@ -109,7 +109,7 @@ PANTHEIOS_CALL(int) pantheios_fe_simple_getSeverityCeiling(void);
  *   set ceiling in the other, rather than the original value at the time of
  *   the call.
  */
-PANTHEIOS_CALL(int) pantheios_fe_simple_setSeverityCeiling(int ceiling);
+PANTHEIOS_CALL(int) pantheios_fe_simple_setSeverityCeiling(int ceiling) PANTHEIOS_NOEXCEPT;
 
 /* ////////////////////////////////////////////////////////////////////// */
 

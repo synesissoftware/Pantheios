@@ -44,7 +44,10 @@
     * `pantheios_util_strdup_throw()`, `util::strdup_throw()`;
     * `getHostName(stlsoft::auto_buffer&)`;
     * stock inserter classes whose constructors or `c_str()` paths allocate (`args`, `b64`, `blob`, `hostid`, `integer`, `m2w`, `pointer`, `processid`, `real`, `slice`, `threadid`, `w2m`);
-  * Still to classify: stock front-end and back-end entry points, and any inserter method that only forwards to an API already marked `PANTHEIOS_NOEXCEPT`;
+  * `pantheios_fe_init()`, `pantheios_fe_uninit()`, `pantheios_fe_getProcessIdentity()`, `pantheios_fe_isSeverityLogged()` — one declaration shared by every front-end, and **fe.WindowsRegistry** may rethrow;
+  * `pantheios_be_init()`, `pantheios_be_uninit()`, `pantheios_be_logEntry()`, and the local/remote split names — one declaration shared by every back-end; stock **file** (and others) may rethrow, and a custom back-end may throw into `pantheios_call_be_*`;
+  * Named stock init / uninit / log / parse entry points that allocate or call a user callback (`file`, `fprintf`, `syslog`, `speech`, consoles, event log, `ACE`, `test`, `N`, `lrsplit`);
+  * Still to classify: inserter methods that only forward to an API already marked `PANTHEIOS_NOEXCEPT`;
 * [ ] Additional performance tests;
 * [ ] Review all download/build/install documentation (**INSTALL.md**);
 * [ ] Sort out **build/** directory;
