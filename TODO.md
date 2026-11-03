@@ -27,6 +27,7 @@
 #### (final)
 
 * [x] ~~~Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release~~~ - ✅;
+* [ ] Review all download/build/install documentation (**INSTALL.md**);
 
 
 #### 1.0.1-rc10 (5th November 2026)
@@ -48,9 +49,7 @@
   * `pantheios_be_init()`, `pantheios_be_uninit()`, `pantheios_be_logEntry()`, and the local/remote split names — one declaration shared by every back-end; stock **file** (and others) may rethrow, and a custom back-end may throw into `pantheios_call_be_*`;
   * Named stock init / uninit / log / parse entry points that allocate or call a user callback (`file`, `fprintf`, `syslog`, `speech`, consoles, event log, `ACE`, `test`, `N`, `lrsplit`);
   * Inserter shims that construct or format (`threadId`, `hostId`, `integer`, and the allocating inserters) stay unmarked. `processId` string shims forward to `pantheios_getCurrentProcessIdString()`, which formats into a static buffer;
-* [ ] Additional performance tests;
-* [ ] Review all download/build/install documentation (**INSTALL.md**);
-* [ ] ~~~Sort out **build/** directory~~~ - ✅;
+* [x] ~~~Sort out **build/** directory~~~ - ✅;
 
 
 #### 1.0.1-rc9 (3rd November 2026)
