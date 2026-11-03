@@ -50,6 +50,7 @@ VerboseMakefile=0
 NO_ACE=0
 NO_b64=0
 NO_shwild=0
+NO_ZMQ=0
 STLSoftDirGiven=
 WideStrings=0
 
@@ -185,6 +186,10 @@ while [[ $# -gt 0 ]]; do
 
       NO_shwild=1
       ;;
+    --no-zmq)
+
+      NO_ZMQ=1
+      ;;
     --run-make|-m)
 
       RunMake=1
@@ -249,6 +254,10 @@ Flags/options:
     --no-shwild
         suppresses discovery of shwild package
 
+    --no-zmq
+        suppresses discovery of ZeroMQ (stock zmq backends will not be
+        built)
+
     -m
     --run-make
         executes a build via cmake --build after a successful configure
@@ -299,6 +308,7 @@ if [ $MSVC_MT -eq 0 ]; then CMakeMsvcMtFlag="OFF" ; else CMakeMsvcMtFlag="ON" ; 
 if [ $NO_ACE -eq 0 ]; then CMakeNoACE="OFF" ; else CMakeNoACE="ON" ; fi
 if [ $NO_b64 -eq 0 ]; then CMakeNoB64="OFF" ; else CMakeNoB64="ON" ; fi
 if [ $NO_shwild -eq 0 ]; then CMakeNoShwild="OFF" ; else CMakeNoShwild="ON" ; fi
+if [ $NO_ZMQ -eq 0 ]; then CMakeNoZMQ="OFF" ; else CMakeNoZMQ="ON" ; fi
 if [ -z "$STLSoftDirGiven" ]; then CMakeSTLSoftVariable="" ; else CMakeSTLSoftVariable="-DSTLSOFT=$STLSoftDirGiven/" ; fi
 if [ $TestingDisabled -eq 0 ]; then CMakeBuildTestingFlag="ON" ; else CMakeBuildTestingFlag="OFF" ; fi
 if [ $VerboseMakefile -eq 0 ]; then CMakeVerboseMakefileFlag="OFF" ; else CMakeVerboseMakefileFlag="ON" ; fi
@@ -330,6 +340,7 @@ cmake \
   -DNO_ACE:BOOL=$CMakeNoACE \
   -DNO_B64:BOOL=$CMakeNoB64 \
   -DNO_SHWILD:BOOL=$CMakeNoShwild \
+  -DNO_ZMQ:BOOL=$CMakeNoZMQ \
   $CMakeWideStringVariable \
   $CMakeSTLSoftVariable \
   "${CMakeGeneratorArgs[@]}" \

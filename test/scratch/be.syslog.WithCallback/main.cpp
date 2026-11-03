@@ -57,7 +57,7 @@ PANTHEIOS_CALL(void)
 pantheios_be_syslog_getAppInit(
     int                     /* backEndId */
 ,   pan_be_syslog_init_t*   init
-) /* throw() */
+) PANTHEIOS_NOEXCEPT
 {
     // Suppress perror
     init->options   &=  ~PANTHEIOS_BE_SYSLOG_F_PERROR;

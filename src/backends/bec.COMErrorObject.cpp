@@ -187,7 +187,7 @@ namespace
  */
 
 PANTHEIOS_CALL(void)
-pantheios_be_COMErrorObject_getDefaultAppInit(pan_be_COMErrorObject_init_t* init) /* throw() */
+pantheios_be_COMErrorObject_getDefaultAppInit(pan_be_COMErrorObject_init_t* init) PANTHEIOS_NOEXCEPT
 {
     PANTHEIOS_CONTRACT_ENFORCE_PRECONDITION_PARAMS_API(NULL != init, "initialisation structure pointer may not be null");
 

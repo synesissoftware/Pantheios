@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/system/processid.h
+ * File:    pantheios/util/system/processid.h
  *
- * Purpose:     Functions for eliciting process identifier
+ * Purpose: Functions for eliciting process identifier
  *
- * Created:     25th July 2008
- * Updated:     14th October 2026
+ * Created: 25th July 2008
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_MAJOR       1
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_MINOR       0
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_EDIT        7
+# define PANTHEIOS_VER_PANTHEIOS_SYSTEM_H_PROCESSID_EDIT        8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -91,7 +91,7 @@ namespace pantheios
  *
  * \ingroup group__utility
  */
-PANTHEIOS_CALL(stlsoft_ns_qual(ss_sint64_t)) pantheios_getCurrentProcessId(void);
+PANTHEIOS_CALL(stlsoft_ns_qual(ss_sint64_t)) pantheios_getCurrentProcessId(void) PANTHEIOS_NOEXCEPT;
 
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
@@ -103,7 +103,7 @@ namespace util
  *
  * \ingroup group__utility
  */
-inline stlsoft_ns_qual(ss_sint64_t) getCurrentProcessId()
+inline stlsoft_ns_qual(ss_sint64_t) getCurrentProcessId() PANTHEIOS_NOEXCEPT
 {
     return pantheios_getCurrentProcessId();
 }

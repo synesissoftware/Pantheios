@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/core/logprintf.c (originally in core/api.cpp)
+ * File:    src/core/logprintf.c (originally in core/api.cpp)
  *
- * Purpose:     printf()-family functions for Pantheios core API.
+ * Purpose: printf()-family functions for Pantheios core API.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -73,7 +73,7 @@ PANTHEIOS_CALL(int) pantheios_logprintf(
     pan_sev_t               severity
 ,   pantheios_char_t const* format
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 {
     va_list args;
     int     ret;

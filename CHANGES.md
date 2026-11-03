@@ -1,6 +1,28 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.1.0-alpha1 - 15th November 2026
+
+* added **be.zmq**, a backend that uses **zeromq** (aka **0MQ**) — submitted by **Mikko Koivunalho** ([mikkoi](https://github.com/mikkoi));
+* **CMake** optional **ZeroMQ** discovery (`NO_ZMQ` / **`--no-zmq`**, **`cmake/FindZeroMQ.cmake`**): builds **be**/**bec**/**bel**/**ber.zmq**, **bec.zmq.WithCallback**, and **test.scratch.be.zmq.WithCallback** when **libzmq** is found;
+* dedicated Ubuntu **GHA** cell **`linux-gcc-zmq`** (`libzmq3-dev`); main matrix cells pass **`NO_ZMQ=ON`**;
+* **test.component.be.zmq**: PUB/SUB round-trip component test (built when **ZeroMQ** is found);
+* version: added `PANTHEIOS_VER_1_1_0_A1` (`0x01010041`) and set release status to `0x41` in **include/pantheios/pantheios.h**; **test.unit.getversion** asserts `PANTHEIOS_VER_1_1_0_A1`;
+
+
+## 1.0.1-rc10 - 5th November 2026
+
+* contract:
+  * added `PANTHEIOS_NOEXCEPT` (an alias of `STLSOFT_NOEXCEPT`) and applied it to core and util functions that cannot let a C++ exception escape, including version and init-state queries, bail-out, `snprintf` / `strdup_nothrow`, host name, process id, and thread id;
+  * applied it to stock trivial front-end and back-end entry points (`be.null`, `be.fail`, the `fe.simple` severity ceiling, documented `/* throw() */` application callbacks, and `getDefaultAppInit`);
+  * applied it to `pantheios_getCurrentProcessIdString()`, `pantheios_getCurrentProcessIdStringLength()`, and the `processId_t` string shims;
+  * shared `pantheios_fe_*` / `pantheios_be_*` declarations, locking and dispatch paths, and allocating inserters stay unmarked (recorded under **TODO.md**);
+* build:
+  * removed legacy custom makefiles;
+* version:
+  * current composite is `PANTHEIOS_VER_1_0_1_RC10` (`0x010001EA`);
+
+
 ## 1.0.1-rc9 - 3rd November 2026
 
 * packaging / inserters:

@@ -3,6 +3,8 @@
 
 | Date                | News Item                                                     | Details    |
 | ------------------- | ------------------------------------------------------------- | ---------- |
+| 15th November 2026  | Release of [Pantheios 1.1.0-alpha1](https://github.com/synesissoftware/Pantheios/releases/tag/1.1.0-alpha1) | **be.zmq** / **ZeroMQ**; **linux-gcc-zmq** CI; **test.component.be.zmq**; `PANTHEIOS_VER_1_1_0_A1` |
+| 5th November 2026   | Release of [Pantheios 1.0.1-rc10](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc10) | `PANTHEIOS_NOEXCEPT` on core, util, trivial front/back-ends, and `processId` strings; `PANTHEIOS_VER_1_0_1_RC10` |
 | 3rd November 2026   | Release of [Pantheios 1.0.1-rc9](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc9) | optional **Pantheios.inserters.b64**; **inserters.hpp** no longer includes **b64**; `PANTHEIOS_VER_1_0_1_RC9` |
 | 2nd November 2026   | Release of [Pantheios 1.0.1-rc8](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc8) | **STLSoft** **1.11.5**; **woad** **0.2.1**; **xTests** **0.28.2** |
 | 30th October 2026   | Release of [Pantheios 1.0.1-rc7](https://github.com/synesissoftware/Pantheios/releases/tag/1.0.1-rc7) | **STLSoft** **1.11.4** floor; `stlsoft_C_mbstowcs` / `stlsoft_C_wcstombs` |

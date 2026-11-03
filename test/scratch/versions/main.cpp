@@ -5,7 +5,7 @@
  *          dependencies.
  *
  * Created: 4th August 2026
- * Updated: 27th October 2026
+ * Updated: 4th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -17,6 +17,7 @@
 #include <pantheios/pantheios.h>
 
 #include <stlsoft/stlsoft.h>
+#include <woad/woad.h>
 
 #ifdef HAS_b64
 # include <b64/b64.h>
@@ -30,8 +31,6 @@
 #ifdef HAS_shwild
 # include <shwild/shwild.h>
 #endif
-
-#include <woad/woad.h>
 
 #ifdef HAS_xTests
 # include <xtests/xtests.h>
@@ -199,11 +198,6 @@ int main(int /* argc */, char* /* argv */[])
         version(std::cout, stdout, "\t", "shwild", "SHWILD_VER", libver);
     }
 #endif
-
-    if (0 == efferents_count++)
-    {
-        std::cout << "\n" << "efferent dependencies:" << std::endl;
-    }
 
     {
         unsigned const libver = WOAD_VER;

@@ -34,6 +34,10 @@ if(_BUILD_AS_UNIX)
 	add_subdirectory(be.syslog)
 endif(_BUILD_AS_UNIX)
 add_subdirectory(be.test)
+if(HAS_ZMQ)
+
+	add_subdirectory(be.zmq)
+endif(HAS_ZMQ)
 
 if(HAS_ACE)
 
@@ -83,6 +87,11 @@ if(_BUILD_AS_UNIX)
 endif(_BUILD_AS_UNIX)
 add_subdirectory(bec.test)
 add_subdirectory(bec.test.WithCallback)
+if(HAS_ZMQ)
+
+	add_subdirectory(bec.zmq)
+	add_subdirectory(bec.zmq.WithCallback)
+endif(HAS_ZMQ)
 
 if(HAS_ACE)
 
@@ -114,6 +123,10 @@ if(_BUILD_AS_UNIX)
 	add_subdirectory(bel.syslog)
 endif(_BUILD_AS_UNIX)
 add_subdirectory(bel.test)
+if(HAS_ZMQ)
+
+	add_subdirectory(bel.zmq)
+endif(HAS_ZMQ)
 
 if(HAS_ACE)
 
@@ -145,6 +158,10 @@ if(_BUILD_AS_UNIX)
 	add_subdirectory(ber.syslog)
 endif(_BUILD_AS_UNIX)
 add_subdirectory(ber.test)
+if(HAS_ZMQ)
+
+	add_subdirectory(ber.zmq)
+endif(HAS_ZMQ)
 
 
 # ############################## end of file ############################# #

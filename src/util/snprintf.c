@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/snprintf.c (was src/util/strutil.cpp)
+ * File:    src/util/snprintf.c (was src/util/strutil.cpp)
  *
- * Purpose:     Implementation file for snprintf() utility functions.
+ * Purpose: Implementation file for snprintf() utility functions.
  *
- * Created:     21st June 2005
- * Updated:     14th October 2026
+ * Created: 21st June 2005
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -125,7 +125,7 @@ pantheios_util_vsnprintf_a(
 ,   size_t          cchDest
 ,   char const*     fmt
 ,   va_list         args
-)
+) PANTHEIOS_NOEXCEPT
 {
     PANTHEIOS_COVER_MARK_ENTRY();
 
@@ -139,7 +139,7 @@ pantheios_util_vsnprintf_w(
 ,   size_t          cchDest
 ,   wchar_t const*  fmt
 ,   va_list         args
-)
+) PANTHEIOS_NOEXCEPT
 {
     PANTHEIOS_COVER_MARK_ENTRY();
 
@@ -159,7 +159,7 @@ pantheios_util_snprintf_a(
 ,   size_t          cchDest
 ,   char const*     fmt
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 {
     va_list args;
     int     ret;
@@ -184,7 +184,7 @@ pantheios_util_snprintf_w(
 ,   size_t          cchDest
 ,   wchar_t const*  fmt
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 {
     va_list args;
     int     ret;
@@ -214,7 +214,7 @@ pantheios_util_vsnprintf(
 ,   size_t                  cchDest
 ,   pantheios_char_t const* fmt
 ,   va_list                 args
-)
+) PANTHEIOS_NOEXCEPT
 {
     PANTHEIOS_COVER_MARK_ENTRY();
 
@@ -233,7 +233,7 @@ pantheios_util_snprintf(
 ,   size_t                  cchDest
 ,   pantheios_char_t const* fmt
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 {
     va_list args;
     int     ret;

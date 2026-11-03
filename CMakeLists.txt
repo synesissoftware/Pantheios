@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  3rd November 2026
+# Updated:  4th November 2026
 #
 # ######################################################################## #
 
@@ -151,6 +151,7 @@ endif(PANTHEIOS_USE_WIDE_STRINGS)
 # - b64;
 # - Diagnosticism - required for testing only;
 # - shwild - required for testing only;
+# - zeromq (aka 0MQ) - stock zmq backends (be/bec/bel/ber.zmq);
 #
 # - Threads;
 
@@ -218,7 +219,7 @@ endif()
 # Required by bec.AnsiConsole, and by the stock back-end libraries that
 # compile that translation unit, for SGR sequences and stream policy.
 
-set(woad_REQUIRED_VERSION_ 0.2.1)
+set(woad_REQUIRED_VERSION_ 0.2.2)
 
 find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
 
@@ -413,6 +414,75 @@ endif()
 
 
 # ############################
+# ZeroMQ (aka 0MQ / libzmq)
+#
+# Discovery (when NO_ZMQ is not set):
+# find_package(ZeroMQ) via cmake/FindZeroMQ.cmake (system packages, e.g.
+# libzmq3-dev)
+
+set(HAS_ZMQ OFF)
+
+if(NOT NO_ZMQ)
+
+	find_package(ZeroMQ QUIET)
+
+	# Upstream libzmq Config packages export libzmq / libzmq-static and may
+	# not set ZeroMQ_FOUND; treat those imported targets as success too.
+	if(NOT ZeroMQ_FOUND)
+
+		if(TARGET libzmq OR TARGET libzmq-static)
+
+			set(ZeroMQ_FOUND TRUE)
+		endif()
+	endif()
+
+	if(ZeroMQ_FOUND)
+
+		set(HAS_ZMQ ON)
+
+		if(NOT TARGET ZeroMQ::ZeroMQ)
+
+			if(TARGET libzmq)
+
+				add_library(ZeroMQ::ZeroMQ ALIAS libzmq)
+			elseif(TARGET libzmq-static)
+
+				add_library(ZeroMQ::ZeroMQ ALIAS libzmq-static)
+			elseif(ZeroMQ_LIBRARY AND ZeroMQ_INCLUDE_DIR)
+
+				add_library(ZeroMQ::ZeroMQ UNKNOWN IMPORTED)
+				set_target_properties(ZeroMQ::ZeroMQ
+					PROPERTIES
+						IMPORTED_LOCATION "${ZeroMQ_LIBRARY}"
+						INTERFACE_INCLUDE_DIRECTORIES "${ZeroMQ_INCLUDE_DIR}"
+				)
+			endif()
+		endif()
+
+		if(NOT ZeroMQ_INCLUDE_DIRS AND ZeroMQ_INCLUDE_DIR)
+
+			set(ZeroMQ_INCLUDE_DIRS "${ZeroMQ_INCLUDE_DIR}")
+		endif()
+
+		if(NOT ZeroMQ_LIBRARIES AND ZeroMQ_LIBRARY)
+
+			set(ZeroMQ_LIBRARIES "${ZeroMQ_LIBRARY}")
+		endif()
+
+		if(ZeroMQ_VERSION)
+
+			message("-- ZeroMQ found (version ${ZeroMQ_VERSION})")
+		else()
+
+			message("-- ZeroMQ found")
+		endif()
+
+		add_compile_definitions(HAS_ZMQ)
+	endif()
+endif()
+
+
+# ############################
 # Threads
 
 if(UNIX)
@@ -437,7 +507,7 @@ endif(Threads_FOUND)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.28.2)
+	set(xTests_REQUIRED_VERSION_ 0.29)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

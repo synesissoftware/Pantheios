@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios file Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 14th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MAJOR      4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MINOR      4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   4
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       44
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_MINOR      5
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_REVISION   1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_FILE_EDIT       45
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -277,7 +277,7 @@ typedef struct pan_be_file_init_t   pan_be_file_init_t;
 PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(
     int                     backEndId
 ,   pan_be_file_init_t*     init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -291,7 +291,7 @@ PANTHEIOS_CALL(void) pantheios_be_file_getAppInit(
  */
 PANTHEIOS_CALL(void) pantheios_be_file_getDefaultAppInit(
     pan_be_file_init_t* init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 /** Implements the functionality for pantheios_be_init() over the file API.
  *

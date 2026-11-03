@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/string/snprintf.h (was pantheios/util/string/string.h)
+ * File:    pantheios/util/string/snprintf.h (was pantheios/util/string/string.h)
  *
- * Purpose:     snprintf() utility functions.
+ * Purpose: snprintf() utility functions.
  *
- * Created:     21st June 2005
- * Updated:     14th October 2026
+ * Created: 21st June 2005
+ * Updated: 4th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -56,9 +56,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MAJOR       2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MINOR       3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    3
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        27
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_MINOR       4
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_REVISION    1
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_STRING_H_SNPRINTF_EDIT        28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -106,7 +106,7 @@ PANTHEIOS_CALL(int) pantheios_util_snprintf(
 ,   size_t                  cchDest
 ,   const pantheios_char_t* fmt
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 /* TODO: Change this to proper discriminated feature */
 #if defined(STLSOFT_COMPILER_IS_GCC)
 __attribute__((format(printf,3,4)))
@@ -131,7 +131,7 @@ pantheios_util_vsnprintf(
 ,   size_t                  cchDest
 ,   pantheios_char_t const* fmt
 ,   va_list                 args
-);
+) PANTHEIOS_NOEXCEPT;
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 
@@ -141,7 +141,7 @@ pantheios_util_snprintf_a(
 ,   size_t              cchDest
 ,   char const*         fmt
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 /* TODO: Change this to proper discriminated feature */
 #if defined(STLSOFT_COMPILER_IS_GCC)
 __attribute__((format(printf,3,4)))
@@ -153,7 +153,7 @@ pantheios_util_vsnprintf_a(
 ,   size_t              cchDest
 ,   char const*         fmt
 ,   va_list             args
-);
+) PANTHEIOS_NOEXCEPT;
 
 #ifdef PANTHEIOS_USE_WIDE_STRINGS
 
@@ -163,7 +163,7 @@ pantheios_util_snprintf_w(
 ,   size_t              cchDest
 ,   wchar_t const*      fmt
 ,   ...
-)
+) PANTHEIOS_NOEXCEPT
 /* TODO: Change this to proper discriminated feature */
 #if defined(STLSOFT_COMPILER_IS_GCC)
 __attribute__((format(printf,3,4)))
@@ -175,7 +175,7 @@ pantheios_util_vsnprintf_w(
 ,   size_t              cchDest
 ,   wchar_t const*      fmt
 ,   va_list             args
-);
+) PANTHEIOS_NOEXCEPT;
 #endif /* PANTHEIOS_USE_WIDE_STRINGS */
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
