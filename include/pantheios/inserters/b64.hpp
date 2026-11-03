@@ -4,7 +4,7 @@
  * Purpose: String inserter for binary regions in Base-64.
  *
  * Created: 31st July 2006
- * Updated: 14th October 2026
+ * Updated: 3rd November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -42,9 +42,14 @@
 
 /** \file pantheios/inserters/b64.hpp
  *
- * [C++ only; requires the <a href =
- * "http://www.synesis.com.au/software/b64.html">b64</a> library] Definition
- * of the pantheios::b64 inserter for binary regions.
+ * [C++ only; requires the
+ *   <a href = "https://github.com/synesissoftware/b64">b64</a>
+ *   library and the <strong>Pantheios.inserters.b64</strong> library
+ *   target] Definition of the pantheios::b64 inserter for binary regions.
+ *
+ * This header is not included by pantheios/inserters.hpp. Include it
+ * explicitly and link <strong>Pantheios.inserters.b64</strong> (CMake:
+ * <code>Pantheios::Pantheios.inserters.b64</code>).
  */
 
 #ifndef PANTHEIOS_INCL_PANTHEIOS_INSERTERS_HPP_B64
@@ -57,9 +62,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MAJOR    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MINOR    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     35
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_MINOR    6
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_B64_EDIT     36
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

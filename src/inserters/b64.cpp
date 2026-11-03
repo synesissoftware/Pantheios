@@ -4,7 +4,7 @@
  * Purpose: Implementation of the b64 inserter class.
  *
  * Created: 31st July 2006
- * Updated: 29th October 2026
+ * Updated: 3rd November 2026
  *
  * Home:    http://www.pantheios.org/
  *

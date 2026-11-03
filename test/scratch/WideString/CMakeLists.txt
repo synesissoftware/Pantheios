@@ -5,7 +5,7 @@ define_example_program(test.scratch.WideString main.cpp
 	BEC Pantheios.bec.AnsiConsole
 )
 
-target_link_libraries(test.scratch.WideString
-	PRIVATE
-		$<$<BOOL:${b64_FOUND}>:b64::core>
-)
+if(b64_FOUND)
+
+	target_link_Pantheios_inserters_b64(test.scratch.WideString)
+endif(b64_FOUND)
