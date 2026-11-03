@@ -34,7 +34,7 @@
 * [ ] `PANTHEIOS_NOEXCEPT()`;
 * [ ] Additional performance tests;
 * [ ] Review all download/build/install documentation (**INSTALL.md**);
-* [ ] Sort out **build/** directory;
+* [ ] ~~~Sort out **build/** directory~~~ - ✅;
 
 
 #### 1.0.1-rc9 (3rd November 2026)
