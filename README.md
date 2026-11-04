@@ -43,35 +43,78 @@ Further reading: [http://pantheios.org/](http://pantheios.org/), [FAQ.md](./FAQ.
 
 ## Developer Experience
 
-Install [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.5** or later) and [**woad**](https://github.com/synesissoftware/woad) (**0.2.1** or later) via **CMake**, then clone **Pantheios** and:
+Install [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.5** or later) and [**woad**](https://github.com/synesissoftware/woad) (**0.2.2** or later) via **CMake**, then clone **Pantheios** and:
 
 ```bash
-./prepare_cmake.sh -m -v
-./run_all_unit_tests.sh
+./prepare_cmake.sh --run-make # also use '--cmake-verbose-makefile' to see verbose output
+./run_all_automated_tests.sh --no-make
 ```
 
-The first friction is link-time selection of Core, front-end, and back-end. A minimal C++ program using implicit linking of the Core, `fe.simple`, and `be.fprintf`:
+A logging statement sits in the **application layer**. The other three parts are chosen when you link: **Core** (and **Util**, providing initialisation, formatting, and dispatch), a **front-end** (whether a statement is emitted), and one or more **back-ends** (where an accepted statement goes). Including **pantheios/pan.hpp** initialises the Core and aliases `pantheios` as `pan`. `fe.simple` reads `PANTHEIOS_FE_PROCESS_IDENTITY` and applies a severity ceiling; `be.AnsiConsole` with `bec.AnsiConsole` writes the accepted lines to the console. The application code itself is one simple statement that logs, at severity `NOTICE`, all arguments provided to the process:
 
 ```cpp
-#include <pantheios/pantheios.hpp>
-#include <pantheios/implicit_link/core.h>
-#include <pantheios/implicit_link/fe.simple.h>
-#include <pantheios/implicit_link/be.fprintf.h>
+#include <pantheios/pan.hpp>
+#include <pantheios/inserters/args.hpp>
+#include <pantheios/frontends/stock.h>
 
 #include <stdlib.h>
 
-PANTHEIOS_EXTERN const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] =
-    PANTHEIOS_LITERAL_STRING("hello.pantheios");
+const char PANTHEIOS_FE_PROCESS_IDENTITY[] = "hello.pantheios";
 
-int main()
+int main(int argc, char* argv[])
 {
-    pantheios::log_INFORMATIONAL(PANTHEIOS_LITERAL_STRING("Hello!"));
+    pan::log_NOTICE("main(", pan::args(argc, argv), ")");
 
     return EXIT_SUCCESS;
 }
 ```
 
-See **examples/cpp/linking/implicit_link_1** for the canonical form. C programs must call `pantheios_init()` (and check the return) before logging — see **examples/c/101**. Full install options: [INSTALL.md](./INSTALL.md).
+```cmake
+find_package(Pantheios REQUIRED)
+
+target_link_libraries(hello
+    PRIVATE
+        Pantheios::Pantheios.core
+        Pantheios::Pantheios.util
+        Pantheios::Pantheios.fe.simple
+        Pantheios::Pantheios.be.AnsiConsole
+        Pantheios::Pantheios.bec.AnsiConsole
+)
+```
+
+<img src="doc/readme-example.png" alt="Console output of the C++ example, via be.AnsiConsole" width="80%">
+
+A C program does not auto-initialise. Define the same identity, call `pantheios_init()`, and log only when that returns 0. **examples/c/101** is the full form. ([**Pantheios.Extras.Main**](https://github.com/synesissoftware/Pantheios.Extras.Main) - a separate project - abstracts this and simplifies C programs that use Pantheios.)
+
+```c
+#include <pantheios/pantheios.h>
+#include <pantheios/frontends/stock.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+
+const char PANTHEIOS_FE_PROCESS_IDENTITY[] = "hello.pantheios";
+
+int main(void)
+{
+    int res = pantheios_init();
+
+    if (0 != res)
+    {
+        fprintf(stderr, "pantheios_init: %s\n", pantheios_getInitCodeString(res));
+
+        return EXIT_FAILURE;
+    }
+
+    pantheios_logputs(PANTHEIOS_SEV_NOTICE, "Hello!");
+
+    pantheios_uninit();
+
+    return EXIT_SUCCESS;
+}
+```
+
+Link the same targets for a C program. Clone or download, flags, and install: [INSTALL.md](./INSTALL.md). Generated API pages: `./generate_doxygen.sh`.
 
 
 ## Ten important things to know about Pantheios
@@ -98,7 +141,7 @@ See **examples/cpp/linking/implicit_link_1** for the canonical form. C programs 
 
 6. **Selection of logging transport (back-end(s)) is done at link-time, for good reason.**
 
-	A diagnostic logging library must be available whenever *any* part of the application needs it. In C++, a significant amount of work can run during dynamic initialisation, so setup cannot wait for `main()`. The consequence is Pantheios' main hard-to-use aspect: arranging the link of Core, front-end, and back-end. Tutorials and examples (including implicit-link headers) cover that; see [Developer Experience](#developer-experience).
+	A diagnostic logging library must be available whenever *any* part of the application needs it. In C++, a significant amount of work can run during dynamic initialisation, so setup cannot wait for `main()`. The consequence is Pantheios' main hard-to-use aspect: arranging the link of Core, front-end, and back-end. See [Developer Experience](#developer-experience).
 
 7. **It's highly extensible.**
 
@@ -121,7 +164,7 @@ See **examples/cpp/linking/implicit_link_1** for the canonical form. C programs 
 
 Detailed instructions — via **CMake**, via bundling, via custom makefile parameters — are provided in the accompanying [INSTALL.md](./INSTALL.md) file.
 
-In short: install [**STLSoft** 1.11.5](https://github.com/synesissoftware/STLSoft) and [**woad**](https://github.com/synesissoftware/woad) (**0.2.1** or later) (and optionally [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild)) via **CMake**, clone **Pantheios**, run **prepare_cmake.sh**, build, then `cmake --install`.
+In short: install [**STLSoft** 1.11.5](https://github.com/synesissoftware/STLSoft) and [**woad**](https://github.com/synesissoftware/woad) (**0.2.2** or later) (and optionally [**b64**](https://github.com/synesissoftware/b64) and [**shwild**](https://github.com/synesissoftware/shwild)) via **CMake**, clone **Pantheios**, run **prepare_cmake.sh**, build, then `cmake --install`.
 
 
 ## Components
@@ -168,7 +211,7 @@ Examples are provided in the `examples` directory (C under `examples/c/`, C++ un
 
 * `example.c.101`, `example.c.core.pantheios_logprintf`, `example.c.N`;
 * `example.cpp.misc.101`;
-* `example.cpp.linking.implicit_link_1`, `example.cpp.linking.N_with_stock`;
+* `example.cpp.linking.N_with_stock`;
 * `example.cpp.frontends.custom`;
 * `example.cpp.backends.file`, `example.cpp.backends.callback`;
 * `example.cpp.inserters.integer`, `example.cpp.inserters.b64`, `example.cpp.inserters.args`;
@@ -198,7 +241,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 | Dependency | Role | Required? |
 | ---------- | ---- | --------- |
 | [**STLSoft**](https://github.com/synesissoftware/STLSoft) **1.11.5** or later | Implementation and interface support | ✅ Always |
-| [**woad**](https://github.com/synesissoftware/woad) **0.2.1** or later | ANSI colour for **bec.AnsiConsole** | ✅ Always |
+| [**woad**](https://github.com/synesissoftware/woad) **0.2.2** or later | ANSI colour for **bec.AnsiConsole** | ✅ Always |
 | [**b64**](https://github.com/synesissoftware/b64) | `pantheios::b64` via **Pantheios.inserters.b64** | ⚪ Optional (`PANTHEIOS_NO_B64` when absent; not linked into **Pantheios.core**) |
 | [**Diagnosticism**](https://github.com/synesissoftware/Diagnosticism) | Version strings in scratch / examples | ⚪ Optional; tests / scratch only |
 | [**shwild**](https://github.com/synesissoftware/shwild) | Pattern matching in tests | ⚪ Optional; tests only |

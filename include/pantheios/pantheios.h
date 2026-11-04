@@ -133,7 +133,7 @@
 #define PANTHEIOS_VER_MAJOR                     1
 #define PANTHEIOS_VER_MINOR                     0
 #define PANTHEIOS_VER_PATCH                     1
-#define PANTHEIOS_VER_RELSTATUS                 0xEA
+#define PANTHEIOS_VER_RELSTATUS                 0xFF
 
 #define PANTHEIOS_VER \
     (0\

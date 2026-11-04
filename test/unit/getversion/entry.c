@@ -152,7 +152,7 @@ static void TEST_pantheios_getVersion_COMPOSITE(void)
 
     TEST_INT_EQ(expected, PANTHEIOS_VER);
     TEST_INT_EQ(expected, pantheios_getVersion());
-    TEST_INT_EQ(PANTHEIOS_VER_1_0_1_RC10, PANTHEIOS_VER);
+    TEST_INT_EQ(PANTHEIOS_VER_1_0_1, PANTHEIOS_VER);
 }
 
 

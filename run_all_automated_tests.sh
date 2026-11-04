@@ -116,6 +116,14 @@ Flags/options:
     --unit-only
         runs only unit-test programs
 
+    -l
+    --list-only
+        lists the target programs but does not execute them
+
+    -M
+    --no-make
+        does not execute a build before running programs
+
     (all other flags are forwarded to the category runner script)
 
 

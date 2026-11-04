@@ -6,6 +6,7 @@
 * **Matt Wilson** ([mwsis](https://github.com/mwsis)) - primary contributor of most of the libraries;
 * **Garth Lancaster** (sage, salt 'o the earth advice and counterpointing);
 * **Adi Shavit** (contributions that became be.speech);
+* **Mikko Koivunalho** (kick-starting the CMake support);
 
 
 ## Defect reports, fixes and suggestions (for which we are very grateful):

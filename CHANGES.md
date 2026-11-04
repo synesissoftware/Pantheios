@@ -1,6 +1,22 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1 - 5th November 2026
+
+* version:
+  * promoted the release-candidate composite to the final release: `PANTHEIOS_VER_RELSTATUS` is `0xFF`, so `PANTHEIOS_VER` is `PANTHEIOS_VER_1_0_1` (`0x010001FF`);
+* dependencies:
+  * documented **woad** floor is **0.2.2**, matching `find_package(woad 0.2.2 REQUIRED)` in **CMakeLists.txt**;
+* documentation:
+  * **KNOWN_ISSUES.md** no longer lists leftover makefiles or a **build/** tree (removed in **1.0.1-rc10**);
+  * **INSTALL.md**: two **CMake** obtain paths (clone, and download of a release archive); corrected the `--disable-testing` flag spelling and the meaning of **`--no-ace`**; script table lists every root **`.sh`** driver, including **ctest_cmake.sh** and the category runners;
+  * **README.md** and **doc/mainpage.md** quick starts use `pan::log_NOTICE` / `pan::args`, narrow strings, and **be.AnsiConsole** / **bec.AnsiConsole**, and point C initialisation at the separate **Pantheios.Extras.Main** project; **README.md** no longer describes makefile or bundling install;
+* scripts:
+  * **libver.sh** builds and runs **test.scratch.versions** only;
+* testing:
+  * **test.unit.getversion** expects `PANTHEIOS_VER_1_0_1`;
+
+
 ## 1.0.1-rc10 - 5th November 2026
 
 * contract:

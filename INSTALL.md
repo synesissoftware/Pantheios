@@ -4,20 +4,19 @@
 ## Table of Contents <!-- omit in toc -->
 
 - [Installing](#installing)
-  - [Cloning project, installing via CMake](#cloning-project-installing-via-cmake)
-  - [As downloaded archive(s), using environment variables](#as-downloaded-archives-using-environment-variables)
-  - [Cloning project, using environment variables](#cloning-project-using-environment-variables)
+  - [Cloning project, installing via CMake (recommended)](#cloning-project-installing-via-cmake-recommended)
+  - [Downloading a release archive, installing via CMake](#downloading-a-release-archive-installing-via-cmake)
 - [Understanding the top-level project build scripts](#understanding-the-top-level-project-build-scripts)
 
 
 ## Installing
 
-There are three options for installing **Pantheios**, depending on how you obtain it. The recommended way is to [clone and install via CMake](#cloning-project-installing-via-cmake).
+There are two supported ways to obtain and install **Pantheios**, and both use **CMake**. The recommended way is to [clone and install via CMake](#cloning-project-installing-via-cmake-recommended). The other is to [download a release archive and install via CMake](#downloading-a-release-archive-installing-via-cmake).
 
 
-### Cloning project, installing via CMake
+### Cloning project, installing via CMake (recommended)
 
-0. First, ensure that [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.5** or later) and [**woad**](https://github.com/synesissoftware/woad) (**0.2.1** or later) have been cloned and then built and installed via CMake, as per the instructions in those projects. Optionally, install [**b64**](https://github.com/synesissoftware/b64) (needed only for **Pantheios.inserters.b64** / `pantheios::b64`) and [**shwild**](https://github.com/synesissoftware/shwild) the same way. To build the stock **ACE** backends, install **ACE** (for example `libace-dev` on Ubuntu, or set **`ACE`** / **`ACE_ROOT`** to an ACE tree) before configuring; pass **`--no-ace`** to **prepare_cmake.sh** to skip **ACE** discovery.
+0. First, ensure that [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.5** or later) and [**woad**](https://github.com/synesissoftware/woad) (**0.2.2** or later) have been cloned and then built and installed via CMake, as per the instructions in those projects. Optionally, install [**b64**](https://github.com/synesissoftware/b64) (needed only for **Pantheios.inserters.b64** / `pantheios::b64`) and [**shwild**](https://github.com/synesissoftware/shwild) the same way. To build the stock **ACE** backends, install **ACE** (for example `libace-dev` on Ubuntu, or set **`ACE`** / **`ACE_ROOT`** to an ACE tree) before configuring; pass **`--no-ace`** to **prepare_cmake.sh** to skip **ACE** discovery.
 
 
 1. Clone **Pantheios** from GitHub, as in;
@@ -56,32 +55,35 @@ Flags/options:
 
     behaviour:
 
+    -A
+    --always-use-colors
+    --always-use-colours
+        forces use of colours even when stdout is not a TTY
+
+    --build-shared-libs
+        builds Pantheios as a shared library (BUILD_SHARED_LIBS=ON)
+
     -v
     --cmake-verbose-makefile
-        configures CMake to run verbosely (by setting CMAKE_VERBOSE_MAKEFILE
-        to be ON)
+        configures CMake to run verbosely (CMAKE_VERBOSE_MAKEFILE=ON)
 
     -d
     --debug-configuration
-        use Debug configuration (by setting CMAKE_BUILD_TYPE=Debug). Default
-        is to use Release
+        use Debug configuration (CMAKE_BUILD_TYPE=Debug). Default is Release
 
     -E
     --disable-examples
-        disables building of examples (by setting BUILD_EXAMPLES=OFF)
+        disables building of examples (BUILD_EXAMPLES=OFF)
 
     -T
     --disable-testing
-        disables building of tests (by setting BUILD_TESTING=OFF). With
-        testing disabled, the dependency projects shwild and xTests are not
-        required (and not searched)
+        disables building of tests (BUILD_TESTING=OFF)
 
     --mingw
         uses explicitly the "MinGW Makefiles" generator
 
     --msvc-mt
-        when using Visual C++ (MSVC), the static runtime library will be
-        selected; the default is the dynamic runtime library
+        when using Visual C++ (MSVC), select the static runtime library
 
     --no-ace
         suppresses discovery of ACE (stock ACE backends will not be built)
@@ -89,9 +91,13 @@ Flags/options:
     --no-b64
         suppresses discovery of b64 package
 
+    --no-shwild
+        suppresses discovery of shwild package
+
     -m
     --run-make
-        executes make after a successful running of CMake
+        executes a build via cmake --build after a successful configure
+
 
     -s <dir>
     --stlsoft-root-dir <dir>
@@ -103,11 +109,11 @@ Flags/options:
     --wide-strings
         builds for wide-strings. Default is multibyte strings
 
-
     standard flags:
 
     --help
         displays this help and terminates
+
 ```
 
 If you are using **MinGW**/**MinGW-64** on Windows, you should specify `--mingw`.
@@ -118,7 +124,12 @@ If you wish to prepare and build in one step, you should specify `-m` (=== `--ru
 
 If you don't want to build examples, you should specify `-E` (=== `--disable-examples`).
 
-If you don't want to build tests, you should specify `-T (=== `--disable-tests`).
+If you don't want to build tests, you should specify `-T` (=== `--disable-testing`), in which case there is no need for **xTests** to be available.
+
+If **shwild** is installed, then additional tests involving wildcard matching will also be enabled, but you can suppress this with `--no-shwild`.
+
+If **ACE** (Adaptive Communications Environment) is installed and you do not want the stock **ACE** backends, specify `--no-ace`. If **ACE** is not installed, those components are skipped.
+
 
 ---
 
@@ -129,62 +140,35 @@ $ cd ~/open-source/Pantheios
 $ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 ```
 
-### As downloaded archive(s), using environment variables
-
-1. Download the latest distributions;
-
-Obtain the latest releases of **Pantheios**, **STLSoft**, and **woad** from:
-* [Pantheios GitHub project](https://github.com/synesissoftware/Pantheios/tags), e.g. [**Pantheios-1.0.1-rc10.zip**](https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1-rc10.zip);
-* [STLSoft GitHub project](https://github.com/synesissoftware/STLSoft/tags), e.g. [**STLSoft-1.11.5**](https://github.com/synesissoftware/STLSoft/archive/refs/tags/STLSoft-1.11.5);
-* [woad GitHub project](https://github.com/synesissoftware/woad/tags);
+(**NOTE**: The recommended installation path remains [Cloning project, installing via CMake](#cloning-project-installing-via-cmake-recommended).)
 
 
-2. Unzip to directories of your choice, as in:
+### Downloading a release archive, installing via CMake
+
+0. Install the same prerequisites as in the clone section: [**STLSoft**](https://github.com/synesissoftware/STLSoft) (**1.11.5** or later) and [**woad**](https://github.com/synesissoftware/woad) (**0.2.2** or later), each built and installed with **CMake**. Optional [**b64**](https://github.com/synesissoftware/b64), [**shwild**](https://github.com/synesissoftware/shwild), and **ACE** are the same as there. Release archives for the Synesis libraries are on each project's GitHub tags page.
+
+
+1. Download the **Pantheios** **1.0.1** archive (or a later tag) and unpack it, as in:
 
 ```bash
 $ mkdir -p ~/open-source
 $ cd ~/open-source
-$ unzip Pantheios-1.0.1-rc10.zip
-$ unzip STLSoft-1.11.5
-$ unzip woad-<version>.zip
+$ curl -L -o Pantheios-1.0.1.zip https://github.com/synesissoftware/Pantheios/archive/refs/tags/1.0.1.zip
+$ unzip Pantheios-1.0.1.zip
 ```
 
-3. Define an environment variable `STLSOFT`, whose value is the directory in which you unzipped **STLSoft**, e.g. `STLSOFT=~/open-source/STLSoft-1.11.5`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles. Install **woad** via its **CMake** package (see the **woad** project) so `find_package(woad)` succeeds — required for **bec.AnsiConsole** and stock libraries that compile it;
+The archive unpacks to **Pantheios-1.0.1**.
 
-4. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make
+
+2. Prepare, build, and install from that directory. The flags are the same as [step 2 of the clone section](#cloning-project-installing-via-cmake-recommended):
 
 ```bash
-$ cd Pantheios-1.0.1-rc10
-$ cd build/gcc48.unix
-$ make
+$ cd ~/open-source/Pantheios-1.0.1
+$ ./prepare_cmake.sh
+$ sudo cmake --install ${SIS_CMAKE_BUILD_DIR:-./_build} --config Release
 ```
 
-
-### Cloning project, using environment variables
-
-If you clone the project from https://github.com/synesissoftware/Pantheios and prefer the legacy makefile-based workflow (rather than [CMake](#cloning-project-installing-via-cmake)):
-
-1. Clone **STLSoft**, **woad**, and **Pantheios**, as in;
-
-```bash
-$ mkdir -p ~/open-source
-$ cd ~/open-source
-$ git clone -b master https://github.com/synesissoftware/STLSoft
-$ git clone -b master https://github.com/synesissoftware/woad
-$ git clone -b master https://github.com/synesissoftware/Pantheios
-```
-
-2. Define an environment variable `STLSOFT`, whose value is the directory in which you cloned **STLSoft**, e.g. `STLSOFT=~/open-source/STLSoft`, and then specify `$(STLSOFT)/include` (**UNIX**) or `%STLSOFT%\include` (**Windows**) in your project files and makefiles. Build and install **woad** via **CMake** so `find_package(woad)` succeeds when configuring **Pantheios**;
-
-3. Select and change to the appropriate build subdirectory under your **Pantheios** directory, e.g. **build/gcc48.unix**, and then execute make:
-
-```bash
-$ cd ~/open-source/Pantheios
-$ cd build/gcc48.unix
-$ make
-```
-
-(**NOTE**: The recommended installation path remains [Cloning project, installing via CMake](#cloning-project-installing-via-cmake).)
+(`./prepare_cmake.sh -m` prepares and builds in one step.)
 
 
 ----
@@ -192,18 +176,23 @@ $ make
 
 ## Understanding the top-level project build scripts
 
-This project comes with a number of scripts useful for building with **CMake**, as follows:
+These **Bash** scripts live in the project root and drive a **CMake** build. Each `run_all_*.sh` has a native **`cmd.exe`** counterpart of the same basename (`run_all_unit_tests.cmd`, and so on) for Windows hosts that do not use Bash.
 
 | Script | Purpose |
 | ------ | ------- |
-| **build_cmake.sh**            | Executes **CMake**-generated artefacts to (re)build project.<br/><br/>Performs a (re)build, meaningful only once `prepare_cmake.sh` has been run once to generate all the **CMake** build artefacts.<br/><br/>Use `./build_cmake.sh --help` for further information. |
-| **clean_cmake.sh**            | Executes **CMake**-generated artefacts to clean project.<br/><br/>Performs a (re)build, meaningful only once `prepare_cmake.sh` has been run once to generate all the **CMake** build artefacts and a build has been run.<br/><br/>Use `./clean_cmake.sh --help` for further information. |
-| **generate_doxygen.sh**       | Generates HTML API documentation from the public headers via Doxygen (output under `_build/doxygen` by default; honour **`SIS_CMAKE_BUILD_DIR`**).<br/><br/>Use `./generate_doxygen.sh --help` for further information. |
-| **libver.sh**                 | Builds (unless suppressed) and runs the **libver** scratch program, which prints composite version macros for **Pantheios** and its discovered dependencies.<br/><br/>Use `./libver.sh --help` for further information. |
-| **prepare_cmake.sh**          | Creates/reinitialises the **CMake** build script(s).<br/><br/>This is the primary script, and is used to generate all the **CMake** build artefacts. We recommend that you use the command  as follows:</br></br>&nbsp;&nbsp;&nbsp;&nbsp;`./prepare_cmake.sh -m -v`.<br/><br/>The flag `-m` executes a build upon successful generation completes, and the flag `-v` generates verbose makefile(s). Use `./prepare_cmake.sh --help` for further information. |
-| **remove_cmake_artefacts.sh** | Removes all known **CMake** artefacts.<br/><br/>Removes all known **CMake** build artefacts from the build directory (currently hard-coded to `./_build`) to prepare for complete regeneration using `prepare_cmake.sh`.<br/><br/>Use `./remove_cmake_artefacts.sh --help` for further information. |
-| **run_all_examples.sh**       | Runs all (matching) example programs.<br/><br/>Performs a build and then recursively runs all executable programs matching the shell patterns `example.c.*` and `example.cpp.*`.<br/><br/>Use `./run_all_examples.sh --help` for further information. |
-| **run_all_unit_tests.sh**     | Runs all (matching) unit-test programs.<br/><br/>Performs a build and then recursively runs and executes all (excutable programs) matching the shell patterns `test_*` and `test.*`.<br/><br/>Use `./run_all_unit_tests.sh --help` for further information. |
+| **build_cmake.sh** | Rebuilds from an existing **CMake** tree. Meaningful only after **prepare_cmake.sh** has configured once.<br/><br/>Use `./build_cmake.sh --help` for further information. |
+| **clean_cmake.sh** | Cleans the **CMake** build tree. Meaningful only after a configure and a build.<br/><br/>Use `./clean_cmake.sh --help` for further information. |
+| **ctest_cmake.sh** | Runs **CTest** over the configured build (builds first unless `-M`).<br/><br/>Use `./ctest_cmake.sh --help` for further information. |
+| **generate_doxygen.sh** | Generates HTML API documentation from the public headers (output under `_build/doxygen` by default; honours **`SIS_CMAKE_BUILD_DIR`**).<br/><br/>Use `./generate_doxygen.sh --help` for further information. |
+| **libver.sh** | Builds (unless `-M`) and runs **test.scratch.versions**, which prints composite version macros for **Pantheios** and its discovered dependencies.<br/><br/>Use `./libver.sh --help` for further information. |
+| **prepare_cmake.sh** | Creates or reinitialises the **CMake** build. Recommended first command: `./prepare_cmake.sh -m -v` (`-m` builds after a successful configure; `-v` sets `CMAKE_VERBOSE_MAKEFILE`).<br/><br/>Use `./prepare_cmake.sh --help` for further information. |
+| **remove_cmake_artefacts.sh** | Deletes the build directory (default `./_build`, or **`SIS_CMAKE_BUILD_DIR`**) so **prepare_cmake.sh** can start again.<br/><br/>Use `./remove_cmake_artefacts.sh --help` for further information. |
+| **run_all_automated_tests.sh** | Builds (unless suppressed) and runs unit and component tests. `--unit-only` and `--component-only` select one category.<br/><br/>Use `./run_all_automated_tests.sh --help` for further information. |
+| **run_all_component_tests.sh** | Builds (unless suppressed) and runs component-test programs (`test.component.*`).<br/><br/>Use `./run_all_component_tests.sh --help` for further information. |
+| **run_all_examples.sh** | Builds (unless suppressed) and runs example programs (`example.c.*` and `example.cpp.*`).<br/><br/>Use `./run_all_examples.sh --help` for further information. |
+| **run_all_performance_tests.sh** | Builds (unless suppressed) and runs performance-test programs (`test.performance.*`).<br/><br/>Use `./run_all_performance_tests.sh --help` for further information. |
+| **run_all_scratch_tests.sh** | Builds (unless suppressed) and runs scratch programs (`test.scratch.*`). Honours `--skip-interactive`.<br/><br/>Use `./run_all_scratch_tests.sh --help` for further information. |
+| **run_all_unit_tests.sh** | Builds (unless suppressed) and runs unit-test programs (`test.unit.*` and the legacy `test_unit*` form).<br/><br/>Use `./run_all_unit_tests.sh --help` for further information. |
 
 
 <!-- ########################### end of file ########################### -->

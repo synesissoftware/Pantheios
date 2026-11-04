@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for Pantheios
 #
 # Created:  29th March 2021
-# Updated:  3rd November 2026
+# Updated:  5th November 2026
 #
 # ######################################################################## #
 
@@ -218,7 +218,7 @@ endif()
 # Required by bec.AnsiConsole, and by the stock back-end libraries that
 # compile that translation unit, for SGR sequences and stream policy.
 
-set(woad_REQUIRED_VERSION_ 0.2.1)
+set(woad_REQUIRED_VERSION_ 0.2.2)
 
 find_package(woad ${woad_REQUIRED_VERSION_} REQUIRED)
 
@@ -437,7 +437,7 @@ endif(Threads_FOUND)
 
 if(BUILD_TESTING)
 
-	set(xTests_REQUIRED_VERSION_ 0.28.2)
+	set(xTests_REQUIRED_VERSION_ 0.29)
 
 	find_package(xTests ${xTests_REQUIRED_VERSION_} REQUIRED)
 

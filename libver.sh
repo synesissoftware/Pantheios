@@ -30,7 +30,7 @@ while [[ $# -gt 0 ]]; do
 
       [ -f "$Dir/.sis/script_info_lines.txt" ] && cat "$Dir/.sis/script_info_lines.txt"
       cat << EOF
-Builds (unless suppressed) and runs the ${ProjectName} libver program
+Builds (unless suppressed) and runs the ${ProjectName} test.scratch.versions program
 
 $ScriptPath [ ... flags/options ... ]
 
@@ -40,11 +40,11 @@ Flags/options:
 
     -l
     --list-only
-        lists the libver program path but does not execute it
+        lists the test.scratch.versions program path but does not execute it
 
     -M
     --no-make
-        does not execute make before running libver
+        does not execute make before running test.scratch.versions
 
 
     standard flags:
@@ -77,13 +77,13 @@ if [ $RunMake -ne 0 ]; then
 
   if [ $ListOnly -eq 0 ]; then
 
-    echo "Executing build (via command \`$MakeCmd\`) and then running ${ProjectName} libver"
+    echo "Executing build (via command \`$MakeCmd\`) of test.scratch.versions and then running it"
 
     mkdir -p $CMakeDir || exit 1
 
     cd $CMakeDir
 
-    $MakeCmd libver
+    $MakeCmd test.scratch.versions
     status=$?
 
     cd ->/dev/null
@@ -100,17 +100,21 @@ fi
 
 if [ $status -eq 0 ]; then
 
-  LibVerExe=$(find "$CMakeDir" -type f -name 'libver' -exec test -x {} \; -print | head -1)
+  LibVerExe=$(find "$CMakeDir" \
+    \( -path '*/CMakeFiles/*' -o -name '*.d' -o -name '*.o' -o -name '*.obj' \) -prune -o \
+    -type f -name 'test.scratch.versions' -perm -100 -print | head -1)
 
   if [ -z "$LibVerExe" ]; then
 
-    # Windows / MinGW may emit libver.exe
-    LibVerExe=$(find "$CMakeDir" -type f \( -name 'libver' -o -name 'libver.exe' \) -print | head -1)
+    # Windows / MinGW emits test.scratch.versions.exe
+    LibVerExe=$(find "$CMakeDir" \
+      \( -path '*/CMakeFiles/*' \) -prune -o \
+      -type f -name 'test.scratch.versions.exe' -print | head -1)
   fi
 
   if [ -z "$LibVerExe" ]; then
 
-    >&2 echo "$ScriptPath: libver executable not found under '$CMakeDir'"
+    >&2 echo "$ScriptPath: test.scratch.versions executable not found under '$CMakeDir'"
 
     exit 1
   fi
@@ -120,7 +124,7 @@ if [ $status -eq 0 ]; then
     echo "would execute $LibVerExe:"
   else
 
-    echo "Running ${ProjectName} libver ($LibVerExe):"
+    echo "Running ${ProjectName} test.scratch.versions ($LibVerExe):"
 
     "$LibVerExe"
     status=$?

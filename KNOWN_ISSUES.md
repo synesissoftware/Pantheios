@@ -1,13 +1,12 @@
 # Pantheios - Known Issues <!-- omit in toc -->
 
 
-## Pantheios 1.0.1-rc10 Known Issues
+## Pantheios 1.0.1 Known Issues
 
-* still a few build artefacts not cleaned up for some makefiles;
-* distribution still contains legacy makefile trees under **build/** for obsolete / niche toolchains (e.g. older **GCC** / **VC++** makefile flavours); Visual Studio project/solution files (`.dsp`, `.dsw`, `.vcxproj`, …) were removed in a prior release;
+* \<none>
 
 
-## Pantheios 1.0.1-rc10 Suspected Issues
+## Pantheios 1.0.1 Suspected Issues
 
 * \<none>
 

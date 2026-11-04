@@ -27,7 +27,7 @@
 #### (final)
 
 * [x] ~~~Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release~~~ - ✅;
-* [ ] Review all download/build/install documentation (**INSTALL.md**);
+* [x] ~~~Review all download/build/install documentation (**INSTALL.md**)~~~ - ✅;
 
 
 #### 1.0.1-rc10 (5th November 2026)
@@ -113,6 +113,8 @@
 ### Pantheios 1.1 TODOs
 
 * [ ] fix the TODO file first!!;
+* [ ] new frontends:
+  * [ ] **fe.env**;
 * [ ] new backends:
   * [ ] **bec.mongoose**;
   * [ ] **bec.mosquitto**;

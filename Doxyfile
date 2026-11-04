@@ -34,6 +34,8 @@ SEARCH_INCLUDES        = YES
 
 USE_MDFILE_AS_MAINPAGE = doc/mainpage.md
 
+# readme-example.png lives beside doc/mainpage.md
+IMAGE_PATH             = doc
 EXAMPLE_PATH           = examples
 EXAMPLE_RECURSIVE      = YES
 
