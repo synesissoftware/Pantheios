@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.fe.WindowsRegistry project.
  *
  * Created: 14th May 2008
- * Updated: 12th October 2026
+ * Updated: 4th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -143,8 +143,8 @@ int main(int argc, char* argv[])
 namespace stub
 {
 
-    PANTHEIOS_CALL(void) pantheios_onBailOut3(int severity, char const* message, char const* processId);
-    PANTHEIOS_CALL(void) pantheios_onBailOut3(int severity, char const* message, char const* processId)
+    PANTHEIOS_CALL(void) pantheios_onBailOut3(int severity, char const* message, char const* processId) PANTHEIOS_NOEXCEPT;
+    PANTHEIOS_CALL(void) pantheios_onBailOut3(int severity, char const* message, char const* processId) PANTHEIOS_NOEXCEPT
     {
 #if 0
         fprintf(stdout, "%d: %s: %s", severity, (NULL != processId) ? processId : "", message);
@@ -163,7 +163,7 @@ namespace stub
     ,   char const*   qualifier
     ,   char const*   frontEndName
     ,   char const*   backEndName
-    );
+    ) PANTHEIOS_NOEXCEPT;
     PANTHEIOS_CALL(void) pantheios_onBailOut6(
         int           severity
     ,   char const*   message
@@ -171,7 +171,7 @@ namespace stub
     ,   char const*   qualifier
     ,   char const*   frontEndName
     ,   char const*   backEndName
-    )
+    ) PANTHEIOS_NOEXCEPT
     {
         STLSOFT_SUPPRESS_UNUSED(severity);
         STLSOFT_SUPPRESS_UNUSED(message);

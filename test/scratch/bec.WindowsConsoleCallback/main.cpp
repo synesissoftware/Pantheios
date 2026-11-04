@@ -43,7 +43,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
     int                          /* backEndId */
 ,   pan_be_WindowsConsole_init_t*   init
-) /* throw() */
+) PANTHEIOS_NOEXCEPT
 {
     init->flags |= PANTHEIOS_BE_INIT_F_NO_PROCESS_ID;
     init->flags |= PANTHEIOS_BE_INIT_F_NO_DATETIME;

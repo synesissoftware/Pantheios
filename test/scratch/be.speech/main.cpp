@@ -56,7 +56,7 @@ PANTHEIOS_EXTERN PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LI
 //PANTHEIOS_BE_DEFINE_BE_FUNCTIONS(speech)
 PANTHEIOS_BE_DEFINE_BER_FUNCTIONS(speech)
 
-PANTHEIOS_CALL(void) pantheios_be_speech_getAppInit(int backEndId, pan_be_speech_init_t* init) /* throw() */
+PANTHEIOS_CALL(void) pantheios_be_speech_getAppInit(int backEndId, pan_be_speech_init_t* init) PANTHEIOS_NOEXCEPT
 {
     STLSOFT_SUPPRESS_UNUSED(backEndId);
     STLSOFT_SUPPRESS_UNUSED(init);

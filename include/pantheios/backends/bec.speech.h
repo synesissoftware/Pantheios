@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios speech Stock Back-end API.
  *
  * Created: 10th July 2006
- * Updated: 14th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MAJOR    3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MINOR    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_EDIT     28
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_MINOR    2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_SPEECH_EDIT     29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -174,7 +174,7 @@ typedef struct pan_be_speech_init_t   pan_be_speech_init_t;
  */
 PANTHEIOS_CALL(void) pantheios_be_speech_getDefaultAppInit(
     pan_be_speech_init_t* init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 /** \ref page__backend__callbacks "Callback" function defined by
  * the application, invoked when the API is initialised with a NULL \c init
@@ -207,7 +207,7 @@ PANTHEIOS_CALL(void) pantheios_be_speech_getDefaultAppInit(
 PANTHEIOS_CALL(void) pantheios_be_speech_getAppInit(
     int                     backEndId
 ,   pan_be_speech_init_t*   init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////

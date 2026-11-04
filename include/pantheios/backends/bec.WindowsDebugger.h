@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios WindowsDebugger Stock Back-end API.
  *
  * Created: 21st June 2005
- * Updated: 14th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MAJOR       3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MINOR       1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        30
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_MINOR       2
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_REVISION    1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSDEBUGGER_EDIT        31
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -137,7 +137,7 @@ typedef struct pan_be_WindowsDebugger_init_t    pan_be_WindowsDebugger_init_t;
 PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsDebugger_init_t*  init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -151,7 +151,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getAppInit(
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsDebugger_getDefaultAppInit(
     pan_be_WindowsDebugger_init_t*  init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 /** Implements the functionality for pantheios_be_init() over the Windows
  * Debugger API.

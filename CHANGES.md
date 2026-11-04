@@ -1,6 +1,19 @@
 # Pantheios - Changes <!-- omit in toc -->
 
 
+## 1.0.1-rc10 - 5th November 2026
+
+* contract:
+  * added `PANTHEIOS_NOEXCEPT` (an alias of `STLSOFT_NOEXCEPT`) and applied it to core and util functions that cannot let a C++ exception escape, including version and init-state queries, bail-out, `snprintf` / `strdup_nothrow`, host name, process id, and thread id;
+  * applied it to stock trivial front-end and back-end entry points (`be.null`, `be.fail`, the `fe.simple` severity ceiling, documented `/* throw() */` application callbacks, and `getDefaultAppInit`);
+  * applied it to `pantheios_getCurrentProcessIdString()`, `pantheios_getCurrentProcessIdStringLength()`, and the `processId_t` string shims;
+  * shared `pantheios_fe_*` / `pantheios_be_*` declarations, locking and dispatch paths, and allocating inserters stay unmarked (recorded under **TODO.md**);
+* build:
+  * removed legacy custom makefiles;
+* version:
+  * current composite is `PANTHEIOS_VER_1_0_1_RC10` (`0x010001EA`);
+
+
 ## 1.0.1-rc9 - 3rd November 2026
 
 * packaging / inserters:

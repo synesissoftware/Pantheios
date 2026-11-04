@@ -32,7 +32,7 @@
  * application-defined functions
  */
 
-PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) /* throw() */
+PANTHEIOS_CALL(PAN_CHAR_T const*) pantheios_fe_getAppProcessIdentity(void) PANTHEIOS_NOEXCEPT
 {
     return PANTHEIOS_LITERAL_STRING("test.scratch.fe.simple.WithCallback");
 }

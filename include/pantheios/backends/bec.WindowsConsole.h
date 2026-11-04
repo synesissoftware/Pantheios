@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios WindowsConsole Stock Back-end API.
  *
  * Created: 17th July 2006
- * Updated: 14th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MAJOR    5
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MINOR    2
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_REVISION 3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     34
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_MINOR    3
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_REVISION 1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSCONSOLE_EDIT     35
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -182,7 +182,7 @@ typedef struct pan_be_WindowsConsole_init_t     pan_be_WindowsConsole_init_t;
 PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
     int                             backEndId
 ,   pan_be_WindowsConsole_init_t*   init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -203,7 +203,7 @@ PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getAppInit(
  */
 PANTHEIOS_CALL(void) pantheios_be_WindowsConsole_getDefaultAppInit(
     pan_be_WindowsConsole_init_t* init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 /** Implements the functionality for pantheios_be_init() over the Windows
  * Console API.

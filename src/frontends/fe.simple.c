@@ -118,14 +118,14 @@ PANTHEIOS_CALL(int) pantheios_fe_isSeverityLogged(
     return (severity & 0x0f) <= pantheios_fe_severity_ceiling_;
 }
 
-PANTHEIOS_CALL(int) pantheios_fe_simple_getSeverityCeiling(void)
+PANTHEIOS_CALL(int) pantheios_fe_simple_getSeverityCeiling(void) PANTHEIOS_NOEXCEPT
 {
     return pantheios_fe_severity_ceiling_;
 }
 
 PANTHEIOS_CALL(int) pantheios_fe_simple_setSeverityCeiling(
     int ceiling
-)
+) PANTHEIOS_NOEXCEPT
 {
     int const r = pantheios_fe_severity_ceiling_;
 

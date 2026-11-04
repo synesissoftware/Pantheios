@@ -4,7 +4,7 @@
  * Purpose: Declaration of the Pantheios AnsiConsole Stock Back-end API.
  *
  * Created: 20th October 2024
- * Updated: 18th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -54,9 +54,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_MAJOR       1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_MINOR       0
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_REVISION    3
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_EDIT        7
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_MINOR       1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_REVISION    1
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ANSICONSOLE_EDIT        8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -171,7 +171,7 @@ PANTHEIOS_CALL(void)
 pantheios_be_AnsiConsole_getAppInit(
     int                         backEndId
 ,   pan_be_AnsiConsole_init_t*  init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -186,7 +186,7 @@ pantheios_be_AnsiConsole_getAppInit(
 PANTHEIOS_CALL(void)
 pantheios_be_AnsiConsole_getDefaultAppInit(
     pan_be_AnsiConsole_init_t* init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 /** Implements the functionality for pantheios_be_init() over the ANSI
  * Console API.

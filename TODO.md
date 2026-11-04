@@ -6,7 +6,7 @@
 - [Functional improvements](#functional-improvements)
   - [Pantheios 1.0.1](#pantheios-101)
     - [(final)](#final)
-    - [1.0.1-rc10 (3rd November 2026)](#101-rc10-3rd-november-2026)
+    - [1.0.1-rc10 (5th November 2026)](#101-rc10-5th-november-2026)
     - [1.0.1-rc9 (3rd November 2026)](#101-rc9-3rd-november-2026)
     - [1.0.1-rc5 (18th October 2026)](#101-rc5-18th-october-2026)
     - [1.0.1-rc4 (14th October 2026)](#101-rc4-14th-october-2026)
@@ -26,19 +26,30 @@
 
 #### (final)
 
-* [ ] Re-enable **test.unit.bec.COMErrorObject** on **MinGW** once **xTests** fixes multibyte string-equality helpers for GCC two-phase lookup (shim overloads declared after **xtests.h** is included); currently skipped in **test/unit/CMakeLists.txt**;
-* [ ] Component test for **be.WindowsSyslog**;
-* [ ] Thin `pantheios_getHostName` / **src/util/hostname.c** over a platformstl host-name C API once that API lands in **STLSoft** (Windows via `winstl_C_get_computer_name_*`; UNIX `gethostname` plus Pantheios Mac `ENAMETOOLONG` / length contract); keep test oracles OS-direct for orthogonality;
-* [ ] Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release;
-
-
-#### 1.0.1-rc10 (3rd November 2026)
-
-* [ ] additional performance tests;
-* [ ] STLSoft-iiof last picks;
-* [ ] Additional performance tests;
+* [x] ~~~Resolve the awkward / interim elements introduced into the helper scripts (**run_all_unit_tests.sh**, **run_all_examples.sh**, **run_all_scratch_tests.sh**, and related **GHA** steps such as executable-bit restore) before completing the **1.0.1** final release~~~ - ✅;
 * [ ] Review all download/build/install documentation (**INSTALL.md**);
-* [ ]
+
+
+#### 1.0.1-rc10 (5th November 2026)
+
+* [x] ~~~`PANTHEIOS_NOEXCEPT()`~~~ - ✅;
+  * Cannot be applied. These throw, lock, call a front-end or back-end, or may rethrow from a catch-all (`PANTHEIOS_CATCHALL_RETHROW_UNKNOWN_EXCEPTIONS`):
+    * `pantheios_init()`, `pantheios_uninit()`;
+    * `pantheios_isSeverityLogged()`, `pantheios_getProcessIdentity()`;
+    * `pantheios_log_n()`, the generated `pantheios_log_N()`, `pantheios_logputs()`, `pantheios_puts()`, `pantheios_logassertfail()`, `pantheios_dispatch()`;
+    * `pantheios_malloc()`, `pantheios_getNextBackEndId()`;
+    * `pantheios_call_fe_init()`, `pantheios_call_fe_uninit()`, `pantheios_call_fe_getProcessIdentity()`, `pantheios_call_fe_isSeverityLogged()`;
+    * `pantheios_call_be_void_init()`, `pantheios_call_be_X_init()`, `pantheios_call_be_uninit()`, `pantheios_call_be_logEntry()`;
+    * `pantheios_be_parseBooleanArg()`, `pantheios_be_parseStringArg()`, `pantheios_be_parseStockArgs()`;
+    * `pantheios_util_getCurrentTime()`;
+    * `pantheios_util_strdup_throw()`, `util::strdup_throw()`;
+    * `getHostName(stlsoft::auto_buffer&)`;
+    * stock inserter classes whose constructors or `c_str()` paths allocate (`args`, `b64`, `blob`, `hostid`, `integer`, `m2w`, `pointer`, `processid`, `real`, `slice`, `threadid`, `w2m`);
+  * `pantheios_fe_init()`, `pantheios_fe_uninit()`, `pantheios_fe_getProcessIdentity()`, `pantheios_fe_isSeverityLogged()` — one declaration shared by every front-end, and **fe.WindowsRegistry** may rethrow;
+  * `pantheios_be_init()`, `pantheios_be_uninit()`, `pantheios_be_logEntry()`, and the local/remote split names — one declaration shared by every back-end; stock **file** (and others) may rethrow, and a custom back-end may throw into `pantheios_call_be_*`;
+  * Named stock init / uninit / log / parse entry points that allocate or call a user callback (`file`, `fprintf`, `syslog`, `speech`, consoles, event log, `ACE`, `test`, `N`, `lrsplit`);
+  * Inserter shims that construct or format (`threadId`, `hostId`, `integer`, and the allocating inserters) stay unmarked. `processId` string shims forward to `pantheios_getCurrentProcessIdString()`, which formats into a static buffer;
+* [x] ~~~Sort out **build/** directory~~~ - ✅;
 
 
 #### 1.0.1-rc9 (3rd November 2026)
@@ -82,23 +93,21 @@
 
 ### Pantheios 1.0.x TODOs
 
-
 * [ ] Refactor CMake test targets / options so that only unit-test executables are built when only unit-tests are asked for;
-
+* [ ] Re-enable **test.unit.bec.COMErrorObject** on **MinGW** once **xTests** fixes multibyte string-equality helpers for GCC two-phase lookup (shim overloads declared after **xtests.h** is included); currently skipped in **test/unit/CMakeLists.txt**;
+* [ ] Component test for **be.WindowsSyslog**;
+* [ ] Thin `pantheios_getHostName` / **src/util/hostname.c** over a platformstl host-name C API once that API lands in **STLSoft** (Windows via `winstl_C_get_computer_name_*`; UNIX `gethostname` plus Pantheios Mac `ENAMETOOLONG` / length contract); keep test oracles OS-direct for orthogonality;
 * [ ] new logo;
 * [ ] new website;
 * [ ] integrated blog;
 * [ ] separate out all utility code into separate headers, impl files, etc.;
-* [ ] `PANTHEIOS_NOTHROW()`;
-* [ ] rewrite Core in pure C (or NoX for VC++ 7.1+ and GCC);
-* [ ] rewrite Back-ends in pure C (or NoX for VC++ 7.1+ and GCC);
-* [ ] rewrite Front-ends in pure C (or NoX for VC++ 7.1+ and GCC);
-* [ ] auto-generate implicit-link files;
+* [X] ~~~auto-generate implicit-link files~~~ - ❌;
 * [ ] auto-generate be l/r source files;
 * [ ] auto-generate be l/r header files;
-* [ ] rolling file;
 * [ ] reimplement integral conversion in terms of new **STLSoft** 1.10 components;
-* [ ] release by Q4 2012!!!;
+* [X] ~~~release by Q4 2012!!!~~~ - ❌;
+* [ ] additional performance tests;
+* [ ] STLSoft-iiof last picks;
 
 
 ### Pantheios 1.1 TODOs
@@ -113,6 +122,7 @@
   * [ ] **bec.zmq** (Mikkoi's old submission modernised and introduced);
 * [ ] be.file buffering;
 * [ ] be.file rolling;
+* [ ] rolling file;
 * [x] ~~~README.TXT~~~ - ✅;
 * [ ] complete, sensible distribution files;
 * [ ] review all the download/build/install documentation;
@@ -127,6 +137,9 @@
 * [ ] Custom event log for be.WindowsEventLog;
 * [ ] be.loader fixed/internal (Windows, Mac & UNIX);
 * [ ] be.loader dynamic/external (Windows, Mac & UNIX);
+* [ ] rewrite Core in pure C (or NoX for VC++ 7.1+ and GCC);
+* [ ] rewrite Back-ends in pure C (or NoX for VC++ 7.1+ and GCC);
+* [ ] rewrite Front-ends in pure C (or NoX for VC++ 7.1+ and GCC);
 
 
 ### Pantheios 1.3 TODOs

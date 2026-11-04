@@ -4,7 +4,7 @@
  * Purpose: Platform-specific console back-end
  *
  * Created: 3rd July 2009
- * Updated: 14th October 2026
+ * Updated: 4th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -55,9 +55,9 @@
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MAJOR       1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MINOR       0
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        10
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_CONSOLE_EDIT        11
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -195,7 +195,7 @@ typedef pan_be_AnsiConsole_init_t                           pan_be_console_init_
 PANTHEIOS_CALL(void) pantheios_be_console_getAppInit(
     int                     backEndId
 ,   pan_be_console_init_t*  init
-) /* throw() */;
+) PANTHEIOS_NOEXCEPT;
 
 #else /* ? PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 # if defined(PLATFORMSTL_OS_IS_WINDOWS)
