@@ -128,7 +128,7 @@
 # define PANTHEIOS_VER_1_0_1_RC9                0x010001E9
 # define PANTHEIOS_VER_1_0_1_RC10               0x010001EA
 # define PANTHEIOS_VER_1_0_1                    0x010001FF
-# define PANTHEIOS_VER_1_0_1_A1                 0x01000241
+# define PANTHEIOS_VER_1_0_2_A1                 0x01000241
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #define PANTHEIOS_VER_MAJOR                     1
