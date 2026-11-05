@@ -4,7 +4,7 @@
  * Purpose: Implementation class to assist in the creation of back-ends.
  *
  * Created: 16th December 2006
- * Updated: 14th October 2026
+ * Updated: 6th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MAJOR    3
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_MINOR    4
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     41
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_BACKENDS_HPP_CONTEXT_EDIT     43
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -287,9 +287,9 @@ private:
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace backends */
-} /* namespace util */
-} /* namespace pantheios */
+} // namespace backends
+} // namespace util
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

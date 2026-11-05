@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/args.hpp
+ * File:    pantheios/inserters/args.hpp
  *
- * Purpose:     String inserter for argc+argv pairs.
+ * Purpose: String inserter for argc+argv pairs.
  *
- * Created:     19th October 2006
- * Updated:     14th October 2026
+ * Created: 19th October 2006
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_MINOR       6
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_REVISION    8
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_EDIT        37
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_ARGS_EDIT        39
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -304,7 +304,7 @@ c_str_ptr(args const& a)
 }
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #  if 0 || \
       defined(STLSOFT_COMPILER_IS_CLANG) || \
@@ -333,7 +333,7 @@ c_str_ptr(args const& a)
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 
 namespace stlsoft
 {

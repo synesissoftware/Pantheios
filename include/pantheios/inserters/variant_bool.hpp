@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/variant_bool.hpp
+ * File:    pantheios/inserters/variant_bool.hpp
  *
- * Purpose:     String inserter for booleans.
+ * Purpose: String inserter for booleans.
  *
- * Created:     18th June 2012
- * Updated:     14th October 2026
+ * Created: 18th June 2012
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2012-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_EDIT        5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_VARIANT_BOOL_EDIT        8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -155,7 +155,7 @@ public:
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

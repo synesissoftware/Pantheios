@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/windows/sc.hpp
+ * File:    pantheios/inserters/windows/sc.hpp
  *
- * Purpose:     Defines shorthand name for pantheios::windows::status_code
- *              inserter class.
+ * Purpose: Defines shorthand name for pantheios::windows::status_code
+ *          inserter class.
  *
- * Created:     5th April 2014
- * Updated:     14th October 2026
+ * Created: 5th April 2014
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_MINOR     0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_EDIT      5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_SC_EDIT      8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -100,9 +100,9 @@ typedef status_code sc;
  * namespace
  */
 
-} /* namespace windows */
+} // namespace windows
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

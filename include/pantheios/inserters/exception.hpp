@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/exception.hpp
+ * File:    pantheios/inserters/exception.hpp
  *
- * Purpose:     String inserter for std::exception-derived types.
+ * Purpose: String inserter for std::exception-derived types.
  *
- * Created:     22nd March 2010
- * Updated:     14th October 2026
+ * Created: 22nd March 2010
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_EDIT       8
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_EXCEPTION_EDIT       10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -126,7 +126,7 @@ private:
 };
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace inserters */
+} // namespace inserters
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
@@ -235,7 +235,7 @@ c_str_ptr(
 }
 
 #  if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #   if defined(STLSOFT_COMPILER_IS_GCC)
     /* GCC does not seem to correctly handle the phases of
@@ -263,7 +263,7 @@ c_str_ptr(
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 
 # ifdef PANTHEIOS_USE_WIDE_STRINGS
 

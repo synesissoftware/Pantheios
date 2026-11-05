@@ -4,7 +4,7 @@
  * Purpose: Primary header file for Pantheios
  *
  * Created: 21st June 2005
- * Updated: 14th October 2026
+ * Updated: 6th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -64,7 +64,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MAJOR      3
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_MINOR      11
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       110
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PANTHEIOS_EDIT       112
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -351,7 +351,7 @@ namespace internal
 {
 #  include "./generated/log_dispatch_functions.h"
 #  include "./generated/log_dispatch_functions.hpp"
-} /* namespace internal */
+} // namespace internal
 # endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 # if !defined(PANTHEIOS_NO_LOG_FUNCTIONS)
 #  include "./generated/log_functions.hpp"     // log(s), log(s, s) etc etc
@@ -369,7 +369,7 @@ namespace internal
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
