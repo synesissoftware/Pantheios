@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/strnlen.cpp
+ * File:    src/util/strnlen.cpp
  *
- * Purpose:     Implementation file for pantheios_strnlen() and related
- *              functions.
+ * Purpose: Implementation file for pantheios_strnlen() and related
+ *          functions.
  *
- * Created:     21st June 2005
- * Updated:     16th July 2024
+ * Created: 21st June 2005
+ * Updated: 5th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -121,7 +121,7 @@ PANTHEIOS_CALL(size_t) pantheios_util_getSliceLazyLength(
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace util */
+} // namespace util
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 /* static */ size_t pan_slice_t::get_lazy_length(size_t fromLen, size_t toLen)
 {
@@ -142,8 +142,8 @@ namespace util
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace util */
-} /* namespace pantheios */
+} // namespace util
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

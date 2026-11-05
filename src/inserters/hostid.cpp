@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/inserters/hostid.cpp
+ * File:    src/inserters/hostid.cpp
  *
- * Purpose:     Implementation of the pantheios::hostId inserter class.
+ * Purpose: Implementation of the pantheios::hostId inserter class.
  *
- * Created:     14th April 2008
- * Updated:     16th December 2023
+ * Created: 14th April 2008
+ * Updated: 5th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -177,10 +177,10 @@ host_id_t::operator pantheios_char_t const* () const
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
-} /* namespace inserters */
+} // namespace inserters
 # endif /* !STLSOFT_COMPILER_IS_BORLAND */
 
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

@@ -4,7 +4,7 @@
  * Purpose: Implementation file for Pantheios core API.
  *
  * Created: 21st June 2005
- * Updated: 4th November 2026
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -190,7 +190,7 @@ namespace std
 
         return out;
     }
-} /* namespace std */
+} // namespace std
 
 # define copy                                               daft_msvc_copy_workaround_
 
@@ -205,7 +205,7 @@ namespace std
 
 #  define fill_n                                            std_fill_n
 
-} /* namespace std */
+} // namespace std
 
 #endif /* STLSOFT_COMPILER_IS_MSVC && PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
@@ -240,8 +240,8 @@ namespace ximpl_core
 void pantheios_initPad_(void);
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace ximpl_core */
-} /* namespace pantheios */
+} // namespace ximpl_core
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -283,8 +283,7 @@ namespace pantheios_x
         thread_mutex_t(class_type const&);
         class_type& operator =(class_type const&);
     };
-
-} /* namespace pantheios_x */
+} // namespace pantheios_x
 
 namespace stlsoft
 {
@@ -297,7 +296,7 @@ namespace stlsoft
         ::stlsoft::unlock_instance(static_cast< ::pantheios_x::thread_mutex_t::parent_class_type&>(mx));
     }
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 
 #endif /* !PANTHEIOS_MT_HAS_ATOMIC_INTEGER_OPERATIONS */
 
@@ -956,7 +955,7 @@ PANTHEIOS_CALL(int) pantheios_dispatch(
 );
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace core */
+} // namespace core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -1448,7 +1447,7 @@ pantheios_log_n__cpp(
 
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace core */
+} // namespace core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -1542,7 +1541,7 @@ PANTHEIOS_CALL(int) pantheios_getNextBackEndId(void)
 }
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace core */
+} // namespace core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 PANTHEIOS_CALL(void)
@@ -1659,7 +1658,7 @@ PANTHEIOS_CALL(void*) pantheios_malloc(size_t cb)
 }
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace core */
+} // namespace core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -1683,7 +1682,7 @@ PANTHEIOS_CALL(void) pantheios_inserterDeallocate(void* pv) PANTHEIOS_NOEXCEPT
 }
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace core */
+} // namespace core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -1704,7 +1703,7 @@ void pantheios_initPad_(void)
 }
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace ximpl_core */
+} // namespace ximpl_core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -1734,7 +1733,7 @@ pantheios_getPad(
 }
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace core */
+} // namespace core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -1846,7 +1845,7 @@ PANTHEIOS_CALL(int) pantheios_backEndMap_remove(int backEndId)
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

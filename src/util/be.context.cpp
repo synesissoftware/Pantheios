@@ -4,11 +4,11 @@
  * Purpose: Implementation of pantheios::util::backends::Context.
  *
  * Created: 18th December 2006
- * Updated: 29th January 2025
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2025, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -514,9 +514,9 @@ Context::getBackEndId() const
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace backends */
-} /* namespace util */
-} /* namespace pantheios */
+} // namespace backends
+} // namespace util
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

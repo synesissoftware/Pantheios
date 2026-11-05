@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/core/auto.cpp
+ * File:    src/core/auto.cpp
  *
- * Purpose:     Implementation file for Pantheios Application Layer API.
+ * Purpose: Implementation file for Pantheios Application Layer API.
  *
- * Created:     27th August 2006
- * Updated:     16th December 2023
+ * Created: 27th August 2006
+ * Updated: 5th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -66,8 +66,8 @@ namespace core
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace core */
-} /* namespace pantheios */
+} // namespace core
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

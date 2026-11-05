@@ -4,7 +4,7 @@
  * Purpose: Implementation of the pantheios::m2w inserter class.
  *
  * Created: 22nd November 2010
- * Updated: 29th October 2026
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -187,7 +187,7 @@ size_t m2w::length() const
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

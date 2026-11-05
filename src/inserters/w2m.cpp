@@ -4,7 +4,7 @@
  * Purpose: Implementation of the pantheios::w2m inserter class.
  *
  * Created: 7th August 2008
- * Updated: 29th October 2026
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -186,7 +186,7 @@ size_t w2m::length() const
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

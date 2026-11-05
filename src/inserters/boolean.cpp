@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/inserters/boolean.cpp
+ * File:    src/inserters/boolean.cpp
  *
- * Purpose:     Implementation of the pantheios::boolean inserter class.
+ * Purpose: Implementation of the pantheios::boolean inserter class.
  *
- * Created:     7th August 2008
- * Updated:     16th December 2023
+ * Created: 7th August 2008
+ * Updated: 5th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -240,7 +240,7 @@ no_trueName:
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

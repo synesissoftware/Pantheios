@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inserters/slice.cpp
+ * File:    inserters/slice.cpp
  *
- * Purpose:     Implementation of the inserter classes.
+ * Purpose: Implementation of the inserter classes.
  *
- * Created:     14th February 2010
- * Updated:     16th July 2024
+ * Created: 14th February 2010
+ * Updated: 5th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -106,7 +106,7 @@ namespace std
 
 # define copy                                               std_copy
 
-} /* namespace std */
+} // namespace std
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
 
@@ -264,7 +264,7 @@ void slice_inserter::construct_()
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

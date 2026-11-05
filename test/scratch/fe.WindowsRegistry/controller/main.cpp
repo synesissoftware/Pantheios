@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.fe.WindowsRegistry.controller project.
  *
  * Created: 2nd December 2007
- * Updated: 10th October 2026
+ * Updated: 5th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -62,10 +62,9 @@ namespace control
             }
         };
 
-    } /* namespace fe */
-
-} /* namespace control */
-} /* namespace pantheios */
+    } // namespace fe
+} // namespace control
+} // namespace pantheios
 
 /* ////////////////////////////////////////////////////////////////////// */
 

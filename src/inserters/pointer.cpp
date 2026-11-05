@@ -4,11 +4,11 @@
  * Purpose: Implementation of the inserter classes.
  *
  * Created: 21st June 2005
- * Updated: 20th October 2024
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -108,8 +108,7 @@ namespace std
     using stlsoft::std_fill_n;
 
 # define fill_n                                             std_fill_n
-
-} /* namespace std */
+} // namespace std
 #endif /* PANTHEIOS_USING_SAFE_STR_FUNCTIONS */
 
 
@@ -341,7 +340,7 @@ void pointer::construct_()
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

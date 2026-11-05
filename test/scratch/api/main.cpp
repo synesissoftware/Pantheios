@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.scratch.api project.
  *
  * Created: 26th June 2005
- * Updated: 12th October 2026
+ * Updated: 5th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -164,7 +164,7 @@ namespace stlsoft
     }
 
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 
 
 std::string Thingy_to_string(Thingy const *thingy);
