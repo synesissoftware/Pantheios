@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/fmt.hpp
+ * File:    pantheios/inserters/fmt.hpp
  *
- * Purpose:     Format constants for Pantheios inserter classes.
+ * Purpose: Format constants for Pantheios inserter classes.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_FMT_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_FMT_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_FMT_REVISION 12
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_FMT_EDIT     26
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_FMT_EDIT     28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -129,7 +129,7 @@ struct fmt
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

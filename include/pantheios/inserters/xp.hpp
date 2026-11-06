@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/xp.hpp
+ * File:    pantheios/inserters/xp.hpp
  *
- * Purpose:     Defines shorthand name for pantheios::pointer inserter
- *              class for inserting pointers in hexadecimal format.
+ * Purpose: Defines shorthand name for pantheios::pointer inserter
+ *          class for inserting pointers in hexadecimal format.
  *
- * Created:     23rd March 2010
- * Updated:     14th October 2026
+ * Created: 23rd March 2010
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_MINOR     1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_EDIT      7
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_XP_EDIT      10
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -126,7 +126,7 @@ public:
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

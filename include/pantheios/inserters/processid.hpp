@@ -4,7 +4,7 @@
  * Purpose: String inserter for process identity.
  *
  * Created: 16th October 2006
- * Updated: 4th November 2026
+ * Updated: 6th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_MINOR      3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_EDIT       27
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_PROCESSID_EDIT       29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -191,7 +191,7 @@ c_str_ptr(
 }
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #  if 0 || \
       defined(STLSOFT_COMPILER_IS_CLANG) || \
@@ -220,7 +220,7 @@ c_str_ptr(
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 
 namespace stlsoft
 {

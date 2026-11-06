@@ -4,11 +4,11 @@
  * Purpose: Implementation of the `interval` inserter class.
  *
  * Created: 19th April 2014
- * Updated: 7th February 2024
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2014-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -242,7 +242,7 @@ void interval::construct_()
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

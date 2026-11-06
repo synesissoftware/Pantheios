@@ -4,11 +4,11 @@
  * Purpose:     Implementation of the inserter classes.
  *
  * Created:     16th October 2006
- * Updated:     16th December 2023
+ * Updated:     5th November 2026
  *
  * Home:        http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -150,9 +150,9 @@ thread_id_t::operator pantheios_char_t const* () const
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace inserters */
+} // namespace inserters
 
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

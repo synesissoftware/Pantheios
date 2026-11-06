@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/real.hpp
+ * File:    pantheios/inserters/real.hpp
  *
- * Purpose:     String inserters for fundamental types
+ * Purpose: String inserters for fundamental types
  *
- * Created:     21st June 2005
- * Updated:     14th October 2026
+ * Created: 21st June 2005
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_MINOR       3
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_REVISION    7
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_EDIT        34
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_REAL_EDIT        37
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -262,7 +262,7 @@ c_str_ptr(
 }
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #  if 0 || \
       defined(STLSOFT_COMPILER_IS_CLANG) || \
@@ -291,7 +291,7 @@ c_str_ptr(
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 
 namespace stlsoft
 {

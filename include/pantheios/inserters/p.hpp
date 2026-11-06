@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/p.hpp
+ * File:    pantheios/inserters/p.hpp
  *
- * Purpose:     Defines shorthand name for pantheios::pointer inserter
- *              class.
+ * Purpose: Defines shorthand name for pantheios::pointer inserter
+ *          class.
  *
- * Created:     12th March 2010
- * Updated:     16th December 2023
+ * Created: 12th March 2010
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_REVISION   1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_EDIT       4
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_P_EDIT       7
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -98,7 +98,7 @@ typedef pointer p;
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

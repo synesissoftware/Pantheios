@@ -4,7 +4,7 @@
  * Purpose: Implementation file for the test.unit.fe.WindowsRegistry project.
  *
  * Created: 14th May 2008
- * Updated: 4th November 2026
+ * Updated: 5th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -180,8 +180,7 @@ namespace stub
         STLSOFT_SUPPRESS_UNUSED(frontEndName);
         STLSOFT_SUPPRESS_UNUSED(backEndName);
     }
-
-} /* namespace stub */
+} // namespace stub
 
 
 /* /////////////////////////////////////////////////////////////////////////

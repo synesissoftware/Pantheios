@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/windows/hive.hpp
+ * File:    pantheios/inserters/windows/hive.hpp
  *
- * Purpose:     Selective format string inserter for Windows Registry hives.
+ * Purpose: Selective format string inserter for Windows Registry hives.
  *
- * Created:     22nd May 2016
- * Updated:     14th October 2026
+ * Created: 22nd May 2016
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2016-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_EDIT        5
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_WINDOWS_HPP_HIVE_EDIT        8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -252,7 +252,7 @@ hive::length() const
  * namespace
  */
 
-} /* namespace windows */
+} // namespace windows
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -318,7 +318,7 @@ c_str_ptr(
 }
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #  if 0 || \
       defined(STLSOFT_COMPILER_IS_CLANG) || \
@@ -347,7 +347,7 @@ c_str_ptr(
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 
 namespace stlsoft
 {

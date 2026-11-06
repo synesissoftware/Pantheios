@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/character.hpp
+ * File:    pantheios/inserters/character.hpp
  *
- * Purpose:     String inserters for fundamental types
+ * Purpose: String inserters for fundamental types
  *
- * Created:     21st June 2005
- * Updated:     14th October 2026
+ * Created: 21st June 2005
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -83,7 +83,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_MINOR      5
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_REVISION   4
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_EDIT       32
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_CHARACTER_EDIT       34
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -248,7 +248,7 @@ c_str_ptr(character const& r)
 }
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #  if defined(STLSOFT_COMPILER_IS_GCC)
     /* GCC does not seem to correctly handle the phases of
@@ -324,7 +324,7 @@ character::length() const
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 
 namespace stlsoft
 {

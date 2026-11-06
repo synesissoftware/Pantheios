@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inserters/stream_character.cpp
+ * File:    inserters/stream_character.cpp
  *
- * Purpose:     Implementation of the inserter classes.
+ * Purpose: Implementation of the inserter classes.
  *
- * Created:     4th July 2011
- * Updated:     16th July 2024
+ * Created: 4th July 2011
+ * Updated: 5th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -136,8 +136,7 @@ namespace ximpl_stream_character
         { 32,   PANTHEIOS_LITERAL_STRING("SP")  },
         { 127,  PANTHEIOS_LITERAL_STRING("DEL") },
     };
-
-} /* namespace ximpl_stream_character */
+} // namespace ximpl_stream_character
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -188,7 +187,7 @@ void stream_character::construct_()
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

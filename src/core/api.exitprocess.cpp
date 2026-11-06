@@ -4,11 +4,11 @@
  * Purpose: Implementation file for Pantheios core API.
  *
  * Created: 21st June 2005
- * Updated: 4th November 2026
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2005-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2005-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
  *
@@ -99,7 +99,7 @@ PANTHEIOS_CALL(void) pantheios_exitProcess(int code) PANTHEIOS_NOEXCEPT
 }
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace core */
+} // namespace core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -108,7 +108,7 @@ PANTHEIOS_CALL(void) pantheios_exitProcess(int code) PANTHEIOS_NOEXCEPT
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

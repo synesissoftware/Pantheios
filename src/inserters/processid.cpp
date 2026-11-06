@@ -4,7 +4,7 @@
  * Purpose: Implementation of the inserter classes.
  *
  * Created: 16th October 2006
- * Updated: 4th November 2026
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -165,7 +165,7 @@ PANTHEIOS_CALL(size_t) pantheios_getCurrentProcessIdStringLength(void) PANTHEIOS
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

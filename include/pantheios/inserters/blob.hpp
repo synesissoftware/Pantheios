@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/blob.hpp
+ * File:    pantheios/inserters/blob.hpp
  *
- * Purpose:     String inserter for binary regions.
+ * Purpose: String inserter for binary regions.
  *
- * Created:     21st June 2005
- * Updated:     14th October 2026
+ * Created: 21st June 2005
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_MINOR       4
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_REVISION    8
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        35
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_BLOB_EDIT        37
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -326,7 +326,7 @@ c_str_ptr(blob const& b)
 }
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #  if 0 || \
       defined(STLSOFT_COMPILER_IS_CLANG) || \
@@ -355,7 +355,7 @@ c_str_ptr(blob const& b)
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 
 namespace stlsoft
 {

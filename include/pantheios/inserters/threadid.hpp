@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/threadid.hpp
+ * File:    pantheios/inserters/threadid.hpp
  *
- * Purpose:     String inserter for thread identity.
+ * Purpose: String inserter for thread identity.
  *
- * Created:     16th October 2006
- * Updated:     14th October 2026
+ * Created: 16th October 2006
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_MAJOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_REVISION    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_EDIT        27
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_THREADID_EDIT        30
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -154,7 +154,7 @@ private:
 };
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace inserters */
+} // namespace inserters
 #  define PANTHEIOS_INSERTERS_DECLARE_thread_id_t           ::pantheios::inserters::thread_id_t
 # else /* ? !PANTHEIOS_NO_NAMESPACE */
 #  define PANTHEIOS_INSERTERS_DECLARE_thread_id_t           thread_id_t
@@ -218,7 +218,7 @@ c_str_ptr(
 }
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #  if 0 || \
       defined(STLSOFT_COMPILER_IS_CLANG) || \
@@ -248,7 +248,7 @@ c_str_ptr(
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
 
-} /* namespace pantheios */
+} // namespace pantheios
 
 namespace stlsoft
 {

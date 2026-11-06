@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/shims/access/string/core/pan_severity_t.hpp
+ * File:    pantheios/shims/access/string/core/pan_severity_t.hpp
  *
- * Purpose:     Pantheios Core entity string access shims : pan_severity_t.
+ * Purpose: Pantheios Core entity string access shims : pan_severity_t.
  *
- * Created:     21st June 2005
- * Updated:     14th October 2026
+ * Created: 21st June 2005
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_MAJOR      4
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_EDIT       358
+# define PANTHEIOS_VER_PANTHEIOS_SHIMS_ACCESS_STRING_CORE_HPP_PAN_SEVERITY_T_EDIT       361
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -208,8 +208,8 @@ c_str_ptr_null(
  */
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
-} /* namespace pantheios */
+} // namespace shims
+} // namespace pantheios
 # endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

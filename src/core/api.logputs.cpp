@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/core/api.logputs.cpp
+ * File:    src/core/api.logputs.cpp
  *
- * Purpose:     Implementation file for Pantheios core API.
+ * Purpose: Implementation file for Pantheios core API.
  *
- * Created:     21st June 2005
- * Updated:     16th December 2023
+ * Created: 21st June 2005
+ * Updated: 5th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * Copyright (c) 1999-2005, Synesis Software and Matthew Wilson
  * All rights reserved.
@@ -83,7 +83,7 @@ PANTHEIOS_CALL(int) pantheios_dispatch(
 );
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace core */
+} // namespace core
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 
@@ -115,7 +115,7 @@ pantheios_logputs(
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

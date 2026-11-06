@@ -10,7 +10,7 @@
  *            - use of pantheios::logputs() in bail-out conditions
  *
  * Created: 31st August 2006
- * Updated: 10th October 2026
+ * Updated: 5th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -64,7 +64,7 @@ namespace stlsoft
   size_t c_str_len_a(Person const& pi);
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 #endif /* compiler */
 
 
@@ -301,7 +301,7 @@ namespace stlsoft
 # endif /* PANTHEIOS_USE_WIDE_STRINGS */
   }
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 
 static void log_with_string_access_shims(Person const& person)
 {
@@ -413,7 +413,7 @@ namespace stlsoft
     return pi.size();
   }
 
-} /* namespace stlsoft */
+} // namespace stlsoft
 
 static void log_with_inserter_class(Person const& person)
 {

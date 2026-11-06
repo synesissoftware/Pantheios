@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/stream_character.hpp
+ * File:    pantheios/inserters/stream_character.hpp
  *
- * Purpose:     String inserter for characters as read from streams.
+ * Purpose: String inserter for characters as read from streams.
  *
- * Created:     3rd July 2011
- * Updated:     14th October 2026
+ * Created: 3rd July 2011
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2011-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_REVISION    5
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        9
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_STREAM_CHARACTER_EDIT        12
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -249,7 +249,7 @@ c_str_ptr(
 }
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #  if 0 || \
       defined(STLSOFT_COMPILER_IS_CLANG) || \
@@ -278,7 +278,7 @@ c_str_ptr(
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 
 namespace stlsoft
 {

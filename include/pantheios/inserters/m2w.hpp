@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/m2w.hpp
+ * File:    pantheios/inserters/m2w.hpp
  *
- * Purpose:     Inserter class for incorporating multibyte strings into a
- *              wide string statement.
+ * Purpose: Inserter class for incorporating multibyte strings into a
+ *          wide string statement.
  *
- * Created:     22nd November 2010
- * Updated:     14th October 2026
+ * Created: 22nd November 2010
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2010-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_REVISION 2
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     10
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_M2W_EDIT     12
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -269,7 +269,7 @@ c_str_ptr(
 }
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #  if defined(STLSOFT_COMPILER_IS_GCC)
     /* GCC does not seem to correctly handle the phases of
@@ -297,7 +297,7 @@ c_str_ptr(
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 
 namespace stlsoft
 {

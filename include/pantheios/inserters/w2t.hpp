@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/w2t.hpp
+ * File:    pantheios/inserters/w2t.hpp
  *
- * Purpose:     Inserter class for inserting wide strings.
+ * Purpose: Inserter class for inserting wide strings.
  *
- * Created:     1st September 2015
- * Updated:     16th December 2023
+ * Created: 1st September 2015
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2015-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_MAJOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_REVISION 0
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_EDIT     3
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_W2T_EDIT     6
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -126,7 +126,7 @@ typedef w2m         w2t;
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

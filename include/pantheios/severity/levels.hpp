@@ -5,7 +5,7 @@
  *          used to generate levels pseudo-constants.
  *
  * Created: 22nd July 2006
- * Updated: 14th October 2026
+ * Updated: 6th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_EDIT       27
+# define PANTHEIOS_VER_PANTHEIOS_SEVERITY_HPP_LEVELS_EDIT       29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -150,7 +150,7 @@ public: // operators
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

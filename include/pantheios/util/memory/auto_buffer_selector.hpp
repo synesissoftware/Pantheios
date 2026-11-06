@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/memory/auto_buffer_selector.hpp
+ * File:    pantheios/util/memory/auto_buffer_selector.hpp
  *
- * Purpose:     Type generator template for defining stlsoft::auto_buffer
- *              specialisations.
+ * Purpose: Type generator template for defining stlsoft::auto_buffer
+ *          specialisations.
  *
- * Created:     9th November 2007
- * Updated:     14th October 2026
+ * Created: 9th November 2007
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_MINOR     2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_REVISION  4
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      17
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_MEMORY_HPP_AUTO_BUFFER_SELECTOR_EDIT      20
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -157,8 +157,8 @@ struct auto_buffer_selector
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace util */
-} /* namespace pantheios */
+} // namespace util
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 

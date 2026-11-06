@@ -4,7 +4,7 @@
  * Purpose: Implementation of the b64 inserter class.
  *
  * Created: 31st July 2006
- * Updated: 3rd November 2026
+ * Updated: 5th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -223,7 +223,7 @@ void b64::construct_()
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 #endif /* !PANTHEIOS_NO_NAMESPACE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

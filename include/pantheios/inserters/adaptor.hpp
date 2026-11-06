@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/adaptor.hpp
+ * File:    pantheios/inserters/adaptor.hpp
  *
- * Purpose:     Inserter adaptors for the Pantheios application layer.
+ * Purpose: Inserter adaptors for the Pantheios application layer.
  *
- * Created:     29th July 2006
- * Updated:     16th December 2023
+ * Created: 29th July 2006
+ * Updated: 6th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_REVISION    7
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        26
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_INSERTER_EDIT        28
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -239,7 +239,7 @@ PANTHEIOS_c_str_len_name_(
 }
 
 # if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace shims */
+} // namespace shims
 
 #  if defined(STLSOFT_COMPILER_IS_GCC)
     /* GCC does not seem to correctly handle the phases of
@@ -260,7 +260,7 @@ PANTHEIOS_c_str_len_name_(
  */
 
 #if !defined(PANTHEIOS_NO_NAMESPACE)
-} /* namespace pantheios */
+} // namespace pantheios
 
 namespace stlsoft
 {
