@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/time/currenttime.h
+ * File:    pantheios/util/time/currenttime.h
  *
- * Purpose:     Functions for retrieving and formatting the current time.
+ * Purpose: Functions for retrieving and formatting the current time.
  *
- * Created:     22nd August 2006
- * Updated:     14th October 2026
+ * Created: 22nd August 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_MAJOR      2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_MINOR      1
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_REVISION   2
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_EDIT       23
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_TIME_H_CURRENTTIME_EDIT       24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

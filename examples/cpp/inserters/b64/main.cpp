@@ -1,19 +1,19 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        examples/cpp/inserters/b64/main.cpp
+ * File:    examples/cpp/inserters/b64/main.cpp
  *
- * Purpose:     C++ example program for Pantheios. Demonstrates:
+ * Purpose: C++ example program for Pantheios. Demonstrates:
  *
  *                - use of Pantheios b64 inserter for blob types
  *                - use of pantheios::logputs() in bail-out conditions
  *
- * Created:     25th August 2006
- * Updated:     10th October 2026
+ * Created: 25th August 2006
+ * Updated: 11th November 2026
  *
  * www:         http://www.pantheios.org/
  *
- * License:     This source code is placed into the public domain 2006
- *              by Synesis Software Pty Ltd. There are no restrictions
- *              whatsoever to your use of the software.
+ * License: This source code is placed into the public domain 2006
+ *          by Synesis Software Pty Ltd. There are no restrictions
+ *          whatsoever to your use of the software.
  *
  *              This software is provided "as is", and any warranties,
  *              express or implied, of any kind and for any purpose, are

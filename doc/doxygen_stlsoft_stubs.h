@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        doc/doxygen_stlsoft_stubs.h
+ * File:    doc/doxygen_stlsoft_stubs.h
  *
- * Purpose:     Documentation-only stand-ins for STLSoft integer typedefs
- *              named in Pantheios public headers (e.g. inserter ctors).
- *              Keeps Doxygen link resolution working when STLSoft is not on
- *              INCLUDE_PATH (as in the CI documentation job).
+ * Purpose: Documentation-only stand-ins for STLSoft integer typedefs
+ *          named in Pantheios public headers (e.g. inserter ctors).
+ *          Keeps Doxygen link resolution working when STLSoft is not on
+ *          INCLUDE_PATH (as in the CI documentation job).
  *
- * Created:     14th October 2026
- * Updated:     14th October 2026
+ * Created: 14th October 2026
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * All rights reserved.

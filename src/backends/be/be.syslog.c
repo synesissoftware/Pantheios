@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/be/be.syslog.c
+ * File:    src/backends/be/be.syslog.c
  *
- * Purpose:     Implementation of be.syslog
+ * Purpose: Implementation of be.syslog
  *
- * Created:     23rd July 2005
- * Updated:     16th December 2023
+ * Created: 23rd July 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

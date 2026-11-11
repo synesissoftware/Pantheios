@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/frontends/fe.fail.h
+ * File:    pantheios/frontends/fe.fail.h
  *
- * Purpose:     Declaration of the Pantheios fe.fail Stock Front-end API.
+ * Purpose: Declaration of the Pantheios fe.fail Stock Front-end API.
  *
- * Created:     8th March 2008
- * Updated:     14th October 2026
+ * Created: 8th March 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_EDIT       10
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_FAIL_EDIT       11
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

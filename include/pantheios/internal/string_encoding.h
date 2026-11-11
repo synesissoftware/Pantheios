@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/internal/string_encoding.h
+ * File:    pantheios/internal/string_encoding.h
  *
- * Purpose:     Utilities to assist with implementation as multibyte or
- *              wide string
+ * Purpose: Utilities to assist with implementation as multibyte or
+ *          wide string
  *
- * Created:     14th November 2008
- * Updated:     16th December 2023
+ * Created: 14th November 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

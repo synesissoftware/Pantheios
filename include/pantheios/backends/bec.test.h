@@ -4,7 +4,7 @@
  * Purpose: Declaration of the be.test library.
  *
  * Created: 1st November 2006
- * Updated: 14th October 2026
+ * Updated: 11th November 2026
  *
  * Home:    http://www.pantheios.org/
  *
@@ -54,10 +54,10 @@
  */
 
 #ifndef PANTHEIOS_DOCUMENTATION_SKIP_SECTION
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR     2
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR     2
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION  4
-# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT      34
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MAJOR    2
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_MINOR    2
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_REVISION 4
+# define PANTHEIOS_VER_BACKENDS_H_BEC_TEST_EDIT     35
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

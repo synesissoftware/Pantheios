@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/be.N.c
+ * File:    src/backends/be.N.c
  *
- * Purpose:     Implementation of the Pantheios be.N Stock Back-end API.
+ * Purpose: Implementation of the Pantheios be.N Stock Back-end API.
  *
- * Created:     18th October 2006
- * Updated:     16th December 2023
+ * Created: 18th October 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

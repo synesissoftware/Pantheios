@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/com/exception_helpers.hpp
+ * File:    pantheios/util/com/exception_helpers.hpp
  *
- * Purpose:     This file is now obsolete. Instead obtain the
- *              Pantheios::Extras::xHelpers project, and include
- *              pantheios/extras/com/exception_helpers.hpp.
+ * Purpose: This file is now obsolete. Instead obtain the
+ *          Pantheios::Extras::xHelpers project, and include
+ *          pantheios/extras/com/exception_helpers.hpp.
  *
- * Created:     1st May 2006
- * Updated:     16th December 2023
+ * Created: 1st May 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_MINOR       0
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_EDIT        24
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_COM_HPP_EXCEPTION_HELPERS_EDIT        25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

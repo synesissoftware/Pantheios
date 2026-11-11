@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/be/be.file.c
+ * File:    src/backends/be/be.file.c
  *
- * Purpose:     Implementation of be.file
+ * Purpose: Implementation of be.file
  *
- * Created:     25th November 2006
- * Updated:     16th December 2023
+ * Created: 25th November 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

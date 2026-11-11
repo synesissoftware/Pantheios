@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/test/compiler_warnings_suppression.last_include.h
+ * File:    pantheios/util/test/compiler_warnings_suppression.last_include.h
  *
- * Purpose:     #include file to go at the end of a test file's #include
- *              list.
+ * Purpose: #include file to go at the end of a test file's #include
+ *          list.
  *
- * Created:     8th December 2007
- * Updated:     14th October 2026
+ * Created: 8th December 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software

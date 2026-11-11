@@ -1,16 +1,16 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/pan.hpp
+ * File:    pantheios/pan.hpp
  *
- * Purpose:     Equivalent to the Pantheios C++ primary include
- *              pantheios/pantheios.hpp, but aliases the pantheios
- *              namespace to pan.
+ * Purpose: Equivalent to the Pantheios C++ primary include
+ *          pantheios/pantheios.hpp, but aliases the pantheios
+ *          namespace to pan.
  *
- * Created:     13th January 2008
- * Updated:     16th December 2023
+ * Created: 13th January 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_EDIT       7
+# define PANTHEIOS_VER_PANTHEIOS_HPP_PAN_EDIT       8
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

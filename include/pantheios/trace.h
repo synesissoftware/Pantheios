@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/trace.h
+ * File:    pantheios/trace.h
  *
- * Purpose:     Pantheios Tracing API.
+ * Purpose: Pantheios Tracing API.
  *
- * Created:     11th November 2007
- * Updated:     14th October 2026
+ * Created: 11th November 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_MINOR      3
 # define PANTHEIOS_VER_PANTHEIOS_H_TRACE_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       23
+# define PANTHEIOS_VER_PANTHEIOS_H_TRACE_EDIT       24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

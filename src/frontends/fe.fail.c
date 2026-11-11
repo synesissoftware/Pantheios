@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/frontends/fe.fail.c
+ * File:    src/frontends/fe.fail.c
  *
- * Purpose:     Implementation of the fe.fail front-end.
+ * Purpose: Implementation of the fe.fail front-end.
  *
- * Created:     8th March 2008
- * Updated:     16th December 2023
+ * Created: 8th March 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/memory/inserters.hpp
+ * File:    pantheios/util/memory/inserters.hpp
  *
- * Purpose:     Memory (de-)allocation for the inserters.
+ * Purpose: Memory (de-)allocation for the inserters.
  *
- * Created:     8th January 2008
- * Updated:     16th December 2023
+ * Created: 8th January 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_MINOR    0
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_EDIT     10
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_INSERTERS_HPP_MEMORY_EDIT     11
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

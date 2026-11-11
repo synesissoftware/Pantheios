@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/ber/ber.fail.c
+ * File:    src/backends/ber/ber.fail.c
  *
- * Purpose:     Implementation of ber.fail
+ * Purpose: Implementation of ber.fail
  *
- * Created:     9th January 2007
- * Updated:     16th December 2023
+ * Created: 9th January 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

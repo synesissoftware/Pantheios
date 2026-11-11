@@ -1,15 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/core.apidefs.cpp
+ * File:    src/util/core.apidefs.cpp
  *
- * Purpose:     Utility functions for use in Pantheios back- and front-
- *              ends.
+ * Purpose: Utility functions for use in Pantheios back- and front-
+ *          ends.
  *
- * Created:     19th August 2007
- * Updated:     16th December 2023
+ * Created: 19th August 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

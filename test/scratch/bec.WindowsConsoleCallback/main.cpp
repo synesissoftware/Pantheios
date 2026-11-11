@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:     test/scratch/bec.WindowsConsoleCallback/main.cpp
+ * File:    test/scratch/bec.WindowsConsoleCallback/main.cpp
  *
- * Purpose:  Implementation file for the test.scratch.bec.WindowsConsoleCallback project.
+ * Purpose: Implementation file for the test.scratch.bec.WindowsConsoleCallback project.
  *
- * Created:  31st July 2007
- * Updated: 12th October 2026
+ * Created: 31st July 2007
+ * Updated: 11th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

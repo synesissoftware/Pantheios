@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.ACE.h
+ * File:    pantheios/backends/bec.ACE.h
  *
- * Purpose:     Declaration of the Pantheios ACE Stock Back-end API.
+ * Purpose: Declaration of the Pantheios ACE Stock Back-end API.
  *
- * Created:     21st June 2005
- * Updated:     14th October 2026
+ * Created: 21st June 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_MAJOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_MINOR       1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_REVISION    1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_EDIT        17
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_ACE_EDIT        18
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

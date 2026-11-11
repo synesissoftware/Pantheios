@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/ber/ber.test.c
+ * File:    src/backends/ber/ber.test.c
  *
- * Purpose:     Implementation
+ * Purpose: Implementation
  *
- * Created:     18th January 2008
- * Updated:     16th December 2023
+ * Created: 18th January 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

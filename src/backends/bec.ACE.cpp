@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.ACE.cpp
+ * File:    src/backends/bec.ACE.cpp
  *
- * Purpose:     Implementation for the ACE back-end
+ * Purpose: Implementation for the ACE back-end
  *
- * Created:     26th June 2005
- * Updated:     16th December 2023
+ * Created: 26th June 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

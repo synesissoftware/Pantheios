@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        test/scratch/be.pantheios.COM/main.cpp
+ * File:    test/scratch/be.pantheios.COM/main.cpp
  *
- * Purpose:     Implementation file for the test.scratch.be.pantheios.COM project.
+ * Purpose: Implementation file for the test.scratch.be.pantheios.COM project.
  *
- * Created:     9th October 2006
- * Updated:     12th October 2026
+ * Created: 9th October 2006
+ * Updated: 11th November 2026
  *
  * ////////////////////////////////////////////////////////////////////// */
 

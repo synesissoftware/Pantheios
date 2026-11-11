@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/inserters/ids.hpp
+ * File:    pantheios/inserters/ids.hpp
  *
- * Purpose:     String inserters for execution environment identities.
+ * Purpose: String inserters for execution environment identities.
  *
- * Created:     16th October 2006
- * Updated:     16th December 2023
+ * Created: 16th October 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2023, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_MINOR    1
 # define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_EDIT     16
+# define PANTHEIOS_VER_PANTHEIOS_INSERTERS_HPP_IDS_EDIT     17
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

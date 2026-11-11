@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/frontend.h
+ * File:    pantheios/frontend.h
  *
- * Purpose:     Pantheios front end API
+ * Purpose: Pantheios front end API
  *
- * Created:     21st June 2005
- * Updated:     14th October 2026
+ * Created: 21st June 2005
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2005-2019, Matthew Wilson and Synesis Software
@@ -58,7 +58,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MAJOR       3
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_MINOR       2
 # define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_REVISION    2
-# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        28
+# define PANTHEIOS_VER_PANTHEIOS_H_FRONTEND_EDIT        29
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

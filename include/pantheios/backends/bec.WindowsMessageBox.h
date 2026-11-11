@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/backends/bec.WindowsMessageBox.h
+ * File:    pantheios/backends/bec.WindowsMessageBox.h
  *
- * Purpose:     Declaration of the Pantheios WindowsMessageBox Stock Back-end API.
+ * Purpose: Declaration of the Pantheios WindowsMessageBox Stock Back-end API.
  *
- * Created:     8th March 2008
- * Updated:     14th October 2026
+ * Created: 8th March 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_MAJOR     1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_MINOR     1
 # define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_EDIT      13
+# define PANTHEIOS_VER_PANTHEIOS_BACKENDS_H_BEC_WINDOWSMESSAGEBOX_EDIT      14
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

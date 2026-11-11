@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/init_codes.h
+ * File:    pantheios/init_codes.h
  *
- * Purpose:     Back-/Front-end initialisation codes.
+ * Purpose: Back-/Front-end initialisation codes.
  *
- * Created:     27th September 2007
- * Updated:     14th October 2026
+ * Created: 27th September 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -60,7 +60,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_MAJOR     2
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_MINOR     5
 # define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_REVISION  1
-# define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      24
+# define PANTHEIOS_VER_PANTHEIOS_H_INIT_CODES_EDIT      25
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/util/init_code_strings.c
+ * File:    src/util/init_code_strings.c
  *
- * Purpose:     Initialisation code strings for Pantheios API
+ * Purpose: Initialisation code strings for Pantheios API
  *
- * Created:     27th September 2007
- * Updated:     16th July 2024
+ * Created: 27th September 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

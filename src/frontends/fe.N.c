@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/frontends/fe.N.c
+ * File:    src/frontends/fe.N.c
  *
- * Purpose:     Implementation of the Pantheios fe.N Stock Front-end API.
+ * Purpose: Implementation of the Pantheios fe.N Stock Front-end API.
  *
- * Created:     18th October 2006
- * Updated:     29th March 2021
+ * Created: 18th October 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2021, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

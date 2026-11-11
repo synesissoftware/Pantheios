@@ -1,13 +1,13 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/util/core/apidefs.hpp
+ * File:    pantheios/util/core/apidefs.hpp
  *
- * Purpose:     API definition helpers for use in Pantheios back- and front-
- *              ends.
+ * Purpose: API definition helpers for use in Pantheios back- and front-
+ *          ends.
  *
- * Created:     3rd November 2007
- * Updated:     14th October 2026
+ * Created: 3rd November 2007
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2007-2019, Matthew Wilson and Synesis Software
@@ -59,7 +59,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MAJOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_MINOR    2
 # define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_REVISION 1
-# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     23
+# define PANTHEIOS_VER_PANTHEIOS_UTIL_CORE_HPP_APIDEFS_EDIT     24
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 

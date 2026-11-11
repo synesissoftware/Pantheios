@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        src/backends/bec.WindowsEventLog.cpp
+ * File:    src/backends/bec.WindowsEventLog.cpp
  *
- * Purpose:     Implementation for the WindowsEventLog back-end
+ * Purpose: Implementation for the WindowsEventLog back-end
  *
- * Created:     8th May 2006
- * Updated:     16th July 2024
+ * Created: 8th May 2006
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
- * Copyright (c) 2019-2024, Matthew Wilson and Synesis Information Systems
+ * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2006-2019, Matthew Wilson and Synesis Software
  * All rights reserved.
  *

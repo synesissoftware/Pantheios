@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        pantheios/frontends/fe.null.h
+ * File:    pantheios/frontends/fe.null.h
  *
- * Purpose:     Declaration of the Pantheios fe.null Stock Front-end API.
+ * Purpose: Declaration of the Pantheios fe.null Stock Front-end API.
  *
- * Created:     5th January 2008
- * Updated:     14th October 2026
+ * Created: 5th January 2008
+ * Updated: 11th November 2026
  *
- * Home:        http://www.pantheios.org/
+ * Home:    http://www.pantheios.org/
  *
  * Copyright (c) 2019-2026, Matthew Wilson and Synesis Information Systems
  * Copyright (c) 2008-2019, Matthew Wilson and Synesis Software
@@ -57,7 +57,7 @@
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_NULL_MAJOR      1
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_NULL_MINOR      0
 # define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_NULL_REVISION   3
-# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_NULL_EDIT       10
+# define PANTHEIOS_VER_PANTHEIOS_FRONTENDS_H_FE_NULL_EDIT       11
 #endif /* !PANTHEIOS_DOCUMENTATION_SKIP_SECTION */
 
 
