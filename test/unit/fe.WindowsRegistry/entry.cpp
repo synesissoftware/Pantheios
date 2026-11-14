@@ -66,13 +66,13 @@ PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_LITERAL_STRING("tes
 namespace
 {
 
-    static void TEST_fe_WindowsRegistry_CAN_INIT(void);
-    static void TEST_fe_WindowsRegistry_CANNOT_INIT(void);
-    static void TEST_fe_WindowsRegistry_LEVELS_IN_HKCU(void);
-    static void TEST_fe_WindowsRegistry_LEVELS_IN_HKLM(void);
-    static void TEST_fe_WindowsRegistry_HKCU_OVERRIDES_HKLM(void);
-    static void TEST_fe_WindowsRegistry_STAR(void);
-    static void TEST_fe_WindowsRegistry_CLEANUP(void);
+    static void TEST_fe_WindowsRegistry_CAN_INIT();
+    static void TEST_fe_WindowsRegistry_CANNOT_INIT();
+    static void TEST_fe_WindowsRegistry_LEVELS_IN_HKCU();
+    static void TEST_fe_WindowsRegistry_LEVELS_IN_HKLM();
+    static void TEST_fe_WindowsRegistry_HKCU_OVERRIDES_HKLM();
+    static void TEST_fe_WindowsRegistry_STAR();
+    static void TEST_fe_WindowsRegistry_CLEANUP();
 
 } /* anonymous namespace */
 
